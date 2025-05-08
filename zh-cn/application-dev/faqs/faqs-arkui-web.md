@@ -276,15 +276,15 @@ Web({ src: 'www.example.com', controller: this.controller })
 [GET\_NETWORK\_INFO](../security/AccessToken/permissions-for-all.md#ohospermissionget_network_info)
 
 
-## 如何自定义拼接设置UserAgent参数(API 9)
+## 如何自定义拼接设置User-Agent参数(API 9)
 
 **解决措施**
 
-默认UserAgent需要通过WebviewController获取。WebviewController对象必须在Web组件绑定后，才能调用WebviewController上的方法getUserAgent获取默认UserAgent。因此在页面加载前通过自定义字符串拼接修改UserAgent，可采用此方式：
+默认User-Agent需要通过WebviewController获取。WebviewController对象必须在Web组件绑定后，才能调用WebviewController上的方法getUserAgent获取默认User-Agent。因此在页面加载前通过自定义字符串拼接修改User-Agent，可采用此方式：
 
-1. 使用\@State定义初始UserAgent，绑定到Web组件；
+1. 使用\@State定义初始User-Agent，绑定到Web组件；
 
-2. 在Web组件的onUrlLoadIntercept回调中，通过WebviewController.getUserAgent()获取默认UserAgent，并修改Web组件绑定的UserAgent
+2. 在Web组件的onUrlLoadIntercept回调中，通过WebviewController.getUserAgent()获取默认User-Agent，并修改Web组件绑定的User-Agent
 
 **代码示例**
 
@@ -317,46 +317,6 @@ struct Index {
 **参考链接**
 
 [userAgent](../reference/apis-arkweb/ts-basic-components-web.md#useragentdeprecated)、[getUserAgent](../reference/apis-arkweb/js-apis-webview.md#getuseragent)
-
-
-## Web组件中如何通过手势滑动返回上一个Web页面(API 9)
-
-**解决措施**
-
-通过重写onBackPress函数来自定义返回逻辑，使用WebviewController判断是否返回上一个Web页面。
-
-**示例代码**
-
-```
-import web_webview from '@ohos.web.webview';
-@Entry
-@Component
-struct Index {
-  controller: web_webview.WebviewController = new web_webview.WebviewController();
-  build() {
-    Column() {
-      Web({ src: 'http://www.example.com', controller: this.controller })//需要手动替换为真实网站
-    }
-  }
-  onBackPress() {
-    // 当前页面是否可前进或者后退给定的step步(-1),正数代表前进，负数代表后退
-    if (this.controller.accessStep(-1)) {
-      this.controller.backward(); // 返回上一个web页
-      // 执行用户自定义返回逻辑
-      return true
-    } else {
-      // 执行系统默认返回逻辑，返回上一个page页
-      return false
-    }
-  }
-}
-```
-
-**参考链接**
-
-[accessStep](../reference/apis-arkweb/js-apis-webview.md#accessstep)
-
-
 ## WebView支持同层渲染吗(API 10)
 
 **解决措施**
@@ -448,7 +408,7 @@ Webview提供mixedMode(mixedMode: MixedMode)接口，设置是否允许加载超
 
 **参考链接**
 
-[动态创建Web组件](../web/web-page-loading-with-web-components.md#动态创建web组件)
+[动态创建Web组件](../web/web-page-loading-with-web-components.md)
 
 
 ## 目前OpenHarmony是否有提供类似其他系统的JavaScript引擎能力?

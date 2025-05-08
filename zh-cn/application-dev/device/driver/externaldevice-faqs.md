@@ -29,8 +29,8 @@
 | 应用开发接口（ArkTS接口） | API10 | 4.0 Release及以上 |
 | USB DDK接口 | API10 | 4.0 Release及以上 |
 | HID DDK接口 | API11 | 4.1 Release及以上 |
-| USB Serial DDK接口 | API16 | 5.1 Release及以上 |
-| SCSI Peripheral DDK接口 | API16 | 5.1 Release及以上 |
+| USB Serial DDK接口 | API18 | 5.1 Release及以上 |
+| SCSI Peripheral DDK接口 | API18 | 5.1 Release及以上 |
 <!--RP3End-->
 
 ## 安装HAP时提示解析本地so文件失败

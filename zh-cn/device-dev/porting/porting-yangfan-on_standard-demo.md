@@ -113,7 +113,7 @@ RK3399适配主要是将主线编译出来的ramdisk 打包到boot_linux.img中�
 
 配置：
 
-由于rk 启动uboot 支持从ramdisk 启动，只需要在打包boot_linux.img 的配置文件中增加ramdisk.img ，因此没有使用主线的its格式，具体配置就是在内核编译脚本make-ohos.sh 中增加:
+由于rk 启动uboot 支持从ramdisk 启动，只需要在打包boot_linux.img 的配置文件中增加ramdisk.img ，因此没有使用主线的its格式，具体配置就是在内核编译脚本make-ohos.sh 中增加：
 
 ```
 function make_extlinux_conf()
@@ -135,7 +135,7 @@ function make_extlinux_conf()
 
 ### 打包 
 
-增加了打包boot镜像的脚本make-boot.sh，供编译完ramdisk，打包boot 镜像时调用，主要内容:
+增加了打包boot镜像的脚本make-boot.sh，供编译完ramdisk，打包boot 镜像时调用，主要内容：
 
 ```
 genext2fs -B ${blocks} -b ${block_size} -d boot_linux -i 8192 -U boot_linux.img
@@ -145,7 +145,7 @@ genext2fs -B ${blocks} -b ${block_size} -d boot_linux -i 8192 -U boot_linux.img
 
 ### INIT配置
 
-init相关配置请参考[启动恢复子系统]( https://gitee.com/openharmony/docs/blob/master/zh-cn/readme/%E5%90%AF%E5%8A%A8%E6%81%A2%E5%A4%8D%E5%AD%90%E7%B3%BB%E7%BB%9F.md )即可
+init相关配置请参考[启动恢复子系统]( https://gitee.com/openharmony/docs/blob/master/zh-cn/readme/%E5%90%AF%E5%8A%A8%E6%81%A2%E5%A4%8D%E5%AD%90%E7%B3%BB%E7%BB%9F.md )即可。
 
 ## **音频**
 

@@ -17,16 +17,17 @@
 
 | 名称 | 描述 |
 | -------- | -------- |
-| [oh_cursor.h](oh__cursor_8h.md) | 提供通过查询数据库生成的数据库结果集的访问方法。<br/>**引用文件：** <database/rdb/oh_cursor.h><br/>**库:** libnative_rdb_ndk.z.so<br/> |
-| [oh_data_value.h](oh__data__value_8h.md) | 提供与单条数据值相关的函数和枚举。<br/>**引用文件：** <database/rdb/oh_data_value.h><br/>**库:** libnative_rdb_ndk.z.so<br/> |
-| [oh_data_values.h](oh__data__values_8h.md) | 提供与多条数据值相关的函数和枚举。<br/>**引用文件：** <database/rdb/oh_data_values.h><br/>**库:** libnative_rdb_ndk.z.so<br/> |
-| [oh_data_values_buckets.h](oh__data__values__buckets_8h.md) | 提供与存储数据值相关的结构定义、函数和枚举。<br/>**引用文件：** <database/rdb/oh_data_values_buckets.h><br/>**库:** libnative_rdb_ndk.z.so<br/> |
-| [oh_predicates.h](oh__predicates_8h.md) | 表示关系型数据库（RDB）的谓词。<br/>**引用文件：** <database/rdb/oh_predicates.h><br/>**库:** libnative_rdb_ndk.z.so<br/> |
-| [oh_rdb_transaction.h](oh__rdb__transaction_8h.md) | 提供与数据库事务相关的函数和枚举。<br/>**引用文件：** <database/rdb/oh_rdb_transaction.h><br/>**库:** libnative_rdb_ndk.z.so<br/> |
-| [oh_value_object.h](oh__value__object_8h.md) | 提供类型转换方法。<br/>**引用文件：** <database/rdb/oh_value_object.h><br/>**库:** libnative_rdb_ndk.z.so<br/> |
-| [oh_values_bucket.h](oh__values__bucket_8h.md) | 用于存储键值对的类型。<br/>**引用文件：** <database/rdb/oh_values_bucket.h><br/>**库:** libnative_rdb_ndk.z.so<br/> |
-| [relational_store.h](relational__store_8h.md) | 提供管理关系数据库（RDB）方法的接口，未标注支持向量数据库的接口仅支持关系型数据库。<br/>**引用文件：** <database/rdb/relational_store.h><br/>**库:** libnative_rdb_ndk.z.so<br/> |
-| [relational_store_error_code.h](relational__store__error__code_8h.md) | 声明关系型数据库（RDB）的错误码信息。<br/>**引用文件：** <database/rdb/relational_store_error_code.h><br/>**库:** libnative_rdb_ndk.z.so |
+| [oh_cursor.h](oh__cursor_8h.md) | 提供通过查询数据库生成的数据库结果集的访问方法。<br/>**引用文件：** <database/rdb/oh_cursor.h><br/>**库：** libnative_rdb_ndk.z.so<br/> |
+| [oh_data_value.h](oh__data__value_8h.md) | 提供与单条数据值相关的函数和枚举。<br/>从API version 18开始，OH_ColumnType从oh_cursor.h移动至此头文件呈现，对于此类型，API version 18之前即支持使用，各版本均可正常使用。<br/>**引用文件：** <database/rdb/oh_data_value.h><br/>**库：** libnative_rdb_ndk.z.so<br/> |
+| [oh_data_values.h](oh__data__values_8h.md) | 提供与多条数据值相关的函数和枚举。<br/>**引用文件：** <database/rdb/oh_data_values.h><br/>**库：** libnative_rdb_ndk.z.so<br/> |
+| [oh_data_values_buckets.h](oh__data__values__buckets_8h.md) | 提供与存储数据值相关的结构定义、函数和枚举。<br/>**引用文件：** <database/rdb/oh_data_values_buckets.h><br/>**库：** libnative_rdb_ndk.z.so<br/> |
+| [oh_predicates.h](oh__predicates_8h.md) | 表示关系型数据库（RDB）的谓词。<br/>**引用文件：** <database/rdb/oh_predicates.h><br/>**库：** libnative_rdb_ndk.z.so<br/> |
+| [oh_rdb_transaction.h](oh__rdb__transaction_8h.md) | 提供与数据库事务相关的函数和枚举。<br/>**引用文件：** <database/rdb/oh_rdb_transaction.h><br/>**库：** libnative_rdb_ndk.z.so<br/> |
+| [oh_rdb_types.h](oh__rdb__types_8h.md) | 提供与数据值相关的类型定义。<br/>**引用文件：** <database/rdb/oh_rdb_types.h><br/>**库：** libnative_rdb_ndk.z.so<br/> | 
+| [oh_value_object.h](oh__value__object_8h.md) | 提供类型转换方法。<br/>**引用文件：** <database/rdb/oh_value_object.h><br/>**库：** libnative_rdb_ndk.z.so<br/> |
+| [oh_values_bucket.h](oh__values__bucket_8h.md) | 用于存储键值对的类型。<br/>**引用文件：** <database/rdb/oh_values_bucket.h><br/>**库：** libnative_rdb_ndk.z.so<br/> |
+| [relational_store.h](relational__store_8h.md) | 提供管理关系数据库（RDB）方法的接口，未标注支持向量数据库的接口仅支持关系型数据库。<br/>**引用文件：** <database/rdb/relational_store.h><br/>**库：** libnative_rdb_ndk.z.so<br/> |
+| [relational_store_error_code.h](relational__store__error__code_8h.md) | 声明关系型数据库（RDB）的错误码信息。<br/>**引用文件：** <database/rdb/relational_store_error_code.h><br/>**库：** libnative_rdb_ndk.z.so |
 
 
 ### 结构体
@@ -64,6 +65,7 @@
 
 | 名称 | 描述 |
 | -------- | -------- |
+| typedef enum [Rdb_ConflictResolution](#rdb_conflictresolution) [Rdb_ConflictResolution](#rdb_conflictresolution) | 表示冲突解决策略的枚举。 |
 | typedef struct [OH_Rdb_ConfigV2](#oh_rdb_configv2) [OH_Rdb_ConfigV2](#oh_rdb_configv2) | 管理关系数据库配置，与[OH_Rdb_Config](_o_h___rdb___config.md)的区别是该结构体成员变量不对外暴露，使用一系列方法配置该结构体的属性，支持向量数据库。 |
 | typedef enum [Rdb_DBType](#rdb_dbtype) [Rdb_DBType](#rdb_dbtype) | 描述数据库的内核类型。 |
 | typedef enum [Rdb_Tokenizer](#rdb_tokenizer) [Rdb_Tokenizer](#rdb_tokenizer) | 描述数据库的分词器类型。 |
@@ -110,7 +112,7 @@
 | [Rdb_DBType](#rdb_dbtype-1) { RDB_SQLITE = 1, RDB_CAYLEY = 2, DBTYPE_BUTT = 64 } | 描述数据库的内核类型。 |
 | [OH_OrderType](#oh_ordertype-1) { ASC = 0, DESC = 1 } | 排序方式。 |
 | [OH_Rdb_SecurityLevel](#oh_rdb_securitylevel-1) { S1 = 1, S2, S3, S4 } | 数据库的安全级别枚举。 |
-| [Rdb_SecurityArea](#rdb_securityarea-1) { RDB_SECURITY_AREA_EL1 = 1, RDB_SECURITY_AREA_EL2, RDB_SECURITY_AREA_EL3, RDB_SECURITY_AREA_EL4 } | 描述数据库的安全区域等级。 |
+| [Rdb_SecurityArea](#rdb_securityarea-1) { RDB_SECURITY_AREA_EL1 = 1, RDB_SECURITY_AREA_EL2, RDB_SECURITY_AREA_EL3, RDB_SECURITY_AREA_EL4, RDB_SECURITY_AREA_EL5 } | 描述数据库的安全区域等级。 |
 | [Rdb_DistributedType](#rdb_distributedtype-1) { RDB_DISTRIBUTED_CLOUD } | 描述表的分布式类型的枚举。 |
 | [Rdb_ChangeType](#rdb_changetype-1) { RDB_DATA_CHANGE, RDB_ASSET_CHANGE } | 描述数据变更类型。 |
 | [Rdb_SubscribeType](#rdb_subscribetype-1) { RDB_SUBSCRIBE_TYPE_CLOUD, RDB_SUBSCRIBE_TYPE_CLOUD_DETAILS, RDB_SUBSCRIBE_TYPE_LOCAL_DETAILS } | 描述订阅类型。 |
@@ -120,13 +122,17 @@
 | [OH_ColumnType](#oh_columntype-1) {<br/>TYPE_NULL = 0, TYPE_INT64, TYPE_REAL, TYPE_TEXT,<br/>TYPE_BLOB, TYPE_ASSET, TYPE_ASSETS, TYPE_FLOAT_VECTOR,<br/>TYPE_UNLIMITED_INT<br/>} | 表示列的类型。 |
 | [OH_RDB_TransType](#oh_rdb_transtype-1) { RDB_TRANS_DEFERRED = 0, RDB_TRANS_IMMEDIATE, RDB_TRANS_EXCLUSIVE, RDB_TRANS_BUTT } | 表示关系型数据库事务类型。 |
 | [Rdb_Tokenizer](#rdb_tokenizer-1) { RDB_NONE_TOKENIZER = 1, RDB_ICU_TOKENIZER = 2, RDB_CUSTOM_TOKENIZER = 3 } | 描述数据库的分词器类型。 |
-| [OH_Rdb_ErrCode](#oh_rdb_errcode-1) {<br/>RDB_ERR = -1,<br/>RDB_OK = 0,<br/>E_BASE = 14800000,<br/>RDB_E_NOT_SUPPORTED = 801,<br/>RDB_E_ERROR = E_BASE,<br/>RDB_E_INVALID_ARGS = (E_BASE + 1),<br/>RDB_E_CANNOT_UPDATE_READONLY = (E_BASE + 2),<br/>RDB_E_REMOVE_FILE = (E_BASE + 3),<br/>RDB_E_EMPTY_TABLE_NAME = (E_BASE + 5),<br/>RDB_E_EMPTY_VALUES_BUCKET = (E_BASE + 6),<br/>RDB_E_EXECUTE_IN_STEP_QUERY = (E_BASE + 7),<br/>RDB_E_INVALID_COLUMN_INDEX = (E_BASE + 8),<br/>RDB_E_INVALID_COLUMN_TYPE = (E_BASE + 9),<br/>RDB_E_EMPTY_FILE_NAME = (E_BASE + 10),<br/>RDB_E_INVALID_FILE_PATH = (E_BASE + 11),<br/>RDB_E_TRANSACTION_IN_EXECUTE = (E_BASE + 12),<br/>RDB_E_INVALID_STATEMENT = (E_BASE + 13),<br/>RDB_E_EXECUTE_WRITE_IN_READ_CONNECTION = (E_BASE + 14),<br/>RDB_E_BEGIN_TRANSACTION_IN_READ_CONNECTION = (E_BASE + 15),<br/>RDB_E_NO_TRANSACTION_IN_SESSION = (E_BASE + 16),<br/>RDB_E_MORE_STEP_QUERY_IN_ONE_SESSION = (E_BASE + 17),<br/>RDB_E_NO_ROW_IN_QUERY = (E_BASE + 18),<br/>RDB_E_INVALID_BIND_ARGS_COUNT = (E_BASE + 19),<br/>RDB_E_INVALID_OBJECT_TYPE = (E_BASE + 20),<br/>RDB_E_INVALID_CONFLICT_FLAG = (E_BASE + 21),<br/>RDB_E_HAVING_CLAUSE_NOT_IN_GROUP_BY = (E_BASE + 22), RDB_E_NOT_SUPPORTED_BY_STEP_RESULT_SET = (E_BASE + 23), RDB_E_STEP_RESULT_SET_CROSS_THREADS = (E_BASE + 24),<br/>RDB_E_STEP_RESULT_QUERY_NOT_EXECUTED = (E_BASE + 25),<br/>RDB_E_STEP_RESULT_IS_AFTER_LAST = (E_BASE + 26),<br/>RDB_E_STEP_RESULT_QUERY_EXCEEDED = (E_BASE + 27),<br/>RDB_E_STATEMENT_NOT_PREPARED = (E_BASE + 28),<br/>RDB_E_EXECUTE_RESULT_INCORRECT = (E_BASE + 29),<br/>RDB_E_STEP_RESULT_CLOSED = (E_BASE + 30),<br/>RDB_E_RELATIVE_PATH = (E_BASE + 31),<br/>RDB_E_EMPTY_NEW_ENCRYPT_KEY = (E_BASE + 32),<br/>RDB_E_CHANGE_UNENCRYPTED_TO_ENCRYPTED = (E_BASE + 33),<br/>RDB_E_CHANGE_ENCRYPT_KEY_IN_BUSY = (E_BASE + 34),<br/>RDB_E_STEP_STATEMENT_NOT_INIT = (E_BASE + 35),<br/>RDB_E_NOT_SUPPORTED_ATTACH_IN_WAL_MODE = (E_BASE + 36),<br/>RDB_E_CREATE_FOLDER_FAIL = (E_BASE + 37),<br/>RDB_E_SQLITE_SQL_BUILDER_NORMALIZE_FAIL = (E_BASE + 38),<br/>RDB_E_STORE_SESSION_NOT_GIVE_CONNECTION_TEMPORARILY = (E_BASE + 39),<br/>RDB_E_STORE_SESSION_NO_CURRENT_TRANSACTION = (E_BASE + 40),<br/>RDB_E_NOT_SUPPORT = (E_BASE + 41),<br/>RDB_E_INVALID_PARCEL = (E_BASE + 42),<br/>RDB_E_QUERY_IN_EXECUTE = (E_BASE + 43),<br/>RDB_E_SET_PERSIST_WAL = (E_BASE + 44),<br/>RDB_E_DB_NOT_EXIST = (E_BASE + 45),<br/>RDB_E_ARGS_READ_CON_OVERLOAD = (E_BASE + 46),<br/>RDB_E_WAL_SIZE_OVER_LIMIT = (E_BASE + 47),<br/>RDB_E_CON_OVER_LIMIT = (E_BASE + 48),<br/>RDB_E_ALREADY_CLOSED = (E_BASE + 51),<br/>RDB_E_DATABASE_BUSY = (E_BASE + 52),<br/>RDB_E_NOT_SUPPORT_THE_SQL = (E_BASE + 53),<br/>RDB_E_SQLITE_CORRUPT = (E_BASE + 54),<br/>RDB_E_SQLITE_PERM = (E_BASE + 55),<br/>RDB_E_SQLITE_BUSY = (E_BASE + 56),<br/>RDB_E_SQLITE_LOCKED = (E_BASE + 57),<br/>RDB_E_SQLITE_NOMEM = (E_BASE + 58),<br/>RDB_E_SQLITE_READONLY = (E_BASE + 59),<br/>RDB_E_SQLITE_IOERR = (E_BASE + 60),<br/>RDB_E_SQLITE_FULL = (E_BASE + 61),<br/>RDB_E_SQLITE_CANT_OPEN = (E_BASE + 62),<br/>RDB_E_SQLITE_TOO_BIG = (E_BASE + 63),<br/>RDB_E_SQLITE_MISMATCH = (E_BASE + 64)<br/>} | 表示错误码信息。 |
+| [Rdb_ConflictResolution](#rdb_conflictresolution-1) {<br/>RDB_CONFLICT_NONE = 1, RDB_CONFLICT_ROLLBACK, RDB_CONFLICT_ABORT, RDB_CONFLICT_FAIL,<br/>RDB_CONFLICT_IGNORE, RDB_CONFLICT_REPLACE<br/>} | 表示冲突解决策略的枚举。 | 
+| [OH_Rdb_ErrCode](#oh_rdb_errcode-1) {<br/>RDB_ERR = -1, RDB_OK = 0, E_BASE = 14800000, RDB_E_NOT_SUPPORTED = 801,<br/>RDB_E_ERROR = E_BASE, RDB_E_INVALID_ARGS = (E_BASE + 1), RDB_E_CANNOT_UPDATE_READONLY = (E_BASE + 2), RDB_E_REMOVE_FILE = (E_BASE + 3),<br/>RDB_E_EMPTY_TABLE_NAME = (E_BASE + 5), RDB_E_EMPTY_VALUES_BUCKET = (E_BASE + 6), RDB_E_EXECUTE_IN_STEP_QUERY = (E_BASE + 7), RDB_E_INVALID_COLUMN_INDEX = (E_BASE + 8),<br/>RDB_E_INVALID_COLUMN_TYPE = (E_BASE + 9), RDB_E_EMPTY_FILE_NAME = (E_BASE + 10), RDB_E_INVALID_FILE_PATH = (E_BASE + 11), RDB_E_TRANSACTION_IN_EXECUTE = (E_BASE + 12),<br/>RDB_E_INVALID_STATEMENT = (E_BASE + 13), RDB_E_EXECUTE_WRITE_IN_READ_CONNECTION = (E_BASE + 14), RDB_E_BEGIN_TRANSACTION_IN_READ_CONNECTION = (E_BASE + 15), RDB_E_NO_TRANSACTION_IN_SESSION = (E_BASE + 16),<br/>RDB_E_MORE_STEP_QUERY_IN_ONE_SESSION = (E_BASE + 17), RDB_E_NO_ROW_IN_QUERY = (E_BASE + 18), RDB_E_INVALID_BIND_ARGS_COUNT = (E_BASE + 19), RDB_E_INVALID_OBJECT_TYPE = (E_BASE + 20),<br/>RDB_E_INVALID_CONFLICT_FLAG = (E_BASE + 21), RDB_E_HAVING_CLAUSE_NOT_IN_GROUP_BY = (E_BASE + 22), RDB_E_NOT_SUPPORTED_BY_STEP_RESULT_SET = (E_BASE + 23), RDB_E_STEP_RESULT_SET_CROSS_THREADS = (E_BASE + 24),<br/>RDB_E_STEP_RESULT_QUERY_NOT_EXECUTED = (E_BASE + 25), RDB_E_STEP_RESULT_IS_AFTER_LAST = (E_BASE + 26), RDB_E_STEP_RESULT_QUERY_EXCEEDED = (E_BASE + 27), RDB_E_STATEMENT_NOT_PREPARED = (E_BASE + 28),<br/>RDB_E_EXECUTE_RESULT_INCORRECT = (E_BASE + 29), RDB_E_STEP_RESULT_CLOSED = (E_BASE + 30), RDB_E_RELATIVE_PATH = (E_BASE + 31), RDB_E_EMPTY_NEW_ENCRYPT_KEY = (E_BASE + 32),<br/>RDB_E_CHANGE_UNENCRYPTED_TO_ENCRYPTED = (E_BASE + 33), RDB_E_CHANGE_ENCRYPT_KEY_IN_BUSY = (E_BASE + 34), RDB_E_STEP_STATEMENT_NOT_INIT = (E_BASE + 35), RDB_E_NOT_SUPPORTED_ATTACH_IN_WAL_MODE = (E_BASE + 36),<br/>RDB_E_CREATE_FOLDER_FAIL = (E_BASE + 37), RDB_E_SQLITE_SQL_BUILDER_NORMALIZE_FAIL = (E_BASE + 38), RDB_E_STORE_SESSION_NOT_GIVE_CONNECTION_TEMPORARILY = (E_BASE + 39), RDB_E_STORE_SESSION_NO_CURRENT_TRANSACTION = (E_BASE + 40),<br/>RDB_E_NOT_SUPPORT = (E_BASE + 41), RDB_E_INVALID_PARCEL = (E_BASE + 42), RDB_E_QUERY_IN_EXECUTE = (E_BASE + 43), RDB_E_SET_PERSIST_WAL = (E_BASE + 44),<br/>RDB_E_DB_NOT_EXIST = (E_BASE + 45), RDB_E_ARGS_READ_CON_OVERLOAD = (E_BASE + 46), RDB_E_WAL_SIZE_OVER_LIMIT = (E_BASE + 47), RDB_E_CON_OVER_LIMIT = (E_BASE + 48),<br/>RDB_E_ALREADY_CLOSED = (E_BASE + 50), RDB_E_DATABASE_BUSY = (E_BASE + 51), RDB_E_SQLITE_CORRUPT = (E_BASE + 52), RDB_E_SQLITE_PERM = (E_BASE + 53),<br/>RDB_E_SQLITE_BUSY = (E_BASE + 54), RDB_E_SQLITE_LOCKED = (E_BASE + 55), RDB_E_SQLITE_NOMEM = (E_BASE + 56), RDB_E_SQLITE_READONLY = (E_BASE + 57),<br/>RDB_E_SQLITE_IOERR = (E_BASE + 58), RDB_E_SQLITE_FULL = (E_BASE + 59), RDB_E_SQLITE_CANT_OPEN = (E_BASE + 60), RDB_E_SQLITE_TOO_BIG = (E_BASE + 61),<br/>RDB_E_SQLITE_MISMATCH = (E_BASE + 62), RDB_E_DATA_TYPE_NULL = (E_BASE + 63), RDB_E_TYPE_MISMATCH = (E_BASE + 64), RDB_E_SQLITE_CONSTRAINT = (E_BASE + 65)<br/>} | 表示错误码信息。 | 
 
 
 ### 函数
 
 | 名称 | 描述 |
 | -------- | -------- |
+| int [OH_RdbTrans_BatchInsert](#oh_rdbtrans_batchinsert) ([OH_Rdb_Transaction](#oh_rdb_transaction) \*trans, const char \*table, const [OH_Data_VBuckets](#oh_data_vbuckets) \*rows, [Rdb_ConflictResolution](#rdb_conflictresolution) resolution, int64_t \*changes) | 将一组数据批量插入到目标表中。 | 
+| int [OH_Rdb_BatchInsert](#oh_rdb_batchinsert) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, const char \*table, const [OH_Data_VBuckets](#oh_data_vbuckets) \*rows, [Rdb_ConflictResolution](#rdb_conflictresolution) resolution, int64_t \*changes) | 将一批数据插入到目标表中。 | 
+| int [OH_Rdb_SetPersistent](#oh_rdb_setpersistent) ([OH_Rdb_ConfigV2](#oh_rdb_configv2) \*config, bool isPersistent) | 指定数据库是否需要持久化。 | 
 | int [OH_Rdb_IsTokenizerSupported](#oh_rdb_istokenizersupported) ([Rdb_Tokenizer](#rdb_tokenizer) tokenizer, bool \*isSupported) | 判断当前平台是否支持传入的分词器。 |
 | int [OH_Rdb_SetTokenizer](#oh_rdb_settokenizer) ([OH_Rdb_ConfigV2](#oh_rdb_configv2) \*config, [Rdb_Tokenizer](#rdb_tokenizer) tokenizer) | 给指定的数据库文件配置设置分词器类型。 |
 | int [OH_Cursor_GetFloatVectorCount](#oh_cursor_getfloatvectorcount) ([OH_Cursor](_o_h___cursor.md) \*cursor, int32_t columnIndex, size_t \*length) | 获取当前行中指定列的浮点数数组大小。 |
@@ -195,7 +201,6 @@
 | int [OH_RdbTrans_Commit](#oh_rdbtrans_commit) ([OH_Rdb_Transaction](#oh_rdb_transaction) \*trans) | 提交事务。 |
 | int [OH_RdbTrans_Rollback](#oh_rdbtrans_rollback) ([OH_Rdb_Transaction](#oh_rdb_transaction) \*trans) | 回滚事务。 |
 | int [OH_RdbTrans_Insert](#oh_rdbtrans_insert) ([OH_Rdb_Transaction](#oh_rdb_transaction) \*trans, const char \*table, const [OH_VBucket](_o_h___v_bucket.md) \*row, int64_t \*rowId) | 将一行数据插入到目标表中。 |
-| int [OH_RdbTrans_BatchInsert](#oh_rdbtrans_batchinsert) ([OH_Rdb_Transaction](#oh_rdb_transaction) \*trans, const char \*table, const [OH_Data_VBuckets](#oh_data_vbuckets) \*rows, Rdb_ConflictResolution resolution, int64_t \*changes) | 将一组数据批量插入到目标表中。 |
 | int [OH_RdbTrans_Update](#oh_rdbtrans_update) ([OH_Rdb_Transaction](#oh_rdb_transaction) \*trans, const [OH_VBucket](_o_h___v_bucket.md) \*row, const [OH_Predicates](_o_h___predicates.md) \*predicates, int64_t \*changes) | 根据指定的条件更新数据库中的数据。 |
 | int [OH_RdbTrans_Delete](#oh_rdbtrans_delete) ([OH_Rdb_Transaction](#oh_rdb_transaction) \*trans, const [OH_Predicates](_o_h___predicates.md) \*predicates, int64_t \*changes) | 根据指定条件从数据库中删除数据。 |
 | [OH_Cursor](_o_h___cursor.md) \* [OH_RdbTrans_Query](#oh_rdbtrans_query) ([OH_Rdb_Transaction](#oh_rdb_transaction) \*trans, const [OH_Predicates](_o_h___predicates.md) \*predicates, const char \*columns[], int len) | 根据指定的条件查询数据库中的数据。 |
@@ -215,14 +220,14 @@
 | int [OH_Rdb_SetArea](#oh_rdb_setarea) ([OH_Rdb_ConfigV2](#oh_rdb_configv2) \*config, int area) | 给指定的数据库文件配置[OH_Rdb_ConfigV2](#oh_rdb_configv2)，设置数据库安全区域等级[Rdb_SecurityArea](#rdb_securityarea)。 |
 | int [OH_Rdb_SetDbType](#oh_rdb_setdbtype) ([OH_Rdb_ConfigV2](#oh_rdb_configv2) \*config, int dbType) | 给指定的数据库文件配置[OH_Rdb_ConfigV2](#oh_rdb_configv2)，设置数据库类型[Rdb_DBType](#rdb_dbtype)。 |
 | const int \* [OH_Rdb_GetSupportedDbType](#oh_rdb_getsupporteddbtype) (int \*typeCount) | 获得支持的数据库类型[Rdb_DBType](#rdb_dbtype)。 |
-| [OH_Rdb_Store](_o_h___rdb___store.md) \* [OH_Rdb_CreateOrOpen](#oh_rdb_createoropen) (const [OH_Rdb_ConfigV2](#oh_rdb_configv2) \*config, int \*errCode) | 使用指定的数据库文件配置[OH_Rdb_ConfigV2](#oh_rdb_configv2), 获得一个对应的[OH_Rdb_Store](_o_h___rdb___store.md)实例，用来操作关系型数据库。 |
+| [OH_Rdb_Store](_o_h___rdb___store.md) \* [OH_Rdb_CreateOrOpen](#oh_rdb_createoropen) (const [OH_Rdb_ConfigV2](#oh_rdb_configv2) \*config, int \*errCode) | 使用指定的数据库文件配置[OH_Rdb_ConfigV2](#oh_rdb_configv2)，获得一个对应的[OH_Rdb_Store](_o_h___rdb___store.md)实例，用来操作关系型数据库。 |
 | int [OH_Rdb_DeleteStoreV2](#oh_rdb_deletestorev2) (const [OH_Rdb_ConfigV2](#oh_rdb_configv2) \*config) | 使用指定的数据库文件配置[OH_Rdb_ConfigV2](#oh_rdb_configv2)删除数据库。当使用向量数据库时，在调用接口前，应当确保向量数据库已经被正确关闭。 |
-| int [OH_Rdb_ExecuteByTrxId](#oh_rdb_executebytrxid) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, int64_t trxId, const char \*sql) | 使用指定的事务ID执行无返回值的SQL语句，支持向量数据库。 |
-| int [OH_Rdb_BeginTransWithTrxId](#oh_rdb_begintranswithtrxid) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, int64_t \*trxId) | 在开始执行SQL语句之前，开始事务, 并获得该事务的ID，支持向量数据库。 |
-| int [OH_Rdb_RollBackByTrxId](#oh_rdb_rollbackbytrxid) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, int64_t trxId) | 使用指定的事务ID, 回滚已经执行的SQL语句，支持向量数据库。 |
-| int [OH_Rdb_CommitByTrxId](#oh_rdb_commitbytrxid) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, int64_t trxId) | 使用指定的事务ID, 提交已经执行的SQL语句，支持向量数据库。 |
-| [OH_VBucket_PutAsset](#oh_vbucket_putasset) ([OH_VBucket](_o_h___v_bucket.md) \*bucket, const char \*field, OH_Asset \*value) | 将**OH_Asset**类型的对象放入给定列名的[OH_VBucket](_o_h___v_bucket.md)对象中。 |
-| [OH_VBucket_PutAssets](#oh_vbucket_putassets) ([OH_VBucket](_o_h___v_bucket.md) \*bucket, const char \*field, OH_Asset \*\*value, int count) | 将**OH_Asset**类型的对象数组放入给定列名的[OH_VBucket](_o_h___v_bucket.md)对象中。 |
+| int [OH_Rdb_ExecuteByTrxId](#oh_rdb_executebytrxid) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, int64_t trxId, const char \*sql) | 使用指定的事务ID执行无返回值的SQL语句，仅支持向量数据库。 |
+| int [OH_Rdb_BeginTransWithTrxId](#oh_rdb_begintranswithtrxid) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, int64_t \*trxId) | 在开始执行SQL语句之前，开始事务，并获得该事务的ID，仅支持向量数据库。 |
+| int [OH_Rdb_RollBackByTrxId](#oh_rdb_rollbackbytrxid) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, int64_t trxId) | 使用指定的事务ID，回滚已经执行的SQL语句，仅支持向量数据库。 |
+| int [OH_Rdb_CommitByTrxId](#oh_rdb_commitbytrxid) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, int64_t trxId) | 使用指定的事务ID，提交已经执行的SQL语句，仅支持向量数据库。 |
+| [OH_VBucket_PutAsset](#oh_vbucket_putasset) ([OH_VBucket](_o_h___v_bucket.md) \*bucket, const char \*field, Data_Asset \*value) | 将**Data_Asset**类型的对象放入给定列名的[OH_VBucket](_o_h___v_bucket.md)对象中。 |
+| [OH_VBucket_PutAssets](#oh_vbucket_putassets) ([OH_VBucket](_o_h___v_bucket.md) \*bucket, const char \*field, Data_Asset \*\*value, int count) | 将**Data_Asset**类型的对象数组放入给定列名的[OH_VBucket](_o_h___v_bucket.md)对象中。 |
 | [OH_Rdb_CreateValueObject](#oh_rdb_createvalueobject) () | 创建[OH_VObject](_o_h___v_object.md)实例。 |
 | [OH_Rdb_CreateValuesBucket](#oh_rdb_createvaluesbucket) () | 创建[OH_VBucket](_o_h___v_bucket.md)实例。 |
 | [OH_Rdb_CreatePredicates](#oh_rdb_createpredicates) (const char \*table) | 创建[OH_Predicates](_o_h___predicates.md)实例。 |
@@ -247,8 +252,8 @@
 | [OH_Rdb_Subscribe](#oh_rdb_subscribe) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, [Rdb_SubscribeType](#rdb_subscribetype) type, const [Rdb_DataObserver](_rdb___data_observer.md) \*observer) | 为数据库注册观察者。当分布式数据库中的数据发生更改时，将调用回调。 |
 | [OH_Rdb_Unsubscribe](#oh_rdb_unsubscribe) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, [Rdb_SubscribeType](#rdb_subscribetype) type, const [Rdb_DataObserver](_rdb___data_observer.md) \*observer) | 从数据库中删除指定类型的指定观察者。 |
 | [OH_Rdb_GetTableDetails](#oh_rdb_gettabledetails) ([Rdb_ProgressDetails](_rdb___progress_details.md) \*progress, int32_t version) | 从端云同步任务的统计信息中获取数据库表的统计信息。 |
-| [OH_Rdb_CloudSync](#oh_rdb_cloudsync) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, [Rdb_SyncMode](#rdb_syncmode) mode, const char \*tables, int count, const [Rdb_ProgressObserver](_rdb___progress_observer.md) \*observer) | 进行端云同步。 |
-| [OH_Rdb_SubscribeAutoSyncProgress](#oh_rdb_subscribeautosyncprogress) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, const [Rdb_ProgressObserver](_rdb___progress_observer.md) \*observer) | 订阅RDB存储的自动同步进度。 当收到自动同步进度的通知时，将调用回调。 |
+| [OH_Rdb_CloudSync](#oh_rdb_cloudsync) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, [Rdb_SyncMode](#rdb_syncmode) mode, const char \*tables[], uint32_t count, const [Rdb_ProgressObserver](_rdb___progress_observer.md) \*observer) | 进行端云同步。 |
+| [OH_Rdb_SubscribeAutoSyncProgress](#oh_rdb_subscribeautosyncprogress) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, const [Rdb_ProgressObserver](_rdb___progress_observer.md) \*observer) | 订阅RDB存储的自动同步进度。当收到自动同步进度的通知时，将调用回调。 |
 | [OH_Rdb_UnsubscribeAutoSyncProgress](#oh_rdb_unsubscribeautosyncprogress) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, const [Rdb_ProgressObserver](_rdb___progress_observer.md) \*observer) | 取消订阅RDB存储的自动同步进程。 |
 | int [OH_Rdb_LockRow](#oh_rdb_lockrow) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, [OH_Predicates](_o_h___predicates.md) \*predicates) | 根据指定的条件锁定数据库中的数据，锁定数据不执行端云同步。 |
 | int [OH_Rdb_UnlockRow](#oh_rdb_unlockrow) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, [OH_Predicates](_o_h___predicates.md) \*predicates) | 根据指定的条件锁解锁数据库中的数据。 |
@@ -400,6 +405,18 @@
 
 ## 类型定义说明
 
+### Rdb_ConflictResolution
+
+```
+typedef enum Rdb_ConflictResolution Rdb_ConflictResolution
+```
+
+**描述**
+
+表示冲突解决策略的枚举。
+
+**起始版本：** 18
+
 ### OH_ColumnType
 
 ```
@@ -410,7 +427,7 @@ typedef enum OH_ColumnType OH_ColumnType
 
 表示列的类型。
 
-**起始版本：** 16
+**起始版本：** 10
 
 ### OH_Data_Value
 
@@ -422,7 +439,7 @@ typedef struct OH_Data_Value OH_Data_Value
 
 定义[OH_Data_Value](#oh_data_value)结构类型。
 
-**起始版本：** 16
+**起始版本：** 18
 
 
 ### OH_Data_Values
@@ -435,7 +452,7 @@ typedef struct OH_Data_Values OH_Data_Values
 
 定义[OH_Data_Values](#oh_data_values)结构类型。
 
-**起始版本：** 16
+**起始版本：** 18
 
 
 ### OH_Data_VBuckets
@@ -448,7 +465,7 @@ typedef struct OH_Data_VBuckets OH_Data_VBuckets
 
 定义OH_Data_VBuckets结构类型。
 
-**起始版本：** 16
+**起始版本：** 18
 
 ### OH_Rdb_Transaction
 
@@ -460,7 +477,7 @@ typedef struct OH_Rdb_Transaction OH_Rdb_Transaction
 
 定义[OH_Rdb_Transaction](#oh_rdb_transaction)结构类型。
 
-**起始版本：** 16
+**起始版本：** 18
 
 
 ### OH_RDB_TransOptions
@@ -473,7 +490,7 @@ typedef struct OH_RDB_TransOptions OH_RDB_TransOptions
 
 定义[OH_RDB_TransOptions](#oh_rdb_transoptions)结构类型。
 
-**起始版本：** 16
+**起始版本：** 18
 
 
 ### OH_RDB_TransType
@@ -486,7 +503,7 @@ typedef enum OH_RDB_TransType OH_RDB_TransType
 
 表示关系型数据库事务类型。
 
-**起始版本：** 16
+**起始版本：** 18
 
 ### Rdb_Tokenizer
 
@@ -498,7 +515,7 @@ typedef enum Rdb_Tokenizer Rdb_Tokenizer
 
 描述数据库的分词器类型。
 
-**起始版本：** 16
+**起始版本：** 17
 
 ### OH_Rdb_ConfigV2
 
@@ -630,7 +647,7 @@ typedef void(* Rdb_BriefObserver) (void *context, const char *values[], uint32_t
 
 **起始版本：** 11
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
@@ -690,7 +707,7 @@ typedef void(* Rdb_DetailsObserver) (void *context, const Rdb_ChangeInfo **chang
 
 **起始版本：** 11
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
@@ -767,7 +784,7 @@ typedef void(* Rdb_ProgressCallback) (void *context, Rdb_ProgressDetails *progre
 
 **起始版本：** 11
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
@@ -881,7 +898,7 @@ typedef void(* Rdb_SyncCallback) (Rdb_ProgressDetails *progressDetails)
 
 **起始版本：** 11
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
@@ -900,7 +917,7 @@ typedef enum Rdb_SyncMode Rdb_SyncMode
 
 **描述**
 
-表示数据库的同步模式
+表示数据库的同步模式。
 
 **起始版本：** 11
 
@@ -919,30 +936,26 @@ typedef struct Rdb_TableDetails Rdb_TableDetails
 
 ## 枚举类型说明
 
-
-### OH_ColumnType
+### Rdb_ConflictResolution
 
 ```
-enum OH_ColumnType
+enum Rdb_ConflictResolution
 ```
 
 **描述**
 
-表示列的类型。
+表示冲突解决策略的枚举。
 
-**起始版本：** 16
+**起始版本：** 18
 
-| 枚举值 | 描述 |
+| 枚举值 | 描述 | 
 | -------- | -------- |
-| TYPE_NULL | 表示NULL类型。 |
-| TYPE_INT64 | 表示INT64数据类型。 |
-| TYPE_REAL | 表示REAL数据类型。 |
-| TYPE_TEXT | 表示TEXT数据类型。 |
-| TYPE_BLOB | 表示BLOB数据类型。 |
-| TYPE_ASSET | 表示ASSET（资产附件）数据类型。 |
-| TYPE_ASSETS | 表示ASSETS（多个资产附件）数据类型。 |
-| TYPE_FLOAT_VECTOR | 表示FLOAT VECTOR数据类型。 |
-| TYPE_UNLIMITED_INT | 表示列类型为长度大于64位的数字。 |
+| RDB_CONFLICT_NONE | 发生冲突时不执行任何操作。 | 
+| RDB_CONFLICT_ROLLBACK | 发生冲突时抛错误码，同时回滚本次事务。 | 
+| RDB_CONFLICT_ABORT | 发生冲突时抛错误码，同时回滚本次修改。 | 
+| RDB_CONFLICT_FAIL | 发生冲突时抛错误码，不回滚冲突前的修改同时终止本次修改。 | 
+| RDB_CONFLICT_IGNORE | 发生冲突时忽略冲突的数据，继续执行后续修改。 | 
+| RDB_CONFLICT_REPLACE | 发生冲突时，尝试删除后插入，如果还是冲突则等同于RDB_CONFLICT_ABORT。 | 
 
 ### OH_Rdb_ErrCode
 
@@ -956,74 +969,100 @@ enum OH_Rdb_ErrCode
 
 **起始版本：** 10
 
+| 枚举值 | 描述 | 
+| -------- | -------- |
+| RDB_ERR | 执行出错。 | 
+| RDB_OK | 执行成功。 | 
+| E_BASE | 异常错误代码的基础。 | 
+| RDB_E_NOT_SUPPORTED | RDB不具备该能力。 | 
+| RDB_E_ERROR | 常见异常的错误代码。 | 
+| RDB_E_INVALID_ARGS | 参数非法。 | 
+| RDB_E_CANNOT_UPDATE_READONLY | 更新只读数据库。 | 
+| RDB_E_REMOVE_FILE | 删除文件失败。 | 
+| RDB_E_EMPTY_TABLE_NAME | 表名为空。 | 
+| RDB_E_EMPTY_VALUES_BUCKET | 键值对内容为空。 | 
+| RDB_E_EXECUTE_IN_STEP_QUERY | 查询时执行的SQL语句错误。 | 
+| RDB_E_INVALID_COLUMN_INDEX | 列索引非法。 | 
+| RDB_E_INVALID_COLUMN_TYPE | 列类型非法。 | 
+| RDB_E_EMPTY_FILE_NAME | 文件名称为空。 | 
+| RDB_E_INVALID_FILE_PATH | 文件路径非法。 | 
+| RDB_E_TRANSACTION_IN_EXECUTE | 开启事务执行出错。 | 
+| RDB_E_INVALID_STATEMENT | SQL语句预编译出错。 | 
+| RDB_E_EXECUTE_WRITE_IN_READ_CONNECTION | 在读连接中执行写操作。 | 
+| RDB_E_BEGIN_TRANSACTION_IN_READ_CONNECTION | 在读连接中开启事务。 | 
+| RDB_E_NO_TRANSACTION_IN_SESSION | 在数据库会话中不存在开启的事务。 | 
+| RDB_E_MORE_STEP_QUERY_IN_ONE_SESSION | 在一个数据库会话中执行多次查询。 | 
+| RDB_E_NO_ROW_IN_QUERY | 查询得到的结果集不存在任何记录。 | 
+| RDB_E_INVALID_BIND_ARGS_COUNT | SQL语句中绑定的参数个数非法。 | 
+| RDB_E_INVALID_OBJECT_TYPE | 对象类型非法。 | 
+| RDB_E_INVALID_CONFLICT_FLAG | 冲突解决类型非法。 | 
+| RDB_E_HAVING_CLAUSE_NOT_IN_GROUP_BY | HAVING关键字只能用于GROUP BY之后。 | 
+| RDB_E_NOT_SUPPORTED_BY_STEP_RESULT_SET | 不支持step形式数据库结果集。 | 
+| RDB_E_STEP_RESULT_SET_CROSS_THREADS | 结果集查询出错。 | 
+| RDB_E_STEP_RESULT_QUERY_NOT_EXECUTED | 结果集查询语句未被执行。 | 
+| RDB_E_STEP_RESULT_IS_AFTER_LAST | 结果集的游标已经处于最后一行。 | 
+| RDB_E_STEP_RESULT_QUERY_EXCEEDED | 结果集查询次数已经超过上限。 | 
+| RDB_E_STATEMENT_NOT_PREPARED | SQL语句未被预编译。 | 
+| RDB_E_EXECUTE_RESULT_INCORRECT | 数据库执行结果异常。 | 
+| RDB_E_STEP_RESULT_CLOSED | 结果集已经关闭。 | 
+| RDB_E_RELATIVE_PATH | 相对路径。 | 
+| RDB_E_EMPTY_NEW_ENCRYPT_KEY | 新的密钥文件为空。 | 
+| RDB_E_CHANGE_UNENCRYPTED_TO_ENCRYPTED | 将非加密的数据库更改为加密数据库。 | 
+| RDB_E_CHANGE_ENCRYPT_KEY_IN_BUSY | 在数据库繁忙时更新数据库密钥。 | 
+| RDB_E_STEP_STATEMENT_NOT_INIT | 预编译的SQL语句未被初始化。 | 
+| RDB_E_NOT_SUPPORTED_ATTACH_IN_WAL_MODE | 在WAL日志模式下不支持ATTACH操作。 | 
+| RDB_E_CREATE_FOLDER_FAIL | 创建文件夹失败。 | 
+| RDB_E_SQLITE_SQL_BUILDER_NORMALIZE_FAIL | SQL语句构建失败。 | 
+| RDB_E_STORE_SESSION_NOT_GIVE_CONNECTION_TEMPORARILY | 数据库会话暂未提供连接。 | 
+| RDB_E_STORE_SESSION_NO_CURRENT_TRANSACTION | 数据库会话不具有当前的事务。 | 
+| RDB_E_NOT_SUPPORT | 不支持当前操作。 | 
+| RDB_E_INVALID_PARCEL | 当前PARCEL非法。 | 
+| RDB_E_QUERY_IN_EXECUTE | 执行query查询出错。 | 
+| RDB_E_SET_PERSIST_WAL | 设置WAL模式下数据库文件的持久化时出错。 | 
+| RDB_E_DB_NOT_EXIST | 数据库不存在。 | 
+| RDB_E_ARGS_READ_CON_OVERLOAD | 设置的读连接数大于上限。 | 
+| RDB_E_WAL_SIZE_OVER_LIMIT | WAL日志文件大小超过默认值。 | 
+| RDB_E_CON_OVER_LIMIT | 数据库连接数已用完。 | 
+| RDB_E_ALREADY_CLOSED<sup>18+</sup> | 数据库已关闭。 | 
+| RDB_E_DATABASE_BUSY<sup>18+</sup> | 数据库无响应。 | 
+| RDB_E_SQLITE_CORRUPT<sup>18+</sup> | 数据库损坏。 | 
+| RDB_E_SQLITE_PERM<sup>18+</sup> | SQLite错误码：访问权限被拒绝。 | 
+| RDB_E_SQLITE_BUSY<sup>18+</sup> | SQLite错误码：数据库文件被锁定。 | 
+| RDB_E_SQLITE_LOCKED<sup>18+</sup> | SQLite错误码：数据库中的表被锁定。 | 
+| RDB_E_SQLITE_NOMEM<sup>18+</sup> | SQLite错误码：数据库内存不足。| 
+| RDB_E_SQLITE_READONLY<sup>18+</sup> | SQLite错误码：尝试写入只读数据库。 | 
+| RDB_E_SQLITE_IOERR<sup>18+</sup> | SQLite错误码：磁盘I/O错误。 | 
+| RDB_E_SQLITE_FULL<sup>18+</sup> | SQLite错误码：数据库已满。 | 
+| RDB_E_SQLITE_CANT_OPEN<sup>18+</sup> | SQLite错误码：无法打开数据库文件。 | 
+| RDB_E_SQLITE_TOO_BIG<sup>18+</sup> | SQLite错误码：TEXT或BLOB超出大小限制。 | 
+| RDB_E_SQLITE_MISMATCH<sup>18+</sup> | SQLite错误码：数据类型不匹配。 | 
+| RDB_E_DATA_TYPE_NULL<sup>18+</sup> | 表示存储数据为空。 | 
+| RDB_E_TYPE_MISMATCH<sup>18+</sup> | 表示数据类型不匹配。 | 
+| RDB_E_SQLITE_CONSTRAINT<sup>18+</sup> | 表示SQLite错误码：SQLite约束。 | 
+
+### OH_ColumnType
+
+```
+enum OH_ColumnType
+```
+
+**描述**
+
+表示列的类型。
+
+**起始版本：** 10
+
 | 枚举值 | 描述 |
 | -------- | -------- |
-| RDB_ERR | 执行出错。 |
-| RDB_OK | 执行成功。 |
-| E_BASE | 异常错误代码的基础。 |
-| RDB_E_NOT_SUPPORTED | RDB不具备该能力。 |
-| RDB_E_ERROR | 常见异常的错误代码。 |
-| RDB_E_INVALID_ARGS | 参数非法。 |
-| RDB_E_CANNOT_UPDATE_READONLY | 更新只读数据库。 |
-| RDB_E_REMOVE_FILE | 删除文件失败。 |
-| RDB_E_EMPTY_TABLE_NAME | 表名为空。 |
-| RDB_E_EMPTY_VALUES_BUCKET | 键值对内容为空。 |
-| RDB_E_EXECUTE_IN_STEP_QUERY | 查询时执行的SQL语句错误。 |
-| RDB_E_INVALID_COLUMN_INDEX | 列索引非法. |
-| RDB_E_INVALID_COLUMN_TYPE | 列类型非法. |
-| RDB_E_EMPTY_FILE_NAME | 文件名称为空。 |
-| RDB_E_INVALID_FILE_PATH | 文件路径非法。 |
-| RDB_E_TRANSACTION_IN_EXECUTE | 开启事务执行出错， |
-| RDB_E_INVALID_STATEMENT | SQL语句预编译出错. |
-| RDB_E_EXECUTE_WRITE_IN_READ_CONNECTION | 在读连接中执行写操作。 |
-| RDB_E_BEGIN_TRANSACTION_IN_READ_CONNECTION | 在读连接中开启事务。 |
-| RDB_E_NO_TRANSACTION_IN_SESSION | 在数据库会话中不存在开启的事务. |
-| RDB_E_MORE_STEP_QUERY_IN_ONE_SESSION | 在一个数据库会话中执行多次查询。 |
-| RDB_E_NO_ROW_IN_QUERY | 查询得到的结果集不存在任何记录。 |
-| RDB_E_INVALID_BIND_ARGS_COUNT | SQL语句中绑定的参数个数非法。 |
-| RDB_E_INVALID_OBJECT_TYPE | 对象类型非法。 |
-| RDB_E_INVALID_CONFLICT_FLAG | 冲突解决类型非法。 |
-| RDB_E_HAVING_CLAUSE_NOT_IN_GROUP_BY | HAVING关键字只能用于GROUP BY之后. |
-| RDB_E_NOT_SUPPORTED_BY_STEP_RESULT_SET | 不支持step形式数据库结果集。 |
-| RDB_E_STEP_RESULT_SET_CROSS_THREADS | 结果集查询出错。 |
-| RDB_E_STEP_RESULT_QUERY_NOT_EXECUTED | 结果集查询语句未被执行。 |
-| RDB_E_STEP_RESULT_IS_AFTER_LAST | 结果集的游标已经处于最后一行。 |
-| RDB_E_STEP_RESULT_QUERY_EXCEEDED | 结果集查询次数已经超过上限。 |
-| RDB_E_STATEMENT_NOT_PREPARED | SQL语句未被预编译。 |
-| RDB_E_EXECUTE_RESULT_INCORRECT | 数据库执行结果异常. |
-| RDB_E_STEP_RESULT_CLOSED | 结果集已经关闭。 |
-| RDB_E_RELATIVE_PATH | 相对路径。 |
-| RDB_E_EMPTY_NEW_ENCRYPT_KEY | 新的密钥文件为空。 |
-| RDB_E_CHANGE_UNENCRYPTED_TO_ENCRYPTED | 将非加密的数据库更改为加密数据库。 |
-| RDB_E_CHANGE_ENCRYPT_KEY_IN_BUSY | 在数据库繁忙时更新数据库密钥。 |
-| RDB_E_STEP_STATEMENT_NOT_INIT | 预编译的SQL语句未被初始化。 |
-| RDB_E_NOT_SUPPORTED_ATTACH_IN_WAL_MODE | 在WAL日志模式下不支持ATTACH操作。 |
-| RDB_E_CREATE_FOLDER_FAIL | 创建文件夹失败。 |
-| RDB_E_SQLITE_SQL_BUILDER_NORMALIZE_FAIL | SQL语句构建失败。 |
-| RDB_E_STORE_SESSION_NOT_GIVE_CONNECTION_TEMPORARILY | 数据库会话暂未提供连接。 |
-| RDB_E_STORE_SESSION_NO_CURRENT_TRANSACTION | 数据库会话不具有当前的事务。 |
-| RDB_E_NOT_SUPPORT | 不支持当前操作。 |
-| RDB_E_INVALID_PARCEL | 当前PARCEL非法。 |
-| RDB_E_QUERY_IN_EXECUTE | 执行query查询出错。 |
-| RDB_E_SET_PERSIST_WAL | 设置WAL模式下数据库文件的持久化时出错。 |
-| RDB_E_DB_NOT_EXIST | 数据库不存在。 |
-| RDB_E_ARGS_READ_CON_OVERLOAD | 设置的读连接数大于上限。 |
-| RDB_E_WAL_SIZE_OVER_LIMIT | WAL日志文件大小超过默认值。 |
-| RDB_E_CON_OVER_LIMIT | 数据库连接数已用完。 |
-| RDB_E_ALREADY_CLOSED<sup>16+</sup> | 数据库已关闭。 |
-| RDB_E_DATABASE_BUSY<sup>16+</sup> | 数据库无响应。 |
-| RDB_E_NOT_SUPPORT_THE_SQL<sup>16+</sup> | SQLite错误码：一般错误。 |
-| RDB_E_SQLITE_CORRUPT<sup>16+</sup> | 数据库损坏。 |
-| RDB_E_SQLITE_PERM<sup>16+</sup> | SQLite错误码：访问权限被拒绝。 |
-| RDB_E_SQLITE_BUSY<sup>16+</sup> | SQLite错误码：数据库文件被锁定。 |
-| RDB_E_SQLITE_LOCKED<sup>16+</sup> | SQLite错误码：数据库中的表被锁定。 |
-| RDB_E_SQLITE_NOMEM<sup>16+</sup> | SQLite错误码：数据库内存不足。 |
-| RDB_E_SQLITE_READONLY<sup>16+</sup> | SQLite错误码：尝试写入只读数据库。 |
-| RDB_E_SQLITE_IOERR<sup>16+</sup> | SQLite错误码：磁盘I/O错误。 |
-| RDB_E_SQLITE_FULL<sup>16+</sup> | SQLite错误码：数据库已满。 |
-| RDB_E_SQLITE_CANT_OPEN<sup>16+</sup> | SQLite错误码：无法打开数据库文件。 |
-| RDB_E_SQLITE_TOO_BIG<sup>16+</sup> | SQLite错误码：TEXT或BLOB超出大小限制。 |
-| RDB_E_SQLITE_MISMATCH<sup>16+</sup> | SQLite错误码：数据类型不匹配。 |
+| TYPE_NULL | 表示NULL类型。 |
+| TYPE_INT64 | 表示INT64数据类型。 |
+| TYPE_REAL | 表示REAL数据类型。 |
+| TYPE_TEXT | 表示TEXT数据类型。 |
+| TYPE_BLOB | 表示BLOB数据类型。 |
+| TYPE_ASSET<sup>11+</sup> | 表示ASSET（资产附件）数据类型。 |
+| TYPE_ASSETS<sup>11+</sup> | 表示ASSETS（多个资产附件）数据类型。 |
+| TYPE_FLOAT_VECTOR<sup>18+</sup> | 表示FLOAT VECTOR数据类型。 |
+| TYPE_UNLIMITED_INT<sup>18+</sup> | 表示列类型为长度大于64位的数字。 |
 
 ### OH_RDB_TransType
 
@@ -1035,13 +1074,13 @@ enum OH_RDB_TransType
 
 表示关系型数据库事务类型。
 
-**起始版本：** 16
+**起始版本：** 18
 
 | 枚举值 | 描述 |
 | -------- | -------- |
 | RDB_TRANS_DEFERRED | 在首次访问数据库之前，事务默认设置不会启动。 |
 | RDB_TRANS_IMMEDIATE | 数据库连接立即开始新的写入，而无需等待写入语句。 |
-| RDB_TRANS_EXCLUSIVE | 与RDB_TRANS_IMMEDIATE类型相似，写事务会立即启动。 RDB_TRANS_EXCLUSIVE和RDB_TRANS_IMMEDIATE类型在WAL模式下相同，但在其他日志模式下，RDB_TRANS_EXCLUSIVE会阻止其他数据库连接在事务进行时读取数据库。 |
+| RDB_TRANS_EXCLUSIVE | 与RDB_TRANS_IMMEDIATE类型相似，写事务会立即启动。RDB_TRANS_EXCLUSIVE和RDB_TRANS_IMMEDIATE类型在WAL模式下相同，但在其他日志模式下，RDB_TRANS_EXCLUSIVE会阻止其他数据库连接在事务进行时读取数据库。 |
 | RDB_TRANS_BUTT | RDB事务类型的最大值。 |
 
 ### Rdb_Tokenizer
@@ -1054,13 +1093,13 @@ enum Rdb_Tokenizer
 
 描述数据库的分词器类型。
 
-**起始版本：** 16
+**起始版本：** 17
 
 | 枚举值 | 描述 |
 | -------- | -------- |
 | RDB_NONE_TOKENIZER | 表示不使用分词器。 |
 | RDB_ICU_TOKENIZER | 表示使用原生ICU分词器。 |
-| RDB_CUSTOM_TOKENIZER | 表示使用CUSTOM分词器。 |
+| RDB_CUSTOM_TOKENIZER<sup>18+</sup> | 表示使用CUSTOM分词器。 |
 
 ### Rdb_DBType
 
@@ -1195,7 +1234,7 @@ enum Rdb_SecurityArea
 | RDB_SECURITY_AREA_EL2 | 安全区域等级为2。 |
 | RDB_SECURITY_AREA_EL3 | 安全区域等级为3。 |
 | RDB_SECURITY_AREA_EL4 | 安全区域等级为4。 |
-
+| RDB_SECURITY_AREA_EL5<sup>12+</sup> | 安全区域等级为5。 |
 
 ### Rdb_SubscribeType
 
@@ -1224,7 +1263,7 @@ enum Rdb_SyncMode
 
 **描述**
 
-表示数据库的同步模式
+表示数据库的同步模式。
 
 **起始版本：** 11
 
@@ -1237,6 +1276,144 @@ enum Rdb_SyncMode
 
 ## 函数说明
 
+### OH_RdbTrans_BatchInsert()
+
+```
+int OH_RdbTrans_BatchInsert (OH_Rdb_Transaction *trans, const char *table, const OH_Data_VBuckets *rows, Rdb_ConflictResolution resolution, int64_t *changes)
+```
+
+**描述**
+
+将一组数据批量插入到目标表中。
+
+**起始版本：** 18
+
+**参数：**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| trans | 表示指向[OH_Rdb_Transaction](#oh_rdb_transaction)实例的指针。 | 
+| table | 表示目标表。 | 
+| rows | 表示要插入到表中的一组数据。 | 
+| resolution | 表示发生冲突时的解决策略。 | 
+| changes | 输出参数，表示插入成功的次数。 | 
+
+**返回：**
+
+返回执行结果。
+
+返回RDB_OK表示成功。
+
+返回RDB_E_ERROR表示数据库常见错误。
+
+返回RDB_E_INVALID_ARGS表示无效参数。
+
+返回RDB_E_ALREADY_CLOSED表示数据库已经关闭。
+
+返回RDB_E_WAL_SIZE_OVER_LIMIT表示WAL日志文件大小超过默认值。
+
+返回RDB_E_SQLITE_FULL表示SQLite错误码：数据库已满。
+
+返回RDB_E_SQLITE_CORRUPT表示数据库损坏。
+
+返回RDB_E_SQLITE_PERM表示SQLite错误码：访问权限被拒绝。
+
+返回RDB_E_SQLITE_BUSY表示SQLite错误码：数据库文件被锁定。
+
+返回RDB_E_SQLITE_LOCKED表示SQLite错误码：数据库中的表被锁定。
+
+返回RDB_E_SQLITE_NOMEM表示SQLite错误码：数据库内存不足。
+
+返回RDB_E_SQLITE_READONLY表示SQLite错误码：尝试写入只读数据库。
+
+返回RDB_E_SQLITE_IOERR表示SQLite错误码：磁盘I/O错误。
+
+返回RDB_E_SQLITE_TOO_BIG表示SQLite错误码：TEXT或BLOB超出大小限制。
+
+返回RDB_E_SQLITE_MISMATCH表示SQLite错误码：数据类型不匹配。
+
+返回RDB_E_SQLITE_CONSTRAINT表示SQLite错误码：SQLite约束。
+
+
+### OH_Rdb_BatchInsert()
+
+```
+int OH_Rdb_BatchInsert (OH_Rdb_Store *store, const char *table, const OH_Data_VBuckets *rows, Rdb_ConflictResolution resolution, int64_t *changes )
+```
+
+**描述**
+
+将一批数据插入到目标表中。
+
+**起始版本：** 18
+
+**参数：**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| store | 表示指向[OH_Rdb_Store](_o_h___rdb___store.md)实例的指针。 | 
+| tables | 要设置的分布式数据库表表名。 | 
+| rows | 表示要插入到表中的一组数据。 | 
+| resolution | 表示发生冲突时的解决策略。 | 
+| changes | 输出参数，表示插入成功的次数。 | 
+
+**返回：**
+
+返回执行结果。
+
+返回RDB_OK表示成功。
+
+返回RDB_E_ERROR表示数据库常见错误。
+
+返回RDB_E_INVALID_ARGS表示无效参数。
+
+返回RDB_E_ALREADY_CLOSED表示数据库已经关闭。
+
+返回RDB_E_WAL_SIZE_OVER_LIMIT表示WAL日志文件大小超过默认值。
+
+返回RDB_E_SQLITE_FULL表示SQLite错误码：数据库已满。
+
+返回RDB_E_SQLITE_CORRUPT表示数据库损坏。
+
+返回RDB_E_SQLITE_PERM表示SQLite错误码：访问权限被拒绝。
+
+返回RDB_E_SQLITE_BUSY表示SQLite错误码：数据库文件被锁定。
+
+返回RDB_E_SQLITE_LOCKED表示SQLite错误码：数据库中的表被锁定。
+
+返回RDB_E_SQLITE_NOMEM表示SQLite错误码：数据库内存不足。
+
+返回RDB_E_SQLITE_READONLY表示SQLite错误码：尝试写入只读数据库。
+
+返回RDB_E_SQLITE_IOERR表示SQLite错误码：磁盘I/O错误。
+
+返回RDB_E_SQLITE_TOO_BIG表示SQLite错误码：TEXT或BLOB超出大小限制。
+
+返回RDB_E_SQLITE_MISMATCH表示SQLite错误码：数据类型不匹配。
+
+返回RDB_E_SQLITE_CONSTRAINT表示SQLite错误码：SQLite约束。
+
+
+### OH_Rdb_SetPersistent()
+
+```
+int OH_Rdb_SetPersistent (OH_Rdb_ConfigV2 *config, bool isPersistent )
+```
+
+**描述**
+
+指定数据库是否需要持久化。
+
+**参数：**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| config | 表示指向OH_Rdb_ConfigV2实例的指针。指示与此RDB存储相关的数据库的配置。|
+| isPersistent | 指示数据库是否需要持久性。 |
+
+**返回：**
+
+返回执行的状态代码。RDB_OK表示成功。RDB_E_INVALID_ARGS表示无效参数。| 
 
 ### OH_Cursor_GetFloatVector()
 
@@ -1248,14 +1425,14 @@ int OH_Cursor_GetFloatVector (OH_Cursor *cursor, int32_t columnIndex, float *val
 
 以浮点数数组的形式获取当前行中指定列的值。
 
-**起始版本：** 16
+**起始版本：** 18
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
 | cursor | 表示指向[OH_Cursor](_o_h___cursor.md)实例的指针。 |
-| columnIndex | 表示结果集中指定列的索引, 索引值从0开始。 |
+| columnIndex | 表示结果集中指定列的索引，索引值从0开始。 |
 | val | 该参数是输出参数，结果集中指定列的值会以浮点数数组形式写入该变量，调用者需要申请数组内存。 |
 | inLen | 表示申请的浮点数数组大小。 |
 | outLen | 该参数是输出参数，表示实际浮点数数组的大小。 |
@@ -1276,17 +1453,17 @@ int OH_Cursor_GetFloatVector (OH_Cursor *cursor, int32_t columnIndex, float *val
 
 返回RDB_E_ALREADY_CLOSED表示数据库已经关闭。
 
-返回RDB_E_SQLITE_PERM表示SQLite错误: 访问权限被拒绝。
+返回RDB_E_SQLITE_PERM表示SQLite错误：访问权限被拒绝。
 
-返回RDB_E_SQLITE_BUSY表示SQLite错误: 数据库文件被锁定。
+返回RDB_E_SQLITE_BUSY表示SQLite错误：数据库文件被锁定。
 
 返回RDB_E_SQLITE_LOCKED表示SQLite错误码：数据库中的表被锁定。
 
-返回RDB_E_SQLITE_NOMEM表示SQLite错误: 数据库内存不足。
+返回RDB_E_SQLITE_NOMEM表示SQLite错误：数据库内存不足。
 
-返回RDB_E_SQLITE_IOERR表示SQLite错误: 磁盘I/O错误。
+返回RDB_E_SQLITE_IOERR表示SQLite错误：磁盘I/O错误。
 
-返回RDB_E_SQLITE_TOO_BIG表示SQLite错误码：TEXT或BLOB超出大小限制。 返回RDB_E_SQLITE_MISMATCH表示SQLite错误码：数据类型不匹配。
+返回RDB_E_SQLITE_TOO_BIG表示SQLite错误码：TEXT或BLOB超出大小限制。返回RDB_E_SQLITE_MISMATCH表示SQLite错误码：数据类型不匹配。
 
 **参见：**
 
@@ -1303,14 +1480,14 @@ int OH_Cursor_GetFloatVectorCount (OH_Cursor *cursor, int32_t columnIndex, size_
 
 获取当前行中指定列的浮点数数组大小。
 
-**起始版本：** 16
+**起始版本：** 18
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
 | cursor | 表示指向[OH_Cursor](_o_h___cursor.md)实例的指针。 |
-| columnIndex | 表示结果集中指定列的索引, 索引值从0开始。 |
+| columnIndex | 表示结果集中指定列的索引，索引值从0开始。 |
 | length | 该参数是输出参数，结果集中指定列的浮点数数组大小会写入该变量。 |
 
 **返回：**
@@ -1329,15 +1506,15 @@ int OH_Cursor_GetFloatVectorCount (OH_Cursor *cursor, int32_t columnIndex, size_
 
 返回RDB_E_ALREADY_CLOSED表示数据库已经关闭。
 
-返回RDB_E_SQLITE_PERM表示SQLite错误: 访问权限被拒绝。
+返回RDB_E_SQLITE_PERM表示SQLite错误：访问权限被拒绝。
 
-返回RDB_E_SQLITE_BUSY表示SQLite错误: 数据库文件被锁定。
+返回RDB_E_SQLITE_BUSY表示SQLite错误：数据库文件被锁定。
 
 返回RDB_E_SQLITE_LOCKED表示SQLite错误码：数据库中的表被锁定。
 
-返回RDB_E_SQLITE_NOMEM表示SQLite错误: 数据库内存不足。
+返回RDB_E_SQLITE_NOMEM表示SQLite错误：数据库内存不足。
 
-返回RDB_E_SQLITE_IOERR表示SQLite错误: 磁盘I/O错误。
+返回RDB_E_SQLITE_IOERR表示SQLite错误：磁盘I/O错误。
 
 返回RDB_E_SQLITE_TOO_BIG表示SQLite错误码：TEXT或BLOB超出大小限制。
 
@@ -1353,15 +1530,15 @@ int OH_Rdb_CreateTransaction (OH_Rdb_Store *store, const OH_RDB_TransOptions *op
 
 创建一个事务对象。
 
-**起始版本：** 16
+**起始版本：** 18
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
 | store | 表示指向[OH_Rdb_Store](_o_h___rdb___store.md)实例的指针。 |
 | options | 表示指向[OH_RDB_TransOptions](#oh_rdb_transoptions)实例的指针。 |
-| trans | 输出参数，表示执行成功时指向[OH_Rdb_Transaction](#oh_rdb_transaction)实例的指针。否则返回 nullptr。 使用完成后，必须通过[OH_RdbTrans_Destroy](#oh_rdbtrans_destroy)接口释放内存。 |
+| trans | 输出参数，表示执行成功时指向[OH_Rdb_Transaction](#oh_rdb_transaction)实例的指针。否则返回 nullptr。使用完成后，必须通过[OH_RdbTrans_Destroy](#oh_rdbtrans_destroy)接口释放内存。 |
 
 **返回：**
 
@@ -1377,19 +1554,19 @@ int OH_Rdb_CreateTransaction (OH_Rdb_Store *store, const OH_RDB_TransOptions *op
 
 返回RDB_E_DATABASE_BUSY表示数据库无响应。
 
-返回RDB_E_SQLITE_FULL表示SQLite错误: 数据库已满。
+返回RDB_E_SQLITE_FULL表示SQLite错误：数据库已满。
 
 返回RDB_E_SQLITE_CORRUPT表示数据库已损坏。
 
-返回RDB_E_SQLITE_PERM表示SQLite错误: 访问权限被拒绝。
+返回RDB_E_SQLITE_PERM表示SQLite错误：访问权限被拒绝。
 
-返回RDB_E_SQLITE_BUSY表示SQLite错误: 数据库文件被锁定。
+返回RDB_E_SQLITE_BUSY表示SQLite错误：数据库文件被锁定。
 
-返回RDB_E_SQLITE_NOMEM表示SQLite错误: 数据库内存不足。
+返回RDB_E_SQLITE_NOMEM表示SQLite错误：数据库内存不足。
 
-返回RDB_E_SQLITE_IOERR表示SQLite错误: 磁盘I/O错误。
+返回RDB_E_SQLITE_IOERR表示SQLite错误：磁盘I/O错误。
 
-返回RDB_E_SQLITE_CANT_OPEN表示SQLite错误: 无法打开数据库文件。
+返回RDB_E_SQLITE_CANT_OPEN表示SQLite错误：无法打开数据库文件。
 
 **参见：**
 
@@ -1406,9 +1583,9 @@ OH_Cursor *OH_Rdb_ExecuteQueryV2 (OH_Rdb_Store *store, const char *sql, const OH
 
 根据指定SQL语句查询数据库中的数据，支持向量数据库。
 
-**起始版本：** 16
+**起始版本：** 18
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
@@ -1418,7 +1595,7 @@ OH_Cursor *OH_Rdb_ExecuteQueryV2 (OH_Rdb_Store *store, const char *sql, const OH
 
 **返回：**
 
-如果查询成功则返回一个指向[OH_Cursor](_o_h___cursor.md)结构体实例的指针，使用完成后及时释放[OH_Cursor](_o_h___cursor.md)。 如果SQL语句无效或内存分配失败，则返回NULL。
+如果查询成功则返回一个指向[OH_Cursor](_o_h___cursor.md)结构体实例的指针，使用完成后及时释放[OH_Cursor](_o_h___cursor.md)。如果SQL语句无效或内存分配失败，则返回NULL。
 
 **参见：**
 
@@ -1435,9 +1612,9 @@ int OH_Rdb_ExecuteV2 (OH_Rdb_Store *store, const char *sql, const OH_Data_Values
 
 执行有返回值的SQL语句，支持向量数据库。
 
-**起始版本：** 16
+**起始版本：** 18
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
@@ -1495,9 +1672,9 @@ int OH_Rdb_IsTokenizerSupported (Rdb_Tokenizer tokenizer, bool *isSupported )
 
 判断当前平台是否支持传入的分词器。
 
-**起始版本：** 16
+**起始版本：** 18
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
@@ -1523,9 +1700,9 @@ int OH_Rdb_SetTokenizer (OH_Rdb_ConfigV2 *config, Rdb_Tokenizer tokenizer )
 
 给指定的数据库文件配置设置分词器类型。
 
-**起始版本：** 16
+**起始版本：** 17
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
@@ -1542,65 +1719,6 @@ RDB_E_INVALID_ARGS 表示无效参数。
 
 RDB_E_NOT_SUPPORTED 表示不支持当前操作。
 
-
-### OH_RdbTrans_BatchInsert()
-
-```
-int OH_RdbTrans_BatchInsert (OH_Rdb_Transaction *trans, const char *table, const OH_Data_VBuckets *rows, Rdb_ConflictResolution resolution, int64_t *changes )
-```
-
-**描述**
-
-将一组数据批量插入到目标表中。
-
-**起始版本：** 16
-
-**参数:**
-
-| 名称 | 描述 |
-| -------- | -------- |
-| trans | 表示指向[OH_Rdb_Transaction](#oh_rdb_transaction)实例的指针。 |
-| table | 表示目标表。 |
-| rows | 表示要插入到表中的一组数据。 |
-| resolution | 表示发生冲突时的解决策略。 |
-| changes | 输出参数，表示插入成功的次数。 |
-
-**返回：**
-
-返回执行结果。
-
-返回RDB_OK表示成功。
-
-返回RDB_E_ERROR表示数据库常见错误。
-
-返回RDB_E_INVALID_ARGS表示无效参数。
-
-返回RDB_E_ALREADY_CLOSED表示数据库已经关闭。
-
-返回RDB_E_WAL_SIZE_OVER_LIMIT表示WAL日志文件大小超过默认值。
-
-返回RDB_E_SQLITE_FULL表示SQLite错误码：数据库已满。
-
-返回RDB_E_SQLITE_CORRUPT表示数据库损坏。
-
-返回RDB_E_SQLITE_PERM表示SQLite错误码：访问权限被拒绝。
-
-返回RDB_E_SQLITE_BUSY表示SQLite错误码：数据库文件被锁定。
-
-返回RDB_E_SQLITE_LOCKED表示SQLite错误码：数据库中的表被锁定。
-
-返回RDB_E_SQLITE_NOMEM表示SQLite错误码：数据库内存不足。
-
-返回RDB_E_SQLITE_READONLY表示SQLite错误码：尝试写入只读数据库。
-
-返回RDB_E_SQLITE_IOERR表示SQLite错误码：磁盘I/O错误。
-
-返回RDB_E_SQLITE_TOO_BIG表示SQLite错误码：TEXT或BLOB超出大小限制。
-
-返回RDB_E_SQLITE_MISMATCH表示SQLite错误码：数据类型不匹配。
-
-返回RDB_E_SQLITE_CONSTRAINT表示SQLite错误码：SQLite约束。
-
 ### OH_RdbTrans_Commit()
 
 ```
@@ -1611,9 +1729,9 @@ int OH_RdbTrans_Commit (OH_Rdb_Transaction *trans)
 
 提交事务。
 
-**起始版本：** 16
+**起始版本：** 18
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
@@ -1655,9 +1773,9 @@ int OH_RdbTrans_Delete (OH_Rdb_Transaction *trans, const OH_Predicates *predicat
 
 根据指定条件从数据库中删除数据。
 
-**起始版本：** 16
+**起始版本：** 18
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
@@ -1709,11 +1827,11 @@ OH_RDB_TransOptions* OH_RdbTrans_CreateOptions (void )
 
 创建事务配置对象。
 
-**起始版本：** 16
+**起始版本：** 18
 
 **返回：**
 
-执行成功时返回指向[OH_RDB_TransOptions](#oh_rdb_transoptions)实例的指针。否则返回nullptr。 使用完成后，必须通过[OH_RdbTrans_DestroyOptions](#oh_rdbtrans_destroyoptions)接口释放内存。
+执行成功时返回指向[OH_RDB_TransOptions](#oh_rdb_transoptions)实例的指针。否则返回nullptr。使用完成后，必须通过[OH_RdbTrans_DestroyOptions](#oh_rdbtrans_destroyoptions)接口释放内存。
 
 **参见：**
 
@@ -1729,9 +1847,9 @@ int OH_RdbTrans_Destroy (OH_Rdb_Transaction *trans)
 
 销毁事务对象。
 
-**起始版本：** 16
+**起始版本：** 18
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
@@ -1756,9 +1874,9 @@ int OH_RdbTrans_DestroyOptions (OH_RDB_TransOptions *opitons)
 
 销毁事务配置对象。
 
-**起始版本：** 16
+**起始版本：** 18
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
@@ -1783,9 +1901,9 @@ int OH_RdbTrans_Execute (OH_Rdb_Transaction *trans, const char *sql, const OH_Da
 
 执行包含指定参数的SQL语句。
 
-**起始版本：** 16
+**起始版本：** 18
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
@@ -1843,9 +1961,9 @@ int OH_RdbTrans_Insert (OH_Rdb_Transaction *trans, const char *table, const OH_V
 
 将一行数据插入到目标表中。
 
-**起始版本：** 16
+**起始版本：** 18
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
@@ -1898,9 +2016,9 @@ OH_Cursor* OH_RdbTrans_Query (OH_Rdb_Transaction *trans, const OH_Predicates *pr
 
 根据指定的条件查询数据库中的数据。
 
-**起始版本：** 16
+**起始版本：** 18
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
@@ -1924,9 +2042,9 @@ OH_Cursor* OH_RdbTrans_QuerySql (OH_Rdb_Transaction *trans, const char *sql, con
 
 根据SQL语句查询数据库中的数据。
 
-**起始版本：** 16
+**起始版本：** 18
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
@@ -1949,9 +2067,9 @@ int OH_RdbTrans_Rollback (OH_Rdb_Transaction *trans)
 
 回滚事务。
 
-**起始版本：** 16
+**起始版本：** 18
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
@@ -1994,9 +2112,9 @@ int OH_RdbTrans_Update (OH_Rdb_Transaction *trans, const OH_VBucket *row, const 
 
 根据指定的条件更新数据库中的数据。
 
-**起始版本：** 16
+**起始版本：** 18
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
@@ -2049,9 +2167,9 @@ int OH_RdbTransOption_SetType (OH_RDB_TransOptions *opitons, OH_RDB_TransType ty
 
 设置关系型数据库事务类型。
 
-**起始版本：** 16
+**起始版本：** 18
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
@@ -2077,11 +2195,11 @@ OH_Data_Value* OH_Value_Create (void )
 
 创建[OH_Data_Value](#oh_data_value)实例，用于储存单条键值对数据。
 
-**起始版本：** 16
+**起始版本：** 18
 
 **返回：**
 
-执行成功时返回指向[OH_Data_Value](#oh_data_value)实例的指针，否则返回nullptr。 使用完成后，必须通过[OH_Value_Destroy](#oh_value_destroy)接口释放内存。
+执行成功时返回指向[OH_Data_Value](#oh_data_value)实例的指针，否则返回nullptr。使用完成后，必须通过[OH_Value_Destroy](#oh_value_destroy)接口释放内存。
 
 **参见：**
 
@@ -2098,9 +2216,9 @@ int OH_Value_Destroy (OH_Data_Value *value)
 
 销毁[OH_Data_Value](#oh_data_value)对象。
 
-**起始版本：** 16
+**起始版本：** 18
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
@@ -2125,14 +2243,14 @@ int OH_Value_GetAsset (OH_Data_Value *value, Data_Asset *val )
 
 获取ASSET类型数据。
 
-**起始版本：** 16
+**起始版本：** 18
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
 | value | 表示指向[OH_Data_Value](#oh_data_value)实例的指针。 |
-| val | 表示指向**Data_Asset**对象的指针。 需要申请数据内存。 此函数仅填充数据。否则执行失败。 |
+| val | 表示指向**Data_Asset**对象的指针。需要申请数据内存。此函数仅填充数据。否则执行失败。 |
 
 **返回：**
 
@@ -2156,16 +2274,16 @@ int OH_Value_GetAssets (OH_Data_Value *value, Data_Asset **val, size_t inLen, si
 
 获取ASSETS类型数据。
 
-**起始版本：** 16
+**起始版本：** 18
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
 | value | 表示指向[OH_Data_Value](#oh_data_value)实例的指针。 |
-| val | 表示指向**Data_Asset**对象的指针。 需要申请数据内存。 此函数仅填充数据。否则执行失败。 |
+| val | 表示指向**Data_Asset**对象的指针。需要申请数据内存。此函数仅填充数据。否则执行失败。 |
 | inLen | 表示val的大小。可以通过[OH_Values_GetAssetsCount](#oh_values_getassetscount)获取。 |
-| outLen | 一个输出参数，表示实际获取的数据大小。 |
+| outLen | 该参数为输出参数，表示实际获取的数据大小。 |
 
 **返回：**
 
@@ -2194,14 +2312,14 @@ int OH_Value_GetAssetsCount (OH_Data_Value *value, size_t *length )
 
 获取ASSETS类型数据的大小。
 
-**起始版本：** 16
+**起始版本：** 18
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
 | value | 表示指向[OH_Data_Value](#oh_data_value)实例的指针。 |
-| length | 一个输出参数，表示ASSETS类型数据的大小。 |
+| length | 该参数是输出参数，表示ASSETS类型数据的大小。 |
 
 **返回：**
 
@@ -2226,15 +2344,15 @@ int OH_Value_GetBlob (OH_Data_Value *value, const uint8_t **val, size_t *length 
 
 获取BLOB类型数据。
 
-**起始版本：** 16
+**起始版本：** 18
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
 | value | 表示指向[OH_Data_Value](#oh_data_value)实例的指针。 |
-| val | 一个输出参数，表示指向BLOB类型数据的指针。 无需申请内存和释放内存。 val的生命周期遵循value中index的值。 |
-| length | 表示BLOB类型数组的大小。 |
+| val | 该参数是输出参数，表示指向BLOB类型数据的指针。无需申请内存和释放内存。val的生命周期遵循value中index的值。 |
+| length | 该参数是输出参数，表示BLOB类型数组的大小。 |
 
 **返回：**
 
@@ -2259,16 +2377,16 @@ int OH_Value_GetFloatVector (OH_Data_Value *value, float *val, size_t inLen, siz
 
 获取float数组类型数据。
 
-**起始版本：** 16
+**起始版本：** 18
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
 | value | 表示指向[OH_Data_Value](#oh_data_value)实例的指针。 |
-| val | 表示指向float数组的指针。 需要申请数据内存。 此函数仅填充数据。否则执行失败。 |
+| val | 表示指向float数组的指针。需要申请数据内存。此函数仅填充数据。否则执行失败。 |
 | inLen | 表示val的大小。可以通过[OH_Values_GetFloatVectorCount](#oh_values_getfloatvectorcount)获取。 |
-| outLen | 一个输出参数，表示实际获取的数据大小。 |
+| outLen | 该参数为输出参数，表示实际获取的数据大小。 |
 
 **返回：**
 
@@ -2297,14 +2415,14 @@ int OH_Value_GetFloatVectorCount (OH_Data_Value *value, size_t *length )
 
 获取float数组类型数据的大小。
 
-**起始版本：** 16
+**起始版本：** 18
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
 | value | 表示指向[OH_Data_Value](#oh_data_value)实例的指针。 |
-| length | 一个输出参数，表示float数组类型数据的大小。 |
+| length | 该参数是输出参数，表示float数组类型数据的大小。 |
 
 **返回：**
 
@@ -2329,14 +2447,14 @@ int OH_Value_GetInt (OH_Data_Value *value, int64_t *val )
 
 获取整型数据。
 
-**起始版本：** 16
+**起始版本：** 18
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
 | value | 表示指向[OH_Data_Value](#oh_data_value)实例的指针。 |
-| val | 一个输出参数，表示指向整型数据的指针。 |
+| val | 该参数为输出参数，表示指向整型数据的指针。 |
 
 **返回：**
 
@@ -2361,14 +2479,14 @@ int OH_Value_GetReal (OH_Data_Value *value, double *val )
 
 获取REAL类型数据。
 
-**起始版本：** 16
+**起始版本：** 18
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
 | value | 表示指向[OH_Data_Value](#oh_data_value)实例的指针。 |
-| val | 一个输出参数，表示指向REAL类型数据的指针。 |
+| val | 该参数为输出参数，表示指向REAL类型数据的指针。 |
 
 **返回：**
 
@@ -2393,14 +2511,14 @@ int OH_Value_GetText (OH_Data_Value *value, const char **val )
 
 获取字符串类型数据。
 
-**起始版本：** 16
+**起始版本：** 18
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
 | value | 表示指向[OH_Data_Value](#oh_data_value)实例的指针。 |
-| val | 一个输出参数，表示指向字符串类型数据的指针。 无需申请内存和释放内存。 val的生命周期遵循value中index的值。 |
+| val | 该参数为输出参数，表示指向字符串类型数据的指针。无需申请内存和释放内存。val的生命周期遵循value中index的值。 |
 
 **返回：**
 
@@ -2424,14 +2542,14 @@ int OH_Value_GetType (OH_Data_Value *value, OH_ColumnType *type )
 
 获取数据类型。
 
-**起始版本：** 16
+**起始版本：** 18
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
 | value | 表示指向[OH_Data_Value](#oh_data_value)实例的指针。 |
-| type | 一个输出参数，表示数据类型。 |
+| type | 该参数为输出参数，表示数据类型。 |
 
 **返回：**
 
@@ -2452,17 +2570,17 @@ int OH_Value_GetUnlimitedInt (OH_Data_Value *value, int *sign, uint64_t *trueFor
 
 获取任意长度的整型数据。
 
-**起始版本：** 16
+**起始版本：** 18
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
 | value | 表示指向[OH_Data_Value](#oh_data_value)实例的指针。 |
-| sign | 一个输出参数，表示正负数，0表示正整数，1表示负整数。 |
-| trueForm | 表示指向整型数组的指针。 需要申请数据内存。 此函数仅填充数据。否则执行失败。 |
+| sign | 该参数为输出参数，表示正负数，0表示正整数，1表示负整数。 |
+| trueForm | 表示指向整型数组的指针。需要申请数据内存。此函数仅填充数据。否则执行失败。 |
 | inLen | 表示trueForm的大小。可以通过[OH_Values_GetUnlimitedIntBand](#oh_values_getunlimitedintband)获取。 |
-| outLen | 一个输出参数，表示实际获取的数据大小。 |
+| outLen | 该参数为输出参数，表示实际获取的数据大小。 |
 
 **返回：**
 
@@ -2491,14 +2609,14 @@ int OH_Value_GetUnlimitedIntBand (OH_Data_Value *value, size_t *length )
 
 获取任意长度的整型数据的大小。
 
-**起始版本：** 16
+**起始版本：** 18
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
 | value | 表示指向[OH_Data_Value](#oh_data_value)实例的指针。 |
-| length | 一个输出参数，表示整型数组的大小。 |
+| length | 该参数是输出参数，表示整型数组的大小。 |
 
 **返回：**
 
@@ -2522,14 +2640,14 @@ int OH_Value_IsNull (OH_Data_Value *value, bool *val )
 
 检查数据是否为空。
 
-**起始版本：** 16
+**起始版本：** 18
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
 | value | 表示指向[OH_Data_Value](#oh_data_value)实例的指针。 |
-| val | 一个输出参数，ture表示空，false表示不为空。 |
+| val | 该参数为输出参数，ture表示空，false表示不为空。 |
 
 **返回：**
 
@@ -2550,9 +2668,9 @@ int OH_Value_PutAsset (OH_Data_Value *value, const Data_Asset *val )
 
 添加ASSET类型数据。
 
-**起始版本：** 16
+**起始版本：** 18
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
@@ -2578,15 +2696,15 @@ int OH_Value_PutAssets (OH_Data_Value *value, const Data_Asset * const * val, si
 
 添加ASSETS类型数据。
 
-**起始版本：** 16
+**起始版本：** 18
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
 | value | 表示指向[OH_Data_Value](#oh_data_value)实例的指针。 |
 | val | 表示指向**Data_Asset**对象的指针。 |
-| length | 表示传入的**Data_Asset**对象数组元素的个数。 |
+| length | 该参数是输入参数，表示开发者传入的**Data_Asset**对象数组元素的个数。 |
 
 **返回：**
 
@@ -2607,15 +2725,15 @@ int OH_Value_PutBlob (OH_Data_Value *value, const unsigned char *val, size_t len
 
 添加BLOB类型数据。
 
-**起始版本：** 16
+**起始版本：** 18
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
 | value | 表示指向[OH_Data_Value](#oh_data_value)实例的指针。 |
 | val | 表示BLOB类型数据。 |
-| length | 表示BLOB类型数据的大小。 |
+| length | 该参数是输入参数，表示开发者传入的BLOB类型数据的大小。 |
 
 **返回：**
 
@@ -2636,15 +2754,15 @@ int OH_Value_PutFloatVector (OH_Data_Value *value, const float *val, size_t leng
 
 添加float数组类型数据。
 
-**起始版本：** 16
+**起始版本：** 18
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
 | value | 表示指向[OH_Data_Value](#oh_data_value)实例的指针。 |
 | val | 表示指向float数组对象的指针。 |
-| length | 表示float数组的大小。 |
+| length | 该参数是输入参数，表示开发者传入的表示float数组的大小。 |
 
 **返回：**
 
@@ -2664,9 +2782,9 @@ int OH_Value_PutInt (OH_Data_Value *value, int64_t val )
 
 添加整型数据。
 
-**起始版本：** 16
+**起始版本：** 18
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
@@ -2692,9 +2810,9 @@ int OH_Value_PutNull (OH_Data_Value *value)
 
 添加空数据。
 
-**起始版本：** 16
+**起始版本：** 18
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
@@ -2719,9 +2837,9 @@ int OH_Value_PutReal (OH_Data_Value *value, double val )
 
 添加REAL类型数据。
 
-**起始版本：** 16
+**起始版本：** 18
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
@@ -2747,9 +2865,9 @@ int OH_Value_PutText (OH_Data_Value *value, const char *val )
 
 添加字符串类型数据。
 
-**起始版本：** 16
+**起始版本：** 18
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
@@ -2775,16 +2893,16 @@ int OH_Value_PutUnlimitedInt (OH_Data_Value *value, int sign, const uint64_t *tr
 
 添加任意长度的整型数组数据。
 
-**起始版本：** 16
+**起始版本：** 18
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
 | value | 表示指向[OH_Data_Value](#oh_data_value)实例的指针。 |
 | sign | 表示正负数，0表示正整数，1表示负整数。 |
 | trueForm | 表示指向整型数组的指针。 |
-| length | 表示整型数组的大小。 |
+| length | 该参数是输入参数，表示开发者传入的表示整型数组的大小。 |
 
 **返回：**
 
@@ -2804,14 +2922,14 @@ int OH_Values_Count (OH_Data_Values *values, size_t *count )
 
 获取数据个数。
 
-**起始版本：** 16
+**起始版本：** 18
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
 | values | 表示指向[OH_Data_Values](#oh_data_values)实例的指针。 |
-| count | 一个输出参数，表示values中数据的个数。 |
+| count | 该参数为输出参数，表示values中数据的个数。 |
 
 **返回：**
 
@@ -2832,11 +2950,11 @@ OH_Data_Values* OH_Values_Create (void )
 
 创建[OH_Data_Values](#oh_data_values)实例，用于储存多条键值对数据。
 
-**起始版本：** 16
+**起始版本：** 18
 
 **返回：**
 
-执行成功时返回指向[OH_Data_Values](#oh_data_values)实例的指针，否则返回nullptr。 使用完成后，必须通过[OH_Values_Destroy](#oh_values_destroy)接口释放内存。
+执行成功时返回指向[OH_Data_Values](#oh_data_values)实例的指针，否则返回nullptr。使用完成后，必须通过[OH_Values_Destroy](#oh_values_destroy)接口释放内存。
 
 **参见：**
 
@@ -2853,9 +2971,9 @@ int OH_Values_Destroy (OH_Data_Values *values)
 
 销毁[OH_Data_Values](#oh_data_values)对象。
 
-**起始版本：** 16
+**起始版本：** 18
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
@@ -2880,15 +2998,15 @@ int OH_Values_Get (OH_Data_Values *values, int index, OH_Data_Value **val )
 
 获取OH_Data_Value类型数据。
 
-**起始版本：** 16
+**起始版本：** 18
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
 | values | 表示指向[OH_Data_Values](#oh_data_values)实例的指针。 |
 | index | 表示values中目标数据的从零开始的索引。 |
-| val | 一个输出参数，表示指向[OH_Data_Value](#oh_data_value)实例的指针。 无需申请内存和释放内存。 |
+| val | 该参数为输出参数，表示指向[OH_Data_Value](#oh_data_value)实例的指针。无需申请内存和释放内存。 |
 
 **返回：**
 
@@ -2908,15 +3026,15 @@ int OH_Values_GetAsset (OH_Data_Values *values, int index, Data_Asset *val )
 
 获取ASSET类型数据。
 
-**起始版本：** 16
+**起始版本：** 18
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
 | values | 表示指向[OH_Data_Values](#oh_data_values)实例的指针。 |
 | index | 表示values中目标数据的从零开始的索引。 |
-| val | 表示指向**Data_Asset**对象的指针。 需要申请数据内存。 此函数仅填充数据。否则执行失败。 |
+| val | 表示指向**Data_Asset**对象的指针。需要申请数据内存。此函数仅填充数据。否则执行失败。 |
 
 **返回：**
 
@@ -2941,17 +3059,17 @@ int OH_Values_GetAssets (OH_Data_Values *values, int index, Data_Asset **val, si
 
 获取ASSETS类型数据。
 
-**起始版本：** 16
+**起始版本：** 18
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
 | values | 表示指向[OH_Data_Values](#oh_data_values)实例的指针。 |
 | index | 表示values中目标数据的从零开始的索引。 |
-| val | 表示指向**Data_Asset**对象的指针。 使用时需要申请数据内存。 此函数仅填充数据。否则执行失败。 |
+| val | 表示指向**Data_Asset**对象的指针。使用时需要申请数据内存。此函数仅填充数据。否则执行失败。 |
 | inLen | 表示val的大小。可以通过[OH_Values_GetAssetsCount](#oh_values_getassetscount)获取。 |
-| outLen | 一个输出参数，表示实际获取的数据大小。 |
+| outLen | 该参数为输出参数，表示实际获取的数据大小。 |
 
 **返回：**
 
@@ -2980,15 +3098,15 @@ int OH_Values_GetAssetsCount (OH_Data_Values *values, int index, size_t *length 
 
 获取ASSETS类型数据的大小。
 
-**起始版本：** 16
+**起始版本：** 18
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
 | values | 表示指向[OH_Data_Values](#oh_data_values)实例的指针。表示指向[OH_Data_Values](#oh_data_values)实例的指针。 |
 | index | 表示values中目标数据的从零开始的索引。 |
-| length | 一个输出参数，表示ASSETS类型数据的大小。 |
+| length | 该参数为输出参数，表示ASSETS类型数据的大小。 |
 
 **返回：**
 
@@ -3013,16 +3131,16 @@ int OH_Values_GetBlob (OH_Data_Values *values, int index, const uint8_t **val, s
 
 获取BLOB类型数据。
 
-**起始版本：** 16
+**起始版本：** 18
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
 | values | 表示指向[OH_Data_Values](#oh_data_values)实例的指针。 |
 | index | 表示values中目标数据的从零开始的索引。 |
-| val | 一个输出参数，表示指向BLOB类型数据的指针。 无需申请内存和释放内存。 val的生命周期遵循values中index的值。 |
-| length | 表示BLOB类型数组的大小。 |
+| val | 该参数为输出参数，表示指向BLOB类型数据的指针。无需申请内存和释放内存。val的生命周期遵循values中index的值。 |
+| length | 该参数为输出参数，表示BLOB类型数组的大小。 |
 
 **返回：**
 
@@ -3046,17 +3164,17 @@ int OH_Values_GetFloatVector (OH_Data_Values *values, int index, float *val, siz
 
 获取float数组类型数据。
 
-**起始版本：** 16
+**起始版本：** 18
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
 | values | 表示指向[OH_Data_Values](#oh_data_values)实例的指针。 |
 | index | 表示values中目标数据的从零开始的索引。 |
-| val | 表示指向float数组的指针。 需要申请数据内存。 此函数仅填充数据。否则执行失败。 |
+| val | 表示指向float数组的指针。需要申请数据内存。此函数仅填充数据。否则执行失败。 |
 | inLen | 表示val的大小。可以通过[OH_Values_GetFloatVectorCount](#oh_values_getfloatvectorcount)获取。 |
-| outLen | 一个输出参数，表示实际获取的数据大小。 |
+| outLen | 该参数为输出参数，表示实际获取的数据大小。 |
 
 **返回：**
 
@@ -3085,15 +3203,15 @@ int OH_Values_GetFloatVectorCount (OH_Data_Values *values, int index, size_t *le
 
 获取float数组类型数据的大小。
 
-**起始版本：** 16
+**起始版本：** 18
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
 | values | 表示指向[OH_Data_Values](#oh_data_values)实例的指针。 |
 | index | 表示values中目标数据的从零开始的索引。 |
-| length | 一个输出参数，表示float数组类型数据的大小。 |
+| length | 该参数为输出参数，表示float数组类型数据的大小。 |
 
 **返回：**
 
@@ -3118,15 +3236,15 @@ int OH_Values_GetInt (OH_Data_Values *values, int index, int64_t *val )
 
 获取整型数据。
 
-**起始版本：** 16
+**起始版本：** 18
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
 | values | 表示指向[OH_Data_Values](#oh_data_values)实例的指针。 |
 | index | 表示values中目标数据的从零开始的索引。 |
-| val | 一个输出参数，表示指向整型数据的指针。 |
+| val | 该参数为输出参数，表示指向整型数据的指针。 |
 
 **返回：**
 
@@ -3150,15 +3268,15 @@ int OH_Values_GetReal (OH_Data_Values *values, int index, double *val )
 
 获取REAL类型数据。
 
-**起始版本：** 16
+**起始版本：** 18
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
 | values | 表示指向[OH_Data_Values](#oh_data_values)实例的指针。 |
 | index | 表示values中目标数据的从零开始的索引。 |
-| val | 一个输出参数，表示指向REAL类型数据的指针。 |
+| val | 该参数为输出参数，表示指向REAL类型数据的指针。 |
 
 **返回：**
 
@@ -3183,15 +3301,15 @@ int OH_Values_GetText (OH_Data_Values *values, int index, const char **val )
 
 获取字符串类型数据。
 
-**起始版本：** 16
+**起始版本：** 18
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
 | values | 表示指向[OH_Data_Values](#oh_data_values)实例的指针。 |
 | index | 表示values中目标数据的从零开始的索引。 |
-| val | 一个输出参数，表示指向字符串类型数据的指针。 无需申请内存和释放内存。 val的生命周期遵循values中index的值。 |
+| val | 该参数为输出参数，表示指向字符串类型数据的指针。无需申请内存和释放内存。val的生命周期遵循values中index的值。 |
 
 **返回：**
 
@@ -3216,15 +3334,15 @@ int OH_Values_GetType (OH_Data_Values *values, int index, OH_ColumnType *type )
 
 获取数据类型。
 
-**起始版本：** 16
+**起始版本：** 18
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
 | values | 表示指向[OH_Data_Values](#oh_data_values)实例的指针。 |
 | index | 表示values中目标数据的从零开始的索引。 |
-| type | 一个输出参数，表示数据类型。 |
+| type | 该参数为输出参数，表示数据类型。 |
 
 **返回：**
 
@@ -3245,18 +3363,18 @@ int OH_Values_GetUnlimitedInt (OH_Data_Values *values, int index, int *sign, uin
 
 获取任意长度的整型数据。
 
-**起始版本：** 16
+**起始版本：** 18
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
 | values | 表示指向[OH_Data_Values](#oh_data_values)实例的指针。 |
 | index | 表示values中目标数据的从零开始的索引。 |
-| sign | 一个输出参数，表示正负数，0表示正整数，1表示负整数。 |
-| trueForm | 表示指向整型数组的指针。 需要申请数据内存。 此函数仅填充数据。否则执行失败。 |
+| sign | 该参数为输出参数，表示正负数，0表示正整数，1表示负整数。 |
+| trueForm | 表示指向整型数组的指针。需要申请数据内存。此函数仅填充数据。否则执行失败。 |
 | inLen | 表示trueForm的大小。可以通过[OH_Values_GetUnlimitedIntBand](#oh_values_getunlimitedintband)获取。 |
-| outLen | 一个输出参数，表示实际获取的数据大小。 |
+| outLen | 该参数为输出参数，表示实际获取的数据大小。 |
 
 **返回：**
 
@@ -3285,15 +3403,15 @@ int OH_Values_GetUnlimitedIntBand (OH_Data_Values *values, int index, size_t *le
 
 获取任意长度的整型数据的大小。
 
-**起始版本：** 16
+**起始版本：** 18
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
 | values | 表示指向[OH_Data_Values](#oh_data_values)实例的指针。 |
 | index | 表示values中目标数据的从零开始的索引。 |
-| length | 一个输出参数，表示整型数组的大小。 |
+| length | 该参数为输出参数，表示整型数组的大小。 |
 
 **返回：**
 
@@ -3318,15 +3436,15 @@ int OH_Values_IsNull (OH_Data_Values *values, int index, bool *val )
 
 检查数据是否为空。
 
-**起始版本：** 16
+**起始版本：** 18
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
 | values | 表示指向[OH_Data_Values](#oh_data_values)实例的指针。 |
 | index | 表示values中目标数据的从零开始的索引。 |
-| val | 一个输出参数，ture表示空，false表示不为空。 |
+| val | 该参数为输出参数，ture表示空，false表示不为空。 |
 
 **返回：**
 
@@ -3346,9 +3464,9 @@ int OH_Values_Put (OH_Data_Values *values, const OH_Data_Value *val )
 
 添加OH_Data_Value类型数据给OH_Data_Values对象。
 
-**起始版本：** 16
+**起始版本：** 18
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
@@ -3374,9 +3492,9 @@ int OH_Values_PutAsset (OH_Data_Values *values, const Data_Asset *val )
 
 添加ASSET类型数据给OH_Data_Values对象。
 
-**起始版本：** 16
+**起始版本：** 18
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
@@ -3402,15 +3520,15 @@ int OH_Values_PutAssets (OH_Data_Values *values, const Data_Asset * const * val,
 
 添加ASSETS类型数据给OH_Data_Values对象。
 
-**起始版本：** 16
+**起始版本：** 18
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
 | values | 表示指向[OH_Data_Values](#oh_data_values)实例的指针。 |
 | val | 表示指向**Data_Asset**对象的指针。 |
-| length | 表示传入的**Data_Asset**对象数组元素的个数。 |
+| length | 该参数为输入参数，表示开发者传入的**Data_Asset**对象数组元素的个数。 |
 
 **返回：**
 
@@ -3431,15 +3549,15 @@ int OH_Values_PutBlob (OH_Data_Values *values, const unsigned char *val, size_t 
 
 添加BLOB类型数据给OH_Data_Values对象。
 
-**起始版本：** 16
+**起始版本：** 18
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
 | values | 表示指向[OH_Data_Values](#oh_data_values)实例的指针。 |
 | val | 表示BLOB类型数据。 |
-| length | 表示BLOB类型数据的大小。 |
+| length | 该参数为输入参数，表示开发者传入的BLOB类型数据的大小。 |
 
 **返回：**
 
@@ -3460,15 +3578,15 @@ int OH_Values_PutFloatVector (OH_Data_Values *values, const float *val, size_t l
 
 添加float数组类型数据给OH_Data_Values对象。
 
-**起始版本：** 16
+**起始版本：** 18
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
 | values | 表示指向[OH_Data_Values](#oh_data_values)实例的指针。 |
 | val | 表示指向float数组对象的指针。 |
-| length | 表示float数组的长度。 |
+| length | 该参数为输入参数，表示开发者传入的float数组的长度。 |
 
 **返回：**
 
@@ -3489,9 +3607,9 @@ int OH_Values_PutInt (OH_Data_Values *values, int64_t val )
 
 添加整型数据给OH_Data_Values对象。
 
-**起始版本：** 16
+**起始版本：** 18
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
@@ -3517,9 +3635,9 @@ int OH_Values_PutNull (OH_Data_Values *values)
 
 添加空数据给OH_Data_Values对象。
 
-**起始版本：** 16
+**起始版本：** 18
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
@@ -3544,9 +3662,9 @@ int OH_Values_PutReal (OH_Data_Values *values, double val )
 
 添加REAL类型数据给OH_Data_Values对象。
 
-**起始版本：** 16
+**起始版本：** 18
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
@@ -3572,9 +3690,9 @@ int OH_Values_PutText (OH_Data_Values *values, const char *val )
 
 添加字符串类型数据给OH_Data_Values对象。
 
-**起始版本：** 16
+**起始版本：** 18
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
@@ -3600,16 +3718,16 @@ int OH_Values_PutUnlimitedInt (OH_Data_Values *values, int sign, const uint64_t 
 
 添加任意长度的整型数组数据给OH_Data_Values对象。
 
-**起始版本：** 16
+**起始版本：** 18
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
 | values | 表示指向[OH_Data_Values](#oh_data_values)实例的指针。 |
 | sign | 表示正负数，0表示正整数，1表示负整数。 |
 | trueForm | 表示指向整型数组的指针。 |
-| length | 表示整型数组的大小。 |
+| length | 该参数为输入参数，表示开发者传入的整型数组的大小。 |
 
 **返回：**
 
@@ -3629,9 +3747,9 @@ int OH_VBucket_PutFloatVector (OH_VBucket *bucket, const char *field, const floa
 
 将float数组类型对象放入给定列名的[OH_VBucket](_o_h___v_bucket.md)对象中。
 
-**起始版本：** 16
+**起始版本：** 18
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
@@ -3663,9 +3781,9 @@ int OH_VBucket_PutUnlimitedInt (OH_VBucket *bucket, const char *field, int sign,
 
 将任意长度的整数类型对象放入给定列名的[OH_VBucket](_o_h___v_bucket.md)对象中。
 
-**起始版本：** 16
+**起始版本：** 18
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
@@ -3698,11 +3816,11 @@ OH_Data_VBuckets* OH_VBuckets_Create (void)
 
 创建OH_Data_VBuckets实例。
 
-**起始版本：** 16
+**起始版本：** 18
 
 **返回：**
 
-执行成功时返回指向[OH_Data_VBuckets](#oh_data_vbuckets)实例的指针，否则返回nullptr。 使用完成后，必须通过[OH_VBuckets_Destroy](#oh_vbuckets_destroy)接口释放内存。
+执行成功时返回指向[OH_Data_VBuckets](#oh_data_vbuckets)实例的指针，否则返回nullptr。使用完成后，必须通过[OH_VBuckets_Destroy](#oh_vbuckets_destroy)接口释放内存。
 
 **参见：**
 
@@ -3719,9 +3837,9 @@ int OH_VBuckets_Destroy (OH_Data_VBuckets *buckets)
 
 销毁OH_Data_VBuckets对象。
 
-**起始版本：** 16
+**起始版本：** 18
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
@@ -3746,9 +3864,9 @@ int OH_VBuckets_PutRow (OH_Data_VBuckets *buckets, const OH_VBucket *row )
 
 添加OH_VBucket类型数据。
 
-**起始版本：** 16
+**起始版本：** 18
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
@@ -3774,9 +3892,9 @@ int OH_VBuckets_PutRows (OH_Data_VBuckets *buckets, const OH_Data_VBuckets *rows
 
 添加OH_Data_VBuckets类型数据。
 
-**起始版本：** 16
+**起始版本：** 18
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
@@ -3802,14 +3920,14 @@ int OH_VBuckets_RowCount (OH_Data_VBuckets *buckets, size_t *count )
 
 获取OH_Data_VBuckets中OH_VBucket的行数。
 
-**起始版本：** 16
+**起始版本：** 18
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
 | buckets | 表示指向[OH_Data_VBuckets](#oh_data_vbuckets)实例的指针。 |
-| count | 一个输出参数，表示[OH_Data_VBuckets](#oh_data_vbuckets)中[OH_VBucket](_o_h___v_bucket.md)的个数。 |
+| count | 该参数为输出参数，表示[OH_Data_VBuckets](#oh_data_vbuckets)中[OH_VBucket](_o_h___v_bucket.md)的个数。 |
 
 **返回：**
 
@@ -3827,16 +3945,16 @@ OH_Rdb_Store *OH_Rdb_CreateOrOpen (const OH_Rdb_ConfigV2 *config, int *errCode )
 
 **描述**
 
-使用指定的数据库文件配置[OH_Rdb_ConfigV2](#oh_rdb_configv2), 获得一个对应的[OH_Rdb_Store](_o_h___rdb___store.md)实例，用来操作关系型数据库。
+使用指定的数据库文件配置[OH_Rdb_ConfigV2](#oh_rdb_configv2)，获得一个对应的[OH_Rdb_Store](_o_h___rdb___store.md)实例，用来操作关系型数据库。
 
 **起始版本：** 14
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
 | config | 表示指向[OH_Rdb_ConfigV2](#oh_rdb_configv2)对象的指针，即与此RDB存储相关的数据库配置。 |
-| errCode | 表示函数执行状态, 作为出参使用。 RDB_OK 表示成功。 RDB_E_INVALID_ARGS 表示无效参数。 |
+| errCode | 表示函数执行状态，作为出参使用。RDB_OK表示成功。RDB_E_INVALID_ARGS表示无效参数。 |
 
 **返回：**
 
@@ -3855,16 +3973,16 @@ int OH_Rdb_BeginTransWithTrxId (OH_Rdb_Store *store, int64_t *trxId )
 
 **描述**
 
-在开始执行SQL语句之前，开始事务，并获得该事务的ID，支持向量数据库。
+在开始执行SQL语句之前，开始事务，并获得该事务的ID，仅支持向量数据库。
 
 **起始版本：** 14
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
 | store | 表示一个指向 [OH_Rdb_Store](_o_h___rdb___store.md) 实例的指针。 |
-| trxId | 事务ID, 作为出参使用。 |
+| trxId | 事务ID，作为出参使用。 |
 
 **返回：**
 
@@ -3889,11 +4007,11 @@ int OH_Rdb_CommitByTrxId (OH_Rdb_Store *store, int64_t trxId )
 
 **描述**
 
-使用指定的事务ID，提交已经执行的SQL语句，支持向量数据库。
+使用指定的事务ID，提交已经执行的SQL语句，仅支持向量数据库。
 
 **起始版本：** 14
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
@@ -3904,7 +4022,7 @@ int OH_Rdb_CommitByTrxId (OH_Rdb_Store *store, int64_t trxId )
 
 返回操作是否成功，出错时返回对应的错误码。
 
-RDB_OK 表示成功. RDB_E_INVALID_ARGS 表示无效参数，可能情况如下： 传入参数为空指针。当前事务ID不是调用[OH_Rdb_BeginTransWithTrxId](#oh_rdb_begintranswithtrxid)获得的。当前事务ID已经调用[OH_Rdb_CommitByTrxId](#oh_rdb_commitbytrxid)提交。当前事务ID已经调用[OH_Rdb_RollBackByTrxId](#oh_rdb_rollbackbytrxid)回滚。
+RDB_OK 表示成功。RDB_E_INVALID_ARGS 表示无效参数，可能情况如下：传入参数为空指针。当前事务ID不是调用[OH_Rdb_BeginTransWithTrxId](#oh_rdb_begintranswithtrxid)获得的。当前事务ID已经调用[OH_Rdb_CommitByTrxId](#oh_rdb_commitbytrxid)提交。当前事务ID已经调用[OH_Rdb_RollBackByTrxId](#oh_rdb_rollbackbytrxid)回滚。
 
 RDB_E_NOT_SUPPORTED 表示不支持当前操作。
 
@@ -3947,7 +4065,7 @@ int OH_Rdb_DeleteStoreV2 (const OH_Rdb_ConfigV2 *config)
 
 **起始版本：** 14
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
@@ -3978,7 +4096,7 @@ int OH_Rdb_DestroyConfig (OH_Rdb_ConfigV2 *config)
 
 **起始版本：** 14
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
@@ -4001,11 +4119,11 @@ int OH_Rdb_ExecuteByTrxId (OH_Rdb_Store *store, int64_t trxId, const char *sql )
 
 **描述**
 
-使用指定的事务ID执行无返回值的SQL语句。
+使用指定的事务ID执行无返回值的SQL语句，仅支持向量数据库。
 
 **起始版本：** 14
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
@@ -4019,7 +4137,7 @@ int OH_Rdb_ExecuteByTrxId (OH_Rdb_Store *store, int64_t trxId, const char *sql )
 
 RDB_OK 表示成功。
 
-RDB_E_INVALID_ARGS 表示无效参数，可能情况如下： 传入参数为空指针。当前事务ID不是调用[OH_Rdb_BeginTransWithTrxId](#oh_rdb_begintranswithtrxid)获得的。当前事务ID已经调用[OH_Rdb_CommitByTrxId](#oh_rdb_commitbytrxid)提交。当前事务ID已经调用[OH_Rdb_RollBackByTrxId](#oh_rdb_rollbackbytrxid)回滚。当store或者sql为NULL时。
+RDB_E_INVALID_ARGS 表示无效参数，可能情况如下：传入参数为空指针。当前事务ID不是调用[OH_Rdb_BeginTransWithTrxId](#oh_rdb_begintranswithtrxid)获得的。当前事务ID已经调用[OH_Rdb_CommitByTrxId](#oh_rdb_commitbytrxid)提交。当前事务ID已经调用[OH_Rdb_RollBackByTrxId](#oh_rdb_rollbackbytrxid)回滚。当store或者sql为NULL时。
 
 RDB_E_NOT_SUPPORTED 表示不支持当前操作。
 
@@ -4040,11 +4158,11 @@ const int *OH_Rdb_GetSupportedDbType (int *typeCount)
 
 **起始版本：** 14
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
-| typeCount | 表示支持的数据库类型的数组的长度, 作为出参使用。 |
+| typeCount | 表示支持的数据库类型的数组的长度，作为出参使用。 |
 
 **返回：**
 
@@ -4063,11 +4181,11 @@ int OH_Rdb_RollBackByTrxId (OH_Rdb_Store *store, int64_t trxId )
 
 **描述**
 
-使用指定的事务ID，回滚已经执行的SQL语句，支持向量数据库。
+使用指定的事务ID，回滚已经执行的SQL语句，仅支持向量数据库。
 
 **起始版本：** 14
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
@@ -4080,7 +4198,7 @@ int OH_Rdb_RollBackByTrxId (OH_Rdb_Store *store, int64_t trxId )
 
 RDB_OK 表示成功。
 
-RDB_E_INVALID_ARGS 表示无效参数, 可能情况如下：传入参数为空指针。当前事务ID不是调用[OH_Rdb_BeginTransWithTrxId](#oh_rdb_begintranswithtrxid)获得的。当前事务ID已经调用[OH_Rdb_CommitByTrxId](#oh_rdb_commitbytrxid)提交。当前事务ID已经调用[OH_Rdb_RollBackByTrxId](#oh_rdb_rollbackbytrxid)回滚。
+RDB_E_INVALID_ARGS 表示无效参数，可能情况如下：传入参数为空指针。当前事务ID不是调用[OH_Rdb_BeginTransWithTrxId](#oh_rdb_begintranswithtrxid)获得的。当前事务ID已经调用[OH_Rdb_CommitByTrxId](#oh_rdb_commitbytrxid)提交。当前事务ID已经调用[OH_Rdb_RollBackByTrxId](#oh_rdb_rollbackbytrxid)回滚。
 
 RDB_E_NOT_SUPPORTED 表示不支持当前操作。
 
@@ -4101,7 +4219,7 @@ int OH_Rdb_SetArea (OH_Rdb_ConfigV2 *config, int area )
 
 **起始版本：** 14
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
@@ -4129,7 +4247,7 @@ int OH_Rdb_SetBundleName (OH_Rdb_ConfigV2 *config, const char *bundleName )
 
 **起始版本：** 14
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
@@ -4157,7 +4275,7 @@ int OH_Rdb_SetDatabaseDir (OH_Rdb_ConfigV2 *config, const char *databaseDir )
 
 **起始版本：** 14
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
@@ -4170,7 +4288,7 @@ int OH_Rdb_SetDatabaseDir (OH_Rdb_ConfigV2 *config, const char *databaseDir )
 
 RDB_OK 表示成功。
 
-RDB_E_INVALID_ARGS 表示无效参数。。
+RDB_E_INVALID_ARGS 表示无效参数。
 
 
 ### OH_Rdb_SetDbType()
@@ -4185,7 +4303,7 @@ int OH_Rdb_SetDbType (OH_Rdb_ConfigV2 *config, int dbType )
 
 **起始版本：** 14
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
@@ -4215,12 +4333,12 @@ int OH_Rdb_SetEncrypted (OH_Rdb_ConfigV2 *config, bool isEncrypted )
 
 **起始版本：** 14
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
 | config | 表示指向[OH_Rdb_ConfigV2](#oh_rdb_configv2)对象的指针，即与此RDB存储相关的数据库配置。 |
-| isEncrypted | 表示数据库是否加密, true表示加密, false表示不加密。 |
+| isEncrypted | 表示数据库是否加密，true表示加密，false表示不加密。 |
 
 **返回：**
 
@@ -4243,7 +4361,7 @@ int OH_Rdb_SetModuleName (OH_Rdb_ConfigV2 *config, const char *moduleName )
 
 **起始版本：** 14
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
@@ -4271,7 +4389,7 @@ int OH_Rdb_SetSecurityLevel (OH_Rdb_ConfigV2 *config, int securityLevel )
 
 **起始版本：** 14
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
@@ -4299,7 +4417,7 @@ int OH_Rdb_SetStoreName (OH_Rdb_ConfigV2 *config, const char *storeName )
 
 **起始版本：** 14
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
@@ -4326,7 +4444,7 @@ int OH_Rdb_Backup (OH_Rdb_Store *store, const char *databasePath )
 
 **起始版本：** 10
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
@@ -4358,7 +4476,7 @@ int OH_Rdb_BeginTransaction (OH_Rdb_Store *store)
 
 **起始版本：** 10
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
@@ -4389,7 +4507,7 @@ int OH_Rdb_CloseStore (OH_Rdb_Store *store)
 
 **起始版本：** 10
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
@@ -4411,7 +4529,7 @@ RDB_E_INVALID_ARGS 表示无效参数。
 ### OH_Rdb_CloudSync()
 
 ```
-int OH_Rdb_CloudSync (OH_Rdb_Store *store, Rdb_SyncMode mode, const char *tables, int count, const Rdb_ProgressObserver *observer )
+int OH_Rdb_CloudSync (OH_Rdb_Store *store, Rdb_SyncMode mode, const char *tables[], uint32_t count, const Rdb_ProgressObserver *observer )
 ```
 
 **描述**
@@ -4420,7 +4538,7 @@ int OH_Rdb_CloudSync (OH_Rdb_Store *store, Rdb_SyncMode mode, const char *tables
 
 **起始版本：** 11
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
@@ -4451,11 +4569,11 @@ int OH_Rdb_Commit (OH_Rdb_Store *store)
 
 **描述**
 
-提交已执行的SQL语句
+提交已执行的SQL语句。
 
 **起始版本：** 10
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
@@ -4486,7 +4604,7 @@ OH_Predicates* OH_Rdb_CreatePredicates (const char *table)
 
 **起始版本：** 10
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
@@ -4555,7 +4673,7 @@ int OH_Rdb_Delete (OH_Rdb_Store *store, OH_Predicates *predicates )
 
 **起始版本：** 10
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
@@ -4583,7 +4701,7 @@ int OH_Rdb_DeleteStore (const OH_Rdb_Config *config)
 
 **起始版本：** 10
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
@@ -4606,7 +4724,7 @@ int OH_Rdb_Execute (OH_Rdb_Store *store, const char *sql )
 
 **起始版本：** 10
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
@@ -4638,7 +4756,7 @@ OH_Cursor* OH_Rdb_ExecuteQuery (OH_Rdb_Store *store, const char *sql )
 
 **起始版本：** 10
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
@@ -4666,7 +4784,7 @@ OH_Cursor* OH_Rdb_FindModifyTime (OH_Rdb_Store *store, const char *tableName, co
 
 **起始版本：** 11
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
@@ -4696,7 +4814,7 @@ OH_Rdb_Store* OH_Rdb_GetOrOpen (const OH_Rdb_Config *config, int *errCode )
 
 **起始版本：** 10
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
@@ -4724,7 +4842,7 @@ Rdb_TableDetails* OH_Rdb_GetTableDetails (Rdb_ProgressDetails *progress, int32_t
 
 **起始版本：** 11
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
@@ -4754,12 +4872,12 @@ int OH_Rdb_GetVersion (OH_Rdb_Store *store, int *version )
 
 **起始版本：** 10
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
 | store | 表示指向[OH_Rdb_Store](_o_h___rdb___store.md)实例的指针。 |
-| version |  该参数是输出参数, 表示版本号。 |
+| version |  该参数是输出参数，表示版本号。 |
 
 **返回：**
 
@@ -4782,7 +4900,7 @@ int OH_Rdb_Insert (OH_Rdb_Store *store, const char *table, OH_VBucket *valuesBuc
 
 **起始版本：** 10
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
@@ -4810,7 +4928,7 @@ int OH_Rdb_LockRow (OH_Rdb_Store *store, OH_Predicates *predicates )
 
 **起始版本：** 12
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
@@ -4837,14 +4955,14 @@ OH_Cursor* OH_Rdb_Query (OH_Rdb_Store *store, OH_Predicates *predicates, const c
 
 **起始版本：** 10
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
 | store | 表示指向[OH_Rdb_Store](_o_h___rdb___store.md)实例的指针。 |
 | predicates | 表示指向[OH_Predicates](_o_h___predicates.md)实例的指针，指定查询条件。 |
 | columnNames | 表示要查询的列。如果值为空，则查询应用于所有列。 |
-| length | 表示columnNames数组的长度。若length大于columnNames数组的实际长度，则会访问越界。 |
+| length | 该参数为输入参数，表示开发者传入的columnNames数组的长度。若length大于columnNames数组的实际长度，则会访问越界。 |
 
 **返回：**
 
@@ -4866,14 +4984,14 @@ OH_Cursor *OH_Rdb_QueryLockedRow (OH_Rdb_Store *store, OH_Predicates *predicates
 
 **起始版本：** 12
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
 | store | 表示指向[OH_Rdb_Store](_o_h___rdb___store.md)实例的指针。 |
 | predicates | 表示指向[OH_Predicates](_o_h___predicates.md)实例的指针，指定查询条件。 |
 | columnNames | 表示要查询的列。如果值为空，则查询应用于所有列。 |
-| length | 表示columnNames数组的长度。若length大于columnNames数组的实际长度，则会访问越界。 |
+| length | 该参数为输入参数，表示开发者传入的columnNames数组的长度。若length大于columnNames数组的实际长度，则会访问越界。 |
 
 **返回：**
 
@@ -4895,7 +5013,7 @@ int OH_Rdb_Restore (OH_Rdb_Store *store, const char *databasePath )
 
 **起始版本：** 10
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
@@ -4927,7 +5045,7 @@ int OH_Rdb_RollBack (OH_Rdb_Store *store)
 
 **起始版本：** 10
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
@@ -4958,7 +5076,7 @@ int OH_Rdb_SetDistributedTables (OH_Rdb_Store *store, const char *tables[], uint
 
 **起始版本：** 11
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
@@ -4993,7 +5111,7 @@ int OH_Rdb_SetVersion (OH_Rdb_Store *store, int version )
 
 **起始版本：** 10
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
@@ -5025,7 +5143,7 @@ int OH_Rdb_Subscribe (OH_Rdb_Store *store, Rdb_SubscribeType type, const Rdb_Dat
 
 **起始版本：** 11
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
@@ -5060,7 +5178,7 @@ int OH_Rdb_SubscribeAutoSyncProgress (OH_Rdb_Store *store, const Rdb_ProgressObs
 
 **起始版本：** 11
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
@@ -5089,7 +5207,7 @@ int OH_Rdb_UnlockRow (OH_Rdb_Store *store, OH_Predicates *predicates )
 
 **起始版本：** 12
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
@@ -5116,11 +5234,11 @@ int OH_Rdb_Unsubscribe (OH_Rdb_Store *store, Rdb_SubscribeType type, const Rdb_D
 
 **起始版本：** 11
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
-| store | 表示指向[OH_Rdb_Store](_o_h___rdb___store.md)实例的指针. |
+| store | 表示指向[OH_Rdb_Store](_o_h___rdb___store.md)实例的指针。 |
 | type | 表示在[Rdb_SubscribeType](#rdb_subscribetype)中定义的订阅类型。 |
 | observer | 数据库中更改事件的观察者[Rdb_DataObserver](_rdb___data_observer.md)。如果这是nullptr，表示删除该类型的所有观察者。 |
 
@@ -5151,7 +5269,7 @@ int OH_Rdb_UnsubscribeAutoSyncProgress (OH_Rdb_Store *store, const Rdb_ProgressO
 
 **起始版本：** 11
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
@@ -5185,7 +5303,7 @@ int OH_Rdb_Update (OH_Rdb_Store *store, OH_VBucket *valuesBucket, OH_Predicates 
 
 **起始版本：** 10
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
@@ -5205,16 +5323,16 @@ int OH_Rdb_Update (OH_Rdb_Store *store, OH_VBucket *valuesBucket, OH_Predicates 
 ### OH_VBucket_PutAsset()
 
 ```
-int OH_VBucket_PutAsset (OH_VBucket *bucket, const char *field, OH_Asset *value )
+int OH_VBucket_PutAsset (OH_VBucket *bucket, const char *field, Data_Asset *value )
 ```
 
 **描述**
 
-将**OH_Asset** 类型的对象放入给定列名的[OH_VBucket](_o_h___v_bucket.md)对象中.
+将**Data_Asset**类型的对象放入给定列名的[OH_VBucket](_o_h___v_bucket.md)对象中。
 
 **起始版本：** 11
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
@@ -5234,23 +5352,23 @@ int OH_VBucket_PutAsset (OH_VBucket *bucket, const char *field, OH_Asset *value 
 ### OH_VBucket_PutAssets()
 
 ```
-int OH_VBucket_PutAssets (OH_VBucket *bucket, const char *field, OH_Asset **value, int count )
+int OH_VBucket_PutAssets (OH_VBucket *bucket, const char *field, Data_Asset **value, int count )
 ```
 
 **描述**
 
-将**OH_Asset** 类型的对象数组放入给定列名的[OH_VBucket](_o_h___v_bucket.md)对象中.
+将**Data_Asset**类型的对象数组放入给定列名的[OH_VBucket](_o_h___v_bucket.md)对象中。
 
 **起始版本：** 11
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
 | bucket | 表示指向[OH_VBucket](_o_h___v_bucket.md)实例的指针。 |
 | field | 数据库表中的列名。 |
 | value | 数据库表中指定列名对应的值。 |
-| count | 表示传入的**OH_Asset**对象数组元素的个数. |
+| count | 表示传入的**Data_Asset**对象数组元素的个数。 |
 
 **返回：**
 
@@ -5277,7 +5395,7 @@ OH_Predicates *(*andOperate) (OH_Predicates *predicates)
 
 **起始版本：** 10
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
@@ -5319,7 +5437,7 @@ OH_Predicates *(*beginWrap) (OH_Predicates *predicates)
 
 **起始版本：** 10
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
@@ -5348,7 +5466,7 @@ OH_Predicates *(*between) (OH_Predicates *predicates, const char *field, OH_VObj
 
 **起始版本：** 10
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
@@ -5417,7 +5535,7 @@ uint16_t OH_VBucket::capability
 
 **描述**
 
-表示结构体的存储键值对的数量
+表示结构体的存储键值对的数量。
 
 
 ### ChangeType
@@ -5443,7 +5561,7 @@ OH_Predicates *(*clear) (OH_Predicates *predicates)
 
 **起始版本：** 10
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
@@ -5451,7 +5569,7 @@ OH_Predicates *(*clear) (OH_Predicates *predicates)
 
 **返回：**
 
-返回清空后的谓词
+返回清空后的谓词。
 
 **参见：**
 
@@ -5470,7 +5588,7 @@ int(*clear) (OH_VBucket *bucket)
 
 **起始版本：** 10
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
@@ -5563,7 +5681,7 @@ int(*destroy) (OH_Cursor *cursor)
 
 **起始版本：** 10
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
@@ -5590,7 +5708,7 @@ int(*destroy) (OH_Predicates *predicates)
 
 **起始版本：** 10
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
@@ -5617,7 +5735,7 @@ int(*destroy) (OH_VBucket *bucket)
 
 **起始版本：** 10
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
@@ -5644,7 +5762,7 @@ int(*destroy) (OH_VObject *valueObject)
 
 **起始版本：** 10
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
@@ -5684,7 +5802,7 @@ OH_Predicates *(*distinct) (OH_Predicates *predicates)
 
 **起始版本：** 10
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
@@ -5724,7 +5842,7 @@ OH_Predicates *(*endWrap) (OH_Predicates *predicates)
 
 **起始版本：** 10
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
@@ -5753,7 +5871,7 @@ OH_Predicates *(*equalTo) (OH_Predicates *predicates, const char *field, OH_VObj
 
 **起始版本：** 10
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
@@ -5793,12 +5911,12 @@ int(*getAsset) (OH_Cursor *cursor, int32_t columnIndex, Data_Asset *value)
 
 **起始版本：** 11
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
 | cursor | 表示指向[OH_Cursor](_o_h___cursor.md)实例的指针。 |
-| columnIndex | 表示结果集中指定列的索引, 索引值从0开始。 |
+| columnIndex | 表示结果集中指定列的索引，索引值从0开始。 |
 | value | 该参数是输出参数，结果集中指定列的值会以资产形式写入该变量。 |
 
 **返回：**
@@ -5822,14 +5940,14 @@ int(*getAssets) (OH_Cursor *cursor, int32_t columnIndex, Data_Asset **value, uin
 
 **起始版本：** 11
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
 | cursor | 表示指向[OH_Cursor](_o_h___cursor.md)实例的指针。 |
-| columnIndex | 表示结果集中指定列的索引, 索引值从0开始。 |
+| columnIndex | 表示结果集中指定列的索引，索引值从0开始。 |
 | value | 该参数是输出参数，结果集中指定列的值会以资产数组形式写入该变量。 |
-| length | 表示资产数组的长度。 |
+| length | 既是入参又是出参：作为入参，需要开发者传入一个uint32_t类型的变量，表示输入缓冲区的大小；作为出参，表示函数执行后，length指向的变量会被更新为实际返回的资产数组的长度。 |
 
 **返回：**
 
@@ -5852,14 +5970,14 @@ int(*getBlob) (OH_Cursor *cursor, int32_t columnIndex, unsigned char *value, int
 
 **起始版本：** 10
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
 | cursor | 表示指向[OH_Cursor](_o_h___cursor.md)实例的指针。 |
-| columnIndex | 表示结果集中指定列的索引, 索引值从0开始。 |
+| columnIndex | 表示结果集中指定列的索引，索引值从0开始。 |
 | value | 该参数是输出参数，结果集中指定列的值会以字节数组形式写入该变量。 |
-| length | 表示value的长度，该值可通过getSize获取。 |
+| length | 该参数为输入参数，表示传入的value的长度，该值可通过getSize获取。 |
 
 **返回：**
 
@@ -5882,7 +6000,7 @@ int(*getColumnCount) (OH_Cursor *cursor, int *count)
 
 **起始版本：** 10
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
@@ -5910,7 +6028,7 @@ int(*getColumnIndex) (OH_Cursor *cursor, const char *name, int *columnIndex)
 
 **起始版本：** 10
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
@@ -5939,14 +6057,14 @@ int(*getColumnName) (OH_Cursor *cursor, int32_t columnIndex, char *name, int len
 
 **起始版本：** 10
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
 | cursor | 表示指向[OH_Cursor](_o_h___cursor.md)实例的指针。 |
-| columnIndex | 表示结果集中指定列的索引, 索引值从0开始。 |
+| columnIndex | 表示结果集中指定列的索引，索引值从0开始。 |
 | name | 该参数是输出参数，结果集中指定列的名称会写入该变量。 |
-| length | 表示列名的长度。 |
+| length | 该参数为输入参数，表示开发者传入的包括终止符在内的列名字符串的总长度。 |
 
 **返回：**
 
@@ -5969,12 +6087,12 @@ int(*getColumnType) (OH_Cursor *cursor, int32_t columnIndex, OH_ColumnType *colu
 
 **起始版本：** 10
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
 | cursor | 表示指向[OH_Cursor](_o_h___cursor.md)实例的指针。 |
-| columnIndex | 表示结果集中指定列的索引, 索引值从0开始。 |
+| columnIndex | 表示结果集中指定列的索引，索引值从0开始。 |
 | columnType | 该参数是输出参数，结果集中指定列的数据类型[OH_ColumnType](#oh_columntype)会写入该变量。 |
 
 **返回：**
@@ -5998,12 +6116,12 @@ int(*getInt64) (OH_Cursor *cursor, int32_t columnIndex, int64_t *value)
 
 **起始版本：** 10
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
 | cursor | 表示指向[OH_Cursor](_o_h___cursor.md)实例的指针。 |
-| columnIndex | 表示结果集中指定列的索引, 索引值从0开始。 |
+| columnIndex | 表示结果集中指定列的索引，索引值从0开始。 |
 | value | 该参数是输出参数，结果集中指定列的值会以int64_t形式写入该变量。 |
 
 **返回：**
@@ -6027,12 +6145,12 @@ int(*getReal) (OH_Cursor *cursor, int32_t columnIndex, double *value)
 
 **起始版本：** 10
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
 | cursor | 表示指向[OH_Cursor](_o_h___cursor.md)实例的指针。 |
-| columnIndex | 表示结果集中指定列的索引, 索引值从0开始。 |
+| columnIndex | 表示结果集中指定列的索引，索引值从0开始。 |
 | value | 该参数是输出参数，结果集中指定列的值会以double形式写入该变量。 |
 
 **返回：**
@@ -6056,7 +6174,7 @@ int(*getRowCount) (OH_Cursor *cursor, int *count)
 
 **起始版本：** 10
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
@@ -6084,12 +6202,12 @@ int(*getSize) (OH_Cursor *cursor, int32_t columnIndex, size_t *size)
 
 **起始版本：** 10
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
 | cursor | 表示指向[OH_Cursor](_o_h___cursor.md)实例的指针。 |
-| columnIndex | 表示结果集中指定列的索引, 索引值从0开始。 |
+| columnIndex | 表示结果集中指定列的索引，索引值从0开始。 |
 | size | 该参数是输出参数，BLOB或者TEXT数据所需内存大小会写入该变量。 |
 
 **返回：**
@@ -6113,14 +6231,14 @@ int(*getText) (OH_Cursor *cursor, int32_t columnIndex, char *value, int length)
 
 **起始版本：** 10
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
 | cursor | 表示指向[OH_Cursor](_o_h___cursor.md)实例的指针。 |
-| columnIndex | 表示结果集中指定列的索引, 索引值从0开始。 |
+| columnIndex | 表示结果集中指定列的索引，索引值从0开始。 |
 | value | 该参数是输出参数，结果集中指定列的值会以字符串形式写入该变量。 |
-| length | 表示value的长度，该值可通过getSize获取。 |
+| length | 该参数是输入参数，表示value的长度，该值可通过getSize获取。 |
 
 **返回：**
 
@@ -6143,7 +6261,7 @@ int(*goToNextRow) (OH_Cursor *cursor)
 
 **起始版本：** 10
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
@@ -6172,7 +6290,7 @@ OH_Predicates *(*greaterThan) (OH_Predicates *predicates, const char *field, OH_
 
 **起始版本：** 10
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
@@ -6182,7 +6300,7 @@ OH_Predicates *(*greaterThan) (OH_Predicates *predicates, const char *field, OH_
 
 **返回：**
 
-返回与指定字段匹配的谓词
+返回与指定字段匹配的谓词。
 
 **参见：**
 
@@ -6197,13 +6315,13 @@ OH_Predicates *(*greaterThanOrEqualTo) (OH_Predicates *predicates, const char *f
 
 **描述**
 
-函数指针，配置谓词以匹配数据字段为field且值大于或等于指定值valueObject的字段
+函数指针，配置谓词以匹配数据字段为field且值大于或等于指定值valueObject的字段。
 
 该方法等同于SQL语句中的“&gt;=”。
 
 **起始版本：** 10
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
@@ -6234,13 +6352,13 @@ OH_Predicates *(*groupBy) (OH_Predicates *predicates, char const *const *fields,
 
 **起始版本：** 10
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
 | predicates | 表示指向[OH_Predicates](_o_h___predicates.md)实例的指针。 |
 | fields | 指定分组依赖的列名。 |
-| length | 表示fields数值的长度。 |
+| length | 该参数为输入参数，表示开发者传入的fields数值的长度。 |
 
 **返回：**
 
@@ -6320,7 +6438,7 @@ OH_Predicates *(*in) (OH_Predicates *predicates, const char *field, OH_VObject *
 
 **起始版本：** 10
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
@@ -6395,7 +6513,7 @@ OH_Predicates *(*isNotNull) (OH_Predicates *predicates, const char *field)
 
 **起始版本：** 10
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
@@ -6404,7 +6522,7 @@ OH_Predicates *(*isNotNull) (OH_Predicates *predicates, const char *field)
 
 **返回：**
 
-返回与指定字段匹配的谓词
+返回与指定字段匹配的谓词。
 
 **参见：**
 
@@ -6423,12 +6541,12 @@ int(*isNull) (OH_Cursor *cursor, int32_t columnIndex, bool *isNull)
 
 **起始版本：** 10
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
 | cursor | 表示指向[OH_Cursor](_o_h___cursor.md)实例的指针。 |
-| columnIndex | 表示结果集中指定列的索引, 索引值从0开始。 |
+| columnIndex | 表示结果集中指定列的索引，索引值从0开始。 |
 | isNull | 该参数是输出参数，如果当前行中指定列的值为null，该值为true，否则为false。 |
 
 **返回：**
@@ -6454,7 +6572,7 @@ OH_Predicates *(*isNull) (OH_Predicates *predicates, const char *field)
 
 **起始版本：** 10
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
@@ -6478,13 +6596,13 @@ OH_Predicates *(*lessThan) (OH_Predicates *predicates, const char *field, OH_VOb
 
 **描述**
 
-函数指针，配置谓词以匹配数据字段为field且值小于指定值valueObject的字段
+函数指针，配置谓词以匹配数据字段为field且值小于指定值valueObject的字段。
 
 该方法等同于SQL语句中的“&lt;”。
 
 **起始版本：** 10
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
@@ -6509,13 +6627,13 @@ OH_Predicates *(*lessThanOrEqualTo) (OH_Predicates *predicates, const char *fiel
 
 **描述**
 
-函数指针，配置谓词以匹配数据字段为field且值小于或等于指定值valueObject的字段
+函数指针，配置谓词以匹配数据字段为field且值小于或等于指定值valueObject的字段。
 
 该方法等同于SQL语句中的“&lt;=”。
 
 **起始版本：** 10
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
@@ -6546,7 +6664,7 @@ OH_Predicates *(*like) (OH_Predicates *predicates, const char *field, OH_VObject
 
 **起始版本：** 10
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
@@ -6577,7 +6695,7 @@ OH_Predicates *(*limit) (OH_Predicates *predicates, unsigned int value)
 
 **起始版本：** 10
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
@@ -6618,7 +6736,7 @@ OH_Predicates *(*notBetween) (OH_Predicates *predicates, const char *field, OH_V
 
 **起始版本：** 10
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
@@ -6649,7 +6767,7 @@ OH_Predicates *(*notEqualTo) (OH_Predicates *predicates, const char *field, OH_V
 
 **起始版本：** 10
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
@@ -6680,7 +6798,7 @@ OH_Predicates *(*notIn) (OH_Predicates *predicates, const char *field, OH_VObjec
 
 **起始版本：** 10
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
@@ -6711,7 +6829,7 @@ OH_Predicates *(*offset) (OH_Predicates *predicates, unsigned int rowOffset)
 
 **起始版本：** 10
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
@@ -6741,7 +6859,7 @@ OH_Predicates *(*orderBy) (OH_Predicates *predicates, const char *field, OH_Orde
 
 **起始版本：** 10
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
@@ -6772,7 +6890,7 @@ OH_Predicates *(*orOperate) (OH_Predicates *predicates)
 
 **起始版本：** 10
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
@@ -6799,7 +6917,7 @@ int(*putBlob) (OH_VBucket *bucket, const char *field, const uint8_t *value, uint
 
 **起始版本：** 10
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
@@ -6829,7 +6947,7 @@ int(*putDouble) (OH_VObject *valueObject, double *value, uint32_t count)
 
 **起始版本：** 10
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
@@ -6858,7 +6976,7 @@ int(*putInt64) (OH_VBucket *bucket, const char *field, int64_t value)
 
 **起始版本：** 10
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
@@ -6887,7 +7005,7 @@ int(*putInt64) (OH_VObject *valueObject, int64_t *value, uint32_t count)
 
 **起始版本：** 10
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
@@ -6916,7 +7034,7 @@ int(*putNull) (OH_VBucket *bucket, const char *field)
 
 **起始版本：** 10
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
@@ -6944,7 +7062,7 @@ int(*putReal) (OH_VBucket *bucket, const char *field, double value)
 
 **起始版本：** 10
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
@@ -6973,7 +7091,7 @@ int(*putText) (OH_VBucket *bucket, const char *field, const char *value)
 
 **起始版本：** 10
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
@@ -7002,7 +7120,7 @@ int(*putText) (OH_VObject *valueObject, const char *value)
 
 **起始版本：** 10
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
@@ -7030,7 +7148,7 @@ int(*putTexts) (OH_VObject *valueObject, const char **value, uint32_t count)
 
 **起始版本：** 10
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
@@ -7132,7 +7250,7 @@ const char* Rdb_TableDetails::table
 
 **描述**
 
-数据库表名
+数据库表名。
 
 
 ### tableLength
@@ -7143,7 +7261,7 @@ int32_t Rdb_ProgressDetails::tableLength
 
 **描述**
 
-表示端云同步的表的数量
+表示端云同步的表的数量。
 
 
 ### tableName

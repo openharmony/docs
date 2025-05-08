@@ -14,7 +14,7 @@ Before using this tool, you must obtain the <!--Del-->[<!--DelEnd-->hdc tool<!--
 | enable-admin  | Enables the extended enterprise device management capabilities of a component. The target component must be an [EnterpriseAdminExtensionAbility](../mdm/mdm-kit-admin.md).|
 | disable-admin | Disables the extended enterprise device management capabilities of a component.            |
 
-## help
+## help Command
 
 
   ```bash
@@ -22,35 +22,42 @@ Before using this tool, you must obtain the <!--Del-->[<!--DelEnd-->hdc tool<!--
 edm help
   ```
 
-## enable-admin
+## enable-admin Command
 
 
   ```bash
-edm enable-admin [-h] [-n bundleName] [-a abilityName] 
+# Display the help information.
+edm enable-admin -h
+# Enable the extended enterprise device management capabilities.
+edm enable-admin -n <bundleName> -a <abilityName> [-t <adminType>]
   ```
 
 **Parameters in the enable-admin command**
 
-| Parameter             | Description               |
-| ----------------- | ----------------------- |
-| -h/--help         | Help information.             |
-| -n/--bundle-name  | Bundle name. This parameter is mandatory. |
-| -a/--ability-name | Ability name. This parameter is mandatory.|
+| Parameter             | Description                                                    |
+| ----------------- | ------------------------------------------------------------ |
+| -h/--help         | Help information.                                                  |
+| -n/--bundle-name  | Bundle name. This parameter is mandatory.                                      |
+| -a/--ability-name | Ability name. This parameter is mandatory.                                     |
+| -t/--admin-type   | Admin type. This parameter is optional.<br>The value can be:<br>**super**: a super device management application.<br>**byod**: a BYOD device management application.<br>The default value is **super**.|
 
  **Example**
 
 ```bash
 # Enable the EnterpriseAdminExtensionAbility whose bundle name is com.example.mdmsample and class name is EnterpriseAdminAbility.
 edm enable-admin -n com.example.mdmsample -a com.example.mdmsample.EnterpriseAdminAbility
-// The execution result is as follows:
+# Execution result.
 enable-admin success.
 ```
 
 
-## disable-admin
+## disable-admin Command
 
   ```bash
-edm disable-admin [-h] [-n bundleName]
+# Display the help information.
+edm disable-admin -h
+# Disable the extended enterprise device management capabilities.
+edm disable-admin -n <bundleName>
   ```
 
 **Parameters in the disable-admin command**
@@ -66,13 +73,13 @@ edm disable-admin [-h] [-n bundleName]
   ```bash
 # Disable the EnterpriseAdminExtensionAbility whose bundle name is com.example.mdmsample.
 edm disable-admin -n com.example.mdmsample
-// The execution result is as follows:
+# Execution result.
 disable-admin success.
   ```
 
 ## Error Messages
 
-### error: command requires option.
+### error: command requires option
 
 **Symptom**
 
@@ -88,7 +95,7 @@ disable-admin success.
 
 2. If the **disable-admin** command is used, add the **-n \<bundle-name\>** parameter.
 
-### error: -n, --bundle-name option requires an argument.
+### error: -n, --bundle-name option requires an argument
 
 **Symptom**
 
@@ -102,7 +109,7 @@ The input value of **bundleName** is empty.
 
 Check the parameters following **-n** and add **bundleName**.
 
-### error: -a, --ability-name option requires an argument.
+### error: -a, --ability-name option requires an argument
 
 **Symptom**
 
@@ -116,7 +123,7 @@ Check the parameters following **-n** and add **bundleName**.
 
 Check the parameters following **-a** and add **abilityName**.
 
-### error: unknown option.
+### error: unknown option
 
 **Symptom**
 
@@ -130,7 +137,7 @@ Check the parameters following **-a** and add **abilityName**.
 
 Check whether the parameter is in the parameter list.
 
-### error: -n \<bundle-name\> is expected.
+### error: -n \<bundle-name\> is expected
 
 **Symptom**
 
@@ -144,7 +151,7 @@ Check whether the parameter is in the parameter list.
 
 Add **-n \<bundle-name\>** to the command.
 
-### error: -a \<ability-name\> is expected.
+### error: -a \<ability-name\> is expected
 
 **Symptom**
 
@@ -158,7 +165,7 @@ Add **-n \<bundle-name\>** to the command.
 
 Add **-a \<ability-name\>** to the command.
 
-### error: the administrator ability component is invalid.
+### error: the administrator ability component is invalid
 
 **Symptom**
 
@@ -176,7 +183,7 @@ The input value of **bundleName** or **abilityName** is incorrect, or the compon
 
 Obtain the **bundleName** of the application and the **abilityName** of the **EnterpriseAdminExtensionAbility**, and pass them to the parameter.
 
-### error: failed to enable the administrator application of the device.
+### error: failed to enable the administrator application of the device
 
 **Symptom**
 
@@ -196,7 +203,7 @@ The component fails to be enabled.
 
 2. Use an uncontrolled device for debugging.
 
-### error: failed to disable the administrator application of the device.
+### error: failed to disable the administrator application of the device
 
 **Symptom**
 

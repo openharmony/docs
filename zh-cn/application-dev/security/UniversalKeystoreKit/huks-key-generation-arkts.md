@@ -1,6 +1,5 @@
 # 生成密钥(ArkTS)
 
-
 以生成DH密钥为例，生成随机密钥。具体的场景介绍及支持的算法规格，请参考[密钥生成支持的算法](huks-key-generation-overview.md#支持的算法)。
 
 > **注意：**
@@ -9,7 +8,7 @@
 ## 开发步骤
 
 1. 指定待生成的密钥别名keyAlias。
-   - 密钥别名的最大长度为128字节。
+   - 密钥别名的最大长度为128字节，建议不包含个人信息等敏感词汇。
    - 对于不同业务间生成的密钥，HUKS将基于业务身份信息进行存储路径隔离，不会因为和其他业务密钥同名导致冲突。
 
 2. 初始化密钥属性集。通过[HuksParam](../../reference/apis-universal-keystore-kit/js-apis-huks.md#huksparam)封装密钥属性，搭配Array组成密钥属性集，并赋值给[HuksOptions](../../reference/apis-universal-keystore-kit/js-apis-huks.md#huksoptions)中的properties字段。
@@ -19,7 +18,6 @@
 
 > **说明：**
 > 如果业务再次使用相同别名调用HUKS生成密钥，HUKS将生成新密钥并直接覆盖历史的密钥文件。
-
 
 ```ts
 /* 以下以生成DH密钥为例 */

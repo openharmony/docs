@@ -1,10 +1,17 @@
 # @ohos.bundle.overlay (overlay)
 
-The overlay module provides APIs for installing a [module with the overlay feature](#module-with-the-overlay-feature), querying the [module information](js-apis-bundleManager-overlayModuleInfo.md), and disabling and enabling the module.
+The overlay module provides APIs for installing a module with the overlay feature, querying the [module information](js-apis-bundleManager-overlayModuleInfo.md), and disabling and enabling the module.
+
+A module with the [overlay feature](../../quick-start/resource-categories-and-access.md#overlay-mechanism) generally provides additional resource files for modules without the overlay feature on the device, so that the target modules can use these resource files at runtime to display different colors, labels, themes, and the like.
+
+If the **module.json5** file of a module contains the **targetModuleName** and **targetPriority fields** during project creation on DevEco Studio, the module is identified as a module with the overlay feature in the installation phase.
 
 > **NOTE**
 >
 > The initial APIs of this module are supported since API version 10. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+>
+> The overlay feature applies only to the stage model.
+
 
 ## Modules to Import
 
@@ -325,11 +332,3 @@ Defines the information about a module with the overlay feature.
 | Type                                                        | Description          |
 | ------------------------------------------------------------ | -------------- |
 | [_OverlayModuleInfo.OverlayModuleInfo](js-apis-bundleManager-overlayModuleInfo.md#overlaymoduleinfo-1) |Information about a module with the overlay feature.|
-
-## Module with the Overlay Feature
-
-**Concept**
-A module with the overlay feature generally provides additional resource files for modules without the overlay feature on the device, so that the target modules can use these resource files at runtime to display different colors, labels, themes, and the like. The overlay feature applies only to the stage model.
-
-**How do I identify a module with the overlay feature?**
-If the **module.json5** file of a module contains the **targetModuleName** and **targetPriority fields** during project creation on DevEco Studio, the module is identified as a module with the overlay feature in the installation phase.

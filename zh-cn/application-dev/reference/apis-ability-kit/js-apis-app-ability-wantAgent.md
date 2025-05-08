@@ -1303,3 +1303,14 @@ WantAgentInfo对象。
 | --- | --- |
 | [_WantAgentInfo](js-apis-inner-wantAgent-wantAgentInfo.md) | WantAgentInfo对象。 |
 
+## WantAgent
+
+type WantAgent = object
+
+WantAgent对象。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+| 类型 | 说明 |
+| --- | --- |
+| object | WantAgent对象。 |

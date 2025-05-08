@@ -51,7 +51,7 @@
 ### CmdRequest()
 
 ```
-IDisplayComposer::CmdRequest ([in] unsigned int inEleCnt, [in] struct HdifdInfo[] inFds, [out] unsigned int outEleCnt, [out] struct HdifdInfo[] outFds )
+IDisplayComposer::CmdRequest ([in] unsigned int inEleCnt, [in] struct HdifdInfo[] inFds, [out] unsigned int outEleCnt, [out] struct HdifdInfo[] outFds)
 ```
 
 **描述**
@@ -80,7 +80,7 @@ DISPLAY_SUCCESS 表示执行成功。
 ### CreateLayer()
 
 ```
-IDisplayComposer::CreateLayer ([in] unsigned int devId, [in] struct LayerInfo layerInfo, [in] unsigned int cacheCount, [out] unsigned int layerId )
+IDisplayComposer::CreateLayer ([in] unsigned int devId, [in] struct LayerInfo layerInfo, [in] unsigned int cacheCount, [out] unsigned int layerId)
 ```
 
 **描述**
@@ -97,7 +97,8 @@ GUI在使用图层时，需要先根据图层信息打开图层，打开图层�
 | 名称 | 描述 | 
 | -------- | -------- |
 | devId | 显示设备ID，用于支持多个显示设备，取值从0开始，0表示第一个设备，最大支持5个设备，即取值范围0~4。 | 
-| layerInfo | 图层信息，上层GUI打开图层时需传递图层信息，包括图层类型，图层大小，像素格式等信息。 | 
+| layerInfo | 图层信息，上层GUI打开图层时需传递图层信息，包括图层类型，图层大小，像素格式等信息。 |
+| cacheCount | 缓冲区缓存的计数。 | 
 | layerId | 图层ID，打开图层成功后返回给GUI的图层ID，用于标识唯一的图层。 | 
 
 **返回：**
@@ -114,7 +115,7 @@ CloseLayer
 ### CreateVirtualDisplay()
 
 ```
-IDisplayComposer::CreateVirtualDisplay ([in] unsigned int width, [in] unsigned int height, [out] int format, [out] unsigned int devId )
+IDisplayComposer::CreateVirtualDisplay ([in] unsigned int width, [in] unsigned int height, [out] int format, [out] unsigned int devId)
 ```
 
 **描述**
@@ -145,7 +146,7 @@ DISPLAY_SUCCESS 表示执行成功。
 ### DestroyLayer()
 
 ```
-IDisplayComposer::DestroyLayer ([in] unsigned int devId, [in] unsigned int layerId )
+IDisplayComposer::DestroyLayer ([in] unsigned int devId, [in] unsigned int layerId)
 ```
 
 **描述**
@@ -161,7 +162,7 @@ IDisplayComposer::DestroyLayer ([in] unsigned int devId, [in] unsigned int layer
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| devId：显示设备的ID。取值范围为 | 0 到 4，其中 0 表示第一个显示设备，4 表示最后一个显示设备。 | 
+| devId| 显示设备的ID。<br/>取值范围为  0 到 4，其中 0 表示第一个显示设备，4 表示最后一个显示设备。 | 
 | layerId | 指示指向唯一标识层的层 ID 的指针。返回图层 ID到图层成功打开后添加到 GUI。 | 
 
 **返回：**
@@ -228,7 +229,7 @@ DISPLAY_SUCCESS 表示执行成功。
 ### GetDisplayBacklight()
 
 ```
-IDisplayComposer::GetDisplayBacklight ([in] unsigned int devId, [out] unsigned int level )
+IDisplayComposer::GetDisplayBacklight ([in] unsigned int devId, [out] unsigned int level)
 ```
 
 **描述**
@@ -257,7 +258,7 @@ DISPLAY_SUCCESS 表示执行成功。
 ### GetDisplayCapability()
 
 ```
-IDisplayComposer::GetDisplayCapability ([in] unsigned int devId, [out] struct DisplayCapability info )
+IDisplayComposer::GetDisplayCapability ([in] unsigned int devId, [out] struct DisplayCapability info)
 ```
 
 **描述**
@@ -286,7 +287,7 @@ DISPLAY_SUCCESS 表示执行成功。
 ### GetDisplayMode()
 
 ```
-IDisplayComposer::GetDisplayMode ([in] unsigned int devId, [out] unsigned int modeId )
+IDisplayComposer::GetDisplayMode ([in] unsigned int devId, [out] unsigned int modeId)
 ```
 
 **描述**
@@ -315,7 +316,7 @@ DISPLAY_SUCCESS 表示执行成功。
 ### GetDisplayPowerStatus()
 
 ```
-IDisplayComposer::GetDisplayPowerStatus ([in] unsigned int devId, [out] enum DispPowerStatus status )
+IDisplayComposer::GetDisplayPowerStatus ([in] unsigned int devId, [out] enum DispPowerStatus status)
 ```
 
 **描述**
@@ -344,7 +345,7 @@ DISPLAY_SUCCESS 表示执行成功。
 ### GetDisplayProperty()
 
 ```
-IDisplayComposer::GetDisplayProperty ([in] unsigned int devId, [in] unsigned int id, [out] unsigned long value )
+IDisplayComposer::GetDisplayProperty ([in] unsigned int devId, [in] unsigned int id, [out] unsigned long value)
 ```
 
 **描述**
@@ -374,7 +375,7 @@ DISPLAY_SUCCESS 表示执行成功。
 ### GetDisplayReleaseFence()
 
 ```
-IDisplayComposer::GetDisplayReleaseFence ([in] unsigned int devId, [out] unsigned int[] layers, [out] HdifdParcelable[] fences )
+IDisplayComposer::GetDisplayReleaseFence ([in] unsigned int devId, [out] unsigned int[] layers, [out] HdifdParcelable[] fences)
 ```
 
 **描述**
@@ -404,7 +405,7 @@ DISPLAY_SUCCESS 表示执行成功。
 ### GetDisplaySupportedModes()
 
 ```
-IDisplayComposer::GetDisplaySupportedModes ([in] unsigned int devId, [out] struct DisplayModeInfo[] modes )
+IDisplayComposer::GetDisplaySupportedModes ([in] unsigned int devId, [out] struct DisplayModeInfo[] modes)
 ```
 
 **描述**
@@ -459,13 +460,11 @@ DISPLAY_SUCCESS 表示执行成功。
 ### RegDisplayVBlankCallback()
 
 ```
-IDisplayComposer::RegDisplayVBlankCallback ([in] unsigned int devId, [in] IVBlankCallback cb )
+IDisplayComposer::RegDisplayVBlankCallback ([in] unsigned int devId, [in] IVBlankCallback cb)
 ```
 
 **描述**
 
-
-注册VBlank事件回调。
 
 注册VBlank事件回调，当有VBlank事件发生时接口实现层需要回调注册的接口。
 
@@ -494,8 +493,6 @@ IDisplayComposer::RegHotPlugCallback ([in] IHotPlugCallback cb)
 **描述**
 
 
-注册热插拔事件回调。
-
 注册热插拔事件回调，当有热插拔事件发生时接口实现层需要回调注册的接口，通过该实例通知图形服务。
 
 **起始版本：** 3.2
@@ -516,7 +513,7 @@ DISPLAY_SUCCESS 表示执行成功。
 ### SetClientBufferCacheCount()
 
 ```
-IDisplayComposer::SetClientBufferCacheCount ([in] unsigned int devId, [in] unsigned int count )
+IDisplayComposer::SetClientBufferCacheCount ([in] unsigned int devId, [in] unsigned int count)
 ```
 
 **描述**
@@ -543,7 +540,7 @@ DISPLAY_SUCCESS 表示执行成功。
 ### SetDisplayBacklight()
 
 ```
-IDisplayComposer::SetDisplayBacklight ([in] unsigned int devId, [in] unsigned int level )
+IDisplayComposer::SetDisplayBacklight ([in] unsigned int devId, [in] unsigned int level)
 ```
 
 **描述**
@@ -572,7 +569,7 @@ DISPLAY_SUCCESS 表示执行成功。
 ### SetDisplayClientCrop()
 
 ```
-IDisplayComposer::SetDisplayClientCrop ([in] unsigned int devId, [in] struct IRect rect )
+IDisplayComposer::SetDisplayClientCrop ([in] unsigned int devId, [in] struct IRect rect)
 ```
 
 **描述**
@@ -601,7 +598,7 @@ DISPLAY_SUCCESS 表示执行成功。
 ### SetDisplayMode()
 
 ```
-IDisplayComposer::SetDisplayMode ([in] unsigned int devId, [in] unsigned int modeId )
+IDisplayComposer::SetDisplayMode ([in] unsigned int devId, [in] unsigned int modeId)
 ```
 
 **描述**
@@ -630,7 +627,7 @@ DISPLAY_SUCCESS 表示执行成功。
 ### SetDisplayPowerStatus()
 
 ```
-IDisplayComposer::SetDisplayPowerStatus ([in] unsigned int devId, [in] enum DispPowerStatus status )
+IDisplayComposer::SetDisplayPowerStatus ([in] unsigned int devId, [in] enum DispPowerStatus status)
 ```
 
 **描述**
@@ -659,7 +656,7 @@ DISPLAY_SUCCESS 表示执行成功。
 ### SetDisplayProperty()
 
 ```
-IDisplayComposer::SetDisplayProperty ([in] unsigned int devId, [in] unsigned int id, [in] unsigned long value )
+IDisplayComposer::SetDisplayProperty ([in] unsigned int devId, [in] unsigned int id, [in] unsigned long value)
 ```
 
 **描述**
@@ -689,7 +686,7 @@ DISPLAY_SUCCESS 表示执行成功。
 ### SetDisplayVsyncEnabled()
 
 ```
-IDisplayComposer::SetDisplayVsyncEnabled ([in] unsigned int devId, [in] boolean enabled )
+IDisplayComposer::SetDisplayVsyncEnabled ([in] unsigned int devId, [in] boolean enabled)
 ```
 
 **描述**
@@ -718,7 +715,7 @@ DISPLAY_SUCCESS 表示执行成功。
 ### SetVirtualDisplayBuffer()
 
 ```
-IDisplayComposer::SetVirtualDisplayBuffer ([in] unsigned int devId, [in] NativeBuffer buffer, [in] HdifdParcelable fence )
+IDisplayComposer::SetVirtualDisplayBuffer ([in] unsigned int devId, [in] NativeBuffer buffer, [in] HdifdParcelable fence)
 ```
 
 **描述**

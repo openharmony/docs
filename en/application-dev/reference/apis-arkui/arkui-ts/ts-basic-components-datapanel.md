@@ -59,7 +59,7 @@ DataPanel(options: DataPanelOptions)
 
 ## Attributes
 
-In addition to the [universal attributes](ts-universal-attributes-size.md), the following attributes are supported.
+In addition to the [universal attributes](ts-component-general-attributes.md), the following attributes are supported.
 
 ### closeEffect
 
@@ -77,7 +77,7 @@ Sets whether to disable the rotation and shadow effects for the component. This 
 
 | Name| Type   | Mandatory| Description                                                  |
 | ------ | ------- | ---- | ------------------------------------------------------ |
-| value  | boolean | Yes  | Whether to disable the rotation and shadow effects for the component.<br>Default value: **false**|
+| value  | boolean | Yes  | Whether to disable the rotation and shadow effects for the component.<br>Default value: **false**<br>**false**: Disable the rotation and shadow effects.<b>**true**: Enable the rotation and shadow effects.|
 
 ### valueColors<sup>10+</sup>
 
@@ -214,8 +214,8 @@ You need a custom class to implement the **ContentModifier** API.
 
 | Name | Type   |    Mandatory     |  Description             |
 | ------ | ------ | ------ |-------------------------------- |
-| values | number[] | Yes| Current values of the data panel. The maximum length is 9.|
-| maxValue | number | Yes| Maximum value displayed in the data panel.<br>Default value: **100**|
+| values | number[] | Yes| Current values of the data panel.<br>Value range: [0, 9]<br>Values less than 0 are adjusted to **0**.|
+| maxValue | number | Yes| Maximum value displayed in the data panel.<br>Default value: **100**<br>**NOTE**<br>If the value is less than or equal to 0, **maxValue** is set to the sum of all items in the **values** array and displayed proportionally.|
 
 ## Example
 

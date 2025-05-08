@@ -92,7 +92,7 @@ struct HdmiCntlrOps {
 | 函数成员 | 入参 | 出参 | 返回值 | 功能 |
 | ------------------------ | ------------------------------------------------------------ | -------------------------------------- | ------------------ | -------------------------------------------------- |
 | hardWareInit | **cntlr**：结构体指针，核心层HDMI控制器 | 无 | 无 | 初始化HDMI硬件 |
-| hardWareStatusGet | **cntlr**：结构体指针，核心层HDMI控制器<br /> | **status**：HDMI硬件状态 ; | 无 | 获取HDMI当前硬件状态 |
+| hardWareStatusGet | **cntlr**：结构体指针，核心层HDMI控制器<br /> | **status**：HDMI硬件状态  | 无 | 获取HDMI当前硬件状态 |
 | controllerReset | **cntlr**：结构体指针，核心层HDMI控制器 | 无 | 无 | 复位HDMI控制器 |
 | hotPlugStateGet | **cntlr**：结构体指针，核心层HDMI控制器 | 无 | bool：HDMI热插拔状态 | 获取HDMI热插拔状态 |
 | hotPlugInterruptStateGet | **cntlr**：结构体指针，核心层HDMI控制器 | 无 | bool：HDMI热插拔中断状态 | 获取HDMI热插拔中断状态 |
@@ -420,7 +420,7 @@ HDMI模块适配包含以下四个步骤：
        
         **返回值：**
 
-        无
+        无。
         
         **函数说明：**
 

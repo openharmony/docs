@@ -1,11 +1,8 @@
 # 使用SM2非对称密钥加解密
 
-
 对应的算法规格请查看[非对称密钥加解密算法规格：SM2](crypto-asym-encrypt-decrypt-spec.md#sm2)。
 
-
 **加密**
-
 
 1. 调用[cryptoFramework.createAsyKeyGenerator](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreateasykeygenerator)、[AsyKeyGenerator.generateKeyPair](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#generatekeypair-1)，生成RSA密钥类型为SM2_256的非对称密钥对（KeyPair）。KeyPair对象中包括公钥PubKey、私钥PriKey。
    
@@ -22,9 +19,7 @@
    - doFinal输出结果可能为null，在访问具体数据前，需要先判断结果是否为null，避免产生异常。
    - 当数据量较大时，可以多次调用doFinal，即分段加解密。
 
-
 **解密**
-
 
 1. 由于SM2算法的Cipher实例不支持重复init操作，需要调用[cryptoFramework.createCipher](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreatecipher)，重新生成Cipher实例。
 
@@ -32,28 +27,27 @@
 
 3. 调用[Cipher.doFinal](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#dofinal-1)，传入密文，获取解密后的数据。
 
-
 - 异步方法示例：
 
   ```ts
   import { cryptoFramework } from '@kit.CryptoArchitectureKit';
   import { buffer } from '@kit.ArkTS';
 
-  // 加密消息
+  // 加密消息。
   async function encryptMessagePromise(publicKey: cryptoFramework.PubKey, plainText: cryptoFramework.DataBlob) {
     let cipher = cryptoFramework.createCipher('SM2_256|SM3');
     await cipher.init(cryptoFramework.CryptoMode.ENCRYPT_MODE, publicKey, null);
     let encryptData = await cipher.doFinal(plainText);
     return encryptData;
   }
-  // 解密消息
+  // 解密消息。
   async function decryptMessagePromise(privateKey: cryptoFramework.PriKey, cipherText: cryptoFramework.DataBlob) {
     let decoder = cryptoFramework.createCipher('SM2_256|SM3');
     await decoder.init(cryptoFramework.CryptoMode.DECRYPT_MODE, privateKey, null);
     let decryptData = await decoder.doFinal(cipherText);
     return decryptData;
   }
-  // 生成SM2密钥对
+  // 生成SM2密钥对。
   async function genKeyPairByData(pubKeyData: Uint8Array, priKeyData: Uint8Array) {
     let pubKeyBlob: cryptoFramework.DataBlob = { data: pubKeyData };
     let priKeyBlob: cryptoFramework.DataBlob = { data: priKeyData };
@@ -69,13 +63,13 @@
     let pubKey = keyPair.pubKey;
     let priKey = keyPair.priKey;
     let message = 'This is a test';
-    // 把字符串按utf-8解码为Uint8Array
+    // 把字符串按utf-8解码为Uint8Array。
     let plainText: cryptoFramework.DataBlob = { data: new Uint8Array(buffer.from(message, 'utf-8').buffer) };
     let encryptText = await encryptMessagePromise(pubKey, plainText);
     let decryptText = await decryptMessagePromise(priKey, encryptText);
     if (plainText.data.toString() === decryptText.data.toString()) {
       console.info('decrypt ok');
-      // 把Uint8Array按utf-8编码为字符串
+      // 把Uint8Array按utf-8编码为字符串。
       let messageDecrypted = buffer.from(decryptText.data).toString('utf-8');
       console.info('decrypted result string:' + messageDecrypted);
     } else {
@@ -90,21 +84,21 @@
   import { cryptoFramework } from '@kit.CryptoArchitectureKit';
   import { buffer } from '@kit.ArkTS';
 
-  // 加密消息
+  // 加密消息。
   function encryptMessage(publicKey: cryptoFramework.PubKey, plainText: cryptoFramework.DataBlob) {
     let cipher = cryptoFramework.createCipher('SM2_256|SM3');
     cipher.initSync(cryptoFramework.CryptoMode.ENCRYPT_MODE, publicKey, null);
     let encryptData = cipher.doFinalSync(plainText);
     return encryptData;
   }
-  // 解密消息
+  // 解密消息。
   function decryptMessage(privateKey: cryptoFramework.PriKey, cipherText: cryptoFramework.DataBlob) {
     let decoder = cryptoFramework.createCipher('SM2_256|SM3');
     decoder.initSync(cryptoFramework.CryptoMode.DECRYPT_MODE, privateKey, null);
     let decryptData = decoder.doFinalSync(cipherText);
     return decryptData;
   }
-  // 生成SM2密钥对
+  // 生成SM2密钥对。
   function genKeyPairByData(pubKeyData: Uint8Array, priKeyData: Uint8Array) {
     let pubKeyBlob: cryptoFramework.DataBlob = { data: pubKeyData };
     let priKeyBlob: cryptoFramework.DataBlob = { data: priKeyData };
@@ -120,13 +114,13 @@
     let pubKey = keyPair.pubKey;
     let priKey = keyPair.priKey;
     let message = 'This is a test';
-    // 把字符串按utf-8解码为Uint8Array
+    // 把字符串按utf-8解码为Uint8Array。
     let plainText: cryptoFramework.DataBlob = { data: new Uint8Array(buffer.from(message, 'utf-8').buffer) };
     let encryptText = encryptMessage(pubKey, plainText);
     let decryptText = decryptMessage(priKey, encryptText);
     if (plainText.data.toString() === decryptText.data.toString()) {
       console.info('decrypt ok');
-      // 把Uint8Array按utf-8编码为字符串
+      // 把Uint8Array按utf-8编码为字符串。
       let messageDecrypted = buffer.from(decryptText.data).toString('utf-8');
       console.info('decrypted result string:' + messageDecrypted);
     } else {

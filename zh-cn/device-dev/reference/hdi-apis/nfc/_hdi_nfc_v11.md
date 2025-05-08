@@ -3,9 +3,9 @@
 
 ## 概述
 
-为nfc服务提供统一的访问nfc驱动的接口。
+为NFC服务提供统一的访问NFC驱动的接口。
 
-NFC服务通过获取的nfc驱动对象提供的API接口访问nfc驱动，包括开关NFC、初始化NFC、读写数据、配置RF参数、 通过IO控制发送NCI指令给nfc驱动。
+NFC服务通过获取的NFC驱动对象提供的API接口访问NFC驱动，包括开关NFC、初始化NFC、读写数据、配置RF参数、 通过IO控制发送NCI指令给NFC驱动。
 
 **起始版本：** 4.1
 
@@ -25,7 +25,7 @@ NFC服务通过获取的nfc驱动对象提供的API接口访问nfc驱动，包�
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| interface&nbsp;&nbsp;[INfcInterface](interface_i_nfc_interface_v11.md) | 声明操作nfc芯片的API，包括关闭、打开nfc，初始化nfc，读写数据、配置RF参数、发送nci指令。 | 
+| interface&nbsp;&nbsp;[INfcInterface](interface_i_nfc_interface_v11.md) | 声明操作NFC芯片的API，包括关闭、打开NFC，初始化NFC，读写数据、配置RF参数、发送nci指令。 | 
 | struct&nbsp;&nbsp;[NfcVendorConfig](_nfc_vendor_config_v11.md) | 厂家自定义的NFC配置。 | 
 
 

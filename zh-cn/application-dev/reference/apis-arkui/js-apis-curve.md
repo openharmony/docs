@@ -1,10 +1,10 @@
 # @ohos.curves (插值计算)
 
-本模块提供设置动画插值曲线功能，用于构造阶梯曲线对象、构造三阶贝塞尔曲线对象和构造弹簧曲线对象。
+本模块提供设置动画插值曲线功能，用于构造阶梯曲线对象、三阶贝塞尔曲线对象和弹簧曲线对象。
 
 > **说明：**
 > 
-> 本模块首批接口从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+> 本模块首批接口从API version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 
 ## 导入模块
@@ -14,7 +14,7 @@ import { curves } from '@kit.ArkUI';
 ```
 
 
-## Curves.initCurve<sup>9+</sup>
+## curves.initCurve<sup>9+</sup>
 
 initCurve(curve?: Curve): ICurve
 
@@ -44,21 +44,21 @@ initCurve(curve?: Curve): ICurve
 
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
-| 名称                | 说明                                                         |
-| ------------------- | ------------------------------------------------------------ |
-| Linear              | 表示动画从头到尾的速度都是相同的。                           |
-| Ease                | 表示动画以低速开始，然后加快，在结束前变慢，cubic-bezier(0.25, 0.1, 0.25, 1.0)。 |
-| EaseIn              | 表示动画以低速开始，cubic-bezier(0.42, 0.0, 1.0, 1.0)。       |
-| EaseOut             | 表示动画以低速结束，cubic-bezier(0.0, 0.0, 0.58, 1.0)。       |
-| EaseInOut           | 表示动画以低速开始和结束，cubic-bezier(0.42, 0.0, 0.58, 1.0)。 |
-| FastOutSlowIn       | 标准曲线，cubic-bezier(0.4, 0.0, 0.2, 1.0)。                 |
-| LinearOutSlowIn     | 减速曲线，cubic-bezier(0.0, 0.0, 0.2, 1.0)。                 |
-| FastOutLinearIn     | 加速曲线，cubic-bezier(0.4, 0.0, 1.0, 1.0)。                 |
-| ExtremeDeceleration | 急缓曲线，cubic-bezier(0.0, 0.0, 0.0, 1.0)。                 |
-| Sharp               | 锐利曲线，cubic-bezier(0.33, 0.0, 0.67, 1.0)。               |
-| Rhythm              | 节奏曲线，cubic-bezier(0.7, 0.0, 0.2, 1.0)。                 |
-| Smooth              | 平滑曲线，cubic-bezier(0.4, 0.0, 0.4, 1.0)。                 |
-| Friction            | 阻尼曲线，cubic-bezier(0.2, 0.0, 0.2, 1.0)。                  |
+| 名称                | 值 | 说明                                                         |
+| ------------------- | -- | ------------------------------------------------------------ |
+| Linear              | 0 | 表示动画从头到尾的速度都是相同的。                           |
+| Ease                | 1 | 表示动画以低速开始，然后加快，在结束前变慢，cubic-bezier(0.25, 0.1, 0.25, 1.0)。 |
+| EaseIn              | 2 | 表示动画以低速开始，cubic-bezier(0.42, 0.0, 1.0, 1.0)。       |
+| EaseOut             | 3 | 表示动画以低速结束，cubic-bezier(0.0, 0.0, 0.58, 1.0)。       |
+| EaseInOut           | 4 | 表示动画以低速开始和结束，cubic-bezier(0.42, 0.0, 0.58, 1.0)。 |
+| FastOutSlowIn       | 5 | 标准曲线，cubic-bezier(0.4, 0.0, 0.2, 1.0)。                 |
+| LinearOutSlowIn     | 6 | 减速曲线，cubic-bezier(0.0, 0.0, 0.2, 1.0)。                 |
+| FastOutLinearIn     | 7 | 加速曲线，cubic-bezier(0.4, 0.0, 1.0, 1.0)。                 |
+| ExtremeDeceleration | 8 | 急缓曲线，cubic-bezier(0.0, 0.0, 0.0, 1.0)。                 |
+| Sharp               | 9 | 锐利曲线，cubic-bezier(0.33, 0.0, 0.67, 1.0)。               |
+| Rhythm              | 10 | 节奏曲线，cubic-bezier(0.7, 0.0, 0.2, 1.0)。                 |
+| Smooth              | 11 | 平滑曲线，cubic-bezier(0.4, 0.0, 0.4, 1.0)。                 |
+| Friction            | 12 | 阻尼曲线，cubic-bezier(0.2, 0.0, 0.2, 1.0)。                  |
 
 **示例：**
 
@@ -68,7 +68,7 @@ curves.initCurve(Curve.EaseIn) // 创建一个默认先慢后快插值曲线
 ```
 
 
-##  Curves.stepsCurve<sup>9+</sup>
+##  curves.stepsCurve<sup>9+</sup>
 
 stepsCurve(count: number, end: boolean): ICurve
 
@@ -83,7 +83,7 @@ stepsCurve(count: number, end: boolean): ICurve
 | 参数名 | 类型    | 必填 | 说明                                                         |
 | ------ | ------- | ----| ------------------------------------------------------------ |
 | count  | number  | 是   | 阶梯的数量，需要为正整数。<br/>取值范围：[1, +∞)<br/>**说明：** <br/>设置小于1的值时，按值为1处理。 |
-| end    | boolean | 是   | 在每个间隔的起点或是终点发生阶跃变化。<br>-true：在终点发生阶跃变化。<br>-false：在起点发生阶跃变化。 |
+| end    | boolean | 是   | 在每个间隔的起点或终点发生阶跃变化。<br>-true：在终点发生阶跃变化。<br>-false：在起点发生阶跃变化。 |
 
 **返回值：**
 
@@ -99,11 +99,11 @@ curves.stepsCurve(9, true)  //创建一个阶梯曲线
 ```
 
 
-## Curves.cubicBezierCurve<sup>9+</sup>
+## curves.cubicBezierCurve<sup>9+</sup>
 
 cubicBezierCurve(x1: number, y1: number, x2: number, y2: number): ICurve
 
-构造三阶贝塞尔曲线对象，曲线的值必须处于0-1之间。
+构造三阶贝塞尔曲线对象，确保曲线的值在0到1之间。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -133,7 +133,7 @@ curves.cubicBezierCurve(0.1, 0.0, 0.1, 1.0) // 创建一个三阶贝塞尔曲线
 ```
 
 
-##  Curves.springCurve<sup>9+</sup>
+##  curves.springCurve<sup>9+</sup>
 
 springCurve(velocity: number, mass: number, stiffness: number, damping: number): ICurve
 
@@ -167,7 +167,7 @@ curves.springCurve(10, 1, 228, 30) // 创建一个弹簧插值曲线
 ```
 
 
-##  Curves.springMotion<sup>9+</sup>
+##  curves.springMotion<sup>9+</sup>
 
 springMotion(response?: number, dampingFraction?: number, overlapDuration?: number): ICurve
 
@@ -203,7 +203,7 @@ curves.springMotion(0.5, 0.6, 0) // 创建三个参数均自定义的弹性动�
 ```
 
 
-##  Curves.responsiveSpringMotion<sup>9+</sup>
+##  curves.responsiveSpringMotion<sup>9+</sup>
 
 responsiveSpringMotion(response?: number, dampingFraction?: number, overlapDuration?: number): ICurve
 
@@ -235,7 +235,7 @@ curves.responsiveSpringMotion() // 创建一个默认弹性跟手动画曲线
 ```
 
 
-##  Curves.interpolatingSpring<sup>10+</sup>
+##  curves.interpolatingSpring<sup>10+</sup>
 
 interpolatingSpring(velocity: number, mass: number, stiffness: number, damping: number): ICurve
 
@@ -266,7 +266,7 @@ import { curves } from '@kit.ArkUI'
 curves.interpolatingSpring(10, 1, 228, 30) // 创建一个时长由弹簧参数决定的弹簧插值曲线
 ```
 
-## Curves.customCurve<sup>10+</sup>
+## curves.customCurve<sup>10+</sup>
 
 customCurve(interpolate: (fraction: number) => number): ICurve
 
@@ -334,7 +334,7 @@ let value: number = curveValue.interpolate(0.5) // 计算得到时间到一半�
 ```
 
 
-## Curves.init<sup>(deprecated)</sup>
+## curves.init<sup>(deprecated)</sup>
 
 init(curve?: Curve): string
 
@@ -350,7 +350,7 @@ init(curve?: Curve): string
 | curve  | [Curve](#curve) | 否   | 曲线类型。<br/>默认值：Curve.Linear |
 
 
-## Curves.steps<sup>(deprecated)</sup>
+## curves.steps<sup>(deprecated)</sup>
 
 steps(count: number, end: boolean): string
 
@@ -367,7 +367,7 @@ steps(count: number, end: boolean): string
 | end    | boolean | 是   | 在每个间隔的起点或是终点发生阶跃变化。<br>-true：在终点发生阶跃变化。<br>-false：在起点发生阶跃变化。 |
 
 
-## Curves.cubicBezier<sup>(deprecated)</sup>
+## curves.cubicBezier<sup>(deprecated)</sup>
 
 cubicBezier(x1: number, y1: number, x2: number, y2: number): string
 
@@ -385,7 +385,7 @@ cubicBezier(x1: number, y1: number, x2: number, y2: number): string
 | y2   | number | 是    | 确定贝塞尔曲线第二点纵坐标。 |
 
 
-## Curves.spring<sup>(deprecated)</sup>
+## curves.spring<sup>(deprecated)</sup>
 
 spring(velocity: number, mass: number, stiffness: number, damping: number): string
 
@@ -407,13 +407,13 @@ spring(velocity: number, mass: number, stiffness: number, damping: number): stri
 
 ```ts
 // xxx.ets
-import { curves } from '@kit.ArkUI'
+import { curves } from '@kit.ArkUI';
 
 @Entry
 @Component
 struct ImageComponent {
-  @State widthSize: number = 200
-  @State heightSize: number = 200
+  @State widthSize: number = 200;
+  @State heightSize: number = 200;
 
   build() {
     Column() {

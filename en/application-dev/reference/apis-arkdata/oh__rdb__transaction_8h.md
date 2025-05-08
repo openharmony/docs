@@ -11,7 +11,7 @@ Defines APIs and enums related to database transactions.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
-**Since**: 16
+**Since**: 18
 
 **Related module**: [RDB](_r_d_b.md)
 
@@ -45,7 +45,7 @@ Defines APIs and enums related to database transactions.
 | int [OH_RdbTrans_Commit](_r_d_b.md#oh_rdbtrans_commit) ([OH_Rdb_Transaction](_r_d_b.md#oh_rdb_transaction) \*trans) | Commits a transaction.| 
 | int [OH_RdbTrans_Rollback](_r_d_b.md#oh_rdbtrans_rollback) ([OH_Rdb_Transaction](_r_d_b.md#oh_rdb_transaction) \*trans) | Rolls back a transaction.| 
 | int [OH_RdbTrans_Insert](_r_d_b.md#oh_rdbtrans_insert) ([OH_Rdb_Transaction](_r_d_b.md#oh_rdb_transaction) \*trans, const char \*table, const [OH_VBucket](_o_h___v_bucket.md) \*row, int64_t \*rowId) | Inserts a row of data into a table.| 
-| int [OH_RdbTrans_BatchInsert](_r_d_b.md#oh_rdbtrans_batchinsert) ([OH_Rdb_Transaction](_r_d_b.md#oh_rdb_transaction) \*trans, const char \*table, const [OH_Data_VBuckets](_r_d_b.md#oh_data_vbuckets) \*rows, int64_t \*changes) | Batch inserts data into a table.| 
+| int [OH_RdbTrans_BatchInsert](_r_d_b.md#oh_rdbtrans_batchinsert) ([OH_Rdb_Transaction](_r_d_b.md#oh_rdb_transaction) \*trans, const char \*table, const [OH_Data_VBuckets](_r_d_b.md#oh_data_vbuckets) \*rows, [Rdb_ConflictResolution](_r_d_b.md#rdb_conflictresolution) resolution, int64_t \*changes) | Inserts a batch of data into a table. | 
 | int [OH_RdbTrans_Update](_r_d_b.md#oh_rdbtrans_update) ([OH_Rdb_Transaction](_r_d_b.md#oh_rdb_transaction) \*trans, const [OH_VBucket](_o_h___v_bucket.md) \*row, const [OH_Predicates](_o_h___predicates.md) \*predicates, int64_t \*changes) | Updates data in an RDB store based on specified conditions.| 
 | int [OH_RdbTrans_Delete](_r_d_b.md#oh_rdbtrans_delete) ([OH_Rdb_Transaction](_r_d_b.md#oh_rdb_transaction) \*trans, const [OH_Predicates](_o_h___predicates.md) \*predicates, int64_t \*changes) | Deletes data from the database based on the specified conditions.| 
 | [OH_Cursor](_o_h___cursor.md) \* [OH_RdbTrans_Query](_r_d_b.md#oh_rdbtrans_query) ([OH_Rdb_Transaction](_r_d_b.md#oh_rdb_transaction) \*trans, const [OH_Predicates](_o_h___predicates.md) \*predicates, const char \*columns[], int len) | Queries data in the database based on specified conditions.| 

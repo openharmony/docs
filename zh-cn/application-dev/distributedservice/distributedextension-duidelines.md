@@ -74,7 +74,7 @@ hidumper -s 4700 -a "buscenter -l remote_device_info"
 
 ### 接口说明
 
-分布式扩展能力API的接口使用指导请参见[DistributedExtensionAbility API参考](../reference/apis-distributedservice-kit/js-apis-distributedExtensionAbility-sys.md)。
+分布式扩展能力API的接口使用指导请参见[DistributedExtensionAbility API参考](../reference/apis-distributedservice-kit/js-apis-distributedExtensionAbility.md)。
 
 | 接口名                                                               | 描述                       |
 | -------------------------------------------------------------------- | -------------------------- |

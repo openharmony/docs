@@ -5,9 +5,11 @@
 
 Defines the raw device information.
 
-**Since**: 16
+**Since**: 18
 
-**Related module**: [HidDdk](_hid_ddk.md)
+**Related module**: [HID DDK](_hid_ddk.md)
+
+**Header file**: [hid_ddk_types.h](hid__ddk__types_8h.md)
 
 
 ## Summary
@@ -17,6 +19,6 @@ Defines the raw device information.
 
 | Name| Description| 
 | -------- | -------- |
-| uint32_t [busType](_hid_ddk.md#bustype) |  | 
-| uint16_t [vendor](_hid_ddk.md#vendor) |  | 
-| uint16_t [product](_hid_ddk.md#product) |  | 
+| uint32_t [busType](_hid_ddk.md#bustype) | Bus type.| 
+| uint16_t [vendor](_hid_ddk.md#vendor) | Provider ID.| 
+| uint16_t [product](_hid_ddk.md#product) | Product ID.| 

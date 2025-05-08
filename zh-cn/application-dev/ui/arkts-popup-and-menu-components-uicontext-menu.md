@@ -1,4 +1,4 @@
-# 不依赖UI组件的全局菜单控制 (openMenu)
+# 不依赖UI组件的全局菜单 (openMenu)
 
 [菜单控制 (Menu)](arkts-popup-and-menu-components-menu.md)在使用时依赖绑定UI组件，否则无法使用。从API version 18开始，可以通过使用全局接口[openMenu](../reference/apis-arkui/js-apis-arkui-UIContext.md#openmenu18)的方式，在无UI组件的场景下直接或封装使用，例如在事件回调中使用或封装后对外提供能力。
 
@@ -57,7 +57,7 @@
        buttons: [{
          text: 'confirm',
          action: () => {
-           console.info('confirm button click')
+           console.info('confirm button click');
          },
          fontSize: 15,
          fontColor: Color.Black,
@@ -65,7 +65,7 @@
          {
            text: 'cancel',
            action: () => {
-             console.info('cancel button click')
+             console.info('cancel button click');
            },
            fontSize: 15,
            fontColor: Color.Black
@@ -79,7 +79,7 @@
 
 ### 绑定组件信息
    
-   通过调用openPopup接口弹出气泡，需要提供绑定组件的信息[TargetInfo](../reference/apis-arkui/js-apis-arkui-UIContext.md#targetinfo18)。若未传入有效的target，则无法弹出气泡。
+   通过调用openMenu接口弹出菜单，需要提供绑定组件的信息[TargetInfo](../reference/apis-arkui/js-apis-arkui-UIContext.md#targetinfo18)。若未传入有效的target，则无法弹出菜单。
    
    ```ts
    let frameNode: FrameNode | null = this.ctx.getFrameNodeByUniqueId(this.getUniqueId());
@@ -112,7 +112,7 @@
 
 ## 关闭菜单
 
-通过[closeMenu](../reference/apis-arkui/js-apis-arkui-UIContext.md#closemenu18)可以关闭菜单。
+通过调用[closeMenu](../reference/apis-arkui/js-apis-arkui-UIContext.md#closemenu18)可以关闭菜单。
    
    ```ts
    promptAction.closeMenu(contentNode)
@@ -128,7 +128,7 @@
 >
 > 由于[updateMenu](../reference/apis-arkui/js-apis-arkui-UIContext.md#updatemenu18)和[closeMenu](../reference/apis-arkui/js-apis-arkui-UIContext.md#closemenu18)依赖content来更新或者关闭指定的菜单，开发者需自行维护传入的content。
 
-## 在HAR包中使用全局菜单控制
+## 在HAR包中使用全局菜单
 
 可以通过[HAR](../quick-start/har-package.md)包封装一个Menu，从而对外提供菜单的弹出、更新和关闭能力。
 

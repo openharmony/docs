@@ -2,7 +2,6 @@
 
 对应的算法规格请查看[对称密钥加解密算法规格：3DES](crypto-sym-encrypt-decrypt-spec.md#3des)。
 
-
 ## 在CMake脚本中链接相关动态库
 ```txt
 target_link_libraries(entry PUBLIC libohcrypto.so)
@@ -16,10 +15,7 @@ target_link_libraries(entry PUBLIC libohcrypto.so)
    
    如何生成3DES对称密钥，开发者可参考下文示例，并结合[对称密钥生成和转换规格：3DES](crypto-sym-key-generation-conversion-spec.md#3des)和[指定二进制数据转换对称密钥](crypto-convert-binary-data-to-sym-key-ndk.md)理解，参考文档与当前示例可能存在入参差异，请在阅读时注意区分。
 
-
 **加密**
-
-
 
 1. 调用[OH_CryptoSymCipher_Create](../../reference/apis-crypto-architecture-kit/_crypto_sym_cipher_api.md#oh_cryptosymcipher_create)，指定字符串参数'3DES192|ECB|PKCS7'，创建对称密钥类型为3DES192、分组模式为ECB、填充模式为PKCS7的Cipher实例，用于完成加密操作。
 
@@ -36,7 +32,6 @@ target_link_libraries(entry PUBLIC libohcrypto.so)
    
    - 如果使用update接口传入数据，此处data传入null。如果使用final接口传入数据，此处data传入明文数据。
    - final输出结果可能为null，在访问具体数据前，需要先判断结果是否为null，避免产生异常。
-
 
 **解密**
 
@@ -59,6 +54,11 @@ target_link_libraries(entry PUBLIC libohcrypto.so)
 
 调用[OH_CryptoSymKeyGenerator_Destroy](../../reference/apis-crypto-architecture-kit/_crypto_sym_key_api.md#oh_cryptosymkeygenerator_destroy)、[OH_CryptoSymCipher_Destroy](../../reference/apis-crypto-architecture-kit/_crypto_sym_cipher_api.md#oh_cryptosymcipher_destroy)、[OH_CryptoSymKey_Destroy](../../reference/apis-crypto-architecture-kit/_crypto_sym_key_api.md#oh_cryptosymkey_destroy)、[OH_Crypto_FreeDataBlob](../../reference/apis-crypto-architecture-kit/_crypto_common_api.md#oh_crypto_freedatablob)释放申请的内存，销毁对象。
 
+## 开发示例
+
+当前示例以ECB分组模式为例，不需要设置加解密参数。
+
+如果使用的分组模式为CBC、CTR、OFB、CFB，需设置加解密参数IV，请参考[设置加解密参数IV](#设置加解密参数iv)，并注意修改加密、解密过程中生成Cipher实例和初始化Cipher实例时的参数。
 
 ```c++
 #include "CryptoArchitectureKit/crypto_common.h"
@@ -76,7 +76,7 @@ static OH_Crypto_ErrCode doTest3DesEcb()
     Crypto_DataBlob encData = {.data = nullptr, .len = 0};
     Crypto_DataBlob decData = {.data = nullptr, .len = 0};
 
-    // 随机生成对称密钥
+    // 随机生成对称密钥。
     OH_Crypto_ErrCode ret;
     ret = OH_CryptoSymKeyGenerator_Create("3DES192", &genCtx);
     if (ret != CRYPTO_SUCCESS) {
@@ -87,11 +87,12 @@ static OH_Crypto_ErrCode doTest3DesEcb()
         goto end;
     }
 
-    // 加密操作
+    // 加密操作。
     ret = OH_CryptoSymCipher_Create("3DES192|ECB|PKCS7", &encCtx);
     if (ret != CRYPTO_SUCCESS) {
         goto end;
     }
+    // 如果是CBC、CTR、OFB、CFB分段模式，此处需要修改为对应模式并添加加解密参数IV。
     ret = OH_CryptoSymCipher_Init(encCtx, CRYPTO_ENCRYPT_MODE, keyCtx, nullptr);
     if (ret != CRYPTO_SUCCESS) {
         goto end;
@@ -101,11 +102,12 @@ static OH_Crypto_ErrCode doTest3DesEcb()
         goto end;
     }
 
-    // 解密操作
+    // 解密操作。
     ret = OH_CryptoSymCipher_Create("3DES192|ECB|PKCS7", &decCtx);
     if (ret != CRYPTO_SUCCESS) {
         goto end;
     }
+    // 如果是CBC、CTR、OFB、CFB分段模式，此处需要修改为对应模式并添加加解密参数IV。
     ret = OH_CryptoSymCipher_Init(decCtx, CRYPTO_DECRYPT_MODE, keyCtx, nullptr);
     if (ret != CRYPTO_SUCCESS) {
         goto end;
@@ -124,4 +126,37 @@ end:
     OH_Crypto_FreeDataBlob(&decData);
     return ret;
 }
+```
+
+### 设置加解密参数IV
+
+下述示例为CBC分组模式，需要设置加解密参数IV。
+
+如果分组模式为CBC、CTR、OFB、CFB，需要参考如下设置IV。ECB不需要设置加解密参数。
+
+```c++
+    OH_CryptoSymCipherParams *params = nullptr;
+    uint8_t iv[8] = {1, 2, 4, 12, 3, 4, 2, 3}; // 示例代码iv值，开发者可使用安全随机数生成。
+    Crypto_DataBlob ivBlob = {.data = iv, .len = sizeof(iv)};
+
+    ret = OH_CryptoSymCipherParams_Create(&params);
+    if (ret != CRYPTO_SUCCESS) {
+        goto end;
+    }
+    // 设置参数。
+    ret = OH_CryptoSymCipherParams_SetParam(params, CRYPTO_IV_DATABLOB, &ivBlob); // CBC模式只需要设置iv。
+    if (ret != CRYPTO_SUCCESS) {
+        goto end;
+    }
+    
+    // 加密。
+    ret = OH_CryptoSymCipher_Create("AES128|CBC|PKCS7", &encCtx);
+    if (ret != CRYPTO_SUCCESS) {
+        goto end;
+    }
+    ret = OH_CryptoSymCipher_Init(encCtx, CRYPTO_ENCRYPT_MODE, keyCtx, params);
+    if (ret != CRYPTO_SUCCESS) {
+        goto end;
+    }
+    // 本段代码只展示CBC、CTR、OFB、CFB分段模式的不同，其他流程请参考开发示例。
 ```

@@ -339,7 +339,7 @@ The **BorderOptions** type is used to provide border information.
 | width  | [Length](#length)  \| [EdgeWidths](#edgewidths9)<sup>9+</sup> \| [LocalizedEdgeWidths](#localizededgewidths12)<sup>12+</sup> | No   | Border width.  |
 | color  | [ResourceColor](#resourcecolor) \| [EdgeColors](#edgecolors9)<sup>9+</sup> | No   | Border color.  |
 | radius | [Length](#length) \| [BorderRadiuses](#borderradiuses9)<sup>9+</sup> | No   | Radius of the rounded corner border.|
-| style  | [BorderStyle](ts-appendix-enums.md#borderstyle)  \| [EdgeStyles](#EdgeStyles9)<sup>9+</sup>| No   | Border style.  |
+| style  | [BorderStyle](ts-appendix-enums.md#borderstyle)  \| [EdgeStyles](#edgestyles9)<sup>9+</sup>| No   | Border style.  |
 
 ## ColorFilter<sup>9+</sup>
 
@@ -609,6 +609,7 @@ The **DividerStyleOptions** type is used to provide the information about the di
 | color  | [ResourceColor](#resourcecolor) | No | Color of the divider.        |
 | startMargin | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)<sup>12+</sup> | No | Distance between the divider and the start edge of the menu.|
 | endMargin  | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)<sup>12+</sup>| No | Distance between the divider and the end edge of the menu.|
+| mode  | [DividerMode](#dividermode18)<sup>18+</sup>| No | Mode of the divider.|
 
 ## TextContentControllerBase<sup>10+</sup>
 
@@ -680,14 +681,14 @@ The **getCaretOffset** type is used to obtain the position information of the ca
 > - If no text is entered in the **Search** component, the return value contains the position information relative to the component.
 > - The location information in the return value is the location of the caret relative to the editable component.
 
-### addText<sup>16+</sup>
+### addText<sup>15+</sup>
 
 addText(text: string, textOperationOptions?: TextContentControllerOptions): number
 
 Inserts text at a specified position in the editable content. If no position is specified, the text is appended to the end of the existing content.
 This API does not work when the text is being dragged.
 
-**Atomic service API**: This API can be used in atomic services since API version 16.
+**Atomic service API**: This API can be used in atomic services since API version 15.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -696,16 +697,16 @@ This API does not work when the text is being dragged.
 | Name | Type  | Mandatory  | Description |
 | ------- | ------ | ---- | ----- |
 | text | string | Yes   | Text to insert.|
-| textOperationOptions   | [TextContentControllerOptions](#textcontentcontrolleroptions16) | No   | Configuration option for inserting text. If this parameter is not provided, the text is appended to the end.|
+| textOperationOptions   | [TextContentControllerOptions](#textcontentcontrolleroptions15) | No   | Configuration option for inserting text. If this parameter is not provided, the text is appended to the end.|
 
-### deleteText<sup>16+</sup>
+### deleteText<sup>15+</sup>
 
 deleteText(range?: TextRange): void
 
 Deletes text within a specified range in the editable content.
 This API does not work when the text is being dragged.
 
-**Atomic service API**: This API can be used in atomic services since API version 16.
+**Atomic service API**: This API can be used in atomic services since API version 15.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -715,13 +716,13 @@ This API does not work when the text is being dragged.
 | ------- | ------ | ---- | ----- |
 | range | [TextRange](ts-text-common.md#textrange12) | No   | Range of the text to be deleted, including the start and end positions.<br>If the range is not specified, the entire text is deleted. If the start position is not specified, deletion starts from index 0. If the end position is not specified, deletion ends at the end of the text.|
 
-### getSelection<sup>16+</sup>
+### getSelection<sup>15+</sup>
 
 getSelection(): TextRange
 
 Obtains the current text selection range.
 
-**Atomic service API**: This API can be used in atomic services since API version 16.
+**Atomic service API**: This API can be used in atomic services since API version 15.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -730,6 +731,38 @@ Obtains the current text selection range.
 | Type                     | Description              |
 | ----------------------- | ---------------- |
 | [TextRange](ts-text-common.md#textrange12) | Current text selection range, or cursor position if no text is selected.|
+
+### clearPreviewText<sup>18+</sup>
+
+clearPreviewText(): void
+
+Clears the current preview text.
+
+**Atomic service API**: This API can be used in atomic services since API version 18.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+### getText<sup>18+</sup>
+
+getText(range?: TextRange): string
+
+Obtains the text content within a specified range.
+
+**Atomic service API**: This API can be used in atomic services since API version 18.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name | Type  | Mandatory  | Description |
+| ------- | ------ | ---- | ----- |
+| range | [TextRange](ts-text-common.md#textrange12) | No   | Range of the text content to obtain, defined by start and end positions.<br>If the range is not specified, the entire text is obtained by default. If the start position is not specified, it defaults to index 0. If the end position is not specified, it defaults to the end of the text.|
+
+**Return value**
+
+| Type   | Description              |
+| ------ | ---------------- |
+| string | Text content within the specified range.|
 
 ## TextDecorationOptions<sup>12+</sup>
 
@@ -840,14 +873,27 @@ The **LayoutPolicy** type is used to set the layout strategy for linear layouts.
 > 
 >  - Setting **MATCH_PARENT** will force the component to match the parent's size, overriding any other size constraints set on the component.
 
-## TextContentControllerOptions<sup>16+</sup>
+## TextContentControllerOptions<sup>15+</sup>
 
 The **TextContentControllerOptions** type is used to configure the insertion of text into a text box.
 
-**Atomic service API**: This API can be used in atomic services since API version 16.
+**Atomic service API**: This API can be used in atomic services since API version 15.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 | Name     | Type  | Read Only| Optional| Description      |
 | --------- | ------ | ---- | ---- | ---------- |
 | offset | number | Yes  | Yes  | Position where the text will be inserted.|
+
+## DividerMode<sup>18+</sup>
+
+The **DividerMode** type is used to configure the mode of the divider.
+
+**Atomic service API**: This API can be used in atomic services since API version 18.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name           | Value| Description                                      |
+| ------------------ | - | ---------------------------------------- |
+| FLOATING_ABOVE_MENU| 0 | The divider floats above the menu without affecting the layout height. This is the default mode.     |
+| EMBEDDED_IN_MENU   | 1 | The divider is embedded in the menu and affects the layout height.   |

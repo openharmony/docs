@@ -28,7 +28,7 @@ Canvas是图形绘制的核心，本章中提到的所有绘制操作（包括�
 1. 从XComponent对应的NativeWindow中获取BufferHandle对象。NativeWindow相关的API请参考[_native_window](../reference/apis-arkgraphics2d/_native_window.md)。
 
    ```c++
-   uint64_t widht, height;
+   uint64_t width, height;
    OHNativeWindow *nativeWindow;    // NativeWindow及其宽高需要从XComponent获取
    int32_t usage = NATIVEBUFFER_USAGE_CPU_READ | NATIVEBUFFER_USAGE_CPU_WRITE | NATIVEBUFFER_USAGE_MEM_DMA;
    int ret = OH_NativeWindow_NativeWindowHandleOpt(nativeWindow, SET_USAGE, usage);
@@ -122,14 +122,94 @@ Canvas是图形绘制的核心，本章中提到的所有绘制操作（包括�
 
 GPU后端Canvas指画布是基于GPU进行绘制的，GPU的并行计算能力优于CPU，适用于绘制图片或区域相对大的场景，但目前GPU后端的Canvas针对绘制复杂路径的能力还有欠缺。同CPU后端Canvas，目前C/C++接口的绘制需要依赖于XComponent，GPU后端Canvas需要先离屏绘制再借助XComponent上屏。
 
-1. 导入依赖的头文件。
+1. 当前创建GPU后端的Canvas依赖EGL的能力，需要在CMakeList.txt中添加EGL的动态依赖库。
 
    ```c++
+   libEGL.so
+   ```
+
+2. 导入依赖的头文件。
+
+   ```c++
+   #include <EGL/egl.h>
+   #include <EGL/eglext.h>
    #include <native_drawing/drawing_gpu_context.h>
    #include <native_drawing/drawing_surface.h>
    ```
+3. 初始化EGL上下文。
 
-2. 创建GPU后端Cnavas。GPU后端Canvas需要借助Surface对象来获取，需先创建surface，surface的API请参考[drawing_surface.h](../reference/apis-arkgraphics2d/drawing__surface_8h.md)。目前drawing支持基于OpenGL的GPU后端绘制，所以需要先通过OH_Drawing_GpuContextCreateFromGL接口创建绘图上下文，再将这个上下文作为参数创建surface，最后通过OH_Drawing_SurfaceGetCanvas接口从surface中获取到canvas。
+   ```c++
+   // 初始化上下文相关参数
+   EGLDisplay mEGLDisplay = EGL_NO_DISPLAY;
+   EGLConfig mEGLConfig = nullptr;
+   EGLContext mEGLContext = EGL_NO_CONTEXT;
+   EGLSurface mEGLSurface = nullptr;
+   ```
+
+   ```c++
+   // 初始化上下文相关配置
+   EGLConfig getConfig(int version, EGLDisplay eglDisplay)
+   {
+      int attribList[] = {EGL_SURFACE_TYPE,
+                           EGL_WINDOW_BIT,
+                           EGL_RED_SIZE,
+                           8,
+                           EGL_GREEN_SIZE,
+                           8,
+                           EGL_BLUE_SIZE,
+                           8,
+                           EGL_ALPHA_SIZE,
+                           8,
+                           EGL_RENDERABLE_TYPE,
+                           EGL_OPENGL_ES2_BIT,
+                           EGL_NONE};
+      EGLConfig configs = NULL;
+      int configsNum;
+
+      if (!eglChooseConfig(eglDisplay, attribList, &configs, 1, &configsNum)) {
+         return NULL;
+      }
+
+      return configs;
+   }
+
+   // 在需要初始化EGL上下文处调用InitializeEglContext
+   int32_t InitializeEglContext(EGLDisplay mEGLDisplay, EGLConfig mEGLConfig,
+      EGLContext mEGLContext, EGLSurface mEGLSurface)
+   {
+      mEGLDisplay = eglGetDisplay(EGL_DEFAULT_DISPLAY);
+      if (mEGLDisplay == EGL_NO_DISPLAY) {
+         return -1;
+      }
+
+      EGLint eglMajVers;
+      EGLint eglMinVers;
+      if (!eglInitialize(mEGLDisplay, &eglMajVers, &eglMinVers)) {
+         mEGLDisplay = EGL_NO_DISPLAY;
+         return -1;
+      }
+
+      int version = 3;
+      mEGLConfig = getConfig(version, mEGLDisplay);
+      if (mEGLConfig == nullptr) {
+         return -1;
+      }
+
+      int attribList[] = {EGL_CONTEXT_CLIENT_VERSION, 2, EGL_NONE};
+
+      mEGLContext = eglCreateContext(mEGLDisplay, mEGLConfig, EGL_NO_CONTEXT, attribList);
+
+      EGLint attribs[] = {EGL_WIDTH, 1, EGL_HEIGHT, 1, EGL_NONE};
+      mEGLSurface = eglCreatePbufferSurface(mEGLDisplay, mEGLConfig, attribs);
+      if (!eglMakeCurrent(mEGLDisplay, mEGLSurface, mEGLSurface, mEGLContext)) {
+         return -1;
+      }
+      
+      return 0;
+   }
+   ```
+
+4. 创建GPU后端Canvas。GPU后端Canvas需要借助Surface对象来获取，需先创建surface，surface的API请参考[drawing_surface.h](../reference/apis-arkgraphics2d/drawing__surface_8h.md)。通过OH_Drawing_GpuContextCreateFromGL接口创建绘图上下文，再将这个上下文作为参数创建surface，最后通过OH_Drawing_SurfaceGetCanvas接口从surface中获取到canvas。
 
    ```c++
    // 设置宽高（按需设定）
@@ -153,7 +233,7 @@ GPU后端Canvas指画布是基于GPU进行绘制的，GPU的并行计算能力�
    OH_Drawing_CanvasClear(gpuCanvas, OH_Drawing_ColorSetArgb(0xFF, 0xFF, 0xFF, 0xFF));
    ```
 
-3. 将上一步中的绘制结果拷贝到[窗口画布](#获取可直接显示的canvas画布)上。
+5. 将上一步中的绘制结果拷贝到[窗口画布](#获取可直接显示的canvas画布)上。
 
    ```c++
    void* dstPixels = malloc(cWidth * cHeight * 4); // 4 for rgba
@@ -161,3 +241,28 @@ GPU后端Canvas指画布是基于GPU进行绘制的，GPU的并行计算能力�
    OH_Drawing_Bitmap* bitmap = OH_Drawing_BitmapCreateFromPixels(&imageInfo, dstPixels, 4 * cWidth);
    OH_Drawing_CanvasDrawBitmap(screenCanvas, bitmap, 0, 0);
    ```
+
+6. 使用完之后需要将EGL上下文销毁。
+
+   ```c++
+   // 在需要销毁处调用DeInitializeEglContext销毁EGL上下文。
+   void DeInitializeEglContext(EGLDisplay mEGLDisplay, EGLContext mEGLContext, EGLSurface mEGLSurface)
+   {
+      // 以下三个方法都有返回值判断是否销毁成功，必要时可进行调试。
+      eglDestroySurface(mEGLDisplay, mEGLSurface);
+      eglDestroyContext(mEGLDisplay, mEGLContext);
+      eglTerminate(mEGLDisplay);
+
+      mEGLSurface = NULL;
+      mEGLContext = NULL;
+      mEGLDisplay = NULL;
+   }
+   ```
+
+<!--RP1-->
+## 相关实例
+
+针对Drawing(C/C++)的开发，有以下相关实例可供参考：
+
+- [NDKGraphicsDraw (API14)](https://gitee.com/openharmony/applications_app_samples/tree/master/code/DocsSample/Drawing/NDKGraphicsDraw)
+<!--RP1End-->

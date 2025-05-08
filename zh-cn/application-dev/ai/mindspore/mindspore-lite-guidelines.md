@@ -18,7 +18,7 @@ MindSpore Lite是一款AI引擎，它提供了面向不同硬件设备AI模型�
 
 ## 接口说明
 
-这里给出MindSpore Lite推理的通用开发流程中涉及的一些接口，具体请见下列表格。
+这里给出MindSpore Lite推理的通用开发流程中涉及的一些接口，具体请见下列表格。更多接口及详细内容，请见[MindSpore](../../reference/apis-mindspore-lite-kit/_mind_spore.md)。
 
 ### Context 相关接口
 
@@ -26,7 +26,7 @@ MindSpore Lite是一款AI引擎，它提供了面向不同硬件设备AI模型�
 | ------------------ | ----------------- |
 |OH_AI_ContextHandle OH_AI_ContextCreate()|创建一个上下文的对象。注意：此接口需跟OH_AI_ContextDestroy配套使用。|
 |void OH_AI_ContextSetThreadNum(OH_AI_ContextHandle context, int32_t thread_num)|设置运行时的线程数量。|
-| void OH_AI_ContextSetThreadAffinityMode(OH_AI_ContextHandle context, int mode)|设置运行时线程绑定CPU核心的策略，按照CPU物理核频率分为大、中、小三种类型的核心，并且仅需绑大核或者绑中核，不需要绑小核。
+|void OH_AI_ContextSetThreadAffinityMode(OH_AI_ContextHandle context, int mode)|设置运行时线程绑定CPU核心的策略，按照CPU物理核频率分为大、中、小三种类型的核心，并且仅需绑大核或者绑中核，不需要绑小核。|
 |OH_AI_DeviceInfoHandle OH_AI_DeviceInfoCreate(OH_AI_DeviceType device_type)|创建一个运行时设备信息对象。|
 |void OH_AI_ContextDestroy(OH_AI_ContextHandle *context)|释放上下文对象。|
 |void OH_AI_DeviceInfoSetEnableFP16(OH_AI_DeviceInfoHandle device_info, bool is_fp16)|设置是否开启Float16推理模式，仅CPU/GPU设备可用。|
@@ -90,7 +90,7 @@ int GenerateInputDataWithRandom(OH_AI_TensorHandleArray inputs) {
     需要的模型可以直接下载，也可以通过模型转换工具获得。
   
      - 下载模型的格式若为`.ms`，则可以直接使用。本文以mobilenetv2.ms为例。
-     - 如果是第三方框架的模型，比如 TensorFlow、TensorFlow Lite、Caffe、ONNX等，可以使用[模型转换工具](https://www.mindspore.cn/lite/docs/zh-CN/master/use/downloads.html#1-8-1)转换为`.ms`格式的模型文件。
+     - 如果是第三方框架的模型，比如 TensorFlow、TensorFlow Lite、Caffe、ONNX等，可以使用[模型转换工具](https://www.mindspore.cn/lite/docs/zh-CN/master/use/downloads.html#2-3-0)转换为`.ms`格式的模型文件。
 
 2. 创建上下文，设置线程数、设备类型等参数。
 
@@ -269,8 +269,10 @@ int GenerateInputDataWithRandom(OH_AI_TensorHandleArray inputs) {
             dl
     )
     ```
-   - 使用ohos-sdk交叉编译，需要对CMake设置native工具链路径，即：`-DCMAKE_TOOLCHAIN_FILE="/xxx/native/build/cmake/ohos.toolchain.cmake"`。
-
+   - 使用ohos-sdk交叉编译，需要指定CMake的工具链路径，即：`-DCMAKE_TOOLCHAIN_FILE="/{sdkPath}/native/build/cmake/ohos.toolchain.cmake"`。
+     
+     其中，sdkPath为DevEco Studio安装目录下的SDK路径，可在DevEco Studio工程界面，点击**File** > **Settings...** > **OpenHarmony SDK**，查看**Location**获取。
+     
    - 工具链默认编译64位的程序，如果要编译32位，需要添加：`-DOHOS_ARCH="armeabi-v7a"`。
 
 2. 运行。

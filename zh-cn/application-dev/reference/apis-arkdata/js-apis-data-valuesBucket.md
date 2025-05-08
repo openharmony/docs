@@ -1,6 +1,6 @@
 # @ohos.data.ValuesBucket (数据集)
 
-**数据集(ValuesBucket)** 是开发者向数据库插入的数据集合，数据集以键值对的形式进行传输。
+**数据集（ValuesBucket）** 是开发者向数据库插入的数据集合，数据集以键值对的形式进行传输。
 
 > **说明：**
 >
@@ -33,7 +33,7 @@ type ValueType = number | string | boolean
 
 type ValuesBucket = Record<string, ValueType | Uint8Array | null>
 
-用于存储键值对的类型。该类型不是多线程安全的，如果应用中存在多线程同时操作该类派生出的实例，注意加锁保护。 
+用于存储键值对的类型。该类型不是多线程安全的，如果应用中存在多线程同时操作该类派生出的实例，注意加锁保护。
 
 **系统能力：**  SystemCapability.DistributedDataManager.DataShare.Core
 

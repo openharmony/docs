@@ -2,7 +2,7 @@
 
 - [Introduction to Camera Kit](camera-overview.md)
 - [Camera Development Preparations](camera-preparation.md)
-- Camera Development (ArkTS)
+- Camera Development (ArkTS)<!--camera-dev-arkts-->
   - [Camera Device Management (ArkTS)](camera-device-management.md)
   - [Device Input Management (ArkTS)](camera-device-input.md)
   - [Camera Session Management (ArkTS)](camera-session-management.md)
@@ -22,7 +22,7 @@
   <!--Del-->
   - [Depth Data (for System Applications Only) (ArkTS)](camera-depth-data.md)
   <!--DelEnd-->
-- Camera Best Practices (ArkTS)
+- Camera Best Practices (ArkTS)<!--camera-best-practices-arkts-->
   - [Using the Camera Picker (ArkTS)](camera-picker.md)
   - [Photo Capture Sample (ArkTS)](camera-shooting-case.md)
   - [Video Recording Sample (ArkTS)](camera-recording-case.md)
@@ -33,7 +33,7 @@
   - [Using Performance Improvement Features (for System Applications Only) (ArkTS)](camera-performance-improvement.md)
   - [High-Performance Photo Capture Sample (for System Applications Only) (ArkTS)](camera-deferred-photo-case.md)
   <!--DelEnd-->
-- Camera Development (C/C++)
+- Camera Development (C/C++)<!--camera-dev-native-->
   - [Camera Device Management (C/C++)](native-camera-device-management.md)
   - [Device Input Management (C/C++)](native-camera-device-input.md)
   - [Camera Session Management (C/C++)](native-camera-session-management.md)
@@ -44,6 +44,6 @@
   - [Video Recording (C/C++)](native-camera-recording.md)
   - [Camera Metadata (C/C++)](native-camera-metadata.md)
   - [Using the Flashlight (C/C++)](native-camera-torch-use.md)
-- Camera Best Practices (C/C++)
+- Camera Best Practices (C/C++)<!--camera-best-practices-native-->
   - [Photo Capture Sample (C/C++)](native-camera-shooting-case.md)
   - [Video Recording Sample (C/C++)](native-camera-recording-case.md)

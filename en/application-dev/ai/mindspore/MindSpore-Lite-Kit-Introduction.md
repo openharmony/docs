@@ -10,6 +10,10 @@ So far, MindSpore Lite has been widely used in applications such as image classi
 - Target recognition: uses the preset object detection model to identify objects in the input frames of a camera, add labels to the objects, and mark them with bounding boxes.
 - Image segmentation: detects the positions of objects in a graph or the object of a specific pixel in the graph.
 
+## Constraints
+
+- This kit can run and be debugged on real devices, but not on emulators.
+
 ## Advantages
 
 MindSpore Lite provides AI model inference capabilities for hardware devices and end-to-end solutions for developers to empower intelligent applications in all scenarios. Its advantages include:
@@ -48,6 +52,6 @@ MindSpore Lite is built in the OpenHarmony standard system as a system component
 
 ## Relationship with Other Kits
 
-Neural Network Runtime (NNRt) functions as a bridge to connect the upper-layer AI inference framework and underlying acceleration chips, implementing cross-chip inference computing of AI models.
+Neural Network Runtime (NNRt) functions as a bridge to connect the upper-layer AI inference framework and underlying acceleration chips, implementing cross-chip inference computing for AI models.
 
-MindSpore Lite natively allows you to configure NNRt for AI-dedicated chips (such as NPUs) to accelerate inference. Therefore, you can configure MindSpore Lite to use the NNRt hardware. The focus of this topic is about how to develop AI applications using MindSpore Lite. For details about how to use NNRt, see [Connecting the Neural Network Runtime to an AI Inference Framework](../nnrt/neural-network-runtime-guidelines.md).
+MindSpore Lite allows you to configure NNRt for AI-dedicated chips (such as NPUs) to accelerate inference. Therefore, you can configure MindSpore Lite to use the NNRt hardware. The focus of this topic is about how to develop AI applications using MindSpore Lite. For details about how to use NNRt, see [Connecting the Neural Network Runtime to an AI Inference Framework](../nnrt/neural-network-runtime-guidelines.md).

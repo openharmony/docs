@@ -20,9 +20,9 @@ AppStartup supports startup tasks in automatic or manual mode. By default, autom
 
 - AppStartup is only triggered when the entry UIAbility is launched. It is not triggered when ExtensionAbility or non-entry UIAbility are launched.
 
-- Starting from API version 16, AppStartup supports configuring startup tasks in [HSP](../quick-start/har-package.md) and [HAR](../quick-start/in-app-hsp.md) modules. However, startup tasks and .so file preloading tasks in the HSP and HAR modules cannot be explicitly set to automatic mode. They can be initiated by startup tasks and .so file preloading tasks of the entry module that are in automatic mode.
+- Starting from API version 18, AppStartup supports configuring startup tasks in [HSP](../quick-start/har-package.md) and [HAR](../quick-start/in-app-hsp.md) modules. However, startup tasks and .so file preloading tasks in the HSP and HAR modules cannot be explicitly set to automatic mode. They can be initiated by startup tasks and .so file preloading tasks of the entry module that are in automatic mode.
 
-- Starting from API version 16, AppStartup supports the configuration of .so file preloading tasks. For details about how to develop .so files, refer to [Node-API](../napi/use-napi-process.md) to create a native C++ project.
+- Starting from API version 18, AppStartup supports the configuration of .so file preloading tasks. For details about how to develop .so files, refer to [Node-API](../napi/use-napi-process.md) to create a native C++ project.
 
 
 ## Constraints
@@ -184,7 +184,7 @@ AppStartup supports startup tasks in automatic or manual mode. By default, autom
 
         | Field| Description| Data Type| Optional|
         | -------- | -------- | -------- | -------- |
-        | name | Class name of the startup task.| String| Mandatory|
+        | name | Name of the startup task, which can be customized. It is recommended that the name be the same as the class name.| String| Mandatory|
         | srcEntry | Path of the file corresponding to the startup task.| String| Mandatory|
         | dependencies | Array holding the class names of other startup tasks on which this task depends.| Object array| Optional, defaults to an empty array|
         | excludeFromAutoStart | Whether to exclude automatic mode. For details, see [Changing the Startup Mode](#optional-changing-the-startup-mode).<br>- **true**: manual mode.<br>- **false**: automatic mode.<br>**NOTE**<br> This field must be set to **true** for the HSP and HAR.| Boolean| Optional, defaults to **false**|

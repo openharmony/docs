@@ -933,6 +933,62 @@ The UIAbility is being started.
 
 确保该UIAbility启动完成，再执行新的启动任务。
 
+## 16000083 不允许该类型ExtensionAbility启动指定Ability
+
+**错误信息**
+
+The extension can not start the ability due to extension control.
+
+**错误描述**
+
+不同类型ExtensionAbility所需要的能力不同。系统不允许该类型ExtensionAbility启动指定Ability。
+
+**可能原因**
+
+当前类型ExtensionAbility受系统管控，不允许该类型Extension启动指定Ability。
+
+**处理步骤**
+
+查看对应类型ExtensionAbility的使用约束限制，确保接口使用符合约束限制。
+
+## 16000084 只允许DelegatorAbility单次调用
+
+**错误信息**
+
+Only allow DelegatorAbility to call the method once.
+
+**错误描述**
+
+系统只允许DelegatorAbility调用该接口一次。
+
+**可能原因**
+
+1. 调用方不是DelegatorAbility。
+2. 调用方是DelegatorAbility，但是重复调用接口。
+
+**处理步骤**
+
+1. 检查调用方是否DelegatorAbility。
+2. 检查是否重复调用。
+
+## 16000085 元能力与窗口的交互流程发生错误
+
+**错误信息**
+
+The interaction process between Ability and Window encountered an error.
+
+**错误描述**
+
+元能力与窗口的交互流程发生错误。
+
+**可能原因**
+
+窗口业务流程出现异常。
+
+**处理步骤**
+
+系统错误，尝试重新调用。
+
 ## 16000100 监听Ability生命周期变化的AbilityMonitor方法执行失败
 
 **错误信息**
@@ -1585,3 +1641,75 @@ The target free install task does not exist.
 **处理步骤**
 
 检查传入的bundleName、moduleName、abilityName或startTime参数是否正确。
+
+## 28800001 启动任务或其依赖项不存在
+
+**错误信息**
+
+Startup task or its dependency not found.
+
+**错误描述**
+
+执行启动任务时，如果找不到该启动任务或其依赖的任务，方法将返回该错误码。
+
+**可能原因**
+
+未正确配置启动任务或其依赖的任务。
+
+**处理步骤**
+
+检查启动框架配置文件是否正确编写，并确保所有配置的启动任务均已实现。
+
+## 28800002 启动任务之间存在循环依赖关系
+
+**错误信息**
+
+The startup tasks have circular dependencies.
+
+**错误描述**
+
+在加载启动任务时，如果检测到启动任务之间存在循环依赖，方法将返回该错误码。
+
+**可能原因**
+
+配置的启动任务之间存在循环依赖关系。
+
+**处理步骤**
+
+检查启动框架配置文件，确保所有启动任务之间没有循环依赖。
+
+## 28800003 运行启动任务时发生错误
+
+**错误信息**
+
+An error occurred while running the startup tasks.
+
+**错误描述**
+
+运行启动任务时发生错误，方法将返回该错误码。
+
+**可能原因**
+
+启动任务的代码逻辑存在错误，或者缺少异常处理。
+
+**处理步骤**
+
+检查实现的启动任务是否存在逻辑错误，并确保每个启动任务中包含异常处理逻辑。
+
+## 28800004 执行启动任务超时
+
+**错误信息**
+
+Running startup tasks timeout.
+
+**错误描述**
+
+如果启动任务的执行时间超过设置的超时时间（默认为10000毫秒），方法将返回该错误码。
+
+**可能原因**
+
+启动任务中包含大量耗时操作，或者设置的超时时间过短。
+
+**处理步骤**
+
+根据需要调整超时时间。超时时间的设置可参见[设置启动参数](../../application-models/app-startup.md#设置启动参数)。

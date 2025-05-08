@@ -4,7 +4,7 @@
 
 >  **说明：**
 >
->  从API Version 10开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>  从API version 10开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 ## renderFit
 
@@ -22,13 +22,13 @@ renderFit(fitMode: RenderFit)
 | ------- | ------------------------------- | ---- | ------------------------------------------------------------ |
 | fitMode | [RenderFit](#renderfit枚举说明) | 是   | 设置宽高动画过程中的组件内容填充方式。<br/>当不设置renderFit属性时，取默认值RenderFit.TOP_LEFT。 |
 
-## renderFit<sup>16+</sup>
+## renderFit<sup>18+</sup>
 
 renderFit(fitMode: Optional\<RenderFit>)
 
 设置宽高动画过程中的组件内容填充方式。与[renderFit](#renderfit)相比，fitMode参数新增了对undefined类型的支持。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -42,7 +42,7 @@ renderFit(fitMode: Optional\<RenderFit>)
 >
 >  对于TEXTURE和SURFACE类型的[XComponent](./ts-basic-components-xcomponent.md)组件，当不设置renderFit属性时，取默认值为RenderFit.RESIZE_FILL。
 >
->  对于SURFACE类型的[XComponent](./ts-basic-components-xcomponent.md)组件，当组件背景色为不透明的纯黑色时，其renderFit通用属性仅支持设置为RenderFit.RESIZE_FILL，不推荐设置为其他的RenderFit枚举值。
+> 对于SURFACE类型的[XComponent](./ts-basic-components-xcomponent.md)组件，背景色设置为不透明的纯黑色，在API version 18之前，其renderFit通用属性仅支持设置为RenderFit.RESIZE_FILL；在API version 18及之后，支持所有的RenderFit枚举值。
 >
 >  对于使用[ArkUI NDK接口](../../../ui/ndk-access-the-arkts-page.md)创建的XComponent组件，不支持使用属性获取函数[getAttribute](../_ark_u_i___native_node_a_p_i__1.md#getattribute)获取其renderFit属性值。
 
@@ -107,7 +107,7 @@ struct RenderFitExample {
 
       Button("animate")
         .onClick(() => {
-          animateTo({ curve: Curve.Ease }, () => {
+          this.getUIContext()?.animateTo({ curve: Curve.Ease }, () => {
             if (this.flag) {
               this.width1 = 150;
               this.height1 = 50;

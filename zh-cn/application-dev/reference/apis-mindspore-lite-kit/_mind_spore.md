@@ -5,6 +5,8 @@
 
 提供MindSpore Lite的模型推理相关接口，该模块下的接口是非线程安全的。
 
+**系统能力：** SystemCapability.Ai.MindSpore
+
 **起始版本：** 9
 
 ## 汇总
@@ -124,7 +126,7 @@
 | [OH_AI_DeviceInfoSetPriority](#oh_ai_deviceinfosetpriority) ([OH_AI_DeviceInfoHandle](#oh_ai_deviceinfohandle) device_info, [OH_AI_Priority](#oh_ai_priority) priority) | 设置NNRt任务优先级，仅NNRt设备可用。 |
 | [OH_AI_DeviceInfoGetPriority](#oh_ai_deviceinfogetpriority) (const [OH_AI_DeviceInfoHandle](#oh_ai_deviceinfohandle) device_info) | 获取NNRt任务优先级，仅NNRt设备可用。 |
 | [OH_AI_DeviceInfoAddExtension](#oh_ai_deviceinfoaddextension) ([OH_AI_DeviceInfoHandle](#oh_ai_deviceinfohandle) device_info, const char \*name, const char \*value, size_t value_size) | 向设备信息中添加键/值对形式的扩展配置。只对NNRt设备信息有效。 |
-| [OH_AI_ModelCreate](#oh_ai_modelcreate) () | 创建一个模型对象。 |
+| [OH_AI_ModelCreate](#oh_ai_modelcreate) (void) | 创建一个模型对象。 |
 | [OH_AI_ModelDestroy](#oh_ai_modeldestroy) ([OH_AI_ModelHandle](#oh_ai_modelhandle) \*model) | 释放一个模型对象。 |
 | [OH_AI_ModelBuild](#oh_ai_modelbuild) ([OH_AI_ModelHandle](#oh_ai_modelhandle) model, const void \*model_data, size_t data_size, [OH_AI_ModelType](#oh_ai_modeltype) model_type, const [OH_AI_ContextHandle](#oh_ai_contexthandle) model_context) | 从内存缓冲区加载并编译MindSpore模型。 |
 | [OH_AI_ModelBuildFromFile](#oh_ai_modelbuildfromfile) ([OH_AI_ModelHandle](#oh_ai_modelhandle) model, const char \*model_path, [OH_AI_ModelType](#oh_ai_modeltype) model_type, const [OH_AI_ContextHandle](#oh_ai_contexthandle) model_context) | 通过模型文件加载并编译MindSpore模型。 |
@@ -151,7 +153,7 @@
 | [OH_AI_ModelSetTrainMode](#oh_ai_modelsettrainmode) ([OH_AI_ModelHandle](#oh_ai_modelhandle) model, bool train) | 设置训练模式，仅用于端侧训练。 |
 | [OH_AI_ModelSetupVirtualBatch](#oh_ai_modelsetupvirtualbatch) ([OH_AI_ModelHandle](#oh_ai_modelhandle) model, int virtual_batch_multiplier, float lr, float momentum) | OH_AI_API [OH_AI_Status](#oh_ai_status)<br/>设置虚拟batch用于训练，仅用于端侧训练。 |
 | [OH_AI_ExportModel](#oh_ai_exportmodel) ([OH_AI_ModelHandle](#oh_ai_modelhandle) model, [OH_AI_ModelType](#oh_ai_modeltype) model_type, const char \*model_file, [OH_AI_QuantizationType](#oh_ai_quantizationtype) quantization_type, bool export_inference_only, char \*\*output_tensor_name, size_t num) | 导出训练模型，仅用于端侧训练。 |
-| [OH_AI_ExportModelBuffer](#oh_ai_exportmodelbuffer) ([OH_AI_ModelHandle](#oh_ai_modelhandle) model, [OH_AI_ModelType](#oh_ai_modeltype) model_type, char \*\*model_data, size_t \*data_size, [OH_AI_QuantizationType](#oh_ai_quantizationtype) quantization_type, bool export_inference_only, char \*\*output_tensor_name, size_t num) | 导出训练模型内存缓存，仅用于端侧训练。  |
+| [OH_AI_ExportModelBuffer](#oh_ai_exportmodelbuffer) ([OH_AI_ModelHandle](#oh_ai_modelhandle) model, [OH_AI_ModelType](#oh_ai_modeltype) model_type, void \*model_data, size_t \*data_size, [OH_AI_QuantizationType](#oh_ai_quantizationtype) quantization_type, bool export_inference_only, char \*\*output_tensor_name, size_t num) | 导出训练模型内存缓存，仅用于端侧训练。  |
 | [OH_AI_ExportWeightsCollaborateWithMicro](#oh_ai_exportweightscollaboratewithmicro) ([OH_AI_ModelHandle](#oh_ai_modelhandle) model, [OH_AI_ModelType](#oh_ai_modeltype) model_type, const char \*weight_file, bool is_inference, bool enable_fp16, char \*\*changeable_weights_name, size_t num) | 导出模型权重,只能用于micro推理，仅用于端侧训练。 |
 | [OH_AI_TensorCreate](#oh_ai_tensorcreate) (const char \*name, [OH_AI_DataType](#oh_ai_datatype) type, const int64_t \*shape, size_t shape_num, const void \*data, size_t data_len) | 创建一个张量对象。 |
 | [OH_AI_TensorDestroy](#oh_ai_tensordestroy) ([OH_AI_TensorHandle](#oh_ai_tensorhandle) \*tensor) | 释放张量对象。 |
@@ -185,7 +187,7 @@
 
 **描述**
 
-维度信息，最大的维度为**OH_AI_MAX_SHAPE_NUM**。
+形状维度大小，预留最大维度是32，当前实际支持的最大维度是8。
 
 **起始版本：** 9
 
@@ -502,9 +504,9 @@ enum OH_AI_DeviceType
 | 枚举值 | 描述 |
 | -------- | -------- |
 | OH_AI_DEVICETYPE_CPU | 设备类型是CPU。 |
-| OH_AI_DEVICETYPE_GPU | 设备类型是GPU<br/>该配置为上游开源社区选项，在OpenHarmony上不支持。 |
-| OH_AI_DEVICETYPE_KIRIN_NPU | 设备类型是麒麟NPU<br/>该配置为上游开源社区选项，在OpenHarmony上不支持<br/>如需使用KIRIN_NPU请通过OH_AI_DEVICETYPE_NNRT配置。 |
-| OH_AI_DEVICETYPE_NNRT | 设备类型是NNRt（Neural Network Runtime, 神经网络运行时是面向AI领域的跨芯片推理计算运行时）<br/>OHOS设备范围是[60,80)。 |
+| OH_AI_DEVICETYPE_GPU | 设备类型是GPU。<br/>该配置为上游开源社区选项，在OpenHarmony上不支持。 |
+| OH_AI_DEVICETYPE_KIRIN_NPU | 设备类型是麒麟NPU。<br/>该配置为上游开源社区选项，在OpenHarmony上不支持。<br/>如需使用KIRIN_NPU请通过OH_AI_DEVICETYPE_NNRT配置。 |
+| OH_AI_DEVICETYPE_NNRT | 设备类型是NNRt（Neural Network Runtime, 神经网络运行时是面向AI领域的跨芯片推理计算运行时）。<br/>OHOS设备范围是[60,80)。 |
 | OH_AI_DEVICETYPE_INVALID | 设备类型无效。 |
 
 
@@ -1429,7 +1431,7 @@ OH_AI_API OH_AI_Status OH_AI_ExportModel (OH_AI_ModelHandle model, OH_AI_ModelTy
 ### OH_AI_ExportModelBuffer()
 
 ```
-OH_AI_API OH_AI_Status OH_AI_ExportModelBuffer (OH_AI_ModelHandle model, OH_AI_ModelType model_type, char ** model_data, size_t * data_size, OH_AI_QuantizationType quantization_type, bool export_inference_only, char ** output_tensor_name, size_t num )
+OH_AI_API OH_AI_Status OH_AI_ExportModelBuffer (OH_AI_ModelHandle model, OH_AI_ModelType model_type, void * model_data, size_t * data_size, OH_AI_QuantizationType quantization_type, bool export_inference_only, char ** output_tensor_name, size_t num )
 ```
 **描述**
 导出训练模型内存缓存，仅用于端侧训练。
@@ -1659,7 +1661,7 @@ OH_AI_API OH_AI_Status OH_AI_ModelBuildFromFile (OH_AI_ModelHandle model, const 
 ### OH_AI_ModelCreate()
 
 ```
-OH_AI_API OH_AI_ModelHandle OH_AI_ModelCreate ()
+OH_AI_API OH_AI_ModelHandle OH_AI_ModelCreate (void)
 ```
 
 **描述**

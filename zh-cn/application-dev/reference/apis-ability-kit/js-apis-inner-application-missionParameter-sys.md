@@ -15,8 +15,8 @@
 
 ## 属性
 
-| 名称          | 类型    | 可读   | 可写   | 说明          |
+| 名称          | 类型    | 只读   | 可选   | 说明          |
 | ----------- | ------- | ---- | ---- | ----------- |
-| deviceId    | string  | 是    | 是    | 表示设备ID。     |
-| fixConflict | boolean | 是    | 是    | 表示是否存在版本冲突。 |
-| tag         | number  | 是    | 是    | 表示特定的标签。    |
+| deviceId    | string  | 是    | 否    | 表示设备ID。     |
+| fixConflict | boolean | 是    | 否    | 表示是否存在版本冲突，true表示存在冲突，false表示不存在冲突。 |
+| tag         | number  | 是    | 否    | 表示任务的标签，0表示默认标签。    |

@@ -111,7 +111,7 @@ ISensorInterface::Register ([in] int groupId, [in] ISensorCallback callbackObj )
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| groupId | 传感器组ID。 groupId枚举值范围为128-160，表示已订阅医疗传感器服务，只需成功订阅一次，无需重复订阅。 groupId枚举值范围不在128-160之间，这意味着传统传感器已订阅，只需成功订阅一次，无需重复订阅。  | 
+| groupId | 传感器组ID。groupId枚举值范围为128-160，表示已订阅医疗传感器服务，只需成功订阅一次，无需重复订阅。groupId枚举值范围不在128-160之间，这意味着传统传感器已订阅，只需成功订阅一次，无需重复订阅。  | 
 | callbackObj | 要注册的回调函数，详见[ISensorCallback](interface_i_sensor_callback_v10.md)。 | 
 
 **返回：**
@@ -208,7 +208,7 @@ ISensorInterface::Unregister ([in] int groupId, [in] ISensorCallback callbackObj
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| groupId | 传感器组ID。 groupId枚举值范围为128-160，表示已订阅医疗传感器服务。只需成功取消订阅一次，无需重复取消订阅。 groupId枚举值范围不在128-160之间，这意味着传统传感器已订阅。并且成功取消订阅。  | 
+| groupId | 传感器组ID。groupId枚举值范围为128-160，表示已订阅医疗传感器服务。只需成功取消订阅一次，无需重复取消订阅。groupId枚举值范围不在128-160之间，这意味着传统传感器已订阅。并且成功取消订阅。  | 
 | callbackObj | 要取消注册的回调函数，详见[ISensorCallback](interface_i_sensor_callback_v10.md)。 | 
 
 **返回：**

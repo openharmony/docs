@@ -46,6 +46,7 @@ on(type: 'touch', receiver: TouchEventReceiver): void
 
 ```js
 import { TouchEvent } from '@kit.InputKit';
+
 try {
   inputMonitor.on('touch', (touchEvent: TouchEvent) => {
     console.log(`Monitor on success ${JSON.stringify(touchEvent)}`);
@@ -129,14 +130,13 @@ on(type: 'mouse', rect: display.Rect[], receiver: Callback&lt;MouseEvent&gt;): v
 
 ```js
 import { MouseEvent } from '@kit.InputKit';
-import { promptAction } from '@kit.ArkUI';
 import { display } from '@kit.ArkUI';
 
 /**
  * 鼠标在矩形区域内时，触发的回调任务。
  */
-function callback(mouseEvent : MouseEvent) {
-  promptAction.showToast({
+let callback = (mouseEvent : MouseEvent) => {
+  this.getUIContext().getPromptAction().showToast({
     message: `监听成功：${JSON.stringify(mouseEvent)}`
   })
   console.log(`Monitor on success ${JSON.stringify(mouseEvent)}`);
@@ -195,6 +195,7 @@ off(type: 'touch', receiver?: TouchEventReceiver): void
 
 ```js
 import { TouchEvent } from '@kit.InputKit';
+
 // 取消监听单个回调函数
 let callback = (touchEvent: TouchEvent) => {
   console.log(`Monitor on success ${JSON.stringify(touchEvent)}`);
@@ -211,6 +212,7 @@ try {
 
 ```js
 import { TouchEvent } from '@kit.InputKit';
+
 // 取消监听所有回调函数
 let callback = (touchEvent: TouchEvent) => {
   console.log(`Monitor on success ${JSON.stringify(touchEvent)}`);
@@ -255,6 +257,7 @@ off(type: 'mouse', receiver?: Callback&lt;MouseEvent&gt;): void
 
 ```js
 import { MouseEvent } from '@kit.InputKit';
+
 // 取消监听单个回调函数
 let callback = (mouseEvent: MouseEvent) => {
   console.log(`Monitor on success ${JSON.stringify(mouseEvent)}`);
@@ -271,6 +274,7 @@ try {
 
 ```js
 import { MouseEvent } from '@kit.InputKit';
+
 // 取消监听所有回调函数
 let callback = (mouseEvent: MouseEvent) => {
   console.log(`Monitor on success ${JSON.stringify(mouseEvent)}`);
@@ -311,6 +315,7 @@ try {
 
 ```js
 import { TouchEvent } from '@kit.InputKit';
+
 try {
   inputMonitor.on('touch', touchEvent => {
     if (touchEvent.touches.length == 3) { // 当前有三个手指按下
@@ -353,7 +358,8 @@ on(type: 'pinch', receiver: Callback&lt;[Pinch](js-apis-multimodalinput-gesturee
 **示例：**
 
 ```js
-import type { Pinch } from '@kit.InputKit';
+import { Pinch } from '@kit.InputKit';
+
 try {
   inputMonitor.on('pinch', (pinchEvent) => {
     console.log(`Monitor on success ${JSON.stringify(pinchEvent)}`);
@@ -664,7 +670,8 @@ on(type: 'rotate', fingers: number, receiver: Callback&lt;Rotate&gt;): void
 **示例：**
 
 ```js
-import type { Rotate } from '@kit.InputKit';
+import { Rotate } from '@kit.InputKit';
+
 try {
   inputMonitor.on('rotate', 2, (rotateEvent: Rotate) => {
     console.log(`Monitor on success ${JSON.stringify(rotateEvent)}`);
@@ -770,7 +777,8 @@ on(type: 'pinch', fingers: number, receiver: Callback&lt;Pinch&gt;): void
 **示例：**
 
 ```js
-import type { Pinch } from '@kit.InputKit';
+import { Pinch } from '@kit.InputKit';
+
 try {
   inputMonitor.on('pinch', 2, (pinchEvent: Pinch) => {
     console.log(`Monitor on success ${JSON.stringify(pinchEvent)}`);
@@ -948,7 +956,7 @@ try {
 }
 ```
 
-## inputMonitor.on('touchscreenSwipe')<sup>14+</sup>
+## inputMonitor.on('touchscreenSwipe')<sup>18+</sup>
 
 on(type: 'touchscreenSwipe', fingers: number, receiver: Callback&lt;TouchGestureEvent&gt;): void
 
@@ -979,7 +987,6 @@ on(type: 'touchscreenSwipe', fingers: number, receiver: Callback&lt;TouchGesture
 **示例：**
 
 ```js
-import inputMonitor from '@ohos.multimodalInput.inputMonitor';
 import { TouchGestureEvent } from '@ohos.multimodalInput.gestureEvent';
 
 let fingers: number = 4;
@@ -992,7 +999,7 @@ try {
 }
 ```
 
-## inputMonitor.off('touchscreenSwipe')<sup>14+</sup>
+## inputMonitor.off('touchscreenSwipe')<sup>18+</sup>
 
 off(type: 'touchscreenSwipe', fingers: number, receiver?: Callback&lt;TouchGestureEvent&gt;): void
 
@@ -1024,7 +1031,6 @@ off(type: 'touchscreenSwipe', fingers: number, receiver?: Callback&lt;TouchGestu
 
 ```js
 // 取消监听单个回调函数
-import inputMonitor from '@ohos.multimodalInput.inputMonitor';
 import { TouchGestureEvent } from '@ohos.multimodalInput.gestureEvent';
 
 let callback = (event: TouchGestureEvent) => {
@@ -1041,7 +1047,6 @@ try {
 
 ```js
 // 取消监听所有回调函数
-import inputMonitor from '@ohos.multimodalInput.inputMonitor';
 import { TouchGestureEvent } from '@ohos.multimodalInput.gestureEvent';
 
 let fingers: number = 4;
@@ -1055,7 +1060,7 @@ try {
 }
 ```
 
-## inputMonitor.on('touchscreenPinch')<sup>14+</sup>
+## inputMonitor.on('touchscreenPinch')<sup>18+</sup>
 
 on(type: 'touchscreenPinch', fingers: number, receiver: Callback&lt;TouchGestureEvent&gt;): void
 
@@ -1086,7 +1091,6 @@ on(type: 'touchscreenPinch', fingers: number, receiver: Callback&lt;TouchGesture
 **示例：**
 
 ```js
-import inputMonitor from '@ohos.multimodalInput.inputMonitor';
 import { TouchGestureEvent } from '@ohos.multimodalInput.gestureEvent';
 
 let fingers: number = 4;
@@ -1099,7 +1103,7 @@ try {
 }
 ```
 
-## inputMonitor.off('touchscreenPinch')<sup>14+</sup>
+## inputMonitor.off('touchscreenPinch')<sup>18+</sup>
 
 off(type: 'touchscreenPinch', fingers: number, receiver?: Callback&lt;TouchGestureEvent&gt;): void
 
@@ -1131,7 +1135,6 @@ off(type: 'touchscreenPinch', fingers: number, receiver?: Callback&lt;TouchGestu
 
 ```js
 // 取消监听单个回调函数
-import inputMonitor from '@ohos.multimodalInput.inputMonitor';
 import { TouchGestureEvent } from '@ohos.multimodalInput.gestureEvent';
 
 let callback = (event: TouchGestureEvent) => {
@@ -1148,7 +1151,6 @@ try {
 
 ```js
 // 取消监听所有回调函数
-import inputMonitor from '@ohos.multimodalInput.inputMonitor';
 import { TouchGestureEvent } from '@ohos.multimodalInput.gestureEvent';
 
 let fingers: number = 4;
@@ -1162,7 +1164,7 @@ try {
 }
 ```
 
-## inputMonitor.on('keyPressed')<sup>16+</sup>
+## inputMonitor.on('keyPressed')<sup>15+</sup>
 
 on(type: 'keyPressed', keys: Array&lt;KeyCode&gt;, receiver: Callback&lt;KeyEvent&gt;): void
 
@@ -1196,8 +1198,8 @@ on(type: 'keyPressed', keys: Array&lt;KeyCode&gt;, receiver: Callback&lt;KeyEven
 ```js
 import { inputMonitor, KeyEvent, KeyCode } from '@kit.InputKit';
 
-let keys: Array<KeyCode> = [KeyCode.KEYCODE_VOLUME_UP];
 try {
+  let keys: Array<KeyCode> = [KeyCode.KEYCODE_VOLUME_UP];
   inputMonitor.on('keyPressed', keys, (event: KeyEvent ) => {
     console.log(`Monitor on success ${JSON.stringify(event)}`);
   });
@@ -1206,7 +1208,7 @@ try {
 }
 ```
 
-## inputMonitor.off('keyPressed')<sup>16+</sup>
+## inputMonitor.off('keyPressed')<sup>15+</sup>
 
 off(type: 'keyPressed', receiver?: Callback&lt;KeyEvent&gt;): void
 
@@ -1239,11 +1241,11 @@ off(type: 'keyPressed', receiver?: Callback&lt;KeyEvent&gt;): void
 // 取消监听单个回调函数
 import { inputMonitor, KeyEvent, KeyCode } from '@kit.InputKit';
 
-let callback = (event: KeyEvent) => {
-  console.log(`Monitor on success ${JSON.stringify(event)}`);
-};
-let keys: Array<KeyCode> = [KeyCode.KEYCODE_VOLUME_UP];
 try {
+  let callback = (event: KeyEvent) => {
+    console.log(`Monitor on success ${JSON.stringify(event)}`);
+  };
+  let keys: Array<KeyCode> = [KeyCode.KEYCODE_VOLUME_UP];
   inputMonitor.on('keyPressed', keys, callback);
   inputMonitor.off("keyPressed", callback);
 } catch (error) {
@@ -1255,8 +1257,8 @@ try {
 // 取消监听所有回调函数
 import { inputMonitor, KeyEvent, KeyCode } from '@kit.InputKit';
 
-let keys: Array<KeyCode> = [KeyCode.KEYCODE_VOLUME_UP];
 try {
+  let keys: Array<KeyCode> = [KeyCode.KEYCODE_VOLUME_UP];
   inputMonitor.on('keyPressed', keys, (event: KeyEvent) => {
     console.log(`Monitor on success ${JSON.stringify(event)}`);
   });

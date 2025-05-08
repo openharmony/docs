@@ -6,7 +6,9 @@
 
 > **说明：**
 >
-> 该组件从API Version 10开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+> 该组件从API version 10开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>
+> 该组件不支持在Wearable设备上使用。
 
 
 ## 导入模块
@@ -21,7 +23,7 @@ import { SymbolGlyphModifier, DividerModifier, ToolBar, ToolBarOptions, ToolBarM
 无
 
 ## 属性
-不支持[通用属性](ts-component-general-attributes.md)
+不支持[通用属性](ts-component-general-attributes.md)。
 
 ## ToolBar
 
@@ -29,17 +31,15 @@ Toolbar({toolBarList: ToolBarOptions, activateIndex?: number, controller: TabsCo
 
 **装饰器类型：**\@Component
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
-
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称                          | 类型                                                         | 必填 | 装饰器类型  | 说明                                                                                                 |
-| ----------------------------- | ------------------------------------------------------------ | ---- | ----------- |----------------------------------------------------------------------------------------------------|
-| toolBarList                   | [ToolBarOptions](#toolbaroptions)                            | 是   | @ObjectLink | 工具栏列表。                                                                                             |
-| activateIndex                 | number                                                       | 否   | @Prop       | 激活态的子项。<br/>默认值：-1。                                                                                |
-| controller                    | [TabsController](ts-container-tabs.md#tabscontroller)        | 是   | -           | 工具栏控制器，不支持控制工具栏子项。                                                                                 |
-| dividerModifier<sup>13+</sup> | [DividerModifier](ts-universal-attributes-attribute-modifier.md) | 否   | @Prop       | 工具栏头部分割线属性，可设置分割线高度、颜色等。<br/>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。                       |
-| toolBarModifier<sup>13+</sup> | [ToolBarModifier](#toolbarmodifier13)                        | 否   | @Prop       | 工具栏属性，可设置工具栏高度、背景色、内边距（仅在工具栏子项数量小于5时生效）、是否显示按压态。<br/>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。 |
+| 名称                          | 类型                                                         | 必填 | 装饰器类型  | 说明                                                                                                                                                             |
+| ----------------------------- | ------------------------------------------------------------ | ---- | ----------- |----------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| toolBarList                   | [ToolBarOptions](#toolbaroptions)                            | 是   | @ObjectLink | 工具栏列表。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                                                                                     |
+| activateIndex                 | number                                                       | 否   | @Prop       | 激活态的子项。<br/>取值范围：大于等于-1。<br/>默认值：-1，没有激活态的子项。若设置数值小于-1，按没有激活项处理。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                           |
+| controller                    | [TabsController](ts-container-tabs.md#tabscontroller)        | 是   | -           | 工具栏控制器，不支持控制工具栏子项。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                                                                         |
+| dividerModifier<sup>13+</sup> | [DividerModifier](ts-universal-attributes-attribute-modifier.md) | 否   | @Prop       | 工具栏头部分割线属性，可设置分割线高度、颜色等。<br/>默认值：系统默认值。<br/>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。                                                                    |
+| toolBarModifier<sup>13+</sup> | [ToolBarModifier](#toolbarmodifier13)                        | 否   | @Prop       | 工具栏属性，可设置工具栏高度、背景色、内边距（仅在工具栏子项数量小于5时生效）、是否显示按压态。<br/>默认值：<br/>工具栏高度：56vp。<br/>背景色：ohos_id_toolbar_bg。<br/>内边距：24vp。<br/>显示按压态。<br/>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。 |
 
 ## ToolBarOptions
 
@@ -93,6 +93,12 @@ backgroundColor(backgroundColor: ResourceColor): ToolBarModifier
 | ------- | ------------------------------------------------------ | ---- |------------------------------------------------------------------|
 | backgroundColor | [ResourceColor](ts-types.md#resourcecolor) | 是   | 工具栏背景色。<br/>默认背景色为$r('sys.color.ohos_id_color_toolbar_bg')。 |
 
+**返回值：**
+
+| 类型                                    | 说明                                    |
+|---------------------------------------|---------------------------------------|
+| [ToolBarModifier](#toolbarmodifier13) | 设置backgroundColor后的ToolBarModifier对象。 |
+
 ### padding
 
 padding(padding: LengthMetrics): ToolBarModifier
@@ -108,6 +114,12 @@ padding(padding: LengthMetrics): ToolBarModifier
 | 参数名  | 类型     | 必填 | 说明                                                                                  |
 | ------- |--------| ---- |-------------------------------------------------------------------------------------|
 | padding | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)<sup>12+</sup> | 是   | 工具栏左右内边距，仅在item小于5个时生效。<br/>工具栏默认在item小于5个时padding为24vp，大于等于5个时为0。 |
+
+**返回值：**
+
+| 类型                                    | 说明                                    |
+|---------------------------------------|---------------------------------------|
+| [ToolBarModifier](#toolbarmodifier13) | 设置padding后的ToolBarModifier对象。 |
 
 ### height
 
@@ -125,6 +137,13 @@ height(height: LengthMetrics): ToolBarModifier
 | ------- |---------------------------------| ---- |------------------------------------|
 | height | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)<sup>12+</sup> | 是   | 工具栏高度。<br/>工具栏高度默认为56vp（不包含分割线）。 |
 
+**返回值：**
+
+| 类型                                    | 说明                                    |
+|---------------------------------------|---------------------------------------|
+| [ToolBarModifier](#toolbarmodifier13) | 设置height后的ToolBarModifier对象。 |
+
+
 ### stateEffect
 
 stateEffect(stateEffect: boolean): ToolBarModifier
@@ -140,6 +159,12 @@ stateEffect(stateEffect: boolean): ToolBarModifier
 | 参数名  | 类型                             | 必填 | 说明                                                       |
 | ------- |--------------------------------| ---- |----------------------------------------------------------|
 | stateEffect | boolean | 是   | 工具栏是否显示按压态效果。<br/>true为显示按压态效果，false为移除按压态效果，默认为true。 |
+
+**返回值：**
+
+| 类型                                    | 说明                                    |
+|---------------------------------------|---------------------------------------|
+| [ToolBarModifier](#toolbarmodifier13) | 设置stateEffect后的ToolBarModifier对象。 |
 
 ## ItemState
 
@@ -167,7 +192,7 @@ ToolBarSymbolGlyphOptions定义图标的属性。
 | activated| [SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md) | 否   | 工具栏symbol图标激活态样式。<br/>默认值：fontColor：$r('sys.color.icon_emphasize')，fontSize：24vp。 |
 
 ## 事件
-支持[通用事件](ts-component-general-events.md)
+不支持[通用事件](ts-component-general-events.md)。
 
 ## 示例
 

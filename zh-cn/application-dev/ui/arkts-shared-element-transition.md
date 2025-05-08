@@ -161,7 +161,7 @@ export default struct  Post {
 
 ## 新建容器并跨容器迁移组件
 
-通过[NodeContainer](../reference/apis-arkui/arkui-ts/ts-basic-components-nodecontainer.md)[自定义占位节点](arkts-user-defined-place-hoder.md)，利用[NodeController](../reference/apis-arkui/js-apis-arkui-nodeController.md)实现组件的跨节点迁移，配合属性动画给组件的迁移过程赋予一镜到底效果。这种一镜到底的实现方式可以结合多种转场方式使用，如导航转场（[Navigation](../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md)）、半模态转场（[bindSheet](../reference/apis-arkui/arkui-ts/ts-universal-attributes-sheet-transition.md#bindsheet)）等。
+通过[NodeContainer](../reference/apis-arkui/arkui-ts/ts-basic-components-nodecontainer.md)[自定义占位节点](arkts-user-defined-place-holder.md)，利用[NodeController](../reference/apis-arkui/js-apis-arkui-nodeController.md)实现组件的跨节点迁移，配合属性动画给组件的迁移过程赋予一镜到底效果。这种一镜到底的实现方式可以结合多种转场方式使用，如导航转场（[Navigation](../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md)）、半模态转场（[bindSheet](../reference/apis-arkui/arkui-ts/ts-universal-attributes-sheet-transition.md#bindsheet)）等。
 
 ### 结合Stack使用
 
@@ -177,20 +177,21 @@ export default struct  Post {
 
 ```ts
 // Index.ets
-import { createPostNode, getPostNode, PostNode } from "../PostNode"
-import { componentUtils, curves } from '@kit.ArkUI';
+import { createPostNode, getPostNode, PostNode } from "../PostNode";
+import { componentUtils, curves, UIContext } from '@kit.ArkUI';
 
 @Entry
 @Component
 struct Index {
   // 新建一镜到底动画类
-  @State AnimationProperties: AnimationProperties = new AnimationProperties();
-  private listArray: Array<number> = [1, 2, 3, 4, 5, 6, 7, 8 ,9, 10];
+  private uiContext: UIContext = this.getUIContext();
+  @State AnimationProperties: AnimationProperties = new AnimationProperties(this.uiContext);
+  private listArray: Array<number> = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
   build() {
     // 卡片折叠态，展开态的共同父组件
     Stack() {
-      List({space: 20}) {
+      List({ space: 20 }) {
         ForEach(this.listArray, (item: number) => {
           ListItem() {
             // 卡片折叠态
@@ -200,6 +201,7 @@ struct Index {
       }
       .clip(false)
       .alignListItem(ListItemAlign.Center)
+
       if (this.AnimationProperties.isExpandPageShow) {
         // 卡片展开态
         ExpandPage({ AnimationProperties: this.AnimationProperties })
@@ -225,25 +227,26 @@ struct PostItem {
       this.nodeController.setCallback(this.resetNode.bind(this));
     }
   }
+
   resetNode() {
     this.nodeController = getPostNode(this.index.toString());
   }
 
   build() {
-        Stack() {
-          NodeContainer(this.nodeController)
-        }
-        .width('100%')
-        .height(100)
-        .key(this.index.toString())
-        .onClick( ()=> {
-          if (this.nodeController != undefined) {
-            // 卡片从折叠态节点下树
-            this.nodeController.onRemove();
-          }
-          // 触发卡片从折叠到展开态的动画
-          this.AnimationProperties.expandAnimation(this.index);
-        })
+    Stack() {
+      NodeContainer(this.nodeController)
+    }
+    .width('100%')
+    .height(100)
+    .key(this.index.toString())
+    .onClick(() => {
+      if (this.nodeController != undefined) {
+        // 卡片从折叠态节点下树
+        this.nodeController.onRemove();
+      }
+      // 触发卡片从折叠到展开态的动画
+      this.AnimationProperties.expandAnimation(this.index);
+    })
   }
 }
 
@@ -322,6 +325,11 @@ class AnimationProperties {
   // 设置卡片展开后相对父组件的位置
   private expandTranslateX: number = 0;
   private expandTranslateY: number = 0;
+  private uiContext: UIContext;
+
+  constructor(uiContext: UIContext) {
+    this.uiContext = uiContext
+  }
 
   public expandAnimation(index: number): void {
     // 记录展开态卡片的序号
@@ -333,7 +341,7 @@ class AnimationProperties {
     // 展开态卡片上树
     this.isExpandPageShow = true;
     // 卡片展开的属性动画
-    animateTo({ curve: curves.springMotion(0.6, 0.9)
+    this.uiContext?.animateTo({ curve: curves.springMotion(0.6, 0.9)
     }, () => {
       this.translateX = this.calculatedTranslateX;
       this.translateY = this.calculatedTranslateY;
@@ -343,17 +351,17 @@ class AnimationProperties {
 
   // 获取需要跨节点迁移的组件的位置，及迁移前后节点的公共父节点的位置，用以计算做动画组件的动画参数
   public calculateData(key: string): void {
-    let clickedImageInfo = this.getRectInfoById(key);
-    let rootStackInfo = this.getRectInfoById('rootStack');
-    this.positionX = px2vp(clickedImageInfo.left - rootStackInfo.left);
-    this.positionY = px2vp(clickedImageInfo.top - rootStackInfo.top);
-    this.calculatedTranslateX = px2vp(rootStackInfo.left - clickedImageInfo.left) + this.expandTranslateX;
-    this.calculatedTranslateY = px2vp(rootStackInfo.top - clickedImageInfo.top) + this.expandTranslateY;
+    let clickedImageInfo = this.getRectInfoById(this.uiContext, key);
+    let rootStackInfo = this.getRectInfoById(this.uiContext, 'rootStack');
+    this.positionX = this.uiContext.px2vp(clickedImageInfo.left - rootStackInfo.left);
+    this.positionY = this.uiContext.px2vp(clickedImageInfo.top - rootStackInfo.top);
+    this.calculatedTranslateX = this.uiContext.px2vp(rootStackInfo.left - clickedImageInfo.left) + this.expandTranslateX;
+    this.calculatedTranslateY = this.uiContext.px2vp(rootStackInfo.top - clickedImageInfo.top) + this.expandTranslateY;
   }
 
   // 根据组件的id获取组件的位置信息
-  private getRectInfoById(id: string): RectInfo {
-    let componentInfo: componentUtils.ComponentInfo = componentUtils.getRectangleById(id);
+  private getRectInfoById(context: UIContext, id: string): RectInfo {
+    let componentInfo: componentUtils.ComponentInfo = context.getComponentUtils().getRectangleById(id);
 
     if (!componentInfo) {
       throw Error('object is empty');
@@ -365,9 +373,9 @@ class AnimationProperties {
     rstRect.left = componentInfo.translate.x + componentInfo.windowOffset.x + widthScaleGap;
     rstRect.top = componentInfo.translate.y + componentInfo.windowOffset.y + heightScaleGap;
     rstRect.right =
-      componentInfo.translate.x + componentInfo.windowOffset.x + componentInfo.size.width - widthScaleGap;
+    componentInfo.translate.x + componentInfo.windowOffset.x + componentInfo.size.width - widthScaleGap;
     rstRect.bottom =
-      componentInfo.translate.y + componentInfo.windowOffset.y + componentInfo.size.height - heightScaleGap;
+    componentInfo.translate.y + componentInfo.windowOffset.y + componentInfo.size.height - heightScaleGap;
     rstRect.width = rstRect.right - rstRect.left;
     rstRect.height = rstRect.bottom - rstRect.top;
 
@@ -532,7 +540,7 @@ export const deleteNode = (id: string) => {
 
 ### 结合Navigation使用
 
-可以利用[Navigation](../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md)的自定义导航转场动画能力（[customNavContentTransition](../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md#customnavcontenttransition11)，可参考Navigation[示例3](../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md#示例3)）实现一镜到底动效。共享元素转场期间，组件由消失页面迁移至出现页面。
+可以利用[Navigation](../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md)的自定义导航转场动画能力（[customNavContentTransition](../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md#customnavcontenttransition11)，可参考Navigation[示例3](../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md#示例3设置可交互转场动画)）实现一镜到底动效。共享元素转场期间，组件由消失页面迁移至出现页面。
 
 以展开收起缩略图的场景为例，实现步骤为：
 
@@ -903,7 +911,7 @@ export class CustomTransition {
 ```ts
 // AnimationProperties.ets
 // 一镜到底转场动画封装
-import { curves } from '@kit.ArkUI';
+import { curves, UIContext } from '@kit.ArkUI';
 import { RectInfoInPx } from '../utils/ComponentAttrUtils';
 import { WindowUtils } from '../utils/WindowUtils';
 import { MyNodeController } from '../NodeContainer/CustomComponent';
@@ -924,9 +932,14 @@ export class AnimationProperties {
   public radius: number = 0;
   public positionValue: number = 0;
   public showDetailContent: boolean = false;
+  private uiContext: UIContext;
+
+  constructor(uiContext: UIContext) {
+    this.uiContext = uiContext
+  }
 
   public doAnimation(cardItemInfo_px: RectInfoInPx, isPush: boolean, isExit: boolean,
-    transitionProxy: NavigationTransitionProxy, extraTranslateValue: number, prePageOnFinish: (index: MyNodeController) => void, myNodeController: MyNodeController|undefined): void {
+                     transitionProxy: NavigationTransitionProxy, extraTranslateValue: number, prePageOnFinish: (index: MyNodeController) => void, myNodeController: MyNodeController | undefined): void {
     // 首先计算卡片的宽高与窗口宽高的比例
     let widthScaleRatio = cardItemInfo_px.width / WindowUtils.windowWidth_px;
     let heightScaleRatio = cardItemInfo_px.height / WindowUtils.windowHeight_px;
@@ -938,24 +951,24 @@ export class AnimationProperties {
     let initClipWidth: Dimension = 0;
     let initClipHeight: Dimension = 0;
     // 使得PageTwo卡片向上扩到状态栏
-    let initPositionValue: number = -px2vp(WindowUtils.topAvoidAreaHeight_px + extraTranslateValue);;
+    let initPositionValue: number = -this.uiContext.px2vp(WindowUtils.topAvoidAreaHeight_px + extraTranslateValue);
 
     if (isUseWidthScale) {
-      initTranslateX = px2vp(cardItemInfo_px.left - (WindowUtils.windowWidth_px - cardItemInfo_px.width) / 2);
+      initTranslateX = this.uiContext.px2vp(cardItemInfo_px.left - (WindowUtils.windowWidth_px - cardItemInfo_px.width) / 2);
       initClipWidth = '100%';
-      initClipHeight = px2vp((cardItemInfo_px.height) / initScale);
-      initTranslateY = px2vp(cardItemInfo_px.top - ((vp2px(initClipHeight) - vp2px(initClipHeight) * initScale) / 2));
+      initClipHeight = this.uiContext.px2vp((cardItemInfo_px.height) / initScale);
+      initTranslateY = this.uiContext.px2vp(cardItemInfo_px.top - ((vp2px(initClipHeight) - vp2px(initClipHeight) * initScale) / 2));
     } else {
-      initTranslateY = px2vp(cardItemInfo_px.top - (WindowUtils.windowHeight_px - cardItemInfo_px.height) / 2);
+      initTranslateY = this.uiContext.px2vp(cardItemInfo_px.top - (WindowUtils.windowHeight_px - cardItemInfo_px.height) / 2);
       initClipHeight = '100%';
-      initClipWidth = px2vp((cardItemInfo_px.width) / initScale);
-      initTranslateX = px2vp(cardItemInfo_px.left - (WindowUtils.windowWidth_px / 2 - cardItemInfo_px.width / 2));
+      initClipWidth = this.uiContext.px2vp((cardItemInfo_px.width) / initScale);
+      initTranslateX = this.uiContext.px2vp(cardItemInfo_px.left - (WindowUtils.windowWidth_px / 2 - cardItemInfo_px.width / 2));
     }
 
     // 转场动画开始前通过计算scale、translate、position和clip height & width，确定节点迁移前后位置一致
     console.log(TAG, 'initScale: ' + initScale + ' initTranslateX ' + initTranslateX +
-      ' initTranslateY ' + initTranslateY + ' initClipWidth ' + initClipWidth +
-      ' initClipHeight ' + initClipHeight + ' initPositionValue ' + initPositionValue);
+    ' initTranslateY ' + initTranslateY + ' initClipWidth ' + initClipWidth +
+    ' initClipHeight ' + initClipHeight + ' initPositionValue ' + initPositionValue);
     // 转场至新页面
     if (isPush && !isExit) {
       this.scaleValue = initScale;
@@ -965,7 +978,7 @@ export class AnimationProperties {
       this.translateY = initTranslateY;
       this.positionValue = initPositionValue;
 
-      animateTo({
+      this.uiContext?.animateTo({
         curve: curves.interpolatingSpring(0, 1, 328, 36),
         onFinish: () => {
           if (transitionProxy) {
@@ -983,7 +996,7 @@ export class AnimationProperties {
         this.showDetailContent = true;
       })
 
-      animateTo({
+      this.uiContext?.animateTo({
         duration: 100,
         curve: Curve.Sharp,
       }, () => {
@@ -994,7 +1007,7 @@ export class AnimationProperties {
       // 返回旧页面
     } else if (!isPush && isExit) {
 
-      animateTo({
+      this.uiContext?.animateTo({
         duration: 350,
         curve: Curve.EaseInOut,
         onFinish: () => {
@@ -1017,7 +1030,7 @@ export class AnimationProperties {
         this.showDetailContent = false;
       })
 
-      animateTo({
+      this.uiContext?.animateTo({
         duration: 200,
         delay: 150,
         curve: Curve.Friction,

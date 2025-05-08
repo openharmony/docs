@@ -46,7 +46,12 @@ Common notification styles in the Notification Kit are as follows.
 ## Constraints
 - There is a limit on the number of notifications per application in the system windows. The current limit is 24.
 - The notification cannot exceed 200 KB (due to cross-process serialization).
-- The total number of notifications published by all system applications cannot exceed 10 per second, and that of notifications updated cannot exceed 20 per second.
+- The publication and update frequencies for notifications must meet the following requirements. Otherwise, the publication or update fails and the corresponding error code is returned.
+  - The total number of notifications published by an application cannot exceed 10 per second, and that of notifications updated cannot exceed 20 per second.
+  - The total number of notifications published by all third-party applications cannot exceed 15 per second, and that of notifications updated cannot exceed 30 per second.
+  <!--Del-->
+  - The total number of notifications published by all system applications cannot exceed 15 per second, and that of notifications updated cannot exceed 30 per second.
+  <!--DelEnd-->
 
 ## Relationship with Related Kits
 - Notifications created by Notification Kit are displayed in the notification panel in real time. To publish scheduled notifications when your application is in the background or is not running, you can use [BackGroundTask Kit](../reference/apis-backgroundtasks-kit/js-apis-backgroundTaskManager.md). For example, you can use it to publish a flash sale reminder for your shopping application. Currently, the notification reminder feature is available for countdown, calendar, and alarm events.

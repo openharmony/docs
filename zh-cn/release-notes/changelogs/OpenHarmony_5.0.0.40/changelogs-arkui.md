@@ -1,75 +1,6 @@
 # ArkUI子系统Changelog
 
-## cl.arkui.1 按钮默认值变更为新增圆角矩形类型
-
-**访问级别**
-
-公开接口
-
-**变更原因**
-
-原有默认类型按钮是胶囊按钮，在适老化场景下字体过大，在多行等场景下胶囊按钮文字易超出其圆角范围。不符合简单易用及高端精致原则，因此新增圆角矩形类型按钮，默认值变为新增的圆角矩形类型。
-
-**变更影响**
-
-该变更为不兼容变更。
-
-变更前：ButtonOptions中type的默认值为ButtonType.Capsule。
-
-变更后：ButtonOptions中type的默认值为ButtonType.ROUNDED_RECTANGLE
-
-| 变更前 | 变更后 |
-|---------|---------|
-|![roundedRectButton_before](figures/roundedRectButton_before.png)|![figures/roundedRectButton_after.png](figures/roundedRectButton_after.png)|
-
-**起始API Level**
-
-API 9
-
-**变更发生版本**
-
-从OpenHarmony SDK 5.0.0.43开始。
-
-**变更的接口/组件**
-
-Button组件中ButtonOptions对象的type属性默认值。
-
-**适配指导**
-
-开发者在使用Button组件，创建默认类型的Button按钮时，Button按钮为ROUNDED_RECTANGLE类型。
-
-```ts
-
-@Entry
-@Component
-struct ButtonExample {
-  build() {
-    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Start, justifyContent: FlexAlign.SpaceBetween }) {
-      Text('Capsule button with rounded corners by default.').fontSize(9).fontColor(0xCCCCCC)
-      Flex({ alignItems: ItemAlign.Center, justifyContent: FlexAlign.SpaceBetween }) {
-        Button('Capsule')
-          .type(ButtonType.Capsule)
-          .backgroundColor(0x317aff)
-          .height(60)
-          .controlSize(ControlSize.NORMAL)
-          .width(180)
-      }
-      Text('Rounded rectangle button with rounded corners by default.').fontSize(9).fontColor(0xCCCCCC)
-      Flex({ alignItems: ItemAlign.Center, justifyContent: FlexAlign.SpaceBetween }) {
-        Button('Rounded rectangle')
-          .type(ButtonType.ROUNDED_RECTANGLE)
-          .backgroundColor(0x317aff)
-          .controlSize(ControlSize.NORMAL)
-          .height(60)
-          .width(180)
-      }
-    }.height(400).padding({ left: 35, right: 35, top: 35 })
-  }
-}
-
-```
-
-## cl.arkui.2 半模态顶部高度位置优化
+## cl.arkui.1 半模态顶部高度位置优化
 
 **访问级别**
 
@@ -112,7 +43,7 @@ bindSheet组件。
 
 默认行为变更，无需适配。
 
-## cl.arkui.3  文本拖拽结束键盘行为变更
+## cl.arkui.2  文本拖拽结束键盘行为变更
 
 **访问级别**
 

@@ -11,6 +11,8 @@
 
 **相关模块：**[ImageEffect](_image_effect.md)
 
+**所在头文件：**[image_effect_filter.h](image__effect__filter_8h.md)
+
 
 ## 汇总
 
@@ -19,7 +21,7 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| int32_t [int32Value](#int32value) | 整形值，对应[EFFECT_DATA_TYPE_INT32](_image_effect.md)。  | 
+| int32_t [int32Value](#int32value) | 整型值，对应[EFFECT_DATA_TYPE_INT32](_image_effect.md)。  | 
 | float [floatValue](#floatvalue) | 单精度浮点值，对应[EFFECT_DATA_TYPE_FLOAT](_image_effect.md)。  | 
 | double [doubleValue](#doublevalue) | 双精度浮点值，对应[EFFECT_DATA_TYPE_DOUBLE](_image_effect.md)。  | 
 | char [charValue](#charvalue) | 字节值，对应[EFFECT_DATA_TYPE_CHAR](_image_effect.md)。  | 
@@ -73,7 +75,7 @@ float ImageEffect_DataValue::floatValue
 int32_t ImageEffect_DataValue::int32Value
 ```
 **描述**
-整形值，对应[EFFECT_DATA_TYPE_INT32](_image_effect.md)。
+整型值，对应[EFFECT_DATA_TYPE_INT32](_image_effect.md)。
 
 
 ### longValue

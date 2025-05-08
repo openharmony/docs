@@ -6,13 +6,15 @@
 
 > **说明：**
 >
-> 该组件从API Version 10开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+> 该组件从API version 10开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>
+> 该组件不支持在Wearable设备上使用。
 
 
 ## 导入模块
 
 ```
-import { SelectTitleBar } from '@kit.ArkUI'
+import { SelectTitleBar } from '@kit.ArkUI';
 ```
 
 
@@ -21,7 +23,7 @@ import { SelectTitleBar } from '@kit.ArkUI'
 无
 
 ## 属性
-不支持[通用属性](ts-component-general-attributes.md)
+不支持[通用属性](ts-component-general-attributes.md)。
 
 ## SelectTitleBar
 
@@ -63,14 +65,14 @@ SelectTitleBar({selected: number, options: Array&lt;SelectOption&gt;, menuItems?
 | accessibilityDescription<sup>18+<sup> | ResourceStr | 否 | 标题栏右侧自定义按钮的无障碍描述。此描述用于向用户详细解释当前组件，开发人员应为组件的这一属性提供较为详尽的文本说明，以协助用户理解即将执行的操作及其可能产生的后果。特别是当这些后果无法仅从组件的属性和无障碍文本中直接获知时。如果组件同时具备文本属性和无障碍说明属性，当组件被选中时，系统将首先播报组件的文本属性，随后播报无障碍说明属性的内容。<br/>默认值为“单指双击即可执行”。<br/>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。           |
 
 ## 事件
-不支持[通用事件](ts-component-general-events.md)
+不支持[通用事件](ts-component-general-events.md)。
 
 ## 示例
 
 ### 示例1（下拉菜单标题栏）
 该示例实现了简单的下拉菜单标题栏，带有返回箭头的下拉菜单标题栏和带有右侧菜单项目列表的下拉菜单标题栏。
 ```ts
-import { SelectTitleBar, promptAction, SelectTitleBarMenuItem } from '@kit.ArkUI'
+import { SelectTitleBar, Prompt, SelectTitleBarMenuItem } from '@kit.ArkUI';
 
 
 @Entry
@@ -85,22 +87,22 @@ struct Index {
         // 启用图片
         isEnabled: true,
         // 点击菜单时触发事件
-        action: () => promptAction.showToast({ message: 'show toast index 1' }),
+        action: () => Prompt.showToast({ message: 'show toast index 1' }),
       },
       {
         value: $r('sys.media.ohos_ic_public_copy'),
         isEnabled: true,
-        action: () => promptAction.showToast({ message: 'show toast index 2' }),
+        action: () => Prompt.showToast({ message: 'show toast index 2' }),
       },
       {
         value: $r('sys.media.ohos_ic_public_edit'),
         isEnabled: true,
-        action: () => promptAction.showToast({ message: 'show toast index 3' }),
+        action: () => Prompt.showToast({ message: 'show toast index 3' }),
       },
       {
         value: $r('sys.media.ohos_ic_public_remove'),
         isEnabled: true,
-        action: () => promptAction.showToast({ message: 'show toast index 4' }),
+        action: () => Prompt.showToast({ message: 'show toast index 4' }),
       },
     ]
 
@@ -118,7 +120,7 @@ struct Index {
           // 初始选择第一个下拉选项
           selected: 0,
           // 选中时触发函数
-          onSelected: (index) => promptAction.showToast({ message: 'page index ' + index }),
+          onSelected: (index) => Prompt.showToast({ message: 'page index ' + index }),
           // 隐藏左侧返回箭头
           hidesBackButton: true,
         })
@@ -130,7 +132,7 @@ struct Index {
             { value: '本地本地本地本地本地（储存卡）' },
           ],
           selected: 0,
-          onSelected: (index) => promptAction.showToast({ message: 'page index ' + index }),
+          onSelected: (index) => Prompt.showToast({ message: 'page index ' + index }),
           hidesBackButton: false,
         })
         Divider().height(2).color(0xCCCCCC)
@@ -141,7 +143,7 @@ struct Index {
             { value: '本地本地本地本地本地（储存卡）' },
           ],
           selected: 1,
-          onSelected: (index) => promptAction.showToast({ message: 'page index ' + index }),
+          onSelected: (index) => Prompt.showToast({ message: 'page index ' + index }),
           subtitle: 'example@example.com',
         })
         Divider().height(2).color(0xCCCCCC)
@@ -152,10 +154,10 @@ struct Index {
             { value: '本地本地本地本地本地（储存卡）' },
           ],
           selected: 1,
-          onSelected: (index) => promptAction.showToast({ message: 'page index ' + index }),
+          onSelected: (index) => Prompt.showToast({ message: 'page index ' + index }),
           subtitle: 'example@example.com',
           menuItems: [{ isEnabled: true, value: $r('sys.media.ohos_save_button_filled'),
-            action: () => promptAction.showToast({ message: 'show toast index 1' }),
+            action: () => Prompt.showToast({ message: 'show toast index 1' }),
           }],
         })
         Divider().height(2).color(0xCCCCCC)
@@ -166,7 +168,7 @@ struct Index {
             { value: '本地本地本地本地本地（储存卡）' },
           ],
           selected: 0,
-          onSelected: (index) => promptAction.showToast({ message: 'page index ' + index }),
+          onSelected: (index) => Prompt.showToast({ message: 'page index ' + index }),
           subtitle: 'example@example.com',
           menuItems: this.menuItems,
           badgeValue: 99,
@@ -184,7 +186,7 @@ struct Index {
 ### 示例2（右侧自定义按钮播报）
 该示例通过设置标题栏右侧自定义按钮属性accessibilityText、accessibilityDescription、accessibilityLevel自定义屏幕朗读播报文本。
 ```ts
-import { SelectTitleBar, promptAction, SelectTitleBarMenuItem } from '@kit.ArkUI'
+import { SelectTitleBar, Prompt, SelectTitleBarMenuItem } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -198,7 +200,7 @@ struct Index {
         // 启用图片
         isEnabled: true,
         // 点击菜单时触发事件
-        action: () => promptAction.showToast({ message: 'show toast index 1' }),
+        action: () => Prompt.showToast({ message: 'show toast index 1' }),
         // 屏幕朗读播报文本，优先级比label高
         accessibilityText: '保存',
         // 屏幕朗读是否可以聚焦到
@@ -209,7 +211,7 @@ struct Index {
       {
         value: $r('sys.media.ohos_ic_public_copy'),
         isEnabled: true,
-        action: () => promptAction.showToast({ message: 'show toast index 2' }),
+        action: () => Prompt.showToast({ message: 'show toast index 2' }),
         accessibilityText: '复制',
         // 此处为no，屏幕朗读不聚焦
         accessibilityLevel: 'no',
@@ -218,7 +220,7 @@ struct Index {
       {
         value: $r('sys.media.ohos_ic_public_edit'),
         isEnabled: true,
-        action: () => promptAction.showToast({ message: 'show toast index 3' }),
+        action: () => Prompt.showToast({ message: 'show toast index 3' }),
         accessibilityText: '编辑',
         accessibilityLevel: 'yes',
         accessibilityDescription: '点击操作编辑图标',
@@ -226,7 +228,7 @@ struct Index {
       {
         value: $r('sys.media.ohos_ic_public_remove'),
         isEnabled: true,
-        action: () => promptAction.showToast({ message: "show toast index 4" }),
+        action: () => Prompt.showToast({ message: "show toast index 4" }),
         accessibilityText: '移除',
         accessibilityLevel: 'yes',
         accessibilityDescription: '点击操作移除图标',
@@ -247,7 +249,7 @@ struct Index {
           // 初始选择第一个下拉选项
           selected: 0,
           // 选中时触发函数
-          onSelected: (index) => promptAction.showToast({ message: 'page index ' + index }),
+          onSelected: (index) => Prompt.showToast({ message: 'page index ' + index }),
           // 隐藏左侧返回箭头
           hidesBackButton: true,
         })
@@ -259,7 +261,7 @@ struct Index {
             { value: '本地本地本地本地本地（储存卡）' },
           ],
           selected: 0,
-          onSelected: (index) => promptAction.showToast({ message: 'page index ' + index }),
+          onSelected: (index) => Prompt.showToast({ message: 'page index ' + index }),
           hidesBackButton: false,
         })
         Divider().height(2).color(0xCCCCCC)
@@ -270,7 +272,7 @@ struct Index {
             { value: '本地本地本地本地本地（储存卡）' },
           ],
           selected: 1,
-          onSelected: (index) => promptAction.showToast({ message: 'page index ' + index }),
+          onSelected: (index) => Prompt.showToast({ message: 'page index ' + index }),
           subtitle: 'example@example.com',
         })
         Divider().height(2).color(0xCCCCCC)
@@ -281,10 +283,10 @@ struct Index {
             { value: '本地本地本地本地本地（储存卡）' },
           ],
           selected: 1,
-          onSelected: (index) => promptAction.showToast({ message: 'page index ' + index }),
+          onSelected: (index) => Prompt.showToast({ message: 'page index ' + index }),
           subtitle: 'example@example.com',
           menuItems: [{ isEnabled: true, value: $r('sys.media.ohos_save_button_filled'),
-            action: () => promptAction.showToast({ message: 'show toast index 1' }),
+            action: () => Prompt.showToast({ message: 'show toast index 1' }),
           }],
         })
         Divider().height(2).color(0xCCCCCC)
@@ -295,7 +297,7 @@ struct Index {
             { value: '本地本地本地本地本地（储存卡）' },
           ],
           selected: 0,
-          onSelected: (index) => promptAction.showToast({ message: 'page index ' + index }),
+          onSelected: (index) => Prompt.showToast({ message: 'page index ' + index }),
           subtitle: 'example@example.com',
           menuItems: this.menuItems,
           badgeValue: 99,
@@ -312,7 +314,7 @@ struct Index {
 ### 示例3（设置Symbol类型图标）
 该示例通过设置SelectTitleBarMenuItem的属性symbolStyle，展示了自定义Symbol类型图标。
 ```ts
-import { SelectTitleBar, promptAction, SelectTitleBarMenuItem, SymbolGlyphModifier } from '@kit.ArkUI'
+import { SelectTitleBar, Prompt, SelectTitleBarMenuItem, SymbolGlyphModifier } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -328,7 +330,7 @@ struct Index {
         // 启用图片
         isEnabled: true,
         // 点击菜单时触发事件
-        action: () => promptAction.showToast({ message: 'show toast index 1' }),
+        action: () => Prompt.showToast({ message: 'show toast index 1' }),
         // 屏幕朗读播报文本，优先级比label高
         accessibilityText: '保存',
         // 屏幕朗读是否可以聚焦到
@@ -340,7 +342,7 @@ struct Index {
         value: $r('sys.media.ohos_ic_public_copy'),
         symbolStyle: new SymbolGlyphModifier($r('sys.symbol.car')),
         isEnabled: true,
-        action: () => promptAction.showToast({ message: 'show toast index 2' }),
+        action: () => Prompt.showToast({ message: 'show toast index 2' }),
         accessibilityText: '复制',
         // 此处为no，屏幕朗读不聚焦
         accessibilityLevel: 'no',
@@ -350,7 +352,7 @@ struct Index {
         value: $r('sys.media.ohos_ic_public_edit'),
         symbolStyle: new SymbolGlyphModifier($r('sys.symbol.ai_edit')),
         isEnabled: true,
-        action: () => promptAction.showToast({ message: 'show toast index 3' }),
+        action: () => Prompt.showToast({ message: 'show toast index 3' }),
         accessibilityText: '编辑',
         accessibilityLevel: 'yes',
         accessibilityDescription: '点击操作编辑图标',
@@ -359,7 +361,7 @@ struct Index {
         value: $r('sys.media.ohos_ic_public_remove'),
         symbolStyle: new SymbolGlyphModifier($r('sys.symbol.remove_songlist')),
         isEnabled: true,
-        action: () => promptAction.showToast({ message: "show toast index 4" }),
+        action: () => Prompt.showToast({ message: "show toast index 4" }),
         accessibilityText: '移除',
         accessibilityLevel: 'yes',
         accessibilityDescription: '点击操作移除图标',
@@ -380,7 +382,7 @@ struct Index {
           // 初始选择第一个下拉选项
           selected: 0,
           // 选中时触发函数
-          onSelected: (index) => promptAction.showToast({ message: 'page index ' + index }),
+          onSelected: (index) => Prompt.showToast({ message: 'page index ' + index }),
           // 隐藏左侧返回箭头
           hidesBackButton: true,
         })
@@ -392,7 +394,7 @@ struct Index {
             { value: '本地本地本地本地本地（储存卡）' },
           ],
           selected: 0,
-          onSelected: (index) => promptAction.showToast({ message: 'page index ' + index }),
+          onSelected: (index) => Prompt.showToast({ message: 'page index ' + index }),
           hidesBackButton: false,
         })
         Divider().height(2).color(0xCCCCCC)
@@ -403,7 +405,7 @@ struct Index {
             { value: '本地本地本地本地本地（储存卡）' },
           ],
           selected: 1,
-          onSelected: (index) => promptAction.showToast({ message: 'page index ' + index }),
+          onSelected: (index) => Prompt.showToast({ message: 'page index ' + index }),
           subtitle: 'example@example.com',
         })
         Divider().height(2).color(0xCCCCCC)
@@ -414,11 +416,11 @@ struct Index {
             { value: '本地本地本地本地本地（储存卡）' },
           ],
           selected: 1,
-          onSelected: (index) => promptAction.showToast({ message: 'page index ' + index }),
+          onSelected: (index) => Prompt.showToast({ message: 'page index ' + index }),
           subtitle: 'example@example.com',
           menuItems: [{
             isEnabled: true, value: $r('sys.media.ohos_save_button_filled'),
-            action: () => promptAction.showToast({ message: 'show toast index 1' }),
+            action: () => Prompt.showToast({ message: 'show toast index 1' }),
           }],
         })
         Divider().height(2).color(0xCCCCCC)
@@ -429,7 +431,7 @@ struct Index {
             { value: '本地本地本地本地本地（储存卡）' },
           ],
           selected: 0,
-          onSelected: (index) => promptAction.showToast({ message: 'page index ' + index }),
+          onSelected: (index) => Prompt.showToast({ message: 'page index ' + index }),
           subtitle: 'example@example.com',
           menuItems: this.menuItems,
           badgeValue: 99,

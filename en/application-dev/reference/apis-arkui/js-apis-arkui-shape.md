@@ -141,7 +141,7 @@ Sets the radius width of the rectangle border corners.
 
 | Name        | Type                                              | Mandatory| Description                                        |
 | ----------- | -------------------------------------------------- | ---- | -------------------------------------------- |
-| rWidth | number  \|  string | Yes| Radius width of the rectangle border corners.|
+| rWidth | number  \|  string | Yes| Radius width of the rectangle border corners.<br> If the type is number, the value range is [0, +∞). If the type is string, the value represents a length.| 
 
 ### radiusHeight
 
@@ -157,7 +157,7 @@ Sets the radius height of the rectangle border corners.
 
 | Name        | Type                                              | Mandatory| Description                                        |
 | ----------- | -------------------------------------------------- | ---- | -------------------------------------------- |
-| rHeight | number  \|  string | Yes| Radius height of the rectangle border corners.|
+| rHeight | number  \|  string | Yes| Radius height of the rectangle border corners.<br> If the type is number, the value range is [0, +∞). If the type is string, the value represents a length.|
 
 ### radius
 
@@ -173,7 +173,7 @@ Sets the radius of the rectangle border corners.
 
 | Name        | Type                                              | Mandatory| Description                                        |
 | ----------- | -------------------------------------------------- | ---- | -------------------------------------------- |
-| radius | number  \|  string  \|  Array<number  \|  string> | Yes| Radius of the rectangle border corners. When an array is provided, it should contain exactly four elements, corresponding to the radius of the upper left, upper right, lower left, and lower right corners of the rectangle, respectively. If more than four elements are contained, only the first four are accepted.|
+| radius | number  \|  string  \|  Array<number  \|  string> | Yes| Radius of the rectangle border corners. When an array is provided, it should contain exactly four elements, corresponding to the radius of the upper left, upper right, lower left, and lower right corners of the rectangle, respectively. If more than four elements are contained, only the first four are accepted.<br> If the type is number, the value range is [0, +∞). If the type is string, the value represents a length.|
 
 
 ## ShapeSize
@@ -188,8 +188,8 @@ Describes the size of a shape.
 
 | Name        | Type                                              | Mandatory                                            | Description                                        |
 | ----------- | -------------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
-| width | number  \|  string | No| Width of the shape.|
-| height | number  \|  string | No| Height of the shape.|
+| width | number  \|  string | No| Width of the shape.<br> If the type is number, the value range is [0, +∞). If the type is string, the value represents a length.|<br>Unit: vp.|
+| height | number  \|  string | No| Height of the shape.<br> If the type is number, the value range is [0, +∞). If the type is string, the value represents a length.|<br>Unit: vp.|
 
 ## PathShapeOptions
 
@@ -203,7 +203,7 @@ Represents the parameter of the constructor used to create a **PathShape** objec
 
 | Name        | Type                                              | Mandatory                                            | Description                                        |
 | ----------- | -------------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
-| commands | string | No| Path drawing commands. For details, see [commands](./arkui-ts/ts-drawing-components-path.md#commands-1).|
+| commands | string | No| Path drawing commands. For details, see [commands](./arkui-ts/ts-drawing-components-path.md#commands).|
 
 ## RectShapeOptions
 
@@ -219,7 +219,7 @@ This API inherits from [ShapeSize](#shapesize).
 
 | Name        | Type                                              | Mandatory                                            | Description                                        |
 | ----------- | -------------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
-| radius | number  \|  string  \|  Array<number  \|  string> | No| Radius of the rectangle border corners.|
+| radius | number  \|  string  \|  Array<number  \|  string> | No| Radius of the rectangle border corners.<br> If the type is number, the value range is [0, +∞). If the type is string, the value represents a length.|
 
 ## RoundRectShapeOptions
 
@@ -235,8 +235,8 @@ This API inherits from [ShapeSize](#shapesize).
 
 | Name        | Type                                              | Mandatory                                            | Description                                        |
 | ----------- | -------------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
-| radiusWidth | number  \|  string | No| Radius width of the rectangle border corners.|
-| radiusHeight | number  \|  string | No| Radius height of the rectangle border corners.|
+| radiusWidth | number  \|  string | No| Radius width of the rectangle border corners.<br> If the type is number, the value range is [0, +∞). If the type is string, the value represents a length.|
+| radiusHeight | number  \|  string | No| Radius height of the rectangle border corners.<br> If the type is number, the value range is [0, +∞). If the type is string, the value represents a length.|
 
 ## BaseShape
 

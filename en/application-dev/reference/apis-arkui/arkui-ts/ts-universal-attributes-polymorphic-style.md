@@ -7,6 +7,8 @@ You can set state-specific styles for components.
 >  The APIs of this module are supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
 >
 >  Since API version 11, you can also dynamically set component attributes through [attributeModifier](./ts-universal-attributes-attribute-modifier.md).
+>
+>  Polymorphic styles only support [universal attributes](ts-component-general-attributes.md). If a polymorphic style does not take effect, the attribute you are modifying might be a private attribute of the component, for example, [fontColor](./ts-universal-attributes-text-style.md) or [backgroundColor](./ts-universal-attributes-background.md#backgroundcolor18) of the [TextInput](./ts-basic-components-textinput.md) component. In this case, you can use **attributeModifier** to dynamically set these component-specific attributes.
 
 ## stateStyles
 
@@ -28,7 +30,7 @@ Sets the state-specific styles for the component.
 
 ## StateStyles
 
-**Widget capability**: This API can be used in ArkTS widgets since API version 9. Only the [universal attributes](ts-universal-attributes-size.md) are supported.
+**Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -159,7 +161,7 @@ struct StyleExample {
 
 ![en-us_image_0000001211898512](figures/en-us_image_0000001211898512.gif)
 
-### Example 1: Setting Polymorphic Styles for the Radio Component
+### Example 2: Setting Polymorphic Styles for the Radio Component
 
 This example demonstrates the style changes of the **Radio** component when its state is selected.
 

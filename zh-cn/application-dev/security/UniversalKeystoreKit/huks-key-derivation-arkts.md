@@ -1,8 +1,6 @@
 # 密钥派生(ArkTS)
 
-
 以HKDF256密钥为例，完成密钥派生。具体的场景介绍及支持的算法规格，请参考[密钥生成支持的算法](huks-key-generation-overview.md#支持的算法)。
-
 
 ## 开发步骤
 
@@ -48,7 +46,9 @@
 **删除密钥**
 
 当密钥废弃不用时，需要调用[deleteKeyItem](../../reference/apis-universal-keystore-kit/js-apis-huks.md#huksdeletekeyitem9)删除密钥，具体请参考[密钥删除](huks-delete-key-arkts.md)。
+
 ## 开发案例
+
 ### HKDF
 ```ts
 /*

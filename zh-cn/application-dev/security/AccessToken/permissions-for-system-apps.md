@@ -128,7 +128,7 @@
 
 **ACL使能**：true
 
-**起始版本**：18
+**起始版本**：17
 
 ## ohos.permission.READ_PROTECTION_ADVICE_POLICY
 
@@ -140,7 +140,7 @@
 
 **ACL使能**：true
 
-**起始版本**：18
+**起始版本**：17
 
 ## ohos.permission.PROXY_MESSAGE_AUTH
 
@@ -279,6 +279,18 @@
 允许系统应用设置主题内容，包括壁纸、图标、皮肤、AOD 和字体等。
 
 **权限级别**：system_basic
+
+**授权方式**：系统授权（system_grant）
+
+**ACL使能**：true
+
+**起始版本**：11
+
+## ohos.permission.QUERY_ACCESSIBILITY_ELEMENT
+
+允许批量查询无障碍节点。
+
+**权限级别**：system_core
 
 **授权方式**：系统授权（system_grant）
 
@@ -923,6 +935,18 @@
 **ACL使能**：true
 
 **起始版本**：10
+
+## ohos.permission.UNLOCK_DEVELOPER_MODE
+
+允许应用解锁开发者模式。
+
+**权限级别**：system_basic
+
+**授权方式**：系统授权（system_grant）
+
+**ACL使能**：true
+
+**起始版本**：18
 
 ## ohos.permission.CAPTURE_VOICE_DOWNLINK_AUDIO
 
@@ -2644,6 +2668,18 @@
 
 **起始版本**：11
 
+## ohos.permission.MANAGE_APP_UNINSTALL
+
+允许系统应用卸载其它应用。
+
+**权限级别**：system_basic
+
+**授权方式**：系统授权（system_grant）
+
+**ACL使能**：true
+
+**起始版本**：19
+
 ## ohos.permission.ACCESS_ADVANCED_SECURITY_MODE
 
 允许系统应用打开坚盾守护模式配置界面。
@@ -2673,18 +2709,6 @@
 允许系统应用拉起智能检测能力。
 
 **权限级别**：system_basic
-
-**授权方式**：系统授权（system_grant）
-
-**ACL使能**：true
-
-**起始版本**：11
-
-## ohos.permission.CONNECT_UI_EXTENSION_ABILITY
-
-允许系统服务连接UIExtensionAbility。
-
-**权限级别**：system_core
 
 **授权方式**：系统授权（system_grant）
 
@@ -3596,6 +3620,18 @@
 
 **起始版本**：12
 
+## ohos.permission.RECEIVE_BMS_BROKER_MESSAGES
+
+允许系统服务或系统应用接收包管理代理服务消息。
+
+**权限级别**：system_basic
+
+**授权方式**：系统授权（system_grant）
+
+**ACL使能**：true
+
+**起始版本**：18
+
 ## ohos.permission.ACCESS_FUSION_MANAGER
 
 允许系统服务或系统应用访问融合服务。
@@ -4288,18 +4324,6 @@
 
 **起始版本**：18
 
-## ohos.permission.ACCESS_VIRTUAL_SCREEN
-
-允许应用管控虚拟屏。
-
-**权限级别**：system_basic
-
-**授权方式**：系统授权（system_grant）
-
-**ACL使能**：true
-
-**起始版本**：18
-
 ## ohos.permission.GET_PAGE_INFO
 
 允许系统应用获取指定应用页面信息。
@@ -4475,6 +4499,18 @@
 
 **起始版本**：18
 
+## ohos.permission.ACCESS_MEDIALIB_RESTORE
+
+允许应用挂载媒体恢复路径。
+
+**权限级别**：system_basic
+
+**授权方式**：系统授权（system_grant）
+
+**ACL使能**：true
+
+**起始版本**：17
+
 ## ohos.permission.ACCESS_TRUST_LIST_OOBE_MANAGER
 
 允许应用管理在开机向导中可被拉起的应用名单。
@@ -4501,4 +4537,174 @@
 
 **变更信息**：API 10-11，ACL使能为false；从API 12开始，变更为true。
 
+## ohos.permission.READ_DLP_HIDE_SWITCH
 
+允许系统应用从窥屏提示数据库读取数据。
+
+**权限级别**：system_basic
+
+**授权方式**：系统授权（system_grant）
+
+**ACL使能**：true
+
+**起始版本**：18
+
+## ohos.permission.WRITE_DLP_HIDE_SWITCH
+
+允许系统应用向窥屏提示数据库写入数据。
+
+**权限级别**：system_basic
+
+**授权方式**：系统授权（system_grant）
+
+**ACL使能**：true
+
+**起始版本**：18
+
+## ohos.permission.INSTALL_PLUGIN_BUNDLE
+
+允许应用调用安装插件的接口。
+
+**权限级别**：system_basic
+
+**授权方式**：系统授权（system_grant）
+
+**ACL使能**：true
+
+**起始版本**：19
+
+## ohos.permission.UNINSTALL_PLUGIN_BUNDLE
+
+允许应用调用卸载插件的接口。
+
+**权限级别**：system_basic
+
+**授权方式**：系统授权（system_grant）
+
+**ACL使能**：true
+
+**起始版本**：19
+
+## ohos.permission.GET_EDM_CONFIG
+
+允许系统应用查看行业定制配置文件。
+
+用于保护行业定制配置文件的可见性，例如开机动画、开机logo、桌面布局、壁纸等。
+
+**权限级别**：system_basic
+
+**授权方式**：系统授权（system_grant）
+
+**ACL使能**：true
+
+**起始版本**：18
+
+## ohos.permission.READ_DHA
+
+允许应用读取设备健康证明信息。
+
+**权限级别**：system_core
+
+**授权方式**：系统授权（system_grant）
+
+**ACL使能**：true
+
+**起始版本**：18
+
+## ohos.permission.WRITE_DHA
+
+允许应用写入设备健康证明信息。
+
+**权限级别**：system_core
+
+**授权方式**：系统授权（system_grant）
+
+**ACL使能**：true
+
+**起始版本**：18
+
+## ohos.permission.NOTIFY_DHA
+
+允许应用通知设备健康证明事件。
+
+**权限级别**：system_core
+
+**授权方式**：系统授权（system_grant）
+
+**ACL使能**：true
+
+**起始版本**：18
+
+## ohos.permission.CHANGE_DEFAULT_APPLICATION
+
+允许应用监听“默认应用”变化事件。
+
+用户可以为系统设置“默认应用”，如设置默认使用某一应用打开指定类型文件。当“默认应用”变化时，将触发“默认应用”变化事件。
+
+**权限级别**：system_basic
+
+**授权方式**：系统授权（system_grant）
+
+**ACL使能**：true
+
+**起始版本**：19
+
+## ohos.permission.SEND_NOTIFICATION_CROSS_USER
+
+允许应用发送通知给系统中指定用户。
+
+**权限级别**：system_core
+
+**授权方式**：系统授权（system_grant）
+
+**ACL使能**：true
+
+**起始版本**：18
+
+## ohos.permission.ALLOW_ACCESS_TIPS
+
+允许系统应用拉起Tips提供的组件。
+
+**权限级别**：system_basic
+
+**授权方式**：系统授权（system_grant）
+
+**ACL使能**：true
+
+**起始版本**：18
+
+### ohos.permission.UPDATE_FONT
+
+允许应用安装和卸载字体。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：19
+
+## ohos.permission.ACCESSIBILITY_EXTENSION_ABILITY
+
+允许应用通过无障碍服务接口查询和操作界面上的组件。
+
+**权限级别**：system_basic
+
+**授权方式**：系统授权（system_grant）
+
+**ACL使能**：true
+
+**起始版本**：20
+
+## ohos.permission.SANDBOX_ACCESS_MANAGER
+
+允许应用访问其它应用的沙箱目录。
+
+**权限级别**：system_core
+
+**授权方式**：系统授权（system_grant）
+
+**ACL使能**：true
+
+**起始版本**：17

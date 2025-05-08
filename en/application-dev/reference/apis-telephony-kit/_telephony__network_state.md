@@ -9,6 +9,7 @@ Defines network status information.
 
 **Related module**: [Telephony Radio](ndk-apis-telephony-radio.md)
 
+**Header file**: [telephony_radio_type.h](telephony__radio__type_8h.md)
 
 ## Summary
 
@@ -112,7 +113,7 @@ bool Telephony_NetworkState::isCaActive_
 
 **Description**
 
-Whether Carrier Aggregation (CA) is active.
+CA status.
 
 ### isEmergency_
 

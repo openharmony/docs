@@ -12,7 +12,7 @@
 
 **系统能力：** SystemCapability.Multimedia.Media.AVRecorder
 
-**起始版本：** 16
+**起始版本：** 18
 
 
 ## 汇总
@@ -112,7 +112,7 @@ typedef struct OH_AVRecorder OH_AVRecorder
 
 **系统能力：** SystemCapability.Multimedia.Media.AVRecorder
 
-**起始版本：** 16
+**起始版本：** 18
 
 
 ### OH_AVRecorder_AudioSourceType
@@ -127,7 +127,7 @@ AVRecorder的音频源类型。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVRecorder
 
-**起始版本：** 16
+**起始版本：** 18
 
 
 ### OH_AVRecorder_CodecMimeType
@@ -142,7 +142,7 @@ typedef enum OH_AVRecorder_CodecMimeType OH_AVRecorder_CodecMimeType
 
 **系统能力：** SystemCapability.Multimedia.Media.AVRecorder
 
-**起始版本：** 16
+**起始版本：** 18
 
 
 ### OH_AVRecorder_Config
@@ -157,7 +157,7 @@ typedef struct OH_AVRecorder_Config OH_AVRecorder_Config
 
 **系统能力：** SystemCapability.Multimedia.Media.AVRecorder
 
-**起始版本：** 16
+**起始版本：** 18
 
 
 ### OH_AVRecorder_ContainerFormatType
@@ -172,7 +172,7 @@ typedef enum OH_AVRecorder_ContainerFormatType OH_AVRecorder_ContainerFormatType
 
 **系统能力：** SystemCapability.Multimedia.Media.AVRecorder
 
-**起始版本：** 16
+**起始版本：** 18
 
 
 ### OH_AVRecorder_EncoderInfo
@@ -187,7 +187,7 @@ typedef struct OH_AVRecorder_EncoderInfo OH_AVRecorder_EncoderInfo
 
 **系统能力：** SystemCapability.Multimedia.Media.AVRecorder
 
-**起始版本：** 16
+**起始版本：** 18
 
 
 ### OH_AVRecorder_FileGenerationMode
@@ -202,7 +202,7 @@ typedef enum OH_AVRecorder_FileGenerationMode OH_AVRecorder_FileGenerationMode
 
 **系统能力：** SystemCapability.Multimedia.Media.AVRecorder
 
-**起始版本：** 16
+**起始版本：** 18
 
 
 ### OH_AVRecorder_Location
@@ -217,7 +217,7 @@ typedef struct OH_AVRecorder_Location OH_AVRecorder_Location
 
 **系统能力：** SystemCapability.Multimedia.Media.AVRecorder
 
-**起始版本：** 16
+**起始版本：** 18
 
 
 ### OH_AVRecorder_Metadata
@@ -232,7 +232,7 @@ typedef struct OH_AVRecorder_Metadata OH_AVRecorder_Metadata
 
 **系统能力：** SystemCapability.Multimedia.Media.AVRecorder
 
-**起始版本：** 16
+**起始版本：** 18
 
 
 ### OH_AVRecorder_MetadataTemplate
@@ -247,7 +247,7 @@ typedef struct OH_AVRecorder_MetadataTemplate OH_AVRecorder_MetadataTemplate
 
 **系统能力：** SystemCapability.Multimedia.Media.AVRecorder
 
-**起始版本：** 16
+**起始版本：** 18
 
 
 ### OH_AVRecorder_OnError
@@ -258,11 +258,11 @@ typedef void (*OH_AVRecorder_OnError)(OH_AVRecorder *recorder, int32_t errorCode
 
 **描述**
 
-当录制过程中发生错误时调用。
+当录制过程中发生错误时调用。错误码的详细说明请参见[AVErrorCode](js-apis-media.md#averrorcode9)。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVRecorder
 
-**起始版本：** 16
+**起始版本：** 18
 
 **参数:**
 
@@ -286,7 +286,7 @@ typedef void (*OH_AVRecorder_OnStateChange)(OH_AVRecorder *recorder, OH_AVRecord
 
 **系统能力：** SystemCapability.Multimedia.Media.AVRecorder
 
-**起始版本：** 16
+**起始版本：** 18
 
 **参数:**
 
@@ -310,7 +310,7 @@ typedef void (*OH_AVRecorder_OnUri)(OH_AVRecorder *recorder, OH_MediaAsset *asse
 
 **系统能力：** SystemCapability.Multimedia.Media.AVRecorder
 
-**起始版本：** 16
+**起始版本：** 18
 
 **参数:**
 
@@ -337,7 +337,7 @@ typedef struct OH_AVRecorder_Profile OH_AVRecorder_Profile
 
 **系统能力：** SystemCapability.Multimedia.Media.AVRecorder
 
-**起始版本：** 16
+**起始版本：** 18
 
 
 ### OH_AVRecorder_Range
@@ -352,7 +352,7 @@ typedef struct OH_AVRecorder_Range OH_AVRecorder_Range
 
 **系统能力：** SystemCapability.Multimedia.Media.AVRecorder
 
-**起始版本：** 16
+**起始版本：** 18
 
 
 ### OH_AVRecorder_State
@@ -367,7 +367,7 @@ AVRecorder状态。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVRecorder
 
-**起始版本：** 16
+**起始版本：** 18
 
 
 ### OH_AVRecorder_StateChangeReason
@@ -382,7 +382,7 @@ AVRecorder状态变化的原因。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVRecorder
 
-**起始版本：** 16
+**起始版本：** 18
 
 
 ### OH_AVRecorder_VideoSourceType
@@ -397,7 +397,7 @@ AVRecorder的视频源类型。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVRecorder
 
-**起始版本：** 16
+**起始版本：** 18
 
 
 ## 枚举类型说明
@@ -415,7 +415,7 @@ AVRecorder的音频源类型。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVRecorder
 
-**起始版本：** 16
+**起始版本：** 18
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
@@ -439,7 +439,7 @@ enum OH_AVRecorder_CodecMimeType
 
 **系统能力：** SystemCapability.Multimedia.Media.AVRecorder
 
-**起始版本：** 16
+**起始版本：** 18
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
@@ -465,7 +465,7 @@ enum OH_AVRecorder_ContainerFormatType
 
 **系统能力：** SystemCapability.Multimedia.Media.AVRecorder
 
-**起始版本：** 16
+**起始版本：** 18
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
@@ -488,12 +488,12 @@ enum OH_AVRecorder_FileGenerationMode
 
 **系统能力：** SystemCapability.Multimedia.Media.AVRecorder
 
-**起始版本：** 16
+**起始版本：** 18
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
 | AVRECORDER_APP_CREATE | 由应用自行在沙箱创建媒体文件。 | 
-| AVRECORDER_AUTO_CREATE_CAMERA_SCENE | 由系统创建媒体文件，当前仅在相机录制场景下生效，会忽略应用设置的url。 | 
+| AVRECORDER_AUTO_CREATE_CAMERA_SCENE | 由系统创建媒体文件，当前仅在相机录制场景下生效。 | 
 
 
 ### OH_AVRecorder_State
@@ -508,7 +508,7 @@ AVRecorder状态。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVRecorder
 
-**起始版本：** 16
+**起始版本：** 18
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
@@ -533,7 +533,7 @@ AVRecorder状态变化的原因。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVRecorder
 
-**起始版本：** 16
+**起始版本：** 18
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
@@ -553,7 +553,7 @@ AVRecorder的视频源类型。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVRecorder
 
-**起始版本：** 16
+**起始版本：** 18
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
@@ -576,11 +576,320 @@ OH_AVRecorder *OH_AVRecorder_Create(void)
 
 **系统能力：** SystemCapability.Multimedia.Media.AVRecorder
 
-**起始版本：** 16
+**起始版本：** 18
 
 **返回：**
 
 成功时返回指向 OH_AVRecorder 实例的指针，失败时返回 nullptr。
+
+
+### OH_AVRecorder_Prepare()
+
+```
+OH_AVErrCode OH_AVRecorder_Prepare(OH_AVRecorder *recorder, OH_AVRecorder_Config *config)
+```
+
+**描述**
+
+配置AVRecorder参数，准备录制。必须在[OH_AVRecorder_Start](#oh_avrecorder_start)成功触发之后调用，调用成功之后进入AVRECORDER_PREPARED状态。
+
+若只录制音频，则无需配置视频相关参数；同理，若只录制视频，则无需配置音频相关参数。
+
+**系统能力：** SystemCapability.Multimedia.Media.AVRecorder
+
+**起始版本：** 18
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| recorder | 指向 OH_AVRecorder 实例的指针。 | 
+| config | 指向 [OH_AVRecorder_Config](_o_h___a_v_recorder___config.md) 实例的指针，见 [OH_AVRecorder_Config](_o_h___a_v_recorder___config.md)。 | 
+
+**返回：**
+
+函数结果代码[OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1)：
+
+AV_ERR_OK：执行成功。
+
+AV_ERR_INVALID_VAL：如果输入的 recorder 为 nullptr 或者准备失败。
+
+
+### OH_AVRecorder_GetAVRecorderConfig()
+
+```
+OH_AVErrCode OH_AVRecorder_GetAVRecorderConfig(OH_AVRecorder *recorder, OH_AVRecorder_Config **config)
+```
+
+**描述**
+
+获取当前的录制参数。此接口必须在录制准备完成后调用。传入的 \*config 必须为 nullptr，由框架层统一分配和释放内存，以避免内存管理混乱，防止内存泄漏或重复释放等问题。
+
+**系统能力：** SystemCapability.Multimedia.Media.AVRecorder
+
+**起始版本：** 18
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| recorder | 指向 OH_AVRecorder 实例的指针。 | 
+| config | 指向 [OH_AVRecorder_Config](_o_h___a_v_recorder___config.md) 实例的指针，见 [OH_AVRecorder_Config](_o_h___a_v_recorder___config.md)。 | 
+
+**返回：**
+
+函数结果代码[OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1)：
+
+AV_ERR_OK：执行成功。
+
+AV_ERR_INVALID_VAL：如果输入的 recorder 为 nullptr 或 \*config 不为 nullptr；
+
+AV_ERR_NO_MEMORY：如果内存不足，\*config 内存分配失败。
+
+
+### OH_AVRecorder_GetInputSurface()
+
+```
+OH_AVErrCode OH_AVRecorder_GetInputSurface(OH_AVRecorder *recorder, OHNativeWindow **window)
+```
+
+**描述**
+
+获取输入Surface。必须在[OH_AVRecorder_Prepare](#oh_avrecorder_prepare)成功触发之后，[OH_AVRecorder_Start](#oh_avrecorder_start)之前调用。
+
+此Surface提供给调用者，调用者从此Surface中获取Surface Buffer，填入相应的视频数据。
+
+**系统能力：** SystemCapability.Multimedia.Media.AVRecorder
+
+**起始版本：** 18
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| recorder | 指向 OH_AVRecorder 实例的指针。 | 
+| window | 指向 OHNativeWindow 实例的指针，见 **OHNativeWindow**。 | 
+
+**返回：**
+
+函数结果代码[OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1)：
+
+AV_ERR_OK：执行成功。
+
+AV_ERR_INVALID_VAL：如果输入的 recorder 为 nullptr。
+
+
+### OH_AVRecorder_UpdateRotation()
+
+```
+OH_AVErrCode OH_AVRecorder_UpdateRotation(OH_AVRecorder *recorder, int32_t rotation)
+```
+
+**描述**
+
+更新视频旋转角度。必须在[OH_AVRecorder_Prepare](#oh_avrecorder_prepare)成功触发之后，[OH_AVRecorder_Start](#oh_avrecorder_start)之前调用。
+
+**系统能力：** SystemCapability.Multimedia.Media.AVRecorder
+
+**起始版本：** 18
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| recorder | 指向 OH_AVRecorder 实例的指针。 | 
+| rotation | 视频旋转角度，必须是整数 [0, 90, 180, 270] 中的一个。 | 
+
+**返回：**
+
+函数结果代码[OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1)：
+
+AV_ERR_OK：执行成功。
+
+AV_ERR_INVALID_VAL：如果输入的 recorder 为 nullptr 或输入的 rotation 不符合要求或更新方向失败。
+
+
+### OH_AVRecorder_Start()
+
+```
+OH_AVErrCode OH_AVRecorder_Start(OH_AVRecorder *recorder)
+```
+
+**描述**
+
+开始录制。必须在[OH_AVRecorder_Prepare](#oh_avrecorder_prepare)成功触发之后调用，调用成功之后进入AVRECORDER_STARTED状态。
+
+**系统能力：** SystemCapability.Multimedia.Media.AVRecorder
+
+**起始版本：** 18
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| recorder | 指向 OH_AVRecorder 实例的指针。 | 
+
+**返回：**
+
+函数结果代码[OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1)：
+
+AV_ERR_OK：执行成功。
+
+AV_ERR_INVALID_VAL：如果输入的 recorder 为 nullptr 或启动失败。
+
+(备注：请勿使用未在本文档中声明的错误码。)
+
+### OH_AVRecorder_Pause()
+
+```
+OH_AVErrCode OH_AVRecorder_Pause(OH_AVRecorder *recorder)
+```
+
+**描述**
+
+暂停录制。必须在[OH_AVRecorder_Start](#oh_avrecorder_start)成功触发之后，处于AVRECORDER_STARTED状态时调用，调用成功之后进入AVRECORDER_PAUSED状态。
+
+之后可以通过调用[OH_AVRecorder_Resume](#oh_avrecorder_resume)恢复录制，重新进入AVRECORDER_STARTED状态。
+
+**系统能力：** SystemCapability.Multimedia.Media.AVRecorder
+
+**起始版本：** 18
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| recorder | 指向 OH_AVRecorder 实例的指针。 | 
+
+**返回：**
+
+函数结果代码[OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1)：
+
+AV_ERR_OK：执行成功。
+
+AV_ERR_INVALID_VAL：如果输入的 recorder 为 nullptr 或暂停失败。
+
+
+### OH_AVRecorder_Resume()
+
+```
+OH_AVErrCode OH_AVRecorder_Resume(OH_AVRecorder *recorder)
+```
+
+**描述**
+
+恢复录制。必须在[OH_AVRecorder_Pause](#oh_avrecorder_pause)成功触发之后，处于PAUSED状态时调用，调用成功之后重新进入AVRECORDER_STARTED状态。
+
+**系统能力：** SystemCapability.Multimedia.Media.AVRecorder
+
+**起始版本：** 18
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| recorder | 指向 OH_AVRecorder 实例的指针。 | 
+
+**返回：**
+
+函数结果代码[OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1)：
+
+AV_ERR_OK：执行成功。
+
+AV_ERR_INVALID_VAL：如果输入的 recorder 为 nullptr 或恢复失败。
+
+
+### OH_AVRecorder_Stop()
+
+```
+OH_AVErrCode OH_AVRecorder_Stop(OH_AVRecorder *recorder)
+```
+
+**描述**
+
+停止录制。必须在[OH_AVRecorder_Start](#oh_avrecorder_start)成功触发之后调用，调用成功之后进入AVRECORDER_STOPPED状态。
+
+纯音频录制时，需要重新调用[OH_AVRecorder_Prepare](#oh_avrecorder_prepare)接口才能重新录制。纯视频录制、音视频录制时，需要重新调用[OH_AVRecorder_Prepare](#oh_avrecorder_prepare)和[OH_AVRecorder_GetInputSurface](#oh_avrecorder_getinputsurface)接口才能重新录制。
+
+**系统能力：** SystemCapability.Multimedia.Media.AVRecorder
+
+**起始版本：** 18
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| recorder | 指向 OH_AVRecorder 实例的指针。 | 
+
+**返回：**
+
+函数结果代码[OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1)：
+
+AV_ERR_OK：执行成功。
+
+AV_ERR_INVALID_VAL：如果输入的 recorder 为 nullptr 或停止失败。
+
+
+### OH_AVRecorder_Reset()
+
+```
+OH_AVErrCode OH_AVRecorder_Reset(OH_AVRecorder *recorder)
+```
+
+**描述**
+
+重置录制状态。必须在非AVRECORDER_RELEASED状态下调用，调用成功之后进入AVRECORDER_IDLE状态。
+
+纯音频录制时，需要重新调用[OH_AVRecorder_Prepare](#oh_avrecorder_prepare)接口才能重新录制。纯视频录制、音视频录制时，需要重新调用[OH_AVRecorder_Prepare](#oh_avrecorder_prepare)和[OH_AVRecorder_GetInputSurface](#oh_avrecorder_getinputsurface)接口才能重新录制。
+
+**系统能力：** SystemCapability.Multimedia.Media.AVRecorder
+
+**起始版本：** 18
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| recorder | 指向 OH_AVRecorder 实例的指针。 | 
+
+**返回：**
+
+函数结果代码[OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1)：
+
+AV_ERR_OK：执行成功。
+
+AV_ERR_INVALID_VAL：如果输入的 recorder 为 nullptr 或重置失败。
+
+
+### OH_AVRecorder_Release()
+
+```
+OH_AVErrCode OH_AVRecorder_Release(OH_AVRecorder *recorder)
+```
+
+**描述**
+
+释放录制资源。调用成功之后进入AVRECORDER_RELEASED状态。调用此接口释放录制资源后，recorder 内存将释放，应用层需要显式地将 recorder 指针置空，避免访问野指针。
+
+调用此接口释放录制资源后，recorder 内存将释放，应用层需要显式地将 recorder 指针置空，避免访问野指针。 释放音视频录制资源之后，该 OH_AVRecorder 实例不能再进行任何操作。
+
+**系统能力：** SystemCapability.Multimedia.Media.AVRecorder
+
+**起始版本：** 18
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| recorder | 指向 OH_AVRecorder 实例的指针。 | 
+
+**返回：**
+
+函数结果代码[OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1)：
+
+AV_ERR_OK：执行成功。
+
+AV_ERR_INVALID_VAL：如果输入的 recorder 为 nullptr 或释放失败。
 
 
 ### OH_AVRecorder_GetAvailableEncoder()
@@ -595,7 +904,7 @@ OH_AVErrCode OH_AVRecorder_GetAvailableEncoder(OH_AVRecorder *recorder, OH_AVRec
 
 **系统能力：** SystemCapability.Multimedia.Media.AVRecorder
 
-**起始版本：** 16
+**起始版本：** 18
 
 **参数:**
 
@@ -616,208 +925,35 @@ AV_ERR_INVALID_VAL：输入的 recorder 为 nullptr。
 AV_ERR_NO_MEMORY：内存不足，\*info 内存分配失败。
 
 
-### OH_AVRecorder_GetAVRecorderConfig()
+### OH_AVRecorder_SetStateCallback()
 
 ```
-OH_AVErrCode OH_AVRecorder_GetAVRecorderConfig(OH_AVRecorder *recorder, OH_AVRecorder_Config **config)
+OH_AVErrCode OH_AVRecorder_SetStateCallback( OH_AVRecorder *recorder, OH_AVRecorder_OnStateChange callback, void *userData)
 ```
 
 **描述**
 
-获取当前的录制参数。此接口必须在录制准备完成后调用。传入的 \*config 必须为 nullptr，由框架层统一分配和释放内存，以避免内存管理混乱，防止内存泄漏或重复释放等问题。
+设置状态回调函数，以便应用能够响应AVRecorder生成的状态变化事件。此接口必须在[OH_AVRecorder_Start](#oh_avrecorder_start)调用之前调用。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVRecorder
 
-**起始版本：** 16
+**起始版本：** 18
 
 **参数:**
 
 | 名称 | 描述 | 
 | -------- | -------- |
 | recorder | 指向 OH_AVRecorder 实例的指针。 | 
-| config | 指向 [OH_AVRecorder_Config](_o_h___a_v_recorder___config.md) 实例的指针，见 [OH_AVRecorder_Config](_o_h___a_v_recorder___config.md)。 | 
+| callback | 状态回调函数，见 [OH_AVRecorder_OnStateChange](#oh_avrecorder_onstatechange)。 | 
+| userData | 指向用户特定数据的指针。 | 
 
 **返回：**
 
-函数结果代码[OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1)： AV_ERR_OK：执行成功。
+函数结果代码[OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1)：
 
-AV_ERR_INVALID_VAL** 如果输入的 recorder 为 nullptr 或 \*config 不为 nullptr；
+AV_ERR_OK：执行成功。
 
-AV_ERR_NO_MEMORY** 如果内存不足，\*config 内存分配失败。
-
-
-### OH_AVRecorder_GetInputSurface()
-
-```
-OH_AVErrCode OH_AVRecorder_GetInputSurface(OH_AVRecorder *recorder, OHNativeWindow **window)
-```
-
-**描述**
-
-获取输入Surface。必须在[OH_AVRecorder_Prepare](#oh_avrecorder_prepare)成功触发之后，[OH_AVRecorder_Start](#oh_avrecorder_start)之前调用。
-
-此Surface提供给调用者，调用者从此Surface中获取Surface Buffer，填入相应的视频数据。
-
-**系统能力：** SystemCapability.Multimedia.Media.AVRecorder
-
-**起始版本：** 16
-
-**参数:**
-
-| 名称 | 描述 | 
-| -------- | -------- |
-| recorder | 指向 OH_AVRecorder 实例的指针。 | 
-| window | 指向 OHNativeWindow 实例的指针，见 **OHNativeWindow**。 | 
-
-**返回：**
-
-函数结果代码[OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1)： AV_ERR_OK：执行成功。
-
-AV_ERR_INVALID_VAL** 如果输入的 recorder 为 nullptr。
-
-
-### OH_AVRecorder_Pause()
-
-```
-OH_AVErrCode OH_AVRecorder_Pause(OH_AVRecorder *recorder)
-```
-
-**描述**
-
-暂停录制。必须在[OH_AVRecorder_Start](#oh_avrecorder_start)成功触发之后，处于AVRECORDER_STARTED状态时调用，调用成功之后进入AVRECORDER_PAUSED状态。
-
-之后可以通过调用[OH_AVRecorder_Resume](#oh_avrecorder_resume)恢复录制，重新进入AVRECORDER_STARTED状态。
-
-**系统能力：** SystemCapability.Multimedia.Media.AVRecorder
-
-**起始版本：** 16
-
-**参数:**
-
-| 名称 | 描述 | 
-| -------- | -------- |
-| recorder | 指向 OH_AVRecorder 实例的指针。 | 
-
-**返回：**
-
-函数结果代码[OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1)： AV_ERR_OK：执行成功。
-
-AV_ERR_INVALID_VAL** 如果输入的 recorder 为 nullptr 或暂停失败。
-
-
-### OH_AVRecorder_Prepare()
-
-```
-OH_AVErrCode OH_AVRecorder_Prepare(OH_AVRecorder *recorder, OH_AVRecorder_Config *config)
-```
-
-**描述**
-
-配置AVRecorder参数，准备录制。必须在[OH_AVRecorder_Start](#oh_avrecorder_start)成功触发之后调用，调用成功之后进入AVRECORDER_PREPARED状态。
-
-若只录制音频，则无需配置视频相关参数；同理，若只录制视频，则无需配置音频相关参数。
-
-**系统能力：** SystemCapability.Multimedia.Media.AVRecorder
-
-**起始版本：** 16
-
-**参数:**
-
-| 名称 | 描述 | 
-| -------- | -------- |
-| recorder | 指向 OH_AVRecorder 实例的指针。 | 
-| config | 指向 [OH_AVRecorder_Config](_o_h___a_v_recorder___config.md) 实例的指针，见 [OH_AVRecorder_Config](_o_h___a_v_recorder___config.md)。 | 
-
-**返回：**
-
-函数结果代码[OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1)： AV_ERR_OK：执行成功。
-
-AV_ERR_INVALID_VAL** 如果输入的 recorder 为 nullptr 或者准备失败。
-
-
-### OH_AVRecorder_Release()
-
-```
-OH_AVErrCode OH_AVRecorder_Release(OH_AVRecorder *recorder)
-```
-
-**描述**
-
-释放录制资源。调用成功之后进入AVRECORDER_RELEASED状态。调用此接口释放录制资源后，recorder 内存将释放，应用层需要显式地将 recorder 指针置空，避免访问野指针。
-
-调用此接口释放录制资源后，recorder 内存将释放，应用层需要显式地将 recorder 指针置空，避免访问野指针。 释放音视频录制资源之后，该 OH_AVRecorder 实例不能再进行任何操作。
-
-**系统能力：** SystemCapability.Multimedia.Media.AVRecorder
-
-**起始版本：** 16
-
-**参数:**
-
-| 名称 | 描述 | 
-| -------- | -------- |
-| recorder | 指向 OH_AVRecorder 实例的指针。 | 
-
-**返回：**
-
-函数结果代码[OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1)： AV_ERR_OK：执行成功。
-
-AV_ERR_INVALID_VAL** 如果输入的 recorder 为 nullptr 或释放失败。
-
-
-### OH_AVRecorder_Reset()
-
-```
-OH_AVErrCode OH_AVRecorder_Reset(OH_AVRecorder *recorder)
-```
-
-**描述**
-
-重置录制状态。必须在非AVRECORDER_RELEASED状态下调用，调用成功之后进入AVRECORDER_IDLE状态。
-
-纯音频录制时，需要重新调用[OH_AVRecorder_Prepare](#oh_avrecorder_prepare)接口才能重新录制。纯视频录制、音视频录制时，需要重新调用[OH_AVRecorder_Prepare](#oh_avrecorder_prepare)和[OH_AVRecorder_GetInputSurface](#oh_avrecorder_getinputsurface)接口才能重新录制。
-
-**系统能力：** SystemCapability.Multimedia.Media.AVRecorder
-
-**起始版本：** 16
-
-**参数:**
-
-| 名称 | 描述 | 
-| -------- | -------- |
-| recorder | 指向 OH_AVRecorder 实例的指针。 | 
-
-**返回：**
-
-函数结果代码[OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1)： AV_ERR_OK：执行成功。
-
-AV_ERR_INVALID_VAL** 如果输入的 recorder 为 nullptr 或重置失败。
-
-
-### OH_AVRecorder_Resume()
-
-```
-OH_AVErrCode OH_AVRecorder_Resume(OH_AVRecorder *recorder)
-```
-
-**描述**
-
-恢复录制。必须在[OH_AVRecorder_Pause](#oh_avrecorder_pause)成功触发之后，处于PAUSED状态时调用，调用成功之后重新进入AVRECORDER_STARTED状态。
-
-**系统能力：** SystemCapability.Multimedia.Media.AVRecorder
-
-**起始版本：** 16
-
-**参数:**
-
-| 名称 | 描述 | 
-| -------- | -------- |
-| recorder | 指向 OH_AVRecorder 实例的指针。 | 
-
-**返回：**
-
-函数结果代码[OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1)： AV_ERR_OK：执行成功。
-
-AV_ERR_INVALID_VAL** 如果输入的 recorder 为 nullptr 或恢复失败。
+AV_ERR_INVALID_VAL：如果输入的 recorder 为 nullptr 或回调函数为 nullptr。
 
 
 ### OH_AVRecorder_SetErrorCallback()
@@ -832,7 +968,7 @@ OH_AVErrCode OH_AVRecorder_SetErrorCallback(OH_AVRecorder *recorder, OH_AVRecord
 
 **系统能力：** SystemCapability.Multimedia.Media.AVRecorder
 
-**起始版本：** 16
+**起始版本：** 18
 
 **参数:**
 
@@ -844,38 +980,11 @@ OH_AVErrCode OH_AVRecorder_SetErrorCallback(OH_AVRecorder *recorder, OH_AVRecord
 
 **返回：**
 
-函数结果代码[OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1)： AV_ERR_OK：执行成功。
+函数结果代码[OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1)：
 
-AV_ERR_INVALID_VAL** 如果输入的 recorder 为 nullptr 或回调函数为 nullptr。
+AV_ERR_OK：执行成功。
 
-
-### OH_AVRecorder_SetStateCallback()
-
-```
-OH_AVErrCode OH_AVRecorder_SetStateCallback( OH_AVRecorder *recorder, OH_AVRecorder_OnStateChange callback, void *userData)
-```
-
-**描述**
-
-设置状态回调函数，以便应用能够响应AVRecorder生成的状态变化事件。此接口必须在[OH_AVRecorder_Start](#oh_avrecorder_start)调用之前调用。
-
-**系统能力：** SystemCapability.Multimedia.Media.AVRecorder
-
-**起始版本：** 16
-
-**参数:**
-
-| 名称 | 描述 | 
-| -------- | -------- |
-| recorder | 指向 OH_AVRecorder 实例的指针。 | 
-| callback | 状态回调函数，见 [OH_AVRecorder_OnStateChange](#oh_avrecorder_onstatechange)。 | 
-| userData | 指向用户特定数据的指针。 | 
-
-**返回：**
-
-函数结果代码[OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1)： AV_ERR_OK：执行成功。
-
-AV_ERR_INVALID_VAL** 如果输入的 recorder 为 nullptr 或回调函数为 nullptr。
+AV_ERR_INVALID_VAL：如果输入的 recorder 为 nullptr 或回调函数为 nullptr。
 
 
 ### OH_AVRecorder_SetUriCallback()
@@ -890,7 +999,7 @@ OH_AVErrCode OH_AVRecorder_SetUriCallback(OH_AVRecorder *recorder, OH_AVRecorder
 
 **系统能力：** SystemCapability.Multimedia.Media.AVRecorder
 
-**起始版本：** 16
+**起始版本：** 18
 
 **参数:**
 
@@ -902,90 +1011,8 @@ OH_AVErrCode OH_AVRecorder_SetUriCallback(OH_AVRecorder *recorder, OH_AVRecorder
 
 **返回：**
 
-函数结果代码[OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1)： AV_ERR_OK：执行成功。
+函数结果代码[OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1)：
 
-AV_ERR_INVALID_VAL** 如果输入的 recorder 为 nullptr 或回调函数为 nullptr。
+AV_ERR_OK：执行成功。
 
-
-### OH_AVRecorder_Start()
-
-```
-OH_AVErrCode OH_AVRecorder_Start(OH_AVRecorder *recorder)
-```
-
-**描述**
-
-开始录制。必须在[OH_AVRecorder_Prepare](#oh_avrecorder_prepare)成功触发之后调用，调用成功之后进入AVRECORDER_STARTED状态。
-
-**系统能力：** SystemCapability.Multimedia.Media.AVRecorder
-
-**起始版本：** 16
-
-**参数:**
-
-| 名称 | 描述 | 
-| -------- | -------- |
-| recorder | 指向 OH_AVRecorder 实例的指针。 | 
-
-**返回：**
-
-函数结果代码[OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1)： AV_ERR_OK：执行成功。
-
-AV_ERR_INVALID_VAL** 如果输入的 recorder 为 nullptr 或启动失败。
-
-
-### OH_AVRecorder_Stop()
-
-```
-OH_AVErrCode OH_AVRecorder_Stop(OH_AVRecorder *recorder)
-```
-
-**描述**
-
-停止录制。必须在[OH_AVRecorder_Start](#oh_avrecorder_start)成功触发之后调用，调用成功之后进入AVRECORDER_STOPPED状态。
-
-纯音频录制时，需要重新调用[OH_AVRecorder_Prepare](#oh_avrecorder_prepare)接口才能重新录制。纯视频录制、音视频录制时，需要重新调用[OH_AVRecorder_Prepare](#oh_avrecorder_prepare)和[OH_AVRecorder_GetInputSurface](#oh_avrecorder_getinputsurface)接口才能重新录制。
-
-**系统能力：** SystemCapability.Multimedia.Media.AVRecorder
-
-**起始版本：** 16
-
-**参数:**
-
-| 名称 | 描述 | 
-| -------- | -------- |
-| recorder | 指向 OH_AVRecorder 实例的指针。 | 
-
-**返回：**
-
-函数结果代码[OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1)： AV_ERR_OK：执行成功。
-
-AV_ERR_INVALID_VAL** 如果输入的 recorder 为 nullptr 或停止失败。
-
-
-### OH_AVRecorder_UpdateRotation()
-
-```
-OH_AVErrCode OH_AVRecorder_UpdateRotation(OH_AVRecorder *recorder, int32_t rotation)
-```
-
-**描述**
-
-更新视频旋转角度。必须在[OH_AVRecorder_Prepare](#oh_avrecorder_prepare)成功触发之后，[OH_AVRecorder_Start](#oh_avrecorder_start)之前调用。
-
-**系统能力：** SystemCapability.Multimedia.Media.AVRecorder
-
-**起始版本：** 16
-
-**参数:**
-
-| 名称 | 描述 | 
-| -------- | -------- |
-| recorder | 指向 OH_AVRecorder 实例的指针。 | 
-| rotation | 视频旋转角度，必须是整数 [0, 90, 180, 270] 中的一个。 | 
-
-**返回：**
-
-函数结果代码[OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1)： AV_ERR_OK：执行成功。
-
-AV_ERR_INVALID_VAL** 如果输入的 recorder 为 nullptr 或输入的 rotation 不符合要求或更新方向失败。
+AV_ERR_INVALID_VAL：如果输入的 recorder 为 nullptr 或回调函数为 nullptr。

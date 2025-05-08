@@ -64,3 +64,6 @@ struct Parent {
   }
 }
 ```
+
+上述代码中so的实现可参考[Native XComponent](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Native/NdkXComponent)。
+

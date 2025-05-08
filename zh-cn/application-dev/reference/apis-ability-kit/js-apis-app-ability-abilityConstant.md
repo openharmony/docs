@@ -23,10 +23,10 @@ import { AbilityConstant } from '@kit.AbilityKit';
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | launchReason | [LaunchReason](#launchreason)| 否 | 否 | 枚举类型，表示启动原因。<br>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
-| launchReasonMessage<sup>16+</sup> | string | 否 | 是 | 表示启动的详细原因。<br>**原子化服务API**：从API version 16开始，该接口支持在原子化服务中使用。 |
+| launchReasonMessage<sup>18+</sup> | string | 否 | 是 | 表示启动的详细原因。<br>**原子化服务API**：从API version 18开始，该接口支持在原子化服务中使用。 |
 | lastExitReason | [LastExitReason](#lastexitreason) | 否 | 否 | 枚举类型，表示最后退出原因。<br>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
 | lastExitMessage<sup>12+</sup> | string | 否 | 否 | 表示最后退出详细原因。<br>**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。 |
-| lastExitDetailInfo<sup>16+</sup> | [LastExitDetailInfo](#lastexitdetailinfo16) | 否 | 是 | 表示最后退出时的进程状态和详细原因。<br>**原子化服务API**：从API version 16开始，该接口支持在原子化服务中使用。 |
+| lastExitDetailInfo<sup>18+</sup> | [LastExitDetailInfo](#lastexitdetailinfo18) | 否 | 是 | 表示最后退出时的进程状态和详细原因。<br>**原子化服务API**：从API version 18开始，该接口支持在原子化服务中使用。 |
 
 ## LaunchReason
 
@@ -70,15 +70,15 @@ Ability上次退出原因，该类型为枚举，可配合UIAbility的[onCreate(
 | ----------------------------- | ---- | ------------------------------------------------------------ |
 | UNKNOWN          | 0    | 未知原因。<br>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
 | ABILITY_NOT_RESPONDING<sup>(deprecated)</sup> | 1    | ability未响应。<br>**说明:** 从API version 9开始支持，从API version 10开始废弃，请使用APP_FREEZE替代。|
-| NORMAL | 2    | 用户主动关闭，应用程序正常退出。<br>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
+| NORMAL | 2    | 用户主动关闭，应用程序正常退出。<br>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。<br>**说明**：如果调用[process.exit()](../apis-arkts/js-apis-process.md#processexitdeprecated)、kill命令等非Ability Kit提供的能力退出应用进程，也会返回NORMAL。 |
 | CPP_CRASH<sup>10+</sup>  | 3    | 本机异常信号，导致应用程序退出。<br>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
 | JS_ERROR<sup>10+</sup>  | 4    | 当应用存在JS语法错误并未被开发者捕获时，触发JS_ERROR故障，导致应用程序退出。<br>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
 | APP_FREEZE<sup>10+</sup>  | 5    | 由于watchdog检测出应用Freeze故障，导致应用程序退出。<br>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
 | PERFORMANCE_CONTROL<sup>10+</sup>  | 6    | 由于系统性能问题（如设备内存不足），导致应用程序退出。<br>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。<br>**说明**：该接口即将废弃，建议使用RESOURCE_CONTROL替代。 |
 | RESOURCE_CONTROL<sup>10+</sup>  | 7    | 系统资源使用不当，导致应用程序退出。具体错误原因可以通过[LaunchParam.lastExitMessage](#launchparam)获取，可能原因如下: <br> - CPU Highload，CPU高负载。<br> - CPU_EXT Highload，快速CPU负载检测。<br> - IO Manage Control，I/O管控。<br> - App Memory Deterioration，应用内存超限劣化。<br> - Temperature Control，温度管控。<br> - Memory Pressure，整机低内存触发按优先级由低到高查杀。<br>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。|
 | UPGRADE<sup>10+</sup>  | 8    | 应用程序因升级而退出。<br>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
-| USER_REQUEST<sup>16+</sup>  | 9    | 应用程序因多任务中心请求而退出，例如用户在多任务管理界面执行上划、一键清理等操作。<br>**原子化服务API**：从API version 16开始，该接口支持在原子化服务中使用。 |
-| SIGNAL<sup>16+</sup>  | 10    | 应用程序因收到系统kill指令信号而退出。<br>**原子化服务API**：从API version 16开始，该接口支持在原子化服务中使用。 |
+| USER_REQUEST<sup>18+</sup>  | 9    | 应用程序因多任务中心请求而退出，例如用户在多任务管理界面执行上划、一键清理等操作。<br>**原子化服务API**：从API version 18开始，该接口支持在原子化服务中使用。 |
+| SIGNAL<sup>18+</sup>  | 10    | 应用程序因收到系统kill指令信号而退出。<br>**原子化服务API**：从API version 18开始，该接口支持在原子化服务中使用。 |
 
 **示例：**
 
@@ -97,9 +97,11 @@ class MyAbility extends UIAbility {
 }
 ```
 
-## LastExitDetailInfo<sup>16+</sup>
+## LastExitDetailInfo<sup>18+</sup>
 
-记录Ability所在进程上次退出的详细信息。<br>**原子化服务API**：从API version 16开始，该接口支持在原子化服务中使用。
+记录Ability所在进程上次退出的详细信息。
+
+**原子化服务API**：从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -313,9 +315,9 @@ class MyAbility extends UIAbility {
 }
 ```
 
-## CollaborateResult<sup>16+</sup>
+## CollaborateResult<sup>18+</sup>
 
-协同状态枚举值，用于表示多设备场景下，调用方应用拉起协同方应用时，协同方应用是否接受协同。配合UIAbility的[onCollaborate(wantParam)](js-apis-app-ability-uiAbility.md#uiabilityoncollaborate16)方法进行设置。
+协同状态枚举值，用于表示多设备场景下，调用方应用拉起协同方应用时，协同方应用是否接受协同。配合UIAbility的[onCollaborate(wantParam)](js-apis-app-ability-uiAbility.md#uiabilityoncollaborate18)方法进行设置。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 

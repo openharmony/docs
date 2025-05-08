@@ -3,13 +3,15 @@
 
 ## Overview
 
-The **OHOS::Media::OhosImageComponent** struct describes the information about an image component.
+The OHOS::Media::OhosImageComponent struct describes the information about an image component.
 
 **System capability**: SystemCapability.Multimedia.Image
 
 **Since**: 10
 
 **Related module**: [Image](image.md)
+
+**Header file**: [image_mdk.h](image__mdk_8h.md)
 
 
 ## Summary
@@ -19,11 +21,11 @@ The **OHOS::Media::OhosImageComponent** struct describes the information about a
 
 | Name| Description| 
 | -------- | -------- |
-| uint8_t \* [byteBuffer](#bytebuffer) | Buffer that stores the pixel data. | 
-| size_t [size](#size) | Size of the pixel data in the memory. | 
-| int32_t [componentType](#componenttype) | Type of the pixel data. | 
-| int32_t [rowStride](#rowstride) | Row stride of the pixel data. | 
-| int32_t [pixelStride](#pixelstride) | Pixel stride of the pixel data. | 
+| uint8_t \* [byteBuffer](#bytebuffer) | Pointer to the buffer that stores the pixel data.|
+| size_t [size](#size) | Size of the pixel data in the memory.|
+| int32_t [componentType](#componenttype) | Type of the pixel data.|
+| int32_t [rowStride](#rowstride) | Row stride of the pixel data.|
+| int32_t [pixelStride](#pixelstride) | Pixel stride of the pixel data.|
 
 
 ## Member Variable Description
@@ -37,7 +39,7 @@ uint8_t* OhosImageComponent::byteBuffer
 
 **Description**
 
-Buffer that stores the pixel data.
+Pointer to the buffer that stores the pixel data.
 
 
 ### componentType

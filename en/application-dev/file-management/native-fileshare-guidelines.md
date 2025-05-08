@@ -2,7 +2,7 @@
 
 ## When to Use
 
-If an application accesses a file by using a Picker, the permission for accessing the file will be automatically revoked after the application exits or the device restarts. To retain the permission for accessing the file, you need to [persistent the authorization](file-persistPermission.md#when-to-use). You can use the **FileShare** module to persist permissions on files or folders based on their URI, activate or deactivate persistent permissions on files or folders, and check the persistent permissions.
+If an application accesses a file by using Picker, the permission for accessing the file will be automatically invalidated after the application exits or the device restarts. To retain the permission for accessing the file, you need to [persist the permission](file-persistPermission.md#when-to-use). You can use the **FileShare** module to persist permissions on files or folders based on their URI, activate or deactivate persistent permissions on files or folders, and check the persistent permissions.
 
 ## Available APIs
 
@@ -21,11 +21,11 @@ For details about the APIs, see [FileShare](../reference/apis-core-file-kit/file
 
 - Before using the **FileShare** APIs, check that your device has SystemCapability.FileManagement.AppFileService.FolderAuthorization.
 
-- To call **FileShare** APIs, the application must have the ohos.permission.FILE_ACCESS_PERSIST permission. For details about how to request the permission, see [Workflow for Requesting Permissions](../security/AccessToken/determine-application-mode.md).
+- To call **FileShare** APIs, the application must have the ohos.permission.FILE_ACCESS_PERSIST permission. For details about how to request the permission, see [Workflow for Using Permissions](../security/AccessToken/determine-application-mode.md).
 
 ## How to Develop
 
-The following example describes how to use the **FileShare** APIs.
+The following example describes how to use the `FileShare` APIs.
 
 **Adding the Dynamic Link Library**
 

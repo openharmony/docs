@@ -286,7 +286,7 @@ Uses a secure random number generator to generate a random universally unique id
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| entropyCache | boolean | No| Whether a cached UUID can be used. The default value is **true**.|
+| entropyCache | boolean | No| Whether to use a cached UUID. The value **true** means to use a cached UUID, and **false** means the opposite. The default value is **true**.|
 
 **Return value**
 
@@ -324,7 +324,7 @@ Uses a secure random number generator to generate a random UUID of the Uint8Arra
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| entropyCache | boolean | No| Whether a cached UUID can be used. The default value is **true**.|
+| entropyCache | boolean | No| Whether to use a cached UUID. The value **true** means to use a cached UUID, and **false** means the opposite. The default value is **true**.|
 
 **Return value**
 
@@ -535,8 +535,8 @@ Describes decoding-related options, which include **fatal** and **ignoreBOM**.
 
 | Name     | Type| Mandatory| Description              |
 | --------- | -------- | ---- | ------------------ |
-| fatal     | boolean  | No  | Whether to display fatal errors. The default value is **false**.|
-| ignoreBOM | boolean  | No  | Whether to ignore the BOM. The default value is **false**. |
+| fatal     | boolean  | No  | Whether to display fatal errors. The value **true** means to display fatal errors, and **false** means the opposite. The default value is **false**.|
+| ignoreBOM | boolean  | No  | Whether to ignore the BOM. The value **true** means to ignore the BOM, and **false** means the opposite. The default value is **false**. |
 
 ## DecodeToStringOptions<sup>12+</sup>
 
@@ -582,7 +582,7 @@ Inserts a function before a method of a class object. The inserted function is e
 | -------- | ------- | ---- | -------------------------------------|
 | targetClass  | Object   | Yes  | Target class object.                   |
 | methodName   | string   | Yes  | Name of the method. Read-only methods are not supported.                   |
-| isStatic     | boolean  | Yes  | Whether the method is a static method. The value **true** indicates a static method, and **false** indicates an instance method.     |
+| isStatic     | boolean  | Yes  | Whether the method is a static method. The value **true** means a static method, and **false** means an instance method.     |
 | before       | Function | Yes  | Function to insert. If the function carries parameters, then the first parameter is the **this** object, which is the target class object (specified by **targetClass**) if **isStatic** is **true** or the instance object of the method if **isStatic** is **false**; other parameters are the parameters carried in the original method. If the function does not carry any parameter, no processing is performed.|
 
 **Error codes**
@@ -674,7 +674,7 @@ Inserts a function after a method of a class object. The final return value is t
 | -------- | ------- | ---- | -------------------------------------|
 | targetClass  | Object   | Yes  | Target class object.                   |
 | methodName   | string   | Yes  | Name of the method. Read-only methods are not supported.                  |
-| isStatic     | boolean  | Yes  | Whether the method is a static method. The value **true** indicates a static method, and **false** indicates an instance method.     |
+| isStatic     | boolean  | Yes  | Whether the method is a static method. The value **true** means a static method, and **false** means an instance method.     |
 | after        | Function | Yes  | Function to insert. If the function carries parameters, then the first parameter is the **this** object, which is the target class object (specified by **targetClass**) if **isStatic** is **true** or the instance object of the method if **isStatic** is **false**; the second parameter is the return value of the original method (**undefined** if the original method does not have a return value); other parameters are the parameters carried by the original method. If the function does not carry any parameter, no processing is performed. |
 
 **Error codes**
@@ -757,7 +757,7 @@ Replaces a method of a class object with another function. After the replacement
 | -------- | ------- | ---- | -------------------------------------|
 | targetClass  | Object   | Yes  | Target class object.                   |
 | methodName   | string   | Yes  | Name of the method. Read-only methods are not supported.                 |
-| isStatic     | boolean  | Yes  | Whether the method is a static method. The value **true** indicates a static method, and **false** indicates an instance method.      |
+| isStatic     | boolean  | Yes  | Whether the method is a static method. The value **true** means a static method, and **false** means an instance method.      |
 | instead      | Function | Yes  | Function to be used replacement. If the function carries parameters, then the first parameter is the **this** object, which is the target class object (specified by **targetClass**) if **isStatic** is **true** or the instance object of the method if **isStatic** is **false**; other parameters are the parameters carried in the original method. If the function does not carry any parameter, no processing is performed.  |
 
 **Error codes**
@@ -818,7 +818,7 @@ Provides APIs to decode byte arrays into strings. It supports multiple formats, 
 | Name| Type| Readable| Writable| Description|
 | -------- | -------- | -------- | -------- | -------- |
 | encoding | string | Yes| No| Encoding format.<br>The following formats are supported: utf-8, ibm866, iso-8859-2, iso-8859-3, iso-8859-4, iso-8859-5, iso-8859-6, iso-8859-7, iso-8859-8, iso-8859-8-i, iso-8859-10, iso-8859-13, iso-8859-14, iso-8859-15, koi8-r, koi8-u, macintosh, windows-874, windows-1250, windows-1251, windows-1252, windows-1253, windows-1254, windows-1255, windows-1256, windows-1257, windows-1258, x-mac-cyrillic, gbk, gb18030, big5, euc-jp, iso-2022-jp, shift_jis, euc-kr, utf-16be, utf-16le, UTF-8, GBK, GB2312, gb2312, GB18030 and iso-8859-1.|
-| fatal | boolean | Yes| No| Whether to display fatal errors.|
+| fatal | boolean | Yes| No| Whether to display fatal errors. The value **true** means to display fatal errors, and **false** means the opposite.|
 | ignoreBOM | boolean | Yes| No| Whether to ignore the byte order marker (BOM). The default value is **false**, which indicates that the result contains the BOM.|
 
 ### constructor<sup>9+</sup>
@@ -1007,8 +1007,8 @@ A constructor used to create a **TextDecoder** object.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| fatal | boolean | No| Whether to display fatal errors. The default value is **false**.|
-| ignoreBOM | boolean | No| Whether to ignore the BOM. The default value is **false**.|
+| fatal | boolean | No| Whether to display fatal errors. The value **true** means to display fatal errors, and **false** means the opposite. The default value is **false**.|
+| ignoreBOM | boolean | No| Whether to ignore the BOM. The value **true** means to ignore the BOM, and **false** means the opposite. The default value is **false**.|
 
 **Example**
 
@@ -1185,7 +1185,7 @@ Encodes the input content into a Uint8Array object.
 
 | Name| Type  | Mandatory| Description              |
 | ------ | ------ | ---- | ------------------ |
-| input  | string | No  | String to encode. The default value is an empty string.|
+| input  | string | No  | String to encode. The default value is an empty string. If the input parameter is an empty string, the return value is undefined.|
 
 **Return value**
 
@@ -1250,6 +1250,10 @@ let uint8 = new Uint8Array(buffer);
 let result = textEncoder.encodeIntoUint8Array('abcd', uint8);
 console.info("uint8 = " + uint8);
 // Output: uint8 = 97,98,99,100
+console.info("result.read = " + result.read);
+// Output: result.read = 4
+console.info("result.written = " + result.written);
+// Output: result.written = 4
 ```
 
 ### encodeInto<sup>(deprecated)</sup>
@@ -2721,7 +2725,7 @@ console.info("result = " + result);
 
 intersect(range: ScopeHelper): ScopeHelper
 
-Obtains the intersection of this **Scope** and the given **Scope**.
+Obtains the intersection of this **Scope** and the given **Scope**. If the intersection is empty, an exception is thrown.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -3442,7 +3446,7 @@ Encodes the input content into a Uint8Array object. This API uses a promise to r
 | Name| Type      | Mandatory| Description                   |
 | ------ | ---------- | ---- | ----------------------- |
 | src    | Uint8Array | Yes  | Uint8Array object to encode.|
-| options<sup>12+</sup> | [Type](#type10) | No| Encoding format.<br>The following values are available:<br>- **util.Type.BASIC**: Base64 encoding.<br>- **util.Type.BASIC_URL_SAFE**: Base64URL encoding.|
+| options<sup>12+</sup> | [Type](#type10) | No| Encoding format.<br>The following values are available:<br>- **util.Type.BASIC** (default): Base64 encoding.<br>- **util.Type.BASIC_URL_SAFE**: Base64URL encoding.|
 
 **Return value**
 

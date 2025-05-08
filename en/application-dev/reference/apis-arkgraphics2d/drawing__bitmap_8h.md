@@ -28,7 +28,7 @@ The **drawing_bitmap.h** declares the functions related to the bitmap in the dra
 
 | Name| Description| 
 | -------- | -------- |
-| typedef struct [OH_Drawing_BitmapFormat](_o_h___drawing___bitmap_format.md)  [OH_Drawing_BitmapFormat](_drawing.md#oh_drawing_bitmapformat) | Defines a struct that describes the pixel format of a bitmap, including the color type and alpha type.| 
+| typedef struct [OH_Drawing_BitmapFormat](_o_h___drawing___bitmap_format.md)  [OH_Drawing_BitmapFormat](_drawing.md#oh_drawing_bitmapformat) | Defines a struct for the pixel format of a bitmap, including the color type and alpha type.| 
 
 
 ### Functions

@@ -908,7 +908,7 @@ IRilCallback::GetCurrentCellInfoResponse_1_1 ([in] struct RilRadioResponseInfo r
 | 名称 | 描述 | 
 | -------- | -------- |
 | responseInfo | responseInfo 表示通用响应信息，例如卡槽ID，请求序列ID等，详见[RilRadioResponseInfo](_ril_radio_response_info_v11.md)。 | 
-| cellListCurrentInfo | 表示附近的小区信息列表，详见[CellListCurrentInfo_1_1](_cell_list_current_info__1__1_v11.md). | 
+| cellListCurrentInfo | 表示附近的小区信息列表，详见[CellListCurrentInfo_1_1](_cell_list_current_info__1__1_v11.md)。 | 
 
 
 ### GetEmergencyCallListResponse()

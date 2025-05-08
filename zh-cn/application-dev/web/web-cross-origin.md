@@ -12,9 +12,9 @@ Access to script at 'xxx' from origin 'xxx' has been blocked by CORS policy: Cro
 
 - 方法一
 
-  为了使Web组件能够成功访问跨域资源，开发者应采用http或https等协议，替代原先使用的file或resource协议进行加载。其中，替代的url域名为自定义构造的仅供个人或者组织使用的域名，以避免与互联网上实际存在的域名产生冲突。同时，开发者需利用Web组件的[onInterceptRequest](../reference/apis-arkweb/ts-basic-components-web.md#oninterceptrequest9)方法，对本地资源进行拦截和相应的替换。
+  为了使Web组件能够成功访问跨域资源，开发者应采用http或https等协议，替代原先使用的file或resource协议进行加载。其中使用http或者https等协议替代的url域名为自定义构造的仅供个人或者组织使用的域名，以避免与互联网上实际存在的域名产生冲突。同时，开发者需利用Web组件的[onInterceptRequest](../reference/apis-arkweb/ts-basic-components-web.md#oninterceptrequest9)方法，对本地资源进行拦截和相应的替换。
 
-  以下结合示例说明如何解决本地资源跨域访问失败的问题。其中，index.html和js/script.js置于工程中的rawfile目录下。如果使用resource协议访问index.html，js/script.js将因跨域而被拦截，无法加载。在示例中，使用https:\//www\.example.com/域名替换了原本的resource协议，同时利用[onInterceptRequest](../reference/apis-arkweb/ts-basic-components-web.md#oninterceptrequest9)接口替换资源，使得js/script.js可以成功加载，从而解决了跨域拦截的问题。
+  以下结合示例说明如何使用http或者https等协议解决本地资源跨域访问失败的问题。其中，index.html和js/script.js置于工程中的rawfile目录下。如果使用resource协议访问index.html，js/script.js将因跨域而被拦截，无法加载。在示例中，使用https:\//www\.example.com/域名替换了原本的resource协议，同时利用[onInterceptRequest](../reference/apis-arkweb/ts-basic-components-web.md#oninterceptrequest9)接口替换资源，使得js/script.js可以成功加载，从而解决了跨域拦截的问题。
 
   ```ts
   // main/ets/pages/Index.ets
@@ -115,7 +115,7 @@ Access to script at 'xxx' from origin 'xxx' has been blocked by CORS policy: Cro
   当路径列表中的任一路径不满足上述条件时，系统将抛出异常码401，并判定路径列表设置失败。若设置的路径列表为空，file协议的可访问范围将遵循[fileAccess](../reference/apis-arkweb/ts-basic-components-web.md#fileaccess)的规则，具体示例如下。
 
   ```ts
-  // main/ets/pages/Index.ets
+  // main/ets/pages/index.ets
   import { webview } from '@kit.ArkWeb';
   import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -123,6 +123,7 @@ Access to script at 'xxx' from origin 'xxx' has been blocked by CORS policy: Cro
   @Component
   struct WebComponent {
     controller: WebviewController = new webview.WebviewController();
+    uiContext: UIContext = this.getUIContext();
 
     build() {
       Row() {
@@ -131,12 +132,12 @@ Access to script at 'xxx' from origin 'xxx' has been blocked by CORS policy: Cro
             try {
               // 设置允许可以跨域访问的路径列表
               this.controller.setPathAllowingUniversalAccess([
-                getContext().resourceDir,
-                getContext().filesDir + "/example"
+                this.uiContext.getHostContext()!.resourceDir,
+                this.uiContext.getHostContext()!.filesDir + "/example"
               ])
-              this.controller.loadUrl("file://" + getContext().resourceDir + "/index.html")
+              this.controller.loadUrl("file://" + this.uiContext.getHostContext()!.resourceDir + "/index.html")
             } catch (error) {
-              console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as   BusinessError).message}`);
+              console.error(`ErrorCode: ${(error as BusinessError).code}, Message: ${(error as BusinessError).message}`);
             }
           })
           .javaScriptAccess(true)
@@ -148,7 +149,7 @@ Access to script at 'xxx' from origin 'xxx' has been blocked by CORS policy: Cro
   ```
 
   ```html
-  <!-- main/resource/rawfile/index.html -->
+  <!-- main/resources/resfile/index.html -->
   <!DOCTYPE html>
   <html lang="en">
 
@@ -193,7 +194,7 @@ Access to script at 'xxx' from origin 'xxx' has been blocked by CORS policy: Cro
   ```
 
   ```javascript
-  // main/resources/rawfile/js/script.js
+  // main/resources/resfile/js/script.js
   const body = document.body;
   const element = document.createElement('div');
   element.textContent = 'success';

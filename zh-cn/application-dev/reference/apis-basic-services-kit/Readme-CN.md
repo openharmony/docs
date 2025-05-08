@@ -16,7 +16,7 @@
     - [@ohos.runningLock (Runninglock锁)](js-apis-runninglock.md)
     - [@ohos.thermal (热管理)](js-apis-thermal.md)
     - [@ohos.usbManager (USB管理)](js-apis-usbManager.md)
-    - [@ohos.usbManager.serial (串口管理)](js-apis-serialManager-sys.md)
+    - [@ohos.usbManager.serial (串口管理)](js-apis-serialManager.md)
     <!--Del-->
     - [@ohos.batteryInfo (电量信息)(系统接口)](js-apis-battery-info-sys.md)
     - [@ohos.batteryStatistics (耗电统计)(系统接口)](js-apis-batteryStatistics-sys.md)
@@ -97,7 +97,6 @@
   - 模块<!--basic-services-module-->
     - [CommonEvent](capi-common-event.md)
     - [DeviceInfo](_device_info.md)
-    - [InitSync](_init_sync.md)
     - [OsAccount](_os_account.md)
     - [OH_BatteryInfo](oh__batteryinfo.md)
     - [OH_Scan](c-apis-scan.md)
@@ -106,7 +105,6 @@
     - [TimeService](_time_service.md)
   - 头文件<!--basic-services-headerfile-->
     - [deviceinfo.h](deviceinfo_8h.md)
-    - [init_sync.h](init__sync_8h.md)
     - [ohbattery_info.h](ohbattery__info_8h.md)
     - [oh_commonevent.h](oh_commonevent_8h.md)
     - [oh_commonevnt_support.h](oh_commonevent_support_8h.md)
@@ -115,6 +113,7 @@
     - [os_account.h](os__account_8h.md)
     - [os_account_common.h](os__account__common_8h.md)
     - [ohprint.h](ohprint_8h.md)
+    - [ohscan.h](c-apis-scan.md)
     - [time_service.h](time__service_8h.md)
   - 结构体<!--basic-services-struct-->
     - [Print_Margin](_print___margin.md)
@@ -146,4 +145,5 @@
   - [锁屏服务错误码](errorcode-screenlock.md)
   - [设备证明错误码](errorcode-deviceAttest.md)
   - [智能语音错误码](errorcode-intelligentVoice.md)
+  - [设置数据项错误码](errorcode-settings.md)
   <!--DelEnd-->

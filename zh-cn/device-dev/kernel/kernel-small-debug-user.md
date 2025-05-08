@@ -1,14 +1,11 @@
 # 用户态内存调测
 ## 基本概念
 
-
 Debug版本的musl-libc库为用户提供内存泄漏检测、堆内存统计、踩内存分析以及backtrace功能等维测手段，可以提高用户态内存相关问题的定位效率。
-
 
 采用了对malloc/free接口进行插桩，保存关键节点信息，然后程序在申请和释放内存时进行内存节点完整性校验，最后在程序结束时通过统计节点信息得到内存统计信息并根据统计信息判断内存是否泄漏的设计思想。
 
 ## 运行机制
-
 
 ### 内存泄漏检查
 
@@ -123,7 +120,7 @@ Debug版本的musl-libc库为用户提供内存泄漏检测、堆内存统计、
 #include <pthread.h>
 #include <stdlib.h>
 #include <stdio.h>
-#include <debug.h> // 包含提供内存调测接口声明的头文件
+#include <debug.h> // 包含提供内存调测接口声明的头文件。
 
 #define MALLOC_LEAK_SIZE  0x300
 
@@ -177,18 +174,18 @@ $ clang -o mem_check mem_check.c -funwind-tables -rdynamic -g -mfloat-abi=softfp
 ```
 OHOS # ./mem_check
 OHOS #
-==PID:4== Heap memory statistics(bytes): // 堆内存统计信息
-    [Check point]: // check点调用栈
+==PID:4== Heap memory statistics(bytes): // 堆内存统计信息。
+    [Check point]: // check点调用栈。
         #00: <main+0x38>[0x86c] -> mem_check
         #01: <(null)+0x24baf9dc>[0x219dc] -> /lib/libc.so
 
-    [TID: 18, Used: 0x320] // 18号线程堆内存占用，当前进程仅一个线程
+    [TID: 18, Used: 0x320] // 18号线程堆内存占用，当前进程仅一个线程。
 
 ==PID:4== Total heap: 0x320 byte(s), Peak: 0x320 byte(s)
 
-Check heap integrity ok! // 堆内存完整性检查
+Check heap integrity ok! // 堆内存完整性检查。
 
-==PID:4== Detected memory leak(s): // 内存泄漏信息及调用栈
+==PID:4== Detected memory leak(s): // 内存泄漏信息及调用栈。
     [Check point]:
         #00: <check_leak+0x1c4>[0x2da4c] -> /lib/libc.so
         #01: <main+0x44>[0x878] -> mem_check
@@ -326,9 +323,9 @@ int main()
 
 
 ```
-OHOS # ./mem_check --mwatch // 利用task命令可以查到mem_check进程的pid为4
+OHOS # ./mem_check --mwatch // 利用task命令可以查到mem_check进程的pid为4。
 OHOS #
-OHOS # kill -35 4 // 查看堆内存统计信息
+OHOS # kill -35 4 // 查看堆内存统计信息。
 OHOS #
 ==PID:4== Heap memory statistics(bytes):
     [Check point]:
@@ -338,7 +335,7 @@ OHOS #
 
 ==PID:4== Total heap: 0x640 byte(s), Peak: 0x640 byte(s)
 
-OHOS # kill -36 4 // 检查是否存在堆内存泄漏
+OHOS # kill -36 4 // 检查是否存在堆内存泄漏。
 OHOS #
 ==PID:4== Detected memory leak(s):
     [Check point]:
@@ -356,7 +353,7 @@ OHOS #
 
 ==PID:4== SUMMARY: 0x640 byte(s) leaked in 2 allocation(s).
 
-OHOS # kill -37 4 // 检查堆内存头节点的完整性
+OHOS # kill -37 4 // 检查堆内存头节点的完整性。
 OHOS #
 Check heap integrity ok!
 ```
@@ -509,10 +506,10 @@ Now using addr2line ...
 - 申请小块内存（不大于0x1c000 bytes）
   free之后：
 
-  读操作：读取free之后的内存大概率是魔术数字(0xFEFEFEFE)
+  读操作：读取free之后的内存大概率是魔术数字(0xFEFEFEFE)。
 
   > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-  > free之后的堆内存不会立即释放进堆内存池，会先放至固定长度的队列中，并置魔术数字0xFE，队列满后会将先放至队列中的内存块释放进堆内存池
+  > free之后的堆内存不会立即释放进堆内存池，会先放至固定长度的队列中，并置魔术数字0xFE，队列满后会将先放至队列中的内存块释放进堆内存池。
 
   写操作：无法校验。
 

@@ -1,9 +1,10 @@
-# 通过图数据库实现数据持久化
+# 通过图数据库实现数据持久化（仅对系统应用开放）
 
 
 ## 场景介绍
 
-图数据库是一种专门用于处理复杂关系数据的数据库管理系统。它通过节点（顶点）和关系（边）的结构来存储和查询数据，能够高效地处理大量复杂的关系运算。图数据库的核心优势在于直接通过存储的边来遍历关系，相较于关系型数据库的多表JOIN遍历关系更为高效。常见使用场景有社交网络与关系分析、知识图谱、实时推荐系统等。当前接口均为系统能力，仅对系统应用开放。
+图数据库是一种专门用于处理复杂关系数据的数据库管理系统。它通过节点（顶点）和关系（边）的结构来存储和查询数据，能够高效地处理大量复杂的关系运算。图数据库的核心优势在于直接通过存储的边来遍历关系，相较于关系型数据库的多表JOIN遍历关系更为高效。常见使用场景有社交网络与关系分析、知识图谱、实时推荐系统等。当前接口均为系统能力，仅对系统应用开放。</br>
+从API version 18开始，支持通过图数据库实现数据持久化。
 
 
 ## 基本概念
@@ -57,7 +58,7 @@ ArkTS侧支持的基本数据类型：number、string、boolean。各数据类�
 | 数据类型 | 规格说明 |
 | - | - |
 | NULL | 即nullptr，用来表示一个缺失值的项，建图时不允许设置数据类型为NULL。 |
-| number | 1. INTEGER，取值范围与int64_t一致，NUMERIC、DATE、DATETIME、INT都映射成int64_t。<br/>2.DOUBLE，取值范围与double一致，REAL、FLOAT都映射成double。 |
+| number | 1. INTEGER，取值范围与int64_t一致，NUMERIC、DATE、DATETIME、INT都映射成int64_t。<br/>2. DOUBLE，取值范围与double一致，REAL、FLOAT都映射成double。 |
 | string | 1. 最大64 * 1024字节，包含结束符'\0'。<br/>2. CHARACTER(20)、VARXHAR(255)、VARYING CHARACTER(255)、NCHAR(55)、NATIVE CHARACTER(70)、NVARCHAR(100)都映射成STRING，其中数字没有实际意义。<br/>3.字符串字面量必须用成对的单引号，不可以用双引号，字符串内部不可以有单引号。 |
 | boolean | 取值为true或false，BOOL、BOOLEAN都映射成int64_t。 |
 
@@ -96,7 +97,7 @@ DML（Data Manipulation Language）语句: 数据操纵语言，主要是对数�
 | RETURN | 1. 不支持返回变长的边变量，例如“MATCH p=(a: Person)-[e]->{0, 2}(d) RETURN e;”，只能返回变量p，a，b，不能返回变长边变量e。<br/>2. 不支持RETURN \*。<br/>3. RETURN子句后不能出现“()-[]->()”等图匹配形式。<br/>4. 返回结果中（变量、属性、表达式）每一列的字节长度限制为64 * 1024字节，包含结尾符‘\0’在内。<br/>5. RETURN返回点、边、路径变量时，返回结果（json字符串）不包含内容为null的属性列。<br/>6. 未显示指定GROUP KEY的聚集查询，不允许返回“变量.属性”字段，允许返回重复列（包括重复字段列、聚集函数拓展列、COUNT(\*)）。<br/>7. 显式指定GROUP KEY的聚集查询，RETURN中的“变量.属性”字段必须和GROUP KEY相同，不允许返回部分GROUP KEY字段、不存在的“变量.属性”字段以及重复列（包括重复字段列、聚集函数拓展列、COUNT(\*)）。<br/>8. 显示指定GROUP KEY的聚集查询，聚集查询返回的列的排列方式为：GROUP KEY字段+聚集函数拓展列。<br/>9.存在聚集查询时，不允许在RETURN中返回表达式和基础函数。<br/>10. GQL语句中有聚集函数时，只支持返回属性列或者聚集函数列，不支持RETURN点边变量或者路径变量。<br/>11. 列别名可在ORDER BY中使用，但不能在GROUP BY中使用。<br/>12. 不允许存在重复的列别名。<br/>13. 列别名不区分大小写。 | 除3外，GQL标准不存在左侧约束。 |
 | LIMIT | 不支持LIMIT后使用负数。 | 无差异。 |
 | OFFSET | 不支持OFFSET后使用负数。 | 不支持SKIP作为OFFSET的同义词。 |
-| ORDER BY | 1. 不支持用数字指代RETURN子句中的投影列进行排序。<br/>2. 不支持对整个变量进行排序。<br/>3. 不支持ORDER BY后使用聚集函数。<br/>4. 新增如下关键字：<br/>保留关键字ORDER、BY、ASC、ASCENDING、DESC、DESCENDING、NULLS。非保留关键字：FIRST、LAST。<br/>5. 当存在聚合查询时，ORDER BY必须与GROUP BY配合使用。<br/>6. 当将ORDER BY与GROUP BY配合使用时，排序KEY中所使用的属性列必须在投影结果中存在。<br/>7. 未指定排序顺序时，默认升序排列。<br/>8. 未指定NULL值优先级时，默认NULL值优先级最低。 | GQL标准中未明确指定约束1，不存在约束2、3。 |
+| ORDER BY | 1. 不支持用数字指代RETURN子句中的投影列进行排序。<br/>2. 不支持对整个变量进行排序。<br/>3. 不支持ORDER BY后使用聚集函数。<br/>4. 新增如下关键字：<br/>保留关键字ORDER、BY、ASC、ASCENDING、DESC、DESCENDING、NULLS。非保留关键字：FIRST、LAST。<br/>5. 当存在聚合查询时，ORDER BY必须与GROUP BY配合使用。<br/>6. 当将ORDER BY与GROUP BY配合使用时，排序KEY中所使用的属性列必须在投影结果中存在。<br/>7. 未指定排序顺序时，默认升序排列。<br/>8. 未指定NULL值优先级时，默认NULL值优先级最低。 | GQL标准中未明确指定约束1。不存在约束2、3。 |
 | GROUP BY | 1. GROUP KEY数量上限为32个。<br/>2. GROUP KEY不支持对无标签变量的字段进行分组。即作为GROUP BY后接的KEY在MATCH子句中的变量必须带标签。<br/>3. GROUP KEY只能为变量.属性，如a.prop，不支持对点边标签、点边变量、路径、变长边及其上的字段进行分组。<br/>4. GROUP KEY不能重复，包括重复的字段列，重复的拓展聚焦列。 | 左侧约束为GQL标准的子集。 |
 
 #### 运算、函数规格及约束
@@ -108,7 +109,7 @@ DML（Data Manipulation Language）语句: 数据操纵语言，主要是对数�
 | 逻辑运算 | 1. 支持AND、OR、NOT、IS NULL、IS NOT NULL、IN、NOT IN、LIKE、NOT LIKE、\|\|（字符串拼接）。<br/>2. 对于AND、OR、NOT运算符，其操作数会被强制转为bool类型，例如：WHERE 0.00001 AND '0.1'，0.00001是浮点数，与0比较精度定义误差为+/-0.000000000000001，因此0.00001不等于0，转换为bool后为true，'0.1'为字符串类型，首先从字符串转换为double类型的0.1，然后与0比较时不等于0，转换为bool后为true。<br/>3. 对于LIKE、NOT LIKE运算符，其操作数会被强转为字符串类型，例如：WHERE 0.5 LIKE 0.5，0.5会被强转为字符串'0.5'，相当于WHERE '0.5' LIKE '0.5'，结果为true。<br/>4. IN、NOT IN目前不支持右边为子查询，会报31300009错误码。 | 除1外，GQL标准不存在左侧约束。 |
 | 时间函数 | 1. 仅支持DATE()、LOCAL_TIME()、LOCAL_DATETIME()。<br/>2. 入参支持的time-value格式：<br/>YYYY-MM-DD<br/>YYYY-MM-DD HH:MM<br/>YYYY-MM-DD HH:MM:SS<br/>YYYY-MM-DDTHH:MM<br/>YYYY-MM-DDTHH:MM:SS<br/>HH:MM<br/>HH:MM:SS<br/>3. 不支持函数嵌套。<br/>4. 入参只支持字符串字面量。 | 不支持从记录中解析日期，例如：date({year: 1984, month: 11, day: 27})。 |
 | 取整函数 | 1. 支持FLOOR()、CEIL()/CEILING()。<br/>2. 入参必须为数字型。<br/>3. 不支持函数嵌套。<br/>4. 不支持科学计数法作为函数入参。 | GQL标准中不存在约束4。 |
-| 字符串函数 | 1. 支持CHAR_LENGTH()/CHARACTER_LENGTH()、LOWER()、UPPER()。<br/>2. 入参必须为字符串。<br/>3. 入参使用字符串拼接运算符‘\|\|’时允许拼接数字类型。<br/>4. 不支持函数嵌套。<br/>5. 不支持科学计数法作为函数入参。 | GQL标准中不存在约束4。 |
+| 字符串函数 | 1. 支持CHAR_LENGTH()/CHARACTER_LENGTH()、LOWER()、UPPER()、SUBSTR()/SUBSTRING()、SUBSET_OF()。<br/>2. 除SUBSTR()/SUBSTRING()外，其他函数入参必须为字符串。SUBSTR()/SUBSTRING()的第一个参数为字符串类型，第二个参数和第三个参数为数值类型。<br/>3. 入参使用字符串拼接运算符‘\|\|’时允许拼接数字类型。<br/>4. SUBSTR()/SUBSTRING()、SUBSET_OF()的参数可以互相嵌套，此外其他函数不支持函数嵌套。<br/>5. 不支持科学计数法作为函数入参。<br/>6. SUBSTR()/SUBSTRING()参数的个数必须是3，第一个入参是原始字符串，第二个入参是从第几个（左起第一个字符填1，右起第一个字符填-1）字符开始切分子串，第三个入参表示子串的长度。第二个入参和第三个入参如果是浮点型，会向下取整。<br/>7. SUBSET_OF()第一个参数是原始字符串，第二个参数是查询字符串，第三个参数是分词符，返回结果为bool类型（即返回1或0），分词符字符串长度必须是1，前两个参数的开头和结尾不能有多余的分词符，分词符不可以连续。 | GQL标准中不存在约束4。 |
 | 聚集函数 | 1. 聚集函数只支持SUM、MAX、MIN、AVG以及COUNT，不支持FIRST和LAST。<br/>2. 聚集函数内只允许存在单列有效的“变量.属性”字段，不允许使用空值、多个字段、不存在字段、表达式、变量等，不支持使用无标签变量的属性字段。<br/>3. 不支持聚合函数（内/间）的表达式运算、聚集函数嵌套。<br/>4. 聚集函数内计算的字段类型仅支持：INTEGER/BOOLEAN/DOUBLE/STRING类型，与GQL支持的数据类型一致。<br/>5. GQL场景在单条查询超过100MB时，不会使用临时文件，会报31300004错误码。 | 左侧约束为GQL标准的子集。 |
 | 类型转换函数 | 1. 不支持函数嵌套。<br/>2. 不支持科学计数法作为函数入参。<br/>3. CAST AS INT<br/>&nbsp;&nbsp;i. 入参支持STRING、INTERGER、BOOLEAN、DOUBLE。<br/>&nbsp;&nbsp;ii. 入参为true返回1，false返回0。<br/>&nbsp;&nbsp;iii. 入参不能被转换为INT的字符串将会报错。<br/>&nbsp;&nbsp;iv. 入参为浮点数截断返回整数。<br/>4. CAST AS BOOL<br/>&nbsp;&nbsp;i. 入参支持INTERGER、BOOLEAN、DOUBLE。<br/>&nbsp;&nbsp;ii. 不支持CAST('true' AS BOOL)。<br/>&nbsp;&nbsp;ii. 输入为BOOLEAN内部实际使用INT类型，0代表false，1代表true，转其他任何INTEGER为BOOLEAN返回其本身。<br/>5. CAST AS DOUBLE<br/>&nbsp;&nbsp;i. 入参支持STRING、INTERGER、BOOLEAN、DOUBLE。<br/>&nbsp;&nbsp;ii. 入参不能被转换为DOUBLE的字符串将会报错。<br/>6. CAST AS STRING<br/>&nbsp;&nbsp;i. 入参支持STRING、INTERGER、BOOLEAN、DOUBLE。<br/>&nbsp;&nbsp;ii. CAST(true AS STRING)返回值为'1'。 | GQL标准中不支持BOOL与INT以及DOUBLE之间的转换。 |
 
@@ -137,8 +138,8 @@ DML（Data Manipulation Language）语句: 数据操纵语言，主要是对数�
 
 | 规格项 | 规格说明 | 与GQL标准差异 |
 | - | - | - |
-| 显式事务 | 1. 默认可串行化隔离级别。<br/>2. 暂不支持SAVEPOINT（数据库中用于事务管理的重要机制，具体表现为在事务内部创建标记点，以便进行部分回滚。）。<br/>3. 不支持DDL与DML混合事务，不支持DDL事务，不支持DDL事务回滚。<br/>4. 当前事务中的单条语句执行失败，回滚单条语句。<br/>5. 事务必须显示地提交或者回滚，否则事务都将回滚。<br/>6. 不能在无事务状态下提交或回滚事务。<br/>7. 同时创建两个事务，写写互斥，读写/写读互斥，读读并发。<br/>8. 长事务资源：事务中操作上限和缓存大小undo日志相关，受文件系统空间限制，同时存在的锁等待线程数同开库连接上限相关。 | GQL标准支持基本的事务语法，不支持SAVEPOINT，支持开启只读事务和读写事务。 |
-| 并发操作 | 支持多并发，仅支持可串行化隔离级别，多线程涉及写操作的并发会有一定程度的阻塞。 | GQL标准支持SQL使用的所有隔离级别。 |
+| 显式事务 | 1. 默认可串行化隔离级别。<br/>2. 暂不支持SAVEPOINT（数据库中用于事务管理的重要机制，具体表现为在事务内部创建标记点，以便进行部分回滚。）。<br/>3. 不支持DDL与DML混合事务，不支持DDL事务，不支持DDL事务回滚。<br/>4. 当前事务中的单条语句执行失败，回滚单条语句。<br/>5. 事务必须显示地提交或者回滚，否则事务都将回滚。<br/>6. 不能在无事务状态下提交或回滚事务。<br/>7. 同时创建两个事务，写写互斥，读写/写读互斥，读读并发。<br/>8. 长事务资源：事务中操作上限和缓存大小与undo日志相关，受文件系统空间限制，同时存在的锁等待线程数与开库连接上限相关。 | GQL标准支持基本的事务语法，不支持SAVEPOINT，支持开启只读事务和读写事务。 |
+| 并发操作 | 支持多并发，仅支持可串行化隔离级别。多线程涉及写操作的并发会有一定程度的阻塞。 | GQL标准支持SQL使用的所有隔离级别。 |
 
 ### 其他规格及约束
 
@@ -226,7 +227,7 @@ DML（Data Manipulation Language）语句: 数据操纵语言，主要是对数�
    }
    ```
 
-2. 获取到GraphStore后，调用write()接口创建图。
+2. 获取到GraphStore后，调用write()接口创建图。示例代码如下所示：
 
    ```ts
    const CREATE_GRAPH = "CREATE GRAPH test " +
@@ -241,13 +242,11 @@ DML（Data Manipulation Language）语句: 数据操纵语言，主要是对数�
    }
    ```
 
-3. 成功创建图后，调用write()接口插入、更新顶点及边。
+3. 成功创建图后，调用write()接口插入、更新顶点及边。示例代码如下所示：
 
    > **说明：**
    >
    > 图数据库没有显式的flush操作实现持久化，数据插入即保存在持久化文件。
-
-   示例代码如下所示：
 
    ```ts
    const INSERT_VERTEX_1 = "INSERT (:Person {name: 'name_1', age: 11});";
@@ -427,7 +426,7 @@ DML（Data Manipulation Language）语句: 数据操纵语言，主要是对数�
    }
    ```
 
-7. 删除数据库。调用deleteStore()方法，删除数据库及数据库相关文件。示例代码如下：
+7. 删除数据库。调用deleteStore()方法，删除数据库及数据库相关文件。示例代码如下所示：
 
    ```ts
    const DROP_GRAPH_GQL = "DROP GRAPH test;"

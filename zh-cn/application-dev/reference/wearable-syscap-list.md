@@ -6,7 +6,8 @@ SysCap，全称SystemCapability，即系统能力，指操作系统中每一个�
 
 > **说明：**
 >
-> Wearable代表了一个功能比较全面的OpenHarmony设备，具有大部分的通用能力。在尚未明确设备具体能力集的情况下，可使用Wearable类型进行开发。
+> 该列表枚举当前版本Wearable设备类型支持的最小系统能力集，开发者可以在sdk中通过wearable.json文件查询。
+> 开发者使用该列表中的系统能力集对应的API开发当前版本Wearable应用时，可直接调用，无需在使用前进行canIUse()隔离判断。
 
 - SystemCapability.Ability.AbilityBase
 - SystemCapability.Ability.AbilityRuntime.AbilityCore
@@ -61,7 +62,6 @@ SysCap，全称SystemCapability，即系统能力，指操作系统中每一个�
 - SystemCapability.Applications.CalendarData
 - SystemCapability.Applications.Contacts
 - SystemCapability.Telephony.CallManager
-- SystemCapability.Telephony.CellularCall
 - SystemCapability.Telephony.CellularData
 - SystemCapability.Security.Cert
 - SystemCapability.Notification.CommonEvent
@@ -89,7 +89,6 @@ SysCap，全称SystemCapability，即系统能力，指操作系统中每一个�
 - SystemCapability.ResourceSchedule.UsageStatistics.App
 - SystemCapability.ResourceSchedule.UsageStatistics.AppGroup
 - SystemCapability.PowerManager.DisplayPowerManager
-- SystemCapability.PowerManager.DisplayPowerManager.Lite
 - SystemCapability.BundleManager.DistributedBundleFramework
 - SystemCapability.DistributedHardware.DistributedHardwareFWK
 - SystemCapability.Notification.Notification

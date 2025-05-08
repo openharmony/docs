@@ -1,8 +1,6 @@
 # 使用AES对称密钥（CCM模式）加解密(C/C++)
 
-
 对应的算法规格请查看[对称密钥加解密算法规格：AES](crypto-sym-encrypt-decrypt-spec.md#aes)。
-
 
 ## 在CMake脚本中链接相关动态库
 ```txt
@@ -40,9 +38,6 @@ target_link_libraries(entry PUBLIC libohcrypto.so)
 6. 使用[OH_CryptoSymCipherParams_Create](../../reference/apis-crypto-architecture-kit/_crypto_sym_cipher_api.md#oh_cryptosymcipherparams_create)创建Params，使用[OH_CryptoSymCipherParams_SetParam](../../reference/apis-crypto-architecture-kit/_crypto_sym_cipher_api.md#oh_cryptosymcipherparams_setparam)设置authTag，作为解密的认证信息。
    
    在CCM模式下，算法库当前只支持12字节的authTag，作为解密时初始化的认证信息。示例中authTag恰好为12字节。
-
-
-
 
 **解密**
 
@@ -93,7 +88,7 @@ static OH_Crypto_ErrCode doTestAesCcm()
     Crypto_DataBlob tagOutPut = {.data = nullptr, .len = 0};
     char *plainText = const_cast<char *>("this is test!");
     Crypto_DataBlob msgBlob = {.data = (uint8_t *)(plainText), .len = strlen(plainText)};
-    // 生成对称密钥
+    // 生成对称密钥。
     OH_Crypto_ErrCode ret;
     ret = OH_CryptoSymKeyGenerator_Create("AES128", &genCtx);
     if (ret != CRYPTO_SUCCESS) {
@@ -104,7 +99,7 @@ static OH_Crypto_ErrCode doTestAesCcm()
         goto end;
     }
 
-    // 设置参数
+    // 设置参数。
     ret = OH_CryptoSymCipherParams_Create(&params);
     if (ret != CRYPTO_SUCCESS) {
         goto end;
@@ -122,7 +117,7 @@ static OH_Crypto_ErrCode doTestAesCcm()
         goto end;
     }
 
-    // 加密
+    // 加密。
     ret = OH_CryptoSymCipher_Create("AES128|CCM", &encCtx);
     if (ret != CRYPTO_SUCCESS) {
         goto end;
@@ -140,7 +135,7 @@ static OH_Crypto_ErrCode doTestAesCcm()
         goto end;
     }
 
-    // 解密
+    // 解密。
     ret = OH_CryptoSymCipher_Create("AES128|CCM", &decCtx);
     if (ret != CRYPTO_SUCCESS) {
         goto end;

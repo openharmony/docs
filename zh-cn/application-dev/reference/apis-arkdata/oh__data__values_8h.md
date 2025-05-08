@@ -11,7 +11,7 @@
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
-**起始版本：** 16
+**起始版本：** 18
 
 **相关模块：**[RDB](_r_d_b.md)
 

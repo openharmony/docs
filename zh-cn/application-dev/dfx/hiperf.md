@@ -121,11 +121,11 @@ hiperf list hw
 | --cmdline-size | 设置/sys/kernel/tracing/saved_cmdlines_size节点的值，取值范围：512 - 4096。 |
 | --report | 采集后回栈报告，不能和-a一起使用。 |
 | --backtrack | 采集之前一段时间的数据，必须和--control prepare一起使用。 |
-| --backtrack-sec | 采集之前数据的时长，取值范围5-30，默认10s，必须和--backtrack一起使用 |
+| --backtrack-sec | 采集之前数据的时长，取值范围5-30，默认10s，必须和--backtrack一起使用。 |
 | --dumpoptions | dump命令选项。 |
 
 ```
-Usage: hiperf record [options] [command [command-args]] 
+Usage: hiperf record [options] [command [command-args]]
 ```
 
 对指定的PID为267的进程采样10秒，并且使用dwarf回栈。
@@ -252,7 +252,7 @@ hiperf report --limit-percent 1
    由 command_script.py 完成，它是 report 命令的包装脚本。
 
    ```
-   usage: command_script.py [-h]                         
+   usage: command_script.py [-h]
                             (-app PACKAGE_NAME | -lp LOCAL_PROGRAM | -cmd CMD | -p [PID [PID ...]] | -t [TID [TID ...]] | -sw)
                             [-a ABILITY] [-r RECORD_OPTIONS] [-lib LOCAL_LIB_DIR]
                             [-o OUTPUT_PERF_DATA] [--not_hdc_root]

@@ -9,6 +9,7 @@ Enumerates device states.
 
 **Related module**: [Resourcemanager](resourcemanager.md)
 
+**Header file**: [resmgr_common.h](resmgr__common_8h.md)
 
 ## Summary
 

@@ -24,9 +24,9 @@ PluginComponent(options: PluginComponentOptions)
 
 | 参数名  | 参数类型                                                     | 必填 | 参数描述                                                     |
 | ------- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| options | [PluginComponentOptions](#plugincomponentoptions14类型说明) | 是   | 定义用于构造插件组件的选项。 |
+| options | [PluginComponentOptions](#plugincomponentoptions18类型说明) | 是   | 定义用于构造插件组件的选项。 |
 
-## PluginComponentOptions<sup>14+</sup>类型说明
+## PluginComponentOptions<sup>18+</sup>类型说明
 
 定义用于构造插件组件的选项。
 
@@ -65,13 +65,19 @@ PluginComponent(options: PluginComponentOptions)
 
 ### onComplete
 
-onComplete(callback:&nbsp;VoidCallback)
+onComplete(callback:&nbsp;Callback\<void\>)
 
 组件加载完成时触发回调。
 
 **系统接口：** 此接口为系统接口。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名    | 类型                                                                 | 说明                                            |
+| --------- | ------------------------------------------------------------------- | ----------------------------------------------- |
+| callback  | [Callback](../../apis-basic-services-kit/js-apis-base.md#callback) \<void> | 回调函数，组件加载完成时触发的回调。 |
 
 ### onError
 
@@ -87,17 +93,17 @@ onError(callback:&nbsp;{info:&nbsp;PluginErrorCallback})
 
 | 参数名    | 类型                                                         | 必填 | 说明                                            |
 | --------- | ------------------------------------------------------------ | ---- | ----------------------------------------------- |
-| callback  | [PluginErrorCallback](#pluginerrorcallback14类型说明)          | 是   | 发生错误时调用回调。 |
+| callback  | [PluginErrorCallback](#pluginerrorcallback18类型说明)          | 是   | 发生错误时调用回调。 |
 
-## PluginErrorCallback<sup>14+</sup>类型说明
+## PluginErrorCallback<sup>18+</sup>类型说明
 
 发生错误时调用回调。
 
 | 参数     | 类型               | 描述                        |
 | -------- | ------------------ | --------------------------- |
-| info     | [PluginErrorData](#pluginerrordata14类型说明)  | 发生错误时提供的数据。 |
+| info     | [PluginErrorData](#pluginerrordata18类型说明)  | 发生错误时提供的数据。 |
 
-## PluginErrorData<sup>14+</sup>类型说明
+## PluginErrorData<sup>18+</sup>类型说明
 
 发生错误时提供的数据。
 
@@ -120,7 +126,7 @@ onError(callback:&nbsp;{info:&nbsp;PluginErrorCallback})
 使用方应用的`bundleName`为"com.example.user"，包含一个页面。
 - `EntryAbility(UIAbility)`加载入口页面文件`ets/pages/Index.ets`，`Index.ets`内容如下：
   ```ts
-  import plugin from "./plugin_component"
+  import plugin from "./plugin_component";
 
   interface Info {
     errcode: number,
@@ -141,8 +147,8 @@ onError(callback:&nbsp;{info:&nbsp;PluginErrorCallback})
           .height(100)
           .margin({ top: 20 })
           .onClick(() => {
-            plugin.onListener()
-            console.log("Button('Register Push Listener')")
+            plugin.onListener();
+            console.log("Button('Register Push Listener')");
           })
         Button('Request')
           .fontSize(50)
@@ -150,8 +156,8 @@ onError(callback:&nbsp;{info:&nbsp;PluginErrorCallback})
           .height(100)
           .margin({ top: 20 })
           .onClick(() => {
-            plugin.Request()
-            console.log("Button('Request')")
+            plugin.Request();
+            console.log("Button('Request')");
           })
         PluginComponent({
           // 提供方
@@ -159,10 +165,10 @@ onError(callback:&nbsp;{info:&nbsp;PluginErrorCallback})
           data: { 'countDownStartValue': 'new countDownStartValue' }
         }).size({ width: 500, height: 350 })
           .onComplete(() => {
-            console.log("onComplete")
+            console.log("onComplete");
           })
           .onError((info: Info) => {
-            console.log("onComplete" + info.errcode + ":" + info.msg)
+            console.log("onComplete" + info.errcode + ":" + info.msg);
           })
       }
       .width('100%')
@@ -191,12 +197,12 @@ onError(callback:&nbsp;{info:&nbsp;PluginErrorCallback})
 提供方应用的`bundleName`为"com.example.provider"，包含一个页面。
 - `EntryAbility(UIAbility)`加载入口页面文件`ets/pages/Index.ets`，`Index.ets`内容如下：
   ```ts
-  import plugin from "./plugin_component"
+  import plugin from "./plugin_component";
 
   @Entry
   @Component
   struct PluginProviderExample {
-    @State message: string = 'no click!'
+    @State message: string = 'no click!';
 
     build() {
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
@@ -206,8 +212,8 @@ onError(callback:&nbsp;{info:&nbsp;PluginErrorCallback})
           .height(100)
           .margin({ top: 20 })
           .onClick(() => {
-            plugin.onListener()
-            console.log("Button('Register Request Listener')")
+            plugin.onListener();
+            console.log("Button('Register Request Listener')");
           })
         Button('Push')
           .fontSize(30)
@@ -215,9 +221,9 @@ onError(callback:&nbsp;{info:&nbsp;PluginErrorCallback})
           .height(100)
           .margin({ top: 20 })
           .onClick(() => {
-            plugin.Push()
-            this.message = "Button('Push')"
-            console.log("Button('Push')")
+            plugin.Push();
+            this.message = "Button('Push')";
+            console.log("Button('Push')");
           })
         Text(this.message)
           .height(150)

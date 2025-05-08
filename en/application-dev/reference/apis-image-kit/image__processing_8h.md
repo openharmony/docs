@@ -9,6 +9,8 @@ It provides capabilities such as Color Space Conversion (CSC), metadata generati
 
 **Library**: libimage_processing.so
 
+**File to include**: &lt;multimedia/video_processing_engine/image_processing.h&gt;
+
 **System capability**: SystemCapability.Multimedia.VideoProcessingEngine
 
 **Since**: 13

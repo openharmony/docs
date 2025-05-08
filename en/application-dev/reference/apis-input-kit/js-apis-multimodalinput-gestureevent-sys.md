@@ -1,4 +1,4 @@
-# @ohos.multimodalInput.gestureEvent (Gesture Event) (System APIs)
+# @ohos.multimodalInput.gestureEvent (Gesture Event) (System API)
 
 The **gestureEvent** module provides gesture events reported by devices.
 
@@ -22,10 +22,10 @@ Defines a touchscreen gesture event.
 
 | Name              | Type                     | Readable| Writable| Description            |
 | ------------------ | ------------------------- | ---- | ---- | ---------------- |
-| action | [TouchGestureAction](#touchgestureaction14) | Yes  | No  | Enumerates touchscreen gesture types.|
+| action | [TouchGestureAction](#touchgestureaction18) | Yes  | No  | Enumerates touchscreen gesture types.|
 | touches | [Touch](js-apis-touchevent.md#touch)[] | Yes| No| Touch point information.|
 
-## TouchGestureAction<sup>14+</sup>
+## TouchGestureAction<sup>18+</sup>
 
 Enumerates touchscreen gesture types.
 
@@ -33,10 +33,10 @@ Enumerates touchscreen gesture types.
 
 | Name           | Value | Description            |
 | --------------- | --- | --------------- |
-| SWIPE_DOWN      | 0   | Multi-finger downward swipe.  |
-| SWIPE_UP        | 1   | Multi-finger upward swipe.  |
-| SWIPE_LEFT      | 2   | Multi-finger leftward swipe.  |
-| SWIPE_RIGHT     | 3   | Multi-finger rightward swipe.  |
-| PINCH_CLOSED    | 4   | Multi-finger pinch closed.      |
-| PINCH_OPENED    | 5   | Multi-finger pinch opened.      |
-| GESTURE_END     | 6   | Gesture ended.      |
+| SWIPE_DOWN | 0   | Multi-finger downward swipe.  |
+| SWIPE_UP | 1   | Multi-finger upward swipe.  |
+| SWIPE_LEFT | 2   | Multi-finger leftward swipe.  |
+| SWIPE_RIGHT | 3   | Multi-finger rightward swipe.  |
+| PINCH_CLOSED | 4   | Multi-finger pinch closed.      |
+| PINCH_OPENED | 5   | Multi-finger pinch opened.      |
+| GESTURE_END | 6   | Gesture ended.      |

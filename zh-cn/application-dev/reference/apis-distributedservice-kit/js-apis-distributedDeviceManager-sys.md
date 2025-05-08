@@ -10,12 +10,9 @@
 - 查询可信设备列表。
 - 查询本地设备信息，包括设备名称，设备类型和设备标识等。
 
-
 > **说明：**
 >
-> 本模块首批接口从API version 10开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
-> 当前页面仅包含本模块的系统接口，其他公开接口参见[@ohos.distributedDeviceManager (设备管理)](js-apis-distributedDeviceManager.md)。
-
+> 本模块首批接口从API version 10开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。当前页面仅包含本模块的系统接口，其他公开接口参见[@ohos.distributedDeviceManager (设备管理)](js-apis-distributedDeviceManager.md)。
 
 ## 导入模块
 
@@ -57,7 +54,7 @@ replyUiAction(action: number, actionResult: string): void;
   | 参数名       | 类型            | 必填  | 说明                |
   | ------------- | --------------- | ---- | ------------------- |
   | action        | number          | 是    | 用户操作动作。<br />-0：允许授权。<br />-1：取消授权。<br />-2：授权框用户操作超时。<br />-3：取消pin码框展示。<br />-4：取消pin码输入框展示。<br />-5：pin码输入框确定操作。     |
-  | actionResult        | string          | 是    | 表示用户操作结果。 |
+  | actionResult        | string          | 是    | 表示用户操作结果，长度范围1~255字符。 |
 
 **错误码：**
 
@@ -209,7 +206,7 @@ setHeartbeatPolicy(policy: StrategyForHeartbeat, delayTime: number): void;
   | 参数名       | 类型            | 必填  | 说明                |
   | ------------- | --------------- | ---- | ------------------- |
   | policy        |  &nbsp;[StrategyForHeartbeat](#strategyforheartbeat15)&nbsp;         | 是    | 心跳广播策略。       |
-  | delayTime     | number          | 是    | 临时关闭心跳广播的时长，单位为：ms。            |
+  | delayTime     | number          | 是    | 临时关闭心跳广播的时长，单位为：ms，取值范围1000ms到15000ms。            |
 
 **错误码：**
 

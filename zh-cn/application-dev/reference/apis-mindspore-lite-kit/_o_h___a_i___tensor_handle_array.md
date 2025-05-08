@@ -5,14 +5,13 @@
 
 张量数组结构体，用于存储张量数组指针和张量数组长度。
 
-**起始版本：**
+**系统能力：** SystemCapability.Ai.MindSpore
 
-9
+**起始版本：** 9
 
-**相关模块：**
+**相关模块：**[MindSpore](_mind_spore.md)
 
-[MindSpore](_mind_spore.md)
-
+**所在头文件：**[model.h](model_8h.md)
 
 ## 汇总
 

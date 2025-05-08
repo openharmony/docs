@@ -31,7 +31,7 @@ Allows the specified device administrator application to operate devices.
 
 | Name  | Type                                                   | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes  | Device administrator application.                                              |
+| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes  | EnterpriseAdminExtensionAbility.                                              |
 | operate  | string                                                  | Yes  | Operation to be performed, which can be any of the following:<br>- **resetFactory**: restore device factory settings.<br>- **reboot**: restart devices.<br>- **shutDown**: shut down devices.<br>- **lockScreen**: lock device screens.<!--RP1--><!--RP1End-->|
 | addition | string                                                  | No  | <!--RP2-->Additional parameter for the operation. Currently, this parameter does not need to be passed in.<!--RP2End-->       |
 

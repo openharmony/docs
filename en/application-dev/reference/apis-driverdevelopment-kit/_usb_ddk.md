@@ -88,8 +88,81 @@ uint64_t JsDeviceIdToNative(uint64_t deviceId)
 }
 ~~~
 
-## Enum Description
+## Type Description
 
+### UsbDdkEndpointDescriptor
+
+```
+typedef struct UsbDdkEndpointDescriptor UsbDdkEndpointDescriptor
+```
+
+**Description**
+
+Endpoint descriptor.
+
+**Since**: 10
+
+### UsbDdkInterfaceDescriptor
+
+```
+typedef struct UsbDdkInterfaceDescriptor UsbDdkInterfaceDescriptor
+```
+
+**Description**
+
+Interface descriptor.
+
+**Since**: 10
+
+### UsbDdkInterface
+
+```
+typedef struct UsbDdkInterface UsbDdkInterface
+```
+
+**Description**
+
+USB API.
+
+**Since**: 10
+
+### UsbDdkConfigDescriptor
+
+```
+typedef struct UsbDdkConfigDescriptor UsbDdkConfigDescriptor
+```
+
+**Description**
+
+Configuration descriptor.
+
+**Since**: 10
+
+### UsbDeviceMemMap
+
+```
+typedef struct UsbDeviceMemMap UsbDeviceMemMap
+```
+
+**Description**
+
+ Device memory map created by calling [OH_Usb_CreateDeviceMemMap()](_usb_ddk.md#oh_usb_createdevicememmap). A buffer using the device memory map can provide better performance.
+
+**Since**: 10
+
+### Usb_DeviceArray
+
+```
+typedef struct Usb_DeviceArray usb_DeviceArray
+```
+
+**Description**
+
+Defines the device ID list, which is used to store the device IDs and device quantity obtained using [OH_Usb_GetDevices()](_usb_ddk.md#oh_usb_getdevices16).
+
+**Since**: 10
+
+## Enum Description
 
 ### UsbDdkErrCode
 
@@ -120,7 +193,7 @@ USB DDK error code definitions.
 
 
 ```
-int32_t OH_Usb_ClaimInterface (uint64_t deviceId, uint8_t interfaceIndex, uint64_t * interfaceHandle )
+int32_t OH_Usb_ClaimInterface (uint64_t deviceId, uint8_t interfaceIndex, uint64_t * interfaceHandle)
 ```
 
 **Description**
@@ -149,7 +222,7 @@ Declares a USB interface.
 
 
 ```
-int32_t OH_Usb_CreateDeviceMemMap (uint64_t deviceId, size_t size, UsbDeviceMemMap ** devMmap )
+int32_t OH_Usb_CreateDeviceMemMap (uint64_t deviceId, size_t size, UsbDeviceMemMap ** devMmap)
 ```
 
 **Description**
@@ -218,7 +291,7 @@ Releases the configuration descriptor. To avoid memory leakage, use **OH_Usb_Fre
 
 
 ```
-int32_t OH_Usb_GetConfigDescriptor (uint64_t deviceId, uint8_t configIndex, struct UsbDdkConfigDescriptor **const config )
+int32_t OH_Usb_GetConfigDescriptor (uint64_t deviceId, uint8_t configIndex, struct UsbDdkConfigDescriptor **const config)
 ```
 
 **Description**
@@ -248,7 +321,7 @@ Obtains the configuration descriptor. To avoid memory leakage, use **OH_Usb_Free
 
 
 ```
-int32_t OH_Usb_GetCurrentInterfaceSetting (uint64_t interfaceHandle, uint8_t * settingIndex )
+int32_t OH_Usb_GetCurrentInterfaceSetting (uint64_t interfaceHandle, uint8_t * settingIndex)
 ```
 
 **Description**
@@ -276,7 +349,7 @@ Obtains the activated alternate setting of a USB interface.
 
 
 ```
-int32_t OH_Usb_GetDeviceDescriptor (uint64_t deviceId, struct UsbDeviceDescriptor * desc )
+int32_t OH_Usb_GetDeviceDescriptor (uint64_t deviceId, struct UsbDeviceDescriptor * desc)
 ```
 
 **Description**
@@ -378,7 +451,7 @@ Releases a USB interface.
 
 
 ```
-int32_t OH_Usb_SelectInterfaceSetting (uint64_t interfaceHandle, uint8_t settingIndex )
+int32_t OH_Usb_SelectInterfaceSetting (uint64_t interfaceHandle, uint8_t settingIndex)
 ```
 
 **Description**
@@ -405,7 +478,7 @@ Activates the alternate setting of a USB interface.
 
 
 ```
-int32_t OH_Usb_SendControlReadRequest (uint64_t interfaceHandle, const struct UsbControlRequestSetup * setup, uint32_t timeout, uint8_t * data, uint32_t * dataLen )
+int32_t OH_Usb_SendControlReadRequest (uint64_t interfaceHandle, const struct UsbControlRequestSetup * setup, uint32_t timeout, uint8_t * data, uint32_t * dataLen)
 ```
 
 **Description**
@@ -439,7 +512,7 @@ Sends a control read transfer request. This API works in a synchronous manner.
 
 
 ```
-int32_t OH_Usb_SendControlWriteRequest (uint64_t interfaceHandle, const struct UsbControlRequestSetup * setup, uint32_t timeout, const uint8_t * data, uint32_t dataLen )
+int32_t OH_Usb_SendControlWriteRequest (uint64_t interfaceHandle, const struct UsbControlRequestSetup * setup, uint32_t timeout, const uint8_t * data, uint32_t dataLen)
 ```
 
 **Description**
@@ -472,7 +545,7 @@ Sends a control write transfer request. This API works in a synchronous manner.
 
 
 ```
-int32_t OH_Usb_SendPipeRequest (const struct UsbRequestPipe * pipe, UsbDeviceMemMap * devMmap )
+int32_t OH_Usb_SendPipeRequest (const struct UsbRequestPipe * pipe, UsbDeviceMemMap * devMmap)
 ```
 
 **Description**
@@ -501,7 +574,7 @@ Sends a pipe request. This API works in a synchronous manner. It applies to inte
 
 
 ```
-int32_t OH_Usb_SendPipeRequestWithAshmem(const struct UsbRequestPipe *pipe, DDK_Ashmem *ashmem);
+int32_t OH_Usb_SendPipeRequestWithAshmem(const struct UsbRequestPipe *pipe, DDK_Ashmem *ashmem)
 ```
 
 **Description**
@@ -530,7 +603,7 @@ Sends a pipe request for the shared memory. This API returns the result synchron
 
 
 ```
-int32_t OH_Usb_GetDevices(struct Usb_DeviceArray *devices);
+int32_t OH_Usb_GetDevices(struct Usb_DeviceArray *devices)
 ```
 
 **Description**
@@ -550,4 +623,4 @@ Obtains the USB device ID list. Ensure that the input pointer is valid and the n
 - [USB_DDK_SUCCESS] (#usbddkerrcode): The API call is successful.
 - [USB_DDK_NO_PERM](#usbddkerrcode): The permission verification fails.
 - [USB_DDK_INVALID_OPERATION](#usbddkerrcode): The usb_ddk service connection fails.
-- [USB_DDK_INVALID_PARAMETER](#usbddkerrcode): The address of the input **devices** is a null pointer.
+- [USB_DDK_INVALID_PARAMETER](#usbddkerrcode): The address of **devices** is a null pointer.

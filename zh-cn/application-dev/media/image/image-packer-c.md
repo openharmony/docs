@@ -1,6 +1,6 @@
 # 使用Image_NativeModule完成图片编码
 
-图像打包类，用于创建以及释放ImagePacker实例。
+图像编码类，用于创建以及释放ImagePacker实例。
 
 ## 开发步骤
 
@@ -16,14 +16,14 @@ target_link_libraries(entry PUBLIC libhilog_ndk.z.so libimage_packer.so)
 
 具体接口说明请参考[API文档](../../reference/apis-image-kit/_image___native_module.md)。
 
-在hello.cpp中实现C API接口调用逻辑，示例代码如下：
+在Deveco Studio新建Native C++应用，默认生成的项目中包含index.ets文件，在entry\src\main\cpp目录下会自动生成一个cpp文件（hello.cpp或napi_init.cpp，本示例以hello.cpp文件名为例）。在hello.cpp中实现C API接口调用逻辑，示例代码如下：
 
 **编码接口使用示例**
 
-在创建ImagePacker实例，指定打包参数后将ImageSource或Pixelmap图片源打包至文件或者缓冲区。
+在创建ImagePacker实例，指定编码参数后将ImageSource或Pixelmap编码至文件或者缓冲区。
 
 > **说明：**
-> 根据MIME标准，标准编码格式为image/jpeg。当使用image编码时，打包参数中的编码格式image_MimeType设置为image/jpeg，image编码后的文件扩展名可设为.jpg或.jpeg，可在支持image/jpeg解码的平台上使用。
+> 根据MIME标准，标准编码格式为image/jpeg。当使用image编码时，编码参数中的编码格式image_MimeType设置为image/jpeg，image编码后的文件扩展名可设为.jpg或.jpeg，可在支持image/jpeg解码的平台上使用。
 
    ```c++
 
@@ -58,7 +58,7 @@ target_link_libraries(entry PUBLIC libhilog_ndk.z.so libimage_packer.so)
               return errCode;
           }
 
-          //指定打包参数，将ImageSource图片源编码后直接打包进文件。
+          //指定编码参数，将ImageSource直接编码进文件。
           OH_PackingOptions *option = nullptr;
           OH_PackingOptions_Create(&option);
           char type[] = "image/jpeg";
@@ -114,7 +114,7 @@ target_link_libraries(entry PUBLIC libhilog_ndk.z.so libimage_packer.so)
               return errCode;
           }
 
-          //指定打包参数，将PixelMap图片源编码后直接打包进文件。
+          //指定编码参数，将PixelMap直接编码进文件。
           OH_PackingOptions *option = nullptr;
           OH_PackingOptions_Create(&option);
           char type[] = "image/jpeg";

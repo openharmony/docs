@@ -5,11 +5,12 @@
 The Network Connection Management module provides basic network management capabilities, including management of Wi-Fi/cellular/Ethernet connection priorities, network quality evaluation, subscription to network connection status changes, query of network connection information, and DNS resolution.
 
 > **NOTE**
+>
 > To maximize the application running efficiency, most API calls are called asynchronously in callback or promise mode. The following code examples use the promise mode. For details about the APIs, see [API Reference](../reference/apis-network-kit/js-apis-net-connection.md).
 
 ## Basic Concepts
 
-- Producer: a provider of data networks, such as Wi-Fi, cellular, and Ethernet.
+- Producer: a provider of data networks,  such as Wi-Fi, cellular, and Ethernet.
 - Consumer: a user of data networks, for example, an application or a system service.
 - Network probe: a mechanism used to detect the network availability to prevent the switch from an available network to an unavailable network. The probe type can be binding network detection, DNS detection, HTTP detection, or HTTPS detection.
 - Network selection: a mechanism used to select the optimal network when multiple networks coexist. It is triggered when the network status, network information, or network quality evaluation score changes.
@@ -48,19 +49,18 @@ For the complete list of APIs and example code, see [Network Connection Manageme
 | getConnectionProperties(netHandle: NetHandle, callback: AsyncCallback\<ConnectionProperties>): void; |Obtains network connection information of the network corresponding to the **netHandle**. This API uses an asynchronous callback to return the result.|
 | getNetCapabilities(netHandle: NetHandle, callback: AsyncCallback\<NetCapabilities>): void; |Obtains capability information of the network corresponding to the **netHandle**. This API uses an asynchronous callback to return the result.|
 | isDefaultNetMetered(callback: AsyncCallback\<boolean>): void; |Checks whether the data traffic usage on the current network is metered. This API uses an asynchronous callback to return the result.|
-| reportNetConnected(netHandle: NetHandle, callback: AsyncCallback\<void>): void;| Reports a **netAavailable** event to NetManager. If this API is called, the application considers that its network status (ohos.net.connection.NetCap.NET_CAPABILITY_VAILDATED) is inconsistent with that of NetManager. This API uses an asynchronous callback to return the result.|
-| reportNetDisconnected(netHandle: NetHandle, callback: AsyncCallback\<void>): void;| Reports a **netAavailable** event to NetManager. If this API is called, the application considers that its network status (ohos.net.connection.NetCap.NET_CAPABILITY_VAILDATED) is inconsistent with that of NetManager. This API uses an asynchronous callback to return the result.|
+| reportNetConnected(netHandle: NetHandle, callback: AsyncCallback\<void>): void;| Reports a **netAvailable** event to NetManager. If this API is called, the application considers that its network status (ohos.net.connection.NetCap.NET_CAPABILITY_VAILDATED) is inconsistent with that of NetManager. This API uses an asynchronous callback to return the result.|
+| reportNetDisconnected(netHandle: NetHandle, callback: AsyncCallback\<void>): void;| Reports a **netAvailable** event to NetManager. If this API is called, the application considers that its network status (ohos.net.connection.NetCap.NET_CAPABILITY_VAILDATED) is inconsistent with that of NetManager. This API uses an asynchronous callback to return the result.|
 | getAddressesByName(host: string, callback: AsyncCallback\<Array\<NetAddress>>): void; |Obtains all IP addresses of the specified network by resolving the domain name. This API uses an asynchronous callback to return the result.|
 | <!--DelRow--> enableAirplaneMode(callback: AsyncCallback\<void>): void; | Enables the airplane mode. This API uses an asynchronous callback to return the result.|
 | <!--DelRow--> disableAirplaneMode(callback: AsyncCallback\<void>): void;| Disables the airplane mode. This API uses an asynchronous callback to return the result.|
-| createNetConnection(netSpecifier?: NetSpecifier, timeout?: number): NetConnection; | Creates a **NetConnection** object. **netSpecifier** specifies the network, and **timeout** specifies the timeout interval in ms. **timeout** is configurable only when **netSpecifier** is specified. If neither of them is present, the default network is used.|
+| createNetConnection(netSpecifier?: NetSpecifier, timeout?: number): NetConnection; | Creates a **NetConnection** object. **netSpecifier** specifies the network to be concerned. **timeout** specifies the timeout interval in ms. **timeout** is configurable only when **netSpecifier** is specified. If neither of them is present, the default network is used.|
 | bindSocket(socketParam: TCPSocket \| UDPSocket, callback: AsyncCallback\<void>): void; | Binds a **TCPSocket** or **UDPSocket** to the current network. This API uses an asynchronous callback to return the result.|
-| getAddressesByName(host: string, callback: AsyncCallback\<Array\<NetAddress>>): void; |Obtains all IP addresses of the specified network by resolving the domain name. This API uses an asynchronous callback to return the result.|
 | getAddressByName(host: string, callback: AsyncCallback\<NetAddress>): void; |Obtains an IP address of the specified network by resolving the domain name. This API uses an asynchronous callback to return the result.|
 | on(type: 'netAvailable', callback: Callback\<NetHandle>): void;                   |Subscribes to **netAvailable** events.|
 | on(type: 'netCapabilitiesChange', callback: Callback\<NetCapabilityInfo\>): void; |Subscribes to **netCapabilitiesChange** events.|
 | on(type: 'netConnectionPropertiesChange', callback: Callback\<{ netHandle: NetHandle, connectionProperties: ConnectionProperties }>): void; |Subscribes to **netConnectionPropertiesChange** events.|
-| on(type: 'netBlockStatusChange', callback: Callback<{ netHandle: NetHandle, blocked: boolean }>): void; |Subscribes to **netBlockStatusChange** events.|
+| on(type: 'netBlockStatusChange', callback: Callback<{ netHandle: NetHandle, blocked: boolean }>): void; |Registers a listener for **netBlockStatusChange** events. This API uses an asynchronous callback to return the result.|
 | on(type: 'netLost', callback: Callback\<NetHandle>): void; |Subscribes to **netLost** events.|
 | on(type: 'netUnavailable', callback: Callback\<void>): void; |Subscribes to **netUnavailable** events.|
 | register(callback: AsyncCallback\<void>): void; |Subscribes to network status changes.|
@@ -69,22 +69,22 @@ For the complete list of APIs and example code, see [Network Connection Manageme
 ## Subscribing to Status Changes of the Specified Network
 
 1. Declare the required permission: **ohos.permission.GET_NETWORK_INFO**.
-This permission is of the **normal** level. Before applying for the permission, ensure that the [basic principles for permission management](../security/AccessToken/app-permission-mgmt-overview.md#basic-principles-for-using-permissions) are met. Declare the permissions required by your application. For details, see [Declaring Permissions in the Configuration File](accesstoken-guidelines.md#declaring-permissions-in-the configuration-file).
+This permission is of the **normal** level. Before applying for the permission, ensure that the [basic principles for permission management](../security/AccessToken/app-permission-mgmt-overview.md#basic-principles-for-using-permissions) are met. Declare the permissions required by your application. For details, see [Declaring Permissions](../security/AccessToken/declare-permissions.md).
 
-1. Import the **connection** namespace from **@kit.NetworkKit**.
+2. Import the **connection** namespace from **@kit.NetworkKit**.
 
-2. Call **createNetConnection()** to create a **NetConnection** object. You can specify the network type, capability, and timeout interval. If you do not specify parameters, the default values will be used. 
+3. Call [createNetConnection](../reference/apis-network-kit/js-apis-net-connection.md#connectioncreatenetconnection) to create a **NetConnection** object. You can specify the network type, capability, and timeout interval. If you do not specify parameters, the default values will be used. 
 
-3. Call **conn.on()** to subscribe to the target event. You must pass in **type** and **callback**.
+4. Call [on()](../reference/apis-network-kit/js-apis-net-connection.md#onnetavailable) to subscribe to desired events. You must pass in **type** and **callback**.
 
-4. Call **conn.register()** to subscribe to network status changes of the specified network.
+5. Call [register()](../reference/apis-network-kit/js-apis-net-connection.md#register) to subscribe to network status changes of the specified network.
 
-5. When the network is available, the callback will be invoked to return the **netAvailable** event. When the network is unavailable, the callback will be invoked to return the **netUnavailable** event.
+6. When the network is available, the callback will be invoked to return the **netAvailable** event. When the network is unavailable, the callback will be invoked to return the **netUnavailable** event.
 
-6. Call **conn.unregister()** to unsubscribe from the network status changes if required.
+7. Call [unregister()](../reference/apis-network-kit/js-apis-net-connection.md#unregister) to unsubscribe from the network status changes.
 
 ```ts
-// Import the connection namespace.
+// Import the required namespaces.
 import { connection } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -108,12 +108,12 @@ conn.register((err: BusinessError, data: void) => {
   console.log(JSON.stringify(err));
 });
 
-// Listen to network status change events. If the network is available, an on_netAvailable event is returned.
+// Subscribe to network status change events. If the network is available, an on_netAvailable event is returned.
 conn.on('netAvailable', ((data: connection.NetHandle) => {
   console.log("net is available, netId is " + data.netId);
 }));
 
-// Listen to network status change events. If the network is unavailable, an on_netUnavailable event is returned.
+// Subscribe to network status change events. If the network is unavailable, an on_netUnavailable event is returned.
 conn.on('netUnavailable', ((data: void) => {
   console.log("net is unavailable, data is " + JSON.stringify(data));
 }));
@@ -255,14 +255,14 @@ Close the original socket and re-establish a socket connection when the default 
 ## Obtaining the List of All Registered Networks
 
 1. Declare the required permission: **ohos.permission.GET_NETWORK_INFO**.
-This permission is of the **normal** level. Before applying for the permission, ensure that the [basic principles for permission management](../security/AccessToken/app-permission-mgmt-overview.md#basic-principles-for-using-permissions) are met. Declare the permissions required by your application. For details, see [Declaring Permissions in the Configuration File](accesstoken-guidelines.md#declaring-permissions-in-the configuration-file).
+This permission is of the **normal** level. Before applying for the permission, ensure that the [basic principles for permission management](../security/AccessToken/app-permission-mgmt-overview.md#basic-principles-for-using-permissions) are met. Declare the permissions required by your application. For details, see [Declaring Permissions](../security/AccessToken/declare-permissions.md).
 
 2. Import the **connection** namespace from **@kit.NetworkKit**.
 
-3. Call **getAllNets** to obtain the list of all connected networks.
+3. Call [getAllNets](../reference/apis-network-kit/js-apis-net-connection.md#connectiongetallnets) to obtain the list of all connected networks.
 
 ```ts
-// Import the connection namespace.
+// Import the required namespaces.
 import { connection } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -301,15 +301,15 @@ connection.getAllNets().then((data: connection.NetHandle[]) => {
 ## Querying Network Capability Information and Connection Information of Specified Data Network
 
 1. Declare the required permission: **ohos.permission.GET_NETWORK_INFO**.
-This permission is of the **normal** level. Before applying for the permission, ensure that the [basic principles for permission management](../security/AccessToken/app-permission-mgmt-overview.md#basic-principles-for-using-permissions) are met. Declare the permissions required by your application. For details, see [Declaring Permissions in the Configuration File](accesstoken-guidelines.md#declaring-permissions-in-the configuration-file).
+This permission is of the **normal** level. Before applying for the permission, ensure that the [basic principles for permission management](../security/AccessToken/app-permission-mgmt-overview.md#basic-principles-for-using-permissions) are met. Declare the permissions required by your application. For details, see [Declaring Permissions](../security/AccessToken/declare-permissions.md).
 
 2. Import the **connection** namespace from **@kit.NetworkKit**.
 
-3. Call **getDefaultNet** to obtain the default data network via **NetHandle** or call **getAllNets** to obtain the list of all connected networks via **Array\<NetHandle>**.
+3. Call [getDefaultNet](../reference/apis-network-kit/js-apis-net-connection.md#connectiongetdefaultnet) to obtain the default data network specified by **NetHandle** or call [getAllNets](../reference/apis-network-kit/js-apis-net-connection.md#connectiongetallnets) to obtain the list of all connected networks specified by **Array\<NetHandle>**.
 
-4. Call **getNetCapabilities** to obtain the network capability information of the data network specified by **NetHandle**. The capability information includes information such as the network type (cellular, Wi-Fi, or Ethernet network) and the specific network capabilities.
+4. Call [getNetCapabilities](../reference/apis-network-kit/js-apis-net-connection.md#connectiongetnetcapabilities) to obtain the network capability information of the data network specified by **NetHandle**. The capability information includes information such as the network type (cellular, Wi-Fi, or Ethernet network) and the specific network capabilities.
 
-5. Call **getConnectionProperties** to obtain the connection information of the data network specified by **NetHandle**.
+5. Call [getConnectionProperties](../reference/apis-network-kit/js-apis-net-connection.md#connectiongetconnectionproperties) to obtain the connection information of the data network specified by **NetHandle**.
 
 ```ts
 import { connection } from '@kit.NetworkKit';
@@ -339,7 +339,7 @@ export class GlobalContext {
   }
 }
 
-// Call getDefaultNet to obtain the default data network specified by **NetHandle**.
+// Call getDefaultNet to obtain the default data network specified by NetHandle.
 connection.getDefaultNet().then((data:connection.NetHandle) => {
   if (data.netId == 0) {
     // If the obtained netid of netHandler is 0 when no default network is specified, an exception has occurred and extra processing is needed.
@@ -348,7 +348,7 @@ connection.getDefaultNet().then((data:connection.NetHandle) => {
   if (data) {
     console.info("getDefaultNet get data: " + JSON.stringify(data));
     GlobalContext.getContext().netHandle = data;
-    // Obtain the network capability information of the data network specified by **NetHandle**. The capability information includes information such as the network type and specific network capabilities.
+    // Obtain the network capability information of the data network specified by NetHandle. The capability information includes information such as the network type and specific network capabilities.
     connection.getNetCapabilities(GlobalContext.getContext().netHandle).then(
       (data: connection.NetCapabilities) => {
       console.info("getNetCapabilities get data: " + JSON.stringify(data));
@@ -398,7 +398,7 @@ connection.getConnectionProperties(GlobalContext.getContext().netHandle).then((d
   console.info("getConnectionProperties get data: " + JSON.stringify(data));
 })
 
-// Call getAllNets to obtain the list of all connected networks via Array<NetHandle>.
+// Call getAllNets to obtain the list of all connected networks specified by Array<NetHandle>.
 connection.getAllNets().then((data: connection.NetHandle[]) => {
   console.info("getAllNets get data: " + JSON.stringify(data));
   if (data) {
@@ -424,14 +424,14 @@ connection.getAllNets().then((data: connection.NetHandle[]) => {
 ## Resolving the Domain Name of a Network to Obtain All IP Addresses
 
 1. Declare the required permission: **ohos.permission.INTERNET**.
-This permission is of the **normal** level. Before applying for the permission, ensure that the [basic principles for permission management](../security/AccessToken/app-permission-mgmt-overview.md#basic-principles-for-using-permissions) are met. Declare the permissions required by your application. For details, see [Declaring Permissions in the Configuration File](accesstoken-guidelines.md#declaring-permissions-in-the configuration-file).
+This permission is of the **normal** level. Before applying for the permission, ensure that the [basic principles for permission management](../security/AccessToken/app-permission-mgmt-overview.md#basic-principles-for-using-permissions) are met. Declare the permissions required by your application. For details, see [Declaring Permissions](../security/AccessToken/declare-permissions.md).
 
 2. Import the **connection** namespace from **@kit.NetworkKit**.
 
-3. Call **getAddressesByName** to use the default network to resolve the host name to obtain the list of all IP addresses.
+3. Call [getAddressesByName](../reference/apis-network-kit/js-apis-net-connection.md#connectiongetaddressesbyname) to use the default network to resolve the host name to obtain the list of all IP addresses.
 
 ```ts
-// Import the connection namespace.
+// Import the required namespaces.
 import { connection } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 

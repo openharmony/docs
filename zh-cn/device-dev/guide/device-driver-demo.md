@@ -30,63 +30,15 @@ HDF驱动框架为常用外围设备提供了标准的驱动框架，驱动开�
 
 **表 1**  文件说明
 
-<a name="table15887645104012"></a>
-\<table\><thead align="left"><tr id="row198881452404"><th class="cellrowborder" align="center" valign="top" width="13.489999999999998%" id="mcps1.2.4.1.1"><p id="p158742406488"><a name="p158742406488"></a><a name="p158742406488"></a>说明</p>
-</th>
-<th class="cellrowborder" align="center" valign="top" width="68.52000000000001%" id="mcps1.2.4.1.2"><p id="p6975142717432"><a name="p6975142717432"></a><a name="p6975142717432"></a>文件路径</p>
-</th>
-<th class="cellrowborder" align="center" valign="top" width="17.990000000000002%" id="mcps1.2.4.1.3"><p id="p98891454405"><a name="p98891454405"></a><a name="p98891454405"></a>操作</p>
-</th>
-</tr>
-</thead>
-\<tbody\><tr id="row1088914458407"><td class="cellrowborder" align="left" valign="top" width="13.489999999999998%" headers="mcps1.2.4.1.1 "><p id="p78741540104813"><a name="p78741540104813"></a><a name="p78741540104813"></a>示例文件</p>
-</td>
-<td class="cellrowborder" align="left" valign="top" width="68.52000000000001%" headers="mcps1.2.4.1.2 "><p id="p1066541692916"><a name="p1066541692916"></a><a name="p1066541692916"></a>/drivers/adapter/khdf/linux/platform/i2c/i2c_sample.c</p>
-</td>
-<td class="cellrowborder" align="left" valign="top" width="17.990000000000002%" headers="mcps1.2.4.1.3 "><p id="p208891445144012"><a name="p208891445144012"></a><a name="p208891445144012"></a>新增文件。</p>
-</td>
-</tr>
-<tr id="row1388984594013"><td class="cellrowborder" align="left" valign="top" width="13.489999999999998%" headers="mcps1.2.4.1.1 "><p id="p88741840104811"><a name="p88741840104811"></a><a name="p88741840104811"></a>设备服务文件</p>
-</td>
-<td class="cellrowborder" align="left" valign="top" width="68.52000000000001%" headers="mcps1.2.4.1.2 "><p id="p486417183298"><a name="p486417183298"></a><a name="p486417183298"></a>/drivers/adapter/khdf/linux/hcs/device_info/device_info.hcs</p>
-</td>
-<td class="cellrowborder" rowspan="3" align="left" valign="top" width="17.990000000000002%" headers="mcps1.2.4.1.3 "><p id="p128898458401"><a name="p128898458401"></a><a name="p128898458401"></a></p>
-<p id="p168904455404"><a name="p168904455404"></a><a name="p168904455404"></a>追加内容。</p>
-<p id="p7890124516405"><a name="p7890124516405"></a><a name="p7890124516405"></a></p>
-</td>
-</tr>
-<tr id="row9889164513406"><td class="cellrowborder" align="left" valign="top" headers="mcps1.2.4.1.1 "><p id="p138741640124812"><a name="p138741640124812"></a><a name="p138741640124812"></a>配置参数文件。</p>
-</td>
-<td class="cellrowborder" align="left" valign="top" headers="mcps1.2.4.1.2 "><p id="p26905191293"><a name="p26905191293"></a><a name="p26905191293"></a>/drivers/adapter/khdf/linux/hcs/platform/i2c_config.hcs</p>
-</td>
-</tr>
-<tr id="row1189044513404"><td class="cellrowborder" align="left" valign="top" headers="mcps1.2.4.1.1 "><p id="p1687424074814"><a name="p1687424074814"></a><a name="p1687424074814"></a>编译文件。</p>
-</td>
-<td class="cellrowborder" align="left" valign="top" headers="mcps1.2.4.1.2 "><p id="p1885032192917"><a name="p1885032192917"></a><a name="p1885032192917"></a>/drivers/adapter/khdf/linux/platform/i2c/Makefile</p>
-</td>
-</tr>
-<tr id="row10890144564011"><td class="cellrowborder" align="left" valign="top" width="13.489999999999998%" headers="mcps1.2.4.1.1 "><p id="p118752040104810"><a name="p118752040104810"></a><a name="p118752040104810"></a>依赖头文件。</p>
-</td>
-<td class="cellrowborder" align="left" valign="top" width="68.52000000000001%" headers="mcps1.2.4.1.2 "><p id="p15821718182916"><a name="p15821718182916"></a><a name="p15821718182916"></a>/drivers/framework/include/core/hdf_device_desc.h</p>
-</td>
-<td class="cellrowborder" rowspan="2" align="left" valign="top" width="17.990000000000002%" headers="mcps1.2.4.1.3 "><p id="p989012451401"><a name="p989012451401"></a><a name="p989012451401"></a>作为头文件引用。</p>
-<p id="p1890134594014"><a name="p1890134594014"></a><a name="p1890134594014"></a></p>
-</td>
-</tr>
-<tr id="row6890164564015"><td class="cellrowborder" align="left" valign="top" headers="mcps1.2.4.1.1 "><p id="p128756401484"><a name="p128756401484"></a><a name="p128756401484"></a>核心层头文件。</p>
-</td>
-<td class="cellrowborder" align="left" valign="top" headers="mcps1.2.4.1.2 "><p id="p47681122152918"><a name="p47681122152918"></a><a name="p47681122152918"></a>/drivers/framework/support/platform/include/i2c_core.h</p>
-</td>
-</tr>
-<tr id="row1499682234817"><td class="cellrowborder" align="left" valign="top" width="13.489999999999998%" headers="mcps1.2.4.1.1 "><p id="p1187513403487"><a name="p1187513403487"></a><a name="p1187513403487"></a>HCS配置入口文件。</p>
-</td>
-<td class="cellrowborder" align="left" valign="top" width="68.52000000000001%" headers="mcps1.2.4.1.2 "><p id="p499818225487"><a name="p499818225487"></a><a name="p499818225487"></a>/drivers/adapter/khdf/linux/hcs/hdf.hcs</p>
-</td>
-<td class="cellrowborder" align="left" valign="top" width="17.990000000000002%" headers="mcps1.2.4.1.3 "><p id="p3998152254820"><a name="p3998152254820"></a><a name="p3998152254820"></a>HCS配置文件总入口。</p>
-</td>
-</tr>
-</tbody>
-</table>
+| 说明  | 文件路径 | 操作 |     
+| --------- | ------------| -------- |
+| 示例文件 | /drivers/adapter/khdf/linux/platform/i2c/i2c_sample.c  | 新增文件 |
+| 设备服务文件 | /drivers/adapter/khdf/linux/hcs/device_info/device_info.hcs | 追加内容 |  
+| 配置参数文件  | /drivers/adapter/khdf/linux/hcs/platform/i2c_config.hcs  | 追加内容 |    
+| 编译文件   | /drivers/adapter/khdf/linux/platform/i2c/Makefile   | 追加内容 |   
+| 依赖头文件 |  /drivers/framework/include/core/hdf_device_desc.h | 作为头文件引用 | 
+| 核心层头文件 |  /drivers/framework/support/platform/include/i2c_core.h | 作为头文件引用 |   
+| HCS配置入口文件 | /drivers/adapter/khdf/linux/hcs/hdf.hcs | HCS配置文件总入口 |  
 
 >![](../public_sys-resources/icon-caution.gif) **注意：** 
 >本例程涉及的文件路径均作为演示，驱动开发者应根据实际情况确定具体的源文件存放位置。

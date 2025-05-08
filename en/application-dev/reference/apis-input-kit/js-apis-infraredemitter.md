@@ -4,7 +4,7 @@ The **infraredEmitter** module generates IR signals of the specified frequency a
 
 > **NOTE**
 >
-> - The initial APIs of this module are supported since API version 16. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> - The initial APIs of this module are supported since API version 12. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 >
 
 ## Modules to Import
@@ -13,7 +13,7 @@ The **infraredEmitter** module generates IR signals of the specified frequency a
 import { infraredEmitter } from '@kit.InputKit';
 ```
 
-## infraredEmitter.transmitInfrared 
+## infraredEmitter.transmitInfrared<sup>15+</sup>
 
 transmitInfrared(infraredFrequency: number, pattern: Array&lt;number&gt;): void
 
@@ -28,7 +28,7 @@ Generates IR signals at the specified frequency and level.
 | Name      | Type                       | Mandatory  | Description                                      |
 | -------- | ------------------------- | ---- | ---------------------------------------- |
 | infraredFrequency | number             | Yes   | IR frequency, in Hz.|
-| pattern | Array&lt;number&gt; | Yes   | IR level signal in μs, which ranges from 0 to 1024.<br>For example, in the IR level signal array [100,200,300,400], 100 μs is a high-level signal, 200 μs is a low-level signal, 300 μs is a high-level signal, and 400 μs is a low-level signal.|
+| pattern | Array&lt;number&gt; | Yes   | IR level signal, in μs. The value must be an even number within the value range of [0,1024].<br>For example, in the IR level signal array [100,200,300,400], 100 μs is a high-level signal, 200 μs is a low-level signal, 300 μs is a high-level signal, and 400 μs is a low-level signal.|
 
 **Error codes**
 
@@ -49,7 +49,7 @@ try {
 }
 ```
 
-## infraredEmitter.getInfraredFrequencies
+## infraredEmitter.getInfraredFrequencies<sup>15+</sup>
 
 getInfraredFrequencies(): Array&lt;InfraredFrequency&gt;
 
@@ -63,7 +63,7 @@ Queries the frequency range of IR signals supported by the mobile phone.
 
 | Parameter                 | Description                 |
 | ------------------- | ------------------- |
-| Array&lt;[InfraredFrequency](#infraredfrequency)&gt; | Frequency range, including multiple groups of maximum and minimum frequencies.|
+| Array&lt;[InfraredFrequency](#infraredfrequency15)&gt; | Frequency range, including multiple groups of maximum and minimum frequencies.|
 
 **Error codes**
 
@@ -84,7 +84,7 @@ try {
 }
 ```
 
-##  InfraredFrequency
+##  InfraredFrequency<sup>15+</sup>
 
 Defines the frequency range of IR signals.
 

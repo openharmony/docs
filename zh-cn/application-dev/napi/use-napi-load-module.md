@@ -7,9 +7,7 @@ Node-API中的napi_load_module接口的功能是在主线程中进行模块的�
 ## 函数说明
 
 ```cpp
-napi_status napi_load_module(napi_env env,
-                             const char* path,
-                             napi_value* result);
+napi_status napi_load_module(napi_env env, const char* path, napi_value* result);
 ```
 
 | 参数            | 说明          |
@@ -79,7 +77,7 @@ napi_status napi_load_module(napi_env env,
     //./src/main/ets/Test.ets
     let value = 123;
     function test() {
-    console.log("Hello OpenHarmony");
+      console.log("Hello OpenHarmony");
     }
     export {value, test};
     ```
@@ -88,19 +86,19 @@ napi_status napi_load_module(napi_env env,
 
     ```json
     {
-        "buildOption" : {
-            "arkOptions" : {
-                "runtimeOnly" : {
-                    "sources": [
-                        "./src/main/ets/Test.ets"
-                    ]
-                }
-            }
+      "buildOption" : {
+        "arkOptions" : {
+          "runtimeOnly" : {
+            "sources": [
+              "./src/main/ets/Test.ets"
+            ]
+          }
         }
+      }
     }
     ```
 
-2. 使用napi_load_module加载Test文件，调用函数test以及获取变量value。
+2. 使用napi_load_module加载Test文件，调用函数test以及获取变量value：
 
     ```cpp
     static napi_value loadModule(napi_env env, napi_callback_info info) {
@@ -110,13 +108,13 @@ napi_status napi_load_module(napi_env env,
         if (status != napi_ok) {
             return nullptr;
         }
-
+    
         napi_value testFn;
         // 2. 使用napi_get_named_property获取test函数
         napi_get_named_property(env, result, "test", &testFn);
         // 3. 使用napi_call_function调用函数test
         napi_call_function(env, result, testFn, 0, nullptr, nullptr);
-
+    
         napi_value value;
         napi_value key;
         std::string keyStr = "value";
@@ -134,7 +132,7 @@ napi_status napi_load_module(napi_env env,
     //./src/main/ets/Test.ets
     let value = 123;
     function test() {
-    console.log("Hello OpenHarmony");
+      console.log("Hello OpenHarmony");
     }
     export {value, test};
     ```
@@ -143,19 +141,19 @@ napi_status napi_load_module(napi_env env,
 
     ```json
     {
-        "buildOption" : {
-            "arkOptions" : {
-                "runtimeOnly" : {
-                    "sources": [
-                        "./src/main/ets/Test.ets"
-                    ]
-                }
-            }
+      "buildOption" : {
+        "arkOptions" : {
+          "runtimeOnly" : {
+            "sources": [
+              "./src/main/ets/Test.ets"
+            ]
+          }
         }
+      }
     }
     ```
 
-2. 使用napi_load_module加载Test文件，调用函数test以及获取变量value。
+2. 使用napi_load_module加载Test文件，调用函数test以及获取变量value：
 
     ```cpp
     static napi_value loadModule(napi_env env, napi_callback_info info) {
@@ -165,13 +163,13 @@ napi_status napi_load_module(napi_env env,
         if (status != napi_ok) {
             return nullptr;
         }
-
+    
         napi_value testFn;
         // 2. 使用napi_get_named_property获取test函数
         napi_get_named_property(env, result, "test", &testFn);
         // 3. 使用napi_call_function调用函数test
         napi_call_function(env, result, testFn, 0, nullptr, nullptr);
-
+    
         napi_value value;
         napi_value key;
         std::string keyStr = "value";
@@ -190,18 +188,18 @@ napi_status napi_load_module(napi_env env,
     //library Index.ets
     let value = 123;
     function test() {
-    console.log("Hello OpenHarmony");
+      console.log("Hello OpenHarmony");
     }
     export {value, test};
     ```
 
-1. 在当前模块下的oh-package.json5文件中配置dependencies项。
+1. 在当前模块下的oh-package.json5文件中配置dependencies项：
 
     ```json
     {
-        "dependencies": {
-            "library": "file:../library"
-        }
+      "dependencies": {
+        "library": "file:../library"
+      }
     }
     ```
 
@@ -209,19 +207,19 @@ napi_status napi_load_module(napi_env env,
 
     ```json
     {
-        "buildOption" : {
-            "arkOptions" : {
-                "runtimeOnly" : {
-                    "packages": [
-                        "library"
-                    ]
-                }
-            }
+      "buildOption" : {
+        "arkOptions" : {
+          "runtimeOnly" : {
+            "packages": [
+              "library"
+            ]
+          }
         }
+      }
     }
     ```
 
-3. 用napi_load_module加载library，调用函数test以及获取变量value。
+3. 用napi_load_module加载library，调用函数test以及获取变量value：
 
     ```cpp
     static napi_value loadModule(napi_env env, napi_callback_info info) {
@@ -231,13 +229,13 @@ napi_status napi_load_module(napi_env env,
         if (status != napi_ok) {
             return nullptr;
         }
-
+    
         napi_value testFn;
         // 2. 使用napi_get_named_property获取test函数
         napi_get_named_property(env, result, "test", &testFn);
         // 3. 使用napi_call_function调用函数test
         napi_call_function(env, result, testFn, 0, nullptr, nullptr);
-
+    
         napi_value value;
         napi_value key;
         std::string keyStr = "value";
@@ -256,18 +254,18 @@ napi_status napi_load_module(napi_env env,
     //sharedlibrary Index.ets
     let value = 123;
     function test() {
-    console.log("Hello OpenHarmony");
+      console.log("Hello OpenHarmony");
     }
     export {value, test};
     ```
 
-1. 在当前模块下的oh-package.json5文件中配置dependencies项。
+1. 在当前模块下的oh-package.json5文件中配置dependencies项：
 
     ```json
     {
-        "dependencies": {
-            "sharedlibrary": "file:../sharedlibrary"
-        }
+      "dependencies": {
+        "sharedlibrary": "file:../sharedlibrary"
+      }
     }
     ```
 
@@ -275,19 +273,19 @@ napi_status napi_load_module(napi_env env,
 
     ```json
     {
-        "buildOption" : {
-            "arkOptions" : {
-                "runtimeOnly" : {
-                    "packages": [
-                        "sharedlibrary"
-                    ]
-                }
-            }
+      "buildOption" : {
+        "arkOptions" : {
+          "runtimeOnly" : {
+            "packages": [
+              "sharedlibrary"
+            ]
+          }
         }
+      }
     }
     ```
 
-3. 用napi_load_module加载sharedlibrary，调用函数test以及获取变量value。
+3. 用napi_load_module加载sharedlibrary，调用函数test以及获取变量value：
 
     ```cpp
     static napi_value loadModule(napi_env env, napi_callback_info info) {
@@ -297,13 +295,13 @@ napi_status napi_load_module(napi_env env,
         if (status != napi_ok) {
             return nullptr;
         }
-
+    
         napi_value testFn;
         // 2. 使用napi_get_named_property获取test函数
         napi_get_named_property(env, result, "test", &testFn);
         // 3. 使用napi_call_function调用函数test
         napi_call_function(env, result, testFn, 0, nullptr, nullptr);
-
+    
         napi_value value;
         napi_value key;
         std::string keyStr = "value";
@@ -316,13 +314,13 @@ napi_status napi_load_module(napi_env env,
 
 - **加载远程HAR模块名**
 
-1. 在当前模块下的oh-package.json5文件中配置dependencies项。
+1. 在当前模块下的oh-package.json5文件中配置dependencies项：
 
     ```json
     {
-        "dependencies": {
-            "@ohos/hypium": "1.0.16"
-        }
+      "dependencies": {
+        "@ohos/hypium": "1.0.16"
+      }
     }
     ```
 
@@ -330,19 +328,19 @@ napi_status napi_load_module(napi_env env,
 
     ```json
     {
-        "buildOption" : {
-            "arkOptions" : {
-                "runtimeOnly" : {
-                    "packages": [
-                        "@ohos/hypium"
-                    ]
-                }
-            }
+      "buildOption" : {
+        "arkOptions" : {
+          "runtimeOnly" : {
+            "packages": [
+              "@ohos/hypium"
+            ]
+          }
         }
+      }
     }
     ```
 
-3. 用napi_load_module加载@ohos/hypium，获取DEFAULT变量。
+3. 用napi_load_module加载@ohos/hypium，获取DEFAULT变量：
 
     ```cpp
     static napi_value loadModule(napi_env env, napi_callback_info info) {
@@ -352,7 +350,7 @@ napi_status napi_load_module(napi_env env,
         if (status != napi_ok) {
             return nullptr;
         }
-
+    
         napi_value key;
         std::string keyStr = "DEFAULT";
         napi_create_string_utf8(env, keyStr.c_str(), keyStr.size(), &key);
@@ -365,13 +363,13 @@ napi_status napi_load_module(napi_env env,
 
 - **加载ohpm包名**
 
-1. 在当前模块下的oh-package.json5文件中配置dependencies项。
+1. 在当前模块下的oh-package.json5文件中配置dependencies项：
 
     ```json
     {
-        "dependencies": {
-            "@ohos/axios": "2.2.4",
-        }
+      "dependencies": {
+        "@ohos/axios": "2.2.4",
+      }
     }
     ```
 
@@ -379,19 +377,19 @@ napi_status napi_load_module(napi_env env,
 
     ```json
     {
-        "buildOption" : {
-            "arkOptions" : {
-                "runtimeOnly" : {
-                    "packages": [
-                        "@ohos/axios"
-                    ]
-                }
-            }
+      "buildOption" : {
+        "arkOptions" : {
+          "runtimeOnly" : {
+            "packages": [
+              "@ohos/axios"
+            ]
+          }
         }
+      }
     }
     ```
 
-3. 用napi_load_module加载@ohos/axios，获取VERSION变量。
+3. 用napi_load_module加载@ohos/axios，获取VERSION变量：
 
     ```cpp
     static napi_value loadModule(napi_env env, napi_callback_info info) {
@@ -401,7 +399,7 @@ napi_status napi_load_module(napi_env env,
         if (status != napi_ok) {
             return nullptr;
         }
-
+    
         napi_value key;
         std::string keyStr = "VERSION";
         napi_create_string_utf8(env, keyStr.c_str(), keyStr.size(), &key);
@@ -414,20 +412,20 @@ napi_status napi_load_module(napi_env env,
 
 - **加载Native库**
 
-    libentry.so的index.d.ts文件如下
+    libentry.so的index.d.ts文件如下：
 
     ```javascript
     //index.d.ts
     export const add: (a: number, b: number) => number;
     ```
 
-1. 在当前模块下的oh-package.json5文件中配置dependencies项。
+1. 在当前模块下的oh-package.json5文件中配置dependencies项：
 
     ```json
     {
-        "dependencies": {
-            "libentry.so": "file:../src/main/cpp/types/libentry"
-        }
+      "dependencies": {
+        "libentry.so": "file:../src/main/cpp/types/libentry"
+      }
     }
     ```
 
@@ -435,19 +433,19 @@ napi_status napi_load_module(napi_env env,
 
     ```json
     {
-        "buildOption" : {
-            "arkOptions" : {
-                "runtimeOnly" : {
-                    "packages": [
-                        "libentry.so"
-                    ]
-                }
-            }
+      "buildOption" : {
+        "arkOptions" : {
+          "runtimeOnly" : {
+            "packages": [
+              "libentry.so"
+            ]
+          }
         }
+      }
     }
     ```
 
-3. 用napi_load_module加载libentry.so，调用函数add。
+3. 用napi_load_module加载libentry.so，调用函数add：
 
     ```cpp
     static napi_value loadModule(napi_env env, napi_callback_info info) {
@@ -457,7 +455,7 @@ napi_status napi_load_module(napi_env env,
         if (status != napi_ok) {
             return nullptr;
         }
-
+    
         napi_value addFn;
         // 2. 使用napi_get_named_property获取add函数
         napi_get_named_property(env, result, "add", &addFn);
@@ -476,24 +474,24 @@ napi_status napi_load_module(napi_env env,
 
 - **HAR加载HAR模块名**
 
-    场景为har1加载har2，har2中的Index.ets文件如下
+    场景为har1加载har2，har2中的Index.ets文件如下：
 
     ```javascript
     //har2 Index.ets
     let value = 123;
     function test() {
-    console.log("Hello OpenHarmony");
+      console.log("Hello OpenHarmony");
     }
     export {value, test};
     ```
 
-1. 在har1中的oh-package.json5文件中配置dependencies项。
+1. 在har1中的oh-package.json5文件中配置dependencies项：
 
     ```json
     {
-        "dependencies": {
-            "har2": "file:../har2"
-        }
+      "dependencies": {
+        "har2": "file:../har2"
+      }
     }
     ```
 
@@ -501,18 +499,18 @@ napi_status napi_load_module(napi_env env,
 
     ```json
     {
-        "buildOption" : {
-            "arkOptions" : {
-                "runtimeOnly" : {
-                    "packages": [
-                        "har2"
-                    ]
-                }
-            }
+      "buildOption" : {
+        "arkOptions" : {
+          "runtimeOnly" : {
+            "packages": [
+              "har2"
+            ]
+          }
         }
+      }
     }
     ```
-3. 在har1中用napi_load_module加载har2，调用函数test以及获取变量value。
+3. 在har1中用napi_load_module加载har2，调用函数test以及获取变量value：
 
     ```cpp
     static napi_value loadModule(napi_env env, napi_callback_info info) {
@@ -528,7 +526,7 @@ napi_status napi_load_module(napi_env env,
         napi_get_named_property(env, result, "test", &testFn);
         // 3. 使用napi_call_function调用函数test
         napi_call_function(env, result, testFn, 0, nullptr, nullptr);
-
+    
         napi_value value;
         napi_value key;
         std::string keyStr = "value";

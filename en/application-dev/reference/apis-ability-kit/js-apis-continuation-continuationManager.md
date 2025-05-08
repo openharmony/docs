@@ -99,9 +99,9 @@ Registers the continuation management service and obtains a token. This API uses
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | options | [ContinuationExtraParams](js-apis-continuation-continuationExtraParams.md) | No| Extra parameters used to filter the list of available devices. This parameter can be null.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| options | [ContinuationExtraParams](js-apis-continuation-continuationExtraParams.md) | No| Extra parameters used to filter the list of available devices. This parameter can be null.|
 
 **Return value**
 
@@ -242,9 +242,9 @@ Registers the continuation management service and obtains a token. This API uses
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | options | [ContinuationExtraParams](js-apis-continuation-continuationExtraParams.md) | No| Extra parameters used to filter the list of available devices. This parameter can be null.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| options | [ContinuationExtraParams](js-apis-continuation-continuationExtraParams.md) | No| Extra parameters used to filter the list of available devices. This parameter can be null.|
 
 **Return value**
 
@@ -687,10 +687,10 @@ Starts the device selection module to show the list of available devices on the 
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | token | number | Yes| Token obtained after the registration of the continuation management service.|
-  | options | [ContinuationExtraParams](js-apis-continuation-continuationExtraParams.md) | No| Extra parameters used to filter the list of available devices. This parameter can be null.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| token | number | Yes| Token obtained after the registration of the continuation management service.|
+| options | [ContinuationExtraParams](js-apis-continuation-continuationExtraParams.md) | No| Extra parameters used to filter the list of available devices. This parameter can be null.|
 
 **Return value**
 
@@ -834,10 +834,10 @@ Starts the device selection module to show the list of available devices on the 
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | token | number | Yes| Token obtained after the registration of the continuation management service.|
-  | options | [ContinuationExtraParams](js-apis-continuation-continuationExtraParams.md) | No| Extra parameters used to filter the list of available devices. This parameter can be null.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| token | number | Yes| Token obtained after the registration of the continuation management service.|
+| options | [ContinuationExtraParams](js-apis-continuation-continuationExtraParams.md) | No| Extra parameters used to filter the list of available devices. This parameter can be null.|
 
 **Return value**
 

@@ -28,7 +28,7 @@ Creates an observer for the specified component.
 
 | Name| Type  | Mandatory| Description      |
 | ------ | ------ | ---- | ---------- |
-| id     | string | Yes  | Component ID.|
+| id     | string | Yes  | ID of the target component, set using the universal attributes [id](./arkui-ts/ts-universal-attributes-component-id.md#id) or [key](./arkui-ts/ts-universal-attributes-component-id.md#key12).|
 
 **Return value**
 
@@ -44,7 +44,7 @@ let listener:inspector.ComponentObserver = inspector.createComponentObserver('CO
 
 ## ComponentObserver
 
-Implements a component observer for completion of component layout and drawing, including the first query result when the observer is requested.
+Implements an observer for layout and drawing completion callbacks for components, containing the initial query results from when the observer was created.
 
 ### on
 

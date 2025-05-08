@@ -306,4 +306,47 @@ windowClass.on('avoidAreaChange', async (data) => {
 });
 ```
 
+## 在display.on('foldDisplayModeChange')监听回调中，使用display.getDefaultDisplaySync获取当前屏幕宽高错误(API10)
+
+**解决措施**
+
+对于强制横屏应用，在设备发生折叠开合动作时，会触发foldDisplayModeChange，此时Display里对应旋转属性还未更新，导致通过getDefaultDisplaySync获取到的宽高为设备竖屏的宽高。应用可以通过display.on('change')接口监听显示设备变化，在回调函数中通过Display实例获取屏幕的宽高等信息。
+
+**代码示例**
+
+```ts
+display.on('change', (data) => {
+  console.info('Succeeded in enabling the listener for display changes. Data: ' +
+  JSON.stringify(data));
+  let newDisplay: display.Display = display.getDefaultDisplaySync();
+  console.info('width: ' + newDisplay.width + ', height: ' + newDisplay.height);
+});
+```
+
+**参考链接**
+
+[display.on('change')](../reference/apis-arkui/js-apis-display.md#displayonaddremovechange)
+
+## 窗口Orientation枚举值8\~10或12和枚举值13\~16的区别(API9)
+
+1. 窗口设置8\~10或12，会跟随传感器自动旋转，且受控制中心的旋转开关控制。
+2. 窗口设置13\~16，会临时旋转到指定方向（如：13会临时旋转到竖屏），之后跟随传感器自动旋转，受控制中心的旋转开关控制，且可旋转方向受系统判定。
+
+两者的区别是，调用13\~16时会临时旋转到指定方向，且前后台切换时窗口方向保持，而调用8\~10或12前后台切换时窗口方向不会保持。
+
+**场景举例：**
+1. 竖持手机，关闭旋转锁定开关 -> 应用设置方向为AUTO_ROTATION_RESTRICTED -> 将手机旋转为横屏（**应用方向为横屏**） -> 应用退出后台进入桌面，竖持手机（方向为竖屏） -> 应用切换至前台（**应用方向为竖屏**） 
+2. 竖持手机，关闭旋转锁定开关 -> 应用设置方向为USER_ROTATION_PORTRAIT（**应用方向为竖屏**） -> 将手机旋转为横屏（**应用方向为横屏**） -> 应用退出后台进入桌面，竖持手机（方向为竖屏） -> 应用切换至前台（**应用方向为横屏**） 
+
+| 名称                               | 值  | 可旋转方向           | 是否跟随传感器自动旋转 | 是否受旋转开关控制 |
+|----------------------------------|----|-----------------|-------------|-----------|
+| AUTO_ROTATION_RESTRICTED         | 8  | 横屏、竖屏、反向竖屏、反向横屏 | 是           | 是         |
+| AUTO_ROTATION_PORTRAIT_RESTRICTED         | 9  | 竖屏、反向竖屏 | 是           | 是         |
+| AUTO_ROTATION_LANDSCAPE_RESTRICTED         | 10 | 横屏、反向横屏 | 是           | 是         |
+| AUTO_ROTATION_UNSPECIFIED         | 12  | 受系统判定 | 是           | 是         |
+| USER_ROTATION_PORTRAIT           | 13 | 受系统判定           | 是           | 是         |
+| USER_ROTATION_LANDSCAPE          | 14 | 受系统判定           | 是           | 是         |
+| USER_ROTATION_PORTRAIT_INVERTED  | 15 | 受系统判定           | 是           | 是         |
+| USER_ROTATION_LANDSCAPE_INVERTED | 16 | 受系统判定           | 是           | 是         |
+
 <!--no_check-->

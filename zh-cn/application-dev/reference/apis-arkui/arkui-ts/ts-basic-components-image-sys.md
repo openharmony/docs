@@ -42,7 +42,7 @@ edgeAntialiasing(value: number)
 
 | 参数名 | 类型   | 必填 | 说明                                |
 | ------ | ------ | ---- | ----------------------------------- |
-| value  | number | 是   | SVG图源抗锯齿效果。<br/>默认值：$0$ |
+| value  | number | 是   | SVG图源抗锯齿效果。<br/>默认值：0 |
 
 ### pointLight<sup>11+</sup>
 

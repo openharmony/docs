@@ -22,8 +22,8 @@ Returns the width and height of the component. The default unit is vp, but APIs 
 
 | Name  | Type  | Readable| Writable| Description                  |
 | ------ | ------ | ---- | ---- | ---------------------- |
-| width  | number | Yes  | Yes  | Width of the component.<br>Unit: vp|
-| height | number | Yes  | Yes  | Height of the component.<br>Unit: vp|
+| width  | number | Yes  | Yes  | Width of the component.<br>Unit: vp<br>Value range: [0, +∞)|
+| height | number | Yes  | Yes  | Height of the component.<br>Unit: vp<br>Value range: [0, +∞)|
 
 ## Position
 
@@ -63,10 +63,10 @@ Sets or returns the layout size and position of the component.
 
 | Name  | Type  | Read Only| Optional| Description                       |
 | ------ | ------ | ---- | ---- | --------------------------- |
-| x      | number | Yes  | Yes  | Horizontal position.<br>Unit: vp|
-| y      | number | Yes  | Yes  | Vertical position.<br>Unit: vp|
-| width  | number | Yes  | Yes  | Component width.<br>Unit: vp  |
-| height | number | Yes  | Yes  | Component height.<br>Unit: vp  |
+| x      | number | Yes  | Yes  | Horizontal position.<br>Unit: vp<br>Value range: (-∞, +∞)|
+| y      | number | Yes  | Yes  | Vertical position.<br>Unit: vp<br>Value range: (-∞, +∞)|
+| width  | number | Yes  | Yes  | Component width.<br>Unit: vp<br>Value range: [0, +∞)  |
+| height | number | Yes  | Yes  | Component height.<br>Unit: vp<br>Value range: [0, +∞)  |
 
 ## Pivot
 
@@ -150,7 +150,7 @@ Sets a 4x4 matrix.
 
 | Type                                                        | Description                                |
 | ------------------------------------------------------------ | ------------------------------------ |
-| [number,number,number,number,<br>number,number,number,number,<br>number,number,number,number,<br>number,number,number,number] | A 16-element array representing a 4x4 matrix.|
+| [number,number,number,number,<br>number,number,number,number,<br>number,number,number,number,<br>number,number,number,number] | A 16-element array representing a 4x4 matrix.<br>Value range of each number: (-∞, +∞)|
 
 The **Matrix4** type is used to set transformation information for components. The following is an example:
 ```ts
@@ -162,10 +162,6 @@ const transform: Matrix4 = [
 ]
 ```
 
-**Atomic service API**: This API can be used in atomic services since API version 12.
-
-**System capability**: SystemCapability.ArkUI.ArkUI.Full
-
 ## Vector2
 
 Defines a vector that contains the x and y coordinate values.
@@ -176,8 +172,8 @@ Defines a vector that contains the x and y coordinate values.
 
 | Name| Type  | Read Only| Optional| Description             |
 | ---- | ------ | ---- | ---- | ----------------- |
-| x    | number | No  | No  | X coordinate value of the vector.|
-| y    | number | No  | No  | Y coordinate value of the vector.|
+| x    | number | No  | No  | X coordinate value of the vector.<br>Value range: (-∞, +∞)|
+| y    | number | No  | No  | Y coordinate value of the vector.<br>Value range: (-∞, +∞)|
 
 ## Vector3
 
@@ -189,9 +185,9 @@ Represents a vector including three values: x, y, and z.
 
 | Name| Type  | Read Only| Optional| Description               |
 | ---- | ------ | ---- | ---- | ------------------- |
-| x    | number | No  | No  | Rotation angle along the x-axis.|
-| y    | number | No  | No  | Rotation angle along the y-axis.|
-| z    | number | No  | No  | Rotation angle along the z-axis.|
+| x    | number | No  | No  | Rotation angle along the x-axis.<br>Value range: (-∞, +∞)|
+| y    | number | No  | No  | Rotation angle along the y-axis.<br>Value range: (-∞, +∞)|
+| z    | number | No  | No  | Rotation angle along the z-axis.<br>Value range: (-∞, +∞)|
 
 ## Vector2T\<T><sup>12+</sup>
 
@@ -381,7 +377,7 @@ Sets the metrics of length. When the length unit is [PERCENT](arkui-ts/ts-types.
 
 constructor(value: number, unit?: LengthUnit)
 
-A constructor used to create a **LengthMetrics** instance. If the **unit** parameter is not set or is set to **undefined**, the default unit VP is used. If the **unit** parameter is set to a value that is not of the LengthUnit type, the default value 0 VP is used.
+Constructor used to create a **LengthMetrics** instance. If the **unit** parameter is not set or is set to **undefined**, the default unit VP is used. If the **unit** parameter is set to a value that is not of the LengthUnit type, the default value 0 VP is used.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -391,7 +387,7 @@ A constructor used to create a **LengthMetrics** instance. If the **unit** param
 
 | Name| Type         | Mandatory| Description        |
 | ------ | ------------- | ---- | ------------ |
-| value   | number | Yes  | Value of the length attribute.|
+| value   | number | Yes  | Value of the length attribute.<br>Value range: [0, +∞)|
 | unit   | [LengthUnit](#lengthunit12) | No  | Unit of the length attribute.|
 
 ### px<sup>12+</sup>
@@ -408,7 +404,7 @@ Creates a length attribute in px.
 
 | Name| Type         | Mandatory| Description        |
 | ------ | ------------- | ---- | ------------ |
-| value   | number | Yes  | Value of the length attribute.|
+| value   | number | Yes  | Value of the length attribute.<br>Value range: (-∞, +∞)|
 
 **Return value**
 
@@ -430,7 +426,7 @@ Creates a length attribute in vp.
 
 | Name| Type         | Mandatory| Description        |
 | ------ | ------------- | ---- | ------------ |
-| value   | number | Yes  | Value of the length attribute.|
+| value   | number | Yes  | Value of the length attribute.<br>Value range: (-∞, +∞)|
 
 **Return value**
 
@@ -452,7 +448,7 @@ Creates a length attribute in fp.
 
 | Name| Type         | Mandatory| Description        |
 | ------ | ------------- | ---- | ------------ |
-| value   | number | Yes  | Value of the length attribute.|
+| value   | number | Yes  | Value of the length attribute.<br>Value range: (-∞, +∞)|
 
 **Return value**
 
@@ -474,7 +470,7 @@ Creates a length attribute in percentage.
 
 | Name| Type         | Mandatory| Description        |
 | ------ | ------------- | ---- | ------------ |
-| value   | number | Yes  | Value of the length attribute.|
+| value   | number | Yes  | Value of the length attribute.<br>Value range: [0, 100]|
 
 **Return value**
 
@@ -496,7 +492,7 @@ Creates a length attribute in lpx.
 
 | Name| Type         | Mandatory| Description        |
 | ------ | ------------- | ---- | ------------ |
-| value   | number | Yes  | Value of the length attribute.|
+| value   | number | Yes  | Value of the length attribute.<br>Value range: (-∞, +∞)|
 
 **Return value**
 
@@ -580,7 +576,7 @@ Instantiates the **ColorMetrics** class using colors in RGB or RGBA format.
 | red   | number | Yes  | Red component of the color. The value is an integer ranging from 0 to 255.|
 | green | number | Yes  | Green component of the color. The value is an integer ranging from 0 to 255.|
 | blue  | number | Yes  | Blue component of the color. The value is an integer ranging from 0 to 255.|
-| alpha | number | No  | Alpha component of the color. The value is a floating point number ranging from 0 to 1.0.|
+| alpha | number | No  | Alpha component of the color. The value is a floating point number ranging from 0.0 to 1.0. The default value is **1.0** (fully opaque).|
 
 **Return value**
 
@@ -592,7 +588,7 @@ Instantiates the **ColorMetrics** class using colors in RGB or RGBA format.
 
 static resourceColor(color: ResourceColor): ColorMetrics
 
-Instantiates the **ColorMetrics** class using a resource format color.
+Instantiates the **ColorMetrics** class using a color in resource reference format.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -602,7 +598,7 @@ Instantiates the **ColorMetrics** class using a resource format color.
 
 | Name| Type         | Mandatory| Description        |
 | ------ | ------------- | ---- | ------------ |
-| color | [ResourceColor](arkui-ts/ts-types.md#resourcecolor) | Yes| Resource format color.|
+| color | [ResourceColor](arkui-ts/ts-types.md#resourcecolor) | Yes| Color in resource reference format.|
 
 **Return value**
 
@@ -1727,7 +1723,7 @@ Generates an **edgeColors** object with the specified edge color for all edges.
 
 | Name| Type  | Mandatory| Description                |
 | ------ | ------ | ---- | -------------------- |
-| all    | number | Yes  | Edge color, in ARGB format.|
+| all    | number | Yes  | Edge color, in ARGB format, for example, **0xffff00ff**.<br>Value range: [0, 0xffffffff]|
 
 **Return value**
 
@@ -1789,7 +1785,7 @@ Generates an **edgeWidths** object with the specified edge width for all edges.
 
 | Name| Type  | Mandatory| Description                |
 | ------ | ------ | ---- | -------------------- |
-| all    | number | Yes  | Edge width, in vp.|
+| all    | number | Yes  | Edge width, in vp.<br>Value range: [0, +∞)|
 
 **Return value**
 
@@ -1914,7 +1910,7 @@ Generates a **borderRadiuses** object with the specified radius for all border c
 
 | Name| Type  | Mandatory| Description      |
 | ------ | ------ | ---- | ---------- |
-| all    | number | Yes  | Radius of border corners.|
+| all    | number | Yes  | Radius of border corners.<br>Unit: vp<br>Value range: [0, +∞)|
 
 **Return value**
 

@@ -243,7 +243,7 @@ typedef struct CommonEvent_PublishInfo CommonEvent_PublishInfo
 
 发布自定义公共事件时使用的公共事件属性对象。
 
-**起始版本：** 16
+**起始版本：** 18
 
 ## 枚举类型说明
 
@@ -259,6 +259,7 @@ typedef struct CommonEvent_PublishInfo CommonEvent_PublishInfo
 | COMMONEVENT_ERR_OK = 0 |执行成功。|
 | COMMONEVENT_ERR_PERMISSION_ERROR = 201 |没有权限。|
 | COMMONEVENT_ERR_INVALID_PARAMETER = 401 |无效的参数。|
+| COMMONEVENT_ERR_NOT_SYSTEM_SERVICE = 1500004 |当前应用无法发送系统公共事件。|
 | COMMONEVENT_ERR_SENDING_REQUEST_FAILED = 1500007 |发送IPC请求失败。|
 | COMMONEVENT_ERR_INIT_UNDONE = 1500008|服务未初始化。|
 | COMMONEVENT_ERR_SUBSCRIBER_NUM_EXCEEDED = 1500010|订阅者数量超过200个。|
@@ -1148,7 +1149,9 @@ CommonEvent_ErrCode OH_CommonEvent_SetPublisherPermission(CommonEvent_SubscribeI
 
 **返回：**
 
-返回COMMONEVENT_ERR_OK表示成功；返回COMMONEVENT_ERR_INVALID_PARAMETER表示info为空指针。
+返回COMMONEVENT_ERR_OK表示成功。
+
+返回COMMONEVENT_ERR_INVALID_PARAMETER表示info为空指针。
 
 ### OH_CommonEvent_SetPublisherBundleName
 
@@ -1171,7 +1174,9 @@ CommonEvent_ErrCode OH_CommonEvent_SetPublisherBundleName(CommonEvent_SubscribeI
 
 **返回：**
 
-返回COMMONEVENT_ERR_OK表示成功；返回COMMONEVENT_ERR_INVALID_PARAMETER表示info为空指针。
+返回COMMONEVENT_ERR_OK表示成功。
+
+返回COMMONEVENT_ERR_INVALID_PARAMETER表示info为空指针。
 
 ### OH_CommonEvent_DestroySubscribeInfo
 
@@ -1252,7 +1257,17 @@ CommonEvent_ErrCode OH_CommonEvent_Subscribe(const CommonEvent_Subscriber* subsc
 
 **返回：**
 
-返回COMMONEVENT_ERR_OK表示成功；返回COMMONEVENT_ERR_INVALID_PARAMETER表示参数subscriber为空；返回COMMONEVENT_ERR_SENDING_REQUEST_FAILED表示IPC发送失败；返回COMMONEVENT_ERR_INIT_UNDONE表示公共事件服务未初始化；返回COMMONEVENT_ERR_SUBSCRIBER_NUM_EXCEEDED表示当前进程订阅者超过200个；返回COMMONEVENT_ERR_ALLOC_MEMORY_FAILED表示系统分配内存失败。
+返回COMMONEVENT_ERR_OK表示成功。
+
+返回COMMONEVENT_ERR_INVALID_PARAMETER表示参数subscriber为空。
+
+返回COMMONEVENT_ERR_SENDING_REQUEST_FAILED表示IPC发送失败。
+
+返回COMMONEVENT_ERR_INIT_UNDONE表示公共事件服务未初始化。
+
+返回COMMONEVENT_ERR_SUBSCRIBER_NUM_EXCEEDED表示当前进程订阅者超过200个。
+
+返回COMMONEVENT_ERR_ALLOC_MEMORY_FAILED表示系统分配内存失败。
 
 ### OH_CommonEvent_UnSubscribe
 
@@ -1274,7 +1289,13 @@ CommonEvent_ErrCode OH_CommonEvent_UnSubscribe(const CommonEvent_Subscriber* sub
 
 **返回：**
 
-返回COMMONEVENT_ERR_OK表示成功；返回COMMONEVENT_ERR_INVALID_PARAMETER表示参数subscriber为空；返回COMMONEVENT_ERR_SENDING_REQUEST_FAILED表示IPC发送失败；返回COMMONEVENT_ERR_INIT_UNDONE表示公共事件服务未初始化。
+返回COMMONEVENT_ERR_OK表示成功。
+
+返回COMMONEVENT_ERR_INVALID_PARAMETER表示参数subscriber为空。
+
+返回COMMONEVENT_ERR_SENDING_REQUEST_FAILED表示IPC发送失败。
+
+返回COMMONEVENT_ERR_INIT_UNDONE表示公共事件服务未初始化。
 
 ### OH_CommonEvent_GetEventFromRcvData
 
@@ -1407,7 +1428,9 @@ bool OH_CommonEvent_HasKeyInParameters(const CommonEvent_Parameters* para, const
 
 **返回：**
 
-返回true表示存在该键值对信息，返回false表示不存在。
+返回true表示存在该键值对信息。
+
+返回false表示不存在该键值对信息。
 
 ### OH_CommonEvent_GetIntFromParameters
 
@@ -1639,7 +1662,7 @@ CommonEvent_Parameters* OH_CommonEvent_CreateParameters()
 
 创建公共事件附加信息对象。
 
-**起始版本：** 16
+**起始版本：** 18
 
 **参数：**
 
@@ -1659,7 +1682,7 @@ void OH_CommonEvent_DestroyParameters(CommonEvent_Parameters* param)
 
 销毁公共事件附加信息对象。
 
-**起始版本：** 16
+**起始版本：** 18
 
 **参数：**
 
@@ -1681,7 +1704,7 @@ CommonEvent_ErrCode OH_CommonEvent_SetIntToParameters(CommonEvent_Parameters* pa
 
 设置公共事件附加信息的int类型内容。
 
-**起始版本：** 16
+**起始版本：** 18
 
 **参数：**
 
@@ -1693,7 +1716,9 @@ CommonEvent_ErrCode OH_CommonEvent_SetIntToParameters(CommonEvent_Parameters* pa
 
 **返回：**
 
-返回COMMONEVENT_ERR_OK表示成功；返回COMMONEVENT_ERR_INVALID_PARAMETER表示参数无效。
+返回COMMONEVENT_ERR_OK表示成功。
+
+返回COMMONEVENT_ERR_INVALID_PARAMETER表示参数无效。
 
 ### OH_CommonEvent_SetIntArrayToParameters
 
@@ -1705,7 +1730,7 @@ CommonEvent_ErrCode OH_CommonEvent_SetIntArrayToParameters(CommonEvent_Parameter
 
 设置公共事件附加信息的int数组内容。
 
-**起始版本：** 16
+**起始版本：** 18
 
 **参数：**
 
@@ -1718,7 +1743,11 @@ CommonEvent_ErrCode OH_CommonEvent_SetIntArrayToParameters(CommonEvent_Parameter
 
 **返回：**
 
-返回COMMONEVENT_ERR_OK表示成功；返回COMMONEVENT_ERR_INVALID_PARAMETER表示参数无效；返回COMMONEVENT_ERR_ALLOC_MEMORY_FAILED表示内存分配失败。
+返回COMMONEVENT_ERR_OK表示成功。
+
+返回COMMONEVENT_ERR_INVALID_PARAMETER表示参数无效。
+
+返回COMMONEVENT_ERR_ALLOC_MEMORY_FAILED表示内存分配失败。
 
 ### OH_CommonEvent_SetLongToParameters
 
@@ -1730,7 +1759,7 @@ CommonEvent_ErrCode OH_CommonEvent_SetLongToParameters(CommonEvent_Parameters* p
 
 设置公共事件附加信息的long类型内容。
 
-**起始版本：** 16
+**起始版本：** 18
 
 **参数：**
 
@@ -1742,7 +1771,9 @@ CommonEvent_ErrCode OH_CommonEvent_SetLongToParameters(CommonEvent_Parameters* p
 
 **返回：**
 
-返回COMMONEVENT_ERR_OK表示成功；返回COMMONEVENT_ERR_INVALID_PARAMETER表示参数无效。
+返回COMMONEVENT_ERR_OK表示成功。
+
+返回COMMONEVENT_ERR_INVALID_PARAMETER表示参数无效。
 
 ### OH_CommonEvent_SetLongArrayToParameters
 
@@ -1754,7 +1785,7 @@ CommonEvent_ErrCode OH_CommonEvent_SetLongArrayToParameters(CommonEvent_Paramete
 
 设置公共事件附加信息的long数组内容。
 
-**起始版本：** 16
+**起始版本：** 18
 
 **参数：**
 
@@ -1767,7 +1798,11 @@ CommonEvent_ErrCode OH_CommonEvent_SetLongArrayToParameters(CommonEvent_Paramete
 
 **返回：**
 
-返回COMMONEVENT_ERR_OK表示成功；返回COMMONEVENT_ERR_INVALID_PARAMETER表示参数无效；返回COMMONEVENT_ERR_ALLOC_MEMORY_FAILED表示内存分配失败。
+返回COMMONEVENT_ERR_OK表示成功。
+
+返回COMMONEVENT_ERR_INVALID_PARAMETER表示参数无效。
+
+返回COMMONEVENT_ERR_ALLOC_MEMORY_FAILED表示内存分配失败。
 
 ### OH_CommonEvent_SetDoubleToParameters
 
@@ -1779,7 +1814,7 @@ CommonEvent_ErrCode OH_CommonEvent_SetDoubleToParameters(CommonEvent_Parameters*
 
 设置公共事件附加信息的double类型内容。
 
-**起始版本：** 16
+**起始版本：** 18
 
 **参数：**
 
@@ -1791,7 +1826,9 @@ CommonEvent_ErrCode OH_CommonEvent_SetDoubleToParameters(CommonEvent_Parameters*
 
 **返回：**
 
-返回COMMONEVENT_ERR_OK表示成功；返回COMMONEVENT_ERR_INVALID_PARAMETER表示参数无效。
+返回COMMONEVENT_ERR_OK表示成功。
+
+返回COMMONEVENT_ERR_INVALID_PARAMETER表示参数无效。
 
 ### OH_CommonEvent_SetDoubleArrayToParameters
 
@@ -1803,7 +1840,7 @@ CommonEvent_ErrCode OH_CommonEvent_SetDoubleArrayToParameters(CommonEvent_Parame
 
 设置公共事件附加信息的double数组内容。
 
-**起始版本：** 16
+**起始版本：** 18
 
 **参数：**
 
@@ -1816,7 +1853,11 @@ CommonEvent_ErrCode OH_CommonEvent_SetDoubleArrayToParameters(CommonEvent_Parame
 
 **返回：**
 
-返回COMMONEVENT_ERR_OK表示成功；返回COMMONEVENT_ERR_INVALID_PARAMETER表示参数无效；返回COMMONEVENT_ERR_ALLOC_MEMORY_FAILED表示内存分配失败。
+返回COMMONEVENT_ERR_OK表示成功。
+
+返回COMMONEVENT_ERR_INVALID_PARAMETER表示参数无效。
+
+返回COMMONEVENT_ERR_ALLOC_MEMORY_FAILED表示内存分配失败。
 
 ### OH_CommonEvent_SetBoolToParameters
 
@@ -1828,7 +1869,7 @@ CommonEvent_ErrCode OH_CommonEvent_SetBoolToParameters(CommonEvent_Parameters* p
 
 设置公共事件附加信息的布尔类型内容。
 
-**起始版本：** 16
+**起始版本：** 18
 
 **参数：**
 
@@ -1840,7 +1881,9 @@ CommonEvent_ErrCode OH_CommonEvent_SetBoolToParameters(CommonEvent_Parameters* p
 
 **返回：**
 
-返回COMMONEVENT_ERR_OK表示成功；返回COMMONEVENT_ERR_INVALID_PARAMETER表示参数无效。
+返回COMMONEVENT_ERR_OK表示成功。
+
+返回COMMONEVENT_ERR_INVALID_PARAMETER表示参数无效。
 
 ### OH_CommonEvent_SetBoolArrayToParameters
 
@@ -1852,7 +1895,7 @@ CommonEvent_ErrCode OH_CommonEvent_SetBoolArrayToParameters(CommonEvent_Paramete
 
 设置公共事件附加信息的布尔数组内容。
 
-**起始版本：** 16
+**起始版本：** 18
 
 **参数：**
 
@@ -1865,7 +1908,11 @@ CommonEvent_ErrCode OH_CommonEvent_SetBoolArrayToParameters(CommonEvent_Paramete
 
 **返回：**
 
-返回COMMONEVENT_ERR_OK表示成功；返回COMMONEVENT_ERR_INVALID_PARAMETER表示参数无效；返回COMMONEVENT_ERR_ALLOC_MEMORY_FAILED表示内存分配失败。
+返回COMMONEVENT_ERR_OK表示成功。
+
+返回COMMONEVENT_ERR_INVALID_PARAMETER表示参数无效。
+
+返回COMMONEVENT_ERR_ALLOC_MEMORY_FAILED表示内存分配失败。
 
 ### OH_CommonEvent_SetCharToParameters
 
@@ -1877,7 +1924,7 @@ CommonEvent_ErrCode OH_CommonEvent_SetCharToParameters(CommonEvent_Parameters* p
 
 设置公共事件附加信息的字符类型内容。
 
-**起始版本：** 16
+**起始版本：** 18
 
 **参数：**
 
@@ -1889,7 +1936,9 @@ CommonEvent_ErrCode OH_CommonEvent_SetCharToParameters(CommonEvent_Parameters* p
 
 **返回：**
 
-返回COMMONEVENT_ERR_OK表示成功；返回COMMONEVENT_ERR_INVALID_PARAMETER表示参数无效。
+返回COMMONEVENT_ERR_OK表示成功。
+
+返回COMMONEVENT_ERR_INVALID_PARAMETER表示参数无效。
 
 ### OH_CommonEvent_SetCharArrayToParameters
 
@@ -1901,7 +1950,7 @@ CommonEvent_ErrCode OH_CommonEvent_SetCharArrayToParameters(CommonEvent_Paramete
 
 设置公共事件附加信息的字符数组内容。
 
-**起始版本：** 16
+**起始版本：** 18
 
 **参数：**
 
@@ -1914,7 +1963,11 @@ CommonEvent_ErrCode OH_CommonEvent_SetCharArrayToParameters(CommonEvent_Paramete
 
 **返回：**
 
-返回COMMONEVENT_ERR_OK表示成功；返回COMMONEVENT_ERR_INVALID_PARAMETER表示参数无效；返回COMMONEVENT_ERR_ALLOC_MEMORY_FAILED表示内存分配失败。
+返回COMMONEVENT_ERR_OK表示成功。
+
+返回COMMONEVENT_ERR_INVALID_PARAMETER表示参数无效。
+
+返回COMMONEVENT_ERR_ALLOC_MEMORY_FAILED表示内存分配失败。
 
 ### OH_CommonEvent_CreatePublishInfo
 
@@ -1926,7 +1979,7 @@ CommonEvent_PublishInfo* OH_CommonEvent_CreatePublishInfo(bool ordered)
 
 创建公共事件属性对象。
 
-**起始版本：** 16
+**起始版本：** 18
 
 **参数：**
 
@@ -1948,7 +2001,7 @@ void OH_CommonEvent_DestroyPublishInfo(CommonEvent_PublishInfo* info)
 
 销毁公共事件属性对象。
 
-**起始版本：** 16
+**起始版本：** 18
 
 **参数：**
 
@@ -1970,7 +2023,7 @@ CommonEvent_ErrCode OH_CommonEvent_SetPublishInfoBundleName(CommonEvent_PublishI
 
 设置公共事件包名称。
 
-**起始版本：** 16
+**起始版本：** 18
 
 **参数：**
 
@@ -1981,7 +2034,9 @@ CommonEvent_ErrCode OH_CommonEvent_SetPublishInfoBundleName(CommonEvent_PublishI
 
 **返回：**
 
-返回COMMONEVENT_ERR_OK表示成功；返回COMMONEVENT_ERR_INVALID_PARAMETER表示参数无效。
+返回COMMONEVENT_ERR_OK表示成功。
+
+返回COMMONEVENT_ERR_INVALID_PARAMETER表示参数无效。
 
 ### OH_CommonEvent_SetPublishInfoPermissions
 
@@ -1993,7 +2048,7 @@ CommonEvent_ErrCode OH_CommonEvent_SetPublishInfoPermissions(CommonEvent_Publish
 
 设置公共事件权限。
 
-**起始版本：** 16
+**起始版本：** 18
 
 **参数：**
 
@@ -2005,7 +2060,9 @@ CommonEvent_ErrCode OH_CommonEvent_SetPublishInfoPermissions(CommonEvent_Publish
 
 **返回：**
 
-返回COMMONEVENT_ERR_OK表示成功；返回COMMONEVENT_ERR_INVALID_PARAMETER表示参数无效。
+返回COMMONEVENT_ERR_OK表示成功。
+
+返回COMMONEVENT_ERR_INVALID_PARAMETER表示参数无效。
 
 ### OH_CommonEvent_SetPublishInfoCode
 
@@ -2017,7 +2074,7 @@ CommonEvent_ErrCode OH_CommonEvent_SetPublishInfoCode(CommonEvent_PublishInfo* i
 
 设置公共事件结果码。
 
-**起始版本：** 16
+**起始版本：** 18
 
 **参数：**
 
@@ -2028,7 +2085,9 @@ CommonEvent_ErrCode OH_CommonEvent_SetPublishInfoCode(CommonEvent_PublishInfo* i
 
 **返回：**
 
-返回COMMONEVENT_ERR_OK表示成功；返回COMMONEVENT_ERR_INVALID_PARAMETER表示参数无效。
+返回COMMONEVENT_ERR_OK表示成功。
+
+返回COMMONEVENT_ERR_INVALID_PARAMETER表示参数无效。
 
 ### OH_CommonEvent_SetPublishInfoData
 
@@ -2040,7 +2099,7 @@ CommonEvent_ErrCode OH_CommonEvent_SetPublishInfoData(CommonEvent_PublishInfo* i
 
 设置公共事件的发布信息结果数据。
 
-**起始版本：** 16
+**起始版本：** 18
 
 **参数：**
 
@@ -2052,7 +2111,9 @@ CommonEvent_ErrCode OH_CommonEvent_SetPublishInfoData(CommonEvent_PublishInfo* i
 
 **返回：**
 
-返回COMMONEVENT_ERR_OK表示成功；返回COMMONEVENT_ERR_INVALID_PARAMETER表示参数无效。
+返回COMMONEVENT_ERR_OK表示成功。
+
+返回COMMONEVENT_ERR_INVALID_PARAMETER表示参数无效。
 
 ### OH_CommonEvent_SetPublishInfoParameters
 
@@ -2064,7 +2125,7 @@ CommonEvent_ErrCode OH_CommonEvent_SetPublishInfoParameters(CommonEvent_PublishI
 
 设置公共事件附加信息。
 
-**起始版本：** 16
+**起始版本：** 18
 
 **参数：**
 
@@ -2075,7 +2136,9 @@ CommonEvent_ErrCode OH_CommonEvent_SetPublishInfoParameters(CommonEvent_PublishI
 
 **返回：**
 
-返回COMMONEVENT_ERR_OK表示成功；返回COMMONEVENT_ERR_INVALID_PARAMETER表示参数无效。
+返回COMMONEVENT_ERR_OK表示成功。
+
+返回COMMONEVENT_ERR_INVALID_PARAMETER表示参数无效。
 
 ### OH_CommonEvent_Publish
 
@@ -2087,7 +2150,7 @@ CommonEvent_ErrCode OH_CommonEvent_Publish(const char* event)
 
 发布自定义公共事件。
 
-**起始版本：** 16
+**起始版本：** 18
 
 **参数：**
 
@@ -2097,7 +2160,13 @@ CommonEvent_ErrCode OH_CommonEvent_Publish(const char* event)
 
 **返回：**
 
-返回COMMONEVENT_ERR_OK表示成功；返回COMMONEVENT_ERR_INVALID_PARAMETER表示参数无效；返回COMMONEVENT_ERR_SENDING_REQUEST_FAILED表示IPC发送失败；返回COMMONEVENT_ERR_INIT_UNDONE表示公共事件服务未初始化。
+返回COMMONEVENT_ERR_OK表示成功。
+
+返回COMMONEVENT_ERR_INVALID_PARAMETER表示参数无效。
+
+返回COMMONEVENT_ERR_SENDING_REQUEST_FAILED表示IPC发送失败。
+
+返回COMMONEVENT_ERR_INIT_UNDONE表示公共事件服务未初始化。
 
 ### OH_CommonEvent_PublishWithInfo
 
@@ -2109,7 +2178,7 @@ CommonEvent_ErrCode OH_CommonEvent_PublishWithInfo(const char* event, const Comm
 
 发布带有指定属性的自定义公共事件。
 
-**起始版本：** 16
+**起始版本：** 18
 
 **参数：**
 
@@ -2120,7 +2189,13 @@ CommonEvent_ErrCode OH_CommonEvent_PublishWithInfo(const char* event, const Comm
 
 **返回：**
 
-返回COMMONEVENT_ERR_OK表示成功；返回COMMONEVENT_ERR_INVALID_PARAMETER表示参数无效；返回COMMONEVENT_ERR_SENDING_REQUEST_FAILED表示IPC发送失败；返回COMMONEVENT_ERR_INIT_UNDONE表示公共事件服务未初始化。
+返回COMMONEVENT_ERR_OK表示成功。
+
+返回COMMONEVENT_ERR_INVALID_PARAMETER表示参数无效。
+
+返回COMMONEVENT_ERR_SENDING_REQUEST_FAILED表示IPC发送失败。
+
+返回COMMONEVENT_ERR_INIT_UNDONE表示公共事件服务未初始化。
 
 ### OH_CommonEvent_IsOrderedCommonEvent
 
@@ -2132,7 +2207,7 @@ bool OH_CommonEvent_IsOrderedCommonEvent(const CommonEvent_Subscriber* subscribe
 
 查询当前公共事件是否为有序公共事件。
 
-**起始版本：** 16
+**起始版本：** 18
 
 **参数：**
 
@@ -2142,7 +2217,9 @@ bool OH_CommonEvent_IsOrderedCommonEvent(const CommonEvent_Subscriber* subscribe
 
 **返回：**
 
-返回true表示有序公共事件；false表示无序公共事件。
+返回true表示有序公共事件。
+
+返回false表示无序公共事件。
 
 ### OH_CommonEvent_FinishCommonEvent
 
@@ -2154,7 +2231,7 @@ bool OH_CommonEvent_FinishCommonEvent(CommonEvent_Subscriber* subscriber)
 
 用于订阅者结束对当前有序公共事件的处理。
 
-**起始版本：** 16
+**起始版本：** 18
 
 **参数：**
 
@@ -2164,7 +2241,9 @@ bool OH_CommonEvent_FinishCommonEvent(CommonEvent_Subscriber* subscriber)
 
 **返回：**
 
-返回true表示操作成功；返回false表示操作失败。
+返回true表示操作成功。
+
+返回false表示操作失败。
 
 ### OH_CommonEvent_GetAbortCommonEvent
 
@@ -2176,7 +2255,7 @@ bool OH_CommonEvent_GetAbortCommonEvent(const CommonEvent_Subscriber* subscriber
 
 获取当前有序公共事件是否处于中止状态。
 
-**起始版本：** 16
+**起始版本：** 18
 
 **参数：**
 
@@ -2186,7 +2265,9 @@ bool OH_CommonEvent_GetAbortCommonEvent(const CommonEvent_Subscriber* subscriber
 
 **返回：**
 
-返回true表示当前有序公共事件处于中止状态；false表示当前有序公共事件没有处于中止状态。
+返回true表示当前有序公共事件处于中止状态。
+
+返回false表示当前有序公共事件没有处于中止状态。
 
 ### OH_CommonEvent_AbortCommonEvent
 
@@ -2198,7 +2279,7 @@ bool OH_CommonEvent_AbortCommonEvent(CommonEvent_Subscriber* subscriber)
 
 该接口与OH_CommonEvent_FinishCommonEvent配合使用，可以中止当前的有序公共事件，使该公共事件不再向下一个订阅者传递。
 
-**起始版本：** 16
+**起始版本：** 18
 
 **参数：**
 
@@ -2208,7 +2289,9 @@ bool OH_CommonEvent_AbortCommonEvent(CommonEvent_Subscriber* subscriber)
 
 **返回：**
 
-返回true表示操作成功；返回false表示操作失败。
+返回true表示操作成功。
+
+返回false表示操作失败。
 
 ### OH_CommonEvent_ClearAbortCommonEvent
 
@@ -2220,7 +2303,7 @@ bool OH_CommonEvent_ClearAbortCommonEvent(CommonEvent_Subscriber* subscriber)
 
 该接口与OH_CommonEvent_FinishCommonEvent配合使用，可以取消当前有序公共事件的中止状态，使该公共事件继续向下一个订阅者传递。
 
-**起始版本：** 16
+**起始版本：** 18
 
 **参数：**
 
@@ -2230,7 +2313,9 @@ bool OH_CommonEvent_ClearAbortCommonEvent(CommonEvent_Subscriber* subscriber)
 
 **返回：**
 
-返回true表示操作成功；返回false表示操作失败。
+返回true表示操作成功。
+
+返回false表示操作失败。
 
 ### OH_CommonEvent_GetCodeFromSubscriber
 
@@ -2242,7 +2327,7 @@ int32_t OH_CommonEvent_GetCodeFromSubscriber(const CommonEvent_Subscriber* subsc
 
 获取有序公共事件代码。
 
-**起始版本：** 16
+**起始版本：** 18
 
 **参数：**
 
@@ -2264,7 +2349,7 @@ const char* OH_CommonEvent_GetDataFromSubscriber(const CommonEvent_Subscriber* s
 
 获取有序公共事件的数据。
 
-**起始版本：** 16
+**起始版本：** 18
 
 **参数：**
 
@@ -2286,7 +2371,7 @@ bool OH_CommonEvent_SetCodeToSubscriber(CommonEvent_Subscriber* subscriber, int3
 
 设置有序公共事件的代码。
 
-**起始版本：** 16
+**起始版本：** 18
 
 **参数：**
 
@@ -2297,7 +2382,9 @@ bool OH_CommonEvent_SetCodeToSubscriber(CommonEvent_Subscriber* subscriber, int3
 
 **返回：**
 
-返回true表示操作成功；返回false表示操作失败。
+返回true表示操作成功。
+
+返回false表示操作失败。
 
 ### OH_CommonEvent_SetDataToSubscriber
 
@@ -2309,7 +2396,7 @@ bool OH_CommonEvent_SetDataToSubscriber(CommonEvent_Subscriber* subscriber, cons
 
 设置有序公共事件的数据。
 
-**起始版本：** 16
+**起始版本：** 18
 
 **参数：**
 
@@ -2321,4 +2408,6 @@ bool OH_CommonEvent_SetDataToSubscriber(CommonEvent_Subscriber* subscriber, cons
 
 **返回：**
 
-返回true表示操作成功；返回false表示操作失败。
+返回true表示操作成功。
+
+返回false表示操作失败。

@@ -1,7 +1,7 @@
-# Network Management
+# Network Management<a name="ZH-CN_TOPIC_0000001162422291"></a>
 
 
-## Introduction
+## Introduction<a name="section104mcpsimp"></a>
 
 As a mandatory component for device networking, the network management subsystem implements unified connection management, traffic management, policy management, network sharing of different types of networks, and provides network protocol stack capabilities. An application can call APIs to obtain connection information of a data network, query and subscribe to connection status, network traffic data, and network policy, share the network, and transfer data using a network protocol stack.
 
@@ -15,7 +15,7 @@ The figure below shows the architecture of the network management subsystem. The
 
 ![](figures/en_architecture-of-netmanager-subsystem.png)
 
-## Directory Structure
+## Directory Structure<a name="section119mcpsimp"></a>
 
 ```
 foundation/communication/
@@ -24,24 +24,24 @@ foundation/communication/
 └── netstack                   # Network protocol stacks
 ```
 
-## Usage
+## Usage<a name="section128mcpsimp"></a>
 
 ### Observing Network Status Changes
 
 1. Import the connection namespace from **@ohos.net.connection.d.ts**.
 
-2. Call **createNetConnection()** to create a **NetConnection** object. You can specify the network type, capability, and timeout interval. If you do not specify parameters, the default values will be used. 
+2. Call [createNetConnection](../application-dev/reference/apis-network-kit/js-apis-net-connection.md#connectioncreatenetconnection) to create a **NetConnection** object. You can specify the network type, capability, and timeout interval. If you do not specify parameters, the default values will be used.  
 
-3. Call **conn.on()** to subscribe to the target event. You must pass in **type** and **callback**.
+3. Call [on()](../application-dev/reference/apis-network-kit/js-apis-net-connection.md#onnetavailable) to subscribe to the target event. You must pass in **type** and **callback**.
 
-4. Call **conn.register()** to subscribe to network status changes of the specified network.
+4. Call **conn.register()** to subscribe to network status changes of the specified network. to subscribe to network status changes of the specified network.
 
-5. When the network is available, the callback will be invoked to return the **netAvailable** event.
+5. When the network is available, check whether a callback is invoked to return the **netAvailable** event.
 
-6. Call **conn.unregister()** to unsubscribe from the network status changes if required.
+6. Call [unregister()](../application-dev/reference/apis-network-kit/js-apis-net-connection.md#unregister) to unsubscribe from the network status changes.
 
    ```
-   // Import the connection namespace.
+   // Import the http namespace.
    import connection from '@ohos.net.connection'
    
    let netCap = {
@@ -67,14 +67,14 @@ foundation/communication/
    conn.unregister((err, data) => {});
    ```
 
-### Sharing a Network
+### Sharing a Network<a name="section2458213210369"></a>
 
 1. Import the **sharing** namespace from **@ohos.net.sharing**.
-2. Set the network sharing type.
-3. Start network sharing.
-4. Stop network sharing.
+2. Set the [network sharing type](../application-dev/network/net-sharing.md).
+3. [Start network sharing](../application-dev/network/net-sharing.md#enabling-network-sharing).
+4. [Stop network sharing](../application-dev/network/net-sharing.md#disabling-network-sharing).
 ```
-// Import the connection namespace.
+// Import the http namespace.
 import sharing from '@ohos.net.sharing';
 // Set the network sharing type.
 this.sharingType = 0;   // The value 0 indicates Wi-Fi, 1 indicates USB, and 2 indicates Bluetooth.
@@ -88,15 +88,15 @@ sharing.stopSharing(this.sharingType,(err)=>{
 })
 ```
 
-### Initiating a Network Request
+### Initiating a Network Request<a name="section750135512369"></a>
 
 1. Import the **http** namespace from **@ohos.net.http.d.ts**.
-2. Call **createHttp()** to create an **HttpRequest** object.
-3. Call **httpRequest.on()** to subscribe to HTTP response header events. This API returns a response earlier than the request. You can subscribe to HTTP response header events based on service requirements.
-4. Call **httpRequest.request()** to initiate a network request. You need to pass in the URL and optional parameters of the HTTP request.
+2. Call [createHttp()](../application-dev/reference/apis-network-kit/js-apis-http.md#httpcreatehttp) to create an **HttpRequest** object.
+3. Call [on()](../application-dev/reference/apis-network-kit/js-apis-http.md#onheadersreceive8) to subscribe to HTTP response header events. This API returns a response earlier than the request. You can subscribe to HTTP response header events based on service requirements. It is up to you whether to listen for **interfaceStateChange** events.
+4. Call [request()](../application-dev/reference/apis-network-kit/js-apis-http.md#request) to initiate a network request. You need to pass in the URL and optional parameters of the HTTP request.
 5. Parse the returned result based on service requirements.
-6. Call **off()** to unsubscribe from HTTP response header events.
-7. Call **httpRequest.destroy()** to release resources after the request is processed.
+6. Call [off()](../application-dev/reference/apis-network-kit/js-apis-http.md#offheadersreceive8) to unsubscribe from HTTP response header events.
+7. Call [destroy()](../application-dev/reference/apis-network-kit/js-apis-http.md#destroy) to release resources after the request is processed.
 
 ```
 // Import the http namespace.
@@ -118,17 +118,17 @@ httpRequest.request(
         header: {
             'Content-Type': 'application/json'
         },
-        // This field is used to transfer data when the POST request is used.
+        // This parameter is used to transfer data when the POST request is used.
         extraData: {
             "data": "data to send",
         },
-        expectDataType: http.HttpDataType.STRING, // Optional. This field specifies the type of the return data.
+        expectDataType: http.HttpDataType.STRING, // Optional. This parameter specifies the type of the return data.
         usingCache: true, // Optional. The default value is true.
         priority: 1, // Optional. The default value is 1.
         connectTimeout: 60000 // Optional. The default value is 60000, in ms.
         readTimeout: 60000, // Optional. The default value is 60000, in ms.
         usingProtocol: http.HttpProtocol.HTTP1_1, // Optional. The default protocol type is automatically specified by the system.
-        usingProxy: false, // Optional. By default, network proxy is not used. This field is supported since API 10.
+        usingProxy: false, // Optional. By default, network proxy is not used. This field is supported since API version 10.
     }, (err, data) => {
         if (!err) {
             // data.result carries the HTTP response. Parse the response based on service requirements.
@@ -141,17 +141,19 @@ httpRequest.request(
             console.info('error:' + JSON.stringify(err));
             // Unsubscribe from HTTP Response Header events.
             httpRequest.off('headersReceive');
-            // Call the destroy() method to release resources after HttpRequest is complete.
+            // Call the destroy() method to release resources after the call is complete.
             httpRequest.destroy();
         }
     }
 );
 ```
 
-## Repositories Involved
+## Repositories Involved<a name="section750135512369"></a>
 
 **Network Management Subsystem**
 
-[communication_netmanager_base](https://gitee.com/openharmony/communication_netmanager_base/blob/master/README_zh.md)
-[communication_netmanager_ext](https://gitee.com/openharmony/communication_netmanager_ext/blob/master/README_zh.md)
-[communication_netstack](https://gitee.com/openharmony/communication_netstack/blob/master/README_zh.md)
+[communication_netmanager_base](https://gitee.com/openharmony/communication_netmanager_base/blob/master/README.md)
+[communication_netmanager_ext](https://gitee.com/openharmony/communication_netmanager_ext/blob/master/README.md)
+[communication_netstack](https://gitee.com/openharmony/communication_netstack/blob/master/READEME.md)
+
+<!--no_check-->

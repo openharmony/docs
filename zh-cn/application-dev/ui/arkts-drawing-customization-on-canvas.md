@@ -66,7 +66,7 @@ Canvas提供画布组件，用于自定义绘制图形，开发者使用CanvasRe
             let offContext = this.offCanvas.getContext("2d", this.settings)
             //可以在这里绘制内容
             offContext.strokeRect(50, 50, 200, 150);
-            //将离屏绘值渲染的图像在普通画布上显示
+            //将离屏绘制渲染的图像在普通画布上显示
             let image = this.offCanvas.transferToImageBitmap();
             this.context.transferFromImageBitmap(image);
           })
@@ -201,7 +201,7 @@ OffscreenCanvasRenderingContext2D对象和CanvasRenderingContext2D对象提供�
 
   ![2023022795105(1)](figures/2023022795105(1).jpg)
 
-- 使用自定义字体绘制文本
+- 使用自定义字体绘制文本。
 
   可以通过[font](../reference/apis-arkui/arkui-ts/ts-canvasrenderingcontext2d.md#font)接口（设置文本绘制中的字体样式）加载自定义字体，然后通过[fillText](../reference/apis-arkui/arkui-ts/ts-canvasrenderingcontext2d.md#filltext)（绘制填充类文本）、[strokeText](../reference/apis-arkui/arkui-ts/ts-canvasrenderingcontext2d.md#stroketext)（绘制描边类文本）等接口进行文本绘制。
 

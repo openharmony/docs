@@ -38,14 +38,14 @@ struct WebComponent {
               // 下载任务的唯一标识。
               console.log("download update guid: " + webDownloadItem.getGuid());
               // 下载的进度。
-              console.log("download update guid: " + webDownloadItem.getPercentComplete());
+              console.log("download update percent complelte: " + webDownloadItem.getPercentComplete());
               // 当前的下载速度。
               console.log("download update speed: " + webDownloadItem.getCurrentSpeed())
             })
             this.delegate.onDownloadFailed((webDownloadItem: webview.WebDownloadItem) => {
               console.log("download failed guid: " + webDownloadItem.getGuid());
               // 下载任务失败的错误码。
-              console.log("download failed guid: " + webDownloadItem.getLastErrorCode());
+              console.log("download failed last error code: " + webDownloadItem.getLastErrorCode());
             })
             this.delegate.onDownloadFinish((webDownloadItem: webview.WebDownloadItem) => {
               console.log("download finish guid: " + webDownloadItem.getGuid());
@@ -147,6 +147,85 @@ struct WebComponent {
 }
 ```
 
+使用[DocumentViewPicker()](../reference/apis-core-file-kit/js-apis-file-picker.md#documentviewpicker)获取当前示例的默认下载目录，将该目录设置为下载目录。
+```ts
+// xxx.ets
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { picker, fileUri } from  '@kit.CoreFileKit';
+@Entry
+@Component
+struct WebComponent {
+  controller: webview.WebviewController = new webview.WebviewController();
+  delegate: webview.WebDownloadDelegate = new webview.WebDownloadDelegate();
+
+  build() {
+    Column() {
+      Button('setDownloadDelegate')
+        .onClick(() => {
+          try {
+            this.delegate.onBeforeDownload((webDownloadItem: webview.WebDownloadItem) => {
+              console.log("will start a download.");
+              // 使用DocumentViewPicker()获取当前示例的默认下载目录，将该目录设置为下载目录
+              getDownloadPathFromPicker().then((downloadPath) => {
+                webDownloadItem.start(downloadPath + '/' + webDownloadItem.getSuggestedFileName());
+              });
+
+            })
+            this.delegate.onDownloadUpdated((webDownloadItem: webview.WebDownloadItem) => {
+              // 下载任务的唯一标识。
+              console.log("download update guid: " + webDownloadItem.getGuid());
+              // 下载的进度。
+              console.log("download update percent complelte: " + webDownloadItem.getPercentComplete());
+              // 当前的下载速度。
+              console.log("download update speed: " + webDownloadItem.getCurrentSpeed())
+            })
+            this.delegate.onDownloadFailed((webDownloadItem: webview.WebDownloadItem) => {
+              console.log("download failed guid: " + webDownloadItem.getGuid());
+              // 下载任务失败的错误码。
+              console.log("download failed last error code: " + webDownloadItem.getLastErrorCode());
+            })
+            this.delegate.onDownloadFinish((webDownloadItem: webview.WebDownloadItem) => {
+              console.log("download finish guid: " + webDownloadItem.getGuid());
+            })
+            this.controller.setDownloadDelegate(this.delegate);
+          } catch (error) {
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
+          }
+        })
+      Web({ src: $rawfile('index.html'), controller: this.controller })
+    }
+  }
+
+}
+function getDownloadPathFromPicker(): Promise<string> {
+  return new Promise<string>(resolve => {
+    try {
+      const documentSaveOptions = new picker.DocumentSaveOptions();
+      documentSaveOptions.pickerMode = picker.DocumentPickerMode.DOWNLOAD
+      const documentPicker = new picker.DocumentViewPicker();
+      documentPicker.save(documentSaveOptions).then(async (documentSaveResult: Array<string>) => {
+        if (documentSaveResult.length <= 0) {
+          resolve('');
+          return;
+        }
+        const uriString = documentSaveResult[0];
+        if (!uriString) {
+          resolve('');
+          return;
+        }
+        const uri = new fileUri.FileUri(uriString);
+        resolve(uri.path);
+      }).catch((err: BusinessError) => {
+        console.error(`ErrorCode: ${err.code},  Message: ${err.message}`);
+        resolve('');
+      });
+    } catch (error) {
+      resolve('');
+    }
+  })
+}
+```
 
 ## 使用Web组件恢复进程退出时未下载完成的任务
 在Web组件启动时，可通过[resumeDownload()](../reference/apis-arkweb/js-apis-webview.md#resumedownload11)接口恢复未完成的下载任务。
@@ -166,6 +245,10 @@ struct WebComponent {
   download: webview.WebDownloadItem = new webview.WebDownloadItem();
   // 用于记录失败的下载任务。
   failedData: Uint8Array = new Uint8Array();
+
+  aboutToAppear(): void {
+    downloadUtil.init(this.getUIContext());
+  }
 
   build() {
     Column() {
@@ -244,9 +327,13 @@ import fileStream from '@ohos.file.fs';
 
 const helper = new util.Base64Helper();
 
-export const filePath = getContext().filesDir;
+export let filePath : string;
 export const fileName = 'demoFile.txt';
 export namespace  downloadUtil {
+  
+  export function init(context: UIContext): void {
+    filePath = context.getHostContext()!.filesDir;
+  }
 
   export function uint8ArrayToStr(uint8Array: Uint8Array): string {
     return helper.encodeToStringSync(uint8Array);

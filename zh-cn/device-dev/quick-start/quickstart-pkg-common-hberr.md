@@ -25,7 +25,7 @@
 
 - **现象描述**
   
-  执行“python3 -m pip install --user ohos-build”提示"cannot import 'sysconfig' from 'distutils'"
+  执行“python3 -m pip install --user ohos-build”提示"cannot import 'sysconfig' from 'distutils'"。
 
 - **可能原因**
   
@@ -45,7 +45,7 @@
 
 - **现象描述**
 
-  执行“python3 -m pip install --user ohos-build”提示"module 'platform' has no attribute 'linux_distribution'"
+  执行“python3 -m pip install --user ohos-build”提示"module 'platform' has no attribute 'linux_distribution'"。
 
 - **可能原因**
   
@@ -67,7 +67,7 @@
 
 - **现象描述**
 
-  执行“python3 -m pip install --user ohos-build”提示"Could not find a version that satisfies the requirement ohos-build"
+  执行“python3 -m pip install --user ohos-build”提示"Could not find a version that satisfies the requirement ohos-build"。
 
 - **可能原因**
   

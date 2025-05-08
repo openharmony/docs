@@ -20,7 +20,7 @@ import { bundleManager } from '@kit.MDMKit';
 
 addAllowedInstallBundlesSync(admin: Want, appIds: Array&lt;string&gt;, accountId?: number): void
 
-Adds the applications that can be installed by the current or specified user through the specified device administrator application.
+Adds the applications that can be installed by the current or specified user.
 
 **Required permissions**: ohos.permission.ENTERPRISE_SET_BUNDLE_INSTALL_POLICY
 
@@ -31,9 +31,9 @@ Adds the applications that can be installed by the current or specified user thr
 
 | Name   | Type                                                   | Mandatory| Description                                                        |
 | --------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| admin     | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes  | Device administrator application.                                              |
+| admin     | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes  | EnterpriseAdminExtensionAbility.                                              |
 | appIds    | Array&lt;string&gt;                                     | Yes  | IDs of the applications to add.                                                |
-| accountId | number                                                  | No  | User ID, which must be greater than or equal to 0.<br>- If **accountId** is passed in, this API applies to the specified user.<br>- If **accountId** is not passed in, this API applies to the current user.|
+| accountId | number                                                  | No  | User ID, which must be greater than or equal to 0.<br> You can call [getOsAccountLocalId](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9-1) of **@ohos.account.osAccount** to obtain the user ID.<br> - If **accountId** is passed in, this API applies to the specified user.<br> - If **accountId** is not passed in, this API applies to the current user.|
 
 **Error codes**
 
@@ -55,7 +55,7 @@ let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
-let appIds: Array<string> = ['com.example.myapplication'];
+let appIds: Array<string> = ['com.example.******_******/******5t5CoBM='];
 
 try {
   bundleManager.addAllowedInstallBundlesSync(wantTemp, appIds, 100);
@@ -69,7 +69,7 @@ try {
 
 removeAllowedInstallBundlesSync(admin: Want, appIds: Array&lt;string&gt;, accountId?: number): void
 
-Removes the applications that can be installed by the current or specified user through the specified device administrator application.
+Removes the applications that can be installed by the current or specified user.
 
 **Required permissions**: ohos.permission.ENTERPRISE_SET_BUNDLE_INSTALL_POLICY
 
@@ -80,9 +80,9 @@ Removes the applications that can be installed by the current or specified user 
 
 | Name   | Type                                                   | Mandatory| Description                                                        |
 | --------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| admin     | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes  | Device administrator application.                                              |
-| appIds    | Array&lt;string&gt;                                     | Yes  | IDs of the applications to remove.                                                |
-| accountId | number                                                  | No  | User ID, which must be greater than or equal to 0.<br>- If **accountId** is passed in, this API applies to the specified user.<br>- If **accountId** is not passed in, this API applies to the current user.|
+| admin     | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes  | EnterpriseAdminExtensionAbility.                                              |
+| appIds    | Array&lt;string&gt;                                     | Yes  | IDs of the applications to add.                                                |
+| accountId | number                                                  | No  | User ID, which must be greater than or equal to 0.<br> You can call [getOsAccountLocalId](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9-1) of **@ohos.account.osAccount** to obtain the user ID.<br> - If **accountId** is passed in, this API applies to the specified user.<br> - If **accountId** is not passed in, this API applies to the current user.|
 
 **Error codes**
 
@@ -104,7 +104,7 @@ let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
-let appIds: Array<string> = ['com.example.myapplication'];
+let appIds: Array<string> = ['com.example.******_******/******5t5CoBM='];
 
 try {
   bundleManager.removeAllowedInstallBundlesSync(wantTemp, appIds, 100);
@@ -118,7 +118,7 @@ try {
 
 getAllowedInstallBundlesSync(admin: Want, accountId?: number): Array&lt;string&gt;
 
-Obtains the applications that can be installed by the current or specified user through the specified device administrator application.
+Obtains the applications that can be installed by the current or specified user.
 
 **Required permissions**: ohos.permission.ENTERPRISE_SET_BUNDLE_INSTALL_POLICY
 
@@ -129,8 +129,8 @@ Obtains the applications that can be installed by the current or specified user 
 
 | Name   | Type                                                   | Mandatory| Description                                                        |
 | --------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| admin     | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes  | Device administrator application.                                              |
-| accountId | number                                                  | No  | User ID, which must be greater than or equal to 0.<br>- If **accountId** is passed in, this API applies to the specified user.<br>- If **accountId** is not passed in, this API applies to the current user.|
+| admin     | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes  | EnterpriseAdminExtensionAbility.                                              |
+| accountId | number                                                  | No  | User ID, which must be greater than or equal to 0.<br> You can call [getOsAccountLocalId](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9-1) of **@ohos.account.osAccount** to obtain the user ID.<br> - If **accountId** is passed in, this API applies to the specified user.<br> - If **accountId** is not passed in, this API applies to the current user.|
 
 **Return value**
 
@@ -170,7 +170,7 @@ try {
 
 addDisallowedInstallBundlesSync(admin: Want, appIds: Array&lt;string&gt;, accountId?: number): void
 
-Adds the applications that cannot be installed by the current or specified user through the specified device administrator application.
+Adds the applications that cannot be installed by the current or specified user.
 
 **Required permissions**: ohos.permission.ENTERPRISE_SET_BUNDLE_INSTALL_POLICY
 
@@ -180,9 +180,9 @@ Adds the applications that cannot be installed by the current or specified user 
 
 | Name   | Type                                                   | Mandatory| Description                                                        |
 | --------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| admin     | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes  | Device administrator application.                                              |
+| admin     | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes  | EnterpriseAdminExtensionAbility.                                              |
 | appIds    | Array&lt;string&gt;                                     | Yes  | IDs of the applications to add.                                                |
-| accountId | number                                                  | No  | User ID, which must be greater than or equal to 0.<br>- If **accountId** is passed in, this API applies to the specified user.<br>- If **accountId** is not passed in, this API applies to the current user.|
+| accountId | number                                                  | No  | User ID, which must be greater than or equal to 0.<br> You can call [getOsAccountLocalId](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9-1) of **@ohos.account.osAccount** to obtain the user ID.<br> - If **accountId** is passed in, this API applies to the specified user.<br> - If **accountId** is not passed in, this API applies to the current user.|
 
 **Error codes**
 
@@ -204,7 +204,7 @@ let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
-let appIds: Array<string> = ['com.example.myapplication'];
+let appIds: Array<string> = ['com.example.******_******/******5t5CoBM='];
 
 try {
   bundleManager.addDisallowedInstallBundlesSync(wantTemp, appIds, 100);
@@ -218,7 +218,7 @@ try {
 
 removeDisallowedInstallBundlesSync(admin: Want, appIds: Array&lt;string&gt;, accountId?: number): void
 
-Removes the applications that cannot be installed by the current or specified user through the specified device administrator application.
+Removes the applications that cannot be installed by the current or specified user.
 
 **Required permissions**: ohos.permission.ENTERPRISE_SET_BUNDLE_INSTALL_POLICY
 
@@ -228,9 +228,9 @@ Removes the applications that cannot be installed by the current or specified us
 
 | Name   | Type                                                   | Mandatory| Description                                                        |
 | --------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| admin     | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes  | Device administrator application.                                              |
-| appIds    | Array&lt;string&gt;                                     | Yes  | IDs of the applications to remove.                                                |
-| accountId | number                                                  | No  | User ID, which must be greater than or equal to 0.<br>- If **accountId** is passed in, this API applies to the specified user.<br>- If **accountId** is not passed in, this API applies to the current user.|
+| admin     | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes  | EnterpriseAdminExtensionAbility.                                              |
+| appIds    | Array&lt;string&gt;                                     | Yes  | IDs of the applications to add.                                                |
+| accountId | number                                                  | No  | User ID, which must be greater than or equal to 0.<br> You can call [getOsAccountLocalId](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9-1) of **@ohos.account.osAccount** to obtain the user ID.<br> - If **accountId** is passed in, this API applies to the specified user.<br> - If **accountId** is not passed in, this API applies to the current user.|
 
 **Error codes**
 
@@ -252,7 +252,7 @@ let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
-let appIds: Array<string> = ['com.example.myapplication'];
+let appIds: Array<string> = ['com.example.******_******/******5t5CoBM='];
 
 try {
   bundleManager.removeDisallowedInstallBundlesSync(wantTemp, appIds, 100)
@@ -266,7 +266,7 @@ try {
 
 getDisallowedInstallBundlesSync(admin: Want, accountId?: number): Array&lt;string&gt;
 
-Obtains the applications that cannot be installed by the current or specified user through the specified device administrator application.
+Obtains the applications that cannot be installed by the current or specified user.
 
 **Required permissions**: ohos.permission.ENTERPRISE_SET_BUNDLE_INSTALL_POLICY
 
@@ -277,8 +277,8 @@ Obtains the applications that cannot be installed by the current or specified us
 
 | Name   | Type                                                   | Mandatory| Description                                                        |
 | --------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| admin     | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes  | Device administrator application.                                              |
-| accountId | number                                                  | No  | User ID, which must be greater than or equal to 0.<br>- If **accountId** is passed in, this API applies to the specified user.<br>- If **accountId** is not passed in, this API applies to the current user.|
+| admin     | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes  | EnterpriseAdminExtensionAbility.                                              |
+| accountId | number                                                  | No  | User ID, which must be greater than or equal to 0.<br> You can call [getOsAccountLocalId](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9-1) of **@ohos.account.osAccount** to obtain the user ID.<br> - If **accountId** is passed in, this API applies to the specified user.<br> - If **accountId** is not passed in, this API applies to the current user.|
 
 **Return value**
 
@@ -318,7 +318,7 @@ try {
 
 addDisallowedUninstallBundlesSync(admin: Want, appIds: Array&lt;string&gt;, accountId?: number): void
 
-Adds the applications that cannot be uninstalled by the current or specified user through the specified device administrator application.
+Adds the applications that cannot be uninstalled by the current or specified user.
 
 **Required permissions**: ohos.permission.ENTERPRISE_SET_BUNDLE_INSTALL_POLICY
 
@@ -329,9 +329,9 @@ Adds the applications that cannot be uninstalled by the current or specified use
 
 | Name   | Type                                                   | Mandatory| Description                                                        |
 | --------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| admin     | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes  | Device administrator application.                                              |
+| admin     | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes  | EnterpriseAdminExtensionAbility.                                              |
 | appIds    | Array&lt;string&gt;                                     | Yes  | IDs of the applications to add.                                                |
-| accountId | number                                                  | No  | User ID, which must be greater than or equal to 0.<br>- If **accountId** is passed in, this API applies to the specified user.<br>- If **accountId** is not passed in, this API applies to the current user.|
+| accountId | number                                                  | No  | User ID, which must be greater than or equal to 0.<br> You can call [getOsAccountLocalId](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9-1) of **@ohos.account.osAccount** to obtain the user ID.<br> - If **accountId** is passed in, this API applies to the specified user.<br> - If **accountId** is not passed in, this API applies to the current user.|
 
 **Error codes**
 
@@ -352,7 +352,7 @@ let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
-let appIds: Array<string> = ['com.example.myapplication'];
+let appIds: Array<string> = ['com.example.******_******/******5t5CoBM='];
 
 try {
   bundleManager.addDisallowedUninstallBundlesSync(wantTemp, appIds, 100);
@@ -377,9 +377,9 @@ Removes the applications that cannot be uninstalled by the current or specified 
 
 | Name   | Type                                                   | Mandatory| Description                                                        |
 | --------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| admin     | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes  | Device administrator application.                                              |
-| appIds    | Array&lt;string&gt;                                     | Yes  | IDs of the applications to remove.                                                |
-| accountId | number                                                  | No  | User ID, which must be greater than or equal to 0.<br>- If **accountId** is passed in, this API applies to the specified user.<br>- If **accountId** is not passed in, this API applies to the current user.|
+| admin     | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes  | EnterpriseAdminExtensionAbility.                                              |
+| appIds    | Array&lt;string&gt;                                     | Yes  | IDs of the applications to add.                                                |
+| accountId | number                                                  | No  | User ID, which must be greater than or equal to 0.<br> You can call [getOsAccountLocalId](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9-1) of **@ohos.account.osAccount** to obtain the user ID.<br> - If **accountId** is passed in, this API applies to the specified user.<br> - If **accountId** is not passed in, this API applies to the current user.|
 
 **Error codes**
 
@@ -400,7 +400,7 @@ let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
-let appIds: Array<string> = ['com.example.myapplication'];
+let appIds: Array<string> = ['com.example.******_******/******5t5CoBM='];
 
 try {
   bundleManager.removeDisallowedUninstallBundlesSync(wantTemp, appIds, 100);
@@ -414,7 +414,7 @@ try {
 
 getDisallowedUninstallBundlesSync(admin: Want, accountId?: number): Array&lt;string&gt;
 
-Obtains the applications that cannot be uninstalled by the current or specified user through the specified device administrator application.
+Obtains the applications that cannot be uninstalled by the current or specified user.
 
 **Required permissions**: ohos.permission.ENTERPRISE_SET_BUNDLE_INSTALL_POLICY
 
@@ -425,8 +425,8 @@ Obtains the applications that cannot be uninstalled by the current or specified 
 
 | Name   | Type                                                   | Mandatory| Description                                                        |
 | --------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| admin     | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes  | Device administrator application.                                              |
-| accountId | number                                                  | No  | User ID, which must be greater than or equal to 0.<br>- If **accountId** is passed in, this API applies to the specified user.<br>- If **accountId** is not passed in, this API applies to the current user.|
+| admin     | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes  | EnterpriseAdminExtensionAbility.                                              |
+| accountId | number                                                  | No  | User ID, which must be greater than or equal to 0.<br> You can call [getOsAccountLocalId](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9-1) of **@ohos.account.osAccount** to obtain the user ID.<br> - If **accountId** is passed in, this API applies to the specified user.<br> - If **accountId** is not passed in, this API applies to the current user.|
 
 **Return value**
 
@@ -466,7 +466,7 @@ try {
 
 uninstall(admin: Want, bundleName: string, userId?: number, isKeepData?: boolean): Promise&lt;void&gt;
 
-Uninstalls an application of the current or specified user through the specified device administrator application. The **isKeepData** parameter specifies whether to retain the bundle data. This API uses a promise to return the result.
+Uninstalls an application of the current or specified user. The **isKeepData** parameter specifies whether to retain the bundle data. This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.ENTERPRISE_INSTALL_BUNDLE
 
@@ -477,9 +477,9 @@ Uninstalls an application of the current or specified user through the specified
 
 | Name    | Type                                                   | Mandatory| Description                                                        |
 | ---------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| admin      | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes  | Device administrator application.                                              |
+| admin      | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes  | EnterpriseAdminExtensionAbility.                                              |
 | bundleName | string                                                  | Yes  | Name of the bundle to uninstall.                                                      |
-| userId     | number                                                  | No  | User ID, which must be greater than or equal to 0.<br>- If **userId** is passed in, this API applies to the specified user.<br>- If **userId** is not passed in, this API applies to the current user.|
+| userId     | number                                                  | No  | User ID, which must be greater than or equal to 0.<br> - If **userId** is passed in, this API applies to the specified user.<br> - If **userId** is not passed in, this API applies to the current user.|
 | isKeepData | boolean                                                 | No  | Whether to retain the bundle data. The value **true** means to retain the bundle data; the value **false** means the opposite.             |
 
 **Return value**
@@ -520,7 +520,8 @@ bundleManager.uninstall(wantTemp, 'bundleName', 100, true).then(() => {
 
 install(admin: Want, hapFilePaths: Array\<string>, installParam?: InstallParam): Promise\<void>
 
-Installs applications through the specified device administrator application. This API uses a promise to return the result.
+Installs specified applications. This API uses a promise to return the result.
+Note: The distribution type of applications can only be **enterprise_mdm** or **enterprise_normal**.
 
 **Required permissions**: ohos.permission.ENTERPRISE_INSTALL_BUNDLE
 
@@ -531,7 +532,7 @@ Installs applications through the specified device administrator application. Th
 
 | Name      | Type                                                   | Mandatory| Description                  |
 | ------------ | ------------------------------------------------------- | ---- | ---------------------- |
-| admin        | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes  | Device administrator application.        |
+| admin        | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes  | EnterpriseAdminExtensionAbility.        |
 | hapFilePaths | Array\<string>                                          | Yes  | Applications to install.|
 | installParam | [InstallParam](#installparam)                           | No  | Application installation parameters.      |
 
@@ -539,7 +540,7 @@ Installs applications through the specified device administrator application. Th
 
 | Type               | Description                                                   |
 | ------------------- | ------------------------------------------------------- |
-| Promise&lt;void&gt; | Promise that returns no value. If the operation fails, an error object will be thrown.|
+| Promise&lt;void&gt; | Promise that returns no value. An error object will be thrown if the application fails to be installed.|
 
 **Error codes**
 
@@ -580,4 +581,4 @@ Defines the parameters for application installation.
 | Name       | Type  | Mandatory| Description                                                        |
 | ----------- | ------ | ---- | ------------------------------------------------------------ |
 | userId      | number | No  | User ID, which must be greater than or equal to 0. The default value is the user ID of the caller.   |
-| installFlag | number | No  | Installation flag.<br>- **0**: initial installation.<br>- **1**: overwrite installation.<br>- **2**: installation-free.<br>Default value: **0**|
+| installFlag | number | No  | Installation flag.<br> - **0**: initial installation.<br>- **1**: overwrite installation.<br>- **2**: installation-free.<br>Default value: **0**|

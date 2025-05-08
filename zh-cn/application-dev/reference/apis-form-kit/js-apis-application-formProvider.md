@@ -13,7 +13,7 @@ FormProvider模块提供了卡片提供方相关接口的能力，开发者在�
 import formProvider from '@ohos.application.formProvider';
 ```
 
-## setFormNextRefreshTime
+## formProvider.setFormNextRefreshTime
 
 setFormNextRefreshTime(formId: string, minute: number, callback: AsyncCallback&lt;void&gt;): void
 
@@ -43,7 +43,7 @@ setFormNextRefreshTime(formId: string, minute: number, callback: AsyncCallback&l
   });
   ```
 
-## setFormNextRefreshTime
+## formProvider.setFormNextRefreshTime
 
 setFormNextRefreshTime(formId: string, minute: number): Promise&lt;void&gt;
 
@@ -78,7 +78,7 @@ setFormNextRefreshTime(formId: string, minute: number): Promise&lt;void&gt;
   });
   ```
 
-## updateForm
+## formProvider.updateForm
 
 updateForm(formId: string, formBindingData: formBindingData.FormBindingData,callback: AsyncCallback&lt;void&gt;): void
 
@@ -114,7 +114,7 @@ updateForm(formId: string, formBindingData: formBindingData.FormBindingData,call
   });
   ```
 
-## updateForm
+## formProvider.updateForm
 
 updateForm(formId: string, formBindingData: formBindingData.FormBindingData): Promise&lt;void&gt;
 

@@ -66,7 +66,7 @@ Read [Camera](../../reference/apis-camera-kit/js-apis-camera.md) for the API ref
 
    ```ts
    async function getSupportedOutputCapability(cameraDevice: camera.CameraDevice, cameraManager: camera.CameraManager, sceneMode: camera.SceneMode): Promise<camera.CameraOutputCapability | undefined> {
-      // Obtain the output streams supported by the camera device.
+      // Obtain the output stream capability supported by the camera.
       let cameraOutputCapability: camera.CameraOutputCapability = cameraManager.getSupportedOutputCapability(cameraDevice, sceneMode);
       if (!cameraOutputCapability) {
         console.error("cameraManager.getSupportedOutputCapability error");

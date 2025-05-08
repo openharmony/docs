@@ -9,6 +9,7 @@
 
 **相关模块：**[EffectKit](effect_kit.md)
 
+**所在头文件：**[effect_types.h](effect__types_8h.md)
 
 ## 汇总
 

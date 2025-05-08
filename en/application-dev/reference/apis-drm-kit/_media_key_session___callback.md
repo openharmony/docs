@@ -17,5 +17,5 @@ The MediaKeySession_Callback struct describes the callback used to listen for ev
 
 | Name| Description| 
 | -------- | -------- |
-| [MediaKeySession_EventCallback](_drm.md#mediakeysession_eventcallback) [eventCallback](_drm.md#eventcallback) | Event callback, for example, a media key expiry event.| 
-| [MediaKeySession_KeyChangeCallback](_drm.md#mediakeysession_keychangecallback) [keyChangeCallback](_drm.md#keychangecallback) | Callback of the media key change event.| 
+| [MediaKeySession_EventCallback](_drm.md#mediakeysession_eventcallback) [eventCallback](_drm.md#eventcallback-12) | Event callback, for example, a media key expiry event.|
+| [MediaKeySession_KeyChangeCallback](_drm.md#mediakeysession_keychangecallback) [keyChangeCallback](_drm.md#keychangecallback-12) | Callback of the media key change event.|

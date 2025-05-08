@@ -53,7 +53,7 @@ import { geoLocationManager } from '@kit.LocationKit';
 
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| isFromMock | Boolean | 否 | 是 | true：地名信息来自于逆地理编码模拟功能<br/>false：地名信息不是来自于逆地理编码模拟功能<br/>**系统API**：此接口为系统接口。 |
+| isFromMock | Boolean | 否 | 是 | true：地名信息来自于逆地理编码模拟功能。<br/>false：地名信息不是来自于逆地理编码模拟功能。<br/>**系统API**：此接口为系统接口。 |
 
 
 ## Location
@@ -64,7 +64,7 @@ import { geoLocationManager } from '@kit.LocationKit';
 
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| isFromMock | Boolean | 否 | 是 | true：位置信息来自于位置模拟功能<br/>false：位置信息不是来自于位置模拟功能<br/>**系统API**：此接口为系统接口。 |
+| isFromMock | Boolean | 否 | 是 | true：位置信息来自于位置模拟功能。<br/>false：位置信息不是来自于位置模拟功能。<br/>**系统API**：此接口为系统接口。 |
 
 
 ## ReverseGeocodingMockInfo
@@ -105,7 +105,7 @@ import { geoLocationManager } from '@kit.LocationKit';
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | type | [LocatingRequiredDataType](#locatingrequireddatatype10) | 否 | 否 | 表示请求获取数据的类型。 |
-| needStartScan |  boolean | 否 | 否 | true：需要发起扫描<br/>false：不需要发起扫描 |
+| needStartScan |  boolean | 否 | 否 | true：需要发起扫描。<br/>false：不需要发起扫描。 |
 | scanInterval |  number | 否 | 是 | 表示扫描的时间间隔。单位是毫秒，默认值是10000毫秒，取值范围为大于0。 |
 | scanTimeout |  number | 否 | 是 | 表示单次扫描的超时时间。单位是毫秒，默认值是10000毫秒，取值范围为大于0小于600000。 |
 
@@ -301,7 +301,7 @@ enableLocation(callback: AsyncCallback&lt;void&gt;): void
 
 **系统API**：此接口为系统接口。
 
-**需要权限**：ohos.permission.MANAGE_SECURE_SETTINGS
+**需要权限**：ohos.permission.MANAGE_SECURE_SETTINGS 和 ohos.permission.CONTROL_LOCATION_SWITCH
 
 **系统能力**：SystemCapability.Location.Location.Core
 
@@ -347,7 +347,7 @@ enableLocation(): Promise&lt;void&gt;
 
 **系统API**：此接口为系统接口。
 
-**需要权限**：ohos.permission.MANAGE_SECURE_SETTINGS
+**需要权限**：ohos.permission.MANAGE_SECURE_SETTINGS 和 ohos.permission.CONTROL_LOCATION_SWITCH
 
 **系统能力**：SystemCapability.Location.Location.Core
 
@@ -393,7 +393,7 @@ disableLocation(): void
 
 **系统API**：此接口为系统接口。
 
-**需要权限**：ohos.permission.MANAGE_SECURE_SETTINGS
+**需要权限**：ohos.permission.MANAGE_SECURE_SETTINGS 和 ohos.permission.CONTROL_LOCATION_SWITCH
 
 **系统能力**：SystemCapability.Location.Location.Core
 
@@ -429,12 +429,15 @@ enableLocationMock(): void
 
 **系统API**：此接口为系统接口。
 
+**需要权限**: ohos.permission.MOCK_LOCATION
+
 **错误码**：
 
 以下错误码的详细介绍请参见[位置服务子系统错误码](errorcode-geoLocationManager.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+|201 | Permission verification failed. The application does not have the permission required to call the API.                 |
 |202 | Permission verification failed. A non-system application calls a system API. |
 |801 | Capability not supported. Failed to call ${geoLocationManager.enableLocationMock} due to limited device capabilities.          |
 |3301000 | The location service is unavailable.                                            |
@@ -462,12 +465,15 @@ disableLocationMock(): void
 
 **系统API**：此接口为系统接口。
 
+**需要权限**: ohos.permission.MOCK_LOCATION
+
 **错误码**：
 
 以下错误码的详细介绍请参见[位置服务子系统错误码](errorcode-geoLocationManager.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+|201 | Permission verification failed. The application does not have the permission required to call the API.                 |
 |202 | Permission verification failed. A non-system application calls a system API. |
 |801 | Capability not supported. Failed to call ${geoLocationManager.disableLocationMock} due to limited device capabilities.          |
 |3301000 | The location service is unavailable.                                            |
@@ -497,6 +503,8 @@ setMockedLocations(config: LocationMockConfig): void
 
 **系统API**：此接口为系统接口。
 
+**需要权限**: ohos.permission.MOCK_LOCATION
+
 **参数**：
 
   | 参数名 | 类型 | 必填 | 说明 |
@@ -509,6 +517,7 @@ setMockedLocations(config: LocationMockConfig): void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+|201 | Permission verification failed. The application does not have the permission required to call the API.                 |
 |202 | Permission verification failed. A non-system application calls a system API. |
 |401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.                 |
 |801 | Capability not supported. Failed to call ${geoLocationManager.setMockedLocations} due to limited device capabilities.          |
@@ -546,12 +555,15 @@ enableReverseGeocodingMock(): void
 
 **系统API**：此接口为系统接口。
 
+**需要权限**: ohos.permission.MOCK_LOCATION
+
 **错误码**：
 
 以下错误码的详细介绍请参见[位置服务子系统错误码](errorcode-geoLocationManager.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+|201 | Permission verification failed. The application does not have the permission required to call the API.                 |
 |202 | Permission verification failed. A non-system application calls a system API. |
 |801 | Capability not supported. Failed to call ${geoLocationManager.enableReverseGeocodingMock} due to limited device capabilities.          |
 |3301000 | The location service is unavailable.                                            |
@@ -578,12 +590,15 @@ disableReverseGeocodingMock(): void
 
 **系统API**：此接口为系统接口。
 
+**需要权限**: ohos.permission.MOCK_LOCATION
+
 **错误码**：
 
 以下错误码的详细介绍请参见[位置服务子系统错误码](errorcode-geoLocationManager.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+|201 | Permission verification failed. The application does not have the permission required to call the API.                 |
 |202 | Permission verification failed. A non-system application calls a system API. |
 |801 | Capability not supported. Failed to call ${geoLocationManager.disableReverseGeocodingMock} due to limited device capabilities.          |
 |3301000 | The location service is unavailable.                                            |
@@ -612,6 +627,8 @@ setReverseGeocodingMockInfo(mockInfos: Array&lt;ReverseGeocodingMockInfo&gt;): v
 
 **系统API**：此接口为系统接口。
 
+**需要权限**: ohos.permission.MOCK_LOCATION
+
 **参数**：
 
   | 参数名 | 类型 | 必填 | 说明 |
@@ -624,6 +641,7 @@ setReverseGeocodingMockInfo(mockInfos: Array&lt;ReverseGeocodingMockInfo&gt;): v
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+|201 | Permission verification failed. The application does not have the permission required to call the API.                 |
 |202 | Permission verification failed. A non-system application calls a system API. |
 |401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.                 |
 |801 | Capability not supported. Failed to call ${geoLocationManager.setReverseGeocodingMockInfo} due to limited device capabilities.          |
@@ -669,7 +687,7 @@ isLocationPrivacyConfirmed(type: LocationPrivacyType): boolean
 
   | 类型 | 说明 |
   | -------- | -------- |
-  | boolean | true：用户同意定位服务隐私申明<br/>false：用户不同意定位服务隐私申明 |
+  | boolean | true：用户同意定位服务隐私申明。<br/>false：用户不同意定位服务隐私申明。 |
 
 **错误码**：
 
@@ -711,7 +729,7 @@ setLocationPrivacyConfirmStatus(type: LocationPrivacyType, isConfirmed: boolean)
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | type | [LocationPrivacyType](#locationprivacytype) | 是 | 指定隐私申明场景，例如开机向导中的隐私申明、开启网络定位功能时弹出的隐私申明等。 |
-  | isConfirmed | boolean | 是 | true：用户同意定位服务隐私申明<br/>false：用户不同意定位服务隐私申明 |
+  | isConfirmed | boolean | 是 | true：用户同意定位服务隐私申明。<br/>false：用户不同意定位服务隐私申明。 |
 
 **错误码**：
 
@@ -917,7 +935,7 @@ getLocationIconStatus(): LocationIconStatus
   ```
 
 
-## geoLocationManager.enableLocationByUserId<sup>16+</sup>
+## geoLocationManager.enableLocationByUserId<sup>18+</sup>
 
 enableLocationByUserId(userId: number): Promise&lt;void&gt;
 
@@ -972,7 +990,7 @@ enableLocationByUserId(userId: number): Promise&lt;void&gt;
   ```
 
 
-## geoLocationManager.disableLocationByUserId<sup>16+</sup>
+## geoLocationManager.disableLocationByUserId<sup>18+</sup>
 
 disableLocationByUserId(userId: number): void
 
@@ -1015,7 +1033,7 @@ disableLocationByUserId(userId: number): void
   ```
 
 
-## geoLocationManager.isLocationEnabledByUserId<sup>16+</sup>
+## geoLocationManager.isLocationEnabledByUserId<sup>18+</sup>
 
 isLocationEnabledByUserId(userId: number): boolean
 
@@ -1035,7 +1053,7 @@ isLocationEnabledByUserId(userId: number): boolean
 
   | 类型 | 说明 |
   | -------- | -------- |
-  | boolean | true：位置信息开关已开启<br/>false：位置信息开关已关闭 |
+  | boolean | true：位置信息开关已开启。<br/>false：位置信息开关已关闭。 |
 
 **错误码**：
 
@@ -1061,7 +1079,7 @@ isLocationEnabledByUserId(userId: number): boolean
   ```
 
 
-## geoLocationManager.setLocationSwitchIgnored<sup>16+</sup>
+## geoLocationManager.setLocationSwitchIgnored<sup>18+</sup>
 
 setLocationSwitchIgnored(isIgnored: boolean): void
 

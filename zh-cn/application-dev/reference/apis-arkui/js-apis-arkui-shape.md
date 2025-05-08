@@ -141,7 +141,7 @@ radiusWidth(rWidth: number | string): RectShape
 
 | 参数名         | 类型                                               | 必填 | 说明                                         |
 | ----------- | -------------------------------------------------- | ---- | -------------------------------------------- |
-| rWidth | number &nbsp;\|&nbsp; string | 是 | 矩形形状圆角半径的宽度。 |
+| rWidth | number &nbsp;\|&nbsp; string | 是 | 矩形形状圆角半径的宽度。<br/> 类型为number时取值范围是[0, +∞)，string时是length。 | 
 
 ### radiusHeight
 
@@ -157,7 +157,7 @@ radiusHeight(rHeight: number | string): RectShape
 
 | 参数名         | 类型                                               | 必填 | 说明                                         |
 | ----------- | -------------------------------------------------- | ---- | -------------------------------------------- |
-| rHeight | number &nbsp;\|&nbsp; string | 是 | 矩形形状圆角半径的高度。 |
+| rHeight | number &nbsp;\|&nbsp; string | 是 | 矩形形状圆角半径的高度。 <br/> 类型为number时取值范围是[0, +∞)，string时是length。 |
 
 ### radius
 
@@ -173,7 +173,7 @@ radius(radius: number | string | Array<number &nbsp;\|&nbsp; string>): RectShape
 
 | 参数名         | 类型                                               | 必填 | 说明                                         |
 | ----------- | -------------------------------------------------- | ---- | -------------------------------------------- |
-| radius | number &nbsp;\|&nbsp; string &nbsp;\|&nbsp; Array<number &nbsp;\|&nbsp; string> | 是 | 矩形形状的圆角半径。仅接受数组的前四个元素，分别为矩形左上，右上，左下，右下的圆角半径。 |
+| radius | number &nbsp;\|&nbsp; string &nbsp;\|&nbsp; Array<number &nbsp;\|&nbsp; string> | 是 | 矩形形状的圆角半径。仅接受数组的前四个元素，分别为矩形左上，右上，左下，右下的圆角半径。<br/> 类型为number时取值范围是[0, +∞)，string时是length。 |
 
 
 ## ShapeSize
@@ -188,8 +188,8 @@ radius(radius: number | string | Array<number &nbsp;\|&nbsp; string>): RectShape
 
 | 名称         | 类型                                               | 必填                                             | 说明                                         |
 | ----------- | -------------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
-| width | number &nbsp;\|&nbsp; string | 否 | 形状的宽度。 |
-| height | number &nbsp;\|&nbsp; string | 否 | 形状的高度。 |
+| width | number &nbsp;\|&nbsp; string | 否 | 形状的宽度。<br/> 类型为number时取值范围是[0, +∞)，string时是length。 |<br/>单位：vp |
+| height | number &nbsp;\|&nbsp; string | 否 | 形状的高度。 <br/> 类型为number时取值范围是[0, +∞)，string时是length。 |<br/>单位：vp|
 
 ## PathShapeOptions
 
@@ -219,7 +219,7 @@ RectShape 的构造函数参数。
 
 | 名称         | 类型                                               | 必填                                             | 说明                                         |
 | ----------- | -------------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
-| radius | number &nbsp;\|&nbsp; string &nbsp;\|&nbsp; Array<number &nbsp;\|&nbsp; string> | 否 | 矩形形状的圆角半径。 |
+| radius | number &nbsp;\|&nbsp; string &nbsp;\|&nbsp; Array<number &nbsp;\|&nbsp; string> | 否 | 矩形形状的圆角半径。<br/> 类型为number时取值范围是[0, +∞)，string时是length。 |
 
 ## RoundRectShapeOptions
 
@@ -235,8 +235,8 @@ RectShape 带有半径的构造函数参数。
 
 | 名称         | 类型                                               | 必填                                             | 说明                                         |
 | ----------- | -------------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
-| radiusWidth | number &nbsp;\|&nbsp; string | 否 | 矩形形状圆角半径的宽度。 |
-| radiusHeight | number &nbsp;\|&nbsp; string | 否 | 矩形形状圆角半径的高度。 |
+| radiusWidth | number &nbsp;\|&nbsp; string | 否 | 矩形形状圆角半径的宽度。<br/> 类型为number时取值范围是[0, +∞)，string时是length。 |
+| radiusHeight | number &nbsp;\|&nbsp; string | 否 | 矩形形状圆角半径的高度。<br/> 类型为number时取值范围是[0, +∞)，string时是length。 |
 
 ## BaseShape
 

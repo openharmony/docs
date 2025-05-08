@@ -5,7 +5,7 @@
 >  **说明：**
 >
 > * 本模块首批接口从API version 12开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
-> * 当前页面仅包含本模块的系统接口，其他公开接口请参见[@ohos.driver.deviceManager (外设管理)](js-apis-driver-deviceManager.md)
+> * 当前页面仅包含本模块的系统接口，其他公开接口请参见[@ohos.driver.deviceManager (外设管理)](js-apis-driver-deviceManager.md)。
 
 ## 导入模块
 
@@ -29,7 +29,7 @@ queryDeviceInfo(deviceId?: number): Array&lt;Readonly&lt;DeviceInfo&gt;&gt;
 
 | 参数名      | 类型     | 必填  | 说明                     |
 |----------|--------|-----|------------------------|
-| deviceId | number | 否   | 设备ID，通过queryDevices获得。 |
+| deviceId | number | 否   | 设备ID，通过[queryDevices](js-apis-driver-deviceManager.md#devicemanagerquerydevices)获得。如果不传入设备ID，则默认获取所有的设备信息；如果没有外接设备，且没有传入设备ID则会返回空数组。 |
 
 **返回值：**
 

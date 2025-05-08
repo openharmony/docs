@@ -21,19 +21,19 @@
 
 启动子系统内部涉及以下组件：
 
-- init启动引导组件:
+- init启动引导组件：
 
   init启动引导组件对应的进程为init进程，是内核完成初始化后启动的第一个用户态进程。init进程启动之后，读取init.cfg配置文件，根据解析结果，执行相应命令（见[job解析接口说明](../subsystems/subsys-boot-init-jobs.md#接口说明)）并依次启动各关键系统服务进程，在启动系统服务进程的同时设置其对应权限。
 
-- ueventd启动引导组件:
+- ueventd启动引导组件：
 
   ueventd负责监听内核设备驱动插拔的netlink事件，根据事件类型动态管理相应设备的dev节点。
 
-- appspawn应用孵化组件:
+- appspawn应用孵化组件：
 
   负责接收用户程序框架的命令孵化应用进程，设置新进程的权限，并调用应用程序框架的入口函数。
 
-- bootstrap服务启动组件:
+- bootstrap服务启动组件：
 
   提供了各服务和功能的启动入口标识。在SAMGR启动时，会调用bootstrap标识的入口函数，并启动系统服务。
 
@@ -292,7 +292,7 @@
          ```
          /sys/devices/platform/soc/10100000.himci.eMMC/mmc_host/mmc0/mmc0:0001/block/mmcblk0/mmcblk0p5
          ```
-         因此在处理内核上报的该设备uevent消息时，会与bootDevice中的路径`soc/10100000.himci.eMMC`相匹配，因此而创建相应的软链接，这一软连接的路径是：
+         因此在处理内核上报的该设备uevent消息时，会与bootDevice中的路径`soc/10100000.himci.eMMC`相匹配，因此而创建相应的软链接，这一软链接的路径是：
          ```
          /dev/block/by-name/system
          ```

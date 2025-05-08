@@ -1,6 +1,6 @@
 # Specifying Task Concurrency with TaskPool
 
-This section describes how to use TaskPool to manage [asynchronous queues](../reference/apis-arkts/js-apis-taskpool.md#asyncrunner16). It uses the operation of collection and processing of camera preview stream data as an example.
+This section describes how to use TaskPool to manage [asynchronous queues](../reference/apis-arkts/js-apis-taskpool.md#asyncrunner18). It uses the operation of collection and processing of camera preview stream data as an example.
 This operation is frequent and time consuming. If the camera captures data too quickly, earlier frames are discarded to ensure only the most recent frame is processed.
 
 1. Import the required modules.

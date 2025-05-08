@@ -1,4 +1,4 @@
-# IDE
+# Acquiring Tools
 
 ## Acquiring the Device Development Tool (HUAWEI DevEco Device Tool)
 

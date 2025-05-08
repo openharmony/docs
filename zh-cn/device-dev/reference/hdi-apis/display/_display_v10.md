@@ -289,10 +289,10 @@ enum CompositionType
 | COMPOSITION_DEVICE | Device 合成类型，使用Device合成。 | 
 | COMPOSITION_CURSOR | Cursor合成类型，用于光标合成。 | 
 | COMPOSITION_VIDEO | Video合成类型，用于视频层合成。 | 
-| COMPOSITION_DEVICE_CLEAR | Device清除合成类型, 用于清楚Device。 | 
-| COMPOSITION_CLIENT_CLEAR | Client清除合成类型, 用于清除Client。 | 
-| COMPOSITION_TUNNEL | Tunnel合成类型, 用于tunnel合成。 | 
-| COMPOSITION_BUTT | 合成类型, 一个不可用类型，用于默认初始化。 | 
+| COMPOSITION_DEVICE_CLEAR | Device清除合成类型，用于清楚Device。 | 
+| COMPOSITION_CLIENT_CLEAR | Client清除合成类型，用于清除Client。 | 
+| COMPOSITION_TUNNEL | Tunnel合成类型，用于tunnel合成。 | 
+| COMPOSITION_BUTT | 合成类型，一个不可用类型，用于默认初始化。 | 
 
 ### Connection
 
@@ -529,8 +529,8 @@ enum MaskInfo
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| LAYER_NORAML |  | 
-| LAYER_HBM_SYNC |  | 
+| LAYER_NORAML | 没有指纹蒙版 | 
+| LAYER_HBM_SYNC | 有指纹蒙版 | 
 
 
 ### MirrorType
@@ -629,9 +629,7 @@ enum RopType
 ```
 
 **描述**
-
-硬件加速支持的ROP操作类型。
-
+ 
 硬件加速支持的ROP操作类型，在将前景位图的RGB颜色分量和Alpha分量值与背景位图的RGB颜色 分量值和Alpha分量值进行按位的布尔运算（包括按位与，按位或等），将结果输出。
 
 **起始版本：** 3.2

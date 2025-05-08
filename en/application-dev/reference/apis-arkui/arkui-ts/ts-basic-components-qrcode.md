@@ -32,7 +32,7 @@ QRCode(value: string)
 
 ## Attributes
 
-In addition to the [universal attributes](ts-universal-attributes-size.md), the following attributes are supported.
+In addition to the [universal attributes](ts-component-general-attributes.md), the following attributes are supported.
 
 ### color
 
@@ -84,7 +84,7 @@ Sets the opacity of the QR code content. The minimum value is 0, and the maximum
 
 | Name| Type                                                | Mandatory| Description                                    |
 | ------ | ---------------------------------------------------- | ---- | ---------------------------------------- |
-| value  | number \| [Resource](ts-types.md#resource) | Yes  | Opacity of the QR code content.<br>Default value: **1**|
+| value  | number \| [Resource](ts-types.md#resource) | Yes  | Opacity of the QR code content.<br>Default value: **1**<br>Value range: [0, 1]. If the value is out of the range, the default value is used.|
 
 
 ## Events
@@ -102,6 +102,7 @@ This example demonstrates the basic usage of the **QRCode** component. It shows 
 @Component
 struct QRCodeExample {
   private value: string = 'hello world'
+
   build() {
     Column({ space: 5 }) {
       Text('normal').fontSize(9).width('90%').fontColor(0xCCCCCC).fontSize(30)

@@ -28,6 +28,7 @@
   - [@ohos.bluetooth.constant (Bluetooth Constant Module) (Recommended) (System API)](js-apis-bluetooth-constant-sys.md)
   - [@ohos.bluetooth.hfp (Bluetooth HFP Module) (Recommended) (System API)](js-apis-bluetooth-hfp-sys.md)
   - [@ohos.bluetooth.hid (Bluetooth HID Module) (Recommended) (System API)](js-apis-bluetooth-hid-sys.md)
+  - [@ohos.bluetooth.opp (Bluetooth OPP Module) (Recommended) (System API)](js-apis-bluetooth-opp-sys.md)
   - [@ohos.bluetooth.pan (Bluetooth PAN Module) (Recommended) (System API)](js-apis-bluetooth-pan-sys.md)
   - [@ohos.bluetooth.pbap (Bluetooth PBAP Module) (Recommended) (System API)](js-apis-bluetooth-pbap-sys.md)
   - [@ohos.bluetooth.map (Bluetooth MAP module) (Recommended) (System API)](js-apis-bluetooth-map-sys.md)

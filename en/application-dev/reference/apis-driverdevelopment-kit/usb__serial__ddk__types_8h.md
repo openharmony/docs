@@ -11,9 +11,9 @@ Provides the enum variables, structures, and macros used in USB Serial DDK APIs.
 
 **System capability**: SystemCapability.Driver.SERIAL.Extension
 
-**Since**: 16
+**Since**: 18
 
-**Related module**: [Serial DDK](_serial_ddk.md)
+**Related module**: [USB Serial DDK](_serial_ddk.md)
 
 
 ## Summary
@@ -30,8 +30,8 @@ Provides the enum variables, structures, and macros used in USB Serial DDK APIs.
 
 | Name| Description| 
 | -------- | -------- |
-| typedef struct [UsbSerial_DeviceHandle](_serial_ddk.md#usbserial_devicehandle)[UsbSerial_DeviceHandle](_serial_ddk.md#usbserial_devicehandle) | Data structure of the USB serial port device (opaque).| 
-| typedef struct [UsbSerial_Params](_usb_serial___params.md) __attribute__((aligned(8))) [UsbSerial_Params](_usb_serial___params.md) | USB serial port parameters used by the USB Serial DDK.| 
+| typedef struct [UsbSerial_DeviceHandle](_serial_ddk.md#usbserial_devicehandle) [UsbSerial_DeviceHandle](_serial_ddk.md#usbserial_devicehandle) | Data structure of the USB serial port device (opaque).| 
+| typedef struct [UsbSerial_Params](_usb_serial___params.md) \__attribute\__((aligned(8))) [UsbSerial_Params](_usb_serial___params.md) | USB serial port parameters used by the USB Serial DDK.| 
 
 
 ### Enums

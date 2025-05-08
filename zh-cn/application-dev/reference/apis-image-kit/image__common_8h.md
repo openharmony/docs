@@ -5,6 +5,10 @@
 
 声明图像接口使用的公共枚举和结构体。
 
+**库：** libimage_common.so
+
+**引用文件**：&lt;multimedia/image_framework/image/image_common.h&gt;
+
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
 **起始版本：** 12
@@ -71,7 +75,7 @@
 | static const char \*[OHOS_IMAGE_PROPERTY_COMPRESSION](_image___native_module.md#ohos_image_property_compression) = "Compression" | 图像压缩方案。  | 
 | static const char \*[OHOS_IMAGE_PROPERTY_PHOTOMETRIC_INTERPRETATION](_image___native_module.md#ohos_image_property_photometric_interpretation) = "PhotometricInterpretation" | 像素构成，例如RGB或YCbCr。  | 
 | static const char \*[OHOS_IMAGE_PROPERTY_STRIP_OFFSETS](_image___native_module.md#ohos_image_property_strip_offsets) = "StripOffsets" | 每个strip的字节偏移量。  | 
-| static const char \*[OHOS_IMAGE_PROPERTY_SAMPLES_PER_PIXEL](_image___native_module.md#ohos_image_property_samples_per_pixel) = "SamplesPerPixel" | 每个像素的分量数。由于该标准适用于 RGB 和 YCbCr 图像，因此该标签的值设置为 3。 在JPEG压缩数据中，使用JPEG标记代替该标签。  | 
+| static const char \*[OHOS_IMAGE_PROPERTY_SAMPLES_PER_PIXEL](_image___native_module.md#ohos_image_property_samples_per_pixel) = "SamplesPerPixel" | 每个像素的分量数。由于该标准适用于 RGB 和 YCbCr 图像，因此该标签的值设置为 3。在JPEG压缩数据中，使用JPEG标记代替该标签。  | 
 | static const char \*[OHOS_IMAGE_PROPERTY_ROWS_PER_STRIP](_image___native_module.md#ohos_image_property_rows_per_strip) = "RowsPerStrip" | 每个strip的图像数据行数。  | 
 | static const char \*[OHOS_IMAGE_PROPERTY_STRIP_BYTE_COUNTS](_image___native_module.md#ohos_image_property_strip_byte_counts) = "StripByteCounts" | 每个图像数据带的总字节数。  | 
 | static const char \*[OHOS_IMAGE_PROPERTY_X_RESOLUTION](_image___native_module.md#ohos_image_property_x_resolution) = "XResolution" | 图像宽度方向的分辨率。  | 
@@ -166,7 +170,7 @@
 | static const char \*[OHOS_IMAGE_PROPERTY_LENS_MODEL](_image___native_module.md#ohos_image_property_lens_model) = "LensModel" | 镜头的型号名称。  | 
 | static const char \*[OHOS_IMAGE_PROPERTY_LENS_SERIAL_NUMBER](_image___native_module.md#ohos_image_property_lens_serial_number) = "LensSerialNumber" | 镜头的序列号。  | 
 | static const char \*[OHOS_IMAGE_PROPERTY_LENS_SPECIFICATION](_image___native_module.md#ohos_image_property_lens_specification) = "LensSpecification" | 使用的镜头规格。  | 
-| static const char \*[OHOS_IMAGE_PROPERTY_NEW_SUBFILE_TYPE](_image___native_module.md#ohos_image_property_new_subfile_type) = "NewSubfileType" | 在Exif中，"NewSubfileType"字段用于标识子文件的数据类型，如全分辨率图像、缩略图或多帧图像的一部分。 其值是位掩码，0代表全分辨率图像，1代表缩略图，2代表多帧图像的一部分。  | 
+| static const char \*[OHOS_IMAGE_PROPERTY_NEW_SUBFILE_TYPE](_image___native_module.md#ohos_image_property_new_subfile_type) = "NewSubfileType" | 在Exif中，"NewSubfileType"字段用于标识子文件的数据类型，如全分辨率图像、缩略图或多帧图像的一部分。其值是位掩码，0代表全分辨率图像，1代表缩略图，2代表多帧图像的一部分。  | 
 | static const char \*[OHOS_IMAGE_PROPERTY_OFFSET_TIME](_image___native_module.md#ohos_image_property_offset_time) = "OffsetTime" | 在Exif中，OffsetTime字段表示与UTC（协调世界时）的时间偏移，格式为±HH:MM，用于确定照片拍摄的本地时间。  | 
 | static const char \*[OHOS_IMAGE_PROPERTY_OFFSET_TIME_DIGITIZED](_image___native_module.md#ohos_image_property_offset_time_digitized) = "OffsetTimeDigitized" | 此标签记录图像数字化时的UTC偏移量，有助于准确调整时间戳。  | 
 | static const char \*[OHOS_IMAGE_PROPERTY_OFFSET_TIME_ORIGINAL](_image___native_module.md#ohos_image_property_offset_time_original) = "OffsetTimeOriginal" | 此标签记录原始图像创建时的UTC偏移量，对于时间敏感的应用至关重要。  | 
@@ -199,7 +203,7 @@
 | 名称 | 描述 | 
 | -------- | -------- |
 | [Image_ErrorCode](_image___native_module.md#image_errorcode) [OH_PictureMetadata_Create](_image___native_module.md#oh_picturemetadata_create) ([Image_MetadataType](_image___native_module.md#image_metadatatype) metadataType, [OH_PictureMetadata](_image___native_module.md#oh_picturemetadata) \*\*metadata) | 创建OH_PictureMetadata指针。 | 
-| [Image_ErrorCode](_image___native_module.md#image_errorcode) [OH_PictureMetadata_GetProperty](_image___native_module.md#oh_picturemetadata_getproperty) ([OH_PictureMetadata](_image___native_module.md#oh_picturemetadata) \*metadata, [Image_String](_image___string.md) \*key, [Image_String](_image___string.md) \*value) | 根据key获取Metadata的单条属性。 | 
-| [Image_ErrorCode](_image___native_module.md#image_errorcode) [OH_PictureMetadata_SetProperty](_image___native_module.md#oh_picturemetadata_setproperty) ([OH_PictureMetadata](_image___native_module.md#oh_picturemetadata) \*metadata, [Image_String](_image___string.md) \*key, [Image_String](_image___string.md) \*value) | 根据key修改Metadata的单条属性。 | 
+| [Image_ErrorCode](_image___native_module.md#image_errorcode) [OH_PictureMetadata_GetProperty](_image___native_module.md#oh_picturemetadata_getproperty) ([OH_PictureMetadata](_image___native_module.md#oh_picturemetadata) \*metadata, [Image_String](_image___string.md) \*key, [Image_String](_image___string.md) \*value) | 根据key获取对应的Metadata属性。 | 
+| [Image_ErrorCode](_image___native_module.md#image_errorcode) [OH_PictureMetadata_SetProperty](_image___native_module.md#oh_picturemetadata_setproperty) ([OH_PictureMetadata](_image___native_module.md#oh_picturemetadata) \*metadata, [Image_String](_image___string.md) \*key, [Image_String](_image___string.md) \*value) | 根据key修改对应的Metadata属性。 | 
 | [Image_ErrorCode](_image___native_module.md#image_errorcode) [OH_PictureMetadata_Release](_image___native_module.md#oh_picturemetadata_release) ([OH_PictureMetadata](_image___native_module.md#oh_picturemetadata) \*metadata) | 释放OH_PictureMetadata指针。 | 
 | [Image_ErrorCode](_image___native_module.md#image_errorcode) [OH_PictureMetadata_Clone](_image___native_module.md#oh_picturemetadata_clone) ([OH_PictureMetadata](_image___native_module.md#oh_picturemetadata) \*oldMetadata, [OH_PictureMetadata](_image___native_module.md#oh_picturemetadata) \*\*newMetadata) | 拷贝元数据。 | 

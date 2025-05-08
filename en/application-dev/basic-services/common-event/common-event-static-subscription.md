@@ -122,7 +122,7 @@ The [StaticSubscriberExtensionAbility](../../reference/apis-basic-services-kit/j
    | name         | Name of the ExtensionAbility, which must be the same as the name of **extensionAbility** declared in **module.json5**.| String      | No          |
    | permission   | Permissions required by the publisher.                      | String      | Yes (initial value: left empty)|
    | events       | List of subscribed target events.                                    | String array  | No          |
-   | filter       | Filter criteria for static events. This attribute is supported since API version 16.<br>For details about the values, see the following table.| Object array    | Yes (initial value: left empty)|
+   | filter       | Filter criteria for static events. This attribute is supported since API version 18.<br>For details about the values, see the following table.| Object array    | Yes (initial value: left empty)|
 
    The **filter** tag identifies the static subscription events that can be filtered by the subscriber as required. The tag value is of the object array type and contains two subtags: **event** and **conditions**.
 
@@ -141,7 +141,7 @@ The [StaticSubscriberExtensionAbility](../../reference/apis-basic-services-kit/j
    | ------------ | ------------------------------------------ | ------------------ | -------------------------- |
    | code         | Result code to filter.      | Integer          | Yes (initial value: left empty)|
    | data         | Custom result data to filter.| String            | Yes (initial value: left empty)|
-   | parameters   | Additional information to filter.      | Boolean/Number/String| Yes (initial value: left empty)|
+   | parameters   | Additional information to filter for a static subscription event. Only data of the Boolean, number, or string type can be configured.| Object| Yes (initial value: left empty)|
 
 
 4. Modify the [preset configuration file](https://gitee.com/openharmony/vendor_hihope/blob/master/rk3568/preinstall-config/install_list_capability.json) of the device, that is, the **/system/variant/phone/base/etc/app/install_list_capability.json** file. When the device is started, this file is read. During application installation, the common event type specified by **allowCommonEvent** in the file is authorized. The **install_list_capability.json** file contains the following fields:

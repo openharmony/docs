@@ -25,15 +25,15 @@ AudioCapturer是音频采集器，用于录制PCM（Pulse Code Modulation）音�
     import { audio } from '@kit.AudioKit';
     
     let audioStreamInfo: audio.AudioStreamInfo = {
-      samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_48000, // 采样率
-      channels: audio.AudioChannel.CHANNEL_2, // 通道
-      sampleFormat: audio.AudioSampleFormat.SAMPLE_FORMAT_S16LE, // 采样格式
-      encodingType: audio.AudioEncodingType.ENCODING_TYPE_RAW // 编码格式
+      samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_48000, // 采样率。
+      channels: audio.AudioChannel.CHANNEL_2, // 通道。
+      sampleFormat: audio.AudioSampleFormat.SAMPLE_FORMAT_S16LE, // 采样格式。
+      encodingType: audio.AudioEncodingType.ENCODING_TYPE_RAW // 编码格式。
     };
     
     let audioCapturerInfo: audio.AudioCapturerInfo = {
-      source: audio.SourceType.SOURCE_TYPE_MIC,
-      capturerFlags: 0
+      source: audio.SourceType.SOURCE_TYPE_MIC, // 音源类型：Mic音频源。根据业务场景配置，参考SourceType。
+      capturerFlags: 0 // 音频采集器标志。
     };
     
     let audioCapturerOptions: audio.AudioCapturerOptions = {
@@ -52,10 +52,14 @@ AudioCapturer是音频采集器，用于录制PCM（Pulse Code Modulation）音�
    ```
 
 2. 调用on('readData')方法，订阅监听音频数据读入回调。
+    > **注意：**
+    > - **线程管理**：不建议使用多线程来处理数据读取。若需使用多线程读取数据，需要做好线程管理。
+    > - **线程耗时**：`readData` 方法所在的线程中，不建议执行耗时任务。否则可能会导致数据处理线程响应回调延迟，进而引发录音数据缺失、卡顿、杂音等音频效果问题。 
 
    ```ts
     import { BusinessError } from '@kit.BasicServicesKit';
     import { fileIo as fs } from '@kit.CoreFileKit';
+    import { common } from '@kit.AbilityKit';
 
     class Options {
       offset?: number;
@@ -63,7 +67,9 @@ AudioCapturer是音频采集器，用于录制PCM（Pulse Code Modulation）音�
     }
 
     let bufferSize: number = 0;
-    let path = getContext().cacheDir;
+    // 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext。
+    let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+    let path = context.cacheDir;
     let filePath = path + '/StarWars10s-2C-48000-4SW.pcm';
     let file: fs.File = fs.openSync(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
     let readDataCallback = (buffer: ArrayBuffer) => {
@@ -128,6 +134,7 @@ AudioCapturer是音频采集器，用于录制PCM（Pulse Code Modulation）音�
 import { audio } from '@kit.AudioKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { fileIo as fs } from '@kit.CoreFileKit';
+import { common } from '@kit.AbilityKit';
 
 const TAG = 'AudioCapturerDemo';
 
@@ -139,20 +146,22 @@ class Options {
 let bufferSize: number = 0;
 let audioCapturer: audio.AudioCapturer | undefined = undefined;
 let audioStreamInfo: audio.AudioStreamInfo = {
-  samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_48000, // 采样率
-  channels: audio.AudioChannel.CHANNEL_2, // 通道
-  sampleFormat: audio.AudioSampleFormat.SAMPLE_FORMAT_S16LE, // 采样格式
-  encodingType: audio.AudioEncodingType.ENCODING_TYPE_RAW // 编码格式
+  samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_48000, // 采样率。
+  channels: audio.AudioChannel.CHANNEL_2, // 通道。
+  sampleFormat: audio.AudioSampleFormat.SAMPLE_FORMAT_S16LE, // 采样格式。
+  encodingType: audio.AudioEncodingType.ENCODING_TYPE_RAW // 编码格式。
 };
 let audioCapturerInfo: audio.AudioCapturerInfo = {
-  source: audio.SourceType.SOURCE_TYPE_MIC, // 音源类型
-  capturerFlags: 0 // 音频采集器标志
+  source: audio.SourceType.SOURCE_TYPE_MIC, // 音源类型：Mic音频源。根据业务场景配置，参考SourceType。
+  capturerFlags: 0 // 音频采集器标志。
 };
 let audioCapturerOptions: audio.AudioCapturerOptions = {
   streamInfo: audioStreamInfo,
   capturerInfo: audioCapturerInfo
 };
-let path = getContext().cacheDir;
+// 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext。
+let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+let path = context.cacheDir;
 let filePath = path + '/StarWars10s-2C-48000-4SW.pcm';
 let file: fs.File = fs.openSync(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
 let readDataCallback = (buffer: ArrayBuffer) => {
@@ -164,9 +173,9 @@ let readDataCallback = (buffer: ArrayBuffer) => {
    bufferSize += buffer.byteLength;
 };
 
-// 初始化，创建实例，设置监听事件
+// 初始化，创建实例，设置监听事件。
 function init() {
-  audio.createAudioCapturer(audioCapturerOptions, (err, capturer) => { // 创建AudioCapturer实例
+  audio.createAudioCapturer(audioCapturerOptions, (err, capturer) => { // 创建AudioCapturer实例。
     if (err) {
       console.error(`Invoke createAudioCapturer failed, code is ${err.code}, message is ${err.message}`);
       return;
@@ -179,16 +188,16 @@ function init() {
   });
 }
 
-// 开始一次音频采集
+// 开始一次音频采集。
 function start() {
   if (audioCapturer !== undefined) {
     let stateGroup = [audio.AudioState.STATE_PREPARED, audio.AudioState.STATE_PAUSED, audio.AudioState.STATE_STOPPED];
-    if (stateGroup.indexOf((audioCapturer as audio.AudioCapturer).state.valueOf()) === -1) { // 当且仅当状态为STATE_PREPARED、STATE_PAUSED和STATE_STOPPED之一时才能启动采集
+    if (stateGroup.indexOf((audioCapturer as audio.AudioCapturer).state.valueOf()) === -1) { // 当且仅当状态为STATE_PREPARED、STATE_PAUSED和STATE_STOPPED之一时才能启动采集。
       console.error(`${TAG}: start failed`);
       return;
     }
 
-    // 启动采集
+    // 启动采集。
     (audioCapturer as audio.AudioCapturer).start((err: BusinessError) => {
       if (err) {
         console.error('Capturer start failed.');
@@ -199,16 +208,16 @@ function start() {
   }
 }
 
-// 停止采集
+// 停止采集。
 function stop() {
   if (audioCapturer !== undefined) {
-    // 只有采集器状态为STATE_RUNNING或STATE_PAUSED的时候才可以停止
+    // 只有采集器状态为STATE_RUNNING或STATE_PAUSED的时候才可以停止。
     if ((audioCapturer as audio.AudioCapturer).state.valueOf() !== audio.AudioState.STATE_RUNNING && (audioCapturer as audio.AudioCapturer).state.valueOf() !== audio.AudioState.STATE_PAUSED) {
       console.info('Capturer is not running or paused');
       return;
     }
 
-    //停止采集
+    //停止采集。
     (audioCapturer as audio.AudioCapturer).stop((err: BusinessError) => {
       if (err) {
         console.error('Capturer stop failed.');
@@ -220,16 +229,16 @@ function stop() {
   }
 }
 
-// 销毁实例，释放资源
+// 销毁实例，释放资源。
 function release() {
   if (audioCapturer !== undefined) {
-    // 采集器状态不是STATE_RELEASED或STATE_NEW状态，才能release
+    // 采集器状态不是STATE_RELEASED或STATE_NEW状态，才能release。
     if ((audioCapturer as audio.AudioCapturer).state.valueOf() === audio.AudioState.STATE_RELEASED || (audioCapturer as audio.AudioCapturer).state.valueOf() === audio.AudioState.STATE_NEW) {
       console.info('Capturer already released');
       return;
     }
 
-    //释放资源
+    //释放资源。
     (audioCapturer as audio.AudioCapturer).release((err: BusinessError) => {
       if (err) {
         console.error('Capturer release failed.');

@@ -269,7 +269,7 @@ try {
 }
 ```
 
-test.js代码，将js代码编成.abc文件，步骤如下:
+test.js代码，将js代码编成.abc文件，步骤如下：
 
 1. 在SDK的ets/build-tools/ets-loader/bin/ark/build-win/bin目录下放置test.js文件
 2. 执行命令如es2abc.exe test.js  --output test.abc后便可生成test.abc文件
@@ -1257,4 +1257,61 @@ testNapi.removeWrapSendable();
 add_definitions( "-DLOG_DOMAIN=0xd0d0" )
 add_definitions( "-DLOG_TAG=\"testTag\"" )
 target_link_libraries(entry PUBLIC libhilog_ndk.z.so)
+```
+
+
+## napi_wrap接口增强
+
+### 接口描述
+
+| 接口 | 描述 |
+| -------- | -------- |
+| napi_wrap_enhance | 在ArkTS对象上绑定一个Node-API模块对象实例并指定实例大小，开发者可以指定绑定的回调函数是否异步执行，如果异步执行，则回调函数必须是线程安全的。 |
+
+### 使用示例
+
+#### napi_wrap_enhance
+
+在ArkTS对象上绑定一个Node-API模块对象实例并指定实例大小，开发者可以指定绑定的回调函数是否异步执行，如果异步执行，则回调函数必须是线程安全的。
+
+cpp部分代码
+
+```cpp
+#include "napi/native_api.h"
+
+static napi_value TestNapiWrapEnhance(napi_env env, napi_callback_info info)
+{
+    napi_value testClass = nullptr;
+    napi_define_class(
+        env, "TestClass", NAPI_AUTO_LENGTH,
+        [](napi_env env, napi_callback_info info) -> napi_value {
+            napi_value thisVar = nullptr;
+            napi_get_cb_info(env, info, nullptr, nullptr, &thisVar, nullptr);
+            return thisVar;
+        },
+        nullptr, 0, nullptr, &testClass);
+
+    napi_value obj = nullptr;
+    napi_new_instance(env, testClass, 0, nullptr, &obj);
+    const char* testStr = "test";
+    napi_ref wrappedRef = nullptr;
+    napi_wrap_enhance(env, obj, (void*)testStr, [](napi_env env, void* data, void* hint) {}, false, nullptr, sizeof(testStr), &wrappedRef);
+    return nullptr;
+}
+```
+
+接口声明
+
+```ts
+// index.d.ts
+export const testNapiWrapEnhance: () => void;
+```
+
+ArkTS侧示例代码
+
+```ts
+import hilog from '@ohos.hilog'
+import testNapi from 'libentry.so'
+
+testNapi.testNapiWrapEnhance();
 ```

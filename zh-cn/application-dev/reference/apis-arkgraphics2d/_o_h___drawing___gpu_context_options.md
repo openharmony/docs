@@ -9,6 +9,9 @@
 
 **相关模块：**[Drawing](_drawing.md)
 
+**所在头文件：**[drawing_gpu_context.h](drawing__gpu__context_8h.md)
+
+**废弃：** 从API version 18开始废弃。
 
 ## 汇总
 

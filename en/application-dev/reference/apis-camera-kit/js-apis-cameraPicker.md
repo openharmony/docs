@@ -2,8 +2,6 @@
 
 The cameraPicker module provides APIs for an application to select the system camera to take photos or record videos, depending on the media type specified by the application. The APIs of this module must be called in a UIAbility of the page type. Otherwise, the camera picker cannot be started.
 
-The camera picker must be called in release mode. If it is called in debug mode, an exception occurs.
-
 > **NOTE**
 >
 > The initial APIs of this module are supported since API version 11. Newly added APIs will be marked with a superscript to indicate their earliest API version.
@@ -14,7 +12,7 @@ The camera picker must be called in release mode. If it is called in debug mode,
 import { cameraPicker as picker } from '@kit.CameraKit';
 ```
 
-## pick
+## cameraPicker.pick
 
 pick(context: Context, mediaTypes: Array\<PickerMediaType\>, pickerProfile: PickerProfile): Promise\<PickerResult\>
 
@@ -36,8 +34,7 @@ Starts the camera picker and enters the corresponding mode based on the media ty
 
 | Type                                            | Description                                                                                  |
 | ----------------------------------------------- | -------------------------------------------------------------------------------------- |
-| Promise\<PickerResult\>                         | Promise used to return the result, which is specified by [PickerResult](#pickerresult).          |
-
+| Promise\<PickerResult\>                         | Promise used to return the result, which is defined in [PickerResult](#pickerresult).       |
 
 **Example**
 
@@ -74,7 +71,7 @@ Enumerates the media types displayed in the camera picker.
 | Name            | Value   | Description    |
 | ----------------| ----  | ---------|
 | PHOTO           | photo | Photo mode. |
-| VIDEO           | video | Record mode. |
+| VIDEO           | video | Video mode.|
 
 
 ## PickerProfile
@@ -88,8 +85,8 @@ Defines the configuration information about the camera picker.
 | Name          | Type                              | Mandatory  | Description        |
 | -------------- | --------------------------------- | ----- | ------------ |
 | cameraPosition       | [camera.CameraPosition](js-apis-camera.md#cameraposition) | Yes   | Camera position.  |
-| saveUri        | string                            | No   | URI for saving the configuration information.|
-| videoDuration  | number                            | No   | Maximum recording duration.|
+| saveUri        | string                            | No   | URI for saving the configuration information. For details about the default value, see [File URI](../apis-core-file-kit/js-apis-file-fileuri.md#constructor10).|
+| videoDuration  | number                            | No   | Maximum video duration, in seconds.|
 
 
 ## PickerResult

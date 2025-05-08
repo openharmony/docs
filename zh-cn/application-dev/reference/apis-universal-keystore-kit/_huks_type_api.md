@@ -3,7 +3,7 @@
 
 ## 概述
 
-描述HUKS类型定义的头文件，声明了HUKS API需要的各种宏、枚举、数据结构、错误码等。
+定义HUKS类型的头文件，声明各种宏、枚举、数据结构、错误码等。
 
 **系统能力：** SystemCapability.Security.Huks
 
@@ -100,7 +100,7 @@ enum OH_Huks_AlgSuite
 
 **描述**
 
-密文导入所需的算法套件类型
+密文导入所需的算法套件类型。
 
 **起始版本：** 9
 
@@ -118,7 +118,7 @@ enum OH_Huks_AuthAccessType
 
 **描述**
 
-安全访问控制类型，表示密钥失效的原则
+安全访问控制类型，表示密钥失效的原则。
 
 **起始版本：** 9
 
@@ -176,7 +176,7 @@ enum OH_Huks_ChallengeType
 
 **描述**
 
-密钥使用时生成challenge的类型
+密钥使用时生成challenge的类型。
 
 **起始版本：** 9
 
@@ -479,7 +479,7 @@ enum OH_Huks_RsaPssSaltLenType
 
 **描述**
 
-枚举密钥存储格式
+枚举密钥存储格式。
 
 **起始版本：** 10
 
@@ -514,7 +514,7 @@ enum OH_Huks_Tag
 
 **描述**
 
-参数集所用的TAG值枚举
+参数集所用的TAG值枚举。
 
 **起始版本：** 9
 
@@ -549,7 +549,7 @@ enum OH_Huks_Tag
 | OH_HUKS_TAG_NO_AUTH_REQUIRED | 表示是否需要密钥访问控制。 | 
 | OH_HUKS_TAG_USER_AUTH_TYPE | 表示密钥访问控制中用户认证类型。 | 
 | OH_HUKS_TAG_AUTH_TIMEOUT | 表示密钥访问控制类型中密钥访问的超时时间。 | 
-| OH_HUKS_TAG_AUTH_TOKEN | 表示密钥访问控制中使用密钥时传入的authtoken的类型 | 
+| OH_HUKS_TAG_AUTH_TOKEN | 表示密钥访问控制中使用密钥时传入的authtoken的类型。 | 
 | OH_HUKS_TAG_KEY_AUTH_ACCESS_TYPE | 表示安全访问控制类型，需要和用户认证类型同时设置，类型可在枚举[OH_Huks_AuthAccessType](#oh_huks_authaccesstype)中选择。 | 
 | OH_HUKS_TAG_KEY_SECURE_SIGN_TYPE | 表示生成或导入密钥时，指定该密钥的签名类型。 | 
 | OH_HUKS_TAG_CHALLENGE_TYPE | 表示密钥使用时生成的challenge类型，类型可在枚举[OH_Huks_ChallengeType](#oh_huks_challengetype)中选择。 | 
@@ -573,9 +573,9 @@ enum OH_Huks_Tag
 | OH_HUKS_TAG_KEY_DOMAIN | 密钥域。 | 
 | OH_HUKS_TAG_IS_DEVICE_PASSWORD_SET | 表示密钥锁屏密码访问控制字段，可限制密钥只有在用户设置了锁屏密码时可用。 True 表示只有在密码设置时才能生成和使用密钥。<br/>**起始版本：** 11 | 
 | OH_HUKS_TAG_AE_TAG | 用于传入GCM模式中的AEAD数据的字段。 | 
-| OH_HUKS_TAG_SYMMETRIC_KEY_DATA | 预留值: 11000 - 12000<br/>其他标签预留值: 20001 - N 对称密钥数据 | 
-| OH_HUKS_TAG_ASYMMETRIC_PUBLIC_KEY_DATA | 非对称密钥公钥数据 | 
-| OH_HUKS_TAG_ASYMMETRIC_PRIVATE_KEY_DATA | 非对称密钥私钥数据 | 
+| OH_HUKS_TAG_SYMMETRIC_KEY_DATA | 预留值: 11000 - 12000<br/>其他标签预留值: 20001 - N 对称密钥数据。 | 
+| OH_HUKS_TAG_ASYMMETRIC_PUBLIC_KEY_DATA | 非对称密钥公钥数据。 | 
+| OH_HUKS_TAG_ASYMMETRIC_PRIVATE_KEY_DATA | 非对称密钥私钥数据。 | 
 
 
 ### OH_Huks_TagType
@@ -612,7 +612,7 @@ enum OH_Huks_UserAuthType
 
 **描述**
 
-密钥访问控制中的用户认证类型
+密钥访问控制中的用户认证类型。
 
 **起始版本：** 9
 
@@ -631,7 +631,7 @@ enum OH_Huks_UserAuthMode
 
 **描述**
 
-密钥访问控制中的用户认证模式
+密钥访问控制中的用户认证模式。
 
 **起始版本：** 12
 

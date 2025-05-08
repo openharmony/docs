@@ -12,6 +12,9 @@
 - 从应用拉起：
     - 移动应用中，用户点击“反馈”按钮时，应用调用系统功能，拉起默认邮件客户端，预先填写反馈邮箱、问题描述等信息。
     - 移动应用中，当用户点击“通过邮件分享”按钮时，应用会通过 `mailto` 调用邮件客户端，预填邮件主题和正文。
+> **说明：**
+> - 如果使用mailto方式拉起邮件应用，需要拉起方先按mailto格式封装字符串，再使用mailto方式拉起。邮件应用会解析收到的mailto协议字符串，并填充发件人、收件人、邮件内容等信息。
+> - 如果拉起方已知发件人、收件人、邮件内容等信息，推荐[使用startAbilityByType方式拉起邮件应用](start-email-apps.md)。
 
 ## mailto协议格式
 
@@ -50,23 +53,23 @@ mailto:someone@example.com?key1=value1&key2=value2
 
 ### 从应用拉起
 
-保证mailto字符串传入uri参数即可，在应用中page页面可通过 getContext(this) 获取context，在ability中可通过this.context获取context。
+保证mailto字符串传入uri参数即可，在应用中page页面可通过 getHostContext() 获取context，在ability中可通过this.context获取context。
 
 ```ts
+import { common } from '@kit.AbilityKit';
+
 @Entry
 @Component
 struct Index {
-
   build() {
     Column() {
       Button('反馈')
         .onClick(() => {
-          let ctx = getContext(this) as common.UIAbilityContext;
+          let ctx = this.getUIContext().getHostContext() as common.UIAbilityContext;
           ctx.startAbility({
             action: 'ohos.want.action.sendToData',
             uri: 'mailto:feedback@example.com?subject=App Feedback&body=Please describe your feedback here...'
           })
-        
         })
     }
   }

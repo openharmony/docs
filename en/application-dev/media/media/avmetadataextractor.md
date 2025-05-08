@@ -19,7 +19,7 @@ Read [AVMetadataExtractor](../../reference/apis-media-kit/js-apis-media.md#avmet
    >
    > - To set **dataSrc**, set **callback** in **dataSrc** to ensure that the corresponding resource can be correctly read when the callback is invoked, and use the application sandbox directory to access the resource. For details, see [Obtaining Application File Paths](../../application-models/application-context-stage.md#obtaining-application-file-paths). For details about the application sandbox and how to push files to the application sandbox directory, see [File Management](../../file-management/app-sandbox-directory.md).
    >
-   > - If different AVMetadataExtractor or [AVImageGenerator](../../reference/apis-media-kit/js-apis-media.md#avmetadataextractor11) instances need to operate the same resource, the file descriptor needs to be opened for multiple times. Therefore, do not share a file descriptor.
+   > - If different AVMetadataExtractor or [AVImageGenerator](../../reference/apis-media-kit/js-apis-media.md#avimagegenerator12) instances need to operate the same resource, the file descriptor needs to be opened for multiple times. Therefore, do not share a file descriptor.
 
 3. Obtain the metadata. Specifically, call **fetchMetadata()** to obtain an **AVMetadata** object, the attributes of which are the metadata of the media asset.
 

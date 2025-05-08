@@ -1,43 +1,41 @@
-# Peripheral Driver Development
+# UI-free Driver Development
 
 ## When to Use
 
-[DriverExtensionAbility](../../reference/apis-driverdevelopment-kit/js-apis-app-ability-driverExtensionAbility.md) is an **ExtensionAbility** of the driver type that provides the driver-related extension framework. If the capabilities of a device can be expanded by inserting an external hardware module, you can install the driver of the hardware module through an application. **DriverExtensionAbility** can be used to develop such applications.
+Basic UI-free drivers are applicable to simple devices that do not require setting of driver capabilities via a UI, such as mouse devices and keyboards. These drivers are designed to ensure that these devices can be used immediately upon connection, enabling seamless plug-and-play functionality. You can use **DriverExtensionAbility** to develop such applications.
 
+## Basic Concepts
 
-You can bind a [DriverExtensionAbility](../../reference/apis-driverdevelopment-kit/js-apis-app-ability-driverExtensionAbility.md) object to an application through **DriverExtensionManager** so that related transactions can be processed in the background based on the application request information.
-Each type of **ExtensionAbility** has its own context. The **DriverExtensionAbility** provides related capabilities through the [DriverExtensionContext](../../reference/apis-driverdevelopment-kit/js-apis-inner-application-driverExtensionContext.md).
+ - DriverExtensionAbility
+
+    [DriverExtensionAbility](../../reference/apis-driverdevelopment-kit/js-apis-app-ability-driverExtensionAbility.md) is an **ExtensionAbility** of the driver type that provides the driver-related extension framework. If the capabilities of a device can be expanded by inserting an external hardware module, you can install the driver of the hardware module through an application. You can bind a [DriverExtensionAbility](../../reference/apis-driverdevelopment-kit/js-apis-app-ability-driverExtensionAbility.md) object to an application through **DriverExtensionManager** so that related transactions can be processed in the background based on the application request information.
+    Each type of **ExtensionAbility** has its own context. The **DriverExtensionAbility** provides related capabilities through the [DriverExtensionContext](../../reference/apis-driverdevelopment-kit/js-apis-inner-application-driverExtensionContext.md).
 
 ## Environment Setup
 
-Set up the environment following the instructions in [Peripheral Driver Client Development](externaldevice-guidelines.md).
-
-The following table lists the SDK version requirements.
-
-| NDK API| SDK Version|
-|---------|--------|
-| USB DDK | API version 10 or later|
-| HID DDK | API version 11 or later|
+Before you get started, make necessary preparations by following instructions in [Environment Preparation](environmental-preparation.md).
 
 ## How to Develop
 
 To implement a driver, create a DriverExtensionAbility in the DevEco Studio project. The procedure is as follows:
 
-1. In the **ets** directory of a module in the project, right-click and choose **New > Directory** to create a directory named **driverextability**.
+1. Create an OpenHarmony project. For details, see [Creating a Project] (https://developer.huawei.com/consumer/en/doc/harmonyos-guides/ide-create-new-project). (If a project has been created in [UI-based Driver Development](externaldevice-guidelines.md), skip this step.)
 
-2. In the **driverextability** directory, right-click and choose **New > ArkTS File** to create a file named **DriverExtAbility.ets**.
+2. In the **ets** directory of the project, right-click **New** > **Directory** to create a directory named **driverextability**.
 
-3. Import the related kit, and define the request code.
+3. In the **driverextability** directory, right-click and choose **New > ArkTS File** to create a file named **DriverExtAbility.ets**.
+
+4. Import the related kit, and define the request code.
 
     ```ts
     import { DriverExtensionAbility } from '@kit.DriverDevelopmentKit';
     import { Want } from '@kit.AbilityKit';
     import { rpc } from '@kit.IPCKit';
 
-    const REQUEST_CODE = 99; // Negotaite the request code with the peripheral client.
+    const REQUEST_CODE = 99; // Negotiate the request code with the peripheral client.
     ```
 
-4. Open the **DriverExtAbility.ets** file, import the [RPC module](../../reference/apis-ipc-kit/js-apis-rpc.md), and overload the **onRemoteMessageRequest()** method to receive messages from the application and return the processing result to the application. **REQUEST_VALUE** is used to verify the service request code sent by the application.
+5. Open the **DriverExtAbility.ets** file, import the [RPC module](../../reference/apis-ipc-kit/js-apis-rpc.md), and overload the **onRemoteMessageRequest()** method to receive messages from the application and return the processing result to the application. **REQUEST_VALUE** is used to verify the service request code sent by the application.
 
     ```ts
     class StubTest extends rpc.RemoteObject {
@@ -49,7 +47,7 @@ To implement a driver, create a DriverExtensionAbility in the DevEco Studio proj
           // When the application calls data.writeString() multiple times to write data, the driver can receive the corresponding data by calling data.readString() for multiple times.
           let optFir: string = data.readString();
           // The driver returns the data processing result to the application.
-          // In the example, Hello is received and Hello World is returned to the  application.
+          // In the example, Hello is received and Hello World is returned to the application.
           reply.writeString(optFir + ` World`);
         }
         return true;
@@ -57,7 +55,7 @@ To implement a driver, create a DriverExtensionAbility in the DevEco Studio proj
     }
     ```
 
-5. In the **DriverExtAbility.ets** file, import the dependency package [DriverExtensionAbility](../../reference/apis-driverdevelopment-kit/js-apis-app-ability-driverExtensionAbility.md), which provides the **onInit()**, **onRelease()**, **onConnect()**, and **onDisconnect()** lifecycle callbacks. Then, customize a class to inherit from [DriverExtensionAbility](../../reference/apis-driverdevelopment-kit/js-apis-app-ability-driverExtensionAbility.md) and override the lifecycle callbacks as required.
+6. In the **DriverExtAbility.ets** file, import the dependency package [DriverExtensionAbility](../../reference/apis-driverdevelopment-kit/js-apis-app-ability-driverExtensionAbility.md), which provides the **onInit()**, **onRelease()**, **onConnect()**, and **onDisconnect()** lifecycle callbacks. Then, customize a class to inherit from [DriverExtensionAbility](../../reference/apis-driverdevelopment-kit/js-apis-app-ability-driverExtensionAbility.md) and override the lifecycle callbacks as required.
 
     ```ts
     export default class DriverExtAbility extends DriverExtensionAbility {
@@ -85,7 +83,7 @@ To implement a driver, create a DriverExtensionAbility in the DevEco Studio proj
     }
     ```
 
-6. Register **DriverExtensionAbility** in the [**module.json5** file](../../quick-start/module-configuration-file.md) of the module in the project. Set **type** to **service** and **srcEntry** to the code path of **DriverExtensionAbility**.
+7. Register **DriverExtensionAbility** in the [**module.json5** file](../../quick-start/module-configuration-file.md) of the module in the project. Set **type** to **service** and **srcEntry** to the code path of **DriverExtensionAbility**.
 
     ```json
     {
@@ -101,6 +99,9 @@ To implement a driver, create a DriverExtensionAbility in the DevEco Studio proj
         "requestPermissions": [
           {
             "name": "ohos.permission.ACCESS_EXTENSIONAL_DEVICE_DRIVER" // Peripheral-specific permission, which is mandatory.
+          },
+          {
+            "name": "ohos.permission.ACCESS_DDK_DRIVERS" // Peripheral access permission, which is mandatory in API version 18 or later.
           }
         ],
         "deliveryWithInstall": true,
@@ -138,7 +139,7 @@ To implement a driver, create a DriverExtensionAbility in the DevEco Studio proj
             "srcEntry": "./ets/driverextability/DriverExtAbility.ets",
             "metadata": [
               {
-                "name": "bus", // The bus is mandatory.
+                "name": "bus", // Bus, which is mandatory.
                 "value": "USB"
               },
               {
@@ -156,6 +157,14 @@ To implement a driver, create a DriverExtensionAbility in the DevEco Studio proj
               {
                 "name": "pid," // List of USB product IDs. Enter a hex value. Here, the value is the hex value of 4258.
                 "value": "0x10A2"
+              },
+              {
+                "name": "launchOnBind," // Whether to enable delayed driver startup. This parameter is optional. The value true indicates delayed startup, and the value false indicates immediate startup. The value is false by default if the specified value is incorrect or the value is left unspecified.
+                "value": "true"
+              },
+              {
+                "name": "ohos.permission.ACCESS_DDK_ALLOWED," // Whether to allow DDK access. This parameter is optional. The value true indicates that DDK access is allowed, and the value false indicates the opposite. The default value is false.
+                "value": "true"
               }
             ]
           }
@@ -164,23 +173,41 @@ To implement a driver, create a DriverExtensionAbility in the DevEco Studio proj
     }
     ```
 
-7. After completing development of the client and driver sample code, import the HAP to the device by following instructions in [Running Your App/Service on a Local Real Device](https://developer.huawei.com/consumer/en/doc/harmonyos-guides-V13/ide-run-device-V13), and run **Hello** in the HAP to check whether **Hello world** is displayed. If yes, the IPC communication is ready for use.
+8. After completing development of the client and driver sample code, import the HAP to the device by following instructions in [Running Your App/Service on a Local Real Device](https://developer.huawei.com/consumer/en/doc/harmonyos-guides-V13/ide-run-device-V13), and run **Hello** in the HAP to check whether **Hello world** is displayed. If yes, the IPC communication is ready for use.
 
 ## Driver Development
 
-**DriverExtensionAbility** provides two development modes, namely, HID DDK and USB DDK, for driver development.
+Currently, **DriverExtensionAbility** provides four capabilities: HID DDK, USB DDK, USB serial DDK, and SCSI peripheral DDK, which are used to develop dedicated drivers for extended peripherals. Choose either mode depending on your need:
 
-Choose either mode depending on your need:
+* [HID DDK Development](hid-ddk-guidelines.md)
+* [USB DDK Development](usb-ddk-guidelines.md)
+* [USB Serial DDK Development](usb-serial-ddk-guidelines.md)
+* [SCSI Peripheral DDK Development](scsi-peripheral-ddk-guidelines.md)
 
-* [HID DDK Development](https://gitee.com/openharmony/docs/blob/master/en/application-dev/napi/hid-ddk-guidelines.md)
-* [USB DDK Development](https://gitee.com/openharmony/docs/blob/master/en/application-dev/napi/usb-ddk-guidelines.md)
-
+<!--RP1-->
 ## Application Signing
 
-You need to configure a signature file for your application to run on a device. Besides, to develop a peripheral driver client, you need to declare the **ohos.permission.ACCESS_EXTENSIONAL_DEVICE_DRIVER** permission for the peripheral.
+**NOTE**<br>Configure the permission before enabling automatic signing.
 
-If the HID DDK or USB DDK is used, configure the required permission as described above.
+You need to configure a signature file for your application to run on a device. Besides, to develop a peripheral driver client, you need to declare the **ohos.permission.ACCESS_EXTENSIONAL_DEVICE_DRIVER** and **ohos.permission.ACCESS_DDK_DRIVERS** permissions for the peripheral.
+- ohos.permission.ACCESS_EXTENSIONAL_DEVICE_DRIVER (This permission is required for API version 10 or later.)
 
-Automatic signing: [Signing Your App/Service Automatically](https://developer.huawei.com/consumer/en/doc/harmonyos-guides-V5/ide-signing-V5#section18815157237)
+  To obtain authorization on this access permission, [declare it](../../security/AccessToken/declare-permissions.md) in the **requestPermissions** field in the **module.json5** file.
 
-Permission configuration: [Requesting ACL Permissions and Signing Your App/Service](https://developer.huawei.com/consumer/en/doc/harmonyos-guides-V5/ide-signing-V5#section157591551175916).
+- ohos.permission.ACCESS_DDK_DRIVERS (This permission is required for API version 18 or later.)
+
+  1. [Declare the required permissions](../../security/AccessToken/declare-permissions.md) in the **requestPermissions** field in the **module.json5** file.
+  2. Modify the **acls** field in the **HarmonyAppProvision** configuration file to request permissions via ACL. For details, see [Requesting Restricted Permissions](../../security/AccessToken/declare-permissions-in-acl.md).
+  3. In the **HarmonyAppProvision** configuration file (that is, **Sdk/openharmony/_{Version} _/toolchains /lib/UnsgnedReleasedProfileTemplate.json** file), configure the bundle name of the driver server to connect. If there are multiple servers, separate their bundle names with a comma.
+
+      The configuration procedure is as follows:
+
+      Add the **app-services-capabilities** node to the root node of the file and configure the node as follows:
+      ```json
+      "app-services-capabilities": {
+        "ohos.permission.ACCESS_DDK_DRIVERS": {"bundleNames": "bundleName0,bundleName1,bundleName2"}
+      }
+      ```
+
+Automatic signing: [Signing Your App/Service Automatically](https://developer.huawei.com/consumer/en/doc/harmonyos-guides-V13/ide-signing-V13#section18815157237)
+<!--RP1End-->

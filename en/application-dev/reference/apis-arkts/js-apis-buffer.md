@@ -289,7 +289,7 @@ console.info(buf.toString('hex'));
 
 ## buffer.from
 
-from(array: number[]): Buffer;
+from(array: number[]): Buffer
 
 Creates a **Buffer** instance with the specified array.
 
@@ -2285,7 +2285,7 @@ Converts the data at the specified position in this **Buffer** instance into a s
 
 | Type| Description|
 | -------- | -------- |
-| string | String obtained. When the value of **start** is greater than or equal to **Buffer.length** or **start** is greater than **end**, an empty string is returned.|
+| string | String. When the value of **start** is greater than or equal to **Buffer.length** or **start** is greater than **end**, an empty string is returned.|
 
 **Error codes**
 
@@ -2362,7 +2362,7 @@ Writes a string of the specified length to this **Buffer** instance at the speci
 | -------- | -------- | -------- | -------- |
 | str | string | Yes| String to write.|
 | offset | number | No| Number of bytes to skip before starting to write data. The default value is **0**.|
-| length | number | No| Maximum number of bytes to write. The default value is the length of the **Buffer** instance minus the offset.|
+| length | number | No| Maximum number of bytes to write. The default value is **Buffer.length** minus **offset**.|
 | encoding | string | No| Encoding format of the string. The default value is **'utf8'**.|
 
 

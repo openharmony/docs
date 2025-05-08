@@ -55,7 +55,7 @@ Read [Camera](../../reference/apis-camera-kit/_o_h___camera.md) for the API refe
     if (cameraOutputCapability->previewProfilesSize < 0) {
         OH_LOG_ERROR(LOG_APP, "previewProfilesSize == null");
     }
-    metaDataObjectType = cameraOutputCapability->supportedMetadataObjectTypes[2]; // 2:camera metedata types
+    metaDataObjectType = cameraOutputCapability->supportedMetadataObjectTypes[2]; // 2: camera metedata types.
     if (metaDataObjectType == nullptr) {
         OH_LOG_ERROR(LOG_APP, "Get metaDataObjectType failed.");
     }

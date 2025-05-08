@@ -1,11 +1,8 @@
 # 使用SM4对称密钥（GCM模式）加解密(ArkTS)
 
-
 对应的算法规格请查看[对称密钥加解密算法规格：SM4](crypto-sym-encrypt-decrypt-spec.md#sm4)。
 
-
 **加密**
-
 
 1. 调用[cryptoFramework.createSymKeyGenerator](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreatesymkeygenerator)、[SymKeyGenerator.generateSymKey](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#generatesymkey-1)，生成密钥算法为SM4、密钥长度为128位的对称密钥（SymKey）。
    
@@ -20,7 +17,7 @@
    当前单次update长度没有限制，开发者可以根据数据量判断如何调用update。
 
    - 当数据量较小时，可以在init完成后直接调用doFinal。
-   - 当数据量较大时，可以多次调用update，即分段加解密。
+   - 当数据量较大时，可以多次调用update，即[分段加解密](crypto-sm4-sym-encrypt-decrypt-gcm-by-segment.md)。
 
 5. 调用[Cipher.doFinal](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#dofinal-1)，获取加密后的数据。
    - 由于已使用update传入数据，此处data传入null。
@@ -28,7 +25,6 @@
 
 6. 读取[GcmParamsSpec](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#gcmparamsspec).authTag作为解密的认证信息。
    在GCM模式下，需要从加密后的数据中取出末尾16字节，作为解密时初始化的认证信息。示例中authTag恰好为16字节。
-
 
 **解密**
 
@@ -39,7 +35,6 @@
 3. 调用[Cipher.update](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#update-1)，更新数据（密文）。
 
 4. 调用[Cipher.doFinal](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#dofinal-1)，获取解密后的数据。
-
 
 - 异步方法示例：
 
@@ -63,7 +58,7 @@
     let tagBlob: cryptoFramework.DataBlob = {
       data: dataTag
     }; 
-    // GCM的authTag在加密时从doFinal结果中获取，在解密时填入init函数的params参数中
+    // GCM的authTag在加密时从doFinal结果中获取，在解密时填入init函数的params参数中。
     let gcmParamsSpec: cryptoFramework.GcmParamsSpec = {
       iv: ivBlob,
       aad: aadBlob,
@@ -75,7 +70,7 @@
 
   let gcmParams = genGcmParamsSpec();
 
-  // 加密消息
+  // 加密消息。
   async function encryptMessagePromise(symKey: cryptoFramework.SymKey, plainText: cryptoFramework.DataBlob) {
     let cipher = cryptoFramework.createCipher('SM4_128|GCM|PKCS7');
     await cipher.init(cryptoFramework.CryptoMode.ENCRYPT_MODE, symKey, gcmParams);
@@ -84,7 +79,7 @@
     gcmParams.authTag = await cipher.doFinal(null);
     return encryptUpdate;
   }
-  // 解密消息
+  // 解密消息。
   async function decryptMessagePromise(symKey: cryptoFramework.SymKey, cipherText: cryptoFramework.DataBlob) {
     let decoder = cryptoFramework.createCipher('SM4_128|GCM|PKCS7');
     await decoder.init(cryptoFramework.CryptoMode.DECRYPT_MODE, symKey, gcmParams);
@@ -141,7 +136,7 @@
     let tagBlob: cryptoFramework.DataBlob = {
       data: dataTag
     };
-    // GCM的authTag在加密时从doFinal结果中获取，在解密时填入init函数的params参数中
+    // GCM的authTag在加密时从doFinal结果中获取，在解密时填入init函数的params参数中。
     let gcmParamsSpec: cryptoFramework.GcmParamsSpec = {
       iv: ivBlob,
       aad: aadBlob,
@@ -153,7 +148,7 @@
 
   let gcmParams = genGcmParamsSpec();
 
-  // 加密消息
+  // 加密消息。
   function encryptMessage(symKey: cryptoFramework.SymKey, plainText: cryptoFramework.DataBlob) {
     let cipher = cryptoFramework.createCipher('SM4_128|GCM|PKCS7');
     cipher.initSync(cryptoFramework.CryptoMode.ENCRYPT_MODE, symKey, gcmParams);
@@ -162,7 +157,7 @@
     gcmParams.authTag = cipher.doFinalSync(null);
     return encryptUpdate;
   }
-  // 解密消息
+  // 解密消息。
   function decryptMessage(symKey: cryptoFramework.SymKey, cipherText: cryptoFramework.DataBlob) {
     let decoder = cryptoFramework.createCipher('SM4_128|GCM|PKCS7');
     decoder.initSync(cryptoFramework.CryptoMode.DECRYPT_MODE, symKey, gcmParams);

@@ -40,7 +40,7 @@
 | -------- | -------- |
 | [OH_EFFECT_BRIGHTNESS_FILTER](#oh_effect_brightness_filter)   "Brightness" | 亮度滤镜，对应的参数为OH_EFFECT_FILTER_INTENSITY_KEY，参数类型为EFFECT_DATA_TYPE_FLOAT。 | 
 | [OH_EFFECT_CONTRAST_FILTER](#oh_effect_contrast_filter)   "Contrast" | 对比度滤镜，对应的参数为OH_EFFECT_FILTER_INTENSITY_KEY，参数类型为EFFECT_DATA_TYPE_FLOAT。 | 
-| [OH_EFFECT_CROP_FILTER](#oh_effect_crop_filter)   "Crop" | 裁剪滤镜，对应的参数为OH_EFFECT_FILTER_REGION_KEY，参数类型为EFFECT_DATA_TYPE_PTR， 参数值为结构体 [ImageEffect_Region](_image_effect___region.md)。 | 
+| [OH_EFFECT_CROP_FILTER](#oh_effect_crop_filter)   "Crop" | 裁剪滤镜，对应的参数为OH_EFFECT_FILTER_REGION_KEY，参数类型为EFFECT_DATA_TYPE_PTR，参数值为结构体 [ImageEffect_Region](_image_effect___region.md)。 | 
 | [OH_EFFECT_FILTER_INTENSITY_KEY](#oh_effect_filter_intensity_key)   "FilterIntensity" | 强度参数。 | 
 | [OH_EFFECT_FILTER_REGION_KEY](#oh_effect_filter_region_key)   "FilterRegion" | 图像区域参数。 | 
 
@@ -183,7 +183,7 @@
 
 **描述**
 
-裁剪滤镜，对应的参数为OH_EFFECT_FILTER_REGION_KEY，参数类型为EFFECT_DATA_TYPE_PTR， 参数值为结构体 [ImageEffect_Region](_image_effect___region.md)。
+裁剪滤镜，对应的参数为OH_EFFECT_FILTER_REGION_KEY，参数类型为EFFECT_DATA_TYPE_PTR，参数值为结构体 [ImageEffect_Region](_image_effect___region.md)。
 
 **系统能力：** SystemCapability.Multimedia.ImageEffect.Core
 
@@ -1897,10 +1897,10 @@ ImageEffect_ErrorCode OH_ImageEffect_SetInputUri (OH_ImageEffect * imageEffect, 
 
 **参数:**
 
-| 名称 | 描述 | 
+| 名称 | 描述 |
 | -------- | -------- |
-| imageEffect | 效果器指针。 | 
-| uri | 图片URI。 | 
+| imageEffect | 效果器指针。 |
+| uri | 图片URI（只支持Jpeg，Heif）。 |
 
 **返回：**
 
@@ -2037,10 +2037,10 @@ ImageEffect_ErrorCode OH_ImageEffect_SetOutputUri (OH_ImageEffect * imageEffect,
 
 **参数:**
 
-| 名称 | 描述 | 
+| 名称 | 描述 |
 | -------- | -------- |
-| imageEffect | 效果器指针。 | 
-| uri | 图片URI。 | 
+| imageEffect | 效果器指针。 |
+| uri | 图片URI。输出URI的格式和输入保持一致，如果不支持Heif编码能力，则进行Jpeg编码。 |
 
 **返回：**
 

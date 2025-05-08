@@ -94,6 +94,13 @@
     Intelligent Distributed Networking，是OpenHarmony特有的分布式组网能力单元。开发者可以通过IDN获取分布式网络内的设备列表和设备状态信息，以及注册分布式网络内设备的在网状态变化信息。
 
 
+## M
+
+- ### Module
+
+    模块，应用的一部分，每个模块都有单独的module.json5配置文件。项目工程中，Entry、Feature、HSP和HAR均为应用的一个模块。
+
+
 ## P
 
 - ### PA

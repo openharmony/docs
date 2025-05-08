@@ -55,7 +55,6 @@ struct WebComponent {
   ```ts
   // index.ets
   import { webview } from '@kit.ArkWeb';
-  import { router } from '@kit.ArkUI';
 
   @Entry
   @Component
@@ -71,7 +70,7 @@ struct WebComponent {
               let url: string = event.data.getRequestUrl();
               if (url.indexOf('native://') === 0) {
                 // 跳转其他界面
-                router.pushUrl({ url: url.substring(9) });
+                this.getUIContext().getRouter().pushUrl({ url: url.substring(9) });
                 return true;
               }
             }

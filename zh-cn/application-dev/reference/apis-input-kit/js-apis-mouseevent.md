@@ -99,16 +99,16 @@ import { Action, Button, Axis, AxisValue, MouseEvent } from '@kit.InputKit';
 | windowY        | number      | 是    | 否    | 鼠标所在窗口的纵坐标。                               |
 | rawDeltaX      | number      | 是    | 否    | 鼠标本次操作横坐标偏移值。 |
 | rawDeltaY      | number      | 是    | 否    | 鼠标本次操作纵坐标偏移值。                          |
-| button         | [Button](#button)      | 是    | 否    | 鼠标按钮。                               
+| button         | [Button](#button)      | 是    | 否    | 鼠标按钮。                       |        
 | pressedButtons | [Button](#button)[]    | 是    | 否    | 当前处于按下状态的鼠标按钮。                              |
 | axes           | [AxisValue](#axisvalue)[] | 是    | 否    | 事件包含的所有轴数据。                               |
 | pressedKeys    | [KeyCode](js-apis-keycode.md#keycode)[]   | 是    | 否    | 当前处于按下状态的按键列表。                            |
-| ctrlKey        | boolean     | 是    | 否    | 当前ctrlKey是否处于按下状态。 <br>ture表示处于按下状态，false表示处于抬起状态。    |
-| altKey         | boolean     | 是    | 否    | 当前altKey是否处于按下状态。 <br>ture表示处于按下状态，false表示处于抬起状态。                         |
-| shiftKey       | boolean     | 是    | 否    | 当前shiftKey是否处于按下状态。 <br>ture表示处于按下状态，false表示处于抬起状态。                       |
-| logoKey        | boolean     | 是    | 否    | 当前logoKey是否处于按下状态。 <br>ture表示处于按下状态，false表示处于抬起状态。                        |
-| fnKey          | boolean     | 是    | 否    | 当前fnKey是否处于按下状态。 <br>ture表示处于按下状态，false表示处于抬起状态。                          |
-| capsLock       | boolean     | 是    | 否    | 当前capsLock是否处于激活状态。 <br>ture表示激活状态，false表示处于未激活状态。  |
-| numLock        | boolean     | 是    | 否    | 当前numLock是否处于激活状态。 <br>ture表示激活状态，false表示处于未激活状态。                        |
-| scrollLock     | boolean     | 是    | 否    | 当前scrollLock是否处于激活状态。 <br>ture表示激活状态，false表示处于未激活状态。                     |
+| ctrlKey        | boolean     | 是    | 否    | 当前ctrlKey是否处于按下状态。 <br>true表示处于按下状态，false表示处于抬起状态。    |
+| altKey         | boolean     | 是    | 否    | 当前altKey是否处于按下状态。 <br>true表示处于按下状态，false表示处于抬起状态。                         |
+| shiftKey       | boolean     | 是    | 否    | 当前shiftKey是否处于按下状态。 <br>true表示处于按下状态，false表示处于抬起状态。                       |
+| logoKey        | boolean     | 是    | 否    | 当前logoKey是否处于按下状态。 <br>true表示处于按下状态，false表示处于抬起状态。                        |
+| fnKey          | boolean     | 是    | 否    | 当前fnKey是否处于按下状态。 <br>true表示处于按下状态，false表示处于抬起状态。                          |
+| capsLock       | boolean     | 是    | 否    | 当前capsLock是否处于激活状态。 <br>true表示激活状态，false表示处于未激活状态。  |
+| numLock        | boolean     | 是    | 否    | 当前numLock是否处于激活状态。 <br>true表示激活状态，false表示处于未激活状态。                        |
+| scrollLock     | boolean     | 是    | 否    | 当前scrollLock是否处于激活状态。 <br>true表示激活状态，false表示处于未激活状态。                     |
 | toolType<sup>11+</sup> | [ToolType](#tooltype11) | 是    | 否    | 工具类型。                     |

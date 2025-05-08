@@ -52,12 +52,12 @@ GridContainer(value?: GridContainerOptions)
 
 ## Attributes
 
-The universal attributes and attributes of the [Column](ts-container-column.md#attributes) component are supported.
+The [universal attributes](ts-component-general-attributes.md) and attributes of the [Column](ts-container-column.md#attributes) component are supported.
 
 
 ## Events
 
-The universal events are supported.
+The [universal events](ts-component-general-events.md) are supported.
 
 ## Example
 

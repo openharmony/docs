@@ -13,7 +13,7 @@ Before implementing cross-device sync of KV stores, understand the following con
 
 ### Single KV Store
 
-In a single KV store, data is saved in the unit of a single entry. When data is modified locally, the data entry is updated no matter whether it has been synced. Only one copy of data is retained globally for multiple devices. The data of the latest time is kept for the same entry (with the same primary code) of multiple devices. The data in single KV stores is not differentiated by device. If the data modified on multiple devices has the same key, the value will be overwritten. For the data written or modified locally, the data with the latest time is synced to other devices. Single KV stores are used to store information, such as the Contacts and weather application data.
+In a single KV store, data is stored locally as individual entries. When data is modified, the change is applied directly to the entry. After sync, only one global copy of the data is retained across multiple devices. If multiple devices have the same record (with the same primary key), the latest version is preserved irrespective of the device. If data with the same key is modified on multiple devices, the latest change will overwrite the previous ones. For the data written or modified locally, the data with the latest time is synced to other devices. Single KV stores are used to store information, such as the contacts and weather application data.
 
 ![singleKVStore](figures/singleKVStore.jpg)
 
@@ -72,23 +72,23 @@ When data is added, deleted, or modified, a notification is sent to the subscrib
 
 - The KV stores do not support custom conflict resolution policies for applications.
 
-- A maximum of 16 KV stores can be opened simultaneously for an application.
+- An application can open a maximum of 16 distributed KV stores at a time.
 
-- Each KV store supports a maximum of eight callbacks for subscription of data change notifications.
+- A single KV store supports a maximum of eight listener callbacks for data changes.
 
 
 ## Available APIs
 
 The following table lists the APIs for cross-device data sync of the single KV store. Most of the APIs are executed asynchronously, using a callback or promise to return the result. The following table uses the callback-based APIs as an example. For more information about the APIs, see [Distributed KV Store](../reference/apis-arkdata/js-apis-distributedKVStore.md).
 
-| API| Description|
+| API| Description| 
 | -------- | -------- |
-| createKVManager(config: KVManagerConfig): KVManager | Creates a **KvManager** instance to manage database objects.|
-| getKVStore&lt;T&gt;(storeId: string, options: Options, callback: AsyncCallback&lt;T&gt;): void | Obtains a KV store of the specified type.|
-| put(key: string, value: Uint8Array \| string \| number \| boolean, callback: AsyncCallback&lt;void&gt;): void | Inserts and updates data.|
-| on(event: 'dataChange', type: SubscribeType, listener: Callback&lt;ChangeNotification&gt;): void | Subscribes to data changes in the KV store.|
-| get(key: string, callback: AsyncCallback&lt;boolean \| string \| number \| Uint8Array&gt;): void | Queries the value of the specified key.|
-| sync(deviceIds: string[], mode: SyncMode, delayMs?: number): void | Triggers a manual sync of the KV store.|
+| createKVManager(config: KVManagerConfig): KVManager | Creates a **KvManager** instance to manage database objects.| 
+| getKVStore&lt;T&gt;(storeId: string, options: Options, callback: AsyncCallback&lt;T&gt;): void | Obtains a KV store of the specified type.| 
+| put(key: string, value: Uint8Array \| string \| number \| boolean, callback: AsyncCallback&lt;void&gt;): void | Inserts and updates data.| 
+| on(event: 'dataChange', type: SubscribeType, listener: Callback&lt;ChangeNotification&gt;): void | Subscribes to data changes in the KV store.| 
+| get(key: string, callback: AsyncCallback&lt;boolean \| string \| number \| Uint8Array&gt;): void | Queries the value of the specified key.| 
+| sync(deviceIds: string[], mode: SyncMode, delayMs?: number): void | Triggers a manual sync of the KV store.| 
 
 
 ## How to Develop
@@ -102,7 +102,7 @@ The following uses a single KV store as an example to describe how to implement 
 > The security level of the destination device (to which data is synced) cannot be higher than that of the source device. For details, see [Access Control Mechanism in Cross-Device Sync](access-control-by-device-and-data-level.md#access-control-mechanism-in-cross-device-sync).
 
 1. Import the module.
-   
+     
    ```ts
    import { distributedKVStore } from '@kit.ArkData';
    ```
@@ -117,7 +117,7 @@ The following uses a single KV store as an example to describe how to implement 
    (1) Create a **kvManagerConfig** object based on the application context.
    (2) Create a **KvManager** instance.
 
-   
+     
    ```ts
    // Obtain the context of the stage model.
    import { window } from '@kit.ArkUI';
@@ -164,7 +164,7 @@ The following uses a single KV store as an example to describe how to implement 
    (1) Declare the ID of the distributed KV store to create, for example, **'storeId'** in the sample code.
    (2) Disable the auto sync function (**autoSync:false**) to facilitate subsequent verification of the sync function. If sync is required, call the **sync()** interface.
 
-   
+     
    ```ts
    let kvStore: distributedKVStore.SingleKVStore | undefined = undefined;
    try {
@@ -219,7 +219,7 @@ The following uses a single KV store as an example to describe how to implement 
    ```
 
 5. Subscribe to distributed data changes. To unsubscribe from the data changes, call [off('dataChange')](../reference/apis-arkdata/js-apis-distributedKVStore.md#offdatachange).
-   
+     
    ```ts
    try {
      kvStore.on('dataChange', distributedKVStore.SubscribeType.SUBSCRIBE_TYPE_ALL, (data) => {
@@ -236,7 +236,7 @@ The following uses a single KV store as an example to describe how to implement 
    (1) Construct the key and value to be written to the single KV store.
    (2) Write KV pairs to the single KV store.
 
-   
+     
    ```ts
    const KEY_TEST_STRING_ELEMENT = 'key_test_string';
    // If schema is not defined, pass in other values that meet the requirements.
@@ -260,7 +260,7 @@ The following uses a single KV store as an example to describe how to implement 
    (1) Construct the key to be queried from the single KV store.
    (2) Query data from the single KV store.
 
-   
+     
    ```ts
    try {
      kvStore.put(KEY_TEST_STRING_ELEMENT, VALUE_TEST_STRING_ELEMENT, (err) => {
@@ -320,4 +320,3 @@ The following uses a single KV store as an example to describe how to implement 
      console.error("createDeviceManager errCode:" + error.code + ",errMessage:" + error.message);
    }
    ```
-

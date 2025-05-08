@@ -8,10 +8,6 @@ If your application only needs to obtain photos or videos taken in real time, it
 
 Given that users are the ones who actively take and confirm the photos, your application does not need to request the permission to operate the camera.
 
-## Constraints
-
-During application debugging, you must call the camera picker in release mode. If it is called in debug mode, an exception occurs.
-
 ## How to Develop
 
 Read [CameraPicker](../../reference/apis-camera-kit/js-apis-cameraPicker.md) for the API reference.

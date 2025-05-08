@@ -27,7 +27,36 @@ AVRecorder支持开发音频或视频单独录制，集成了音频捕获，音�
 
 > 选择只录音频时，与视频相关的所有参数（如videoFrameWidth和videoFrameHeight）均不需要配置。同理，选择只录视频不录音频时，与音频相关的所有参数（如audioBitrate和audioChannels）均不需要配置。
 
+
+开发者通过引入[avrecorder.h](../../reference/apis-media-kit/avrecorder_8h.md)、[avrecorder_base.h](../../reference/apis-media-kit/avrecorder__base_8h.md)和[native_averrors.h](../../reference/apis-avcodec-kit/native__averrors_8h.md)头文件，使用视频录制相关API。
+
 AVRecorder详细的API说明请参考[AVRecorder API参考](../../reference/apis-media-kit/_a_v_recorder.md)。
+
+
+在 CMake 脚本中链接动态库。
+```
+target_link_libraries(entry PUBLIC libavrecorder.so)
+```
+
+使用[OH_AVFormat](../../reference/apis-avcodec-kit/_core.md#oh_avformat)相关接口时，需引入如下头文件。
+```
+#include <multimedia/player_framework/native_avformat.h>
+```
+
+并在 CMake 脚本中链接如下动态库。
+```
+target_link_libraries(entry PUBLIC libnative_media_core.so)
+```
+
+开发者使用系统日志能力时，需引入如下头文件。
+```
+#include <hilog/log.h>
+```
+
+并需要在 CMake 脚本中链接如下动态库。
+```
+target_link_libraries(entry PUBLIC libhilog_ndk.z.so)
+```
 
 1. 创建AVRecorder实例，实例创建完成进入idle状态。
 
@@ -95,7 +124,7 @@ AVRecorder详细的API说明请参考[AVRecorder API参考](../../reference/apis
                   errorCode, errorMsg);
    }
 
-   // 设置生成媒体文件回调（选择AUTO_CREATE时设置）。
+   // 设置生成媒体文件回调（fileGenerationMode选择AUTO_CREATE时设置）。
    void OnUri(OH_AVRecorder *recorder, OH_MediaAsset *asset, void *userData)
    {
       (void)recorder;
@@ -167,7 +196,7 @@ AVRecorder详细的API说明请参考[AVRecorder API参考](../../reference/apis
 
         SetConfig(*config);
 
-        // 1. 设置URL（选择APP_CREATE时设置）。
+        // 1. 设置URL（fileGenerationMode选择APP_CREATE时设置）。
         const std::string AVREORDER_ROOT = "/data/storage/el2/base/files/";
         int32_t outputFd = open((AVREORDER_ROOT + "avrecorder01.mp3").c_str(), O_RDWR | O_CREAT, 0777); // 设置文件名。
         std::string fileUrl = "fd://" + std::to_string(outputFd);
@@ -181,7 +210,7 @@ AVRecorder详细的API说明请参考[AVRecorder API参考](../../reference/apis
         // 错误回调。
         OH_AVRecorder_SetErrorCallback(g_avRecorder, OnError, nullptr);
 
-        // 生成媒体文件回调（选择AUTO_CREATE时设置）。
+        // 生成媒体文件回调（fileGenerationMode选择AUTO_CREATE时设置）。
         OH_LOG_INFO(LOG_APP, "==NDKDemo== OH_AVRecorder_SetUriCallback in!");
         OH_AVErrCode ret = OH_AVRecorder_SetUriCallback(g_avRecorder, OnUri, nullptr);
         OH_LOG_INFO(LOG_APP, "==NDKDemo== OH_AVRecorder_SetUriCallback out!");
@@ -303,7 +332,7 @@ AVRecorder详细的API说明请参考[AVRecorder API参考](../../reference/apis
                   errorCode, errorMsg);
    }
 
-   // 设置生成媒体文件回调（选择AUTO_CREATE时设置）。
+   // 设置生成媒体文件回调（fileGenerationMode选择AUTO_CREATE时设置）。
    void OnUri(OH_AVRecorder *recorder, OH_MediaAsset *asset, void *userData)
    {
       (void)recorder;
@@ -361,7 +390,7 @@ AVRecorder详细的API说明请参考[AVRecorder API参考](../../reference/apis
 
       SetConfig(*config);
 
-      // 1.1 设置URL（选择APP_CREATE时设置）。
+      // 1.1 设置URL（fileGenerationMode选择APP_CREATE时设置）。
       const std::string AVREORDER_ROOT = "/data/storage/el2/base/files/";
       int32_t outputFd = open((AVREORDER_ROOT + "avrecorder01.mp3").c_str(), O_RDWR | O_CREAT, 0777); // 设置文件名。
       std::string fileUrl = "fd://" + std::to_string(outputFd);
@@ -375,7 +404,7 @@ AVRecorder详细的API说明请参考[AVRecorder API参考](../../reference/apis
       // 错误回调。
       OH_AVRecorder_SetErrorCallback(g_avRecorder, OnError, nullptr);
 
-      // 生成媒体文件回调（选择AUTO_CREATE时设置）。
+      // 生成媒体文件回调（fileGenerationMode选择AUTO_CREATE时设置）。
       OH_AVErrCode ret = OH_AVRecorder_SetUriCallback(g_avRecorder, OnUri, nullptr);
       if (ret == AV_ERR_OK) {
          OH_LOG_INFO(LOG_APP, "==NDKDemo==  OH_AVRecorder_SetUriCallback succeed!");

@@ -1,11 +1,11 @@
 # Persisting User Preference Data (C/C++)
 
 ## When to Use
-The **Preferences** module allows quick access to data in KV pairs and storage of a small amount of data for local applications. The data is stored in local files in KV pairs and loaded in memory, which allows for faster access and higher processing efficiency. You can use the APIs provided by the **Preferences** module to store and manage non-relational data, such as KV pairs. It is not suitable for storing data of large volume.
-
+Use the **Preferences** module to store small amounts of data in key-value (KV) format. The data is stored in files and memory for fast access. If a large amount of data needs to be stored, consider using a KV store or RDB store.
 
 ## Constraints
-The C APIs and ArkTS APIs of the **Preferences** module cannot be used together.
+- The C APIs and ArkTS APIs of the **Preferences** module cannot be used together.
+- The maximum key length is 1024 bytes, and the maximum value length is 16 MB.
 
 
 ## Available APIs
@@ -28,7 +28,7 @@ For details about the APIs, see [Preferences](../reference/apis-arkdata/_prefere
 | int OH_Preferences_UnregisterDataObserver (OH_Preferences \*preference, void \*context, OH_PreferencesDataObserver observer, const char \*keys[], uint32_t keyCount) | Unsubscribes from data changes of the specified keys.|
 | int OH_Preferences_IsStorageTypeSupported (Preferences_StorageType type, bool \*isSupported) | Checks whether the specified storage type is supported.|
 | OH_PreferencesOption \* OH_PreferencesOption_Create (void) | Creates an **OH_PreferencesOption** instance and a pointer to it. If this pointer is no longer required, use **OH_PreferencesOption_Destroy** to destroy it. Otherwise, memory leaks may occur.|
-| int OH_PreferencesOption_SetFileName (OH_PreferencesOption \*option, const char \*fileName) | Sets the file name for an **OH_PreferencesOption** instance.|
+| int OH_PreferencesOption_SetFileName (OH_PreferencesOption \*option, const char \*fileName) | Sets the file name for an **OH_PreferencesOption** instance. The file name cannot contain a slash (/) or exceed 255 bytes.|
 | int OH_PreferencesOption_SetBundleName (OH_PreferencesOption \*option, const char \*bundleName) | Sets the bundle name for an OH_PreferencesOption instance.|
 | int OH_PreferencesOption_SetDataGroupId (OH_PreferencesOption \*option, const char \*dataGroupId) | Sets the application group ID for an **OH_PreferencesOption** instance.|
 | int OH_PreferencesOption_SetStorageType (OH_PreferencesOption \*option, Preferences_StorageType type) | Sets the storage type for an **OH_PreferencesOption** instance.|
@@ -61,11 +61,11 @@ libohpreferences.so
 
 ## How to Develop
 The following example shows how to use **Preferences** APIs to modify and persist KV data.
-1. Create a **PreferencesOption** instance and set the name, application group ID, bundle name, and storage type). Use **OH_PreferencesOption_Destroy** to destroy it when this instance is no longer required.
+1. Create a **PreferencesOption** instance and set the name, application group ID, bundle name, and storage type. If the **PreferencesOption** object is no longer required, call **OH_PreferencesOption_Destroy** to destroy it.
 2. Call **OH_Preferences_Open** to open a **Preferences** instance. When the **Preferences** instance is not required, call **OH_Preferences_Close** to close it.
 3. Call **OH_Preferences_RegisterDataObserver** to register a **DataChangeObserverCallback** callback to observe data changes of three keys.
-4. Set KV data in a **Preferences** instance.
-5. Obtain KV data from a **Preferences** instance.
+4. Set KV data in the **Preferences** instance.
+5. Obtain data in the **Preferences** instance.
 6. Call **OH_Preferences_Close** to close the **Preferences** instance and set the instance pointer to null.
 
 ```c
@@ -128,14 +128,14 @@ if (ret != PREFERENCES_OK) {
 }
 
 // Set the storage type for the PreferencesOption instance. Before the setting, call OH_Preferences_IsStorageTypeSupported to check whether the storage type is supported.
-bool isClkvSupported = false;
-ret = OH_Preferences_IsStorageTypeSupported(Preferences_StorageType::PREFERENCES_STORAGE_CLKV, &isClkvSupported);
+bool isGskvSupported = false;
+ret = OH_Preferences_IsStorageTypeSupported(Preferences_StorageType::PREFERENCES_STORAGE_GSKV, &isGskvSupported);
 if (ret != PREFERENCES_OK) {
     (void)OH_PreferencesOption_Destroy(option);
     // Error handling.
 }
-if (isClkvSupported) {
-    ret = OH_PreferencesOption_SetStorageType(option, Preferences_StorageType::PREFERENCES_STORAGE_CLKV);
+if (isGskvSupported) {
+    ret = OH_PreferencesOption_SetStorageType(option, Preferences_StorageType::PREFERENCES_STORAGE_GSKV);
     if (ret != PREFERENCES_OK) {
         (void)OH_PreferencesOption_Destroy(option);
         // Error handling.

@@ -183,7 +183,7 @@ The entity does not exist.
 
 **错误信息**
 
-System external error.
+Device environment or input parameter abnormal.
 
 **可能原因**
 

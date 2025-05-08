@@ -16,7 +16,7 @@ Before reading this topic, you are advised to read [\@State](./arkts-state.md) t
 
 ## Overview
 
-An application can request to be notified whenever the value of the \@Watch decorated variable changes. The \@Watch callback is called when the value change has occurred. \@Watch uses strict equality (===) to determine whether a value is updated in the ArkUI framework. If **false** is returned, the \@Watch callback is triggered.
+An application can request to be notified whenever the value of the \@Watch decorated variable changes. The \@Watch callback is called when the value change has occurred. \@Watch uses strict equality (===) to determine whether a value is updated in the ArkUI framework. If **false** is return, the \@Monitor decorated callback is triggered.
 
 
 ## Decorator Description

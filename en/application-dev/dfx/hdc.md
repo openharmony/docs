@@ -177,23 +177,23 @@ When multiple devices are connected, use the **-t** parameter to specify the tar
    ```
 
    **Parameters**
-| Name| Description|
-| -------- | -------- |
-| connect-key| Device ID, which is the return value of the **hdc list targets** command.|
-| command | Command to be executed.|
+   | Name| Description|
+   | -------- | -------- |
+   | connect-key| Device ID, which is the return value of the **hdc list targets** command.|
+   | command | Command to be executed.|
 
    > **NOTE**
    >
    > The *connect-key* uniquely identifies a device. If the device is connected over the network, the *connect-key* is the IP address and port number. If the device is connected through USB, the *connect-key* is the USB SN.
 
    **Return value**
-| Return Value| Description|
-| -------- | -------- |
-| Command output| Command execution result, which may vary with the command.|
-| [Fail]Not match target founded, check connect-key please | No device matches the *connect-key*.|
-| [Fail]Device not founded or connected | The device is not found or connected.|
-| [Fail]ExecuteCommand need connect-key? please confirm a device by help info | You must specify one device if there are multiple devices available.|
-| Unknown operation command... | The command is not supported.|
+   | Return Value| Description|
+   | -------- | -------- |
+   | Command output| Command execution result, which may vary with the command.|
+   | [Fail]Not match target founded, check connect-key please | No device matches the *connect-key*.|
+   | [Fail]Device not founded or connected | The device is not found or connected.|
+   | [Fail]ExecuteCommand need connect-key? please confirm a device by help info | You must specify one device if there are multiple devices available.|
+   | Unknown operation command... | The command is not supported.|
 
    > **NOTE**
    >
@@ -218,9 +218,9 @@ Run the following commands:
    ```
 
    **Return value**
-| Return Value| Description|
-| -------- | -------- |
-| None| The **hdc wait** command ends when a properly connected device is identified.|
+   | Return Value| Description|
+   | -------- | -------- |
+   | None| The **hdc wait** command ends when a properly connected device is identified.|
 
    **Usage**
 
@@ -461,29 +461,29 @@ You are advised to enable or disable the USB debugging and network debugging on 
 
 ## Running the Interactive Command
 
-The command format is as follows:
+Run the following commands:
 
    ```shell
    hdc shell [-b bundlename] [command]
    ```
 
    **Parameters**
-| Parameter| Description|
-| -------- | -------- |
-| [-b _bundlename_] | The bundle name of a debug application. The command is executed in non-interactive mode in the data directory of the debug application.<br>Currently, this parameter can be used only in non-interactive mode, and the **command** parameter must be specified to enter an interactive shell session.<br>Otherwise, commands are executed in the system root directory by default.|
-| [command] | A single command to execute on the device. The command varies depending on the system type or version. You can run the **hdc shell ls /system/bin** command to obtain the supported command list. Currently, many commands are provided by [toybox](../tools/toybox.md). You can run the **hdc shell toybox --help** command to obtain the help information.<br>If this parameter is not specified, hdc starts an interactive shell session, in which you can enter commands such as **ls**, **cd**, and **pwd** at the command prompt.|
+   | Parameter| Description|
+   | -------- | -------- |
+   | [-b _bundlename_] | The bundle name of a debug application. The command is executed in non-interactive mode in the data directory of the debug application.<br>Currently, this parameter can be used only in non-interactive mode, and the **command** parameter must be specified to enter an interactive shell session.<br>Otherwise, commands are executed in the system root directory by default.|
+   | [command] | A single command to execute on the device. The command varies depending on the system type or version. You can run the **hdc shell ls /system/bin** command to obtain the supported command list. Currently, many commands are provided by [toybox](../tools/toybox.md). You can run the **hdc shell toybox --help** command to obtain the help information.<br>If this parameter is not specified, hdc starts an interactive shell session, in which you can enter commands such as **ls**, **cd**, and **pwd** at the command prompt.|
 
    **Return value**
-| Return Value| Description|
-| -------- | -------- |
-| Command execution result| Execution result of the command. For details, see the corresponding command output.|
-| /bin/sh: XXX : inaccessible or not found | The specified command is not supported.|
-| [Fail]Error information| The execution fails. For details, see [hdc Error Codes](#hdc-error-codes).|
+   | Return Value| Description|
+   | -------- | -------- |
+   | Command execution result| Execution result of the command. For details, see the corresponding command output.|
+   | /bin/sh: XXX : inaccessible or not found | The specified command is not supported.|
+   | [Fail]Error information| The execution fails. For details, see [hdc Error Codes](#hdc-error-codes).|
 
    **Usage**
 
    ```shell
-   # Enter the interactive mode to run a commands
+   # Enter the interactive mode to run a command.
    hdc shell
 
    # Run the command in non-interactive mode.
@@ -799,7 +799,7 @@ Port forwarding type supported by the device: TCP, DEV, localabstract, localfile
    **Return value**
    | Return Value| Description|
    | -------- | -------- |
-   | Connect server failed | Fails to connect to the server.|
+   | Connect server failed | Fails to connect to the server.| 
 
    **Usage**
 
@@ -1055,7 +1055,7 @@ Port forwarding type supported by the device: TCP, DEV, localabstract, localfile
 
 ### Server Logs
 
-#### Log level
+#### Log Level
 
 Specify the hdc log level. The default value is **LOG_INFO**. 
 
@@ -1064,10 +1064,10 @@ Specify the hdc log level. The default value is **LOG_INFO**.
    ```
 
    **Parameters**
-| Parameter| Description|
-| -------- | -------- |
-| [level] | Log level.<br>0: LOG_OFF<br>1: LOG_FATAL<br>2: LOG_WARN<br>3: LOG_INFO<br>4: LOG_DEBUG<br>5: LOG_ALL<br>6: LOG_LIBUSB|
-| command | Command to be executed.|
+   | Parameter| Description|
+   | -------- | -------- |
+   | [level] | Log level.<br>0: LOG_OFF<br>1: LOG_FATAL<br>2: LOG_WARN<br>3: LOG_INFO<br>4: LOG_DEBUG<br>5: LOG_ALL<br>6: LOG_LIBUSB|
+   | command | Command to be executed.|
 
    > **NOTE**
    >
@@ -1075,10 +1075,10 @@ Specify the hdc log level. The default value is **LOG_INFO**.
    > 2. You can change only the log levels of the current client and server processes.
 
    **Return value**
-| Return Value| Description|
-| -------- | -------- |
-| Command output| Command execution result, which may vary with the command.|
-| Log information| Logs of the specified level.|
+   | Return Value| Description|
+   | -------- | -------- |
+   | Command output| Command execution result, which may vary with the command.|
+   | Log information| Logs of the specified level.|
 
    **Usage**
 
@@ -1117,28 +1117,17 @@ hdc -l5 start
 
 The collected logs are stored in the following path.
 
-| OS| Path<br>(Version 3.1.0c or later)| Path<br>(Versions earlier than 3.1.0c)| Remarks|
-| -------- | -------- | -------- | -------- |
-| Windows | %temp%\hdc_logs | %temp% | The following are examples. Replace *Username* with the actual one.<br>**C:\Users\Username\AppData\Local\Temp\hdc_logs** (Version 3.1.0c or later)<br>**C:\Users\Username\AppData\Local\Temp** (Versions earlier than 3.1.0c)|
-| Linux | /tmp/hdc_logs | /tmp | - |
-| macOS| $TMPDIR/hdc_logs | $TMPDIR | - |
-
-The hdc_logs folder contains the following types of logs:
-
-|Type| Name Format| Function| Remarks|
-| -------- | -------- | -------- | -------- |
-| Real-time log| hdc.log | Records hdc server logs in real time.| Each time the hdc server is restarted, the original log is renamed and a new **hdc.log** file is recorded.|
-| Temporary historical log| hdc-%Y%m%d-%H%M%S.log | Dumps intermediate files generated during historical log archiving.| For example, **16:18:57.921 on September 19, 2024** is recorded as<br>**20240919-161857921**.<br>The temporary log file is stored in the format of **hdc-20240919-161857921.log**.|
-| Archived historical logs| hdc-%Y%m%d-%H%M%S.log.tgz | Compresses and stores historical logs.| The archive file is a compressed file of the **.tgz** type. You can use a decompression tool to obtain the file.<br>For example, if the name of a temporary historical log file is **hdc-20240919-161857921.log**,<br>the name of the corresponding archived historical log file is **hdc-20240919-161857921.log.tgz**.<br>After an archived historical log file is generated, the corresponding temporary historical log file is automatically deleted.|
-| Temporary real-time log| .hdc.cache.log | Records temporary caches generated by real-time logs.| |
+| OS| Path| Remarks|
+| -------- | -------- | -------- |
+| Windows | %temp% | Example: **C:\Users\Username\AppData\Local\Temp**.<br>Replace *Username* with the actual one.|
+| Linux | /tmp | - |
+| macOS| $TMPDIR | - |
 
 Log-related environment variables
 
 | Environment Variable            | Default Value| Description                            |
 |--------------------|-----|--------------------------------|
 | OHOS_HDC_LOG_LEVEL | 5   | The log level of the server process.<br>For details, see [Server Logs](#server-logs). |
-| OHOS_HDC_LOG_LIMIT | 300 | The threshold of the number of log entries.<br>When the number of log entries exceeds the threshold,<br>the system automatically starts the log deletion mechanism<br>to optimize the log storage space.<br>In the current system, the upper limit of the log storage space is 3 GB,<br>which cannot be adjusted.|
-
 
 Configure environment variables as follows:
 
@@ -1156,8 +1145,8 @@ Enable HiLog to obtain the corresponding logs.
 
 ```shell
 hdc shell hilog -w start                             // Enable the function of storing HiLog logs.
-hdc shell ls /data/log/hilog                     // View the stored HilLog logs.
-hdc file recv /data/log/hilog                  // Obtain the stored HilLog logs (including kernel logs).
+hdc shell ls /data/log/hilog                     // View the stored HiLog logs.
+hdc file recv /data/log/hilog                  // Obtain the stored HiLog logs (including kernel logs).
 ```
 
 ## FAQs
@@ -1346,7 +1335,7 @@ The **hdc.exe**/hdc binary file cannot be executed using the CLI.
 
 1. Run the **hdc list targets** command.
 2. Check whether **HDC Device** exists in **Device Manager**.
-3. Run the **hdc kill** command to terminate the server, and then run the **hdc -l5 start** command to collect logs. (The **hdc.log** file is stored in the **hdc_logs** folder of the **TEMP** directory on the execution end. The directory location varies with the OS. For details, see [Server Logs](#server-logs).)
+3. Run the **hdc kill** command to terminate the server, and then run the **hdc -l5 start** command to collect logs. (The **hdc.log** file is stored in the **TEMP** directory on the execution end. The directory location varies with the OS. For details, see [Server Logs](#server-logs).)
 4. Locate the problem based on the **hdc.log** file.
 
 ## hdc Error Codes

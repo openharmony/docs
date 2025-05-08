@@ -1,8 +1,6 @@
 # 使用AES对称密钥（GCM模式）分段加解密(C/C++)
 
-
 对应的算法规格请查看[对称密钥加解密算法规格：AES](crypto-sym-encrypt-decrypt-spec.md#aes)。
-
 
 ## 在CMake脚本中链接相关动态库
 ```txt
@@ -42,7 +40,6 @@ target_link_libraries(entry PUBLIC libohcrypto.so)
    > 在GCM模式下，final会返回authTag，作为解密时初始化的认证信息，需要保存。
    > 在GCM模式下，算法库当前只支持16字节的authTag，作为解密时初始化的认证信息。示例中authTag恰好为16字节。
 
-
 **解密**
 
 1. 调用[OH_CryptoSymCipher_Create](../../reference/apis-crypto-architecture-kit/_crypto_sym_cipher_api.md#oh_cryptosymcipher_create)，指定字符串参数'AES128|GCM|PKCS7'，创建对称密钥类型为AES128、分组模式为GCM、填充模式为PKCS7的Cipher实例，用于完成解密操作。
@@ -60,7 +57,6 @@ target_link_libraries(entry PUBLIC libohcrypto.so)
 **销毁对象**
 
 调用[OH_CryptoSymKeyGenerator_Destroy](../../reference/apis-crypto-architecture-kit/_crypto_sym_key_api.md#oh_cryptosymkeygenerator_destroy)、[OH_CryptoSymCipher_Destroy](../../reference/apis-crypto-architecture-kit/_crypto_sym_cipher_api.md#oh_cryptosymcipher_destroy)、[OH_CryptoSymCipherParams_Destroy](../../reference/apis-crypto-architecture-kit/_crypto_sym_cipher_api.md#oh_cryptosymcipherparams_destroy)销毁各对象。
-
 
 - 示例：
 
@@ -84,7 +80,7 @@ static OH_Crypto_ErrCode doTestAesGcmSeg()
 
     uint8_t aad[8] = {1, 2, 3, 4, 5, 6, 7, 8};
     uint8_t tagArr[16] = {0};
-    uint8_t iv[12] = {1, 2, 4, 12, 3, 4, 2, 3, 3, 2, 0, 4}; // iv使用安全随机数生成
+    uint8_t iv[12] = {1, 2, 4, 12, 3, 4, 2, 3, 3, 2, 0, 4}; // iv使用安全随机数生成。
     Crypto_DataBlob tag = {.data = nullptr, .len = 0};
     Crypto_DataBlob ivBlob = {.data = iv, .len = sizeof(iv)};
     Crypto_DataBlob aadBlob = {.data = aad, .len = sizeof(aad)};
@@ -95,18 +91,18 @@ static OH_Crypto_ErrCode doTestAesGcmSeg()
     int blockSize = 20;
     int32_t randomLen = strlen(plainText);
     Crypto_DataBlob cipherBlob;
-    // 加密变量定义
+    // 加密变量定义。
     int cnt = randomLen / blockSize;
     int rem = randomLen % blockSize;
     uint8_t cipherText[OH_CRYPTO_MAX_TEST_DATA_LEN] = {0};
 
-    // 解密变量定义
+    // 解密变量定义。
     int decCnt = cipherLen / blockSize;
     int decRem = cipherLen % blockSize;
     int32_t plantLen = 0;
     uint8_t plantText[OH_CRYPTO_MAX_TEST_DATA_LEN] = {0};
     
-    // 生成密钥
+    // 生成密钥。
     OH_Crypto_ErrCode ret;
     ret = OH_CryptoSymKeyGenerator_Create("AES128", &genCtx);
     if (ret != CRYPTO_SUCCESS) {
@@ -117,7 +113,7 @@ static OH_Crypto_ErrCode doTestAesGcmSeg()
         goto end;
     }
     
-    // 设置参数
+    // 设置参数。
     ret = OH_CryptoSymCipherParams_Create(&params);
     if (ret != CRYPTO_SUCCESS) {
         goto end;
@@ -135,7 +131,7 @@ static OH_Crypto_ErrCode doTestAesGcmSeg()
         goto end;
     }
     
-    // 加密
+    // 加密。
     ret = OH_CryptoSymCipher_Create("AES128|GCM|PKCS7", &encCtx);
     if (ret != CRYPTO_SUCCESS) {
         goto end;
@@ -169,7 +165,7 @@ static OH_Crypto_ErrCode doTestAesGcmSeg()
         goto end;
     }
 
-    // 解密
+    // 解密。
     cipherBlob = {.data = reinterpret_cast<uint8_t *>(cipherText), .len = (size_t)cipherLen};
     ret = OH_CryptoSymCipher_Create("AES128|GCM|PKCS7", &decCtx);
     if (ret != CRYPTO_SUCCESS) {

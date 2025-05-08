@@ -3,7 +3,7 @@
 
 ## Overview
 
-Provides the system capability for implementing process access control.
+Provides the system capability for implementing application access control.
 
 **Since**: 12
 
@@ -15,14 +15,14 @@ Provides the system capability for implementing process access control.
 
 | Name| Description|
 | -------- | -------- |
-| [ability_access_control.h](ability__access__control_8h.md) | Declares the APIs for implementing process access control. |
+| [ability_access_control.h](ability__access__control_8h.md) | Declares the APIs for implementing application access control. |
 
 
 ### Functions
 
 | Name| Description|
 | -------- | -------- |
-| bool [OH_AT_CheckSelfPermission](#oh_at_checkselfpermission)(const char \*permission) | Checks whether the specified permission is granted to the application. |
+| bool [OH_AT_CheckSelfPermission](#oh_at_checkselfpermission)(const char \*permission) | Checks whether a permission is granted to this application. |
 
 
 ## Function Description
@@ -34,8 +34,7 @@ Provides the system capability for implementing process access control.
 bool OH_AT_CheckSelfPermission(const char* permission)
 ```
 **Description**
-
-Checks whether the specified permission is granted to the application.
+Checks whether a permission is granted to this application.
 
 **Since**: 12
 
@@ -43,7 +42,7 @@ Checks whether the specified permission is granted to the application.
 
 | Name| Description|
 | -------- | -------- |
-| permission | Permission to check. For details about the permissions, see the application permission list. |
+| permission | Pointer to the permission to check. For details about the permission, see the application permission list. |
 
 **Returns**
 

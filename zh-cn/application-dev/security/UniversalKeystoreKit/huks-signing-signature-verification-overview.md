@@ -1,8 +1,6 @@
 # 签名/验签介绍及算法规格
 
-
 为实现数据完整性保护和防抵赖，可使用生成/导入的密钥，对数据进行签名验签操作。
-
 
 ## 支持的算法
 
@@ -20,13 +18,13 @@
 | RSA/NoDigest/PKCS1_V1_5 | NoDigest需要指定TAG HuksKeyDigest.HUKS_DIGEST_NONE。由业务对明文做哈希，再将哈希后的数据传入，哈希后的数据长度必须满足RSA签名验签支持的摘要算法规格。 | 9+ | 是 |
 | <!--DelRow-->DSA/SHA1<br/>DSA/SHA224<br/>DSA/SHA256<br/>DSA/SHA384<br/>DSA/SHA512 | - | 8+ | 否 |
 | <!--DelRow-->DSA/NoDigest | NoDigest需要指定TAG HuksKeyDigest.HUKS_DIGEST_NONE。 | 9+ | 否 |
-| <!--DelRow-->ECC/SHA1<br/>ECC/SHA224 | - | 8+ | 否 |
-| ECC/SHA256<br/>ECC/SHA384<br/>ECC/SHA512 | ECC算法支持的椭圆曲线函数包括：P-256、P-384、P-521 | 8+ | 是 |
-| <!--DelRow-->ECC/NoDigest | NoDigest需要指定TAG HuksKeyDigest.HUKS_DIGEST_NONE。 | 9+ | 否 |
+| <!--DelRow-->ECC/SHA1<br/>ECC/SHA224 | 签名是ASN1格式。 | 8+ | 否 |
+| ECC/SHA256<br/>ECC/SHA384<br/>ECC/SHA512 | 签名是ASN1格式。<br/>ECC算法支持的椭圆曲线函数包括：P-256、P-384、P-521。 | 8+ | 是 |
+| <!--DelRow-->ECC/NoDigest | 签名是ASN1格式。<br/>NoDigest需要指定TAG HuksKeyDigest.HUKS_DIGEST_NONE。 | 9+ | 否 |
 | ED25519/NoDigest | NoDigest需要指定TAG HuksKeyDigest.HUKS_DIGEST_NONE。 | 8+ | 是 |
-| SM2/SM3 | - | 9+ | 是 |
+| SM2/SM3 | 签名是ASN1格式。 | 9+ | 是 |
 
-**轻设备设备规格**
+**轻设备规格**
 
 <!--Del-->
 轻量级设备所列规格，OEM厂商将基于实际情况决定是否实现，如需使用，请查阅具体厂商提供的说明，确保规格支持再使用。
@@ -37,3 +35,5 @@
 | RSA/SHA256/PKCS1_V1_5 | - | 12+ |
 | RSA/SHA256/PSS | - | 12+ |
 | RSA/SHA1/ISO_IEC_9796_2 | 数据最小长度=密钥长度-21字节 | 12+ |
+
+<!--RP1--><!--RP1End-->

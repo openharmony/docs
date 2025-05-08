@@ -40,7 +40,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 401 | If the input parameter invalid. Possible causes: <br>1.Incorrect parameter types; <br>2.Parameter verification failed.                 |
+| 401 | If the input parameter invalid. Possible causes: 1.Incorrect parameter types; 2.Parameter verification failed.                 |
 
 **Example**
   ```js
@@ -82,7 +82,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 401 | If the input parameter invalid. Possible causes: <br>1.Incorrect parameter types; <br>2.Parameter verification failed.                 |
+| 401 | If the input parameter invalid. Possible causes: 1.Incorrect parameter types; 2.Parameter verification failed.                 |
 
 **Example**
   ```js
@@ -122,4 +122,4 @@ type SendableResource = _SendableResource
 
 | Type        | Description    |
 | ---------- | ------ | 
-| [_SendableResource](sendableResource.md#sendableresource-1)|Defines a **SendableResource** object.|
+| [_SendableResource](js-apis-sendableResource.md#sendableresource-1)|Defines a **SendableResource** object.|

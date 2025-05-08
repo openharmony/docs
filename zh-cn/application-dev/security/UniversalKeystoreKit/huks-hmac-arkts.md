@@ -1,9 +1,6 @@
 # HMAC(ArkTS)
 
-
 HMAC是密钥相关的哈希运算消息认证码（Hash-based Message Authentication Code）。具体的场景介绍及支持的算法规格，请参考[HMAC介绍与算法规格](huks-hmac-overview.md)。
-
-
 
 ## 开发步骤
 
@@ -26,7 +23,6 @@ HMAC是密钥相关的哈希运算消息认证码（Hash-based Message Authentic
 3. 调用[initSession](../../reference/apis-universal-keystore-kit/js-apis-huks.md#huksinitsession9)初始化密钥会话，并获取会话的句柄handle。
 
 4. 调用[finishSession](../../reference/apis-universal-keystore-kit/js-apis-huks.md#huksfinishsession9)结束密钥会话，获取哈希后的数据。
-
 
 ```ts
 /*

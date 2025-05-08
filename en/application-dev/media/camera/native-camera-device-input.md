@@ -108,7 +108,7 @@ Read [Camera](../../reference/apis-camera-kit/_o_h___camera.md) for the API refe
 
 
    ```c++
-   // Obtain the output streams supported by the camera device.
+   // Obtain the output stream capability supported by the camera.
    Camera_OutputCapability* cameraOutputCapability = nullptr;
    const Camera_Profile* previewProfile = nullptr;
    const Camera_Profile* photoProfile = nullptr;

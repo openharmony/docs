@@ -5,7 +5,6 @@
 ECC的算法规格请查看[非对称密钥生成和转换规格：ECC](crypto-asym-key-generation-conversion-spec.md#ecc)。  
 通过传入字符串参数format，可指定需要获取的ECC公钥数据格式。如果需要获取满足X509规范的压缩格式数据，则指定format为："X509|COMPRESSED"；需要获取非压缩格式，则指定format为："X509|UNCOMPRESSED"。
 
-
 ##  指定非压缩公钥数据转换为压缩公钥数据
 
 1. 指定Uint8Array类型的ECC非压缩公钥数据，封装成DataBlob对象。
@@ -23,6 +22,6 @@ async function eccPubUncompressedToCompressed() {
   let generator = cryptoFramework.createAsyKeyGenerator('ECC_BrainPoolP256r1');
   let keyPair = await generator.convertKey(pubKeyBlob, null);
   let returnBlob = keyPair.pubKey.getEncodedDer('X509|COMPRESSED');
-  console.info('returnBlob data：' + returnBlob.data);
+  console.info('returnBlob data:' + returnBlob.data);
 }
 ```

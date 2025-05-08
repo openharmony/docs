@@ -35,6 +35,8 @@ Only the [GridItem](ts-container-griditem.md) child component is allowed, with s
 
 Grid(scroller?: Scroller, layoutOptions?: GridLayoutOptions)
 
+Creates a **Grid** component.
+
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
@@ -43,16 +45,14 @@ Grid(scroller?: Scroller, layoutOptions?: GridLayoutOptions)
 
 | Name  | Type                                   | Mandatory| Description                                                    |
 | -------- | ------------------------------------------- | ---- | ------------------------------------------------------------ |
-| scroller | [Scroller](ts-container-scroll.md#scroller) | No  | Controller, which can be bound to scrollable components.<br>**NOTE**<br>The scroller cannot be bound to other scrollable components, such as [List](ts-container-list.md), [Grid](ts-container-grid.md), or [Scroll](ts-container-scroll.md).|
+| scroller | [Scroller](ts-container-scroll.md#scroller) | No  | Controller, which can be bound to scrollable components.<br>**NOTE**<br>The scroller cannot be bound to other scrollable components, such as [ArcList](ts-container-arclist.md), [List](ts-container-list.md), [Grid](ts-container-grid.md), or [Scroll](ts-container-scroll.md).|
 | layoutOptions<sup>10+</sup> | [GridLayoutOptions](#gridlayoutoptions10) | No| Grid layout options.|
 
 ## GridLayoutOptions<sup>10+</sup>
 
-**Atomic service API**: This API can be used in atomic services since API version 11.
+Defines the grid layout options. In this API, **irregularIndexes** and **onGetIrregularSizeByIndex** can be used for grids where either **rowsTemplate** or **columnsTemplate** is set. These properties allow you to specify an index array and set the number of rows and columns to be occupied by a grid item at the specified index. For details about the usage, see [Example 3](#example-3-implementing-a-scrollable-grid-with-grid-items-spanning-rows-and-columns). On the other hand, **onGetRectByIndex** can be used for grids where both **rowsTemplate** and **columnsTemplate** are set. It allows you to specify the position and size for the grid item at the specified index. For details about the usage, see [Example 1](#example-1-creating-a-fixed-row-and-column-grid-layout).
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
-
-Defines the layout options. In this API, **irregularIndexes** and **onGetIrregularSizeByIndex** can be used for grids where either **rowsTemplate** or **columnsTemplate** is set. You can specify an index array and set the number of rows and columns to be occupied by a grid item with the specified index. For details, see Example 3. **onGetRectByIndex** can be used for grids where both **rowsTemplate** and **columnsTemplate** are set. It specifies the position and size for the grid item with the specified index. For details, see Example 1.
 
 | Name   | Type     | Mandatory  | Description                   |
 | ----- | ------- | ---- | --------------------- |
@@ -63,7 +63,7 @@ Defines the layout options. In this API, **irregularIndexes** and **onGetIrregul
 
 ## Attributes
 
-In addition to [universal attributes](ts-universal-attributes-size.md) and [scrollable component common attributes](ts-container-scrollable-common.md#attributes), the following attributes are also supported.
+In addition to [universal attributes](ts-component-general-attributes.md) and [scrollable component common attributes](ts-container-scrollable-common.md#attributes), the following attributes are also supported.
 
 ### columnsTemplate
 
@@ -82,7 +82,7 @@ For example, **'1fr 1fr 2fr'** indicates three columns, with the first column ta
 **repeat**, **auto-fit**, **auto-fill**, and **auto-stretch** are keywords. **track-size** indicates the column width, in the unit of px, vp (default), %, or any valid digit. The value must be greater than or equal to one valid column width.<br>
 In **auto-stretch** mode, **track-size** must be a valid column width value, in the unit of px, vp, or any valid digit; percentage values (%) are not supported.
 
-For visual reference, see [Example 8](#example-8).
+For details about the effect, see [Example 8](#example-8-using-adaptive-column-count-settings).
 
 If this attribute is set to **'0fr'**, the column width is 0, and grid item in the column is not displayed. If this attribute is set to any other invalid value, the grid item is displayed as one column.
 
@@ -170,7 +170,7 @@ Sets the gap between columns. A value less than 0 evaluates to the default value
 
 | Name| Type                        | Mandatory| Description                        |
 | ------ | ---------------------------- | ---- | ---------------------------- |
-| value  | [Length](ts-types.md#length) | Yes  | Gap between columns.<br>Default value: **0**|
+| value  | [Length](ts-types.md#length) | Yes  | Gap between columns.<br>Default value: **0**<br>Value range: [0, +∞).|
 
 ### rowsGap
 
@@ -186,7 +186,7 @@ Sets the gap between rows. A value less than 0 evaluates to the default value.
 
 | Name| Type                        | Mandatory| Description                        |
 | ------ | ---------------------------- | ---- | ---------------------------- |
-| value  | [Length](ts-types.md#length) | Yes  | Gap between rows.<br>Default value: **0**|
+| value  | [Length](ts-types.md#length) | Yes  | Gap between rows.<br>Default value: **0**<br>Value range: [0, +∞).|
 
 ### scrollBar
 
@@ -218,7 +218,7 @@ Sets the scrollbar color.
 
 | Name| Type                                                        | Mandatory| Description          |
 | ------ | ------------------------------------------------------------ | ---- | -------------- |
-| value  | [Color](ts-appendix-enums.md#color) \| number \| string | Yes  | Scrollbar color.<br>Default value: **'\#182431'** (40% opacity)|
+| value  | [Color](ts-appendix-enums.md#color) \| number \| string | Yes  | Scrollbar color.<br>Default value: **'\#182431'** (40% opacity)<br>A number value indicates a HEX color in RGB or ARGB format, for example, **0xffffff**. A string value indicates a color in RGB or ARGB format, for example, **'#ffffff'**.|
 
 ### scrollBarWidth
 
@@ -234,13 +234,13 @@ Sets the scrollbar width. This attribute cannot be set in percentage. After the 
 
 | Name| Type                      | Mandatory| Description                                     |
 | ------ | -------------------------- | ---- | ----------------------------------------- |
-| value  | number \| string | Yes  | Scrollbar width.<br>Default value: **4**<br>Unit: vp|
+| value  | number \| string | Yes  | Scrollbar width.<br>Default value: **4**<br>Unit: vp<br>If this parameter is set to a value less than or equal to 0, the default value is used. The value **0** means not to show the scrollbar.|
 
 ### cachedCount
 
 cachedCount(value: number)
 
-Sets the number of grid items to be cached (preloaded). It works only in [LazyForEach](../../../quick-start/arkts-rendering-control-lazyforeach.md) and [Repeat](../../../quick-start/arkts-new-rendering-control-repeat.md) with the **virtualScroll** option enabled. A value less than 0 evaluates to the default value. <!--Del-->For details, see [Minimizing White Blocks During Swiping](../../../performance/arkts-performance-improvement-recommendation.md#minimizing-white-blocks-during-swiping).<!--DelEnd-->
+Sets the number of grid items to be cached (preloaded). It works only in [LazyForEach](../../../quick-start/arkts-rendering-control-lazyforeach.md) and [Repeat](../../../quick-start/arkts-new-rendering-control-repeat.md) with the **virtualScroll** option enabled. <!--Del-->For details, see [Minimizing White Blocks During Swiping](../../../performance/arkts-performance-improvement-recommendation.md#minimizing-white-blocks-during-swiping).<!--DelEnd-->
 
 The number of the grid items to be cached before and after the currently displayed one equals the value of **cachedCount** multiplied by the number of columns.
 
@@ -252,9 +252,9 @@ In [LazyForEach](../../../quick-start/arkts-rendering-control-lazyforeach.md) an
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description                                  |
-| ------ | ------ | ---- | -------------------------------------- |
-| value  | number | Yes  | Number of grid items to be cached (preloaded).<br>Default value: **1**|
+| Name| Type  | Mandatory| Description                                                        |
+| ------ | ------ | ---- | ------------------------------------------------------------ |
+| value  | number | Yes  | Number of grid items to be cached (preloaded).<br>Default value: the number of rows visible on the screen for vertical scrolling, or the number of columns visible on the screen for horizontal scrolling. The maximum value is 16.<br>Value range: [0, +∞).<br>Values less than 0 are treated as **1**.|
 
 ### cachedCount<sup>14+</sup>
 
@@ -262,7 +262,7 @@ cachedCount(count: number, show: boolean)
 
 Sets the number of grid items to be cached (preloaded) and specifies whether to display the preloaded nodes.
 
-The number of the grid items to be preloaded before and after the currently displayed one equals the value of **cachedCount** multiplied by the number of columns. This attribute can be combined with the [clip](ts-universal-attributes-sharp-clipping.md#clip12) or [content clipping](ts-container-scrollable-common.md#clipcontent14) attributes to display the preloaded nodes.
+The number of the grid items to be cached before and after the currently displayed one equals the value of **cachedCount** multiplied by the number of columns. This attribute can be combined with the [clip](ts-universal-attributes-sharp-clipping.md#clip12) or [content clipping](ts-container-scrollable-common.md#clipcontent14) attributes to display the preloaded nodes.
 
 **Atomic service API**: This API can be used in atomic services since API version 14.
 
@@ -272,8 +272,8 @@ The number of the grid items to be preloaded before and after the currently disp
 
 | Name| Type  | Mandatory| Description                                  |
 | ------ | ------ | ---- | -------------------------------------- |
-| count  | number | Yes  | Number of grid items to be preloaded.<br>Default value: **1**|
-| show  | boolean | Yes  | Whether to display the preloaded nodes.<br> Default value: **false**|
+| count  | number | Yes  | Number of grid items to be cached (preloaded).<br>Default value: the number of rows visible on the screen for vertical scrolling, or the number of columns visible on the screen for horizontal scrolling. The maximum value is 16.<br>Value range: [0, +∞).<br>Values less than 0 are treated as **1**.|
+| show  | boolean | Yes  | Whether to display the preloaded nodes.<br> Default value: **false** (the preloaded nodes are not displayed).|
 
 ### editMode<sup>8+</sup>
 
@@ -289,13 +289,13 @@ Sets whether to enable edit mode. In edit mode, the user can drag the [grid item
 
 | Name| Type  | Mandatory| Description                                    |
 | ------ | ------ | ---- | ---------------------------------------- |
-| value  | boolean | Yes  | Whether to enable edit mode.<br>Default value: **false**|
+| value  | boolean | Yes  | Whether to enable edit mode.<br>Default value: **false** (the edit mode is disabled).|
 
 ### layoutDirection<sup>8+</sup>
 
 layoutDirection(value: GridDirection)
 
-Sets the main axis direction of the grid.
+Sets the main axis layout direction of the grid.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -305,7 +305,7 @@ Sets the main axis direction of the grid.
 
 | Name| Type                                    | Mandatory| Description                                          |
 | ------ | ---------------------------------------- | ---- | ---------------------------------------------- |
-| value  | [GridDirection](#griddirection8) | Yes  | Main axis direction of the grid.<br>Default value: **GridDirection.Row**|
+| value  | [GridDirection](#griddirection8) | Yes  | Main axis layout direction of the grid.<br>Default value: **GridDirection.Row**|
 
 ### maxCount<sup>8+</sup>
 
@@ -339,6 +339,8 @@ When **layoutDirection** is **Row** or **RowReverse**, the value indicates the m
 
 When **layoutDirection** is **Column** or **ColumnReverse**, the value indicates the minimum number of rows that can be displayed.
 
+If the value of **minCount** is greater than that of **maxCount**, both **minCount** and **maxCount** are treated as using their default values.
+
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
@@ -367,13 +369,13 @@ When **layoutDirection** is **Column** or **ColumnReverse**, the value indicates
 
 | Name| Type  | Mandatory| Description                                                   |
 | ------ | ------ | ---- | ------------------------------------------------------- |
-| value  | number | Yes  | Height per row or width per column.<br>Default value: size of the first element<br>Unit: vp|
+| value  | number | Yes  | Height per row or width per column.<br>Default value: size of the first element<br>Unit: vp<br>Value range: [0, +∞).<br>If a value less than 0 is set, the default value is used.|
 
 ### multiSelectable<sup>8+</sup>
 
 multiSelectable(value: boolean)
 
-Sets whether to enable multiselect. When multiselect is enabled, you can use the **selected** attribute and **onSelect** event to obtain the selected status of grid items; you can also set the [style](./ts-universal-attributes-polymorphic-style.md) for the selected state (by default, no style is set for the selected state).
+Whether to enable multiselect. When multiselect is enabled, you can use the **selected** attribute and **onSelect** event to obtain the selected status of grid items; you can also set the [style](./ts-universal-attributes-polymorphic-style.md) for the selected state (by default, no style is set for the selected state).
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -399,7 +401,7 @@ Sets whether to enable animation. Currently, the grid item drag animation is sup
 
 | Name| Type   | Mandatory| Description                            |
 | ------ | ------- | ---- | -------------------------------- |
-| value  | boolean | Yes  | Whether to enable animation.<br>Default value: **false**|
+| value  | boolean | Yes  | Whether to enable animation.<br>Default value: **false** (animation is disabled).|
 
 ### edgeEffect<sup>10+</sup>
 
@@ -454,7 +456,7 @@ Sets the nested scrolling options. You can set the nested scrolling mode in the 
 
 friction(value: number | Resource)
 
-Sets the friction coefficient. It applies only to gestures in the scrolling area, and it affects only indirectly the scroll chaining during the inertial scrolling process. A value less than or equal to 0 evaluates to the default value.
+Sets the friction coefficient. It applies only to gestures in the scrolling area, and it affects only indirectly the scroll chaining during the inertial scrolling process.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -464,13 +466,13 @@ Sets the friction coefficient. It applies only to gestures in the scrolling area
 
 | Name| Type                                                | Mandatory| Description                                                       |
 | ------ | ---------------------------------------------------- | ---- | ----------------------------------------------------------- |
-| value  | number \| [Resource](ts-types.md#resource) | Yes  | Friction coefficient.<br>Default value: **0.9** for wearable devices and **0.6** for non-wearable devices<br>Since API version 11, the default value for non-wearable devices is **0.7**.<br>Since API version 12, the default value for non-wearable devices is **0.75**.|
+| value  | number \| [Resource](ts-types.md#resource) | Yes  | Friction coefficient.<br>Default value: **0.9** for wearable devices and **0.6** for non-wearable devices<br>Since API version 11, the default value for non-wearable devices is **0.7**.<br>Since API version 12, the default value for non-wearable devices is **0.75**.<br>Value range: (0, +∞). If this parameter is set to a value less than or equal to 0, the default value is used.|
 
 ### alignItems<sup>12+</sup>
 
 alignItems(alignment: Optional\<GridItemAlignment\>)
 
-Sets the alignment mode of grid items in the grid. For details, see [Example 9](#example-9).
+Sets the alignment mode of grid items in the grid. For details about the usage, see [Example 9](#example-9-setting-grid-item-heights-based-on-the-tallest-item-in-the-current-row).
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -483,6 +485,8 @@ Sets the alignment mode of grid items in the grid. For details, see [Example 9](
 | alignment | Optional\<[GridItemAlignment](#griditemalignment12)\> | Yes  | Alignment mode of grid items in the grid.<br>Default value: **GridItemAlignment.DEFAULT**|
 
 ## GridItemAlignment<sup>12+</sup>
+
+Enumerates the alignment modes of grid items.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -503,6 +507,8 @@ Sets the alignment mode of grid items in the grid. For details, see [Example 9](
 
 ## GridDirection<sup>8+</sup>
 
+Enumerates the main axis layout directions.
+
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
@@ -520,7 +526,7 @@ Sets the alignment mode of grid items in the grid. For details, see [Example 9](
 
 ## Events
 
-In addition to [universal events](ts-universal-events-click.md) and [scrollable component common events](ts-container-scrollable-common.md#events), the following events are also supported.
+In addition to [universal events](ts-component-general-events.md) and [scrollable component common events](ts-container-scrollable-common.md#events), the following events are also supported.
 
 ### onScrollIndex
 
@@ -615,7 +621,9 @@ Triggered when the dragged item leaves the drop target of the grid.
 
 onItemDrop(event: (event: ItemDragInfo, itemIndex: number, insertIndex: number, isSuccess: boolean) => void)
 
-Triggered when the dragged item is dropped on the drop target of the grid.
+Triggered when the dragged grid item is dropped on the drop target of the grid.
+
+**isSuccess** returns **true** if the grid item is dropped within the grid, and returns **false** otherwise.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -634,7 +642,7 @@ Triggered when the dragged item is dropped on the drop target of the grid.
 
 onScrollBarUpdate(event: (index: number, offset: number) => ComputedBarAttribute)
 
-Triggered when the first item displayed in the grid changes. You can use the callback to set the position and length of the scrollbar.
+Triggered at the end of each frame layout in the grid. You can use the callback to set the position and length of the scrollbar.
 
 This API is intended solely for setting the scroll position of the grid. Avoid implementing service logic within this API.
 
@@ -727,7 +735,9 @@ onScroll(event: (scrollOffset: number, scrollState: [ScrollState](ts-container-l
 
 Triggered when the grid scrolls.
 
-This API is supported since API version 10 and deprecated since API version 12. You are advised to use [onDidScroll](ts-container-scrollable-common.md#ondidscroll12) instead.
+This API is available since API version 10.
+
+This API is deprecated since API version 12. You are advised to use [onDidScroll](ts-container-scrollable-common.md#ondidscroll12) instead.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -742,6 +752,8 @@ This API is supported since API version 10 and deprecated since API version 12. 
 
 ## ComputedBarAttribute<sup>10+</sup>
 
+Provides information about the position and length of the scrollbar.
+
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
@@ -753,9 +765,9 @@ This API is supported since API version 10 and deprecated since API version 12. 
 
 ## Example
 
-### Example 1
+### Example 1: Creating a Fixed Row and Column Grid Layout
 
-This example shows a grid with fixed number of rows and columns, for which you can use **onGetRectByIndex** in **GridLayoutOptions** to specify the position and size of grid items.
+This example demonstrates how to use **onGetRectByIndex** in **GridLayoutOptions** to define the position and size of each grid item.
 
 ```ts
 // xxx.ets
@@ -837,7 +849,7 @@ struct GridExample {
 
 ![en-us_image_0000001219744183](figures/en-us_image_0000001219744183.gif)
 
-### Example 2
+### Example 2: Implementing a Scrollable Grid with Scroll Events
 
 This example shows a scrollable grid with all its scrolling attributes and events specified.
 
@@ -919,9 +931,9 @@ struct GridExample {
 
 ![scrollerExample2](figures/scrollerExample2.gif)
 
-### Example 3
+### Example 3: Implementing a Scrollable Grid with Grid Items Spanning Rows and Columns
 
-This example uses **irregularIndexes** and **onGetIrregularSizeByIndex** in **GridLayoutOptions**.
+This example shows how to use **irregularIndexes** and **onGetIrregularSizeByIndex** in **GridLayoutOptions** to define custom sizes and spans for grid items.
 
 ```ts
 // xxx.ets
@@ -932,12 +944,12 @@ struct GridExample {
   scroller: Scroller = new Scroller()
   layoutOptions1: GridLayoutOptions = {
     regularSize: [1, 1],        // Only [1, 1] is supported.
-    irregularIndexes: [0, 6], // The grid item whose indexes are 0 and 6 occupies one row.
+    irregularIndexes: [0, 6],   // The grid item whose indexes are 0 and 6 occupies one row.
   }
 
   layoutOptions2: GridLayoutOptions = {
     regularSize: [1, 1],
-    irregularIndexes: [0, 7], // The number of columns occupied by the grid item whose indexes are 0 and 7 is specified by onGetIrregularSizeByIndex.
+    irregularIndexes: [0, 7],   // The number of columns occupied by the grid item whose indexes are 0 and 7 is specified by onGetIrregularSizeByIndex.
     onGetIrregularSizeByIndex: (index: number) => {
       if (index === 0) {
         return [1, 5]
@@ -1001,9 +1013,9 @@ struct GridExample {
 
 ![gridLayoutOptions](figures/gridLayoutOptions.gif)
 
-### Example 4
+### Example 4: Implementing Nested Scrolling in a Grid
 
-Example of using **nestedScroll** and **onScrollFrameBegin**:
+This example illustrates how to implement nested scrolling in a grid, using **nestedScroll** and **onScrollFrameBegin**:
 
 ```ts
 @Entry
@@ -1177,7 +1189,7 @@ struct GridExample {
 
 ![nestedScrollExample4](figures/nestedScrollExample4.gif)
 
-### Example 5
+### Example 5: Implementing Dragging in a Grid
 
 1.  Set **editMode\(true\)** to enable edit mode, where the user can drag the grid items.
 2.  In the [onItemDragStart](#onitemdragstart8) callback, set the image to be displayed during dragging.
@@ -1271,9 +1283,9 @@ Below shows how the grid looks after grid item 1 and grid item 6 swap their posi
 
 ![gridDrag](figures/gridDrag2.png)
 
-### Example 6
+### Example 6: Implementing Adaptive Grid Layout
 
-Example of using **layoutDirection**, **maxcount**, **minCount**, and **cellLength**:
+This example demonstrates the use of **layoutDirection**, **maxcount**, **minCount**, and **cellLength**:
 
 ```ts
 @Entry
@@ -1318,7 +1330,7 @@ struct GridExample {
 
 ![cellLength](figures/cellLength.gif)
 
-### Example 7
+### Example 7: Dynamically Adjusting the Number of Grid Columns with a Pinch Gesture
 
 This example demonstrates how to adjust the number of columns in the grid with a pinch gesture using two fingers.
 
@@ -1394,8 +1406,8 @@ struct GridExample {
 
 ![pinch](figures/grid-pinch.gif)
 
-### Example 8
-This example shows the usage of **auto-fill**, **auto-fit**, and **auto-stretch** in the [columnsTemplate](#columnstemplate) attribute.
+### Example 8: Using Adaptive Column Count Settings
+This example shows the usage of **auto-fill**, **auto-fit**, and **auto-stretch** in [columnsTemplate](#columnstemplate).
 
 ```ts
 @Entry
@@ -1463,10 +1475,10 @@ struct GridColumnsTemplate {
 
 ![gridColumnsTemplate](figures/gridColumnsTemplate.png)
 
-### Example 9
+### Example 9: Setting Grid Item Heights Based on the Tallest Item in the Current Row
 This example implements a grid that contains two columns. The grid item in each column consists of two **Column** components with determined heights and one **Text** component with an undetermined height.
 
-By default, the heights of the left and right grid items may differ; however, after the grid's **alignItems** attribute is set to **GridItemAlignment.STRETCH**, the grid item with a shorter height in a row will adopt the height of the taller grid item, aligning their heights within the same row.
+By default, the heights of the left and right grid items may differ; however, after the grid's [alignItems](#alignitems12) attribute is set to **GridItemAlignment.STRETCH**, the grid item with a shorter height in a row will adopt the height of the taller grid item, aligning their heights within the same row.
 
 ```ts
 @Entry
@@ -1525,7 +1537,8 @@ struct Index {
 ```
 ![gridAlignItems](figures/gridAlignItems.png)
 
-### Example 10
+### Example 10: Setting Edge Fading
+This example demonstrates how to enable the edge fading effect using [fadingEdge](ts-container-scrollable-common.md#fadingedge14).
 
 ```ts
 // xxx.ets
@@ -1567,3 +1580,47 @@ struct GridExample {
 ```
 
 ![fadingEdge_grid](figures/fadingEdge_grid.gif)
+
+### Example 11: Setting the Single-Side Edge Effect
+
+This example demonstrates how to set a single-side edge effect for the **Grid** component using the **edgeEffect** API.
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct GridExample {
+  @State numbers: String[] = ['0', '1', '2', '3', '4']
+  @State rowNumbers: String[] = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10']
+  scroller: Scroller = new Scroller()
+
+  build() {
+    Column({ space: 5 }) {
+      Grid(this.scroller) {
+        ForEach(this.rowNumbers, (day: string) => {
+          ForEach(this.numbers, (day: string) => {
+            GridItem() {
+              Text(day)
+                .fontSize(16)
+                .backgroundColor(0xF9CF93)
+                .width('100%')
+                .height(80)
+                .textAlign(TextAlign.Center)
+            }
+          }, (day: string) => day)
+        }, (day: string) => day)
+      }
+      .columnsTemplate('1fr 1fr 1fr 1fr 1fr')
+      .columnsGap(10)
+      .rowsGap(20)
+      .edgeEffect(EdgeEffect.Spring,{alwaysEnabled:true,effectEdge:EffectEdge.START})
+      .width('90%')
+      .backgroundColor(0xDCDCDC)
+      .height('80%')
+
+    }.width('100%').margin({ top: 5 })
+  }
+}
+```
+
+![edgeEffect_grid](figures/edgeEffect_grid.gif)

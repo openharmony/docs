@@ -14,9 +14,9 @@ import { errorManager } from '@kit.AbilityKit';
 
 ## ErrorObserver.onUnhandledException
 
-onUnhandledException(errMsg: string): void;
+onUnhandledException(errMsg: string): void
 
-将在js运行时引发用户未捕获的异常时调用。
+应用产生未捕获的异常时的回调。
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -49,9 +49,9 @@ try {
 
 ## ErrorObserver.onException<sup>10+</sup>
 
-onException?(errObject: Error): void;
+onException?(errObject: Error): void
 
-将在js运行时引发用户未捕获的异常时调用。
+应用产生异常，上报js层时的回调。
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 

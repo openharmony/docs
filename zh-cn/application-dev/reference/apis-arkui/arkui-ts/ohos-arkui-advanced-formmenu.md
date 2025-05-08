@@ -2,7 +2,7 @@
 
 本组件封装了一个“添加至桌面”菜单，用于实现应用内长按组件生成“添加至桌面”菜单，点击该菜单，触发卡片添加至桌面操作。通过桌面访问该应用快捷卡片，可以直接访问该组件功能。在应用使用过程中，该组件作为留存和复访入口，可吸引用户将功能快捷添加到桌面。
 
-本组件支持应用内支持长按菜单快捷添加卡片到桌面：
+本组件支持应用内长按菜单快捷添加卡片到桌面：
 
 1. 开发者将卡片数据以及应用内功能组件ID传给卡片框架。
 
@@ -14,6 +14,8 @@
 > **说明：**
 >
 > 该组件从API Version 12开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>
+> 该组件不支持在Wearable设备上使用。
 
 
 ## 导入模块
@@ -40,7 +42,7 @@ AddFormMenuItem(
 ): void
 
 
-**装饰器类型：**@Component
+**装饰器类型：**@Builder
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -48,11 +50,11 @@ AddFormMenuItem(
 
 **参数：**
 
-| 名称           | 参数类型                        | 必填 | 装饰器类型 | 说明                                                             |
-| -------------- | ------------------------------- | ---- | ---------- | ---------------------------------------------------------------- |
-| want           | [Want](../../apis-ability-kit/js-apis-app-ability-want.md#want)                            | 是   | \@Prop     | 待发布功能组件的want信息。                                         |
-| componentId    | string                          | 是   | -          | 应用内功能组件ID，组件ID对应的界面与待添加的服务卡片界面相似。 |
-| AddFormOptions| [AddFormOptions](#addformoptions) | 否   | -          | 添加卡片选项。                                                         |
+| 参数名           | 类型                        | 必填 | 说明                                                             |
+| -------------- | ------------------------------- | ---- | ---------------------------------------------------------------- |
+| want           | [Want](../../apis-ability-kit/js-apis-app-ability-want.md#want)                            | 是   | 待发布功能组件的want信息。                                         |
+| componentId    | string                          | 是   | 应用内功能组件ID，组件ID对应的界面与待添加的服务卡片界面相似。 |
+| options| [AddFormOptions](#addformoptions) | 否   | 添加卡片选项。                                                         |
 
 ## AddFormOptions
 
@@ -61,7 +63,7 @@ AddFormMenuItem(
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
-| 名称             | 参数类型                | 必填 | 说明                                                      |
+| 名称             | 类型                | 必填 | 说明                                                      |
 | --------------- | ---- | ---- | ---------------------------------------------------------------- |
 | formBindingData | [formBindingData.FormBindingData](../../apis-form-kit/js-apis-app-form-formBindingData.md#formbindingdata) | 否 | 卡片数据。 |
 | callback        | AsyncCallback\<string>                                                                                                | 否 | 返回结果的回调。  |
@@ -75,7 +77,7 @@ AddFormMenuItem(
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
-| 名称            | 参数类型           | 必填 | 说明 |
+| 名称            | 类型           | 必填 | 说明 |
 | --------------- | ----------------- | ---- | ---- |
 | options | [MenuItemOptions](ts-basic-components-menuitem.md#menuitemoptions对象说明) | 否   | 包含设置MenuItem的各项信息。|
 
@@ -110,9 +112,9 @@ struct Index {
           bundleName: 'com.example.myapplication', // 包名
           abilityName: 'EntryFormAbility', // 模块ability名称
           parameters: {
-            'ohos.extra.param.key.form_dimension': 2,
-            'ohos.extra.param.key.form_name': 'widget',
-            'ohos.extra.param.key.module_name': 'entry'
+            'ohos.extra.param.key.form_dimension': 2, // 卡片尺寸，1代表1*2卡片，2代表2*2卡片，3代表2*4卡片，4代表4*4卡片，7代表6*4卡片，6代表1*1卡片
+            'ohos.extra.param.key.form_name': 'widget', // 卡片名称
+            'ohos.extra.param.key.module_name': 'entry' // 卡片所属的模块名称
           },
         },
         this.compId,

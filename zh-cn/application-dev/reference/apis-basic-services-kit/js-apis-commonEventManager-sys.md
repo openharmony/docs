@@ -45,8 +45,7 @@ publishAsUser(event: string, userId: number, callback: AsyncCallback\<void>): vo
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
 | 202      | not system app.                     |  
-| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |  
-| 1500004  | A third-party application cannot send system common events.                |
+| 401     | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types.<br>3. Parameter verification failed.      |  
 | 1500007  | Failed to send the message to the common event service. |
 | 1500008  | Failed to initialize the common event service. |
 | 1500009  | Failed to obtain system parameters.  |
@@ -60,9 +59,9 @@ import { BusinessError } from '@kit.BasicServicesKit';
 function publishCB(err: BusinessError) {
   if (err) {
     console.error(`publishAsUser failed, code is ${err.code}, message is ${err.message}`);
-  } else {
-    console.info("publishAsUser");
+    return;
   }
+  console.info("publishAsUser");
 }
 
 //指定发送的用户
@@ -103,8 +102,7 @@ publishAsUser(event: string, userId: number, options: CommonEventPublishData, ca
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
 | 202      | not system app.                     |  
-| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |  
-| 1500004  | A third-party application cannot send system common events.                |
+| 401     | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types.<br>3. Parameter verification failed.      |  
 | 1500007  | Failed to send the message to the common event service. |
 | 1500008  | Failed to initialize the common event service. |
 | 1500009  | Failed to obtain system parameters.  |
@@ -123,9 +121,9 @@ let options:commonEventManager.CommonEventPublishData = {
 function publishCB(err: BusinessError) {
   if (err) {
     console.error(`publishAsUser failed, code is ${err.code}, message is ${err.message}`);
-  } else {
-    console.info("publishAsUser");
+    return;
   }
+  console.info("publishAsUser");
 }
 // 指定发送的用户
 let userId = 100;
@@ -165,7 +163,7 @@ removeStickyCommonEvent(event: string, callback: AsyncCallback\<void>): void
 | -------- | ----------------------------------- |
 | 201      | The application dose not have permission to call the interface.     |  
 | 202      | not system app.                     |  
-| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |   
+| 401     | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types.<br>3. Parameter verification failed.      |   
 | 1500004  | A third-party application cannot send system common events.                |
 | 1500007  | Failed to send the message to the common event service.             |
 | 1500008  | Failed to initialize the common event service.     |
@@ -216,7 +214,7 @@ removeStickyCommonEvent(event: string): Promise\<void>
 | -------- | ----------------------------------- |
 | 201      | The application dose not have permission to call the interface.     |  
 | 202      | not system app.                     |  
-| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
+| 401     | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types.<br>3. Parameter verification failed.      | 
 | 1500004  | A third-party application cannot send system common events.                |
 | 1500007  | Failed to send the message to the common event service.             |
 | 1500008  | Failed to initialize the common event service.     |
@@ -235,7 +233,7 @@ commonEventManager.removeStickyCommonEvent("sticky_event").then(() => {
 
 ## commonEventManager.setStaticSubscriberState<sup>10+</sup>
 
-setStaticSubscriberState(enable: boolean, callback: AsyncCallback\<void>): void;
+setStaticSubscriberState(enable: boolean, callback: AsyncCallback\<void>): void
 
 方法介绍：为当前应用设置静态订阅事件使能或去使能状态。使用callback异步回调。
 
@@ -259,7 +257,7 @@ setStaticSubscriberState(enable: boolean, callback: AsyncCallback\<void>): void;
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
 | 202      | not system app.                     |  
-| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
+| 401     | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types.<br>3. Parameter verification failed.      | 
 | 1500007  | Failed to send the message to the common event service.             |
 | 1500008  | Failed to initialize the common event service.     |
 
@@ -279,7 +277,7 @@ commonEventManager.setStaticSubscriberState(true, (err: BusinessError) => {
 
 ## commonEventManager.setStaticSubscriberState<sup>10+</sup>
 
-setStaticSubscriberState(enable: boolean): Promise\<void>;
+setStaticSubscriberState(enable: boolean): Promise\<void>
 
 方法介绍：为当前应用设置静态订阅事件使能或去使能状态。使用Promise异步回调。
 
@@ -308,7 +306,7 @@ setStaticSubscriberState(enable: boolean): Promise\<void>;
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
 | 202      | not system app.                     |  
-| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
+| 401     | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types.<br>3. Parameter verification failed.      | 
 | 1500007  | Failed to send the message to the common event service.             |
 | 1500008  | Failed to initialize the common event service.     |
 
@@ -352,12 +350,12 @@ setStaticSubscriberState(enable: boolean, events?: Array\<string>): Promise\<voi
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[事件错误码](./errorcode-CommonEventService.md)。。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[事件错误码](./errorcode-CommonEventService.md)。
 
 | 错误码ID | 错误信息                                               |
 | -------- | ------------------------------------------------------ |
 | 202      | not system app.                     |  
-| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
+| 401     | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types.<br>3. Parameter verification failed.      | 
 | 1500007  | Failed to send the message to the common event service.        |
 | 1500008  | Failed to initialize the common event service. |
 
@@ -365,18 +363,9 @@ setStaticSubscriberState(enable: boolean, events?: Array\<string>): Promise\<voi
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
-import { promptAction } from '@kit.ArkUI';
 
 let evenName: string[] = ['usual.event.SEND_DATA'];
 commonEventManager.setStaticSubscriberState(true, evenName).then(() => {
-  try {
-    promptAction.showToast({
-      message: 'app.string.static_subscribe_enabled',
-      duration: 2000,
-    });
-  } catch (error) {
-    console.error(`showToast error code is ${error.code}, message is ${error.message}`);
-  }
   console.info(`setStaticSubscriberState success, state is ${true}`);
 }).catch((err: BusinessError) => {
   console.error(`setStaticSubscriberState failed, errCode: ${err.code}, errMes: ${err.message}`);

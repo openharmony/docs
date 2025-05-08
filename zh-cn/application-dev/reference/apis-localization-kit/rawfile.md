@@ -53,6 +53,7 @@
 | long [OH_ResourceManager_GetRawFileOffset](#oh_resourcemanager_getrawfileoffset) (const [RawFile](#rawfile) \*rawFile) | 获取rawfile当前的偏移量，单位为long。 | 
 | bool [OH_ResourceManager_GetRawFileDescriptor](#oh_resourcemanager_getrawfiledescriptor) (const [RawFile](#rawfile) \*rawFile, [RawFileDescriptor](_raw_file_descriptor.md) &amp;descriptor) | 基于偏移量(单位为long)和文件长度(单位为long)打开rawfile，并获取rawfile文件描述符。 | 
 | bool [OH_ResourceManager_ReleaseRawFileDescriptor](#oh_resourcemanager_releaserawfiledescriptor) (const [RawFileDescriptor](_raw_file_descriptor.md) &amp;descriptor) | 关闭rawfile文件描述符。 | 
+| bool [OH_ResourceManager_ReleaseRawFileDescriptorData](rawfile.md#oh_resourcemanager_releaserawfiledescriptordata) (const [RawFileDescriptor](_raw_file_descriptor.md) \*descriptor) | 关闭rawfile文件描述符。 |
 | int64_t [OH_ResourceManager_ReadRawFile64](#oh_resourcemanager_readrawfile64) (const [RawFile64](#rawfile64) \*rawFile, void \*buf, int64_t length) | 读取较大的rawfile文件内容，从当前位置读取指定长度的数据。 | 
 | int [OH_ResourceManager_SeekRawFile64](#oh_resourcemanager_seekrawfile64) (const [RawFile64](#rawfile64) \*rawFile, int64_t offset, int whence) | 基于指定的偏移量，在较大的rawfile文件内搜索读写数据的位置。 | 
 | int64_t [OH_ResourceManager_GetRawFileSize64](#oh_resourcemanager_getrawfilesize64) ([RawFile64](#rawfile64) \*rawFile) | 获取较大rawfile文件的长度，单位为int64_t。 | 
@@ -680,6 +681,29 @@ bool OH_ResourceManager_ReleaseRawFileDescriptor (const RawFileDescriptor & desc
 
 返回true表示关闭文件描述符成功，返回false表示关闭文件描述符失败。
 
+### OH_ResourceManager_ReleaseRawFileDescriptorData()
+
+```
+bool OH_ResourceManager_ReleaseRawFileDescriptorData (const RawFileDescriptor * descriptor )
+```
+
+**描述**
+
+关闭rawfile文件描述符。
+
+已打开的文件描述符在使用完以后必须释放，防止文件描述符泄露。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| descriptor | 包含rawfile文件描述符，以及在HAP包中的起始位置和长度。 | 
+
+**返回：**
+
+返回true表示关闭文件描述符成功，返回false表示关闭文件描述符失败。
 
 ### OH_ResourceManager_ReleaseRawFileDescriptor64()
 

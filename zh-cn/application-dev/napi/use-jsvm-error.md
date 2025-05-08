@@ -595,7 +595,7 @@ static JSVM_PropertyDescriptor descriptor[] = {
     {"jsVmGetLastErrorInfo", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
 };
 // 样例测试js
-const char *srcCallNative = R"JS(jsVmGetLastErrorInfo();)JS";}
+const char *srcCallNative = R"JS(jsVmGetLastErrorInfo();)JS";
 ```
 
 预期输出结果

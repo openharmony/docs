@@ -76,7 +76,7 @@
    };
    ```
 
-5. 添加围栏
+5. 添加围栏。
 
    ```ts
    // 把创建的通知对象存入Array中，存入顺序与transitionStatusList一致
@@ -115,7 +115,7 @@
    }
    ```
 
-5. 删除围栏
+6. 删除围栏。
 
    ```ts
    // fenceId是在geoLocationManager.addGnssGeofence执行成功后获取的

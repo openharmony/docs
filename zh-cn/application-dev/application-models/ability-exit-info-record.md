@@ -13,7 +13,7 @@
 | **接口名**  | **描述** |
 | -------- | -------- |
 | [LaunchParam](../reference/apis-ability-kit/js-apis-app-ability-abilityConstant.md#launchparam)       | 启动参数。此接口的lastExitReason、lastExitMessage、lastExitDetailInfo成员记录Ability上次异常退出的信息。  |
-| [LastExitDetailInfo](../reference/apis-ability-kit/js-apis-app-ability-abilityConstant.md#lastexitdetailinfo16)       | 最后退出时的进程状态和详细原因。 |
+| [LastExitDetailInfo](../reference/apis-ability-kit/js-apis-app-ability-abilityConstant.md#lastexitdetailinfo18)       | 最后退出时的进程状态和详细原因。 |
 
 ## 开发步骤
 

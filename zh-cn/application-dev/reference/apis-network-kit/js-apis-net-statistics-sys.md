@@ -4,7 +4,7 @@
 
 > **说明：**
 > 本模块首批接口从 API version 10 开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
-> 当前页面仅包含本模块的系统接口，其他公开接口参见[@ohos.net.statistics (流量管理)](js-apis-net-statistics.md)
+> 当前页面仅包含本模块的系统接口，其他公开接口参见[@ohos.net.statistics (流量管理)](js-apis-net-statistics.md)。
 
 ## 导入模块
 
@@ -60,7 +60,7 @@ statistics.on('netStatsChange', (data: IFace) => {
 
 ## statistics.off('netStatsChange')<sup>10+</sup>
 
-off(type: 'netStatsChange', callback?: Callback\<NetStatsChangeInfo>): void;
+off(type: 'netStatsChange', callback?: Callback\<NetStatsChangeInfo>): void
 
 取消订阅流量改变事件通知。
 
@@ -109,7 +109,7 @@ statistics.off('netStatsChange');
 
 ## statistics.getTrafficStatsByIface<sup>10+</sup>
 
-getTrafficStatsByIface(ifaceInfo: IfaceInfo, callback: AsyncCallback\<NetStatsInfo>): void;
+getTrafficStatsByIface(ifaceInfo: IfaceInfo, callback: AsyncCallback\<NetStatsInfo>): void
 
 获取指定网卡历史流量信息，使用 callback 方式作为异步方法。
 
@@ -172,7 +172,7 @@ if (iFaceInfo) {
 
 ## statistics.getTrafficStatsByIface<sup>10+</sup>
 
-getTrafficStatsByIface(ifaceInfo: IfaceInfo): Promise\<NetStatsInfo>;
+getTrafficStatsByIface(ifaceInfo: IfaceInfo): Promise\<NetStatsInfo>
 
 获取指定网卡历史流量信息，使用 Promise 方式作为异步方法。
 
@@ -235,7 +235,7 @@ if (iFaceInfo) {
 
 ## statistics.getTrafficStatsByUid<sup>10+</sup>
 
-getTrafficStatsByUid(uidInfo: UidInfo, callback: AsyncCallback\<NetStatsInfo>): void;
+getTrafficStatsByUid(uidInfo: UidInfo, callback: AsyncCallback\<NetStatsInfo>): void
 
 获取指定应用历史流量信息，使用 callback 方式作为异步方法。
 
@@ -307,7 +307,7 @@ statistics.getTrafficStatsByUid(
 
 ## statistics.getTrafficStatsByUid<sup>10+</sup>
 
-getTrafficStatsByUid(uidInfo: UidInfo): Promise\<NetStatsInfo>;
+getTrafficStatsByUid(uidInfo: UidInfo): Promise\<NetStatsInfo>
 
 获取指定应用历史流量信息，使用 Promise 方式作为异步方法。
 
@@ -387,7 +387,7 @@ getTrafficStatsByNetwork(networkInfo: NetworkInfo): Promise\<UidNetStatsInfo>
 
 | 类型                                              | 说明                               |
 |-------------------------------------------------|----------------------------------|
-| Promise\<[UidNetStatsInfo](#uidnetstatsinfo12)> | 以 Promise 形式返回获取结果,返回所有应用历史流量信息。 |
+| Promise\<[UidNetStatsInfo](#uidnetstatsinfo12)> | 以 Promise 形式返回获取结果。返回所有应用历史流量信息。 |
 
 **错误码：**
 
@@ -446,7 +446,7 @@ getTrafficStatsByUidNetwork(uid: number, networkInfo: NetworkInfo): Promise\<Net
 
 | 类型                                                        | 说明                               |
 |-----------------------------------------------------------|----------------------------------|
-| Promise\<[NetStatsInfoSequence](#netstatsinfosequence12)> | 以 Promise 形式返回获取结果,返回应用历史流量统计信息。 |
+| Promise\<[NetStatsInfoSequence](#netstatsinfosequence12)> | 以 Promise 形式返回获取结果。返回应用历史流量统计信息。 |
 
 **错误码：**
 
@@ -526,7 +526,7 @@ statistics.getTrafficStatsByUidNetwork(uid, networkInfo).then((statsInfoSequence
 
 ## NetStatsChangeInfo<sup>11+</sup>
 
-监听和管理网络接口的状态和使用情况
+监听和管理网络接口的状态和使用情况。
 
 **系统接口**：此接口为系统接口。
 

@@ -3,7 +3,7 @@
 
 ## Overview
 
-The **NativeWindow** module provides the **NativeWindow** capability for connection to the EGL.
+The NativeWindow module provides the image buffer rotation capability, compatible with EGL. As the producer of the image buffer, your application produces the buffer and transfers the buffer through NativeWindow for the consumer to read.
 
 **System capability**: SystemCapability.Graphic.Graphic2D.NativeWindow
 
@@ -27,7 +27,7 @@ The **NativeWindow** module provides the **NativeWindow** capability for connect
 | struct  [Region](_region.md) | Describes the rectangle (dirty region) where the content is to be updated in the local **OHNativeWindow**.| 
 | struct  [OHHDRMetaData](_o_h_h_d_r_meta_data.md) | Describes the HDR metadata.<br>**Deprecated**: This struct is deprecated since API version 10. No substitute is provided.| 
 | struct  [OHExtDataHandle](_o_h_ext_data_handle.md) | Describes the extended data handle.<br>**Deprecated**: This struct is deprecated since API version 10. No substitute is provided.| 
-
+| struct  [BufferHandle](_buffer_handle.md) | Describes the buffer handle, which is used to transfer and obtain buffer information. The handle contains the file descriptor, size, format, usage, virtual address, shared memory key, physical address, and custom data of the buffer. |
 
 ### Types
 
@@ -67,7 +67,7 @@ The **NativeWindow** module provides the **NativeWindow** capability for connect
 | int32_t [OH_NativeWindow_GetLastFlushedBuffer](#oh_nativewindow_getlastflushedbuffer) ([OHNativeWindow](#ohnativewindow) \*window, [OHNativeWindowBuffer](#ohnativewindowbuffer) \*\*buffer, int \*fenceFd, float matrix[16]) | Obtains the **OHNativeWindowBuffer** that was flushed to the buffer queue last time through an **OHNativeWindow** instance.| 
 | int32_t [OH_NativeWindow_NativeWindowAbortBuffer](#oh_nativewindow_nativewindowabortbuffer) ([OHNativeWindow](#ohnativewindow) \*window, [OHNativeWindowBuffer](#ohnativewindowbuffer) \*buffer) | Returns the **OHNativeWindowBuffer** to the buffer queue through an **OHNativeWindow** instance, without filling in any content. The **OHNativeWindowBuffer** can be used for a new request.| 
 | int32_t [OH_NativeWindow_NativeWindowHandleOpt](#oh_nativewindow_nativewindowhandleopt) ([OHNativeWindow](#ohnativewindow) \*window, int code,...) | Sets or obtains the attributes of an **OHNativeWindow** instance, including the width, height, and content format.| 
-| BufferHandle \* [OH_NativeWindow_GetBufferHandleFromNative](#oh_nativewindow_getbufferhandlefromnative) ([OHNativeWindowBuffer](#ohnativewindowbuffer) \*buffer) | Obtains the pointer to a **BufferHandle** of an **OHNativeWindowBuffer** instance.| 
+| [BufferHandle](_buffer_handle.md) \* [OH_NativeWindow_GetBufferHandleFromNative](#oh_nativewindow_getbufferhandlefromnative) ([OHNativeWindowBuffer](#ohnativewindowbuffer) \*buffer) | Obtains the pointer to a **BufferHandle** of an **OHNativeWindowBuffer** instance.<br>This function is not thread-safe.| 
 | int32_t [OH_NativeWindow_NativeObjectReference](#oh_nativewindow_nativeobjectreference) (void \*obj) | Adds the reference count of a native object.| 
 | int32_t [OH_NativeWindow_NativeObjectUnreference](#oh_nativewindow_nativeobjectunreference) (void \*obj) | Decreases the reference count of a native object and, when the reference count reaches 0, destroys this object.| 
 | int32_t [OH_NativeWindow_GetNativeObjectMagic](#oh_nativewindow_getnativeobjectmagic) (void \*obj) | Obtains the magic ID of a native object.| 
@@ -268,10 +268,10 @@ Enumerates the operation codes in the **OH_NativeWindow_NativeWindowHandleOpt** 
 | SET_FORMAT | Setting the format for the local window buffer.<br>Variable argument in the function: [Input] int32_t format.<br>For details about the available options, see [OH_NativeBuffer_Format](_o_h___native_buffer.md#oh_nativebuffer_format-1).| 
 | GET_USAGE | Obtaining the usage mode of the local window buffer.<br>Variable argument in the function: [Output] uint64_t \*usage.<br>For details about the available options, see [OH_NativeBuffer_Usage](_o_h___native_buffer.md#oh_nativebuffer_usage-1).| 
 | SET_USAGE | Setting the usage mode for the local window buffer.<br>Variable argument in the function: [Input] uint64_t usage.<br>For details about the available options, see [OH_NativeBuffer_Usage](_o_h___native_buffer.md#oh_nativebuffer_usage-1).| 
-| SET_STRIDE | Setting the stride for the local window buffer, in bytes.<br>Variable argument in the function: [Input] int32_t stride.| 
-| GET_STRIDE | Obtaining the stride of the local window buffer, in bytes.<br>Variable argument in the function: [Output] int32_t \*stride.| 
+| SET_STRIDE<sup>(deprecated)</sup>  | Setting the stride for the local window buffer.<br>Variable argument in the function: [Input] int32_t stride.<br>**Deprecated**: This API is deprecated since API version 16.| 
+| GET_STRIDE<sup>(deprecated)</sup>  | Obtaining the stride of the local window buffer.<br>Variable argument in the function: [Output] int32_t *stride.<br>**Deprecated**: This API is deprecated since API version 16.<br>**Substitute**: Use [OH_NativeWindow_GetBufferHandleFromNative](#oh_nativewindow_getbufferhandlefromnative) to obtain a [BufferHandle](_buffer_handle.md) instance, and obtain the stride from this instance.| 
 | SET_SWAP_INTERVAL | Setting the swap interval for the local window buffer.<br>Variable argument in the function: [Input] int32_t interval.| 
-| GET_SWAP_INTERVAL | Obtaining the swap interval of the local window buffer.<br>Variable argument in the function: [Output] int32_t \*interval.| 
+| GET_SWAP_INTERVAL | Obtaining the swap interval of the local window buffer.<br>Variable argument in the function: [Output] int32_t *interval.| 
 | SET_TIMEOUT | Setting the timeout duration for requesting the local window buffer, in ms.<br>Default value: 3000 ms.<br>Variable argument in the function: [Input] int32_t timeout.| 
 | GET_TIMEOUT | Obtaining the timeout duration for requesting the local window buffer, in ms.<br>Default value: 3000 ms.<br>Variable argument in the function: [Output] int32_t \*timeout.| 
 | SET_COLOR_GAMUT | Setting the color gamut for the local window buffer.<br>Variable argument in the function: [Input] int32_t colorGamut.<br>For details about the available options, see [OH_NativeBuffer_ColorGamut](_o_h___native_buffer.md#oh_nativebuffer_colorgamut-1).| 
@@ -389,7 +389,7 @@ This function is not thread-safe.
 
 **Returns**
 
-Returns **0** if the operation is successful; returns an error code defined in [OHNativeErrorCode](_o_h___native_buffer.md#ohnativeerrorcode) otherwise.
+Returns **0** if the operation is successful; returns an error code defined in [OHNativeErrorCode](_o_h___native_buffer.md#ohnativeerrorcode-1) otherwise.
 
 
 ### OH_NativeWindow_SetMetadataValue()
@@ -419,7 +419,7 @@ This function is not thread-safe.
 
 **Returns**
 
-Returns **0** if the operation is successful; returns an error code defined in [OHNativeErrorCode](_o_h___native_buffer.md#ohnativeerrorcode) otherwise.
+Returns **0** if the operation is successful; returns an error code defined in [OHNativeErrorCode](_o_h___native_buffer.md#ohnativeerrorcode-1) otherwise.
 
 ### OH_NativeWindow_GetColorSpace()
 
@@ -446,7 +446,7 @@ This function is not thread-safe.
 
 **Returns**
 
-Returns **0** if the operation is successful; returns an error code defined in [OHNativeErrorCode](_o_h___native_buffer.md#ohnativeerrorcode) otherwise.
+Returns **0** if the operation is successful; returns an error code defined in [OHNativeErrorCode](_o_h___native_buffer.md#ohnativeerrorcode-1) otherwise.
 
 
 ### OH_NativeWindow_GetMetadataValue()
@@ -476,7 +476,7 @@ This function is not thread-safe.
 
 **Returns**
 
-Returns **0** if the operation is successful; returns an error code defined in [OHNativeErrorCode](_o_h___native_buffer.md#ohnativeerrorcode) otherwise.
+Returns **0** if the operation is successful; returns an error code defined in [OHNativeErrorCode](_o_h___native_buffer.md#ohnativeerrorcode-1) otherwise.
 
 
 ### OH_NativeWindow_WriteToParcel()
@@ -781,7 +781,7 @@ This function is not thread-safe.
 
 **Returns**
 
-Returns the pointer to the **BufferHandle** instance obtained.
+Returns the pointer to the [BufferHandle](_buffer_handle.md) instance obtained.
 
 
 ### OH_NativeWindow_GetLastFlushedBuffer()

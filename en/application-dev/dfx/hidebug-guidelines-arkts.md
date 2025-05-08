@@ -14,6 +14,7 @@ HiDebug provides APIs for system debugging, which allow you to obtain the inform
 | hidebug.getSharedDirty             | Obtains the size of the shared dirty memory of a process.                                  |
 | hidebug.getPrivateDirty            | Obtains the size of the private dirty memory of a process.                                  |
 | hidebug.getCpuUsage                | Obtains the CPU usage of a process.                                       |
+| hidebug.getServiceDump             | Obtains system service information.                                          |
 | hidebug.dumpJsHeapData             | Exports the heap data.                                              |
 | hidebug.startJsCpuProfiling        | Starts the VM profiling method.                               |
 | hidebug.stopJsCpuProfiling         | Stops the VM profiling method.                               |
@@ -28,8 +29,10 @@ HiDebug provides APIs for system debugging, which allow you to obtain the inform
 | hidebug.getSystemMemInfo           | Obtains system memory information.                                          |
 | hidebug.getVMRuntimeStats          | Obtains all system GC statistics.                                    |
 | hidebug.getVMRuntimeStat           | Obtains the specified system GC statistics based on parameters.                          |
+| hidebug.isDebugState               | Obtains the debugging state of an application process.                                    |
 | hidebug.getGraphicsMemory          | Obtains the size of the GPU memory asynchronously.                   |
 | hidebug.getGraphicsMemorySync      | Obtains the size of the GPU memory synchronously.                   |
+| hidebug.dumpJsRawHeapData          | Dumps the original heap snapshot of the VM for the calling thread.                 |
 
 For details about how to use HiDebug, see the API Reference (../reference/apis-performance-analysis-kit/js-apis-hidebug.md).
 
@@ -83,6 +86,7 @@ The following describes how to add a button in the application and click the but
 4. Run the project on a real device and click "Hello World" on the app/service.
 
 5. At the bottom of DevEco Studio, switch to the **Log** tab and set the filter criteria to **testTag**.
+
    Then, the CPU usage logs obtained using **hidebug.getSystemCpuUsage()** are displayed in the window.
    ```Text
 	08-20 11:06:01.891   1948-1948     A03d00/JSAPP                    com.examp...lication  I     getSystemCpuUsage: 0.4722222222222222

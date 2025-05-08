@@ -176,7 +176,7 @@ int sum(int a, int b)
 #### linux 和 mac 系统环境下
 在工程目录下，创建build目录，用来放置CMake构建时产生的中间文件。注意: ohos-sdk是下载下来的SDK的根目录，开发者需要自行替换成实际的下载目录。
 
-1. 采用OHOS_STL=c++_shared动态链接c++库方式构建工程，如不指定，默认采用c++_shared；DOHOS_ARCH参数可根据系统架构来决定具体值。
+1. 采用OHOS_STL=c++_shared动态链接c++库方式构建工程，如不指定，默认采用c++_shared；DOHOS_ARCH参数可根据系统架构来决定具体值，例如当DOHOS_ARCH=armeabi-v7a会编译32位动态库，而当DOHOS_ARCH=arm64-v8a会编译64位动态库。
 
    ```
     >mkdir build && cd build
@@ -184,7 +184,7 @@ int sum(int a, int b)
     >cmake --build .
    ```
 
-2. 采用OHOS_STL=c++_static静态链接c++库方式构建工程。
+2. 采用OHOS_STL=c++_static静态链接c++库方式构建工程，当DOHOS_ARCH=armeabi-v7a会编译32位静态库，而当DOHOS_ARCH=arm64-v8a会编译64位静态库。
 
    ```
     >mkdir build && cd build
@@ -210,7 +210,7 @@ Step 1. 同样在工程目录下创建 build 文件夹并执行以下指令：
 ```
  F:\windows\native\build-tools\cmake\bin\cmake.exe -G "Ninja" -D OHOS_STL=c++_shared -D OHOS_ARCH=armeabi-v7a -D OHOS_PLATFORM=OHOS -D CMAKE_TOOLCHAIN_FILE=F:\windows\native\build\cmake\ohos.toolchain.cmake ..
 ```
-注：如需debug调试，增加参数 -D CMAKE_BUILD_TYPE=normal；cmake路径和编译工具链ohos.toolchain.cmake路径都是下载好的ndk路径。
+**注意**：如需debug调试，增加参数 -D CMAKE_BUILD_TYPE=normal；cmake路径和编译工具链ohos.toolchain.cmake路径都是下载好的ndk路径。
 执行结果如下图：
 
 ![zh-cn_image_20-24-01-16-14-58](figures/zh-cn_image_20-24-01-16-14-58.png)

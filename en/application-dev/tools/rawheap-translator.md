@@ -67,6 +67,11 @@ rawheap_translator <rawheap_file> [heapsnapshot_file]
 | -------- | ----------------- | ---------------------------------- |
 | \<rawheap_file\> | (Mandatory) Path of the .rawheap file generated upon an OOM error:<br>**/data/log/reliability/resource_leak/memory_leak**| Parse the .rawheap file in the specified directory **D:\temp\rawheap**:<br>**rawheap_translator D:\temp\rawheap\xxx.rawheap**<br>Parse the .rawheap file in the current directory:<br>**rawheap_translator xxx.rawheap**|
 | [heapsnapshot_file] | (Optional) Specifies the name and path of the generated file. The file name extension must be **heapsnapshot**.<br>If this parameter is not specified, the current path is used by default. An example of the generated file name is **hprof_2024-11-19-21-13-20.heapsnapshot**.| Parse the .rawheap file in the current directory and generate the .heapsnapshot in the specified path **D:\temp**:<br>**rawheap_translator xxx.rawheap D:\temp\xxx.heapsnapshot**<br>Parse the .rawheap file in the current directory and generate the .heapsnapshot in the current directory:<br>**rawheap_translator xxx.rawheap xxx.heapsnapshot**|
+> **NOTE**
+>
+> The value of **[heapsnapshot_file]** must be specified to a path that has the read and write permissions. If this parameter is not specified, ensure that the directory where the command is executed has the read and write permissions.<br>
+> For example,
+> when running the **D:\>...\rawheap_translator.exe...\example.rawheap** command on Windows, ensure that the **D:\** path has the read and write permissions.
 
 ## Examples of Using Parsing Commands
 

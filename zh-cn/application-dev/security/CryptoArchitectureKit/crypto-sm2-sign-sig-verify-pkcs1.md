@@ -1,11 +1,8 @@
 # 使用SM2密钥对签名验签(ArkTS)
 
-
 对应的算法规格请查看[签名验签算法规格：SM2](crypto-sign-sig-verify-overview.md#sm2)。
 
-
 **签名**
-
 
 1. 调用[cryptoFramework.createAsyKeyGenerator](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreateasykeygenerator)、[AsyKeyGenerator.generateKeyPair](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#generatekeypair-1)，生成非对称密钥算法为SM2、密钥长度为256的密钥对（KeyPair）。
    
@@ -15,38 +12,33 @@
 
 3. 调用[Sign.init](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#init-3)，使用私钥（PriKey）初始化Sign实例。
 
-4. 调用[Sign.update](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#update-3)，传入待签名的数据。
-   当前单次update长度没有限制，开发者可以根据数据量判断如何调用update。
+4. 调用[Sign.update](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#update-3)，传入待签名的数据。当前单次update长度没有限制，开发者可以根据数据量判断如何调用update。
 
 5. 调用[Sign.sign](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#sign-1)，生成数据签名。
 
-
 **验签**
-
 
 1. 调用[cryptoFramework.createVerify](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreateverify)，指定字符串参数'SM2_256|SM3'，创建非对称密钥类型为SM2_256、摘要算法为SM3的Verify实例，用于完成验签操作。
 
 2. 调用[Verify.init](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#init-5)，使用公钥（PubKey）初始化Verify实例。
 
-3. 调用[Verify.update](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#update-5)，传入待验证的数据。
-   当前单次update长度没有限制，开发者可以根据数据量判断如何调用update。
+3. 调用[Verify.update](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#update-5)，传入待验证的数据。当前单次update长度没有限制，开发者可以根据数据量判断如何调用update。
 
 4. 调用[Verify.verify](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#verify-1)，对数据进行验签。
-
 
 - 异步方法示例：
 
   ```ts
   import { cryptoFramework } from '@kit.CryptoArchitectureKit';
   import { buffer } from '@kit.ArkTS';
-  // 完整的明文被拆分为input1和input2
+  // 完整的明文被拆分为input1和input2。
   let input1: cryptoFramework.DataBlob = { data: new Uint8Array(buffer.from("This is Sign test plan1", 'utf-8').buffer) };
   let input2: cryptoFramework.DataBlob = { data: new Uint8Array(buffer.from("This is Sign test plan2", 'utf-8').buffer) };
   async function signMessagePromise(priKey: cryptoFramework.PriKey) {
     let signAlg = "SM2_256|SM3";
     let signer = cryptoFramework.createSign(signAlg);
     await signer.init(priKey);
-    await signer.update(input1); // 如果明文较短，可以直接调用sign接口一次性传入
+    await signer.update(input1); // 如果明文较短，可以直接调用sign接口一次性传入。
     let signData = await signer.sign(input2);
     return signData;
   }
@@ -54,7 +46,7 @@
     let verifyAlg = "SM2_256|SM3";
     let verifier = cryptoFramework.createVerify(verifyAlg);
     await verifier.init(pubKey);
-    await verifier.update(input1); // 如果明文较短，可以直接调用verify接口一次性传入
+    await verifier.update(input1); // 如果明文较短，可以直接调用verify接口一次性传入。
     let res = await verifier.verify(input2, signMessageBlob);
     console.info("verify result is " + res);
     return res;
@@ -78,14 +70,14 @@
   ```ts
   import { cryptoFramework } from '@kit.CryptoArchitectureKit';
   import { buffer } from '@kit.ArkTS';
-  // 完整的明文被拆分为input1和input2
+  // 完整的明文被拆分为input1和input2。
   let input1: cryptoFramework.DataBlob = { data: new Uint8Array(buffer.from("This is Sign test plan1", 'utf-8').buffer) };
   let input2: cryptoFramework.DataBlob = { data: new Uint8Array(buffer.from("This is Sign test plan2", 'utf-8').buffer) };
   function signMessagePromise(priKey: cryptoFramework.PriKey) {
     let signAlg = "SM2_256|SM3";
     let signer = cryptoFramework.createSign(signAlg);
     signer.initSync(priKey);
-    signer.updateSync(input1); // 如果明文较短，可以直接调用sign接口一次性传入
+    signer.updateSync(input1); // 如果明文较短，可以直接调用sign接口一次性传入。
     let signData = signer.signSync(input2);
     return signData;
   }
@@ -93,7 +85,7 @@
     let verifyAlg = "SM2_256|SM3";
     let verifier = cryptoFramework.createVerify(verifyAlg);
     verifier.initSync(pubKey);
-    verifier.updateSync(input1); // 如果明文较短，可以直接调用verify接口一次性传入
+    verifier.updateSync(input1); // 如果明文较短，可以直接调用verify接口一次性传入。
     let res = verifier.verifySync(input2, signMessageBlob);
     console.info("verify result is " + res);
     return res;

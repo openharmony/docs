@@ -65,7 +65,7 @@ Represents a 3D scene object.
 
 ## Attributes
 
-In addition to the [universal attributes](ts-universal-attributes-size.md), the following attributes are supported.
+In addition to the [universal attributes](ts-component-general-attributes.md), the following attributes are supported.
 
 ### environment
 
@@ -146,7 +146,7 @@ Set the animation parameters used for custom rendering.
 
 | Name| Type          | Mandatory| Description                      |
 | ------ | -------------- | ---- | -------------------------- |
-| buffer | Array<number\> | Yes  | Animation parameters used for custom rendering.|
+| buffer | Array<number\> | Yes  | Animation parameters used for custom rendering.<b>Array length range: [0, 1048576]|
 
 ### renderWidth
 
@@ -166,7 +166,7 @@ The rendering resolution cannot be dynamically changed after the component is cr
 
 | Name| Type                                | Mandatory| Description                |
 | ------ | ------------------------------------ | ---- | -------------------- |
-| value  | [Dimension](ts-types.md#dimension10) | Yes  | Width of the 3D rendering resolution.|
+| value  | [Dimension](ts-types.md#dimension10) | Yes  | Width of the 3D rendering resolution. Currently, only **Dimension.Percentage** can be set, with the value range of [0, 100%].|
 
 ### renderHeight
 
@@ -186,11 +186,11 @@ The rendering resolution cannot be dynamically changed after the component is cr
 
 | Name| Type                                | Mandatory| Description                |
 | ------ | ------------------------------------ | ---- | -------------------- |
-| value  | [Dimension](ts-types.md#dimension10) | Yes  | Height of the 3D rendering resolution.|
+| value  | [Dimension](ts-types.md#dimension10) | Yes  | Height of the 3D rendering resolution. Currently, only **Dimension.Percentage** can be set, with the value range of [0, 100%].|
 
 ## Events
 
-The [universal events](ts-universal-events-click.md) are supported.
+The [universal events](ts-component-general-events.md) are supported.
 
 ## Example
 You can preview how this component looks on a real device, but not in DevEco Studio Previewer.<br>

@@ -10,12 +10,12 @@ Querying data from a large amount of data may take time or even cause applicatio
 - Keep concatenated SQL statements as concise as possible.
 - Query data in batches.
 
-The **relationalStore** module provides the following functionality:
+The **relationalStore** module provides the following functionalities:
 
-- [RdbPredicates](#rdbpredicates): provides predicates indicating the nature, feature, or relationship of a data entity in an RDB store. It is used to define the operation conditions for an RDB store.
+- [RdbPredicates](#rdbpredicates): provides APIs for creating predicates. The predicates represent the properties, characteristics, or relationships between data entities in an RDB store and are used to define data operation conditions.
 - [RdbStore](#rdbstore): provides APIs for managing data in an RDB store.
 - [Resultset](#resultset): provides APIs for accessing the result set obtained from the RDB store. 
-- [Transaction](#transaction14): provides APIs for managing transaction objects.
+- [Transaction](#transaction14): provides APIs for managing transactions.
 
 > **NOTE**
 > 
@@ -31,7 +31,7 @@ import { relationalStore } from '@kit.ArkData';
 
 getRdbStore(context: Context, config: StoreConfig, callback: AsyncCallback&lt;RdbStore&gt;): void
 
-Obtains an RDB store. This API uses an asynchronous callback to return the result. You can set parameters for the RDB store based on service requirements and call APIs to perform data operations.
+Obtains an RdbStore instance. This API uses an asynchronous callback to return the result. You can set parameters for the RDB store based on service requirements and call APIs to perform data operations.
 
 The parameter [encrypt](#storeconfig) takes effect only when the RDB store is created for the first time, and cannot be modified. It is important to set this parameter correctly.
 
@@ -50,7 +50,7 @@ Currently, **getRdbStore()** does not support multi-thread concurrent operations
 | -------- | ---------------------------------------------- | ---- | ------------------------------------------------------------ |
 | context  | Context                                        | Yes  | Application context.<br>For details about the application context of the FA model, see [Context](../apis-ability-kit/js-apis-inner-app-context.md).<br>For details about the application context of the stage model, see [Context](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md).|
 | config   | [StoreConfig](#storeconfig)               | Yes  | Configuration of the RDB store.                               |
-| callback | AsyncCallback&lt;[RdbStore](#rdbstore)&gt; | Yes  | Callback used to return the RDB store obtained.                  |
+| callback | AsyncCallback&lt;[RdbStore](#rdbstore)&gt; | Yes  | Callback used to return the RdbStore instance obtained.                  |
 
 **Error codes**
 
@@ -63,7 +63,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 14800010  | Invalid database path.   |
 | 14800011  | Database corrupted.    |
 | 14801001  | The operation is supported in the stage model only.    |
-| 14801002  | Invalid data group ID.    |
+| 14801002  | Invalid data group ID.   |
 | 14800017  | Config changed.   |
 | 14800020  | The secret key is corrupted or lost.   |
 | 14800021  | SQLite: Generic error.    |
@@ -91,13 +91,14 @@ const STORE_CONFIG: relationalStore.StoreConfig = {
   securityLevel: relationalStore.SecurityLevel.S3
 };
 
-relationalStore.getRdbStore(context, STORE_CONFIG, (err: BusinessError, rdbStore: relationalStore.RdbStore) => {
-  store = rdbStore;
+relationalStore.getRdbStore(context, STORE_CONFIG, async (err: BusinessError, rdbStore: relationalStore.RdbStore) => {
   if (err) {
     console.error(`Get RdbStore failed, code is ${err.code},message is ${err.message}`);
     return;
   }
   console.info('Get RdbStore successfully.');
+  store = rdbStore;
+  // Perform subsequent operations after the rdbStore instance is successfully obtained.
 })
 ```
 
@@ -117,13 +118,14 @@ class EntryAbility extends UIAbility {
       securityLevel: relationalStore.SecurityLevel.S3
     };
         
-    relationalStore.getRdbStore(this.context, STORE_CONFIG, (err: BusinessError, rdbStore: relationalStore.RdbStore) => {
-      store = rdbStore;
+    relationalStore.getRdbStore(this.context, STORE_CONFIG, async (err: BusinessError, rdbStore: relationalStore.RdbStore) => {
       if (err) {
         console.error(`Get RdbStore failed, code is ${err.code},message is ${err.message}`);
         return;
       }
       console.info('Get RdbStore successfully.');
+      store = rdbStore;
+      // Perform subsequent operations after the rdbStore instance is successfully obtained.
     })
   }
 }
@@ -133,7 +135,7 @@ class EntryAbility extends UIAbility {
 
 getRdbStore(context: Context, config: StoreConfig): Promise&lt;RdbStore&gt;
 
-Obtains an RDB store. This API uses a promise to return the result. You can set parameters for the RDB store based on service requirements and call APIs to perform data operations.
+Obtains an RdbStore instance. This API uses a promise to return the result. You can set parameters for the RDB store based on service requirements and call APIs to perform data operations.
 
 The parameter [encrypt](#storeconfig) takes effect only when the RDB store is created for the first time, and cannot be modified. It is important to set this parameter correctly.
 
@@ -157,7 +159,7 @@ Currently, **getRdbStore()** does not support multi-thread concurrent operations
 
 | Type                                     | Description                             |
 | ----------------------------------------- | --------------------------------- |
-| Promise&lt;[RdbStore](#rdbstore)&gt; | Promise used to return the **RdbStore** object obtained.|
+| Promise&lt;[RdbStore](#rdbstore)&gt; | Promise used to return the **RdbStore** instance obtained.|
 
 **Error codes**
 
@@ -238,7 +240,7 @@ deleteRdbStore(context: Context, name: string, callback: AsyncCallback&lt;void&g
 
 Deletes an RDB store. This API uses an asynchronous callback to return the result.
 
-After the deletion, you are advised to set the database object to null. If a customized path is set in [StoreConfig](#storeconfig) when an RDB store is created, using this API cannot delete the RDB store. Use [deleteRdbStore<sup>10+</sup>](#relationalstoredeleterdbstore10) instead.
+After the deletion, you are advised to set the database object to null. If a custom path is set in [StoreConfig](#storeconfig) when an RDB store is created, using this API cannot delete the RDB store. Use [deleteRdbStore](#relationalstoredeleterdbstore10) instead.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -311,7 +313,7 @@ deleteRdbStore(context: Context, name: string): Promise&lt;void&gt;
 
 Deletes an RDB store. This API uses a promise to return the result.
 
-After the deletion, you are advised to set the database object to null. If a customized path is set in [StoreConfig](#storeconfig) when an RDB store is created, using this API cannot delete the RDB store. Use [deleteRdbStore<sup>10+</sup>](#relationalstoredeleterdbstore10-1) instead.
+After the deletion, you are advised to set the database object to null. If a custom path is set in [StoreConfig](#storeconfig) when an RDB store is created, using this API cannot delete the RDB store. Use [deleteRdbStore](#relationalstoredeleterdbstore10-1) instead.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -548,7 +550,7 @@ class EntryAbility extends UIAbility {
   }
 }
 ```
-## relationalStore.isVectorSupported<sup>16+</sup>
+## relationalStore.isVectorSupported<sup>18+</sup>
 
 isVectorSupported(): boolean
 
@@ -568,7 +570,7 @@ Checks whether the system supports vector stores.
 let result = relationalStore.isVectorSupported();
 ```
 
-## relationalStore.isTokenizerSupported<sup>16+</sup>
+## relationalStore.isTokenizerSupported<sup>18+</sup>
 
 isTokenizerSupported(tokenizer: Tokenizer): boolean
 
@@ -582,7 +584,7 @@ This API returns **true** if the specified tokenizer is supported; returns **fal
 
 | Name | Type                 | Mandatory| Description                                                        |
 | ------- | --------------------- | ---- | ------------------------------------------------------------ |
-| tokenizer | [Tokenizer](#tokenizer16)               | Yes  | Tokenizer to check.|
+| tokenizer | [Tokenizer](#tokenizer18)               | Yes  | Tokenizer to check.|
 
 **Return value**
 
@@ -617,17 +619,18 @@ Defines the RDB store configuration.
 | ------------- | ------------- | ---- | --------------------------------------------------------- |
 | name          | string        | Yes  | Database file name, which is the unique identifier of the database.<br>**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core  |
 | securityLevel | [SecurityLevel](#securitylevel) | Yes  | Security level of the RDB store.<br>**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core|
-| encrypt       | boolean       | No  | Whether to encrypt the RDB store.<br> The value **true** means to encrypt the RDB store; the value **false** (default) means the opposite.<br>**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core|
-| dataGroupId<sup>10+</sup> | string | No| Application group ID, which needs to be obtained from AppGallery Connect (AGC). This parameter is not supported currently.<br>**Model restriction**: This attribute can be used only in the stage model.<br>This parameter is supported since API version 10. If this parameter is specified, the **RdbStore** instance will be created in the sandbox directory corresponding to the specified **dataGroupId**. The encrypted database in the sandbox directory corresponding to a **dataGroupId** does not support multi-process access. If this parameter is left blank, the **RdbStore** instance is created in the sandbox directory of the current application by default.<br>**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core|
-| customDir<sup>11+</sup> | string | No| Customized path of the RDB store.<br>**Constraints**: The value cannot exceed 128 bytes.<br>This parameter is supported since API version 11. The RDB store directory is in the **context.databaseDir**/**rdb**/**customDir** format. **context.databaseDir** specifies the application sandbox path. **rdb** is a fixed field that indicates an RDB store. **customDir** specifies the customized path. If this parameter is not specified, the **RdbStore** instance is created in the sandbox directory of the application. Since API version 16, if the **rootDir** parameter is also configured, the RDB store in the following directory will be opened or deleted: rootDir + "/" + customDir + "/" + name.<br>**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core|
-| rootDir<sup>16+</sup> | string | No| Root path of the database.<br>This parameter is supported since API version 16. The database in the **rootDir** + "/" + **customDir** directory will be opened or deleted. The database opened is read-only. Writing data to a read-only database will trigger error 801. If this parameter is set when you want to open or delete an RDB store, ensure that the database file exists in the corresponding path and the caller has the read permission. Otherwise, error 14800010 will be returned.<br>**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core|
-| autoCleanDirtyData<sup>11+</sup> | boolean | No| Whether to automatically clear the dirty data (data that has been deleted from the cloud) from the local device. The value **true** means to clear the dirty data automatically. The value **false** means to clear the data manually. The default value is **true**.<br>This parameter applies to the RDB stores with device-cloud synergy. To manually clear the dirty data, use [cleanDirtyData<sup>11+</sup>](#cleandirtydata11).<br>This parameter is supported since API version 11.<br>**System capability**: SystemCapability.DistributedDataManager.CloudSync.Client|
-| allowRebuild<sup>12+</sup> | boolean | No| Whether auto rebuild is allowed when the RDB store is corrupted. The default value is **false**.<br>The value **true** means auto rebuild is allowed.<br>The value **false** means the opposite.<br>This parameter is supported since API version 12.<br>**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core|
-| isReadOnly<sup>12+</sup> | boolean | No| Whether the RDB store is read-only. The default value is **false**, which means the RDB store is readable and writeable.<br>If the value is **true** (read-only), writing data to the RDB store will throw error code 801.<br>The value **false** means the RDB store is readable and writeable.<br>This parameter is supported since API version 12.<br>**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core|
+| encrypt       | boolean       | No  | Whether to encrypt the RDB store.<br> **true**: encrypt the RDB store.<br> **false** (default): not encrypt the RDB store.<br>**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core|
+| dataGroupId<sup>10+</sup> | string | No| Application group ID. <!--RP1-->Currently, this parameter is not supported.<!--RP1End--><br>**Model restriction**: This parameter can be used only in the stage model.<br>This parameter is supported since API version 10. If **dataGroupId** is specified, the **RdbStore** instance will be created in the sandbox directory of the specified **dataGroupId**. However, the encrypted RDB store in this sandbox directory does not support multi-process access. If this parameter is left blank, the **RdbStore** instance will be created in the sandbox directory of the application by default.<br>**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core|
+| customDir<sup>11+</sup> | string | No| Customized path of the RDB store.<br>**Constraints**: The value cannot exceed 128 bytes.<br>This parameter is supported since API version 11. The RDB store directory is in the **context.databaseDir**/**rdb**/**customDir** format. **context.databaseDir** specifies the application sandbox path. **rdb** is a fixed field that indicates an RDB store. **customDir** specifies the customized path. If this parameter is not specified, the **RdbStore** instance is created in the sandbox directory of the application. Since API version 18, if the **rootDir** parameter is also configured, the RDB store in the following directory will be opened or deleted: rootDir + "/" + customDir + "/" + name.<br>**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core|
+| rootDir<sup>18+</sup> | string | No| Root path of the database.<br>This parameter is supported since API version 18. The database in the **rootDir** + "/" + **customDir** directory will be opened or deleted. The database opened is read-only. Writing data to a read-only database will trigger error 801. If this parameter is set when you want to open or delete an RDB store, ensure that the database file exists in the corresponding path and the caller has the read permission. Otherwise, error 14800010 will be returned.<br>**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core|
+| autoCleanDirtyData<sup>11+</sup> | boolean | No| Whether to automatically clear the dirty data (data that has been deleted from the cloud) from the local device. The value **true** means to clear the dirty data automatically. The value **false** means to clear the data manually. <br>Default value: **true**.<br>This parameter applies to the RDB stores with device-cloud synergy. To manually clear the dirty data, use [cleanDirtyData<sup>11+</sup>](#cleandirtydata11).<br>This parameter is supported since API version 11.<br>**System capability**: SystemCapability.DistributedDataManager.CloudSync.Client|
+| allowRebuild<sup>12+</sup> | boolean | No| Whether to automatically delete the RDB store and create an empty table in the case of an exception.<br>**true**: delete the RDB store and create an empty table in the case of an exception.<br>**false** (default): not delete the RDB store in the case of an exception.<br>This parameter is supported since API version 12.<br>**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core|
+| isReadOnly<sup>12+</sup> | boolean | No| Whether the RDB store is read-only.<br>**true**: The RDB store is read-only. Writing data to the RDB store will result in error code 801.<br>**false** (default): The RDB store is readable and writeable.<br>This parameter is supported since API version 12.<br>**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core|
 | pluginLibs<sup>12+</sup> | Array\<string> | No| Dynamic libraries with capabilities such as Full-Text Search (FTS).<br>**Constraints**<br>1. The maximum number of dynamic library names is 16. If the number of dynamic library names exceeds 16, the library fails to be opened and an error is returned.<br>2. The dynamic libraries must be those in the sandbox directory or system directory of the application. If a dynamic library fails to be loaded, the RDB store cannot be opened and an error will be returned.<br>3. The dynamic library name must be a complete path that can be loaded by SQLite.<br>Example: [context.bundleCodeDir + "/libs/arm64/" + libtokenizer.so], where **context.bundleCodeDir** indicates the application sandbox path, **/libs/arm64/** is the subdirectory, **libtokenizer.so** indicates the file name of the dynamic library. If this parameter is left blank, dynamic libraries are not loaded by default.<br>4. The dynamic library must contain all its dependencies to prevent the failure caused by the lack of dependencies.<br>For example, in an NDK project, the default compilation parameters are used to build **libtokenizer.so**, which depends on the C++ standard library. When the dynamic library is loaded, **libc++_shared.so** is linked by mistake because the namespace is different from that during compilation. As a result, the **__emutls_get_address** symbol cannot be found. To solve this problem, you need to statically link the C++ standard library during compilation. For details, see [NDK Project Building Overview](../../napi/build-with-ndk-overview.md).<br>**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core|
 | cryptoParam<sup>14+</sup> | [CryptoParam](#cryptoparam14) | No| Custom encryption parameters.<br>If this parameter is left empty, the default encryption parameters are used. For details, see default values of [CryptoParam](#cryptoparam14).<br>This parameter is valid only when **encrypt** is **true**.<br>This parameter is supported since API version 14.<br>**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core|
-| vector<sup>16+</sup> | boolean | No| Whether the RDB store is a vector store. The value **true** means the RDB store is a vector store, and the value **false** means the opposite.<br>The vector store is ideal for storing and managing high-dimensional vector data, while the relational database is optimal for storing and processing structured data.<br>Currently, vector stores support [execute](#execute12-1), [querySql](#querysql-1), [beginTrans](#begintrans12), [commit](#commit12), [rollback](#rollback12), [backup](#backup), [restore](#restore), and [ResultSet](#resultset) APIs. Before calling **deleteRdbStore** to delete a vector store, ensure that the vector store is properly closed. **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core|
-| tokenizer<sup>16+</sup> | [Tokenizer](#tokenizer16) | No| Type of the tokenizer to be used for FTS.<br>If this parameter is left blank, English tokenization is supported if FTS does not support Chinese or multi-language tokenization.<br>**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core|
+| vector<sup>18+</sup> | boolean | No| Whether the RDB store is a vector store. The value **true** means the RDB store is a vector store; the value **false** means the opposite.<br>The vector store is ideal for storing and managing high-dimensional vector data, while the relational database is optimal for storing and processing structured data.<br>Currently, vector databases support [execute](#execute12-1), [querySql](#querysql-1), [beginTrans](#begintrans12), [commit](#commit12), [rollback](#rollback12), [backup](#backup), [restore](#restore), and [ResultSet](#resultset) APIs. Before calling **deleteRdbStore** to delete a vector store, ensure that the vector store is properly closed.<br>**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core|
+| tokenizer<sup>18+</sup> | [Tokenizer](#tokenizer18) | No| Type of the tokenizer to be used for FTS.<br>If this parameter is left blank, English tokenization is supported if FTS does not support Chinese or multi-language tokenization.<br>**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core|
+| persist<sup>18+</sup> | boolean | No| Whether to persist the RDB store. The value **true** means to persist the RDB store; the value **false** means the opposite (using an in-memory database). <br>Default value: **true**.<br>An in-memory database does not support encryption, backup, restore, cross-process access, and distributed capabilities, with the **securityLevel** property ignored.<br>**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core|
 
 ## SecurityLevel
 
@@ -655,11 +658,11 @@ Represents the configuration of database encryption parameters. This parameter i
 | Name         | Type  | Mandatory| Description                                                        |
 | ------------- | ------ | ---- | ------------------------------------------------------------ |
 | encryptionKey | Uint8Array | Yes  | Key used for database encryption and decryption.<br>If this parameter is not specified, the RDB store generates a key, saves the key, and uses the key to open the database file.<br>If the key is not required, you need to set the key to 0s.|
-| iterationCount | number | No| Number of iterations of the PBKDF2 algorithm used in the RDB store. The value is an integer. The default value is **10000**.<br>The value must be an integer greater than 0. If it is not an integer, the value is rounded down.<br>If this parameter is not specified or is set to **0**, the default value **10000** and the default encryption algorithm **AES_256_GCM** are used.|
-| encryptionAlgo | [EncryptionAlgo](#encryptionalgo14) | No| Algorithm used for database encryption and decryption. The default value is **AES_256_GCM**.|
-| hmacAlgo | [HmacAlgo](#hmacalgo14) | No| HMAC algorithm used for database encryption and decryption. The default value is **SHA256**.|
-| kdfAlgo | [KdfAlgo](#kdfalgo14) | No| PBKDF2 algorithm used for database encryption and decryption. The default value is the same as the HMAC algorithm used.|
-| cryptoPageSize | number | No| Page size used for database encryption and decryption. The default value is **1024** bytes.<br>The value must be an integer within the range of 1024 to 65536 and must be 2<sup>n</sup>. If the specified value is not an integer, the value is rounded down.|
+| iterationCount | number | No| Number of iterations of the PBKDF2 algorithm used in the RDB store. The value is an integer. <br>Default value: **10000**.<br>The value must be an integer greater than 0. If it is not an integer, the value is rounded down.<br>If this parameter is not specified or is set to **0**, the default value **10000** and the default encryption algorithm **AES_256_GCM** are used.|
+| encryptionAlgo | [EncryptionAlgo](#encryptionalgo14) | No| Algorithm used for database encryption and decryption. <br>Default value: **AES_256_GCM**.|
+| hmacAlgo | [HmacAlgo](#hmacalgo14) | No| HMAC algorithm used for database encryption and decryption. <br>Default value: **SHA256**.|
+| kdfAlgo | [KdfAlgo](#kdfalgo14) | No| PBKDF2 algorithm used for database encryption and decryption. <br>Default value: the same as the HMAC algorithm used.|
+| cryptoPageSize | number | No| Page size used for database encryption and decryption. <br>Default value: **1024** bytes.<br>The value must be an integer within the range of 1024 to 65536 and must be 2<sup>n</sup>. If the specified value is not an integer, the value is rounded down.|
 
 ## EncryptionAlgo<sup>14+</sup>
 
@@ -696,7 +699,7 @@ Enumerates the PBKDF2 algorithms for the database. Use the enum name rather than
 | KDF_SHA256 |  1    | PBKDF2_HMAC_SHA256.    |
 | KDF_SHA512 |  2    | PBKDF2_HMAC_SHA512.    |
 
-## Tokenizer<sup>16+</sup>
+## Tokenizer<sup>18+</sup>
 
 Enumerates tokenizers that can be used for FTS. Use the enum name rather than the enum value.
 
@@ -722,7 +725,7 @@ import { window } from '@kit.ArkUI';
 
 // In this example, Ability is used to obtain an RdbStore instance in the stage model. You can use other implementations as required.
 class EntryAbility extends UIAbility {
-  onWindowStageCreate(windowStage: window.WindowStage) {
+  async onWindowStageCreate(windowStage: window.WindowStage) {
     let store: relationalStore.RdbStore | undefined = undefined;
     const STORE_CONFIG: relationalStore.StoreConfig = {
       name: "MyStore.db",
@@ -732,7 +735,7 @@ class EntryAbility extends UIAbility {
     store = await relationalStore.getRdbStore(this.context, STORE_CONFIG);
 
     const SQL_CREATE_TABLE = "CREATE VIRTUAL TABLE example USING fts4(name, content, tokenize=icu zh_CN)"
-    if(store != undefined) {
+    if (store != undefined) {
       (store as relationalStore.RdbStore).executeSql(SQL_CREATE_TABLE, (err) => {
         if (err) {
           console.error(`ExecuteSql failed, code is ${err.code},message is ${err.message}`);
@@ -755,7 +758,7 @@ import { window } from '@kit.ArkUI';
 
 // In this example, Ability is used to obtain an RdbStore instance in the stage model. You can use other implementations as required.
 class EntryAbility extends UIAbility {
-  onWindowStageCreate(windowStage: window.WindowStage) {
+  async onWindowStageCreate(windowStage: window.WindowStage) {
     let store: relationalStore.RdbStore | undefined = undefined;
     const STORE_CONFIG: relationalStore.StoreConfig = {
       name: "MyStore.db",
@@ -765,13 +768,13 @@ class EntryAbility extends UIAbility {
     store = await relationalStore.getRdbStore(this.context, STORE_CONFIG);
 
     const SQL_CREATE_TABLE = "CREATE VIRTUAL TABLE example USING fts5(name, content, tokenize='customtokenizer')"
-    if(store != undefined) {
+    if (store != undefined) {
       (store as relationalStore.RdbStore).executeSql(SQL_CREATE_TABLE, (err) => {
         if (err) {
           console.error(`ExecuteSql failed, code is ${err.code},message is ${err.message}`);
           return;
         }
-    		console.info('create virtual table done.');
+        console.info('create virtual table done.');
       })
     }
   }
@@ -807,7 +810,7 @@ Defines information about an asset (such as a document, image, and video).
 | createTime  | string                      | Yes  | Time when the asset was created.  |
 | modifyTime  | string                      | Yes  | Time when the asset was last modified.|
 | size        | string                      | Yes  | Size of the asset.   |
-| status      | [AssetStatus](#assetstatus10) | No  | Asset status. The default value is **ASSET_NORMAL**.       |
+| status      | [AssetStatus](#assetstatus10) | No  | Asset status. <br>Default value: **ASSET_NORMAL**.       |
 
 ## Assets<sup>10+</sup>
 
@@ -825,7 +828,7 @@ Defines an array of the [Asset](#asset10) type.
 
 type ValueType = null | number | string | boolean | Uint8Array | Asset | Assets | Float32Array | bigint
 
-Enumerates the types of the value in a KV pair. The type varies with the parameter function.
+Enumerates the types of the value in a KV pair. The type varies with the parameter usage.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -996,7 +999,8 @@ Defines the configuration of the distributed mode of tables.
 | Name    | Type   | Mandatory| Description                                                        |
 | -------- | ------- | ---- | ------------------------------------------------------------ |
 | autoSync   | boolean | Yes  | The value **true** means both auto sync and manual sync are supported for the table. The value **false** means only manual sync is supported for the table.|
-| asyncDownloadAsset<sup>16+</sup> | boolean | No| Whether to download assets synchronously or asynchronously when device-cloud sync is being performed for the current RDB store. The value **true** means to use an asynchronous task to download assets after all data is downloaded. The value **false** means to downloaded assets synchronously. The default value is **false**.|
+| asyncDownloadAsset<sup>18+</sup> | boolean | No| Whether to download assets synchronously or asynchronously when device-cloud sync is being performed for the current RDB store. The value **true** means to use an asynchronous task to download assets after all data is downloaded. The value **false** means to downloaded assets synchronously. <br>Default value: **false**.|
+| enableCloud<sup>18+</sup> | boolean | No| Whether to enable device-cloud sync for this RDB store. The value **true** means to enable device-cloud sync; the value **false** means the opposite. <br>Default value: **true**|
 
 ## ConflictResolution<sup>10+</sup>
 
@@ -1112,11 +1116,29 @@ Represents the configuration of a transaction object.
 
 | Name       | Type         | Mandatory| Description                                                     |
 | ------------- | ------------- | ---- | --------------------------------------------------------- |
-| transactionType          | [TransactionType](#transactiontype14)        | No  | Transaction object type. The default value is **DEFERRED**. |
+| transactionType          | [TransactionType](#transactiontype14)        | No  | Transaction object type. <br>Default value: **DEFERRED**. |
+
+## ColumnType<sup>18+</sup>
+
+Enumerates the types of the column data. Use the enum name rather than the enum value.
+
+**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
+
+| Name         | Value  | Description                                                        |
+| ------------- | ---- | ------------------------------------------------------------ |
+| NULL          | 0    | NULL.                                      |
+| INTEGER       | 1    | 64-bit integer. <br>The column can hold 8-bit (including Boolean values), 16-bit, 32-bit, and 64-bit integers. For the 64-bit integer greater than 2^53 or less than -2^53, use [getString](#getstring) to convert it into a string.|
+| REAL          | 2    | Floating-point number.                                        |
+| TEXT          | 3    | String.                                        |
+| BLOB          | 4    | Uint8Array.                                    |
+| ASSET         | 5    | [Asset](#asset10).                             |
+| ASSETS        | 6    | [Assets](#assets10).                           |
+| FLOAT_VECTOR  | 7    | Float32Array.                                  |
+| UNLIMITED_INT | 8    | bigint.                                        |
 
 ## RdbPredicates
 
-Defines the predicates for an RDB store. This class determines whether the conditional expression for the RDB store is true or false. Multiple predicates statements can be concatenated by using **and()** by default. **RdbPredicates** cannot be passed across threads.
+Provides APIs for creating the predicates (condition) for RDB store operations. This class determines whether the conditional expression for the RDB store is true or false. Multiple predicates statements can be concatenated by using **and()** by default. **RdbPredicates** cannot be passed across threads.
 
 ### constructor
 
@@ -1150,12 +1172,12 @@ let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 
 inDevices(devices: Array&lt;string&gt;): RdbPredicates
 
-Sets an **RdbPredicates** object to specify the remote devices to connect during the distributed database sync.
+Creates an **RdbPredicates** object to specify the remote devices to connect during the distributed database sync.
 
 > **NOTE**
 >
-> **devices** can be obtained by [deviceManager.getAvailableDeviceListSync](../apis-distributedservice-kit/js-apis-distributedDeviceManager.md#getavailabledevicelistsync).
-If **inDevices** is specified in **predicates** when **sync()** is called, data is synchronized with the specified device. If **inDevices** is not specified, data is synchronized with all devices on the network by default.
+> **devices** can be obtained by using [deviceManager.getAvailableDeviceListSync](../apis-distributedservice-kit/js-apis-distributedDeviceManager.md#getavailabledevicelistsync).
+When calling **sync()**, you need to call **inDevices** to specify the devices. If **inDevices** is not used, data will be synced to all devices on the network by default.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -1163,7 +1185,7 @@ If **inDevices** is specified in **predicates** when **sync()** is called, data 
 
 | Name | Type               | Mandatory| Description                      |
 | ------- | ------------------- | ---- | -------------------------- |
-| devices | Array&lt;string&gt; | Yes  | IDs of the remote devices in the same network.|
+| devices | Array&lt;string&gt; | Yes  | IDs of the remote devices to connect.|
 
 **Return value**
 
@@ -1208,7 +1230,7 @@ predicates.inDevices(deviceIds);
 
 inAllDevices(): RdbPredicates
 
-Sets an **RdbPredicates** instance to specify all remote devices to connect during the distributed database sync.
+Creates an **RdbPredicates** object to specify all remote devices to connect during the distributed database sync.
 
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
@@ -1230,7 +1252,7 @@ predicates.inAllDevices();
 
 equalTo(field: string, value: ValueType): RdbPredicates
 
-Sets an **RdbPredicates** object to match the fields in the specified column that are equal to the given value.
+Creates an **RdbPredicates** object to search for the records in the specified column that are equal to the given value.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -1239,7 +1261,7 @@ Sets an **RdbPredicates** object to match the fields in the specified column tha
 | Name| Type                   | Mandatory| Description                  |
 | ------ | ----------------------- | ---- | ---------------------- |
 | field  | string                  | Yes  | Column name in the database table.    |
-| value  | [ValueType](#valuetype) | Yes  | Value to match the **RdbPredicates**.|
+| value  | [ValueType](#valuetype) | Yes  | Value to match.|
 
 **Return value**
 
@@ -1258,7 +1280,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-// Locate data of Lisa in the EMPLOYEE table.
+// Find all the records in the NAME column where the value is Lisa.
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.equalTo("NAME", "Lisa");
 ```
@@ -1268,7 +1290,7 @@ predicates.equalTo("NAME", "Lisa");
 
 notEqualTo(field: string, value: ValueType): RdbPredicates
 
-Sets an **RdbPredicates** object to match the fields in the specified column that are not equal to the given value.
+Creates an **RdbPredicates** object to search for the records in the specified column that are not equal to the given value.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -1277,7 +1299,7 @@ Sets an **RdbPredicates** object to match the fields in the specified column tha
 | Name| Type                   | Mandatory| Description                  |
 | ------ | ----------------------- | ---- | ---------------------- |
 | field  | string                  | Yes  | Column name in the database table.    |
-| value  | [ValueType](#valuetype) | Yes  | Value to match the **RdbPredicates**.|
+| value  | [ValueType](#valuetype) | Yes  | Value to match.|
 
 **Return value**
 
@@ -1296,7 +1318,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-// Locate data of the employees whose name is not Lisa in the table.
+// Find all the records in the NAME column where the value is not Lisa.
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.notEqualTo("NAME", "Lisa");
 ```
@@ -1306,7 +1328,7 @@ predicates.notEqualTo("NAME", "Lisa");
 
 beginWrap(): RdbPredicates
 
-Adds a left parenthesis to the **RdbPredicates**.
+Creates an **RdbPredicates** object to add a left parenthesis.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -1314,7 +1336,7 @@ Adds a left parenthesis to the **RdbPredicates**.
 
 | Type                                | Description                     |
 | ------------------------------------ | ------------------------- |
-| [RdbPredicates](#rdbpredicates) | **RdbPredicates** with a left parenthesis.|
+| [RdbPredicates](#rdbpredicates) | **RdbPredicates** object created.|
 
 **Example**
 
@@ -1332,7 +1354,7 @@ predicates.equalTo("NAME", "Lisa")
 
 endWrap(): RdbPredicates
 
-Adds a right parenthesis to the **RdbPredicates**.
+Creates an **RdbPredicates** object to add a right parenthesis.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -1340,7 +1362,7 @@ Adds a right parenthesis to the **RdbPredicates**.
 
 | Type                                | Description                     |
 | ------------------------------------ | ------------------------- |
-| [RdbPredicates](#rdbpredicates) | **RdbPredicates** with a right parenthesis.|
+| [RdbPredicates](#rdbpredicates) | **RdbPredicates** object created.|
 
 **Example**
 
@@ -1358,7 +1380,7 @@ predicates.equalTo("NAME", "Lisa")
 
 or(): RdbPredicates
 
-Adds the OR condition to the **RdbPredicates**.
+Creates an **RdbPredicates** object to add the OR condition.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -1366,12 +1388,12 @@ Adds the OR condition to the **RdbPredicates**.
 
 | Type                                | Description                     |
 | ------------------------------------ | ------------------------- |
-| [RdbPredicates](#rdbpredicates) | **RdbPredicates** with the OR condition.|
+| [RdbPredicates](#rdbpredicates) | **RdbPredicates** object created.|
 
 **Example**
 
 ```ts
-// Locate the employees named Lisa or Rose in the table.
+// Find all records in the NAME column where the value is Lisa or Rose.
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.equalTo("NAME", "Lisa")
     .or()
@@ -1382,7 +1404,7 @@ predicates.equalTo("NAME", "Lisa")
 
 and(): RdbPredicates
 
-Adds the AND condition to the **RdbPredicates**.
+Creates an **RdbPredicates** object to add the AND condition.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -1390,12 +1412,12 @@ Adds the AND condition to the **RdbPredicates**.
 
 | Type                                | Description                     |
 | ------------------------------------ | ------------------------- |
-| [RdbPredicates](#rdbpredicates) | **RdbPredicates** with the AND condition.|
+| [RdbPredicates](#rdbpredicates) | **RdbPredicates** object created.|
 
 **Example**
 
 ```ts
-// Locate the field with name of Lisa and salary of 200.5 in the table.
+// Find the records in the EMPLOYEE table where the NAME column is Lisa and the SALARY column is 200.5.
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.equalTo("NAME", "Lisa")
     .and()
@@ -1406,7 +1428,7 @@ predicates.equalTo("NAME", "Lisa")
 
 contains(field: string, value: string): RdbPredicates
 
-Sets an **RdbPredicates** object to match the fields in the specified column that contain the given value.
+Creates an **RdbPredicates** object to search for the records in the specified column that contain the given value.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -1415,7 +1437,7 @@ Sets an **RdbPredicates** object to match the fields in the specified column tha
 | Name| Type  | Mandatory| Description                  |
 | ------ | ------ | ---- | ---------------------- |
 | field  | string | Yes  | Column name in the database table.    |
-| value  | string | Yes  | Value to match the **RdbPredicates**.|
+| value  | string | Yes  | Value to match.|
 
 **Return value**
 
@@ -1434,7 +1456,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-// Locate data of the employees whose name contains os, for example, Rose, in the table.
+// Find all the records that contain the string 'os' in the NAME column.
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.contains("NAME", "os");
 ```
@@ -1443,7 +1465,7 @@ predicates.contains("NAME", "os");
 
 beginsWith(field: string, value: string): RdbPredicates
 
-Sets an **RdbPredicates** object to match the fields in the specified column that begin with the given value.
+Creates an **RdbPredicates** object to search for the records in the specified column that begin with the given value.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -1452,7 +1474,7 @@ Sets an **RdbPredicates** object to match the fields in the specified column tha
 | Name| Type  | Mandatory| Description                  |
 | ------ | ------ | ---- | ---------------------- |
 | field  | string | Yes  | Column name in the database table.    |
-| value  | string | Yes  | Value to match the **RdbPredicates**.|
+| value  | string | Yes  | Value to match.|
 
 **Return value**
 
@@ -1471,7 +1493,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-// Locate data of the employees whose name begins with Li, for example, Lisa, in the table.
+// Find all the records that start with "Li" in the NAME column, for example, Lisa.
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.beginsWith("NAME", "Li");
 ```
@@ -1480,7 +1502,7 @@ predicates.beginsWith("NAME", "Li");
 
 endsWith(field: string, value: string): RdbPredicates
 
-Sets an **RdbPredicates** object to match the fields in the specified column that end with the given value.
+Creates an **RdbPredicates** object to search for the records in the specified column that end with the given value.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -1489,7 +1511,7 @@ Sets an **RdbPredicates** object to match the fields in the specified column tha
 | Name| Type  | Mandatory| Description                  |
 | ------ | ------ | ---- | ---------------------- |
 | field  | string | Yes  | Column name in the database table.    |
-| value  | string | Yes  | Value to match the **RdbPredicates**.|
+| value  | string | Yes  | Value to match.|
 
 **Return value**
 
@@ -1508,7 +1530,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-// Locate data of the employees whose name ends with se, for example, Rose, in the table.
+// Find all the records that end with "se" in the NAME column, for example, Rose.
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.endsWith("NAME", "se");
 ```
@@ -1517,7 +1539,7 @@ predicates.endsWith("NAME", "se");
 
 isNull(field: string): RdbPredicates
 
-Sets an **RdbPredicates** object to match the fields in the specified column that are **null**.
+Creates an **RdbPredicates** object to search for the records in the specified column that are **null**.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -1552,7 +1574,7 @@ predicates.isNull("NAME");
 
 isNotNull(field: string): RdbPredicates
 
-Sets an **RdbPredicates** object to match the fields in the specified column that are not **null**.
+Creates an **RdbPredicates** object to search for the records in the specified column that are not **null**.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -1587,7 +1609,7 @@ predicates.isNotNull("NAME");
 
 like(field: string, value: string): RdbPredicates
 
-Sets an **RdbPredicates** object to match the fields in the specified column that are similar to the given value.
+Creates an **RdbPredicates** object to search for the records in the specified column that are similar to the given value.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -1596,7 +1618,7 @@ Sets an **RdbPredicates** object to match the fields in the specified column tha
 | Name| Type  | Mandatory| Description                  |
 | ------ | ------ | ---- | ---------------------- |
 | field  | string | Yes  | Column name in the database table.    |
-| value  | string | Yes  | Value to match the **RdbPredicates**.|
+| value  | string | Yes  | Value to match.|
 
 **Return value**
 
@@ -1615,7 +1637,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-// Locate data of the employees whose name is similar to os in the table, for example, Rose.
+// Find all the records that are similar to "os" in the NAME column, for example, Rose.
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.like("NAME", "%os%");
 ```
@@ -1624,7 +1646,7 @@ predicates.like("NAME", "%os%");
 
 glob(field: string, value: string): RdbPredicates
 
-Sets an **RdbPredicates** object to locate the fields in the specified column that match the given string.
+Creates an **RdbPredicates** object to search for the records in the specified column that match the given string.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -1633,7 +1655,7 @@ Sets an **RdbPredicates** object to locate the fields in the specified column th
 | Name| Type  | Mandatory| Description                                                        |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
 | field  | string | Yes  | Column name in the database table.                                          |
-| value  | string | Yes  | Value to match the **RdbPredicates**.<br><br>Wildcards are supported. * indicates zero, one, or multiple digits or characters. **?** indicates a single digit or character.|
+| value  | string | Yes  | Value to match.<br><br>Wildcards are supported. * indicates zero, one, or multiple digits or characters. **?** indicates a single digit or character.|
 
 **Return value**
 
@@ -1652,7 +1674,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-// Locate data of the employees whose name matches the "?h*g" string in the table.
+// Find the strings that match "?h*g" in the NAME column.
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.glob("NAME", "?h*g");
 ```
@@ -1661,7 +1683,7 @@ predicates.glob("NAME", "?h*g");
 
 between(field: string, low: ValueType, high: ValueType): RdbPredicates
 
-Sets an **RdbPredicates** object to match the fields in the specified column that are within the given range (including the min. and max. values).
+Creates an **RdbPredicates** object to search for the records that are within the given range (including the min. and max. values) in the specified column.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -1670,8 +1692,8 @@ Sets an **RdbPredicates** object to match the fields in the specified column tha
 | Name| Type                   | Mandatory| Description                      |
 | ------ | ----------------------- | ---- | -------------------------- |
 | field  | string                  | Yes  | Column name in the database table.        |
-| low    | [ValueType](#valuetype) | Yes  | Minimum value to match.  |
-| high   | [ValueType](#valuetype) | Yes  | Maximum value to match.|
+| low    | [ValueType](#valuetype) | Yes  | Minimum value of the range to set.  |
+| high   | [ValueType](#valuetype) | Yes  | Maximum value of the range to set.|
 
 **Return value**
 
@@ -1690,7 +1712,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-// Locate data of the employees with age between 10 and 50 (including 10 and 50) in the table.
+// Find the records that are greater than or equal to 10 and less than or equal to 50 in the AGE column.
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.between("AGE", 10, 50);
 ```
@@ -1699,7 +1721,7 @@ predicates.between("AGE", 10, 50);
 
 notBetween(field: string, low: ValueType, high: ValueType): RdbPredicates
 
-Sets an **RdbPredicates** object to match the fields in the specified column that are out of the given range (excluding the min. and max. values).
+Creates an **RdbPredicates** object to search for the records that are out of the given range (excluding the min. and max. values) in the specified column.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -1708,8 +1730,8 @@ Sets an **RdbPredicates** object to match the fields in the specified column tha
 | Name| Type                   | Mandatory| Description                      |
 | ------ | ----------------------- | ---- | -------------------------- |
 | field  | string                  | Yes  | Column name in the database table.        |
-| low    | [ValueType](#valuetype) | Yes  | Minimum value to match.  |
-| high   | [ValueType](#valuetype) | Yes  | Maximum value to match.|
+| low    | [ValueType](#valuetype) | Yes  | Minimum value of the range to set.  |
+| high   | [ValueType](#valuetype) | Yes  | Maximum value of the range to set.|
 
 **Return value**
 
@@ -1728,7 +1750,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-// Locate data of the employees who are younger than 10 or older than 50 in the table.
+// Find the records that are less than 10 or greater than 50 in the AGE column.
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.notBetween("AGE", 10, 50);
 ```
@@ -1737,7 +1759,7 @@ predicates.notBetween("AGE", 10, 50);
 
 greaterThan(field: string, value: ValueType): RdbPredicates
 
-Sets an **RdbPredicates** object to match the fields in the specified column that are greater than the given value.
+Creates an **RdbPredicates** object to search for the records that are greater than the given value in the specified column.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -1746,7 +1768,7 @@ Sets an **RdbPredicates** object to match the fields in the specified column tha
 | Name| Type                   | Mandatory| Description                  |
 | ------ | ----------------------- | ---- | ---------------------- |
 | field  | string                  | Yes  | Column name in the database table.    |
-| value  | [ValueType](#valuetype) | Yes  | Value to match the **RdbPredicates**.|
+| value  | [ValueType](#valuetype) | Yes  | Value to match.|
 
 **Return value**
 
@@ -1765,7 +1787,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-// Locate data of the employees who are older than 18 in the table.
+// Find all the records that are greater than 18 in the AGE column.
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.greaterThan("AGE", 18);
 ```
@@ -1774,7 +1796,7 @@ predicates.greaterThan("AGE", 18);
 
 lessThan(field: string, value: ValueType): RdbPredicates
 
-Sets an **RdbPredicates** object to match the fields in the specified column that are less than the given value.
+Creates an **RdbPredicates** object to search for the records that are less than the given value in the specified column.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -1783,7 +1805,7 @@ Sets an **RdbPredicates** object to match the fields in the specified column tha
 | Name| Type                   | Mandatory| Description                  |
 | ------ | ----------------------- | ---- | ---------------------- |
 | field  | string                  | Yes  | Column name in the database table.    |
-| value  | [ValueType](#valuetype) | Yes  | Value to match the **RdbPredicates**.|
+| value  | [ValueType](#valuetype) | Yes  | Value to match.|
 
 **Return value**
 
@@ -1802,7 +1824,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-// Locate data of the employees who are younger than 20 in the table.
+// Find all the records that are less than 20 in the AGE column.
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.lessThan("AGE", 20);
 ```
@@ -1811,7 +1833,7 @@ predicates.lessThan("AGE", 20);
 
 greaterThanOrEqualTo(field: string, value: ValueType): RdbPredicates
 
-Sets an **RdbPredicates** object to match the fields in the specified column that are greater than or equal to the given value.
+Creates an **RdbPredicates** object to search for the records that are greater than or equal to the given value in the specified column.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -1820,7 +1842,7 @@ Sets an **RdbPredicates** object to match the fields in the specified column tha
 | Name| Type                   | Mandatory| Description                  |
 | ------ | ----------------------- | ---- | ---------------------- |
 | field  | string                  | Yes  | Column name in the database table.    |
-| value  | [ValueType](#valuetype) | Yes  | Value to match the **RdbPredicates**.|
+| value  | [ValueType](#valuetype) | Yes  | Value to match.|
 
 **Return value**
 
@@ -1839,7 +1861,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-// Locate data of the employees who are 18 or older in the table.
+// Find all the records that are greater than or equal to 18 in the AGE column.
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.greaterThanOrEqualTo("AGE", 18);
 ```
@@ -1848,7 +1870,7 @@ predicates.greaterThanOrEqualTo("AGE", 18);
 
 lessThanOrEqualTo(field: string, value: ValueType): RdbPredicates
 
-Sets an **RdbPredicates** object to match the fields in the specified column that are less than or equal to the given value.
+Creates an **RdbPredicates** object to search for the records that are less than or equal to the given value in the specified column.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -1857,7 +1879,7 @@ Sets an **RdbPredicates** object to match the fields in the specified column tha
 | Name| Type                   | Mandatory| Description                  |
 | ------ | ----------------------- | ---- | ---------------------- |
 | field  | string                  | Yes  | Column name in the database table.    |
-| value  | [ValueType](#valuetype) | Yes  | Value to match the **RdbPredicates**.|
+| value  | [ValueType](#valuetype) | Yes  | Value to match.|
 
 **Return value**
 
@@ -1876,7 +1898,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-// Locate data of the employees who are 20 or younger in the table.
+// Find all the records that are less than or equal to 20 in the AGE column.
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.lessThanOrEqualTo("AGE", 20);
 ```
@@ -1885,7 +1907,7 @@ predicates.lessThanOrEqualTo("AGE", 20);
 
 orderByAsc(field: string): RdbPredicates
 
-Sets an **RdbPredicates** object to sort the fields in the specified column in ascending order.
+Creates an **RdbPredicates** object to sort the records in the specified column in ascending order.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -1920,7 +1942,7 @@ predicates.orderByAsc("NAME");
 
 orderByDesc(field: string): RdbPredicates
 
-Sets an **RdbPredicates** object to sort the fields in the specified column in descending order.
+Creates an **RdbPredicates** object to sort the records in the specified column in descending order.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -1955,7 +1977,7 @@ predicates.orderByDesc("AGE");
 
 distinct(): RdbPredicates
 
-Sets an **RdbPredicates** object to filter out duplicate records.
+Creates an **RdbPredicates** object to filter out duplicate records.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -1976,7 +1998,7 @@ predicates.equalTo("NAME", "Rose").distinct();
 
 limitAs(value: number): RdbPredicates
 
-Sets an **RdbPredicates** object to specify the maximum number of records.
+Creates an **RdbPredicates** object to limit the number of data records.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -1984,7 +2006,7 @@ Sets an **RdbPredicates** object to specify the maximum number of records.
 
 | Name| Type  | Mandatory| Description            |
 | ------ | ------ | ---- | ---------------- |
-| value  | number | Yes  | Maximum number of records.|
+| value  | number | Yes  | Maximum number of data records. The value should be a positive integer. If a value less than or equal to **0** is specified, the number of records is not limited.|
 
 **Return value**
 
@@ -2011,7 +2033,7 @@ predicates.equalTo("NAME", "Rose").limitAs(3);
 
 offsetAs(rowOffset: number): RdbPredicates
 
-Sets an **RdbPredicates** object to specify the start position of the returned result.
+Creates an **RdbPredicates** object to set the start position of the query result. This API must be used together with **limitAs**. Otherwise, no result will be returned. To query all rows after the specified offset, pass in **-1** in **limitAs**.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -2019,13 +2041,13 @@ Sets an **RdbPredicates** object to specify the start position of the returned r
 
 | Name   | Type  | Mandatory| Description                              |
 | --------- | ------ | ---- | ---------------------------------- |
-| rowOffset | number | Yes  | Number of rows to offset from the beginning. The value is a positive integer.|
+| rowOffset | number | Yes  | Start position to set. The value should be a positive integer. The start position of the result set is **0**. If a value less than or equal to **0** is specified, the query result is returned from the 0 index position.|
 
 **Return value**
 
 | Type                                | Description                                |
 | ------------------------------------ | ------------------------------------ |
-| [RdbPredicates](#rdbpredicates) | **RdbPredicates** object that specifies the start position of the returned result.|
+| [RdbPredicates](#rdbpredicates) | **RdbPredicates** object that specifies the start position of the query result.|
 
 **Error codes**
 
@@ -2039,14 +2061,14 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 ```ts
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
-predicates.equalTo("NAME", "Rose").offsetAs(3);
+predicates.equalTo("NAME", "Rose").limitAs(-1).offsetAs(3);
 ```
 
 ### groupBy
 
 groupBy(fields: Array&lt;string&gt;): RdbPredicates
 
-Sets an **RdbPredicates** object to group rows that have the same value into summary rows.
+Creates an **RdbPredicates** object to group the query results based on the specified columns.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -2060,7 +2082,7 @@ Sets an **RdbPredicates** object to group rows that have the same value into sum
 
 | Type                                | Description                  |
 | ------------------------------------ | ---------------------- |
-| [RdbPredicates](#rdbpredicates) | **RdbPredicates** object that groups rows with the same value.|
+| [RdbPredicates](#rdbpredicates) | **RdbPredicates** object created.|
 
 **Error codes**
 
@@ -2081,7 +2103,7 @@ predicates.groupBy(["AGE", "NAME"]);
 
 indexedBy(field: string): RdbPredicates
 
-Sets an **RdbPredicates** object to specify the index column.
+Creates an **RdbPredicates** object to specify the index column.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -2096,7 +2118,7 @@ Sets an **RdbPredicates** object to specify the index column.
 
 | Type                                | Description                                 |
 | ------------------------------------ | ------------------------------------- |
-| [RdbPredicates](#rdbpredicates) | **RdbPredicates** object that specifies the index column.|
+| [RdbPredicates](#rdbpredicates) | **RdbPredicates** object created.|
 
 **Error codes**
 
@@ -2117,7 +2139,7 @@ predicates.indexedBy("SALARY");
 
 in(field: string, value: Array&lt;ValueType&gt;): RdbPredicates
 
-Sets an **RdbPredicates** object to match the fields in the specified column that are in the given range.
+Creates an **RdbPredicates** object to search for the records that are in the given range in the specified column.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -2145,7 +2167,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-// Locate data of the employees with age of [18, 20] in the table.
+// Find records that are within [18, 20] in the AGE column.
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.in("AGE", [18, 20]);
 ```
@@ -2154,7 +2176,7 @@ predicates.in("AGE", [18, 20]);
 
 notIn(field: string, value: Array&lt;ValueType&gt;): RdbPredicates
 
-Sets an **RdbPredicates** object to match the fields in the specified column that are out of the given range.
+Creates an **RdbPredicates** object to search for the records that are out of the given range in the specified column.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -2182,7 +2204,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-// Locate data of all the employees except Lisa and Rose in the table.
+// Find the records that are not within [Lisa, Rose] in the NAME column.
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.notIn("NAME", ["Lisa", "Rose"]);
 ```
@@ -2191,7 +2213,7 @@ predicates.notIn("NAME", ["Lisa", "Rose"]);
 
 notContains(field: string, value: string): RdbPredicates
 
-Sets an **RdbPredicates** object to match the fields in the specified column that do not contain the given value.
+Creates an **RdbPredicates** object to search for the records that do not contain the given value in the specified column.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -2200,7 +2222,7 @@ Sets an **RdbPredicates** object to match the fields in the specified column tha
 | Name| Type  | Mandatory| Description                  |
 | ------ | ------ | ---- | ---------------------- |
 | field  | string | Yes  | Column name in the database table.    |
-| value  | string | Yes  | Value to match the **RdbPredicates**.|
+| value  | string | Yes  | Value to match.|
 
 **Return value**
 
@@ -2219,7 +2241,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-// Match the fields that do not contain "os" in the NAME column of the data table, for example, Lisa in the list.
+// Find the records that do not contain the string "os" in the NAME column, for example, Lisa.
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.notContains("NAME", "os");
 ```
@@ -2228,7 +2250,7 @@ predicates.notContains("NAME", "os");
 
 notLike(field: string, value: string): RdbPredicates
 
-Sets an **RdbPredicates** object to match the fields in the specified column that are not similar to the given value.
+Creates an **RdbPredicates** object to search for the records that are not similar to the given value in the specified column.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -2237,7 +2259,7 @@ Sets an **RdbPredicates** object to match the fields in the specified column tha
 | Name| Type  | Mandatory| Description                  |
 | ------ | ------ | ---- | ---------------------- |
 | field  | string | Yes  | Column name in the database table.    |
-| value  | string | Yes  | Value to match the **RdbPredicates**.|
+| value  | string | Yes  | Value to match.|
 
 **Return value**
 
@@ -2256,7 +2278,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-// Match the fields that are not "os" in the NAME column of the data table, for example, Rose in the list.
+// Find the records that are not "os" in the NAME column, for example, Rose.
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.notLike("NAME", "os");
 ```
@@ -2265,7 +2287,7 @@ predicates.notLike("NAME", "os");
 
 ## RdbStore
 
-Provides APIs to manage an RDB store.
+Provides APIs for managing data in an RDB store.
 
 Before using the APIs of this class, use [executeSql](#executesql) to initialize the database table structure and related data.
 
@@ -2303,12 +2325,36 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 ```ts
 // Set the RDB store version.
-if(store != undefined) {
-  (store as relationalStore.RdbStore).version = 3;
-  // Obtain the RDB store version.
-  console.info(`RdbStore version is ${store.version}`);
-  // Whether the RDB store has been rebuilt.
-  console.info(`RdbStore rebuilt is ${store.rebuilt}`);
+import { UIAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { window } from '@kit.ArkUI';
+
+let store: relationalStore.RdbStore | undefined = undefined;
+
+class EntryAbility extends UIAbility {
+  onWindowStageCreate(windowStage: window.WindowStage) {
+    const STORE_CONFIG: relationalStore.StoreConfig = {
+      name: "RdbTest.db",
+      securityLevel: relationalStore.SecurityLevel.S3,
+    };
+	const SQL_CREATE_TABLE = 'CREATE TABLE IF NOT EXISTS EMPLOYEE (ID INTEGER PRIMARY KEY AUTOINCREMENT, NAME TEXT NOT NULL, AGE INTEGER, SALARY REAL, CODES BLOB, IDENTITY UNLIMITED INT, ASSETDATA ASSET, ASSETSDATA ASSETS, FLOATARRAY floatvector(128))'
+    relationalStore.getRdbStore(this.context, STORE_CONFIG).then(async (rdbStore: relationalStore.RdbStore) => {
+      store = rdbStore;
+      await (store as relationalStore.RdbStore).executeSql(SQL_CREATE_TABLE);
+      console.info('Get RdbStore successfully.')
+    }).catch((err: BusinessError) => {
+      console.error(`Get RdbStore failed, code is ${err.code},message is ${err.message}`);
+    })
+    
+    // Set the RDB store version.
+    if (store != undefined) {
+      (store as relationalStore.RdbStore).version = 3;
+      // Obtain the RDB store version.
+      console.info(`RdbStore version is ${store.version}`);
+      // Whether the RDB store has been rebuilt.
+      console.info(`RdbStore rebuilt is ${store.rebuilt}`);
+    }
+  }
 }
 ```
 
@@ -2383,7 +2429,7 @@ const valueBucket3: relationalStore.ValuesBucket = {
   "CODES": value4,
 };
 
-if(store != undefined) {
+if (store != undefined) {
   (store as relationalStore.RdbStore).insert("EMPLOYEE", valueBucket1, (err: BusinessError, rowId: number) => {
     if (err) {
       console.error(`Insert is failed, code is ${err.code},message is ${err.message}`);
@@ -2466,7 +2512,7 @@ const valueBucket3: relationalStore.ValuesBucket = {
   "CODES": value4,
 };
 
-if(store != undefined) {
+if (store != undefined) {
   (store as relationalStore.RdbStore).insert("EMPLOYEE", valueBucket1, relationalStore.ConflictResolution.ON_CONFLICT_REPLACE,
     (err: BusinessError, rowId: number) => {
       if (err) {
@@ -2556,7 +2602,7 @@ const valueBucket3: relationalStore.ValuesBucket = {
   "CODES": value4,
 };
 
-if(store != undefined) {
+if (store != undefined) {
   (store as relationalStore.RdbStore).insert("EMPLOYEE", valueBucket1).then((rowId: number) => {
     console.info(`Insert is successful, rowId = ${rowId}`);
   }).catch((err: BusinessError) => {
@@ -2644,7 +2690,7 @@ const valueBucket3: relationalStore.ValuesBucket = {
   "CODES": value4,
 };
 
-if(store != undefined) {
+if (store != undefined) {
   (store as relationalStore.RdbStore).insert("EMPLOYEE", valueBucket1, relationalStore.ConflictResolution.ON_CONFLICT_REPLACE).then((rowId: number) => {
     console.info(`Insert is successful, rowId = ${rowId}`);
   }).catch((err: BusinessError) => {
@@ -2667,7 +2713,7 @@ Inserts a row of data into a table. Due to the limit of the shared memory (max. 
 | -------- | ------------------------------------------- | ---- | ------------------------------------------------------------ |
 | table    | string                                      | Yes  | Name of the target table.                                            |
 | values   | [ValuesBucket](#valuesbucket)               | Yes  | Row of data to insert.                                  |
-| conflict | [ConflictResolution](#conflictresolution10) | No  | Resolution used to resolve the conflict. The default value is **relationalStore.ConflictResolution.ON_CONFLICT_NONE**.|
+| conflict | [ConflictResolution](#conflictresolution10) | No  | Resolution used to resolve the conflict. <br>Default value: **relationalStore.ConflictResolution.ON_CONFLICT_NONE**.|
 
 **Return value**
 
@@ -2732,7 +2778,7 @@ const valueBucket3: relationalStore.ValuesBucket = {
   "CODES": value4,
 };
 
-if(store != undefined) {
+if (store != undefined) {
   try {
     let rowId : number = (store as relationalStore.RdbStore).insertSync("EMPLOYEE", valueBucket1, relationalStore.ConflictResolution.ON_CONFLICT_REPLACE);
     console.info(`Insert is successful, rowId = ${rowId}`);
@@ -2756,7 +2802,7 @@ Inserts a row of Sendable data into a table. This API returns the result synchro
 | -------- | ---------------------------------------------------------------------------------------------- | ---- | ------------------------------------------------------------------------------- |
 | table    | string                                                                                         | Yes  | Name of the target table.                                                               |
 | values   | [sendableRelationalStore.ValuesBucket](./js-apis-data-sendableRelationalStore.md#valuesbucket) | Yes  | Sendable data to insert.                                           |
-| conflict | [ConflictResolution](#conflictresolution10)                                                    | No  | Resolution used to resolve the conflict. The default value is **relationalStore.ConflictResolution.ON_CONFLICT_NONE**.|
+| conflict | [ConflictResolution](#conflictresolution10)                                                    | No  | Resolution used to resolve the conflict. <br>Default value: **relationalStore.ConflictResolution.ON_CONFLICT_NONE**.|
 
 **Return value**
 
@@ -2804,7 +2850,7 @@ const valuesBucket: relationalStore.ValuesBucket = {
 };
 const sendableValuesBucket = sendableRelationalStore.toSendableValuesBucket(valuesBucket);
 
-if(store != undefined) {
+if (store != undefined) {
   try {
     let rowId : number = (store as relationalStore.RdbStore).insertSync("EMPLOYEE", sendableValuesBucket, relationalStore.ConflictResolution.ON_CONFLICT_REPLACE);
     console.info(`Insert is successful, rowId = ${rowId}`);
@@ -2818,7 +2864,7 @@ if(store != undefined) {
 
 batchInsert(table: string, values: Array&lt;ValuesBucket&gt;, callback: AsyncCallback&lt;number&gt;):void
 
-Batch inserts data into a table. This API uses an asynchronous callback to return the result.
+Inserts a batch of data into a table. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -2894,7 +2940,7 @@ const valueBucket3: relationalStore.ValuesBucket = {
 };
 
 let valueBuckets = new Array(valueBucket1, valueBucket2, valueBucket3);
-if(store != undefined) {
+if (store != undefined) {
   (store as relationalStore.RdbStore).batchInsert("EMPLOYEE", valueBuckets, (err, insertNum) => {
     if (err) {
       console.error(`batchInsert is failed, code is ${err.code},message is ${err.message}`);
@@ -2909,7 +2955,7 @@ if(store != undefined) {
 
 batchInsert(table: string, values: Array&lt;ValuesBucket&gt;):Promise&lt;number&gt;
 
-Batch inserts data into a table. This API uses a promise to return the result.
+Inserts a batch of data into a table. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -2991,7 +3037,7 @@ const valueBucket3: relationalStore.ValuesBucket = {
 };
 
 let valueBuckets = new Array(valueBucket1, valueBucket2, valueBucket3);
-if(store != undefined) {
+if (store != undefined) {
   (store as relationalStore.RdbStore).batchInsert("EMPLOYEE", valueBuckets).then((insertNum: number) => {
     console.info(`batchInsert is successful, the number of values that were inserted = ${insertNum}`);
   }).catch((err: BusinessError) => {
@@ -3004,7 +3050,7 @@ if(store != undefined) {
 
 batchInsertSync(table: string, values: Array&lt;ValuesBucket&gt;):number
 
-Inserts a row of data into a table.
+Inserts a batch of data into a table. This API returns the result synchronously.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -3086,9 +3132,202 @@ const valueBucket3: relationalStore.ValuesBucket = {
 };
 
 let valueBuckets = new Array(valueBucket1, valueBucket2, valueBucket3);
-if(store != undefined) {
+if (store != undefined) {
   try {
     let insertNum: number = (store as relationalStore.RdbStore).batchInsertSync("EMPLOYEE", valueBuckets);
+    console.info(`batchInsert is successful, the number of values that were inserted = ${insertNum}`);
+  } catch (err) {
+      console.error(`batchInsert is failed, code is ${err.code},message is ${err.message}`);
+  }
+}
+```
+
+### batchInsertWithConflictResolution<sup>18+</sup>
+
+batchInsertWithConflictResolution(table: string, values: Array&lt;ValuesBucket&gt;, conflict: ConflictResolution): Promise&lt;number&gt;
+
+Inserts a batch of data into a table. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
+
+**Parameters**
+
+| Name| Type                                      | Mandatory| Description                        |
+| ------ | ------------------------------------------ | ---- | ---------------------------- |
+| table  | string                                     | Yes  | Name of the target table.            |
+| values | Array&lt;[ValuesBucket](#valuesbucket)&gt; | Yes  | An array of data to insert.|
+| conflict   | [ConflictResolution](#conflictresolution10) | Yes  | Resolution used to resolve the conflict.      |
+
+**Return value**
+
+| Type  | Description                                          |
+| ------ | ---------------------------------------------- |
+| Promise&lt;number&gt; | Promise used to return the result. If the operation is successful, the number of inserted data records is returned. Otherwise, **-1** is returned.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md). For details about how to handle error 14800011, see [Database Backup and Restore](../../database/data-backup-and-restore.md).
+
+| **ID**| **Error Message**                                                |
+| ------------ | ------------------------------------------------------------ |
+| 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 14800000     | Inner error.                                                 |
+| 14800011     | Database corrupted.                                          |
+| 14800014     | Already closed.                                              |
+| 14800015     | The database does not respond.                                        |
+| 14800021     | SQLite: Generic error.                                       |
+| 14800022     | SQLite: Callback routine requested an abort.                 |
+| 14800023     | SQLite: Access permission denied.                            |
+| 14800024     | SQLite: The database file is locked.                         |
+| 14800025     | SQLite: A table in the database is locked.                   |
+| 14800026     | SQLite: The database is out of memory.                       |
+| 14800027     | SQLite: Attempt to write a readonly database.                |
+| 14800028     | SQLite: Some kind of disk I/O error occurred.                |
+| 14800029     | SQLite: The database is full.                                |
+| 14800030     | SQLite: Unable to open the database file.                    |
+| 14800031     | SQLite: TEXT or BLOB exceeds size limit.                     |
+| 14800032     | SQLite: Abort due to constraint violation.                   |
+| 14800033     | SQLite: Data type mismatch.                                  |
+| 14800034     | SQLite: Library used incorrectly.                            |
+| 14800047     | The WAL file size exceeds the default limit.                 |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let value1 = "Lisa";
+let value2 = 18;
+let value3 = 100.5;
+let value4 = new Uint8Array([1, 2, 3, 4, 5]);
+let value5 = "Jack";
+let value6 = 19;
+let value7 = 101.5;
+let value8 = new Uint8Array([6, 7, 8, 9, 10]);
+let value9 = "Tom";
+let value10 = 20;
+let value11 = 102.5;
+let value12 = new Uint8Array([11, 12, 13, 14, 15]);
+
+const valueBucket1: relationalStore.ValuesBucket = {
+  'NAME': value1,
+  'AGE': value2,
+  'SALARY': value3,
+  'CODES': value4,
+};
+const valueBucket2: relationalStore.ValuesBucket = {
+  'NAME': value5,
+  'AGE': value6,
+  'SALARY': value7,
+  'CODES': value8,
+};
+const valueBucket3: relationalStore.ValuesBucket = {
+  'NAME': value9,
+  'AGE': value10,
+  'SALARY': value11,
+  'CODES': value12,
+};
+
+let valueBuckets = new Array(valueBucket1, valueBucket2, valueBucket3);
+if (store != undefined) {
+  (store as relationalStore.RdbStore).batchInsertWithConflictResolution("EMPLOYEE", valueBuckets, relationalStore.ConflictResolution.ON_CONFLICT_REPLACE).then((insertNum: number) => {
+    console.info(`batchInsert is successful, insertNum = ${insertNum}`);
+  }).catch((err: BusinessError) => {
+    console.error(`batchInsert is failed, code is ${err.code},message is ${err.message}`);
+  })
+}
+```
+
+### batchInsertWithConflictResolutionSync<sup>18+</sup>
+
+batchInsertWithConflictResolutionSync(table: string, values: Array&lt;ValuesBucket&gt;, conflict: ConflictResolution): number
+
+Inserts a batch of data into a table.
+
+**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
+
+**Parameters**
+
+| Name| Type                                      | Mandatory| Description                        |
+| ------ | ------------------------------------------ | ---- | ---------------------------- |
+| table  | string                                     | Yes  | Name of the target table.            |
+| values | Array&lt;[ValuesBucket](#valuesbucket)&gt; | Yes  | An array of data to insert.|
+| conflict   | [ConflictResolution](#conflictresolution10) | Yes  | Resolution used to resolve the conflict.      |
+
+**Return value**
+
+| Type  | Description                                          |
+| ------ | ---------------------------------------------- |
+| number | If the operation is successful, the number of inserted data records is returned. Otherwise, **-1** is returned.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md). For details about how to handle error 14800011, see [Database Backup and Restore](../../database/data-backup-and-restore.md).
+
+| **ID**| **Error Message**                                                |
+| ------------ | ------------------------------------------------------------ |
+| 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 14800000     | Inner error.                                                 |
+| 14800011     | Database corrupted.                                          |
+| 14800014     | Already closed.                                              |
+| 14800015     | The database does not respond.                                        |
+| 14800021     | SQLite: Generic error.                                       |
+| 14800022     | SQLite: Callback routine requested an abort.                 |
+| 14800023     | SQLite: Access permission denied.                            |
+| 14800024     | SQLite: The database file is locked.                         |
+| 14800025     | SQLite: A table in the database is locked.                   |
+| 14800026     | SQLite: The database is out of memory.                       |
+| 14800027     | SQLite: Attempt to write a readonly database.                |
+| 14800028     | SQLite: Some kind of disk I/O error occurred.                |
+| 14800029     | SQLite: The database is full.                                |
+| 14800030     | SQLite: Unable to open the database file.                    |
+| 14800031     | SQLite: TEXT or BLOB exceeds size limit.                     |
+| 14800032     | SQLite: Abort due to constraint violation.                   |
+| 14800033     | SQLite: Data type mismatch.                                  |
+| 14800034     | SQLite: Library used incorrectly.                            |
+| 14800047     | The WAL file size exceeds the default limit.                 |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let value1 = "Lisa";
+let value2 = 18;
+let value3 = 100.5;
+let value4 = new Uint8Array([1, 2, 3, 4, 5]);
+let value5 = "Jack";
+let value6 = 19;
+let value7 = 101.5;
+let value8 = new Uint8Array([6, 7, 8, 9, 10]);
+let value9 = "Tom";
+let value10 = 20;
+let value11 = 102.5;
+let value12 = new Uint8Array([11, 12, 13, 14, 15]);
+
+const valueBucket1: relationalStore.ValuesBucket = {
+  'NAME': value1,
+  'AGE': value2,
+  'SALARY': value3,
+  'CODES': value4,
+};
+const valueBucket2: relationalStore.ValuesBucket = {
+  'NAME': value5,
+  'AGE': value6,
+  'SALARY': value7,
+  'CODES': value8,
+};
+const valueBucket3: relationalStore.ValuesBucket = {
+  'NAME': value9,
+  'AGE': value10,
+  'SALARY': value11,
+  'CODES': value12,
+};
+
+let valueBuckets = new Array(valueBucket1, valueBucket2, valueBucket3);
+if (store != undefined) {
+  try {
+    let insertNum: number = (store as relationalStore.RdbStore).batchInsertWithConflictResolutionSync("EMPLOYEE", valueBuckets, relationalStore.ConflictResolution.ON_CONFLICT_REPLACE);
     console.info(`batchInsert is successful, the number of values that were inserted = ${insertNum}`);
   } catch (err) {
       console.error(`batchInsert is failed, code is ${err.code},message is ${err.message}`);
@@ -3170,7 +3409,7 @@ const valueBucket3: relationalStore.ValuesBucket = {
 
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.equalTo("NAME", "Lisa");
-if(store != undefined) {
+if (store != undefined) {
   (store as relationalStore.RdbStore).update(valueBucket1, predicates,(err, rows) => {
     if (err) {
       console.error(`Updated failed, code is ${err.code},message is ${err.message}`);
@@ -3256,7 +3495,7 @@ const valueBucket3: relationalStore.ValuesBucket = {
 
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.equalTo("NAME", "Lisa");
-if(store != undefined) {
+if (store != undefined) {
   (store as relationalStore.RdbStore).update(valueBucket1, predicates, relationalStore.ConflictResolution.ON_CONFLICT_REPLACE, (err, rows) => {
     if (err) {
       console.error(`Updated failed, code is ${err.code},message is ${err.message}`);
@@ -3347,7 +3586,7 @@ const valueBucket3: relationalStore.ValuesBucket = {
 
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.equalTo("NAME", "Lisa");
-if(store != undefined) {
+if (store != undefined) {
   (store as relationalStore.RdbStore).update(valueBucket1, predicates).then(async (rows: Number) => {
     console.info(`Updated row count: ${rows}`);
   }).catch((err: BusinessError) => {
@@ -3437,7 +3676,7 @@ const valueBucket3: relationalStore.ValuesBucket = {
 
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.equalTo("NAME", "Lisa");
-if(store != undefined) {
+if (store != undefined) {
   (store as relationalStore.RdbStore).update(valueBucket1, predicates, relationalStore.ConflictResolution.ON_CONFLICT_REPLACE).then(async (rows: Number) => {
     console.info(`Updated row count: ${rows}`);
   }).catch((err: BusinessError) => {
@@ -3460,7 +3699,7 @@ Updates data in the RDB store based on the specified **RdbPredicates** instance.
 | ---------- | ------------------------------------------- | ---- | ------------------------------------------------------------ |
 | values     | [ValuesBucket](#valuesbucket)               | Yes  | Rows of data to update in the RDB store. The key-value pair is associated with the column name in the target table.|
 | predicates | [RdbPredicates](#rdbpredicates)             | Yes  | Update conditions specified by the **RdbPredicates** object.                     |
-| conflict   | [ConflictResolution](#conflictresolution10) | No  | Resolution used to resolve the conflict. The default value is **relationalStore.ConflictResolution.ON_CONFLICT_NONE**.|
+| conflict   | [ConflictResolution](#conflictresolution10) | No  | Resolution used to resolve the conflict. <br>Default value: **relationalStore.ConflictResolution.ON_CONFLICT_NONE**.|
 
 **Return value**
 
@@ -3527,7 +3766,7 @@ const valueBucket3: relationalStore.ValuesBucket = {
 
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.equalTo("NAME", "Lisa");
-if(store != undefined) {
+if (store != undefined) {
   try {
     let rows: Number = (store as relationalStore.RdbStore).updateSync(valueBucket1, predicates, relationalStore.ConflictResolution.ON_CONFLICT_REPLACE);
     console.info(`Updated row count: ${rows}`);
@@ -3584,7 +3823,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 ```ts
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.equalTo("NAME", "Lisa");
-if(store != undefined) {
+if (store != undefined) {
   (store as relationalStore.RdbStore).delete(predicates, (err, rows) => {
     if (err) {
       console.error(`Delete failed, code is ${err.code},message is ${err.message}`);
@@ -3649,7 +3888,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.equalTo("NAME", "Lisa");
-if(store != undefined) {
+if (store != undefined) {
   (store as relationalStore.RdbStore).delete(predicates).then((rows: Number) => {
     console.info(`Delete rows: ${rows}`);
   }).catch((err: BusinessError) => {
@@ -3676,7 +3915,7 @@ Deletes data from the RDB store based on the specified **RdbPredicates** object.
 
 | Type  | Description              |
 | ------ | ------------------ |
-| number | return the number of rows updated.|
+| number | Number of rows updated.|
 
 **Error codes**
 
@@ -3712,7 +3951,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.equalTo("NAME", "Lisa");
-if(store != undefined) {
+if (store != undefined) {
   try {
     let rows: Number = (store as relationalStore.RdbStore).deleteSync(predicates)
     console.info(`Delete rows: ${rows}`);
@@ -3753,7 +3992,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 ```ts
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.equalTo("NAME", "Rose");
-if(store != undefined) {
+if (store != undefined) {
   (store as relationalStore.RdbStore).query(predicates, (err, resultSet) => {
     if (err) {
       console.error(`Query failed, code is ${err.code},message is ${err.message}`);
@@ -3806,7 +4045,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 ```ts
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.equalTo("NAME", "Rose");
-if(store != undefined) {
+if (store != undefined) {
   (store as relationalStore.RdbStore).query(predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"], (err, resultSet) => {
     if (err) {
       console.error(`Query failed, code is ${err.code},message is ${err.message}`);
@@ -3866,7 +4105,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.equalTo("NAME", "Rose");
-if(store != undefined) {
+if (store != undefined) {
   (store as relationalStore.RdbStore).query(predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"]).then((resultSet: relationalStore.ResultSet) => {
     console.info(`ResultSet column names: ${resultSet.columnNames}, column count: ${resultSet.columnCount}`);
     // resultSet is a cursor of a data set. By default, the cursor points to the -1st record. Valid data starts from 0.
@@ -3898,7 +4137,7 @@ Queries data in the RDB store based on specified conditions. This API returns th
 | Name    | Type                           | Mandatory| Description                                                        |
 | ---------- | ------------------------------- | ---- | ------------------------------------------------------------ |
 | predicates | [RdbPredicates](#rdbpredicates) | Yes  | Query conditions specified by the **RdbPredicates** object.                     |
-| columns    | Array&lt;string&gt;             | No  | Columns to query. If this parameter is not specified, the query applies to all columns. The default value is null.|
+| columns    | Array&lt;string&gt;             | No  | Columns to query. If this parameter is not specified, the query applies to all columns. <br>Default value: null.|
 
 **Error codes**
 
@@ -3924,7 +4163,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.equalTo("NAME", "Rose");
-if(store != undefined) {
+if (store != undefined) {
   try {
     let resultSet: relationalStore.ResultSet = (store as relationalStore.RdbStore).querySync(predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"]);
     console.info(`ResultSet column names: ${resultSet.columnNames}, column count: ${resultSet.columnCount}`);
@@ -3989,7 +4228,7 @@ let deviceId: string | undefined = undefined;
 try {
   dmInstance = distributedDeviceManager.createDeviceManager("com.example.appdatamgrverify");
   let devices = dmInstance.getAvailableDeviceListSync();
-  if(deviceId != undefined) {
+  if (deviceId != undefined) {
     deviceId = devices[0].networkId;
   }
 } catch (err) {
@@ -4000,7 +4239,7 @@ try {
 
 let predicates = new relationalStore.RdbPredicates('EMPLOYEE');
 predicates.greaterThan("id", 0);
-if(store != undefined && deviceId != undefined) {
+if (store != undefined && deviceId != undefined) {
   (store as relationalStore.RdbStore).remoteQuery(deviceId, "EMPLOYEE", predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"]).then((resultSet: relationalStore.ResultSet) => {
     console.info(`ResultSet column names: ${resultSet.columnNames}, column count: ${resultSet.columnCount}`);
     // resultSet is a cursor of a data set. By default, the cursor points to the -1st record. Valid data starts from 0.
@@ -4069,7 +4308,7 @@ let deviceId: string | undefined = undefined;
 try {
   dmInstance = distributedDeviceManager.createDeviceManager("com.example.appdatamgrverify");
   let devices: Array<distributedDeviceManager.DeviceBasicInfo> = dmInstance.getAvailableDeviceListSync();
-  if(devices != undefined) {
+  if (devices != undefined) {
     deviceId = devices[0].networkId;
   }
 } catch (err) {
@@ -4080,7 +4319,7 @@ try {
 
 let predicates = new relationalStore.RdbPredicates('EMPLOYEE');
 predicates.greaterThan("id", 0);
-if(store != undefined && deviceId != undefined) {
+if (store != undefined && deviceId != undefined) {
   (store as relationalStore.RdbStore).remoteQuery(deviceId, "EMPLOYEE", predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"]).then((resultSet: relationalStore.ResultSet) => {
     console.info(`ResultSet column names: ${resultSet.columnNames}, column count: ${resultSet.columnCount}`);
     // resultSet is a cursor of a data set. By default, the cursor points to the -1st record. Valid data starts from 0.
@@ -4105,7 +4344,9 @@ querySql(sql: string, callback: AsyncCallback&lt;ResultSet&gt;):void
 
 Queries data in the RDB store using the specified SQL statement. The number of relational operators between expressions and operators in the SQL statement cannot exceed 1000. This API uses an asynchronous callback to return the result.
 
-[vector stores](#storeconfig) support standard syntax like **where**, **limit**, **offset**, **order by**, **group by**, and **having**, and special syntax **<->** and **<=>**, which are used to calculate vector similarity and cosine distance, respectively.
+[Vector stores](#storeconfig) support standard syntax including **where**, **limit**, **offset**, **order by**, **group by**, and **having**, as well as extended syntax like **<->** (computing similarity) and **<=>** (computing cosine distance). This API can be used in aggregate functions (**max** and **min**), but cannot be used in aggregate functions like **sum**, **avg**, and **count** or basic functions (**random**, **abs**, **upper**, **lower**, and **length**).
+
+Aggregate functions cannot be nested.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -4132,7 +4373,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 RDB store:
 
 ```ts
-if(store != undefined) {
+if (store != undefined) {
   (store as relationalStore.RdbStore).querySql("SELECT * FROM EMPLOYEE CROSS JOIN BOOK WHERE BOOK.NAME = 'sanguo'", (err, resultSet) => {
     if (err) {
       console.error(`Query failed, code is ${err.code},message is ${err.message}`);
@@ -4175,7 +4416,9 @@ querySql(sql: string, bindArgs: Array&lt;ValueType&gt;, callback: AsyncCallback&
 
 Queries data in the RDB store using the specified SQL statement. The number of relational operators between expressions and operators in the SQL statement cannot exceed 1000. This API uses an asynchronous callback to return the result.
 
-[vector stores](#storeconfig) support standard syntax like **where**, **limit**, **offset**, **order by**, **group by**, and **having**, and special syntax **<->** and **<=>**, which are used to calculate vector similarity and cosine distance, respectively.
+[Vector stores](#storeconfig) support standard syntax including **where**, **limit**, **offset**, **order by**, **group by**, and **having**, as well as extended syntax like **<->** (computing similarity) and **<=>** (computing cosine distance). This API can be used in aggregate functions (**max** and **min**), but cannot be used in aggregate functions like **sum**, **avg**, and **count** or basic functions (**random**, **abs**, **upper**, **lower**, and **length**).
+
+Aggregate functions cannot be nested.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -4201,7 +4444,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-if(store != undefined) {
+if (store != undefined) {
   (store as relationalStore.RdbStore).querySql("SELECT * FROM EMPLOYEE CROSS JOIN BOOK WHERE BOOK.NAME = ?", ['sanguo'], (err, resultSet) => {
     if (err) {
       console.error(`Query failed, code is ${err.code},message is ${err.message}`);
@@ -4228,7 +4471,9 @@ querySql(sql: string, bindArgs?: Array&lt;ValueType&gt;):Promise&lt;ResultSet&gt
 
 Queries data in the RDB store using the specified SQL statement. The number of relational operators between expressions and operators in the SQL statement cannot exceed 1000. This API uses a promise to return the result.
 
-[vector stores](#storeconfig) support standard syntax like **where**, **limit**, **offset**, **order by**, **group by**, and **having**, and special syntax **<->** and **<=>**, which are used to calculate vector similarity and cosine distance, respectively.
+[Vector stores](#storeconfig) support standard syntax including **where**, **limit**, **offset**, **order by**, **group by**, and **having**, as well as extended syntax like **<->** (computing similarity) and **<=>** (computing cosine distance). This API can be used in aggregate functions (**max** and **min**), but cannot be used in aggregate functions like **sum**, **avg**, and **count** or basic functions (**random**, **abs**, **upper**, **lower**, and **length**).
+
+Aggregate functions cannot be nested.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -4263,7 +4508,7 @@ RDB store:
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-if(store != undefined) {
+if (store != undefined) {
   (store as relationalStore.RdbStore).querySql("SELECT * FROM EMPLOYEE CROSS JOIN BOOK WHERE BOOK.NAME = 'sanguo'").then((resultSet: relationalStore.ResultSet) => {
     console.info(`ResultSet column names: ${resultSet.columnNames}, column count: ${resultSet.columnCount}`);
     // resultSet is a cursor of a data set. By default, the cursor points to the -1st record. Valid data starts from 0.
@@ -4304,7 +4549,7 @@ Queries data in the RDB store using the specified SQL statement. The number of r
 | Name  | Type                                | Mandatory| Description                                                        |
 | -------- | ------------------------------------ | ---- | ------------------------------------------------------------ |
 | sql      | string                               | Yes  | SQL statement to run.                                       |
-| bindArgs | Array&lt;[ValueType](#valuetype)&gt; | No  | Arguments in the SQL statement. The value corresponds to the placeholders in the SQL parameter statement. If the SQL parameter statement is complete, leave this parameter blank. The default value is null.|
+| bindArgs | Array&lt;[ValueType](#valuetype)&gt; | No  | Arguments in the SQL statement. The value corresponds to the placeholders in the SQL parameter statement. If the SQL parameter statement is complete, leave this parameter blank. <br>Default value: null.|
 
 **Return value**
 
@@ -4328,7 +4573,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-if(store != undefined) {
+if (store != undefined) {
   try {
     let resultSet: relationalStore.ResultSet = (store as relationalStore.RdbStore).querySqlSync("SELECT * FROM EMPLOYEE CROSS JOIN BOOK WHERE BOOK.NAME = 'sanguo'");
     console.info(`ResultSet column names: ${resultSet.columnNames}, column count: ${resultSet.columnCount}`);
@@ -4399,7 +4644,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 ```ts
 const SQL_DELETE_TABLE = "DELETE FROM test WHERE name = 'zhangsan'"
-if(store != undefined) {
+if (store != undefined) {
   (store as relationalStore.RdbStore).executeSql(SQL_DELETE_TABLE, (err) => {
     if (err) {
       console.error(`ExecuteSql failed, code is ${err.code},message is ${err.message}`);
@@ -4462,7 +4707,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 ```ts
 const SQL_DELETE_TABLE = "DELETE FROM test WHERE name = ?"
-if(store != undefined) {
+if (store != undefined) {
   (store as relationalStore.RdbStore).executeSql(SQL_DELETE_TABLE, ['zhangsan'], (err) => {
     if (err) {
       console.error(`ExecuteSql failed, code is ${err.code},message is ${err.message}`);
@@ -4532,7 +4777,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 import { BusinessError } from '@kit.BasicServicesKit';
 
 const SQL_DELETE_TABLE = "DELETE FROM test WHERE name = 'zhangsan'"
-if(store != undefined) {
+if (store != undefined) {
   (store as relationalStore.RdbStore).executeSql(SQL_DELETE_TABLE).then(() => {
     console.info('Delete table done.');
   }).catch((err: BusinessError) => {
@@ -4550,6 +4795,8 @@ Executes an SQL statement that contains specified arguments. The number of relat
 This API can be used to add, delete, and modify data, run SQL statements of the PRAGMA syntax, and create, delete, and modify a table. The type of the return value varies, depending on the execution result.
 
 This API does not support query, attach, or transaction operations. To perform these operations, use [querySql](#querysql10), [query](#query10), [attach](#attach12), [beginTransaction](#begintransaction), and [commit](#commit).
+
+When this API is used to insert data originating from a subquery to a vector store, full-field insertion is supported, but partial-field insertion is not yet supported.
 
 Statements separated by semicolons (\;) are not supported.
 
@@ -4604,7 +4851,7 @@ RDB store:
 import { BusinessError } from '@kit.BasicServicesKit';
 
 // Check the RDB store integrity.
-if(store != undefined) {
+if (store != undefined) {
   const SQL_CHECK_INTEGRITY = 'PRAGMA integrity_check';
   (store as relationalStore.RdbStore).execute(SQL_CHECK_INTEGRITY).then((data) => {
     console.info(`check result: ${data}`);
@@ -4614,7 +4861,7 @@ if(store != undefined) {
 }
 
 // Delete all data from the table.
-if(store != undefined) {
+if (store != undefined) {
   const SQL_DELETE_TABLE = 'DELETE FROM test';
   (store as relationalStore.RdbStore).execute(SQL_DELETE_TABLE).then((data) => {
     console.info(`delete result: ${data}`);
@@ -4624,7 +4871,7 @@ if(store != undefined) {
 }
 
 // Delete a table.
-if(store != undefined) {
+if (store != undefined) {
   const SQL_DROP_TABLE = 'DROP TABLE test';
   (store as relationalStore.RdbStore).execute(SQL_DROP_TABLE).then((data) => {
     console.info(`drop result: ${data}`);
@@ -4655,7 +4902,7 @@ execute(sql: string, txId: number, args?: Array&lt;ValueType&gt;): Promise&lt;Va
 
 Executes an SQL statement that contains specified arguments. The number of relational operators between expressions and operators in the statement cannot exceed 1000. This API uses a promise to return the result.
 
-This API supports only [vector stores](#storeconfig).
+This API supports only [vector stores](#storeconfig). When this API is used to insert data originating from a subquery, full-field insertion is supported, but partial-field insertion is not yet supported.
 
 This API does not support data query. To query data, use [querySql](#querysql10).
 
@@ -4669,7 +4916,7 @@ Statements separated by semicolons (\;) are not supported.
 | -------- | ------------------------------------ | ---- | ------------------------------------------------------------ |
 | sql      | string                               | Yes  | SQL statement to run.                                       |
 | txId      | number                               | Yes  | Transaction ID obtained via [beginTrans](#begintrans12). If the value is **0**, the SQL statement is executed in a separate transaction by default.                                     |
-| args | Array&lt;[ValueType](#valuetype)&gt; | No  | Arguments in the SQL statement. The value corresponds to the placeholders in the SQL parameter statement. If this parameter is left blank or set to **null** or **undefined**, the SQL statement is complete.|
+| args | Array&lt;[ValueType](#valuetype)&gt; | No  | Arguments in the SQL statement. The value corresponds to the placeholders in the SQL parameter statement. If this parameter is left blank or set to **null** or **undefined**, the SQL statement is considered complete.|
 
 **Return value**
 
@@ -4709,7 +4956,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
-if(store != null) {
+if (store != null) {
   let txId : number;
   (store as relationalStore.RdbStore).beginTrans().then((txId : number) => {
     (store as relationalStore.RdbStore).execute("DELETE FROM TEST WHERE age = ? OR age = ?", txId, ["18", "20"])
@@ -4743,7 +4990,7 @@ Statements separated by semicolons (\;) are not supported.
 | Name| Type                                | Mandatory| Description                                                        |
 | ------ | ------------------------------------ | ---- | ------------------------------------------------------------ |
 | sql    | string                               | Yes  | SQL statement to run.                                       |
-| args   | Array&lt;[ValueType](#valuetype)&gt; | No  | Arguments in the SQL statement. The value corresponds to the placeholders in the SQL parameter statement. If this parameter is left blank or set to **null** or **undefined**, the SQL statement is complete. The default value is null.|
+| args   | Array&lt;[ValueType](#valuetype)&gt; | No  | Arguments in the SQL statement. The value corresponds to the placeholders in the SQL parameter statement. If this parameter is left blank or set to **null** or **undefined**, the SQL statement is complete. <br>Default value: null.|
 
 **Return value**
 
@@ -4784,7 +5031,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 import { BusinessError } from '@kit.BasicServicesKit';
 
 // Check the RDB store integrity.
-if(store != undefined) {
+if (store != undefined) {
   const SQL_CHECK_INTEGRITY = 'PRAGMA integrity_check';
   try {
     let data = (store as relationalStore.RdbStore).executeSync(SQL_CHECK_INTEGRITY)
@@ -4795,7 +5042,7 @@ if(store != undefined) {
 }
 
 // Delete all data from the table.
-if(store != undefined) {
+if (store != undefined) {
   const SQL_DELETE_TABLE = 'DELETE FROM test';
   try {
     let data = (store as relationalStore.RdbStore).executeSync(SQL_DELETE_TABLE)
@@ -4806,7 +5053,7 @@ if(store != undefined) {
 }
 
 // Delete a table.
-if(store != undefined) {
+if (store != undefined) {
   const SQL_DROP_TABLE = 'DROP TABLE test';
   try {
     let data = (store as relationalStore.RdbStore).executeSync(SQL_DROP_TABLE)
@@ -4865,7 +5112,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 ```ts
 let PRIKey = [1, 4, 2, 3];
-if(store != undefined) {
+if (store != undefined) {
   (store as relationalStore.RdbStore).getModifyTime("EMPLOYEE", "NAME", PRIKey, (err, modifyTime: relationalStore.ModifyTime) => {
     if (err) {
       console.error(`getModifyTime failed, code is ${err.code},message is ${err.message}`);
@@ -4931,7 +5178,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let PRIKey = [1, 2, 3];
-if(store != undefined) {
+if (store != undefined) {
   (store as relationalStore.RdbStore).getModifyTime("EMPLOYEE", "NAME", PRIKey)
     .then((modifyTime: relationalStore.ModifyTime) => {
       let size = modifyTime.size;
@@ -4987,7 +5234,7 @@ let value2 = 18;
 let value3 = 100.5;
 let value4 = new Uint8Array([1, 2, 3]);
 
-if(store != undefined) {
+if (store != undefined) {
   (store as relationalStore.RdbStore).beginTransaction();
   const valueBucket: relationalStore.ValuesBucket = {
     'NAME': value1,
@@ -5050,7 +5297,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
-if(store != null) {
+if (store != null) {
   let txId : number;
   (store as relationalStore.RdbStore).beginTrans().then((txId : number) => {
     (store as relationalStore.RdbStore).execute("DELETE FROM TEST WHERE age = ? OR age = ?", txId, ["18", "20"])
@@ -5071,7 +5318,11 @@ createTransaction(options?: TransactionOptions): Promise&lt;Transaction&gt;
 
 Creates a transaction object and starts a transaction. This API uses a promise to return the result.
 
-Different from [beginTransaction](#begintransaction), **createTransaction()** returns a transaction object, which is isolated from other transaction objects. A store supports a maximum of four transaction objects at a time. Exceeding the limit will return error 14800015. If this occurs, check for the transaction object that is being held too long or if there are too many concurrent transactions. If optimization is not possible, wait for other transactions to be released before creating a transaction object again.
+Different from [beginTransaction](#begintransaction), **createTransaction()** returns a transaction object, which is isolated from other transaction objects. When a transaction object is used to insert, delete, or update data, these changes cannot be detected by [on ('dataChange')](#ondatachange).
+
+A store supports a maximum of four transaction objects at a time. If the number of transaction objects exceeds the upper limit, error 14800015 is returned. In this case, check whether transaction objects are being held too long or whether there are too many concurrent transactions. If the problem cannot be solved through these optimizations, you are advised to create transaction objects after existing transactions are released.
+
+You are advised to use **createTransaction** instead of **beginTransaction**.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -5109,7 +5360,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-if(store != undefined) {
+if (store != undefined) {
   (store as relationalStore.RdbStore).createTransaction().then((transaction: relationalStore.Transaction) => {
     transaction.execute("DELETE FROM test WHERE age = ? OR age = ?", [21, 20]).then(() => {
       transaction.commit();
@@ -5167,7 +5418,7 @@ let value2 = 18;
 let value3 = 100.5;
 let value4 = new Uint8Array([1, 2, 3]);
 
-if(store != undefined) {
+if (store != undefined) {
   (store as relationalStore.RdbStore).beginTransaction();
   const valueBucket: relationalStore.ValuesBucket = {
     'NAME': value1,
@@ -5232,7 +5483,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
-if(store != null) {
+if (store != null) {
   let txId : number;
   (store as relationalStore.RdbStore).beginTrans().then((txId : number) => {
     (store as relationalStore.RdbStore).execute("DELETE FROM TEST WHERE age = ? OR age = ?", txId, ["18", "20"])
@@ -5292,7 +5543,7 @@ let value2 = 18;
 let value3 = 100.5;
 let value4 = new Uint8Array([1, 2, 3]);
 
-if(store != undefined) {
+if (store != undefined) {
   try {
     (store as relationalStore.RdbStore).beginTransaction()
     const valueBucket: relationalStore.ValuesBucket = {
@@ -5364,7 +5615,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
-if(store != null) {
+if (store != null) {
   let txId : number;
   (store as relationalStore.RdbStore).beginTrans().then((txId : number) => {
     (store as relationalStore.RdbStore).execute("DELETE FROM TEST WHERE age = ? OR age = ?", txId, ["18", "20"])
@@ -5424,7 +5675,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-if(store != undefined) {
+if (store != undefined) {
   (store as relationalStore.RdbStore).backup("dbBackup.db", (err) => {
     if (err) {
       console.error(`Backup failed, code is ${err.code},message is ${err.message}`);
@@ -5486,7 +5737,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-if(store != undefined) {
+if (store != undefined) {
   let promiseBackup = (store as relationalStore.RdbStore).backup("dbBackup.db");
   promiseBackup.then(() => {
     console.info('Backup success.');
@@ -5540,7 +5791,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-if(store != undefined) {
+if (store != undefined) {
   (store as relationalStore.RdbStore).restore("dbBackup.db", (err) => {
     if (err) {
       console.error(`Restore failed, code is ${err.code},message is ${err.message}`);
@@ -5602,7 +5853,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-if(store != undefined) {
+if (store != undefined) {
   let promiseRestore = (store as relationalStore.RdbStore).restore("dbBackup.db");
   promiseRestore.then(() => {
     console.info('Restore success.');
@@ -5643,7 +5894,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-if(store != undefined) {
+if (store != undefined) {
   (store as relationalStore.RdbStore).setDistributedTables(["EMPLOYEE"], (err) => {
     if (err) {
       console.error(`SetDistributedTables failed, code is ${err.code},message is ${err.message}`);
@@ -5692,7 +5943,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-if(store != undefined) {
+if (store != undefined) {
   (store as relationalStore.RdbStore).setDistributedTables(["EMPLOYEE"]).then(() => {
     console.info('SetDistributedTables successfully.');
   }).catch((err: BusinessError) => {
@@ -5734,7 +5985,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-if(store != undefined) {
+if (store != undefined) {
   (store as relationalStore.RdbStore).setDistributedTables(["EMPLOYEE"], relationalStore.DistributedType.DISTRIBUTED_CLOUD, (err) => {
     if (err) {
       console.error(`SetDistributedTables failed, code is ${err.code},message is ${err.message}`);
@@ -5779,7 +6030,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-if(store != undefined) {
+if (store != undefined) {
   (store as relationalStore.RdbStore).setDistributedTables(["EMPLOYEE"], relationalStore.DistributedType.DISTRIBUTED_CLOUD, {
     autoSync: true
   }, (err) => {
@@ -5807,7 +6058,7 @@ Sets distributed tables. This API uses a promise to return the result.
 | Name| Type                                     | Mandatory| Description                                                        |
 | ------ | ----------------------------------------- | ---- | ------------------------------------------------------------ |
 | tables | Array&lt;string&gt;                       | Yes  | Names of the distributed tables to set.                                |
-| type   | [DistributedType](#distributedtype10)     | No  | Distributed type of the tables. The default value is **relationalStore.DistributedType.DISTRIBUTED_DEVICE**.|
+| type   | [DistributedType](#distributedtype10)     | No  | Distributed type of the tables. <br>Default value: **relationalStore.DistributedType.DISTRIBUTED_DEVICE**.|
 | config | [DistributedConfig](#distributedconfig10) | No  | Configuration of the distributed mode. If this parameter is not specified, the value of **autoSync** is **false** by default, which means only manual sync is supported.|
 
 **Return value**
@@ -5833,7 +6084,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-if(store != undefined) {
+if (store != undefined) {
   (store as relationalStore.RdbStore).setDistributedTables(["EMPLOYEE"], relationalStore.DistributedType.DISTRIBUTED_CLOUD, {
     autoSync: true
   }).then(() => {
@@ -5896,7 +6147,7 @@ try {
   console.error("createDeviceManager errCode:" + code + ",errMessage:" + message);
 }
 
-if(store != undefined && deviceId != undefined) {
+if (store != undefined && deviceId != undefined) {
   (store as relationalStore.RdbStore).obtainDistributedTableName(deviceId, "EMPLOYEE", (err, tableName) => {
     if (err) {
       console.error(`ObtainDistributedTableName failed, code is ${err.code},message is ${err.message}`);
@@ -5964,7 +6215,7 @@ try {
   console.error("createDeviceManager errCode:" + code + ",errMessage:" + message);
 }
 
-if(store != undefined && deviceId != undefined) {
+if (store != undefined && deviceId != undefined) {
   (store as relationalStore.RdbStore).obtainDistributedTableName(deviceId, "EMPLOYEE").then((tableName: string) => {
     console.info(`ObtainDistributedTableName successfully, tableName= ${tableName}`);
   }).catch((err: BusinessError) => {
@@ -6025,7 +6276,7 @@ try {
 
 let predicates = new relationalStore.RdbPredicates('EMPLOYEE');
 predicates.inDevices(deviceIds);
-if(store != undefined) {
+if (store != undefined) {
   (store as relationalStore.RdbStore).sync(relationalStore.SyncMode.SYNC_MODE_PUSH, predicates, (err, result) => {
     if (err) {
       console.error(`Sync failed, code is ${err.code},message is ${err.message}`);
@@ -6096,7 +6347,7 @@ try {
 
 let predicates = new relationalStore.RdbPredicates('EMPLOYEE');
 predicates.inDevices(deviceIds);
-if(store != undefined) {
+if (store != undefined) {
   (store as relationalStore.RdbStore).sync(relationalStore.SyncMode.SYNC_MODE_PUSH, predicates).then((result: Object[][]) => {
     console.info('Sync done.');
     for (let i = 0; i < result.length; i++) {
@@ -6137,7 +6388,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-if(store != undefined) {
+if (store != undefined) {
   (store as relationalStore.RdbStore).cloudSync(relationalStore.SyncMode.SYNC_MODE_CLOUD_FIRST, (progressDetails) => {
     console.info(`Progess: ${progressDetails}`);
   }, (err) => {
@@ -6186,7 +6437,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-if(store != undefined) {
+if (store != undefined) {
   (store as relationalStore.RdbStore).cloudSync(relationalStore.SyncMode.SYNC_MODE_CLOUD_FIRST, (progressDetail: relationalStore.ProgressDetails) => {
     console.info(`progress: ${progressDetail}`);
   }).then(() => {
@@ -6229,7 +6480,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 ```ts
 const tables = ["table1", "table2"];
 
-if(store != undefined) {
+if (store != undefined) {
   (store as relationalStore.RdbStore).cloudSync(relationalStore.SyncMode.SYNC_MODE_CLOUD_FIRST, tables, (progressDetail: relationalStore.ProgressDetails) => {
     console.info(`Progess: ${progressDetail}`);
   }, (err) => {
@@ -6281,7 +6532,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 const tables = ["table1", "table2"];
 
-if(store != undefined) {
+if (store != undefined) {
   (store as relationalStore.RdbStore).cloudSync(relationalStore.SyncMode.SYNC_MODE_CLOUD_FIRST, tables, (progressDetail: relationalStore.ProgressDetails) => {
     console.info(`progress: ${progressDetail}`);
   }).then(() => {
@@ -6385,7 +6636,7 @@ let storeObserver = (devices: Array<string>) => {
 }
 
 try {
-  if(store != undefined) {
+  if (store != undefined) {
     (store as relationalStore.RdbStore).on('dataChange', relationalStore.SubscribeType.SUBSCRIBE_TYPE_REMOTE, storeObserver);
   }
 } catch (err) {
@@ -6407,7 +6658,7 @@ let changeInfos = (changeInfos: Array<relationalStore.ChangeInfo>) => {
 }
 
 try {
-  if(store != undefined) {
+  if (store != undefined) {
     (store as relationalStore.RdbStore).on('dataChange', relationalStore.SubscribeType.SUBSCRIBE_TYPE_LOCAL_DETAILS, changeInfos);
   }
 } catch (err) {
@@ -6429,7 +6680,7 @@ try {
     'blobType': value4,
   };
 
-  if(store != undefined) {
+  if (store != undefined) {
     (store as relationalStore.RdbStore).insert('test', valueBucket);
   }
 } catch (err) {
@@ -6451,7 +6702,7 @@ Subscribes to process events. This callback is invoked by [emit](#emit10).
 
 | Name      | Type           | Mandatory| Description                                                        |
 | ------------ | --------------- | ---- | ------------------------------------------------------------ |
-| event        | string          | Yes  | Event name to observe.                                              |
+| event        | string          | Yes  | Event name, which must match the event type in **emit**.              |
 | interProcess | boolean         | Yes  | Type of the data to observe.<br> The value **true** means inter-process events.<br> The value **false** means intra-process events.|
 | observer     | Callback\<void> | Yes  | Callback used to return the result.                                                  |
 
@@ -6477,7 +6728,7 @@ let storeObserver = () => {
 }
 
 try {
-  if(store != undefined) {
+  if (store != undefined) {
     (store as relationalStore.RdbStore).on('storeObserver', false, storeObserver);
   }
 } catch (err) {
@@ -6522,7 +6773,7 @@ let progressDetail = (progressDetail: relationalStore.ProgressDetails) => {
 }
 
 try {
-  if(store != undefined) {
+  if (store != undefined) {
     (store as relationalStore.RdbStore).on('autoSyncProgress', progressDetail)
   }
 } catch (err) {
@@ -6572,7 +6823,7 @@ let sqlExecutionInfo = (sqlExecutionInfo: relationalStore.SqlExecutionInfo) => {
 }
 
 try {
-  if(store != undefined) {
+  if (store != undefined) {
     (store as relationalStore.RdbStore).on('statistics', sqlExecutionInfo);
   }
 } catch (err) {
@@ -6593,7 +6844,7 @@ try {
     'SALARY': value3,
     'CODES': value4,
   };
-  if(store != undefined) {
+  if (store != undefined) {
     (store as relationalStore.RdbStore).insert('test', valueBucket);
   }
 } catch (err) {
@@ -6652,7 +6903,7 @@ try {
 }
 
 try {
-  if(store != undefined) {
+  if (store != undefined) {
     (store as relationalStore.RdbStore).off('dataChange', relationalStore.SubscribeType.SUBSCRIBE_TYPE_REMOTE, storeObserver);
   }
 } catch (err) {
@@ -6704,7 +6955,7 @@ let storeObserver = (devices: Array<string>) => {
 }
 
 try {
-  if(store != undefined) {
+  if (store != undefined) {
     (store as relationalStore.RdbStore).on('dataChange', relationalStore.SubscribeType.SUBSCRIBE_TYPE_REMOTE, storeObserver);
   }
 } catch (err) {
@@ -6714,7 +6965,7 @@ try {
 }
 
 try {
-  if(store != undefined) {
+  if (store != undefined) {
     (store as relationalStore.RdbStore).off('dataChange', relationalStore.SubscribeType.SUBSCRIBE_TYPE_REMOTE, storeObserver);
   }
 } catch (err) {
@@ -6736,7 +6987,7 @@ Unsubscribes from process events.
 
 | Name      | Type           | Mandatory| Description                                                        |
 | ------------ | --------------- | ---- | ------------------------------------------------------------ |
-| event        | string          | Yes  | Name of the event.                                          |
+| event        | string          | Yes  | Event name, which must match the event type in **on()**.|
 | interProcess | boolean         | Yes  | Type of the data to observe.<br> The value **true** means inter-process events.<br> The value **false** means intra-process events.|
 | observer     | Callback\<void> | No  | Callback to unregister. If this parameter is not specified, this API unregisters all callbacks for the specified event.|
 
@@ -6762,7 +7013,7 @@ let storeObserver = () => {
 }
 
 try {
-  if(store != undefined) {
+  if (store != undefined) {
     (store as relationalStore.RdbStore).on('storeObserver', false, storeObserver);
   }
 } catch (err) {
@@ -6772,7 +7023,7 @@ try {
 }
 
 try {
-  if(store != undefined) {
+  if (store != undefined) {
     (store as relationalStore.RdbStore).off('storeObserver', false, storeObserver);
   }
 } catch (err) {
@@ -6817,7 +7068,7 @@ let progressDetail = (progressDetail: relationalStore.ProgressDetails) => {
 }
 
 try {
-  if(store != undefined) {
+  if (store != undefined) {
     (store as relationalStore.RdbStore).on('autoSyncProgress', progressDetail)
   }
 } catch (err) {
@@ -6827,7 +7078,7 @@ try {
 }
 
 try {
-  if(store != undefined) {
+  if (store != undefined) {
     (store as relationalStore.RdbStore).off('autoSyncProgress', progressDetail);
   }
 } catch (err) {
@@ -6868,7 +7119,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
-  if(store != undefined) {
+  if (store != undefined) {
     (store as relationalStore.RdbStore).off('statistics');
   }
 } catch (err) {
@@ -6890,7 +7141,7 @@ Triggers the inter-process or intra-process event listener registered in [on](#o
 
 | Name| Type  | Mandatory| Description                |
 | ------ | ------ | ---- | -------------------- |
-| event  | string | Yes  | Name of the event.|
+| event  | string | Yes  | Event name. Custom event names are allowed. However, the customized event name cannot be duplicate with the existing event names [dataChange](#ondatachange), [autoSyncProgress](#onautosyncprogress11) and [statistics](#onstatistics12).|
 
 **Error codes**
 
@@ -6908,7 +7159,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-if(store != undefined) {
+if (store != undefined) {
   (store as relationalStore.RdbStore).emit('storeObserver');
 }
 ```
@@ -6959,7 +7210,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-if(store != undefined) {
+if (store != undefined) {
  (store as relationalStore.RdbStore).cleanDirtyData('test_table', 100, (err) => {
     if (err) {
       console.error(`clean dirty data failed, code is ${err.code},message is ${err.message}`);
@@ -7015,7 +7266,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-if(store != undefined) {
+if (store != undefined) {
   (store as relationalStore.RdbStore).cleanDirtyData('test_table', (err) => {
     if (err) {
       console.error(`clean dirty data failed, code is ${err.code},message is ${err.message}`);
@@ -7078,7 +7329,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-if(store != undefined) {
+if (store != undefined) {
     (store as relationalStore.RdbStore).cleanDirtyData('test_table', 100).then(() => {
         console.info('clean dirty data  succeeded');
     }).catch ((err: BusinessError) => {
@@ -7150,7 +7401,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 // Attach a non-encrypted RDB store to a non-encrypted RDB store.
 import { BusinessError } from '@kit.BasicServicesKit';
 
-if(store != undefined) {
+if (store != undefined) {
     (store as relationalStore.RdbStore).attach("/path/rdbstore1.db", "attachDB").then((number: number) => {
         console.info('attach succeeded');
     }).catch ((err: BusinessError) => {
@@ -7238,7 +7489,7 @@ relationalStore.getRdbStore(this.context, STORE_CONFIG1).then(async (rdbStore: r
     console.error(`Get RdbStore failed, code is ${err.code},message is ${err.message}`);
 })
 
-if(store != undefined) {
+if (store != undefined) {
     (store as relationalStore.RdbStore).attach(this.context, STORE_CONFIG1, "attachDB").then((number: number) => {
         console.info(`attach succeeded, number is ${number}`);
     }).catch ((err: BusinessError) => {
@@ -7268,7 +7519,7 @@ relationalStore.getRdbStore(this.context, STORE_CONFIG2).then(async (rdbStore: r
     console.error(`Get RdbStore failed, code is ${err.code},message is ${err.message}`);
 })
 
-if(store != undefined) {
+if (store != undefined) {
     (store as relationalStore.RdbStore).attach(this.context, STORE_CONFIG2, "attachDB2", 10).then((number: number) => {
         console.info(`attach succeeded, number is ${number}`);
     }).catch ((err: BusinessError) => {
@@ -7333,7 +7584,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-if(store != undefined) {
+if (store != undefined) {
     (store as relationalStore.RdbStore).detach("attachDB").then((number: number) => {
         console.info(`detach succeeded, number is ${number}`);
     }).catch ((err: BusinessError) => {
@@ -7400,7 +7651,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.equalTo("NAME", "Lisa");
-if(store != undefined) {
+if (store != undefined) {
   (store as relationalStore.RdbStore).lockRow(predicates).then(() => {
     console.info(`Lock success`);
   }).catch((err: BusinessError) => {
@@ -7467,7 +7718,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.equalTo("NAME", "Lisa");
-if(store != undefined) {
+if (store != undefined) {
   (store as relationalStore.RdbStore).unlockRow(predicates).then(() => {
     console.info(`Unlock success`);
   }).catch((err: BusinessError) => {
@@ -7531,7 +7782,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.equalTo("NAME", "Rose");
-if(store != undefined) {
+if (store != undefined) {
   (store as relationalStore.RdbStore).queryLockedRow(predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"]).then((resultSet: relationalStore.ResultSet) => {
     console.info(`ResultSet column names: ${resultSet.columnNames}, column count: ${resultSet.columnCount}`);
     // resultSet is a cursor of a data set. By default, the cursor points to the -1st record. Valid data starts from 0.
@@ -7577,7 +7828,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-if(store != undefined) {
+if (store != undefined) {
     (store as relationalStore.RdbStore).close().then(() => {
         console.info(`close succeeded`);
     }).catch ((err: BusinessError) => {
@@ -7596,17 +7847,55 @@ Obtain the **resultSet** object first.
 
 **Example**
 
-<!--code_no_check-->
 ```ts
-let resultSet: relationalStore.ResultSet | undefined = undefined;
-let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
-predicates.equalTo("AGE", 18);
-if(store != undefined) {
-  (store as relationalStore.RdbStore).query(predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"]).then((result: relationalStore.ResultSet) => {
-    resultSet = result;
-    console.info(`resultSet columnNames: ${resultSet.columnNames}`);
-    console.info(`resultSet columnCount: ${resultSet.columnCount}`);
-  });
+import { UIAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { window } from '@kit.ArkUI';
+
+let store: relationalStore.RdbStore | undefined = undefined;
+
+class EntryAbility extends UIAbility {
+  onWindowStageCreate(windowStage: window.WindowStage) {
+    const STORE_CONFIG: relationalStore.StoreConfig = {
+      name: "RdbTest.db",
+      securityLevel: relationalStore.SecurityLevel.S3,
+    };
+
+    relationalStore.getRdbStore(this.context, STORE_CONFIG).then(async (rdbStore: relationalStore.RdbStore) => {
+      store = rdbStore;
+      const asset: relationalStore.Asset = {
+        name: "name",
+        uri: "uri",
+        createTime: "createTime",
+        modifyTime: "modifyTime",
+        size: "size",
+        path: "path",
+      };
+      const assets: relationalStore.Assets = [asset];
+      const valueBucket: relationalStore.ValuesBucket = {
+        "NAME": "hello world",
+        "AGE": 3,
+        "SALARY": 0.5,
+        "CODES": new Uint8Array([1, 2, 3]),
+        "IDENTITY":100n,
+        "ASSETDATA":asset,
+        "ASSETSDATA":assets,
+        "FLOATARRAY":new Float32Array([1.5, 2.5]),
+      };
+      (store as relationalStore.RdbStore).insertSync("EMPLOYEE", valueBucket);
+      let resultSet: relationalStore.ResultSet | undefined = undefined;
+      let predicates: relationalStore.RdbPredicates = new relationalStore.RdbPredicates("EMPLOYEE");
+      let columns: Array<string> = ["ID", "NAME", "AGE", "SALARY", "CODES", "IDENTITY", "ASSETDATA", "ASSETSDATA", "FLOATARRAY"];
+      await (store as relationalStore.RdbStore).query(predicates, columns).then(async (result: relationalStore.ResultSet) => {
+        resultSet = result;
+        console.info(`resultSet columnNames: ${resultSet.columnNames}`);
+        console.info(`resultSet columnCount: ${resultSet.columnCount}`);
+      });
+      console.info('Get RdbStore successfully.');
+    }).catch((err: BusinessError) => {
+      console.error(`Get RdbStore failed, code is ${err.code},message is ${err.message}`);
+    })
+  }
 }
 ```
 
@@ -7619,12 +7908,12 @@ if(store != undefined) {
 | columnNames  | Array&lt;string&gt; | Yes  | Names of all columns in the result set.      |
 | columnCount  | number              | Yes  | Number of columns in the result set.            |
 | rowCount     | number              | Yes  | Number of rows in the result set.            |
-| rowIndex     | number              | Yes  | Index of the current row in the result set.        |
-| isAtFirstRow | boolean             | Yes  | Whether the cursor is in the first row of the result set.      |
-| isAtLastRow  | boolean             | Yes  | Whether the cursor is in the last row of the result set.    |
-| isEnded      | boolean             | Yes  | Whether the cursor is after the last row of the result set.|
-| isStarted    | boolean             | Yes  | Whether the cursor has been moved.            |
-| isClosed     | boolean             | Yes  | Whether the result set is closed.        |
+| rowIndex     | number              | Yes  | Index of the current row in the result set. <br>Default value: **-1**. The index position starts from **0**.|
+| isAtFirstRow | boolean             | Yes  | Whether the result set pointer is in the first row (the row index is **0**). The value **true** means the result set pointer is in the first row.|
+| isAtLastRow  | boolean             | Yes  | Whether the result set pointer is in the last row. The value **true** means the pointer is in the last row.|
+| isEnded      | boolean             | Yes  | Whether the result set pointer is after the last row. The value **true** means the pointer is after the last row.|
+| isStarted    | boolean             | Yes  | Whether the result set pointer is moved. The value **true** means the pointer is moved.            |
+| isClosed     | boolean             | Yes  | Whether the result set is closed. The value **true** means the result set is closed.        |
 
 ### getColumnIndex
 
@@ -7676,7 +7965,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-if(resultSet != undefined) {
+if (resultSet != undefined) {
   const id = (resultSet as relationalStore.ResultSet).getLong((resultSet as relationalStore.ResultSet).getColumnIndex("ID"));
   const name = (resultSet as relationalStore.ResultSet).getString((resultSet as relationalStore.ResultSet).getColumnIndex("NAME"));
   const age = (resultSet as relationalStore.ResultSet).getLong((resultSet as relationalStore.ResultSet).getColumnIndex("AGE"));
@@ -7734,10 +8023,138 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-if(resultSet != undefined) {
+if (resultSet != undefined) {
   const id = (resultSet as relationalStore.ResultSet).getColumnName(0);
   const name = (resultSet as relationalStore.ResultSet).getColumnName(1);
   const age = (resultSet as relationalStore.ResultSet).getColumnName(2);
+}
+```
+
+### getColumnType<sup>18+</sup>
+
+getColumnType(columnIdentifier: number | string): Promise\<ColumnType>
+
+Obtains the column data type based on the specified column index or column name. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
+
+**Parameters**
+
+| Name          | Type            | Mandatory| Description                                                        |
+| ---------------- | ---------------- | ---- | ------------------------------------------------------------ |
+| columnIdentifier | number \| string | Yes  | Index or name of column in a result set. The index must be a non-negative integer and cannot exceed the length of **columnNames**. The column name must be a name in **columnNames**.|
+
+**Return value**
+
+| Type                                | Description                               |
+| ------------------------------------ | ----------------------------------- |
+| Promise<[ColumnType](#columntype18)> | Promise used to return the data type obtained.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md). For details about how to handle error 14800011, see [Database Backup and Restore](../../database/data-backup-and-restore.md).
+
+| **ID**| **Error Message**                                                |
+| ------------ | ------------------------------------------------------------ |
+| 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 14800000     | Inner error.                                                 |
+| 14800011     | Database corrupted.                                          |
+| 14800012     | Row out of bounds.                                           |
+| 14800013     | Column out of bounds.                                        |
+| 14800014     | Already closed.                                              |
+| 14800019     | The SQL must be a query statement.                           |
+| 14800021     | SQLite: Generic error.                                       |
+| 14800022     | SQLite: Callback routine requested an abort.                 |
+| 14800023     | SQLite: Access permission denied.                            |
+| 14800024     | SQLite: The database file is locked.                         |
+| 14800025     | SQLite: A table in the database is locked.                   |
+| 14800026     | SQLite: The database is out of memory.                       |
+| 14800027     | SQLite: Attempt to write a readonly database.                |
+| 14800028     | SQLite: Some kind of disk I/O error occurred.                |
+| 14800029     | SQLite: The database is full.                                |
+| 14800030     | SQLite: Unable to open the database file.                    |
+| 14800031     | SQLite: TEXT or BLOB exceeds size limit.                     |
+| 14800032     | SQLite: Abort due to constraint violation.                   |
+| 14800033     | SQLite: Data type mismatch.                                  |
+| 14800034     | SQLite: Library used incorrectly.                            |
+
+**Example**
+
+```ts
+if (resultSet != undefined) {
+  let idType = await (resultSet as relationalStore.ResultSet).getColumnType("ID") as relationalStore.ColumnType;
+  let nameType = await (resultSet as relationalStore.ResultSet).getColumnType("NAME") as relationalStore.ColumnType;
+  let ageType = await (resultSet as relationalStore.ResultSet).getColumnType("AGE") as relationalStore.ColumnType;
+  let salaryType = await (resultSet as relationalStore.ResultSet).getColumnType("SALARY") as relationalStore.ColumnType;
+  let codesType = await (resultSet as relationalStore.ResultSet).getColumnType("CODES") as relationalStore.ColumnType;
+  let identityType = await (resultSet as relationalStore.ResultSet).getColumnType(5) as relationalStore.ColumnType;
+  let assetDataType = await (resultSet as relationalStore.ResultSet).getColumnType(6) as relationalStore.ColumnType;
+  let assetsDataType = await (resultSet as relationalStore.ResultSet).getColumnType(7) as relationalStore.ColumnType;
+  let floatArrayType = await (resultSet as relationalStore.ResultSet).getColumnType(8) as relationalStore.ColumnType;
+}
+```
+
+### getColumnTypeSync<sup>18+</sup>
+
+getColumnTypeSync(columnIdentifier: number | string): ColumnType
+
+Obtains the column data type based on the specified column index or column name. This API returns the result synchronously.
+
+**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
+
+**Parameters**
+
+| Name          | Type            | Mandatory| Description                                                        |
+| ---------------- | ---------------- | ---- | ------------------------------------------------------------ |
+| columnIdentifier | number \| string | Yes  | Index or name of column in a result set. The index must be a non-negative integer and cannot exceed the length of **columnNames**. The column name must be a name in **columnNames**.|
+
+**Return value**
+
+| Type                       | Description                  |
+| --------------------------- | ---------------------- |
+| [ColumnType](#columntype18) | Data type obtained.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md). For details about how to handle error 14800011, see [Database Backup and Restore](../../database/data-backup-and-restore.md).
+
+| **ID**| **Error Message**                                                |
+| ------------ | ------------------------------------------------------------ |
+| 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 14800000     | Inner error.                                                 |
+| 14800011     | Database corrupted.                                          |
+| 14800012     | Row out of bounds.                                           |
+| 14800013     | Column out of bounds.                                        |
+| 14800014     | Already closed.                                              |
+| 14800019     | The SQL must be a query statement.                           |
+| 14800021     | SQLite: Generic error.                                       |
+| 14800022     | SQLite: Callback routine requested an abort.                 |
+| 14800023     | SQLite: Access permission denied.                            |
+| 14800024     | SQLite: The database file is locked.                         |
+| 14800025     | SQLite: A table in the database is locked.                   |
+| 14800026     | SQLite: The database is out of memory.                       |
+| 14800027     | SQLite: Attempt to write a readonly database.                |
+| 14800028     | SQLite: Some kind of disk I/O error occurred.                |
+| 14800029     | SQLite: The database is full.                                |
+| 14800030     | SQLite: Unable to open the database file.                    |
+| 14800031     | SQLite: TEXT or BLOB exceeds size limit.                     |
+| 14800032     | SQLite: Abort due to constraint violation.                   |
+| 14800033     | SQLite: Data type mismatch.                                  |
+| 14800034     | SQLite: Library used incorrectly.                            |
+
+**Example**
+
+```ts
+if (resultSet != undefined) {
+  let idType = (resultSet as relationalStore.ResultSet).getColumnTypeSync("ID") as relationalStore.ColumnType;
+  let nameType = (resultSet as relationalStore.ResultSet).getColumnTypeSync("NAME") as relationalStore.ColumnType;
+  let ageType = (resultSet as relationalStore.ResultSet).getColumnTypeSync("AGE") as relationalStore.ColumnType;
+  let salaryType = (resultSet as relationalStore.ResultSet).getColumnTypeSync("SALARY") as relationalStore.ColumnType;
+  let codesType = (resultSet as relationalStore.ResultSet).getColumnTypeSync("CODES") as relationalStore.ColumnType;
+  let identityType = (resultSet as relationalStore.ResultSet).getColumnTypeSync(5) as relationalStore.ColumnType;
+  let assetDataType = (resultSet as relationalStore.ResultSet).getColumnTypeSync(6) as relationalStore.ColumnType;
+  let assetsDataType = (resultSet as relationalStore.ResultSet).getColumnTypeSync(7) as relationalStore.ColumnType;
+  let floatArrayType = (resultSet as relationalStore.ResultSet).getColumnTypeSync(8) as relationalStore.ColumnType;
 }
 ```
 
@@ -7745,7 +8162,7 @@ if(resultSet != undefined) {
 
 goTo(offset:number): boolean
 
-Moves the cursor to the row based on the specified offset.
+Moves the result set pointer based on the offset specified.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -7753,7 +8170,7 @@ Moves the cursor to the row based on the specified offset.
 
 | Name| Type  | Mandatory| Description                        |
 | ------ | ------ | ---- | ---------------------------- |
-| offset | number | Yes  | Offset relative to the current position.|
+| offset | number | Yes  | Offset relative to the position of the current result set pointer. A positive value means to move the pointer backward, and a negative value means to move the pointer forward.|
 
 **Return value**
 
@@ -7791,7 +8208,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-if(resultSet != undefined) {
+if (resultSet != undefined) {
   (resultSet as relationalStore.ResultSet).goTo(1);
 }
 ```
@@ -7846,7 +8263,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-if(resultSet != undefined) {
+if (resultSet != undefined) {
   (resultSet as relationalStore.ResultSet).goToRow(5);
 }
 ```
@@ -7895,7 +8312,7 @@ For details about the error codes, see [RDB Error Codes](errorcode-data-rdb.md).
 **Example**
 
 ```ts
-if(resultSet != undefined) {
+if (resultSet != undefined) {
   (resultSet as relationalStore.ResultSet).goToFirstRow();
 }
 ```
@@ -7943,7 +8360,7 @@ For details about the error codes, see [RDB Error Codes](errorcode-data-rdb.md).
 **Example**
 
 ```ts
-if(resultSet != undefined) {
+if (resultSet != undefined) {
   (resultSet as relationalStore.ResultSet).goToLastRow();
 }
 ```
@@ -7991,7 +8408,7 @@ For details about the error codes, see [RDB Error Codes](errorcode-data-rdb.md).
 **Example**
 
 ```ts
-if(resultSet != undefined) {
+if (resultSet != undefined) {
   (resultSet as relationalStore.ResultSet).goToNextRow();
 }
 ```
@@ -8039,7 +8456,7 @@ For details about the error codes, see [RDB Error Codes](errorcode-data-rdb.md).
 **Example**
 
 ```ts
-if(resultSet != undefined) {
+if (resultSet != undefined) {
   (resultSet as relationalStore.ResultSet).goToPreviousRow();
 }
 ```
@@ -8094,7 +8511,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-if(resultSet != undefined) {
+if (resultSet != undefined) {
   const codes = (resultSet as relationalStore.ResultSet).getValue((resultSet as relationalStore.ResultSet).getColumnIndex("BIGINT_COLUMN"));
 }
 ```
@@ -8150,7 +8567,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-if(resultSet != undefined) {
+if (resultSet != undefined) {
   const codes = (resultSet as relationalStore.ResultSet).getBlob((resultSet as relationalStore.ResultSet).getColumnIndex("CODES"));
 }
 ```
@@ -8205,7 +8622,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-if(resultSet != undefined) {
+if (resultSet != undefined) {
   const name = (resultSet as relationalStore.ResultSet).getString((resultSet as relationalStore.ResultSet).getColumnIndex("NAME"));
 }
 ```
@@ -8260,9 +8677,9 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-if(resultSet != undefined) {
+if (resultSet != undefined) {
   const age = (resultSet as relationalStore.ResultSet).getLong((resultSet as relationalStore.ResultSet).getColumnIndex("AGE"));
- }
+}
 ```
 
 ### getDouble
@@ -8315,7 +8732,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-if(resultSet != undefined) {
+if (resultSet != undefined) {
   const salary = (resultSet as relationalStore.ResultSet).getDouble((resultSet as relationalStore.ResultSet).getColumnIndex("SALARY"));
 }
 ```
@@ -8370,7 +8787,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-if(resultSet != undefined) {
+if (resultSet != undefined) {
   const doc = (resultSet as relationalStore.ResultSet).getAsset((resultSet as relationalStore.ResultSet).getColumnIndex("DOC"));
 }
 ```
@@ -8425,7 +8842,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-if(resultSet != undefined) {
+if (resultSet != undefined) {
   const docs = (resultSet as relationalStore.ResultSet).getAssets((resultSet as relationalStore.ResultSet).getColumnIndex("DOCS"));
 }
 ```
@@ -8473,12 +8890,12 @@ For details about the error codes, see [RDB Error Codes](errorcode-data-rdb.md).
 **Example**
 
 ```ts
-if(resultSet != undefined) {
+if (resultSet != undefined) {
   const row = (resultSet as relationalStore.ResultSet).getRow();
 }
 ```
 
-### getRows<sup>16+</sup>
+### getRows<sup>18+</sup>
 
 getRows(maxCount: number, position?: number): Promise<Array\<ValuesBucket>>
 
@@ -8491,7 +8908,7 @@ Obtains a specified amount of data from the result set. This API uses a promise 
 | Name     | Type  | Mandatory| Description                   |
 | ----------- | ------ | ---- | ----------------------- |
 | maxCount | number | Yes  | Number of rows to obtain. The value is a positive integer. If the value is not a positive integer, error 401 will be thrown.|
-| position | number | No  | Start position for obtaining data from the result set. The value is a non-negative integer. If this parameter is not specified, data is obtained from the current row of the result set (by default, it is the first row of the current result set when data is obtained for the first time). If it is not a non-negative integer, error 401 will be thrown.|
+| position | number | No  | Start position for obtaining data from the result set. The value is a non-negative integer. If this parameter is not specified, data is obtained from the current row of the result set (by default, it is the first row of the result set when data is obtained for the first time). If it is not a non-negative integer, error code 401 will be thrown.|
 
 
 **Return value**
@@ -8620,19 +9037,19 @@ async function getDataByName(name: string, context: ctx.UIAbilityContext) {
   }
 }
 
-async function run() {
-  const task = new taskpool.Task(getDataByName, 'Lisa', getContext());
-  const sendableValuesBucket  = await taskpool.execute(task) as sendableRelationalStore.ValuesBucket;
+class EntryAbility extends UIAbility {
+  async onWindowStageCreate(windowStage: window.WindowStage) {
+    const task = new taskpool.Task(getDataByName, 'Lisa', getContext());
+    const sendableValuesBucket  = await taskpool.execute(task) as sendableRelationalStore.ValuesBucket;
 
-  if (sendableValuesBucket) {
-    const columnCount = sendableValuesBucket.size;
-    const age = sendableValuesBucket.get('age');
-    const name = sendableValuesBucket.get('name');
-    console.info(`Query data in taskpool succeeded, name is "${name}", age is "${age}"`)
+    if (sendableValuesBucket) {
+      const columnCount = sendableValuesBucket.size;
+      const age = sendableValuesBucket.get('age');
+      const name = sendableValuesBucket.get('name');
+      console.info(`Query data in taskpool succeeded, name is "${name}", age is "${age}"`)
+    }
   }
 }
-
-run()
 ```
 
 ### isColumnNull
@@ -8685,7 +9102,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-if(resultSet != undefined) {
+if (resultSet != undefined) {
   const isColumnNull = (resultSet as relationalStore.ResultSet).isColumnNull((resultSet as relationalStore.ResultSet).getColumnIndex("CODES"));
 }
 ```
@@ -8701,7 +9118,7 @@ Closes this **resultSet** to release memory. If the **resultSet** is not closed,
 **Example**
 
 ```ts
-if(resultSet != undefined) {
+if (resultSet != undefined) {
   (resultSet as relationalStore.ResultSet).close();
 }
 ```
@@ -8728,16 +9145,35 @@ When the number of concurrent transactions is large and the write transaction du
 **Example**
 
 ```ts
+import { UIAbility } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+import { window } from '@kit.ArkUI';
 
 let store: relationalStore.RdbStore | undefined = undefined;
 
-if(store != undefined) {
-  (store as relationalStore.RdbStore).createTransaction().then((transaction: relationalStore.Transaction) => {
-    console.info(`createTransaction success`);
-  }).catch((err: BusinessError) => {
-    console.error(`createTransaction failed, code is ${err.code},message is ${err.message}`);
-  });
+class EntryAbility extends UIAbility {
+  async onWindowStageCreate(windowStage: window.WindowStage) {
+    const STORE_CONFIG: relationalStore.StoreConfig = {
+      name: "RdbTest.db",
+      securityLevel: relationalStore.SecurityLevel.S3,
+    };
+
+    await relationalStore.getRdbStore(this.context, STORE_CONFIG).then(async (rdbStore: relationalStore.RdbStore) => {
+      store = rdbStore;
+      console.info('Get RdbStore successfully.')
+    }).catch((err: BusinessError) => {
+      console.error(`Get RdbStore failed, code is ${err.code},message is ${err.message}`);
+    })
+
+    if (store != undefined) {
+      (store as relationalStore.RdbStore).createTransaction().then((transaction: relationalStore.Transaction) => {
+        console.info(`createTransaction success`);
+        // Perform subsequent operations after the transaction instance is successfully obtained.
+      }).catch((err: BusinessError) => {
+        console.error(`createTransaction failed, code is ${err.code},message is ${err.message}`);
+      });
+    }
+  }
 }
 ```
 
@@ -8779,7 +9215,7 @@ let value2 = 18;
 let value3 = 100.5;
 let value4 = new Uint8Array([1, 2, 3]);
 
-if(store != undefined) {
+if (store != undefined) {
   const valueBucket: relationalStore.ValuesBucket = {
     'NAME': value1,
     'AGE': value2,
@@ -8832,7 +9268,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-if(store != undefined) {
+if (store != undefined) {
   (store as relationalStore.RdbStore).createTransaction().then((transaction: relationalStore.Transaction) => {
     transaction.execute("DELETE FROM TEST WHERE age = ? OR age = ?", ["18", "20"]).then(() => {
       transaction.commit();
@@ -8861,7 +9297,7 @@ Inserts a row of data into a table. This API uses a promise to return the result
 | -------- | ------------------------------------------- | ---- | -------------------------- |
 | table    | string                                      | Yes  | Name of the target table.          |
 | values   | [ValuesBucket](#valuesbucket)               | Yes  | Row of data to insert.|
-| conflict | [ConflictResolution](#conflictresolution10) | No  | Resolution used to resolve the conflict. The default value is **relationalStore.ConflictResolution.ON_CONFLICT_NONE**.        |
+| conflict | [ConflictResolution](#conflictresolution10) | No  | Resolution used to resolve the conflict. <br>Default value: **relationalStore.ConflictResolution.ON_CONFLICT_NONE**.        |
 
 **Return value**
 
@@ -8919,7 +9355,7 @@ const valueBucket3: relationalStore.ValuesBucket = {
   "CODES": value4,
 };
 
-if(store != undefined) {
+if (store != undefined) {
   (store as relationalStore.RdbStore).createTransaction().then((transaction: relationalStore.Transaction) => {
     transaction.insert("EMPLOYEE", valueBucket1, relationalStore.ConflictResolution.ON_CONFLICT_REPLACE).then((rowId: number) => {
       transaction.commit();
@@ -8948,7 +9384,7 @@ Inserts a row of data into a table. Due to the limit of the shared memory (max. 
 | -------- | ------------------------------------------- | ---- | ------------------------------------------------------------ |
 | table    | string                                      | Yes  | Name of the target table.                                            |
 | values   | [ValuesBucket](#valuesbucket) \| [sendableRelationalStore.ValuesBucket](./js-apis-data-sendableRelationalStore.md#valuesbucket)   | Yes  | Row of data to insert.                                  |
-| conflict | [ConflictResolution](#conflictresolution10) | No  | Resolution used to resolve the conflict. The default value is **relationalStore.ConflictResolution.ON_CONFLICT_NONE**.|
+| conflict | [ConflictResolution](#conflictresolution10) | No  | Resolution used to resolve the conflict. <br>Default value: **relationalStore.ConflictResolution.ON_CONFLICT_NONE**.|
 
 **Return value**
 
@@ -9006,13 +9442,13 @@ const valueBucket3: relationalStore.ValuesBucket = {
   "CODES": value4,
 };
 
-if(store != undefined) {
+if (store != undefined) {
   (store as relationalStore.RdbStore).createTransaction().then((transaction: relationalStore.Transaction) => {
     try {
       let rowId: number = (transaction as relationalStore.Transaction).insertSync("EMPLOYEE", valueBucket1, relationalStore.ConflictResolution.ON_CONFLICT_REPLACE);
       transaction.commit();
       console.info(`Insert is successful, rowId = ${rowId}`);
-    } catch (e: BusinessError) {
+    } catch (e) {
       transaction.rollback();
       console.error(`Insert is failed, code is ${e.code},message is ${e.message}`);
     };
@@ -9026,7 +9462,7 @@ if(store != undefined) {
 
 batchInsert(table: string, values: Array&lt;ValuesBucket&gt;): Promise&lt;number&gt;
 
-Batch inserts data into a table. This API uses a promise to return the result.
+Inserts a batch of data into a table. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -9101,7 +9537,7 @@ const valueBucket3: relationalStore.ValuesBucket = {
 };
 
 let valueBuckets = new Array(valueBucket1, valueBucket2, valueBucket3);
-if(store != undefined) {
+if (store != undefined) {
   (store as relationalStore.RdbStore).createTransaction().then((transaction: relationalStore.Transaction) => {
     transaction.batchInsert("EMPLOYEE", valueBuckets).then((insertNum: number) => {
       transaction.commit();
@@ -9120,7 +9556,7 @@ if(store != undefined) {
 
 batchInsertSync(table: string, values: Array&lt;ValuesBucket&gt;): number
 
-Inserts a group of data into a table.
+Inserts a batch of data into a table. This API returns the result synchronously.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -9195,10 +9631,207 @@ const valueBucket3: relationalStore.ValuesBucket = {
 };
 
 let valueBuckets = new Array(valueBucket1, valueBucket2, valueBucket3);
-if(store != undefined) {
+if (store != undefined) {
   (store as relationalStore.RdbStore).createTransaction().then((transaction: relationalStore.Transaction) => {
     try {
       let insertNum: number = (transaction as relationalStore.Transaction).batchInsertSync("EMPLOYEE", valueBuckets);
+      transaction.commit();
+      console.info(`batchInsert is successful, the number of values that were inserted = ${insertNum}`);
+    } catch (e) {
+      transaction.rollback();
+      console.error(`batchInsert is failed, code is ${e.code},message is ${e.message}`);
+    };
+  }).catch((err: BusinessError) => {
+    console.error(`createTransaction failed, code is ${err.code},message is ${err.message}`);
+  });
+}
+```
+
+### batchInsertWithConflictResolution<sup>18+</sup>
+
+batchInsertWithConflictResolution(table: string, values: Array&lt;ValuesBucket&gt;, conflict: ConflictResolution): Promise&lt;number&gt;
+
+Inserts a batch of data into a table. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
+
+**Parameters**
+
+| Name| Type                                      | Mandatory| Description                        |
+| ------ | ------------------------------------------ | ---- | ---------------------------- |
+| table  | string                                     | Yes  | Name of the target table.            |
+| values | Array&lt;[ValuesBucket](#valuesbucket)&gt; | Yes  | An array of data to insert.|
+| conflict | [ConflictResolution](#conflictresolution10) | Yes  | Resolution used to resolve the conflict. If **ON_CONFLICT_ROLLBACK** is used, the transaction will be rolled back when a conflict occurs.|
+
+**Return value**
+
+| Type                 | Description                                                       |
+| --------------------- | ----------------------------------------------------------- |
+| Promise&lt;number&gt; | Promise used to return the result. If the operation is successful, the number of inserted data records is returned. Otherwise, **-1** is returned.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md). For details about how to handle error 14800011, see [Database Backup and Restore](../../database/data-backup-and-restore.md).
+
+| **ID**| **Error Message**                                                |
+|-----------| ------------------------------------------------------------ |
+| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 14800000  | Inner error. |
+| 14800011  | Database corrupted. |
+| 14800014  | Already closed. |
+| 14800021  | SQLite: Generic error. |
+| 14800022  | SQLite: Callback routine requested an abort. |
+| 14800023  | SQLite: Access permission denied. |
+| 14800024  | SQLite: The database file is locked. |
+| 14800025  | SQLite: A table in the database is locked. |
+| 14800026  | SQLite: The database is out of memory. |
+| 14800027  | SQLite: Attempt to write a readonly database. |
+| 14800028  | SQLite: Some kind of disk I/O error occurred. |
+| 14800029  | SQLite: The database is full. |
+| 14800031  | SQLite: TEXT or BLOB exceeds size limit. |
+| 14800032  | SQLite: Abort due to constraint violation. |
+| 14800033  | SQLite: Data type mismatch. |
+| 14800034  | SQLite: Library used incorrectly. |
+| 14800047  | The WAL file size exceeds the default limit. |
+
+**Example**
+
+```ts
+let value1 = "Lisa";
+let value2 = 18;
+let value3 = 100.5;
+let value4 = new Uint8Array([1, 2, 3, 4, 5]);
+let value5 = "Jack";
+let value6 = 19;
+let value7 = 101.5;
+let value8 = new Uint8Array([6, 7, 8, 9, 10]);
+let value9 = "Tom";
+let value10 = 20;
+let value11 = 102.5;
+let value12 = new Uint8Array([11, 12, 13, 14, 15]);
+
+const valueBucket1: relationalStore.ValuesBucket = {
+  'NAME': value1,
+  'AGE': value2,
+  'SALARY': value3,
+  'CODES': value4,
+};
+const valueBucket2: relationalStore.ValuesBucket = {
+  'NAME': value5,
+  'AGE': value6,
+  'SALARY': value7,
+  'CODES': value8,
+};
+const valueBucket3: relationalStore.ValuesBucket = {
+  'NAME': value9,
+  'AGE': value10,
+  'SALARY': value11,
+  'CODES': value12,
+};
+
+let valueBuckets = new Array(valueBucket1, valueBucket2, valueBucket3);
+if (store != undefined) {
+  (store as relationalStore.RdbStore).createTransaction().then((transaction: relationalStore.Transaction) => {
+    transaction.batchInsertWithConflictResolution("EMPLOYEE", valueBuckets, relationalStore.ConflictResolution.ON_CONFLICT_REPLACE).then((insertNum: number) => {
+      transaction.commit();
+      console.info(`batchInsert is successful, the number of values that were inserted = ${insertNum}`);
+    }).catch((e: BusinessError) => {
+      transaction.rollback();
+      console.error(`batchInsert is failed, code is ${e.code},message is ${e.message}`);
+    });
+  }).catch((err: BusinessError) => {
+    console.error(`createTransaction failed, code is ${err.code},message is ${err.message}`);
+  });
+}
+```
+
+### batchInsertWithConflictResolutionSync<sup>18+</sup>
+
+batchInsertWithConflictResolutionSync(table: string, values: Array&lt;ValuesBucket&gt;, conflict: ConflictResolution): number
+
+Inserts a batch of data into a table.
+
+**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
+
+**Parameters**
+
+| Name| Type                                      | Mandatory| Description                        |
+| ------ | ------------------------------------------ | ---- | ---------------------------- |
+| table  | string                                     | Yes  | Name of the target table.            |
+| values | Array&lt;[ValuesBucket](#valuesbucket)&gt; | Yes  | An array of data to insert.|
+| conflict | [ConflictResolution](#conflictresolution10) | Yes  | Resolution used to resolve the conflict. If **ON_CONFLICT_ROLLBACK** is used, the transaction will be rolled back when a conflict occurs.|
+
+**Return value**
+
+| Type  | Description                                          |
+| ------ | ---------------------------------------------- |
+| number | If the operation is successful, the number of inserted data records is returned. Otherwise, **-1** is returned.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md). For details about how to handle error 14800011, see [Database Backup and Restore](../../database/data-backup-and-restore.md).
+
+| **ID**| **Error Message**                                                |
+| ------------ | ------------------------------------------------------------ |
+| 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 14800000  | Inner error. |
+| 14800011  | Database corrupted. |
+| 14800014  | Already closed. |
+| 14800021  | SQLite: Generic error. |
+| 14800022  | SQLite: Callback routine requested an abort. |
+| 14800023  | SQLite: Access permission denied. |
+| 14800024  | SQLite: The database file is locked. |
+| 14800025  | SQLite: A table in the database is locked. |
+| 14800026  | SQLite: The database is out of memory. |
+| 14800027  | SQLite: Attempt to write a readonly database. |
+| 14800028  | SQLite: Some kind of disk I/O error occurred. |
+| 14800029  | SQLite: The database is full. |
+| 14800031  | SQLite: TEXT or BLOB exceeds size limit. |
+| 14800032  | SQLite: Abort due to constraint violation. |
+| 14800033  | SQLite: Data type mismatch. |
+| 14800034  | SQLite: Library used incorrectly. |
+| 14800047  | The WAL file size exceeds the default limit. |
+
+**Example**
+
+```ts
+let value1 = "Lisa";
+let value2 = 18;
+let value3 = 100.5;
+let value4 = new Uint8Array([1, 2, 3, 4, 5]);
+let value5 = "Jack";
+let value6 = 19;
+let value7 = 101.5;
+let value8 = new Uint8Array([6, 7, 8, 9, 10]);
+let value9 = "Tom";
+let value10 = 20;
+let value11 = 102.5;
+let value12 = new Uint8Array([11, 12, 13, 14, 15]);
+
+const valueBucket1: relationalStore.ValuesBucket = {
+  'NAME': value1,
+  'AGE': value2,
+  'SALARY': value3,
+  'CODES': value4,
+};
+const valueBucket2: relationalStore.ValuesBucket = {
+  'NAME': value5,
+  'AGE': value6,
+  'SALARY': value7,
+  'CODES': value8,
+};
+const valueBucket3: relationalStore.ValuesBucket = {
+  'NAME': value9,
+  'AGE': value10,
+  'SALARY': value11,
+  'CODES': value12,
+};
+
+let valueBuckets = new Array(valueBucket1, valueBucket2, valueBucket3);
+if (store != undefined) {
+  (store as relationalStore.RdbStore).createTransaction().then((transaction: relationalStore.Transaction) => {
+    try {
+      let insertNum: number = (transaction as relationalStore.Transaction).batchInsertWithConflictResolutionSync("EMPLOYEE", valueBuckets, relationalStore.ConflictResolution.ON_CONFLICT_REPLACE);
       transaction.commit();
       console.info(`batchInsert is successful, the number of values that were inserted = ${insertNum}`);
     } catch (e) {
@@ -9225,7 +9858,7 @@ Updates data based on the specified **RdbPredicates** object. This API uses a pr
 | ---------- | ------------------------------------------- | ---- | ------------------------------------------------------------ |
 | values     | [ValuesBucket](#valuesbucket)               | Yes  | Rows of data to update in the RDB store. The key-value pair is associated with the column name in the target table.|
 | predicates | [RdbPredicates](#rdbpredicates)            | Yes  | Update conditions specified by the **RdbPredicates** object.                     |
-| conflict   | [ConflictResolution](#conflictresolution10) | No  | Resolution used to resolve the conflict. The default value is **relationalStore.ConflictResolution.ON_CONFLICT_NONE**.                                         |
+| conflict   | [ConflictResolution](#conflictresolution10) | No  | Resolution used to resolve the conflict. <br>Default value: **relationalStore.ConflictResolution.ON_CONFLICT_NONE**.                                         |
 
 **Return value**
 
@@ -9286,7 +9919,7 @@ const valueBucket3: relationalStore.ValuesBucket = {
 let predicates = new relationalStore.RdbPredicates('EMPLOYEE');
 predicates.equalTo("NAME", "Lisa");
 
-if(store != undefined) {
+if (store != undefined) {
   (store as relationalStore.RdbStore).createTransaction().then((transaction: relationalStore.Transaction) => {
     transaction.update(valueBucket1, predicates, relationalStore.ConflictResolution.ON_CONFLICT_REPLACE).then(async (rows: Number) => {
       transaction.commit();
@@ -9315,7 +9948,7 @@ Updates data in the database based on the specified **RdbPredicates** instance. 
 | ---------- | ------------------------------------------- | ---- | ------------------------------------------------------------ |
 | values     | [ValuesBucket](#valuesbucket)               | Yes  | Rows of data to update in the RDB store. The key-value pair is associated with the column name in the target table.|
 | predicates | [RdbPredicates](#rdbpredicates)             | Yes  | Update conditions specified by the **RdbPredicates** object.                     |
-| conflict   | [ConflictResolution](#conflictresolution10) | No  | Resolution used to resolve the conflict. The default value is **relationalStore.ConflictResolution.ON_CONFLICT_NONE**.|
+| conflict   | [ConflictResolution](#conflictresolution10) | No  | Resolution used to resolve the conflict. <br>Default value: **relationalStore.ConflictResolution.ON_CONFLICT_NONE**.|
 
 **Return value**
 
@@ -9376,7 +10009,7 @@ const valueBucket3: relationalStore.ValuesBucket = {
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.equalTo("NAME", "Lisa");
 
-if(store != undefined) {
+if (store != undefined) {
   (store as relationalStore.RdbStore).createTransaction().then((transaction: relationalStore.Transaction) => {
     try {
       let rows: Number = (transaction as relationalStore.Transaction).updateSync(valueBucket1, predicates, relationalStore.ConflictResolution.ON_CONFLICT_REPLACE);
@@ -9440,7 +10073,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.equalTo("NAME", "Lisa");
 
-if(store != undefined) {
+if (store != undefined) {
   (store as relationalStore.RdbStore).createTransaction().then((transaction: relationalStore.Transaction) => {
     transaction.delete(predicates).then((rows: Number) => {
       transaction.commit();
@@ -9503,7 +10136,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.equalTo("NAME", "Lisa");
 
-if(store != undefined) {
+if (store != undefined) {
   (store as relationalStore.RdbStore).createTransaction().then((transaction: relationalStore.Transaction) => {
     try {
       let rows: Number = (transaction as relationalStore.Transaction).deleteSync(predicates);
@@ -9563,7 +10196,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.equalTo("NAME", "Rose");
 
-if(store != undefined) {
+if (store != undefined) {
   (store as relationalStore.RdbStore).createTransaction().then((transaction: relationalStore.Transaction) => {
     transaction.query(predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"]).then((resultSet: relationalStore.ResultSet) => {
       console.info(`ResultSet column names: ${resultSet.columnNames}, column count: ${resultSet.columnCount}`);
@@ -9601,7 +10234,7 @@ Queries data in a database based on specified conditions. This API returns the r
 | Name    | Type                           | Mandatory| Description                                                        |
 | ---------- | ------------------------------- | ---- | ------------------------------------------------------------ |
 | predicates | [RdbPredicates](#rdbpredicates) | Yes  | Query conditions specified by the **RdbPredicates** object.                     |
-| columns    | Array&lt;string&gt;             | No  | Columns to query. If this parameter is not specified, the query applies to all columns. The default value is null.|
+| columns    | Array&lt;string&gt;             | No  | Columns to query. If this parameter is not specified, the query applies to all columns. <br>Default value: null.|
 
 **Error codes**
 
@@ -9633,7 +10266,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.equalTo("NAME", "Rose");
 
-if(store != undefined) {
+if (store != undefined) {
   (store as relationalStore.RdbStore).createTransaction().then((transaction: relationalStore.Transaction) => {
     try {
       let resultSet: relationalStore.ResultSet = (transaction as relationalStore.Transaction).querySync(predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"]);
@@ -9701,7 +10334,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-if(store != undefined) {
+if (store != undefined) {
   (store as relationalStore.RdbStore).createTransaction().then((transaction: relationalStore.Transaction) => {
     transaction.querySql("SELECT * FROM EMPLOYEE CROSS JOIN BOOK WHERE BOOK.NAME = 'sanguo'").then((resultSet: relationalStore.ResultSet) => {
       console.info(`ResultSet column names: ${resultSet.columnNames}, column count: ${resultSet.columnCount}`);
@@ -9739,7 +10372,7 @@ Queries data in the RDB store using the specified SQL statement. The number of r
 | Name  | Type                                | Mandatory| Description                                                        |
 | -------- | ------------------------------------ | ---- | ------------------------------------------------------------ |
 | sql      | string                               | Yes  | SQL statement to run.                                       |
-| args | Array&lt;[ValueType](#valuetype)&gt; | No  | Arguments in the SQL statement. The value corresponds to the placeholders in the SQL parameter statement. If the SQL parameter statement is complete, leave this parameter blank. The default value is null.|
+| args | Array&lt;[ValueType](#valuetype)&gt; | No  | Arguments in the SQL statement. The value corresponds to the placeholders in the SQL parameter statement. If the SQL parameter statement is complete, leave this parameter blank. <br>Default value: null.|
 
 **Return value**
 
@@ -9768,7 +10401,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-if(store != undefined) {
+if (store != undefined) {
   (store as relationalStore.RdbStore).createTransaction().then((transaction: relationalStore.Transaction) => {
     try {
       let resultSet: relationalStore.ResultSet = (transaction as relationalStore.Transaction).querySqlSync("SELECT * FROM EMPLOYEE CROSS JOIN BOOK WHERE BOOK.NAME = 'sanguo'");
@@ -9848,7 +10481,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 ```ts
 // Delete all data from the table.
-if(store != undefined) {
+if (store != undefined) {
   const SQL_DELETE_TABLE = 'DELETE FROM test';
   (store as relationalStore.RdbStore).createTransaction().then((transaction: relationalStore.Transaction) => {
     transaction.execute(SQL_DELETE_TABLE).then((data) => {
@@ -9883,7 +10516,7 @@ Statements separated by semicolons (\;) are not supported.
 | Name| Type                                | Mandatory| Description                                                        |
 | ------ | ------------------------------------ | ---- | ------------------------------------------------------------ |
 | sql    | string                               | Yes  | SQL statement to run.                                       |
-| args   | Array&lt;[ValueType](#valuetype)&gt; | No  | Arguments in the SQL statement. The value corresponds to the placeholders in the SQL parameter statement. If this parameter is left blank or set to **null** or **undefined**, the SQL statement is complete. The default value is null.|
+| args   | Array&lt;[ValueType](#valuetype)&gt; | No  | Arguments in the SQL statement. The value corresponds to the placeholders in the SQL parameter statement. If this parameter is left blank or set to **null** or **undefined**, the SQL statement is complete. <br>Default value: null.|
 
 **Return value**
 
@@ -9918,7 +10551,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 ```ts
 // Delete all data from the table.
-if(store != undefined) {
+if (store != undefined) {
   (store as relationalStore.RdbStore).createTransaction().then((transaction: relationalStore.Transaction) => {
     const SQL_DELETE_TABLE = 'DELETE FROM test';
     try {

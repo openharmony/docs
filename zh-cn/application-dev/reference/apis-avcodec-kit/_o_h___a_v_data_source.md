@@ -11,6 +11,8 @@
 
 **相关模块：**[CodecBase](_codec_base.md)
 
+**所在头文件：**[native_avcodec_base.h](native__avcodec__base_8h.md)
+
 
 ## 汇总
 

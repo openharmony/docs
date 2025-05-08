@@ -413,7 +413,7 @@ In **entry/src/main/ets/pages/Index.ets**, call the encapsulated ArkTS module to
 import msliteNapi from 'libentry.so'
 import { resourceManager } from '@kit.LocalizationKit';
 
-let resMgr: resourceManager.ResourceManager = getContext().getApplicationContext().resourceManager;
+let resMgr = this.getUIContext()?.getHostContext()?.getApplicationContext().resourceManager;
 let max: number = 0;
 let maxIndex: number = 0;
 let maxArray: Array<number> = [];
@@ -489,3 +489,4 @@ console.info('MS_LITE_LOG: *** Finished MSLite Demo ***');
 Touch the **photo** button on the device screen, select an image, and touch **OK**. The top 4 categories of the image are displayed below the image.
 
 <img src="figures/stepc1.png"  width="20%"/>     <img src="figures/step2.png" width="20%"/>     <img src="figures/step3.png" width="20%"/>     <img src="figures/stepc4.png" width="20%"/>
+

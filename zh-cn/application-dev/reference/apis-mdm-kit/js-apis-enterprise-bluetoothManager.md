@@ -8,7 +8,7 @@
 >
 > 本模块接口仅可在Stage模型下使用。
 >
-> 本模块接口仅对[设备管理应用](../../mdm/mdm-kit-guide.md#功能介绍)开放，需将设备管理应用激活后调用，实现相应功能。
+> 本模块接口仅对设备管理应用开放，且调用接口前需激活设备管理应用，具体请参考[MDM Kit开发指南](../../mdm/mdm-kit-guide.md)。
 >
 > 全局通用限制类策略由restrictions统一提供，若要全局禁用蓝牙，请参考[@ohos.enterprise.restrictions（限制类策略）](js-apis-enterprise-restrictions.md)。
 
@@ -65,7 +65,7 @@ let wantTemp: Want = {
 
 try {
     let result: bluetoothManager.BluetoothInfo = bluetoothManager.getBluetoothInfo(wantTemp);
-    console.info(`Succeeded in getting bluetooth info： ${JSON.stringify(result)}`);
+    console.info(`Succeeded in getting bluetooth info: ${JSON.stringify(result)}`);
 } catch(err) {
     console.error(`Failed to get bluetooth info. Code: ${err.code}, message: ${err.message}`);
 }
@@ -170,7 +170,7 @@ try {
 
 ## bluetoothManager.getAllowedBluetoothDevices
 
-getAllowedBluetoothDevices(admin: Want): Array\<string>;
+getAllowedBluetoothDevices(admin: Want): Array\<string>
 
 获取蓝牙设备可用白名单。
 
@@ -228,7 +228,7 @@ try {
 
 
 
-**模型约束：** 此接口仅可在Stage模型下使用
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 | 名称            | 类型                                                         | 必填 | 说明                     |
 | --------------- | ------------------------------------------------------------ | ---- | ------------------------ |

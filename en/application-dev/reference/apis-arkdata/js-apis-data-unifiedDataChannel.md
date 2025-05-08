@@ -506,6 +506,261 @@ let hyperlinkRecord = new unifiedDataChannel.UnifiedRecord(uniformTypeDescriptor
 let hyperlinkValue = hyperlinkRecord.getValue();
 ```
 
+### addEntry<sup>15+</sup>
+
+addEntry(type: string, value: ValueType): void
+
+Adds data to the current data record.
+
+**Atomic service API**: This API can be used in atomic services since API version 15.
+
+**System capability**: SystemCapability.DistributedDataManager.UDMF.Core
+
+**Parameters**
+
+| Name| Type                           | Mandatory| Description                                     |
+| ------ | ------------------------------- | ---- |-----------------------------------------|
+| type | string | Yes  | Type of the data to add. For details, see [UniformDataType](js-apis-data-uniformTypeDescriptor.md#uniformdatatype).|
+| value | [ValueType](#valuetype12) | Yes  | Value of the data to add.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| **ID**| **Error Message**                               |
+| ------------ | ------------------------------------------- |
+| 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.  |
+
+**Example**
+
+```ts
+import { uniformDataStruct, uniformTypeDescriptor } from '@kit.ArkData';
+
+let fileUriDetails : Record<string, string> = {
+  'attr1': 'value1',
+  'attr2': 'value2',
+}
+let fileUri : uniformDataStruct.FileUri = {
+  uniformDataType : 'general.file-uri',
+  oriUri : 'file://data/image/1.png',
+  fileType : 'general.image',
+  details : fileUriDetails,
+}
+let formDetails : Record<string, string> = {
+  'attr1': 'value1',
+  'attr2': 'value2',
+}
+let form : uniformDataStruct.Form = {
+  uniformDataType : 'openharmony.form',
+  formId : 1,
+  formName : 'form',
+  bundleName : 'com.xx.app',
+  abilityName : 'ability',
+  module : 'module',
+  details : formDetails,
+}
+
+let unifiedData = new unifiedDataChannel.UnifiedData();
+let record = new unifiedDataChannel.UnifiedRecord(uniformTypeDescriptor.UniformDataType.OPENHARMONY_FORM, form);
+record.addEntry(uniformTypeDescriptor.UniformDataType.FILE_URI, fileUri);
+unifiedData.addRecord(record);
+```
+
+### getEntry<sup>15+</sup>
+
+getEntry(type: string): ValueType
+
+Obtains data of the specified type from the current data record.
+
+**Atomic service API**: This API can be used in atomic services since API version 15.
+
+**System capability**: SystemCapability.DistributedDataManager.UDMF.Core
+
+**Parameters**
+
+| Name| Type                           | Mandatory| Description                                     |
+| ------ | ------------------------------- | ---- |-----------------------------------------|
+| type | string | Yes  | Type of the data to obtain. For details, see [UniformDataType](js-apis-data-uniformTypeDescriptor.md#uniformdatatype).|
+
+**Return value**
+
+| Type  | Description                                                  |
+| ------ |------------------------------------------------------|
+| [ValueType](#valuetype12) | Value obtained.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| **ID**| **Error Message**                               |
+| ------------ | ------------------------------------------- |
+| 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.  |
+
+**Example**
+
+```ts
+import { uniformDataStruct, uniformTypeDescriptor } from '@kit.ArkData';
+
+let fileUriDetails : Record<string, string> = {
+  'attr1': 'value1',
+  'attr2': 'value2',
+}
+let fileUri : uniformDataStruct.FileUri = {
+  uniformDataType : 'general.file-uri',
+  oriUri : 'file://data/image/1.png',
+  fileType : 'general.image',
+  details : fileUriDetails,
+}
+let formDetails : Record<string, string> = {
+  'attr1': 'value1',
+  'attr2': 'value2',
+}
+let form : uniformDataStruct.Form = {
+  uniformDataType : 'openharmony.form',
+  formId : 1,
+  formName : 'form',
+  bundleName : 'com.xx.app',
+  abilityName : 'ability',
+  module : 'module',
+  details : formDetails,
+}
+
+let unifiedData = new unifiedDataChannel.UnifiedData();
+let record = new unifiedDataChannel.UnifiedRecord(uniformTypeDescriptor.UniformDataType.OPENHARMONY_FORM, form);
+record.addEntry(uniformTypeDescriptor.UniformDataType.FILE_URI, fileUri);
+unifiedData.addRecord(record);
+
+let records = unifiedData.getRecords();
+for (let i = 0; i < records.length; i++) {
+  let unifiedDataRecord = records[i] as unifiedDataChannel.UnifiedRecord;
+  let fileUriRead : uniformDataStruct.FileUri = unifiedDataRecord.getEntry(uniformTypeDescriptor.UniformDataType.FILE_URI) as uniformDataStruct.FileUri
+  if (fileUriRead != undefined) {
+    console.info(`oriUri: ${fileUriRead.oriUri}`);
+  }
+}
+```
+
+### getEntries<sup>15+</sup>
+
+getEntries(): Record<string, ValueType>
+
+Obtains all the data in the current data record.
+
+**Atomic service API**: This API can be used in atomic services since API version 15.
+
+**System capability**: SystemCapability.DistributedDataManager.UDMF.Core
+
+**Return value**
+
+| Type  | Description                                                  |
+| ------ |------------------------------------------------------|
+| Record<string, [ValueType](#valuetype12)> | Values and types obtained.|
+
+**Example**
+
+```ts
+import { uniformDataStruct, uniformTypeDescriptor } from '@kit.ArkData';
+
+let fileUriDetails : Record<string, string> = {
+  'attr1': 'value1',
+  'attr2': 'value2',
+}
+let fileUri : uniformDataStruct.FileUri = {
+  uniformDataType : 'general.file-uri',
+  oriUri : 'file://data/image/1.png',
+  fileType : 'general.image',
+  details : fileUriDetails,
+}
+let formDetails : Record<string, string> = {
+  'attr1': 'value1',
+  'attr2': 'value2',
+}
+let form : uniformDataStruct.Form = {
+  uniformDataType : 'openharmony.form',
+  formId : 1,
+  formName : 'form',
+  bundleName : 'com.xx.app',
+  abilityName : 'ability',
+  module : 'module',
+  details : formDetails,
+}
+
+let unifiedData = new unifiedDataChannel.UnifiedData();
+let record = new unifiedDataChannel.UnifiedRecord(uniformTypeDescriptor.UniformDataType.OPENHARMONY_FORM, form);
+record.addEntry(uniformTypeDescriptor.UniformDataType.FILE_URI, fileUri);
+unifiedData.addRecord(record);
+
+let records = unifiedData.getRecords();
+for (let i = 0; i < records.length; i++) {
+  let unifiedDataRecord = records[i] as unifiedDataChannel.UnifiedRecord;
+  let entries : Record<string, unifiedDataChannel.ValueType> = unifiedDataRecord.getEntries();
+  let formRead : uniformDataStruct.Form = entries[uniformTypeDescriptor.UniformDataType.OPENHARMONY_FORM] as uniformDataStruct.Form
+  if (formRead != undefined) {
+    console.info(`formName: ${formRead.formName}`);
+  }
+}
+```
+
+### getTypes<sup>15+</sup>
+
+getTypes(): Array\<string\>
+
+Obtains all the data types in the current data record. You can call this API with a **UnifiedRecord** instance to obtain all types of data in the record.
+
+**Atomic service API**: This API can be used in atomic services since API version 15.
+
+**System capability**: SystemCapability.DistributedDataManager.UDMF.Core
+
+**Return value**
+
+| Type                                    | Description                     |
+| ---------------------------------------- |-------------------------|
+| Array\<string\> | Array of [UniformDataType](js-apis-data-uniformTypeDescriptor.md#uniformdatatype)s obtained.|
+
+**Example**
+
+```ts
+import { uniformDataStruct, uniformTypeDescriptor } from '@kit.ArkData';
+
+let fileUriDetails : Record<string, string> = {
+  'attr1': 'value1',
+  'attr2': 'value2',
+}
+let fileUri : uniformDataStruct.FileUri = {
+  uniformDataType : 'general.file-uri',
+  oriUri : 'file://data/image/1.png',
+  fileType : 'general.image',
+  details : fileUriDetails,
+}
+let formDetails : Record<string, string> = {
+  'attr1': 'value1',
+  'attr2': 'value2',
+}
+let form : uniformDataStruct.Form = {
+  uniformDataType : 'openharmony.form',
+  formId : 1,
+  formName : 'form',
+  bundleName : 'com.xx.app',
+  abilityName : 'ability',
+  module : 'module',
+  details : formDetails,
+}
+
+let unifiedData = new unifiedDataChannel.UnifiedData();
+let record = new unifiedDataChannel.UnifiedRecord(uniformTypeDescriptor.UniformDataType.OPENHARMONY_FORM, form);
+record.addEntry(uniformTypeDescriptor.UniformDataType.FILE_URI, fileUri);
+unifiedData.addRecord(record);
+
+let records = unifiedData.getRecords();
+for (let i = 0; i < records.length; i++) {
+  let unifiedDataRecord = records[i] as unifiedDataChannel.UnifiedRecord;
+  let types : Array<string> = unifiedDataRecord.getTypes();
+  if (types.includes(uniformTypeDescriptor.UniformDataType.OPENHARMONY_FORM)) {
+    console.info(`types include: ${uniformTypeDescriptor.UniformDataType.OPENHARMONY_FORM}`);
+  }
+}
+```
+
 ## Text
 
 Represents the text data. It is a child class of [UnifiedRecord](#unifiedrecord) and a base class of text data. You are advised to use the child class of **Text**, for example, [PlainText](#plaintext), [Hyperlink](#hyperlink), and [HTML](#html), to describe data.
@@ -879,17 +1134,110 @@ Enumerates the data channel types supported by the UDMF. It is used to identify 
 
 type Options = { intention?: Intention; key?: string; }
 
-Defines the data operation performed by the UDMF. It includes two optional parameters: **intention** and **key**. The two parameters have no default value, and can be left unspecified. For details, see the parameter description of the specific API.
+Defines the data operation performed by the UDMF. It includes two optional parameters: **intention** and **key**. The two parameters can be left unspecified. For details, see the parameter description of the specific API.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.DistributedDataManager.UDMF.Core
 
-
 | Name     | Type                   | Mandatory| Description                                                        |
 | --------- | ----------------------- | ---- | ------------------------------------------------------------ |
 | intention | [Intention](#intention) | No  | Type of the data channel related to the data operation.                            |
 | key       | string                  | No  | Unique identifier of the data object in the UDMF, which can be obtained from the value returned by [insertData](#unifieddatachannelinsertdata).<br>The key consists of **udmf:/**, **intention**, **bundleName**, and **groupId** with a (/) in between, for example, **udmf://DataHub/com.ohos.test/0123456789**.<br>**udmf:/** is fixed, **DataHub** is an enum of **intention**, **com.ohos.test** is the bundle name, and **0123456789** is a group ID randomly generated.|
+
+## FileConflictOptions<sup>15+</sup>
+
+Enumerates the options for resolving file copy conflicts.
+
+**Atomic service API**: This API can be used in atomic services since API version 15.
+
+**System capability**: SystemCapability.DistributedDataManager.UDMF.Core
+
+| Name     | Value  | Description            |
+| --------- | ---- |----------------|
+| OVERWRITE | 0    | Overwrite the file with the same name in the destination directory.|
+| SKIP      | 1    | Skip the file if there is a file with the same name in the destination directory.|
+
+## ProgressIndicator<sup>15+</sup>
+
+Enumerates the progress indicator options.
+
+**Atomic service API**: This API can be used in atomic services since API version 15.
+
+**System capability**: SystemCapability.DistributedDataManager.UDMF.Core
+
+| Name   | Value  | Description                                |
+| ------- | ---- |------------------------------------|
+| NONE    | 0    | Do not use the default progress indicator.                      |
+| DEFAULT | 1    | Use the default progress indicator. If data is obtained within 500 ms, the default progress bar is not started.|
+
+## ListenerStatus<sup>15+</sup>
+
+Enumerates the status codes returned when data is obtained from the UDMF.
+
+**Atomic service API**: This API can be used in atomic services since API version 15.
+
+**System capability**: SystemCapability.DistributedDataManager.UDMF.Core
+
+| Name   | Value  | Description                                          |
+| ------- |-----|----------------------------------------------|
+| FINISHED | 0   | The task is completed.                                      |
+| PROCESSING | 1   | The task is being processed.                                    |
+| CANCELED | 2   | The task is canceled.                                 |
+| INNER_ERROR  | 200 | An internal error occurs.                                  |
+| INVALID_PARAMETERS | 201 | [GetDataParams](#getdataparams15) contains invalid parameters.|
+| DATA_NOT_FOUND | 202 | No data is obtained.                                  |
+| SYNC_FAILED | 203 | Failed to sync data.                                |
+| COPY_FILE_FAILED | 204 | Failed to copy data.                              |
+
+## ProgressInfo<sup>15+</sup>
+
+Represents the progress information.
+
+**Atomic service API**: This API can be used in atomic services since API version 15.
+
+**System capability**: SystemCapability.DistributedDataManager.UDMF.Core
+
+| Name    | Type                                 | Readable| Writable| Description                                                            |
+| -------- |-------------------------------------| ---- | ---- |----------------------------------------------------------------|
+| progress | number                              | Yes  | No  | Progress of the drag task, in percentage. <br>The value is an integer ranging from -1 to 100. The value **-1** indicates a failure to obtain data, and the value **100** indicates data is obtained.|
+| status | [ListenerStatus](#listenerstatus15) | Yes  | No  | Status code of the drag task reported by the system.                                                 |
+
+## DataProgressListener<sup>15+</sup>
+
+type DataProgressListener = (progressInfo: ProgressInfo, data: UnifiedData | null) => void
+
+Defines the callback used to return the data retrieval progress information and data obtained.
+
+**Atomic service API**: This API can be used in atomic services since API version 15.
+
+**System capability**: SystemCapability.DistributedDataManager.UDMF.Core
+
+**Parameters**
+
+| Name     | Type                           | Mandatory   | Description          |
+|----------|-------------------------------|-------|--------------|
+| progressInfo| [ProgressInfo](#progressinfo15) | Yes    | Progress information to report.|
+| data        | [UnifiedData](#unifieddata)  \| null  |  Yes   | Data obtained when the progress reaches 100. If the progress does not reach 100, **null** is returned.|
+
+## GetDataParams<sup>15+</sup>
+
+Represents the parameters for obtaining data from UDMF, including the destination directory, option for resolving file conflicts, and progress indicator type.
+
+For details, see [Obtaining Data Asynchronously Through Drag-and-Drop](../apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#example-3-obtaining-data-asynchronously-through-drag-and-drop).
+
+**Atomic service API**: This API can be used in atomic services since API version 15.
+
+**System capability**: SystemCapability.DistributedDataManager.UDMF.Core
+
+**Parameters**
+
+| Name                  | Type                                             | Mandatory| Description                                                                                                                                                |
+|----------------------|-------------------------------------------------| ---- |----------------------------------------------------------------------------------------------------------------------------------------------------|
+| progressIndicator    | [ProgressIndicator](#progressindicator15)       | Yes| Progress indicator options. You can use the default progress indicator as required.                                                                                                                        |
+| dataProgressListener | [DataProgressListener](#dataprogresslistener15) | Yes| Callback used to return the data retrieval progress and data obtained.                                                                                                                               |
+| destUri              | string                                          | No| Destination directory for the file copied. If file processing is not supported, leave this parameter unspecified, which is the default value of this parameter. If file processing is supported, pass in an existing directory. If complex file processing policies are involved or multipathing file storage is required, you are advised to leave this parameter unspecified and let the application handle file copying. If this parameter is not specified, the source URI is obtained. If this parameter is specified, the specified destination URI is obtained.|
+| fileConflictOptions  | [FileConflictOptions](#fileconflictoptions15)   | No  | Option for resolving file copy conflicts. The default value is **OVERWRITE**.                                                                                                                        |
 
 ## unifiedDataChannel.insertData
 
@@ -905,7 +1253,7 @@ Inserts data to the UDMF public data channel. This API uses an asynchronous call
 
 | Name     | Type                        | Mandatory| Description                          |
 |----------|----------------------------|----|------------------------------|
-| options  | [Options](#options)        | Yes | Configuration parameters. Only the **intention** is required.       |
+| options  | [Options](#options)        | Yes | Configuration for the data insertion operation. The **intention** field is mandatory. If it is not specified, error code 401 will be returned. The settings of other parameters do not affect the use of this API.       |
 | data     | [UnifiedData](#unifieddata) | Yes | Data to insert.                       |
 | callback | AsyncCallback&lt;string&gt; | Yes | Callback used to return the key (unique identifier) of the data inserted.|
 
@@ -959,7 +1307,7 @@ Inserts data to the UDMF public data channel. This API uses a promise to return 
 
 | Name    | Type                         | Mandatory| Description                   |
 |---------|-----------------------------|----|-----------------------|
-| options | [Options](#options)         | Yes | Configuration parameters. Only the **intention** is required.|
+| options | [Options](#options)         | Yes | Configuration for the data insertion operation. The **intention** field is mandatory. If it is not specified, error code 401 will be returned. The settings of other parameters do not affect the use of this API.|
 | data    | [UnifiedData](#unifieddata) | Yes | Data to insert.                |
 
 **Return value**
@@ -1015,7 +1363,7 @@ Updates the data in the UDMF public data channel. This API uses an asynchronous 
 
 | Name     | Type                         | Mandatory| Description                                 |
 |----------|-----------------------------|----|-------------------------------------|
-| options  | [Options](#options)         | Yes | Configuration parameters. Only the value of **key** is required.                    |
+| options  | [Options](#options)         | Yes | Configuration for the data update operation. The **key** field is mandatory. If it is not specified, error code 401 will be returned. The settings of other parameters do not affect the use of this API.                    |
 | data     | [UnifiedData](#unifieddata) | Yes | New data.                              |
 | callback | AsyncCallback&lt;void&gt;   | Yes | Callback used to return the result. If the data is updated successfully, **err** is **undefined**. Otherwise, **err** is an error object.|
 
@@ -1069,7 +1417,7 @@ Updates the data in the UDMF public data channel. This API uses a promise to ret
 
 | Name    | Type                         | Mandatory| Description             |
 |---------|-----------------------------|----|-----------------|
-| options | [Options](#options)         | Yes | Configuration parameters. Only the value of **key** is required.|
+| options | [Options](#options)         | Yes | Configuration for the data update operation. The **key** field is mandatory. If it is not specified, error code 401 will be returned. The settings of other parameters do not affect the use of this API.|
 | data    | [UnifiedData](#unifieddata) | Yes | New data.          |
 
 **Return value**

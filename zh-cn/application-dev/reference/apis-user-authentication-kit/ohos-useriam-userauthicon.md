@@ -11,18 +11,15 @@
 > **说明：**
 > - 本模块首批接口从API version 12开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
-
 ## 导入模块
 
 ```ts
 import { userAuth, UserAuthIcon } from '@kit.UserAuthenticationKit';
 ```
 
-
 ## 子组件
 
 无
-
 
 ## 属性
 
@@ -55,7 +52,6 @@ UserAuthIcon({
 | iconColor      | [ResourceColor](../apis-arkui/arkui-ts/ts-types.md#resourcecolor) | 否   | 设置icon的颜色，默认值：$r('sys.color.ohos_id_color_activated')。|
 | onIconClick    | ()=>void                                                      | 否   | 用户点击icon回调接口。                                         |
 | onAuthResult   | (result: [UserAuthResult](js-apis-useriam-userauth.md#userauthresult10))=>void| 是   | 用户认证结果信息回调接口。<br/>**需要权限：** ohos.permission.ACCESS_BIOMETRIC  |
-
 
 ## 事件
 

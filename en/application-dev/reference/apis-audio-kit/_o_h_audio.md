@@ -3,7 +3,7 @@
 
 ## Overview
 
-The **OHAudio** module provides C APIs of the audio module.
+The OHAudio module provides C APIs of the audio module.
 
 You can refer to the corresponding development guide and samples based on your development requirements.
 
@@ -86,10 +86,11 @@ You can refer to the corresponding development guide and samples based on your d
 | [OH_AudioSession_DeactivatedReason](#oh_audiosession_deactivatedreason) { <br>DEACTIVATED_LOWER_PRIORITY = 0, <br>DEACTIVATED_TIMEOUT = 1 } | Enumerates the reasons for deactivating an audio session. | 
 | [OH_AudioStream_Result](#oh_audiostream_result) {<br>AUDIOSTREAM_SUCCESS = 0,<br>AUDIOSTREAM_ERROR_INVALID_PARAM = 1,<br>AUDIOSTREAM_ERROR_ILLEGAL_STATE = 2,<br>AUDIOSTREAM_ERROR_SYSTEM = 3<br>} | Enumerates the audio stream operation results.| 
 | [OH_AudioStream_Type](#oh_audiostream_type) {<br>AUDIOSTREAM_TYPE_RENDERER = 1,<br>AUDIOSTREAM_TYPE_CAPTURER = 2<br>} | Enumerates the audio stream types.| 
-| [OH_AudioStream_SampleFormat](#oh_audiostream_sampleformat) {<br>AUDIOSTREAM_SAMPLE_U8 = 0,<br>AUDIOSTREAM_SAMPLE_S16LE = 1,<br>AUDIOSTREAM_SAMPLE_S24LE = 2,<br>AUDIOSTREAM_SAMPLE_S32LE = 3<br>} | Enumerates the sampling formats of audio streams.| 
+| [OH_AudioStream_SampleFormat](#oh_audiostream_sampleformat) {<br>AUDIOSTREAM_SAMPLE_U8 = 0,<br>AUDIOSTREAM_SAMPLE_S16LE = 1,<br>AUDIOSTREAM_SAMPLE_S24LE = 2,<br>AUDIOSTREAM_SAMPLE_S32LE = 3,<br>AUDIOSTREAM_SAMPLE_F32LE = 4<br>} | Enumerates the sampling formats of audio streams.| 
 | [OH_AudioStream_EncodingType](#oh_audiostream_encodingtype) { <br>AUDIOSTREAM_ENCODING_TYPE_RAW = 0, <br>AUDIOSTREAM_ENCODING_TYPE_AUDIOVIVID = 1 <br>} | Enumerates the encoding types of audio streams. | 
 | [OH_AudioStream_Usage](#oh_audiostream_usage) {<br>AUDIOSTREAM_USAGE_UNKNOWN = 0,<br>AUDIOSTREAM_USAGE_MUSIC = 1,<br>AUDIOSTREAM_USAGE_VOICE_COMMUNICATION = 2,<br>AUDIOSTREAM_USAGE_VOICE_ASSISTANT = 3,<br>AUDIOSTREAM_USAGE_ALARM = 4,<br>AUDIOSTREAM_USAGE_VOICE_MESSAGE = 5,<br>AUDIOSTREAM_USAGE_RINGTONE = 6,<br>AUDIOSTREAM_USAGE_NOTIFICATION = 7,<br>AUDIOSTREAM_USAGE_ACCESSIBILITY = 8,<br>AUDIOSTREAM_USAGE_MOVIE = 10,<br>AUDIOSTREAM_USAGE_GAME = 11,<br>AUDIOSTREAM_USAGE_AUDIOBOOK = 12,<br>AUDIOSTREAM_USAGE_NAVIGATION = 13,<br>AUDIOSTREAM_USAGE_VIDEO_COMMUNICATION = 17<br>} | Enumerates the usage scenarios of audio streams.| 
 | [OH_AudioStream_LatencyMode](#oh_audiostream_latencymode) {<br>AUDIOSTREAM_LATENCY_MODE_NORMAL = 0,<br>AUDIOSTREAM_LATENCY_MODE_FAST = 1<br>} | Enumerates the latency modes of audio streams.| 
+| [OH_AudioStream_VolumeMode](#oh_audiostream_volumemode) {<br>AUDIOSTREAM_VOLUMEMODE_SYSTEM_GLOBAL = 0,<br>AUDIOSTREAM_VOLUMEMODE_APP_INDIVIDUAL = 1 } | Enumerates the volume modes of audio streams.| 
 | [OH_AudioStream_State](#oh_audiostream_state) {<br>AUDIOSTREAM_STATE_INVALID = -1,<br>AUDIOSTREAM_STATE_NEW = 0,<br>AUDIOSTREAM_STATE_PREPARED = 1,<br>AUDIOSTREAM_STATE_RUNNING = 2,<br>AUDIOSTREAM_STATE_STOPPED = 3,<br>AUDIOSTREAM_STATE_RELEASED = 4,<br>AUDIOSTREAM_STATE_PAUSED = 5<br>} | Enumerates the audio stream states.| 
 | [OH_AudioStream_SourceType](#oh_audiostream_sourcetype) {<br>AUDIOSTREAM_SOURCE_TYPE_INVALID = -1,<br>AUDIOSTREAM_SOURCE_TYPE_MIC = 0,<br>AUDIOSTREAM_SOURCE_TYPE_VOICE_RECOGNITION = 1,<br>AUDIOSTREAM_SOURCE_TYPE_PLAYBACK_CAPTURE = 2,<br>AUDIOSTREAM_SOURCE_TYPE_VOICE_COMMUNICATION = 7,<br>AUDIOSTREAM_SOURCE_TYPE_CAMCORDER = 13<br>} | Enumerates the usage scenarios of audio streams.| 
 | [OH_AudioStream_Event](#oh_audiostream_event) {<br>AUDIOSTREAM_EVENT_ROUTING_CHANGED = 0<br>} | Enumerates the audio stream events.| 
@@ -165,6 +166,8 @@ You can refer to the corresponding development guide and samples based on your d
 | [OH_AudioStream_Result](#oh_audiostream_result) [OH_AudioRenderer_GetEncodingType](#oh_audiorenderer_getencodingtype)([OH_AudioRenderer](#oh_audiorenderer) \*renderer, [OH_AudioStream_EncodingType](#oh_audiostream_encodingtype) \*encodingType) | Obtains the encoding type of an audio renderer. | 
 | [OH_AudioStream_Result](#oh_audiostream_result) [OH_AudioRenderer_GetFramesWritten](#oh_audiorenderer_getframeswritten)([OH_AudioRenderer](#oh_audiorenderer) \*renderer, int64_t \*frames) | Obtains the number of frames that have been written since the stream was created. | 
 | [OH_AudioStream_Result](#oh_audiostream_result) [OH_AudioRenderer_GetTimestamp](#oh_audiorenderer_gettimestamp)([OH_AudioRenderer](#oh_audiorenderer) \*renderer, clockid_t clockId, int64_t \*framePosition, int64_t \*timestamp) | Obtains the timestamp and position information of an audio output stream. | 
+| [OH_AudioStream_Result](#oh_audiostream_result) [OH_AudioRenderer_GetAudioTimestampInfo](#oh_audiorenderer_getaudiotimestampinfo) ([OH_AudioRenderer](#oh_audiorenderer)
+ \*renderer, int64_t \*framePosition, int64_t \*timestamp) | Obtains the timestamp and position information of an output audio stream. It adapts to the speed adjustment interface.| 
 | [OH_AudioStream_Result](#oh_audiostream_result) [OH_AudioRenderer_GetFrameSizeInCallback](#oh_audiorenderer_getframesizeincallback)([OH_AudioRenderer](#oh_audiorenderer) \*renderer, int32_t \*frameSize) | Obtains the frame size in the callback. | 
 | [OH_AudioStream_Result](#oh_audiostream_result) [OH_AudioRenderer_GetSpeed](#oh_audiorenderer_getspeed)([OH_AudioRenderer](#oh_audiorenderer) \*renderer, float \*speed) | Obtains the audio renderer rate. | 
 | [OH_AudioStream_Result](#oh_audiostream_result) [OH_AudioRenderer_SetSpeed](#oh_audiorenderer_setspeed)([OH_AudioRenderer](#oh_audiorenderer) \*renderer, float speed) | Sets the audio renderer rate. | 
@@ -190,6 +193,7 @@ You can refer to the corresponding development guide and samples based on your d
 | [OH_AudioStream_Result](#oh_audiostream_result) [OH_AudioStreamBuilder_SetLatencyMode](#oh_audiostreambuilder_setlatencymode)([OH_AudioStreamBuilder](#oh_audiostreambuilder) \*builder, [OH_AudioStream_LatencyMode](#oh_audiostream_latencymode) latencyMode) | Sets the latency mode of an audio stream. | 
 | [OH_AudioStream_Result](#oh_audiostream_result) [OH_AudioStreamBuilder_SetChannelLayout](#oh_audiostreambuilder_setchannellayout)([OH_AudioStreamBuilder](#oh_audiostreambuilder) \*builder, [OH_AudioChannelLayout](../apis-avcodec-kit/_core.md#oh_audiochannellayout-1) channelLayout) | Sets the channel layout for an audio stream. | 
 | [OH_AudioStream_Result](#oh_audiostream_result) [OH_AudioStreamBuilder_SetRendererInfo](#oh_audiostreambuilder_setrendererinfo)([OH_AudioStreamBuilder](#oh_audiostreambuilder) \*builder, [OH_AudioStream_Usage](#oh_audiostream_usage) usage) | Sets the usage scenario of an audio renderer. | 
+| [OH_AudioStream_Result](#oh_audiostream_result) [OH_AudioStreamBuilder_SetVolumeMode](#oh_audiostreambuilder_setvolumemode) ([OH_AudioStreamBuilder](#oh_audiostreambuilder) \*builder, [OH_AudioStream_VolumeMode](#oh_audiostream_volumemode) volumeMode) | Sets the volume mode for an audio stream.| 
 | [OH_AudioStream_Result](#oh_audiostream_result) [OH_AudioStreamBuilder_SetCapturerInfo](#oh_audiostreambuilder_setcapturerinfo)([OH_AudioStreamBuilder](#oh_audiostreambuilder) \*builder, [OH_AudioStream_SourceType](#oh_audiostream_sourcetype) sourceType) | Sets the usage scenario of an audio capturer. | 
 | [OH_AudioStream_Result](#oh_audiostream_result) [OH_AudioStreamBuilder_SetRendererCallback](#oh_audiostreambuilder_setrenderercallback)([OH_AudioStreamBuilder](#oh_audiostreambuilder) \*builder, [OH_AudioRenderer_Callbacks](#oh_audiorenderer_callbacks) callbacks, void \*userData) | Sets callbacks for an audio renderer. | 
 | [OH_AudioStream_Result](#oh_audiostream_result) [OH_AudioStreamBuilder_SetRendererOutputDeviceChangeCallback](#oh_audiostreambuilder_setrendereroutputdevicechangecallback)([OH_AudioStreamBuilder](#oh_audiostreambuilder) \*builder, [OH_AudioRenderer_OutputDeviceChangeCallback](#oh_audiorenderer_outputdevicechangecallback) callback, void \*userData) | Sets the callback invoked when the audio stream device changes. | 
@@ -343,9 +347,10 @@ typedef OH_AudioData_Callback_Result(* OH_AudioRenderer_OnWriteDataCallback)(OH_
 **Description**
 
 Defines a function pointer to the callback function used to write audio data.
+
 The callback function is used only to write audio data. Do not call AudioRenderer APIs in it.
 
-This function is similar to the function pointer [OH_AudioRenderer_Callbacks_Struct.OH_AudioRenderer_OnWriteData](_o_h___audio_renderer___callbacks___struct.md#oh_audiorenderer_onwritedata). However, this function has a return value to identify the audio data callback result. The return result indicates whether the data filled in the buffer is valid. If the data is invalid, the data entered by the user will not be played. Once the callback function finishes its execution, the audio service queues the data pointed to by **audioData** for playback. Therefore, do not change the data outside the callback. It is crucial to fill **audioData** with the exact length (specified by **audioDataSize**) of data designated for playback; otherwise, noises may occur during playback. The **audioDataSize** parameter can be set by using [OH_AudioStreamBuilder_SetFrameSizeInCallBack()](#OH_AudioStreamBuilder_SetFrameSizeInCallback).
+This function is similar to the function pointer [OH_AudioRenderer_Callbacks_Struct.OH_AudioRenderer_OnWriteData](_o_h___audio_renderer___callbacks___struct.md#oh_audiorenderer_onwritedata). However, this function has a return value to identify the audio data callback result. The return result indicates whether the data filled in the buffer is valid. If the data is invalid, the data entered by the user will not be played. Once the callback function finishes its execution, the audio service queues the data pointed to by **audioData** for playback. Therefore, do not change the data outside the callback. It is crucial to fill **audioData** with the exact length (specified by **audioDataSize**) of data designated for playback; otherwise, noises may occur during playback. The **audioDataSize** parameter can be set by using [OH_AudioStreamBuilder_SetFrameSizeInCallBack()](#oh_audiostreambuilder_setframesizeincallback).
 
 **System capability**: SystemCapability.Multimedia.Audio.Core
 
@@ -1023,6 +1028,7 @@ Enumerates the sampling formats of audio streams.
 | AUDIOSTREAM_SAMPLE_S16LE  | Short 16-bit little-endian.  | 
 | AUDIOSTREAM_SAMPLE_S24LE  | Short 24-bit little-endian.  | 
 | AUDIOSTREAM_SAMPLE_S32LE  | Short 32-bit little-endian.  | 
+| AUDIOSTREAM_SAMPLE_F32LE  | Float 32-bit little-endian.<br>**Since**: 18  | 
 
 
 ### OH_AudioStream_SourceType
@@ -1101,6 +1107,7 @@ enum OH_AudioStream_Usage
 
 **Description**
 
+
 Enumerates the usage scenarios of an audio renderer, that is, the usage scenarios of audio output streams.
 
 **System capability**: SystemCapability.Multimedia.Audio.Core
@@ -1123,6 +1130,24 @@ Enumerates the usage scenarios of an audio renderer, that is, the usage scenario
 | AUDIOSTREAM_USAGE_AUDIOBOOK  | Audiobooks (including crosstalks and storytelling), news radio, and podcasts.  | 
 | AUDIOSTREAM_USAGE_NAVIGATION  | Navigation.  | 
 | AUDIOSTREAM_USAGE_VIDEO_COMMUNICATION | VoIP video call.<br>**Since**: 12| 
+
+
+### OH_AudioStream_VolumeMode
+
+```
+enum OH_AudioStream_VolumeMode
+```
+
+**Description**
+
+Enumerates the volume modes of audio streams.
+
+**Since**: 18
+
+| Value| Description| 
+| -------- | -------- |
+| AUDIOSTREAM_VOLUMEMODE_SYSTEM_GLOBAL | System-level volume (default mode).| 
+| AUDIOSTREAM_VOLUMEMODE_APP_INDIVIDUAL | Application-level volume. In this mode, you can set and query the application volume through the provided functions.| 
 
 
 ## Function Description
@@ -1999,6 +2024,54 @@ Returns a result code defined in [OH_AudioStream_Result](#oh_audiostream_result)
 **AUDIOSTREAM_ERROR_ILLEGAL_STATE**: The execution status is abnormal.
 
 
+### OH_AudioRenderer_GetAudioTimestampInfo()
+
+```
+OH_AudioStream_Result OH_AudioRenderer_GetAudioTimestampInfo(OH_AudioRenderer* renderer, int64_t* framePosition, int64_t* timestamp)
+```
+
+**Description**
+
+Obtains the timestamp and position information of an output audio stream. It adapts to the speed adjustment interface.
+
+This information is commonly used for audio and video synchronization.
+
+Note that when the actual playback position (**framePosition**) is 0, the timestamp remains fixed until the stream begins to play. The playback position is also reset when **Flush** is called. Additionally, changes in the audio stream route, such as switching devices or output types, will reset the playback position, whereas the timestamp keeps increasing.
+
+You are advised to call this function to obtain the corresponding value only when the actual playback position and timestamp are stable.
+
+This function adapts to the speed adjustment interface. For example, if the playback speed is set to 2x, the actual playback position is twice the normal value.
+
+**Since**: 15
+
+**System capability**: SystemCapability.Multimedia.Audio.Core
+
+**Parameters**
+
+| Name| Description| 
+| -------- | -------- |
+| renderer | Pointer to an audio renderer instance, which is created by calling [OH_AudioStreamBuilder_GenerateRenderer](#oh_audiostreambuilder_generaterenderer).| 
+| framePosition | Pointer to the variable that receives the position.| 
+| timestamp | Pointer to the variable that receives the timestamp.| 
+
+**Returns**
+
+Returns a result code defined in [OH_AudioStream_Result](#oh_audiostream_result):
+
+**AUDIOSTREAM_SUCCESS**: The function is executed successfully.
+
+**AUDIOSTREAM_ERROR_INVALID_PARAM**:
+1. The **renderer** parameter is set to a null pointer.
+2. The **framePosition** or **timestamp** parameter is set to a null pointer.
+
+**AUDIOSTREAM_ERROR_ILLEGAL_STATE**: The current stream status is invalid.
+
+**AUDIOSTREAM_ERROR_SYSTEM**:
+
+1. The system process breaks down or is blocked.
+2. An internal system error occurs.
+
+
 ### OH_AudioRenderer_GetChannelCount()
 
 ```
@@ -2461,6 +2534,8 @@ OH_AudioStream_Result OH_AudioRenderer_GetTimestamp(OH_AudioRenderer *renderer, 
 Obtains the timestamp and position information of an audio output stream.
 
 This function obtains the actual playback position (specified by **framePosition**) of the audio channel and the timestamp when playing to that position (specified by **timestamp**, in nanoseconds).
+
+When you switch devices or resume playback after a pause, the playback position and timestamp retrieved via this function will temporarily stay in the state they were in before the switch or pause, since the playback channel requires a moment to stabilize.
 
 This function is used to implement audio and video synchronization. It is recommended that the function be called once every minute (at least every 200 ms). Frequent calls may increase power consumption. Therefore, do not frequently query the timestamp when the audio-visual synchronization effect can be ensured.
 
@@ -3092,7 +3167,7 @@ Returns a result code defined in [OH_AudioCommon_Result](#oh_audiocommon_result)
 **AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM**:
 
 1. The **audioRoutingManager** parameter is set to a null pointer.
-2. **supported** is a null pointer.
+2. The **supported** parameter is set to a null pointer.
 
 
 ### OH_AudioRoutingManager_RegisterDeviceChangeCallback()
@@ -3990,6 +4065,39 @@ Returns a result code defined in [OH_AudioStream_Result](#oh_audiostream_result)
 
   1. The **builder** parameter is set to a null pointer.
   2. The **rate** parameter is set to an invalid value.
+
+
+### OH_AudioStreamBuilder_SetVolumeMode()
+
+```
+OH_AudioStream_Result OH_AudioStreamBuilder_SetVolumeMode(OH_AudioStreamBuilder* builder, OH_AudioStream_VolumeMode volumeMode);
+```
+
+**Description**
+
+Sets the volume mode for an audio stream.
+
+**Since**: 18
+
+**System capability**: SystemCapability.Multimedia.Audio.Core
+
+**Parameters**
+
+| Name| Description| 
+| -------- | -------- |
+| builder | Pointer to an audio stream builder instance, which is created by calling **OH_AudioStreamBuilder_Create()**.| 
+| volumeMode | Volume mode of the audio stream.| 
+
+**Returns**
+
+Returns a result code defined in [OH_AudioStream_Result](#oh_audiostream_result):
+
+**AUDIOSTREAM_SUCCESS**: The function is executed successfully.
+
+**AUDIOSTREAM_ERROR_INVALID_PARAM**:
+
+1. The **builder** parameter is set to a null pointer.
+2. The **volumeMode** parameter is set to an invalid value.
 
 
 ### OH_AudioStreamBuilder_SetWriteDataWithMetadataCallback()

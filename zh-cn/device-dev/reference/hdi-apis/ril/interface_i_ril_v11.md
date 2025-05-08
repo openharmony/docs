@@ -2351,7 +2351,7 @@ IRil::SetRadioState ([in] int slotId, [in] int serialId, [in] int fun, [in] int 
 
 **返回：**
 
-0 表示执行成功
+0 表示执行成功。
 
 非零值 表示操作失败。
 

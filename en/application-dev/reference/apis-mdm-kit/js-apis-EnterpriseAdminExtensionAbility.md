@@ -59,7 +59,7 @@ export default class EnterpriseAdminAbility extends EnterpriseAdminExtensionAbil
 
 onBundleAdded(bundleName: string): void
 
-Called when a bundle is added.
+Called when applications are installed. The application bundle name is included. You should register the **MANAGED_EVENT_BUNDLE_ADDED** event through [adminManager.subscribeManagedEventSync](js-apis-enterprise-adminManager.md#adminmanagersubscribemanagedeventsync).
 
 **System capability**: SystemCapability.Customization.EnterpriseDeviceManager
 
@@ -69,7 +69,7 @@ Called when a bundle is added.
 
 | Name  | Type                                 | Mandatory  | Description     |
 | ----- | ----------------------------------- | ---- | ------- |
-| bundleName | string | Yes   | Name of the bundle added.|
+| bundleName | string | Yes   | Bundle name of the application installed.|
 
 **Example**
 
@@ -81,11 +81,11 @@ export default class EnterpriseAdminAbility extends EnterpriseAdminExtensionAbil
 };
 ```
 
-## EnterpriseAdminExtensionAbility.onBundleRemoved
+## EnterpriseAdminExtensionAbility.onBundleAdded<sup>14+</sup>
 
-onBundleRemoved(bundleName: string): void
+onBundleAdded(bundleName: string, accountId: number): void
 
-Called when a bundle is removed.
+Called when applications are installed. The application bundle name and account ID are included. You should register the **MANAGED_EVENT_BUNDLE_ADDED** event through [adminManager.subscribeManagedEventSync](js-apis-enterprise-adminManager.md#adminmanagersubscribemanagedeventsync).
 
 **System capability**: SystemCapability.Customization.EnterpriseDeviceManager
 
@@ -95,7 +95,34 @@ Called when a bundle is removed.
 
 | Name  | Type                                 | Mandatory  | Description     |
 | ----- | ----------------------------------- | ---- | ------- |
-| bundleName | string | Yes   | Name of the bundle removed.|
+| bundleName | string | Yes   | Bundle name of the application installed.|
+| accountId | number | Yes   | Account ID of the application installed.|
+
+**Example**
+
+```ts
+export default class EnterpriseAdminAbility extends EnterpriseAdminExtensionAbility {
+  onBundleAdded(bundleName: string, accountId?: number) {
+    console.info(`Succeeded in calling onBundleAdded callback, added bundle name : ${bundleName}, accountId: ${accountId}`);
+  }
+};
+```
+
+## EnterpriseAdminExtensionAbility.onBundleRemoved
+
+onBundleRemoved(bundleName: string): void
+
+Called when applications are uninstalled. The application bundle name is included. You should register the **MANAGED_EVENT_BUNDLE_REMOVED** event through [adminManager.subscribeManagedEventSync](js-apis-enterprise-adminManager.md#adminmanagersubscribemanagedeventsync).
+
+**System capability**: SystemCapability.Customization.EnterpriseDeviceManager
+
+
+
+**Parameters**
+
+| Name  | Type                                 | Mandatory  | Description     |
+| ----- | ----------------------------------- | ---- | ------- |
+| bundleName | string | Yes   | Bundle name of the application uninstalled.|
 
 **Example**
 
@@ -107,11 +134,38 @@ export default class EnterpriseAdminAbility extends EnterpriseAdminExtensionAbil
 };
 ```
 
+## EnterpriseAdminExtensionAbility.onBundleRemoved<sup>14+</sup>
+
+onBundleRemoved(bundleName: string, accountId: number): void
+
+Called when applications are uninstalled. The application bundle name and account ID are included. You should register the **MANAGED_EVENT_BUNDLE_REMOVED** event through [adminManager.subscribeManagedEventSync](js-apis-enterprise-adminManager.md#adminmanagersubscribemanagedeventsync).
+
+**System capability**: SystemCapability.Customization.EnterpriseDeviceManager
+
+
+
+**Parameters**
+
+| Name  | Type                                 | Mandatory  | Description     |
+| ----- | ----------------------------------- | ---- | ------- |
+| bundleName | string | Yes   | Bundle name of the application uninstalled.|
+| accountId | number | Yes   | Account ID of the application uninstalled.|
+
+**Example**
+
+```ts
+export default class EnterpriseAdminAbility extends EnterpriseAdminExtensionAbility {
+  onBundleRemoved(bundleName: string, accountId?: number) {
+    console.info(`Succeeded in calling onBundleRemoved callback, removed bundle name : ${bundleName}, accountId: ${accountId}`);
+  }
+};
+```
+
 ## EnterpriseAdminExtensionAbility.onAppStart
 
 onAppStart(bundleName: string): void
 
-Called when an application is started.
+Called when an application is started. You should register the **MANAGED_EVENT_APP_START** event through [adminManager.subscribeManagedEventSync](js-apis-enterprise-adminManager.md#adminmanagersubscribemanagedeventsync).
 
 **System capability**: SystemCapability.Customization.EnterpriseDeviceManager
 
@@ -137,7 +191,7 @@ export default class EnterpriseAdminAbility extends EnterpriseAdminExtensionAbil
 
 onAppStop(bundleName: string): void
 
-Called when an application is stopped.
+Called when an application is stopped. You should register the **MANAGED_EVENT_APP_STOP** event through [adminManager.subscribeManagedEventSync](js-apis-enterprise-adminManager.md#adminmanagersubscribemanagedeventsync).
 
 **System capability**: SystemCapability.Customization.EnterpriseDeviceManager
 
@@ -162,7 +216,7 @@ export default class EnterpriseAdminAbility extends EnterpriseAdminExtensionAbil
 
 onSystemUpdate(systemUpdateInfo: systemManager.SystemUpdateInfo): void
 
-Called to report a system update event.
+Called to report a system update event. You should register the **MANAGED_EVENT_SYSTEM_UPDATE** event through [adminManager.subscribeManagedEventSync](js-apis-enterprise-adminManager.md#adminmanagersubscribemanagedeventsync).
 
 **System capability**: SystemCapability.Customization.EnterpriseDeviceManager
 
@@ -201,6 +255,78 @@ Called when EnterpriseAdminExtensionAbility starts.
 export default class EnterpriseAdminAbility extends EnterpriseAdminExtensionAbility {
   onStart() {
     console.info(`Succeeded in calling onStart callback.`);
+  }
+};
+```
+
+## EnterpriseAdminExtensionAbility.onAccountAdded<sup>18+</sup>
+
+onAccountAdded(accountId: number): void
+
+Called when a system account is added. You should register the **MANAGED_EVENT_ACCOUNT_ADDED** event through [adminManager.subscribeManagedEventSync](js-apis-enterprise-adminManager.md#adminmanagersubscribemanagedeventsync).
+
+**System capability**: SystemCapability.Customization.EnterpriseDeviceManager
+
+**Parameters**
+
+| Name  | Type                                 | Mandatory  | Description     |
+| ----- | ----------------------------------- | ---- | ------- |
+| accountId | number | Yes   | Account ID added.|
+
+**Example**
+
+```ts
+export default class EnterpriseAdminAbility extends EnterpriseAdminExtensionAbility {
+  onAccountAdded(accountId: number) {
+    console.info(`Succeeded in calling onAccountAdded callback, added accountId: ${accountId}`);
+  }
+};
+```
+
+## EnterpriseAdminExtensionAbility.onAccountSwitched<sup>18+</sup>
+
+onAccountSwitched(accountId: number): void
+
+Called when the system account is switched. You should register the **MANAGED_EVENT_ACCOUNT_SWITCHED** event through [adminManager.subscribeManagedEventSync](js-apis-enterprise-adminManager.md#adminmanagersubscribemanagedeventsync).
+
+**System capability**: SystemCapability.Customization.EnterpriseDeviceManager
+
+**Parameters**
+
+| Name  | Type                                 | Mandatory  | Description     |
+| ----- | ----------------------------------- | ---- | ------- |
+| accountId | number | Yes   | Account ID switched.|
+
+**Example**
+
+```ts
+export default class EnterpriseAdminAbility extends EnterpriseAdminExtensionAbility {
+  onAccountSwitched(accountId: number) {
+    console.info(`Succeeded in calling onAccountSwitched callback, switched accountId: ${accountId}`);
+  }
+};
+```
+
+## EnterpriseAdminExtensionAbility.onAccountRemoved<sup>18+</sup>
+
+onAccountRemoved(accountId: number): void
+
+Called when the system account is removed. You should register the **MANAGED_EVENT_ACCOUNT_REMOVED** event through [adminManager.subscribeManagedEventSync](js-apis-enterprise-adminManager.md#adminmanagersubscribemanagedeventsync).
+
+**System capability**: SystemCapability.Customization.EnterpriseDeviceManager
+
+**Parameters**
+
+| Name  | Type                                 | Mandatory  | Description     |
+| ----- | ----------------------------------- | ---- | ------- |
+| accountId | number | Yes   | Account ID removed.|
+
+**Example**
+
+```ts
+export default class EnterpriseAdminAbility extends EnterpriseAdminExtensionAbility {
+  onAccountRemoved(accountId: number) {
+    console.info(`Succeeded in calling onAccountRemoved callback, removed accountId: ${accountId}`);
   }
 };
 ```

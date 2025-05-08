@@ -81,14 +81,16 @@ class routerParams {
   }
 }
 
-try {
-  router.pushUrl({
-    url: 'pages/routerpage2',
-    params: new routerParams('message', [123, 456, 789])
+router.pushUrl({
+  url: 'pages/routerpage2',
+  params: new routerParams('message', [123, 456, 789])
+})
+  .then(() => {
+    console.error(`pushUrl finish`);
   })
-} catch (err) {
-  console.error(`pushUrl failed, code is ${(err as BusinessError).code}, message is ${(err as BusinessError).message}`);
-}
+  .catch((err: ESObject) => {
+    console.error(`pushUrl failed, code is ${(err as BusinessError).code}, message is ${(err as BusinessError).message}`);
+  })
 ```
 
 ## router.pushUrl<sup>9+</sup>
@@ -214,14 +216,16 @@ class routerParams {
   }
 }
 
-try {
-  router.pushUrl({
-    url: 'pages/routerpage2',
-    params: new routerParams('message', [123, 456, 789])
-  }, router.RouterMode.Standard)
-} catch (err) {
-  console.error(`pushUrl failed, code is ${(err as BusinessError).code}, message is ${(err as BusinessError).message}`);
-}
+router.pushUrl({
+  url: 'pages/routerpage2',
+  params: new routerParams('message', [123, 456, 789])
+}, router.RouterMode.Standard)
+  .then(() => {
+    console.error(`pushUrl finish`);
+  })
+  .catch((err: ESObject) => {
+    console.error(`pushUrl failed, code is ${(err as BusinessError).code}, message is ${(err as BusinessError).message}`);
+  })
 ```
 
 ## router.pushUrl<sup>9+</sup>
@@ -337,14 +341,16 @@ class routerParams {
   }
 }
 
-try {
-  router.replaceUrl({
-    url: 'pages/detail',
-    params: new routerParams('message')
+router.replaceUrl({
+  url: 'pages/detail',
+  params: new routerParams('message')
+})
+  .then(() => {
+    console.error(`replaceUrl finish`);
   })
-} catch (err) {
-  console.error(`replaceUrl failed, code is ${(err as BusinessError).code}, message is ${(err as BusinessError).message}`);
-}
+  .catch((err: ESObject) => {
+    console.error(`replaceUrl failed, code is ${(err as BusinessError).code}, message is ${(err as BusinessError).message}`);
+  })
 ```
 
 ## router.replaceUrl<sup>9+</sup>
@@ -450,14 +456,16 @@ class routerParams {
   }
 }
 
-try {
-  router.replaceUrl({
-    url: 'pages/detail',
-    params: new routerParams('message')
-  }, router.RouterMode.Standard)
-} catch (err) {
-  console.error(`replaceUrl failed, code is ${(err as BusinessError).code}, message is ${(err as BusinessError).message}`);
-}
+router.replaceUrl({
+  url: 'pages/detail',
+  params: new routerParams('message')
+}, router.RouterMode.Standard)
+  .then(() => {
+    console.error(`replaceUrl finish`);
+  })
+  .catch((err: ESObject) => {
+    console.error(`replaceUrl failed, code is ${(err as BusinessError).code}, message is ${(err as BusinessError).message}`);
+  })
 ```
 
 ## router.replaceUrl<sup>9+</sup>
@@ -573,14 +581,16 @@ class routerParams {
   }
 }
 
-try {
-  router.pushNamedRoute({
-    name: 'myPage',
-    params: new routerParams('message', [123, 456, 789])
+router.pushNamedRoute({
+  name: 'myPage',
+  params: new routerParams('message', [123, 456, 789])
+})
+  .then(() => {
+    console.error(`pushNamedRoute finish`);
   })
-} catch (err) {
-  console.error(`pushNamedRoute failed, code is ${(err as BusinessError).code}, message is ${(err as BusinessError).message}`);
-}
+  .catch((err: ESObject) => {
+    console.error(`pushNamedRoute failed, code is ${(err as BusinessError).code}, message is ${(err as BusinessError).message}`);
+  })
 ```
 
 For details, see [UI Development-Named Route](../../ui/arkts-routing.md#named-route).
@@ -708,14 +718,16 @@ class routerParams {
   }
 }
 
-try {
-  router.pushNamedRoute({
-    name: 'myPage',
-    params: new routerParams('message', [123, 456, 789])
-  }, router.RouterMode.Standard)
-} catch (err) {
-  console.error(`pushNamedRoute failed, code is ${(err as BusinessError).code}, message is ${(err as BusinessError).message}`);
-}
+router.pushNamedRoute({
+  name: 'myPage',
+  params: new routerParams('message', [123, 456, 789])
+}, router.RouterMode.Standard)
+  .then(() => {
+    console.error(`pushNamedRoute finish`);
+  })
+  .catch((err: ESObject) => {
+    console.error(`pushNamedRoute failed, code is ${(err as BusinessError).code}, message is ${(err as BusinessError).message}`);
+  })
 ```
 
 ## router.pushNamedRoute<sup>10+</sup>
@@ -831,14 +843,16 @@ class routerParams {
   }
 }
 
-try {
-  router.replaceNamedRoute({
-    name: 'myPage',
-    params: new routerParams('message')
+router.replaceNamedRoute({
+  name: 'myPage',
+  params: new routerParams('message')
+})
+  .then(() => {
+    console.error(`replaceNamedRoute finish`);
   })
-} catch (err) {
-  console.error(`replaceNamedRoute failed, code is ${(err as BusinessError).code}, message is ${(err as BusinessError).message}`);
-}
+  .catch((err: ESObject) => {
+    console.error(`replaceNamedRoute failed, code is ${(err as BusinessError).code}, message is ${(err as BusinessError).message}`);
+  })
 ```
 
 ## router.replaceNamedRoute<sup>10+</sup>
@@ -944,14 +958,16 @@ class routerParams {
   }
 }
 
-try {
-  router.replaceNamedRoute({
-    name: 'myPage',
-    params: new routerParams('message')
-  }, router.RouterMode.Standard)
-} catch (err) {
-  console.error(`replaceNamedRoute failed, code is ${(err as BusinessError).code}, message is ${(err as BusinessError).message}`);
-}
+router.replaceNamedRoute({
+  name: 'myPage',
+  params: new routerParams('message')
+}, router.RouterMode.Standard)
+  .then(() => {
+    console.error(`replaceNamedRoute finish`);
+  })
+  .catch((err: ESObject) => {
+    console.error(`replaceNamedRoute failed, code is ${(err as BusinessError).code}, message is ${(err as BusinessError).message}`);
+  })
 ```
 
 ## router.replaceNamedRoute<sup>10+</sup>
@@ -1311,10 +1327,10 @@ Enumerates the routing modes.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name    | Description                                                        |
-| -------- | ------------------------------------------------------------ |
-| Standard | Multi-instance mode. It is the default routing mode.<br>The target page is added to the top of the page stack, regardless of whether a page with the same URL exists in the stack.<br>**NOTE**<br>If no routing mode is used, the navigation will be carried out according to the default multi-instance mode.|
-| Single   | Singleton mode.<br>If the URL of the target page already exists in the page stack, the page is moved to the top of the stack.<br>If the URL of the target page does not exist in the page stack, the page is redirected to in multi-instance mode.|
+| Name    | Value| Description                                                        |
+| -------- | --- | ------------------------------------------------------------ |
+| Standard | 0 | Multi-instance mode. It is the default routing mode.<br>The target page is added to the top of the page stack, regardless of whether a page with the same URL exists in the stack.<br>**NOTE**<br>If no routing mode is used, the navigation will be carried out according to the default multi-instance mode.|
+| Single   | 1 | Singleton mode.<br>If the URL of the target page already exists in the page stack, the page is moved to the top of the stack.<br>If the URL of the target page does not exist in the page stack, the page is redirected to in multi-instance mode.|
 
 ## NamedRouterOptions<sup>10+</sup>
 
@@ -1396,13 +1412,15 @@ struct Index {
       url: 'pages/second',
       params: new routerParams('This is the value on the first page', [12, 45, 78])
     }
-    try {
-      // You are advised to use this.getUIContext().getRouter().pushUrl().
-      await router.pushUrl(options)
-    } catch (err) {
-      console.info(` fail callback, code: ${(err as BusinessError).code}, msg: ${(err as BusinessError).message}`)
+    // You are advised to use this.getUIContext().getRouter().pushUrl().
+    router.pushUrl(options)
+      .then(() => {
+        console.error(`pushUrl finish`);
+      })
+      .catch((err: ESObject) => {
+        console.error(`pushUrl failed, code is ${(err as BusinessError).code}, message is ${(err as BusinessError).message}`);
+      })
     }
-  }
 
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {

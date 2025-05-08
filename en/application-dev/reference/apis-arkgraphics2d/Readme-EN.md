@@ -1,6 +1,6 @@
 # ArkGraphics 2D
 
-- ArkTS APIs
+- ArkTS APIs<!--arkgraphics-arkts-->
   - [@ohos.effectKit (Image Effects)](js-apis-effectKit.md)
   - [@ohos.graphics.colorSpaceManager (Color Space Management)](js-apis-colorSpaceManager.md)
   - [@ohos.graphics.sendableColorSpaceManager (Sendable Color Space Management)](js-apis-sendableColorSpaceManager.md)
@@ -10,9 +10,11 @@
   - [@ohos.graphics.hdrCapability (HDR Capability)](js-apis-hdrCapability.md)
   - [@ohos.graphics.text (Text)](js-apis-graphics-text.md)
   - [@ohos.graphics.uiEffect (Cascading Effect)](js-apis-uiEffect.md)
+  <!--Del-->
   - [@ohos.graphics.uiEffect (Cascading Effect) (System API)](js-apis-uiEffect-sys.md)
-- C APIs
-  - Modules
+  <!--DelEnd-->
+- C APIs<!--arkgraphics-c-->
+  - Modules<!--arkgraphics-module-->
     - [Drawing](_drawing.md)
     - [EffectKit](effect_kit.md)
     - [NativeDisplaySoloist](_native_display_soloist.md)
@@ -21,7 +23,7 @@
     - [OH_NativeBuffer](_o_h___native_buffer.md)
     - [OH_NativeImage](_o_h___native_image.md)
     - [NativeColorSpaceManager](_native_color_space_manager.md)
-  - Header Files
+  - Header Files<!--arkgraphics-headerfile-->
     - [drawing_bitmap.h](drawing__bitmap_8h.md)
     - [drawing_brush.h](drawing__brush_8h.md)
     - [drawing_canvas.h](drawing__canvas_8h.md)
@@ -64,13 +66,15 @@
     - [drawing_types.h](drawing__types_8h.md)
     - [effect_filter.h](effect__filter_8h.md)
     - [effect_types.h](effect__types_8h.md)
+    - [buffer_handle.h](buffer__handle_8h.md)
     - [external_window.h](external__window_8h.md)
+    - [buffer_common.h](buffer__common_8h.md)
     - [native_buffer.h](native__buffer_8h.md)
     - [native_display_soloist.h](native__display__soloist_8h.md)
     - [native_image.h](native__image_8h.md)
     - [native_vsync.h](native__vsync_8h.md)
     - [native_color_space_manager.h](native__color__space__manager_8h.md)
-  - Structs
+  - Structs<!--arkgraphics-struct-->
     - [DisplaySoloist_ExpectedRateRange](_display_soloist___expected_rate_range.md)
     - [OH_Drawing_BitmapFormat](_o_h___drawing___bitmap_format.md)
     - [OH_Drawing_Font_Metrics](_o_h___drawing___font___metrics.md)
@@ -103,11 +107,12 @@
     - [OH_NativeBuffer_Smpte2086](_o_h___native_buffer___smpte2086.md)
     - [OH_NativeBuffer_StaticMetadata](_o_h___native_buffer___static_metadata.md)
     - [OH_OnFrameAvailableListener](_o_h___on_frame_available_listener.md)
+    - [BufferHandle](_buffer_handle.md)
     - [OHExtDataHandle](_o_h_ext_data_handle.md)
     - [OHHDRMetaData](_o_h_h_d_r_meta_data.md)
     - [Region](_region.md)
     - [Rect](_rect.md)
     - [ColorSpacePrimaries](_color_space_primaries.md)
     - [WhitePointArray](_white_point_array.md)
-- Error Codes
+- Error Codes<!--arkgraphics-arkts-errcode-->
   - [colorSpaceManager Error Codes](errorcode-colorspace-manager.md)

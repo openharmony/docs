@@ -36,11 +36,7 @@ arp [_-i IF_] -d _IPADDR_
 
 ## 使用实例
 
-举例：
-
-输入arp
-
-**示例** 打印整个 ARP 缓存表
+输入`arp`命令，打印整个ARP缓存表。
 
 ```
 OHOS # arp

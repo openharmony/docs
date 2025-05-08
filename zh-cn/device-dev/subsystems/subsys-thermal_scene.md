@@ -54,16 +54,17 @@ Linux调测环境，相关要求和配置可参考《[快速入门](../quick-sta
     </state>
     ```
 4. 外部可调用thermal service的UpdateThermalState接口设置场景状态值。
-```cpp
-bool UpdateThermalState(const std::string& tag, const std::string& val, bool isImmed = false)
-```
-| 参数 | 说明 | 类型 |
-|---|---|---|
-| tag | 场景标签 | string |
-| val | 场景状态值 | string |
-| isImmed | 是否立即更新温控动作值 | bool |
 
-5. 参考[默认热场景配置文件夹中的BUILD.gn](https://gitee.com/openharmony/powermgr_thermal_manager/blob/master/services/native/profile/BUILD.gn)编写BUILD.gn文件，将thermal_service_config.xml打包到`/vendor/etc/thermal_config`目录下
+   ```cpp
+   bool UpdateThermalState(const std::string& tag, const std::string& val, bool isImmed = false)
+   ```
+   | 参数 | 说明 | 类型 |
+   |---|---|---|
+   | tag | 场景标签 | string |
+   | val | 场景状态值 | string |
+   | isImmed | 是否立即更新温控动作值 | bool |
+
+5. 参考[默认热场景配置文件夹中的BUILD.gn](https://gitee.com/openharmony/powermgr_thermal_manager/blob/master/services/native/profile/BUILD.gn)编写BUILD.gn文件，将thermal_service_config.xml打包到`/vendor/etc/thermal_config`目录下：
 
     ```shell
     import("//build/ohos.gni")                      # 引用build/ohos.gni 
@@ -112,12 +113,12 @@ bool UpdateThermalState(const std::string& tag, const std::string& val, bool isI
     hdc shell
     ```
 
-2. 获取当前热场景信息。
+2. 获取当前热场景信息：
     ```shell
     hidumper -s 3303 -a -s
     ```
 
-    查看定制后的热场景结果如下: 
+    查看定制后的热场景结果如下：
     ```shell
     -------------------------------[ability]-------------------------------
 
@@ -129,7 +130,7 @@ bool UpdateThermalState(const std::string& tag, const std::string& val, bool isI
     ```
 
 ## 参考 
-开发过程中可参考的配置文件路径：[默认热场景源码路径](https://gitee.com/openharmony/powermgr_thermal_manager/blob/master/services/native/profile/thermal_service_config.xml)
+开发过程中可参考的配置文件路径：[默认热场景源码路径](https://gitee.com/openharmony/powermgr_thermal_manager/blob/master/services/native/profile/thermal_service_config.xml)。
 
-打包路径：`/vendor/etc/thermal_config/hdf`
+打包路径：`/vendor/etc/thermal_config/hdf`。
 

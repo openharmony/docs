@@ -26,42 +26,42 @@ Rect(options?: RectOptions | RoundedRectOptions)
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| options | [RectOptions](ts-drawing-components-rect.md#rectoptions14) \| [RoundedRectOptions](ts-drawing-components-rect.md#roundedrectoptions14)  | No| Options for drawing a rectangle.|
+| options | [RectOptions](ts-drawing-components-rect.md#rectoptions18) \| [RoundedRectOptions](ts-drawing-components-rect.md#roundedrectoptions18)  | No| Options for drawing a rectangle.|
 
-## RectOptions<sup>14+</sup>
+## RectOptions<sup>18+</sup>
 Describes the options for drawing a rectangle.
 
-**Widget capability**: This API can be used in ArkTS widgets since API version 14.
+**Widget capability**: This API can be used in ArkTS widgets since API version 18.
 
-**Atomic service API**: This API can be used in atomic services since API version 14.
+**Atomic service API**: This API can be used in atomic services since API version 18.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| width | string \| number | No| Width.<br>Default value: **0**<br>Default unit: vp<br>An invalid value is handled as the default value.|
-| height | string \| number | No| Height.<br>Default value: **0**<br>Default unit: vp<br>An invalid value is handled as the default value.|
-| radius | string \| number \| Array&lt;string \| number&gt; | No| Radius of the rounded corner. You can set separate radiuses for the four rounded corners.<br>This property takes precedence over **radiusWidth** and **radiusHeight** when used together.<br>Default value: **0**<br>Default unit: vp<br>An invalid value is handled as the default value.|
+| width | string \| number | No| Width. The value must be greater than or equal to 0.<br>Default value: **0**<br>Default unit: vp<br>An invalid value is handled as the default value.|
+| height | string \| number | No| Height. The value must be greater than or equal to 0.<br>Default value: **0**<br>Default unit: vp<br>An invalid value is handled as the default value.|
+| radius | string \| number \| Array&lt;string \| number&gt; | No| Radius of the rounded corner. You can set separate radii for the four rounded corners. The value must be greater than or equal to 0. <br>This property takes precedence over **radiusWidth** and **radiusHeight** when used together.<br>Default value: **0**<br>Default unit: vp<br>An invalid value is handled as the default value.|
 
-## RoundedRectOptions<sup>14+</sup>
+## RoundedRectOptions<sup>18+</sup>
 Describes the options for drawing a rounded rectangle.
 
-**Widget capability**: This API can be used in ArkTS widgets since API version 14.
+**Widget capability**: This API can be used in ArkTS widgets since API version 18.
 
-**Atomic service API**: This API can be used in atomic services since API version 14.
+**Atomic service API**: This API can be used in atomic services since API version 18.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| width | string \| number | No| Width.<br>Default value: **0**<br>Default unit: vp<br>An invalid value is handled as the default value.|
-| height | string \| number | No| Height.<br>Default value: **0**<br>Default unit: vp<br>An invalid value is handled as the default value.|
-| radiusWidth | string \| number | No| Width of the rounded corner.<br>Default value: **0**<br>Default unit: vp<br>An invalid value is handled as the default value.|Width of the rounded corner.<br>Default value: **0**<br>An invalid value is handled as the default value.
-| radiusHeight | string \| number | No| Height of the rounded corner.<br>Default value: **0**<br>Default unit: vp<br>An invalid value is handled as the default value.|Height of the rounded corner.<br>Default value: **0**<br>An invalid value is handled as the default value.
+| width | string \| number | No| Width. The value must be greater than or equal to 0.<br>Default value: **0**<br>Default unit: vp<br>An invalid value is handled as the default value.|
+| height | string \| number | No| Height. The value must be greater than or equal to 0.<br>Default value: **0**<br>Default unit: vp<br>An invalid value is handled as the default value.|
+| radiusWidth | string \| number | No| Width of the rounded corner. The value must be greater than or equal to 0.<br>Default value: **0**<br>Default unit: vp<br>An invalid value is handled as the default value.|Width of the rounded corner.<br>Default value: **0**<br>An invalid value is handled as the default value.
+| radiusHeight | string \| number | No| Height of the rounded corner. The value must be greater than or equal to 0.<br>Default value: **0**<br>Default unit: vp<br>An invalid value is handled as the default value.|Height of the rounded corner.<br>Default value: **0**<br>An invalid value is handled as the default value.
 
 ## Attributes
 
-In addition to the [universal attributes](ts-universal-attributes-size.md), the following attributes are supported.
+In addition to the [universal attributes](ts-component-general-attributes.md), the following attributes are supported.
 
 ### radiusWidth
 
@@ -79,7 +79,7 @@ Sets the width of the rounded corner. If not set, the height of the rounded corn
 
 | Name| Type                      | Mandatory| Description                      |
 | ------ | -------------------------- | ---- | -------------------------- |
-| value  | number \| string | Yes  | Width of the rounded corner.<br>Default value: **0**<br>Default unit: vp|
+| value  | number \| string | Yes  | Width of the rounded corner. The value must be greater than or equal to 0.<br>Default value: **0**<br>Default unit: vp|
 
 ### radiusHeight
 
@@ -97,13 +97,13 @@ Height of the rounded corner. If not set, the width of the rounded corner is the
 
 | Name| Type                      | Mandatory| Description                      |
 | ------ | -------------------------- | ---- | -------------------------- |
-| value  | number \| string | Yes  | Height of the rounded corner.<br>Default value: **0**<br>Default unit: vp|
+| value  | number \| string | Yes  | Height of the rounded corner. The value must be greater than or equal to 0.<br>Default value: **0**<br>Default unit: vp|
 
 ### radius
 
 radius(value: number | string | Array&lt;string | number&gt;)
 
-Sets the radius of the rounded corner.  An invalid value is handled as the default value.
+Sets the radius of the rounded corner. The value must be greater than or equal to 0.  An invalid value is handled as the default value.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
@@ -175,7 +175,7 @@ Stroke color. If this attribute is not set, the component does not have any stro
 
 strokeDashArray(value: Array&lt;any&gt;)
 
-Stroke dashes. An invalid value is handled as the default value.
+Sets the stroke dashes. The value must be greater than or equal to 0. Invalid values are treated as the default value.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
@@ -211,7 +211,7 @@ Sets the offset of the start point for drawing the stroke. An invalid value is h
 
 strokeLineCap(value: LineCapStyle)
 
-Cap style of the stroke.
+Sets the cap style of the stroke.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
@@ -229,7 +229,7 @@ Cap style of the stroke.
 
 strokeLineJoin(value: LineJoinStyle)
 
-Join style of the stroke.
+Sets the join style of the stroke.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
@@ -247,7 +247,7 @@ Join style of the stroke.
 
 strokeMiterLimit(value: number | string)
 
-Limit on the ratio of the miter length to the value of **strokeWidth** used to draw a miter join. The miter length indicates the distance from the outer tip to the inner corner of the miter. This attribute works only when **strokeLineJoin** is set to **LineJoinStyle.Miter**.
+Sets the limit on the ratio of the miter length to the value of **strokeWidth** used to draw a miter join. The miter length indicates the distance from the outer tip to the inner corner of the miter. This attribute works only when **strokeLineJoin** is set to **LineJoinStyle.Miter**.
 
 The value must be greater than or equal to 1.0. If the value is in the [0, 1) range, the value **1.0** will be used. In other cases, the default value will be used.
 
@@ -267,7 +267,7 @@ The value must be greater than or equal to 1.0. If the value is in the [0, 1) ra
 
 strokeOpacity(value: number | string | Resource)
 
-Stroke opacity. The value range is [0.0, 1.0]. A value less than 0.0 evaluates to the value **0.0**. A value greater than 1.0 evaluates to the value **1.0**. Any other value evaluates to the value **1.0**.
+Sets the stroke opacity. The value range is [0.0, 1.0]. A value less than 0.0 is treated as **0.0**. A value greater than 1.0 is treated as **1.0**. Any other value is treated as **1.0**.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
@@ -285,7 +285,7 @@ Stroke opacity. The value range is [0.0, 1.0]. A value less than 0.0 evaluates t
 
 strokeWidth(value: Length)
 
-Stroke width. If of the string type, this parameter cannot be set in percentage. A percentage is processed as 1 px.
+Sets the stroke width. If of the string type, this parameter cannot be set in percentage. A percentage is processed as 1 px.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
@@ -297,7 +297,7 @@ Stroke width. If of the string type, this parameter cannot be set in percentage.
 
 | Name| Type                        | Mandatory| Description                    |
 | ------ | ---------------------------- | ---- | ------------------------ |
-| value  | [Length](ts-types.md#length) | Yes  | Stroke width.<br>Default value: **1**<br>Default unit: vp|
+| value  | [Length](ts-types.md#length) | Yes  | Stroke width. The value must be greater than or equal to 0.<br>Default value: **1**<br>Default unit: vp<br>An invalid value is handled as the default value.|
 
 ### antiAlias
 
@@ -315,7 +315,7 @@ Specifies whether anti-aliasing is enabled.
 
 | Name| Type   | Mandatory| Description                                 |
 | ------ | ------- | ---- | ------------------------------------- |
-| value  | boolean | Yes  | Whether anti-aliasing is enabled.<br>Default value: **true**|
+| value  | boolean | Yes  | Whether anti-aliasing is enabled.<br>**true**: Anti-aliasing is enabled.<br>**false**: Anti-aliasing is disabled.<br>Default value: **true**|
 
 ## Example
 ### Example 1: Drawing Rectangles
@@ -356,6 +356,7 @@ struct RectExample {
           .fill(Color.Pink)
           .stroke(Color.Transparent)
       }.width('100%').margin({ top: 10 })
+
       // Draw a 90% x 50 rectangle, with the width and height of its rounded corners as follows: 40 for the upper left rounded corner, 20 for the upper right rounded corner, 40 for the lower right rounded corner, and 20 for the lower left rounded corner.
       Rect({ width: '90%', height: 80 })
         .radius([[40, 40], [20, 20], [40, 40], [20, 20]])
@@ -389,12 +390,12 @@ struct RectExample {
       Rect()
         .width(100)
         .height(100)
-          // Set the color of the fill area. To display the color gradient of the background, set .fillOpacity(0.0).
+        // Set the color of the fill area. To display the color gradient of the background, set .fillOpacity(0.0).
         .fill(Color.Pink)
-          // Set the radius of the rounded corner to 40.
+        // Set the radius of the rounded corner to 40.
         .radius(40)
         .stroke(Color.Black)
-          // Set the color gradient. It takes effect only for a 100 x 100 rectangular area. The boundary of the gradient does not contain rounded corners.
+        // Set the color gradient. It takes effect only for a 100 x 100 rectangular area. The boundary of the gradient does not contain rounded corners.
         .linearGradient({
           direction: GradientDirection.Right,
           colors: [[0xff0000, 0.0], [0x0000ff, 0.3], [0xffff00, 1.0]]

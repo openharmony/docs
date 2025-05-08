@@ -41,6 +41,7 @@
     - [@ohos.app.ability.AbilityConstant (AbilityConstant) (System API)](js-apis-app-ability-abilityConstant-sys.md)
     - [@ohos.app.ability.application (Application) (System API)](js-apis-app-ability-application-sys.md)
     - [@ohos.app.ability.AutoFillExtensionAbility (AutoFillExtensionAbility) (System API)](js-apis-app-ability-autoFillExtensionAbility-sys.md)
+    - [@ohos.app.ability.autoFillManager (autoFillManager) (System API)](js-apis-app-ability-autoFillManager-sys.md)
     - [@ohos.app.ability.autoStartupManager (autoStartupManager) (System API)](js-apis-app-ability-autoStartupManager-sys.md)
     - [@ohos.app.ability.common (Context) (System API)](js-apis-app-ability-common-sys.md)
     - [@ohos.app.ability.dialogSession (dialogSession) (System API)](js-apis-app-ability-dialogSession-sys.md)
@@ -85,6 +86,7 @@
     <!--DelEnd-->
     - [@ohos.bundle.bundleManager (bundleManager)](js-apis-bundleManager.md)
     - [@ohos.bundle.defaultAppManager (Default Application Management)](js-apis-defaultAppManager.md)
+    - [@ohos.bundle.launcherBundleManager (launcherBundleManager)](js-apis-launcherBundleManager.md)
     - [@ohos.bundle.overlay (overlay)](js-apis-overlay.md)
     <!--Del-->
     - [@ohos.bundle.appControl (appControl Module) (System Interface)](js-apis-appControl-sys.md)
@@ -131,7 +133,6 @@
       - [ErrorObserver](js-apis-inner-application-errorObserver.md)
       - [EventHub](js-apis-inner-application-eventHub.md)
       - [ExtensionContext](js-apis-inner-application-extensionContext.md)
-      - [GlobalObserver](js-apis-inner-application-GlobalObserver.md)
       - [LoopObserver](js-apis-inner-application-loopObserver.md)
       - [ProcessInformation](js-apis-inner-application-processInformation.md)
       - [ProcessRunningInfo](js-apis-inner-application-processRunningInfo.md)
@@ -187,6 +188,7 @@
       - [elementName](js-apis-bundleManager-elementName.md)
       - [extensionAbilityInfo](js-apis-bundleManager-extensionAbilityInfo.md)
       - [hapModuleInfo](js-apis-bundleManager-hapModuleInfo.md)
+      - [launcherAbilityInfo](js-apis-bundleManager-launcherAbilityInfo.md)
       - [metadata](js-apis-bundleManager-metadata.md)
       - [OverlayModuleInfo](js-apis-bundleManager-overlayModuleInfo.md)
       - [Skill](js-apis-bundleManager-skill.md)
@@ -197,7 +199,6 @@
       - [BundleResourceInfo (System API)](js-apis-bundleManager-BundleResourceInfo-sys.md)
       - [BusinessAbilityInfo (System API)](js-apis-bundleManager-businessAbilityInfo-sys.md)
       - [dispatchInfo (System API)](js-apis-bundleManager-dispatchInfo-sys.md)
-      - [launcherAbilityInfo (System API)](js-apis-bundleManager-launcherAbilityInfo-sys.md)
       - [LauncherAbilityResourceInfo (System API)](js-apis-bundleManager-LauncherAbilityResourceInfo-sys.md)
       - [permissionDef (System API)](js-apis-bundleManager-permissionDef-sys.md)
       - [recoverableApplicationInfo (System API)](js-apis-bundleManager-recoverableApplicationInfo-sys.md)
@@ -271,6 +272,7 @@
     - [context_constant.h](context__constant_8h.md)
     - [native_interface_bundle.h](native__interface__bundle.md)
     - [native_child_process.h](native__child__process_8h.md)
+    - [start_options.h](start__options_8h.md)
     - [want.h](want__8h.md)
   - Structs<!--ability-struct-->
     - [AbilityBase_Element](_ability_base_element.md)

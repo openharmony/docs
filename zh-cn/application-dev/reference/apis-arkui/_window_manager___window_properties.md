@@ -7,8 +7,9 @@
 
 **起始版本：** 15
 
-**相关模块：**[WindowManager_NativeModule](_window_manager___native_module.md)
+**相关模块：**[WindowManager](_window_manager___native_module.md)
 
+**所在头文件：** [oh_window_comm.h](oh__window__comm_8h.md)
 
 ## 汇总
 
@@ -54,7 +55,7 @@ uint32_t WindowManager_WindowProperties::displayId
 
 **描述**
 
-窗口所在屏幕的id，默认返回主屏幕id，该参数为整数
+窗口所在屏幕的id，默认返回主屏幕id，该参数为整数。
 
 
 ### drawableRect

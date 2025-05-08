@@ -34,6 +34,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID | Error Message            |
 | ---- | --------------------- |
 | 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+| 801  | Capability not supported. |
 
 **Example**
 
@@ -78,6 +79,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID | Error Message            |
 | ---- | --------------------- |
 | 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+| 801  | Capability not supported. |
 
 **Example**
 
@@ -174,7 +176,7 @@ Checks the visible status of the mouse pointer. This API uses a promise to retur
 
 | Name                    | Description                 |
 | ---------------------- | ------------------- |
-| Promise&lt;boolean&gt; | Promise used to return the result.|
+| Promise&lt;boolean&gt; | Promise used to return the result. The value **true** indicates that the mouse pointer is visible, and the value **false** indicates the opposite.|
 
 **Example**
 
@@ -519,8 +521,8 @@ Type of the primary mouse button.
 
 | Name                              | Value   | Description    |
 | -------------------------------- | ---- | ------ |
-| LEFT                          | 0    | Left mouse button.    |
-| RIGHT                             | 1    | Right mouse button.  |
+| LEFT                          | 0    | Left button.    |
+| RIGHT                             | 1    | Right button.  |
 
 ## RightClickType<sup>10+</sup>
 
@@ -586,7 +588,7 @@ Enumerates mouse pointer styles.
 | CURSOR_CIRCLE<sup>10+</sup> | 41 | Circle|![Cursor_Circle.png](./figures/Cursor_Circle.png)|
 | LOADING<sup>10+</sup> | 42 | Animation loading|![Loading.png](./figures/Loading.png)<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | RUNNING<sup>10+</sup> | 43 | Animation running in the background|![Running.png](./figures/Running.png)<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
-| MIDDLE_BTN_EAST_WEST<sup>16+</sup>           | 44   | Scrolling east-west|![MID_Btn_East_West.png](./figures/MID_Btn_East_West.png)|
+| MIDDLE_BTN_EAST_WEST<sup>18+</sup>          | 44   | Scrolling east-west|![MID_Btn_East_West.png](./figures/MID_Btn_East_West.png)|
 
 ## pointer.setCustomCursor<sup>11+</sup>
 
@@ -650,9 +652,9 @@ Pixel map resource.
 **System capability**: SystemCapability.MultimodalInput.Input.Pointer
 | Name    | Type    | Readable    | Writable    | Description    |
 | -------- | ------- | -------- | -------- | ------- |
-| pixelMap  | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | No  | No  | Defines a custom cursor. The maximum resolution is 256 x 256 pixels.|
-| focusX  | number | No  | Yes  | Horizontal coordinate of the cursor focus. The coordinates are restricted by the size of the custom cursor. The default value is **0**.|
-| focusY  | number | No  | Yes  | Vertical coordinate of the cursor focus. The coordinates are restricted by the size of the custom cursor. The default value is **0**.|
+| pixelMap  | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | No  | No  | Defines a custom cursor. The minimum size is subject to the minimum limit of the image. The maximum size is 256 x 256 px.|
+| focusX  | number | No  | Yes  | Horizontal coordinate of the cursor focus. The coordinates are restricted by the size of the custom cursor. The minimum value is **0**, and the maximum value is the maximum width of the image. The default value is **0** if the parameter is left empty.|
+| focusY  | number | No  | Yes  | Vertical coordinate of the cursor focus. The coordinates are restricted by the size of the custom cursor. The minimum value is **0**, and the maximum value is the maximum height of the image. The default value is **0** if the parameter is left empty.|
 
 ## CursorConfig<sup>15+</sup>
 
@@ -662,7 +664,7 @@ Defines the custom cursor configuration.
 
 | Name    | Type    | Readable    | Writable    | Description    |
 | -------- | ------- | -------- | -------- | ------- |
-| followSystem  | boolean  | No  | No  | Whether to adjust the cursor size based on system settings. The value **false** indicates that the size of the custom cursor is used, and the value **true** indicates that the cursor size is adjusted based on the system settings.|
+| followSystem  | boolean  | No  | No  | Whether to adjust the cursor size based on system settings. The value **true** means to adjust the cursor size based on system settings, and the value **false** means to use the custom cursor size. The adjustment range is [size of the cursor image, 256 x 256].|
 
 ## pointer.setCustomCursor<sup>15+</sup>
 
@@ -679,21 +681,22 @@ The cursor may be switched back to the system style in the following cases: appl
 | -------- | -------- | -------- | -------- |
 | windowId  | number  | Yes   | Window ID.                         |
 | cursor  | [CustomCursor](js-apis-pointer.md#customcursor15) | Yes   | Pixel map resource.|
-| config  | [CursorConfig](js-apis-pointer.md#cursorconfig15) | Yes   | Defines the custom cursor configuration.|
+| config  | [CursorConfig](js-apis-pointer.md#cursorconfig15) | Yes   | Custom cursor configuration, which specifies whether to adjust the cursor size based on system settings. If **followSystem** in **CursorConfig** is set to **true**, the supported adjustment range is [size of the cursor image, 256 x 256].|
 
 **Return value**
 
 | Name                 | Description              |
 | ------------------- | ---------------- |
-| Promise&lt;void&gt; | This API uses a promise to return the result. The value **0** indicates that the operation is successful, and any other value indicates that the operation fails.|
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Input Device Error Codes](./errorcode-inputdevice.md).
 
 | ID | Error Message            |
 | ---- | --------------------- |
-| 401  | 401 - Parameter error. Possible causes: 1. Abnormal windowId parameter passed in. 2. Abnormal pixelMap parameter passed in; 3. Abnormal focusX parameter passed in.4. Abnormal focusY parameter passed in. |
+| 401  | Parameter error. Possible causes: 1. Abnormal windowId parameter passed in. 2. Abnormal pixelMap parameter passed in; 3. Abnormal focusX parameter passed in.4. Abnormal focusY parameter passed in. |
+| 26500001 | Invalid windowId. |
 
 **Example**
 

@@ -38,6 +38,7 @@ Widget-related configuration includes **FormExtensionAbility** configuration and
 
    | Field| Description| Data Type| Default Value Allowed|
    | -------- | -------- | -------- | -------- |
+   | forms | Configuration about all application widgets.<br>A maximum of 16 widgets can be configured. If more than 16 widgets are configured, the first 16 widgets are retained.| Array| No|
    | name | Name of the widget. The value is a string with a maximum of 127 bytes.| String| No|
    | displayName | Display name of the widget. The value can be a string or a resource index to the name in multiple languages. The string must contain 1 to 30 bytes.| String| No|
    | description | Description of the widget. The value can be a string or a resource index to descriptions in multiple languages. The value is a string with a maximum of 255 bytes.| String| Yes (initial value: left empty)|

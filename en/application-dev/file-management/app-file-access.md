@@ -57,18 +57,21 @@ let context = getContext(this) as common.UIAbilityContext;
 let filesDir = context.filesDir;
 
 function createFile(): void {
-  // Create a file and open it.
+  // Create and open a file if the file does not exist. Open it if the file exists.
   let file = fs.openSync(filesDir + '/test.txt', fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
   // Write data to the file.
   let writeLen = fs.writeSync(file.fd, "Try to write str.");
   console.info("The length of str is: " + writeLen);
-  // Read data from the file.
+  // Create an ArrayBuffer object whose size is 1024 bytes to store the data read from the file.
   let arrayBuffer = new ArrayBuffer(1024);
+  // Set the offset and length to be read.
   let readOptions: ReadOptions = {
     offset: 0,
     length: arrayBuffer.byteLength
   };
+  // Read the file content to the ArrayBuffer object and return the number of bytes read.
   let readLen = fs.readSync(file.fd, arrayBuffer, readOptions);
+  // Convert the ArrayBuffer object into a Buffer object and output it as a string.
   let buf = buffer.from(arrayBuffer, 0, readLen);
   console.info("the content of file: " + buf.toString());
   // Close the file.
@@ -123,7 +126,7 @@ function readWriteFile(): void {
 
 ### Reading and Writing Files in a Stream
 
-The following example demonstrates how to read and write file data using a stream.
+The following sample code shows how to use the **stream()** API to read the **test.txt** file content and write the content to the **destFile.txt** file.
 
 ```ts
 // pages/xxx.ets
@@ -135,10 +138,11 @@ let context = getContext(this) as common.UIAbilityContext;
 let filesDir = context.filesDir;
 
 async function readWriteFileWithStream(): Promise<void> {
-  // Open the file streams.
+  // Create and open an input file stream.
   let inputStream = fs.createStreamSync(filesDir + '/test.txt', 'r+');
+  // Create and open an output file stream.
   let outputStream = fs.createStreamSync(filesDir + '/destFile.txt', "w+");
-  // Read data from the source file and write the data to the destination file using a stream.
+
   let bufSize = 4096;
   let readSize = 0;
   let buf = new ArrayBuffer(bufSize);
@@ -146,6 +150,7 @@ async function readWriteFileWithStream(): Promise<void> {
     offset: readSize,
     length: bufSize
   };
+  // Read data from the source file and write the data to the destination file using a stream.
   let readLen = await inputStream.read(buf, readOptions);
   readSize += readLen;
   while (readLen > 0) {
@@ -163,13 +168,11 @@ async function readWriteFileWithStream(): Promise<void> {
 
 > **NOTE**
 >
-> - Close the stream once it is not required.
-> - Comply with the programming specifications for **Stream** APIs in asynchronous mode and avoid mixed use of the APIs in synchronous mode and asynchronous mode. 
-> - The **Stream** APIs do not support concurrent read and write operations.
+> Close the stream once it is not required. <br>Comply with the programming specifications for **Stream** APIs in asynchronous mode and avoid mixed use of the APIs in synchronous mode and asynchronous mode. <br>The **Stream** APIs do not support concurrent read and write operations.
 
 ### Listing Files
 
-The following example demonstrates how to obtain files that meet the specified conditions.
+The following example demonstrates how to list files that meet the specified conditions.
 
 ```ts
 import { fileIo as fs, Filter, ListFileOptions } from '@kit.CoreFileKit';
@@ -216,7 +219,7 @@ function copyFileWithReadable(): void {
   const rs = fs.createReadStream(`${filesDir}/read.txt`);
   // Create a writable stream.
   const ws = fs.createWriteStream(`${filesDir}/write.txt`);
-  // Copy files in paused mode. 
+  // Copy files in paused mode. Pause file operation and copy the original file data to another location, to ensure data integrity and consistency.
   rs.on('readable', () => {
     const data = rs.read();
     if (!data) {
@@ -231,7 +234,7 @@ function copyFileWithData(): void {
   const rs = fs.createReadStream(`${filesDir}/read.txt`);
   // Create a writable stream.
   const ws = fs.createWriteStream(`${filesDir}/write.txt`);
-  // Copy files in flowing mode.
+  // Copy files in stream mode. Read and write file data while accessing the original data, to ensure data timeliness.
   rs.on('data', (emitData) => {
     const data = emitData?.data;
     if (!data) {
@@ -240,10 +243,11 @@ function copyFileWithData(): void {
     ws.write(data as Uint8Array);
   });
 }
-
 ```
 
-The following example demonstrates how to use a file hash stream.
+### Using File Hash Streams
+
+A hash stream is a data transmission and storage technology that can convert data of any length into a hash value of a fixed length to verify data integrity and consistency. The following code shows how to use the file hash processing API [ohos.file.hash](../reference/apis-core-file-kit/js-apis-file-hash.md) to process file hash streams.
 
 ```ts
 // pages/xxx.ets

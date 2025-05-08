@@ -868,7 +868,7 @@ export default class UiExtAbility extends UIExtensionAbility {
 }
 ```
 
-## abilityManager.isEmbeddedOpenAllowed<sup>12</sup>
+## abilityManager.isEmbeddedOpenAllowed<sup>12+</sup>
 
 isEmbeddedOpenAllowed(context: Context, appId: string): Promise\<boolean>
 
@@ -980,7 +980,7 @@ try {
 }
 ```
 
-## AtomicServiceStartupRule<sup>16+</sup>
+## AtomicServiceStartupRule<sup>18+</sup>
 
 嵌入式拉起原子化服务的规则。
 
@@ -993,7 +993,7 @@ try {
 | isOpenAllowed | boolean   | 是   | 否   | 是否允许拉起原子化服务。 |
 | isEmbeddedAllowed | boolean   | 是   | 否  | 是否允许嵌入式拉起原子化服务。          |
 
-## abilityManager.queryAtomicServiceStartupRule<sup>16+</sup>
+## abilityManager.queryAtomicServiceStartupRule<sup>18+</sup>
 
 queryAtomicServiceStartupRule(context: Context, appId: string): Promise\<AtomicServiceStartupRule>
 
@@ -1014,7 +1014,7 @@ queryAtomicServiceStartupRule(context: Context, appId: string): Promise\<AtomicS
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise\<[AtomicServiceStartupRule](#atomicservicestartuprule16)> | Promise对象。返回嵌入式拉起原子化服务的规则。 |
+| Promise\<[AtomicServiceStartupRule](#atomicservicestartuprule18)> | Promise对象。返回嵌入式拉起原子化服务的规则。 |
 
 **错误码**：
 

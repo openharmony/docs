@@ -40,7 +40,7 @@ enableInc(value: boolean)
 
 | 参数名 | 类型    | 必填 | 说明                                  |
 | ------ | ------- | ---- | ------------------------------------- |
-| value  | boolean | 是   | 增加按钮禁用或使能。<br/>默认值：true |
+| value  | boolean | 是   | 增加按钮禁用或使能。<br/>默认值：true，true表示可以增加按钮，false表示禁止增加按钮。 |
 
 ### enableDec<sup>10+</sup>
 
@@ -56,7 +56,7 @@ enableDec(value: boolean)
 
 | 参数名 | 类型    | 必填 | 说明                                  |
 | ------ | ------- | ---- | ------------------------------------- |
-| value  | boolean | 是   | 减少按钮禁用或使能。<br/>默认值：true |
+| value  | boolean | 是   | 减少按钮禁用或使能。<br/>默认值：true，true表示可以减少按钮，false表示禁止减少按钮。 |
 
 ## 事件
 
@@ -108,7 +108,7 @@ onDec(event:&nbsp;VoidCallback)
 @Entry
 @Component
 struct CounterExample {
-  @State value: number = 0
+  @State value: number = 0;
 
   build() {
     Column() {
@@ -116,10 +116,10 @@ struct CounterExample {
         Text(this.value.toString())
       }.margin(100)
       .onInc(() => {
-        this.value++
+        this.value++;
       })
       .onDec(() => {
-        this.value--
+        this.value--;
       })
     }.width("100%")
   }

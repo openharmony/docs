@@ -151,12 +151,12 @@ static JSVM_CallbackStruct *method = param;
 static JSVM_PropertyDescriptor descriptor[] = {
     {"createPromise", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
     {"resolveRejectDeferred", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
-}
+};
 
 // 样例测试js
-const char *srcCallNativeCreatePromise = R"JS(createPromise())JS";
-const char *srcCallNativeResolveRejectDeferred1 = R"JS(resolveRejectDeferred('success','fail', true))JS";
-const char *srcCallNativeResolveRejectDeferred2 = R"JS(resolveRejectDeferred('success','fail', false))JS";
+const char *srcCallNative = R"JS(createPromise();
+                                 resolveRejectDeferred('success','fail', true);
+                                 resolveRejectDeferred('success','fail', false);)JS";
 ```
 
 预期结果

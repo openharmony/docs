@@ -12,7 +12,7 @@ If a privileged system application needs to use certain system resources (for ex
 
 >  **NOTE**
 >
-> - This module is deprecated since API version 9. You are advised to use [@ohos.resourceschedule.backgroundTaskManager (Background Task Management)](js-apis-resourceschedule-backgroundTaskManager-sys.md)instead.
+> - This module is deprecated since API version 9. You are advised to use [@ohos.resourceschedule.backgroundTaskManager (Background Task Management)](js-apis-resourceschedule-backgroundTaskManager-sys.md).
 >
 > - The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 >

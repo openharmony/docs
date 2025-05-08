@@ -22,7 +22,7 @@ import { restrictions } from '@kit.MDMKit';
 
 setPrinterDisabled(admin: Want, disabled: boolean, callback: AsyncCallback\<void>): void
 
-Enables or disables the printer through the specified device administrator application. This API uses an asynchronous callback to return the result.
+Enables or disables the printing capability of the device. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.ENTERPRISE_RESTRICT_POLICY
 
@@ -32,9 +32,9 @@ Enables or disables the printer through the specified device administrator appli
 
 | Name  | Type                                 | Mandatory  | Description     |
 | ----- | ----------------------------------- | ---- | ------- |
-| admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes   | Device administrator application.|
-| disabled  | boolean | Yes| Operation to perform. The value **true** means to disable the printer; the value **false** means the opposite. |
-| callback | AsyncCallback\<void> | Yes| Callback used to return the result.<br>If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.|
+| admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes   | EnterpriseAdminExtensionAbility.|
+| disabled  | boolean | Yes| Operation to perform. The value **true** means to disable the printer; the value **false** means the opposite.|
+| callback | AsyncCallback\<void> | Yes| Callback invoked to return the result.<br> If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -53,8 +53,8 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 ```ts
 import { Want } from '@kit.AbilityKit';
 let wantTemp: Want = {
-  bundleName: 'bundleName',
-  abilityName: 'abilityName',
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
 };
 
 restrictions.setPrinterDisabled(wantTemp, true, (err) => {
@@ -70,7 +70,7 @@ restrictions.setPrinterDisabled(wantTemp, true, (err) => {
 
 setPrinterDisabled(admin: Want, disabled: boolean): Promise\<void>
 
-Enables or disables the printer through the specified device administrator application. This API uses a promise to return the result.
+Enables or disables the printing capability of the device. This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.ENTERPRISE_RESTRICT_POLICY
 
@@ -80,14 +80,14 @@ Enables or disables the printer through the specified device administrator appli
 
 | Name  | Type                                 | Mandatory  | Description     |
 | ----- | ----------------------------------- | ---- | ------- |
-| admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes   | Device administrator application.|
-| disabled  | boolean | Yes| Operation to perform. The value **true** means to disable the printer; the value **false** means the opposite. |
+| admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes   | EnterpriseAdminExtensionAbility.|
+| disabled  | boolean | Yes| Operation to perform. The value **true** means to disable the printer; the value **false** means the opposite.|
 
 **Return value**
 
 | Type  | Description                                 |
 | ----- | ----------------------------------- |
-| Promise\<void> | Promise that returns no value. If the operation fails, an error object will be thrown. |
+| Promise\<void> | Promise that returns no value. An error object is thrown when the print capability fails to be disabled or enabled.|
 
 **Error codes**
 
@@ -107,8 +107,8 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 import { Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 let wantTemp: Want = {
-  bundleName: 'bundleName',
-  abilityName: 'abilityName',
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
 };
 
 restrictions.setPrinterDisabled(wantTemp, true).then(() => {
@@ -122,7 +122,7 @@ restrictions.setPrinterDisabled(wantTemp, true).then(() => {
 
 isPrinterDisabled(admin: Want, callback: AsyncCallback\<boolean>): void
 
-Checks whether the printer is disabled for devices through the specified device administrator application. This API uses an asynchronous callback to return the result.
+Queries whether the printing capability of a device is disabled. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.ENTERPRISE_RESTRICT_POLICY
 
@@ -132,8 +132,8 @@ Checks whether the printer is disabled for devices through the specified device 
 
 | Name  | Type                                 | Mandatory  | Description     |
 | ----- | ----------------------------------- | ---- | ------- |
-| admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes   | Device administrator application.|
-| callback | AsyncCallback\<boolean> | Yes| Callback used to return the result. The value **true** means that the printer is disabled; the value **false** means the opposite. |
+| admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes   | EnterpriseAdminExtensionAbility.|
+| callback | AsyncCallback\<boolean> | Yes| Callback invoked to return the result. The value **true** means that the printer is disabled; the value **false** means the opposite.|
 
 **Error codes**
 
@@ -152,8 +152,8 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 ```ts
 import { Want } from '@kit.AbilityKit';
 let wantTemp: Want = {
-  bundleName: 'bundleName',
-  abilityName: 'abilityName',
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
 };
 
 restrictions.isPrinterDisabled(wantTemp, (err, result) => {
@@ -169,7 +169,7 @@ restrictions.isPrinterDisabled(wantTemp, (err, result) => {
 
 isPrinterDisabled(admin: Want): Promise\<boolean>
 
-Checks whether the printer is disabled for devices through the specified device administrator application. This API uses a promise to return the result.
+Queries whether the printing capability of a device is disabled. This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.ENTERPRISE_RESTRICT_POLICY
 
@@ -177,15 +177,15 @@ Checks whether the printer is disabled for devices through the specified device 
 
 **Parameters**
 
-| Name  | Type                                 | Mandatory  | Description     |
-| ----- | ----------------------------------- | ---- | ------- |
-| admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes   | Device administrator application.|
+| Name| Type                                                   | Mandatory| Description                                  |
+| ------ | ------------------------------------------------------- | ---- | -------------------------------------- |
+| admin  | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes  | EnterpriseAdminExtensionAbility.|
 
 **Return value**
 
 | Type  | Description                                 |
 | ----- | ----------------------------------- |
-| Promise\<boolean> | Promise used to return the result. The value **true** means that the printer is disabled; the value **false** means the opposite. |
+| Promise\<boolean> | Promise used to return the result. The value **true** means that the printer is disabled; the value **false** means the opposite.|
 
 **Error codes**
 
@@ -205,8 +205,8 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 import { Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 let wantTemp: Want = {
-  bundleName: 'bundleName',
-  abilityName: 'abilityName',
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
 };
 
 restrictions.isPrinterDisabled(wantTemp).then((result) => {
@@ -220,7 +220,7 @@ restrictions.isPrinterDisabled(wantTemp).then((result) => {
 
 setHdcDisabled(admin: Want, disabled: boolean, callback: AsyncCallback\<void>): void
 
-Enables or disables hdc through the specified device administrator application. This API uses an asynchronous callback to return the result.
+Enables or disables [HDC](../../../device-dev/subsystems/subsys-toolchain-hdc-guide.md#hdc). This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.ENTERPRISE_RESTRICT_POLICY
 
@@ -230,9 +230,9 @@ Enables or disables hdc through the specified device administrator application. 
 
 | Name  | Type                                 | Mandatory  | Description     |
 | ----- | ----------------------------------- | ---- | ------- |
-| admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes   | Device administrator application.|
-| disabled  | boolean | Yes| Operation to perform. The value **true** means to disable hdc; the value **false** means the opposite.|
-| callback | AsyncCallback\<void> | Yes| Callback used to return the result.<br>If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.|
+| admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes   | EnterpriseAdminExtensionAbility.|
+| disabled  | boolean | Yes| Operation to perform. The value **true** means to disable HDC; the value **false** means the opposite.|
+| callback | AsyncCallback\<void> | Yes| Callback invoked to return the result.<br> If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -251,8 +251,8 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 ```ts
 import { Want } from '@kit.AbilityKit';
 let wantTemp: Want = {
-  bundleName: 'bundleName',
-  abilityName: 'abilityName',
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
 };
 
 restrictions.setHdcDisabled(wantTemp, true, (err) => {
@@ -268,7 +268,7 @@ restrictions.setHdcDisabled(wantTemp, true, (err) => {
 
 setHdcDisabled(admin: Want, disabled: boolean): Promise\<void>
 
-Enables or disables hdc through the specified device administrator application. This API uses a promise to return the result.
+Enables or disables HDC on a device. This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.ENTERPRISE_RESTRICT_POLICY
 
@@ -278,14 +278,14 @@ Enables or disables hdc through the specified device administrator application. 
 
 | Name  | Type                                 | Mandatory  | Description     |
 | ----- | ----------------------------------- | ---- | ------- |
-| admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes   | Device administrator application.|
-| disabled  | boolean | Yes| Operation to perform. The value **true** means to disable hdc; the value **false** means the opposite.|
+| admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes   | EnterpriseAdminExtensionAbility.|
+| disabled  | boolean | Yes| Operation to perform. The value **true** means to disable HDC; the value **false** means the opposite.|
 
 **Return value**
 
 | Type  | Description                                 |
 | ----- | ----------------------------------- |
-| Promise\<void> | Promise that returns no value. If the operation fails, an error object will be thrown. |
+| Promise\<void> | Promise that returns no value. An error object is thrown when the HDC fails to be disabled or enabled.|
 
 **Error codes**
 
@@ -305,8 +305,8 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 import { Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 let wantTemp: Want = {
-  bundleName: 'bundleName',
-  abilityName: 'abilityName',
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
 };
 
 restrictions.setHdcDisabled(wantTemp, true).then(() => {
@@ -320,7 +320,7 @@ restrictions.setHdcDisabled(wantTemp, true).then(() => {
 
 isHdcDisabled(admin: Want, callback: AsyncCallback\<boolean>): void
 
-Checks whether hdc is disabled through the specified device administrator application. This API uses an asynchronous callback to return the result.
+Queries whether HDC is disabled. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.ENTERPRISE_RESTRICT_POLICY
 
@@ -330,8 +330,8 @@ Checks whether hdc is disabled through the specified device administrator applic
 
 | Name  | Type                                 | Mandatory  | Description     |
 | ----- | ----------------------------------- | ---- | ------- |
-| admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes   | Device administrator application.|
-| callback | AsyncCallback\<boolean> | Yes| Callback used to return the result. The value **true** means hdc is disabled; the value **false** means the opposite.|
+| admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes   | EnterpriseAdminExtensionAbility.|
+| callback | AsyncCallback\<boolean> | Yes| Callback invoked to return the result. The value **true** means HDC is disabled; the value **false** means the opposite.|
 
 **Error codes**
 
@@ -350,8 +350,8 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 ```ts
 import { Want } from '@kit.AbilityKit';
 let wantTemp: Want = {
-  bundleName: 'bundleName',
-  abilityName: 'abilityName',
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
 };
 
 restrictions.isHdcDisabled(wantTemp, (err, result) => {
@@ -367,7 +367,7 @@ restrictions.isHdcDisabled(wantTemp, (err, result) => {
 
 isHdcDisabled(admin: Want): Promise\<boolean>
 
-Checks whether hdc is disabled through the specified device administrator application. This API uses a promise to return the result.
+Queries whether HDC is disabled. This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.ENTERPRISE_RESTRICT_POLICY
 
@@ -375,15 +375,15 @@ Checks whether hdc is disabled through the specified device administrator applic
 
 **Parameters**
 
-| Name  | Type                                 | Mandatory  | Description     |
-| ----- | ----------------------------------- | ---- | ------- |
-| admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes   | Device administrator application.|
+| Name| Type                                                   | Mandatory| Description                                  |
+| ------ | ------------------------------------------------------- | ---- | -------------------------------------- |
+| admin  | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes  | EnterpriseAdminExtensionAbility.|
 
 **Return value**
 
 | Type  | Description                                 |
 | ----- | ----------------------------------- |
-| Promise\<boolean> | Promise used to return the result. The value **true** means hdc is disabled; the value **false** means the opposite.|
+| Promise\<boolean> | Promise used to return the result. The value **true** means HDC is disabled; the value **false** means the opposite.|
 
 **Error codes**
 
@@ -403,8 +403,8 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 import { Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 let wantTemp: Want = {
-  bundleName: 'bundleName',
-  abilityName: 'abilityName',
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
 };
 
 restrictions.isHdcDisabled(wantTemp).then((result) => {
@@ -418,7 +418,7 @@ restrictions.isHdcDisabled(wantTemp).then((result) => {
 
 isMicrophoneDisabled(admin: Want): boolean
 
-Checks whether the microphone is disabled through the specified device administrator application.
+Queries whether the microphone is disabled.
 
 **Required permissions**: ohos.permission.ENTERPRISE_MANAGE_RESTRICTIONS
 
@@ -426,9 +426,9 @@ Checks whether the microphone is disabled through the specified device administr
 
 **Parameters**
 
-| Name  | Type                                 | Mandatory  | Description     |
-| ----- | ----------------------------------- | ---- | ------- |
-| admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes   | Device administrator application.|
+| Name| Type                                                   | Mandatory| Description                                  |
+| ------ | ------------------------------------------------------- | ---- | -------------------------------------- |
+| admin  | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes  | EnterpriseAdminExtensionAbility.|
 
 **Return value**
 
@@ -469,7 +469,7 @@ try {
 
 disableMicrophone(admin: Want, disable: boolean): void
 
-Disables or enables the device microphone through the specified device administrator application.
+Enables or disables the microphone.
 
 **Required permissions**: ohos.permission.ENTERPRISE_MANAGE_RESTRICTIONS
 
@@ -479,7 +479,7 @@ Disables or enables the device microphone through the specified device administr
 
 | Name  | Type                                 | Mandatory  | Description     |
 | ----- | ----------------------------------- | ---- | ------- |
-| admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes   | Device administrator application.|
+| admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes   | EnterpriseAdminExtensionAbility.|
 | disable  | boolean | Yes| Operation to perform. The value **true** means to disable the microphone; the value **false** means the opposite.|
 
 **Error codes**
@@ -516,7 +516,7 @@ try {
 
 setFingerprintAuthDisabled(admin: Want, disabled: boolean): void
 
-Disables or enables fingerprint authentication through the specified device administrator application. This API returns the result synchronously.
+Enables or disables fingerprint authentication.
 
 **Required permissions**: ohos.permission.ENTERPRISE_MANAGE_RESTRICTIONS
 
@@ -526,7 +526,7 @@ Disables or enables fingerprint authentication through the specified device admi
 
 | Name  | Type                                 | Mandatory  | Description     |
 | ----- | ----------------------------------- | ---- | ------- |
-| admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes   | Device administrator application.|
+| admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes   | EnterpriseAdminExtensionAbility.|
 | disabled  | boolean | Yes| Operation to perform. The value **true** means to disable fingerprint authentication; the value **false** the opposite.|
 
 **Error codes**
@@ -547,8 +547,8 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 import { Want } from '@kit.AbilityKit';
 
 let wantTemp: Want = {
-  bundleName: 'bundleName',
-  abilityName: 'abilityName',
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
 };
 
 try {
@@ -564,7 +564,7 @@ try {
 
 isFingerprintAuthDisabled(admin: Want): boolean
 
-Checks whether fingerprint authentication is disabled through the specified device administrator application. This API returns the result synchronously. 
+Queries whether fingerprint authentication is disabled.
 
 **Required permissions**: ohos.permission.ENTERPRISE_MANAGE_RESTRICTIONS
 
@@ -572,9 +572,9 @@ Checks whether fingerprint authentication is disabled through the specified devi
 
 **Parameters**
 
-| Name  | Type                                 | Mandatory  | Description     |
-| ----- | ----------------------------------- | ---- | ------- |
-| admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes   | Device administrator application.|
+| Name| Type                                                   | Mandatory| Description                                  |
+| ------ | ------------------------------------------------------- | ---- | -------------------------------------- |
+| admin  | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes  | EnterpriseAdminExtensionAbility.|
 
 **Return value**
 
@@ -600,8 +600,8 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 import { Want } from '@kit.AbilityKit';
 
 let wantTemp: Want = {
-  bundleName: 'bundleName',
-  abilityName: 'abilityName',
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
 };
 
 try {

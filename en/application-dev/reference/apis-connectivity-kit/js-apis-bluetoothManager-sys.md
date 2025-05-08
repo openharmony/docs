@@ -4,9 +4,9 @@ The **Bluetooth** module provides classic Bluetooth capabilities and Bluetooth L
 
 > **NOTE**
 >
-> - The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
-> - The APIs provided by this module are no longer maintained since API version 10. You are advised to use profile APIs of [@ohos.bluetooth.ble](js-apis-bluetooth-ble.md).
-> - This topic describes only system APIs provided by the module. For details about its public APIs, see [@ohos.bluetoothManager](js-apis-bluetoothManager.md).
+> The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> The APIs provided by this module are no longer maintained since API version 10. You are advised to use profile APIs of [@ohos.bluetooth.ble](js-apis-bluetooth-ble.md).
+> This topic describes only system APIs provided by the module. For details about its public APIs, see [@ohos.bluetoothManager](js-apis-bluetoothManager.md).
 
 
 
@@ -23,8 +23,9 @@ cancelPairedDevice(deviceId: string): void
 
 Cancels a paired remote device.
 
-> **NOTE**<br>
-> This API is supported since API version 9 and deprecated since API version 10. Use [connection.cancelPairedDevice](js-apis-bluetooth-connection-sys.md#connectioncancelpaireddevice) instead.
+> **NOTE**
+>
+> This API is supported since API version 9 and deprecated since API version 10. You are advised to use [connection.cancelPairedDevice](js-apis-bluetooth-connection-sys.md#connectioncancelpaireddevice) instead.
 
 **System API**: This is a system API.
 
@@ -40,7 +41,7 @@ Cancels a paired remote device.
 
 **Error codes**
 
-For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bluetooth Error Codes](errorcode-bluetoothManager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------- |
@@ -70,8 +71,9 @@ connect(device: string): void
 
 Connects to the HidHost service of a device.
 
-> **NOTE**<br>
-> This API is supported since API version 9 and deprecated since API version 10. Use [hid.HidHostProfile#connect](js-apis-bluetooth-hid-sys.md#connect) instead.
+> **NOTE**
+>
+> This API is supported since API version 9 and deprecated since API version 10. You are advised to use [hid.HidHostProfile#connect](js-apis-bluetooth-hid-sys.md#connect) instead.
 
 **System API**: This is a system API.
 
@@ -87,7 +89,7 @@ Connects to the HidHost service of a device.
 
 **Error codes**
 
-For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bluetooth Error Codes](errorcode-bluetoothManager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------- |
@@ -119,8 +121,9 @@ disconnect(device: string): void
 
 Disconnects from the HidHost service of a device.
 
-> **NOTE**<br>
-> This API is supported since API version 9 and deprecated since API version 10. Use [hid.HidHostProfile#disconnect](js-apis-bluetooth-hid-sys.md#disconnect) instead.
+> **NOTE**
+>
+> This API is supported since API version 9 and deprecated since API version 10. You are advised to use [hid.HidHostProfile#disconnect](js-apis-bluetooth-hid-sys.md#disconnect) instead.
 
 **System API**: This is a system API.
 
@@ -136,7 +139,7 @@ Disconnects from the HidHost service of a device.
 
 **Error codes**
 
-For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bluetooth Error Codes](errorcode-bluetoothManager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------- |
@@ -169,8 +172,9 @@ disconnect(device: string): void
 
 Disconnects from the Personal Area Network (PAN) service of a device.
 
-> **NOTE**<br>
-> This API is supported since API version 9 and deprecated since API version 10. Use [pan.PanProfile#disconnect](js-apis-bluetooth-pan-sys.md#disconnect) instead.
+> **NOTE**
+>
+> This API is supported since API version 9 and deprecated since API version 10. You are advised to use [pan.PanProfile#disconnect](js-apis-bluetooth-pan-sys.md#disconnect) instead.
 
 **System API**: This is a system API.
 
@@ -186,7 +190,7 @@ Disconnects from the Personal Area Network (PAN) service of a device.
 
 **Error codes**
 
-For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bluetooth Error Codes](errorcode-bluetoothManager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------- |
@@ -217,8 +221,9 @@ setTethering(enable: boolean): void
 
 Sets tethering.
 
-> **NOTE**<br>
-> This API is supported since API version 9 and deprecated since API version 10. The substitute API is available only for system applications.
+> **NOTE**
+>
+> This API is supported since API version 9 and deprecated since API version 10. Its substitute is available only to system applications.
 
 **System API**: This is a system API.
 
@@ -234,7 +239,7 @@ Sets tethering.
 
 **Error codes**
 
-For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bluetooth Error Codes](errorcode-bluetoothManager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------- |
@@ -264,10 +269,11 @@ try {
 
 isTetheringOn(): boolean
 
-Obtains the network sharing status.
+Obtains the tethering status.
 
-> **NOTE**<br>
-> This API is supported since API version 9 and deprecated since API version 10. Use [pan.PanProfile#isTetheringOn](js-apis-bluetooth-pan-sys.md#isTetheringOn) instead.
+> **NOTE**
+>
+> This API is supported since API version 9 and deprecated since API version 10. You are advised to use [pan.PanProfile#isTetheringOn](js-apis-bluetooth-pan-sys.md#isTetheringOn) instead.
 
 **System API**: This is a system API.
 
@@ -281,7 +287,7 @@ Obtains the network sharing status.
 
 **Error codes**
 
-For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | -------- | ---------------------------- |

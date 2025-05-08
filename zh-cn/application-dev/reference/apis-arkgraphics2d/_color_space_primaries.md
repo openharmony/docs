@@ -9,6 +9,7 @@
 
 **相关模块：**[NativeColorSpaceManager](_native_color_space_manager.md)
 
+**所在头文件：**[native_color_space_manager.h](native__color__space__manager_8h.md)
 
 ## 汇总
 

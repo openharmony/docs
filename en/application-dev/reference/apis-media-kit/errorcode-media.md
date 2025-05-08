@@ -342,3 +342,57 @@ The client request parameter is incorrect or exceeds the processing capability.
 
 1. Check whether the client request parameter is correct.
 2. Destroy this instance and re-create it. If the re-creation fails, stop related operations.
+
+## 5410002 Seek in SEEK_CONTINUOUS Mode Is Not Supported
+
+**Error Message**
+
+seek continuous is unsupported.
+
+**Description**
+
+The media source or device does not support the seek operation in SEEK_CONTINUOUS mode.
+
+**Possible Causes**
+
+The media source or device does not support the seek operation in SEEK_CONTINUOUS mode.
+
+**Solution**
+
+1. This error code informs the client about the behavior when seeking is not supported in SEEK_CONTINUOUS mode. The client does not need to handle this.
+
+## 5410003 Super Resolution Is Not Supported
+
+**Error Message**
+
+super resolution not supported.
+
+**Description**
+
+The media source or device does not support super resolution.
+
+**Possible Causes**
+
+Super resolution is available only for non-HDR and non-DRM videos with a resolution of 1080p or lower. If the media source does not meet the super resolution requirements or the current device does not support super resolution, this error is reported when an API related to super resolution is called.
+
+**Solution**
+
+Do not call super resolution related APIs for the media source on the current device.
+
+## 5410004 Super Resolution Is Not Enabled
+
+**Error Message**
+
+super resolution not enabled.
+
+**Description**
+
+Super resolution is not enabled. As a result, super resolution related APIs are unavailable.
+
+**Possible Causes**
+
+Super resolution is not enabled by using [PlaybackStrategy](./js-apis-media.md#playbackstrategy12).
+
+**Solution**
+
+Enable super resolution before calling related APIs.

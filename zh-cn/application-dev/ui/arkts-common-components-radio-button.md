@@ -60,9 +60,10 @@ import { promptAction } from '@kit.ArkUI';
 @Entry
 @Component
 struct RadioExample {
-  @State Rst:promptAction.ShowToastOptions = {'message': 'Ringing mode.'}
-  @State Vst:promptAction.ShowToastOptions = {'message': 'Vibration mode.'}
-  @State Sst:promptAction.ShowToastOptions = {'message': 'Silent mode.'}
+  @State Rst: promptAction.ShowToastOptions = { 'message': 'Ringing mode.' };
+  @State Vst: promptAction.ShowToastOptions = { 'message': 'Vibration mode.' };
+  @State Sst: promptAction.ShowToastOptions = { 'message': 'Silent mode.' };
+
   build() {
     Row() {
       Column() {
@@ -70,33 +71,35 @@ struct RadioExample {
           .height(50)
           .width(50)
           .onChange((isChecked: boolean) => {
-            if(isChecked) {
+            if (isChecked) {
               // 切换为响铃模式
-              promptAction.showToast(this.Rst)
+              this.getUIContext().getPromptAction().showToast(this.Rst);
             }
           })
         Text('Ringing')
       }
+
       Column() {
         Radio({ value: 'Radio2', group: 'radioGroup' })
           .height(50)
           .width(50)
           .onChange((isChecked: boolean) => {
-            if(isChecked) {
+            if (isChecked) {
               // 切换为振动模式
-              promptAction.showToast(this.Vst)
+              this.getUIContext().getPromptAction().showToast(this.Vst);
             }
           })
         Text('Vibration')
       }
+
       Column() {
         Radio({ value: 'Radio3', group: 'radioGroup' })
           .height(50)
           .width(50)
           .onChange((isChecked: boolean) => {
-            if(isChecked) {
+            if (isChecked) {
               // 切换为静音模式
-              promptAction.showToast(this.Sst)
+              this.getUIContext().getPromptAction().showToast(this.Sst);
             }
           })
         Text('Silent')

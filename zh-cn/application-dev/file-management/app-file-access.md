@@ -6,31 +6,31 @@
 
 开发者通过基础文件操作接口（[ohos.file.fs](../reference/apis-core-file-kit/js-apis-file-fs.md)）实现应用文件访问能力，主要功能如下表所示。
 
-**表1** 基础文件操作接口功能
+**表1** 基础文件操作接口功能，其中“√”表示支持，“-”表示不区分同步和异步。
 
-| 接口名 | 功能 | 接口类型 | 支持同步 | 支持异步 | 
+| 接口名 | 功能 | 接口类型 | 支持同步 | 支持异步 |
 | -------- | -------- | -------- | -------- | -------- |
-| access | 检查文件是否存在 | 方法 | √ | √ | 
-| close | 关闭文件 | 方法 | √ | √ | 
-| copyFile | 复制文件 | 方法 | √ | √ | 
-| createStream | 基于文件路径打开文件流 | 方法 | √ | √ | 
-| listFile | 列出文件夹下所有文件名 | 方法 | √ | √ | 
-| mkdir | 创建目录 | 方法 | √ | √ | 
-| moveFile | 移动文件 | 方法 | √ | √ | 
-| open | 打开文件 | 方法 | √ | √ | 
-| read | 从文件读取数据 | 方法 | √ | √ | 
-| rename | 重命名文件或文件夹 | 方法 | √ | √ | 
-| rmdir | 删除整个目录 | 方法 | √ | √ | 
-| stat | 获取文件详细属性信息 | 方法 | √ | √ | 
-| unlink | 删除单个文件 | 方法 | √ | √ | 
-| write | 将数据写入文件 | 方法 | √ | √ | 
-| Stream.close | 关闭文件流 | 方法 | √ | √ | 
-| Stream.flush | 刷新文件流 | 方法 | √ | √ | 
-| Stream.write | 将数据写入流文件 | 方法 | √ | √ | 
-| Stream.read | 从流文件读取数据 | 方法 | √ | √ | 
-| File.fd | 获取文件描述符 | 属性 | - | - | 
-| OpenMode | 设置文件打开标签 | 属性 | - | - | 
-| Filter | 设置文件过滤配置项 | 类型 | - | - | 
+| access | 检查文件是否存在 | 方法 | √ | √ |
+| close | 关闭文件 | 方法 | √ | √ |
+| copyFile | 复制文件 | 方法 | √ | √ |
+| createStream | 基于文件路径打开文件流 | 方法 | √ | √ |
+| listFile | 列出文件夹下所有文件名 | 方法 | √ | √ |
+| mkdir | 创建目录 | 方法 | √ | √ |
+| moveFile | 移动文件 | 方法 | √ | √ |
+| open | 打开文件 | 方法 | √ | √ |
+| read | 从文件读取数据 | 方法 | √ | √ |
+| rename | 重命名文件或文件夹 | 方法 | √ | √ |
+| rmdir | 删除整个目录 | 方法 | √ | √ |
+| stat | 获取文件详细属性信息 | 方法 | √ | √ |
+| unlink | 删除单个文件 | 方法 | √ | √ |
+| write | 将数据写入文件 | 方法 | √ | √ |
+| Stream.close | 关闭文件流 | 方法 | √ | √ |
+| Stream.flush | 刷新文件流 | 方法 | √ | √ |
+| Stream.write | 将数据写入流文件 | 方法 | √ | √ |
+| Stream.read | 从流文件读取数据 | 方法 | √ | √ |
+| File.fd | 获取文件描述符 | 属性 | - | - |
+| OpenMode | 设置文件打开标签 | 属性 | - | - |
+| Filter | 设置文件过滤配置项 | 类型 | - | - |
 
 > **注意：**
 >
@@ -52,11 +52,11 @@ import { fileIo as fs, ReadOptions } from '@kit.CoreFileKit';
 import { common } from '@kit.AbilityKit';
 import { buffer } from '@kit.ArkTS';
 
-// 获取应用文件路径
-let context = getContext(this) as common.UIAbilityContext;
-let filesDir = context.filesDir;
+// 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 
-function createFile(): void {
+function createFile(context: common.UIAbilityContext): void {
+  let filesDir = context.filesDir;
   // 文件不存在时创建并打开文件，文件存在时打开文件
   let file = fs.openSync(filesDir + '/test.txt', fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
   // 写入一段内容至文件
@@ -88,11 +88,11 @@ function createFile(): void {
 import { fileIo as fs, ReadOptions, WriteOptions } from '@kit.CoreFileKit';
 import { common } from '@kit.AbilityKit';
 
-// 获取应用文件路径
-let context = getContext(this) as common.UIAbilityContext;
-let filesDir = context.filesDir;
+// 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 
-function readWriteFile(): void {
+function readWriteFile(context: common.UIAbilityContext): void {
+  let filesDir = context.filesDir;
   // 打开文件
   let srcFile = fs.openSync(filesDir + '/test.txt', fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
   let destFile = fs.openSync(filesDir + '/destFile.txt', fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
@@ -133,11 +133,11 @@ function readWriteFile(): void {
 import { fileIo as fs, ReadOptions } from '@kit.CoreFileKit';
 import { common } from '@kit.AbilityKit';
 
-// 获取应用文件路径
-let context = getContext(this) as common.UIAbilityContext;
-let filesDir = context.filesDir;
+// 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 
-async function readWriteFileWithStream(): Promise<void> {
+async function readWriteFileWithStream(context: common.UIAbilityContext): Promise<void> {
+  let filesDir = context.filesDir;
   // 创建并打开输入文件流
   let inputStream = fs.createStreamSync(filesDir + '/test.txt', 'r+');
   // 创建并打开输出文件流
@@ -178,12 +178,11 @@ async function readWriteFileWithStream(): Promise<void> {
 import { fileIo as fs, Filter, ListFileOptions } from '@kit.CoreFileKit';
 import { common } from '@kit.AbilityKit';
 
-// 获取应用文件路径
-let context = getContext(this) as common.UIAbilityContext;
-let filesDir = context.filesDir;
+// 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 
 // 查看文件列表
-function getListFile(): void {
+function getListFile(context: common.UIAbilityContext): void {
   let listFileOption: ListFileOptions = {
     recursion: false,
     listNum: 0,
@@ -194,6 +193,7 @@ function getListFile(): void {
       lastModifiedAfter: new Date(0).getTime()
     }
   };
+  let filesDir = context.filesDir;
   let files = fs.listFileSync(filesDir, listFileOption);
   for (let i = 0; i < files.length; i++) {
     console.info(`The name of file: ${files[i]}`);
@@ -210,11 +210,11 @@ function getListFile(): void {
 import { fileIo as fs } from '@kit.CoreFileKit';
 import { common } from '@kit.AbilityKit';
 
-// 获取应用文件路径
-let context = getContext(this) as common.UIAbilityContext;
-let filesDir = context.filesDir;
+// 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 
-function copyFileWithReadable(): void {
+function copyFileWithReadable(context: common.UIAbilityContext): void {
+  let filesDir = context.filesDir;
   // 创建文件可读流
   const rs = fs.createReadStream(`${filesDir}/read.txt`);
   // 创建文件可写流
@@ -255,11 +255,11 @@ import { fileIo as fs } from '@kit.CoreFileKit';
 import { hash } from '@kit.CoreFileKit';
 import { common } from '@kit.AbilityKit';
 
-// 获取应用文件路径
-let context = getContext(this) as common.UIAbilityContext;
-let filesDir = context.filesDir;
+// 获取应用文件路径，请在组件内获取context
+let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 
-function hashFileWithStream() {
+function hashFileWithStream(context: common.UIAbilityContext) {
+  let filesDir = context.filesDir;
   const filePath = `${filesDir}/test.txt`;
   // 创建文件可读流
   const rs = fs.createReadStream(filePath);

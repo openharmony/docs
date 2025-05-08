@@ -31,7 +31,7 @@ acm help
 
 **Return Result**
 
-The help information about acm.
+Displays the acm help information.
 
 
 ## create
@@ -179,5 +179,5 @@ If the constraint is set successfully, "set constraints for the local account su
 | ----------------------------------- | -------------------------- |
 | -h | This parameter is optional. It is used to display the parameters supported by the **set** command.|
 | -i | This parameter is mandatory. It specifies an account ID.|
-| -c | This parameter is mandatory. It specifies the constraints to be set. Each constraint is separated by a comma (,). For details, see [Account Constraint List](../reference/apis-basic-services-kit/js-apis-osAccount.md#constraints).|
+| -c | This parameter is mandatory. It specifies the constraints to be set. Each constraint is separated by a comma (,). For details, see [Constraints](../reference/apis-basic-services-kit/js-apis-osAccount.md#constraints).|
 | -e | This parameter is optional. If this parameter is carried, the command is used to add a constraint; otherwise, the command is used to delete a constraint.|

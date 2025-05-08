@@ -64,7 +64,7 @@ Example:
 | Name| Description| 
 | -------- | -------- |
 | struct&nbsp;&nbsp;[HiAppEvent_AppEventInfo](_hi_app_event___app_event_info.md) | Defines the information about a single event, including the event domain, event name, event type, and custom parameter list in JSON string format. | 
-| struct&nbsp;&nbsp;[HiAppEvent_AppEventGroup](_hi_app_event___app_event_group.md) | Defines an event array with the same event name. | 
+| struct&nbsp;&nbsp;[HiAppEvent_AppEventGroup](_hi_app_event___app_event_group.md) | Defines an event group with the same event name. | 
 
 
 ### Types
@@ -72,7 +72,7 @@ Example:
 | Name| Description| 
 | -------- | -------- |
 | typedef struct [HiAppEvent_AppEventInfo](_hi_app_event___app_event_info.md) [HiAppEvent_AppEventInfo](_hi_app_event.md#hiappevent_appeventinfo) | Defines a struct for the information about a single event, including the event domain, event name, event type, and custom parameter list in JSON string format. | 
-| typedef struct [HiAppEvent_AppEventGroup](_hi_app_event___app_event_group.md) [HiAppEvent_AppEventGroup](_hi_app_event.md#hiappevent_appeventgroup) | Defines a struct for the event array with the same event name. | 
+| typedef struct [HiAppEvent_AppEventGroup](_hi_app_event___app_event_group.md) [HiAppEvent_AppEventGroup](_hi_app_event.md#hiappevent_appeventgroup) | Defines a struct for the event group with the same event name. | 
 | typedef struct ParamListNode \* [ParamList](_hi_app_event.md#paramlist) | Defines a struct for the event parameter list node. | 
 | typedef struct [HiAppEvent_Watcher](_hi_app_event.md#hiappevent_watcher) [HiAppEvent_Watcher](_hi_app_event.md#hiappevent_watcher) | Defines a struct for the watcher for application events. | 
 | typedef struct [HiAppEvent_Processor](_hi_app_event.md#hiappevent_processor) [HiAppEvent_Processor](_hi_app_event.md#hiappevent_processor) | Defines a struct for the processor for application events. | 
@@ -86,8 +86,8 @@ Example:
 
 | Name| Description| 
 | -------- | -------- |
-| [HiAppEvent_ErrorCode](_hi_app_event.md#hiappevent_errorcode) {<br>[HIAPPEVENT_SUCCESS](_hi_app_event.md) = 0, [HIAPPEVENT_INVALID_PARAM_VALUE_LENGTH](_hi_app_event.md) = 4, [HIAPPEVENT_PROCESSOR_IS_NULL](_hi_app_event.md) = -7, [HIAPPEVENT_PROCESSOR_NOT_FOUND](_hi_app_event.md) = -8,<br>[HIAPPEVENT_INVALID_PARAM_VALUE](_hi_app_event.md) = -9, [HIAPPEVENT_EVENT_CONFIG_IS_NULL](_hi_app_event.md) = -10, [HIAPPEVENT_OPERATE_FAILED](_hi_app_event.md) = -100, [HIAPPEVENT_INVALID_UID](_hi_app_event.md) = -200<br>} | Enumerates the error codes used in the HiAppEvent module. | 
-| [EventType](_hi_app_event.md#eventtype) { [FAULT](_hi_app_event.md) = 1, [STATISTIC](_hi_app_event.md) = 2, [SECURITY](_hi_app_event.md) = 3, [BEHAVIOR](_hi_app_event.md) = 4 } | Enumerates the event types. | 
+| [HiAppEvent_ErrorCode](_hi_app_event.md#hiappevent_errorcode) {<br>HIAPPEVENT_SUCCESS = 0, <br>HIAPPEVENT_INVALID_PARAM_VALUE_LENGTH = 4, <br>HIAPPEVENT_PROCESSOR_IS_NULL = -7, <br>HIAPPEVENT_PROCESSOR_NOT_FOUND = -8,<br>HIAPPEVENT_INVALID_PARAM_VALUE = -9, <br>HIAPPEVENT_EVENT_CONFIG_IS_NULL = -10, <br>HIAPPEVENT_OPERATE_FAILED = -100, <br>HIAPPEVENT_INVALID_UID = -200<br>} | Enumerates the error codes used in the HiAppEvent module. | 
+| [EventType](_hi_app_event.md#eventtype)  {<br>FAULT = 1, <br>STATISTIC = 2, <br>SECURITY = 3, <br>BEHAVIOR = 4<br>} | Enumerates the event types. | 
 
 
 ### Callback

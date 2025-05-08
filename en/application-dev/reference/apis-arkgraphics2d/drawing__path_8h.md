@@ -42,6 +42,7 @@ The **drawing_path.h** file declares the functions related to the path in the dr
 
 | Name| Description| 
 | -------- | -------- |
+| [OH_Drawing_ErrorCode](_drawing.md#oh_drawing_errorcode) [OH_Drawing_PathGetSegment](_drawing.md#oh_drawing_pathgetsegment) ([OH_Drawing_Path](_drawing.md#oh_drawing_path) \*path, bool forceClosed, float start, float stop, bool startWithMoveTo, [OH_Drawing_Path](_drawing.md#oh_drawing_path) \*dst, bool \*result) | Extracts a segment of a path and appends it to a destination path. | 
 | [OH_Drawing_Path](_drawing.md#oh_drawing_path) \* [OH_Drawing_PathCreate](_drawing.md#oh_drawing_pathcreate) (void) | Creates an **OH_Drawing_Path** object.| 
 | [OH_Drawing_Path](_drawing.md#oh_drawing_path) \* [OH_Drawing_PathCopy](_drawing.md#oh_drawing_pathcopy) ([OH_Drawing_Path](_drawing.md#oh_drawing_path) \*) | Copies an existing [OH_Drawing_Path](_drawing.md#oh_drawing_path) object to create a new one.| 
 | void [OH_Drawing_PathDestroy](_drawing.md#oh_drawing_pathdestroy) ([OH_Drawing_Path](_drawing.md#oh_drawing_path) \*) | Destroys an **OH_Drawing_Path** object and reclaims the memory occupied by the object.| 

@@ -361,4 +361,4 @@ export struct Grid1{
 
 [自定义弹窗](../application-dev/reference/apis-arkui/arkui-ts/ts-methods-custom-dialog-box.md)
 
-[@Link装饰器：父子双向同步](../application-dev/quick-start/arkts-link.md)
+[@Link装饰器：父子双向同步](../application-dev/ui/state-management/arkts-link.md)

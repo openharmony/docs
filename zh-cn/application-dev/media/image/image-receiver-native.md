@@ -1,6 +1,6 @@
-# 使用Image完成图片接收器
+# 图片接收
 
-图像接收类，用于获取组件surface id，接收最新的图片和读取下一张图片，以及释放ImageReceiver实例。
+图片接收类，用于获取组件surface id，接收最新的图片和读取下一张图片，以及释放ImageReceiver实例。
 
 ## 开发步骤
 

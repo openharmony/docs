@@ -274,7 +274,7 @@
 
 **描述:**
 
-等待任何标志触发
+等待任何标志触发。
 
 该宏用于标志相关函数中设置触发的方式。
 
@@ -909,7 +909,7 @@ osStatus_t osKernelGetInfo (osVersion_t * version, char * id_buf, uint32_t id_si
 
 **描述:**
 
-获取系统版本号和系统名称。
+获取内核信息函数。
 
 **参数:**
 
