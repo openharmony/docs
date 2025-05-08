@@ -17,8 +17,8 @@ The **OH_Drawing_Image_Info** struct describes the image information.
 
 | Name| Description| 
 | -------- | -------- |
-| int32_t [width](#width) | Width, in px.| 
-| int32_t [height](#height) | Height, in px.| 
+| int32_t [width](#width) | Width, in pixels.| 
+| int32_t [height](#height) | Height, in pixels.| 
 | [OH_Drawing_ColorFormat](_drawing.md#oh_drawing_colorformat) [colorType](#colortype) | Color format. For details, see [OH_Drawing_ColorFormat](_drawing.md#oh_drawing_colorformat).| 
 | [OH_Drawing_AlphaFormat](_drawing.md#oh_drawing_alphaformat) [alphaType](#alphatype) | Alpha format. For details, see [OH_Drawing_AlphaFormat](_drawing.md#oh_drawing_alphaformat).| 
 

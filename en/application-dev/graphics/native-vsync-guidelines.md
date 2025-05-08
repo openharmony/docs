@@ -65,4 +65,5 @@ libnative_vsync.so
 4. Destroy the **OH_NativeVSync** instance.
     ```c++
     OH_NativeVSync_Destroy(nativeVSync); // Destroy the OH_NativeVSync instance when the application does not need to receive VSync signals.
+    nativeVSync = nullptr; // After destroying the **OH_NativeVSync** instance, set the pointer to null immediately to avoid dangling pointer issues if it is used again.
     ```
