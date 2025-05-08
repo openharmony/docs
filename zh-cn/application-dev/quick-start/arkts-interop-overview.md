@@ -18,35 +18,34 @@ ArkTS1.2在ArkTS1.1版本的基础上增强了类型安全和并发能力，带�
 
 ## ArkTS1.2类型系统
 
-- ArkTS1.2的顶层类型有：`undefined`，`null`和`AnyObject`。
-  - `AnyObject`对开发者不可见，属于内部类型。
-  - `AnyObject`有子类`Object`，`Object`有子类`ESObject`。ArkTS1.2中的自定义类，标准库(`Array/Map/Set`等)等类型都是`Object`的子类型。
+- ArkTS1.2的顶层类型有：`undefined`，`null`和`Any`。
+  - `Any`有子类`Object`，`Object`有子类`ESValue`。ArkTS1.2中的自定义类，标准库(`Array/Map/Set`等)等类型都是`Object`的子类型。
 
-### ESObject
+### ESValue
 
-- `ESObject`是`Object`的子类。
-- `ESObject`可用于封装来自于JS的对象。
-- `ESObject`提供了多种方法来对应对象的常见操作。比如：加载 JS 模块、实例化`new obj(x)`、函数调用`obj(x)`、属性访问`obj.prop`、方法调用`obj.foo(x)`、索引访问`obj[idx]`等。
-- ArkTS1.2的`ESObject`作为普通的类型，并无额外限制和额外特权。比如：ArkTS1.2中`ESObject`可以用于类型标注和泛型，但针对`ESObject`类型对象的操作也只能通过调用它的方法来进行。
+- `ESValue`是`Object`的子类。
+- `ESValue`可用于封装来自于JS的对象。
+- `ESValue`提供了多种方法来对应对象的常见操作。比如：加载 JS 模块、实例化`new obj(x)`、函数调用`obj(x)`、属性访问`obj.prop`、方法调用`obj.foo(x)`、索引访问`obj[idx]`等。
+- ArkTS1.2的`ESValue`作为普通的类型，并无额外限制和额外特权。比如：ArkTS1.2中`ESValue`可以用于类型标注和泛型，但针对`ESValue`类型对象的操作也只能通过调用它的方法来进行。
 
 ```txt
 AnyObject
     |
 Object
     |
-ESObject -|- (static) load(path: string): ESObject                            // 模块加载
-          |- wrap(arg: Object | null | undefined)                             // 将对象包装成ESObject实例
-          |- getProperty(key: string | number): ESObject                      // 读属性
-          |- setProperty(key: string | number, newVal: ESObject): void        // 写属性
-          |- instantiate(...args: ESObject[]): ESObject                       // 实例化
-          |- invoke(...args: ESObject[]): ESObject                            // 函数调用
-          |- invokeMethod(methodName: string, ...args: ESObject[]): ESObject  // 方法调用
-          |- toString(): string                                               // 将包装的对象转换为string
-          |- toNumber(): number                                               // 将包装的对象转换为number
+ESValue  -|- (static) load(path: string): ESValue                            // 模块加载
+          |- wrap(arg: Any)                                                  // 将对象包装成ESObject实例
+          |- getProperty(key: string | number): ESValue                      // 读属性
+          |- setProperty(key: string | number, newVal: ESValue): void        // 写属性
+          |- instantiate(...args: ESValue[]): ESValue                        // 实例化
+          |- invoke(...args: ESValue[]): ESValue                             // 函数调用
+          |- invokeMethod(methodName: string, ...args: ESValue[]): ESValue   // 方法调用
+          |- toString(): string                                              // 将包装的对象转换为string
+          |- toNumber(): number                                              // 将包装的对象转换为number
           |- ...
 ```
 
-（TODO：加链接）`ESObject`接口说明文档。
+（TODO：加链接）`ESValue`接口说明文档。
 
 ## 交互基本原则
 
@@ -78,27 +77,27 @@ export function foo(arg) {
 ```typescript
 // file2.ets ArkTS1.2
 // 加载模块
-let module: ESObject = ESObject.load('./file1')
-let foo ESObject = module.getProperty('foo')
-let A: ESObject = module.getProperty('A')
+let module: ESValue = ESValue.load('./file1')
+let foo ESValue = module.getProperty('foo')
+let A: ESValue = module.getProperty('A')
 // 实例化
-let aa: ESObject = A.instantiate()
+let aa: ESValue = A.instantiate()
 // 调用函数
-let a: ESObject = foo.invoke(aa)
+let a: ESValue = foo.invoke(aa)
 // 读属性
-let msg: ESObject = a.getProperty('msg')
+let msg: ESValue = a.getProperty('msg')
 let msgStr: string = msg.toString()  // 'hello'
-let data: ESObject = a.getProperty('data')
+let data: ESValue = a.getProperty('data')
 // 写属性
-let newMsgValue: ESObject = ESObject.wrap('world')  // 将对象包装成ESObject实例
+let newMsgValue: ESValue = ESValue.wrap('world')  // 将对象包装成ESObject实例
 a.setProperty('msg', newMsgValue)
 // 调用方法
-a.invokeMethod('say', ESObject.wrap(' cup'))  // 打印'world cup'
+a.invokeMethod('say', ESValue.wrap(' cup'))  // 打印'world cup'
 // 读索引元素
 let element0 = data.getProperty(0)
 element0.toNumber()  // 1
 // 写索引元素
-data.setProperty(2, ESObject.wrap(4))
+data.setProperty(2, ESValue.wrap(4))
 ```
 
 - ArkTS1.2和ArkTS1.1/TS的交互，不需要开发者显式调用API来进行交互。
