@@ -4212,13 +4212,13 @@ off(type: 'tabContentUpdate', options: observer.ObserverOptions, callback?: Call
 
 参考[on('tabContentUpdate')](#ontabcontentupdate12-1)接口示例。
 
-### on('beforePanStart')<sup>18+</sup>
+### on('beforePanStart')<sup>19+</sup>
 
 on(type: 'beforePanStart', callback: PanListenerCallback): void
 
 监听Pan手势[onActionStart](arkui-ts/ts-basic-gestures-pangesture.md#事件)事件，在onActionStart事件执行之前执行callback回调。支持手指滑动、鼠标滑动、鼠标滚轮和触摸板拖动，暂不支持屏幕朗读触控模式。
 
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -4227,7 +4227,7 @@ on(type: 'beforePanStart', callback: PanListenerCallback): void
 | 参数名   | 类型                                                        | 必填 | 说明                                                         |
 | -------- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | string                                                      | 是   | 监听事件，固定为'beforePanStart'，用于监听Pan手势onActionStart事件执行前的指令下发情况，所注册回调将于Pan手势onActionStart事件触发前触发。 |
-| callback | [PanListenerCallback](#panlistenercallback18) | 是   | 回调函数。可以获得Pan手势事件的GestureEvent，GestureRecognizer和组件的FrameNode。   |
+| callback | [PanListenerCallback](#panlistenercallback19) | 是   | 回调函数。可以获得Pan手势事件的GestureEvent，GestureRecognizer和组件的FrameNode。   |
 
 **示例：**
 
@@ -4329,13 +4329,13 @@ struct PanExample {
 }
 ```
 
-### off('beforePanStart')<sup>18+</sup>
+### off('beforePanStart')<sup>19+</sup>
 
 off(type: 'beforePanStart', callback?: PanListenerCallback): void
 
-取消[on('beforePanStart')](#onbeforepanstart18)监听Pan手势[onActionStart](arkui-ts/ts-basic-gestures-pangesture.md#事件)事件执行前的callback回调。
+取消[on('beforePanStart')](#onbeforepanstart19)监听Pan手势[onActionStart](arkui-ts/ts-basic-gestures-pangesture.md#事件)事件执行前的callback回调。
 
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -4344,7 +4344,7 @@ off(type: 'beforePanStart', callback?: PanListenerCallback): void
 | 参数名   | 类型                                                        | 必填 | 说明                                                 |
 | -------- | ----------------------------------------------------------- | ---- | ---------------------------------------------------- |
 | type     | string                                                      | 是   | 监听事件，固定为'beforePanStart'，即Pan手势onActionStart事件执行前的指令下发情况。 |
-| callback | [PanListenerCallback](#panlistenercallback18) | 否   | 需要被注销的回调函数。                               |
+| callback | [PanListenerCallback](#panlistenercallback19) | 否   | 需要被注销的回调函数。                               |
 
 **示例：**
 
@@ -4358,13 +4358,13 @@ let observer: UIObserver = this.getUIContext().getUIObserver();
 observer.off('beforePanStart', callback);
 ```
 
-### on('afterPanStart')<sup>18+</sup>
+### on('afterPanStart')<sup>19+</sup>
 
 on(type: 'afterPanStart', callback: PanListenerCallback): void
 
 监听Pan手势[onActionStart](arkui-ts/ts-basic-gestures-pangesture.md#事件)事件执行后的指令下发情况，在onActionStart事件执行之后执行callback回调。支持手指滑动、鼠标滑动、鼠标滚轮和触摸板拖动，暂不支持屏幕朗读触控模式。
 
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -4373,17 +4373,17 @@ on(type: 'afterPanStart', callback: PanListenerCallback): void
 | 参数名   | 类型                                                        | 必填 | 说明                                                         |
 | -------- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | string                                                      | 是   | 监听事件，固定为'afterPanStart'，用于监听Pan手势onActionStart事件执行后的指令下发情况，所注册回调将于Pan手势onActionStart事件触发后触发。 |
-| callback | [PanListenerCallback](#panlistenercallback18) | 是   | 回调函数。可以获得Pan手势事件的GestureEvent，GestureRecognizer和组件的FrameNode。   |
+| callback | [PanListenerCallback](#panlistenercallback19) | 是   | 回调函数。可以获得Pan手势事件的GestureEvent，GestureRecognizer和组件的FrameNode。   |
 
 **示例：**
 
-参考[on('beforePanStart')](#onbeforepanstart18)接口示例
+参考[on('beforePanStart')](#onbeforepanstart19)接口示例
 
-### off('afterPanStart')<sup>18+</sup>
+### off('afterPanStart')<sup>19+</sup>
 
 off(type: 'afterPanStart', callback?: PanListenerCallback): void
 
-取消[on('afterPanStart')](#onafterpanstart18)监听Pan手势[onActionStart](arkui-ts/ts-basic-gestures-pangesture.md#事件)事件执行后的callback回调。
+取消[on('afterPanStart')](#onafterpanstart19)监听Pan手势[onActionStart](arkui-ts/ts-basic-gestures-pangesture.md#事件)事件执行后的callback回调。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
@@ -4394,19 +4394,19 @@ off(type: 'afterPanStart', callback?: PanListenerCallback): void
 | 参数名   | 类型                                                        | 必填 | 说明                                                 |
 | -------- | ----------------------------------------------------------- | ---- | ---------------------------------------------------- |
 | type     | string                                                      | 是   | 监听事件，固定为'afterPanStart'，即Pan手势onActionStart事件执行后的指令下发情况。 |
-| callback | [PanListenerCallback](#panlistenercallback18) | 否   | 需要被注销的回调函数。                               |
+| callback | [PanListenerCallback](#panlistenercallback19) | 否   | 需要被注销的回调函数。                               |
 
 **示例：**
 
-参考[on('beforePanStart')](#onbeforepanstart18)接口示例
+参考[on('beforePanStart')](#onbeforepanstart19)接口示例
 
-### on('beforePanEnd')<sup>18+</sup>
+### on('beforePanEnd')<sup>19+</sup>
 
 on(type: 'beforePanEnd', callback: PanListenerCallback): void
 
 监听Pan手势[onActionEnd](arkui-ts/ts-basic-gestures-pangesture.md#事件)事件执行前的指令下发情况，在onActionEnd事件执行之前执行callback回调。支持手指滑动、鼠标滑动、鼠标滚轮和触摸板拖动，暂不支持屏幕朗读触控模式。
 
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -4415,19 +4415,19 @@ on(type: 'beforePanEnd', callback: PanListenerCallback): void
 | 参数名   | 类型                                                        | 必填 | 说明                                                         |
 | -------- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | string                                                      | 是   | 监听事件，固定为'beforePanEnd'，用于监听Pan手势onActionEnd事件执行前的指令下发情况，所注册回调将于Pan手势onActionEnd事件触发前触发。 |
-| callback | [PanListenerCallback](#panlistenercallback18) | 是   | 回调函数。可以获得Pan手势事件的GestureEvent，GestureRecognizer和组件的FrameNode。   |
+| callback | [PanListenerCallback](#panlistenercallback19) | 是   | 回调函数。可以获得Pan手势事件的GestureEvent，GestureRecognizer和组件的FrameNode。   |
 
 **示例：**
 
-参考[on('beforePanStart')](#onbeforepanstart18)接口示例
+参考[on('beforePanStart')](#onbeforepanstart19)接口示例
 
-### off('beforePanEnd')<sup>18+</sup>
+### off('beforePanEnd')<sup>19+</sup>
 
 off(type: 'beforePanEnd', callback?: PanListenerCallback): void
 
-取消[on('beforePanEnd')](#onbeforepanend18)监听Pan手势[onActionEnd](arkui-ts/ts-basic-gestures-pangesture.md#事件)事件执行前的callback回调。
+取消[on('beforePanEnd')](#onbeforepanend19)监听Pan手势[onActionEnd](arkui-ts/ts-basic-gestures-pangesture.md#事件)事件执行前的callback回调。
 
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -4436,19 +4436,19 @@ off(type: 'beforePanEnd', callback?: PanListenerCallback): void
 | 参数名   | 类型                                                        | 必填 | 说明                                                 |
 | -------- | ----------------------------------------------------------- | ---- | ---------------------------------------------------- |
 | type     | string                                                      | 是   | 监听事件，固定为'beforePanEnd'，即Pan手势onActionEnd事件执行前的指令下发情况。 |
-| callback | [PanListenerCallback](#panlistenercallback18) | 否   | 需要被注销的回调函数。                               |
+| callback | [PanListenerCallback](#panlistenercallback19) | 否   | 需要被注销的回调函数。                               |
 
 **示例：**
 
-参考[on('beforePanStart')](#onbeforepanstart18)接口示例
+参考[on('beforePanStart')](#onbeforepanstart19)接口示例
 
-### on('afterPanEnd')<sup>18+</sup>
+### on('afterPanEnd')<sup>19+</sup>
 
 on(type: 'afterPanEnd', callback: PanListenerCallback): void
 
 监听Pan手势[onActionEnd](arkui-ts/ts-basic-gestures-pangesture.md#事件)事件执行后的指令下发情况，在onActionEnd事件执行之后执行callback回调。支持手指滑动、鼠标滑动、鼠标滚轮和触摸板拖动，暂不支持屏幕朗读触控模式。
 
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -4457,19 +4457,19 @@ on(type: 'afterPanEnd', callback: PanListenerCallback): void
 | 参数名   | 类型                                                        | 必填 | 说明                                                         |
 | -------- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | string                                                      | 是   | 监听事件，固定为'beforePanEnd'，用于监听Pan手势onActionEnd事件执行后的指令下发情况，所注册回调将于Pan手势onActionEnd事件触发后触发。 |
-| callback | [PanListenerCallback](#panlistenercallback18) | 是   | 回调函数。可以获得Pan手势事件的GestureEvent，GestureRecognizer和组件的FrameNode。   |
+| callback | [PanListenerCallback](#panlistenercallback19) | 是   | 回调函数。可以获得Pan手势事件的GestureEvent，GestureRecognizer和组件的FrameNode。   |
 
 **示例：**
 
-参考[on('beforePanStart')](#onbeforepanstart18)接口示例
+参考[on('beforePanStart')](#onbeforepanstart19)接口示例
 
-### off('afterPanEnd')<sup>18+</sup>
+### off('afterPanEnd')<sup>19+</sup>
 
 off(type: 'afterPanEnd', callback?: PanListenerCallback): void
 
-取消[on('afterPanEnd')](#onafterpanend18)监听Pan手势[onActionEnd](arkui-ts/ts-basic-gestures-pangesture.md#事件)事件执行后的callback回调。
+取消[on('afterPanEnd')](#onafterpanend19)监听Pan手势[onActionEnd](arkui-ts/ts-basic-gestures-pangesture.md#事件)事件执行后的callback回调。
 
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -4478,19 +4478,19 @@ off(type: 'afterPanEnd', callback?: PanListenerCallback): void
 | 参数名   | 类型                                                        | 必填 | 说明                                                 |
 | -------- | ----------------------------------------------------------- | ---- | ---------------------------------------------------- |
 | type     | string                                                      | 是   | 监听事件，固定为'afterPanEnd'，即Pan手势onActionEnd事件执行后的指令下发情况。 |
-| callback | [PanListenerCallback](#panlistenercallback18) | 否   | 需要被注销的回调函数。                               |
+| callback | [PanListenerCallback](#panlistenercallback19) | 否   | 需要被注销的回调函数。                               |
 
 **示例：**
 
-参考[on('beforePanStart')](#onbeforepanstart18)接口示例
+参考[on('beforePanStart')](#onbeforepanstart19)接口示例
 
 
-## PanListenerCallback<sup>18+</sup>
+## PanListenerCallback<sup>19+</sup>
 type PanListenerCallback = (event: GestureEvent, current: GestureRecognizer, node?: FrameNode) => void
 
 Pan手势事件监听函数类型。
 
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
