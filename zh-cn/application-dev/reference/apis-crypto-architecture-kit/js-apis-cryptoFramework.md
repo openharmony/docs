@@ -4618,7 +4618,7 @@ update(data: DataBlob, callback: AsyncCallback\<void>): void
 
 追加待验签数据，通过注册回调函数完成更新。
 
-必须在对[Verify](#verify)实例使用[init()](#init-4)初始化后，才能使用本函数。
+必须在对[Verify](#verify)实例使用[init](#init-4)初始化后，才能使用本函数。
 
 > **说明：**
 >
@@ -4725,7 +4725,7 @@ updateSync(data: DataBlob): void
 | void | 无返回结果。 |
 
 **错误码：**
-以下错误码的详细介绍请参见[crypto framework错误码](errorcode-crypto-framework.md)
+以下错误码的详细介绍，请参见 [crypto framework 错误码](errorcode-crypto-framework.md)。
 
 | 错误码ID | 错误信息               |
 | -------- | ---------------------- |
@@ -4738,7 +4738,7 @@ updateSync(data: DataBlob): void
 
 verify(data: DataBlob | null, signatureData: DataBlob, callback: AsyncCallback\<boolean>): void
 
-对数据进行验签，通过注册回调函数返回返回验签结果。
+对数据进行验签，通过注册回调函数返回验签结果。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -4820,7 +4820,7 @@ verifySync(data: DataBlob | null, signatureData: DataBlob): boolean
 
 | 类型              | 说明                           |
 | ----------------- | ------------------------------ |
-| boolean | 同步返回值，代表验签是否通过。 |
+| boolean | 同步返回值，表示验签是否成功 |
 
 **错误码：**
 以下错误码的详细介绍请参见[crypto framework错误码](errorcode-crypto-framework.md)
@@ -4866,7 +4866,7 @@ function verifyByCallback() {
 
 **Promise示例：**
 
-此外，更多签名验签的完整示例可参考[签名验签开发指导](../../security/CryptoArchitectureKit/crypto-rsa-sign-sig-verify-pkcs1.md)。
+更多示例请参见[签名验签开发指导](../../security/CryptoArchitectureKit/crypto-rsa-sign-sig-verify-pkcs1.md)。
 
 ```ts
 import { cryptoFramework } from '@kit.CryptoArchitectureKit';
@@ -4959,7 +4959,7 @@ recover(signatureData: DataBlob): Promise\<DataBlob | null>
 | Promise\<[DataBlob](#datablob)  \| null> | 验签恢复的数据。 |
 
 **错误码：**
-以下错误码的详细介绍请参见[crypto framework错误码](errorcode-crypto-framework.md)
+以下错误码的详细介绍，请参见 [crypto framework 错误码](errorcode-crypto-framework.md)。
 
 | 错误码ID | 错误信息               |
 | -------- | ---------------------- |
@@ -5050,7 +5050,7 @@ setVerifySpec(itemType: SignSpecItem, itemValue: number \| Uint8Array): void
 
 设置验签参数。常用的签名参数可以直接通过[createVerify](#cryptoframeworkcreateverify) 来指定，剩余参数可以通过本接口指定。
 
-只支持RSA算法、SM2算法，从API version 11开始，支持SM2算法设置验签参数。
+支持RSA算法和SM2算法，从API version 11开始，支持SM2算法设置验签参数。
 
 验签的参数应当与签名的参数保持一致。
 
