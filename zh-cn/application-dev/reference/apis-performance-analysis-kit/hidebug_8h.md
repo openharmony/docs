@@ -33,3 +33,7 @@
 | [HiDebug_ErrorCode](_hi_debug.md#hidebug_errorcode) [OH_HiDebug_StartAppTraceCapture](_hi_debug.md#oh_hidebug_startapptracecapture) ([HiDebug_TraceFlag](_hi_debug.md#hidebug_traceflag) flag, uint64_t tags, uint32_t limitSize, char \*fileName, uint32_t length) | 启动应用trace采集。  | 
 | [HiDebug_ErrorCode](_hi_debug.md#hidebug_errorcode) [OH_HiDebug_StopAppTraceCapture](_hi_debug.md#oh_hidebug_stopapptracecapture) () | 停止采集应用程序trace。  | 
 | [HiDebug_ErrorCode](_hi_debug.md#hidebug_errorcode) [OH_HiDebug_GetGraphicsMemory](_hi_debug.md#oh_hidebug_getgraphicsmemory) (uint32_t \*value) | 获取应用gpu显存大小。  | 
+| int [OH_HiDebug_BacktraceFromFp](_hi_debug.md#oh_hidebug_backtracefromfp) (HiDebug_Backtrace_Object object, void \*startFp, void \*\*pcArray, int size)  | 获取从给定的栈帧指针开始的回溯帧。 | 
+| [HiDebug_ErrorCode](_hi_debug.md#hidebug_errorcode) [OH_HiDebug_SymbolicAddress](_hi_debug.md#oh_hidebug_symbolicaddress) (HiDebug_Backtrace_Object object, void \*pc, void \*arg, OH_HiDebug_SymbolicAddressCallback callback) | 通过给定的程序计数器（PC）获取详细的符号信息。 | 
+| [HiDebug_Backtrace_Object](_hi_debug.md#hidebug_backtrace_object) [OH_HiDebug_CreateBacktraceObject](_hi_debug.md#oh_hidebug_createbacktraceobject) (void)  | 创建一个用于栈回溯及栈解析的对象。 | 
+| void [OH_HiDebug_DestroyBacktraceObject](_hi_debug.md#oh_hidebug_destroybacktraceobject) (HiDebug_Backtrace_Object object) | 销毁创建的用于栈回溯及栈解析对象。 | 

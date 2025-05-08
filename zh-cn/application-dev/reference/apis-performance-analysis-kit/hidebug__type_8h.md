@@ -25,6 +25,9 @@ HiDebug模块结构体定义。 \@kit PerformanceAnalysisKit
 | struct&nbsp;&nbsp;[HiDebug_SystemMemInfo](_hi_debug___system_mem_info.md) | 系统内存信息结构类型定义。  | 
 | struct&nbsp;&nbsp;[HiDebug_NativeMemInfo](_hi_debug___native_mem_info.md) | 应用程序进程本机内存信息结构类型定义。  | 
 | struct&nbsp;&nbsp;[HiDebug_MemoryLimit](_hi_debug___memory_limit.md) | 应用程序进程内存限制结构类型定义。  | 
+| struct&nbsp;&nbsp;[HiDebug_JsStackFrame](_hi_debug__jsstackframe.md) | 应用程序进程内存限制结构类型定义。  | 
+| struct&nbsp;&nbsp;[HiDebug_NativeStackFrame](_hi_debug__nativestackframe.md) | 应用程序进程内存限制结构类型定义。  | 
+| struct&nbsp;&nbsp;[HiDebug_StackFrame](_hi_debug__hidebugstackframe.md) | 应用程序进程内存限制结构类型定义。  | 
 
 
 ### 宏定义
@@ -75,12 +78,16 @@ HiDebug模块结构体定义。 \@kit PerformanceAnalysisKit
 | typedef struct [HiDebug_SystemMemInfo](_hi_debug___system_mem_info.md) [HiDebug_SystemMemInfo](_hi_debug.md#hidebug_systemmeminfo) | 系统内存信息结构类型定义。  | 
 | typedef struct [HiDebug_NativeMemInfo](_hi_debug___native_mem_info.md) [HiDebug_NativeMemInfo](_hi_debug.md#hidebug_nativememinfo) | 应用程序进程本机内存信息结构类型定义。  | 
 | typedef struct [HiDebug_MemoryLimit](_hi_debug___memory_limit.md) [HiDebug_MemoryLimit](_hi_debug.md#hidebug_memorylimit) | 应用程序进程内存限制结构类型定义。  | 
-| typedef enum [HiDebug_TraceFlag](_hi_debug.md#hidebug_traceflag-1) [HiDebug_TraceFlag](_hi_debug.md#hidebug_traceflag) | 采集trace线程的类型。  | 
-
+| typedef enum [HiDebug_TraceFlag](_hi_debug.md#hidebug_traceflag-1) [HiDebug_TraceFlag](_hi_debug.md#hidebug_traceflag) | 采集trace线程的类型。  |
+| typedef struct [HiDebug_JsStackFrame](_hi_debug__jsstackframe.md) [HiDebug_JsStackFrame](_hi_debug.md#hidebug_jsstackframe)    | js栈信息。                      |
+| typedef struct [HiDebug_NativeStackFrame](_hi_debug__nativestackframe.md) [HiDebug_NativeStackFrame](_hi_debug.md#hidebug_nativestackframe)    | native栈信息。               |
+| typedef struct [HiDebug_StackFrame](_hi_debug__hidebugstackframe.md) [HiDebug_StackFrame](_hi_debug.md#hidebug_stackframe)    | 根据pc解析后的栈信息。               |
+| typedef struct HiDebug_Backtrace_Object____* [HiDebug_Backtrace_Object](_hi_debug.md#hidebug_backtrace_object)    | 用于栈回溯及栈解析的对象定义。                   |
 
 ### 枚举
 
-| 名称 | 描述 | 
-| -------- | -------- |
-| [HiDebug_ErrorCode](_hi_debug.md#hidebug_errorcode-1) {<br/>HIDEBUG_SUCCESS = 0,<br/>HIDEBUG_INVALID_ARGUMENT = 401,<br/>HIDEBUG_TRACE_CAPTURED_ALREADY = 11400102,<br/>HIDEBUG_NO_PERMISSION = 11400103,<br/>HIDEBUG_TRACE_ABNORMAL = 11400104,<br/>HIDEBUG_NO_TRACE_RUNNING = 11400105<br/>} | 错误码定义。  | 
-| [HiDebug_TraceFlag](_hi_debug.md#hidebug_traceflag-1) {<br/>HIDEBUG_TRACE_FLAG_MAIN_THREAD = 1,<br/>HIDEBUG_TRACE_FLAG_ALL_THREADS = 2<br/>} | 采集trace线程的类型。  | 
+| 名称                                                                                                                                                                                                                                                                                                                                                       | 描述 | 
+|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------| -------- |
+| [HiDebug_ErrorCode](_hi_debug.md#hidebug_errorcode-1) {<br/>HIDEBUG_SUCCESS = 0, <br/>HIDEBUG_INVALID_ARGUMENT = 401, <br/>HIDEBUG_TRACE_CAPTURED_ALREADY = 11400102, <br/>HIDEBUG_NO_PERMISSION = 11400103, <br/>HIDEBUG_TRACE_ABNORMAL = 11400104, <br/>HIDEBUG_NO_TRACE_RUNNING = 11400105, <br/>HIDEBUG_INVALID_SYMBOLIC_PC_ADDRESS = 11400200<br/>} | 错误码定义。  | 
+| [HiDebug_TraceFlag](_hi_debug.md#hidebug_traceflag-1) {<br/>HIDEBUG_TRACE_FLAG_MAIN_THREAD = 1, <br/>HIDEBUG_TRACE_FLAG_ALL_THREADS = 2 <br/>}                                                                                                                                                                                                           | 采集trace线程的类型。  | 
+| [HiDebug_StackFrameType](_hi_debug.md#hidebug_stackframetype) {<br/>HIDEBUG_STACK_FRAME_TYPE_JS = 1, <br/>HIDEBUG_STACK_FRAME_TYPE_NATIVE = 2 <br/>}                                                                                                                                                                                                                     | 栈帧类型。  | 

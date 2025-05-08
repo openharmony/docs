@@ -42,6 +42,9 @@
     - [HiDebug_NativeMemInfo](_hi_debug___native_mem_info.md)
     - [HiDebug_SystemMemInfo](_hi_debug___system_mem_info.md)
     - [HiDebug_ThreadCpuUsage](_hi_debug___thread_cpu_usage.md)
+    - [HiDebug_JsStackFrame](_hi_debug__jsstackframe.md)
+    - [HiDebug_NativeStackFrame](_hi_debug__nativestackframe.md)
+    - [HiDebug_StackFrame](_hi_debug__hidebugstackframe.md)
     - [HiTraceId](_hi_trace_id.md)
 - 错误码<!--performance-analysis-errcode-->
   - [Faultlogger错误码](errorcode-faultlogger.md)

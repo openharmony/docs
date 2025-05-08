@@ -3947,6 +3947,9 @@
             - [HiDebug_NativeMemInfo](reference/apis-performance-analysis-kit/_hi_debug___native_mem_info.md)
             - [HiDebug_SystemMemInfo](reference/apis-performance-analysis-kit/_hi_debug___system_mem_info.md)
             - [HiDebug_ThreadCpuUsage](reference/apis-performance-analysis-kit/_hi_debug___thread_cpu_usage.md)
+            - [HiDebug_JsStackFrame](reference/apis-performance-analysis-kit/_hi_debug__jsstackframe.md)
+            - [HiDebug_NativeStackFrame](reference/apis-performance-analysis-kit/_hi_debug__nativestackframe.md)
+            - [HiDebug_StackFrame](reference/apis-performance-analysis-kit/_hi_debug__hidebugstackframe.md)
             - [HiTraceId](reference/apis-performance-analysis-kit/_hi_trace_id.md)
         - 错误码<!--performance-analysis-errcode-->
           - [Faultlogger错误码](reference/apis-performance-analysis-kit/errorcode-faultlogger.md)
