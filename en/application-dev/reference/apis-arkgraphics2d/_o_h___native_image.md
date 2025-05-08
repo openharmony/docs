@@ -191,9 +191,7 @@ Enumerates the error codes.
 | NATIVE_ERROR_EGL_STATE_UNKNOWN  | The EGL environment is abnormal.  | 
 | NATIVE_ERROR_EGL_API_FAILED  | Failed to call the EGL APIs.  | 
 
-
 ## Function Description
-
 ### OH_NativeImage_GetBufferMatrix()
 
 ```
