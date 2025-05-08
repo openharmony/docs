@@ -193,7 +193,7 @@ zh-cn/application-dev/ui/arkts-layout-development-create-looping.md	@yan-shuifen
 zh-cn/application-dev/ui/arkts-common-components-button.md			@li-xinlei007	@HelloCrease @liyi0309
 zh-cn/application-dev/ui/arkts-common-components-radio-button.md	@houguobiao		@li-xinlei007	@HelloCrease
 zh-cn/application-dev/ui/arkts-common-components-switch.md			@li-xinlei007	@HelloCrease @houguobiao
-zh-cn/application-dev/ui/arkts-common-components-progress-indicator.md	@yeyinglong_admin	@cc520bf	@fredyuan0912	@HelloCrease
+zh-cn/application-dev/ui/arkts-common-components-progress-indicator.md	@yeyinglong_admin	@rongshao-Z	@fredyuan0912	@HelloCrease
 zh-cn/application-dev/ui/arkts-common-components-text-display.md	@crazyracing0726		@fredyuan0912	@HelloCrease
 zh-cn/application-dev/ui/arkts-common-components-text-input.md	@crazyracing0726		@fredyuan0912	@HelloCrease
 zh-cn/application-dev/ui/arkts-common-components-custom-dialog.md			@li-xinlei007	@HelloCrease @houguobiao
@@ -207,7 +207,7 @@ zh-cn/application-dev/ui/arkts-popup-overview.md			@li-xinlei007	@HelloCrease @z
 zh-cn/application-dev/ui/arkts-dialog-overview.md			@li-xinlei007	@HelloCrease @zhanghaibo0
 zh-cn/application-dev/ui/arkts-routing.md	@raulnaruto_admin		@HelloCrease
 zh-cn/application-dev/ui/arkts-navigation-navigation.md	@jiangdayuan	@raulnaruto_admin	@fredyuan0912	@HelloCrease
-zh-cn/application-dev/ui/arkts-navigation-tabs.md	@yan-shuifeng	@cc520bf	@fredyuan0912	@HelloCrease
+zh-cn/application-dev/ui/arkts-navigation-tabs.md	@yan-shuifeng	@rongshao-Z	@fredyuan0912	@HelloCrease
 zh-cn/application-dev/ui/arkts-graphics-display.md	@lexiaoyao2		@fredyuan0912	@HelloCrease
 zh-cn/application-dev/ui/arkts-geometric-shape-drawing.md	@keerecles	@seaside_wu		@HelloCrease
 zh-cn/application-dev/ui/arkts-drawing-customization-on-canvas.md	@keerecles	@ZhangYu-Home		@HelloCrease
@@ -656,7 +656,7 @@ zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-gestures-swipegestu
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-combined-gestures.md	@jiangtao92	@piggyguy	@fredyuan0912	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-gesture-customize-judge.md @jiangtao92	@piggyguy	@fredyuan0912	@HelloCrease
 
-zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-container-alphabet-indexer.md	@cc520bf	@yeyinglong_admin	@lihaoyn	@HelloCrease
+zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-container-alphabet-indexer.md	@rongshao-Z	@yeyinglong_admin	@lihaoyn	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-blank.md	@laigerendaqiu	@fredyuan0912	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-button.md		@liyi0309	@li-xinlei007	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-calendarpicker.md	@jinweiliu	@lexiaoyao2	@li-xinlei007	@HelloCrease
@@ -686,7 +686,7 @@ zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-radio.md
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-rating.md		@liyi0309	@li-xinlei007	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-richeditor.md		@vviinnoo24	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-richtext.md	@bigpumpkin @HelloCrease @patrickrubystar @GHiker
-zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-scrollbar.md	@cc520bf	@yeyinglong_admin	@lihaoyn	@HelloCrease
+zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-scrollbar.md	@rongshao-Z	@yeyinglong_admin	@lihaoyn	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-search.md		@jyj-0306 @fredyuan0912	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-select.md		@zhanghaibo0	@li-xinlei007	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-slider.md		@liyi0309	@li-xinlei007	@HelloCrease
@@ -715,34 +715,34 @@ zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-container-column.md	@laig
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-container-columnsplit.md	@laigerendaqiu	@fredyuan0912	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-container-counter.md	@ileft20	@lihaoyn	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-container-flex.md	 @laigerendaqiu	@fredyuan0912	@HelloCrease
-zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-container-flowitem.md	@cc520bf	@zcdqs	@lihaoyn	@HelloCrease
+zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-container-flowitem.md	@rongshao-Z	@zcdqs	@lihaoyn	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-container-folderstack.md @laigerendaqiu	@fredyuan0912	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-formcomponent-sys.md	@Brilliantry_Rui @ylsnow  @cmz001 @Eiln
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-container-formlink.md			@Brilliantry_Rui @ylsnow @cmz001 @Eiln
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ohos-arkui-advanced-formmenu.md @Brilliantry_Rui @ylsnow @cmz001 @Eiln
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-container-gridcol.md	@laigerendaqiu	@fredyuan0912	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-container-gridrow.md	@laigerendaqiu	@fredyuan0912	@HelloCrease
-zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-container-grid.md	@cc520bf	@zcdqs	@lihaoyn	@HelloCrease
-zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-container-griditem.md	@cc520bf	@zcdqs	@lihaoyn	@HelloCrease
+zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-container-grid.md	@rongshao-Z	@zcdqs	@lihaoyn	@HelloCrease
+zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-container-griditem.md	@rongshao-Z	@zcdqs	@lihaoyn	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-container-hyperlink.md	@jyj-0306	@fredyuan0912	@HelloCrease
-zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-container-list.md	@cc520bf	@yeyinglong_admin	@lihaoyn	@HelloCrease
-zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-container-listitem.md	@cc520bf	@yeyinglong_admin	@lihaoyn	@HelloCrease
-zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-container-listitemgroup.md	@cc520bf	@yeyinglong_admin	@lihaoyn	@HelloCrease
+zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-container-list.md	@rongshao-Z	@yeyinglong_admin	@lihaoyn	@HelloCrease
+zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-container-listitem.md	@rongshao-Z	@yeyinglong_admin	@lihaoyn	@HelloCrease
+zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-container-listitemgroup.md	@rongshao-Z	@yeyinglong_admin	@lihaoyn	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-container-navigator.md	@raulnaruto_admin	@jiangdayuan	@fredyuan0912	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-container-panel.md	@raulnaruto_admin		@HelloCrease
-zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-container-refresh.md	@cc520bf	@yeyinglong_admin	@lihaoyn	@HelloCrease
+zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-container-refresh.md	@rongshao-Z	@yeyinglong_admin	@lihaoyn	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-container-relativecontainer.md	@laigerendaqiu	@fredyuan0912	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-container-row.md	@laigerendaqiu	@fredyuan0912	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-container-rowsplit.md	@laigerendaqiu	@fredyuan0912	@HelloCrease
-zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-container-scroll.md	@cc520bf	@yeyinglong_admin	@lihaoyn	@HelloCrease
+zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-container-scroll.md	@rongshao-Z	@yeyinglong_admin	@lihaoyn	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-container-sidebarcontainer.md	@raulnaruto_admin	@jiangdayuan	@fredyuan0912	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-container-stack.md	@laigerendaqiu	@fredyuan0912	@HelloCrease
-zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-container-swiper.md	@cc520bf	@zcdqs	@lihaoyn	@HelloCrease
-zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-container-tabs.md	@cc520bf	@zcdqs	@lihaoyn	@HelloCrease
-zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-container-tabcontent.md	@cc520bf	@zcdqs	@lihaoyn	@HelloCrease
-zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-container-waterflow.md	@cc520bf	@zcdqs	@lihaoyn	@HelloCrease
+zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-container-swiper.md	@rongshao-Z	@zcdqs	@lihaoyn	@HelloCrease
+zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-container-tabs.md	@rongshao-Z	@zcdqs	@lihaoyn	@HelloCrease
+zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-container-tabcontent.md	@rongshao-Z	@zcdqs	@lihaoyn	@HelloCrease
+zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-container-waterflow.md	@rongshao-Z	@zcdqs	@lihaoyn	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-container-effectcomponent-sys.md @HelloCrease
-zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-container-list-sys.md @cc520bf	@yeyinglong_admin	@lihaoyn	@HelloCrease
+zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-container-list-sys.md @rongshao-Z	@yeyinglong_admin	@lihaoyn	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-container-ui-extension-component-sys.md	@dutie123	@fredyuan0912	@HelloCrease
 
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-media-components-video.md	 @ZhangYu-Home	@keerecles	@fredyuan0912	@HelloCrease
