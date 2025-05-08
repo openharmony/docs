@@ -48,7 +48,7 @@ import { pointer } from '@kit.InputKit';
 @Entry
 @Component
 struct CursorControlExample {
-  @State text: string = ''
+  @State text: string = '';
   controller: TextInputController = new TextInputController()
 
   build() {
