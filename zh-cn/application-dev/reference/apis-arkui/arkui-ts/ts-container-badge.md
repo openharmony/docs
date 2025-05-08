@@ -309,7 +309,7 @@ struct BadgeExample {
 @Entry
 @Component
 struct Index {
-  @State badgeCount: number = 1
+  @State badgeCount: number = 1;
 
   build() {
     Column({ space: 40 }) {
@@ -325,10 +325,10 @@ struct Index {
       .width(55)
 
       Button('count 0').onClick(() => {
-        this.badgeCount = 0
+        this.badgeCount = 0;
       })
       Button('count 1').onClick(() => {
-        this.badgeCount = 1
+        this.badgeCount = 1;
       })
     }
     .margin({ top: 20 })

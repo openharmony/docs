@@ -85,22 +85,21 @@ struct Index {
             enable: this.enableState,
             clickCallback: () => {
               if (this.textState && !this.isRunning && this.progressIndex < 100) {
-                this.textState = '继续'
+                this.textState = '继续';
               }
-              this.isRunning = !this.isRunning
+              this.isRunning = !this.isRunning;
               let timer = setInterval(() => {
                 if (this.isRunning) {
                   if (this.progressIndex === 100) {
-
                   } else {
-                    this.progressIndex++
+                    this.progressIndex++;
                     if (this.progressIndex === 100) {
-                      this.textState = '已完成'
-                      this.enableState = false
+                      this.textState = '已完成';
+                      this.enableState = false;
                     }
                   }
                 } else {
-                  clearInterval(timer)
+                  clearInterval(timer);
                 }
               }, 20)
             }
@@ -147,21 +146,21 @@ struct Index {
             enable: this.enableState,
             clickCallback: () => {
               if (this.textState && !this.isRunning && this.progressIndex < 100) {
-                this.textState = '继续'
+                this.textState = '继续';
               }
-              this.isRunning = !this.isRunning
+              this.isRunning = !this.isRunning;
               let timer = setInterval(() => {
                 if (this.isRunning) {
                   if (this.progressIndex === 100) {
                   } else {
-                    this.progressIndex++
+                    this.progressIndex++;
                     if (this.progressIndex === 100) {
-                      this.textState = '已完成'
-                      this.enableState = false
+                      this.textState = '已完成';
+                      this.enableState = false;
                     }
                   }
                 } else {
-                  clearInterval(timer)
+                  clearInterval(timer);
                 }
               }, 20)
             }
@@ -200,21 +199,21 @@ struct Index {
             enable: this.enableState,
             clickCallback: () => {
               if (this.textState && !this.isRunning && this.progressIndex < 100) {
-                this.textState = '继续'
+                this.textState = '继续';
               }
-              this.isRunning = !this.isRunning
+              this.isRunning = !this.isRunning;
               let timer = setInterval(() => {
                 if (this.isRunning) {
                   if (this.progressIndex === 100) {
                   } else {
-                    this.progressIndex++
+                    this.progressIndex++;
                     if (this.progressIndex === 100) {
-                      this.textState = '已完成'
-                      this.enableState = false
+                      this.textState = '已完成';
+                      this.enableState = false;
                     }
                   }
                 } else {
-                  clearInterval(timer)
+                  clearInterval(timer);
                 }
               }, 20)
             }

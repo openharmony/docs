@@ -623,19 +623,19 @@ type TextPickerEnterSelectedAreaCallback = (value: string | string[], index: num
 
 ```ts
 // xxx.ets
-import { LengthMetrics } from '@kit.ArkUI'
+import { LengthMetrics } from '@kit.ArkUI';
 class bottom {
-  bottom:number = 50
+  bottom:number = 50;
 }
-let bott:bottom = new bottom()
+let bott:bottom = new bottom();
 @Entry
 @Component
 struct TextPickerExample {
-  private select: number = 1
-  private apfruits: string[] = ['apple1', 'apple2', 'apple3', 'apple4']
-  private orfruits: string[] = ['orange1', 'orange2', 'orange3', 'orange4']
-  private pefruits: string[] = ['peach1', 'peach2', 'peach3', 'peach4']
-  private multi: string[][] = [this.apfruits, this.orfruits, this.pefruits]
+  private select: number = 1;
+  private apfruits: string[] = ['apple1', 'apple2', 'apple3', 'apple4'];
+  private orfruits: string[] = ['orange1', 'orange2', 'orange3', 'orange4'];
+  private pefruits: string[] = ['peach1', 'peach2', 'peach3', 'peach4'];
+  private multi: string[][] = [this.apfruits, this.orfruits, this.pefruits];
   private cascade: TextCascadePickerRangeContent[] = [
     {
       text: '辽宁省',
@@ -652,56 +652,56 @@ struct TextPickerExample {
       children: [{ text: '哈尔滨市', children: [{ text: '道里区' }, { text: '道外区' }, { text: '南岗区' }] },
         { text: '牡丹江市', children: [{ text: '东安区' }, { text: '西安区' }, { text: '爱民区' }] }]
     }
-  ]
+  ];
   private singleColumnWidths: LengthMetrics[] = [
     LengthMetrics.percent(50)
-  ]
+  ];
 
   private multipleColumnWidths: LengthMetrics[] = [
     LengthMetrics.vp(100),
     LengthMetrics.vp(200),
     LengthMetrics.vp(100)
-  ]
+  ];
 
   private cascadeColumnWidths: LengthMetrics[] = [
     LengthMetrics.percent(20),
     LengthMetrics.percent(30),
     LengthMetrics.percent(50)
-  ]
+  ];
   build() {
     Column() {
 
       TextPicker({ range: this.apfruits, selected: this.select, columnWidths: this.singleColumnWidths })
         .onChange((value: string | string[], index: number | number[]) => {
-          console.info('Picker item changed, value: ' + value + ', index: ' + index)
+          console.info('Picker item changed, value: ' + value + ', index: ' + index);
         })
         .onScrollStop((value: string | string[], index: number | number[]) => {
-          console.info('Picker scroll stopped, value: ' + value + ', index: ' + index)
+          console.info('Picker scroll stopped, value: ' + value + ', index: ' + index);
         }).margin(bott)
         .onEnterSelectedArea((value: string | string[], index: number | number[]) => {
-          console.info('Picker item enter selected area, value: ' + value + ', index: ' + index)
+          console.info('Picker item enter selected area, value: ' + value + ', index: ' + index);
         })
 
       TextPicker({ range: this.multi, columnWidths: this.multipleColumnWidths })
         .onChange((value: string | string[], index: number | number[]) => {
-          console.info('TextPicker 多列:onChange ' + JSON.stringify(value) + ', ' + 'index: ' + JSON.stringify(index))
+          console.info('TextPicker 多列:onChange ' + JSON.stringify(value) + ', ' + 'index: ' + JSON.stringify(index));
         })
         .onScrollStop((value: string | string[], index: number | number[]) => {
-          console.info('TextPicker 多列:onScrollStop ' + JSON.stringify(value) + ', ' + 'index: ' + JSON.stringify(index))
+          console.info('TextPicker 多列:onScrollStop ' + JSON.stringify(value) + ', ' + 'index: ' + JSON.stringify(index));
         }).margin(bott)
         .onEnterSelectedArea((value: string | string[], index: number | number[]) => {
-          console.info('TextPicker 多列:onEnterSelectedArea ' + JSON.stringify(value) + ', ' + 'index: ' + JSON.stringify(index))
+          console.info('TextPicker 多列:onEnterSelectedArea ' + JSON.stringify(value) + ', ' + 'index: ' + JSON.stringify(index));
         })
 
       TextPicker({ range: this.cascade, columnWidths: this.cascadeColumnWidths })
         .onChange((value: string | string[], index: number | number[]) => {
-          console.info('TextPicker 多列联动:onChange ' + JSON.stringify(value) + ', ' + 'index: ' + JSON.stringify(index))
+          console.info('TextPicker 多列联动:onChange ' + JSON.stringify(value) + ', ' + 'index: ' + JSON.stringify(index));
         })
         .onScrollStop((value: string | string[], index: number | number[]) => {
-          console.info('TextPicker 多列联动:onScrollStop ' + JSON.stringify(value) + ', ' + 'index: ' + JSON.stringify(index))
+          console.info('TextPicker 多列联动:onScrollStop ' + JSON.stringify(value) + ', ' + 'index: ' + JSON.stringify(index));
         })
         .onEnterSelectedArea((value: string | string[], index: number | number[]) => {
-          console.info('TextPicker 多列联动:onEnterSelectedArea ' + JSON.stringify(value) + ', ' + 'index: ' + JSON.stringify(index))
+          console.info('TextPicker 多列联动:onEnterSelectedArea ' + JSON.stringify(value) + ', ' + 'index: ' + JSON.stringify(index));
         })
     }
   }
@@ -719,8 +719,8 @@ struct TextPickerExample {
 @Entry
 @Component
 struct TextPickerExample {
-  private select: number = 1
-  private fruits: string[] = ['apple1', 'orange2', 'peach3', 'grape4']
+  private select: number = 1;
+  private fruits: string[] = ['apple1', 'orange2', 'peach3', 'grape4'];
 
   build() {
     Column() {
@@ -730,10 +730,10 @@ struct TextPickerExample {
         value: this.fruits[this.select]
       })
         .onChange((value: string | string[], index: number | number[]) => {
-          console.info('Picker item changed, value: ' + value + ', index: ' + index)
+          console.info('Picker item changed, value: ' + value + ', index: ' + index);
         })
         .onScrollStop((value: string | string[], index: number | number[]) => {
-          console.info('Picker scroll stopped, value: ' + value + ', index: ' + index)
+          console.info('Picker scroll stopped, value: ' + value + ', index: ' + index);
         })
         .disappearTextStyle({ color: Color.Red, font: { size: 15, weight: FontWeight.Lighter } })
         .textStyle({ color: Color.Black, font: { size: 20, weight: FontWeight.Normal } })
@@ -757,17 +757,17 @@ struct TextPickerExample {
 @Entry
 @Component
 struct TextPickerExample {
-  private select: number = 1
-  private fruits: string[] = ['apple1', 'orange2', 'peach3', 'grape4']
+  private select: number = 1;
+  private fruits: string[] = ['apple1', 'orange2', 'peach3', 'grape4'];
 
   build() {
     Column() {
       TextPicker({ range: this.fruits, selected: this.select })
         .onChange((value: string | string[], index: number | number[]) => {
-          console.info('Picker item changed, value: ' + value + ', index: ' + index)
+          console.info('Picker item changed, value: ' + value + ', index: ' + index);
         })
         .onScrollStop((value: string | string[], index: number | number[]) => {
-          console.info('Picker scroll stopped, value: ' + value + ', index: ' + index)
+          console.info('Picker scroll stopped, value: ' + value + ', index: ' + index);
         })
         .disappearTextStyle({color: Color.Red, font: {size: 15, weight: FontWeight.Lighter}})
         .textStyle({color: Color.Black, font: {size: 20, weight: FontWeight.Normal}})
@@ -788,17 +788,17 @@ struct TextPickerExample {
 @Entry
 @Component
 struct TextPickerExample {
-  private select: number = 1
-  private fruits: string[] = ['apple1', 'orange2', 'peach3', 'grape4']
+  private select: number = 1;
+  private fruits: string[] = ['apple1', 'orange2', 'peach3', 'grape4'];
 
   build() {
     Column() {
       TextPicker({ range: this.fruits, selected: this.select })
         .onChange((value: string | string[], index: number | number[]) => {
-          console.info('Picker item changed, value: ' + value + ', index: ' + index)
+          console.info('Picker item changed, value: ' + value + ', index: ' + index);
         })
         .onScrollStop((value: string | string[], index: number | number[]) => {
-          console.info('Picker scroll stopped, value: ' + value + ', index: ' + index)
+          console.info('Picker scroll stopped, value: ' + value + ', index: ' + index);
         })
         .disappearTextStyle({color: Color.Red, font: {size: 15, weight: FontWeight.Lighter}})
         .textStyle({color: Color.Black, font: {size: 20, weight: FontWeight.Normal}})
@@ -824,17 +824,17 @@ struct TextPickerExample {
 @Entry
 @Component
 struct TextPickerExample {
-  private select: number = 1
-  private fruits: string[] = ['apple1', 'orange2', 'peach3', 'grape4']
+  private select: number = 1;
+  private fruits: string[] = ['apple1', 'orange2', 'peach3', 'grape4'];
 
   build() {
     Column() {
       TextPicker({ range: this.fruits, selected: this.select })
         .onChange((value: string | string[], index: number | number[]) => {
-          console.info('Picker item changed, value: ' + value + ', index: ' + index)
+          console.info('Picker item changed, value: ' + value + ', index: ' + index);
         })
         .onScrollStop((value: string | string[], index: number | number[]) => {
-          console.info('Picker scroll stopped, value: ' + value + ', index: ' + index)
+          console.info('Picker scroll stopped, value: ' + value + ', index: ' + index);
         })
         .disappearTextStyle({color: Color.Red, font: {size: 15, weight: FontWeight.Lighter}})
         .textStyle({color: Color.Black, font: {size: 20, weight: FontWeight.Normal}})
@@ -856,18 +856,18 @@ struct TextPickerExample {
 @Entry
 @Component
 struct TextPickerExample {
-  private select: number = 1
-  private fruits: string[] = ['apple1', 'orange2', 'peach3', 'grape4']
+  private select: number = 1;
+  private fruits: string[] = ['apple1', 'orange2', 'peach3', 'grape4'];
 
   build() {
     Column() {
       TextPicker({ range: this.fruits, selected: this.select })
         .defaultPickerItemHeight(60)
         .onChange((value: string | string[], index: number | number[]) => {
-          console.info('Picker item changed, value: ' + value + ', index: ' + index)
+          console.info('Picker item changed, value: ' + value + ', index: ' + index);
         })
         .onScrollStop((value: string | string[], index: number | number[]) => {
-          console.info('Picker scroll stopped, value: ' + value + ', index: ' + index)
+          console.info('Picker scroll stopped, value: ' + value + ', index: ' + index);
         })
     }.width('100%').height('100%')
   }
@@ -886,18 +886,18 @@ struct TextPickerExample {
 @Entry
 @Component
 struct TextPickerExample {
-  @State isLoop: boolean = false
-  private select: number = 1
-  private fruits: string[] = ['apple1', 'orange2', 'peach3', 'grape4']
+  @State isLoop: boolean = false;
+  private select: number = 1;
+  private fruits: string[] = ['apple1', 'orange2', 'peach3', 'grape4'];
 
   build() {
     Column() {
       TextPicker({ range: this.fruits, selected: this.select })
         .onChange((value: string | string[], index: number | number[]) => {
-          console.info('Picker item changed, value: ' + value + ', index: ' + index)
+          console.info('Picker item changed, value: ' + value + ', index: ' + index);
         })
         .onScrollStop((value: string | string[], index: number | number[]) => {
-          console.info('Picker scroll stopped, value: ' + value + ', index: ' + index)
+          console.info('Picker scroll stopped, value: ' + value + ', index: ' + index);
         })
         .canLoop(this.isLoop)
 
@@ -906,7 +906,7 @@ struct TextPickerExample {
 
         Toggle({ type: ToggleType.Switch, isOn: false })
           .onChange((isOn: boolean) => {
-            this.isLoop = isOn
+            this.isLoop = isOn;
           })
       }.position({ x: '60%', y: '40%' })
 
@@ -926,17 +926,17 @@ struct TextPickerExample {
 @Entry
 @Component
 struct TextPickerExample {
-  private fruits: string[] = ['apple1', 'orange2', 'peach3', 'grape4']
+  private fruits: string[] = ['apple1', 'orange2', 'peach3', 'grape4'];
 
   build() {
     Column() {
       TextPicker({ range: this.fruits, selected: 1 })
         .selectedIndex(2)
         .onChange((value: string | string[], index: number | number[]) => {
-          console.info('Picker item changed, value: ' + value + ', index: ' + index)
+          console.info('Picker item changed, value: ' + value + ', index: ' + index);
         })
         .onScrollStop((value: string | string[], index: number | number[]) => {
-          console.info('Picker scroll stopped, value: ' + value + ', index: ' + index)
+          console.info('Picker scroll stopped, value: ' + value + ', index: ' + index);
         })
     }.width('100%').height('100%')
   }
@@ -954,8 +954,8 @@ struct TextPickerExample {
 @Entry
 @Component
 struct TextPickerExample {
-  private select: number = 1
-  private fruits: string[] = ['AAAAA', 'BBBBBBBBBBBBB', 'CCCC', 'DDDDDDDD', 'EEE']
+  private select: number = 1;
+  private fruits: string[] = ['AAAAA', 'BBBBBBBBBBBBB', 'CCCC', 'DDDDDDDD', 'EEE'];
 
   build() {
     Column() {
