@@ -17,4 +17,4 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| interface&nbsp;&nbsp;[IUsbDeviceInterface](interface_i_usb_device_interface.md) |  | 
+| interface&nbsp;&nbsp;[IUsbDeviceInterface](interface_i_usb_device_interface.md) | 定义USB驱动基本的操作功能。<br>上层USB服务调用相关功能接口，可以进行USB设备功能管理、设备订阅者绑定/解绑等。 | 
