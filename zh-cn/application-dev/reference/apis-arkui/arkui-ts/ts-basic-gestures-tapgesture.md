@@ -58,7 +58,7 @@ TapGesture(value?: TapGestureParameters)
 @Entry
 @Component
 struct TapGestureExample {
-  @State value: string = ''
+  @State value: string = '';
 
   build() {
     Column() {
