@@ -131,3 +131,4 @@ The [StaticSubscriberExtensionAbility](../../reference/apis-basic-services-kit/j
    > **NOTE**
    >
    > The **install_list_capability.json** file is available only for preinstalled applications.
+<!--no_check-->

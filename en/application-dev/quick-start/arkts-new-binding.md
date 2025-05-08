@@ -77,9 +77,9 @@ What the internal state is depends on the component. For example, the **isShow**
 
   | Attribute                                                        | Supported Parameter| Initial API Version|
   | ------------------------------------------------------------ | --------------- | ----------- |
-  | [bindMenu](../../reference/apis-arkui/arkui-ts/ts-universal-attributes-menu.md#bindmenu11) | isShow | 13          |
-  | [bindContextMenu](../../reference/apis-arkui/arkui-ts/ts-universal-attributes-menu.md#bindcontextmenu12) | isShown | 13          |
-  | [bindPopup](../../reference/apis-arkui/arkui-ts/ts-universal-attributes-popup.md#bindpopup) | show | 13   |
+  | bindMenu | isShow | 13          |
+  | bindContextMenu | isShown | 13          |
+  | bindPopup | show | 13   |
 - When the [\@Local](arkts-new-local.md) decorated variable bound to **!!** changes, the UI is rendered synchronously.
 
 

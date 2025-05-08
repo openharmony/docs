@@ -4,7 +4,7 @@
 > 
 > **Repeat** is supported since API version 12.
 > 
-> This topic is a developer guide. For details about API parameters, see [Repeat](https://gitee.com/openharmony/docs/blob/master/en/application-dev/reference/apis-arkui/arkui-ts/ts-rendering-control-repeat.md).
+> This topic is a developer guide. For details about API parameters, see Repeat.
 
 ## Overview
 
@@ -1490,7 +1490,7 @@ When the total length of the data source is large, the lazy loading is used to l
 
 If **totalCount** is greater than **array.length**, the application should request subsequent data when the list scrolls to the end of the data source. You need to fix the data request error (caused by, for example, network delay) until all data sources are loaded. Otherwise, the scrolling effect is abnormal.
 
-You can use the callback of [onScrollIndex](https://gitee.com/openharmony/docs/blob/master/en/application-dev/ui/arkts-layout-development-create-list.md#controlling-the-scrolling-position) attribute of the **List** or **Grid** parent component to implement the preceding specification. The sample code is as follows:
+You can use the callback of onScrollIndex attribute of the **List** or **Grid** parent component to implement the preceding specification. The sample code is as follows:
 
 ```ts
 @ObservedV2
