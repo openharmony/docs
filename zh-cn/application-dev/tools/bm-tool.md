@@ -2386,6 +2386,23 @@ error: the app distribution type is not allowed install.
 
 更换签名证书profile文件中的类型。
 
+### 9568423 签名证书profile文件中缺少当前设备的udid配置，不允许安装到当前设备中
+**错误信息**
+
+error: Failed to install the HAP because the device is unauthorized, make sure the UDID of your device is configured in the signing profile.
+
+**错误描述**
+
+签名证书profile文件中缺少当前设备的UDID配置，不允许安装到当前设备中。
+
+**可能原因**
+
+该应用的[签名证书profile文件](https://developer.huawei.com/consumer/cn/doc/app/agc-help-add-debugcert-0000001914263178)为调试类型，且未配置当前设备的UDID。
+
+**处理步骤**
+
+根据[指导](https://developer.huawei.com/consumer/cn/doc/app/agc-help-add-device-0000001946142249)将当前设备UDID添加到调试类型证书或使用[发布类型证书](https://developer.huawei.com/consumer/cn/doc/app/agc-help-add-releasecert-0000001946273961)重新签名。
+
 ### 9568380 卸载系统应用失败
 **错误信息**
 
