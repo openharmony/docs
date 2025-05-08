@@ -1197,7 +1197,7 @@ hdc server和hdc daemon启动后，默认会互相发送心跳数据包，收到
 |---|---|
 | Windows  | 在**此电脑 &gt; 属性 &gt; 高级系统设置 &gt; 高级 &gt; 环境变量**中，添加环境变量名称为OHOS_HDC_CMD_RECORD，变量值为1。配置完毕后点击确认。环境变量配置完成后，关闭并重启命令行或其他使用到OpenHarmony SDK的软件，以生效新配置的环境变量。  |
 | Linux  | 在~/.bash_profile文件末尾追加内容export OHOS_HDC_CMD_RECORD=1并保存后，执行`source ~/.bash_profile`生效当前环境变量。 |
-| MacOS  | 在~/.zshrc文件末尾追加内容export OHOS_HDC_CMD_RECORDL=1并保存后，执行`source ~/.zshrc`生效当前环境变量。环境变量配置完成后，关闭并重启命令行或其他使用到OpenHarmony SDK的软件，以生效新配置的环境变量。 |
+| MacOS  | 在~/.zshrc文件末尾追加内容export OHOS_HDC_CMD_RECORD=1并保存后，执行`source ~/.zshrc`生效当前环境变量。环境变量配置完成后，关闭并重启命令行或其他使用到OpenHarmony SDK的软件，以生效新配置的环境变量。 |
 
 ## 常见问题
 
