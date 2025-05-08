@@ -186,14 +186,14 @@ PixelMap是图片解码后的像素图，具体用法请参考[图片开发指�
 3. 将网络地址成功返回的数据，编码转码成pixelMap的图片格式。   
 
    ```ts
-   let code: http.ResponseCode | number = OutData.responseCode
+   let code: http.ResponseCode | number = OutData.responseCode;
    if (http.ResponseCode.OK === code) {
      let imageData: ArrayBuffer = OutData.result as ArrayBuffer;
      let imageSource: image.ImageSource = image.createImageSource(imageData);
 
      class tmp {
-       height: number = 100
-       width: number = 100
+       height: number = 100;
+       width: number = 100;
      }
 
      let si: tmp = new tmp()
@@ -206,15 +206,15 @@ PixelMap是图片解码后的像素图，具体用法请参考[图片开发指�
      } // 创建图片大小
 
      class imagetmp {
-       image: PixelMap | undefined = undefined
+       image: PixelMap | undefined = undefined;
        set(val: PixelMap) {
-         this.image = val
+         this.image = val;
        }
      }
 
      imageSource.createPixelMap(options).then((pixelMap: PixelMap) => {
-       let im = new imagetmp()
-       im.set(pixelMap)
+       let im = new imagetmp();
+       im.set(pixelMap);
      })
    }
    ```
@@ -223,17 +223,17 @@ PixelMap是图片解码后的像素图，具体用法请参考[图片开发指�
 
    ```ts
    class htp{
-     httpRequest: Function | undefined = undefined
+     httpRequest: Function | undefined = undefined;
      set(){
        if(this.httpRequest){
-         this.httpRequest()
+         this.httpRequest();
        }
      }
    }
    Button("获取网络图片")
      .onClick(() => {
-       let sethtp = new htp()
-       sethtp.set()
+       let sethtp = new htp();
+       sethtp.set();
      })
    Image(this.image).height(100).width(100)
    ```
@@ -241,20 +241,20 @@ PixelMap是图片解码后的像素图，具体用法请参考[图片开发指�
    同时，也可以传入pixelMap创建[PixelMapDrawableDescriptor](../reference/apis-arkui/js-apis-arkui-drawableDescriptor.md#pixelmapdrawabledescriptor12)对象，用来显示图片。
 
    ```ts
-   import { DrawableDescriptor, PixelMapDrawableDescriptor } from '@kit.ArkUI'
+   import { DrawableDescriptor, PixelMapDrawableDescriptor } from '@kit.ArkUI';
    class htp{
-     httpRequest: Function | undefined = undefined
+     httpRequest: Function | undefined = undefined;
      set(){
        if(this.httpRequest){
-         this.httpRequest()
+         this.httpRequest();
        }
      }
    }
    Button("获取网络图片")
      .onClick(() => {
-       let sethtp = new htp()
-       sethtp.set()
-       this.drawablePixelMap = new PixelMapDrawableDescriptor(this.image)
+       let sethtp = new htp();
+       sethtp.set();
+       this.drawablePixelMap = new PixelMapDrawableDescriptor(this.image);
      })
    Image(this.drawablePixelMap).height(100).width(100)
    ```
@@ -317,7 +317,7 @@ Svg图源通过`<image>`标签的`xlink:href`属性指定本地位图路径，�
 @Entry
 @Component
 struct MyComponent {
-  scroller: Scroller = new Scroller()
+  scroller: Scroller = new Scroller();
 
   build() {
     Scroll(this.scroller) {
@@ -612,10 +612,10 @@ Image($r('app.media.icon'))
 @Entry
 @Component
 struct MyComponent {
-  @State widthValue: number = 0
-  @State heightValue: number = 0
-  @State componentWidth: number = 0
-  @State componentHeight: number = 0
+  @State widthValue: number = 0;
+  @State heightValue: number = 0;
+  @State componentWidth: number = 0;
+  @State componentHeight: number = 0;
 
   build() {
     Column() {
@@ -626,10 +626,10 @@ struct MyComponent {
           .margin(15)
           .onComplete(msg => {
             if(msg){
-              this.widthValue = msg.width
-              this.heightValue = msg.height
-              this.componentWidth = msg.componentWidth
-              this.componentHeight = msg.componentHeight
+              this.widthValue = msg.width;
+              this.heightValue = msg.height;
+              this.componentWidth = msg.componentWidth;
+              this.componentHeight = msg.componentHeight;
             }
           })
             // 图片获取失败，打印结果
