@@ -328,17 +328,17 @@ API version 10-11系统能力为SystemCapability.Security.CryptoFramework；从A
 
 ## ECFieldFp<sup>10+</sup>
 
-指定椭圆曲线素数域。是[ECField](#ecfield10)的子类。
+指定椭圆曲线的素数域。是[ECField](#ecfield10)的子类。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Key.AsymKey
 
-API version 10-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始SystemCapability.Security.CryptoFramework.Key.AsymKey
+API version 10-11系统能力为SystemCapability.Security.CryptoFramework。从API version 12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey。
 
 | 名称    | 类型   | 可读 | 可写 | 说明                                                         |
 | ------- | ------ | ---- | ---- | ------------------------------------------------------------ |
-| p | bigint | 是   | 是   | 指定素数p。 |
+| p | bigint | 是   | 是   | 指定素数p的值。 |
 
 ## Point<sup>10+</sup>
 
