@@ -194,7 +194,7 @@ request(url: string, callback: AsyncCallback\<HttpResponse\>): void
 | 2300078 | Remote file not found.                                         |
 | 2300094 | Authentication error.                                          |
 | 2300998 | It is not allowed to access this domain.                       |
-| 2300999 | Unknown error.                                                 |
+| 2300999 | Internal error.                                                 |
 
 > **错误码说明：**
 > 以上错误码的详细介绍参见[通用错误码](../errorcode-universal.md)和[HTTP错误码](errorcode-net-http.md)。
@@ -279,7 +279,7 @@ request(url: string, options: HttpRequestOptions, callback: AsyncCallback\<HttpR
 | 2300078 | Remote file not found.                                         |
 | 2300094 | Authentication error.                                          |
 | 2300998 | It is not allowed to access this domain.                       |
-| 2300999 | Unknown error.                                                 |
+| 2300999 | Internal error.                                                 |
 
 > **错误码说明：**
 > 以上错误码的详细介绍参见[通用错误码](../errorcode-universal.md)和[HTTP错误码](errorcode-net-http.md)。
@@ -392,7 +392,7 @@ request(url: string, options? : HttpRequestOptions): Promise\<HttpResponse\>
 | 2300078 | Remote file not found.                                         |
 | 2300094 | Authentication error.                                          |
 | 2300998 | It is not allowed to access this domain.                       |
-| 2300999 | Unknown error.                                                 |
+| 2300999 | Internal error.                                                 |
 
 > **错误码说明：**
 > 以上错误码的详细介绍参见[通用错误码](../errorcode-universal.md)和[HTTP错误码](errorcode-net-http.md)。
@@ -504,7 +504,7 @@ requestInStream(url: string, callback: AsyncCallback\<number\>): void
 | 2300078 | Remote file not found.                                         |
 | 2300094 | Authentication error.                                          |
 | 2300998 | It is not allowed to access this domain.                       |
-| 2300999 | Unknown error.                                                 |
+| 2300999 | Internal error.                                                 |
 
 > **错误码说明：**
 > 以上错误码的详细介绍参见[通用错误码](../errorcode-universal.md)和[HTTP错误码](errorcode-net-http.md)。
@@ -581,7 +581,7 @@ requestInStream(url: string, options: HttpRequestOptions, callback: AsyncCallbac
 | 2300078 | Remote file not found.                                         |
 | 2300094 | Authentication error.                                          |
 | 2300998 | It is not allowed to access this domain.                       |
-| 2300999 | Unknown error.                                                 |
+| 2300999 | Internal error.                                                 |
 
 > **错误码说明：**
 > 以上错误码的详细介绍参见[通用错误码](../errorcode-universal.md)和[HTTP错误码](errorcode-net-http.md)。
@@ -685,7 +685,7 @@ requestInStream(url: string, options? : HttpRequestOptions): Promise\<number\>
 | 2300078 | Remote file not found.                                         |
 | 2300094 | Authentication error.                                          |
 | 2300998 | It is not allowed to access this domain.                       |
-| 2300999 | Unknown error.                                                 |
+| 2300999 | Internal error.                                                 |
 
 > **错误码说明：**
 > 以上错误码的详细介绍参见[通用错误码](../errorcode-universal.md)和[HTTP错误码](errorcode-net-http.md)。

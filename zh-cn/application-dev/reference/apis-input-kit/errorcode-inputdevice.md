@@ -32,7 +32,7 @@ There is currently no keyboard device connected.
 
 **错误描述**
 
-当前没有键盘设备插入连接。
+当前未检测到已连接的键盘设备。
 
 **可能原因**
 

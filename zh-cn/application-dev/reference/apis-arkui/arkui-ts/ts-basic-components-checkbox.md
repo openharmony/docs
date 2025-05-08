@@ -38,7 +38,7 @@ Checkbox(options?: CheckboxOptions)
 
 | 名称  | 类型 | 必填  | 说明 |
 | --------| --------| ------ | -------- |
-| name    | string | 否 | 用于指定多选框名称。 <br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| name    | string | 否 | 指定多选框名称。 <br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | group   | string | 否 | 用于指定多选框所属群组的名称（即所属CheckboxGroup的名称）。<br/>**说明：** <br/>未配合使用[CheckboxGroup](ts-basic-components-checkboxgroup.md)组件时，此值无用。 <br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | indicatorBuilder<sup>12+</sup> | [CustomBuilder](ts-types.md#custombuilder8) | 否 | 配置多选框的选中样式为自定义组件。自定义组件与Checkbox组件为中心点对齐显示。indicatorBuilder设置为undefined/null时，默认为indicatorBuilder未设置状态。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 
@@ -50,7 +50,7 @@ Checkbox(options?: CheckboxOptions)
 
 select(value: boolean)
 
-设置多选框是否选中。
+设置多选框选中状态。
 
 从API version 10开始，该属性支持[$$](../../../ui/state-management/arkts-two-way-sync.md)双向绑定变量。
 
@@ -64,7 +64,7 @@ select(value: boolean)
 
 | 参数名 | 类型    | 必填 | 说明                                                         |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
-| value  | boolean | 是   | 多选框是否选中。<br/>默认值：false<br/>值为true时，多选框被选中。值为false时，多选框不被选中。 |
+| value  | boolean | 是   | 多选框是否选中。<br/>默认值：false<br/>值为true时，多选框被选中。值为false时，多选框未选中。 |
 
 ### selectedColor
 
@@ -88,7 +88,7 @@ selectedColor(value: ResourceColor)
 
 unselectedColor(value: ResourceColor)
 
-设置多选框非选中状态边框颜色。
+设置多选框非选中状态的边框颜色。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -98,13 +98,13 @@ unselectedColor(value: ResourceColor)
 
 | 参数名 | 类型                                       | 必填 | 说明                     |
 | ------ | ------------------------------------------ | ---- | -------------------------- |
-| value  | [ResourceColor](ts-types.md#resourcecolor) | 是   | 多选框非选中状态边框颜色。<br/>默认值：$r('sys.color.ohos_id_color_switch_outline_off')。 |
+| value  | [ResourceColor](ts-types.md#resourcecolor) | 是   | 多选框非选中状态边框颜色。<br/>默认值：$r('sys.color.ohos_id_color_switch_outline_off') |
 
 ### mark<sup>10+</sup>
 
 mark(value: MarkStyle)
 
-设置多选框内部图标样式。
+设置多选框内部图标的样式。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -120,7 +120,7 @@ mark(value: MarkStyle)
 
 shape(value: CheckBoxShape)
 
-设置CheckBox组件形状, 包括圆形和圆角方形。
+设置CheckBox组件形状，包括圆形和圆角方形。
 
 **卡片能力：** 从API version 11开始，该接口支持在ArkTS卡片中使用。
 
@@ -170,7 +170,7 @@ onChange(callback: (value: boolean) => void)
 
 | 参数名 | 类型    | 必填 | 说明                                              |
 | ------ | ------- | ---- | ------------------------------------------------- |
-| value  | boolean | 是   | 返回true时，表示已选中。返回false时，表示未选中。 |
+| value  | boolean | 是   | 返回true表示已选中。返回false表示未选中。 |
 
 ## CheckBoxConfiguration<sup>12+</sup>对象说明
 
@@ -184,7 +184,7 @@ onChange(callback: (value: boolean) => void)
 | ------ | ------ | ------ |-------------------------------- |-------------------------------- |
 | name | string | 否 | 否 |当前多选框名称。 |
 | selected | boolean| 否 | 否 | 指示多选框是否被选中。</br>如果select属性没有设置默认值是false。</br>如果设置select属性，此值与设置select属性的值相同。 |
-| triggerChange |Callback\<boolean>| 否 | 否 |触发多选框选中状态变化。<br/>为true时，表示从未选中变为选中。为false时，表示从选中变为未选中。 |
+| triggerChange |Callback\<boolean>| 否 | 否 |触发多选框选中状态变化。true表示从未选中变为选中，false表示从选中变为未选中。 |
 
 ## 示例
 
