@@ -500,6 +500,70 @@ digitalCrownSensitivity(sensitivity: Optional\<CrownSensitivity>)
 | ----------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------- |
 | sensitivity | [Optional\<CrownSensitivity>](ts-appendix-enums.md#crownsensitivity18) | 是   | 旋转表冠的灵敏度。<br />默认值：CrownSensitivity.MEDIUM |
 
+### prefix<sup>20+</sup>
+
+prefix(content: ComponentContent, options?: SliderPrefixOptions)
+
+设置滑动条的前缀。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名      | 类型                                                         | 必填 | 说明                                                    |
+| ----------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------- |
+| content | [ComponentContent](../js-apis-arkui-ComponentContent.md) | 是   | 自定义组件内容，用于定义滑块前缀的可视化内容，该内容会显示在滑块的起始位置。 |
+| options | [SliderPrefixOptions](#sliderprefixoptions20对象属性) | 否   | 滑块前缀的配置选项，用于设置与无障碍功能相关的属性。 |
+
+### suffix<sup>20+</sup>
+
+suffix(content: ComponentContent, options?: SliderSuffixOptions)
+
+设置滑动条的后缀。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名      | 类型                                                         | 必填 | 说明                                                    |
+| ----------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------- |
+| content | [ComponentContent](../js-apis-arkui-ComponentContent.md)    | 是   | 自定义组件内容，用于定义滑块后缀的可视化内容，该内容会显示在滑块的结束位置。 |
+| options | [SliderSuffixOptions](#slidersuffixoptions20对象属性) | 否   | 滑块前缀的配置选项，用于设置与无障碍功能相关的属性。 |
+
+## SliderPrefixOptions<sup>20+</sup>
+
+Slider前缀组件无障碍信息参数。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称                     | 类型        | 必填 | 说明                                                         |
+| ------------------------ | ----------- | ---- | ------------------------------------------------------------ |
+| accessibilityText        | ResourceStr | 否   | 用于提供辅助功能的文本，供屏幕阅读器等工具读取，增强无障碍功能。 <br/>默认值："" |
+| accessibilityDescription | ResourceStr | 否   | 用于提供辅助功能的详细描述，描述滑块前缀或后缀的功能或用途，供屏幕阅读器等工具使用。 <br/>默认值为“单指双击即可执行”。 |
+| accessibilityLevel       | string      | 否   | 用于控制某个组件是否可被无障碍辅助服务所识别。<br>支持的值为:<br>"auto"：当前组件会转换为“yes”。<br>"yes"：当前组件可被无障碍辅助服务所识别。<br>"no"：当前组件不可被无障碍辅助服务所识别。<br>"no-hide-descendants"：当前组件及其所有子组件不可被无障碍辅助服务所识别。<br>默认值："auto"。 |
+| accessibilityGroup       | boolean     | 否   | 用于标识该元素是否属于一个无障碍的组，帮助屏幕阅读器等工具将相关元素进行分组处理。设置为true时表示该组件及其所有子组件为一整个可以选中的组件，无障碍服务将不再关注其子组件内容。<br/>默认值：false |
+
+## SliderSuffixOptions<sup>20+</sup>
+
+Slider后缀组件无障碍信息参数。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称                     | 类型        | 必填 | 说明                                                         |
+| ------------------------ | ----------- | ---- | ------------------------------------------------------------ |
+| accessibilityText        | ResourceStr | 否   | 用于提供辅助功能的文本，供屏幕阅读器等工具读取，增强无障碍功能。 <br/>默认值："" |
+| accessibilityDescription | ResourceStr | 否   | 用于提供辅助功能的详细描述，描述滑块前缀或后缀的功能或用途，供屏幕阅读器等工具使用。 <br/>默认值为“单指双击即可执行”。 |
+| accessibilityLevel       | string      | 否   | 用于控制某个组件是否可被无障碍辅助服务所识别。<br>支持的值为:<br>"auto"：当前组件会转换为“yes”。<br>"yes"：当前组件可被无障碍辅助服务所识别。<br>"no"：当前组件不可被无障碍辅助服务所识别。<br>"no-hide-descendants"：当前组件及其所有子组件不可被无障碍辅助服务所识别。<br>默认值："auto"。 |
+| accessibilityGroup       | boolean     | 否   | 用于标识该元素是否属于一个无障碍的组，帮助屏幕阅读器等工具将相关元素进行分组处理。设置为true时表示该组件及其所有子组件为一整个可以选中的组件，无障碍服务将不再关注其子组件内容。<br/>默认值：false  |
+
 ## SliderBlockStyle<sup>10+</sup>对象说明
 
 Slider组件滑块形状参数。
