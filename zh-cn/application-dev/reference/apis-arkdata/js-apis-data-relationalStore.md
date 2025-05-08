@@ -6920,7 +6920,7 @@ try {
     (store as relationalStore.RdbStore).insert('test', valueBucket);
   }
 } catch (err) {
-  console.error(`insert fail, code:${err.code}, message: ${err.message}`);
+  console.error(`Insert fail, code:${err.code}, message: ${err.message}`);
 }
 ```
 
