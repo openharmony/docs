@@ -2536,8 +2536,10 @@ error: install parse native so failed.
 
 **处理步骤**
 
-1. 将设备与DevEco Studio进行连接。
-2. 执行如下命令，查询设备支持的Abi列表，返回结果为default/armeabi-v7a/armeabi/arm64-v8a/x86/x86_64中的一个或多个Abi类型。
+1. 将设备或模拟器与DevEco Studio进行连接，具体指导及要求可查看[运行应用/元服务](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-running-app)。
+
+2. 在命令行执行如下[hdc命令](#环境要求hdc工具)，查询设备支持的Abi列表，返回结果为default/armeabi-v7a/armeabi/arm64-v8a/x86/x86_64中的一个或多个Abi类型。
+
     ```
     hdc shell
     param get const.product.cpu.abilist
