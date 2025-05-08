@@ -118,7 +118,7 @@ startDiscovering(discoverParam: {[key:&nbsp;string]:&nbsp;Object;} , filterOptio
 4. 创建设备管理实例，设备管理实例是分布式设备管理方法的调用入口，并注册发现设备的回调。
 
    ```ts
-   let dmInstance = distributedDeviceManager.DeviceManager;
+   let dmInstance : distributedDeviceManager.DeviceManager;
    try {
      dmInstance = distributedDeviceManager.createDeviceManager('ohos.samples.jsHelloWorld');
      dmInstance.on('discoverSuccess', data => console.log('discoverSuccess on:' + JSON.stringify(data)));

@@ -54,7 +54,7 @@ createDeviceManager(bundleName: string): DeviceManager;
   import { distributedDeviceManager } from '@kit.DistributedServiceKit';
   import { BusinessError } from '@kit.BasicServicesKit';
 
-  let dmInstance = distributedDeviceManager.DeviceManager;
+  let dmInstance : distributedDeviceManager.DeviceManager;
   try {
     dmInstance = distributedDeviceManager.createDeviceManager('ohos.samples.jsHelloWorld');
   } catch(err) {
