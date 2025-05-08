@@ -183,6 +183,22 @@ API Version 14之前的版本，若设置barHeight为固定值后，TabBar无法
 | ------ | ----------------------------------------- | ---- | ------------------------------------------------------------ |
 | value  | [Length](ts-types.md#length)<sup>8+</sup> | 是   | TabBar的高度值。<br/>默认值：<br/>未设置带样式的TabBar且vertical属性为false时，默认值为56vp。<br/>未设置带样式的TabBar且vertical属性为true时，默认值为Tabs的高度。<br/>设置[SubTabBarStyle](ts-container-tabcontent.md#subtabbarstyle9)样式且vertical属性为false时，默认值为56vp。<br/>设置SubTabBarStyle样式且vertical属性为true时，默认值为Tabs的高度。<br/>设置[BottomTabBarStyle](ts-container-tabcontent.md#bottomtabbarstyle9)样式且vertical属性为true时，默认值为Tabs的高度。<br/>设置BottomTabBarStyle样式且vertical属性为false时，默认值为56vp, 从API Version 12开始，默认值变更为48vp。 |
 
+### animationCurve<sup>20+</sup>
+
+animationCurve(curve: Curve | ICurve)
+
+设置Tabs翻页动画曲线。常用曲线参考[Curve枚举说明](ts-appendix-enums.md#curve)，也可以通过[插值计算](../js-apis-curve.md)模块提供的接口创建自定义的插值曲线对象。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                                         | 必填 | 说明                                        |
+| ------ | ------------------------------------------------------------ | ---- | ------------------------------------------- |
+| curve  | [Curve](ts-appendix-enums.md#curve)&nbsp;\|&nbsp;[ICurve](../js-apis-curve.md#icurve9) | 是   | Tabs翻页的动画曲线。<br/>默认值：<br/>滑动TabContent翻页时，默认值为interpolatingSpring(-1, 1, 228, 30)。<br/>点击TabBar页签和调用TabsController的changeIndex接口翻页时，默认值为cubicBezierCurve(0.2, 0.0, 0.1, 1.0)。<br/>设置自定义动画曲线时，滑动翻页和点击页签、调用changeIndex翻页都使用设置的动画曲线。 |
+
 ### animationDuration
 
 animationDuration(value: number)
@@ -2570,3 +2586,64 @@ struct MyComponent {
   }
 }
 ```
+
+### 示例18（Tabs设置翻页动画曲线）
+
+该示例实现通过animationCurve接口设置Tabs翻页动画曲线，以及配合animationDuration设置翻页动画时长的功能。
+
+```ts
+import { curves } from '@kit.ArkUI';
+interface TabsItemType { text: string, backgroundColor: ResourceColor }
+@Entry
+@Component
+struct TabsExample {
+  private tabsController: TabsController = new TabsController();
+  private curves: (Curve | ICurve) [] = [
+    curves.interpolatingSpring(-1, 1, 328, 34),
+    curves.springCurve(10, 1, 228, 30),
+    curves.cubicBezierCurve(0.25, 0.1, 0.25, 1.0),
+  ];
+  @State curveIndex: number = 0;
+  private datas: TabsItemType[] = [
+    { text: '1', backgroundColor: '#004AAF' },
+    { text: '2', backgroundColor: '#2787D9' },
+    { text: '3', backgroundColor: '#D5D5D5' },
+    { text: '4', backgroundColor: '#707070' },
+    { text: '5', backgroundColor: '#F7F7F7' },
+  ];
+  @State duration: number = 0;
+  build() {
+    Column({space:2}) {
+      Tabs({controller: this.tabsController }) {
+        ForEach(this.datas, (item: TabsItemType, index: number) => {
+          TabContent() {}
+          .tabBar(item.text)
+          .backgroundColor(item.backgroundColor)
+        })
+      }
+      .backgroundColor(0xf1f3f5)
+      .width('100%')
+      .height(500)
+      .animationCurve(this.curves[this.curveIndex])
+      .animationDuration(this.duration)
+      Row({space:2}){
+        Text('Curve:' + this.curveIndex)
+        Button('++').onClick(() => { this.curveIndex = (this.curveIndex + 1) % this.curves.length; })
+        Button('reset').onClick(() => { this.curveIndex = 0;})
+      }
+      .margin({left: '10vp'})
+      .width('100%')
+      Row({space:2}){
+        Text('Duration:' + this.duration)
+        Button('+100').onClick(() => { this.duration = (this.duration + 100) % 10000; })
+        Button('+1000').onClick(() => { this.duration = (this.duration + 1000) % 10000; })
+        Button('reset').onClick(() => { this.duration = 0;})
+      }
+      .margin({left: '10vp'})
+      .width('100%')
+    }
+    .margin('10vp')
+  }
+}
+```
+![tabs_curve](figures/tabs_curve.gif)
