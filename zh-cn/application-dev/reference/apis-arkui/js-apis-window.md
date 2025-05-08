@@ -251,7 +251,7 @@ import { window } from '@kit.ArkUI';
 | displayId<sup>12+</sup>               | number                    | 是   | 是   | 窗口所在屏幕ID，默认返回主屏幕ID,该参数应为整数。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | name<sup>18+</sup>               | string                    | 是   | 是   | 窗口名字，默认为空字符串。<br/>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。 |
 
-## erButtonStyle<sup>14+</sup>
+## DecorButtonStyle<sup>14+</sup>
 
 系统装饰栏按钮样式。
 
