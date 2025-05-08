@@ -843,3 +843,61 @@ Decimal函数使用错误。
 使用[Decimal.set](js-apis-arkts-decimal.md#set)函数来取消加密算法。
 
 如：Decimal.set({ crypto: false}), 取消加密算法。
+
+## 10200062 XML长度已超过100000
+
+**错误信息**
+
+The cumulative length of xml has exceeded the upper limit 100000.
+
+**错误描述**
+
+XML长度已超过100000。
+
+**可能原因**
+
+使用[xml.XmlDynamicSerializer](js-apis-xml.md#xmldynamicserializer20)时，累积的XML长度已超过100000。
+
+**处理步骤**
+
+1. 优化XML结构：检查XML文档，简化或优化其结构。
+   例如，使用更短的标签名称，移除不必要的嵌套。
+2. 分割XML内容：将大的XML拆分成多个较小的XML。
+
+## 10200063 无效的XML位置
+
+**错误信息**
+
+illegal position for xml.
+
+**错误描述**
+
+无效的XML位置。
+
+**可能原因**
+
+1. 在[startElement](js-apis-xml.md#startelement)和[endElement](js-apis-xml.md#endelement)之间调用[setAttributes](js-apis-xml.md#setattributes)。
+2. [setDeclaration](js-apis-xml.md#setdeclaration)必须设置在xml字符串的最开始位置。
+
+**处理步骤**
+
+1.将[setAttributes](js-apis-xml.md#setattributes)调用移动到[startElement](js-apis-xml.md#startelement)和[endElement](js-apis-xml.md#endelement)之间。
+2.调整[setDeclaration](js-apis-xml.md#setdeclaration)位置到xml开始位置
+
+## 10200064 不能为空字符串
+
+**错误信息**
+
+Cannot be an empty string.
+
+**错误描述**
+
+不能为空字符串。
+
+**可能原因**
+
+节点名称或属性名称为空字符串。
+
+**处理步骤**
+
+检查节点名称或属性名称是否为空。
