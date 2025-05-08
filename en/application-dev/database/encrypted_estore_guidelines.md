@@ -14,9 +14,7 @@ Both the KV store and RDB store can be used as an EL5 database.
 The following classes are encapsulated to implement the data operations and transfer between EL2 and EL5 databases:
 
 - **Mover** class: provides APIs for moving data from an EL2 database to an EL5 database after the screen is unlocked.
-
 - **Store** class: provides APIs for obtaining a database instance, adding, deleting, and updating data, and obtaining the data count in the database.
-
 - **SecretKeyObserver** class: provides APIs for obtaining the key status. After the key is destroyed, the EL5 database will be closed.
 
 - **ECStoreManager** class: provides APIs for managing the EL2 and EL5 databases.
@@ -157,7 +155,7 @@ export class Store {
     }
   }
 
-  updataOnedata(kvStore: distributedKVStore.SingleKVStore): void {
+  updateOnedata(kvStore: distributedKVStore.SingleKVStore): void {
     if (kvStore != undefined) {
       kvStore.getEntries('key_test_string', async (err: BusinessError, entries: distributedKVStore.Entry[]) => {
         if (err != undefined) {
@@ -171,7 +169,7 @@ export class Store {
             console.error(`Failed to put.code is ${err.code},message is ${err.message}`);
           });
         }
-        console.info(`ECDB_Encry updata success`)
+        console.info(`ECDB_Encry update success`)
       });
     }
   }
@@ -209,7 +207,7 @@ export class SecretKeyObserver {
     this.storeManager = storeManager;
   }
 
-  updatalockStatus(code: number) {
+  updatelockStatus(code: number) {
     if (code === SecretStatus.Lock) {
       this.onLock();
     } else {
@@ -356,7 +354,7 @@ export function createCB(err: BusinessError, commonEventSubscriber: commonEventM
           console.error(`subscribe failed, code is ${err.code}, message is ${err.message}`);
         } else {
           console.info(`ECDB_Encry SubscribeCB ${data.code}`);
-          e_secretKeyObserver.updatalockStatus(data.code);
+          e_secretKeyObserver.updatelockStatus(data.code);
         }
       });
     } catch (error) {
@@ -388,7 +386,7 @@ export default class EntryAbility extends UIAbility {
         autoSync: false,
         // If kvStoreType is left empty, a device KV store is created by default.
         kvStoreType: distributedKVStore.KVStoreType.SINGLE_VERSION,
-        // kvStoreType is distributedKVStore.KVStoreType.DEVICE_COLLABORATION for a device KV store.
+        // The value distributedKVStore.KVStoreType.DEVICE_COLLABORATION indicates a device KV store.
         securityLevel: distributedKVStore.SecurityLevel.S3
       }
     }
@@ -407,7 +405,7 @@ export default class EntryAbility extends UIAbility {
         autoSync: false,
         // If kvStoreType is left empty, a device KV store is created by default.
         kvStoreType: distributedKVStore.KVStoreType.SINGLE_VERSION,
-        // kvStoreType is distributedKVStore.KVStoreType.DEVICE_COLLABORATION for a device KV store.
+        // The value distributedKVStore.KVStoreType.DEVICE_COLLABORATION indicates a device KV store.
         securityLevel: distributedKVStore.SecurityLevel.S3
       }
     }
@@ -508,9 +506,9 @@ struct Index {
           storeOption.deleteOnedata(store);
         }).margin(5)
 
-        Button("updata").onClick(async (event: ClickEvent) => {
+        Button("update").onClick(async (event: ClickEvent) => {
           let store: distributedKVStore.SingleKVStore = await storeManager.getCurrentStore(e_secretKeyObserver.getCurrentStatus());
-          storeOption.updataOnedata(store);
+          storeOption.updateOnedata(store);
         }).margin(5)
 
         Text(this.message)
@@ -634,7 +632,7 @@ export class Store {
     }
   }
 
-  async updataOnedata(rdbStore: relationalStore.RdbStore) {
+  async updateOnedata(rdbStore: relationalStore.RdbStore) {
     if (rdbStore != undefined) {
       try {
         let predicates = new relationalStore.RdbPredicates('EMPLOYEE');
@@ -686,7 +684,7 @@ export class SecretKeyObserver {
     this.storeManager = storeManager;
   }
 
-  updatalockStatus(code: number) {
+  updatelockStatus(code: number) {
     if (this.lockStatuas === SecretStatus.Lock) {
       this.onLock();
     } else {
@@ -814,7 +812,7 @@ export function createCB(err: BusinessError, commonEventSubscriber: commonEventM
           console.error(`subscribe failed, code is ${err.code}, message is ${err.message}`);
         } else {
           console.info(`ECDB_Encry SubscribeCB ${data.code}`);
-          e_secretKeyObserver.updatalockStatus(data.code);
+          e_secretKeyObserver.updatelockStatus(data.code);
         }
       });
     } catch (error) {
@@ -949,9 +947,9 @@ struct Index {
           storeOption.deleteAlldata(store);
         }).margin(5)
 
-        Button("updata").onClick(async (event: ClickEvent) => {
+        Button("update").onClick(async (event: ClickEvent) => {
           let store: relationalStore.RdbStore = await storeManager.getCurrentStore(e_secretKeyObserver.getCurrentStatus());
-          storeOption.updataOnedata(store);
+          storeOption.updateOnedata(store);
         }).margin(5)
 
         Text(this.message)
