@@ -48,7 +48,7 @@ onEnter(event: PageTransitionCallback): PageTransitionEnterInterface
 
 | 参数名 | 类型                                                               | 必填 | 说明                                                |
 | ------ | ----------------------------------------------------------------- | ---- | ------------------------------------------------    |
-| event  | [PageTransitionCallback](#pagetransitioncallback14) | 是   | 入场动画的逐帧回调直到入场动画结束，progress从0变化到1。 |
+| event  | [PageTransitionCallback](#pagetransitioncallback18) | 是   | 入场动画的逐帧回调直到入场动画结束，progress从0变化到1。 |
 
 **示例：**
 
@@ -92,7 +92,7 @@ onExit(event: PageTransitionCallback): PageTransitionExitInterface
 
 | 参数名 | 类型                                                               | 必填 | 说明                                                |
 | ------ | ----------------------------------------------------------------- | ---- | ------------------------------------------------    |
-| event  | [PageTransitionCallback](#pagetransitioncallback14) | 是   | 出场动画的逐帧回调直到出场动画结束，progress从0变化到1。 |
+| event  | [PageTransitionCallback](#pagetransitioncallback18) | 是   | 出场动画的逐帧回调直到出场动画结束，progress从0变化到1。 |
 
 **示例：**
 
@@ -201,13 +201,13 @@ opacity(value: number): T
 | ------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | value   | number | 是   | 设置入场的起点透明度值或者退场的终点透明度值。<br/>取值范围：[0, 1] |
 
-## PageTransitionCallback<sup>14+</sup>
+## PageTransitionCallback<sup>18+</sup>
 
 type PageTransitionCallback = (type: RouteType, progress: number) => void
 
 页面转场事件回调。
 
-**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -255,8 +255,8 @@ type PageTransitionCallback = (type: RouteType, progress: number) => void
 @Entry
 @Component
 struct Index {
-  @State scale1: number = 1
-  @State opacity1: number = 1
+  @State scale1: number = 1;
+  @State opacity1: number = 1;
 
   build() {
     Column() {
@@ -267,7 +267,7 @@ struct Index {
     .scale({ x: this.scale1 })
     .opacity(this.opacity1)
     .onClick(() => {
-      this.getUIContext().getRouter().pushUrl({ url: 'pages/Page1' })
+      this.getUIContext().getRouter().pushUrl({ url: 'pages/Page1' });
     })
   }
 
@@ -275,15 +275,15 @@ struct Index {
     PageTransitionEnter({ duration: 1200, curve: Curve.Linear })
       .onEnter((type: RouteType, progress: number) => {
         if (type == RouteType.Push || type == RouteType.Pop) {
-          this.scale1 = progress
-          this.opacity1 = progress
+          this.scale1 = progress;
+          this.opacity1 = progress;
         }
       })
     PageTransitionExit({ duration: 1200, curve: Curve.Ease })
       .onExit((type: RouteType, progress: number) => {
         if (type == RouteType.Push) {
-          this.scale1 = 1 - progress
-          this.opacity1 = 1 - progress
+          this.scale1 = 1 - progress;
+          this.opacity1 = 1 - progress;
         }
       })
   }
@@ -295,8 +295,8 @@ struct Index {
 @Entry
 @Component
 struct Page1 {
-  @State scale2: number = 1
-  @State opacity2: number = 1
+  @State scale2: number = 1;
+  @State opacity2: number = 1;
 
   build() {
     Column() {
@@ -307,7 +307,7 @@ struct Page1 {
     .scale({ x: this.scale2 })
     .opacity(this.opacity2)
     .onClick(() => {
-      this.getUIContext().getRouter().pushUrl({ url: 'pages/Index' })
+      this.getUIContext().getRouter().pushUrl({ url: 'pages/Index' });
     })
   }
 
@@ -315,15 +315,15 @@ struct Page1 {
     PageTransitionEnter({ duration: 1200, curve: Curve.Linear })
       .onEnter((type: RouteType, progress: number) => {
         if (type == RouteType.Push || type == RouteType.Pop) {
-          this.scale2 = progress
+          this.scale2 = progress;
         }
-        this.opacity2 = progress
+        this.opacity2 = progress;
       })
     PageTransitionExit({ duration: 1200, curve: Curve.Ease })
       .onExit((type: RouteType, progress: number) => {
         if (type == RouteType.Pop) {
-          this.scale2 = 1 - progress
-          this.opacity2 = 1 - progress
+          this.scale2 = 1 - progress;
+          this.opacity2 = 1 - progress;
         }
       })
   }
@@ -344,7 +344,7 @@ struct Index {
       Image($r('app.media.bg1')).width('100%').height('100%') // 图片存放在media文件夹下
     }
     .onClick(() => {
-      this.getUIContext().getRouter().pushUrl({ url: 'pages/Page1' })
+      this.getUIContext().getRouter().pushUrl({ url: 'pages/Page1' });
     })
   }
 
@@ -371,7 +371,7 @@ struct Page1 {
       Image($r('app.media.bg2')).width('100%').height('100%') // 图片存放在media文件夹下
     }
     .onClick(() => {
-      this.getUIContext().getRouter().pushUrl({ url: 'pages/Index' })
+      this.getUIContext().getRouter().pushUrl({ url: 'pages/Index' });
     })
   }
 
@@ -399,14 +399,14 @@ struct Page1 {
 @Entry
 @Component
 struct Index {
-  @State scale1: number = 1
-  @State opacity1: number = 1
+  @State scale1: number = 1;
+  @State opacity1: number = 1;
 
   build() {
     Column() {
       Button("页面1").onClick(() => {
         this.getUIContext().getRouter().pushUrl({
-          url: "pages/Page1"
+          url: "pages/Page1";
         })
       })
         .width(200)
@@ -440,15 +440,15 @@ struct Index {
 @Entry
 @Component
 struct Page1 {
-  @State scale1: number = 1
-  @State opacity1: number = 1
+  @State scale1: number = 1;
+  @State opacity1: number = 1;
 
   build() {
     Column() {
       Button("页面2").onClick(() => {
         this.getUIContext().getRouter().pushUrl({
           url: "pages/Index"
-        })
+        });
       })
         .width(200)
         .height(60)
@@ -484,15 +484,15 @@ struct Page1 {
 @Entry
 @Component
 struct Index {
-  @State scale1: number = 1
-  @State opacity1: number = 1
+  @State scale1: number = 1;
+  @State opacity1: number = 1;
 
   build() {
     Column() {
       Button("页面1").onClick(() => {
         this.getUIContext().getRouter().pushUrl({
           url: "pages/Page1"
-        })
+        });
       })
         .width(200)
         .height(60)
@@ -512,15 +512,15 @@ struct Index {
 @Entry
 @Component
 struct Page1 {
-  @State scale1: number = 1
-  @State opacity1: number = 1
+  @State scale1: number = 1;
+  @State opacity1: number = 1;
 
   build() {
     Column() {
       Button("页面2").onClick(() => {
         this.getUIContext().getRouter().pushUrl({
           url: "pages/Index"
-        })
+        });
       })
         .width(200)
         .height(60)
