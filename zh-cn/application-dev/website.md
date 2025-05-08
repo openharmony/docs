@@ -387,8 +387,10 @@
               - [\@Track装饰器：class对象属性级更新](ui/state-management/arkts-track.md)
               - [自定义组件冻结功能](ui/state-management/arkts-custom-components-freeze.md)
             - [MVVM模式](ui/state-management/arkts-mvvm.md)
+            <!--Del-->
             - [状态管理优秀实践](ui/state-management/arkts-state-management-best-practices.md)
             - [状态管理合理使用开发指导](ui/state-management/properly-use-state-management-to-develope.md)
+            <!--DelEnd-->
           - 状态管理（V2）<!--arkts-state-management-v2-->
             - V2所属装饰器<!--arkts-v2-decorators-->
               - [\@ObservedV2装饰器和\@Trace装饰器：类属性变化观测](ui/state-management/arkts-new-observedV2-and-trace.md)
