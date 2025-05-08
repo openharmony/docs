@@ -3,7 +3,7 @@
 
 ## Use Cases
 
-When an application is to be launched in multiple regions, the application needs to be localized according to local language and culture requirements. This allows the application to load and display content in such a way that meets the usage habits of local users. The contents loaded on the UI include text, images, audios, and videos. Such contents are called resources. To ensure that the application properly loads the content specific to different countries, locales, and languages, you need to create multiple resource directories to store these resources. When a user runs an application, the system automatically selects and loads the resources that best match the device based on the locale. To better implement application localization, it is recommended that the localized content be separated from the core functions as much as possible and be stored in a resource directory.
+When an application is to be launched in multiple countries or regions, the application needs to be localized according to local language and culture requirements. This allows the application to load and display content in such a way that meets the usage habits of local users. The contents loaded on the UI include text, images, audios, and videos. Such contents are called resources. To ensure that the application properly loads the content specific to different countries, locales, and languages, you need to create multiple resource directories to store these resources. When a user runs an application, the system automatically selects and loads the resources that best match the device based on the locale. To better implement application localization, it is recommended that the localized content be separated from the core functions as much as possible and be stored in a resource directory.
 
 The following introduces how to configure resource files and resource matching rules. You only need to focus on resource configuration. After resource files are configured, your application can then access resources based on service requirements. For details, see [Resource Categories and Access](../quick-start/resource-categories-and-access.md#resource-access).
 
@@ -16,11 +16,11 @@ The following introduces how to configure resource files and resource matching r
 
 2. Create resource directories.
 
-   Resource directories include a default directory (**base** directory) and one or more qualifier directories. The default directory is generated when a project is created. It can be used to store content such as strings, colors, animations, and layouts. Qualifier directories can be customized based on languages and scripts. They are used to store resources such as strings, images, and audios specific to the target locale. An example of a customized qualifier directory is **resources/en_GB-vertical-car-mdpi**.
+   Resource directories include a default directory (`base` directory) and one or more qualifier directories. The default directory is generated when a project is created. It can be used to store content such as strings, colors, animations, and layouts. Qualifier directories can be customized based on languages and scripts. They are used to store resources such as strings, images, and audios specific to the target locale. An example of a customized qualifier directory is `resources/en_GB-vertical-car-mdpi`.
 
-3. Create resource group directories. Create the corresponding resource group directory according to the resource type. For example, to store media resources, create the **media** directory. The directory structure is **resources/en_GB-vertical-car-mdpi/media**.
+3. Create resource group directories. Create the corresponding resource group directory according to the resource type. For example, to store media resources, create the `media` directory. The directory structure is `resources/en_GB-vertical-car-mdpi/media`.
 
-4. Create resource files. Place resources such as strings, images, and audios in the corresponding **.json** resource files.
+4. Create resource files. Place resources such as strings, images, and audios in the corresponding `.json` resource files.
 
    > **NOTE**
    >   

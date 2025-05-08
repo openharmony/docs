@@ -131,21 +131,21 @@ Wi-Fi profile information.
 
 
 
-| Name         | Type                                 | Mandatory| Description                         |
-| ------------- | ------------------------------------- | ---- | ----------------------------- |
-| ssid          | string                                | Yes  | SSID of the hotspot, in UTF-8 format.|
-| bssid         | string                                | No  | Basic service set identifier (BSSID) of the hotspot.                |
-| preSharedKey  | string                                | Yes  | Pre-shared key (PSK) of the hotspot.                 |
-| isHiddenSsid  | boolean                               | No  | Whether the network is hidden.             |
-| securityType  | [WifiSecurityType](#wifisecuritytype) | Yes  | Security type.                   |
-| creatorUid    | number                                | No  | ID of the creator.               |
-| disableReason | number                                | No  | Reason for disabling Wi-Fi.                   |
-| netId         | number                                | No  | Network ID allocated.               |
-| randomMacType | number                                | No  | Random MAC.                |
-| randomMacAddr | string                                | No  | Random MAC address.                |
-| ipType        | [IpType](#iptype)                     | No  | IP address type.                 |
-| staticIp      | [IpProfile](#ipprofile)               | No  | Static IP address information.             |
-| eapProfile    | [WifiEapProfile](#wifieapprofile)     | No  | Extensible Authentication Protocol (EAP) configuration.     |
+| Name         | Type                                 | Mandatory| Description                                                       |
+| ------------- | ------------------------------------- | ---- | ----------------------------------------------------------- |
+| ssid          | string                                | Yes  | SSID of the hotspot, in UTF-8 format.                              |
+| bssid         | string                                | No  | Basic service set identifier (BSSID) of the hotspot.                                              |
+| preSharedKey  | string                                | Yes  | Pre-shared key (PSK) of the hotspot.                                               |
+| isHiddenSsid  | boolean                               | No  | Whether the network is hidden. The value **true** indicates that the network is hidden; the value **false** indicates the opposite.|
+| securityType  | [WifiSecurityType](#wifisecuritytype) | Yes  | Security type.                                                 |
+| creatorUid    | number                                | No  | ID of the creator.                                             |
+| disableReason | number                                | No  | Reason for disabling Wi-Fi.                                                 |
+| netId         | number                                | No  | Network ID allocated.                                             |
+| randomMacType | number                                | No  | Random MAC.                                              |
+| randomMacAddr | string                                | No  | Random MAC address.                                              |
+| ipType        | [IpType](#iptype)                     | No  | IP address type.                                               |
+| staticIp      | [IpProfile](#ipprofile)               | No  | Static IP address information.                                           |
+| eapProfile    | [WifiEapProfile](#wifieapprofile)     | No  | Extensible Authentication Protocol (EAP) configuration.                                   |
 
 ## WifiSecurityType
 

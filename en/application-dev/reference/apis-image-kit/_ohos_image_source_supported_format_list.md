@@ -11,7 +11,6 @@ The OhosImageSourceSupportedFormatList struct defines the format string list sup
 
 **Related module**: [Image](image.md)
 
-**Header file**: [image_source_mdk.h](image__source__mdk_8h.md)
 
 ## Summary
 

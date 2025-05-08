@@ -28,7 +28,7 @@ Sets the moving speed of the mouse pointer. This API uses an asynchronous callba
 
 | Name      | Type                       | Mandatory  | Description                                   |
 | -------- | ------------------------- | ---- | ------------------------------------- |
-| speed    | number                    | Yes   | Moving speed of the mouse pointer. The value ranges from **1** to **11**. The default value is **7**.  |
+| speed    | number                    | Yes   | Moving speed of the mouse pointer. The value ranges from **1** to **20**. The default value is **10**.  |
 | callback | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result.|
 
 **Error codes**
@@ -70,7 +70,7 @@ Sets the moving speed of the mouse pointer. This API uses a promise to return th
 
 | Name   | Type    | Mandatory  | Description                                 |
 | ----- | ------ | ---- | ----------------------------------- |
-| speed | number | Yes   | Moving speed of the mouse pointer. The value ranges from **1** to **11**. The default value is **7**.|
+| speed | number | Yes   | Moving speed of the mouse pointer. The value ranges from **1** to **20**. The default value is **10**.|
 
 **Return value**
 
@@ -113,7 +113,7 @@ Sets the moving speed of the mouse pointer. This API returns the result synchron
 
 | Name   | Type    | Mandatory  | Description                                 |
 | ----- | ------ | ---- | ----------------------------------- |
-| speed | number | Yes   | Moving speed of the mouse pointer. The value ranges from **1** to **11**. The default value is **7**.|
+| speed | number | Yes   | Moving speed of the mouse pointer. The value ranges from **1** to **20**. The default value is **10**.|
 
 **Error codes**
 
@@ -1917,7 +1917,7 @@ try {
 
 ## pointer.setPointerSizeSync<sup>10+</sup>
 
-setPointerSizeSync(size: number): void;
+setPointerSizeSync(size: number): void
 
 Sets the pointer size. This API returns the result synchronously.
 
@@ -2156,7 +2156,7 @@ try {
 
 ## pointer.setPointerColorSync<sup>10+</sup>
 
-setPointerColorSync(color: number): void;
+setPointerColorSync(color: number): void
 
 Sets the pointer color. This API returns the result synchronously.
 

@@ -16,7 +16,7 @@ Singular and plural numbers are usually distinguished by the following categorie
 
 - other: other cases
 
-For example, in Arabic, the rules are as follows:
+For example, in Arabic, the plural rules are as follows:
 
 - zero : 0
 
@@ -32,16 +32,4 @@ For example, in Arabic, the rules are as follows:
 
 ## How to Develop
 
-For details about how to use the APIs, see [getPluralStringValueSync](../reference/apis-localization-kit/js-apis-resource-manager.md#getpluralstringvaluesync10).
-
-```ts
-import { BusinessError } from '@ohos.base'; 
-
-try {  
-  this.context.resourceManager.getPluralStringByNameSync("test", 1);} 
-catch (error) {  
-  let code = (error as BusinessError).code;  
-  let message = (error as BusinessError).message;  
-  console.error(`getPluralStringByNameSync failed, error code: ${code}, message: ${message}.`);
-}
-```
+For details about how to use the APIs, see [getPluralStringValueSync](../reference/apis-localization-kit/js-apis-resource-manager.md).

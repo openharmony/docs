@@ -162,6 +162,7 @@ struct example {
         this.surfaceId = this.xComponentCtl.getXComponentSurfaceId(); // Obtain the surface ID of the component.
         // Use the surface ID to create a preview stream and start the camera. The component renders the preview stream data of each frame in real time.
       })
+      // The width and height of the surface are opposite to those of the XComponent. Alternatively, you can use .renderFit(RenderFit.RESIZE_CONTAIN) to automatically adjust the display without manually setting the width and height.
       .width(px2vp(this.imageHeight))
       .height(px2vp(this.imageWidth))
   }

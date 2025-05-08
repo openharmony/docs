@@ -1,6 +1,6 @@
-# Image Transformation
+# Using Image to Transform Images
 
-This topic describes how to use native image APIs to implement image transformation.
+You will learn how to use native image APIs to process images.
 
 ## How to Develop
 

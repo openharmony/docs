@@ -2,7 +2,7 @@
 
 The **keyEvent** module provides key events reported by a device. It is inherited from [InputEvent](js-apis-inputevent.md).
 
->  **NOTE**
+> **NOTE**
 >
 > The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
@@ -23,8 +23,8 @@ Key event type.
 | Name  | Value | Description    |
 | ------ | ------- | -------- |
 | CANCEL | 0    | Cancellation of a key action.|
-| DOWN   | 1    | Pressing of a key.|
-| UP     | 2    | Release of a key.|
+| DOWN   | 1    | Key press.|
+| UP     | 2    | Key release.|
 
 ## Key
 

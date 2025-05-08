@@ -26,7 +26,9 @@ Uses a **Matrix2D** object as a parameter to perform matrix transformation on th
 | --------- | -------------- | ------ | ---------- |
 | transform | [Matrix2D](ts-components-canvas-matrix2d.md#Matrix2D) | No | Transformation matrix.<br>Default value: **null**|
 
-**Example**
+## Example
+
+This example demonstrates how to apply matrix transformations to a **CanvasPattern** object using the **setTransform** API.
 
 ```ts
 // xxx.ets
@@ -37,7 +39,7 @@ struct CanvasPatternPage {
   private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
   private matrix: Matrix2D = new Matrix2D()
   private img: ImageBitmap = new ImageBitmap("common/pattern.jpg")
-  private pattern : CanvasPattern | null = null
+  private pattern: CanvasPattern | null = null
 
   build() {
       Column() {

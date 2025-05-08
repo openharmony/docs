@@ -148,7 +148,7 @@ If the security component cannot be called to save images and videos in your dev
 
 - The directory is automatically created in `Download/bundle name/`.
 - Files can be directly saved without file selection.
-- You can create files under the returned URI that has persisting permissions.
+- You can create files under the returned URI that has persistent permissions.
 
 1. Import modules.
 

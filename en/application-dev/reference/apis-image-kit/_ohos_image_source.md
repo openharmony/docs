@@ -13,8 +13,6 @@ The **OhosImageSource** struct defines the input resource of an image source. On
 
 **Related module**: [Image](image.md)
 
-**Header file**: [image_source_mdk.h](image__source__mdk_8h.md)
-
 
 ## Summary
 

@@ -1,4 +1,4 @@
-# Applying for Location Permissions
+# Applying for Location Permissions (ArkTS)
 
 ## Scenario
 
@@ -19,8 +19,6 @@ For details about the permissions required for each API of Location Kit, see [Lo
 1. Declare the required permission in your application's configuration file. For details, see [Requesting User Authorization](../../security/AccessToken/request-user-authorization.md).
 
 2. If your application needs to access the device location when running in the foreground, declare the location permission as described in the following table.
-
-**Table 1** Description of location permissions
 
 | Permission| Declarable or Not| Location Accuracy|
 | -------- | -------- | -------- |
