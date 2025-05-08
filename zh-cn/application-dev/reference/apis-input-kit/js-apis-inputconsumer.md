@@ -22,8 +22,8 @@ import { inputConsumer, KeyEvent } from '@kit.InputKit';
 
 | 名称        | 类型   | 可读   | 可写   | 说明      |
 | --------- | ------ | ------- | ------- | ------- |
-| preKeys   | Array&lt;number&gt; | 是      | 否      | 修饰键（包括 Ctrl、Shift 和 Alt）集合，数量范围[1, 2]，修饰按键无顺序要求。<br>例如，Ctrl+Shift+Esc中，Ctrl+Shift称为修饰键。 |
-| finalKey  | number  | 是      | 否      | 被修饰键，为除修饰键和 Meta 以外的其它按键。<br>如Ctrl+Shift+Esc中，Esc称为被修饰键。 |
+| preKeys   | Array&lt;number&gt; | 是      | 否      | 修饰键集合，数量范围[1, 2]，无顺序要求。<br>例如，Ctrl+Shift+Esc中，Ctrl+Shift称为修饰键。 |
+| finalKey  | number  | 是      | 否      | 被修饰键，为除修饰键和 Meta 以外的按键。<br>例如，Ctrl+Shift+Esc中，Esc称为被修饰键。 |
 | isRepeat  | boolean  | 是      | 否      | 是否上报重复的按键事件。true表示上报，false表示不上报，若不填默认为true。 |
 
 ## KeyPressedConfig<sup>16+</sup>
@@ -42,7 +42,7 @@ import { inputConsumer, KeyEvent } from '@kit.InputKit';
 
 getAllSystemHotkeys(): Promise&lt;Array&lt;HotkeyOptions&gt;&gt;
 
-获取系统所有快捷键，使用Promise异步回调。
+获取系统所有快捷键，使用Promise进行异步回调。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.InputConsumer
 
@@ -86,7 +86,7 @@ on(type: 'hotkeyChange', hotkeyOptions: HotkeyOptions, callback: Callback&lt;Hot
 
 **错误码**：
 
-以下错误码的详细介绍请参见[inputconsumer错误码](errorcode-inputconsumer.md)和[通用错误码](../errorcode-universal.md)。
+有关错误码的详细介绍请参见[inputconsumer错误码](errorcode-inputconsumer.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
@@ -231,7 +231,7 @@ off(type: 'keyPressed', callback?: Callback&lt;KeyEvent&gt;): void
 | 参数名         | 类型                         | 必填   | 说明                              |
 | ---------- | -------------------------- | ---- | ---------- |
 | type       | string                     | 是    | 事件类型，固定取值为'keyPressed'。        |
-| callback   | Callback&lt;[KeyEvent](./js-apis-keyevent.md#keyevent)&gt; | 否    | 需要取消订阅的回调函数。若不填，则取消当前已订阅的所有回调函数。 |
+| callback   | Callback&lt;[KeyEvent](./js-apis-keyevent.md#keyevent)&gt; | 否    | 需要取消订阅的回调函数。若不填，则取消当前应用已订阅的所有回调函数。 |
 
 **错误码**：
 
