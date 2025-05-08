@@ -26,7 +26,7 @@ Sets whether the component is focusable.
 
 | Name| Type   | Mandatory| Description                                                        |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
-| value  | boolean | Yes  | Whether the component is focusable.<br>**NOTE**<br>Components that have default interaction logic, such as [Button](ts-basic-components-button.md) and [TextInput](ts-basic-components-textinput.md), are focusable by default. Other components, such as [Text](ts-basic-components-text.md) and [Image](ts-basic-components-image.md), are not focusable by default. Only focusable components can trigger a [focus event](ts-universal-focus-event.md).|
+| value  | boolean | Yes  | Whether the component is focusable.<br>**true**: The component is focusable.<br>**false**: The component is not focusable.<br>**NOTE**<br>Components that have default interaction logic, such as [Button](ts-basic-components-button.md) and [TextInput](ts-basic-components-textinput.md), are focusable by default. Other components, such as [Text](ts-basic-components-text.md) and [Image](ts-basic-components-image.md), are not focusable by default. Only focusable components can trigger a [focus event](ts-universal-focus-event.md).|
 
 ## tabIndex<sup>9+</sup>
 
@@ -42,8 +42,8 @@ Sets the Tab order of the component in sequential focus navigation with the **Ta
 
 | Name| Type  | Mandatory| Description                                                        |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| index  | number | Yes  | Tab order of the component in sequential focus navigation with the **Tab** key. When components with positive **tabIndex** values are present, only these components are reachable through sequential focus navigation, and they are navigated cyclically in ascending order based on the **tabIndex** value. When components with positive **tabIndex** values are not present, those components with a **tabIndex** value of **0** are navigated based on the preset focus navigation rule.<br>**tabIndex** is not yet compatible with [UiExtension](../js-apis-arkui-uiExtension.md) component. As such, using **tabIndex** on a page that contains [UiExtension](../js-apis-arkui-uiExtension.md) may lead to disordered focus navigation.<br>- **tabIndex** >= 0: The component is focusable and can be reached through sequential keyboard navigation.<br>- **tabIndex** < 0 (usually **tabIndex** = -1): The component is focusable, but cannot be reached through sequential keyboard navigation.<br>Default value: **0**<br> **NOTE**<br> **tabIndex** and **focusScopeId** cannot be used together.|
-
+| index  | number | Yes  | Tab order of the component in sequential focus navigation with the **Tab** key. When components with positive **tabIndex** values are present, only these components are reachable through sequential focus navigation, and they are navigated cyclically in ascending order based on the **tabIndex** value. When components with positive **tabIndex** values are not present, those components with a **tabIndex** value of **0** are navigated based on the preset focus navigation rule.<br>**tabIndex** is not yet compatible with [UiExtension](../js-apis-arkui-uiExtension.md) component. As such, using **tabIndex** on a page that contains [UiExtension](../js-apis-arkui-uiExtension.md) may lead to disordered focus navigation.<br>- **tabIndex** >= 0: The component is focusable and can be reached through sequential keyboard navigation.<br>- **tabIndex** < 0 (usually **tabIndex** = -1): The component is focusable, but cannot be reached through sequential keyboard navigation.<br>Default value: **0**<br> **NOTE**<br> **tabIndex** and **focusScopeId** cannot be used together.
+|
 
 ## defaultFocus<sup>9+</sup>
 
@@ -75,7 +75,7 @@ Specifies whether to set the component as the default focus of the container.
 
 | Name| Type   | Mandatory| Description                                                        |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
-| value  | boolean | Yes  | Whether to set the component as the default focus of the parent container. This parameter takes effect only when the container is new and obtains focus for the first time.<br>Default value: **false**<br>**NOTE**<br>This parameter must be used together with [tabIndex](#tabindex9). When **tabIndex** is set for a container and **groupDefaultFocus(true)** is set for a child in the container or for the container itself, then when the container obtains focus for the first time through sequential Tab navigation, the focus automatically moves to the specified component. If **groupDefaultFocus(true)** is set for multiple components in the container (including the container itself), the first component found in the component tree in-depth traversal receives the focus.|
+| value  | boolean | Yes  | Whether to set the component as the default focus of the parent container. This parameter takes effect only when the container is new and obtains focus for the first time. <br>**true**: The component is the default focus of the parent container.<br>**false**: The component is not the default focus of the parent container.<br>Default value: **false**<br>**NOTE**<br>This parameter must be used together with [tabIndex](#tabindex9). When **tabIndex** is set for a container and **groupDefaultFocus(true)** is set for a child in the container or for the container itself, then when the container obtains focus for the first time through sequential Tab navigation, the focus automatically moves to the specified component. If **groupDefaultFocus(true)** is set for multiple components in the container (including the container itself), the first component found in the component tree in-depth traversal receives the focus.|
 
 ## focusOnTouch<sup>9+</sup>
 
@@ -91,7 +91,7 @@ Sets whether the component is focusable on touch.
 
 | Name| Type   | Mandatory| Description                                                        |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
-| value  | boolean | Yes  | Whether the component is focusable on touch.<br>Default value: **false**<br>**NOTE**<br>The component is focusable only when it is touchable.|
+| value  | boolean | Yes  | Whether the component is focusable on touch. <br>**true**: The component is focusable on touch.<br>**false**: The component is not focusable on touch.<br>Default value: **false**<br>**NOTE**<br>The component is focusable only when it is touchable.|
 
 ## focusBox<sup>12+</sup>
 
@@ -207,7 +207,7 @@ Assigns an ID to this container component and specifies whether the container is
 | Name| Type   | Mandatory| Description                                                        |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
 | id  | string | Yes  | ID of the current container component.<br>**NOTE**<br>The ID must be unique within a single level page.|
-| isGroup  | boolean | No  | Whether the current container component is a focus group.<br>**NOTE**<br>Focus groups cannot be nested and should not be configured repeatedly.<br> The focus group and **tabIndex** cannot be used together.<br>The focus group enables the container and its elements to navigate focus according to the focus group rules as follows:<br>1. Only arrow keys are allowed for focus traversal within the focus group; the **Tab** key will move the focus out of the focus group.<br>2. When arrow keys are used to move the focus from outside the focus group to inside, if there is a component with a priority of **PREVIOUS** within the focus group, that component gains focus; otherwise, the last focused component does.|
+| isGroup  | boolean | No  | Whether the current container component is a focus group. <br>**true**: The current container component is a focus group.<br>**false**: The current container component is not a focus group.<br>**NOTE**<br>Focus groups cannot be nested and should not be configured repeatedly.<br> The focus group and **tabIndex** cannot be used together.<br>The focus group enables the container and its elements to navigate focus according to the focus group rules as follows:<br>1. Only arrow keys are allowed for focus traversal within the focus group; the **Tab** key will move the focus out of the focus group.<br>2. When arrow keys are used to move the focus from outside the focus group to inside, if there is a component with a priority of **PREVIOUS** within the focus group, that component gains focus; otherwise, the last focused component does.|
 
 ## focusScopeId<sup>14+</sup>
 
@@ -222,8 +222,8 @@ Assigns an ID to this container component and specifies whether the container is
 | Name| Type   | Mandatory| Description                                                        |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
 | id  | string | Yes  | ID of the current container component.<br>**NOTE**<br>The ID must be unique within a single level page.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
-| isGroup  | boolean | No  | Whether the current container component is a focus group.<br>**NOTE**<br>Focus groups cannot be nested and should not be configured repeatedly.<br> The focus group and **tabIndex** cannot be used together.<br>The focus group enables the container and its elements to navigate focus according to the focus group rules as follows:<br>1. Only arrow keys are allowed for focus traversal within the focus group; the **Tab** key will move the focus out of the focus group.<br>2. When arrow keys are used to move the focus from outside the focus group to inside, if there is a component with a priority of **PREVIOUS** within the focus group, that component gains focus; otherwise, the last focused component does.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
-| arrowStepOut<sup>14+</sup>  | boolean | No  | Whether the focus can be moved out of the current focus group using arrow keys.<br>**Atomic service API**: This API can be used in atomic services since API version 14.|
+| isGroup  | boolean | No  | Whether the current container component is a focus group. <br>**true**: The current container component is a focus group.<br>**false**: The current container component is not a focus group.<br>**NOTE**<br>Focus groups cannot be nested and should not be configured repeatedly.<br> The focus group and **tabIndex** cannot be used together.<br>The focus group enables the container and its elements to navigate focus according to the focus group rules as follows:<br>1. Only arrow keys are allowed for focus traversal within the focus group; the **Tab** key will move the focus out of the focus group.<br>2. When arrow keys are used to move the focus from outside the focus group to inside, if there is a component with a priority of **PREVIOUS** within the focus group, that component gains focus; otherwise, the last focused component does.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| arrowStepOut<sup>14+</sup>  | boolean | No  | Whether the focus can be moved out of the current focus group using arrow keys. <br>**true**: The focus can be moved out of the current focus group using arrow keys.<br>**false**: The focus cannot be moved out of the current focus group using arrow keys.<br>**Atomic service API**: This API can be used in atomic services since API version 14.|
 
 ## tabStop<sup>14+</sup>
 
@@ -239,7 +239,7 @@ Sets whether this container component is a focus stop. During focus traversal, t
 
 | Name| Type   | Mandatory| Description                                                        |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
-| isTabStop  | boolean | Yes  | Whether the current container component is a focus stop.<br>**NOTE**<br>1. To configure **tabStop**, make sure the component is a container and has focusable child components. By default, container components cannot directly gain focus.<br> 2. When [requestFocus](../js-apis-arkui-UIContext.md#requestfocus12) is used for requesting focus, if the component is a container and **tabStop** is configured, the focus can stop at the container. If **tabStop** is not configured, the component can still gain focus, even if there are other components in the focus chain with **tabStop** configured.<br>3. Containers with **tabStop** configured should not be nested more than two levels deep.<br>Focus traversal rules with **tabStop**:<br>1. During focus traversal using the **Tab** key or arrow keys, the focus stops at components with **tabStop** configured. If the focus is inside a container with **tabStop** configured, it can move to the next focusable component within the container. If the focus is outside such a container, it can move to the next focusable component outside the container.<br>2. When the focus is on a container with **tabStop** configured, pressing **Enter** moves the focus to the first focusable component inside the container. Pressing **ESC** moves the focus back to the previous component with **tabStop** configured, without exceeding the current level of the page root container. Pressing the spacebar triggers the **onClick** event of the container.<br>3. Whenever possible, avoid configuring **tabStop** on the root container. If **tabStop** is configured on the root container, the following behaviors will occur:<br>- Using [clearFocus](../js-apis-arkui-UIContext.md#clearfocus12) to clear the focus to the root container and then pressing **Enter** will move the focus to the previously focused component inside the root container.<br>- Using **ESC** to clear the focus to the root container and then pressing **Enter** will move the focus to the first focusable component inside the root container.|
+| isTabStop  | boolean | Yes  | Whether the current container component is a focus stop. <br>**true**: The current container component is a focus stop.<br>**false**: The current container component is not a focus stop.<br>**NOTE**<br>1. To configure **tabStop**, make sure the component is a container and has focusable child components. By default, container components cannot directly gain focus.<br> 2. When [requestFocus](../js-apis-arkui-UIContext.md#requestfocus12) is used for requesting focus, if the component is a container and **tabStop** is configured, the focus can stop at the container. If **tabStop** is not configured, the component can still gain focus, even if there are other components in the focus chain with **tabStop** configured.<br>3. Containers with **tabStop** configured should not be nested more than two levels deep.<br>Focus traversal rules with **tabStop**:<br>1. During focus traversal using the **Tab** key or arrow keys, the focus stops at components with **tabStop** configured. If the focus is inside a container with **tabStop** configured, it can move to the next focusable component within the container. If the focus is outside such a container, it can move to the next focusable component outside the container.<br>2. When the focus is on a container with **tabStop** configured, pressing **Enter** moves the focus to the first focusable component inside the container. Pressing **ESC** moves the focus back to the previous component with **tabStop** configured, without exceeding the current level of the page root container. Pressing the spacebar triggers the **onClick** event of the container.<br>3. Whenever possible, avoid configuring **tabStop** on the root container. If **tabStop** is configured on the root container, the following behaviors will occur:<br>- Using [clearFocus](../js-apis-arkui-UIContext.md#clearfocus12) to clear the focus to the root container and then pressing **Enter** will move the focus to the previously focused component inside the root container.<br>- Using **ESC** to clear the focus to the root container and then pressing **Enter** will move the focus to the first focusable component inside the root container.|
 
 **Example for describing the keys and focusable components during focus traversal**
 
@@ -247,13 +247,13 @@ Sets whether this container component is a focus stop. During focus traversal, t
 
 If the current focus is on **button2**, pressing the **Tab** key will move the focus to **Column3**. Pressing the **Tab** key again will move the focus back to **button1**.
 
-## nextFocus<sup>16+</sup>
+## nextFocus<sup>18+</sup>
 
 nextFocus(nextStep: Optional\<FocusMovement>): T
 
 Sets the custom focus movement logic for the component.
 
-**Atomic service API**: This API can be used in atomic services since API version 16.
+**Atomic service API**: This API can be used in atomic services since API version 18.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -261,13 +261,13 @@ Sets the custom focus movement logic for the component.
 
 | Name| Type   | Mandatory| Description                                                        |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
-| nextStep  | [FocusMovement](#focusmovement16) | No| Custom focus movement logic of the component.<br>**NOTE**<br>The default value resets **nextStep** to empty.<br>If custom focus movement is not set or the specified component does not exist, the default focus movement logic applies.|
+| nextStep  | [FocusMovement](#focusmovement18) | No| Custom focus movement logic of the component.<br>**NOTE**<br>The default value resets **nextStep** to empty.<br>If custom focus movement is not set or the specified component does not exist, the default focus movement logic applies.|
 
-## FocusMovement<sup>16+</sup>
+## FocusMovement<sup>18+</sup>
 
 Sets the target component for focus movement based on key presses. If it is not specified, the default focus movement logic applies.
 
-**Atomic service API**: This API can be used in atomic services since API version 16.
+**Atomic service API**: This API can be used in atomic services since API version 18.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 

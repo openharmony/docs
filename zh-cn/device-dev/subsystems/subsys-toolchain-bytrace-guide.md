@@ -8,23 +8,23 @@ bytrace是开发人员用于追踪进程轨迹、分析性能的一种工具，�
 
 ## 参数说明
 
-bytrace当前支持以下命令:
+bytrace当前支持以下命令：
 
   **表1** 命令行列表
 
 | Option | Description |
 | -------- | -------- |
-| -h，--help | 查看option帮助 |
-| -b&nbsp;_n_，--buffer_size&nbsp;_n_ | 指定_n_(KB)内存大小用于存取trace日志，默认2048KB |
-| -t&nbsp;_n_，--time&nbsp;_n_ | 用来指定trace运行的时间（单位：s），取决于需要分析过程的时间 |
-| --trace_clock&nbsp;_clock_ | trace输出的时钟类型，一般设备支持boot、global、mono、uptime、perf等，默认为boot |
-| --trace_begin | 启动抓trace |
-| --trace_dump | 将数据输出到指定位置（默认控制台） |
-| --trace_finish | 停止抓trace，并将数据输出到指定位置（默认控制台） |
-| -l，--list_categories | 输出手机能支持的trace模块 |
-| --overwrite | 当缓冲区满的时候，将丢弃最新的信息。（默认丢弃最老的日志） |
-| -o&nbsp;_filename_，--output&nbsp;_filename_ | 指定输出的目标文件名称 |
-| -z | 抓取trace后进行压缩 |
+| -h，--help | 查看option帮助。 |
+| -b&nbsp;_n_，--buffer_size&nbsp;_n_ | 指定_n_(KB)内存大小用于存取trace日志，默认2048KB。 |
+| -t&nbsp;_n_，--time&nbsp;_n_ | 用来指定trace运行的时间（单位：s），取决于需要分析过程的时间。 |
+| --trace_clock&nbsp;_clock_ | trace输出的时钟类型，一般设备支持boot、global、mono、uptime、perf等，默认为boot。 |
+| --trace_begin | 启动抓trace。 |
+| --trace_dump | 将数据输出到指定位置（默认控制台）。 |
+| --trace_finish | 停止抓trace，并将数据输出到指定位置（默认控制台）。 |
+| -l，--list_categories | 输出手机能支持的trace模块。 |
+| --overwrite | 当缓冲区满的时候，将丢弃最新的信息（默认丢弃最老的日志）。 |
+| -o&nbsp;_filename_，--output&nbsp;_filename_ | 指定输出的目标文件名称。 |
+| -z | 抓取trace后进行压缩。 |
 
 
 ## 使用实例

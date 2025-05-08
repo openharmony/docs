@@ -38,7 +38,7 @@ MovingPhotoView(options: MovingPhotoViewOptions)
 | ----------- | ------------------------------------------------------------------------------------------------ | ---- | ----------------------------------------------------------------------------------------------------------------------------------------------- |
 | movingPhoto | [MovingPhoto](js-apis-photoAccessHelper.md#movingphoto12) | Yes  | **MovingPhoto** instance. For details, see [MovingPhoto](js-apis-photoAccessHelper.md#movingphoto12).<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | controller  | [MovingPhotoViewController](#movingphotoviewcontroller)                                          | No  | Controller used to control the playback status of the moving photo.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                     |
-| imageAIOptions<sup>16+</sup>  | [ImageAIOptions](../apis-arkui/arkui-ts/ts-image-common.md#imageaioptions) | No  | AI options. You can set the image analyzer type or bind an image analyzer controller.<br>**Atomic service API**: This API can be used in atomic services since API version 16.|
+| imageAIOptions<sup>18+</sup>   | [ImageAIOptions](../apis-arkui/arkui-ts/ts-image-common.md#imageaioptions) | No  | AI options. You can set the image analyzer type or bind an image analyzer controller.<br>**Atomic service API**: This API can be used in atomic services since API version 18.|
 
 ## Properties
 
@@ -132,13 +132,13 @@ Sets repeat play. **repeatPlay** is mutually exclusive with **autoPlay** and **L
 | ------- | ------- | ---- | ---------------------------- |
 | isRepeatPlay| boolean| Yes  | Whether to enable repeat play.<br>The value **true** means to enable repeat play; the value **false** means the opposite.<br>Default value: **false**|
 
-### enableAnalyzer<sup>16+</sup>
+### enableAnalyzer<sup>18+</sup> 
 
 enableAnalyzer(enabled: boolean)
 
 Sets the AI analyzer. Currently, the AI analyzer supports features, such as subject recognition, text recognition, and object search.
 
-**Atomic service API**: This API can be used in atomic services since API version 16.
+**Atomic service API**: This API can be used in atomic services since API version 18.
 
 **System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
@@ -147,7 +147,7 @@ Sets the AI analyzer. Currently, the AI analyzer supports features, such as subj
 
 | Name | Type   | Mandatory| Description                        |
 | ------- | ------- | ---- | ---------------------------- |
-| enabled| boolean| Yes  | Whether to enable the AI analyzer.<br>The value **true** means to enable the AI analyzer, and **false** means the opposite.<br>Default value: **true**|
+| enabled| boolean| Yes  | Whether to enable the AI analyzer.<br>The value **false** means to disable the AI analyzer; **true** means the opposite.<br>Default value: **true**|
 
 ## Events
 
@@ -285,13 +285,13 @@ Stops playback. Once started again, the playback starts from the beginning.
 
 **System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
-### refreshMovingPhoto<sup>16+</sup>
+### refreshMovingPhoto<sup>18+</sup> 
 
 refreshMovingPhoto(): void
 
 Forcibly refreshes the video and image resources loaded by the **MovingPhotoView** component. This API will interrupt the ongoing actions of the component. Exercise caution when using it.
 
-**Atomic service API**: This API can be used in atomic services since API version 16.
+**Atomic service API**: This API can be used in atomic services since API version 18.
 
 **System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
@@ -312,6 +312,7 @@ struct MovingPhotoViewDemo {
   @State src: photoAccessHelper.MovingPhoto | undefined = undefined
   @State isMuted: boolean = false
   controller: MovingPhotoViewController = new MovingPhotoViewController()
+  private uiContext: UIContext = this.getUIContext()
 
   aboutToAppear(): void {
     emitter.on({
@@ -332,7 +333,6 @@ struct MovingPhotoViewDemo {
         Button('PICK')
           .margin(5)
           .onClick(async () => {
-            let context = getContext(this)
             try {
               let uris: Array<string> = []
               const photoSelectOptions = new photoAccessHelper.PhotoSelectOptions()
@@ -342,7 +342,7 @@ struct MovingPhotoViewDemo {
               let photoSelectResult: photoAccessHelper.PhotoSelectResult = await photoViewPicker.select(photoSelectOptions)
               uris = photoSelectResult.photoUris
               if (uris[0]) {
-                this.handlePickerResult(context, uris[0], new MediaDataHandlerMovingPhoto())
+                this.handlePickerResult(this.uiContext.getHostContext()!, uris[0], new MediaDataHandlerMovingPhoto())
               }
             } catch (e) {
               console.error(`pick file failed`)
@@ -463,6 +463,7 @@ struct MovingPhotoViewDemo {
     types: [ImageAnalyzerType.SUBJECT, ImageAnalyzerType.TEXT, ImageAnalyzerType.OBJECT_LOOKUP],
     aiController: this.aiController
   }
+  private uiContext: UIContext = this.getUIContext()
 
   aboutToAppear(): void {
     emitter.on({
@@ -483,7 +484,6 @@ struct MovingPhotoViewDemo {
         Button('PICK')
           .margin(5)
           .onClick(async () => {
-            let context = getContext(this)
             try {
               let uris: Array<string> = []
               const photoSelectOptions = new photoAccessHelper.PhotoSelectOptions()
@@ -493,7 +493,7 @@ struct MovingPhotoViewDemo {
               let photoSelectResult: photoAccessHelper.PhotoSelectResult = await photoViewPicker.select(photoSelectOptions)
               uris = photoSelectResult.photoUris
               if (uris[0]) {
-                this.handlePickerResult(context, uris[0], new MediaDataHandlerMovingPhoto())
+                this.handlePickerResult(this.uiContext.getHostContext()!, uris[0], new MediaDataHandlerMovingPhoto())
               }
             } catch (e) {
               console.error(`pick file failed`)
@@ -599,9 +599,8 @@ class MediaDataHandlerMovingPhoto implements photoAccessHelper.MediaAssetDataHan
 // xxx.ets
 import { photoAccessHelper, MovingPhotoView, MovingPhotoViewController, MovingPhotoViewAttribute } from '@kit.MediaLibraryKit';
 
-let context = getContext(this)
 let data: photoAccessHelper.MovingPhoto
-async function loading() {
+async function loading(context: Context) {
   try {
     // Ensure that the media assets corresponding to imageFileUri and videoFileUri exist in the application sandbox directory.
     let imageFileUri = 'file://{bundleName}/data/storage/el2/base/haps/entry/files/xxx.jpg';
@@ -616,6 +615,7 @@ async function loading() {
 @Component
 struct Index {
   controller: MovingPhotoViewController = new MovingPhotoViewController()
+  private uiContext: UIContext = this.getUIContext()
   @State ImageFit: ImageFit | undefined | null = ImageFit.Contain;
   @State flag: boolean = true;
   @State autoPlayFlag: boolean = true;
@@ -623,7 +623,7 @@ struct Index {
   @State autoPlayPeriodStart: number = 0;
   @State autoPlayPeriodEnd: number = 500;
   aboutToAppear(): void {
-    loading()
+    loading(this.uiContext.getHostContext()!)
   }
 
   build() {
@@ -684,5 +684,3 @@ struct Index {
   }
 }
 ```
-
- <!--no_check--> 

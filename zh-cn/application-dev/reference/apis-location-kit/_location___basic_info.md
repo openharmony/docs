@@ -9,6 +9,7 @@
 
 **相关模块：**[Location](_location.md)
 
+**所在头文件：**[oh_location_type.h](oh__location__type_8h.md)
 
 ## 汇总
 
@@ -41,6 +42,7 @@
 double Location_BasicInfo::accuracy
 ```
 **描述**
+
 表示精度信息，单位米。
 
 
@@ -50,6 +52,7 @@ double Location_BasicInfo::accuracy
 double Location_BasicInfo::altitude
 ```
 **描述**
+
 表示高度信息，单位米。
 
 
@@ -59,6 +62,7 @@ double Location_BasicInfo::altitude
 double Location_BasicInfo::altitudeAccuracy
 ```
 **描述**
+
 表示高度信息的精度，单位米。
 
 
@@ -68,6 +72,7 @@ double Location_BasicInfo::altitudeAccuracy
 double Location_BasicInfo::direction
 ```
 **描述**
+
 表示航向信息。单位是“度”，取值范围为0到360。
 
 
@@ -77,6 +82,7 @@ double Location_BasicInfo::direction
 double Location_BasicInfo::directionAccuracy
 ```
 **描述**
+
 表示航向信息的精度。单位是“度”，取值范围为0到360。
 
 
@@ -86,6 +92,7 @@ double Location_BasicInfo::directionAccuracy
 double Location_BasicInfo::latitude
 ```
 **描述**
+
 表示纬度信息，正值表示北纬，负值表示南纬。取值范围为-90到90。仅支持WGS84坐标系。
 
 
@@ -95,6 +102,7 @@ double Location_BasicInfo::latitude
 Location_SourceType Location_BasicInfo::locationSourceType
 ```
 **描述**
+
 表示定位结果的来源。 详细定义请参考[Location_SourceType](_location.md#location_sourcetype)。
 
 
@@ -104,6 +112,7 @@ Location_SourceType Location_BasicInfo::locationSourceType
 double Location_BasicInfo::longitude
 ```
 **描述**
+
 表示经度信息，正值表示东经，负值表是西经。取值范围为-180到180。仅支持WGS84坐标系。
 
 
@@ -113,6 +122,7 @@ double Location_BasicInfo::longitude
 double Location_BasicInfo::speed
 ```
 **描述**
+
 表示速度信息，单位米每秒。
 
 
@@ -122,6 +132,7 @@ double Location_BasicInfo::speed
 double Location_BasicInfo::speedAccuracy
 ```
 **描述**
+
 表示速度信息的精度，单位米每秒。
 
 
@@ -131,6 +142,7 @@ double Location_BasicInfo::speedAccuracy
 int64_t Location_BasicInfo::timeForFix
 ```
 **描述**
+
 表示位置时间戳，UTC格式。
 
 
@@ -140,6 +152,7 @@ int64_t Location_BasicInfo::timeForFix
 int64_t Location_BasicInfo::timeSinceBoot
 ```
 **描述**
+
 表示位置时间戳，开机时间格式。
 
 
@@ -149,4 +162,5 @@ int64_t Location_BasicInfo::timeSinceBoot
 int64_t Location_BasicInfo::uncertaintyOfTimeSinceBoot
 ```
 **描述**
+
 表示位置时间戳的不确定度。

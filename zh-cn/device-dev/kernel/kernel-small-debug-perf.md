@@ -87,7 +87,7 @@ OpenHarmony LiteOS-A内核的Perf模块提供下面几种功能，接口详细�
 
    3种事件类型：CPU硬件事件（cycle、branch、icache、dcache等）、高精度周期事件（cpu clock)、OS软件事件（task switch、mux pend、irq等）。
 
-3. 在需要采样的代码起始点调用LOS_PerfStart(UINT32 sectionId), 入参sectionId标记不同的采样回话id。
+3. 在需要采样的代码起始点调用LOS_PerfStart(UINT32 sectionId)，入参sectionId标记不同的采样回话id。
 
 4. 在需要采样的代码结束点调用LOS_PerfStop。
 

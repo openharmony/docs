@@ -13,7 +13,7 @@ import { print } from '@kit.BasicServicesKit';
 ```
 
 
-## PrintMargin
+## print.PrintMargin
 
 Defines the page margins for printing.
 
@@ -29,7 +29,7 @@ Defines the page margins for printing.
 | left | number | No| Left margin of the page.|
 | right | number | No| Right margin of the page.|
 
-## PrinterRange
+## print.PrinterRange
 
 Defines the print range.
 
@@ -44,7 +44,7 @@ Defines the print range.
 | endPage | number | No| End page.|
 | pages | Array&lt;number&gt; | No| Discrete pages.|
 
-## PreviewAttribute
+## print.PreviewAttribute
 
 Defines the print preview attributes.
 
@@ -55,10 +55,10 @@ Defines the print preview attributes.
 **Attributes**
 | **Name**| **Type**| **Mandatory**| **Description**|
 | -------- | -------- | -------- | -------- |
-| previewRange | PrinterRange | Yes| Preview page range.|
+| previewRange | [PrinterRange](#printprinterrange) | Yes| Preview page range.|
 | result | number | No| Print preview result.|
 
-## PrintResolution
+## print.PrintResolution
 
 Defines the resolution for printing.
 
@@ -73,9 +73,7 @@ Defines the resolution for printing.
 | horizontalDpi | number | Yes| Horizontal DPI.|
 | verticalDpi | number | Yes| Vertical DPI.|
 
-
-
-## PrinterCapability
+## print.PrinterCapability
 
 Defines the printer capabilities.
 
@@ -88,12 +86,12 @@ Defines the printer capabilities.
 | -------- | -------- | -------- | -------- |
 | colorMode | number | Yes| Color mode.|
 | duplexMode | number | Yes| Single-sided or double-sided printing mode.|
-| pageSize | Array&lt;PrintPageSize&gt; | Yes| List of page sizes supported by the printer.|
-| resolution | Array&lt;PrintResolution&gt; | No| List of resolutions supported by the printer.|
-| minMargin | PrintMargin | No| Minimum margin of the printer.|
+| pageSize | Array&lt;[PrintPageSize](./js-apis-print.md#printprintpagesize11)&gt; | Yes| List of page sizes supported by the printer.|
+| resolution | Array&lt;[PrintResolution](#printprintresolution)&gt; | No| List of resolutions supported by the printer.|
+| minMargin | [PrintMargin](#printprintmargin) | No| Minimum margin of the printer.|
 | options<sup>11+</sup> | Object | No| Printer options. The value is a JSON object string.|
 
-## PrinterInfo
+## print.PrinterInfo
 
 Provides the printer information.
 
@@ -106,13 +104,13 @@ Provides the printer information.
 | -------- | -------- | -------- | -------- |
 | printerId | string | Yes| Printer ID.|
 | printerName | string | Yes| Printer name.|
-| printerState | PrinterState | Yes| Printer state.|
+| printerState | [PrinterState](./js-apis-print.md#printprinterstate14) | Yes| Printer state.|
 | printerIcon | number | No| Resource ID of the printer icon.|
 | description | string | No| Printer description.|
-| capability | PrinterCapability | No| Printer capability.|
+| capability | [PrinterCapability](#printprintercapability) | No| Printer capability.|
 | options | Object | No| Printer options. The value is a JSON object string.|
 
-## PrintJob
+## print.PrintJob
 
 Defines a print job.
 
@@ -126,128 +124,20 @@ Defines a print job.
 | fdList | Array&lt;number&gt; | Yes| FD list of files to print.|
 | jobId | string | Yes| ID of the print job.|
 | printerId | string | Yes| ID of the printer used for printing.|
-| jobState | PrintJobState | Yes| State of the print job.|
-| jobSubstate<sup>11+</sup> | PrintJobSubState | Yes| Substate of the print job.|
+| jobState | [PrintJobState](./js-apis-print.md#printprintjobstate14) | Yes| State of the print job.|
+| jobSubstate<sup>11+</sup> | [PrintJobSubState](./js-apis-print.md#printprintjobsubstate14) | Yes| Substate of the print job.|
 | copyNumber | number | Yes| Copy of the file list.|
-| pageRange | PrinterRange | Yes| Print range.|
-| isSequential | boolean | Yes| Whether to enable sequential printing.|
-| pageSize | PrintPageSize | Yes| Selected page size.|
-| isLandscape | boolean | Yes| Whether to print in landscape mode.|
+| pageRange | [PrinterRange](#printprinterrange) | Yes| Print range.|
+| isSequential | boolean | Yes| Whether the printing is sequential. The value **true** means that the printing is sequential; the value **false** means the opposite. The default value is **false**.|
+| pageSize | [PrintPageSize](./js-apis-print.md#printprintpagesize11) | Yes| Selected page size.|
+| isLandscape | boolean | Yes| Whether the printing is in landscape mode. The value **true** means that the printing is in landscape mode; the value **false** means the printing is in portrait mode The default value is **false**.|
 | colorMode | number | Yes| Color mode.|
 | duplexMode | number | Yes| Single-sided or double-sided printing mode.|
-| margin | PrintMargin | No| Current page margin.|
-| preview | PreviewAttribute | No| Preview settings.|
+| margin | [PrintMargin](#printprintmargin) | No| Current page margin.|
+| preview | [PreviewAttribute](#printpreviewattribute) | No| Preview settings.|
 | options | Object | No| Printer options. The value is a JSON object string.|
 
-
-## PrinterState
-
-Enumerates the printer states.
-
-**System API**: This is a system API.
-
-**System capability**: SystemCapability.Print.PrintFramework
-
-| **Name**| **Value**| **Description**|
-| -------- | -------- | -------- |
-| PRINTER_ADDED | 0 | A new printer is added.|
-| PRINTER_REMOVED | 1 | The printer is removed.|
-| PRINTER_CAPABILITY_UPDATED | 2 | The printer is updated.|
-| PRINTER_CONNECTED | 3 | The printer is connected.|
-| PRINTER_DISCONNECTED | 4 | The printer is disconnected.|
-| PRINTER_RUNNING | 5 | The printer is running.|
-
-## PrintJobState
-
-Enumerates the print job states.
-
-**System API**: This is a system API.
-
-**System capability**: SystemCapability.Print.PrintFramework
-
-| **Name**| **Value**| **Description**|
-| -------- | -------- | -------- |
-| PRINT_JOB_PREPARE | 0 | The printer is prepared for the print job.|
-| PRINT_JOB_QUEUED | 1 | The print job is on the print queue of the printer.|
-| PRINT_JOB_RUNNING | 2 | The print job is being executed.|
-| PRINT_JOB_BLOCKED | 3 | The print job is blocked.|
-| PRINT_JOB_COMPLETED | 4 | The print job is complete.|
-
-## PrintJobSubState
-
-Enumerates the print job substates.
-
-**System API**: This is a system API.
-
-**System capability**: SystemCapability.Print.PrintFramework
-
-| **Name**| **Value**| **Description**|
-| -------- | -------- | -------- |
-| PRINT_JOB_COMPLETED_SUCCESS | 0 | The print job is successful.|
-| PRINT_JOB_COMPLETED_FAILED | 1 | The print job failed.|
-| PRINT_JOB_COMPLETED_CANCELLED | 2 | The print job is canceled.|
-| PRINT_JOB_COMPLETED_FILE_CORRUPTED | 3 | The print job is corrupted.|
-| PRINT_JOB_BLOCK_OFFLINE | 4 | The printer is offline.|
-| PRINT_JOB_BLOCK_BUSY | 5 | The printer is occupied by another process.|
-| PRINT_JOB_BLOCK_CANCELLED | 6 | The print job is canceled.|
-| PRINT_JOB_BLOCK_OUT_OF_PAPER | 7 | The printer is out of paper.|
-| PRINT_JOB_BLOCK_OUT_OF_INK | 8 | The printer is out of ink.|
-| PRINT_JOB_BLOCK_OUT_OF_TONER | 9 | The printer is out of toner.|
-| PRINT_JOB_BLOCK_JAMMED | 10 | The printer is in a paper jam.|
-| PRINT_JOB_BLOCK_DOOR_OPEN | 11 | The printer door is open.|
-| PRINT_JOB_BLOCK_SERVICE_REQUEST | 12 | Print service request.|
-| PRINT_JOB_BLOCK_LOW_ON_INK | 13 | The printer is low on ink.|
-| PRINT_JOB_BLOCK_LOW_ON_TONER | 14 | The printer is low on toner.|
-| PRINT_JOB_BLOCK_REALLY_LOW_ON_INK | 15 | The printer is extremely low on ink.|
-| PRINT_JOB_BLOCK_BAD_CERTIFICATE | 16 | The print certificate is incorrect.|
-| PRINT_JOB_BLOCK_ACCOUNT_ERROR<sup>11+</sup> | 18 | There is an error with the printer account.|
-| PRINT_JOB_BLOCK_PRINT_PERMISSION_ERROR<sup>11+</sup> | 19 | There is an error with the printer permission.|
-| PRINT_JOB_BLOCK_PRINT_COLOR_PERMISSION_ERROR<sup>11+</sup> | 20 | There is an error with the color print permission.|
-| PRINT_JOB_BLOCK_NETWORK_ERROR<sup>11+</sup> | 21 | The printer is not connected to the network.|
-| PRINT_JOB_BLOCK_SERVER_CONNECTION_ERROR<sup>11+</sup> | 22 | The printer could not be connected to the server.|
-| PRINT_JOB_BLOCK_LARGE_FILE_ERROR<sup>11+</sup> | 23 | An error occurs when a large file is printed.|
-| PRINT_JOB_BLOCK_FILE_PARSING_ERROR<sup>11+</sup> | 24 | There is an error with file parsing.|
-| PRINT_JOB_BLOCK_SLOW_FILE_CONVERSION<sup>11+</sup> | 25 | The file conversion is slow.|
-| PRINT_JOB_RUNNING_UPLOADING_FILES<sup>11+</sup> | 26 | The file is being uploaded.|
-| PRINT_JOB_RUNNING_CONVERTING_FILES<sup>11+</sup> | 27 | The file is being converted.|
-| PRINT_JOB_BLOCK_UNKNOWN | 99 | An unknown print error occurs.|
-
-## PrintErrorCode
-
-Enumerates the print error codes.
-
-**System API**: This is a system API.
-
-**System capability**: SystemCapability.Print.PrintFramework
-
-| **Name**| **Value**| **Description**|
-| -------- | -------- | -------- |
-| E_PRINT_NONE | 0 | No error.|
-| E_PRINT_NO_PERMISSION | 201 | No permission.|
-| E_PRINT_INVALID_PARAMETER | 401 | Invalid parameter.|
-| E_PRINT_GENERIC_FAILURE | 13100001 | Printing failure.|
-| E_PRINT_RPC_FAILURE | 13100002 | RPC failure.|
-| E_PRINT_SERVER_FAILURE | 13100003 | Print service failure.|
-| E_PRINT_INVALID_EXTENSION | 13100004 | Invalid printer extension.|
-| E_PRINT_INVALID_PRINTER | 13100005 | Invalid printer.|
-| E_PRINT_INVALID_PRINT_JOB | 13100006 | Invalid print job.|
-| E_PRINT_FILE_IO | 13100007 | Incorrect file input/output.|
-
-## ApplicationEvent<sup>12+</sup>
-
-Enumerates print application events.
-
-**System API**: This is a system API.
-
-**System capability**: SystemCapability.Print.PrintFramework
-
-| **Name**| **Value**| **Description**|
-| -------- | -------- | -------- |
-| APPLICATION_CREATED | 0 | Starts the print application.|
-| APPLICATION_CLOSED_FOR_STARTED | 1 | Closes the print application by clicking **Start**.|
-| APPLICATION_CLOSED_FOR_CANCELED | 2 | Closes the print application by clicking **Cancel**.|
-
-## PrinterExtensionInfo
+## print.PrinterExtensionInfo
 
 Provides the printer extension information.
 
@@ -264,7 +154,7 @@ Provides the printer extension information.
 | vendorIcon | number | Yes| Vendor icon of the printer extension.|
 | version | string | Yes| Version of the printer extension.|
 
-## queryAllPrinterExtensionInfos
+## print.queryAllPrinterExtensionInfos
 
 queryAllPrinterExtensionInfos(callback: AsyncCallback&lt;Array&lt;PrinterExtensionInfo&gt;&gt;): void
 
@@ -279,7 +169,7 @@ Obtains the information of all installed printer extensions. This API uses an as
 **Parameters**
 | **Name**| **Type**| **Mandatory**| **Description**|
 | -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;Array&lt;PrinterExtensionInfo&gt;&gt; | Yes| Callback used to return the result.|
+| callback | AsyncCallback&lt;Array&lt;[PrinterExtensionInfo](#printprinterextensioninfo)&gt;&gt; | Yes| Callback used to return the result.|
 
 **Error codes**
 
@@ -287,8 +177,8 @@ For details about the error codes, see [Error Codes of the Print Service](./erro
 
 | ID| Error Message                                   |
 | -------- | ------------------------------------------- |
-| 201 | Permission verification failed. The application does not have the permission required to call the API. |
-| 202 | Permission verification failed. A non-system application calls a system API. |
+| 201 | the application does not have permission to call this function. |
+| 202 | not system application |
 
 **Example**
 
@@ -305,7 +195,7 @@ print.queryAllPrinterExtensionInfos((err: BusinessError, extensionInfos: print.P
 })
 ```
 
-## queryAllPrinterExtensionInfos
+## print.queryAllPrinterExtensionInfos
 
 queryAllPrinterExtensionInfos(): Promise&lt;Array&lt;PrinterExtensionInfo&gt;&gt;
 
@@ -320,7 +210,7 @@ Obtains the information of all installed printer extensions. This API uses a pro
 **Return value**
 | **Type**| **Description**|
 | -------- | -------- |
-| Promise&lt;Array&lt;PrinterExtensionInfo&gt;&gt; | Promise used to return the result.used to return the result.|
+| Promise&lt;Array&lt;[PrinterExtensionInfo](#printprinterextensioninfo)&gt;&gt; | Promise used to return the result.used to return the result.|
 
 **Error codes**
 
@@ -328,8 +218,8 @@ For details about the error codes, see [Error Codes of the Print Service](./erro
 
 | ID| Error Message                                   |
 | -------- | ------------------------------------------- |
-| 201 | Permission verification failed. The application does not have the permission required to call the API. |
-| 202 | Permission verification failed. A non-system application calls a system API. |
+| 201 | the application does not have permission to call this function. |
+| 202 | not system application |
 
 **Example**
 
@@ -345,7 +235,7 @@ print.queryAllPrinterExtensionInfos().then((extensionInfos: print.PrinterExtensi
 })
 ```
 
-## startDiscoverPrinter
+## print.startDiscoverPrinter
 
 startDiscoverPrinter(extensionList: Array&lt;string&gt;, callback: AsyncCallback&lt;void&gt;): void
 
@@ -369,8 +259,8 @@ For details about the error codes, see [Error Codes of the Print Service](./erro
 
 | ID| Error Message                                   |
 | -------- | ------------------------------------------- |
-| 201 | Permission verification failed. The application does not have the permission required to call the API. |
-| 202 | Permission verification failed. A non-system application calls a system API. |
+| 201 | the application does not have permission to call this function. |
+| 202 | not system application |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 
 **Example**
@@ -390,7 +280,7 @@ print.startDiscoverPrinter(extensionList, (err: BusinessError, data : void) => {
 })
 ```
 
-## startDiscoverPrinter
+## print.startDiscoverPrinter
 
 startDiscoverPrinter(extensionList: Array&lt;string&gt;): Promise&lt;void&gt;
 
@@ -418,8 +308,8 @@ For details about the error codes, see [Error Codes of the Print Service](./erro
 
 | ID| Error Message                                   |
 | -------- | ------------------------------------------- |
-| 201 | Permission verification failed. The application does not have the permission required to call the API. |
-| 202 | Permission verification failed. A non-system application calls a system API. |
+| 201 | the application does not have permission to call this function. |
+| 202 | not system application |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 
 **Example**
@@ -437,7 +327,7 @@ print.startDiscoverPrinter(extensionList).then((data : void) => {
 })
 ```
 
-## stopDiscoverPrinter
+## print.stopDiscoverPrinter
 
 stopDiscoverPrinter(callback: AsyncCallback&lt;void&gt;): void
 
@@ -460,8 +350,8 @@ For details about the error codes, see [Error Codes of the Print Service](./erro
 
 | ID| Error Message                                   |
 | -------- | ------------------------------------------- |
-| 201 | Permission verification failed. The application does not have the permission required to call the API. |
-| 202 | Permission verification failed. A non-system application calls a system API. |
+| 201 | the application does not have permission to call this function. |
+| 202 | not system application |
 
 **Example**
 
@@ -478,7 +368,7 @@ print.stopDiscoverPrinter((err: BusinessError, data : void) => {
 })
 ```
 
-## stopDiscoverPrinter
+## print.stopDiscoverPrinter
 
 stopDiscoverPrinter(): Promise&lt;void&gt;
 
@@ -501,8 +391,8 @@ For details about the error codes, see [Error Codes of the Print Service](./erro
 
 | ID| Error Message                                   |
 | -------- | ------------------------------------------- |
-| 201 | Permission verification failed. The application does not have the permission required to call the API. |
-| 202 | Permission verification failed. A non-system application calls a system API. |
+| 201 | the application does not have permission to call this function. |
+| 202 | not system application |
 
 **Example**
 
@@ -517,7 +407,7 @@ print.stopDiscoverPrinter().then((data : void) => {
 })
 ```
 
-## connectPrinter
+## print.connectPrinter
 
 connectPrinter(printerId: string, callback: AsyncCallback&lt;void&gt;): void
 
@@ -541,8 +431,8 @@ For details about the error codes, see [Error Codes of the Print Service](./erro
 
 | ID| Error Message                                   |
 | -------- | ------------------------------------------- |
-| 201 | Permission verification failed. The application does not have the permission required to call the API. |
-| 202 | Permission verification failed. A non-system application calls a system API. |
+| 201 | the application does not have permission to call this function. |
+| 202 | not system application |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 
 **Example**
@@ -561,7 +451,7 @@ print.connectPrinter(printerId, (err: BusinessError, data : void) => {
 })
 ```
 
-## connectPrinter
+## print.connectPrinter
 
 connectPrinter(printerId: string): Promise&lt;void&gt;
 
@@ -589,8 +479,8 @@ For details about the error codes, see [Error Codes of the Print Service](./erro
 
 | ID| Error Message                                   |
 | -------- | ------------------------------------------- |
-| 201 | Permission verification failed. The application does not have the permission required to call the API. |
-| 202 | Permission verification failed. A non-system application calls a system API. |
+| 201 | the application does not have permission to call this function. |
+| 202 | not system application |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 
 **Example**
@@ -607,7 +497,7 @@ print.connectPrinter(printerId).then((data : void) => {
 })
 ```
 
-## disconnectPrinter
+## print.disconnectPrinter
 
 disconnectPrinter(printerId: string, callback: AsyncCallback&lt;void&gt;): void
 
@@ -631,8 +521,8 @@ For details about the error codes, see [Error Codes of the Print Service](./erro
 
 | ID| Error Message                                   |
 | -------- | ------------------------------------------- |
-| 201 | Permission verification failed. The application does not have the permission required to call the API. |
-| 202 | Permission verification failed. A non-system application calls a system API. |
+| 201 | the application does not have permission to call this function. |
+| 202 | not system application |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 
 **Example**
@@ -651,7 +541,7 @@ print.disconnectPrinter(printerId, (err: BusinessError, data : void) => {
 })
 ```
 
-## disconnectPrinter
+## print.disconnectPrinter
 
 disconnectPrinter(printerId: string): Promise&lt;void&gt;
 
@@ -679,8 +569,8 @@ For details about the error codes, see [Error Codes of the Print Service](./erro
 
 | ID| Error Message                                   |
 | -------- | ------------------------------------------- |
-| 201 | Permission verification failed. The application does not have the permission required to call the API. |
-| 202 | Permission verification failed. A non-system application calls a system API. |
+| 201 | the application does not have permission to call this function. |
+| 202 | not system application |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 
 **Example**
@@ -697,7 +587,7 @@ print.disconnectPrinter(printerId).then((data : void) => {
 })
 ```
 
-## queryPrinterCapability
+## print.queryPrinterCapability
 
 queryPrinterCapability(printerId: string, callback: AsyncCallback&lt;void&gt;): void
 
@@ -721,8 +611,8 @@ For details about the error codes, see [Error Codes of the Print Service](./erro
 
 | ID| Error Message                                   |
 | -------- | ------------------------------------------- |
-| 201 | Permission verification failed. The application does not have the permission required to call the API. |
-| 202 | Permission verification failed. A non-system application calls a system API. |
+| 201 | the application does not have permission to call this function. |
+| 202 | not system application |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 
 **Example**
@@ -741,7 +631,7 @@ print.queryPrinterCapability(printerId, (err: BusinessError, data : void) => {
 })
 ```
 
-## queryPrinterCapability
+## print.queryPrinterCapability
 
 queryPrinterCapability(printerId: string): Promise&lt;void&gt;
 
@@ -769,8 +659,8 @@ For details about the error codes, see [Error Codes of the Print Service](./erro
 
 | ID| Error Message                                   |
 | -------- | ------------------------------------------- |
-| 201 | Permission verification failed. The application does not have the permission required to call the API. |
-| 202 | Permission verification failed. A non-system application calls a system API. |
+| 201 | the application does not have permission to call this function. |
+| 202 | not system application |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 
 **Example**
@@ -787,7 +677,7 @@ print.queryPrinterCapability(printerId).then((data : void) => {
 })
 ```
 
-## startPrintJob
+## print.startPrintJob
 
 startPrintJob(jobInfo: PrintJob, callback: AsyncCallback&lt;void&gt;): void
 
@@ -802,7 +692,7 @@ Starts the specified print job. This API uses an asynchronous callback to return
 **Parameters**
 | **Name**| **Type**| **Mandatory**| **Description**|
 | -------- | -------- | -------- | -------- |
-| jobInfo | PrintJob | Yes| Information about the print job.|
+| jobInfo | [PrintJob](#printprintjob) | Yes| Information about the print job.|
 | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
 
 **Error codes**
@@ -811,8 +701,8 @@ For details about the error codes, see [Error Codes of the Print Service](./erro
 
 | ID| Error Message                                   |
 | -------- | ------------------------------------------- |
-| 201 | Permission verification failed. The application does not have the permission required to call the API. |
-| 202 | Permission verification failed. A non-system application calls a system API. |
+| 201 | the application does not have permission to call this function. |
+| 202 | not system application |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 
 **Example**
@@ -847,7 +737,7 @@ print.startPrintJob(jobInfo, (err: BusinessError, data : void) => {
 })
 ```
 
-## startPrintJob
+## print.startPrintJob
 
 startPrintJob(jobInfo: PrintJob): Promise&lt;void&gt;
 
@@ -862,7 +752,7 @@ Starts the specified print job. This API uses a promise to return the result.
 **Parameters**
 | **Name**| **Type**| **Mandatory**| **Description**|
 | -------- | -------- | -------- | -------- |
-| jobInfo | PrintJob | Yes| Information about the print job.|
+| jobInfo | [PrintJob](#printprintjob) | Yes| Information about the print job.|
 
 **Return value**
 | **Type**| **Description**|
@@ -875,8 +765,8 @@ For details about the error codes, see [Error Codes of the Print Service](./erro
 
 | ID| Error Message                                   |
 | -------- | ------------------------------------------- |
-| 201 | Permission verification failed. The application does not have the permission required to call the API. |
-| 202 | Permission verification failed. A non-system application calls a system API. |
+| 201 | the application does not have permission to call this function. |
+| 202 | not system application |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 
 **Example**
@@ -909,7 +799,7 @@ print.startPrintJob(jobInfo).then((data : void) => {
 })
 ```
 
-## cancelPrintJob
+## print.cancelPrintJob
 
 cancelPrintJob(jobId: string, callback: AsyncCallback&lt;void&gt;): void
 
@@ -933,8 +823,8 @@ For details about the error codes, see [Error Codes of the Print Service](./erro
 
 | ID| Error Message                                   |
 | -------- | ------------------------------------------- |
-| 201 | Permission verification failed. The application does not have the permission required to call the API. |
-| 202 | Permission verification failed. A non-system application calls a system API. |
+| 201 | the application does not have permission to call this function. |
+| 202 | not system application |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 
 **Example**
@@ -953,7 +843,7 @@ print.cancelPrintJob(jobId, (err: BusinessError, data : void) => {
 })
 ```
 
-## cancelPrintJob
+## print.cancelPrintJob
 
 cancelPrintJob(jobId: string): Promise&lt;void&gt;
 
@@ -981,8 +871,8 @@ For details about the error codes, see [Error Codes of the Print Service](./erro
 
 | ID| Error Message                                   |
 | -------- | ------------------------------------------- |
-| 201 | Permission verification failed. The application does not have the permission required to call the API. |
-| 202 | Permission verification failed. A non-system application calls a system API. |
+| 201 | the application does not have permission to call this function. |
+| 202 | not system application |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 
 **Example**
@@ -999,7 +889,7 @@ print.cancelPrintJob(jobId).then((data : void) => {
 })
 ```
 
-## requestPrintPreview
+## print.requestPrintPreview
 
 requestPrintPreview(jobInfo: PrintJob, callback: Callback&lt;number&gt;): void
 
@@ -1014,7 +904,7 @@ Requests print preview data. This API uses a callback to return the result.
 **Parameters**
 | **Name**| **Type**| **Mandatory**| **Description**|
 | -------- | -------- | -------- | -------- |
-| jobInfo | PrintJob | Yes| Information about the print job.|
+| jobInfo | [PrintJob](#printprintjob) | Yes| Information about the print job.|
 | callback | Callback&lt;number&gt; | Yes| Callback used to return the result.|
 
 **Error codes**
@@ -1023,8 +913,8 @@ For details about the error codes, see [Error Codes of the Print Service](./erro
 
 | ID| Error Message                                   |
 | -------- | ------------------------------------------- |
-| 201 | Permission verification failed. The application does not have the permission required to call the API. |
-| 202 | Permission verification failed. A non-system application calls a system API. |
+| 201 | the application does not have permission to call this function. |
+| 202 | not system application |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 
 **Example**
@@ -1055,7 +945,7 @@ print.requestPrintPreview(jobInfo, (num : number) => {
 })
 ```
 
-## requestPrintPreview
+## print.requestPrintPreview
 
 requestPrintPreview(jobInfo: PrintJob): Promise&lt;number&gt;
 
@@ -1070,7 +960,7 @@ Requests print preview data. This API uses a promise to return the result.
 **Parameters**
 | **Name**| **Type**| **Mandatory**| **Description**|
 | -------- | -------- | -------- | -------- |
-| jobInfo | PrintJob | Yes| Information about the print job.|
+| jobInfo | [PrintJob](#printprintjob) | Yes| Information about the print job.|
 
 **Return value**
 | **Type**| **Description**|
@@ -1083,8 +973,8 @@ For details about the error codes, see [Error Codes of the Print Service](./erro
 
 | ID| Error Message                                   |
 | -------- | ------------------------------------------- |
-| 201 | Permission verification failed. The application does not have the permission required to call the API. |
-| 202 | Permission verification failed. A non-system application calls a system API. |
+| 201 | the application does not have permission to call this function. |
+| 202 | not system application |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 
 **Example**
@@ -1117,7 +1007,7 @@ print.requestPrintPreview(jobInfo).then((num: number) => {
 })
 ```
 
-## on
+## print.on
 
 on(type: 'printerStateChange', callback: (state: PrinterState, info: PrinterInfo) => void): void
 
@@ -1133,7 +1023,7 @@ Registers a listener for printer state change events. This API uses a callback t
 | **Name**| **Type**| **Mandatory**| **Description**|
 | -------- | -------- | -------- | -------- |
 | type | 'printerStateChange' | Yes| Listening type. The value is fixed at **'printerStateChange'**.|
-| callback | (state: PrinterState, info: PrinterInfo) => void | Yes| Callback used to return the result.|
+| callback | (state: [PrinterState](./js-apis-print.md#printprinterstate14), info: [PrinterInfo](#printprinterinfo)) => void | Yes| Callback used to return the result.|
 
 **Error codes**
 
@@ -1141,8 +1031,8 @@ For details about the error codes, see [Error Codes of the Print Service](./erro
 
 | ID| Error Message                                   |
 | -------- | ------------------------------------------- |
-| 201 | Permission verification failed. The application does not have the permission required to call the API. |
-| 202 | Permission verification failed. A non-system application calls a system API. |
+| 201 | the application does not have permission to call this function. |
+| 202 | not system application |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 
 **Example**
@@ -1161,7 +1051,7 @@ print.on('printerStateChange', (state: print.PrinterState, info: print.PrinterIn
 })
 ```
 
-## off
+## print.off
 
 off(type: 'printerStateChange', callback?: Callback&lt;boolean&gt;): void
 
@@ -1177,7 +1067,7 @@ Unregisters the listener for printer state change events. This API uses a callba
 | **Name**| **Type**| **Mandatory**| **Description**|
 | -------- | -------- | -------- | -------- |
 | type | 'printerStateChange' | Yes| Listening type. The value is fixed at **'printerStateChange'**.|
-| callback | Callback&lt;boolean&gt; | No| Callback used to return the result.|
+| callback | Callback&lt;boolean&gt; | No| Callback used to return the result. The value **true** means that the listener for printer state change events is successfully unregistered, and **false** means the opposite.|
 
 **Error codes**
 
@@ -1185,8 +1075,8 @@ For details about the error codes, see [Error Codes of the Print Service](./erro
 
 | ID| Error Message                                   |
 | -------- | ------------------------------------------- |
-| 201 | Permission verification failed. The application does not have the permission required to call the API. |
-| 202 | Permission verification failed. A non-system application calls a system API. |
+| 201 | the application does not have permission to call this function. |
+| 202 | not system application |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 
 **Example**
@@ -1199,7 +1089,7 @@ print.off('printerStateChange', (data: boolean) => {
 })
 ```
 
-## on
+## print.on
 
 on(type: 'jobStateChange', callback: (state: PrintJobState, job: PrintJob) => void): void
 
@@ -1215,7 +1105,7 @@ Registers a listener for print job state change events. This API uses a callback
 | **Name**| **Type**| **Mandatory**| **Description**|
 | -------- | -------- | -------- | -------- |
 | type | 'jobStateChange' | Yes| Listening type. The value is fixed at **'jobStateChange'**.|
-| callback | (state: PrintJobState, job: PrintJob) => void | Yes| Callback used to return the result.|
+| callback | (state: [PrintJobState](./js-apis-print.md#printprintjobstate14), job: [PrintJob](#printprintjob)) => void | Yes| Callback used to return the result.|
 
 **Error codes**
 
@@ -1223,8 +1113,8 @@ For details about the error codes, see [Error Codes of the Print Service](./erro
 
 | ID| Error Message                                   |
 | -------- | ------------------------------------------- |
-| 201 | Permission verification failed. The application does not have the permission required to call the API. |
-| 202 | Permission verification failed. A non-system application calls a system API. |
+| 201 | the application does not have permission to call this function. |
+| 202 | not system application |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 
 **Example**
@@ -1237,7 +1127,7 @@ print.on('jobStateChange', (state: print.PrintJobState, job: print.PrintJob) => 
 })
 ```
 
-## off
+## print.off
 
 off(type: 'jobStateChange', callback?: Callback&lt;boolean&gt;): void
 
@@ -1253,7 +1143,7 @@ Unregisters the listener for print job state change events. This API uses a call
 | **Name**| **Type**| **Mandatory**| **Description**|
 | -------- | -------- | -------- | -------- |
 | type | 'jobStateChange' | Yes| Listening type. The value is fixed at **'jobStateChange'**.|
-| callback | Callback&lt;boolean&gt; | No| Callback used to return the result.|
+| callback | Callback&lt;boolean&gt; | No| Callback used to return the result. The value **true** means that the listener for print job state change events is successfully unregistered, and **false** means the opposite.|
 
 **Error codes**
 
@@ -1261,8 +1151,8 @@ For details about the error codes, see [Error Codes of the Print Service](./erro
 
 | ID| Error Message                                   |
 | -------- | ------------------------------------------- |
-| 201 | Permission verification failed. The application does not have the permission required to call the API. |
-| 202 | Permission verification failed. A non-system application calls a system API. |
+| 201 | the application does not have permission to call this function. |
+| 202 | not system application |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 
 **Example**
@@ -1275,7 +1165,7 @@ print.off('jobStateChange', (data: boolean) => {
 })
 ```
 
-## on
+## print.on
 
 on(type: 'extInfoChange', callback: (extensionId: string, info: string) => void): void
 
@@ -1299,8 +1189,8 @@ For details about the error codes, see [Error Codes of the Print Service](./erro
 
 | ID| Error Message                                   |
 | -------- | ------------------------------------------- |
-| 201 | Permission verification failed. The application does not have the permission required to call the API. |
-| 202 | Permission verification failed. A non-system application calls a system API. |
+| 201 | the application does not have permission to call this function. |
+| 202 | not system application |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 
 **Example**
@@ -1313,7 +1203,7 @@ print.on('extInfoChange', (extensionId: string, info: string) => {
 })
 ```
 
-## off
+## print.off
 
 off(type: 'extInfoChange', callback?: Callback&lt;boolean&gt;): void
 
@@ -1329,7 +1219,7 @@ Unregisters the listener for printer extension information change events. This A
 | **Name**| **Type**| **Mandatory**| **Description**|
 | -------- | -------- | -------- | -------- |
 | type | 'extInfoChange' | Yes| Listening type. The value is fixed at **'extInfoChange'**.|
-| callback | Callback&lt;boolean&gt; | No| Callback used to return the result.|
+| callback | Callback&lt;boolean&gt; | No| Callback used to return the result. The value **true** means that the listener for printer extension information change events is successfully unregistered, and **false** means the opposite.|
 
 **Error codes**
 
@@ -1337,8 +1227,8 @@ For details about the error codes, see [Error Codes of the Print Service](./erro
 
 | ID| Error Message                                   |
 | -------- | ------------------------------------------- |
-| 201 | Permission verification failed. The application does not have the permission required to call the API. |
-| 202 | Permission verification failed. A non-system application calls a system API. |
+| 201 | the application does not have permission to call this function. |
+| 202 | not system application |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 
 **Example**
@@ -1351,7 +1241,7 @@ print.off('extInfoChange', (data: boolean) => {
 })
 ```
 
-## addPrinters
+## print.addPrinters
 
 addPrinters(printers: Array&lt;PrinterInfo&gt;, callback: AsyncCallback&lt;void&gt;): void
 
@@ -1366,7 +1256,7 @@ Adds printers. This API uses an asynchronous callback to return the result.
 **Parameters**
 | **Name**| **Type**| **Mandatory**| **Description**|
 | -------- | -------- | -------- | -------- |
-| printers | Array&lt;PrinterInfo&gt; | Yes| List of printers to add.|
+| printers | Array&lt;[PrinterInfo](#printprinterinfo)&gt; | Yes| List of printers to add.|
 | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
 
 **Error codes**
@@ -1375,8 +1265,8 @@ For details about the error codes, see [Error Codes of the Print Service](./erro
 
 | ID| Error Message                                   |
 | -------- | ------------------------------------------- |
-| 201 | Permission verification failed. The application does not have the permission required to call the API. |
-| 202 | Permission verification failed. A non-system application calls a system API. |
+| 201 | the application does not have permission to call this function. |
+| 202 | not system application |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 
 **Example**
@@ -1403,7 +1293,7 @@ print.addPrinters([printerInfo], (err: BusinessError, data : void) => {
 })
 ```
 
-## addPrinters
+## print.addPrinters
 
 addPrinters(printers: Array&lt;PrinterInfo&gt;): Promise&lt;void&gt;
 
@@ -1418,7 +1308,7 @@ Adds printers. This API uses a promise to return the result.
 **Parameters**
 | **Name**| **Type**| **Mandatory**| **Description**|
 | -------- | -------- | -------- | -------- |
-| printers | Array&lt;PrinterInfo&gt; | Yes| List of printers to add.|
+| printers | Array&lt;[PrinterInfo](#printprinterinfo)&gt; | Yes| List of printers to add.|
 
 **Return value**
 | **Type**| **Description**|
@@ -1431,8 +1321,8 @@ For details about the error codes, see [Error Codes of the Print Service](./erro
 
 | ID| Error Message                                   |
 | -------- | ------------------------------------------- |
-| 201 | Permission verification failed. The application does not have the permission required to call the API. |
-| 202 | Permission verification failed. A non-system application calls a system API. |
+| 201 | the application does not have permission to call this function. |
+| 202 | not system application |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 
 **Example**
@@ -1457,7 +1347,7 @@ print.addPrinters([printerInfo]).then((data : void) => {
 })
 ```
 
-## removePrinters
+## print.removePrinters
 
 removePrinters(printerIds: Array&lt;string&gt;, callback: AsyncCallback&lt;void&gt;): void
 
@@ -1481,8 +1371,8 @@ For details about the error codes, see [Error Codes of the Print Service](./erro
 
 | ID| Error Message                                   |
 | -------- | ------------------------------------------- |
-| 201 | Permission verification failed. The application does not have the permission required to call the API. |
-| 202 | Permission verification failed. A non-system application calls a system API. |
+| 201 | the application does not have permission to call this function. |
+| 202 | not system application |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 
 **Example**
@@ -1501,7 +1391,7 @@ print.removePrinters([printerId], (err: BusinessError, data : void) => {
 })
 ```
 
-## removePrinters
+## print.removePrinters
 
 removePrinters(printerIds: Array&lt;string&gt;): Promise&lt;void&gt;
 
@@ -1529,8 +1419,8 @@ For details about the error codes, see [Error Codes of the Print Service](./erro
 
 | ID| Error Message                                   |
 | -------- | ------------------------------------------- |
-| 201 | Permission verification failed. The application does not have the permission required to call the API. |
-| 202 | Permission verification failed. A non-system application calls a system API. |
+| 201 | the application does not have permission to call this function. |
+| 202 | not system application |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 
 **Example**
@@ -1547,7 +1437,7 @@ print.removePrinters([printerId]).then((data : void) => {
 })
 ```
 
-## updatePrinters
+## print.updatePrinters
 
 updatePrinters(printers: Array&lt;PrinterInfo&gt;, callback: AsyncCallback&lt;void&gt;): void
 
@@ -1562,7 +1452,7 @@ Updates information about the specified printers. This API uses an asynchronous 
 **Parameters**
 | **Name**| **Type**| **Mandatory**| **Description**|
 | -------- | -------- | -------- | -------- |
-| printers | Array&lt;PrinterInfo&gt; | Yes| List of printers whose information is to be updated.|
+| printers | Array&lt;[PrinterInfo](#printprinterinfo)&gt; | Yes| List of printers whose information is to be updated.|
 | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
 
 **Error codes**
@@ -1571,8 +1461,8 @@ For details about the error codes, see [Error Codes of the Print Service](./erro
 
 | ID| Error Message                                   |
 | -------- | ------------------------------------------- |
-| 201 | Permission verification failed. The application does not have the permission required to call the API. |
-| 202 | Permission verification failed. A non-system application calls a system API. |
+| 201 | the application does not have permission to call this function. |
+| 202 | not system application |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 
 **Example**
@@ -1599,7 +1489,7 @@ print.updatePrinters([printerInfo], (err: BusinessError, data : void) => {
 })
 ```
 
-## updatePrinters
+## print.updatePrinters
 
 updatePrinters(printers: Array&lt;PrinterInfo&gt;): Promise&lt;void&gt;
 
@@ -1614,7 +1504,7 @@ Updates information about the specified printers. This API uses a promise to ret
 **Parameters**
 | **Name**| **Type**| **Mandatory**| **Description**|
 | -------- | -------- | -------- | -------- |
-| printers | Array&lt;PrinterInfo&gt; | Yes| List of printers whose information is to be updated.|
+| printers | Array&lt;[PrinterInfo](#printprinterinfo)&gt; | Yes| List of printers whose information is to be updated.|
 
 **Return value**
 | **Type**| **Description**|
@@ -1627,8 +1517,8 @@ For details about the error codes, see [Error Codes of the Print Service](./erro
 
 | ID| Error Message                                   |
 | -------- | ------------------------------------------- |
-| 201 | Permission verification failed. The application does not have the permission required to call the API. |
-| 202 | Permission verification failed. A non-system application calls a system API. |
+| 201 | the application does not have permission to call this function. |
+| 202 | not system application |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 
 **Example**
@@ -1653,7 +1543,7 @@ print.updatePrinters([printerInfo]).then((data : void) => {
 })
 ```
 
-## updatePrinterState
+## print.updatePrinterState
 
 updatePrinterState(printerId: string, state: PrinterState, callback: AsyncCallback&lt;void&gt;): void
 
@@ -1669,7 +1559,7 @@ Updates the printer state. This API uses an asynchronous callback to return the 
 | **Name**| **Type**| **Mandatory**| **Description**|
 | -------- | -------- | -------- | -------- |
 | printerId | string | Yes| Printer ID.|
-| state | PrinterState | Yes| Printer state.|
+| state | [PrinterState](./js-apis-print.md#printprinterstate14) | Yes| Printer state.|
 | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
 
 **Error codes**
@@ -1678,8 +1568,8 @@ For details about the error codes, see [Error Codes of the Print Service](./erro
 
 | ID| Error Message                                   |
 | -------- | ------------------------------------------- |
-| 201 | Permission verification failed. The application does not have the permission required to call the API. |
-| 202 | Permission verification failed. A non-system application calls a system API. |
+| 201 | the application does not have permission to call this function. |
+| 202 | not system application |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 
 **Example**
@@ -1699,7 +1589,7 @@ print.updatePrinterState(printerId, state, (err: BusinessError, data : void) => 
 })
 ```
 
-## updatePrinterState
+## print.updatePrinterState
 
 updatePrinterState(printerId: string, state: PrinterState): Promise&lt;void&gt;
 
@@ -1715,7 +1605,7 @@ Updates the printer state. This API uses a promise to return the result.
 | **Name**| **Type**| **Mandatory**| **Description**|
 | -------- | -------- | -------- | -------- |
 | printerId | string | Yes| Printer ID.|
-| state | PrinterState | Yes| Printer state.|
+| state | [PrinterState](./js-apis-print.md#printprinterstate14) | Yes| Printer state.|
 
 **Return value**
 | **Type**| **Description**|
@@ -1728,8 +1618,8 @@ For details about the error codes, see [Error Codes of the Print Service](./erro
 
 | ID| Error Message                                   |
 | -------- | ------------------------------------------- |
-| 201 | Permission verification failed. The application does not have the permission required to call the API. |
-| 202 | Permission verification failed. A non-system application calls a system API. |
+| 201 | the application does not have permission to call this function. |
+| 202 | not system application |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 
 **Example**
@@ -1747,7 +1637,7 @@ print.updatePrinterState(printerId, state).then((data : void) => {
 })
 ```
 
-## updatePrintJobState
+## print.updatePrintJobState
 
 updatePrintJobState(jobId: string, state: PrintJobState, subState: PrintJobSubState, callback: AsyncCallback&lt;void&gt;): void
 
@@ -1763,8 +1653,8 @@ Updates the print job state. This API uses an asynchronous callback to return th
 | **Name**| **Type**| **Mandatory**| **Description**|
 | -------- | -------- | -------- | -------- |
 | jobId | string | Yes| ID of the print job.|
-| state | PrintJobState | Yes| State of the print job.|
-| subState | PrintJobSubState | Yes| Substate of the print job.|
+| state | [PrintJobState](./js-apis-print.md#printprintjobstate14) | Yes| State of the print job.|
+| subState | [PrintJobSubState](./js-apis-print.md#printprintjobsubstate14) | Yes| Substate of the print job.|
 | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
 
 **Error codes**
@@ -1773,8 +1663,8 @@ For details about the error codes, see [Error Codes of the Print Service](./erro
 
 | ID| Error Message                                   |
 | -------- | ------------------------------------------- |
-| 201 | Permission verification failed. The application does not have the permission required to call the API. |
-| 202 | Permission verification failed. A non-system application calls a system API. |
+| 201 | the application does not have permission to call this function. |
+| 202 | not system application |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 
 **Example**
@@ -1795,7 +1685,7 @@ print.updatePrintJobState(jobId, state, subState, (err: BusinessError, data : vo
 })
 ```
 
-## updatePrintJobState
+## print.updatePrintJobState
 
 updatePrintJobState(jobId: string, state: PrintJobState, subState: PrintJobSubState): Promise&lt;void&gt;
 
@@ -1811,8 +1701,8 @@ Updates the print job state. This API uses a promise to return the result.
 | **Name**| **Type**| **Mandatory**| **Description**|
 | -------- | -------- | -------- | -------- |
 | jobId | string | Yes| ID of the print job.|
-| state | PrintJobState | Yes| State of the print job.|
-| subState | PrintJobSubState | Yes| Substate of the print job.|
+| state | [PrintJobState](./js-apis-print.md#printprintjobstate14) | Yes| State of the print job.|
+| subState | [PrintJobSubState](./js-apis-print.md#printprintjobsubstate14) | Yes| Substate of the print job.|
 
 **Return value**
 | **Type**| **Description**|
@@ -1825,8 +1715,8 @@ For details about the error codes, see [Error Codes of the Print Service](./erro
 
 | ID| Error Message                                   |
 | -------- | ------------------------------------------- |
-| 201 | Permission verification failed. The application does not have the permission required to call the API. |
-| 202 | Permission verification failed. A non-system application calls a system API. |
+| 201 | the application does not have permission to call this function. |
+| 202 | not system application |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 
 **Example**
@@ -1845,7 +1735,7 @@ print.updatePrintJobState(jobId, state, subState).then((data : void) => {
 })
 ```
 
-## updateExtensionInfo
+## print.updateExtensionInfo
 
 updateExtensionInfo(info: string, callback: AsyncCallback&lt;void&gt;): void
 
@@ -1869,8 +1759,8 @@ For details about the error codes, see [Error Codes of the Print Service](./erro
 
 | ID| Error Message                                   |
 | -------- | ------------------------------------------- |
-| 201 | Permission verification failed. The application does not have the permission required to call the API. |
-| 202 | Permission verification failed. A non-system application calls a system API. |
+| 201 | the application does not have permission to call this function. |
+| 202 | not system application |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 
 **Example**
@@ -1889,7 +1779,7 @@ print.updateExtensionInfo(info, (err: BusinessError, data : void) => {
 })
 ```
 
-## updateExtensionInfo
+## print.updateExtensionInfo
 
 updateExtensionInfo(info: string): Promise&lt;void&gt;
 
@@ -1917,8 +1807,8 @@ For details about the error codes, see [Error Codes of the Print Service](./erro
 
 | ID| Error Message                                   |
 | -------- | ------------------------------------------- |
-| 201 | Permission verification failed. The application does not have the permission required to call the API. |
-| 202 | Permission verification failed. A non-system application calls a system API. |
+| 201 | the application does not have permission to call this function. |
+| 202 | not system application |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 
 **Example**
@@ -1935,10 +1825,10 @@ print.updateExtensionInfo(info).then((data : void) => {
 })
 ```
 
-## queryAllPrintJobs<sup>(deprecated)</sup>
+## print.queryAllPrintJobs<sup>(deprecated)</sup>
 
 > This API is supported since API version 10 and deprecated since API version 11.
-> You are advised to use [queryPrintJobList](#queryprintjoblist11) instead.
+> You are advised to use [queryPrintJobList](#printqueryprintjoblist11) instead.
 
 queryAllPrintJobs(callback: AsyncCallback&lt;void&gt;): void
 
@@ -1961,8 +1851,8 @@ For details about the error codes, see [Error Codes of the Print Service](./erro
 
 | ID| Error Message                                   |
 | -------- | ------------------------------------------- |
-| 201 | Permission verification failed. The application does not have the permission required to call the API. |
-| 202 | Permission verification failed. A non-system application calls a system API. |
+| 201 | the application does not have permission to call this function. |
+| 202 | not system application |
 
 **Example**
 
@@ -1979,10 +1869,10 @@ print.queryAllPrintJobs((err: BusinessError, data : void) => {
 })
 ```
 
-## queryAllPrintJobs<sup>(deprecated)</sup>
+## print.queryAllPrintJobs<sup>(deprecated)</sup>
 
 > This API is supported since API version 10 and deprecated since API version 11.
-> You are advised to use [queryPrintJobList](#queryprintjoblist11-1) instead.
+> You are advised to use [queryPrintJobList](#printqueryprintjoblist11-1) instead.
 
 queryAllPrintJobs(): Promise&lt;void&gt;
 
@@ -2005,8 +1895,8 @@ For details about the error codes, see [Error Codes of the Print Service](./erro
 
 | ID| Error Message                                   |
 | -------- | ------------------------------------------- |
-| 201 | Permission verification failed. The application does not have the permission required to call the API. |
-| 202 | Permission verification failed. A non-system application calls a system API. |
+| 201 | the application does not have permission to call this function. |
+| 202 | not system application |
 
 **Example**
 
@@ -2021,7 +1911,7 @@ print.queryAllPrintJobs().then((data : void) => {
 })
 ```
 
-## queryPrintJobList<sup>11+</sup>
+## print.queryPrintJobList<sup>11+</sup>
 
 queryPrintJobList(callback: AsyncCallback&lt;Array&lt;PrintJob&gt;&gt;): void
 
@@ -2036,7 +1926,7 @@ Queries all print jobs. This API uses an asynchronous callback to return the res
 **Parameters**
 | **Name**| **Type**| **Mandatory**| **Description**|
 | -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;Array&lt;PrintJob&gt;&gt; | Yes| Callback used to return the result.|
+| callback | AsyncCallback&lt;Array&lt;[PrintJob](#printprintjob)&gt;&gt; | Yes| Callback used to return the result.|
 
 **Error codes**
 
@@ -2044,8 +1934,8 @@ For details about the error codes, see [Error Codes of the Print Service](./erro
 
 | ID| Error Message                                   |
 | -------- | ------------------------------------------- |
-| 201 | Permission verification failed. The application does not have the permission required to call the API. |
-| 202 | Permission verification failed. A non-system application calls a system API. |
+| 201 | the application does not have permission to call this function. |
+| 202 | not system application |
 
 **Example**
 
@@ -2062,7 +1952,7 @@ print.queryPrintJobList((err: BusinessError, printJobs : print.PrintJob[]) => {
 })
 ```
 
-## queryPrintJobList<sup>11+</sup>
+## print.queryPrintJobList<sup>11+</sup>
 
 queryPrintJobList(): Promise&lt;Array&lt;PrintJob&gt;&gt;
 
@@ -2077,7 +1967,7 @@ Queries all print jobs. This API uses a promise to return the result.
 **Return value**
 | **Type**| **Description**|
 | -------- | -------- |
-| Promise&lt;Array&lt;PrintJob&gt;&gt; | Promise used to return the result.|
+| Promise&lt;Array&lt;[PrintJob](#printprintjob)&gt;&gt; | Promise used to return the result.|
 
 **Error codes**
 
@@ -2085,8 +1975,8 @@ For details about the error codes, see [Error Codes of the Print Service](./erro
 
 | ID| Error Message                                   |
 | -------- | ------------------------------------------- |
-| 201 | Permission verification failed. The application does not have the permission required to call the API. |
-| 202 | Permission verification failed. A non-system application calls a system API. |
+| 201 | the application does not have permission to call this function. |
+| 202 | not system application |
 
 **Example**
 
@@ -2101,7 +1991,7 @@ print.queryPrintJobList().then((printJobs : print.PrintJob[]) => {
 })
 ```
 
-## queryPrintJobById<sup>11+</sup>
+## print.queryPrintJobById<sup>11+</sup>
 
 queryPrintJobById(jobId: string, callback: AsyncCallback&lt;PrintJob&gt;): void
 
@@ -2117,7 +2007,7 @@ Queries a print job by ID. This API uses an asynchronous callback to return the 
 | **Name**| **Type**| **Mandatory**| **Description**|
 | -------- | -------- | -------- | -------- |
 | jobId | string | Yes| ID of the print job.|
-| callback | AsyncCallback&lt;PrintJob&gt; | Yes| Callback used to return the result.|
+| callback | AsyncCallback&lt;[PrintJob](#printprintjob)&gt; | Yes| Callback used to return the result.|
 
 **Error codes**
 
@@ -2125,8 +2015,8 @@ For details about the error codes, see [Error Codes of the Print Service](./erro
 
 | ID| Error Message                                   |
 | -------- | ------------------------------------------- |
-| 201 | Permission verification failed. The application does not have the permission required to call the API. |
-| 202 | Permission verification failed. A non-system application calls a system API. |
+| 201 | the application does not have permission to call this function. |
+| 202 | not system application |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 
 **Example**
@@ -2145,7 +2035,7 @@ print.queryPrintJobById(jobId, (err: BusinessError, printJob : print.PrintJob) =
 })
 ```
 
-## queryPrintJobById<sup>11+</sup>
+## print.queryPrintJobById<sup>11+</sup>
 
 queryPrintJobById(jobId: string): Promise&lt;PrintJob&gt;
 
@@ -2165,7 +2055,7 @@ Queries a print job by ID. This API uses a promise to return the result.
 **Return value**
 | **Type**| **Description**|
 | -------- | -------- |
-| Promise&lt;PrintJob&gt; | Promise used to return the result.|
+| Promise&lt;[PrintJob](#printprintjob)&gt; | Promise used to return the result.|
 
 **Error codes**
 
@@ -2173,8 +2063,8 @@ For details about the error codes, see [Error Codes of the Print Service](./erro
 
 | ID| Error Message                                   |
 | -------- | ------------------------------------------- |
-| 201 | Permission verification failed. The application does not have the permission required to call the API. |
-| 202 | Permission verification failed. A non-system application calls a system API. |
+| 201 | the application does not have permission to call this function. |
+| 202 | not system application |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 
 **Example**
@@ -2191,7 +2081,7 @@ print.queryPrintJobById(jobId).then((printJob : print.PrintJob) => {
 })
 ```
 
-## startGettingPrintFile<sup>11+</sup>
+## print.startGettingPrintFile<sup>11+</sup>
 
 startGettingPrintFile(jobId: string, printAttributes: PrintAttributes, fd: number, onFileStateChanged: Callback&lt;PrintFileCreationState&gt;): void
 
@@ -2207,9 +2097,9 @@ Starts to obtain the print file. This API uses an asynchronous callback to retur
 | **Name**| **Type**| **Mandatory**| **Description**|
 | -------- | -------- | -------- | -------- |
 | jobId | string | Yes| ID of the print job.|
-| printAttributes | PrintAttributes | Yes| Print attributes.|
+| printAttributes | [PrintAttributes](./js-apis-print.md#printprintattributes11) | Yes| Print attributes.|
 | fd | number | Yes| File descriptor.|
-| onFileStateChanged | Callback&lt;PrintFileCreationState&gt; | Yes| Callback for updating the file state.|
+| onFileStateChanged | Callback&lt;[PrintFileCreationState](./js-apis-print.md#printprintfilecreationstate11)&gt; | Yes| Callback for updating the file state.|
 
 **Error codes**
 
@@ -2217,8 +2107,8 @@ For details about the error codes, see [Error Codes of the Print Service](./erro
 
 | ID| Error Message                                   |
 | -------- | ------------------------------------------- |
-| 201 | Permission verification failed. The application does not have the permission required to call the API. |
-| 202 | Permission verification failed. A non-system application calls a system API. |
+| 201 | the application does not have permission to call this function. |
+| 202 | not system application |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 
 **Example**
@@ -2267,7 +2157,7 @@ print.startGettingPrintFile(jobId, printAttributes, fd, (state: print.PrintFileC
 })
 ```
 
-## notifyPrintService<sup>11+</sup>
+## print.notifyPrintService<sup>11+</sup>
 
 notifyPrintService(jobId: string, type: 'spooler_closed_for_cancelled' | 'spooler_closed_for_started', callback: AsyncCallback&lt;void&gt;): void
 
@@ -2292,8 +2182,8 @@ For details about the error codes, see [Error Codes of the Print Service](./erro
 
 | ID| Error Message                                   |
 | -------- | ------------------------------------------- |
-| 201 | Permission verification failed. The application does not have the permission required to call the API. |
-| 202 | Permission verification failed. A non-system application calls a system API. |
+| 201 | the application does not have permission to call this function. |
+| 202 | not system application |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 
 **Example**
@@ -2312,7 +2202,7 @@ print.notifyPrintService(jobId, 'spooler_closed_for_started', (err: BusinessErro
 })
 ```
 
-## notifyPrintService<sup>11+</sup>
+## print.notifyPrintService<sup>11+</sup>
 
 notifyPrintService(jobId: string, type: 'spooler_closed_for_cancelled' | 'spooler_closed_for_started'): Promise&lt;void&gt;
 
@@ -2341,8 +2231,8 @@ For details about the error codes, see [Error Codes of the Print Service](./erro
 
 | ID| Error Message                                   |
 | -------- | ------------------------------------------- |
-| 201 | Permission verification failed. The application does not have the permission required to call the API. |
-| 202 | Permission verification failed. A non-system application calls a system API. |
+| 201 | the application does not have permission to call this function. |
+| 202 | not system application |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 
 **Example**
@@ -2359,7 +2249,7 @@ print.notifyPrintService(jobId, 'spooler_closed_for_started').then((data : void)
 })
 ```
 
-## getAddedPrinters<sup>12+</sup>
+## print.getAddedPrinters<sup>12+</sup>
 
 getAddedPrinters(): Promise&lt;Array&lt;string&gt;&gt;
 
@@ -2382,8 +2272,8 @@ For details about the error codes, see [Error Codes of the Print Service](./erro
 
 | ID| Error Message                                   |
 | -------- | ------------------------------------------- |
-| 201 | Permission verification failed. The application does not have the permission required to call the API. |
-| 202 | Permission verification failed. A non-system application calls a system API. |
+| 201 | the application does not have permission to call this function. |
+| 202 | not system application |
 
 **Example**
 
@@ -2399,7 +2289,7 @@ print.getAddedPrinters().then((printers: string[]) => {
 })
 ```
 
-## getPrinterInfoById<sup>12+</sup>
+## print.getPrinterInfoById<sup>12+</sup>
 
 getPrinterInfoById(printerId: string): Promise&lt;PrinterInfo&gt;
 
@@ -2419,7 +2309,7 @@ Obtains printer information based on the printer ID. This API uses a promise to 
 **Return value**
 | **Type**| **Description**|
 | -------- | -------- |
-| Promise&lt;PrinterInfo&gt; | Promise used to return the result.|
+| Promise&lt;[PrinterInfo](#printprinterinfo)&gt; | Promise used to return the result.|
 
 **Error codes**
 
@@ -2427,8 +2317,8 @@ For details about the error codes, see [Error Codes of the Print Service](./erro
 
 | ID| Error Message                                   |
 | -------- | ------------------------------------------- |
-| 201 | Permission verification failed. The application does not have the permission required to call the API. |
-| 202 | Permission verification failed. A non-system application calls a system API. |
+| 201 | the application does not have permission to call this function. |
+| 202 | not system application |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 
 **Example**
@@ -2445,7 +2335,7 @@ print.getPrinterInfoById(printerId).then((printerInfo : print.PrinterInfo) => {
 })
 ```
 
-## notifyPrintServiceEvent<sup>12+</sup>
+## print.notifyPrintServiceEvent<sup>12+</sup>
 
 notifyPrintServiceEvent(event: ApplicationEvent): Promise&lt;void&gt;
 
@@ -2460,7 +2350,7 @@ Notifies the print service of the print application events. This API uses a prom
 **Parameters**
 | **Name**| **Type**| **Mandatory**| **Description**|
 | -------- | -------- | -------- | -------- |
-| event | ApplicationEvent | Yes| Print application events.|
+| event | [ApplicationEvent](./js-apis-print.md#printapplicationevent14) | Yes| Print application events.|
 
 **Return value**
 | **Type**| **Description**|
@@ -2473,8 +2363,8 @@ For details about the error codes, see [Error Codes of the Print Service](./erro
 
 | ID| Error Message                                   |
 | -------- | ------------------------------------------- |
-| 201 | Permission verification failed. The application does not have the permission required to call the API. |
-| 202 | Permission verification failed. A non-system application calls a system API. |
+| 201 | the application does not have permission to call this function. |
+| 202 | not system application |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 
 **Example**

@@ -1,6 +1,6 @@
 # @ohos.multimedia.drm (Digital Rights Management)
 
-The Digital Rights Management (DRM) framework provides APIs for you to develop digital rights management for your audio and video applications. You can call the DRM schemes (which exist as DRM plug-ins) provided by the system to implement the following features:
+The Digital Rights Management (DRM) framework provides APIs for you to develop digital rights management for your audio and video applications. You can call the DRM solutions (which exist as DRM plugins) provided by the system to implement the following features:
 
 * DRM certificate management: generates provision requests and processes responses to these requests. Such a request/response exchange occurs between an application and a provisioning server to retrieve a DRM certificate.
 * DRM media key management: generates media key requests, processes responses to these requests, and manages offline media keys. Such a request/response exchange occurs between an application and a license server to obtain or release a media key, which is used to decrypt DRM-protected content.
@@ -20,6 +20,8 @@ import { drm } from '@kit.DrmKit';
 
 Enumerates the DRM error codes.
 
+**Atomic service API**: This API can be used in atomic services since API version 14.
+
 **System capability**: SystemCapability.Multimedia.Drm.Core
 
 | Name                      | Value  | Description           |
@@ -33,12 +35,14 @@ Enumerates the DRM error codes.
 
 Enumerates the names of predefined configuration items.
 
+**Atomic service API**: This API can be used in atomic services since API version 14.
+
 **System capability**: SystemCapability.Multimedia.Drm.Core
 
 | Name                      | Value  | Description           |
 | ------------------------- | ---- | ------------    |
-| CONFIG_DEVICE_VENDOR        | 'vendor'    | Plug-in vendor name, which corresponds to the value of **vendor** in the return value of [getConfigurationString](#getconfigurationstring).  |
-| CONFIG_DEVICE_VERSION    | 'version'    | Plug-in version number, which corresponds to the value of **version** in the return value of [getConfigurationString](#getconfigurationstring).    |
+| CONFIG_DEVICE_VENDOR        | 'vendor'    | Plugin vendor name, which corresponds to the value of **vendor** in the return value of [getConfigurationString](#getconfigurationstring).  |
+| CONFIG_DEVICE_VERSION    | 'version'    | Plugin version number, which corresponds to the value of **version** in the return value of [getConfigurationString](#getconfigurationstring).    |
 | CONFIG_DEVICE_DESCRIPTION     | 'description'    | Device descriptor, which corresponds to the value of **description** in the return value of [getConfigurationString](#getconfigurationstring).     |
 | CONFIG_DEVICE_ALGORITHMS   | 'algorithms'    | Supported algorithm names, which correspond to the value of **algorithms** in the return value of [getConfigurationString](#getconfigurationstring).    |
 | CONFIG_DEVICE_UNIQUE_ID    | 'deviceUniqueId'    | Unique device ID, which corresponds to the value of **deviceUniqueId** in the return value of [getConfigurationByteArray](#getconfigurationbytearray).    |
@@ -48,6 +52,8 @@ Enumerates the names of predefined configuration items.
 ## MediaKeyType
 
 Enumerates the types of media keys.
+
+**Atomic service API**: This API can be used in atomic services since API version 14.
 
 **System capability**: SystemCapability.Multimedia.Drm.Core
 
@@ -60,6 +66,8 @@ Enumerates the types of media keys.
 
 Enumerates the statuses of offline media keys.
 
+**Atomic service API**: This API can be used in atomic services since API version 14.
+
 **System capability**: SystemCapability.Multimedia.Drm.Core
 
 | Name                      | Value  | Description           |
@@ -71,6 +79,8 @@ Enumerates the statuses of offline media keys.
 ## CertificateStatus
 
 Enumerates the statuses of DRM certificates.
+
+**Atomic service API**: This API can be used in atomic services since API version 14.
 
 **System capability**: SystemCapability.Multimedia.Drm.Core
 
@@ -118,6 +128,8 @@ Enumerates the content protection levels.
 ## ProvisionRequest
 
 Describes a provision request, which is used to request a DRM certificate from a provisioning server.
+
+**Atomic service API**: This API can be used in atomic services since API version 14.
 
 **System capability**: SystemCapability.Multimedia.Drm.Core
 
@@ -170,6 +182,8 @@ Describes the event information.
 
 Describes the statistical information.
 
+**Atomic service API**: This API can be used in atomic services since API version 14.
+
 **System capability**: SystemCapability.Multimedia.Drm.Core
 
 | Name     | Type                          | Mandatory| Description        |
@@ -218,14 +232,16 @@ Describes the DRM information, which is used to encrypt content.
 
 ## MediaKeySystemDescription<sup>12+</sup>
 
-Describes the plug-in information.
+Describes the plugin information.
+
+**Atomic service API**: This API can be used in atomic services since API version 14.
 
 **System capability**: SystemCapability.Multimedia.Drm.Core
 
 | Name     | Type                          | Mandatory| Description        |
 | -------- | ----------------------------- |---- | ------------- |
-| name   | string | Yes | Name of the plug-in.     |
-| uuid   | string | Yes | UUID of the plug-in.     |
+| name   | string | Yes | Name of the plugin.     |
+| uuid   | string | Yes | UUID of the plugin.     |
 
 ## drm.createMediaKeySystem
 
@@ -233,13 +249,15 @@ createMediaKeySystem(name: string): MediaKeySystem
 
 Creates a **MediaKeySystem** instance.
 
+**Atomic service API**: This API can be used in atomic services since API version 14.
+
 **System capability**: SystemCapability.Multimedia.Drm.Core
 
 **Parameters**
 
 | Name    | Type                                            | Mandatory| Description                          |
 | -------- | ----------------------------------------------- | ---- | ---------------------------- |
-| name  | string     | Yes  | DRM scheme name.                  |
+| name  | string     | Yes  | DRM solution name.                  |
 
 **Return value**
 
@@ -275,7 +293,9 @@ try {
 
 isMediaKeySystemSupported(name: string): boolean
 
-Checks whether the device supports the specified DRM scheme.
+Checks whether the device supports the specified DRM solution.
+
+**Atomic service API**: This API can be used in atomic services since API version 14.
 
 **System capability**: SystemCapability.Multimedia.Drm.Core
 
@@ -283,13 +303,13 @@ Checks whether the device supports the specified DRM scheme.
 
 | Name    | Type                                            | Mandatory| Description                          |
 | -------- | ----------------------------------------------- | ---- | ---------------------------- |
-| name  | string     | Yes  | DRM scheme name.                  |
+| name  | string     | Yes  | DRM solution name.                  |
 
 **Return value**
 
 | Type                                            | Description                          |
 | ----------------------------------------------- | ---------------------------- |
-| boolean          | Returns **true** if the device supports the DRM scheme; returns **false** otherwise.                  |
+| boolean          | Returns **true** if the device supports the DRM solution; returns **false** otherwise.                    |
 
 **Error codes**
 
@@ -320,7 +340,9 @@ try {
 
 isMediaKeySystemSupported(name: string, mimeType: string): boolean
 
-Checks whether the device supports the combination of the DRM scheme and MIME type.
+Checks whether the device supports the combination of the DRM solution and MIME type.
+
+**Atomic service API**: This API can be used in atomic services since API version 14.
 
 **System capability**: SystemCapability.Multimedia.Drm.Core
 
@@ -328,14 +350,14 @@ Checks whether the device supports the combination of the DRM scheme and MIME ty
 
 | Name    | Type                                            | Mandatory| Description                          |
 | -------- | ----------------------------------------------- | ---- | ---------------------------- |
-| name  | string     | Yes  | DRM scheme name.                  |
-| mimeType  | string     | Yes  | MIME type, which is determined by the DRM scheme.                  |
+| name  | string     | Yes  | DRM solution name.                  |
+| mimeType  | string     | Yes  | MIME type, which is determined by the DRM solution.                  |
 
 **Return value**
 
 | Type                                            | Description                          |
 | ----------------------------------------------- | ---------------------------- |
-| boolean          | Returns **true** if the device supports the combination; returns **false** otherwise.                  |
+| boolean          | Returns **true** if the device supports the combination; returns **false** otherwise.                    |
 
 **Error codes**
 
@@ -366,7 +388,9 @@ try {
 
 isMediaKeySystemSupported(name: string, mimeType: string, level: ContentProtectionLevel): boolean
 
-Checks whether the device supports the combination of the DRM scheme, MIME type, and content protection level.
+Checks whether the device supports the combination of the DRM solution, MIME type, and content protection level.
+
+**Atomic service API**: This API can be used in atomic services since API version 14.
 
 **System capability**: SystemCapability.Multimedia.Drm.Core
 
@@ -374,15 +398,15 @@ Checks whether the device supports the combination of the DRM scheme, MIME type,
 
 | Name    | Type                                            | Mandatory| Description                          |
 | -------- | ----------------------------------------------- | ---- | ---------------------------- |
-| name  | string     | Yes  | DRM scheme name.                  |
-| mimeType  | string     | Yes  | MIME type, which is determined by the DRM scheme.                  |
+| name  | string     | Yes  | DRM solution name.                  |
+| mimeType  | string     | Yes  | MIME type, which is determined by the DRM solution.                  |
 | level  | [ContentProtectionLevel](#contentprotectionlevel)     | Yes  | Content protection level.                  |
 
 **Return value**
 
 | Type                                            | Description                          |
 | ----------------------------------------------- | ---------------------------- |
-| boolean          | Returns **true** if the device supports the combination; returns **false** otherwise.                  |
+| boolean          | Returns **true** if the device supports the combination; returns **false** otherwise.                    |
 
 **Error codes**
 
@@ -413,7 +437,9 @@ try {
 
 getMediaKeySystemUuid(name: string): string;
 
-Obtains the UUID of the DRM content protection system supported by the specified DRM scheme.
+Obtains the UUID of the DRM content protection system supported by the specified DRM solution.
+
+**Atomic service API**: This API can be used in atomic services since API version 14.
 
 **System capability**: SystemCapability.Multimedia.Drm.Core
 
@@ -421,13 +447,13 @@ Obtains the UUID of the DRM content protection system supported by the specified
 
 | Name    | Type                                            | Mandatory| Description                          |
 | -------- | ----------------------------------------------- | ---- | ---------------------------- |
-| name  | string     | Yes  | DRM scheme name.                  |
+| name  | string     | Yes  | DRM solution name.                  |
 
 **Return value**
 
 | Type                                            | Description                          |
 | ----------------------------------------------- | ---------------------------- |
-| uuid  | string     | Yes  | UUID of the DRM content protection system.                  |
+| string  | UUID of the DRM content protection system.                  |
 
 **Error codes**
 
@@ -457,7 +483,9 @@ try {
 
 getMediaKeySystems(): MediaKeySystemDescription[]
 
-Obtains the list of plug-ins supported by the device.
+Obtains the list of plugins supported by the device.
+
+**Atomic service API**: This API can be used in atomic services since API version 14.
 
 **System capability**: SystemCapability.Multimedia.Drm.Core
 
@@ -465,7 +493,7 @@ Obtains the list of plug-ins supported by the device.
 
 | Type                                            | Description                          |
 | ----------------------------------------------- | ---------------------------- |
-| [MediaKeySystemDescription[]](#mediakeysystemdescription12)           | Array of the supported plug-ins.                  |
+| [MediaKeySystemDescription[]](#mediakeysystemdescription12)           | Array of the supported plugins.                  |
 
 **Error codes**
 
@@ -498,13 +526,15 @@ setConfigurationString(configName: string, value: string): void
 
 Sets a configuration item in the form of a string.
 
+**Atomic service API**: This API can be used in atomic services since API version 14.
+
 **System capability**: SystemCapability.Multimedia.Drm.Core
 
 **Parameters**
 
 | Name    | Type                                            | Mandatory| Description                          |
 | -------- | ----------------------------------------------- | ---- | ---------------------------- |
-| configName  | string     | Yes  | Name of the configuration item, which is determined by the DRM scheme on the device and cannot be empty. For details about available options, see [PreDefinedConfigName](#predefinedconfigname).                  |
+| configName  | string     | Yes  | Name of the configuration item, which is determined by the DRM solution on the device and cannot be empty. For details about available options, see [PreDefinedConfigName](#predefinedconfigname).                  |
 | value  | string     | Yes  | Value of the configuration item.                  |
 
 **Error codes**
@@ -538,13 +568,15 @@ getConfigurationString(configName: string): string
 
 Obtains the value of a configuration item in the form of a string.
 
+**Atomic service API**: This API can be used in atomic services since API version 14.
+
 **System capability**: SystemCapability.Multimedia.Drm.Core
 
 **Parameters**
 
 | Name    | Type                                            | Mandatory| Description                          |
 | -------- | ----------------------------------------------- | ---- | ---------------------------- |
-| configName  | string     | Yes  | Name of the configuration item, which is determined by the DRM scheme on the device and cannot be empty. For details about available options, see [PreDefinedConfigName](#predefinedconfigname).                  |
+| configName  | string     | Yes  | Name of the configuration item, which is determined by the DRM solution on the device and cannot be empty. For details about available options, see [PreDefinedConfigName](#predefinedconfigname).                  |
 
 **Return value**
 
@@ -583,14 +615,16 @@ setConfigurationByteArray(configName: string, value: Uint8Array): void
 
 Sets a configuration item in the form of a byte array.
 
+**Atomic service API**: This API can be used in atomic services since API version 14.
+
 **System capability**: SystemCapability.Multimedia.Drm.Core
 
 **Parameters**
 
 | Name    | Type                                            | Mandatory| Description                          |
 | -------- | ----------------------------------------------- | ---- | ---------------------------- |
-| configName  | string     | Yes  | Name of the configuration item, which is determined by the DRM scheme on the device and cannot be empty. For details about available options, see [PreDefinedConfigName](#predefinedconfigname).                  |
-| value  | Uint8Array     | Yes  | Value of the configuration item in the form of an array. The specific value is determined by the DRM scheme on the device.                  |
+| configName  | string     | Yes  | Name of the configuration item, which is determined by the DRM solution on the device and cannot be empty. For details about available options, see [PreDefinedConfigName](#predefinedconfigname).                  |
+| value  | Uint8Array     | Yes  | Value of the configuration item in the form of an array. The specific value is determined by the DRM solution on the device.                  |
 
 **Error codes**
 
@@ -612,7 +646,7 @@ let mediaKeySystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay
 // Set configValue based on project requirements.
 let configValue: Uint8Array = new Uint8Array([0x00, 0x00, 0x00, 0x00]);
 try {
-  // Ensure that byteArrayConfigName of the current DRM scheme is configurable.
+  // Ensure that byteArrayConfigName of the current DRM solution is configurable.
   mediaKeySystem.setConfigurationByteArray("byteArrayConfigName", configValue);
 } catch (err) {
   let error = err as BusinessError;
@@ -626,13 +660,15 @@ getConfigurationByteArray(configName: string): Uint8Array
 
 Obtains the value of a configuration item in the form of a byte array.
 
+**Atomic service API**: This API can be used in atomic services since API version 14.
+
 **System capability**: SystemCapability.Multimedia.Drm.Core
 
 **Parameters**
 
 | Name    | Type                                            | Mandatory| Description                          |
 | -------- | ----------------------------------------------- | ---- | ---------------------------- |
-| configName  | string     | Yes  | Name of the configuration item, which is determined by the DRM scheme on the device and cannot be empty. For details about available options, see [PreDefinedConfigName](#predefinedconfigname).                  |
+| configName  | string     | Yes  | Name of the configuration item, which is determined by the DRM solution on the device and cannot be empty. For details about available options, see [PreDefinedConfigName](#predefinedconfigname).                  |
 
 **Return value**
 
@@ -669,7 +705,9 @@ try {
 
 getStatistics(): StatisticKeyValue[]
 
-Obtains the statistical information, including the number of current sessions, plug-in version, maximum decryption duration for each session, number of decryption times, and number of decryption failures.
+Obtains the statistical information, including the number of current sessions, plugin version, maximum decryption duration for each session, number of decryption times, and number of decryption failures.
+
+**Atomic service API**: This API can be used in atomic services since API version 14.
 
 **System capability**: SystemCapability.Multimedia.Drm.Core
 
@@ -707,7 +745,9 @@ try {
 
 getMaxContentProtectionLevel(): ContentProtectionLevel
 
-Obtains the maximum content protection level supported by the current DRM scheme.
+Obtains the maximum content protection level supported by the current DRM solution.
+
+**Atomic service API**: This API can be used in atomic services since API version 14.
 
 **System capability**: SystemCapability.Multimedia.Drm.Core
 
@@ -747,6 +787,8 @@ generateKeySystemRequest(): Promise<ProvisionRequest\>
 
 Generates a provision request.
 
+**Atomic service API**: This API can be used in atomic services since API version 14.
+
 **System capability**: SystemCapability.Multimedia.Drm.Core
 
 **Return value**
@@ -784,6 +826,8 @@ mediaKeySystem.generateKeySystemRequest().then((ProvisionRequest: drm.ProvisionR
 processKeySystemResponse(response: Uint8Array): Promise<void\>
 
 Processes a provision response.
+
+**Atomic service API**: This API can be used in atomic services since API version 14.
 
 **System capability**: SystemCapability.Multimedia.Drm.Core
 
@@ -831,6 +875,8 @@ getCertificateStatus():CertificateStatus
 
 Obtains the status of the DRM certificate.
 
+**Atomic service API**: This API can be used in atomic services since API version 14.
+
 **System capability**: SystemCapability.Multimedia.Drm.Core
 
 **Return value**
@@ -869,6 +915,8 @@ on(type: 'keySystemRequired', callback: (eventInfo: EventInfo) => void): void
 
 Subscribes to events indicating that the application requires a DRM certificate.
 
+**Atomic service API**: This API can be used in atomic services since API version 14.
+
 **System capability**: SystemCapability.Multimedia.Drm.Core
 
 **Parameters**
@@ -904,6 +952,8 @@ off(type: 'keySystemRequired', callback?: (eventInfo: EventInfo) => void): void
 
 Unsubscribes from events indicating that the application requests a DRM certificate.
 
+**Atomic service API**: This API can be used in atomic services since API version 14.
+
 **System capability**: SystemCapability.Multimedia.Drm.Core
 
 **Parameters**
@@ -934,6 +984,8 @@ mediaKeySystem.off('keySystemRequired');
 createMediaKeySession(level: ContentProtectionLevel): MediaKeySession
 
 Creates a **MediaKeySession** instance with the specified content protection level.
+
+**Atomic service API**: This API can be used in atomic services since API version 14.
 
 **System capability**: SystemCapability.Multimedia.Drm.Core
 
@@ -979,7 +1031,9 @@ try {
 
 createMediaKeySession(): MediaKeySession
 
-Creates a **MediaKeySession** instance with the default content protection level of the DRM scheme.
+Creates a **MediaKeySession** instance with the default content protection level of the DRM solution.
+
+**Atomic service API**: This API can be used in atomic services since API version 14.
 
 **System capability**: SystemCapability.Multimedia.Drm.Core
 
@@ -1020,6 +1074,8 @@ getOfflineMediaKeyIds(): Uint8Array[]
 
 Obtains the IDs of offline media keys.
 
+**Atomic service API**: This API can be used in atomic services since API version 14.
+
 **System capability**: SystemCapability.Multimedia.Drm.Core
 
 
@@ -1058,6 +1114,8 @@ try {
 getOfflineMediaKeyStatus(mediaKeyId: Uint8Array): OfflineMediaKeyStatus
 
 Obtains the status of offline media keys with the specified IDs.
+
+**Atomic service API**: This API can be used in atomic services since API version 14.
 
 **System capability**: SystemCapability.Multimedia.Drm.Core
 
@@ -1106,6 +1164,8 @@ clearOfflineMediaKeys(mediaKeyId: Uint8Array): void
 
 Clears offline media keys by ID.
 
+**Atomic service API**: This API can be used in atomic services since API version 14.
+
 **System capability**: SystemCapability.Multimedia.Drm.Core
 
 **Parameters**
@@ -1146,6 +1206,8 @@ try {
 destroy(): void
 
 Destroys this **MediaKeySystem** instance.
+
+**Atomic service API**: This API can be used in atomic services since API version 14.
 
 **System capability**: SystemCapability.Multimedia.Drm.Core
 
@@ -1190,9 +1252,9 @@ Generates a media key request.
 
 | Name    | Type                                            | Mandatory| Description                          |
 | -------- | ----------------------------------------------- | ---- | ---------------------------- |
-| mimeType  | string     | Yes  | MIME type, which is determined by the DRM scheme.                  |
+| mimeType  | string     | Yes  | MIME type, which is determined by the DRM solution.                  |
 | initData  | Uint8Array     | Yes  | Initial data.                  |
-| mediaKeyType| number     | Yes  | Type of the media key.                  | The value **0** means an online media key, and **1** means an offline media key.|
+| mediaKeyType| number     | Yes  | Type of the media key. The value **0** means an online media key, and **1** means an offline media key.|
 | options  | [OptionsData[]](#optionsdata)     | No  | Optional data.                  |
 
 **Return value**
@@ -1380,7 +1442,7 @@ Generates a request to release offline media keys.
 
 | Type                                            | Description                          |
 | ----------------------------------------------- | ---------------------------- |
-| Promise<Uint8Array\>          | Promise used to return the request generated if the DRM scheme on the device supports offline media key release.                  |
+| Promise<Uint8Array\>          | Promise used to return the request generated if the DRM solution on the device supports offline media key release.                  |
 
 **Error codes**
 
@@ -1430,7 +1492,7 @@ Processes a response to a request for releasing offline media keys.
 
 | Type                                            | Description                          |
 | ----------------------------------------------- | ---------------------------- |
-| Promise<void\>          | Promise used to return the result if the DRM scheme on the device supports offline media key release.                  |
+| Promise<void\>          | Promise used to return the result if the DRM solution on the device supports offline media key release.                  |
 
 **Error codes**
 
@@ -1570,7 +1632,7 @@ Checks whether secure decoding is required.
 
 | Name    | Type                                            | Mandatory| Description                          |
 | -------- | ----------------------------------------------- | ---- | ---------------------------- |
-| mimeType  | string     | Yes  | MIME type, which is determined by the DRM scheme.                  |
+| mimeType  | string     | Yes  | MIME type, which is determined by the DRM solution.                  |
 
 **Return value**
 

@@ -7,7 +7,7 @@
 
 ## 使用建议
 
- - 合理使用弹出场景，而不是频繁的提醒用户。
+ - 合理使用弹出场景，避免过度提醒用户。
 
     可以针对以下常用场景使用即时反馈操作，例如，当用户执行某个操作时及时结果反馈，用来提示用户操作是否成功或失败；或是当应用程序的状态发生变化时提供状态更新等。
 
@@ -32,17 +32,18 @@
 | 差异点| DEFAULT | TOP_MOST |
 | --- | --- | --- |
 | 是否创建子窗	 | 否 | 是 |
-| 层级 | 显示在主窗内，层级和主窗一致，一般比较低 | 显示在子窗中，一般比主窗层级高，比其他弹窗类组件层级高，比软键盘和权限弹窗层级低。 |
-| 是否避让软键盘 | 软键盘抬起时，必定上移软键盘的高度 | 软键盘抬起时，只有toast被遮挡时，才会避让，且避让后toast底部距离软键盘高度为80vp。 |
-| UIExtension内布局 | 以UIExtension为主窗中布局，对齐方式与UIExtension对齐 | 以宿主窗口为主窗中布局，对齐方式与宿主窗口对齐。|
+| 层级 | 显示在主窗内，层级和主窗一致，一般比较低 | 显示在子窗中，一般比主窗层级高，比其他弹窗类组件层级高，比软键盘和权限弹窗层级低 |
+| 是否避让软键盘 | 软键盘抬起时，必定上移软键盘的高度 | 软键盘抬起时，只有toast被遮挡时，才会避让，且避让后toast底部距离软键盘高度为80vp |
+| UIExtension内布局 | 以UIExtension为主窗中布局，对齐方式与UIExtension对齐 | 以宿主窗口为主窗中布局，对齐方式与宿主窗口对齐 |
 
 ```ts
-import {promptAction} from '@kit.ArkUI';
+import { promptAction } from '@kit.ArkUI';
+
 @Entry
 @Component
 struct Index {
   build() {
-    Column({space: 10}) {
+    Column({ space: 10 }) {
       TextInput()
       Button() {
         Text("DEFAULT类型Toast")
@@ -51,14 +52,15 @@ struct Index {
 
       }
       .width('100%')
-      .onClick(()=>{
-        promptAction.showToast({
-          message:"ok，我是DEFAULT toast",
-          duration:2000,
+      .onClick(() => {
+        this.getUIContext().getPromptAction().showToast({
+          message: "ok，我是DEFAULT toast",
+          duration: 2000,
           showMode: promptAction.ToastShowMode.DEFAULT,
-          bottom:80
-        })
+          bottom: 80
+        });
       })
+
       Button() {
         Text("TOPMOST类型Toast")
           .fontSize(20)
@@ -66,13 +68,13 @@ struct Index {
 
       }
       .width('100%')
-      .onClick(()=>{
-        promptAction.showToast({
-          message:"ok，我是TOP_MOST toast",
-          duration:2000,
+      .onClick(() => {
+        this.getUIContext().getPromptAction().showToast({
+          message: "ok，我是TOP_MOST toast",
+          duration: 2000,
           showMode: promptAction.ToastShowMode.TOP_MOST,
-          bottom:85
-        })
+          bottom: 85
+        });
       })
     }
   }
@@ -84,14 +86,14 @@ struct Index {
 适用于短时间内提示框自动消失的场景。
 
 ```ts
-import { LengthMetrics, PromptAction } from '@kit.ArkUI'
-import { BusinessError } from '@kit.BasicServicesKit'
+import { PromptAction } from '@kit.ArkUI';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
 struct toastExample {
-  private uiContext: UIContext = this.getUIContext()
-  private promptAction: PromptAction = this.uiContext.getPromptAction()
+  private uiContext: UIContext = this.getUIContext();
+  private promptAction: PromptAction = this.uiContext.getPromptAction();
 
   build() {
     Column() {
@@ -101,10 +103,10 @@ struct toastExample {
             this.promptAction.showToast({
               message: 'Hello World',
               duration: 2000
-            });
+            })
           } catch (error) {
-            let message = (error as BusinessError).message
-            let code = (error as BusinessError).code
+            let message = (error as BusinessError).message;
+            let code = (error as BusinessError).code;
             console.error(`showToast args error code is ${code}, message is ${message}`);
           };
         })
@@ -120,15 +122,15 @@ struct toastExample {
 适用于提示框提留时间较长，用户操作可以提前关闭提示框的场景。
 
 ```ts
-import { LengthMetrics, PromptAction } from '@kit.ArkUI'
-import { BusinessError } from '@kit.BasicServicesKit'
+import { LengthMetrics, PromptAction } from '@kit.ArkUI';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
 struct toastExample {
   @State toastId: number = 0;
-  private uiContext: UIContext = this.getUIContext()
-  private promptAction: PromptAction = this.uiContext.getPromptAction()
+  private uiContext: UIContext = this.getUIContext();
+  private promptAction: PromptAction = this.uiContext.getPromptAction();
 
   build() {
     Column() {

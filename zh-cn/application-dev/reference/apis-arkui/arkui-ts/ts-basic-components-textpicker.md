@@ -37,9 +37,9 @@ TextPicker(options?: TextPickerOptions)
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | range | string[]&nbsp;\|&nbsp;string[] []<sup>10+</sup> \| [Resource](ts-types.md#resource类型)&nbsp;\|<br/>[TextPickerRangeContent](#textpickerrangecontent10对象说明)[]<sup>10+</sup>&nbsp;\|&nbsp;[TextCascadePickerRangeContent](#textcascadepickerrangecontent10对象说明)[]<sup>10+</sup> | 是 | 选择器的数据选择列表。不可设置为空数组，若设置为空数组，则不显示；若动态变化为空数组，则保持当前正常值显示。<br/>**说明**：单列数据选择器使用string[]，Resource，TextPickerRangeContent[]类型。<br/>多列数据选择器使用string[][]类型。 <br/>多列联动数据选择器使用TextCascadePickerRangeContent[]类型。<br/>Resource类型只支持[strarray.json](../../../quick-start/resource-categories-and-access.md#资源组目录)。<br>range的类型及列数不可以动态修改。|
-| selected | number&nbsp;\|&nbsp;number[]<sup>10+</sup> | 否 | 设置默认选中项在数组中的索引值，索引从0开始。<br/>默认值：0 <br/>**说明**：单列数据选择器使用number类型。<br/>多列、多列联动数据选择器使用number[]类型。<br />从API version 10开始，该参数支持[$$](../../../quick-start/arkts-two-way-sync.md)双向绑定变量。|
-| value | string&nbsp;\|&nbsp;string[]<sup>10+</sup> | 否 | 设置默认选中项的值，优先级低于selected。<br/>默认值：第一个元素值<br/>**说明**：只有显示文本列表时该值有效。显示图片或图片加文本的列表时，该值无效。 <br/>单列数据选择器使用string类型。<br/>多列、多列联动数据选择器使用string[]类型。<br />从API version 10开始，该参数支持[$$](../../../quick-start/arkts-two-way-sync.md)双向绑定变量。|
-| columnWidths<sup>18+</sup> | LengthMetrics[] | 否 | 设置每一个选择项列宽。<br/>默认值：每一个选择项列宽相等<br/>**说明**：如果文本长度大于列宽时，本文被截断。 |
+| selected | number&nbsp;\|&nbsp;number[]<sup>10+</sup> | 否 | 设置默认选中项在数组中的索引值，索引从0开始。<br/>默认值：0 <br/>**说明**：单列数据选择器使用number类型。<br/>多列、多列联动数据选择器使用number[]类型。<br />从API version 10开始，该参数支持[$$](../../../ui/state-management/arkts-two-way-sync.md)双向绑定变量。|
+| value | [ResourceStr](ts-types.md#resourcestr)&nbsp;\|&nbsp;[ResourceStr](ts-types.md#resourcestr)[] | 否 | 设置默认选中项的值，优先级低于selected。<br/>默认值：第一个元素值<br/>从API version 20开始，支持Resource类型。<br/> **说明**：只有显示文本列表时该值有效。显示图片或图片加文本的列表时，该值无效。 <br/>单列数据选择器使用[ResourceStr](ts-types.md#resourcestr)类型。<br/>多列、多列联动数据选择器使用[ResourceStr](ts-types.md#resourcestr)[]类型。<br />从API version 10开始，该参数支持[$$](../../../ui/state-management/arkts-two-way-sync.md)双向绑定变量。|
+| columnWidths<sup>18+</sup> | LengthMetrics[] | 否 | 设置每一个选择项列宽。<br/>默认值：每一个选择项列宽相等<br/>**说明**：如果文本长度大于列宽时，文本被截断。 |
 
 ## TextPickerRangeContent<sup>10+</sup>对象说明
 
@@ -50,7 +50,7 @@ TextPicker(options?: TextPickerOptions)
 | 名称 | 类型                                                 | 必填 | 说明       |
 | ---- | ---------------------------------------------------- | ---- | ---------- |
 | icon | string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 是   | 图片资源。 icon是string类型时，表示图片存放的路径，例如"/common/hello.png"。 |
-| text | string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 否   | 文本信息。<br/>默认值：空字符串<br/>**说明**：如果文本长度大于列宽时，本文被截断。 |
+| text | string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 否   | 文本信息。<br/>默认值：空字符串<br/>**说明**：如果文本长度大于列宽时，文本被截断。 |
 
 ## TextCascadePickerRangeContent<sup>10+</sup>对象说明
 
@@ -60,7 +60,7 @@ TextPicker(options?: TextPickerOptions)
 
 | 名称 | 类型                                                 | 必填 | 说明   |
 | ------ | -------------------------------------------------------- | ---- | ---------- |
-| text   | string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 是   | 文本信息。<br/>**说明**：如果文本长度大于列宽时，本文被截断。 |
+| text   | string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 是   | 文本信息。<br/>**说明**：如果文本长度大于列宽时，文本被截断。 |
 | children   | [TextCascadePickerRangeContent](#textcascadepickerrangecontent10对象说明)[] | 否   | 联动数据。 |
 ## DividerOptions<sup>12+</sup>对象说明
 
@@ -93,7 +93,7 @@ defaultPickerItemHeight(value: number | string)
 
 | 参数名 | 类型                       | 必填 | 说明                   |
 | ------ | -------------------------- | ---- | ---------------------- |
-| value  | number&nbsp;\|&nbsp;string | 是   | Picker各选择项的高度。number类型取值范围：[0, +∞]，string类型仅支持number类型取值的字符串形式，例如"56"。<br />默认值：选中项56vp，非选中项36vp。<br />**说明：**<br />设置该参数后，选中项与非选中项的高度均为所设置的值。 |
+| value  | number&nbsp;\|&nbsp;string | 是   | Picker各选择项的高度。number类型取值范围：[0, +∞)，string类型仅支持number类型取值的字符串形式，例如"56"。<br />默认值：选中项56vp，非选中项36vp。<br />**说明：**<br />设置该参数后，选中项与非选中项的高度均为所设置的值。 |
 
 ### defaultPickerItemHeight<sup>18+</sup>
 
@@ -109,7 +109,7 @@ defaultPickerItemHeight(height: Optional\<number | string>)
 
 | 参数名 | 类型                       | 必填 | 说明                   |
 | ------ | -------------------------- | ---- | ---------------------- |
-| height  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<number&nbsp;\|&nbsp;string> | 是   | Picker各选择项的高度。number类型取值范围：[0, +∞]，string类型仅支持number类型取值的字符串形式，例如"56"。<br/>默认值：选中项56vp，非选中项36vp。<br />**说明：**<br />设置该参数后，选中项与非选中项的高度均为所设置的值。<br/>当height的值为undefined时，维持上次取值。 |
+| height  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<number&nbsp;\|&nbsp;string> | 是   | Picker各选择项的高度。number类型取值范围：[0, +∞)，string类型仅支持number类型取值的字符串形式，例如"56"。<br/>默认值：选中项56vp，非选中项36vp。<br />**说明：**<br />设置该参数后，选中项与非选中项的高度均为所设置的值。<br/>当height的值为undefined时，维持上次取值。 |
 
 ### disappearTextStyle<sup>10+</sup>
 
@@ -189,7 +189,7 @@ selectedTextStyle(value: PickerTextStyle)
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | [PickerTextStyle](ts-basic-components-datepicker.md#pickertextstyle10类型说明) | 是   | 选中项的文本颜色、字号、字体粗细。<br/>默认值：<br/>{<br/>color: '#ff007dff',<br/>font: {<br/>size: '20vp', <br/>weight: FontWeight.Medium<br/>}<br/>} |
+| value  | [PickerTextStyle](ts-basic-components-datepicker.md#pickertextstyle10类型说明) | 是   | 选中项的文本颜色、字号、字体粗细。<br/>默认值：<br/>{<br/>color: '#ff007dff',<br/>font: {<br/>size: '20fp', <br/>weight: FontWeight.Medium<br/>}<br/>} |
 
 ### selectedTextStyle<sup>18+</sup>
 
@@ -205,7 +205,7 @@ selectedTextStyle(style: Optional\<PickerTextStyle>)
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| style  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[PickerTextStyle](ts-basic-components-datepicker.md#pickertextstyle10类型说明)> | 是   | 选中项的文本颜色、字号、字体粗细。<br/>当style的值为undefined时，默认值：<br/>{<br/>color: '#ff007dff',<br/>font: {<br/>size: '20vp', <br/>weight: FontWeight.Medium<br/>}<br/>} |
+| style  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[PickerTextStyle](ts-basic-components-datepicker.md#pickertextstyle10类型说明)> | 是   | 选中项的文本颜色、字号、字体粗细。<br/>当style的值为undefined时，默认值：<br/>{<br/>color: '#ff007dff',<br/>font: {<br/>size: '20fp', <br/>weight: FontWeight.Medium<br/>}<br/>} |
 
 ### selectedIndex<sup>10+</sup>
 
@@ -221,7 +221,7 @@ selectedIndex(value: number | number[])
 
 | 参数名 | 类型                         | 必填 | 说明                         |
 | ------ | ---------------------------- | ---- | ---------------------------- |
-| value  | number&nbsp;\|&nbsp;number[] | 是   | 默认选中项在数组中的索引值，索引从0开始。<br/>默认值：0 <br/> |
+| value  | number&nbsp;\|&nbsp;number[] | 是   | 默认选中项在数组中的索引值，索引从0开始。<br/>默认值：0 <br/>当value的值为undefined时，默认值与[options](#textpickeroptions对象说明)中的selected值保持一致，如果[options](#textpickeroptions对象说明)中的selected值为undefined，则默认值为0。<br/> |
 
 ### selectedIndex<sup>18+</sup>
 
@@ -237,7 +237,7 @@ selectedIndex(index: Optional\<number | number[]>)
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| index  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<number&nbsp;\|&nbsp;number[]> | 是   | 默认选中项在数组中的索引值，索引从0开始。<br/>当index的值为undefined时，默认值：0 <br/> |
+| index  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<number&nbsp;\|&nbsp;number[]> | 是   | 默认选中项在数组中的索引值，索引从0开始。<br/>默认值：0 <br/>当index的值为undefined时，默认值与[options](#textpickeroptions对象说明)中的selected值保持一致，如果[options](#textpickeroptions对象说明)中的selected值为undefined，则默认值为0。<br/> |
 
 ### canLoop<sup>10+</sup>
 
@@ -401,7 +401,6 @@ enableHapticFeedback(enable: Optional\<boolean>)
 >   "name": "ohos.permission.VIBRATE",
 >  }
 >  ]
->  ``
 >  ```
 
 ### digitalCrownSensitivity<sup>18+</sup>
@@ -415,11 +414,11 @@ digitalCrownSensitivity(sensitivity: Optional\<CrownSensitivity>)
 
 | 参数名   | 参数类型                                     | 必填   | 参数描述                      |
 | ----- | ---------------------------------------- | ---- | ------------------------- |
-| sensitivity | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[CrownSensitivity](ts-appendix-enums.md#crownsensitivity18)> | 是    | 表冠灵敏度。                     |
+| sensitivity | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[CrownSensitivity](ts-appendix-enums.md#crownsensitivity18)> | 是    | 表冠响应灵敏度。<br/>默认值：CrownSensitivity.MEDIUM，响应速度适中。                     |
 
 >  **说明：**
 >
->  用于穿戴设备圆形屏幕使用。
+>  用于穿戴设备圆形屏幕使用。组件响应[表冠事件](ts-universal-events-crown.md)，需要先获取焦点。
 
 ## 事件
 
@@ -624,19 +623,19 @@ type TextPickerEnterSelectedAreaCallback = (value: string | string[], index: num
 
 ```ts
 // xxx.ets
-import { LengthMetrics } from '@kit.ArkUI'
+import { LengthMetrics } from '@kit.ArkUI';
 class bottom {
-  bottom:number = 50
+  bottom:number = 50;
 }
-let bott:bottom = new bottom()
+let bott:bottom = new bottom();
 @Entry
 @Component
 struct TextPickerExample {
-  private select: number = 1
-  private apfruits: string[] = ['apple1', 'apple2', 'apple3', 'apple4']
-  private orfruits: string[] = ['orange1', 'orange2', 'orange3', 'orange4']
-  private pefruits: string[] = ['peach1', 'peach2', 'peach3', 'peach4']
-  private multi: string[][] = [this.apfruits, this.orfruits, this.pefruits]
+  private select: number = 1;
+  private apfruits: string[] = ['apple1', 'apple2', 'apple3', 'apple4'];
+  private orfruits: string[] = ['orange1', 'orange2', 'orange3', 'orange4'];
+  private pefruits: string[] = ['peach1', 'peach2', 'peach3', 'peach4'];
+  private multi: string[][] = [this.apfruits, this.orfruits, this.pefruits];
   private cascade: TextCascadePickerRangeContent[] = [
     {
       text: '辽宁省',
@@ -653,56 +652,56 @@ struct TextPickerExample {
       children: [{ text: '哈尔滨市', children: [{ text: '道里区' }, { text: '道外区' }, { text: '南岗区' }] },
         { text: '牡丹江市', children: [{ text: '东安区' }, { text: '西安区' }, { text: '爱民区' }] }]
     }
-  ]
+  ];
   private singleColumnWidths: LengthMetrics[] = [
     LengthMetrics.percent(50)
-  ]
+  ];
 
   private multipleColumnWidths: LengthMetrics[] = [
     LengthMetrics.vp(100),
     LengthMetrics.vp(200),
     LengthMetrics.vp(100)
-  ]
+  ];
 
   private cascadeColumnWidths: LengthMetrics[] = [
     LengthMetrics.percent(20),
     LengthMetrics.percent(30),
     LengthMetrics.percent(50)
-  ]
+  ];
   build() {
     Column() {
 
       TextPicker({ range: this.apfruits, selected: this.select, columnWidths: this.singleColumnWidths })
         .onChange((value: string | string[], index: number | number[]) => {
-          console.info('Picker item changed, value: ' + value + ', index: ' + index)
+          console.info('Picker item changed, value: ' + value + ', index: ' + index);
         })
         .onScrollStop((value: string | string[], index: number | number[]) => {
-          console.info('Picker scroll stopped, value: ' + value + ', index: ' + index)
+          console.info('Picker scroll stopped, value: ' + value + ', index: ' + index);
         }).margin(bott)
         .onEnterSelectedArea((value: string | string[], index: number | number[]) => {
-          console.info('Picker item enter selected area, value: ' + value + ', index: ' + index)
+          console.info('Picker item enter selected area, value: ' + value + ', index: ' + index);
         })
 
       TextPicker({ range: this.multi, columnWidths: this.multipleColumnWidths })
         .onChange((value: string | string[], index: number | number[]) => {
-          console.info('TextPicker 多列:onChange ' + JSON.stringify(value) + ', ' + 'index: ' + JSON.stringify(index))
+          console.info('TextPicker 多列:onChange ' + JSON.stringify(value) + ', ' + 'index: ' + JSON.stringify(index));
         })
         .onScrollStop((value: string | string[], index: number | number[]) => {
-          console.info('TextPicker 多列:onScrollStop ' + JSON.stringify(value) + ', ' + 'index: ' + JSON.stringify(index))
+          console.info('TextPicker 多列:onScrollStop ' + JSON.stringify(value) + ', ' + 'index: ' + JSON.stringify(index));
         }).margin(bott)
         .onEnterSelectedArea((value: string | string[], index: number | number[]) => {
-          console.info('TextPicker 多列:onEnterSelectedArea ' + JSON.stringify(value) + ', ' + 'index: ' + JSON.stringify(index))
+          console.info('TextPicker 多列:onEnterSelectedArea ' + JSON.stringify(value) + ', ' + 'index: ' + JSON.stringify(index));
         })
 
       TextPicker({ range: this.cascade, columnWidths: this.cascadeColumnWidths })
         .onChange((value: string | string[], index: number | number[]) => {
-          console.info('TextPicker 多列联动:onChange ' + JSON.stringify(value) + ', ' + 'index: ' + JSON.stringify(index))
+          console.info('TextPicker 多列联动:onChange ' + JSON.stringify(value) + ', ' + 'index: ' + JSON.stringify(index));
         })
         .onScrollStop((value: string | string[], index: number | number[]) => {
-          console.info('TextPicker 多列联动:onScrollStop ' + JSON.stringify(value) + ', ' + 'index: ' + JSON.stringify(index))
+          console.info('TextPicker 多列联动:onScrollStop ' + JSON.stringify(value) + ', ' + 'index: ' + JSON.stringify(index));
         })
         .onEnterSelectedArea((value: string | string[], index: number | number[]) => {
-          console.info('TextPicker 多列联动:onEnterSelectedArea ' + JSON.stringify(value) + ', ' + 'index: ' + JSON.stringify(index))
+          console.info('TextPicker 多列联动:onEnterSelectedArea ' + JSON.stringify(value) + ', ' + 'index: ' + JSON.stringify(index));
         })
     }
   }
@@ -720,8 +719,8 @@ struct TextPickerExample {
 @Entry
 @Component
 struct TextPickerExample {
-  private select: number = 1
-  private fruits: string[] = ['apple1', 'orange2', 'peach3', 'grape4']
+  private select: number = 1;
+  private fruits: string[] = ['apple1', 'orange2', 'peach3', 'grape4'];
 
   build() {
     Column() {
@@ -731,10 +730,10 @@ struct TextPickerExample {
         value: this.fruits[this.select]
       })
         .onChange((value: string | string[], index: number | number[]) => {
-          console.info('Picker item changed, value: ' + value + ', index: ' + index)
+          console.info('Picker item changed, value: ' + value + ', index: ' + index);
         })
         .onScrollStop((value: string | string[], index: number | number[]) => {
-          console.info('Picker scroll stopped, value: ' + value + ', index: ' + index)
+          console.info('Picker scroll stopped, value: ' + value + ', index: ' + index);
         })
         .disappearTextStyle({ color: Color.Red, font: { size: 15, weight: FontWeight.Lighter } })
         .textStyle({ color: Color.Black, font: { size: 20, weight: FontWeight.Normal } })
@@ -758,17 +757,17 @@ struct TextPickerExample {
 @Entry
 @Component
 struct TextPickerExample {
-  private select: number = 1
-  private fruits: string[] = ['apple1', 'orange2', 'peach3', 'grape4']
+  private select: number = 1;
+  private fruits: string[] = ['apple1', 'orange2', 'peach3', 'grape4'];
 
   build() {
     Column() {
       TextPicker({ range: this.fruits, selected: this.select })
         .onChange((value: string | string[], index: number | number[]) => {
-          console.info('Picker item changed, value: ' + value + ', index: ' + index)
+          console.info('Picker item changed, value: ' + value + ', index: ' + index);
         })
         .onScrollStop((value: string | string[], index: number | number[]) => {
-          console.info('Picker scroll stopped, value: ' + value + ', index: ' + index)
+          console.info('Picker scroll stopped, value: ' + value + ', index: ' + index);
         })
         .disappearTextStyle({color: Color.Red, font: {size: 15, weight: FontWeight.Lighter}})
         .textStyle({color: Color.Black, font: {size: 20, weight: FontWeight.Normal}})
@@ -789,17 +788,17 @@ struct TextPickerExample {
 @Entry
 @Component
 struct TextPickerExample {
-  private select: number = 1
-  private fruits: string[] = ['apple1', 'orange2', 'peach3', 'grape4']
+  private select: number = 1;
+  private fruits: string[] = ['apple1', 'orange2', 'peach3', 'grape4'];
 
   build() {
     Column() {
       TextPicker({ range: this.fruits, selected: this.select })
         .onChange((value: string | string[], index: number | number[]) => {
-          console.info('Picker item changed, value: ' + value + ', index: ' + index)
+          console.info('Picker item changed, value: ' + value + ', index: ' + index);
         })
         .onScrollStop((value: string | string[], index: number | number[]) => {
-          console.info('Picker scroll stopped, value: ' + value + ', index: ' + index)
+          console.info('Picker scroll stopped, value: ' + value + ', index: ' + index);
         })
         .disappearTextStyle({color: Color.Red, font: {size: 15, weight: FontWeight.Lighter}})
         .textStyle({color: Color.Black, font: {size: 20, weight: FontWeight.Normal}})
@@ -825,17 +824,17 @@ struct TextPickerExample {
 @Entry
 @Component
 struct TextPickerExample {
-  private select: number = 1
-  private fruits: string[] = ['apple1', 'orange2', 'peach3', 'grape4']
+  private select: number = 1;
+  private fruits: string[] = ['apple1', 'orange2', 'peach3', 'grape4'];
 
   build() {
     Column() {
       TextPicker({ range: this.fruits, selected: this.select })
         .onChange((value: string | string[], index: number | number[]) => {
-          console.info('Picker item changed, value: ' + value + ', index: ' + index)
+          console.info('Picker item changed, value: ' + value + ', index: ' + index);
         })
         .onScrollStop((value: string | string[], index: number | number[]) => {
-          console.info('Picker scroll stopped, value: ' + value + ', index: ' + index)
+          console.info('Picker scroll stopped, value: ' + value + ', index: ' + index);
         })
         .disappearTextStyle({color: Color.Red, font: {size: 15, weight: FontWeight.Lighter}})
         .textStyle({color: Color.Black, font: {size: 20, weight: FontWeight.Normal}})
@@ -857,18 +856,18 @@ struct TextPickerExample {
 @Entry
 @Component
 struct TextPickerExample {
-  private select: number = 1
-  private fruits: string[] = ['apple1', 'orange2', 'peach3', 'grape4']
+  private select: number = 1;
+  private fruits: string[] = ['apple1', 'orange2', 'peach3', 'grape4'];
 
   build() {
     Column() {
       TextPicker({ range: this.fruits, selected: this.select })
         .defaultPickerItemHeight(60)
         .onChange((value: string | string[], index: number | number[]) => {
-          console.info('Picker item changed, value: ' + value + ', index: ' + index)
+          console.info('Picker item changed, value: ' + value + ', index: ' + index);
         })
         .onScrollStop((value: string | string[], index: number | number[]) => {
-          console.info('Picker scroll stopped, value: ' + value + ', index: ' + index)
+          console.info('Picker scroll stopped, value: ' + value + ', index: ' + index);
         })
     }.width('100%').height('100%')
   }
@@ -887,18 +886,18 @@ struct TextPickerExample {
 @Entry
 @Component
 struct TextPickerExample {
-  @State isLoop: boolean = false
-  private select: number = 1
-  private fruits: string[] = ['apple1', 'orange2', 'peach3', 'grape4']
+  @State isLoop: boolean = false;
+  private select: number = 1;
+  private fruits: string[] = ['apple1', 'orange2', 'peach3', 'grape4'];
 
   build() {
     Column() {
       TextPicker({ range: this.fruits, selected: this.select })
         .onChange((value: string | string[], index: number | number[]) => {
-          console.info('Picker item changed, value: ' + value + ', index: ' + index)
+          console.info('Picker item changed, value: ' + value + ', index: ' + index);
         })
         .onScrollStop((value: string | string[], index: number | number[]) => {
-          console.info('Picker scroll stopped, value: ' + value + ', index: ' + index)
+          console.info('Picker scroll stopped, value: ' + value + ', index: ' + index);
         })
         .canLoop(this.isLoop)
 
@@ -907,7 +906,7 @@ struct TextPickerExample {
 
         Toggle({ type: ToggleType.Switch, isOn: false })
           .onChange((isOn: boolean) => {
-            this.isLoop = isOn
+            this.isLoop = isOn;
           })
       }.position({ x: '60%', y: '40%' })
 
@@ -927,17 +926,17 @@ struct TextPickerExample {
 @Entry
 @Component
 struct TextPickerExample {
-  private fruits: string[] = ['apple1', 'orange2', 'peach3', 'grape4']
+  private fruits: string[] = ['apple1', 'orange2', 'peach3', 'grape4'];
 
   build() {
     Column() {
       TextPicker({ range: this.fruits, selected: 1 })
         .selectedIndex(2)
         .onChange((value: string | string[], index: number | number[]) => {
-          console.info('Picker item changed, value: ' + value + ', index: ' + index)
+          console.info('Picker item changed, value: ' + value + ', index: ' + index);
         })
         .onScrollStop((value: string | string[], index: number | number[]) => {
-          console.info('Picker scroll stopped, value: ' + value + ', index: ' + index)
+          console.info('Picker scroll stopped, value: ' + value + ', index: ' + index);
         })
     }.width('100%').height('100%')
   }
@@ -955,8 +954,8 @@ struct TextPickerExample {
 @Entry
 @Component
 struct TextPickerExample {
-  private select: number = 1
-  private fruits: string[] = ['AAAAA', 'BBBBBBBBBBBBB', 'CCCC', 'DDDDDDDD', 'EEE']
+  private select: number = 1;
+  private fruits: string[] = ['AAAAA', 'BBBBBBBBBBBBB', 'CCCC', 'DDDDDDDD', 'EEE'];
 
   build() {
     Column() {

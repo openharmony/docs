@@ -133,7 +133,7 @@ import { cloudExtension } from '@kit.ArkData';
 | ---------- | ---------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | nextCursor | string                                                     | 是   | 查询游标。                                                   |
 | hasMore    | boolean                                                    | 是   | 服务器是否存在更多数据可供查询。true表示服务器上还有数据等待查询，false表示服务器上不存在可查询的数据。 |
-| values     | Array&lt;Record&lt;string, [CloudType](#cloudtype)&gt;&gt; | 是   | 需要查询数据的数组，包括data value（数据值）和[ExtensionValue](#extensionvalue)（扩展值)。 |
+| values     | Array&lt;Record&lt;string, [CloudType](#cloudtype)&gt;&gt; | 是   | 需要查询数据的数组，包括data value（数据值）和[ExtensionValue](#extensionvalue)（扩展值）。 |
 
 ## AppBriefInfo
 

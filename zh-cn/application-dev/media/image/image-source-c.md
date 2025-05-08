@@ -1,22 +1,22 @@
 # 使用Image_NativeModule完成图片解码
 
-创建图片源，获取位图的宽、高信息，以及释放图片源实例。
+创建ImageSource，获取位图的宽、高信息，以及释放ImageSource实例。
 
 ## 开发步骤
 
 ### 添加链接库
 
-在进行应用开发之前，开发者需要打开native工程的src/main/cpp/CMakeLists.txt，在target_link_libraries依赖中添加libimage_source.so 以及日志依赖libhilog_ndk.z.so。
+在进行应用开发之前，开发者需要打开native工程的src/main/cpp/CMakeLists.txt，在target_link_libraries依赖中添加libimage_source.so、libpixelmap.so以及日志依赖libhilog_ndk.z.so。
 
 ```txt
-target_link_libraries(entry PUBLIC libhilog_ndk.z.so libimage_source.so)
+target_link_libraries(entry PUBLIC libhilog_ndk.z.so libimage_source.so libpixelmap.so)
 ```
 
 ### Native接口调用
 
 具体接口说明请参考[API文档](../../reference/apis-image-kit/_image___native_module.md)。
 
-在hello.cpp中实现C API接口调用逻辑，示例代码如下：
+在Deveco Studio新建Native C++应用，默认生成的项目中包含index.ets文件，在entry\src\main\cpp目录下会自动生成一个cpp文件（hello.cpp或napi_init.cpp，本示例以hello.cpp文件名为例）。在hello.cpp中实现C API接口调用逻辑，示例代码如下：
 
 **解码接口使用示例**
 
@@ -29,6 +29,7 @@ target_link_libraries(entry PUBLIC libhilog_ndk.z.so libimage_source.so)
 
       #include <hilog/log.h>
       #include <multimedia/image_framework/image/image_source_native.h>
+      #include <multimedia/image_framework/image/pixelmap_native.h>
 
       #undef LOG_DOMAIN
       #undef LOG_TAG
@@ -37,6 +38,13 @@ target_link_libraries(entry PUBLIC libhilog_ndk.z.so libimage_source.so)
 
       #define NUM_0 0
       #define NUM_1 1
+
+      // 处理napi返回值。
+      napi_value getJsResult(napi_env env, int result) {
+          napi_value resultNapi = nullptr;
+          napi_create_int32(env, result, &resultNapi);
+          return resultNapi;
+      }
 
       static napi_value sourceTest(napi_env env, napi_callback_info info)
       {
@@ -56,7 +64,7 @@ target_link_libraries(entry PUBLIC libhilog_ndk.z.so libimage_source.so)
           Image_ErrorCode errCode = OH_ImageSourceNative_CreateFromUri(name, nameSize, &source);
           if (errCode != IMAGE_SUCCESS) {
               OH_LOG_ERROR(LOG_APP, "ImageSourceNativeCTest sourceTest OH_ImageSourceNative_CreateFromUri failed, errCode: %{public}d.", errCode);
-              return errCode;
+              return getJsResult(env, errCode);
           }
 
           //创建定义图片信息的结构体对象，并获取图片信息。
@@ -65,7 +73,7 @@ target_link_libraries(entry PUBLIC libhilog_ndk.z.so libimage_source.so)
           errCode = OH_ImageSourceNative_GetImageInfo(source, 0, imageInfo);
           if (errCode != IMAGE_SUCCESS) {
               OH_LOG_ERROR(LOG_APP, "ImageSourceNativeCTest sourceTest OH_ImageSourceNative_GetImageInfo failed, errCode: %{public}d.", errCode);
-              return errCode;
+              return getJsResult(env, errCode);
           }
 
           //获取指定属性键的值。
@@ -82,7 +90,7 @@ target_link_libraries(entry PUBLIC libhilog_ndk.z.so libimage_source.so)
           errCode = OH_ImageSourceNative_GetImageProperty(source, &getKey, &getValue);
           if (errCode != IMAGE_SUCCESS) {
               OH_LOG_ERROR(LOG_APP, "ImageSourceNativeCTest sourceTest OH_ImageSourceNative_GetImageProperty failed, errCode: %{public}d.", errCode);
-              return errCode;
+              return getJsResult(env, errCode);
           }
 
           //修改指定属性键的值。
@@ -96,7 +104,7 @@ target_link_libraries(entry PUBLIC libhilog_ndk.z.so libimage_source.so)
           errCode = OH_ImageSourceNative_ModifyImageProperty(source, &setKey, &setValue);
           if (errCode != IMAGE_SUCCESS) {
               OH_LOG_ERROR(LOG_APP, "ImageSourceNativeCTest sourceTest OH_ImageSourceNative_ModifyImageProperty failed, errCode: %{public}d.", errCode);
-              return errCode;
+              return getJsResult(env, errCode);
           }
 
           //通过图片解码参数创建PixelMap对象。
@@ -111,7 +119,7 @@ target_link_libraries(entry PUBLIC libhilog_ndk.z.so libimage_source.so)
           OH_DecodingOptions_Release(ops);
           if (errCode != IMAGE_SUCCESS) {
               OH_LOG_ERROR(LOG_APP, "ImageSourceNativeCTest sourceTest OH_ImageSourceNative_CreatePixelmap failed, errCode: %{public}d.", errCode);
-              return errCode;
+              return getJsResult(env, errCode);
           }
 
           //判断pixelmap是否为hdr内容。
@@ -127,7 +135,7 @@ target_link_libraries(entry PUBLIC libhilog_ndk.z.so libimage_source.so)
           errCode = OH_ImageSourceNative_GetFrameCount(source, &frameCnt);
           if (errCode != IMAGE_SUCCESS) {
               OH_LOG_ERROR(LOG_APP, "ImageSourceNativeCTest sourceTest OH_ImageSourceNative_GetFrameCount failed, errCode: %{public}d.", errCode);
-              return errCode;
+              return getJsResult(env, errCode);
           }
 
           //通过图片解码参数创建Pixelmap列表。
@@ -140,7 +148,7 @@ target_link_libraries(entry PUBLIC libhilog_ndk.z.so libimage_source.so)
           delete[] resVecPixMap;
           if (errCode != IMAGE_SUCCESS) {
               OH_LOG_ERROR(LOG_APP, "ImageSourceNativeCTest sourceTest OH_ImageSourceNative_CreatePixelmapList failed, errCode: %{public}d.", errCode);
-              return errCode;
+              return getJsResult(env, errCode);
           }
 
           //获取图像延迟时间列表。
@@ -150,12 +158,12 @@ target_link_libraries(entry PUBLIC libhilog_ndk.z.so libimage_source.so)
           delete[] delayTimeList;
           if (errCode != IMAGE_SUCCESS) {
               OH_LOG_ERROR(LOG_APP, "ImageSourceNativeCTest sourceTest OH_ImageSourceNative_GetDelayTimeList failed, errCode: %{public}d.", errCode);
-              return errCode;
+              return getJsResult(env, errCode);
           }
 
           //释放ImageSource实例。
           OH_ImageSourceNative_Release(source);
           OH_LOG_INFO(LOG_APP, "ImageSourceNativeCTest sourceTest success.");
-          return IMAGE_SUCCESS;
+          return getJsResult(env, IMAGE_SUCCESS);
       }
    ```

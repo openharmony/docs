@@ -49,7 +49,7 @@ huks Handle结构体。
 
 | 名称    | 类型       | 必填 | 说明                                                 |
 | --------- | ---------- | ---- | ---------------------------------------------------- |
-| handle    | number     | 是   | 表示handle值。                                       |
+| handle    | number     | 是   | 表示uint64类型的handle值。                                       |
 | challenge | Uint8Array | 否   | 表示[initSession](#huksinitsession9)操作之后获取到的challenge信息。 |
 
 ## HuksReturnResult<sup>9+</sup>
@@ -93,7 +93,7 @@ generateKeyItem(keyAlias: string, options: HuksOptions, callback: AsyncCallback\
 
 | 参数名   | 类型                        | 必填 | 说明                                          |
 | -------- | --------------------------- | ---- | --------------------------------------------- |
-| keyAlias | string                      | 是   | 别名。                                        |
+| keyAlias | string                      | 是   | 别名。密钥别名的最大长度为128字节，建议不包含个人信息等敏感词汇。                                        |
 | options  | [HuksOptions](#huksoptions) | 是   | 用于存放生成key所需TAG。其中密钥使用的算法、密钥用途、密钥长度为必选参数。 |
 | callback | AsyncCallback\<void>        | 是   | 回调函数。未捕获error时代表用户指定别名的密钥生成成功，基于密钥不出TEE原则，此接口不会返回密钥材料内容，若捕获error，则为生成阶段出现异常。 |
 
@@ -111,10 +111,10 @@ generateKeyItem(keyAlias: string, options: HuksOptions, callback: AsyncCallback\
 | 12000004 | operating file failed. |
 | 12000005 | IPC communication failed. |
 | 12000006 | error occurred in crypto engine. |
-| 12000012 | external error. |
+| 12000012 | Device environment or input parameter abnormal. |
 | 12000013 | queried credential does not exist. |
 | 12000014 | memory is insufficient. |
-| 12000015 | call service failed. |
+| 12000015 | Failed to obtain the security information via UserIAM. |
 
 **示例：**
 
@@ -172,7 +172,7 @@ generateKeyItem(keyAlias: string, options: HuksOptions) : Promise\<void>
 
 | 参数名   | 类型                        | 必填 | 说明                     |
 | -------- | --------------------------- | ---- | ------------------------ |
-| keyAlias | string                      | 是   | 密钥别名。               |
+| keyAlias | string                      | 是   | 密钥别名。密钥别名的最大长度为128字节，建议不包含个人信息等敏感词汇。               |
 | options  | [HuksOptions](#huksoptions) | 是   | 用于存放生成key所需TAG。其中密钥使用的算法、密钥用途、密钥长度为必选参数。 |
 
 **返回值：**
@@ -195,10 +195,10 @@ generateKeyItem(keyAlias: string, options: HuksOptions) : Promise\<void>
 | 12000004 | operating file failed. |
 | 12000005 | IPC communication failed. |
 | 12000006 | error occurred in crypto engine. |
-| 12000012 | external error. |
+| 12000012 | Device environment or input parameter abnormal. |
 | 12000013 | queried credential does not exist. |
 | 12000014 | memory is insufficient. |
-| 12000015 | call service failed. |
+| 12000015 | Failed to obtain the security information via UserIAM. |
 
 **示例：**
 
@@ -271,7 +271,7 @@ deleteKeyItem(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<v
 | 12000004 | operating file failed. |
 | 12000005 | IPC communication failed. |
 | 12000011 | queried entity does not exist. |
-| 12000012 | external error. |
+| 12000012 | Device environment or input parameter abnormal. |
 | 12000014 | memory is insufficient. |
 
 **示例：**
@@ -330,7 +330,7 @@ deleteKeyItem(keyAlias: string, options: HuksOptions) : Promise\<void>
 | 12000004 | operating file failed. |
 | 12000005 | IPC communication failed. |
 | 12000011 | queried entity does not exist. |
-| 12000012 | external error. |
+| 12000012 | Device environment or input parameter abnormal. |
 | 12000014 | memory is insufficient. |
 
 **示例：**
@@ -371,7 +371,7 @@ API version 9-11系统能力为SystemCapability.Security.Huks.Extension；从API
 
 | 参数名   | 类型                        | 必填 | 说明                                          |
 | -------- | --------------------------- | ---- | --------------------------------------------- |
-| keyAlias | string                      | 是   | 密钥别名。                                    |
+| keyAlias | string                      | 是   | 密钥别名。密钥别名的最大长度为128字节，建议不包含个人信息等敏感词汇。                                    |
 | options  | [HuksOptions](#huksoptions) | 是   | 用于导入时所需TAG和需要导入的密钥。其中密钥使用的算法、密钥用途、密钥长度为必选参数。 |
 | callback | AsyncCallback\<void>        | 是   | 回调函数。不返回err值时表示接口使用成功，其他时为错误。 |
 
@@ -389,11 +389,10 @@ API version 9-11系统能力为SystemCapability.Security.Huks.Extension；从API
 | 12000004 | operating file failed. |
 | 12000005 | IPC communication failed. |
 | 12000006 | error occurred in crypto engine. |
-| 12000011 | queried entity does not exist. |
-| 12000012 | external error. |
+| 12000012 | Device environment or input parameter abnormal. |
 | 12000013 | queried credential does not exist. |
 | 12000014 | memory is insufficient. |
-| 12000015 | call service failed. |
+| 12000015 | Failed to obtain the security information via UserIAM. |
 
 **示例：**
 
@@ -463,7 +462,7 @@ importKeyItem(keyAlias: string, options: HuksOptions) : Promise\<void>
 
 | 参数名   | 类型                        | 必填 | 说明                                |
 | -------- | --------------------------- | ---- | ----------------------------------- |
-| keyAlias | string                      | 是   | 密钥别名。                          |
+| keyAlias | string                      | 是   | 密钥别名（密钥别名的最大长度为128字节，建议不包含个人信息等敏感词汇）。                          |
 | options  | [HuksOptions](#huksoptions) | 是   | 用于导入时所需TAG和需要导入的密钥。其中密钥使用的算法、密钥用途、密钥长度为必选参数。 |
 
 **返回值：**
@@ -486,11 +485,10 @@ importKeyItem(keyAlias: string, options: HuksOptions) : Promise\<void>
 | 12000004 | operating file failed. |
 | 12000005 | IPC communication failed. |
 | 12000006 | error occurred in crypto engine. |
-| 12000011 | queried entity does not exist. |
-| 12000012 | external error. |
+| 12000012 | Device environment or input parameter abnormal. |
 | 12000013 | queried credential does not exist. |
 | 12000014 | memory is insufficient. |
-| 12000015 | call service failed. |
+| 12000015 | Failed to obtain the security information via UserIAM. |
 
 **示例：**
 
@@ -574,13 +572,11 @@ attestKeyItem(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<H
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed. |
 | 801 | api is not supported. |
 | 12000001 | algorithm mode is not supported. |
-| 12000002 | algorithm param is missing. |
-| 12000003 | algorithm param is invalid. |
 | 12000004 | operating file failed. |
 | 12000005 | IPC communication failed. |
 | 12000006 | error occurred in crypto engine. |
 | 12000011 | queried entity does not exist. |
-| 12000012 | external error. |
+| 12000012 | Device environment or input parameter abnormal. |
 | 12000014 | memory is insufficient. |
 
 **示例：**
@@ -715,13 +711,11 @@ attestKeyItem(keyAlias: string, options: HuksOptions) : Promise\<HuksReturnResul
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed. |
 | 801 | api is not supported. |
 | 12000001 | algorithm mode is not supported. |
-| 12000002 | algorithm param is missing. |
-| 12000003 | algorithm param is invalid. |
 | 12000004 | operating file failed. |
 | 12000005 | IPC communication failed. |
 | 12000006 | error occurred in crypto engine. |
 | 12000011 | queried entity does not exist. |
-| 12000012 | external error. |
+| 12000012 | Device environment or input parameter abnormal. |
 | 12000014 | memory is insufficient. |
 
 **示例：**
@@ -857,13 +851,11 @@ anonAttestKeyItem(keyAlias: string, options: HuksOptions, callback: AsyncCallbac
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed. |
 | 801 | api is not supported. |
 | 12000001 | algorithm mode is not supported. |
-| 12000002 | algorithm param is missing. |
-| 12000003 | algorithm param is invalid. |
 | 12000004 | operating file failed. |
 | 12000005 | IPC communication failed. |
 | 12000006 | error occurred in crypto engine. |
 | 12000011 | queried entity does not exist. |
-| 12000012 | external error. |
+| 12000012 | Device environment or input parameter abnormal. |
 | 12000014 | memory is insufficient. |
 
 **示例：**
@@ -1001,13 +993,11 @@ anonAttestKeyItem(keyAlias: string, options: HuksOptions) : Promise\<HuksReturnR
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed. |
 | 801 | api is not supported. |
 | 12000001 | algorithm mode is not supported. |
-| 12000002 | algorithm param is missing. |
-| 12000003 | algorithm param is invalid. |
 | 12000004 | operating file failed. |
 | 12000005 | IPC communication failed. |
 | 12000006 | error occurred in crypto engine. |
 | 12000011 | queried entity does not exist. |
-| 12000012 | external error. |
+| 12000012 | Device environment or input parameter abnormal. |
 | 12000014 | memory is insufficient. |
 
 **示例：**
@@ -1136,10 +1126,10 @@ API version 9-11系统能力为SystemCapability.Security.Huks.Extension；从API
 | 12000005 | IPC communication failed. |
 | 12000006 | error occurred in crypto engine. |
 | 12000011 | queried entity does not exist. |
-| 12000012 | external error. |
+| 12000012 | Device environment or input parameter abnormal. |
 | 12000013 | queried credential does not exist. |
 | 12000014 | memory is insufficient. |
-| 12000015 | call service failed. |
+| 12000015 | Failed to obtain the security information via UserIAM. |
 
 **示例：**
 
@@ -1370,10 +1360,10 @@ importWrappedKeyItem(keyAlias: string, wrappingKeyAlias: string, options: HuksOp
 | 12000005 | IPC communication failed. |
 | 12000006 | error occurred in crypto engine. |
 | 12000011 | queried entity does not exist. |
-| 12000012 | external error. |
+| 12000012 | Device environment or input parameter abnormal. |
 | 12000013 | queried credential does not exist. |
 | 12000014 | memory is insufficient. |
-| 12000015 | call service failed. |
+| 12000015 | Failed to obtain the security information via UserIAM. |
 
 **示例：**
 
@@ -1425,13 +1415,11 @@ API version 9-11系统能力为SystemCapability.Security.Huks.Extension；从API
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed. |
 | 801 | api is not supported. |
 | 12000001 | algorithm mode is not supported. |
-| 12000002 | algorithm param is missing. |
-| 12000003 | algorithm param is invalid. |
 | 12000004 | operating file failed. |
 | 12000005 | IPC communication failed. |
 | 12000006 | error occurred in crypto engine. |
 | 12000011 | queried entity does not exist. |
-| 12000012 | external error. |
+| 12000012 | Device environment or input parameter abnormal. |
 | 12000014 | memory is insufficient. |
 
 **示例：**
@@ -1488,13 +1476,11 @@ exportKeyItem(keyAlias: string, options: HuksOptions) : Promise\<HuksReturnResul
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed. |
 | 801 | api is not supported. |
 | 12000001 | algorithm mode is not supported. |
-| 12000002 | algorithm param is missing. |
-| 12000003 | algorithm param is invalid. |
 | 12000004 | operating file failed. |
 | 12000005 | IPC communication failed. |
 | 12000006 | error occurred in crypto engine. |
 | 12000011 | queried entity does not exist. |
-| 12000012 | external error. |
+| 12000012 | Device environment or input parameter abnormal. |
 | 12000014 | memory is insufficient. |
 
 **示例：**
@@ -1548,13 +1534,11 @@ API version 9-11系统能力为SystemCapability.Security.Huks.Extension；从API
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed. |
 | 801 | api is not supported. |
 | 12000001 | algorithm mode is not supported. |
-| 12000002 | algorithm param is missing. |
-| 12000003 | algorithm param is invalid. |
 | 12000004 | operating file failed. |
 | 12000005 | IPC communication failed. |
 | 12000006 | error occurred in crypto engine. |
 | 12000011 | queried entity does not exist. |
-| 12000012 | external error. |
+| 12000012 | Device environment or input parameter abnormal. |
 | 12000014 | memory is insufficient. |
 
 **示例：**
@@ -1611,13 +1595,11 @@ getKeyItemProperties(keyAlias: string, options: HuksOptions) : Promise\<HuksRetu
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed. |
 | 801 | api is not supported. |
 | 12000001 | algorithm mode is not supported. |
-| 12000002 | algorithm param is missing. |
-| 12000003 | algorithm param is invalid. |
 | 12000004 | operating file failed. |
 | 12000005 | IPC communication failed. |
 | 12000006 | error occurred in crypto engine. |
 | 12000011 | queried entity does not exist. |
-| 12000012 | external error. |
+| 12000012 | Device environment or input parameter abnormal. |
 | 12000014 | memory is insufficient. |
 
 **示例：**
@@ -1666,20 +1648,17 @@ isKeyItemExist(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<
 | -------- | ------------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed. |
 | 801 | api is not supported. |
-| 12000002 | algorithm param is missing. |
-| 12000003 | algorithm param is invalid. |
 | 12000004 | operating file failed. |
 | 12000005 | IPC communication failed. |
 | 12000006 | error occurred in crypto engine. |
 | 12000011 | queried entity does not exist. |
-| 12000012 | external error. |
+| 12000012 | Device environment or input parameter abnormal. |
 | 12000014 | memory is insufficient. |
 
 **示例：**
 
 ```ts
 import { huks } from '@kit.UniversalKeystoreKit';
-import { promptAction } from '@kit.ArkUI';
 /* 此处options选择emptyOptions来传空 */
 let keyAlias = 'keyAlias';
 let emptyOptions: huks.HuksOptions = {
@@ -1687,12 +1666,12 @@ let emptyOptions: huks.HuksOptions = {
 };
 huks.isKeyItemExist(keyAlias, emptyOptions, (error, data) => {
     if (data) {
-        promptAction.showToast({
-            message: "keyAlias: " + keyAlias +"is existed！",
+        this.getUIContext().getPromptAction().showToast({
+            message: "keyAlias: " + keyAlias + " is existed！",
             duration: 2500,
         })
     } else {
-        promptAction.showToast({
+        this.getUIContext().getPromptAction().showToast({
             message: "find key failed",
             duration: 2500,
         })
@@ -1729,20 +1708,17 @@ isKeyItemExist(keyAlias: string, options: HuksOptions) : Promise\<boolean>
 | -------- | ------------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed. |
 | 801 | api is not supported. |
-| 12000002 | algorithm param is missing. |
-| 12000003 | algorithm param is invalid. |
 | 12000004 | operating file failed. |
 | 12000005 | IPC communication failed. |
 | 12000006 | error occurred in crypto engine. |
 | 12000011 | queried entity does not exist. |
-| 12000012 | external error. |
+| 12000012 | Device environment or input parameter abnormal. |
 | 12000014 | memory is insufficient. |
 
 **示例：**
 
 ```ts
 import { huks } from '@kit.UniversalKeystoreKit';
-import { promptAction } from '@kit.ArkUI';
 
 /* 此处options选择emptyOptions来传空 */
 let keyAlias = 'keyAlias';
@@ -1750,12 +1726,12 @@ let emptyOptions: huks.HuksOptions = {
     properties: []
 };
 huks.isKeyItemExist(keyAlias, emptyOptions).then((data) => {
-    promptAction.showToast({
-        message: "keyAlias: " + keyAlias +"is existed！",
+    this.getUIContext().getPromptAction().showToast({
+        message: "keyAlias: " + keyAlias + " is existed！",
         duration: 500,
     })
 }).catch((error: Error)=>{
-    promptAction.showToast({
+    this.getUIContext().getPromptAction().showToast({
         message: "find key failed",
         duration: 6500,
     })
@@ -1788,19 +1764,16 @@ hasKeyItem(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<bool
 | -------- | ------------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed. |
 | 801 | api is not supported. |
-| 12000002 | algorithm param is missing. |
-| 12000003 | algorithm param is invalid. |
 | 12000004 | operating file failed. |
 | 12000005 | IPC communication failed. |
 | 12000006 | error occurred in crypto engine. |
-| 12000012 | external error. |
+| 12000012 | Device environment or input parameter abnormal. |
 | 12000014 | memory is insufficient. |
 
 **示例：**
 
 ```ts
 import { huks } from '@kit.UniversalKeystoreKit';
-import { promptAction } from '@kit.ArkUI';
 /* 此处options选择emptyOptions来传空 */
 let keyAlias = 'keyAlias';
 let emptyOptions: huks.HuksOptions = {
@@ -1810,12 +1783,12 @@ let emptyOptions: huks.HuksOptions = {
 try {
     huks.hasKeyItem(keyAlias, emptyOptions, (error, data) => {
         if (data) {
-            promptAction.showToast({
+            this.getUIContext().getPromptAction().showToast({
                 message: "keyAlias: " + keyAlias +" is existed!",
                 duration: 2500,
             })
         } else {
-            promptAction.showToast({
+            this.getUIContext().getPromptAction().showToast({
                 message: "find key failed",
                 duration: 2500,
             })
@@ -1857,19 +1830,16 @@ hasKeyItem(keyAlias: string, options: HuksOptions) : Promise\<boolean>
 | -------- | ------------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed. |
 | 801 | api is not supported. |
-| 12000002 | algorithm param is missing. |
-| 12000003 | algorithm param is invalid. |
 | 12000004 | operating file failed. |
 | 12000005 | IPC communication failed. |
 | 12000006 | error occurred in crypto engine. |
-| 12000012 | external error. |
+| 12000012 | Device environment or input parameter abnormal. |
 | 12000014 | memory is insufficient. |
 
 **示例：**
 
 ```ts
 import { huks } from '@kit.UniversalKeystoreKit';
-import { promptAction } from '@kit.ArkUI';
 
 /* 此处options选择emptyOptions来传空 */
 let keyAlias = 'keyAlias';
@@ -1878,18 +1848,18 @@ let emptyOptions: huks.HuksOptions = {
 };
 huks.hasKeyItem(keyAlias, emptyOptions).then((data) => {
     if (data) {
-        promptAction.showToast({
+        this.getUIContext().getPromptAction().showToast({
             message: "keyAlias: " + keyAlias +" is existed!",
             duration: 2500,
         })
     } else {
-        promptAction.showToast({
+        this.getUIContext().getPromptAction().showToast({
             message: "find key failed",
             duration: 2500,
         })
     }
 }).catch((error: Error)=>{
-    promptAction.showToast({
+    this.getUIContext().getPromptAction().showToast({
         message: "find key failed",
         duration: 6500,
     })
@@ -1923,14 +1893,13 @@ initSession操作密钥接口，使用Callback回调异步返回结果。huks.in
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed. |
 | 801 | api is not supported. |
 | 12000001 | algorithm mode is not supported. |
-| 12000002 | algorithm param is missing. |
 | 12000003 | algorithm param is invalid. |
 | 12000004 | operating file failed. |
 | 12000005 | IPC communication failed. |
 | 12000006 | error occurred in crypto engine. |
 | 12000010 | the number of sessions has reached limit. |
 | 12000011 | queried entity does not exist. |
-| 12000012 | external error. |
+| 12000012 | Device environment or input parameter abnormal. |
 | 12000014 | memory is insufficient. |
 
 ## huks.initSession<sup>9+</sup>
@@ -1965,14 +1934,13 @@ initSession操作密钥接口，使用Promise方式异步返回结果。huks.ini
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed. |
 | 801 | api is not supported. |
 | 12000001 | algorithm mode is not supported. |
-| 12000002 | algorithm param is missing. |
 | 12000003 | algorithm param is invalid. |
 | 12000004 | operating file failed. |
 | 12000005 | IPC communication failed. |
 | 12000006 | error occurred in crypto engine. |
 | 12000010 | the number of sessions has reached limit. |
 | 12000011 | queried entity does not exist. |
-| 12000012 | external error. |
+| 12000012 | Device environment or input parameter abnormal. |
 | 12000014 | memory is insufficient. |
 
 ## huks.updateSession<sup>9+</sup>
@@ -1989,7 +1957,7 @@ updateSession操作密钥接口，使用Callback回调异步返回结果。huks.
 
 | 参数名   | 类型                                                 | 必填 | 说明                                         |
 | -------- | ---------------------------------------------------- | ---- | -------------------------------------------- |
-| handle   | number                                               | 是   | updateSession操作的handle。                         |
+| handle   | number                                               | 是   | updateSession操作的uint64类型的handle值。                         |
 | options  | [HuksOptions](#huksoptions)                          | 是   | updateSession的参数集合。                           |
 | callback | AsyncCallback<[HuksReturnResult](#huksreturnresult9)> | 是   | 回调函数。将updateSession操作的结果添加到密钥管理系统的回调。 |
 
@@ -2002,8 +1970,6 @@ updateSession操作密钥接口，使用Callback回调异步返回结果。huks.
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed. |
 | 801 | api is not supported. |
 | 12000001 | algorithm mode is not supported. |
-| 12000002 | algorithm param is missing. |
-| 12000003 | algorithm param is invalid. |
 | 12000004 | operating file failed. |
 | 12000005 | IPC communication failed. |
 | 12000006 | error occurred in crypto engine. |
@@ -2011,7 +1977,7 @@ updateSession操作密钥接口，使用Callback回调异步返回结果。huks.
 | 12000008 | verify auth token failed. |
 | 12000009 | auth token is already timeout. |
 | 12000011 | queried entity does not exist. |
-| 12000012 | external error. |
+| 12000012 | Device environment or input parameter abnormal. |
 | 12000014 | memory is insufficient. |
 
 ## huks.updateSession<sup>9+</sup>
@@ -2028,7 +1994,7 @@ updateSession操作密钥接口，使用Callback回调异步返回结果。huks.
 
 | 参数名   | 类型                                                 | 必填 | 说明                                         |
 | -------- | ---------------------------------------------------- | ---- | -------------------------------------------- |
-| handle   | number                                               | 是   | updateSession操作的handle。                         |
+| handle   | number                                              | 是   | updateSession操作的uint64类型的handle值。                         |
 | options  | [HuksOptions](#huksoptions)                          | 是   | updateSession操作的参数集合。                       |
 | token    | Uint8Array                                           | 是   | 密钥[二次认证密钥访问控制](../../security/UniversalKeystoreKit/huks-identity-authentication-overview.md)的用户鉴权证明(AuthToken)。                         |
 | callback | AsyncCallback<[HuksReturnResult](#huksreturnresult9)> | 是   | 回调函数。将updateSession操作的结果添加到密钥管理系统的回调。 |
@@ -2042,8 +2008,6 @@ updateSession操作密钥接口，使用Callback回调异步返回结果。huks.
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed. |
 | 801 | api is not supported. |
 | 12000001 | algorithm mode is not supported. |
-| 12000002 | algorithm param is missing. |
-| 12000003 | algorithm param is invalid. |
 | 12000004 | operating file failed. |
 | 12000005 | IPC communication failed. |
 | 12000006 | error occurred in crypto engine. |
@@ -2051,7 +2015,7 @@ updateSession操作密钥接口，使用Callback回调异步返回结果。huks.
 | 12000008 | verify auth token failed. |
 | 12000009 | auth token is already timeout. |
 | 12000011 | queried entity does not exist. |
-| 12000012 | external error. |
+| 12000012 | Device environment or input parameter abnormal. |
 | 12000014 | memory is insufficient. |
 
 ## huks.updateSession<sup>9+</sup>
@@ -2068,7 +2032,7 @@ updateSession操作密钥接口，使用Promise方式异步返回结果。huks.i
 
 | 参数名  | 类型                                           | 必填 | 说明                                         |
 | ------- | ---------------------------------------------- | ---- | -------------------------------------------- |
-| handle  | number                                         | 是   | updateSession操作的handle。                         |
+| handle  | number                                         | 是   | updateSession操作的uint64类型的handle值。                         |
 | options | [HuksOptions](#huksoptions)                    | 是   | updateSession操作的参数集合。                       |
 | token   | Uint8Array                                     | 否   |密钥[二次认证密钥访问控制](../../security/UniversalKeystoreKit/huks-identity-authentication-overview.md)的用户鉴权证明(AuthToken)，不填表示不进行二次认证密钥访问控制。                          |
 
@@ -2087,8 +2051,6 @@ updateSession操作密钥接口，使用Promise方式异步返回结果。huks.i
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed. |
 | 801 | api is not supported. |
 | 12000001 | algorithm mode is not supported. |
-| 12000002 | algorithm param is missing. |
-| 12000003 | algorithm param is invalid. |
 | 12000004 | operating file failed. |
 | 12000005 | IPC communication failed. |
 | 12000006 | error occurred in crypto engine. |
@@ -2096,7 +2058,7 @@ updateSession操作密钥接口，使用Promise方式异步返回结果。huks.i
 | 12000008 | verify auth token failed. |
 | 12000009 | auth token is already timeout. |
 | 12000011 | queried entity does not exist. |
-| 12000012 | external error. |
+| 12000012 | Device environment or input parameter abnormal. |
 | 12000014 | memory is insufficient. |
 
 ## huks.finishSession<sup>9+</sup>
@@ -2113,7 +2075,7 @@ finishSession操作密钥接口，使用Callback回调异步返回结果。huks.
 
 | 参数名   | 类型                                                 | 必填 | 说明                                         |
 | -------- | ---------------------------------------------------- | ---- | -------------------------------------------- |
-| handle   | number                                               | 是   | finishSession操作的handle。                         |
+| handle   | number                                               | 是   | finishSession操作的uint64类型的handle值。                         |
 | options  | [HuksOptions](#huksoptions)                          | 是   | finishSession的参数集合。                           |
 | callback | AsyncCallback<[HuksReturnResult](#huksreturnresult9)> | 是   | 回调函数。将finishSession操作的结果添加到密钥管理系统的回调。 |
 
@@ -2126,8 +2088,6 @@ finishSession操作密钥接口，使用Callback回调异步返回结果。huks.
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed. |
 | 801 | api is not supported. |
 | 12000001 | algorithm mode is not supported. |
-| 12000002 | algorithm param is missing. |
-| 12000003 | algorithm param is invalid. |
 | 12000004 | operating file failed. |
 | 12000005 | IPC communication failed. |
 | 12000006 | error occurred in crypto engine. |
@@ -2135,7 +2095,7 @@ finishSession操作密钥接口，使用Callback回调异步返回结果。huks.
 | 12000008 | verify auth token failed. |
 | 12000009 | auth token is already timeout. |
 | 12000011 | queried entity does not exist. |
-| 12000012 | external error. |
+| 12000012 | Device environment or input parameter abnormal. |
 | 12000014 | memory is insufficient. |
 
 ## huks.finishSession<sup>9+</sup>
@@ -2152,7 +2112,7 @@ finishSession操作密钥接口，使用Callback回调异步返回结果。huks.
 
 | 参数名   | 类型                                                  | 必填 | 说明                                         |
 | -------- | ----------------------------------------------------- | ---- | -------------------------------------------- |
-| handle   | number                                                | 是   | finishSession操作的handle。                         |
+| handle   | number                                                | 是   | finishSession操作的uint64类型的handle值。                         |
 | options  | [HuksOptions](#huksoptions)                           | 是   | finishSession的参数集合。                           |
 | token    | Uint8Array                                            | 是   | 密钥[二次认证密钥访问控制](../../security/UniversalKeystoreKit/huks-identity-authentication-overview.md)的用户鉴权证明(AuthToken)。                         |
 | callback | AsyncCallback\<[HuksReturnResult](#huksreturnresult9)> | 是   | 回调函数。将finishSession操作的结果添加到密钥管理系统的回调。 |
@@ -2166,8 +2126,6 @@ finishSession操作密钥接口，使用Callback回调异步返回结果。huks.
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed. |
 | 801 | api is not supported. |
 | 12000001 | algorithm mode is not supported. |
-| 12000002 | algorithm param is missing. |
-| 12000003 | algorithm param is invalid. |
 | 12000004 | operating file failed. |
 | 12000005 | IPC communication failed. |
 | 12000006 | error occurred in crypto engine. |
@@ -2175,7 +2133,7 @@ finishSession操作密钥接口，使用Callback回调异步返回结果。huks.
 | 12000008 | verify auth token failed. |
 | 12000009 | auth token is already timeout. |
 | 12000011 | queried entity does not exist. |
-| 12000012 | external error. |
+| 12000012 | Device environment or input parameter abnormal. |
 | 12000014 | memory is insufficient. |
 
 ## huks.finishSession<sup>9+</sup>
@@ -2192,7 +2150,7 @@ finishSession操作密钥接口，使用Promise方式异步返回结果。huks.i
 
 | 参数名  | 类型                                            | 必填 | 说明                                |
 | ------- | ----------------------------------------------- | ---- | ----------------------------------- |
-| handle  | number                                          | 是   | finishSession操作的handle。                |
+| handle  | number                                          | 是   | finishSession操作的uint64类型的handle值。                |
 | options | [HuksOptions](#huksoptions)                     | 是   | finishSession操作的参数集合。              |
 | token   | Uint8Array                                      | 否   | 密钥[二次认证密钥访问控制](../../security/UniversalKeystoreKit/huks-identity-authentication-overview.md)的用户鉴权证明(AuthToken)，不填表示不进行二次认证密钥访问控制。     |
 
@@ -2211,8 +2169,6 @@ finishSession操作密钥接口，使用Promise方式异步返回结果。huks.i
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed. |
 | 801 | api is not supported. |
 | 12000001 | algorithm mode is not supported. |
-| 12000002 | algorithm param is missing. |
-| 12000003 | algorithm param is invalid. |
 | 12000004 | operating file failed. |
 | 12000005 | IPC communication failed. |
 | 12000006 | error occurred in crypto engine. |
@@ -2220,7 +2176,7 @@ finishSession操作密钥接口，使用Promise方式异步返回结果。huks.i
 | 12000008 | verify auth token failed. |
 | 12000009 | auth token is already timeout. |
 | 12000011 | queried entity does not exist. |
-| 12000012 | external error. |
+| 12000012 | Device environment or input parameter abnormal. |
 | 12000014 | memory is insufficient. |
 
 ## huks.abortSession<sup>9+</sup>
@@ -2237,7 +2193,7 @@ abortSession操作密钥接口，使用Callback回调异步返回结果。
 
 | 参数名   | 类型                        | 必填 | 说明                                        |
 | -------- | --------------------------- | ---- | ------------------------------------------- |
-| handle   | number                      | 是   | abortSession操作的handle。                         |
+| handle   | number                      | 是   | abortSession操作的uint64类型的handle值。                         |
 | options  | [HuksOptions](#huksoptions) | 是   | abortSession操作的参数集合。                       |
 | callback | AsyncCallback\<void>        | 是   | 回调函数。将abortSession操作的结果添加到密钥管理系统的回调。 |
 
@@ -2252,7 +2208,7 @@ abortSession操作密钥接口，使用Callback回调异步返回结果。
 | 12000004 | operating file failed. |
 | 12000005 | IPC communication failed. |
 | 12000006 | error occurred in crypto engine. |
-| 12000012 | external error. |
+| 12000012 | Device environment or input parameter abnormal. |
 | 12000014 | memory is insufficient. |
 
 **示例：**
@@ -2342,7 +2298,7 @@ abortSession操作密钥接口，使用Promise方式异步返回结果。
 
 | 参数名  | 类型                        | 必填 | 说明                                        |
 | ------- | --------------------------- | ---- | ------------------------------------------- |
-| handle  | number                      | 是   | abortSession操作的handle。                         |
+| handle  | number                      | 是   | abortSession操作的uint64类型的handle值。                         |
 | options | [HuksOptions](#huksoptions) | 是   | abortSession操作的参数集合。                       |
 
 **返回值**：
@@ -2362,7 +2318,7 @@ abortSession操作密钥接口，使用Promise方式异步返回结果。
 | 12000004 | operating file failed. |
 | 12000005 | IPC communication failed. |
 | 12000006 | error occurred in crypto engine. |
-| 12000012 | external error. |
+| 12000012 | Device environment or input parameter abnormal. |
 | 12000014 | memory is insufficient. |
 
 **示例：**
@@ -2535,7 +2491,7 @@ listAliases(options: HuksOptions): Promise\<HuksListAliasesReturnResult>;
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed. |
 | 12000004 | operating file failed. |
 | 12000005 | IPC communication failed. |
-| 12000012 | external error. |
+| 12000012 | Device environment or input parameter abnormal. |
 | 12000014 | memory is insufficient. |
 
 **示例：**
@@ -2567,7 +2523,7 @@ async function testListAliases() {
 
 ## HuksExceptionErrCode<sup>9+</sup>
 
-表示错误码的枚举以及对应的错误信息， 错误码表示错误类型，错误信息展示错误详情。
+表示错误码的枚举以及对应的错误信息，错误码表示错误类型，错误信息展示错误详情。
 
 关于错误码的具体信息，可在[错误码参考文档](errorcode-huks.md)中查看。
 
@@ -2830,8 +2786,8 @@ API version 10-11系统能力为SystemCapability.Security.Huks.Extension；从AP
 
 | 名称                                       | 值   | 说明                         |
 | ------------------------------------------ | ---- | ---------------------------- |
-| HUKS_RSA_PSS_SALT_LEN_DIGEST<sup>10+</sup> | 0    | 表示以摘要长度设置salt_len。 |
-| HUKS_RSA_PSS_SALT_LEN_MAX<sup>10+</sup>    | 1    | 表示以最大长度设置salt_len。 |
+| HUKS_RSA_PSS_SALT_LEN_DIGEST | 0    | 表示以摘要长度设置salt_len。 |
+| HUKS_RSA_PSS_SALT_LEN_MAX    | 1    | 表示以最大长度设置salt_len。 |
 
 ## HuksUserAuthType<sup>9+</sup>
 
@@ -3096,7 +3052,7 @@ generateKey(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<Huk
 
 | 参数名   | 类型                                      | 必填 | 说明                                                         |
 | -------- | ----------------------------------------- | ---- | ------------------------------------------------------------ |
-| keyAlias | string                                    | 是   | 别名。                                                       |
+| keyAlias | string                                    | 是   | 别名。密钥别名的最大长度为128字节，建议不包含个人信息等敏感词汇。                                                       |
 | options  | [HuksOptions](#huksoptions)               | 是   | 用于存放生成key所需TAG。                                     |
 | callback | AsyncCallback\<[HuksResult](#huksresultdeprecated)> | 是   | 回调函数。返回HUKS_SUCCESS时表示接口使用成功，其余结果请参考HuksResult进行错误码查询。 |
 
@@ -3154,7 +3110,7 @@ generateKey(keyAlias: string, options: HuksOptions) : Promise\<HuksResult>
 
 | 参数名   | 类型                        | 必填 | 说明                     |
 | -------- | --------------------------- | ---- | ------------------------ |
-| keyAlias | string                      | 是   | 密钥别名。               |
+| keyAlias | string                      | 是   | 密钥别名。密钥别名的最大长度为128字节，建议不包含个人信息等敏感词汇。               |
 | options  | [HuksOptions](#huksoptions) | 是   | 用于存放生成key所需TAG。 |
 
 **返回值**：
@@ -3348,7 +3304,7 @@ importKey(keyAlias: string, options: HuksOptions) : Promise\<HuksResult>
 
 | 参数名   | 类型        | 必填 | 说明                                 |
 | -------- | ----------- | ---- | ------------------------------------ |
-| keyAlias | string      | 是   | 密钥别名。 |
+| keyAlias | string      | 是   | 密钥别名。密钥别名的最大长度为128字节，建议不包含个人信息等敏感词汇。 |
 | options  | [HuksOptions](#huksoptions) | 是   | 用于导入时所需TAG和需要导入的密钥。 |
 
 **返回值：**
@@ -3673,7 +3629,7 @@ update操作密钥接口，使用Callback回调异步返回结果。huks.init, h
 
 | 参数名   | 类型                                      | 必填 | 说明                                         |
 | -------- | ----------------------------------------- | ---- | -------------------------------------------- |
-| handle   | number                                    | 是   | Update操作的handle。                         |
+| handle   | number                                    | 是   | Update操作的uint64类型的handle值。                         |
 | token    | Uint8Array                                | 否   | Update操作的token。                          |
 | options  | [HuksOptions](#huksoptions)               | 是   | Update操作的参数集合。                       |
 | callback | AsyncCallback\<[HuksResult](#huksresultdeprecated)> | 是   | 回调函数。将Update操作的结果添加到密钥管理系统的回调。 |
@@ -3694,7 +3650,7 @@ update操作密钥接口，使用Promise方式异步返回结果。huks.init, hu
 
 | 参数名  | 类型                                | 必填 | 说明                                         |
 | ------- | ----------------------------------- | ---- | -------------------------------------------- |
-| handle  | number                              | 是   | Update操作的handle。                         |
+| handle  | number                              | 是   | Update操作的uint64类型的handle值。                         |
 | token   | Uint8Array                          | 否   | Update操作的token。                          |
 | options | [HuksOptions](#huksoptions)         | 是   | Update操作的参数集合。                       |
 
@@ -3720,7 +3676,7 @@ finish操作密钥接口，使用Callback回调异步返回结果。huks.init, h
 
 | 参数名   | 类型                   | 必填 | 说明                                  |
 | -------- | ---------------------- | ---- | ------------------------------------- |
-| handle | number           | 是   | Finish操作的handle。 |
+| handle | number           | 是   | Finish操作的uint64类型的handle值。 |
 | options  | [HuksOptions](#huksoptions) | 是   | Finish的参数集合。 |
 | callback | AsyncCallback\<[HuksResult](#huksresultdeprecated)> | 是 | 回调函数。将Finish操作的结果添加到密钥管理系统的回调。 |
 
@@ -3740,7 +3696,7 @@ finish操作密钥接口，使用Promise方式异步返回结果。huks.init, hu
 
 | 参数名   | 类型                   | 必填 | 说明                                  |
 | -------- | ---------------------- | ---- | ------------------------------------- |
-| handle | number           | 是   | Finish操作的handle。 |
+| handle | number           | 是   | Finish操作的uint64类型的handle值。 |
 | options  | [HuksOptions](#huksoptions) | 是   | Finish操作的参数集合。 |
 
 **返回值**：
@@ -3765,7 +3721,7 @@ abort操作密钥接口，使用Callback回调异步返回结果。
 
 | 参数名   | 类型                   | 必填 | 说明                                  |
 | -------- | ---------------------- | ---- | ------------------------------------- |
-| handle | number           | 是   | Abort操作的handle。 |
+| handle | number          | 是   | Abort操作的uint64类型的handle值。 |
 | options  | [HuksOptions](#huksoptions) | 是   | Abort操作的参数集合。 |
 | callback | AsyncCallback\<[HuksResult](#huksresultdeprecated)> | 是 | 回调函数。将Abort操作的结果添加到密钥管理系统的回调。 |
 
@@ -3877,7 +3833,7 @@ abort操作密钥接口，使用Promise方式异步返回结果。
 
 | 参数名   | 类型                   | 必填 | 说明                                  |
 | -------- | ---------------------- | ---- | ------------------------------------- |
-| handle | number           | 是   | Abort操作的handle。 |
+| handle | number           | 是   | Abort操作的uint64类型的handle值。 |
 | options  | [HuksOptions](#huksoptions) | 是   | Abort操作的参数集合。 |
 
 **返回值**：
@@ -4006,7 +3962,7 @@ huks Handle结构体。
 | 名称     | 类型             | 必填 | 说明     |
 | ---------- | ---------------- | ---- | -------- |
 | errorCode  | number           | 是   | 表示错误码。 |
-| handle    | number       | 是 | 表示handle值。 |
+| handle    | number       | 是 | 表示uint64类型的handle值。 |
 | token | Uint8Array | 否 | 表示[init](#huksinitdeprecated)操作之后获取到的challenge信息。 |
 
 ## HuksResult<sup>(deprecated)</sup>

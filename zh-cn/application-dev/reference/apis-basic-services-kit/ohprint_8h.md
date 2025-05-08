@@ -41,12 +41,12 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [Print_ErrorCode](_o_h___print.md#print_errorcode) {<br/>[PRINT_ERROR_NONE](_o_h___print.md) = 0, [PRINT_ERROR_NO_PERMISSION](_o_h___print.md) = 201, [PRINT_ERROR_INVALID_PARAMETER](_o_h___print.md) = 401, [PRINT_ERROR_GENERIC_FAILURE](_o_h___print.md) = 24300001,<br/>[PRINT_ERROR_RPC_FAILURE](_o_h___print.md) = 24300002, [PRINT_ERROR_SERVER_FAILURE](_o_h___print.md) = 24300003, [PRINT_ERROR_INVALID_EXTENSION](_o_h___print.md) = 24300004, [PRINT_ERROR_INVALID_PRINTER](_o_h___print.md) = 24300005,<br/>[PRINT_ERROR_INVALID_PRINT_JOB](_o_h___print.md) = 24300006, [PRINT_ERROR_FILE_IO](_o_h___print.md) = 24300007, [PRINT_ERROR_UNKNOWN](_o_h___print.md) = 24300255<br/>} | 枚举错误码。  | 
-| [Print_JobDocAdapterState](_o_h___print.md#print_jobdocadapterstate) {<br/>[PRINT_DOC_ADAPTER_PREVIEW_ABILITY_DESTROY](_o_h___print.md) = 0, [PRINT_DOC_ADAPTER_PRINT_TASK_SUCCEED](_o_h___print.md) = 1, [PRINT_DOC_ADAPTER_PRINT_TASK_FAIL](_o_h___print.md) = 2, [PRINT_DOC_ADAPTER_PRINT_TASK_CANCEL](_o_h___print.md) = 3,<br/>[PRINT_DOC_ADAPTER_PRINT_TASK_BLOCK](_o_h___print.md) = 4, [PRINT_DOC_ADAPTER_PREVIEW_ABILITY_DESTROY_FOR_CANCELED](_o_h___print.md) = 5, [PRINT_DOC_ADAPTER_PREVIEW_ABILITY_DESTROY_FOR_STARTED](_o_h___print.md) = 6<br/>} | 打印文档任务的状态。  | 
+| [Print_ErrorCode](_o_h___print.md#print_errorcode) {<br/>PRINT_ERROR_NONE = 0, PRINT_ERROR_NO_PERMISSION = 201, PRINT_ERROR_INVALID_PARAMETER = 401, PRINT_ERROR_GENERIC_FAILURE = 24300001,<br/>PRINT_ERROR_RPC_FAILURE = 24300002, PRINT_ERROR_SERVER_FAILURE = 24300003, PRINT_ERROR_INVALID_EXTENSION = 24300004, PRINT_ERROR_INVALID_PRINTER = 24300005,<br/>PRINT_ERROR_INVALID_PRINT_JOB = 24300006, PRINT_ERROR_FILE_IO = 24300007, PRINT_ERROR_UNKNOWN = 24300255<br/>} | 枚举错误码。  | 
+| [Print_JobDocAdapterState](_o_h___print.md#print_jobdocadapterstate) {<br/>PRINT_DOC_ADAPTER_PREVIEW_ABILITY_DESTROY = 0, PRINT_DOC_ADAPTER_PRINT_TASK_SUCCEED = 1, PRINT_DOC_ADAPTER_PRINT_TASK_FAIL = 2, PRINT_DOC_ADAPTER_PRINT_TASK_CANCEL = 3,<br/>PRINT_DOC_ADAPTER_PRINT_TASK_BLOCK = 4, PRINT_DOC_ADAPTER_PREVIEW_ABILITY_DESTROY_FOR_CANCELED = 5, PRINT_DOC_ADAPTER_PREVIEW_ABILITY_DESTROY_FOR_STARTED = 6<br/>} | 打印文档任务的状态。  | 
 
 
 ### 函数
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [Print_ErrorCode](_o_h___print.md#print_errorcode)[OH_Print_StartPrintByNative](_o_h___print.md#oh_print_startprintbynative) (const char \*printJobName, [Print_PrintDocCallback](_print___print_doc_callback.md) printDocCallback, void \*context) | 拉起打印预览界面接口。 | 
+| [Print_ErrorCode](_o_h___print.md#print_errorcode) [OH_Print_StartPrintByNative](_o_h___print.md#oh_print_startprintbynative) (const char \*printJobName, [Print_PrintDocCallback](_print___print_doc_callback.md) printDocCallback, void \*context) | 拉起打印预览界面接口。 | 

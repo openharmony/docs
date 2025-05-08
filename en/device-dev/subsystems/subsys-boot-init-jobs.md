@@ -1,9 +1,13 @@
 # Job Management
+
 ## Overview
+
 ### Function
+
 A job is a set of commands in the **.cfg** file of the init module. A maximum of 4096 jobs can be added. Jobs can be configured in the [.cfg file](subsys-boot-init-cfg.md). Generally, jobs are executed during initialization to serve the normal startup of services or the initialization of specific basic functions.
 
 ### Basic Concepts
+
 A job can be configured in the **init.cfg** file or the custom **.cfg** file of the module. The parser of the init process aggregates commands of the jobs with the same name into one job. For jobs with the same name, the init process only ensures that the commands in the **init.cfg** file are executed in preference. It does not guarantee the execution sequence of commands in other **.cfg** files.
 - Basic job
 
@@ -112,7 +116,7 @@ Job management is a part of the init startup process. It is a process-based func
 |void PostTrigger(EventType type, const char *content, uint32_t contentLen)|Verifies the validity of the job name and sends a job triggering event.| Standard system|
 |static void SendTriggerEvent(int type, const char *content, uint32_t contentLen)|Performs functions such as system control and starting or stopping of services based on system parameters.| Standard system|
 |static void DoTriggerCmd(const struct CmdArgs *ctx)|Executes the <strong>trigger</strong> command.| Standard system|
-|void DoTriggerExec(const char *triggerName)| Finds a command group based on the job name and pushes the commands in the command group to the execution queue.<br>This API is available only for the standard system.| Standard system|
+|void DoTriggerExec(const char *triggerName)| Finds a command group based on the job name and pushes the commands in the command group to the execution queue. <br> | Standard system|
 |void DoJob(const char *jobName)|Matches a job based on the job name and invokes <strong>DoCmdByIndex</strong><br>to execute the commands in the job.| Small system|
 |void DoCmdByIndex(int index, const char *cmdContent)|Combines parameters and commands.| Small and standard systems|
 
@@ -159,3 +163,5 @@ The differences in job configuration are described as follows:
 6. For a conditional job, a condition is usually a system parameter. You can set a specific value so that the job is triggered when the condition is met. You can also set the value to an asterisk (*) so that the job is triggered whenever the condition is met, regardless of the parameter value.
 
 7. For the small system, the commands in a job cannot be triggered by the <strong>trigger</strong> command in the post-init phase.
+
+<!--no_check-->

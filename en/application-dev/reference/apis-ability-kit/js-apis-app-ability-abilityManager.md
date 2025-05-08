@@ -29,7 +29,7 @@ Enumerates the ability states. This enum can be used together with [AbilityRunni
 | BACKGROUNDING | 12 | The ability is in the state of being switched to the background. | 
 
 
-## getAbilityRunningInfos
+## abilityManager.getAbilityRunningInfos
 
 getAbilityRunningInfos(): Promise\<Array\<AbilityRunningInfo>>
 
@@ -47,7 +47,7 @@ Obtains the UIAbility running information. This API uses a promise to return the
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
+For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
 
 | ID| Error Message|
 | ------- | -------- |

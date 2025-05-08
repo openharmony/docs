@@ -137,7 +137,7 @@ int [] CodecVideoPortCap::supportPixFmts
 **描述**
 
 
-支持的像素格式，详见**Display中display_type.h定义的PixeFormat**。
+支持的像素格式，详见**Display中display_type.h定义的[PixeFormat](../display/_display_v10.md#pixelformat)**。
 
 
 ### whAlignment

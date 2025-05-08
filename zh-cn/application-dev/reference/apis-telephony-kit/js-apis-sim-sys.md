@@ -81,7 +81,7 @@ setDefaultVoiceSlotId\(slotId: number, callback: AsyncCallback\<void\>\): void
 
 | 参数名   | 类型                      | 必填 | 说明                                                         |
 | -------- | ------------------------- | ---- | ------------------------------------------------------------ |
-| slotId   | number                    | 是   | SIM卡槽ID：<br/>- 0：卡槽1<br/>- 1：卡槽2<br/>- -1：清除默认配置 |
+| slotId   | number                    | 是   | SIM卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2<br/>- -1：清除默认配置 |
 | callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。                                                   |
 
 **错误码：**
@@ -3359,8 +3359,8 @@ sim.getSimAuthentication(0, sim.AuthType.SIM_AUTH_EAP_SIM_TYPE, "test").then(() 
 
 | 名称     | 值   | 说明       |
 | -------- | ---- | ---------- |
-| LOCK_OFF | 0    | 锁关闭状态 |
-| LOCK_ON  | 1    | 锁开启状态 |
+| LOCK_OFF | 0    | 锁关闭状态。 |
+| LOCK_ON  | 1    | 锁开启状态。 |
 
 ## PersoLockType<sup>8+</sup>
 
@@ -3435,8 +3435,8 @@ sim.getSimAuthentication(0, sim.AuthType.SIM_AUTH_EAP_SIM_TYPE, "test").then(() 
 
 | 名称  | 类型   | 必填 | 说明 |
 | ----- | ------ | ---- | ---- |
-| field | string |  是  | 字段 |
-| value | string |  是  | 值   |
+| field | string |  是  | 字段。 |
+| value | string |  是  | 值。   |
 
 ## DiallingNumbersInfo<sup>8+</sup>
 

@@ -46,7 +46,7 @@ unsigned char [] WififenceRequest::bssid
 **描述**
 
 
-若使用TYPE_ONE_BSSID类型算法，则是多组Wi-Fi MAC地址。 若使用TYPE_FP_MATCH类型算法，则是多组的Wi-Fi MAC地址和对应RSSI值。
+若使用TYPE_ONE_BSSID类型算法，则是多组Wi-Fi MAC地址。若使用TYPE_FP_MATCH类型算法，则是多组的Wi-Fi MAC地址和对应RSSI值。
 
 
 ### wififenceId

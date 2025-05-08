@@ -18,7 +18,7 @@
 | 名称 | 描述 | 
 | -------- | -------- |
 | int [itemNum](#itemnum) | 编号  | 
-| List&lt; struct [AvailableNetworkInfo](_available_network_info_v10.md) &gt; [availableNetworkInfo](#availablenetworkinfo) | 可用网络列表信息，  | 
+| List&lt; struct [AvailableNetworkInfo](_available_network_info_v10.md) &gt; [availableNetworkInfo](#availablenetworkinfo) | 可用网络列表信息  | 
 | int [flag](#flag) | 网络列表标识位  | 
 
 
@@ -32,7 +32,7 @@ List<struct AvailableNetworkInfo> AvailableNetworkList::availableNetworkInfo
 ```
 **描述**
 
-可用网络列表信息，
+可用网络列表信息
 
 
 ### flag

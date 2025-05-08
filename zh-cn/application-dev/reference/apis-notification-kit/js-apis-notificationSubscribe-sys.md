@@ -941,7 +941,7 @@ distributeOperation(hashcode: string, operationInfo?: OperationInfo): Promise\<v
 | 参数名   | 类型         | 必填 | 说明       |
 | ------ | ------------ | ---- | ---------- |
 | hashcode | string | 是   | 通知唯一ID。 |
-| operationInfo | [OperationInfo](#operationinfo18) | 是   | 跨设备协同操作信息。 |
+| operationInfo | [OperationInfo](#operationinfo18) | 否   | 跨设备协同操作信息。 |
 
 **错误码：**
 
@@ -953,6 +953,7 @@ distributeOperation(hashcode: string, operationInfo?: OperationInfo): Promise\<v
 | 202      | Not system application to call the interface.                                      |  
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600010  | Distributed operation failed.                     |
+| 1600021  | Distributed operation timed out.                    |
 
 **示例：**
 
@@ -1001,5 +1002,5 @@ notificationSubscribe.distributeOperation(hashcode, operationInfo).then(() => {
 
 | 名称  | 类型   | 必填 | 说明     |
 | ----- | ------ | --- | -------- |
-| actionName    | string | 是  | 描述通知中显示的操作按钮（与通知[NotificationActionButton](js-apis-inner-notification-notificationActionButton.md#notificationactionbutton)中title字段保持一致）。   |
+| actionName    | string | 否  | 描述通知中显示的操作按钮（与通知[NotificationActionButton](js-apis-inner-notification-notificationActionButton.md#notificationactionbutton)中title字段保持一致）。   |
 | userInput | string | 否  | 用户输入（用于通知跨设备快捷回复场景传递用户输入，与通知[NotificationUserInput](js-apis-inner-notification-notificationUserInput.md#notificationuserinput)中inputKey字段保持一致）。 |

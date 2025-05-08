@@ -142,7 +142,7 @@ try {
 }
 ```
 
-## screenLockFileManager.queryAppKeyState<sup>16+</sup>
+## screenLockFileManager.queryAppKeyState<sup>18+</sup>
 
 queryAppKeyState(dataType: DataType): KeyStatus
 
@@ -164,7 +164,7 @@ Obtains the state of access permissions for a specified type of sensitive data o
 
 | Type                                                        | Description                          |
 | ------------------------------------------------------------ | ------------------------------ |
-| [KeyStatus](js-apis-screenLockFileManager.md#keystatus16) | State of access permissions for sensitive data on the lock screen.|
+| [KeyStatus](js-apis-screenLockFileManager.md#keystatus18) | State of access permissions for sensitive data on the lock screen.|
 
 **Error codes**
 

@@ -93,8 +93,8 @@ For details about the error codes, see [Upload and Download Error Codes](errorco
 | ID| Error Message|
 | -------- | -------- |
 | 201 | the permissions check fails |
-| 401 | the parameters check fails.Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
-| 13400002 | bad file path. |
+| 401 | the parameters check fails. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
+| 13400002 | bad file path |
 
 **Example**
 
@@ -150,8 +150,8 @@ For details about the error codes, see [Upload and Download Error Codes](errorco
 | ID| Error Message|
 | -------- | -------- |
 | 201 | the permissions check fails |
-| 401 | the parameters check fails.Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
-| 13400002 | bad file path. |
+| 401 | the parameters check fails. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
+| 13400002 | bad file path |
 
 **Example**
 
@@ -325,7 +325,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message|
 | -------- | -------- |
-| 401 | the parameters check fails.Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
+| 401 | the parameters check fails. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
 
 **Example**
 
@@ -365,7 +365,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message|
 | -------- | -------- |
-| 401 | the parameters check fails.Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
+| 401 | the parameters check fails. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
 
 **Example**
 
@@ -390,7 +390,7 @@ Subscribes to upload completion or failure events. This API uses an asynchronous
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| type | string | Yes| Callback types for subscribing to the upload events, including **'complete'\|'fail'**.<br>\- **'complete'**: the upload is complete.<br>\- **'fail'**: the upload fails.|
+| type | string | Yes| Callback types for subscribing to the upload events. Options are as follows:<br>\-**'complete'**: the upload is complete.<br>\-**'fail'**: the upload fails. |
 | callback | Callback&lt;Array&lt;[TaskState](#taskstate9)&gt;&gt; | Yes| Callback used to return the result.  |
 
 
@@ -400,7 +400,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message|
 | -------- | -------- |
-| 401 | the parameters check fails.Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
+| 401 | the parameters check fails. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
 
 **Example**
 
@@ -450,7 +450,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message|
 | -------- | -------- |
-| 401 | the parameters check fails.Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
+| 401 | the parameters check fails. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
 
 **Example**
 
@@ -492,7 +492,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message|
 | -------- | -------- |
-| 401 | the parameters check fails.Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
+| 401 | the parameters check fails. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
 
 **Example**
 
@@ -533,7 +533,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message|
 | -------- | -------- |
-| 401 | the parameters check fails.Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
+| 401 | the parameters check fails. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
 
 **Example**
 
@@ -581,7 +581,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 ### delete<sup>9+</sup>
 delete(): Promise&lt;boolean&gt;
 
-Deletes this upload task. This API uses a promise to return the result. 
+Deletes this upload task. This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.INTERNET
 
@@ -749,7 +749,7 @@ Describes the configuration of an upload task.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| url | string | Yes| Resource URL. From API version 6 to 14, the value contains a maximum of 2048 characters; from API version 15, the value contains a maximum of 8192 characters.|
+| url | string | Yes| Resource URL. From API version 6 to 14, the value contains a maximum of 2048 characters; since API version 15, the value contains a maximum of 8192 characters. [Intercepting HTTP](../../basic-services/request/app-file-upload-download.md#adding-network-configuration) is supported.|
 | header | Object | Yes| HTTP or HTTPS header added to an upload request.|
 | method | string | Yes|  HTTP request method. The value can be **POST** or **PUT**. The default value is **POST**. Use the **PUT** method to modify resources and the **POST** method to add resources.|
 | index<sup>11+</sup> | number | No| Path index of the task. The default value is **0**.|
@@ -840,7 +840,7 @@ For details about the error codes, see [Upload and Download Error Codes](errorco
 | ID| Error Message|
 | -------- | -------- |
 | 201 | the permissions check fails |
-| 401 | the parameters check fails.Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
+| 401 | the parameters check fails. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
 | 13400001 | file operation error. |
 | 13400002 | bad file path. |
 | 13400003 | task service ability error. |
@@ -892,7 +892,7 @@ For details about the error codes, see [Upload and Download Error Codes](errorco
 | ID| Error Message|
 | -------- | -------- |
 | 201 | the permissions check fails |
-| 401 | the parameters check fails.Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
+| 401 | the parameters check fails. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
 | 13400001 | file operation error. |
 | 13400002 | bad file path. |
 | 13400003 | task service ability error. |
@@ -1055,7 +1055,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message|
 | -------- | -------- |
-| 401 | the parameters check fails.Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
+| 401 | the parameters check fails. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
 
 **Example**
 
@@ -1108,7 +1108,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message|
 | -------- | -------- |
-| 401 | the parameters check fails.Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
+| 401 | the parameters check fails. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
 
 **Example**
 
@@ -1161,7 +1161,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message|
 | -------- | -------- |
-| 401 | the parameters check fails.Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
+| 401 | the parameters check fails. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
 
 **Example**
 
@@ -1216,7 +1216,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message|
 | -------- | -------- |
-| 401 | the parameters check fails.Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
+| 401 | the parameters check fails. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
 
 **Example**
 
@@ -1302,7 +1302,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message|
 | -------- | -------- |
-| 401 | the parameters check fails.Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
+| 401 | the parameters check fails. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
 
 **Example**
 
@@ -1347,7 +1347,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message|
 | -------- | -------- |
-| 401 | the parameters check fails.Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
+| 401 | the parameters check fails. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
 
 **Example**
 
@@ -1537,7 +1537,7 @@ try {
 
 getTaskInfo(callback: AsyncCallback&lt;DownloadInfo&gt;): void
 
-Obtains this download task. This API uses an asynchronous callback to return the result.
+Obtains the information about this download task.  This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.INTERNET
 
@@ -2305,15 +2305,15 @@ Defines the download task configuration.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| url | string | Yes| Resource URL. From API version 6 to 14, the value contains a maximum of 2048 characters; from API version 15, the value contains a maximum of 8192 characters.|
+| url | string | Yes| Resource URL. From API version 6 to 14, the value contains a maximum of 2048 characters; since API version 15, the value contains a maximum of 8192 characters. [Intercepting HTTP](../../basic-services/request/app-file-upload-download.md#adding-network-configuration) is supported.|
 | header | Object | No| HTTPS flag header to be included in the download request.|
 | enableMetered | boolean | No| Whether download is allowed on a metered connection. The default value is **false**. In general cases, a mobile data connection is metered, while a Wi-Fi connection is not.<br>- **true**: allowed<br>- **false**: not allowed|
 | enableRoaming | boolean | No| Whether download is allowed on a roaming network. The default value is **false**.<br>- **true**: allowed<br>- **false**: not allowed|
 | description | string | No| Description of the download session.|
 | filePath<sup>7+</sup> | string | No| Path where the downloaded file is stored. The default value is the cache directory of the caller (that is, the input **context**). The default file name is the part truncated from the last slash (/) in the URL.<br>- In the FA model, use [context](../apis-ability-kit/js-apis-inner-app-context.md#contextgetcachedir) to obtain the application storage path.<br>- In the stage model, use [AbilityContext](../apis-ability-kit/js-apis-inner-application-context.md) to obtain the application storage path.|
-| networkType | number | No| Network type allowed for the download. The default value is **NETWORK_MOBILE and NETWORK_WIFI**.<br>- NETWORK_MOBILE: 0x00000001<br>- NETWORK_WIFI: 0x00010000|
+| networkType | number | No| Network type allowed for the download. The default values are as follows:<br>- **NETWORK_MOBILE**: 0x00000001<br>- **NETWORK_WIFI**: 0x00010000|
 | title | string | No| Download task name.|
-| background<sup>9+</sup> | boolean | No| Whether to enable background task notification so that the download status is displayed in the notification panel. The default value is false.|
+| background<sup>9+</sup> | boolean | No| Whether to enable background task notification so that the download status is displayed in the notification panel.<br>- **true**: The download status is displayed.<br>- **false** (default): The download status is not displayed.|
 
 
 ## DownloadInfo<sup>7+</sup>
@@ -2396,16 +2396,15 @@ For details about event configuration information, see [Subscribing to Common Ev
 ## FileSpec<sup>10+</sup> 
 Provides the file information of a table item.
 
-**Atomic service API**: This API can be used in atomic services since API version 11.
-
 **System capability**: SystemCapability.Request.FileTransferAgent
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| path | string | Yes| File path:<br>- Relative path, which is in the cache directory of the caller, for example, **./xxx/yyy/zzz.html** or **xxx/yyy/zzz.html**.<br>- Internal protocol path, which can be **internal://** or its subdirectory. **internal** indicates the cache directory of the caller (that is, the input **context**), and **internal://cache** corresponds to **context.cacheDir**, for example, **internal://cache/path/to/file.txt**.<br>- Application sandbox directory. Only the **base** directory and its subdirectories are supported, for example, **/data/storage/el1/base/path/to/file.txt**.<br>- File protocol path, which must match the application bundle name. Only the **base** directory and its subdirectories are supported, for example, **file://com.example.test/data/storage/el2/base/file.txt**.<br>- User public file, for example, **file://media/Photo/path/to/file.img**. Only frontend tasks are supported.|
-| mimeType | string | No| MIME type of the file, which is obtained from the file name.|
-| filename | string | No| File name. The default value is obtained from the file path.|
-| extras | object | No| Additional information. This parameter is not included in HTTP requests.|
+| path | string | Yes| File path.<br>Relative path, which is in the cache directory of the caller,<br>for example, **./xxx/yyy/zzz.html** or **xxx/yyy/zzz.html**.<br>Internal protocol path, which can be **internal://** or its subdirectory. **internal** indicates the cache directory of the caller (that is, the input **context**), and **internal://cache** corresponds to **context.cacheDir**,<br>for example, **internal://cache/path/to/file.txt**.<br>Application sandbox directory. Only the **base** directory and its subdirectories are supported, <br>for example, **/data/storage/el1/base/path/to/file.txt**.<br>File protocol path, which must match the application bundle name. Only the **base** directory and its subdirectories are supported,<br>for example, **file://com.example.test/data/storage/el2/base/file.txt**.<br>- User public file,<br>for example, **file://media/Photo/path/to/file.img**. Only frontend tasks are supported.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| mimeType<sup>(deprecated)</sup> | string | No| MIME type of the file, which is obtained from the file name. The default value is the file name extension.<br>**Atomic service API**: This API can be used in atomic services since API version 11.<br> This API is deprecated since API version 18. You are advised to use **contentType** instead.|
+| contentType<sup>18+</sup> | string | No| Content type of the file. The default value is the file name extension. This option is filled in the **Content-Type** field specified in the HTTP form.|
+| filename | string | No| File name. The default value is obtained from the file path.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| extras | object | No| Additional information. This parameter is not included in HTTP requests.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 
 
 ## FormItem<sup>10+</sup> 
@@ -2429,7 +2428,7 @@ Provides the configuration information of an upload or download task.
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | action | [Action](#action10) | Yes| Task action.<br>- **UPLOAD**<br>- **DOWNLOAD**<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| url | string | Yes| Resource URL. From API version 6 to 14, the value contains a maximum of 2048 characters; from API version 15, the value contains a maximum of 8192 characters.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| url | string | Yes| Resource URL. From API version 6 to 14, the value contains a maximum of 2048 characters; since API version 15, the value contains a maximum of 8192 characters. [Intercepting HTTP](../../basic-services/request/app-file-upload-download.md#adding-network-configuration) is supported.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | title | string | No| Task title. The value contains a maximum of 256 characters. The default value is **upload** or **download** in lowercase. Set the value to that of **action**.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | description | string | No| Task description. The value contains a maximum of 1024 characters. The default value is a null string.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | mode | [Mode](#mode10) | No| Task mode. The default mode is background.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
@@ -2439,10 +2438,10 @@ Provides the configuration information of an upload or download task.
 | data | string \| Array&lt;[FormItem](#formitem10)&gt; | No| Task data.<br>- If the task is a download, the value is a string, typically in JSON format (an object will be converted to a JSON string); the default value is null.<br>- If the task is an upload, the value is Array&lt;[FormItem](#formitem10)&gt;. Since API version 15, a maximum of 100 files can be uploaded in a single task. This parameter is left empty by default.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | saveas | string | No| Path for storing downloaded files. The options are as follows:<br>- Relative path, which is in the cache directory of the caller, for example, **./xxx/yyy/zzz.html** or **xxx/yyy/zzz.html**.<br>- Internal protocol path, which can be **internal://** or its subdirectory. **internal** indicates the cache directory of the caller (that is, the input **context**), and **internal://cache** corresponds to **context.cacheDir**, for example, **internal://cache/path/to/file.txt**.<br>- Application sandbox directory. Only the **base** directory and its subdirectories are supported, for example, **/data/storage/el1/base/path/to/file.txt**.<br>- File protocol path, which must match the application bundle name. Only the **base** directory and its subdirectories are supported, for example, **file://com.example.test/data/storage/el2/base/file.txt**.<br>The default value is the cache directory of the caller (that is, the input **context**). The default file name is the part truncated from the last slash (/) in the URL.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | network | [Network](#network10) | No| Network used for the task. The default value is **ANY** (Wi-Fi or cellular).<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| metered | boolean | No| Whether the task is allowed on a metered connection. The default value is **false**.<br>- **true**: task allowed on a metered connection.<br>- **false**: task not allowed on a metered connection.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| roaming | boolean | No| Whether the task is allowed on a roaming network. The default value is **true**.<br>- **true**: task allowed on a roaming network.<br>- **false**: task not allowed on a metered connection.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| retry | boolean | No| Whether automatic retry is enabled for the task. This parameter is only applicable to background tasks. The default value is **true**.<br>- **true**: automatic retry is enabled.<br>- **false**: automatic retry is disabled.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| redirect | boolean | No| Whether redirection is allowed. The default value is **true**.<br>- **true**: redirection allowed.<br>- **false**: redirection not allowed.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| metered | boolean | No| Whether the task is allowed on a metered connection.<br>- **true**: The task is allowed on a metered connection.<br>- **false** (default): The task is not allowed on a metered connection.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| roaming | boolean | No| Whether the task is allowed on a roaming network.<br>- **true** (default): The task is allowed on a roaming network.<br>- **false**: The task is not allowed on a roaming network.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| retry | boolean | No| Whether automatic retry is enabled for the task. This parameter is only applicable to background tasks.<br>- **true** (default): The automatic retry is enabled.<br>- **false**: The automatic retry is disabled.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| redirect | boolean | No| Whether redirection is allowed.<br>- **true** (default): The redirection is allowed.<br>- **false**: The redirection is not allowed.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | proxy<sup>12+</sup> | string | No| Proxy address. The value contains a maximum of 512 characters.<br>It is in the format of http://\<domain or address\>:\<port\>. By default, this parameter is left blank.|
 | index | number | No| Path index of the task. It is usually used for resumable downloads. The default value is **0**.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | begins | number | No| File start point of the task. It is usually used for resumable downloads. The default value is **0**. The value is a closed interval.<br>- If the task is a download, the value is obtained by sending an HTTP range request to read the start position when the server starts to download files.<br>- If the task is an upload, the value is obtained at the beginning of the upload.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
@@ -2452,7 +2451,8 @@ Provides the configuration information of an upload or download task.
 | token | string | No| Token of the task. If the task has a token configured, this token is required for query of the task. The value contains 8 to 2048 bytes. This parameter is left empty by default.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | priority<sup>11+</sup> | number | No| Priority of the task. For tasks in the same mode, a smaller value indicates a higher priority.<br>Default value: **0**|
 | extras | object | No| Additional information of the task. This parameter is left empty by default.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| multipart<sup>15+</sup> | boolean | No| Whether to upload files in multipart/form-data format using a single request. A single request is used for each file if the value is **false** and for multiple files if the value is **true**. The default value is **false**.|
+| multipart<sup>15+</sup> | boolean | No| Whether to use a single request to upload multiple files. If yes, **multipart/form-data** must be used.<br>- **false** (default): A single request is used to upload one file.<br>- **true**: A single request is used to upload multiple files.<br> |
+| notification<sup>15+</sup> | [Notification](#notification15) | No| Custom settings for the notification bar.|
 
 ## State<sup>10+</sup>  
 
@@ -2547,15 +2547,14 @@ Defines the data structure of the task information for query. The fields availab
 | priority<sup>11+</sup> | number | Yes| Task priority. The priority of a foreground task is higher than that of a background task. For tasks in the same mode, a smaller value indicates a higher priority.|
 | mimeType | string | Yes| MIME type in the task configuration.|
 | progress | [Progress](#progress10) | Yes| Task progress.|
-| gauge | boolean | Yes| Whether to send progress notifications. This parameter applies only to background tasks.|
-| ctime | number | Yes| Unix timestamp when the task is created, in milliseconds. The value is generated by the system of the current device.<br>Note: When [request.agent.search<sup>10+</sup>](#requestagentsearch10-1) is used for query, this value must be within the range of [after,before] for the task ID to be obtained. For details about **before** and **after**, see [Filter](#filter10).|
+| gauge | boolean | Yes| Whether to send progress notifications. This parameter applies only to background tasks.<br>- **false**: Progress notifications are not sent. This means that a notification is sent only to indicate the result of the total task.<br>- **true**: Progress notifications are sent to indicate the result of each file.|
+| ctime | number | Yes| Unix timestamp when the task is created, in milliseconds. The value is generated by the system of the current device.<br>**NOTE**<br>When [request.agent.search<sup>10+</sup>](#requestagentsearch10-1) is used for query, this value must be within the range of [after,before] for the task ID to be obtained. For details about **before** and **after**, see [Filter](#filter10).  |
 | mtime | number | Yes| Unix timestamp when the task state changes, in milliseconds. The value is generated by the system of the current device.|
-| retry | boolean | Yes| Whether automatic retry is enabled for the task. This parameter applies only to background tasks.|
-| tries | number | Yes| Number of retries of the task.|
-| faults | [Faults](#faults10) | Yes| Failure cause of the task.|
-| reason | string | Yes| Reason why the task is waiting, failed, stopped, or paused.|
-| extras | object | No| Extra information of the task.|
-| notification<sup>15+</sup> | [Notification](#notification15) | No| Custom settings for the notification bar.|
+| retry | boolean | Yes| Whether automatic retry is enabled for the task. This parameter applies only to background tasks.<br>- **true**: The automatic retry is enabled.<br>- **false**: The automatic retry is disabled. |
+| tries | number | Yes| Number of retries of the task. |
+| faults | [Faults](#faults10) | Yes| Failure cause of the task. |
+| reason | string | Yes| Reason why the task is waiting, failed, stopped, or paused. |
+| extras | object | No| Extra information of the task. |
 
 ## HttpResponse<sup>12+</sup> 
 Describes the data structure of the task response header.
@@ -2579,8 +2578,8 @@ Describes the custom information of the notification bar.
 
 | Name     | Type    | Mandatory| Description                                     |
 |---------|--------|----|-----------------------------------------|
-| title   | string | No | Custom title, with a maximum of 1024 bytes. The default title is used if the value is not set.|
-| text    | string | No | Custom text, with a maximum of 3072 bytes. The default title is used if the value is not set. |
+| title   | string | No | Custom title, with a maximum of 1024 bytes. The default title is used if this parameter is not set.  |
+| text    | string | No | Custom body text, with a maximum of 3072 bytes. The default text is used if this parameter is not set.   |
 
 ## GroupConfig<sup>15+</sup>
 
@@ -2590,8 +2589,8 @@ Describes group configuration options for download tasks.
 
 | Name          | Type                                           | Mandatory| Description                                                          |
 |--------------|-----------------------------------------------|----|--------------------------------------------------------------|
-| gauge        | boolean                                       | No | Progress notification policy of a background task. Set value to **true**, the progress, success, and failure notifications are displayed; set value to **false**, only the success and failure notifications are displayed. The default value is **false**.|
-| notification | [Notification](#notification15) | No | Custom settings for the notification bar.                                                   |
+| gauge        | boolean                                       | No | Whether to send progress notifications. This parameter applies only to background tasks.<br>- **true**: The progress, success, and failure notifications are sent.<br>- **false**: Only success and failure notifications are sent.<br>The default value is **false**.|
+| notification<sup>15+</sup> | [Notification](#notification15) | Yes | Custom settings for the notification bar.                                                   |
 
 ## Task<sup>10+</sup> 
 Implements an upload or download task. Before using this API, you must obtain a **Task** object, from a promise through [request.agent.create<sup>10+</sup>](#requestagentcreate10-1) or from a callback through [request.agent.create<sup>10+</sup>](#requestagentcreate10).
@@ -2635,7 +2634,7 @@ For details about the error codes, see [Upload and Download Error Codes](errorco
 
 | ID| Error Message|
 | -------- | -------- |
-| 401 | Parameter error. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
+| 401 | Parameter error. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
 
 **Example**
 
@@ -2711,7 +2710,7 @@ For details about the error codes, see [Upload and Download Error Codes](errorco
 
 | ID| Error Message|
 | -------- | -------- |
-| 401 | Parameter error. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
+| 401 | Parameter error. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
 
 **Example**
 
@@ -2787,7 +2786,7 @@ For details about the error codes, see [Upload and Download Error Codes](errorco
 
 | ID| Error Message|
 | -------- | -------- |
-| 401 | Parameter error. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
+| 401 | Parameter error. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
 
 **Example**
 
@@ -2861,7 +2860,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message|
 | -------- | -------- |
-| 401 | Parameter error. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
+| 401 | Parameter error. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
 
 **Example**
 
@@ -2935,7 +2934,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message|
 | -------- | -------- |
-| 401 | Parameter error. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
+| 401 | Parameter error. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
 
 **Example**
 
@@ -3009,7 +3008,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message|
 | -------- | -------- |
-| 401 | Parameter error. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
+| 401 | Parameter error. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
 
 **Example**
 
@@ -3085,7 +3084,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message|
 | -------- | -------- |
-| 401 | Parameter error. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
+| 401 | Parameter error. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
 
 **Example**
 
@@ -3161,7 +3160,7 @@ For details about the error codes, see [Upload and Download Error Codes](errorco
 
 | ID| Error Message|
 | -------- | -------- |
-| 401 | Parameter error. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
+| 401 | Parameter error. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
 
 **Example**
 
@@ -3245,7 +3244,7 @@ For details about the error codes, see [Upload and Download Error Codes](errorco
 
 | ID| Error Message|
 | -------- | -------- |
-| 401 | Parameter error. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
+| 401 | Parameter error. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
 
 **Example**
 
@@ -3329,7 +3328,7 @@ For details about the error codes, see [Upload and Download Error Codes](errorco
 
 | ID| Error Message|
 | -------- | -------- |
-| 401 | Parameter error. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
+| 401 | Parameter error. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
 
 **Example**
 
@@ -3411,7 +3410,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message|
 | -------- | -------- |
-| 401 | Parameter error. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
+| 401 | Parameter error. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
 
 **Example**
 
@@ -3493,7 +3492,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message|
 | -------- | -------- |
-| 401 | Parameter error. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
+| 401 | Parameter error. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
 
 **Example**
 
@@ -3575,7 +3574,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message|
 | -------- | -------- |
-| 401 | Parameter error. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
+| 401 | Parameter error. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
 
 **Example**
 
@@ -3659,7 +3658,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message|
 | -------- | -------- |
-| 401 | Parameter error. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
+| 401 | Parameter error. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
 
 **Example**
 
@@ -4273,7 +4272,7 @@ For details about the error codes, see [Upload and Download Error Codes](errorco
   });
   ```
 
-### setMaxSpeed<sup>16+</sup>
+### setMaxSpeed<sup>18+</sup>
 
 setMaxSpeed(speed: number): Promise\<void\>
 
@@ -4299,7 +4298,7 @@ For details about the error codes, see [Upload and Download Error Codes](errorco
 
 | ID   | Error Message                                                                                                                          |
 |----------|--------------------------------------------------------------------------------------------------------------------------------|
-| 401      | parameter error. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
+| 401      | parameter error. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed.. |
 | 13400003 | task service ability error.                                                                                                    |
 
 **Example**
@@ -4352,7 +4351,7 @@ For details about the error codes, see [Upload and Download Error Codes](errorco
 | ID| Error Message|
 | -------- | -------- |
 | 201 | permission denied. |
-| 401 | parameter error. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
+| 401 | parameter error. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
 | 13400001 | file operation error. |
 | 13400003 | task service ability error. |
 | 21900004 | the application task queue is full. |
@@ -4442,7 +4441,7 @@ For details about the error codes, see [Upload and Download Error Codes](errorco
 | ID| Error Message|
 | -------- | -------- |
 | 201 | permission denied. |
-| 401 | parameter error. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
+| 401 | parameter error. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
 | 13400001 | file operation error. |
 | 13400003 | task service ability error. |
 | 21900004 | the application task queue is full. |
@@ -4525,7 +4524,7 @@ For details about the error codes, see [Upload and Download Error Codes](errorco
 
 | ID| Error Message|
 | -------- | -------- |
-| 401 | parameter error. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
+| 401 | parameter error. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
 | 13400003 | task service ability error. |
 | 21900006 | task not found. |
 
@@ -4564,7 +4563,7 @@ For details about the error codes, see [Upload and Download Error Codes](errorco
 
 | ID| Error Message|
 | -------- | -------- |
-| 401 | parameter error. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type |
+| 401 | parameter error. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. |
 | 13400003 | task service ability error. |
 | 21900006 | task not found. |
 
@@ -4611,7 +4610,7 @@ For details about the error codes, see [Upload and Download Error Codes](errorco
 
 | ID| Error Message|
 | -------- | -------- |
-| 401 | parameter error. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type |
+| 401 | parameter error. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. |
 | 13400003 | task service ability error. |
 | 21900006 | task not found. |
 
@@ -4649,7 +4648,7 @@ For details about the error codes, see [Upload and Download Error Codes](errorco
 
 | ID| Error Message|
 | -------- | -------- |
-| 401 | parameter error. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type |
+| 401 | parameter error. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. |
 | 13400003 | task service ability error. |
 | 21900006 | task not found. |
 
@@ -4694,7 +4693,7 @@ For details about the error codes, see [Upload and Download Error Codes](errorco
 
 | ID| Error Message|
 | -------- | -------- |
-| 401 | parameter error. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type |
+| 401 | parameter error. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. |
 | 13400003 | task service ability error. |
 | 21900006 | task not found. |
 
@@ -4733,7 +4732,7 @@ For details about the error codes, see [Upload and Download Error Codes](errorco
 
 | ID| Error Message|
 | -------- | -------- |
-| 401 | parameter error. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
+| 401 | parameter error. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
 | 13400003 | task service ability error. |
 | 21900006 | task not found. |
 
@@ -4779,7 +4778,7 @@ For details about the error codes, see [Upload and Download Error Codes](errorco
 
 | ID| Error Message|
 | -------- | -------- |
-| 401 | parameter error. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
+| 401 | parameter error. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
 | 13400003 | task service ability error. |
 | 21900006 | task not found. |
 
@@ -4815,7 +4814,7 @@ For details about the error codes, see [Upload and Download Error Codes](errorco
 
 | ID| Error Message|
 | -------- | -------- |
-| 401 | parameter error. Possible causes: 1. Incorrect parameter type 2. Parameter verification failed |
+| 401 | parameter error. Possible causes: 1. Incorrect parameter type. 2. Parameter verification failed. |
 | 13400003 | task service ability error. |
 
 **Example**
@@ -4853,7 +4852,7 @@ For details about the error codes, see [Upload and Download Error Codes](errorco
 
 | ID| Error Message|
 | -------- | -------- |
-| 401 | parameter error. Possible causes: 1. Incorrect parameter type 2. Parameter verification failed |
+| 401 | parameter error. Possible causes: 1. Incorrect parameter type. 2. Parameter verification failed. |
 | 13400003 | task service ability error. |
 
 **Example**
@@ -4901,7 +4900,7 @@ For details about the error codes, see [Upload and Download Error Codes](errorco
 
 | ID| Error Message|
 | -------- | -------- |
-| 401 | parameter error. Possible causes: 1. Incorrect parameter type 2. Parameter verification failed |
+| 401 | parameter error. Possible causes: 1. Incorrect parameter type. 2. Parameter verification failed. |
 | 13400003 | task service ability error. |
 
 **Example**
@@ -4946,7 +4945,7 @@ For details about the error codes, see [Upload and Download Error Codes](errorco
 
 | ID   | Error Message                                                                                          |
 |----------|------------------------------------------------------------------------------------------------|
-| 401      | parameter error. Possible causes: 1. Incorrect parameter type 2. Parameter verification failed |
+| 401      | parameter error. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
 | 13400003 | task service ability error.                                                                    |
 
 **Example**
@@ -4995,9 +4994,10 @@ For details about the error codes, see [Upload and Download Error Codes](errorco
 
 | ID   | Error Message                                                                                          |
 |----------|------------------------------------------------------------------------------------------------|
-| 401      | parameter error. Possible causes: 1. Incorrect parameter type 2. Parameter verification failed |
+| 401      | parameter error. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
 | 13400003 | task service ability error                                                                     |
 | 21900005 | task mode error                                                                                |
+| 21900006 | task not found                                                                                 |
 | 21900007 | task state error                                                                               |
 | 21900008 | group deleted or not found                                                                     |
 
@@ -5045,7 +5045,7 @@ For details about the error codes, see [Upload and Download Error Codes](errorco
 
 | ID   | Error Message                                                                                          |
 |----------|------------------------------------------------------------------------------------------------|
-| 401      | parameter error. Possible causes: 1. Incorrect parameter type 2. Parameter verification failed |
+| 401      | parameter error. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
 | 13400003 | task service ability error                                                                     |
 | 21900008 | group deleted or not found                                                                     |
 

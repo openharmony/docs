@@ -68,15 +68,15 @@ It is not allowed to access this domain.
 
 可参考[配置服务器域名文档](https://developer.huawei.com/consumer/cn/doc/atomic-guides-V5/agc-help-harmonyos-server-domain-V5)完成服务器域名相关配置。
 
-## 2302999 Websocket其他错误
+## 2302999 内部错误
 
 **错误信息**
 
-Websocket other unknown error.
+Internal error.
 
 **错误描述**
 
-Websocket其他错误。
+内部错误。
 
 **可能原因**
 

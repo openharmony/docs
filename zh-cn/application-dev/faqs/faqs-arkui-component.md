@@ -833,7 +833,7 @@ onCountUpdated(propName: string): void {
 
 **参考链接**
 
-[@Watch装饰器：状态变量更改通知](../quick-start/arkts-watch.md)
+[@Watch装饰器：状态变量更改通知](../ui/state-management/arkts-watch.md)
 
 ## 自定义component不支持继承语法，针对其他框架支持的自定义组件继承及封装能力，ArkUI的解决方案是什么(API 10)
 

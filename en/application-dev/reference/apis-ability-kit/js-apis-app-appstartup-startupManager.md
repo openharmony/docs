@@ -6,7 +6,7 @@ The startupManager module provides APIs to manage startup tasks in AppStartup. I
 >
 > The initial APIs of this module are supported since API version 12. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 >
-> This module supports .so file preloading since API version 16.
+> This module supports .so file preloading since API version 18.
 >
 > The APIs of this module can be used only in the stage model.
 
@@ -25,10 +25,10 @@ Runs startup tasks or loads .so files.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| startupTasks | Array\<string\> | Yes| Array of class names of the [StartupTask](js-apis-app-appstartup-startupTask.md) API implemented by the startup task and names of .so files to be preloaded.|
-| config | [StartupConfig](./js-apis-app-appstartup-startupConfig.md) | No| Configuration for the AppStartup timeout and startup task listener.|
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | startupTasks | Array\<string\> | Yes| Array of class names of the [StartupTask](js-apis-app-appstartup-startupTask.md) API implemented by the startup task and names of .so files to be preloaded.|
+  | config | [StartupConfig](./js-apis-app-appstartup-startupConfig.md) | No| Configuration for the AppStartup timeout and startup task listener.|
 
 **Return value**
 
@@ -40,14 +40,14 @@ Runs startup tasks or loads .so files.
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
 
-| ID| Error Message|
-| ------- | -------------------------------- |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 16000050 | Internal error. |
-| 28800001 | Startup task or its dependency not found. |
-| 28800002  | The startup tasks have circular dependencies. |
-| 28800003 | An error occurred while running the startup tasks. |
-| 28800004 | Running startup tasks timeout. |
+  | ID| Error Message|
+  | ------- | -------------------------------- |
+  | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+  | 16000050 | Internal error. |
+  | 28800001 | Startup task or its dependency not found. |
+  | 28800002  | The startup tasks have circular dependencies. |
+  | 28800003 | An error occurred while running the startup tasks. |
+  | 28800004 | Running startup tasks timeout. |
 
 **Example**
 
@@ -131,23 +131,23 @@ Obtains the execution result of a startup task or .so file preloading task.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| startupTask | string | Yes| Class name of the [StartupTask](js-apis-app-appstartup-startupTask.md) API implemented by the startup task or .so file name. All the startup tasks must implement the [StartupTask](js-apis-app-appstartup-startupTask.md) API.|
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | startupTask | string | Yes| Class name of the [StartupTask](js-apis-app-appstartup-startupTask.md) API implemented by the startup task or .so file name. All the startup tasks must implement the [StartupTask](js-apis-app-appstartup-startupTask.md) API.|
 
 **Return value**
 
-| Type| Description|
-| -------- | -------- |
-| Object | Execution result of the startup task if a startup task name is passed.<br>undefined if a .so file name is passed.|
+  | Type| Description|
+  | -------- | -------- |
+  | Object | Execution result of the startup task if a startup task name is passed.<br> undefined if a .so file name is passed.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message|
-| ------- | -------------------------------- |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+  | ID| Error Message|
+  | ------- | -------------------------------- |
+  | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **Example**
 
@@ -190,23 +190,23 @@ Checks whether a startup task or .so file preloading task is initialized.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| startupTask | string | Yes| Class name of the [StartupTask](js-apis-app-appstartup-startupTask.md) API implemented by the startup task or .so file name.|
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | startupTask | string | Yes| Class name of the [StartupTask](js-apis-app-appstartup-startupTask.md) API implemented by the startup task or .so file name.|
 
 **Return value**
 
-| Type| Description|
-| -------- | -------- |
-| boolean | Check result. The value **true** means that the task is initialized, and **false** means the opposite.|
+  | Type| Description|
+  | -------- | -------- |
+  | boolean | Check result. The value **true** means that the task is initialized, and **false** means the opposite.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message|
-| ------- | -------------------------------- |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+  | ID| Error Message|
+  | ------- | -------------------------------- |
+  | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **Example**
 
@@ -263,17 +263,17 @@ Removes the initialization result of a startup task or .so file preloading task.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| startupTask | string | Yes| Class name of the [StartupTask](js-apis-app-appstartup-startupTask.md) API implemented by the startup task or .so file name.|
-
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | startupTask | string | Yes| Class name of the [StartupTask](js-apis-app-appstartup-startupTask.md) API implemented by the startup task or .so file name.|
+  
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message|
-| ------- | -------------------------------- |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+  | ID| Error Message|
+  | ------- | -------------------------------- |
+  | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **Example**
 

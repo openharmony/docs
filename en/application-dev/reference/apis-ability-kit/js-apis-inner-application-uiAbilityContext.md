@@ -1092,13 +1092,17 @@ export default class EntryAbility extends UIAbility {
 
 startAbilityByCall(want: Want): Promise&lt;Caller&gt;
 
-Starts an ability in the foreground or background in the cross-device scenario and obtains the caller object for communicating with the ability. This API uses a promise to return the result. It can be called only by the main thread.
+Starts an ability in the foreground or background and obtains the caller object for communicating with the ability. This API uses a promise to return the result. It can be called only by the main thread.
 
 This API cannot be used to start the UIAbility with the launch type set to [specified](../../application-models/uiability-launch-type.md#specified).
 
 > **NOTE**
 >
-> For details about the startup rules for the components in the stage model, see [Component Startup Rules (Stage Model)](../../application-models/component-startup-rules.md).
+> - For a successful launch in cross-device scenarios, the caller and target must be the same application and have the ohos.permission.DISTRIBUTED_DATASYNC permission.
+>
+> - For a successful launch in the same device scenario, the caller and target must be different applications and have the ohos.permission.ABILITY_BACKGROUND_COMMUNICATION permission (available only for system applications).
+>
+> - If the caller is running in the background, the ohos.permission.START_ABILITIES_FROM_BACKGROUND permission is required (available only for system applications). For details about the startup rules for the components in the stage model, see [Component Startup Rules (Stage Model)](../../application-models/component-startup-rules.md).
 
 **Required permissions**: ohos.permission.DISTRIBUTED_DATASYNC
 
@@ -1902,7 +1906,8 @@ export default class EntryAbility extends UIAbility {
     };
     let options: StartOptions = {
       displayId: 0,
-      processMode: contextConstant.ProcessMode.NEW_PROCESS_ATTACH_TO_STATUS_BAR_ITEM
+      processMode: contextConstant.ProcessMode.NEW_PROCESS_ATTACH_TO_STATUS_BAR_ITEM,
+      startupVisibility: contextConstant.StartupVisibility.STARTUP_SHOW
     };
 
     try {
@@ -1999,7 +2004,8 @@ export default class EntryAbility extends UIAbility {
     };
     let options: StartOptions = {
       displayId: 0,
-      processMode: contextConstant.ProcessMode.NEW_PROCESS_ATTACH_TO_STATUS_BAR_ITEM
+      processMode: contextConstant.ProcessMode.NEW_PROCESS_ATTACH_TO_STATUS_BAR_ITEM,
+      startupVisibility: contextConstant.StartupVisibility.STARTUP_HIDE
     };
 
     try {
@@ -2836,7 +2842,7 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-## UIAbilityContext.setColorMode<sup>16+</sup>
+## UIAbilityContext.setColorMode<sup>18+</sup>
 
 setColorMode(colorMode: ConfigurationConstant.ColorMode): void
 
@@ -2846,7 +2852,7 @@ Sets the color mode for this UIAbility. Before calling this API, ensure that the
 > - After this API is called, a new resource manager object is created. If a resource manager was previously cached, it should be updated accordingly.
 > - The priority of the color mode is as follows: UIAbility color mode > Application color mode (set via [ApplicationContext.setColorMode](js-apis-inner-application-applicationContext.md)) > System color mode.
 
-**Atomic service API**: This API can be used in atomic services since API version 16.
+**Atomic service API**: This API can be used in atomic services since API version 18.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 

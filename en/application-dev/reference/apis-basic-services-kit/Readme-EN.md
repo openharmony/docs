@@ -16,6 +16,7 @@
     - [@ohos.runningLock (Running Lock)](js-apis-runninglock.md)
     - [@ohos.thermal (Thermal Management)](js-apis-thermal.md)
     - [@ohos.usbManager (USB Manager)](js-apis-usbManager.md)
+    - [@ohos.usbManager.serial (Serial Port Management)](js-apis-serialManager.md)
     <!--Del-->
     - [@ohos.batteryInfo (Battery Information) (System API)](js-apis-battery-info-sys.md)
     - [@ohos.batteryStatistics (Battery Statistics) (System API)](js-apis-batteryStatistics-sys.md)
@@ -27,6 +28,7 @@
     - [@ohos.systemParameterEnhance (System Parameter) (System API)](js-apis-system-parameterEnhance-sys.md)
     - [@ohos.screenLock (Screen Lock) (System API)](js-apis-screen-lock-sys.md)
     - [@ohos.usbManager (USB Management) (System API)](js-apis-usbManager-sys.md)
+    - [@ohos.usbManager.serial (Serial Port Management) (system API)](js-apis-serialManager-sys.md)
     - [@ohos.update (Update) (System API)](js-apis-update-sys.md)
     <!--DelEnd-->
   - Data File Processing<!--data-file-processing-arkts-->
@@ -144,4 +146,5 @@
   - [Screen Lock Management Error Codes](errorcode-screenlock.md)
   - [Device Attestation Error Codes](errorcode-deviceAttest.md)
   - [Intelligent Voice Error Codes](errorcode-intelligentVoice.md)
+  - [Settings Error Codes](errorcode-settings.md)
   <!--DelEnd-->

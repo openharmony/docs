@@ -17,7 +17,7 @@ This module provides APIs for accessing the resources of a WorkSchedulerExtensio
 The context is obtained through a WorkSchedulerExtensionAbility child class instance.
 
 ```ts
-import { WorkSchedulerExtensionAbility, workScheduler } from from '@kit.BackgroundTasksKit';
+import { WorkSchedulerExtensionAbility, workScheduler } from '@kit.BackgroundTasksKit';
 
 class MyWorkSchedulerExtensionAbility extends WorkSchedulerExtensionAbility {
     onWorkStart(workInfo: workScheduler.WorkInfo) {

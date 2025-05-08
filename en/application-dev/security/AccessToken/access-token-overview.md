@@ -14,7 +14,7 @@ The application sandbox directory specifies the data range visible to an applica
 
 The system has process domain and data domain labels set based on the Ability Privilege Level (APL) of an application, and uses the access control mechanism to restrict the data accessible to each application. This minimizes the risks of application data leakage.
 
-Applications of different APLs can apply for different levels of permissions, and different system resources (such as the Contacts) or system capabilities (such as the capability for accessing a camera or a microphone) are protected by different application permissions. Strict hierarchical permission protection effectively defends against malicious attacks and ensures system security and reliability.
+Applications of different APLs are assigned permissions at different levels. The strict hierarchical permission management provides robust defense against malicious attacks and ensures system security and reliability. In addition to system resources (such as Contacts) and system capabilities (such as Camera and Microphone), some kernel resources (such as executable anonymous memory) are also protected by permissions. These permissions are called KernelPermissions.
 
 For more information, see [Application Permission Management Overview](app-permission-mgmt-overview.md).
 

@@ -4,7 +4,7 @@
 
 > **说明：**
 >
-> 从API Version 12开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+> 从API version 12开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 ## 接口
 
@@ -39,8 +39,8 @@ DrawingRenderingContext(unit?: LengthMetricsUnit)
 
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | ---------- | -------------- | ------ | ---------------- | ------------------------ |
-| width | number | 否 | 否 | DrawingRenderingContext的宽度。 |
-| height | number | 否 | 否 | DrawingRenderingContext的高度。 |
+| width | number | 否 | 否 | 获取DrawingRenderingContext的宽度，其值为关联的Canvas组件的宽度。 |
+| height | number | 否 | 否 | 获取DrawingRenderingContext的高度，其值为关联的Canvas组件的高度。 |
 
 ## 方法
 

@@ -17,7 +17,7 @@ DRM Kit（Digital Rights Management Kit，数字版权保护服务）提供了DR
 - DRM节目解密：支持的媒体协议：HLS、DASH；封装格式：MP4、TS；视频编码格式：H264<!--RP2--><!--RP2End-->；音频编码格式：AAC。
 
 > **注意：**
-
+>
 > DRM证书管理、DRM许可证管理、DRM节目授权、DRM节目解密依赖对应的DRM解决方案的实现。应用开发者可以自行扩展支持的媒体协议、封装格式、视音频编码格式。
 
 
@@ -38,6 +38,8 @@ DRM Kit（Digital Rights Management Kit，数字版权保护服务）提供了DR
 - DRM插件（DRM Plugin）
 
   集成于系统中，实现DRM HDI层接口的DRM解决方案驱动，实现DRM相关功能。
+  
+<!--RP1--><!--RP1End-->
 
 - MediaKeySystem
 

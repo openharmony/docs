@@ -21,7 +21,7 @@ import { request } from '@kit.BasicServicesKit';
 
 过滤条件。
 
-**系统能力**: SystemCapability.Request.FileTransferAgent
+**系统能力**：SystemCapability.Request.FileTransferAgent
 
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
@@ -32,7 +32,7 @@ import { request } from '@kit.BasicServicesKit';
 
 查询结果的任务信息数据结构。提供普通查询和系统查询，两种字段的可见范围不同。
 
-**系统能力**: SystemCapability.Request.FileTransferAgent
+**系统能力**：SystemCapability.Request.FileTransferAgent
 
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
@@ -49,7 +49,7 @@ query(id: string, callback: AsyncCallback&lt;TaskInfo&gt;): void
 
 **需要权限**：ohos.permission.DOWNLOAD_SESSION_MANAGER 或 ohos.permission.UPLOAD_SESSION_MANAGER
 
-**系统能力**: SystemCapability.Request.FileTransferAgent
+**系统能力**：SystemCapability.Request.FileTransferAgent
 
 **系统接口**：此接口为系统接口。
 
@@ -68,7 +68,7 @@ query(id: string, callback: AsyncCallback&lt;TaskInfo&gt;): void
 | -------- | -------- |
 | 201 | permission denied. |
 | 202 | permission verification failed, application which is not a system application uses system API. |
-| 401 | parameter error. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type |
+| 401 | parameter error. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. |
 | 13400003 | task service ability error. |
 | 21900006 | task not found. |
 
@@ -95,7 +95,7 @@ query(id: string): Promise&lt;TaskInfo&gt;
 
 **需要权限**：ohos.permission.DOWNLOAD_SESSION_MANAGER 或 ohos.permission.UPLOAD_SESSION_MANAGER
 
-**系统能力**: SystemCapability.Request.FileTransferAgent
+**系统能力**：SystemCapability.Request.FileTransferAgent
 
 **系统接口**：此接口为系统接口。
 
@@ -119,7 +119,7 @@ query(id: string): Promise&lt;TaskInfo&gt;
 | -------- | -------- |
 | 201 | permission denied. |
 | 202 | permission verification failed, application which is not a system application uses system API. |
-| 401 | parameter error. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type |
+| 401 | parameter error. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. |
 | 13400003 | task service ability error. |
 | 21900006 | task not found. |
 

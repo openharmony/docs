@@ -34,7 +34,7 @@ import { screenLockFileManager } from '@kit.AbilityKit';
 | RELEASE_DENIED |  -1 | 拒绝锁屏下敏感数据访问释放。 |
 | RELEASE_GRANTED |  0  |  释放锁屏下敏感数据访问。  |
 
-## KeyStatus<sup>16+</sup>
+## KeyStatus<sup>18+</sup>
 
 枚举，锁屏下敏感数据访问权限的状态。
 
@@ -134,7 +134,7 @@ try {
 }
 ```
 
-## screenLockFileManager.queryAppKeyState<sup>16+</sup>
+## screenLockFileManager.queryAppKeyState<sup>18+</sup>
 
 queryAppKeyState(): KeyStatus
 
@@ -146,7 +146,7 @@ queryAppKeyState(): KeyStatus
 
 | 类型                            | 说明                           |
 | ------------------------------- | ------------------------------ |
-| [KeyStatus](#keystatus16) | 锁屏下敏感数据访问权限的状态。 |
+| [KeyStatus](#keystatus18) | 锁屏下敏感数据访问权限的状态。 |
 
 **错误码：**
 

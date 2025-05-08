@@ -10,7 +10,9 @@ The methods provided in this topic apply only for the applications in the debug 
 
 - Method 2: Declare the required permissions in the HarmonyAppProvision configuration file.
   1. Open the **Sdk/openharmony/_{Version} _/toolchains /lib/UnsgnedReleasedProfileTemplate.json** file in the SDK directory.
-  2. Add the permissions in the **"acls"** &gt; **"allowed-acls"** field.
+  2. Add the restricted permissions to be requested.
+    - Add the restricted permissions that do not carry permission data in **acls** > **allowed-acls**.
+    - Add the restricted permissions that carry permission data in the **app-services-capabilities** field.
 
       ```json
       {
@@ -20,6 +22,9 @@ The methods provided in this topic apply only for the applications in the debug 
             "ohos.permission.WRITE_AUDIO",
             "ohos.permission.CAPTURE_SCREEN"
           ]
+        },
+        "app-services-capabilities": {
+            "ohos.permission.ACCESS_DDK_DRIVERS": "..."
         }
       }
       ```

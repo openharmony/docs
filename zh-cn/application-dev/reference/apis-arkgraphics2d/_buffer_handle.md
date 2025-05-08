@@ -9,6 +9,7 @@
 
 **相关模块：**[NativeWindow](_native_window.md)
 
+**所在头文件：**[buffer_handle.h](buffer__handle_8h.md)
 
 ## 汇总
 
@@ -17,7 +18,7 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| int32_t [fd](#fd) | 缓冲区文件描述符, 若不支持则为-1。  | 
+| int32_t [fd](#fd) | 缓冲区文件描述符，若不支持则为-1。  | 
 | int32_t [width](#width) | 缓冲区内存的宽度，单位为像素。  | 
 | int32_t [stride](#stride) | 缓冲区内存的步幅，单位为字节。  | 
 | int32_t [height](#height) | 缓冲区内存的高度，单位为像素。  | 
@@ -41,9 +42,9 @@
 int32_t BufferHandle::fd
 ```
 
-**描述**
+**描述：**
 
-缓冲区文件描述符, 若不支持则为-1。
+缓冲区文件描述符，若不支持则为-1。
 
 
 ### format
@@ -52,7 +53,7 @@ int32_t BufferHandle::fd
 int32_t BufferHandle::format
 ```
 
-**描述**
+**描述：**
 
 缓冲区内存的格式，取值具体可见[OH_NativeBuffer_Format](_o_h___native_buffer.md#oh_nativebuffer_format-1)枚举值。
 
@@ -63,7 +64,7 @@ int32_t BufferHandle::format
 int32_t BufferHandle::height
 ```
 
-**描述**
+**描述：**
 
 缓冲区内存的高度，单位为像素。
 
@@ -74,7 +75,7 @@ int32_t BufferHandle::height
 int32_t BufferHandle::key
 ```
 
-**描述**
+**描述：**
 
 缓冲区共享内存键值。
 
@@ -85,7 +86,7 @@ int32_t BufferHandle::key
 uint64_t BufferHandle::phyAddr
 ```
 
-**描述**
+**描述：**
 
 缓冲区内存的物理地址。
 
@@ -96,7 +97,7 @@ uint64_t BufferHandle::phyAddr
 int32_t BufferHandle::reserve[0]
 ```
 
-**描述**
+**描述：**
 
 额外数据。
 
@@ -107,7 +108,7 @@ int32_t BufferHandle::reserve[0]
 uint32_t BufferHandle::reserveFds
 ```
 
-**描述**
+**描述：**
 
 额外数据的文件描述符数量。
 
@@ -118,7 +119,7 @@ uint32_t BufferHandle::reserveFds
 uint32_t BufferHandle::reserveInts
 ```
 
-**描述**
+**描述：**
 
 额外数据的整型值数量。
 
@@ -129,7 +130,7 @@ uint32_t BufferHandle::reserveInts
 int32_t BufferHandle::size
 ```
 
-**描述**
+**描述：**
 
 缓冲区内存的大小，单位为字节。
 
@@ -140,7 +141,7 @@ int32_t BufferHandle::size
 int32_t BufferHandle::stride
 ```
 
-**描述**
+**描述：**
 
 缓冲区内存的步幅，单位为字节。
 
@@ -151,7 +152,7 @@ int32_t BufferHandle::stride
 uint64_t BufferHandle::usage
 ```
 
-**描述**
+**描述：**
 
 缓冲区内存的用途，按位标志位，取值具体可见[OH_NativeBuffer_Usage](_o_h___native_buffer.md#oh_nativebuffer_usage-1)枚举值。
 
@@ -162,7 +163,7 @@ uint64_t BufferHandle::usage
 void* BufferHandle::virAddr
 ```
 
-**描述**
+**描述：**
 
 缓冲区内存的虚拟地址。
 
@@ -173,6 +174,6 @@ void* BufferHandle::virAddr
 int32_t BufferHandle::width
 ```
 
-**描述**
+**描述：**
 
 缓冲区内存的宽度，单位为像素。

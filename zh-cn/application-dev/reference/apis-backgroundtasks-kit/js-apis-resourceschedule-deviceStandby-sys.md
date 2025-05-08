@@ -29,7 +29,7 @@ getExemptedApps(resourceTypes: number, callback: AsyncCallback<Array&lt;Exempted
 | 参数名      | 类型                   | 必填   | 说明                             |
 | -------- | -------------------- | ---- | ------------------------------ |
 | ResourceTypes|number | 是    | 资源类型，类型具体说明请参考[ResourceType](#resourcetype)。 |
-| callback | AsyncCallback<Array&lt;[ExemptedAppInfo](#exemptedappinfo)&gt;> | 是    |豁免应用信息 。|
+| callback | AsyncCallback<Array&lt;[ExemptedAppInfo](#exemptedappinfo)&gt;> | 是    |豁免应用信息。|
 
 **错误码**：
 

@@ -529,8 +529,8 @@ enum MaskInfo
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| LAYER_NORAML |  | 
-| LAYER_HBM_SYNC |  | 
+| LAYER_NORAML | 没有指纹蒙版 | 
+| LAYER_HBM_SYNC | 有指纹蒙版 | 
 
 
 ### MirrorType
@@ -629,9 +629,7 @@ enum RopType
 ```
 
 **描述**
-
-硬件加速支持的ROP操作类型。
-
+ 
 硬件加速支持的ROP操作类型，在将前景位图的RGB颜色分量和Alpha分量值与背景位图的RGB颜色 分量值和Alpha分量值进行按位的布尔运算（包括按位与，按位或等），将结果输出。
 
 **起始版本：** 3.2

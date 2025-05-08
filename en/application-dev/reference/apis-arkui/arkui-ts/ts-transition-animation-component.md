@@ -56,8 +56,8 @@ The static functions listed in the preceding table are used to create a **Transi
 | Static Member Variable| Description|
 | -------- | -------- |
 | IDENTITY | Disables the transition effect.|
-| OPACITY | Applies a transition effect with the opacity of 0. It is equivalent to **TransitionEffect.opacity(0)**.|
-| SLIDE | Applies a transition effect of sliding in from the start edge when the component appears and sliding out from the end edge when the component disappears. This means sliding in from the left edge and sliding out from the right edge for left-to-right scripts, and sliding in from the right edge and sliding out from the left edge for right-to-left scripts. It is equivalent to **TransitionEffect.asymmetric(TransitionEffect.move(TransitionEdge.START), TransitionEffect.move(TransitionEdge.END))**. |
+| OPACITY | Applies a transition effect with the opacity changing from 0 to 1 when the component appears and from 1 to 0 when the component disappears. This is equivalent to **TransitionEffect.opacity(0)**.|
+| SLIDE | Applies a transition effect of sliding in from the start edge when the component appears and sliding out from the end edge when the component disappears. This means sliding in from the left edge and sliding out from the right edge for left-to-right scripts, and sliding in from the right edge and sliding out from the left edge for right-to-left scripts. This is equivalent to **TransitionEffect.asymmetric(TransitionEffect.move(TransitionEdge.START), TransitionEffect.move(TransitionEdge.END))**. |
 | SLIDE_SWITCH | Applies a transition effect of sliding in from the right with first scaling down and then scaling up when the component appears and sliding out from the right with first scaling down and then scaling up when the component disappears. This transition effect comes with its own animation parameters, which can also be overridden. The default animation duration is 600 milliseconds, with a specified animation curve of cubicBezierCurve(0.24, 0.0, 0.50, 1.0) and a minimum scale factor of 0.8.|
 
 >  **NOTE**
@@ -111,7 +111,9 @@ This API is deprecated since API version 10. You are advised to use [TransitionE
 
 ## Example
 
-The following is an example of using the same transition effect for the appearance and disappearance (which are inverse processes) of the component.
+### Example 1: Using the Same TransitionEffect Configuration for Image Appearance and Disappearance
+
+This example demonstrates how to use the same **TransitionEffect** configuration to implement both the appearance and disappearance of an image, where the appearance and disappearance are inverse processes.
 ```ts
 // xxx.ets
 @Entry
@@ -148,7 +150,9 @@ struct TransitionEffectExample1 {
 Below you can see the example in action.<br>
 ![transitionComponent2](figures/transitionComponent2.gif)
 
-The following is an example of using different transition effects for the appearance and disappearance of the component.
+### Example 2: Using Different TransitionEffect Configurations for Image Appearance and Disappearance
+
+This example demonstrates how to use different **TransitionEffect** configurations to implement the appearance and disappearance of an image.
 ```ts
 // xxx.ets
 @Entry
@@ -204,7 +208,9 @@ struct TransitionEffectExample2 {
 Below you can see the example in action.<br>
 ![transitionComponent3](figures/transitionComponent3.gif)
 
-The following is an example of configuring **transition** for both parent and child components.
+### Example 3: Setting transition on Parent and Child Components
+
+This example demonstrates how to configure **transition** on both parent and child components to implement the appearance and disappearance of images.
 ```ts
 // xxx.ets
 @Entry
@@ -233,9 +239,14 @@ struct TransitionEffectExample3 {
             Image($r('app.media.testImg')).width(150).height(150).id("image1")
               .transition(TransitionEffect.OPACITY.animation({ duration: 1000 }))
           }
-          Image($r('app.media.testImg')).width(150).height(150).margin({top: 50}).id("image2")
-            .transition(TransitionEffect.scale({x: 0, y: 0}).animation({ duration: 1000 }))
-          Text("view").margin({top: 50})
+
+          Image($r('app.media.testImg'))
+            .width(150)
+            .height(150)
+            .margin({ top: 50 })
+            .id("image2")
+            .transition(TransitionEffect.scale({ x: 0, y: 0 }).animation({ duration: 1000 }))
+          Text("view").margin({ top: 50 })
         }
         .id("column1")
         .transition(TransitionEffect.opacity(0.99).animation({ duration: 1000 }),

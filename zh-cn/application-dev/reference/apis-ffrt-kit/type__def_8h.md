@@ -50,10 +50,10 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [ffrt_queue_priority_t](_f_f_r_t.md#ffrt_queue_priority_t) { [ffrt_queue_priority_immediate](_f_f_r_t.md) = 0, [ffrt_queue_priority_high](_f_f_r_t.md), [ffrt_queue_priority_low](_f_f_r_t.md), [ffrt_queue_priority_idle](_f_f_r_t.md) } | 任务的优先级类型。  | 
-| [ffrt_qos_default_t](_f_f_r_t.md#ffrt_qos_default_t) {<br/>[ffrt_qos_inherit](_f_f_r_t.md) = -1, [ffrt_qos_background](_f_f_r_t.md), [ffrt_qos_utility](_f_f_r_t.md), [ffrt_qos_default](_f_f_r_t.md),<br/>[ffrt_qos_user_initiated](_f_f_r_t.md)<br/>} | 任务的QoS类型。  | 
-| [ffrt_storage_size_t](_f_f_r_t.md#ffrt_storage_size_t) {<br/>[ffrt_task_attr_storage_size](_f_f_r_t.md) = 128, [ffrt_auto_managed_function_storage_size](_f_f_r_t.md) = 64 + sizeof(ffrt_function_header_t), [ffrt_mutex_storage_size](_f_f_r_t.md) = 64, [ffrt_cond_storage_size](_f_f_r_t.md) = 64,<br/>[ffrt_queue_attr_storage_size](_f_f_r_t.md) = 128<br/>} | 多种类型数据结构分配大小定义。  | 
-| [ffrt_function_kind_t](_f_f_r_t.md#ffrt_function_kind_t) { [ffrt_function_kind_general](_f_f_r_t.md), [ffrt_function_kind_queue](_f_f_r_t.md) } | 任务类型。  | 
-| [ffrt_dependence_type_t](_f_f_r_t.md#ffrt_dependence_type_t) { [ffrt_dependence_data](_f_f_r_t.md), [ffrt_dependence_task](_f_f_r_t.md) } | 依赖类型。  | 
-| [ffrt_error_t](_f_f_r_t.md#ffrt_error_t) {<br/>[ffrt_error](_f_f_r_t.md) = -1, [ffrt_success](_f_f_r_t.md) = 0, [ffrt_error_nomem](_f_f_r_t.md) = ENOMEM, [ffrt_error_timedout](_f_f_r_t.md) = ETIMEDOUT,<br/>[ffrt_error_busy](_f_f_r_t.md) = EBUSY, [ffrt_error_inval](_f_f_r_t.md) = EINVAL<br/>} | FFRT错误码。  | 
-| [ffrt_mutex_type](_f_f_r_t.md#ffrt_mutex_type) { [ffrt_mutex_normal](_f_f_r_t.md) = 0, [ffrt_mutex_recursive](_f_f_r_t.md) = 2, [ffrt_mutex_default](_f_f_r_t.md) = ffrt_mutex_normal } | mutex类型枚举。  | 
+| [ffrt_queue_priority_t](_f_f_r_t.md#ffrt_queue_priority_t) {<br/>ffrt_queue_priority_immediate = 0, <br/>ffrt_queue_priority_high, <br/>ffrt_queue_priority_low, ffrt_queue_priority_idle<br/>} | 任务的优先级类型。  | 
+| [ffrt_qos_default_t](_f_f_r_t.md#ffrt_qos_default_t) {<br/>ffrt_qos_inherit = -1, <br/>ffrt_qos_background, ffrt_qos_utility, <br/>ffrt_qos_default,<br/>ffrt_qos_user_initiated<br/>} | 任务的QoS类型。  | 
+| [ffrt_storage_size_t](_f_f_r_t.md#ffrt_storage_size_t) {<br/>ffrt_task_attr_storage_size = 128, <br/>ffrt_auto_managed_function_storage_size = 64 + sizeof(ffrt_function_header_t), <br/>ffrt_mutex_storage_size = 64, <br/>ffrt_cond_storage_size = 64,<br/>ffrt_queue_attr_storage_size = 128<br/>} | 多种类型数据结构分配大小定义。  | 
+| [ffrt_function_kind_t](_f_f_r_t.md#ffrt_function_kind_t) { <br/>ffrt_function_kind_general, <br/>ffrt_function_kind_queue<br/> } | 任务类型。  | 
+| [ffrt_dependence_type_t](_f_f_r_t.md#ffrt_dependence_type_t) { <br/>ffrt_dependence_data, <br/>ffrt_dependence_task<br/> } | 依赖类型。  |
+| [ffrt_error_t](_f_f_r_t.md#ffrt_error_t) {<br/>ffrt_error = -1, <br/>ffrt_success = 0, <br/>ffrt_error_nomem = ENOMEM, <br/>ffrt_error_timedout = ETIMEDOUT,<br/>ffrt_error_busy = EBUSY, <br/>ffrt_error_inval = EINVAL<br/>} | FFRT错误码。  | 
+| [ffrt_mutex_type](_f_f_r_t.md#ffrt_mutex_type) {<br/>ffrt_mutex_normal = 0, <br/>ffrt_mutex_recursive = 2, <br/>ffrt_mutex_default = ffrt_mutex_normal <br/>} | mutex类型枚举。  | 

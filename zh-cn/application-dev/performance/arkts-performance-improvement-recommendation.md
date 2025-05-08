@@ -14,9 +14,9 @@
 >  
 >  - List设置宽高，会布局List显示区域内的子组件。
 >  
->  - List使用[ForEach](../quick-start/arkts-rendering-control-foreach.md)加载子组件时，无论是否设置List的宽高，都会加载所有子组件。
+>  - List使用[ForEach](../ui/state-management/arkts-rendering-control-foreach.md)加载子组件时，无论是否设置List的宽高，都会加载所有子组件。
 >  
->  - List使用[LazyForEach](../quick-start/arkts-rendering-control-lazyforeach.md)加载子组件时，没有设置List的宽高，会加载所有子组件，设置了List的宽高，会加载List显示区域内的子组件。
+>  - List使用[LazyForEach](../ui/state-management/arkts-rendering-control-lazyforeach.md)加载子组件时，没有设置List的宽高，会加载所有子组件，设置了List的宽高，会加载List显示区域内的子组件。
 
 ```ts
 class BasicDataSource implements IDataSource {
@@ -145,7 +145,7 @@ class BasicDataSource implements IDataSource {
   unregisterDataChangeListener(listener: DataChangeListener): void {
     const pos = this.listeners.indexOf(listener);
     if (pos >= 0) {
-      console.info('remove listener')
+      console.info('remove listener');
       this.listeners.splice(pos, 1);
     }
   }
@@ -182,7 +182,7 @@ class BasicDataSource implements IDataSource {
 }
 
 class MyDataSource extends BasicDataSource {
-  private dataArray: Array<string> = new Array(100).fill('test')
+  private dataArray: Array<string> = new Array(100).fill('test');
 
   public totalCount(): number {
     return this.dataArray.length;
@@ -323,7 +323,7 @@ struct MyComponent {
           Text("Hello" + item)
             .fontSize(50)
             .onAppear(() => {
-              console.log("appear:" + item)
+              console.log("appear:" + item);
             })
         }
       })
@@ -335,11 +335,11 @@ class MyDataSource implements IDataSource {
   data: number[] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];
 
   public totalCount(): number {
-    return this.data.length
+    return this.data.length;
   }
 
   public getData(index: number): number {
-    return this.data[index]
+    return this.data[index];
   }
 
   registerDataChangeListener(listener: DataChangeListener): void {

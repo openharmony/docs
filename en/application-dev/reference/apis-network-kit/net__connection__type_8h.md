@@ -28,6 +28,8 @@ Declares the structs for the C APIs of the network connection module.
 | [NetConn_HttpProxy](_net_conn___http_proxy.md) | Proxy configuration information.| 
 | [NetConn_ConnectionProperties](_net_conn___connection_properties.md) | Network connection information.| 
 | [NetConn_NetHandleList](_net_conn___net_handle_list.md) | Network list.| 
+| [NetConn_NetConnCallback](_net_conn___net_conn_callback.md) | Network status callback. | 
+| [NetConn_NetSpecifier](_net_conn___net_specifier.md) | Network specifier, including a network capability set and a network ID. | 
 
 
 ### Macros

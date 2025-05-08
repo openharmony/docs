@@ -5,9 +5,11 @@
 
 [Want](want__8h.md)中由bundleName、moduleName与abilityName信息组成的Element结构体。
 
-**起始版本**：15
+**起始版本：** 15
 
-**相关模块：**[AbilityBase](_ability_base.md)
+**相关模块：** [AbilityBase](_ability_base.md)
+
+**所在头文件：** [want.h](want__8h.md)
 
 
 ## 汇总

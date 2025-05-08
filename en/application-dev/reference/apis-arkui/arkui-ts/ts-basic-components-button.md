@@ -50,8 +50,20 @@ By default, the text content is displayed in a one line.
 
 | Name | Type                                   | Mandatory| Description                |
 | ------- | --------------------------------------- | ---- | -------------------- |
-| label   | [ResourceStr](ts-types.md#resourcestr)  | Yes  | Button text.      |
+| label   | [ResourceStr](ts-types.md#resourcestr)  | Yes  | Button text.<br>**NOTE**<br>If the text is longer than the width of the button, it is truncated.|
 | options | [ButtonOptions](#buttonoptions) | No  | Button settings.|
+
+### Button
+
+Button()
+
+Creates an empty button.
+
+**Widget capability**: This API can be used in ArkTS widgets since API version 9.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 ## ButtonOptions
 
@@ -59,7 +71,7 @@ By default, the text content is displayed in a one line.
 
 | Name                     | Type                                         | Mandatory| Description                                                      |
 | ------------------------- | --------------------------------------------- | ---- | ------------------------------------------------------------ |
-| type                      | [ButtonType](#buttontype)             | No  | Button type.<br>Default value: Since API version 16: **ButtonType.ROUNDED_RECTANGLE**<br> API version 15 and earlier versions: **ButtonType.Capsule**<br>**Widget capability**: This API can be used in ArkTS widgets since API version 9.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| type                      | [ButtonType](#buttontype)             | No  | Button type.<br>Default value:<br> - API version 18 and later versions: **ButtonType.ROUNDED_RECTANGLE**<br> - Versions earlier than API version 18: **ButtonType.Capsule**<br>**Widget capability**: This API can be used in ArkTS widgets since API version 9.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | stateEffect               | boolean                                       | No  | Whether to enable the pressed effect on the click of the button. The value **false** means to disable the pressed effect.<br>Default value: **true**<br>**NOTE**<br>When the pressed effect is enabled on the click of the button and the state style is set, the background color is applied based on the state style.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 9.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | buttonStyle<sup>11+</sup> | [ButtonStyleMode](#buttonstylemode11) | No  | Style and primacy of the button.<br>Default value: **ButtonStyleMode.EMPHASIZED**<br>**NOTE**<br>The button primacy is as follows, from high to low: emphasized button, normal button, text button.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 11.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | controlSize<sup>11+</sup> | [ControlSize](#controlsize11)         | No  | Size of the button.<br>Default value: **ControlSize.NORMAL**<br>**Widget capability**: This API can be used in ArkTS widgets since API version 11.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
@@ -67,7 +79,7 @@ By default, the text content is displayed in a one line.
 
 ## Attributes
 
-In addition to the [universal attributes](ts-universal-attributes-size.md), the following attributes are supported.
+In addition to the [universal attributes](ts-component-general-attributes.md), the following attributes are supported.
 
 ### type
 
@@ -103,7 +115,7 @@ Sets the font size for the button.
 
 | Name| Type                        | Mandatory| Description                                                        |
 | ------ | ---------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [Length](ts-types.md#length) | Yes  | Font size of the button.<br>Default value:<br>**$r('sys.float.Body_L')** when **controlSize** is set to **ControlSize.NORMAL**<br>**$r('sys.float.Body_S')** when **controlSize** is set to **ControlSize.SMALL**|
+| value  | [Length](ts-types.md#length) | Yes  | Font size of the button.<br>Default value:<br>**$r('sys.float.Body_L')** when **controlSize** is set to **ControlSize.NORMAL**<br>**$r('sys.float.Body_S')** when **controlSize** is set to **ControlSize.SMALL**<br>**NOTE**<br>For the string type, percentage values are not supported.|
 
 ### fontColor
 
@@ -285,13 +297,13 @@ Creates a content modifier.
 | ------ | --------------------------------------------- | ---- | ------------------------------------------------ |
 | modifier  | [ContentModifier\<ButtonConfiguration>](#buttonconfiguration12) | Yes  | Content modifier to apply to the button.<br>**modifier**: content modifier. You need a custom class to implement the **ContentModifier** API.|
 
-### minFontScale<sup>16+</sup>
+### minFontScale<sup>18+</sup>
 
 minFontScale(scale: number | Resource)
 
 Sets the minimum font scale factor for text.
 
-**Atomic service API**: This API can be used in atomic services since API version 16.
+**Atomic service API**: This API can be used in atomic services since API version 18.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -301,13 +313,13 @@ Sets the minimum font scale factor for text.
 | ------ | --------------------------------------------- | ---- | --------------------------------------------- |
 | scale  | number \| [Resource](ts-types.md#resource) | Yes  | Minimum font scale factor for text.<br>Value range: [0, 1]<br>**NOTE**<br>A value less than 0 is handled as **0**. A value greater than 1 is handled as **1**. Abnormal values are ineffective by default.<br>If the multiplier is set to 0, no content is displayed.|
 
-### maxFontScale<sup>16+</sup>
+### maxFontScale<sup>18+</sup>
 
 maxFontScale(scale: number | Resource)
 
 Setting the scale factor to **0** hides the content.
 
-**Atomic service API**: This API can be used in atomic services since API version 16.
+**Atomic service API**: This API can be used in atomic services since API version 18.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -401,8 +413,8 @@ You need a custom class to implement the **ContentModifier** API.
 
 | Name | Type   | Read Only | Optional| Description             |
 | ------ | ------ | ---------------- | ---------------- | ---------------- |
-| label | string | No| No| Text label of the button.|
-| pressed | boolean | No| No| Whether the button is pressed.<br>**NOTE**<br>The button here refers to the original button, not the new component constructed using the builder. If the new component is larger than the original button, this parameter does not signify the pressed state of the excess part.|
+| label | string | No| No| Text label of the button.<br>**NOTE**<br>If the text is longer than the width of the button, it is truncated.|
+| pressed | boolean | No| No| Whether the button is pressed. **true**: The button is pressed.<br>**false**: The button is not pressed.<br>**NOTE**<br>The button here refers to the original button, not the new component constructed using the builder. If the new component is larger than the original button, this parameter does not signify the pressed state of the excess part.<br>Default value: **false**|
 | triggerClick | [ButtonTriggerClickCallback](#buttontriggerclickcallback12) | No| No| Click event of the new component constructed using the builder.|
 
 ## ButtonTriggerClickCallback<sup>12+</sup>
@@ -419,12 +431,12 @@ Defines the callback type used in **ButtonConfiguration**.
 
 | Name | Type   | Mandatory| Description             |
 | ------ | ------ | ---- | ---------------- |
-| xPos | number | Yes| X-coordinate of the click point.|
-| yPos | number | Yes| Y-coordinate of the click point.|
+| xPos | number | Yes| X-coordinate of the click point.<br>Unit: vp|
+| yPos | number | Yes| Y-coordinate of the click point.<br>Unit: vp|
 
 ## Events
 
-The [universal events](ts-universal-events-click.md) are supported.
+The [universal events](ts-component-general-events.md) are supported.
 ## Example
 
 ### Example 1: Setting the Button Display Style
@@ -629,7 +641,7 @@ struct ButtonExample {
 ```
 ![buttonrole](figures/buttonrole.jpeg)
 
-### Example 6: ImplementIng a Custom Button
+### Example 6: Implementing a Custom Button
 This example implements a custom button in the shape of a circle. The circle is red when pressed, accompanied by the text "Pressed" in the title. It is black when not pressed, accompanied by the text "Not pressed" in the title.
 ```ts
 class MyButtonStyle implements ContentModifier<ButtonConfiguration> {

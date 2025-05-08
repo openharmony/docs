@@ -34,18 +34,6 @@ Allows an application to control lights, including turning on and off lights.
 
 **Valid since**: 11
 
-## ohos.permission.QUERY_ACCESSIBILITY_ELEMENT
-
-Allows an application to query accessibility elements in batches.
-
-**Permission level**: system_basic
-
-**Authorization mode**: system_grant
-
-**Enable via ACL**: false
-
-**Valid since**: 11
-
 ## ohos.permission.GET_ALL_APP_ACCOUNTS
 
 Allows an application to obtain information about all application accounts.

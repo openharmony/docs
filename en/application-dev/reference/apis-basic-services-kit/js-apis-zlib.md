@@ -3735,7 +3735,7 @@ async function demo() {
 | level    | [CompressLevel](#compresslevel)     | Yes  | No | For details, see [CompressLevel](#compresslevel).<br>**Atomic service API**: This API can be used in atomic services since API version 11.      |
 | memLevel | [MemLevel](#memlevel)         | Yes  | No | For details, see [MemLevel](#memlevel).<br>**Atomic service API**: This API can be used in atomic services since API version 11.                       |
 | strategy | [CompressStrategy](#compressstrategy) | Yes  | No | For details, see [CompressStrategy](#compressstrategy).<br>**Atomic service API**: This API can be used in atomic services since API version 11.       |
-| parallel<sup>16+</sup> | [ParallelStrategy](#parallelstrategy16) | Yes  | No | For details, see [ParallelStrategy](#parallelstrategy16).<br>**Atomic service API**: This API can be used in atomic services since API version 16.       |
+| parallel<sup>18+</sup> | [ParallelStrategy](#parallelstrategy18) | Yes  | No | For details, see [ParallelStrategy](#parallelstrategy18).<br>**Atomic service API**: This API can be used in atomic services since API version 18.       |
 
 ## CompressLevel
 
@@ -3776,9 +3776,9 @@ async function demo() {
 | COMPRESS_STRATEGY_RLE              | 3    | RLE compression strategy.        |
 | COMPRESS_STRATEGY_FIXED            | 4    | Fixed compression strategy.          |
 
-## ParallelStrategy<sup>16+</sup>
+## ParallelStrategy<sup>18+</sup>
 
-**Atomic service API**: This API can be used in atomic services since API version 16.
+**Atomic service API**: This API can be used in atomic services since API version 18.
 
 **System capability**: SystemCapability.BundleManager.Zlib
 

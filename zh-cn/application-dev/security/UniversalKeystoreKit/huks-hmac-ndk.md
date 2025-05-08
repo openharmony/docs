@@ -1,6 +1,5 @@
 # HMAC(C/C++)
 
-
 HMAC是密钥相关的哈希运算消息认证码（Hash-based Message Authentication Code）。具体的场景介绍及支持的算法规格，请参考[HMAC介绍与算法规格](huks-hmac-overview.md)。
 
 ## 在CMake脚本中链接相关动态库
@@ -28,7 +27,6 @@ target_link_libraries(entry PUBLIC libhuks_ndk.z.so)
 
 3. 调用[OH_Huks_InitParamSet](../../reference/apis-universal-keystore-kit/_huks_param_set_api.md#oh_huks_initparamset)指定算法参数配置。
    
-
 4. 调用[OH_Huks_InitSession](../../reference/apis-universal-keystore-kit/_huks_key_api.md#oh_huks_initsession)初始化密钥会话，并获取会话的句柄handle。
 
 5. 调用[OH_Huks_FinishSession](../../reference/apis-universal-keystore-kit/_huks_key_api.md#oh_huks_finishsession)结束密钥会话，获取哈希后的数据。

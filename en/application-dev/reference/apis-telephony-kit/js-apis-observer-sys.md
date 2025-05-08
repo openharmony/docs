@@ -2,11 +2,11 @@
 
 The **observer** module provides event subscription management functions. With the APIs provided by this module, you can register or unregister an observer that listens cell information events (for the SIM card in the specified slot).
 
->**NOTE**
+> **NOTE**
 >
->The initial APIs of this module are supported since API version 6. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> The initial APIs of this module are supported since API version 6. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 >
->This topic describes only system APIs provided by the module. For details about its public APIs, see [@ohos.telephony.observer (Observer)](js-apis-observer.md).
+> This topic describes only system APIs provided by the module. For details about its public APIs, see [@ohos.telephony.observer (Observer)](js-apis-observer.md).
 
 ## Modules to Import
 
@@ -36,7 +36,7 @@ Registers an observer for cell information change events. This API uses an async
 
 **Error codes**
 
-For details about the error codes, see[ohos.telephony (Telephony) Error Codes](errorcode-telephony.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Telephony Error Codes](errorcode-telephony.md).
 
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
@@ -81,7 +81,7 @@ Registers an observer for signal status change events of the SIM card in the spe
 
 **Error codes**
 
-For details about the error codes, see[ohos.telephony (Telephony) Error Codes](errorcode-telephony.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Telephony Error Codes](errorcode-telephony.md).
 
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
@@ -113,9 +113,9 @@ off\(type: \'cellInfoChange\', callback?: Callback\<Array\<CellInformation\>\>\)
 
 Unregisters the observer for cell information change events. This API uses an asynchronous callback to return the result.
 
->**NOTE**
+> **NOTE**
 >
->You can pass the callback of the **on** function if you want to cancel listening for a certain type of event. If you do not pass the callback, you will cancel listening for all events.
+> You can pass the callback of the **on** function if you want to cancel listening for a certain type of event. If you do not pass the callback, you will cancel listening for all events.
 
 **System API**: This is a system API.
 
@@ -130,7 +130,7 @@ Unregisters the observer for cell information change events. This API uses an as
 
 **Error codes**
 
-For details about the error codes, see[ohos.telephony (Telephony) Error Codes](errorcode-telephony.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Telephony Error Codes](errorcode-telephony.md).
 
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |

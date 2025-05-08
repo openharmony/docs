@@ -1,6 +1,9 @@
 # 拉起邮件类应用（startAbilityByType）
 
 本章节介绍如何拉起邮件类应用扩展面板。
+> **说明：**
+> 
+> 如果拉起方的参数为mailto协议字符串，可以[使用mailto方式拉起邮件应用](start-email-apps-by-mailto.md)。邮件应用会解析收到的mailto协议字符串，并填充发件人、收件人、邮件内容等信息。
 
 ## 邮件类应用扩展面板参数说明
 
@@ -8,13 +11,13 @@ startAbilityByType接口中type字段为mail，对应的wantParam参数：
 
 | 参数名                                | 类型                                                         | 必填 | 说明                                                         |
 | ------------------------------------- | ------------------------------------------------------------ | ------ | ------------------------------------------------------------ |
-| email                                 | string[ ]                                                    | 否   | 收件人邮箱地址（支持多个且以逗号分隔）                       |
-| cc                                    | string[ ]                                                    | 否   | 抄收人邮箱地址（支持多个且以逗号分隔）                       |
-| bcc                                   | string[ ]                                                    | 否   | 密送人邮箱地址（支持多个且以逗号分隔）                       |
-| subject                               | string                                                       | 否   | 邮件主题                                                     |
-| body                                  | string                                                       | 否   | 邮件内容                                                     |
-| ability.params.stream                 | string[ ]                                                    | 否   | 邮件附件（附件的uri地址列表）                                |
-| ability.want.params.uriPermissionFlag | [wantConstant.Flags](../reference/apis-ability-kit/js-apis-app-ability-wantConstant.md#flags) | 否   | 给邮件附件赋予至少读权限。邮件附件参数存在时，该参数也必须要传 |
+| email                                 | string[ ]                                                    | 否   | 收件人邮箱地址（支持多个且以逗号分隔）。                       |
+| cc                                    | string[ ]                                                    | 否   | 抄收人邮箱地址（支持多个且以逗号分隔）。                       |
+| bcc                                   | string[ ]                                                    | 否   | 密送人邮箱地址（支持多个且以逗号分隔）。                       |
+| subject                               | string                                                       | 否   | 邮件主题。                                                     |
+| body                                  | string                                                       | 否   | 邮件内容。                                                     |
+| ability.params.stream                 | string[ ]                                                    | 否   | 邮件附件（附件的uri地址列表）。                                |
+| ability.want.params.uriPermissionFlag | [wantConstant.Flags](../reference/apis-ability-kit/js-apis-app-ability-wantConstant.md#flags) | 否   | 给邮件附件赋予至少读权限。邮件附件参数存在时，该参数也必须要传。 |
 | sceneType                             | number                                                       | 否   | 意图场景，表明本次请求对应的操作意图。1：发邮件。默认为1。                              |
 
 > **说明：**
@@ -31,34 +34,53 @@ startAbilityByType接口中type字段为mail，对应的wantParam参数：
 2. 构造接口参数并调用startAbilityByType接口。
 
     ```ts
-    let context = getContext(this) as common.UIAbilityContext;
-    let wantParam: Record<string, Object> = {
-      'sceneType': 1,
-      'email': [encodeURI('xxx@example.com'),encodeURI('xxx@example.com')], // 收件人邮箱地址，多值以逗号分隔，对数组内容使用encodeURI()方法进行url编码
-      'cc': [encodeURI('xxx@example.com'),encodeURI('xxx@example.com')], // 抄收人邮箱地址，多值以逗号分隔，对数组内容使用encodeURI()方法进行url编码
-      'bcc': [encodeURI('xxx@example.com'),encodeURI('xxx@example.com')], // 密送人邮箱地址，多值以逗号分隔，对数组内容使用encodeURI()方法进行url编码
-      'subject': encodeURI('邮件主题'), // 邮件主题，对内容使用encodeURI()方法进行url编码
-      'body': encodeURI('邮件正文'), // 邮件正文，对内容使用encodeURI()方法进行url编码
-      'ability.params.stream': [encodeURI('附件uri1'),encodeURI('附件uri2')], // 附件uri，多值以逗号分隔，对数组内容使用encodeURI()方法进行url编码
-      'ability.want.params.uriPermissionFlag': wantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION
-    };
-    let abilityStartCallback: common.AbilityStartCallback = {
-      onError: (code: number, name: string, message: string) => {
-        console.log(`onError code ${code} name: ${name} message: ${message}`);
-      },
-      onResult: (result)=>{
-        console.log(`onResult result: ${JSON.stringify(result)}`);
-      }
-    }
-    
-    context.startAbilityByType("mail", wantParam, abilityStartCallback, 
-        (err) => {
-            if (err) {
-                console.error(`startAbilityByType fail, err: ${JSON.stringify(err)}`);
-            } else {
-                console.log(`success`);
+    @Entry
+    @Component
+    struct Index {
+        @State hideAbility: string = 'hideAbility'
+
+        build() {
+            Row() {
+                Column() {
+                    Text(this.hideAbility)
+                        .fontSize(30)
+                        .fontWeight(FontWeight.Bold)
+                        .onClick(() => {
+                            let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+                            let wantParam: Record<string, Object> = {
+                                'sceneType': 1,
+                                'email': [encodeURI('xxx@example.com'), encodeURI('xxx@example.com')], // 收件人邮箱地址，多值以逗号分隔，对数组内容使用encodeURI()方法进行url编码
+                                'cc': [encodeURI('xxx@example.com'), encodeURI('xxx@example.com')], // 抄收人邮箱地址，多值以逗号分隔，对数组内容使用encodeURI()方法进行url编码
+                                'bcc': [encodeURI('xxx@example.com'), encodeURI('xxx@example.com')], // 密送人邮箱地址，多值以逗号分隔，对数组内容使用encodeURI()方法进行url编码
+                                'subject': encodeURI('邮件主题'), // 邮件主题，对内容使用encodeURI()方法进行url编码
+                                'body': encodeURI('邮件正文'), // 邮件正文，对内容使用encodeURI()方法进行url编码
+                                'ability.params.stream': [encodeURI('附件uri1'), encodeURI('附件uri2')], // 附件uri，多值以逗号分隔，对数组内容使用encodeURI()方法进行url编码
+                                'ability.want.params.uriPermissionFlag': wantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION
+                            };
+                            let abilityStartCallback: common.AbilityStartCallback = {
+                                onError: (code: number, name: string, message: string) => {
+                                    console.log(`onError code ${code} name: ${name} message: ${message}`);
+                                },
+                                onResult: (result) => {
+                                    console.log(`onResult result: ${JSON.stringify(result)}`);
+                                }
+                            }
+
+                            context.startAbilityByType("mail", wantParam, abilityStartCallback,
+                                (err) => {
+                                    if (err) {
+                                        console.error(`startAbilityByType fail, err: ${JSON.stringify(err)}`);
+                                    } else {
+                                        console.log(`success`);
+                                    }
+                                });
+                        });
+                }
+                .width('100%')
             }
-    });
+            .height('100%')
+        }
+    }
     ```
     效果示例图：
     
@@ -103,12 +125,12 @@ startAbilityByType接口中type字段为mail，对应的wantParam参数：
 
     | 参数名  | 类型      | 必填 | 说明                                   |
     | ------- | --------- | ---- | -------------------------------------- |
-    | email   | string[ ] | 否   | 收件人邮箱地址（支持多个且以逗号分隔） |
-    | cc      | string[ ] | 否   | 抄收人邮箱地址（支持多个且以逗号分隔） |
-    | bcc     | string[ ] | 否   | 密送人邮箱地址（支持多个且以逗号分隔） |
-    | subject | string    | 否   | 邮件主题                               |
-    | body    | string    | 否   | 邮件内容                               |
-    | stream  | string[ ] | 否   | 邮件附件列表（附件的uri地址列表）      |
+    | email   | string[ ] | 否   | 收件人邮箱地址（支持多个且以逗号分隔）。 |
+    | cc      | string[ ] | 否   | 抄收人邮箱地址（支持多个且以逗号分隔）。 |
+    | bcc     | string[ ] | 否   | 密送人邮箱地址（支持多个且以逗号分隔）。 |
+    | subject | string    | 否   | 邮件主题。                               |
+    | body    | string    | 否   | 邮件内容。                               |
+    | stream  | string[ ] | 否   | 邮件附件列表（附件的uri地址列表）。      |
     
     > **说明：**
     > 

@@ -5,9 +5,11 @@
 
 马达属性。
 
-**起始版本**：11
+**起始版本：** 11
 
-**相关模块**：[Vibrator](_vibrator.md)
+**相关模块：** [Vibrator](_vibrator.md)
+
+**所在头文件：** [vibrator_type.h](vibrator_type_8h.md)
 
 
 ## 汇总

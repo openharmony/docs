@@ -491,9 +491,8 @@ ArkWeb内核需要本地播放器的状态信息来更新到网页（例如：�
 
   ```ts
   // Index.ets
-
   import { webview } from '@kit.ArkWeb';
-  import { BuilderNode, FrameNode, NodeController, NodeRenderType, UIContext } from '@kit.ArkUI';
+  import { BuilderNode, FrameNode, NodeController, NodeRenderType } from '@kit.ArkUI';
   import { AVPlayerDemo, AVPlayerListener } from './PlayerDemo';
 
   // 实现 webview.NativeMediaPlayerBridge 接口。
@@ -505,8 +504,10 @@ ArkWeb内核需要本地播放器的状态信息来更新到网页（例如：�
     nativePlayerInfo: NativePlayerInfo;
     nativePlayer: AVPlayerDemo;
     httpHeaders: Record<string, string>;
+    uiContext?: UIContext;
 
-    constructor(nativePlayerInfo: NativePlayerInfo, handler: webview.NativeMediaPlayerHandler, mediaInfo: webview.MediaInfo) {
+    constructor(nativePlayerInfo: NativePlayerInfo, handler: webview.NativeMediaPlayerHandler, mediaInfo: webview.MediaInfo, uiContext: UIContext) {
+      this.uiContext = uiContext;
       console.log(`NativeMediaPlayerImpl.constructor, surface_id[${mediaInfo.surfaceInfo.id}]`);
       this.nativePlayerInfo = nativePlayerInfo;
       this.mediaHandler = handler;
@@ -526,8 +527,8 @@ ArkWeb内核需要本地播放器的状态信息来更新到网页（例如：�
     }
 
     updateRect(x: number, y: number, width: number, height: number): void {
-      let width_in_vp = px2vp(width);
-      let height_in_vp = px2vp(height);
+      let width_in_vp = this.uiContext!.px2vp(width);
+      let height_in_vp = this.uiContext!.px2vp(height);
       console.log(`updateRect(${x}, ${y}, ${width}, ${height}), vp:{${width_in_vp}, ${height_in_vp}}`);
 
       this.nativePlayerInfo.updateNativePlayerRect(x, y, width, height);
@@ -791,12 +792,12 @@ ArkWeb内核需要本地播放器的状态信息来更新到网页（例如：�
     width: number = 0;
     height: number = 0;
 
-    static toNodeRect(rectInPx: webview.RectEvent) : Rect {
+    static toNodeRect(rectInPx: webview.RectEvent, uiContext: UIContext) : Rect {
       let rect = new Rect();
-      rect.x = px2vp(rectInPx.x);
-      rect.y = px2vp(rectInPx.x);
-      rect.width = px2vp(rectInPx.width);
-      rect.height = px2vp(rectInPx.height);
+      rect.x = uiContext.px2vp(rectInPx.x);
+      rect.y = uiContext.px2vp(rectInPx.x);
+      rect.width = uiContext.px2vp(rectInPx.width);
+      rect.height = uiContext.px2vp(rectInPx.height);
       return rect;
     }
   }
@@ -815,17 +816,17 @@ ArkWeb内核需要本地播放器的状态信息来更新到网页（例如：�
 
     playerComponent?: NativeMediaPlayerComponent;
 
-    constructor(web: WebComponent, handler: webview.NativeMediaPlayerHandler, videoInfo: webview.MediaInfo) {
+    constructor(web: WebComponent, handler: webview.NativeMediaPlayerHandler, videoInfo: webview.MediaInfo, uiContext: UIContext) {
       this.web = web;
       this.embed_id = videoInfo.embedID;
 
-      let node_rect = Rect.toNodeRect(videoInfo.surfaceInfo.rect);
+      let node_rect = Rect.toNodeRect(videoInfo.surfaceInfo.rect, uiContext);
       this.node_pos_x = node_rect.x;
       this.node_pos_y = node_rect.y;
       this.node_width = node_rect.width;
       this.node_height = node_rect.height;
 
-      this.player = new NativeMediaPlayerImpl(this, handler, videoInfo);
+      this.player = new NativeMediaPlayerImpl(this, handler, videoInfo, uiContext);
     }
 
     updateNativePlayerRect(x: number, y: number, width: number, height: number) {
@@ -861,7 +862,7 @@ ArkWeb内核需要本地播放器的状态信息来更新到网页（例如：�
     }
 
     updateNativePlayerRect(x: number, y: number, width: number, height: number) {
-      let node_rect = Rect.toNodeRect({x, y, width, height});
+      let node_rect = Rect.toNodeRect({x, y, width, height}, this.getUIContext());
       this.playerInfo.node_pos_x = node_rect.x;
       this.playerInfo.node_pos_y = node_rect.y;
       this.playerInfo.node_width = node_rect.width;
@@ -894,7 +895,7 @@ ArkWeb内核需要本地播放器的状态信息来更新到网页（例如：�
             .onPageBegin(() => {
               this.controller.onCreateNativeMediaPlayer((handler: webview.NativeMediaPlayerHandler, mediaInfo: webview.MediaInfo) => {
                 console.log('onCreateNativeMediaPlayer(' + JSON.stringify(mediaInfo) + ')');
-                let nativePlayerInfo = new NativePlayerInfo(this, handler, mediaInfo);
+                let nativePlayerInfo = new NativePlayerInfo(this, handler, mediaInfo, this.getUIContext());
                 this.native_player_info_list.push(nativePlayerInfo);
                 return nativePlayerInfo.player;
               });

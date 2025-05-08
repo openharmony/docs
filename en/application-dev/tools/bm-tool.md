@@ -42,7 +42,7 @@ bm help
 bm install [-h] [-p filePath] [-r] [-w waitingTime] [-s hspDirPath]
 ```
 
-  **Parameters of the install command**
+  **Parameters**
 
 
 | Parameter| Description|
@@ -74,7 +74,7 @@ bm install -p /data/app/ohos.app.hap -w 10
 bm uninstall [-h] [-n bundleName] [-m moduleName] [-k] [-s] [-v versionCode]
 ```
 
-  **Parameters of the uninstall command**
+  **Parameters**
 
 | Parameter| Description|
 | -------- | -------- |
@@ -108,7 +108,7 @@ bm uninstall -n com.ohos.app -k
 bm dump [-h] [-a] [-g] [-n bundleName] [-s shortcutInfo] [-d deviceId]
 ```
 
-  **Parameters of the dump command**
+  **Parameters**
 
 | Parameter| Description|
 | -------- | -------- |
@@ -140,7 +140,7 @@ bm dump -n com.ohos.app -d xxxxx
 ```bash
 bm clean [-h] [-c] [-n bundleName] [-d] [-i appIndex]
 ```
-**Parameters of the clean command**
+**Parameters**
 
 | Parameter| Description|
 | -------- | --------- |
@@ -169,7 +169,7 @@ bm enable [-h] [-n bundleName] [-a abilityName]
 ```
 
 
-  **Parameters of the enable command**
+  **Parameters**
 
 | Parameter| Description|
 | -------- | -------- |
@@ -195,7 +195,7 @@ bm disable [-h] [-n bundleName] [-a abilityName]
 ```
 
 
-  **Parameters of the disable command**
+  **Parameters**
 
 | Parameter| Description|
 | -------- | -------- |
@@ -221,7 +221,7 @@ disable bundle successfully.
 bm get [-h] [-u]
 ```
 
-  **Parameters of the get command**
+  **Parameters**
 
 | Parameter| Description|
 | -------- | -------- |
@@ -248,7 +248,7 @@ bm quickfix [-h] [-a -f filePath [-t targetPath] [-d] [-o]] [-q -b bundleName] [
 
 Note: For details about how to create an .hqf file, see [HQF Packing Command](packing-tool.md#hqf-packing-command).
 
-  **Parameters of the quickfix command**
+  **Parameters**
 |   Parameter | Description|
 | -------- | -------- |
 | -h | Displays help information.|
@@ -294,7 +294,7 @@ delete quick fix successfully
 bm dump-shared [-h] [-a] [-n bundleName] [-m moduleName]
 ```
 
-  **Parameters of the dump-shared command**
+  **Parameters**
 
 | Parameter| Description|
 | -------- | -------- |
@@ -321,7 +321,7 @@ bm dump-dependencies -n com.ohos.app -m entry
 bm dump-dependencies [-h] [-n bundleName] [-m moduleName]
 ```
 
-**Parameters of the dump-dependencies command**
+**Parameters**
 | Parameter| Description|
 | -------- | -------- |
 | -h | Displays help information.|
@@ -340,7 +340,7 @@ bm dump-dependencies -n com.ohos.app -m entry
 ```bash
 bm compile [-h] [-m mode] [-r bundleName]
 ```
-**Parameters of the compile command**
+**Parameters**
 
 | Parameter| Description|
 | -------- | -------- |
@@ -364,7 +364,7 @@ Copies an .ap file to the **/data/local/pgo** directory of a specified bundle.
 bm copy-ap [-h] [-a] [-n bundleName]
 ```
 
-**Parameters of the copy-ap command**
+**Parameters**
 
 | Parameter| Description|
 | -------- | -------- |
@@ -385,7 +385,7 @@ bm copy-ap -n com.example.myapplication
 bm dump-overlay [-h] [-b bundleName] [-m moduleName]
 ```
 
-**Parameters of the dump-overlay command**
+**Parameters**
 | Parameter| Description|
 | -------- | -------- |
 | -h | Displays help information.|
@@ -413,7 +413,7 @@ Displays **overlayModuleInfo** of all overlay bundles associated with a target b
 bm dump-target-overlay [-h] [-b bundleName] [-m moduleName]
 ```
 
-**Parameters of the dump-target-overlay command**
+**Parameters**
 | Parameter| Description|
 | -------- | -------- |
 | -h | Displays help information.|
@@ -456,7 +456,7 @@ The HAP file is not signed.
 ### 9568347 The Local .so File Fails to Be Parsed
 **Error Message**
 
-Error: install parse native so failed.
+error: install parse native so failed.
 
 **Symptom**
 
@@ -500,7 +500,7 @@ The Application Binary Interface (ABI) supported by the device does not match th
 ### 9568344 The Configuration File Fails to Be Parsed
 **Error Message**
 
-Error: install parse profile prop check error.
+error: install parse profile prop check error.
 
 ![Example](figures/en-us_image_0000001585361412.png)
 
@@ -510,68 +510,73 @@ When you start debugging or run an application, the error message "error: instal
 
 **Possible Causes**
 
-The application uses the privileges, but the new signature fingerprint is not added to the **install_list_capability.json** file of the device after the signature file of the application is changed.
+1. The **bundleName** in the [app.json5 configuration file](../quick-start/app-configuration-file.md#tags-in-the-configuration-file) and **name** in the [module.json5 configuration file](../quick-start/module-configuration-file.md#tags-in-the-configuration-file) are invalid.
+
+<!--Del-->
+2. The **type** field in [extensionAbilities](../quick-start/module-configuration-file.md#extensionabilities) is set to **service** or **dataShare**.
+<!--DelEnd-->
+
 
 **Solution**
+1. Modify the **bundleName** field in the app.json5 configuration file and the **name** field in the module.json5 file based on the naming rule.
+<!--Del-->
+2. If the **type** field in **extensionAbilities** is set to **service** or **dataShare**, set [allowAppUsePrivilegeExtension](../../device-dev/subsystems/subsys-app-privilege-config-guide.md) for the application as follows:
 
-1. Obtain the new signature fingerprint.
+    1. Obtain the new signature fingerprint.
 
-    a. Obtain the storage path of the signature file, which is the value of **profile** in the **signingConfigs** field in the [project-level build-profile.json5](https://developer.huawei.com/consumer/en/doc/harmonyos-guides-V13/ide-hvigor-compilation-options-customizing-sample-V13#section1448071082016) file.
+        a. In the project-level **build-profile.json5** file (in the root directory of the project), obtain the value of **profile** in the **signingConfigs** field, which is the storage path of the signature file.
 
-    b. Open the signature file (with the file name extension .p7b), search for **development-certificate** in the file, copy **-----BEGIN CERTIFICATE-----**, **-----END CERTIFICATE-----**, and the information between them to a new text file, delete the newline characters, and save the file as a new .cer file.
+        b. Open the signature file (with the file name extension .p7b), search for **development-certificate** in the file, copy **-----BEGIN CERTIFICATE-----**, **-----END CERTIFICATE-----**, and the information between them to a new text file, delete the newline characters, and save the file as a new .cer file.
 
-    The format of the new .cer file is shown below. (The file content is an example.)
+        The format of the new .cer file is shown below. (The file content is an example.)
 
-    ![Example](figures/en-us_image_0000001585521364.png)
+        ![Example](figures/en-us_image_0000001585521364.png)
 
+        c. Use the keytool (available in the **jbr/bin** folder of the DevEco Studio installation directory) to obtain the SHA-256 value of the certificate fingerprint from the .cer file:
+          ```
+          keytool -printcert -file xxx.cer
+          ```
+        d. Remove colons (:\) from the SHA-256 content in the certificate fingerprint. What you get is the signature fingerprint.
 
+        The following figure shows an example.
+        ![Example](figures/en-us_image_0000001635921233.png)
 
-    c. Use the keytool (available in the **jbr/bin** folder of the DevEco Studio installation directory) to obtain the SHA-256 value of the certificate fingerprint from the .cer file:
-      ```
-      keytool -printcert -file xxx.cer
-      ```
-    d. Remove the colon (:\) from the SHA-256 content in the certificate fingerprint. What you get is the signature fingerprint.
-    
-    An example SHA-256 value is shown below.
-    ![Example](figures/en-us_image_0000001635921233.png)
-    
-    The signature fingerprint obtained by removing the colon is 5753DDBC1A8EF88A62058A9FC4B6AFAFC1C5D8D1A1B86FB3532739B625F8F3DB.
+        After colons are removed, the obtained signature fingerprint is **5753DDBC1A8EF88A62058A9FC4B6AFAFC1C5D8D1A1B86FB3532739B625F8F3DB**.
 
-2. Obtain the **install_list_capability.json** file of the device.
+    2. Obtain the **install_list_capability.json** file of the device.
 
-    a. Connect the device.
+        a. Connect to the device and enter the shell.
+        ```
+        hdc shell
+        ```
+        b. Run the following command to view the **install_list_capability.json** file of the device:
+        ```
+        // Locate the file on the device.
+        find /system -name install_list_capability.json
+        ```
+        c. Run the following command to obtain the **install_list_capability.json** file:
+        ```
+        hdc target mount
+        hdc file recv /system/etc/app/install_list_capability.json
+        ```
 
-    b. Run the following command to view the **install_list_capability.json** file of the device:
-    ```
-    find /system -name install_list_capability.json
-    ```
-    The **install_list_capability.json** file of the device is stored in the following directory. Find the corresponding configuration file based on the bundle name.
-    ```
-    /system/etc/app/install_list_capability.json
-    ```
-    c. Run the following command to obtain the **install_list_capability.json** file:
-    ```
-    hdc shell mount -o rw,remount /
-    hdc file recv /system/etc/app/install_list_capability.json
-    ```
+    3. Add the signature fingerprint obtained to **app_signature** in the **install_list_capability.json** file. Note that the signature fingerprint must be configured under the corresponding bundle name.
+    ![Example](figures/en-us_image_0000001635641893.png)
+    4. Push the modified **install_list_capability.json** file to the device and restart the device.
 
-3. Add the signature fingerprint obtained to **app_signature** in the **install_list_capability.json** file. Note that the signature fingerprint must be configured under the corresponding bundle name.
-![Example](figures/en-us_image_0000001635641893.png)
-4. Push the modified **install_list_capability.json** file to the device and restart the device.
-
-    ```
-    hdc shell mount -o rw,remount /
-    hdc file send install_list_capability.json /system/etc/app/install_list_capability.json
-    hdc shell chmod 644 /system/etc/app/install_list_capability.json
-    hdc shell reboot
-    ```
-5. Reinstall the application.
+        ```
+        hdc target mount
+        hdc file send install_list_capability.json /system/etc/app/install_list_capability.json
+        hdc shell chmod 644 /system/etc/app/install_list_capability.json
+        hdc shell reboot
+        ```
+    5. Reinstall the application.<!--DelEnd-->
 
 
 ### 9568305 The Dependent Module Does Not Exist
 **Error Message**
 
-Error: dependent module does not exist.
+error: dependent module does not exist.
 
 ![Example](figures/en-us_image_0000001560338986.png)
 
@@ -595,7 +600,7 @@ The SharedLibrary module on which the application depends is not installed.
 ### 9568259 Some Fields Are Missing in the Configuration File
 **Error Message**
 
-Error: install parse profile missing prop.
+error: install parse profile missing prop.
 
 ![Example](figures/en-us_image_0000001559130596.png)
 
@@ -625,7 +630,7 @@ Mandatory fields are missing in the **app.json5** and **module.json5** files.
 ### 9568258 The Release Types of the New Application and Existing Application Are Different
 **Error Message**
 
-Error: install releaseType target not same.
+error: install releaseType target not same.
 
 ![Example](figures/en-us_image_0000001609976041.png)
 
@@ -647,7 +652,7 @@ When you start debugging or run an application, the error message "error: instal
 ### 9568322 The Signature Verification Fails Because the Application Source Is Untrusted
 **Error Message**
 
-Error: signature verification failed due to not trusted app source.
+error: signature verification failed due to not trusted app source.
 
 ![Example](figures/en-us_image_0000001585042216.png)
 
@@ -688,11 +693,28 @@ When you start debugging or run an application, the error message "error: signat
   3. Check whether the signature contains the UDID of the debugging device. You can use a text editor to open the signed HAP and search for **device-ids**.
 * Scenario 2: Use the [debug certificate and debug profile](https://developer.huawei.com/consumer/en/doc/app/agc-help-debug-app-0000001914423098) to re-sign the application.
 
+### 9568286 The Type of the Signing Certificate Profile of the New Application Is Different from That of the Existing Application
+**Error Message**
+
+error: install provision type not same.
+
+**Symptom**
+
+When an application or service is debugged or running, the HAP fails to be installed because the type of the [signing certificate profile](https://developer.huawei.com/consumer/en/doc/app/agc-help-add-releaseprofile-0000001914714796) of the new application is different from that of the existing application.
+
+**Possible Causes**
+
+The type in the signing certificate profile of the new application is different from that of the existing application.
+
+**Solution**
+
+1. Ensure that the type of the signing certificate profile of the new application is the same as that of the existing application, and install the new HAP.
+2. Uninstall the existing application and install the new HAP.
 
 ### 9568289 The Installation Fails Because the Permission Request Fails
 **Error Message**
 
-Error: install failed due to grant request permissions failed.
+error: install failed due to grant request permissions failed.
 
 ![Example](figures/en-us_image_0000001585201996.png)
 
@@ -719,7 +741,7 @@ Example: xxxx\Huawei\DevEco Studio\sdk\default\openharmony\toolchains\lib\
 ### 9568297 The Installation Fails Because the SDK Version of the Device Is Too Early
 **Error Message**
 
-Error: install failed due to older sdk version in the device.
+error: install failed due to older sdk version in the device.
 
 ![Example](figures/en-us_image_0000001635521909.png)
 
@@ -744,7 +766,7 @@ The SDK version used for build and packing does not match the device image versi
 ### 9568332 The Installation Fails Due to Inconsistent Signatures
 **Error Message**
 
-Error: install sign info inconsistent.
+error: install sign info inconsistent.
 
 ![Example](figures/en-us_image_0000001635761329.png)
 
@@ -767,7 +789,7 @@ When you start debugging or run an application, the error message "error: instal
 ### 9568329 The Signature Information Fails to Be Verified
 **Error Message**
 
-Error: verify signature failed.
+error: verify signature failed.
 
 ![Example](figures/en_image_155401.png)
 
@@ -792,7 +814,7 @@ The **bundleName** in the signature information is different from that of the ap
 ### 9568266 The Installation Permission Is Denied
 **Error Message**
 
-Error: install permission denied.
+error: install permission denied.
 
 ![Example](figures/en_image_9568266.png)
 
@@ -812,7 +834,7 @@ The **hdc install** command cannot be used to install the enterprise application
 ### 9568337 The Installation Parsing Fails
 **Error Message**
 
-Error: install parse unexpected.
+error: install parse unexpected.
 
 **Symptom**
 
@@ -837,7 +859,7 @@ When an application is pushed to a device, an error message is displayed, indica
 ### 9568316 The Permission of APL in ProxyData Is Low
 **Error Message**
 
-Error: apl of required permission in proxy data is too low.
+error: apl of required permission in proxy data is too low.
 
 **Symptom**
 
@@ -855,7 +877,7 @@ Error: apl of required permission in proxy data is too low.
 ### 9568315 The URI in Proxy Data Is Incorrect
 **Error Message**
 
-Error: uri in proxy data is wrong.
+error: uri in proxy data is wrong.
 
 **Symptom**
 
@@ -873,7 +895,7 @@ The format of **uri** does not meet the requirement.
 ### 9568336 The Debugging Type of the Application Is Different From That of the Installed Application
 **Error Message**
 
-Error: install debug type not same.
+error: install debug type not same.
 
 **Symptom**
 
@@ -891,7 +913,7 @@ You have installed the application using the **Debug** button of DevEco Studio, 
 ### 9568296 The Bundle Type Is Incorrect
 **Error Message**
 
-Error: install failed due to error bundle type.
+error: install failed due to error bundle type.
 
 **Symptom**
 
@@ -911,7 +933,7 @@ The **bundleType** of the application to be installed is different from that of 
 ### 9568292 The User With UserID 0 Can Install Only the Singleton Application
 **Error Message**
 
-Error: install failed due to zero user can only install singleton app.
+error: install failed due to zero user can only install singleton app.
 
 **Symptom**
 
@@ -933,7 +955,7 @@ The user with **UserID 0** is only allowed to install the application with the *
 ### 9568263 The Installation Version Cannot Be Downgraded
 **Error Message**
 
-Error: install version downgrade.
+error: install version downgrade.
 
 **Symptom**
 
@@ -951,7 +973,7 @@ The **versionCode** of the application to be installed is earlier than that of t
 ### 9568304 The Application Does Not Support the Current Device Type
 **Error Message**
 
-Error: device type is not supported.
+error: device type is not supported.
 
 **Symptom**
 
@@ -969,7 +991,7 @@ The application does not support the current device type.
 ### 9568317 The Multi-Process Configuration of the Application Does Not Match the System Configuration
 **Error Message**
 
-Error: isolationMode does not match the system.
+error: isolationMode does not match the system.
 
 **Symptom**
 
@@ -997,7 +1019,7 @@ The installation fails because **isolationMode** of the application is not suppo
 ### 9568315 The URI Attribute of the Proxy Data Is Incorrect
 **Error Message**
 
-Error: uri in proxy data is wrong.
+error: uri in proxy data is wrong.
 
 **Symptom**
 
@@ -1019,7 +1041,7 @@ The format of **uri** does not meet the requirement.
 ### 9568310 The Compatibility Policies Are Different
 **Error Message**
 
-Error: compatible policy not same.
+error: compatible policy not same.
 
 **Symptom**
 
@@ -1038,7 +1060,7 @@ The compatibility policy of the new bundle is different from that of the existin
 ### 9568391 The Bundle Manager Service Is Stopped
 **Error Message**
 
-Error: bundle manager service is died.
+error: bundle manager service is died.
 
 **Symptom**
 
@@ -1067,7 +1089,7 @@ hdc file recv /data/log/hilog/
 ### 9568393 The Code Signature Fails to Be Verified
 **Error Message**
 
-Error: verify code signature failed.
+error: verify code signature failed.
 
 **Symptom**
 
@@ -1086,7 +1108,7 @@ The bundle does not contain code signature information.
 ### 9568401 The Bundle to Debug Can Run Only on Devices in Developer Mode
 **Error Message**
 
-Error: debug bundle can only be installed in developer mode.
+error: debug bundle can only be installed in developer mode.
 
 **Symptom**
 
@@ -1105,7 +1127,7 @@ Developer mode is not enabled on the device.
 ### 9568386 The Bundle Cannot Be Found for Uninstallation
 **Error Message**
 
-Error: uninstall missing installed bundle.
+error: uninstall missing installed bundle.
 
 **Symptom**
 
@@ -1122,7 +1144,7 @@ The bundle to be uninstalled is not installed.
 ### 9568388 Bundle Uninstall Is Not Allowed by Enterprise Device Management
 **Error Message**
 
-Error: Failed to uninstall the HAP because the uninstall is forbidden by enterprise device management.
+error: Failed to uninstall the HAP because the uninstall is forbidden by enterprise device management.
 
 **Symptom**
 
@@ -1139,7 +1161,7 @@ The bundle is set not to be uninstalled.
 ### 9568284 The Installation Version Is Not Compatible
 **Error Message**
 
-Error: install version not compatible.
+error: install version not compatible.
 
 **Symptom**
 
@@ -1161,7 +1183,7 @@ When an HSP is installed, the following information is verified:
 ### 9568287 The Number of Entry Modules in the Installation Package Is Invalid
 **Error Message**
 
-Error: install invalid number of entry HAP.
+error: install invalid number of entry HAP.
 
 **Symptom**
 
@@ -1179,7 +1201,7 @@ There are multiple entry modules in the installation package. An application can
 ### 9568281 The vendor Field of the Installation Package Is Inconsistent
 **Error Message**
 
-Error: install vendor not same.
+error: install vendor not same.
 
 **Symptom**
 
@@ -1198,7 +1220,7 @@ The **vendor** field of the application in the **app.json5** file is inconsisten
 ### 9568274 An Error Occurs During Service Installation
 **Error Message**
 
-Error: install installd service error.
+error: install installd service error.
 
 **Symptom**
 
@@ -1216,7 +1238,7 @@ An exception occurs during service installation.
 ### 9568314 The HSP Fails to Be Installed
 **Error Message**
 
-Error: Failed to install the HSP because installing a shared bundle specified by hapFilePaths is not allowed.
+error: Failed to install the HSP because installing a shared bundle specified by hapFilePaths is not allowed.
 
 **Symptom**
 
@@ -1234,7 +1256,7 @@ The HSP is installed by running the **hdc app install \***\** command.
 ### 9568359 The SELinux Fails to be Installed and Set
 **Error Message**
 
-Error: installd set selinux label failed.
+error: installd set selinux label failed.
 
 **Symptom**
 
@@ -1257,7 +1279,7 @@ The **apl** field in the signature configuration file is incorrect. It can be **
 ### 9568398 The Enterprise Bundle Is Not Allowed to Be Installed on Non-Enterprise Devices
 **Error Message**
 
-Error: Failed to install the HAP because an enterprise normal/MDM bundle can not be installed on non-enterprise device.
+error: Failed to install the HAP because an enterprise normal/MDM bundle can not be installed on non-enterprise device.
 
 **Symptom**
 
@@ -1274,7 +1296,7 @@ The device is not an enterprise device.
 ### 9568402 The release Bundle of the app_gallery Type Cannot Be Installed
 **Error Message**
 
-Error: Release bundle can not be installed.
+error: Release bundle can not be installed.
 
 **Symptom**
 
@@ -1292,7 +1314,7 @@ The bundle's distribution type is **app_gallery** and the signing certificate ty
 ### 9568403 The Encryption Check Fails During the Installation
 **Error Message**
 
-Error: check encryption failed.
+error: check encryption failed.
 
 **Symptom**
 
@@ -1310,7 +1332,7 @@ The image version is too early or the **lib** directory of the HAP contain non-s
 ### 9568407 Failed to Install the Native Software Package
 **Error Message**
 
-Error: Failed to install the HAP because installing the native package failed.
+error: Failed to install the HAP because installing the native package failed.
 
 **Symptom**
 
@@ -1327,7 +1349,7 @@ The native software package to be installed in the HAP is damaged.
 ### 9568408 Failed to Uninstall the Native Software Package
 **Error Message**
 
-Error: Failed to uninstall the HAP because uninstalling the native package failed.
+error: Failed to uninstall the HAP because uninstalling the native package failed.
 
 **Symptom**
 
@@ -1344,7 +1366,7 @@ The native software package to be uninstalled is occupied.
 ### 9568409 Failed to Extract the Native Software Package
 **Error Message**
 
-Error: Failed to install the HAP because the extract of the native package failed.
+error: Failed to install the HAP because the extract of the native package failed.
 
 **Symptom**
 
@@ -1361,7 +1383,7 @@ The native software package configured in **module.json5** does not exist in the
 ### 9568410 Failed To Install the HAP Because the Device Is Under Control
 **Error Message**
 
-Error: Failed to install the HAP because the device has been controlled.
+error: Failed to install the HAP because the device has been controlled.
 
 **Symptom**
 
@@ -1379,7 +1401,7 @@ The device is activated through an unauthorized channel.
 ### 9568415 The Encrypted Bundle Whose Signing Certificate Is Debug or Debug Is True in Configuration File Cannot Be Installed
 **Error Message**
 
-Error: Debug encrypted bundle is not allowed to install.
+error: Debug encrypted bundle is not allowed to install.
 
 **Symptom**
 
@@ -1397,7 +1419,7 @@ The encrypted application whose signing certificate is of the **debug** type or 
 ### 9568416 The Encrypted Bundle Cannot Be Installed
 **Error Message**
 
-Error: Encrypted bundle can not be installed.
+error: Encrypted bundle can not be installed.
 
 **Symptom**
 
@@ -1414,7 +1436,7 @@ The installed bundle is encrypted.
 ### 9568417 Failed to Verify the Signature
 **Error Message**
 
-Error: bundle cannot be installed because the appId is not same with preinstalled bundle.
+error: bundle cannot be installed because the appId is not same with preinstalled bundle.
 
 **Symptom**
 
@@ -1431,7 +1453,7 @@ The signature of the installed bundle is different from that of the pre-installe
 ### 9568418 Failed to Uninstall an Application Configured with an Uninstallation Disposed Rule
 **Error Message**
 
-Error: Failed to uninstall the app because the app is locked.
+error: Failed to uninstall the app because the app is locked.
 
 **Symptom**
 
@@ -1475,13 +1497,15 @@ error: install version code not same.
 1. Change the version code of the new bundle to be the same as that of the existing bundle, or uninstall the existing bundle and install the new bundle.
 2. Ensure that the version codes of all new bundles are the same.
 
-### 9568421 Failed to Install the HAP or HSP Because the Distribution Type in the Signature File Restricts Installation
+### 9568421 The Application Fails to Be Installed on the Device Because the Type of the Signing Certificate Profile Is Not Supported 
 **Error Message**
 
 error: the app distribution type is not allowed install.
 
 **Possible Causes**
-The distribution type specified in the signature file restricts installation on the current device.
+
+The type of the [signing certificate profile](https://developer.huawei.com/consumer/en/doc/app/agc-help-add-releaseprofile-0000001914714796) of the application is not supported on the device.
 
 **Solution**
-Change the distribution type of the signature file.
+
+Change the type of the signing certificate profile.

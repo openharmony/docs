@@ -16,12 +16,12 @@
 | notificationType<sup>11+</sup>                 | [notificationManager.SlotType](js-apis-notificationManager.md#slottype) | 否 | 是  | 通道类型。                |
 | level                | [notification.SlotLevel](../apis-notification-kit/js-apis-notificationManager.md#slotlevel)                | 否 | 是  | 通知级别。 |
 | desc                 | string                | 否 | 是  | 通知渠道描述信息。            |
-| badgeFlag            | boolean               | 否 | 是  | 是否显示角标。              |
-| bypassDnd            | boolean               | 否 | 是  | 是否在系统中绕过免打扰模式。       |
+| badgeFlag            | boolean               | 否 | 是  | 是否显示角标。<br> - true：是。<br> - false：否。              |
+| bypassDnd            | boolean               | 否 | 是  | 是否在系统中绕过免打扰模式。<br> - true：是。<br> - false：否。       |
 | lockscreenVisibility | number                | 否 | 是  | 在锁定屏幕上显示通知的模式。预留能力，暂不支持。       |
-| vibrationEnabled     | boolean               | 否 | 是  | 是否可振动。               |
+| vibrationEnabled     | boolean               | 否 | 是  | 是否可振动。<br> - true：是。<br> - false：否。               |
 | sound                | string                | 否 | 是  | 通知提示音。               |
-| lightEnabled         | boolean               | 否 | 是  | 是否闪灯。                |
+| lightEnabled         | boolean               | 否 | 是  | 是否闪灯。<br> - true：是。<br> - false：否。                |
 | lightColor           | number                | 否 | 是  | 通知灯颜色。预留能力，暂不支持。               |
 | vibrationValues      | Array\<number\>       | 否 | 是  | 通知振动样式。预留能力，暂不支持。              |
-| enabled<sup>9+</sup> | boolean               | 是 | 是  | 此通知插槽中的启停状态。true表示使能；false表示禁止。         |
+| enabled<sup>9+</sup> | boolean               | 是 | 是  | 表示是否允许发布此通知渠道的通知。<br> - true：允许。<br> - false：禁止。         |

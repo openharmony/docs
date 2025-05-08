@@ -4,7 +4,7 @@
 - [ArkWeb进程](web_component_process.md)
 - [Web组件的生命周期](web-event-sequence.md)
 - 设置基本属性和事件<!--web-set-attributes-events-->
-  - [UserAgent开发指导](web-default-userAgent.md)
+  - [User-Agent开发指导](web-default-userAgent.md)
   - [管理Cookie及数据存储](web-cookie-and-data-storage-mgmt.md)
   - [设置深色模式](web-set-dark-mode.md)
   - [在新窗口中打开页面](web-open-in-new-window.md)
@@ -26,6 +26,8 @@
   - [Web页面显示内容滚动](web-content-scrolling.md)
   - [Web组件对接软键盘](web-docking-softkeyboard.md)
   - [Web组件焦点管理](web-focus.md)
+  - [Web组件手势事件](web-gesture.md)
+  - [Web组件缩放功能](web-scale-zoom.md)
 - 管理Web组件的网络安全与隐私<!--web-manage-cyber-security-privacy-->
   - [解决Web组件本地资源跨域问题](web-cross-origin.md)
   - [使用智能防跟踪功能](web-intelligent-tracking-prevention.md)
@@ -40,7 +42,7 @@
   - [设置Web组件前进后退缓存](web-set-back-forward-cache.md)
   - [Web组件在不同窗口间迁移](web-component-migrate.md)
 - 管理网页文件上传与下载<!--web-manage-upload-download-->
-  - [上传文件](web-file-upload.md)
+  - [使用Web组件上传文件](web-file-upload.md)
   - [使用Web组件的下载能力](web-download.md)
 - 使用网页多媒体<!--web-use-multimedia-->
   - [使用WebRTC进行Web视频会议](web-rtc.md)

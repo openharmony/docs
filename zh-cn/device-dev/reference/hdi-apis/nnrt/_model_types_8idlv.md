@@ -7,7 +7,7 @@
 
 在**PrepareModel**阶段，需要解析Model并将其转换为用于推理的模型结构，在**Run**阶段则会执行模型推理。大致流程如下：
 
-1. 编写[NodeAttrTypes.idl](_node_attr_types_8idl_v10.md)文件中每一个算子的函数，并将函数与[NodeType](_n_n_rt_v10.md#nodetype)进行关联；
+1. 编写[NodeAttrTypes.idl](_node_attr_types_8idl_v10.md)文件中每一个算子的函数，并将函数与[NodeType](_n_n_rt_v10.md#nodetype)进行关联。
 
 2. 遍历[Model](_model_v10.md)的subGraph参数，然后从子图的nodeIndecies中获得该子图包含的算子节点以及算子的输入输出张量和整个[Model](_model_v10.md)的输入输出张量。
 

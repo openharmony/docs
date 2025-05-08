@@ -44,7 +44,6 @@ The system sends [AudioStreamDeviceChangeReason](../../reference/apis-audio-kit/
 ## Example
 
   ```ts
-  import router from '@ohos.router';
   import { audio } from '@kit.AudioKit';
   import { BusinessError } from '@kit.BasicServicesKit';
   
@@ -56,7 +55,7 @@ The system sends [AudioStreamDeviceChangeReason](../../reference/apis-audio-kit/
     encodingType: audio.AudioEncodingType.ENCODING_TYPE_RAW // Encoding format.
   };
   let audioRendererInfo: audio.AudioRendererInfo = {
-    usage: audio.StreamUsage.STREAM_USAGE_MUSIC, // Audio stream usage type.
+    usage: audio.StreamUsage.STREAM_USAGE_MUSIC, // Audio stream usage type: music. Set this parameter based on the service scenario.
     rendererFlags: 0 // AudioRenderer flag.
   };
   let audioRendererOptions: audio.AudioRendererOptions = {

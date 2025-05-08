@@ -11,7 +11,7 @@
 
 
 ```js
-import { inputConsumer } from '@kit.InputKit';
+import { inputConsumer, KeyEvent } from '@kit.InputKit';
 ```
 
 ## HotkeyOptions<sup>14+</sup>
@@ -25,6 +25,18 @@ import { inputConsumer } from '@kit.InputKit';
 | preKeys   | Array&lt;number&gt; | 是      | 否      | 修饰键（包括 Ctrl、Shift 和 Alt）集合，数量范围[1, 2]，修饰按键无顺序要求。<br>例如，Ctrl+Shift+Esc中，Ctrl+Shift称为修饰键。 |
 | finalKey  | number  | 是      | 否      | 被修饰键，为除修饰键和 Meta 以外的其它按键。<br>如Ctrl+Shift+Esc中，Esc称为被修饰键。 |
 | isRepeat  | boolean  | 是      | 否      | 是否上报重复的按键事件。true表示上报，false表示不上报，若不填默认为true。 |
+
+## KeyPressedConfig<sup>16+</sup>
+
+按键事件消费设置。
+
+**系统能力：** SystemCapability.MultimodalInput.Input.InputConsumer
+
+| 名称        | 类型   | 可读   | 可写   | 说明      |
+| --------- | ------ | ------- | ------- | ------- |
+| key       | number  | 是      | 否      | 按键键值。<br>当前仅支持[KEYCODE_VOLUME_UP](js-apis-keycode.md#keycode)键和[KEYCODE_VOLUME_DOWN](js-apis-keycode.md#keycode)键。 |
+| action    | number  | 是      | 否      | 按键事件类型。取值如下，当前仅支持取值为1。<br>- 1：按键按下。<br>- 2：按键抬起。 |
+| isRepeat  | boolean  | 是      | 否      | 是否上报重复的按键事件。 |
 
 ## inputConsumer.getAllSystemHotkeys<sup>14+</sup>
 
@@ -56,7 +68,7 @@ inputConsumer.getAllSystemHotkeys().then((data: Array<inputConsumer.HotkeyOption
 });
 ```
 
-## inputConsumer.on('hotkeyOptions')<sup>14+</sup>
+## inputConsumer.on('hotkeyChange')<sup>14+</sup>
 
 on(type: 'hotkeyChange', hotkeyOptions: HotkeyOptions, callback: Callback&lt;HotkeyOptions&gt;): void
 
@@ -83,7 +95,7 @@ on(type: 'hotkeyChange', hotkeyOptions: HotkeyOptions, callback: Callback&lt;Hot
 | 4200002  | The hotkey has been used by the system. |
 | 4200003  | The hotkey has been subscribed to by another. |
 
-**示例：** 
+**示例：**
 
 ```js
 let leftCtrlKey = 2072;
@@ -103,7 +115,7 @@ try {
 }
 ```
 
-## inputConsumer.off('hotkeyOptions')<sup>14+</sup>
+## inputConsumer.off('hotkeyChange')<sup>14+</sup>
 
 off(type: 'hotkeyChange', hotkeyOptions: HotkeyOptions, callback?: Callback&lt;HotkeyOptions&gt;): void
 
@@ -128,7 +140,7 @@ off(type: 'hotkeyChange', hotkeyOptions: HotkeyOptions, callback?: Callback&lt;H
 | 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
 | 801 | Capability not supported. |
 
-**示例：** 
+**示例：**
 
 ```js
 let leftCtrlKey = 2072;
@@ -146,6 +158,7 @@ try {
   console.log(`Execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
+
 ```js
 let leftCtrlKey = 2072;
 let zKey = 2042;
@@ -160,5 +173,86 @@ try {
   console.log(`Unsubscribe success`);
 } catch (error) {
   console.log(`Execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```
+
+## inputConsumer.on('keyPressed')<sup>16+</sup>
+
+on(type: 'keyPressed', options: KeyPressedConfig, callback: Callback&lt;KeyEvent&gt;): void
+
+订阅按键按下事件。若当前应用处于前台焦点窗口，用户按下指定按键，会触发回调。
+
+**系统能力：** SystemCapability.MultimodalInput.Input.InputConsumer
+
+**参数：**
+
+| 参数名         | 类型                                | 必填  | 说明                              |
+| ---------- | --------------------------             | ----  | ---------- |
+| type       | string                                 | 是     | 事件类型，固定取值为'keyPressed'。        |
+| options    | [KeyPressedConfig](#keypressedconfig16)| 是     | 按键事件消费设置。           |
+| callback   | Callback&lt;[KeyEvent](./js-apis-keyevent.md#keyevent)&gt; | 是    | 用于返回按键事件的回调函数。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID  | 错误信息             |
+| ---- | --------------------- |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+| 801 | Capability not supported. |
+
+**示例：**
+
+```js
+try {
+  let options: inputConsumer.KeyPressedConfig = {
+    key: 16,
+    action: 1,
+    isRepeat: false,
+  }
+  inputConsumer.on('keyPressed', options, (event: KeyEvent) => {
+    console.log(`Subscribe success ${JSON.stringify(event)}`);
+  });
+} catch (error) {
+  console.log(`Subscribe execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```
+
+## inputConsumer.off('keyPressed')<sup>16+</sup>
+
+off(type: 'keyPressed', callback?: Callback&lt;KeyEvent&gt;): void
+
+取消按键按下事件订阅。
+
+**系统能力：** SystemCapability.MultimodalInput.Input.InputConsumer
+
+**参数：**
+
+| 参数名         | 类型                         | 必填   | 说明                              |
+| ---------- | -------------------------- | ---- | ---------- |
+| type       | string                     | 是    | 事件类型，固定取值为'keyPressed'。        |
+| callback   | Callback&lt;[KeyEvent](./js-apis-keyevent.md#keyevent)&gt; | 否    | 需要取消订阅的回调函数。若不填，则取消当前已订阅的所有回调函数。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID  | 错误信息             |
+| ---- | --------------------- |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+| 801 | Capability not supported. |
+
+**示例：**
+
+```js
+try {
+  // 取消指定回调函数
+  inputConsumer.off('keyPressed', (event: KeyEvent) => {
+    console.log(`Unsubscribe success ${JSON.stringify(event)}`);
+  });
+  // 取消当前已订阅的所有回调函数
+  inputConsumer.off("keyPressed");
+} catch (error) {
+  console.log(`Unsubscribe execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```

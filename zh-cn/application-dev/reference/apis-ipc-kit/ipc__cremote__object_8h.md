@@ -13,6 +13,7 @@
 
 **相关模块：**[OHIPCRemoteObject](_o_h_i_p_c_remote_object.md)
 
+**所在头文件：** [ipc_cremote_object.h](ipc__cremote__object_8h.md)
 
 ## 汇总
 
@@ -38,7 +39,7 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| OH_IPC_RequestMode {<br/>[OH_IPC_REQUEST_MODE_SYNC](_o_h_i_p_c_remote_object.md) = 0,<br/>[OH_IPC_REQUEST_MODE_ASYNC](_o_h_i_p_c_remote_object.md) = 1<br/>} | IPC请求模式定义。 | 
+| [OH_IPC_RequestMode](_o_h_i_p_c_remote_object.md#oh_ipc_requestmode) {<br/>OH_IPC_REQUEST_MODE_SYNC = 0,<br/>OH_IPC_REQUEST_MODE_ASYNC = 1<br/>} | IPC请求模式定义。 | 
 
 
 ### 函数

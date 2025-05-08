@@ -1,8 +1,6 @@
 # 密钥协商(ArkTS)
 
-
 以协商密钥类型为X25519，并密钥仅在HUKS内使用为例，完成密钥协商。具体的场景介绍及支持的算法规格，请参考[密钥生成支持的算法](huks-key-generation-overview.md#支持的算法)。
-
 
 ## 开发步骤
 
@@ -417,7 +415,7 @@
   /*
   *以下以 DH密钥的Promise操作使用为例
   */
-  import { huks } from '@kit.UniversalKeystoreKit'
+  import { huks } from '@kit.UniversalKeystoreKit';
 
   function StringToUint8Array(str: string) {
     let arr: number[] = []

@@ -419,3 +419,15 @@ Currently, this permission is available only to 2-in-1 device applications.
 **Authorization mode**: system_grant
 
 **Valid since**: 15
+
+## ohos.permission.GET_FILE_ICON
+
+Allows an application to obtain the icon of the specified file type.
+
+With this permission, the application can obtain the icon of the specified file type.
+
+**Permission level**: normal
+
+**Authorization mode**: system_grant
+
+**Valid since**: 17

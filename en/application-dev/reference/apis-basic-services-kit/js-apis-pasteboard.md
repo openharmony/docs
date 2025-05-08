@@ -137,7 +137,7 @@ let pasteData: pasteboard.PasteData = pasteboard.createData(record);
 
 ## pasteboard.createRecord<sup>9+</sup>
 
-createRecord(mimeType: string, value: ValueType):PasteDataRecord;
+createRecord(mimeType: string, value: ValueType):PasteDataRecord
 
 Creates a **PasteDataRecord** object of the custom type.
 
@@ -480,9 +480,11 @@ The defined properties can be applied to the pasteboard only with the [setProper
 | localOnly<sup>7+</sup> | boolean | Yes| Yes| Whether the pasteboard content is for local access only. The default value is **false**. The value will be overwritten by the value of the **shareOption** attribute. You are advised to use the **shareOption** attribute instead. **ShareOption.INAPP** and **ShareOption.LOCALDEVICE** set **localOnly** to **true**, and **ShareOption.CROSSDEVICE** sets **localOnly** to false.<br>- **true**: The pasteboard content is set for local access only.<br>- **false**: The pasteboard content can be shared between devices.|
 | shareOption<sup>9+</sup> | [ShareOption](#shareoption9) | Yes| Yes| Where the pasteboard content can be pasted. If this attribute is set incorrectly or not set, the default value **CROSSDEVICE** is used.                                                                                                                                                                                           |
 
-## FileConflictOption<sup>15+</sup>
+## FileConflictOptions<sup>15+</sup>
 
 Defines options for file copy conflicts.
+
+**Atomic service API**: This API can be used in atomic services since API version 15.
 
 **System capability**: SystemCapability.MiscServices.Pasteboard
 
@@ -494,6 +496,8 @@ Defines options for file copy conflicts.
 ## ProgressIndicator<sup>15+</sup>
 
 Defines options for the progress indicator. You can choose whether to use the default progress indicator.
+
+**Atomic service API**: This API can be used in atomic services since API version 15.
 
 **System capability**: SystemCapability.MiscServices.Pasteboard
 
@@ -547,33 +551,41 @@ Cancels an ongoing copy-and-paste task.
 **Example**
 
 ```ts
-import { AbilityConstant, UIAbility, Want} from '@kit.AbilityKit'
-import { BusinessError pasteboard } from '@kit.BasicServicesKit';
-
-export default class EntryAbility extends UIAbility {
-    async onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): Promise<void> {
-        let text = "test";
-        let pasteData = pasteboard.createData(pasteboard.MIMETYPE_TEXT_PLAIN, text);
-        let systemPasteboard = pasteboard.getSystemPasteboard();
-        await systemPasteboard.setData(pasteData);
-        let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
-        let signal = new pasteboard.ProgressSignal;
-		let ProgressListener = (progress: pasteData.ProgressInfo) => {
-    		console.log('progressListener success, progress:' + progress.progress);
-            signal.cancel();
-		}
-		let params: pasteData.GetDataParams = {
-    		destUri: '/data/storage/el2/base/haps/entry/files/dstFile.txt',
-    		fileConflictOption: pasteData.FileConflictOption.OVERWRITE,
-    		progressIndicator: pasteData.ProgressIndicator.DEFAULT,
-    		progressListener: ProgressListener
-		}
-		systemPasteboard.getDataWithProgress().then((pasteData: pasteboard.PasteData) => {
-    		let text: string = pasteData.getPrimaryText();
-		}).catch((err: BusinessError) => {
-    		console.error('Failed to get PasteData. Cause: ' + err.message);
-		});   
+import { BusinessError, pasteboard } from '@kit.BasicServicesKit';
+@Entry
+@Component
+struct PasteboardTest {
+ build() {
+   RelativeContainer() {
+     Column() {
+       Column() {
+         Button("Copy txt")
+           .onClick(async ()=>{
+              let text = "test";
+              let pasteData = pasteboard.createData(pasteboard.MIMETYPE_TEXT_PLAIN, text);
+              let systemPasteboard = pasteboard.getSystemPasteboard();
+        	  await systemPasteboard.setData(pasteData);
+              let signal = new pasteboard.ProgressSignal;
+              let ProgressListener = (progress: pasteboard.ProgressInfo) => {
+    		    console.log('progressListener success, progress:' + progress.progress);
+                signal.cancel();
+              }
+              let params: pasteboard.GetDataParams = {
+                destUri: '/data/storage/el2/base/haps/entry/files/dstFile.txt',
+                fileConflictOptions: pasteboard.FileConflictOptions.OVERWRITE,
+                progressIndicator: pasteboard.ProgressIndicator.DEFAULT,
+                progressListener: ProgressListener
+              };
+              systemPasteboard.getDataWithProgress(params).then((pasteData: pasteboard.PasteData) => {
+                console.error('getDataWithProgress succ');
+              }).catch((err: BusinessError) => {
+                console.error('Failed to get PasteData. Cause: ' + err.message);
+              })   
+          })
+        }
+      }
     }
+  }
 }
 ```
 
@@ -585,13 +597,13 @@ Obtains parameters when an application uses the file copy capability provided by
 
 **System capability**: SystemCapability.MiscServices.Pasteboard
 
-| Name              | Type                                       | Mandatory| Description                                                        |
-| ------------------ | ------------------------------------------- | ---- | ------------------------------------------------------------ |
-| destUri            | string                                      | No  | Destination path for copying files. If file processing is not supported, this parameter is not required. If the application involves complex file processing policies or needs to distinguish file multipathing storage, you are advised not to set this parameter but let the application copies files by itself.|
-| fileConflictOption | [FileConflictOption](#fileconflictoption15) | No  | File conflict options for a copy-and-paste task. The default value is **OVERWRITE**.                 |
-| progressIndicator  | [ProgressIndicator](#progressindicator15)   | Yes  | Progress indicator options. You can choose whether to use the default progress indicator.        |
-| progressListener   | [ProgressListener](#progresslistener15)     | No  | Listener for progress data changes. If the default progress indicator is not used, you can set this parameter to obtain the paste progress.|
-| progressSignal     | [ProgressSignal](#progresssignal15)         | No  | Function for canceling the paste task. This parameter is valid only when [ProgressIndicator](#progressindicator15) is set to **NONE**.|
+| Name               | Type                                         | Mandatory| Description                                                        |
+| ------------------- | --------------------------------------------- | ---- | ------------------------------------------------------------ |
+| destUri             | string                                        | No  | Destination path for copying files. If file processing is not supported, this parameter is not required. If the application involves complex file processing policies or needs to distinguish file multipathing storage, you are advised not to set this parameter but let the application copies files by itself.|
+| fileConflictOptions | [FileConflictOptions](#fileconflictoptions15) | No  | File conflict options for a copy-and-paste task. The default value is **OVERWRITE**.                 |
+| progressIndicator   | [ProgressIndicator](#progressindicator15)     | Yes  | Progress indicator options. You can choose whether to use the default progress indicator.        |
+| progressListener    | [ProgressListener](#progresslistener15)       | No  | Listener for progress data changes. If the default progress indicator is not used, you can set this parameter to obtain the paste progress.|
+| progressSignal      | [ProgressSignal](#progresssignal15)           | No  | Function for canceling the paste task. This parameter is valid only when [ProgressIndicator](#progressindicator15) is set to **NONE**.|
 
 ## PasteDataRecord<sup>7+</sup>
 
@@ -617,7 +629,7 @@ Provides **PasteDataRecord** APIs. A **PasteDataRecord** is an abstract definiti
 
 toPlainText(): string
 
-Forcibly converts the content in a **PasteData** object to text.
+Forcibly converts HTML, plain, and URI content in a **PasteDataRecord** to the plain text.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -731,7 +743,7 @@ Obtains custom data of the specified MIME type from **PasteDataRecord**.
 
 | Type                                     | Description                                                                                                                  |
 |-----------------------------------------|----------------------------------------------------------------------------------------------------------------------|
-| Promise&lt;[ValueType](#valuetype9)&gt; | Promise used to return the result.<br>If **PasteDataRecord** contains data of multiple MIME types, the non-**PasteDataRecord** data of the default MIME type can be obtained only through this API.|
+| Promise&lt;[ValueType](#valuetype9)&gt; | Promise used to return the custom data of the specified MIME type.<br>If **PasteDataRecord** contains data of multiple MIME types, the non-**PasteDataRecord** data of the default MIME type can be obtained only through this API.|
 
 **Error codes**
 
@@ -744,6 +756,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let html = "<!DOCTYPE html>\n" + "<html>\n" + "<head>\n" + "<meta charset=\"utf-8\">\n" + "<title>HTML-PASTEBOARD_HTML</title>\n" + "</head>\n" + "<body>\n" + "    <h1>HEAD</h1>\n" + "    <p></p>\n" + "</body>\n" + "</html>";
 let record: pasteboard.PasteDataRecord = pasteboard.createRecord(pasteboard.MIMETYPE_TEXT_URI, 'dataability:///com.example.myapplication1/user.txt');
 record.addEntry(pasteboard.MIMETYPE_TEXT_PLAIN, 'hello');
@@ -1836,8 +1850,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | Error Code ID| Error Message|
 | -------- | -------- |
-| 12900003 | Another copy or paste operation is in progress. |
-| 12900004 | Replication is prohibited. |
+| 27787277 | Another copy or paste operation is in progress. |
+| 27787278 | Replication is prohibited. |
 | 401      | Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types. |
 
 **Example**
@@ -1882,8 +1896,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | Error Code ID| Error Message|
 | -------- | -------- |
-| 12900003 | Another copy or paste operation is in progress. |
-| 12900004 | Replication is prohibited. |
+| 27787277 | Another copy or paste operation is in progress. |
+| 27787278 | Replication is prohibited. |
 | 401      | Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types. |
 
 **Example**
@@ -1924,7 +1938,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | Error Code ID| Error Message|
 | -------- | -------- |
-| 12900003 | Another copy or paste operation is in progress. |
+| 27787277 | Another copy or paste operation is in progress. |
 | 201      | Permission verification failed. The application does not have the permission required to call the API. |
 | 401      | Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types. |
 
@@ -1967,7 +1981,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | Error Code ID| Error Message|
 | -------- | -------- |
-| 12900003 | Another copy or paste operation is in progress. |
+| 27787277 | Another copy or paste operation is in progress. |
 | 201      | Permission verification failed. The application does not have the permission required to call the API. |
 
 **Example**
@@ -2617,7 +2631,7 @@ For details about the error codes, see [Pasteboard Error Codes](errorcode-pasteb
 | Error Code ID| Error Message|
 | -------- | -------- |
 | 201      | Permission verification failed. The application does not have the permission required to call the API. |
-| 12900003 | Another copy or paste operation is in progress. |
+| 27787277 | Another copy or paste operation is in progress. |
 
 **Example**
 
@@ -2710,8 +2724,8 @@ For details about the error codes, see [Pasteboard Error Codes](errorcode-pasteb
 | Error Code ID| Error Message|
 | -------- | -------- |
 | 401      | Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types. |
-| 12900003 | Another copy or paste operation is in progress. |
-| 12900004 | Replication is prohibited. |
+| 27787277 | Another copy or paste operation is in progress. |
+| 27787278 | Replication is prohibited. |
 
 **Example**
 
@@ -2815,6 +2829,8 @@ For details about the error codes, see [Pasteboard Error Codes](errorcode-pasteb
 **Example**
 
 ```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
 try {
   systemPasteboard.setAppShareOptions(pasteboard.ShareOption.INAPP);
@@ -2846,6 +2862,8 @@ For details about the error codes, see [Pasteboard Error Codes](errorcode-pasteb
 **Example**
 
 ```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
 try {
   systemPasteboard.removeAppShareOptions();
@@ -2932,7 +2950,7 @@ Obtains the MIME type from the pasteboard. This API uses a promise to return the
 
 | Type| Description|
 | -------- | -------- |
-| Promise&lt;Array&lt;string&gt;&gt; | Promise used to return the result.|
+| Promise&lt;Array&lt;string&gt;&gt; | Promise used to return the read MIME type.|
 
 **Example**
 
@@ -2951,7 +2969,7 @@ systemPasteboard.getMimeTypes().then((data: Array<String>) => {
 
 getDataWithProgress(params: GetDataParams): Promise&lt;PasteData&gt;
 
-Obtains the pasteboard data and progress. This API uses a promise to return the result.
+Obtains the pasteboard data and progress. This API uses a promise to return the result. Folders cannot be copied.
 
 **Required permissions**: ohos.permission.READ_PASTEBOARD
 
@@ -2977,7 +2995,7 @@ For details about the error codes, see [Pasteboard Error Codes](errorcode-pasteb
 
 | Error Code ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 201      | Permission verification failed. The application does not have the. |
+| 201      | Permission verification failed. The application does not have the permission required to call the API. |
 | 401      | Parameter error.                                             |
 | 12900003 | Another copy or paste operation is in progress.              |
 | 12900007 | Copy file failed.                                            |
@@ -2988,35 +3006,43 @@ For details about the error codes, see [Pasteboard Error Codes](errorcode-pasteb
 **Example**
 
 ```ts
-import { AbilityConstant, UIAbility, Want} from '@kit.AbilityKit'
-import { BusinessError pasteboard } from '@kit.BasicServicesKit';
-
-export default class EntryAbility extends UIAbility {
-    async onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): Promise<void> {
-        let text = "test";
-        let pasteData = pasteboard.createData(pasteboard.MIMETYPE_TEXT_PLAIN, text);
-        let systemPasteboard = pasteboard.getSystemPasteboard();
-        await systemPasteboard.setData(pasteData);
-        let signal = new pasteboard.ProgressSignal;
-		let ProgressListener = (progress: pasteData.ProgressInfo) => {
-    		console.log('progressListener success, progress:' + progress.progress);
-		}
-		let params: pasteData.GetDataParams = {
-    		destUri: '/data/storage/el2/base/haps/entry/files/dstFile.txt',
-    		fileConflictOption: pasteData.FileConflictOption.OVERWRITE,
-    		progressIndicator: pasteData.ProgressIndicator.DEFAULT,
-    		progressListener: ProgressListener
-		}
-		systemPasteboard.getDataWithProgress().then((pasteData: pasteboard.PasteData) => {
-    		let text: string = pasteData.getPrimaryText();
-		}).catch((err: BusinessError) => {
-    		console.error('Failed to get PasteData. Cause: ' + err.message);
-		});   
+import { BusinessError, pasteboard } from '@kit.BasicServicesKit';
+@Entry
+@Component
+struct PasteboardTest {
+ build() {
+   RelativeContainer() {
+     Column() {
+       Column() {
+         Button("Copy txt")
+           .onClick(async ()=>{
+              let text = "test";
+              let pasteData = pasteboard.createData(pasteboard.MIMETYPE_TEXT_PLAIN, text);
+              let systemPasteboard = pasteboard.getSystemPasteboard();
+        	  await systemPasteboard.setData(pasteData);
+              let ProgressListener = (progress: pasteboard.ProgressInfo) => {
+    		    console.log('progressListener success, progress:' + progress.progress);
+              }
+              let params: pasteboard.GetDataParams = {
+                destUri: '/data/storage/el2/base/haps/entry/files/dstFile.txt',
+                fileConflictOptions: pasteboard.FileConflictOptions.OVERWRITE,
+                progressIndicator: pasteboard.ProgressIndicator.DEFAULT,
+                progressListener: ProgressListener
+              };
+              systemPasteboard.getDataWithProgress(params).then((pasteData: pasteboard.PasteData) => {
+                console.error('getDataWithProgress succ');
+              }).catch((err: BusinessError) => {
+                console.error('Failed to get PasteData. Cause: ' + err.message);
+              })   
+          })
+        }
+      }
     }
+  }
 }
 ```
 
-### getChangeCount<sup>16+</sup>
+### getChangeCount<sup>18+</sup>
 
 getChangeCount(): number
 
@@ -3028,7 +3054,7 @@ Even though the pasteboard data expires, or the data becomes empty because of th
 
 When the system is restarted, or the pasteboard service is restarted due to an exception, the number of pasteboard data changes counts from 0. In addition, copying the same data repeatedly is considered to change the data for multiple times. Therefore, each time the data is copied, the number of data changes increases.
 
-**Atomic service API**: This API can be used in atomic services since API version 16.
+**Atomic service API**: This API can be used in atomic services since API version 18.
 
 **System capability**: SystemCapability.MiscServices.Pasteboard
 
@@ -3041,7 +3067,7 @@ When the system is restarted, or the pasteboard service is restarted due to an e
 **Example**
 
 ```ts
-import { BusinessError pasteboard } from '@kit.BasicServicesKit';
+import { BusinessError, pasteboard } from '@kit.BasicServicesKit';
 
 let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
 try {

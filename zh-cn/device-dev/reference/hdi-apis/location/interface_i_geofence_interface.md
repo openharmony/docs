@@ -91,7 +91,7 @@ IGeofenceInterface::SetGeofenceCallback ([in] IGeofenceCallback callbackObj)
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| callback | 表示地理围栏的回调函数，GNSS驱动使用此回调上报地理围栏服务可用性， 上报地理围栏事件，上报地理围栏操作结果。详情参考[IGeofenceCallback](interface_i_geofence_callback.md)。 | 
+| callback | 表示地理围栏的回调函数，GNSS驱动使用此回调上报地理围栏服务可用性，上报地理围栏事件，上报地理围栏操作结果。详情参考[IGeofenceCallback](interface_i_geofence_callback.md)。 | 
 
 **返回：**
 

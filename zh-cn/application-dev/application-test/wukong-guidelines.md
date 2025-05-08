@@ -26,23 +26,23 @@ wukong部件架构图以及部件内子模块职责如下所述。
 
 1. wukong测试工具在API 9版本开始预置使用。
 
-2. 在低于API 9版本，不能随版本编译，使用时需自行编译后推送至被检测设备，具体步骤如下。
+2. PC被检测设备连接后，才可执行命令行，支持单个和多个设备。
+
+3. 所有命令行执行前需要先进入shell模式。
+<!--Del-->
+4. 在低于API 9版本，不能随版本编译，使用时需自行编译后推送至被检测设备，具体步骤如下。
 
    ```bash
-   // 构建方式
+   # 构建方式
    ./build.sh --product-name rk3568 --build-target wukong
 
-   // 推送方式
+   # 推送方式
    hdc shell mount -o rw,remount /
    hdc file send wukong /
    hdc shell chmod a+x /wukong
    hdc shell mv /wukong /bin/
    ```
-
-3. PC被检测设备连接后，才可执行命令行，支持单个和多个设备。
-
-4. 所有命令行执行前需要先进入shell模式。
-
+<!--DelEnd-->
 ## 功能特性及命令说明
 
 | 命令           | 说明                                           |
@@ -164,13 +164,13 @@ wukong部件架构图以及部件内子模块职责如下所述。
 | -C, --component | 设置随机控件测试比例。                 | 否   | 默认70%。                                  |
 | -I, --screenshot | 控件测试截图。                 | 否   | - |
 | -T,--time       | 设置测试总时间，与设置执行次数-c冲突。二者取其一。 | 否   | 单位分钟，默认10分钟。         |
-| -e, --allow ability   |  设置允许测试的ability | 否 | - |
-| -E, --block ability   |  设置禁止测试的ability | 否 | - |
-| -Y, --blockCompId     |  设置不进行注入的CompId | 否 | - |
-| -y, --blockCompType   |  设置不进行注入的CompType | 否 | - |
-| -B, --checkBWScreen   |  设置启用黑白屏检测 | 否 | - |
-| -U, -uri              |  设置应用拉起页面uri | 否 | - |
-| -x, -uriType          |  设置应用拉起页面uriType | 否 | - |
+| -e, --allow ability   |  设置允许测试的ability。 | 否 | - |
+| -E, --block ability   |  设置禁止测试的ability。 | 否 | - |
+| -Y, --blockCompId     |  设置不进行注入的CompId。 | 否 | - |
+| -y, --blockCompType   |  设置不进行注入的CompType。 | 否 | - |
+| -B, --checkBWScreen   |  设置启用黑白屏检测。 | 否 | - |
+| -U, -uri              |  设置应用拉起页面uri。 | 否 | - |
+| -x, -uriType          |  设置应用拉起页面uriType。 | 否 | - |
 
 ### 使用示例
 
@@ -245,13 +245,13 @@ wukong部件架构图以及部件内子模块职责如下所述。
 | --------------- | ------------------------------------ | ---- | ---------------------------------------- |
 | -n,--numberfocus       | 设置每个控件注入的次数。               | 否   | 单位次数。                 |
 | -f, --focustypes       | 设置需要专注的控件类型。               | 否   | 以英文逗号隔开。                         |
-| -h,--help       | 获取当前测试的帮助信息。               | 否   |                          |
+| -h,--help       | 获取当前测试的帮助信息。               | 否   |  -                       |
 | -c,--count      | 设置执行次数，与设置执行时间-T冲突。二者取其一。   | 否   | 单位次数，默认10次。                       |
 | -i,--interval   | 设置执行间隔。                         | 否   | 单位ms，默认1500ms。                       |
 | -s,--seed       | 设置随机种子。                         | 否   | 配置相同随机种子，会生成相同随机事件序列。 |
-| -b,--bundle[bundlename,……,bundlename]     | 设置本次测试的允许应用名单，与-p冲突。 | 否   | 默认测试当前设备所有应用(应用名称用英文逗号隔开)。                 |
-| -p,--prohibit[bundlename,……,bundlename]   | 设置本次测试的禁止应用名单，与-b冲突。 | 否   | 默认不禁止任何应用(应用名称用英文逗号隔开)。                       |
-| -d,--page[page,……,page]                   | 设置本次测试的禁止页面名单。 | 否  | 系统默认禁止pages/system页面(页面名称用逗号隔开)。 |
+| -b,--bundle[bundlename,……,bundlename]     | 设置本次测试的允许应用名单，与-p冲突。 | 否   | 默认测试当前设备所有应用（应用名称用英文逗号隔开）。                 |
+| -p,--prohibit[bundlename,……,bundlename]   | 设置本次测试的禁止应用名单，与-b冲突。 | 否   | 默认不禁止任何应用（应用名称用英文逗号隔开）。                       |
+| -d,--page[page,……,page]                   | 设置本次测试的禁止页面名单。 | 否  | 系统默认禁止pages/system页面（页面名称用逗号隔开）。 |
 | -a,--appswitch  | 设置应用随机拉起测试比例。             | 否   | 默认10%。                                  |
 | -t,--touch      | 设置屏幕随机触摸测试比例。            | 否   | 默认10%。                                  |
 | -S,--swap       | 设置屏幕随机移动测试比例。             | 否   | 默认3%。                                   |
@@ -262,11 +262,11 @@ wukong部件架构图以及部件内子模块职责如下所述。
 | -C, --component | 设置随机控件测试比例。                 | 否   | 默认70%。                                  |
 | -I, --screenshot | 控件测试截图。                 | 否   | - |
 | -T,--time       | 设置测试总时间，与设置执行次数-c冲突。二者取其一。 | 否   | 单位分钟，默认10分钟。         |
-| -e, --allow ability   |  设置允许测试的ability | 否 | - |
-| -E, --block ability   |  设置禁止测试的ability | 否 | - |
-| -Y, --blockCompId     |  设置不进行注入的CompId | 否 | - |
-| -y, --blockCompType   |  设置不进行注入的CompType | 否 | - |
-| -B, --checkBWScreen   |  设置启用黑白屏检测 | 否 | - |
+| -e, --allow ability   |  设置允许测试的ability。 | 否 | - |
+| -E, --block ability   |  设置禁止测试的ability。 | 否 | - |
+| -Y, --blockCompId     |  设置不进行注入的CompId。 | 否 | - |
+| -y, --blockCompType   |  设置不进行注入的CompType。 | 否 | - |
+| -B, --checkBWScreen   |  设置启用黑白屏检测。 | 否 | - |
 
 ### 使用示例
 

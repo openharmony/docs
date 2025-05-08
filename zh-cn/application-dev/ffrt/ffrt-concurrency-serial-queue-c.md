@@ -23,7 +23,8 @@ FFRT串行队列基于协程调度模型实现，提供高效的消息队列功�
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "ffrt.h"
+#include <unistd.h>
+#include "ffrt/ffrt.h"
 
 typedef struct {
     FILE *logFile;          // 日志文件指针
@@ -75,7 +76,7 @@ void logger_destroy(logger_t *logger)
         // 关闭日志文件
         if (logger->logFile) {
             fclose(logger->logFile);
-            printf("Log file closed.\n");
+            printf("Log file closed\n");
         }
 
         free(logger);
@@ -186,6 +187,11 @@ static inline ffrt_function_header_t *ffrt_create_function_wrapper(const ffrt_fu
 | [ffrt_queue_create](ffrt-api-guideline-c.md#ffrt_queue_create)   | 创建队列。                     |
 | [ffrt_queue_destroy](ffrt-api-guideline-c.md#ffrt_queue_destroy) | 销毁队列。                     |
 | [ffrt_queue_submit](ffrt-api-guideline-c.md#ffrt_queue_submit)   | 提交一个任务到队列中调度执行。 |
+
+> **说明：**
+>
+> - 如何使用FFRT C++ API详见：[FFRT C++接口三方库使用指导](ffrt-development-guideline.md#using-ffrt-c-api-1)。
+> - 使用FFRT C接口或C++接口时，都可以通过FFRT C++接口三方库简化头文件包含，即使用`#include "ffrt/ffrt.h"`头文件包含语句。
 
 ## 约束限制
 

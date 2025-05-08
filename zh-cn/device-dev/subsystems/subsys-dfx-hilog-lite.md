@@ -30,7 +30,7 @@ HILOG_INFO/HILOG_WARN/HILOG_ERROR/HILOG_FATAL
 
 以下引用samgr_lite模块使用hilog_lite框架作为实例。
 
-1. 添加模块ID，在“base/hiviewdfx/hilog_lite/interfaces/native/kits/hilog_lite/hiview_log.h“的类型定义结构体中添加HILOG_MODULE_SAMGR定义。
+1. 添加模块ID，在“base/hiviewdfx/hilog_lite/interfaces/native/kits/hilog_lite/hiview_log.h”的类型定义结构体中添加HILOG_MODULE_SAMGR定义。
      
    ```
    typedef enum {
@@ -40,13 +40,13 @@ HILOG_INFO/HILOG_WARN/HILOG_ERROR/HILOG_FATAL
    } HiLogModuleType;
    ```
 
-2. 注册模块，在“base/hiviewdfx/hilog_lite/frameworks/mini/hiview_log.c“的HiLogInit函数中添加注册代码。
+2. 注册模块，在“base/hiviewdfx/hilog_lite/frameworks/mini/hiview_log.c”的HiLogInit函数中添加注册代码。
      
    ```
    HiLogRegisterModule(HILOG_MODULE_SAMGR, "SAMGR");
    ```
 
-3. 在GN文件中添加头文件依赖，文件路径为：“foundation/systemabilitymgr/samgr_lite/samgr/BUILD.gn“
+3. 在GN文件中添加头文件依赖，文件路径为：“foundation/systemabilitymgr/samgr_lite/samgr/BUILD.gn”。
      
    ```
    include_dirs = [
@@ -54,7 +54,7 @@ HILOG_INFO/HILOG_WARN/HILOG_ERROR/HILOG_FATAL
    ]
    ```
 
-4. 源文件“foundation/systemabilitymgr/samgr_lite/samgr/source/message.c“中引用头文件并调用接口。
+4. 源文件“foundation/systemabilitymgr/samgr_lite/samgr/source/message.c”中引用头文件并调用接口。
      
    ```
    #include <log.h>

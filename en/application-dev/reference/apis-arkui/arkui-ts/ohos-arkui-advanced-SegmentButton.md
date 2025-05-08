@@ -29,7 +29,7 @@ SegmentButton({ options: SegmentButtonOptions, selectedIndexes: number[], onItem
 | options         | [SegmentButtonOptions](#segmentbuttonoptions) | Yes  | @ObjectLink | Options of the **SegmentButton** component.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | selectedIndexes | number[]                                      | Yes  | @Link       | Indexes of selected items of the **SegmentButton**. The index starts from 0 and increments by 1.<br>**NOTE**<br>**selectedIndexes** is decorated with [@Link](../../../quick-start/arkts-link.md) to implement parent-child two-way synchronization. If no items are selected, an empty array **[]** can be passed in.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | onItemClicked<sup>13+</sup> | Callback\<number\> | No| - | Callback invoked when an item in the **SegmentButton** is clicked. The index of the clicked item is passed in as the parameter.<br>**Atomic service API**: This API can be used in atomic services since API version 13.|
-| maxFontScale<sup>14+</sup> | number \| [Resource](ts-types.md#resource) | No| @Prop | Maximum font scale for the text in the **SegmentButton**.<br>Default value: **1**<br>Value range: [1, 2]<br>**NOTE**<br>Values less than 1 are treated as 1, and values greater than 2 are treated as 2.<br>**Atomic service API**: This API can be used in atomic services since API version 14.|
+| maxFontScale<sup>14+</sup> | number \| [Resource](ts-types.md#resource) | Yes| @Prop | Maximum font scale for the text in the **SegmentButton**.<br>Default value: **1**<br>Value range: [1, 2]<br>**NOTE**<br>Values less than 1 are treated as 1, and values greater than 2 are treated as 2.<br>**Atomic service API**: This API can be used in atomic services since API version 14.|
 
 >**NOTE**
 >
@@ -39,18 +39,18 @@ SegmentButton({ options: SegmentButtonOptions, selectedIndexes: number[], onItem
 
 Provides initial data and custom properties for the **SegmentButton** component.
 
-### Properties
-
 **Decorator Type**: @Observed
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
+### Properties
+
 | Name                 | Type                                                        | Mandatory                                                    | Description                                                      |
 | ----------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | type                    | 'tab' \| 'capsule'                                       | Yes                                       | Type of the **SegmentButton**.                                            |
-| multiply                | boolean                                                      | Yes                                                  | Whether multiple items can be selected.<br>**NOTE**<br>For the **SegmentButton** component consisting of tab-style buttons, only one item can be selected. In this case, setting **multiply** to **true** does not take effect.|
+| multiply                | boolean                                                      | Yes                                                  | Whether multiple items can be selected.<br>**NOTE**<br>The default value is **false**.<br>**true**: Multiple items can be selected.<br>**false**: Multiple items cannot be selected. For the **SegmentButton** component consisting of tab-style buttons, only one item can be selected. In this case, setting **multiply** to **true** does not take effect.|
 | buttons                 | [SegmentButtonItemOptionsArray](#segmentbuttonitemoptionsarray) | Yes| Button information, including the icon and text.                              |
 | fontColor               | [ResourceColor](ts-types.md#resourcecolor)                   | Yes               | Font color of the unselected item.<br>Default value: **$r('sys.color.ohos_id_color_text_secondary')**|
 | selectedFontColor       | [ResourceColor](ts-types.md#resourcecolor)                   | Yes               | Font color of the selected item.<br>Default value: **$r('sys.color.ohos_id_color_text_primary')** when **type** is **"tab"** and **$r('sys.color.ohos_id_color_foreground_contrary')** when **type** is **"capsule"**|
@@ -664,15 +664,20 @@ struct Index {
     buttons: [{ text: 'Tab 1' }, { text: 'Tab 2' }, {
       text: 'Tab 3'
     }] as ItemRestriction<SegmentButtonTextItem>,
-    backgroundColor: Color.Green,
-    selectedBackgroundColor: Color.Orange,
-    textPadding: { top: 10, right: 10, bottom: 10, left: 10 },
+    backgroundColor: 'rgb(213,213,213)',
+    selectedBackgroundColor: 'rgb(112,112,112)',
+    textPadding: {
+      top: 10,
+      right: 10,
+      bottom: 10,
+      left: 10
+    },
   })
   @State singleSelectCapsuleOptions: SegmentButtonOptions = SegmentButtonOptions.capsule({
     buttons: [{ text: 'Single-select 1' }, { text: 'Single-select 2' }, { text: 'Single-select 3' }] as SegmentButtonItemTuple,
     multiply: false,
-    fontColor: Color.Black,
-    selectedFontColor: Color.Yellow,
+    fontColor: 'rgb(0,74,175)',
+    selectedFontColor: 'rgb(247,247,247)',
     backgroundBlurStyle: BlurStyle.BACKGROUND_THICK
   })
   @State multiplySelectCapsuleOptions: SegmentButtonOptions = SegmentButtonOptions.capsule({
@@ -692,7 +697,12 @@ struct Index {
     ] as SegmentButtonItemTuple,
     multiply: false,
     imageSize: { width: 40, height: 40 },
-    buttonPadding: { top: 6, right: 10, bottom: 6, left: 10 },
+    buttonPadding: {
+      top: 6,
+      right: 10,
+      bottom: 6,
+      left: 10
+    },
     backgroundBlurStyle: BlurStyle.BACKGROUND_THICK
   })
   @State iconTextCapsuleOptions: SegmentButtonOptions = SegmentButtonOptions.capsule({
@@ -717,14 +727,22 @@ struct Index {
       Column() {
         Column({ space: 20 }) {
           SegmentButton({ options: this.tabOptions, selectedIndexes: $tabSelectedIndexes })
-          SegmentButton({ options: this.singleSelectCapsuleOptions,
-            selectedIndexes: $singleSelectCapsuleSelectedIndexes })
-          SegmentButton({ options: this.multiplySelectCapsuleOptions,
-            selectedIndexes: $multiplySelectCapsuleSelectedIndexes })
-          SegmentButton({ options: this.iconCapsuleOptions,
-            selectedIndexes: $singleSelectIconCapsuleSelectedIndexes })
-          SegmentButton({ options: this.iconTextCapsuleOptions,
-            selectedIndexes: $multiplySelectIconTextCapsuleSelectedIndexes })
+          SegmentButton({
+            options: this.singleSelectCapsuleOptions,
+            selectedIndexes: $singleSelectCapsuleSelectedIndexes
+          })
+          SegmentButton({
+            options: this.multiplySelectCapsuleOptions,
+            selectedIndexes: $multiplySelectCapsuleSelectedIndexes
+          })
+          SegmentButton({
+            options: this.iconCapsuleOptions,
+            selectedIndexes: $singleSelectIconCapsuleSelectedIndexes
+          })
+          SegmentButton({
+            options: this.iconTextCapsuleOptions,
+            selectedIndexes: $multiplySelectIconTextCapsuleSelectedIndexes
+          })
         }.width('90%')
       }.width('100%')
     }.height('100%')

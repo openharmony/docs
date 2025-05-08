@@ -42,7 +42,7 @@
 | backdrop-filter | string | - | 语法：backdrop-filter:&nbsp;blur(px)<br/>通过这个样式可以设置当前组件布局范围的背景模糊，参数用于指定模糊半径，如果没有设置值，则默认是0(不模糊)，不支持百分比。<br/>示例：backdrop-filter:&nbsp;blur(10px) |
 | opacity | number | 1 | 元素的透明度，取值范围为0到1，1表示为不透明，0表示为完全透明。 |
 | display | string | flex | 确定一个元素所产生的框的类型，可选值为：<br/>-&nbsp;flex：弹性布局。<br/>-&nbsp;none：不渲染此元素。 |
-| visibility | string | visible | 是否显示元素所产生的框。不可见的框会占用布局（将'display'属性设置为'none'来完全去除框），可选值为：<br/>-&nbsp;visible：元素正常显示。<br/>-&nbsp;hidden：隐藏元素，但是其他元素的布局不改变，相当于此元素变成透明<br/>visibility和display样式都设置时，仅display生效。 |
+| visibility | string | visible | 是否显示元素所产生的框。不可见的框会占用布局（将'display'属性设置为'none'来完全去除框），可选值为：<br/>-&nbsp;visible：元素正常显示。<br/>-&nbsp;hidden：隐藏元素，但是其他元素的布局不改变，相当于此元素变成透明。<br/>visibility和display样式都设置时，仅display生效。 |
 | flex | number&nbsp;\|&nbsp;string | - | 规定当前组件如何适应父组件中的可用空间。<br/>flex可以指定1个、2个或3个值。<br/>单值语法：<br/>-&nbsp;一个无单位数：用来设置组件的flex-grow。<br/>-&nbsp;一个有效的宽度值：用来设置组件的flex-basis。<br/>双值语法：<br/>第一个值必须是无单位数，用来设置组件的flex-grow。第二个值是以下之一：<br/>-&nbsp;一个无单位数：用来设置组件的flex-shrink。<br/>-&nbsp;一个有效的宽度值：用来设置组件的flex-basis。<br/>三值语法：<br/>第一个值必须是无单位数，用来设置组件的flex-grow；第二个值必须是无单位数，用来设置组件的flex-shrink；第三个值必须是一个有效的宽度值，用来设置组件的flex-basis。<br/>仅父容器为&lt;div&gt;、&lt;list-item&gt;时生效。 |
 | flex-grow | number | 0 | 设置组件的拉伸样式，指定父组件容器主轴方向上剩余空间（容器本身大小减去所有flex子元素占用的大小）的分配权重。0为不伸展。<br/>仅父容器为&lt;div&gt;、&lt;list-item&gt;时生效。 |
 | flex-shrink | number | 1 | 设置组件的收缩样式，元素仅在默认宽度之和大于容器的时候才会发生收缩，0为不收缩。<br/>仅父容器为&lt;div&gt;、&lt;list-item&gt;时生效。 |

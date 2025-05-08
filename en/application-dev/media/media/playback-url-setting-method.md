@@ -26,7 +26,7 @@ This guide describes the following scenarios:
 
 **Case 3: setting the HTTP request header information for playback**
 
-If the server needs to verify the HTTP request header, you can set the HTTP request header information through [createMediaSourceWithUrl](../../reference/apis-media-kit/js-apis-media.md#createmediasourcewithurl12).
+If the server needs to verify the HTTP request header, you can set the HTTP request header information through [createMediaSourceWithUrl](../../reference/apis-media-kit/js-apis-media.md#mediacreatemediasourcewithurl12).
 ```ts
   // Create an AVPlayer instance.
   let avPlayer: media.AVPlayer = await media.createAVPlayer();

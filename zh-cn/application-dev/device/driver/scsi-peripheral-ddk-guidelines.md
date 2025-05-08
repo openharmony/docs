@@ -44,7 +44,7 @@ SCSI Peripheral DDK支持SPC（SCSI Primary Commands）、SBC（SCSI Block Comma
 
 ### 实现原理
 
-非标外设应用通过扩展外设管理服务获取SCSI设备的ID，通过RPC将ID和要操作的动作下发给SCSI驱动应用，SCSI驱动应用通过调用SCSI Peripheral DDK接口可获取SCSI设备基本信息，读写数据，DDK接口使用hdi服务将指令下发至内核驱动，内核驱动使用指令与设备通信。
+非标外设应用通过扩展外设管理服务获取SCSI设备的ID，通过RPC将ID和要操作的动作下发给SCSI驱动应用，SCSI驱动应用通过调用SCSI Peripheral DDK接口可获取SCSI设备基本信息，读写数据，DDK接口使用HDI服务将指令下发至内核驱动，内核驱动使用指令与设备通信。
 
 **图1** SCSI Peripheral DDK调用原理
 
@@ -251,7 +251,7 @@ libscsi.z.so
 
     ```c++
     ScsiPeripheral_Request sendRequest = {0};
-    uint8_t cdbData[SCSIPERIPHERAL_MAX_CMD_DESC_BLOCK_LEN] = {0x28, 0x00, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x14, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
+    uint8_t cdbData[SCSIPERIPHERAL_MAX_CMD_DESC_BLOCK_LEN] = {0x28, 0x00, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x14, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00}; // 需要引入cstring头文件
     memcpy(sendRequest.commandDescriptorBlock, cdbData, SCSIPERIPHERAL_MAX_CMD_DESC_BLOCK_LEN);
     sendRequest.cdbLength = 10;
     sendRequest.dataTransferDirection = -3;

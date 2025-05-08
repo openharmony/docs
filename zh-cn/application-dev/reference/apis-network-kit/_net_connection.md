@@ -28,7 +28,7 @@
 | [NetConn_NetAddr](_net_conn___net_addr.md) | 网络地址。 | 
 | [NetConn_Route](_net_conn___route.md) | 路由配置信息。 | 
 | [NetConn_HttpProxy](_net_conn___http_proxy.md) | 代理配置信息。 | 
-| [NetConn_ConnectionProperties](_net_conn___connection_properties.md) | 网络链接信息。 | 
+| [NetConn_ConnectionProperties](_net_conn___connection_properties.md) | 网络连接信息。 | 
 | [NetConn_NetHandleList](_net_conn___net_handle_list.md) | 网络列表。 | 
 | [NetConn_NetConnCallback](_net_conn___net_conn_callback.md) | 网络状态监听回调集合。 |
 | [NetConn_NetSpecifier](_net_conn___net_specifier.md) | 网络的特征集，包含网络的能力集与网络的标识符。 |
@@ -58,7 +58,7 @@
 | [NetConn_NetAddr](#netconn_netaddr) | 网络地址。 | 
 | [NetConn_Route](#netconn_route) | 路由配置信息。 | 
 | [NetConn_HttpProxy](#netconn_httpproxy) | 代理配置信息。 | 
-| [NetConn_ConnectionProperties](#netconn_connectionproperties) | 网络链接信息。 | 
+| [NetConn_ConnectionProperties](#netconn_connectionproperties) | 网络连接信息。 | 
 | [NetConn_NetHandleList](#netconn_nethandlelist) | 网络列表。 | 
 | (\*[OH_NetConn_CustomDnsResolver](#oh_netconn_customdnsresolver)) (const char \*host, const char \*serv, const struct addrinfo \*hint, struct addrinfo \*\*res) | 指向自定义 DNS 解析器的指针。 | 
 | [NetConn_NetConnCallback](#netconn_netconncallback) | 网络状态监听回调集合。 |
@@ -113,7 +113,7 @@ typedef struct NetConn_ConnectionProperties NetConn_ConnectionProperties
 
 **描述**
 
-网络链接信息。
+网络连接信息。
 
 **起始版本：** 11
 
@@ -238,10 +238,10 @@ typedef int(* OH_NetConn_CustomDnsResolver) (const char *host, const char *serv,
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| host | 要查询的主机名 | 
-| serv | 服务名称 | 
-| hint | 指向addrinfo结构的指针 | 
-| res | 存储DNS查询结果并以链表形式返回 | 
+| host | 要查询的主机名。 | 
+| serv | 服务名称。 | 
+| hint | 指向addrinfo结构的指针。 | 
+| res | 存储DNS查询结果并以链表形式返回。 | 
 
 
 ### OH_NetConn_AppHttpProxyChange
@@ -260,7 +260,7 @@ typedef void(* OH_NetConn_AppHttpProxyChange) (NetConn_HttpProxy *proxy)
 
 | 名称 | 描述 |
 | -------- | -------- |
-| proxy | 变化的代理配置信息（可能为空指针） | 
+| proxy | 变化的代理配置信息（可能为空指针）。 | 
 
 
 ### NetConn_NetConnCallback
@@ -394,15 +394,15 @@ int32_t OH_NetConn_FreeDnsResult (struct addrinfo * res)
 
 **返回：**
 
-0 - 成功.
+0 - 成功。
 
-201 - 缺少权限.
+201 - 缺少权限。
 
-401 - 参数错误.
+401 - 参数错误。
 
-2100002 - 无法连接到服务.
+2100002 - 无法连接到服务。
 
-2100003 - 内部错误.
+2100003 - 内部错误。
 
 **Permission：**
 
@@ -427,23 +427,23 @@ int32_t OH_NetConn_GetAddrInfo (char * host, char * serv, struct addrinfo * hint
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| host | 所需查询的host名. | 
-| serv | 服务名. | 
-| hint | 指向addrinfo结构体的指针. | 
-| res | 存放DNS查询结果，以链表形式返回. | 
-| netId | DNS查询netId 为0是使用默认netid查询. | 
+| host | 所需查询的host名。 | 
+| serv | 服务名。 | 
+| hint | 指向addrinfo结构体的指针。 | 
+| res | 存放DNS查询结果，以链表形式返回。 | 
+| netId | DNS查询netId 为0是使用默认netid查询。 | 
 
 **返回：**
 
-0 - 成功.
+0 - 成功。
 
-201 - 缺少权限.
+201 - 缺少权限。
 
-401 - 参数错误.
+401 - 参数错误。
 
-2100002 - 无法连接到服务.
+2100002 - 无法连接到服务。
 
-2100003 - 内部错误.
+2100003 - 内部错误。
 
 **Permission：**
 
@@ -468,19 +468,19 @@ int32_t OH_NetConn_GetAllNets (NetConn_NetHandleList * netHandleList)
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| netHandleList | 网络信息列表. | 
+| netHandleList | 网络信息列表。 | 
 
 **返回：**
 
-0 - 成功.
+0 - 成功。
 
-201 - 缺少权限.
+201 - 缺少权限。
 
-401 - 参数错误.
+401 - 参数错误。
 
-2100002 - 无法连接到服务.
+2100002 - 无法连接到服务。
 
-2100003 - 内部错误.
+2100003 - 内部错误。
 
 **Permission：**
 
@@ -505,20 +505,20 @@ int32_t OH_NetConn_GetConnectionProperties (NetConn_NetHandle * netHandle, NetCo
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| nethandle | 存放网络ID. | 
-| prop | 存放链路信息. | 
+| nethandle | 存放网络ID。 | 
+| prop | 存放链路信息。 | 
 
 **返回：**
 
-0 - 成功.
+0 - 成功。
 
-201 - 缺少权限.
+201 - 缺少权限。
 
-401 - 参数错误.
+401 - 参数错误。
 
-2100002 - 无法连接到服务.
+2100002 - 无法连接到服务。
 
-2100003 - 内部错误.
+2100003 - 内部错误。
 
 **Permission：**
 
@@ -543,19 +543,19 @@ int32_t OH_NetConn_GetDefaultHttpProxy (NetConn_HttpProxy * httpProxy)
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| httpProxy | 存放代理配置信息. | 
+| httpProxy | 存放代理配置信息。 | 
 
 **返回：**
 
-0 - 成功.
+0 - 成功。
 
-201 - 缺少权限.
+201 - 缺少权限。
 
-401 - 参数错误.
+401 - 参数错误。
 
-2100002 - 无法连接到服务.
+2100002 - 无法连接到服务。
 
-2100003 - 内部错误.
+2100003 - 内部错误。
 
 
 ### OH_NetConn_GetDefaultNet()
@@ -576,19 +576,19 @@ int32_t OH_NetConn_GetDefaultNet (NetConn_NetHandle * netHandle)
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| netHandle | 存放网络ID. | 
+| netHandle | 存放网络ID。 | 
 
 **返回：**
 
-0 - 成功.
+0 - 成功。
 
-201 - 缺少权限.
+201 - 缺少权限。
 
-401 - 参数错误.
+401 - 参数错误。
 
-2100002 - 无法连接到服务.
+2100002 - 无法连接到服务。
 
-2100003 - 内部错误.
+2100003 - 内部错误。
 
 **Permission：**
 
@@ -613,20 +613,20 @@ int32_t OH_NetConn_GetNetCapabilities (NetConn_NetHandle * netHandle, NetConn_Ne
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| netHandle | 存放网络ID. | 
-| netCapacities | 存放能力集. | 
+| netHandle | 存放网络ID。 | 
+| netCapacities | 存放能力集。 | 
 
 **返回：**
 
-0 - 成功.
+0 - 成功。
 
-201 - 缺少权限.
+201 - 缺少权限。
 
-401 - 参数错误.
+401 - 参数错误。
 
-2100002 - 无法连接到服务.
+2100002 - 无法连接到服务。
 
-2100003 - 内部错误.
+2100003 - 内部错误。
 
 **Permission：**
 
@@ -655,15 +655,15 @@ int32_t OH_NetConn_HasDefaultNet (int32_t * hasDefaultNet)
 
 **返回：**
 
-0 - 成功.
+0 - 成功。
 
-201 - 缺少权限.
+201 - 缺少权限。
 
-401 - 参数错误.
+401 - 参数错误。
 
-2100002 - 无法连接到服务.
+2100002 - 无法连接到服务。
 
-2100003 - 内部错误.
+2100003 - 内部错误。
 
 **Permission：**
 
@@ -692,15 +692,15 @@ int32_t OH_NetConn_IsDefaultNetMetered (int32_t * isMetered)
 
 **返回：**
 
-0 - 成功.
+0 - 成功。
 
-201 - 缺少权限.
+201 - 缺少权限。
 
-401 - 参数错误.
+401 - 参数错误。
 
-2100002 - 无法连接到服务.
+2100002 - 无法连接到服务。
 
-2100003 - 内部错误.
+2100003 - 内部错误。
 
 **Permission：**
 
@@ -733,15 +733,15 @@ int32_t OHOS_NetConn_RegisterDnsResolver (OH_NetConn_CustomDnsResolver resolver)
 
 **返回：**
 
-0 - 成功.
+0 - 成功。
 
-201 - 缺少权限.
+201 - 缺少权限。
 
-401 - 参数错误.
+401 - 参数错误。
 
-2100002 - 无法连接到服务.
+2100002 - 无法连接到服务。
 
-2100003 - 内部错误.
+2100003 - 内部错误。
 
 **Permission：**
 
@@ -768,15 +768,15 @@ int32_t OHOS_NetConn_UnregisterDnsResolver (void )
 
 **返回：**
 
-0 - 成功.
+0 - 成功。
 
-201 - 缺少权限.
+201 - 缺少权限。
 
-401 - 参数错误.
+401 - 参数错误。
 
-2100002 - 无法连接到服务.
+2100002 - 无法连接到服务。
 
-2100003 - 内部错误.
+2100003 - 内部错误。
 
 **Permission：**
 
@@ -805,15 +805,15 @@ int32_t OH_NetConn_RegisterDnsResolver (OH_NetConn_CustomDnsResolver resolver)
 
 **返回：**
 
-0 - 成功.
+0 - 成功。
 
-201 - 缺少权限.
+201 - 缺少权限。
 
-401 - 参数错误.
+401 - 参数错误。
 
-2100002 - 无法连接到服务.
+2100002 - 无法连接到服务。
 
-2100003 - 内部错误.
+2100003 - 内部错误。
 
 **Permission：**
 
@@ -836,15 +836,15 @@ int32_t OH_NetConn_UnregisterDnsResolver (void )
 
 **返回：**
 
-0 - 成功.
+0 - 成功。
 
-201 - 缺少权限.
+201 - 缺少权限。
 
-401 - 参数错误.
+401 - 参数错误。
 
-2100002 - 无法连接到服务.
+2100002 - 无法连接到服务。
 
-2100003 - 内部错误.
+2100003 - 内部错误。
 
 **Permission：**
 
@@ -869,18 +869,18 @@ int32_t OH_NetConn_BindSocket (int32_t socketFd, NetConn_NetHandle * netHandle)
 
 | 名称 | 描述 |
 | -------- | -------- |
-| socketFd | 用户创建的套接字. |
-| netHandle | 存放网络ID. |
+| socketFd | 用户创建的套接字。 |
+| netHandle | 存放网络ID。 |
 
 **返回：**
 
-0 - 成功.
+0 - 成功。
 
-401 - 参数错误.
+401 - 参数错误。
 
-2100002 - 无法连接到服务.
+2100002 - 无法连接到服务。
 
-2100003 - 内部错误.
+2100003 - 内部错误。
 
 
 ### OH_NetConn_SetAppHttpProxy()
@@ -905,9 +905,9 @@ int32_t OH_NetConn_SetAppHttpProxy(NetConn_HttpProxy *httpProxy)
 
 **返回：**
 
-0 - 成功.
+0 - 成功。
 
-401 - 参数错误.
+401 - 参数错误。
 
 
 ### OH_NetConn_RegisterAppHttpProxyCallback()
@@ -933,9 +933,9 @@ int32_t OH_NetConn_RegisterAppHttpProxyCallback(OH_NetConn_AppHttpProxyChange ap
 
 **返回：**
 
-0 - 成功.
+0 - 成功。
 
-401 - 参数错误.
+401 - 参数错误。
 
 
 ### OH_NetConn_UnregisterAppHttpProxyCallback()
@@ -984,19 +984,19 @@ int32_t OH_NetConn_RegisterNetConnCallback(NetConn_NetSpecifier *specifier, NetC
 
 **返回：**
 
-0 - 成功.
+0 - 成功。
 
-201 - 缺少权限.
+201 - 缺少权限。
 
-401 - 参数错误.
+401 - 参数错误。
 
-2100002 - 无法连接到服务.
+2100002 - 无法连接到服务。
 
-2100003 - 内部错误.
+2100003 - 内部错误。
 
-2101008 - 回调已注册.
+2101008 - 回调已注册。
 
-2101022 - 超过最大请求数.
+2101022 - 超过最大请求数。
 
 **Permission：**
 
@@ -1026,19 +1026,19 @@ int32_t OH_NetConn_RegisterDefaultNetConnCallback(NetConn_NetConnCallback *netCo
 
 **返回：**
 
-0 - 成功.
+0 - 成功。
 
-201 - 缺少权限.
+201 - 缺少权限。
 
-401 - 参数错误.
+401 - 参数错误。
 
-2100002 - 无法连接到服务.
+2100002 - 无法连接到服务。
 
-2100003 - 内部错误.
+2100003 - 内部错误。
 
-2101008 - 回调已注册.
+2101008 - 回调已注册。
 
-2101022 - 超过最大请求数.
+2101022 - 超过最大请求数。
 
 **Permission：**
 
@@ -1067,17 +1067,17 @@ int32_t OH_NetConn_UnregisterNetConnCallback(uint32_t callBackId)
 
 **返回：**
 
-0 - 成功.
+0 - 成功。
 
-201 - 缺少权限.
+201 - 缺少权限。
 
-401 - 参数错误.
+401 - 参数错误。
 
-2100002 - 无法连接到服务.
+2100002 - 无法连接到服务。
 
-2100003 - 内部错误.
+2100003 - 内部错误。
 
-2101007 - 未找到相应回调.
+2101007 - 未找到相应回调。
 
 **Permission：**
 

@@ -23,7 +23,7 @@ import { common } from '@kit.AbilityKit';
 | applicationInfo     | [ApplicationInfo](js-apis-bundleManager-applicationInfo.md) | 否    | 否    | 当前应用程序的信息。 <br>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
 | cacheDir            | string | 否    | 否    | 缓存目录。<br>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
 | tempDir             | string | 否    | 否    | 临时目录。<br>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
-| resourceDir<sup>11+<sup>         | string | 否    | 否    | 资源目录。<br>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
+| resourceDir<sup>11+<sup>         | string | 否    | 否    | 资源目录。<br>**说明**：需要开发者手动在`\<module-name>\resource`路径下创建`resfile`目录。创建的`resfile`目录仅支持以只读方式访问。<br>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
 | filesDir            | string | 否    | 否    | 文件目录。<br>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
 | databaseDir         | string | 否    | 否    | 数据库目录。<br>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
 | preferencesDir      | string | 否    | 否    | preferences目录。<br>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |

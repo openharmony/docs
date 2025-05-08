@@ -16,6 +16,8 @@ Trace提供2种工作模式，离线模式和在线模式。
 
 离线模式会将trace frame记录到预先申请好的循环buffer中。如果循环buffer记录的frame过多则可能出现翻转，会覆盖之前的记录，故保持记录的信息始终是最新的信息。Trace循环buffer的数据可以通过shell命令导出进行详细分析，导出信息已按照时间戳信息完成排序。
 
+**图一：** 内核态流程图
+
 ![zh-cn_image_0000001168711762](figures/zh-cn_image_0000001168711762.png)
 
 在线模式需要配合IDE使用，实时将trace frame记录发送给IDE，IDE端进行解析并可视化展示。
@@ -23,7 +25,7 @@ Trace提供2种工作模式，离线模式和在线模式。
 
 ## 接口说明
 
-OpenHarmony LiteOS-M内核的Trace模块提供下面几种功能，接口详细信息可以查看API参考。
+OpenHarmony LiteOS-M内核的Trace模块提供下面几种功能，接口详细信息可以查看[API参考](https://gitee.com/openharmony/kernel_liteos_m/blob/master/components/trace/los_trace.h)。
 
   **表1** Trace模块接口说明
 
@@ -146,7 +148,7 @@ OpenHarmony LiteOS-M内核的Trace模块提供下面几种功能，接口详细�
 
 7. 调用LOS_TraceRecordDump输出缓冲区数据（函数的入参为布尔型，FALSE表示格式化输出，TRUE表示输出到windows客户端）。
 
-上述第3-7步中的接口，均封装有对应的shell命令，对应关系如下
+上述第3-7步中的接口，均封装有对应的shell命令，对应关系如下：
 
 - LOS_TraceReset —— trace_reset
 

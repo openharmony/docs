@@ -41,16 +41,14 @@ pick(context: Context, mediaTypes: Array\<PickerMediaType\>, pickerProfile: Pick
 ```ts
 import { cameraPicker as picker } from '@kit.CameraKit';
 import { camera } from '@kit.CameraKit';
-import { common } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
-let mContext = getContext(this) as common.Context;
 
-async function demo() {
+async function demo(context: Context) {
   try {
     let pickerProfile: picker.PickerProfile = {
       cameraPosition: camera.CameraPosition.CAMERA_POSITION_BACK
     };
-    let pickerResult: picker.PickerResult = await picker.pick(mContext,
+    let pickerResult: picker.PickerResult = await picker.pick(context,
       [picker.PickerMediaType.PHOTO, picker.PickerMediaType.VIDEO], pickerProfile);
     console.log("the pick pickerResult is:" + JSON.stringify(pickerResult));
   } catch (error) {
@@ -85,8 +83,8 @@ async function demo() {
 | 名称           | 类型                               | 必填   | 说明         |
 | -------------- | --------------------------------- | ----- | ------------ |
 | cameraPosition       | [camera.CameraPosition](js-apis-camera.md#cameraposition) | 是    | 相机的位置。   |
-| saveUri        | string                            | 否    | 保存配置信息的uri。|
-| videoDuration  | number                            | 否    | 录制的最大时长。|
+| saveUri        | string                            | 否    | 保存配置信息的uri，默认值请参考[文件uri](../apis-core-file-kit/js-apis-file-fileuri.md#constructor10)。|
+| videoDuration  | number                            | 否    | 录制的最大时长（单位：秒）。|
 
 
 ## PickerResult

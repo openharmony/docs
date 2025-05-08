@@ -108,7 +108,7 @@ Obtains the preset CA certificate and custom CA certificate from the certificate
 | 2305023  | Certificate has been revoked.                        |
 | 2305024  | Invalid certificate authority (CA).                  |
 | 2305027  | Certificate is untrusted.                            |
-| 2305069  | Call invalid.                                        |
+| 2305069  | Invalid certificate verification context.            |
 
 > **NOTE**
 > 
@@ -184,9 +184,11 @@ Obtains the preset CA certificate and custom CA certificate from the certificate
 | 2305010  | Certificate has expired.                             |
 | 2305011  | CRL is not yet valid.                                |
 | 2305012  | CRL has expired.                                     |
+| 2305018  | Self-signed certificate.                             |
 | 2305023  | Certificate has been revoked.                        |
 | 2305024  | Invalid certificate authority (CA).                  |
 | 2305027  | Certificate is untrusted.                            |
+| 2305069  | Invalid certificate verification context.            |
 
 > **NOTE**
 >
@@ -226,3 +228,81 @@ console.info('Synchronous Verification Result:', resultSync);
 > **NOTE**
 >
 > Be sure to replace the certificate data in the example with the actual certificate data.
+
+## networkSecurity.isCleartextPermitted<sup>18+</sup>
+
+isCleartextPermitted(): boolean
+
+Checks whether plaintext HTTP access is allowed from the preset **network_config.json** file of the application. By default, plaintext HTTP access is allowed.
+
+**Required permissions**: ohos.permission.INTERNET
+
+**System capability**: SystemCapability.Communication.NetStack
+
+**Return values:**
+
+| Type  | Description                                                        |
+| ------ | ------------------------------------------------------------ |
+| boolean | Boolean value indicating whether plaintext HTTP is allowed. The value **true** indicates that plaintext HTTP is allowed, and the value **false** indicates the opposite. The default value is **true**.|
+
+**Error codes**
+
+| ID| Error Message                                            |
+| -------- | ---------------------------------------------------- |
+| 201      | Permission denied.                                  |
+
+**Example**
+
+```ts
+import { networkSecurity } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+  let result: boolean = networkSecurity.isCleartextPermitted();
+  console.info(`isCleartextPermitted Result: ${JSON.stringify(result)}`);
+} catch (error) {
+  console.error(`isCleartextPermitted Error: ${JSON.stringify(error)}`);
+}
+```
+
+## networkSecurity.isCleartextPermittedByHostName<sup>18+</sup>
+
+isCleartextPermittedByHostName(hostName: string): boolean
+
+Checks whether host name–based plaintext HTTP access is allowed from the preset **network_config.json** file of the application. By default, plaintext HTTP access is allowed.
+
+**Required permissions**: ohos.permission.INTERNET
+
+**System capability**: SystemCapability.Communication.NetStack
+
+**Parameters**
+
+| Name| Type    | Mandatory| Description                  |
+| ------ | -------- | ---- | ---------------------- |
+| hostName | string | Yes | Host name.|
+
+**Return values:**
+
+| Type  | Description                                                        |
+| ------ | ------------------------------------------------------------ |
+| boolean | Boolean value indicating whether host name–based plaintext HTTP is allowed. The value **true** indicates that plaintext HTTP is allowed, and the value **false** indicates the opposite. The default value is **true**.|
+
+**Error codes**
+
+| ID| Error Message                                            |
+| -------- | ---------------------------------------------------- |
+| 201      | Permission denied.                                     |
+
+**Example**
+
+```ts
+import { networkSecurity } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+  let result: boolean = networkSecurity.isCleartextPermittedByHostName("xxx");
+  console.info(`isCleartextPermitted Result: ${JSON.stringify(result)}`);
+} catch (error) {
+  console.error(`isCleartextPermitted Error: ${JSON.stringify(error)}`);
+}
+```

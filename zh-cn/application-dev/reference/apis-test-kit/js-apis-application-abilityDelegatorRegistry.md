@@ -1,4 +1,5 @@
 # @ohos.application.abilityDelegatorRegistry (AbilityDelegatorRegistry)
+<!--deprecated_code_no_check-->
 
 AbilityDelegatorRegistry模块提供用于存储已注册的[AbilityDelegator](js-apis-inner-application-abilityDelegator.md)和[AbilityDelegatorArgs](js-apis-inner-application-abilityDelegatorArgs.md)对象的全局寄存器的能力，包括获取应用程序的AbilityDelegator对象、获取单元测试参数AbilityDelegatorArgs对象。该模块中的接口只能用于测试框架中。
 
@@ -16,7 +17,7 @@ import AbilityDelegatorRegistry from '@ohos.application.abilityDelegatorRegistry
 
 Ability生命周期状态。
 
-**系统能力** ：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 | 名称          | 值   | 说明                        |
 | ------------- | ---- | --------------------------- |
@@ -30,9 +31,9 @@ Ability生命周期状态。
 
 getAbilityDelegator(): AbilityDelegator
 
-获取应用程序的AbilityDelegator对象
+获取应用程序的AbilityDelegator对象。
 
-**系统能力：** SystemCapability.Ability.AbilityRuntime.Core
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **返回值：**
 
@@ -52,7 +53,7 @@ let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
 
 getArguments(): AbilityDelegatorArgs
 
-获取单元测试参数AbilityDelegatorArgs对象
+获取单元测试参数AbilityDelegatorArgs对象。
 
 **系统能力：** SystemCapability.Ability.AbilityRuntime.Core
 

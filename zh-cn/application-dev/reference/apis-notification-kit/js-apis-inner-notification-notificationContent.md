@@ -58,7 +58,9 @@
 
 > **说明：**
 >
-> 实际显示效果依赖于设备能力和通知中心UI样式。
+> - 当该类型通知与其他通知形成组通知时，该通知显示默认与[普通文本](#notificationbasiccontent)相同。展开组通知后，标题显示为展开时的标题`longTitle`，多行文本内容`lines`多行显示。<br>当该类型通知单独呈现时，该通知标题显示为展开时的标题`longTitle`，多行文本内容`lines`多行显示。
+>
+> - 实际显示效果依赖于设备能力和通知中心UI样式。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -66,7 +68,7 @@
 | -------------- | --------------- | --- | --- | -------------------------------- |
 | briefText      | string          | 否  | 否  | 通知概要内容，是对通知内容的总结（不可为空字符串，大小不超过1024字节，超出部分会被截断）。 |
 | longTitle      | string          | 否  | 否  | 通知展开时的标题（不可为空字符串，大小不超过1024字节，超出部分会被截断）。|
-| lines          | Array\<string\> | 否  | 否  | 通知的多行文本（每行大小不超过1024字节，超出部分会被截断）。                  |
+| lines          | Array\<string\> | 否  | 否  | 通知的多行文本（最多支持三行，每行大小不超过1024字节，超出部分会被截断）。                  |
 
 
 ## NotificationPictureContent
@@ -135,9 +137,9 @@
 | 名称           | 类型              | 只读 | 可选 | 说明                             |
 | -------------- | ---------------- | --- | --- | -------------------------------- |
 | initialTime    | number           | 否  | 是  | 计时起始时间。单位：ms。                |
-| isCountDown    | boolean          | 否  | 是  | 是否倒计时。                     |
-| isPaused       | boolean          | 否  | 是  | 是否暂停。                       |
-| isInTitle      | boolean          | 否  | 是  | 时间是否展示在title中。           |
+| isCountDown    | boolean          | 否  | 是  | 是否倒计时。默认为false。<br> - true：是。<br> - false：否。 |
+| isPaused       | boolean          | 否  | 是  | 是否暂停。默认为false。<br> - true：是。<br> - false：否。   |
+| isInTitle      | boolean          | 否  | 是  | 时间是否展示在title中。默认为false。<br> - true：是。<br> - false：否。|
 
 **示例：**
 
@@ -162,4 +164,4 @@ time: {
 | -------------- | --------------- | --- | --- | -------------------------------- |
 | maxValue        | number         | 否  | 是  | 进度最大值。                       |
 | currentValue    | number         | 否  | 是  | 进度当前值。                       |
-| isPercentage    | boolean        | 否  | 是  | 是否按百分比展示。                   |
+| isPercentage    | boolean        | 否  | 是  | 是否按百分比展示。默认为false。<br> - true：是。<br> - false：否。|

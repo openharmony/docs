@@ -23,7 +23,7 @@ OpenHarmony LiteOS-M提供异常接管调测手段，帮助开发者定位分析
 
 ## 接口说明
 
-OpenHarmony LiteOS-M内核的回溯栈模块提供以下接口，接口详细信息可以查看API参考。
+OpenHarmony LiteOS-M内核的回溯栈模块提供以下接口，接口详细信息可以查看[API参考](https://gitee.com/openharmony/kernel_liteos_m/blob/master/components/backtrace/los_backtrace.h)。
 
   **表1** 回溯栈模块接口
 

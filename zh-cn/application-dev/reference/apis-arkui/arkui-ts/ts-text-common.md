@@ -13,8 +13,8 @@
 
 | 名称 | 类型                                   | 必填 | 说明 |
 | ------ | ------------------------------------------ | ---- | -------- |
-| width  | [Length](ts-types.md#length)               | 否   | 光标尺寸，不支持百分比。 |
-| color  | [ResourceColor](ts-types.md#resourcecolor) | 否   | 光标颜色。 |
+| width  | [Length](ts-types.md#length)               | 否   | 光标尺寸，不支持百分比。<br/>默认值：'2vp' |
+| color  | [ResourceColor](ts-types.md#resourcecolor) | 否   | 光标颜色。<br/>默认值：'#ff007dff' |
 
 ## LayoutManager<sup>12+</sup>
 
@@ -61,8 +61,8 @@ getGlyphPositionAtCoordinate(x: number, y: number): PositionWithAffinity
 
 | 参数名    | 类型   | 必填   | 说明                 |
 | ------ | ------ | ---- | -------------------- |
-| x | number | 是    | 相对于组件的横坐标。<br/>单位：px |
-| y | number | 是    | 相对于组件的纵坐标。<br/>单位：px |
+| x | number | 是    | 相对于组件的横坐标。<br/>单位：[px](ts-pixel-units.md#像素单位) |
+| y | number | 是    | 相对于组件的纵坐标。<br/>单位：[px](ts-pixel-units.md#像素单位) |
 
 **返回值：**
 
@@ -84,13 +84,13 @@ getLineMetrics(lineNumber: number): LineMetrics
 
 | 参数名    | 类型   | 必填   | 说明                 |
 | ------ | ------ | ---- | -------------------- |
-| lineNumber | number | 是    | 行号。从0开始。 |
+| lineNumber | number | 是    | 行号，从0开始。 |
 
 **返回值：**
 
 | 类型                                       | 说明       |
 | ---------------------------------------- | -------- |
-| [LineMetrics](#linemetrics12) | 行信息、文本样式信息、以及字体属性信息。 |
+| [LineMetrics](#linemetrics12) | 行信息、文本样式信息、以及字体属性信息。<br/>当行号小于0或超出实际行，返回无效值。 |
 
 ### getRectsForRange<sup>14+</sup>
 
@@ -131,7 +131,7 @@ getRectsForRange(range: TextRange, widthStyle: RectWidthStyle, heightStyle: Rect
 
 ## TextMenuItemId<sup>12+</sup>
 
-菜单的Id值。
+自定义菜单项的Id值。用于识别菜单选项，内置菜单项Id值见下列属性表格。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -196,7 +196,7 @@ equals(id: TextMenuItemId): boolean
 
 | 类型              |       说明       |
 | ------- | --------------------------------- |
-| boolean | 两个TextMenuItemId是否相等。 |
+| boolean | 两个TextMenuItemId是否相等。<br/>true表示相等，false表示不相等。 |
 
 ## TextMenuItem<sup>12+</sup>对象说明
 
@@ -382,7 +382,7 @@ type EditableTextOnChangeCallback = (value: string, previewText?: PreviewText, o
 | types   | [TextDataDetectorType](ts-text-common.md#textdatadetectortype11枚举说明)[] | 是   | 设置文本识别的实体类型。设置types为null或者[]时，识别所有类型的实体，否则只识别指定类型的实体。 |
 | onDetectResultUpdate   | (result: string) => void | 否   | 文本识别成功后，触发onDetectResultUpdate回调。<br/>-&nbsp;result：文本识别的结果，Json格式。 |
 | color<sup>12+</sup>   | [ResourceColor](ts-types.md#resourcecolor) | 否   | 设置文本识别成功后的实体颜色。<br/>默认值：'#ff0a59f7' |
-| decoration<sup>12+</sup>  | [DecorationStyleInterface](ts-universal-styled-string.md#decorationstyleinterface对象说明)| 否   | 设置文本识别成功后的实体装饰线样式。<br/>默认值：<br/>{<br/>&nbsp;type:&nbsp;TextDecorationType.Underline,<br/>&nbsp;color:&nbsp;与实体颜色一致,<br/>&nbsp;style:&nbsp;TextDecorationStyle.SOLID&nbsp;<br/>} |
+| decoration<sup>12+</sup>  | [DecorationStyleInterface](ts-universal-styled-string.md#decorationstyleinterface)| 否   | 设置文本识别成功后的实体装饰线样式。<br/>默认值：<br/>{<br/>&nbsp;type:&nbsp;TextDecorationType.Underline,<br/>&nbsp;color:&nbsp;与实体颜色一致,<br/>&nbsp;style:&nbsp;TextDecorationStyle.SOLID&nbsp;<br/>} |
 
 ## PreviewText<sup>12+</sup>
 
@@ -409,7 +409,7 @@ type EditableTextOnChangeCallback = (value: string, previewText?: PreviewText, o
 
 | 名称     | 类型                                             | 必填 | 说明                                                     |
 | -------- | ------------------------------------------------ | ---- | -------------------------------------------------------- |
-| enableVariableFontWeight | boolean | 否   | 是否支持字重无极调节。<br/>默认值：false |
+| enableVariableFontWeight | boolean | 否   | 是否支持字重无极调节。<br/>默认值：false<br/>值为true，表示支持字重调节，值为false，表示不支持字重调节。 |
 
 ## OnDidChangeCallback<sup>12+</sup>
 
@@ -491,8 +491,8 @@ selectionStart和selectionEnd均为-1时表示全选。
 
 | 参数名            | 类型   | 必填   | 说明    |
 | -------------- | ------ | ---- | ------- |
-| selectionStart | number | 是    | 选中开始位置。 |
-| selectionEnd   | number | 是    | 选中结束位置。 |
+| selectionStart | number | 是    | 选中开始位置。<br/>取值小于0时，按0处理。 |
+| selectionEnd   | number | 是    | 选中结束位置。<br/>取值大于文本长度时，按当前文本长度处理。 |
 | options   | [SelectionOptions](ts-types.md#selectionoptions12对象说明) | 否    | 选择项配置。 |
 
 ### closeSelectionMenu<sup>12+</sup>

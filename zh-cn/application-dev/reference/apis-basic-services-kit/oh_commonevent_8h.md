@@ -31,18 +31,18 @@
 
 | 名称 | 描述 |
 | -------- | -------- |
-| typedef enum [CommonEvent_ErrCode](./capi-common-event.md#commonevent_errcode)  {<br/>COMMONEVENT_ERR_OK = 0,<br>COMMONEVENT_ERR_PERMISSION_ERROR = 201,<br/>COMMONEVENT_ERR_INVALID_PARAMETER = 401,<br/>COMMONEVENT_ERR_SENDING_REQUEST_FAILED = 1500007,<br/>COMMONEVENT_ERR_INIT_UNDONE = 1500008,<br/>COMMONEVENT_ERR_SUBSCRIBER_NUM_EXCEEDED = 1500010,<br/>COMMONEVENT_ERR_ALLOC_MEMORY_FAILED = 1500011<br/>} | 枚举错误码。 |
+| typedef enum [CommonEvent_ErrCode](./capi-common-event.md#commonevent_errcode)  {<br/>COMMONEVENT_ERR_OK = 0,<br>COMMONEVENT_ERR_PERMISSION_ERROR = 201,<br/>COMMONEVENT_ERR_INVALID_PARAMETER = 401,<br/>COMMONEVENT_ERR_NOT_SYSTEM_SERVICE = 1500004,<br/>COMMONEVENT_ERR_SENDING_REQUEST_FAILED = 1500007,<br/>COMMONEVENT_ERR_INIT_UNDONE = 1500008,<br/>COMMONEVENT_ERR_SUBSCRIBER_NUM_EXCEEDED = 1500010,<br/>COMMONEVENT_ERR_ALLOC_MEMORY_FAILED = 1500011<br/>} | 枚举错误码。 |
 
 
 ### 函数
 
 | 名称 | 描述 |
 | -------- | -------- |
-| CommonEvent_SubscribeInfo* [OH_CommonEvent_CreateSubscribeInfo](./capi-common-event.md#oh_commonevent_createsubscribeinfo)(const char* events[], int32_t eventsNum) | 创建订阅者信息。 |
-| CommonEvent_ErrCode [OH_CommonEvent_SetPublisherPermission](./capi-common-event.md#oh_commonevent_setpublisherpermission)(CommonEvent_SubscribeInfo* info, const char* permission) | 设置订阅者权限。 |
+| CommonEvent_SubscribeInfo* [OH_CommonEvent_CreateSubscribeInfo](./capi-common-event.md#oh_commonevent_createsubscribeinfo)(const char* events[], int32_t eventsNum); | 创建订阅者信息。 |
+| CommonEvent_ErrCode [OH_CommonEvent_SetPublisherPermission](./capi-common-event.md#oh_commonevent_setpublisherpermission)(CommonEvent_SubscribeInfo* info, const char* permission); | 设置订阅者权限。 |
 | CommonEvent_ErrCode [OH_CommonEvent_SetPublisherBundleName](./capi-common-event.md#oh_commonevent_setpublisherbundlename)(CommonEvent_SubscribeInfo* info, const char* bundleName); | 设置订阅者包名称。 |
-| void [OH_CommonEvent_DestroySubscribeInfo](./capi-common-event.md#oh_commonevent_destroysubscribeinfo)(CommonEvent_SubscribeInfo* info) | 销毁订阅者信息。 |
-| CommonEvent_Subscriber* [OH_CommonEvent_CreateSubscriber](./capi-common-event.md#oh_commonevent_createsubscriber)(const CommonEvent_SubscribeInfo* info, CommonEvent_ReceiveCallback callback) | 创建订阅者。 |
+| void [OH_CommonEvent_DestroySubscribeInfo](./capi-common-event.md#oh_commonevent_destroysubscribeinfo)(CommonEvent_SubscribeInfo* info); | 销毁订阅者信息。 |
+| CommonEvent_Subscriber* [OH_CommonEvent_CreateSubscriber](./capi-common-event.md#oh_commonevent_createsubscriber)(const CommonEvent_SubscribeInfo* info, CommonEvent_ReceiveCallback callback); | 创建订阅者。 |
 | void [OH_CommonEvent_DestroySubscriber](./capi-common-event.md#oh_commonevent_destroysubscriber)(CommonEvent_Subscriber* subscriber); | 销毁订阅者。 |
 | CommonEvent_ErrCode [OH_CommonEvent_Subscribe](./capi-common-event.md#oh_commonevent_subscribe)(const CommonEvent_Subscriber* subscriber); | 订阅事件。 |
 | CommonEvent_ErrCode [OH_CommonEvent_UnSubscribe](./capi-common-event.md#oh_commonevent_unsubscribe)(const CommonEvent_Subscriber* subscriber); | 退订事件。 |

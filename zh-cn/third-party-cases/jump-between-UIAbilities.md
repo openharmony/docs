@@ -201,7 +201,7 @@ UIAbility组件是系统调度的基本单元，为应用提供绘制界面的�
                             ...
                             .onClick(() => {
                                 // 返回到EntryAbility的Index Page
-                                router.back();
+                                this.getUIContext().getRouter().back();
                                 })
                     }
                     ...
@@ -902,7 +902,7 @@ UIAbility组件是系统调度的基本单元，为应用提供绘制界面的�
                         .height(StyleConstants.BUTTON_HEIGHT)
                         .onClick(() => {
                             // 返回到EntryAbility的Index Page
-                            router.back();
+                            this.getUIContext().getRouter().back();
                         })
                 }
                 .width(StyleConstants.FULL_PERCENT)

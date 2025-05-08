@@ -68,8 +68,8 @@ Invoked when the **prevLabel** of the current **StepperItem** is clicked to swit
 
 | Name   | Type  | Mandatory| Description                                      |
 | --------- | ------ | ---- | ------------------------------------------ |
-| prevIndex | number | Yes  | Index of the step page before the switching.                    |
-| index     | number | Yes  | Index of the step page after the switching, that is, index of the previous or next page.|
+| prevIndex | number | Yes  | Index of the step page before the switching.<br>Value range: [0, +∞)|
+| index     | number | Yes  | Index of the step page after the switching, that is, index of the previous or next page.<br>Value range: [0, +∞)|
 
 ### onNext
 
@@ -107,6 +107,8 @@ Invoked when the **prevLabel** of the current **StepperItem** is clicked to swit
 
 
 ## Example
+
+This example demonstrates how to use the **Stepper** component.
 
 ```ts
 // xxx.ets

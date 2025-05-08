@@ -304,7 +304,7 @@
                .height(20)
                .responseRegion({width:'100%',height: '100%'})
                .onClick(() => {
-                 router.back();
+                 this.getUIContext().getRouter().back();
                })
      
              Text($r('app.string.Component_transition_header'))
@@ -415,9 +415,7 @@
         ComponentTransition.ets的完整代码如下：
 
         ```ts
-        //  entry/src/main/ets/pages/ComponentTransition.ets
-        import router from '@ohos.router';
-        
+        //  entry/src/main/ets/pages/ComponentTransition.ets        
         @Entry
         @Component
         struct ComponentTransition {
@@ -435,7 +433,7 @@
                     height: '100%'
                   })
                   .onClick(() => {
-                    router.back();
+                    this.getUIContext().getRouter().back();
                   })
         
                 Text($r('app.string.Component_transition_header'))
@@ -564,7 +562,7 @@
                  height: '100%'
                })
                .onClick(() => {
-                 router.back();
+                 this.getUIContext().getRouter().back();
                })
      
              Text($r('app.string.Share_Item_header'))
@@ -768,7 +766,6 @@ struct FullCustomTransition {
 组件内转场页面： /entry/src/main/ets/pages/ComponentTransition.ets。
 
 ```ts
- import router from '@ohos.router';
  @Entry
  @Component
  struct ComponentTransition {
@@ -785,7 +782,7 @@ struct FullCustomTransition {
                 height: '100%'
               })
               .onClick(() => {
-                router.back();
+                this.getUIContext().getRouter().back();
            })
             Text($r('app.string.Component_transition_header'))
               .fontColor(Color.Black)
@@ -902,7 +899,7 @@ struct ShareItem {
             height: '100%'
           })
           .onClick(() => {
-            router.back();
+            this.getUIContext().getRouter().back();
           })
 
         Text($r('app.string.Share_Item_header'))

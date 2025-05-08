@@ -22,7 +22,7 @@ import { securityManager } from '@kit.MDMKit';
 
 getSecurityPatchTag(admin: Want): string
 
-Obtains the device security patch tag through the specified device administrator application. This API returns the result synchronously. If the operation is successful, the security patch tag is returned. If the operation fails, an exception will be thrown.
+Queries the security patch tag of a device.
 
 **Required permissions**: ohos.permission.ENTERPRISE_MANAGE_SECURITY
 
@@ -32,9 +32,9 @@ Obtains the device security patch tag through the specified device administrator
 
 **Parameters**
 
-| Name  | Type                                 | Mandatory  | Description     |
-| ----- | ----------------------------------- | ---- | ------- |
-| admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes   | Device administrator application.|
+| Name| Type                                                   | Mandatory| Description                  |
+| ------ | ------------------------------------------------------- | ---- | ---------------------- |
+| admin  | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes  | EnterpriseAdminExtensionAbility.|
 
 **Return value**
 
@@ -75,7 +75,7 @@ try {
 
 getDeviceEncryptionStatus(admin: Want): DeviceEncryptionStatus
 
-Obtains the file system encryption status of the device. This API returns the result synchronously. If the operation is successful, the file encryption status is returned. If the operation fails, an exception will be thrown.
+Queries the encryption status of the device file system.
 
 **Required permissions**: ohos.permission.ENTERPRISE_MANAGE_SECURITY
 
@@ -87,13 +87,13 @@ Obtains the file system encryption status of the device. This API returns the re
 
 | Name     | Type                                      | Mandatory  | Description                      |
 | -------- | ---------------------------------------- | ---- | ------------------------------- |
-| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | Yes   | Device administrator application.                 |
+| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | Yes   | EnterpriseAdminExtensionAbility.           |
 
 **Return value**
 
-| Type                  | Description                                                  |
-| ---------------------- | ------------------------------------------------------ |
-| DeviceEncryptionStatus | File system encryption status. Currently, only a boolean value indicating whether the file system is encrypted is returned.|
+| Type                                             | Description                                                  |
+| ------------------------------------------------- | ------------------------------------------------------ |
+| [DeviceEncryptionStatus](#deviceencryptionstatus) | File system encryption status. Currently, only a boolean value indicating whether the file system is encrypted is returned.|
 
 **Error codes**
 
@@ -169,4 +169,4 @@ Represents the file system encryption status.
 
 | Name        | Type    | Mandatory| Description                           |
 | ----------- | --------| ---- | ------------------------------- |
-| isEncrypted | boolean | Yes  | Whether the file system of the device is encrypted. The value **true** means the file system is encrypted; the value **false** means the opposite.|
+| isEncrypted | boolean | Yes  | Whether the file system of the device is encrypted. **true**: The file system of the device is encrypted. **false**: The file system of the device is not encrypted.|

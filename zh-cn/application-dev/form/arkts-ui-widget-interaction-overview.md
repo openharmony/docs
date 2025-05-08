@@ -2,7 +2,7 @@
 
 ArkTS卡片框架为提供方提供了[updateForm](../reference/apis-form-kit/js-apis-app-form-formProvider.md#updateform)接口、为使用方提供了requestForm接口来实现主动触发卡片的页面刷新能力；另外卡片框架还会通过开发者声明的定时信息按需通知提供方进行卡片刷新。
 
-卡片UI代码内通过[LocalStorageProp](../quick-start/arkts-localstorage.md#localstorageprop)可以获得提供方推送的需要刷新的卡片数据。
+卡片UI代码内通过[LocalStorageProp](../ui/state-management/arkts-localstorage.md#localstorageprop)可以获得提供方推送的需要刷新的卡片数据。
 
 | 接口 | 是否系统能力 | 约束 |
 | -------- | -------- | -------- |

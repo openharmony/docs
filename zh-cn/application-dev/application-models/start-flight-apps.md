@@ -36,29 +36,48 @@ startAbilityByType接口中type字段为flight，支持按航班号查询、按�
 2. 构造接口参数并调用startAbilityByType接口。 
 
     ```ts
-    let context = getContext(this) as common.UIAbilityContext;
-    let wantParam: Record<string, Object> = {
-      'sceneType': 1,
-      'flightNo': 'ZH1509',
-      'departureDate': '2024-10-01'
-    };
-    let abilityStartCallback: common.AbilityStartCallback = {
-      onError: (code: number, name: string, message: string) => {
-        console.log(`onError code ${code} name: ${name} message: ${message}`);
-      },
-      onResult: (result)=>{
-        console.log(`onResult result: ${JSON.stringify(result)}`);
-      }
-    }
-    
-    context.startAbilityByType("flight", wantParam, abilityStartCallback, 
-        (err) => {
-            if (err) {
-                console.error(`startAbilityByType fail, err: ${JSON.stringify(err)}`);
-            } else {
-                console.log(`success`);
+    @Entry
+    @Component
+    struct Index {
+        @State hideAbility: string = 'hideAbility'
+
+        build() {
+            Row() {
+                Column() {
+                    Text(this.hideAbility)
+                        .fontSize(30)
+                        .fontWeight(FontWeight.Bold)
+                        .onClick(() => {
+                            let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+                            let wantParam: Record<string, Object> = {
+                                'sceneType': 1,
+                                'flightNo': 'ZH1509',
+                                'departureDate': '2024-10-01'
+                            };
+                            let abilityStartCallback: common.AbilityStartCallback = {
+                                onError: (code: number, name: string, message: string) => {
+                                    console.log(`onError code ${code} name: ${name} message: ${message}`);
+                                },
+                                onResult: (result) => {
+                                    console.log(`onResult result: ${JSON.stringify(result)}`);
+                                }
+                            }
+
+                            context.startAbilityByType("flight", wantParam, abilityStartCallback,
+                                (err) => {
+                                    if (err) {
+                                    	console.error(`startAbilityByType fail, err: ${JSON.stringify(err)}`);
+                                    } else {
+                                    	console.log(`success`);
+                                    }
+                                });
+                        });
+                }
+                .width('100%')
             }
-    });
+            .height('100%')
+        }
+    }
     ```
     效果示例图：    
     ![效果示例图](./figures/start-flight-panel.png)

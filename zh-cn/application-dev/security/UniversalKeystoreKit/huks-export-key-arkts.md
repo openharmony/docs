@@ -8,8 +8,7 @@
 
 1. 指定密钥别名keyAlias，密钥别名最大长度为128字节。
 
-2. 调用接口[exportKeyItem](../../reference/apis-universal-keystore-kit/js-apis-huks.md#huksexportkeyitem9)，传入参数keyAlias和options。
-   options为预留参数，当前可传入空。
+2. 调用接口[exportKeyItem](../../reference/apis-universal-keystore-kit/js-apis-huks.md#huksexportkeyitem9)，传入参数keyAlias和options。options为预留参数，当前可传入空。
 
 3. 返回值为[HuksReturnResult](../../reference/apis-universal-keystore-kit/js-apis-huks.md#huksreturnresult9)类型对象，获取的公钥明文在outData字段中，以标准的X.509规范的DER格式封装，具体请参考[公钥材料格式](huks-concepts.md#公钥材料格式)。
 

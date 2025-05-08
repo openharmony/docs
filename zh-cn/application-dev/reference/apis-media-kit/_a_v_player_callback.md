@@ -15,6 +15,8 @@
 
 **相关模块：**[AVPlayer](_a_v_player.md)
 
+**所在头文件：**[avplayer_base.h](avplayer__base_8h.md)
+
 
 ## 汇总
 
@@ -23,5 +25,5 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [onInfo](_a_v_player.md#oninfo) | 监控AVPlayer过程信息，参考[OH_AVPlayerOnInfo](_a_v_player.md#oh_avplayeroninfo)。 | 
-| [onError](_a_v_player.md#onerror) | 监听AVPlayer操作错误，参考[OH_AVPlayerOnError](_a_v_player.md#oh_avplayeronerror)。 | 
+| onInfo | 监控AVPlayer过程信息，参考[OH_AVPlayerOnInfo](_a_v_player.md#oh_avplayeroninfo)。| 
+| onError | 监听AVPlayer操作错误，参考[OH_AVPlayerOnError](_a_v_player.md#oh_avplayeronerror)。| 

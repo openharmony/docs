@@ -1,26 +1,22 @@
 # 字块绘制（C/C++）
 
-
 ## 场景介绍
 
 字块（TextBlob）是指文本的集合。无论是单个的文字还是大块的文本，都可以通过字块来绘制。
 
-本节聚焦于文字的绘制效果，除了基本的字块绘制之外，还可以给文字添加各种绘制效果。常见的字块绘制场景包括[文字描边](#文字描边)、[文字渐变](#文字渐变)等，更多效果请见[绘制效果](drawing-effect-overview.md)。
+本节聚焦于文字的绘制效果，更多关于文本测量、排版的场景指导，可见[文本开发概述](text-overview.md)。
 
+除了基本的字块绘制之外，还可以给文字添加各种绘制效果。常见的字块绘制场景包括[文字描边](#文字描边)、[文字渐变](#文字渐变)等，更多效果请见[绘制效果](drawing-effect-overview.md)。
 
 ## 基本字块绘制
 
 使用OH_Drawing_CanvasDrawTextBlob()接口绘制字块，接口接受4个参数，分别为：画布Canvas对象、字块对象、文字基线左端点的x坐标和y坐标。
 
-
 画布Canvas对象具体可见[画布的获取与绘制结果的显示（C/C++）](canvas-get-result-draw-c.md)。
-
 
 字块对象可以通过多种方式创建得到，详细的字块创建方式请参考[drawing_text_blob.h](../reference/apis-arkgraphics2d/drawing__text__blob_8h.md)。
 
-
 此处以使用OH_Drawing_TextBlobCreateFromString()接口创建字块为例，接口接受3个参数，分别为：
-
 
 - 需要显示的文本字符串内容。
 
@@ -28,9 +24,7 @@
 
 - 文本编码方式。
 
-
 简单示例和示意图如下所示：
-
 
 ```c++
 // 创建字体对象
@@ -50,9 +44,7 @@ OH_Drawing_TextBlobDestroy(textBlob);
 OH_Drawing_FontDestroy(font);
 ```
 
-
 ![Screenshot_20241225164926098](figures/Screenshot_20241225164926098.jpg)
-
 
 ## 文字描边
 
@@ -90,7 +82,6 @@ OH_Drawing_PenDestroy(pen);
 ```
 
 ![Screenshot_20241225171259621](figures/Screenshot_20241225171259621.jpg)
-
 
 ## 文字渐变
 
@@ -135,3 +126,11 @@ OH_Drawing_BrushDestroy(brush);
 ```
 
 ![Screenshot_20241225173900576](figures/Screenshot_20241225173900576.jpg)
+
+<!--RP1-->
+## 相关实例
+
+针对Drawing(C/C++)的开发，有以下相关实例可供参考：
+
+- [NDKGraphicsDraw (API14)](https://gitee.com/openharmony/applications_app_samples/tree/master/code/DocsSample/Drawing/NDKGraphicsDraw)
+<!--RP1End-->

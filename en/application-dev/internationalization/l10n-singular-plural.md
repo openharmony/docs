@@ -16,7 +16,7 @@ Singular and plural numbers are usually distinguished by the following categorie
 
 - other: other cases
 
-For example, in Arabic, the rules are as follows:
+For example, in Arabic, the plural rules are as follows:
 
 - zero : 0
 

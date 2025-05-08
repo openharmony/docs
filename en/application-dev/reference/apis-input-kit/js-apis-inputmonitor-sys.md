@@ -948,7 +948,7 @@ try {
 }
 ```
 
-## inputMonitor.on('touchscreenSwipe')<sup>14+</sup>
+## inputMonitor.on('touchscreenSwipe')<sup>18+</sup>
 
 on(type: 'touchscreenSwipe', fingers: number, receiver: Callback&lt;TouchGestureEvent&gt;): void
 
@@ -992,7 +992,7 @@ try {
 }
 ```
 
-## inputMonitor.off('touchscreenSwipe')<sup>14+</sup>
+## inputMonitor.off('touchscreenSwipe')<sup>18+</sup>
 
 off(type: 'touchscreenSwipe', fingers: number, receiver?: Callback&lt;TouchGestureEvent&gt;): void
 
@@ -1055,7 +1055,7 @@ try {
 }
 ```
 
-## inputMonitor.on('touchscreenPinch')<sup>14+</sup>
+## inputMonitor.on('touchscreenPinch')<sup>18+</sup>
 
 on(type: 'touchscreenPinch', fingers: number, receiver: Callback&lt;TouchGestureEvent&gt;): void
 
@@ -1099,7 +1099,7 @@ try {
 }
 ```
 
-## inputMonitor.off('touchscreenPinch')<sup>14+</sup>
+## inputMonitor.off('touchscreenPinch')<sup>18+</sup>
 
 off(type: 'touchscreenPinch', fingers: number, receiver?: Callback&lt;TouchGestureEvent&gt;): void
 
@@ -1162,7 +1162,7 @@ try {
 }
 ```
 
-## inputMonitor.on('keyPressed')<sup>16+</sup>
+## inputMonitor.on('keyPressed')<sup>15+</sup>
 
 on(type: 'keyPressed', keys: Array&lt;KeyCode&gt;, receiver: Callback&lt;KeyEvent&gt;): void
 
@@ -1196,8 +1196,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 ```js
 import { inputMonitor, KeyEvent, KeyCode } from '@kit.InputKit';
 
-let keys: Array<KeyCode> = [KeyCode.KEYCODE_VOLUME_UP];
 try {
+  let keys: Array<KeyCode> = [KeyCode.KEYCODE_VOLUME_UP];
   inputMonitor.on('keyPressed', keys, (event: KeyEvent ) => {
     console.log(`Monitor on success ${JSON.stringify(event)}`);
   });
@@ -1206,7 +1206,7 @@ try {
 }
 ```
 
-## inputMonitor.off('keyPressed')<sup>16+</sup>
+## inputMonitor.off('keyPressed')<sup>15+</sup>
 
 off(type: 'keyPressed', receiver?: Callback&lt;KeyEvent&gt;): void
 
@@ -1239,11 +1239,11 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 // Disable listening for a single callback.
 import { inputMonitor, KeyEvent, KeyCode } from '@kit.InputKit';
 
-let callback = (event: KeyEvent) => {
-  console.log(`Monitor on success ${JSON.stringify(event)}`);
-};
-let keys: Array<KeyCode> = [KeyCode.KEYCODE_VOLUME_UP];
 try {
+  let callback = (event: KeyEvent) => {
+    console.log(`Monitor on success ${JSON.stringify(event)}`);
+  };
+  let keys: Array<KeyCode> = [KeyCode.KEYCODE_VOLUME_UP];
   inputMonitor.on('keyPressed', keys, callback);
   inputMonitor.off("keyPressed", callback);
 } catch (error) {
@@ -1255,8 +1255,8 @@ try {
 // Cancel listening for all callbacks.
 import { inputMonitor, KeyEvent, KeyCode } from '@kit.InputKit';
 
-let keys: Array<KeyCode> = [KeyCode.KEYCODE_VOLUME_UP];
 try {
+  let keys: Array<KeyCode> = [KeyCode.KEYCODE_VOLUME_UP];
   inputMonitor.on('keyPressed', keys, (event: KeyEvent) => {
     console.log(`Monitor on success ${JSON.stringify(event)}`);
   });

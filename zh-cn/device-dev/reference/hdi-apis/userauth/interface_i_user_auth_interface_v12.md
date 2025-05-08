@@ -529,7 +529,7 @@ IUserAuthInterface::GetAllUserInfo ([out] UserInfo[] userInfos)
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| userInfos | 用户信息列表[UserInfo](_user_info_v12.md)}。 | 
+| userInfos | 用户信息列表[UserInfo](_user_info_v12.md)。 | 
 
 **返回：**
 

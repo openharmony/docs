@@ -1,20 +1,20 @@
-# 公共基础能力
+# 公共基础能力<!--common-basic-api-->
 
-- ArkTS API
+- ArkTS API<!--common-basic-arkts-->
   - [Console (控制台)](js-apis-logs.md)
   - [SysCap (系统能力)](js-apis-syscap.md)
   - [Timer (定时器)](js-apis-timer.md)
-- C API
-  - 模块
+- C API<!--common-basic-c-->
+  - 模块<!--common-basic-module-->
     - [Init](init.md)
     - [Memory](memory.md)
     - [JSVM](_j_s_v_m.md)
-  - 头文件
+  - 头文件<!--common-basic-headerfile-->
     - [syscap_ndk.h](syscap__ndk_8h.md)
     - [purgeable_memory.h](purgeable__memory_8h.md)
     - [jsvm.h](jsvm_8h.md)
     - [jsvm_types.h](jsvm__types_8h.md)
-  - 结构体
+  - 结构体<!--common-basic-struct-->
     - [JSVM_CallbackStruct](_j_s_v_m___callback_struct.md)
     - [JSVM_CreateVMOptions](_j_s_v_m___create_v_m_options.md)
     - [JSVM_ExtendedErrorInfo](_j_s_v_m___extended_error_info.md)
@@ -25,3 +25,5 @@
     - [JSVM_ScriptOrigin](_j_s_v_m___script_origin.md)
     - [JSVM_TypeTag](_j_s_v_m___type_tag.md)
     - [JSVM_VMInfo](_j_s_v_m___v_m_info.md)
+    - [JSVM_PropertyHandler](_j_s_v_m___property_handler.md)
+    - [JSVM_DefineClassOptions](_j_s_v_m___define_class_options.md)

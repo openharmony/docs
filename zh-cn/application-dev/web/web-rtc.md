@@ -44,7 +44,7 @@ Web组件可以通过W3C标准协议接口拉起摄像头和麦克风，通过[o
 
 通过在JavaScript中调用W3C标准协议接口navigator.mediaDevices.getUserMedia()，该接口用于拉起摄像头和麦克风。constraints参数是一个包含了video和audio两个成员的MediaStreamConstraints对象，用于说明请求的媒体类型。
 
-在下面的示例中，点击前端页面中的开起摄像头按钮再点击onConfirm，打开摄像头和麦克风。
+在下面的示例中，点击前端页面中的开启摄像头按钮再点击onConfirm，打开摄像头和麦克风。
 
 - 应用侧代码。
 
@@ -57,14 +57,15 @@ Web组件可以通过W3C标准协议接口拉起摄像头和麦克风，通过[o
   @Entry
   @Component
   struct WebComponent {
-    controller: webview.WebviewController = new webview.WebviewController()
+    controller: webview.WebviewController = new webview.WebviewController();
+    uiContext: UIContext = this.getUIContext();
 
     aboutToAppear() {
       // 配置Web开启调试模式
       webview.WebviewController.setWebDebuggingAccess(true);
       // 获取权限请求通知，点击onConfirm按钮后，拉起摄像头和麦克风。
       let atManager = abilityAccessCtrl.createAtManager();
-      atManager.requestPermissionsFromUser(getContext(this), ['ohos.permission.CAMERA', 'ohos.permission.MICROPHONE'])
+      atManager.requestPermissionsFromUser(this.uiContext.getHostContext(), ['ohos.permission.CAMERA', 'ohos.permission.MICROPHONE'])
         .then((data) => {
           console.info('data:' + JSON.stringify(data));
           console.info('data permissions:' + data.permissions);
@@ -79,7 +80,7 @@ Web组件可以通过W3C标准协议接口拉起摄像头和麦克风，通过[o
         Web({ src: $rawfile('index.html'), controller: this.controller })
           .onPermissionRequest((event) => {
             if (event) {
-              AlertDialog.show({
+              this.uiContext.showAlertDialog({
                 title: 'title',
                 message: 'text',
                 primaryButton: {

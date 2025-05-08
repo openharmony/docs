@@ -31,7 +31,7 @@ The **native_drm_common.h** file declares the DRM data types.
 | struct  [DRM_MediaKeyStatus](_d_r_m___media_key_status.md) | Describes the media key status.| 
 | struct  [DRM_PsshInfo](_d_r_m___pssh_info.md) | Describes the Protection System Specific Header (PSSH) data in DRM information.| 
 | struct  [DRM_MediaKeySystemInfo](_d_r_m___media_key_system_info.md) | Describes the DRM information, which is used to encrypt content.| 
-| struct  [DRM_MediaKeySystemDescription](_d_r_m___media_key_system_description.md) | Describes the DRM scheme name and UUID list. | 
+| struct  [DRM_MediaKeySystemDescription](_d_r_m___media_key_system_description.md) | Describes the DRM solution name and UUID list. | 
 
 
 ### Macros
@@ -56,7 +56,7 @@ The **native_drm_common.h** file declares the DRM data types.
 | [MAX_MEDIA_KEY_STATUS_COUNT](_drm.md#max_media_key_status_count)&nbsp;&nbsp;&nbsp;64 | Maximum number of media key statuses.| 
 | [MAX_MEDIA_KEY_STATUS_NAME_LEN](_drm.md#max_media_key_status_name_len)&nbsp;&nbsp;&nbsp;64 | Maximum length of a media key status name.| 
 | [MAX_MEDIA_KEY_STATUS_VALUE_LEN](_drm.md#max_media_key_status_value_len)&nbsp;&nbsp;&nbsp;256 | Maximum length of a media key status value.| 
-| [DRM_UUID_LEN](_drm.md#drm_uuid_len)&nbsp;&nbsp;&nbsp;16 | Length of the UUID of a DRM scheme.| 
+| [DRM_UUID_LEN](_drm.md#drm_uuid_len)&nbsp;&nbsp;&nbsp;16 | Length of the UUID of a DRM solution.| 
 | [MAX_PSSH_DATA_LEN](_drm.md#max_pssh_data_len)&nbsp;&nbsp;&nbsp;2048 | Maximum length of PSSH data.| 
 | [MAX_PSSH_INFO_COUNT](_drm.md#max_pssh_info_count)&nbsp;&nbsp;&nbsp;8 | Maximum number of pieces of PSSH data.| 
 | [MAX_MEDIA_KEY_SYSTEM_NAME_LEN](_drm.md#max_media_key_system_name_len)&nbsp;&nbsp;&nbsp;128 | Maximum length of a **MediaKeySystem** instance name. | 
@@ -81,7 +81,7 @@ The **native_drm_common.h** file declares the DRM data types.
 | typedef struct [DRM_MediaKeyStatus](_d_r_m___media_key_status.md) [DRM_MediaKeyStatus](_drm.md#drm_mediakeystatus) | Defines a struct for the media key status.| 
 | typedef struct [DRM_PsshInfo](_d_r_m___pssh_info.md) [DRM_PsshInfo](_drm.md#drm_psshinfo) | Defines a struct for PSSH data in DRM information.| 
 | typedef struct [DRM_MediaKeySystemInfo](_d_r_m___media_key_system_info.md) [DRM_MediaKeySystemInfo](_drm.md#drm_mediakeysysteminfo) | Defines a struct for the DRM information, which is used to encrypt content.| 
-| typedef struct [DRM_MediaKeySystemDescription](_d_r_m___media_key_system_description.md) [DRM_MediaKeySystemDescription](_drm.md#drm_mediakeysystemdescription) | Defines a struct for the DRM scheme name and UUID list. | 
+| typedef struct [DRM_MediaKeySystemDescription](_d_r_m___media_key_system_description.md) [DRM_MediaKeySystemDescription](_drm.md#drm_mediakeysystemdescription) | Defines a struct for the DRM solution name and UUID list. | 
 | typedef void(\* [DRM_MediaKeySystemInfoCallback](_drm.md#drm_mediakeysysteminfocallback)) ([DRM_MediaKeySystemInfo](_d_r_m___media_key_system_info.md) \*mediaKeySystemInfo) | Defines a callback for media key system information.| 
 | typedef struct [MediaKeySystem](_drm.md#mediakeysystem) [MediaKeySystem](_drm.md#mediakeysystem) | Defines a struct for a media key system.| 
 | typedef struct [MediaKeySession](_drm.md#mediakeysession) [MediaKeySession](_drm.md#mediakeysession) | Defines a struct for a media key session.| 

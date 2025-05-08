@@ -42,6 +42,7 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
+| [OH_Drawing_ErrorCode](_drawing.md#oh_drawing_errorcode) [OH_Drawing_PathGetSegment](_drawing.md#oh_drawing_pathgetsegment) ([OH_Drawing_Path](_drawing.md#oh_drawing_path) \*path, bool forceClosed, float start, float stop, bool startWithMoveTo, [OH_Drawing_Path](_drawing.md#oh_drawing_path) \*dst, bool \*result) | 截取路径的片段并追加到目标路径上。  | 
 | [OH_Drawing_Path](_drawing.md#oh_drawing_path) \* [OH_Drawing_PathCreate](_drawing.md#oh_drawing_pathcreate) (void) | 用于创建一个路径对象。 | 
 | [OH_Drawing_Path](_drawing.md#oh_drawing_path) \* [OH_Drawing_PathCopy](_drawing.md#oh_drawing_pathcopy) ([OH_Drawing_Path](_drawing.md#oh_drawing_path) \*) | 创建一个路径对象副本[OH_Drawing_Path](_drawing.md#oh_drawing_path)，用于拷贝一个已有路径对象。 | 
 | void [OH_Drawing_PathDestroy](_drawing.md#oh_drawing_pathdestroy) ([OH_Drawing_Path](_drawing.md#oh_drawing_path) \*) | 用于销毁路径对象并回收该对象占有的内存。 | 
@@ -82,3 +83,11 @@
 | bool [OH_Drawing_PathGetPositionTangent](_drawing.md#oh_drawing_pathgetpositiontangent) ([OH_Drawing_Path](_drawing.md#oh_drawing_path) \*path, bool forceClosed, float distance, [OH_Drawing_Point2D](_o_h___drawing___point2_d.md) \*position, [OH_Drawing_Point2D](_o_h___drawing___point2_d.md) \*tangent) | 获取距路径起始点指定距离的坐标点和切线值。 | 
 | bool [OH_Drawing_PathOp](_drawing.md#oh_drawing_pathop) ([OH_Drawing_Path](_drawing.md#oh_drawing_path) \*path, const [OH_Drawing_Path](_drawing.md#oh_drawing_path) \*other, [OH_Drawing_PathOpMode](_drawing.md#oh_drawing_pathopmode) op) | 将两个路径按照指定的路径操作类型合并。 | 
 | bool [OH_Drawing_PathGetMatrix](_drawing.md#oh_drawing_pathgetmatrix) ([OH_Drawing_Path](_drawing.md#oh_drawing_path) \*path, bool forceClosed, float distance, [OH_Drawing_Matrix](_drawing.md#oh_drawing_matrix) \*matrix, [OH_Drawing_PathMeasureMatrixFlags](_drawing.md#oh_drawing_pathmeasurematrixflags) flag) | 获取距路径起始点指定距离的相应变换矩阵。 | 
+
+<!--RP1-->
+## 相关实例
+
+针对Drawing(C/C++)的开发，有以下相关实例可供参考：
+
+- [NDKAPIDrawing (API14)](https://gitee.com/openharmony/applications_app_samples/tree/master/code/DocsSample/Drawing/NDKAPIDrawing)
+<!--RP1End-->

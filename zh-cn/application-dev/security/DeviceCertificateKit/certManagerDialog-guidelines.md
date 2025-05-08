@@ -35,13 +35,14 @@
    import { certificateManagerDialog } from '@kit.DeviceCertificateKit';
    import { BusinessError } from '@kit.BasicServicesKit';
    import { common } from '@kit.AbilityKit';
+   import { UIContext } from '@kit.ArkUI';
    ```
 
 3. 拉起证书管理界面。
 
    ```ts
    /* context为应用的上下文信息，由调用方自行获取，此处仅为示例。 */
-   let context: common.Context = getContext(this);
+   let context: common.Context = new UIContext().getHostContext() as common.Context;
    async function certificateManagerDialogSample() {
      /* pageType为页面类型，此处赋值PAGE_MAIN，即拉起证书管理主界面。 */
      let pageType: certificateManagerDialog.CertificateDialogPageType = certificateManagerDialog.CertificateDialogPageType.PAGE_MAIN;
@@ -60,7 +61,7 @@
 
    ```ts
    /* context为应用的上下文信息，由调用方自行获取，此处仅为示例。 */
-   let context: common.Context = getContext(this);
+   let context: common.Context = new UIContext().getHostContext() as common.Context;
    async function userCADialogSample() {
      let certUri: string = '';
      let certType = certificateManagerDialog.CertificateType.CA_CERT;
@@ -68,7 +69,7 @@
      let cert = new Uint8Array([
        0x30, 0x82, 0x01, 0x2E, 0x30, 0x81, 0xD5, 0x02, 0x14, 0x28, 0x75, 0x71, 0x22, 0xDF, 0xDC, 0xCB,
      ]);
-   
+
      try {
        /* 安装证书。 */
        let certScope = certificateManagerDialog.CertificateScope.CURRENT_USER; /* 安装在当前用户下。 */
@@ -81,7 +82,7 @@
      } catch (error) {
        console.error(`Failed to open install ca dialog. Code: ${error.code}, message: ${error.message}`);
      }
-   
+
      try {
        /* 删除证书。 */
        certificateManagerDialog.openUninstallCertificateDialog(context, certType, certUri).then(() => {
@@ -92,7 +93,7 @@
      } catch (error) {
        console.error(`Failed to open uninstall ca dialog. Code: ${error.code}, message: ${error.message}`);
      }
-   
+
      try {
        let property: certificateManagerDialog.CertificateDialogProperty = {
          showInstallButton: false    /* 不显示安装按钮。 */

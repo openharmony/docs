@@ -22,7 +22,7 @@ An \@Link decorated variable in a child component shares the same value with a v
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | Decorator parameters                                                  | None.                                                          |
 | Synchronization type                                                    | Two-way:<br>The state variable in the parent component can be synchronized with the child component \@Link in a two-way manner. When one of them changes, the other can sense the change.|
-| Allowed variable types                                          | Object, class, string, number, Boolean, enum, and array of these types.<br>Date type.<br>(Applicable to API version 11 or later) Map and Set types.<br>The union types defined by the ArkUI framework, including Length, ResourceStr, and ResourceColor, are supported.<br>The type must be specified and must be the same as that of the counterpart variable of the parent component.<br>For details about the scenarios of supported types, see [Observed Changes](#observed-changes).<br>**any** is not supported.<br>(Applicable to API version 11 and later versions) Union type of the preceding types, for example, **string \| number**, **string \| undefined** or **ClassA \| null**. For details, see [Union Type @Link](#union-type-link).<br>**NOTE**<br>When **undefined** or **null** is used, you are advised to explicitly specify the type to pass the TypeScript type check. For example, **@Link a: string \| undefined = undefined**. |
+| Allowed variable types                                          | Object, class, string, number, Boolean, enum, and array of these types.<br>Date type.<br>(Applicable to API version 11 or later) Map and Set types.<br>The union types defined by the ArkUI framework, including Length, ResourceStr, and ResourceColor, are supported.<br>The type must be specified and must be the same as that of the counterpart variable of the parent component.<br>For details about the scenarios of supported types, see [Observed Changes](#observed-changes).<br>**any** is not supported.<br>(Applicable to API version 11 and later versions) Union type of the preceding types, for example, **string \| number**, **string \| undefined**, or **ClassA \| null**. For details, see [Union Type @Link](#union-type-link).<br>**NOTE**<br>When **undefined** or **null** is used, you are advised to explicitly specify the type to pass the TypeScript type check. For example, **@Link a: string \| undefined**.|
 | Initial value for the decorated variable                                          | Forbidden.                                        |
 
 
@@ -130,153 +130,153 @@ To understand the value initialization and update mechanism of the \@Link decora
    2. The \@Link in the child component and \@State in the parent component traverse the dependent system components and update the corresponding UI. In this way, the \@Link decorated variable in the child component is synchronized back to the \@State decorated variable in the parent component.
 
 
-## Restrictions
+## Constraints
 
 1. The @Link decorator cannot be used in custom components decorated by [\@Entry](https://gitee.com/openharmony/docs/blob/master/en/application-dev/quick-start/arkts-create-custom-components.md#basic-structure-of-a-custom-component).
 
 2. Do not initialize variables decorated by \@Link locally. Otherwise, an error will be reported during compilation.
 
-```ts
-// Incorrect format. An error is reported during compilation.
-@Link count: number = 10;
+  ```ts
+  // Incorrect format. An error is reported during compilation.
+  @Link count: number = 10;
 
-// Correct format.
-@Link count: number;
-```
+  // Correct format.
+  @Link count: number;
+  ```
 
 3. The type of the variable decorated by \@Link must be the same as the data source type. Otherwise, the framework throws a runtime error.
 
-[Incorrect Example]
+  [Incorrect Example]
 
-```ts
-class Info {
-  info: string = 'Hello';
-}
-
-class Cousin {
-  name: string = 'Hello';
-}
-
-@Component
-struct Child {
-  // Incorrect format. The data source types of @Link and @State are different.
-  @Link test: Cousin;
-
-  build() {
-    Text(this.test.name)
+  ```ts
+  class Info {
+    info: string = 'Hello';
   }
-}
 
-@Entry
-@Component
-struct LinkExample {
-  @State info: Info = new Info();
+  class Cousin {
+    name: string = 'Hello';
+  }
 
-  build() {
-    Column() {
-      // Incorrect format. The data source types of @Link and @State are different.
-      Child({test: new Cousin()})
+  @Component
+  struct Child {
+    // Incorrect format. The data source types of @Link and @State are different.
+    @Link test: Cousin;
+
+    build() {
+      Text(this.test.name)
     }
   }
-}
-```
 
-[Correct Example]
+  @Entry
+  @Component
+  struct LinkExample {
+    @State info: Info = new Info();
 
-```ts
-class Info {
-  info: string = 'Hello';
-}
-
-@Component
-struct Child {
-  // Correct format.
-  @Link test: Info;
-
-  build() {
-    Text(this.test.info)
-  }
-}
-
-@Entry
-@Component
-struct LinkExample {
-  @State info: Info = new Info();
-
-  build() {
-    Column() {
-      // Correct format.
-      Child({test: this.info})
+    build() {
+      Column() {
+        // Incorrect format. The data source types of @Link and @State are different.
+        Child({test: new Cousin()})
+      }
     }
   }
-}
-```
+  ```
+
+  [Correct Example]
+
+  ```ts
+  class Info {
+    info: string = 'Hello';
+  }
+
+  @Component
+  struct Child {
+    // Correct format.
+    @Link test: Info;
+
+    build() {
+      Text(this.test.info)
+    }
+  }
+
+  @Entry
+  @Component
+  struct LinkExample {
+    @State info: Info = new Info();
+
+    build() {
+      Column() {
+        // Correct format.
+        Child({test: this.info})
+      }
+    }
+  }
+  ```
 
 4. \@Link decorated variables can be initialized only by state variables. Initializing the variables using constants will cause a warn alarm during compilation, and an error "is not callable" is reported during runtime.
 
-[Incorrect Example]
+  [Incorrect Example]
 
-```ts
-class Info {
-  info: string = 'Hello';
-}
-
-@Component
-struct Child {
-  @Link msg: string;
-  @Link info: string;
-
-  build() {
-    Text(this.msg + this.info)
+  ```ts
+  class Info {
+    info: string = 'Hello';
   }
-}
 
-@Entry
-@Component
-struct LinkExample {
-  @State message: string = 'Hello';
-  @State info: Info = new Info();
+  @Component
+  struct Child {
+    @Link msg: string;
+    @Link info: string;
 
-  build() {
-    Column() {
-      // Incorrect format. Common variables cannot initialize the @Link decorated variables.
-      Child({msg: 'World', info: this.info.info})
+    build() {
+      Text(this.msg + this.info)
     }
   }
-}
-```
 
-[Correct Example]
+  @Entry
+  @Component
+  struct LinkExample {
+    @State message: string = 'Hello';
+    @State info: Info = new Info();
 
-```ts
-class Info {
-  info: string = 'Hello';
-}
-
-@Component
-struct Child {
-  @Link msg: string;
-  @Link info: Info;
-
-  build() {
-    Text(this.msg + this.info.info)
-  }
-}
-
-@Entry
-@Component
-struct LinkExample {
-  @State message: string = 'Hello';
-  @State info: Info = new Info();
-
-  build() {
-    Column() {
-      // Correct format.
-      Child({msg: this.message, info: this.info})
+    build() {
+      Column() {
+        // Incorrect format. Common variables cannot initialize the @Link decorated variables.
+        Child({msg: 'World', info: this.info.info})
+      }
     }
   }
-}
-```
+  ```
+
+  [Correct Example]
+
+  ```ts
+  class Info {
+    info: string = 'Hello';
+  }
+
+  @Component
+  struct Child {
+    @Link msg: string;
+    @Link info: Info;
+
+    build() {
+      Text(this.msg + this.info.info)
+    }
+  }
+
+  @Entry
+  @Component
+  struct LinkExample {
+    @State message: string = 'Hello';
+    @State info: Info = new Info();
+
+    build() {
+      Column() {
+        // Correct format.
+        Child({msg: this.message, info: this.info})
+      }
+    }
+  }
+  ```
 
 5. \@Link cannot decorate variables of the function type. Otherwise, the framework throws a runtime error.
 
@@ -510,7 +510,7 @@ struct Child {
 
   build() {
     Column() {
-      ForEach(Array.from(this.message.entries()), (item: [number, string]) => {
+      ForEach(Array.from(this.message.entries()), (item: [number, number]) => {
         Text(`${item[0]}`).fontSize(30)
         Divider()
       })
@@ -739,7 +739,7 @@ struct Parent {
 
 ### Using the a.b(this.object) Format Fails to Trigger UI Re-render
 
-In the **build** method, when the variable decorated by @Link is of the object type and is called using the **a.b(this.object)** format, the native object of **this.object** is passed in the b method. If the property of **this.object** is changed, the UI cannot be re-rendered. In the following example, when the static method **Score.changeScore1** or **this.changeScore2** is used to change **this.score.value** in the **Child** component, the UI is not re-rendered.
+In the **build** method, when the variable decorated by @Link is of the object type and is called using the **a.b(this.object)** format, the original object of **this.object** is passed in the b method. If the property of **this.object** is changed, the UI cannot be re-rendered. In the following example, when the static method **Score.changeScore1** or **this.changeScore2** is used to change **this.score.value** in the **Child** component, the UI is not re-rendered.
 
 [Incorrect Example]
 
@@ -861,4 +861,4 @@ struct Child {
 }
 ```
 
-
+<!--no_check-->

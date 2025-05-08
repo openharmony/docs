@@ -34,6 +34,8 @@ Image支持加载存档图、多媒体像素图两种类型。
   .width(200)
   ```
 
+  加载本地图片过程中，如果对图片进行修改或者替换，可能会引起应用崩溃。因此需要覆盖图片文件时，应该先删除该文件再重新创建一个同名文件。
+
 - 网络资源
 
   引入网络图片需申请权限ohos.permission.INTERNET，具体申请方式请参考[声明权限](../security/AccessToken/declare-permissions.md)。此时，Image组件的src参数为网络图片的链接。
@@ -41,6 +43,8 @@ Image支持加载存档图、多媒体像素图两种类型。
   当前Image组件仅支持加载简单网络图片。
 
   Image组件首次加载网络图片时，需要请求网络资源，非首次加载时，默认从缓存中直接读取图片，更多图片缓存设置请参考[setImageCacheCount](../reference/apis-arkui/js-apis-system-app.md#setimagecachecount7)、[setImageRawDataCacheSize](../reference/apis-arkui/js-apis-system-app.md#setimagerawdatacachesize7)、[setImageFileCacheSize](../reference/apis-arkui/js-apis-system-app.md#setimagefilecachesize7)。但是，这三个图片缓存接口并不灵活，且后续不继续演进，对于复杂情况，更推荐使用[ImageKnife](https://gitee.com/openharmony-tpc/ImageKnife)。
+
+  网络图片必须支持RFC 9113标准，否则会导致加载失败。如果下载的网络图片大于10MB或一次下载的网络图片数量较多，建议使用[HTTP](../network/http-request.md)工具提前预下载，提高图片加载性能，方便应用侧管理数据。
 
   API version 14及之后，Image组件在显示网络图片时，网络图片下载与缓存能力将不再内嵌于Image组件中，而是剥离至上传下载模块进行统一管理。上传下载模块提供独立的预下载接口，允许应用开发者在创建Image组件前预下载所需图片。组件创建后，通过向上传下载模块请求数据，从而优化了Image组件的显示流程。关于网络缓存的位置，对于API version 14之前的版本，Image组件的缓存位于应用的本地沙箱路径下，而对于API version 14及之后的版本，缓存则移至应用根目录下的cache目录中。
 
@@ -258,6 +262,8 @@ PixelMap是图片解码后的像素图，具体用法请参考[图片开发指�
 ## 显示矢量图
 
 Image组件可显示矢量图（svg格式的图片），svg标签文档请参考[svg说明](../../application-dev/reference/apis-arkui/arkui-ts/ts-basic-svg.md)。
+
+如果SVG图片没有原始大小，需要给Image组件设置宽高，否则不显示。如果SVG图片通过image标签引用本地其他图片，被引用的图片不支持svg格式和gif格式。
 
 svg格式的图片可以使用fillColor属性改变图片的绘制颜色。
 
@@ -640,5 +646,10 @@ struct MyComponent {
 }
 ```
 
-
 ![zh-cn_image_0000001511740460](figures/zh-cn_image_0000001511740460.png)
+
+## 相关实例
+
+针对显示图片开发，有以下相关实例可供参考：
+
+- [显示图片](https://gitee.com/openharmony/applications_app_samples/tree/master/code/DocsSample/ArkUISample/ImageComponent)

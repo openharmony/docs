@@ -694,7 +694,7 @@ imageSource.createPixelMap(opts).then((pixelMap: image.PixelMap) => {
 
 ## wallpaper.getImage<sup>9+</sup>
 
-getImage(wallpaperType: WallpaperType, callback: AsyncCallback&lt;image.PixelMap&gt;): void;
+getImage(wallpaperType: WallpaperType, callback: AsyncCallback&lt;image.PixelMap&gt;): void
 
 获取壁纸图片的像素图，且只能获取使用setImage设置的静态壁纸。使用callback异步回调。
 
@@ -900,7 +900,7 @@ wallpaper.setAllWallpapers(wallpaperInfos, wallpaper.WallpaperType.WALLPAPER_SYS
 
 ## wallpaper.getPixelMap<sup>(deprecated)</sup>
 
-getPixelMap(wallpaperType: WallpaperType, callback: AsyncCallback&lt;image.PixelMap&gt;): void;
+getPixelMap(wallpaperType: WallpaperType, callback: AsyncCallback&lt;image.PixelMap&gt;): void
 
 获取壁纸图片的像素图。
 

@@ -38,18 +38,18 @@
 
    Stage模型示例：
 
-     
+
    ```js
    // 导入模块
    import { distributedKVStore } from '@kit.ArkData';
-   
+
    // Stage模型
    import { window } from '@kit.ArkUI';
    import { UIAbility } from '@kit.AbilityKit';
    import { BusinessError } from '@kit.BasicServicesKit';
-   
+
    let kvManager: distributedKVStore.KVManager | undefined = undefined;
-   
+
    export default class EntryAbility extends UIAbility {
      onCreate() {
        let context = this.context;
@@ -62,30 +62,30 @@
          kvManager = distributedKVStore.createKVManager(kvManagerConfig);
          console.info('Succeeded in creating KVManager.');
          // 继续创建获取数据库
+         if (kvManager !== undefined) {
+           kvManager = kvManager as distributedKVStore.KVManager;
+          //进行后续操作
+          //...
+         }
        } catch (e) {
          let error = e as BusinessError;
          console.error(`Failed to create KVManager. Code:${error.code},message:${error.message}`);
        }
      }
    }
-   if (kvManager !== undefined) {
-      kvManager = kvManager as distributedKVStore.KVManager;
-     //进行后续操作
-     //...
-   }
    ```
 
    FA模型示例：
 
-     
+
    ```js
    // 导入模块
    import { distributedKVStore } from '@kit.ArkData';
-   
+
    // FA模型
    import { featureAbility } from '@kit.AbilityKit';
    import { BusinessError } from '@kit.BasicServicesKit';
-   
+
    let kvManager: distributedKVStore.KVManager | undefined = undefined;
    let context = featureAbility.getContext(); // 获取context
    const kvManagerConfig: distributedKVStore.KVManagerConfig = {
@@ -109,7 +109,7 @@
    ```
 
 2. 创建并获取键值数据库。示例代码如下所示：
-     
+
    ```js
    let kvStore: distributedKVStore.SingleKVStore | undefined = undefined;
    try {
@@ -131,21 +131,22 @@
        console.info('Succeeded in getting KVStore.');
        kvStore = store;
        // 请确保获取到键值数据库实例后，再进行相关数据操作
+       if (kvStore !== undefined) {
+         kvStore = kvStore as distributedKVStore.SingleKVStore;
+           //进行后续操作
+           //...
+       }
      });
    } catch (e) {
      let error = e as BusinessError;
      console.error(`An unexpected error occurred. Code:${error.code},message:${error.message}`);
    }
-   if (kvStore !== undefined) {
-     kvStore = kvStore as distributedKVStore.SingleKVStore;
-       //进行后续操作
-       //...
-   }
    ```
 
 3. 调用put()方法向键值数据库中插入数据。示例代码如下所示：
-     
+
    ```js
+   kvStore = kvStore as distributedKVStore.SingleKVStore;
    const KEY_TEST_STRING_ELEMENT = 'key_test_string';
    const VALUE_TEST_STRING_ELEMENT = 'value_test_string';
    try {
@@ -167,9 +168,10 @@
    > 当Key值存在时，put()方法会修改其值，否则新增一条数据。
 
 4. 调用get()方法获取指定键的值。示例代码如下所示：
-     
+
    ```js
    try {
+     kvStore = kvStore as distributedKVStore.SingleKVStore;
      kvStore.put(KEY_TEST_STRING_ELEMENT, VALUE_TEST_STRING_ELEMENT, (err) => {
        if (err !== undefined) {
          console.error(`Failed to put data. Code:${err.code},message:${err.message}`);
@@ -192,9 +194,10 @@
    ```
 
 5. 调用delete()方法删除指定键值的数据。示例代码如下所示：
-     
+
    ```js
    try {
+     kvStore = kvStore as distributedKVStore.SingleKVStore;
      kvStore.put(KEY_TEST_STRING_ELEMENT, VALUE_TEST_STRING_ELEMENT, (err) => {
        if (err !== undefined) {
          console.error(`Failed to put data. Code:${err.code},message:${err.message}`);
@@ -217,9 +220,11 @@
    ```
 
 6. 通过storeId的值关闭指定的分布式键值数据库。示例代码如下所示：
-     
+
     ```js
     try {
+      // appId为应用的bundleName
+      kvManager = kvManager as distributedKVStore.KVManager;
       kvStore = undefined;
       kvManager.closeKVStore('appId', 'storeId', (err: BusinessError)=> {
         if (err) {
@@ -235,16 +240,18 @@
     ```
 
 7. 通过storeId的值删除指定的分布式键值数据库。示例代码如下所示：
-     
+
     ```js
     try {
+      // appId为应用的bundleName
+      kvManager = kvManager as distributedKVStore.KVManager;
       kvStore = undefined;
       kvManager.deleteKVStore('appId', 'storeId', (err: BusinessError)=> {
         if (err) {
-          console.error(`Failed to close KVStore.code is ${err.code},message is ${err.message}`);
+          console.error(`Failed to delete KVStore.code is ${err.code},message is ${err.message}`);
           return;
         }
-        console.info('Succeeded in closing KVStore');
+        console.info('Succeeded in deleting KVStore');
       });
     } catch (e) {
       let error = e as BusinessError;

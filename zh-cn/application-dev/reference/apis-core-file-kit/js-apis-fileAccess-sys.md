@@ -145,8 +145,9 @@ createFileAccessHelper(context: Context, wants: Array&lt;Want&gt;) : FileAccessH
   import { BusinessError } from '@ohos.base';
   import Want from '@ohos.app.ability.Want';
   import common from '@ohos.app.ability.common';
-  let context = getContext(this) as common.UIAbilityContext;
-  function createFileAccessHelper01() {
+  // 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext; 
+  function createFileAccessHelper01(context: common.UIAbilityContext) {
     let fileAccessHelper: fileAccess.FileAccessHelper;
     // wantInfos 从getFileAccessAbilityInfo()获取
     let wantInfos: Array<Want> = [
@@ -201,8 +202,9 @@ createFileAccessHelper(context: Context) : FileAccessHelper
   ```ts
   import { BusinessError } from '@ohos.base';
   import common from '@ohos.app.ability.common';
-  let context = getContext(this) as common.UIAbilityContext;
-  function createFileAccessHelper02() {
+  // 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext; 
+  function createFileAccessHelper02(context: common.UIAbilityContext) {
     let fileAccessHelperAllServer: fileAccess.FileAccessHelper;
     // 创建连接系统内所有配置fileAccess的文件管理类服务的helper对象
     try {
@@ -1655,7 +1657,7 @@ copy(sourceUri: string, destUri: string, force?: boolean) : Promise&lt;Array&lt;
 | --------- | ------- | ---- | ------------------------------------------------------------ |
 | sourceUri | string  | 是   | 待拷贝的源文件(夹)的 uri。例如：file://docs/storage/Users/currentUser/Download/1.txt。  |
 | destUri   | string  | 是   | 目标文件夹的 uri。例如：file://docs/storage/Users/currentUser/Download/test。        |
-| force     | boolean | 否   | 含有同名文件时是否强制覆盖文件。force 为 true 时强制覆盖文件；force 为空或 false 时不强制覆盖文件。 |
+| force     | boolean | 否   | 含有同名文件时是否强制覆盖文件。force 为 true 时强制覆盖文件；force 为空或 false 时不强制覆盖文件。该参数不填，默认为false。 |
 
 **返回值：**
 

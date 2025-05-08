@@ -38,7 +38,7 @@ scrollBarColor(color: Color | number | string): T
 
 | 参数名 | 类型                                                         | 必填 | 说明           |
 | ------ | ------------------------------------------------------------ | ---- | -------------- |
-| color  | string&nbsp;\|&nbsp;number&nbsp;\|&nbsp;[Color](ts-appendix-enums.md#color) | 是   | 滚动条的颜色。<br/>默认值：'\#182431'（40%不透明度）|
+| color  | string&nbsp;\|&nbsp;number&nbsp;\|&nbsp;[Color](ts-appendix-enums.md#color) | 是   | 滚动条的颜色。<br/>默认值：'\#182431'（40%不透明度）<br/>number为HEX格式颜色，支持rgb或者argb，示例：0xffffff。string为rgb或者argb格式颜色，示例：'#ffffff'。 |
 
 ### scrollBarWidth<sup>11+</sup>
 
@@ -54,7 +54,7 @@ scrollBarWidth(value: number | string): T
 
 | 参数名 | 类型                       | 必填 | 说明                                      |
 | ------ | -------------------------- | ---- | ----------------------------------------- |
-| value  | string&nbsp;\|&nbsp;number | 是   | 滚动条的宽度。<br/>默认值：4<br/>单位：vp |
+| value  | string&nbsp;\|&nbsp;number | 是   | 滚动条的宽度。<br/>默认值：4<br/>单位：vp <br/>取值范围：设置为小于0的值时，按默认值处理。设置为0时，不显示滚动条。 |
 
 ### edgeEffect<sup>11+</sup>
 
@@ -77,7 +77,7 @@ edgeEffect(edgeEffect: EdgeEffect, options?: EdgeEffectOptions): T
 
 nestedScroll(value: NestedScrollOptions): T
 
-设置向前向后两个方向上的嵌套滚动模式，实现与父组件的滚动联动。
+设置前后两个方向的嵌套滚动模式，实现与父组件的滚动联动。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -93,7 +93,7 @@ nestedScroll(value: NestedScrollOptions): T
 
 enableScrollInteraction(value: boolean): T
 
-设置是否支持滚动手势，当设置为false时，无法通过手指或者鼠标滚动，但不影响控制器的滚动接口。
+设置是否支持滚动手势。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -103,13 +103,13 @@ enableScrollInteraction(value: boolean): T
 
 | 参数名 | 类型    | 必填 | 说明                                |
 | ------ | ------- | ---- | ----------------------------------- |
-| value  | boolean | 是   | 是否支持滚动手势。<br/>默认值：true |
+| value  | boolean | 是   | 是否支持滚动手势。设置为true时可以通过手指或者鼠标滚动，设置为false时无法通过手指或者鼠标滚动，但不影响控制器[Scroller](ts-container-scroll.md#scroller)的滚动接口。<br/>默认值：true |
 
 ### friction<sup>11+</sup>
 
 friction(value: number | Resource): T
 
-设置摩擦系数，手动划动滚动区域时生效，只对惯性滚动过程有影响，对惯性滚动过程中的链式效果有间接影响。设置为小于等于0的值时，按默认值处理。
+设置摩擦系数，手动划动滚动区域时生效，仅影响惯性滚动过程，对惯性滚动过程中的链式效果有间接影响。设置为小于等于0的值时，按默认值处理。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -119,13 +119,13 @@ friction(value: number | Resource): T
 
 | 参数名 | 类型                                                 | 必填 | 说明                                                      |
 | ------ | ---------------------------------------------------- | ---- | --------------------------------------------------------- |
-| value  | number&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 是   | 摩擦系数。<br/>默认值：非可穿戴设备为0.6，可穿戴设备为0.9。<br/>从API version 11开始，非可穿戴设备默认值为0.7。<br/>从API version 12开始，非可穿戴设备默认值为0.75。 |
+| value  | number&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 是   | 摩擦系数。<br/>默认值：非wearable设备为0.6，wearable设备为0.9。<br/>从API version 11开始，非wearable设备默认值为0.7。<br/>从API version 12开始，非wearable设备默认值为0.75。 <br/>取值范围：(0, +∞)，设置为小于等于0的值时，按默认值处理。|
 
 ### flingSpeedLimit<sup>11+</sup>
 
 flingSpeedLimit(speedLimit: number): T
 
-限制跟手滑动结束后，Fling动效开始时的最大初始速度。设置为小于等于0的值时，按默认值处理。
+限制跟手滑动结束后，Fling动效开始时的最大初始速度。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -135,7 +135,7 @@ flingSpeedLimit(speedLimit: number): T
 
 | 参数名     | 类型   | 必填 | 说明                            |
 | ---------- | ------ | ---- | ------------------------------- |
-| speedLimit | number | 是   | Fling动效开始时的最大初始速度。<br/>默认值：9000<br/>单位：vp/s |
+| speedLimit | number | 是   | Fling动效开始时的最大初始速度。<br/>默认值：9000<br/>单位：vp/s <br/>取值范围：(0, +∞)，设置为小于等于0的值时，按默认值处理。|
 
 ### fadingEdge<sup>14+</sup>
 
@@ -151,7 +151,7 @@ fadingEdge(enabled: Optional&lt;boolean&gt;, options?: FadingEdgeOptions): T
 
 | 参数名  | 类型                                              | 必填 | 说明                                                         |
 | ------- | ------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| enabled | Optional&lt;boolean&gt;                           | 是   | fadingEdge生效时，会覆盖原组件的.overlay()属性。<br/>fadingEdge生效时，建议不在该组件上设置background相关属性，会影响渐隐的显示效果。<br/>fadingEdge生效时，组件会裁剪到边界，设置组件的clip属性为false不生效。<br/>默认值：false |
+| enabled | Optional&lt;boolean&gt;                           | 是   | fadingEdge生效时，会覆盖原组件的.overlay()属性。<br/>fadingEdge生效时，建议不在该组件上设置background相关属性，会影响渐隐的显示效果。<br/>fadingEdge生效时，组件会裁剪到边界，设置组件的clip属性为false不生效。<br/>设置为true时开启边缘渐隐效果，设置为false时不开启边缘渐隐效果。<br/>默认值：false |
 | options | [FadingEdgeOptions](#fadingedgeoptions14对象说明) | 否   | 边缘渐隐参数对象。可以通过该对象定义边缘渐隐效果属性，比如设置渐隐长度。 |
 
 ### clipContent<sup>14+</sup>
@@ -186,8 +186,25 @@ backToTop(backToTop: boolean)
 
 | 参数名 | 类型    | 必填 | 说明                                           |
 | ------ | ------- | ---- | ---------------------------------------------- |
-| backToTop  | boolean | 是   | 设置滚动组件是否支持点击状态栏回到顶部。<br/>默认值: false |
+| backToTop  | boolean | 是   | 设置滚动组件是否支持点击状态栏回到顶部。设置为true支持点击状态栏回到顶部，设置为false不支持点击状态栏回到顶部。<br/>默认值：<br/>API version 18之前：false。 <br/>API version 18及以后：滚动方向是水平方向时为false，是垂直方向时为true。 |
 
+### digitalCrownSensitivity<sup>18+</sup>
+
+digitalCrownSensitivity(sensitivity: Optional\<CrownSensitivity>)
+
+设置表冠响应事件灵敏度。
+
+组件收到[表冠事件](ts-universal-events-crown.md)的前提是该组件获焦，焦点控制可以通过[focusable](ts-universal-attributes-focus.md#focusable)、[defaultFocus](ts-universal-attributes-focus.md#defaultfocus9)、[focusOnTouch](ts-universal-attributes-focus.md#focusontouch9)进行管理。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名      | 类型                                                         | 必填 | 说明                                                         |
+| ----------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| sensitivity | [Optional&lt;CrownSensitivity&gt;](ts-appendix-enums.md#crownsensitivity18) | 是   | 表冠响应灵敏度。<br/>默认值：CrownSensitivity.MEDIUM，响应速度适中。 |
 
 
 ## 事件
@@ -222,7 +239,7 @@ onScrollStart(event: () => void): T
 
 滚动开始时触发。手指拖动滚动组件或拖动滚动组件的滚动条触发的滚动开始时，会触发该事件。使用[Scroller](ts-container-scroll.md#scroller)滚动控制器触发的带动画的滚动，动画开始时会触发该事件。
 
-触发该事件的条件 ：
+触发该事件的条件：
 
 1、滚动组件开始滚动时触发，支持键鼠操作等其他触发滚动的输入设置。
 
@@ -238,7 +255,7 @@ onScrollStop(event: () => void): T
 
 滚动停止时触发。手拖动滚动组件或拖动滚动组件的滚动条触发的滚动，手离开屏幕并且滚动停止时会触发该事件。使用[Scroller](ts-container-scroll.md#scroller)滚动控制器触发的带动画的滚动，动画停止时会触发该事件。
 
-触发该事件的条件 ：
+触发该事件的条件：
 
 1、滚动组件触发滚动后停止，支持键鼠操作等其他触发滚动的输入设置。
 
@@ -312,6 +329,8 @@ onScroll(event: (scrollOffset: number, scrollState: ScrollState) => void): T
 
 ## ItemDragInfo对象说明
 
+拖拽点信息对象。
+
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -322,6 +341,8 @@ onScroll(event: (scrollOffset: number, scrollState: ScrollState) => void): T
 | y | number |  当前拖拽点的y坐标，单位vp。    |
 
 ## NestedScrollOptions<sup>10+</sup>对象说明
+
+[nestedScroll](#nestedscroll11)属性参数对象。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -334,16 +355,20 @@ onScroll(event: (scrollOffset: number, scrollState: ScrollState) => void): T
 
 ## EdgeEffectOptions<sup>11+</sup>对象说明
 
+[edgeEffect](#edgeeffect11)属性参数对象。
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 参数名   | 类型  | 必填 | 描述              |
 | ----- | ------| ------- | ----------------- |
-| alwaysEnabled | boolean | 是 | 组件内容大小小于组件自身时，设置是否开启滑动效果。|
+| alwaysEnabled | boolean | 是 | 组件内容大小小于组件自身时，设置是否开启滑动效果。设置为true开启滑动效果，设置为false关闭滑动效果。|
 | effectEdge<sup>18+</sup> | number | 否 | 设置边缘效果生效的边缘。<br/>如果设置[EffectEdge](#effectedge18枚举说明).START表示只有起始边生效。如果设置[EffectEdge](#effectedge18枚举说明).END表示只有末尾边生效。<br/>默认值为[EffectEdge](#effectedge18枚举说明).START \| [EffectEdge](#effectedge18枚举说明).END表示双边同时生效。当设置为其它异常值时，则默认双边同时生效。<br/>如果需要双边都不生效，可将edgeEffect设置为EdgeEffect.None。 |
 
 ## FadingEdgeOptions<sup>14+</sup>对象说明
+
+[fadingEdge](#fadingedge14)属性边缘渐隐参数对象。
 
 **原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
 
@@ -351,7 +376,7 @@ onScroll(event: (scrollOffset: number, scrollState: ScrollState) => void): T
 
 | 参数名           | 类型                                                         | 必填 | 描述                                                         |
 | ---------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| fadingEdgeLength | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | 否   | 设置边缘渐隐长度。如果设置小于0的值则取默认值。默认长度为32vp。<br/>如果设置的长度超过容器高度的一半时，渐隐长度取容器高度的一半。 |
+| fadingEdgeLength | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | 否   | 设置边缘渐隐长度。如果设置小于0的值则取默认值，默认长度为32vp。<br/>如果设置的长度超过容器高度的一半时，渐隐长度取容器高度的一半。 |
 
 ## EffectEdge<sup>18+</sup>枚举说明
 
@@ -406,7 +431,7 @@ type OnWillScrollCallback = (scrollOffset: number, scrollState: ScrollState, scr
 
 | 类型                          | 说明                                  |
 | ----------------------------- | ------------------------------------ |
-| void \| [ScrollResult](#scrollresult12对象说明) |  返回ScrollResult时按照开发者指定的偏移量滑动；不返回时按回调参数scrollOffset滑动。 |
+| void \| [ScrollResult](#scrollresult12对象说明) |  返回ScrollResult时按照开发者指定的偏移量滑动；不返回时按回调参数scrollOffset滑动。  <br/>取值范围：(-∞, +∞)|
 
 ## OnScrollCallback<sup>12+</sup>
 
@@ -427,6 +452,8 @@ type OnScrollCallback = (scrollOffset: number, scrollState: ScrollState) => void
 
 ## ScrollResult<sup>12+</sup>对象说明
 
+[OnWillScrollCallback](#onwillscrollcallback12)返回值对象。
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -439,7 +466,13 @@ type OnScrollCallback = (scrollOffset: number, scrollState: ScrollState) => void
 
 维护List组件或ListItemGroup组件的子组件在主轴方向的大小信息，仅支持一对一绑定到List组件或ListItemGroup组件。
 
+**说明：**
+>
+> - 提供的主轴方向大小信息必须与子组件实际在主轴方向的大小一致，子组件在主轴方向大小变化或者增删子组件时都必须通过ChildrenMainSize对象方法通知List组件或ListItemGroup组件。
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 ### constructor<sup>12+</sup>
 
@@ -494,7 +527,7 @@ get childDefaultSize(): number
 
 | 类型                                                         | 说明                                                         |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| number | 子组件在主轴方向的默认大小。<br/>单位：vp |
+| number | 子组件在主轴方向的默认大小。<br/>单位：vp <br/>取值范围：[0, +∞)|
 
 ### splice<sup>12+</sup>
 
@@ -510,9 +543,9 @@ splice(start: number, deleteCount?: number, childrenSize?: Array\<number>): void
 
 | 名称   | 类型                            | 必填   | 描述                   |
 | ---- | ----------------------------- | ---- | -------------------- |
-| start | number | 是    | 从0开始计算的索引值，表示要开始修改子组件在主轴方向大小信息的位置。<br/>**说明：** <br/>1. 必须是有限的非负数值，否则抛出异常。<br/>2. 非整数会被截断为整数。<br/>3. 超过最大索引值不生效。 |
-| deleteCount | number | 否    | 从start开始删除的大小信息的数量。<br/>**说明：** <br/>1.  必须是有限的非负数值，否则处理为0。<br/>2. 非整数会被截断为整数。<br/>3. start + deleteCount - 1可以超过最大索引值，会删除索引值start开始之后的所有子组件的大小信息。 |
-| childrenSize | Array\<number > | 否    | 要在start位置插入的所有子组件的主轴方向的大小。<br/>Array中各个数值单位：vp <br/>**说明：** <br/>1.数组中数值如果是有限的非负值，则认为是指定的大小，后续不随默认大小的变化而变化。<br/>2. 数组中数值如果不是有限的非负值，会被处理成默认大小，后续会随默认大小的变化而变化。  |
+| start | number | 是    | 从0开始计算的索引值，表示要开始修改子组件在主轴方向大小信息的位置。<br/>**说明：** <br/>1. 必须是有限的非负数值，否则抛出异常。<br/>2. 非整数会被截断为整数。<br/>3. 超过最大索引值不生效。<br/>取值范围：[0, +∞) |
+| deleteCount | number | 否    | 从start开始删除的大小信息的数量。<br/>**说明：** <br/>1.  必须是有限的非负数值，否则处理为0。<br/>2. 非整数会被截断为整数。<br/>3. start + deleteCount - 1可以超过最大索引值，会删除索引值start开始之后的所有子组件的大小信息。<br/>默认值为+∞。 <br/>取值范围：[0, +∞) |
+| childrenSize | Array\<number > | 否    | 要在start位置插入的所有子组件的主轴方向的大小。<br/>Array中各个数值单位：vp <br/>**说明：** <br/>1.数组中数值如果是有限的非负值，则认为是指定的大小，后续不随默认大小的变化而变化。<br/>2. 数组中数值如果不是有限的非负值，会被处理成默认大小，后续会随默认大小的变化而变化。<br/>默认值为空数组。 <br/>取值范围：[0, +∞) |
 
 
 **错误码**：
@@ -545,8 +578,8 @@ update(index: number, childSize: number): void
 
 | 名称   | 类型                            | 必填   | 描述                   |
 | ---- | ----------------------------- | ---- | -------------------- |
-| index | number | 是    | 从0开始计算的索引值，表示要开始修改子组件在主轴方向大小信息的位置。<br/>**说明：** <br/>1. 必须是有限的非负数值，否则抛出异常。<br/>2. 非整数会被截断为整数。<br/>3. 超过最大索引值不生效。 |
-| childSize | number | 是    | 要更新成的大小。<br/>单位：vp <br/>**说明：** <br/>1.数值如果是有限的非负值，则认为是指定的大小，后续不随默认大小的变化而变化。<br/>2. 数值如果不是有限的非负值，会被处理成默认大小，后续会随默认大小的变化而变化。  |
+| index | number | 是    | 从0开始计算的索引值，表示要开始修改子组件在主轴方向大小信息的位置。<br/>**说明：** <br/>1. 必须是有限的非负数值，否则抛出异常。<br/>2. 非整数会被截断为整数。<br/>3. 超过最大索引值不生效。 <br/>取值范围：[0, +∞)|
+| childSize | number | 是    | 要更新成的大小。<br/>单位：vp <br/>**说明：** <br/>1.数值如果是有限的非负值，则认为是指定的大小，后续不随默认大小的变化而变化。<br/>2. 数值如果不是有限的非负值，会被处理成默认大小，后续会随默认大小的变化而变化。  <br/>取值范围：[0, +∞)|
 
 **错误码**：
 
@@ -555,3 +588,97 @@ update(index: number, childSize: number): void
 | 错误码ID | 错误信息 |
 | ------- | -------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+
+## UIScrollableCommonEvent<sup>18+</sup>
+用于设置滚动事件回调。
+### setOnReachStart<sup>18+</sup>
+
+setOnReachStart(callback: Callback\<void> | undefined): void
+
+设置[onReachStart](./ts-container-scrollable-common.md#onreachstart11)事件的回调。
+
+方法入参为undefined的时候，重置对应的事件回调。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                       |
+| ------ | ------ | ---- | -------------------------- |
+| callback  | [Callback](./ts-types.md#callback12)\<void> &nbsp;\|&nbsp;undefined | 是   | onReachStart事件的回调函数。 |
+
+### setOnReachEnd<sup>18+</sup>
+
+setOnReachEnd(callback: Callback\<void> | undefined): void
+
+设置[onReachEnd](./ts-container-scrollable-common.md#onreachend11)事件的回调。
+
+方法入参为undefined时，会重置事件回调。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                       |
+| ------ | ------ | ---- | -------------------------- |
+| callback  | [Callback](./ts-types.md#callback12)\<void> &nbsp;\|&nbsp;undefined | 是   | onReachEnd事件的回调函数。 |
+
+
+### setOnScrollStart<sup>18+</sup>
+
+setOnScrollStart(callback: Callback\<void> | undefined): void
+
+设置[onScrollStart](./ts-container-scrollable-common.md#onscrollstart11)事件的回调。
+
+方法入参为undefined时，会重置事件回调。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                       |
+| ------ | ------ | ---- | -------------------------- |
+| callback  | [Callback](./ts-types.md#callback12)\<void> &nbsp;\|&nbsp; undefined | 是   | onScrollStart事件的回调函数。|
+
+
+### setOnScrollStop<sup>18+</sup>
+
+setOnScrollStop(callback: Callback\<void> | undefined): void
+
+设置[onScrollStop](./ts-container-scrollable-common.md#onscrollstop11)事件的回调。
+
+方法入参为undefined时，会重置事件回调。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                       |
+| ------ | ------ | ---- | -------------------------- |
+| callback  | [Callback](./ts-types.md#callback12)\<void> &nbsp;\|&nbsp;undefined | 是   | onScrollStop事件的回调函数。 |
+
+### setOnScrollFrameBegin<sup>18+</sup>
+
+setOnScrollFrameBegin(callback: OnScrollFrameBeginCallback | undefined): void
+
+设置[onScrollFrameBegin](./ts-container-scroll.md#onscrollframebegin9)事件的回调。
+
+方法入参为undefined时，会重置事件回调。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                       |
+| ------ | ------ | ---- | -------------------------- |
+| callback  | [OnScrollFrameBeginCallback](./ts-container-scroll.md#onscrollframebegincallback18)&nbsp;\|&nbsp;undefined | 是   | onScrollFrameBegin事件的回调函数。 |

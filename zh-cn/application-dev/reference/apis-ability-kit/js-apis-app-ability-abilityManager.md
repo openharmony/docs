@@ -29,7 +29,7 @@ Ability的状态，该类型为枚举，可配合[AbilityRunningInfo](js-apis-in
 | BACKGROUNDING | 12 | 表示ability为后台调度中状态。  | 
 
 
-## getAbilityRunningInfos
+## abilityManager.getAbilityRunningInfos
 
 getAbilityRunningInfos(): Promise\<Array\<AbilityRunningInfo>>
 
@@ -47,7 +47,7 @@ getAbilityRunningInfos(): Promise\<Array\<AbilityRunningInfo>>
 
 **错误码**：
 
-以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+以下错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------- |

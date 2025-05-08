@@ -5,7 +5,7 @@ The distributed file system provides applications the capability for accessing f
 ## How to Develop
 
 1. Connect the devices to form a Super Device.<br>
-   Perform unified account authentication for the devices. The devices are not necessarily in the same LAN.
+   Log in to the same account on two devices and ensure that Bluetooth and Wi-Fi are enabled. Bluetooth does not require a physical connection, and Wi-Fi does not need to be connected to the same LAN.
 
 2. Implement cross-device access to the files of your application.<br>
    Place the files in the **distributedfiles/** directory of the application sandbox directory to implement access from difference devices.
@@ -114,3 +114,5 @@ The distributed file system provides applications the capability for accessing f
      console.error(`Failed to disconnectDfs Code: ${err.code}, message: ${err.message}`)
    })
    ```
+
+ <!--no_check--> 

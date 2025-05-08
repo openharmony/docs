@@ -4,7 +4,7 @@
 
 >  **说明：**
 >
->  从 API Version 8 开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>  从 API version 8 开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 ## 接口
 
@@ -38,7 +38,7 @@ Path2D(description: string, unit?: LengthMetricsUnit)
 
 | 参数名  | 类型     | 必填 |  说明   |
 | ----- | -------- | ---- | ---------- |
-| description | string | 是 | 符合 SVG 路径描述规范的路径字符串。 |
+| description | string | 是 | 符合 SVG 路径描述规范的路径字符串，格式参考[Path](ts-drawing-components-path.md#svg路径描述规范)中SVG路径描述规范说明。 |
 | unit<sup>12+</sup>  | [LengthMetricsUnit](../js-apis-arkui-graphics.md#lengthmetricsunit12) | 否 | 用来配置Path2D对象的单位模式，配置后无法动态更改，配置方法同[CanvasRenderingContext2D](ts-canvasrenderingcontext2d.md#lengthmetricsunit12)。<br>默认值：DEFAULT。|
 
 ## addPath

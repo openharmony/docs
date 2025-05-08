@@ -165,7 +165,7 @@ WLAN热点信息。
 | capabilities | string | 是 | 否 | 热点能力。 |
 | securityType | [WifiSecurityType](#wifisecuritytype) | 是 | 否 | WLAN加密类型。 |
 | rssi | number | 是 | 否 | 热点的信号强度(dBm)。 |
-| band | number | 是 | 否 | WLAN接入点的频段。 |
+| band | number | 是 | 否 | WLAN接入点的频段。1表示2.4GHZ；2表示5GHZ。|
 | frequency | number | 是 | 否 | WLAN接入点的频率。 |
 | channelWidth | number | 是 | 否 | WLAN接入点的带宽。 |
 | timestamp | number | 是 | 否 | 时间戳。 |
@@ -200,7 +200,7 @@ WLAN配置信息。
 | ssid | string | 是 | 否 | 热点的SSID，最大长度为32字节，编码格式为UTF-8。 |
 | bssid | string | 是 | 否 | 热点的BSSID，例如：00:11:22:33:44:55。 |
 | preSharedKey | string | 是 | 否 | 热点的密钥，最大长度为64字节。 |
-| isHiddenSsid | boolean | 是 | 否 | 是否是隐藏网络。 |
+| isHiddenSsid | boolean | 是 | 否 | 是否是隐藏网络。true:是隐藏网络，false:不是隐藏网络。 |
 | securityType | [WifiSecurityType](#wifisecuritytype) | 是 | 否 | 加密类型。 |
 
 
@@ -516,11 +516,11 @@ wifi.getLinkedInfo().then(data => {
 | ssid | string | 是 | 否 | 热点的SSID，最大长度为32字节，编码格式为UTF-8。 |
 | bssid | string | 是 | 否 | 热点的BSSID，例如：00:11:22:33:44:55。 |
 | rssi | number | 是 | 否 | 热点的信号强度(dBm)。 |
-| band | number | 是 | 否 | WLAN接入点的频段。 |
-| linkSpeed | number | 是 | 否 | WLAN接入点的速度。 |
+| band | number | 是 | 否 | WLAN接入点的频段。1表示2.4GHZ；2表示5GHZ。|
+| linkSpeed | number | 是 | 否 | WLAN接入点的速度，单位Mbps。 |
 | frequency | number | 是 | 否 | WLAN接入点的频率。 |
-| isHidden | boolean | 是 | 否 | WLAN接入点是否是隐藏网络。 |
-| isRestricted | boolean | 是 | 否 | WLAN接入点是否限制数据量。 |
+| isHidden | boolean | 是 | 否 | WLAN接入点是否是隐藏网络。true:是隐藏网络，false:不是隐藏网络。 |
+| isRestricted | boolean | 是 | 否 | WLAN接入点是否限制数据量。true: 限制，false:不限制。 |
 | macAddress | string | 是 | 否 | 设备的MAC地址。 |
 | ipAddress | number | 是 | 否 | WLAN连接的IP地址。 |
 | connState | [ConnState](#connstate) | 是 | 否 | WLAN连接状态。 |
@@ -701,7 +701,7 @@ getP2pLinkedInfo(): Promise&lt;WifiP2pLinkedInfo&gt;
 | 名称 | 类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | connectState | [P2pConnectState](#p2pconnectstate8) | 是 | 否 | P2P连接状态。 |
-| isGroupOwner | boolean | 是 | 否 | 是否是群主。 |
+| isGroupOwner | boolean | 是 | 否 | 是否是群主。true:是群主，false:不是群主。 |
 | groupOwnerAddr | string | 是 | 否 | 群组MAC地址。 
 
 
@@ -1156,7 +1156,7 @@ try {
 
 | 名称 | 类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| isP2pGo | boolean | 是 | 否 | 是否是群主。 |
+| isP2pGo | boolean | 是 | 否 | 是否是群主。true:是群主，false:不是群主。 |
 | ownerInfo | [WifiP2pDevice](#wifip2pdevice8) | 是 | 否 | 群组的设备信息。 |
 | passphrase | string | 是 | 否 | 群组密钥。 |
 | interface | string | 是 | 否 | 接口名称。 |

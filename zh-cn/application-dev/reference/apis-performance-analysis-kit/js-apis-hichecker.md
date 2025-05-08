@@ -17,7 +17,7 @@ import { hichecker } from '@kit.PerformanceAnalysisKit';
 
 提供了所有规则类型的常量。
 
-**系统能力：** SystemCapability.HiviewDFX.HiChecker
+**系统能力**：SystemCapability.HiviewDFX.HiChecker
 
 | 名称                                             | 类型      | 值         | 说明                                                   |
 | ------------------------------------------------ | -------- | -----------| ------------------------------------------------------ |
@@ -33,7 +33,7 @@ addCheckRule(rule: bigint): void
 
 添加一条或多条规则到系统，系统根据添加的规则进行检测或反馈，当有相应规则触发时可在hilog中grep HiChecker查看运行信息。
 
-**系统能力：** SystemCapability.HiviewDFX.HiChecker
+**系统能力**：SystemCapability.HiviewDFX.HiChecker
 
 **参数：**
 
@@ -69,7 +69,7 @@ removeCheckRule(rule: bigint): void
 
 删除一条或多条规则，删除的规则后续将不再生效。
 
-**系统能力：** SystemCapability.HiviewDFX.HiChecker
+**系统能力**：SystemCapability.HiviewDFX.HiChecker
 
 **参数：**
 
@@ -103,9 +103,9 @@ try {
 
 containsCheckRule(rule: bigint): boolean
 
-当前已添加的规则集中是否包含了某一个特定的规则，如果传入的规则级别为线程级别，则仅在当前线程中进行查询。
+当前已添加的规则集中是否包含了某一个特定的规则。如果传入的规则级别为线程级别，则仅在当前线程中进行查询。
 
-**系统能力：** SystemCapability.HiviewDFX.HiChecker
+**系统能力**：SystemCapability.HiviewDFX.HiChecker
 
 **参数：**
 
@@ -117,7 +117,7 @@ containsCheckRule(rule: bigint): boolean
 
 | 类型    | 说明                                                       |
 | ------- | ---------------------------------------------------------- |
-| boolean | 查询结果，true&nbsp;表示规则已添加，false 表示规则未添加。 |
+| boolean | 查询结果。true 表示规则已添加；false 表示规则未添加。 |
 
 **错误码：**
 
@@ -152,7 +152,7 @@ addRule(rule: bigint): void
 
 添加一条或多条规则到系统，系统根据添加的规则进行检测或反馈。
 
-**系统能力：** SystemCapability.HiviewDFX.HiChecker
+**系统能力**：SystemCapability.HiviewDFX.HiChecker
 
 **参数：**
 
@@ -181,7 +181,7 @@ removeRule(rule: bigint): void
 
 删除一条或多条规则，删除的规则后续将不再生效。
 
-**系统能力：** SystemCapability.HiviewDFX.HiChecker
+**系统能力**：SystemCapability.HiviewDFX.HiChecker
 
 **参数：**
 
@@ -206,7 +206,7 @@ getRule(): bigint
 
 获取当前线程规则、进程规则、告警规则的合集。
 
-**系统能力：** SystemCapability.HiviewDFX.HiChecker
+**系统能力**：SystemCapability.HiviewDFX.HiChecker
 
 **返回值：**
 
@@ -218,7 +218,7 @@ getRule(): bigint
 
 ```ts
 // 添加一条规则
-hichecker.addRule(hichecker.RULE_THREAD_CHECK_SLOW_PROCESS);
+hichecker.addCheckRule(hichecker.RULE_CAUTION_PRINT_LOG);
 
 // 获取已添加的规则
 hichecker.getRule();   // return 1n;
@@ -232,9 +232,9 @@ contains(rule: bigint): boolean
 >
 > 从 API Version 9 开始废弃，建议使用[hichecker.containsCheckRule](#hicheckercontainscheckrule9)替代。
 
-当前已添加的规则集中是否包含了某一个特定的规则，如果传入的规则级别为线程级别，则仅在当前线程中进行查询。
+当前已添加的规则集中是否包含了某一个特定的规则。如果传入的规则级别为线程级别，则仅在当前线程中进行查询。
 
-**系统能力：** SystemCapability.HiviewDFX.HiChecker
+**系统能力**：SystemCapability.HiviewDFX.HiChecker
 
 **参数：**
 
@@ -246,7 +246,7 @@ contains(rule: bigint): boolean
 
 | 类型    | 说明                                                       |
 | ------- | ---------------------------------------------------------- |
-| boolean | 查询结果，true&nbsp;表示规则已添加，false 表示规则未添加。 |
+| boolean | 查询结果。true 表示规则已添加；false 表示规则未添加。 |
 
 **示例：**
 

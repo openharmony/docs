@@ -3,7 +3,7 @@
 
 ## Overview
 
-The **NativeVsync** module provides the capabilities of native virtual synchronization (VSync).
+The NativeVsync module provides the capabilities for obtaining the system virtual synchronization (VSync) callback, allowing you to synchronize your application's drawing frame rate with the system's frame rate.
 
 \@syscap SystemCapability.Graphic.Graphic2D.NativeVsync
 
@@ -228,7 +228,7 @@ Creates an **OH_NativeVSync** instance. A new **OH_NativeVSync** instance is cre
 | Name| Description|
 | -------- | -------- |
 | name | Pointer to the name that associates with the **OH_NativeVSync** instance.|
-| length | Length of the name.|
+| length | Length of the name (number of characters).|
 
 **Returns**
 
@@ -245,6 +245,8 @@ OH_NativeVSync* OH_NativeVSync_Create_ForAssociatedWindow (uint64_t windowID, co
 
 Creates an **OH_NativeVSync** instance to bind with a window. A new **OH_NativeVSync** instance is created each time this API is called.
 
+The actual VSync period of the **OH_NativeVSync** instance created by calling this function may be different from the system's VSync period. The system adjusts the actual VSync period based on the window status.
+
 **System capability**: SystemCapability.Graphic.Graphic2D.NativeVsync
 
 **Since**: 14
@@ -255,7 +257,7 @@ Creates an **OH_NativeVSync** instance to bind with a window. A new **OH_NativeV
 | -------- | -------- |
 | windowID | Window ID, which is the index identifier of the window child process and can be obtained through [OH_NativeWindow_GetSurfaceId](_native_window.md#oh_nativewindow_getsurfaceid).| 
 | name | Pointer to the name that associates with the **OH_NativeVSync** instance.| 
-| length | Length of the name.| 
+| length | Length of the name (number of characters).| 
 
 **Returns**
 
@@ -274,7 +276,7 @@ void OH_NativeVSync_Destroy (OH_NativeVSync * nativeVsync)
 
 Destroys an **OH_NativeVSync** instance.
 
-Once the **OH_NativeVSync** pointer is destroyed, it must not be used to prevent dangling pointer problems. Pay special attention to the management of the **OH_NativeVSync** pointer in concurrent multithreaded scenarios. 
+Once the **OH_NativeVSync** pointer is destroyed, it should not be used, as this can result in dangling pointer problems. Pay special attention to the management of the **OH_NativeVSync** pointer in multithreaded scenarios.
 
 \@syscap SystemCapability.Graphic.Graphic2D.NativeVsync
 

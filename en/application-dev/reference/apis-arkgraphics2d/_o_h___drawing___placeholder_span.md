@@ -3,7 +3,7 @@
 
 ## Overview
 
-The **OH_Drawing_PlaceholderSpan** struct describes the placeholder that acts as a span.
+The OH_Drawing_PlaceholderSpan struct describes the placeholder that acts as a span.
 
 **Since**: 11
 

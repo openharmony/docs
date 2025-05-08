@@ -19,9 +19,8 @@
 
 **1. 创建工程**
 
-<div style="text-align:center;">
-  <img src="figures/rawfile1.png">
-</div>
+![native](figures/rawfile1.png)
+
 
 **2. 添加依赖**
 
@@ -48,9 +47,13 @@
     static napi_value Init(napi_env env, napi_value exports)
     {
         napi_property_descriptor desc[] = {
-            { "getCurrentApplicationInfo", nullptr, GetCurrentApplicationInfo, nullptr, nullptr, nullptr, napi_default, nullptr}
+            { "add", nullptr, Add, nullptr, nullptr, nullptr, napi_default, nullptr },
+            { "getCurrentApplicationInfo", nullptr, GetCurrentApplicationInfo, nullptr, nullptr, nullptr, napi_default, nullptr},   // 新增方法 getCurrentApplicationInfo
+            { "getAppId", nullptr, GetAppId, nullptr, nullptr, nullptr, napi_default, nullptr},                                     // 新增方法 getAppId
+            { "getAppIdentifier", nullptr, GetAppIdentifier, nullptr, nullptr, nullptr, napi_default, nullptr},                     // 新增方法 getAppIdentifier
+            { "getMainElementName", nullptr, GetMainElementName, nullptr, nullptr, nullptr, napi_default, nullptr},                 // 新增方法 getMainElementName
+            { "getCompatibleDeviceType", nullptr, GetCompatibleDeviceType, nullptr, nullptr, nullptr, napi_default, nullptr}        // 新增方法 getCompatibleDeviceType
         };
-
         napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);
         return exports;
     }
@@ -61,6 +64,10 @@
 
     ```c++
     static napi_value GetCurrentApplicationInfo(napi_env env, napi_callback_info info)
+    static napi_value GetAppId(napi_env env, napi_callback_info info)
+    static napi_value GetAppIdentifier(napi_env env, napi_callback_info info)
+    static napi_value GetMainElementName(napi_env env, napi_callback_info info)
+    static napi_value GetCompatibleDeviceType(napi_env env, napi_callback_info info)
     ```
 
 3. 在src/main/cpp/napi_init.cpp文件中获取Native的包信息对象，并转为js的包信息对象，即可在js测获取应用的信息：
@@ -81,27 +88,88 @@
         napi_create_string_utf8(env, nativeApplicationInfo.fingerprint, NAPI_AUTO_LENGTH, &fingerprint);
         napi_set_named_property(env, result, "fingerprint", fingerprint);
 
-        char* appId = OH_NativeBundle_GetAppId();
-        // Native接口获取的appId转为js对象里的appId属性
-        napi_value napi_appId;
-        napi_create_string_utf8(env, appId, NAPI_AUTO_LENGTH, &napi_appId);
-        napi_set_named_property(env, result, "appId", napi_appId);
-
-        char* appIdentifier = OH_NativeBundle_GetAppIdentifier();
-        // Native接口获取的appIdentifier转为js对象里的appIdentifier属性
-        napi_value napi_appIdentifier;
-        napi_create_string_utf8(env, appIdentifier, NAPI_AUTO_LENGTH, &napi_appIdentifier);
-        napi_set_named_property(env, result, "appIdentifier", napi_appIdentifier);
         // 最后为了防止内存泄漏，手动释放
         free(nativeApplicationInfo.bundleName);
         free(nativeApplicationInfo.fingerprint);
-        free(appId);
-        free(appIdentifier);
         return result;
+    }
+
+    static napi_value GetAppId(napi_env env, napi_callback_info info)
+    {
+        // 调用Native接口获取应用appId
+        char* appId = OH_NativeBundle_GetAppId();
+        // Native接口转成nAppId返回
+        napi_value nAppId;
+        napi_create_string_utf8(env, appId, NAPI_AUTO_LENGTH, &nAppId);
+        // 最后为了防止内存泄漏，手动释放
+        free(appId);
+        return nAppId;
+    }
+
+    static napi_value GetAppIdentifier(napi_env env, napi_callback_info info)
+    {
+        // 调用Native接口获取应用appIdentifier
+        char* appIdentifier = OH_NativeBundle_GetAppIdentifier();
+        // Native接口转成nAppIdentifier返回
+        napi_value nAppIdentifier;
+        napi_create_string_utf8(env, appIdentifier, NAPI_AUTO_LENGTH, &nAppIdentifier);
+        // 最后为了防止内存泄漏，手动释放
+        free(appIdentifier);
+        return nAppIdentifier;
+    }
+
+    static napi_value GetMainElementName(napi_env env, napi_callback_info info)
+    {
+        // 调用Native接口获取应用入口的信息
+        OH_NativeBundle_ElementName elementName = OH_NativeBundle_GetMainElementName();
+        napi_value result = nullptr;
+        napi_create_object(env, &result);
+        // Native接口获取的应用包名转为js对象里的bundleName属性
+        napi_value bundleName;
+        napi_create_string_utf8(env, elementName.bundleName, NAPI_AUTO_LENGTH, &bundleName);
+        napi_set_named_property(env, result, "bundleName", bundleName);
+        // Native接口获取的指纹信息转为js对象里的moduleName属性
+        napi_value moduleName;
+        napi_create_string_utf8(env, elementName.moduleName, NAPI_AUTO_LENGTH, &moduleName);
+        napi_set_named_property(env, result, "moduleName", moduleName);
+        // Native接口获取的指纹信息转为js对象里的abilityName属性
+        napi_value abilityName;
+        napi_create_string_utf8(env, elementName.abilityName, NAPI_AUTO_LENGTH, &abilityName);
+        napi_set_named_property(env, result, "abilityName", abilityName);
+        // 最后为了防止内存泄漏，手动释放
+        free(elementName.bundleName);
+        free(elementName.moduleName);
+        free(elementName.abilityName);
+        return result;
+    }
+
+    static napi_value GetCompatibleDeviceType(napi_env env, napi_callback_info info)
+    {
+        // 调用Native接口获取应用deviceType
+        char* deviceType = OH_NativeBundle_GetCompatibleDeviceType();
+        // Native接口转成nDeviceType返回
+        napi_value nDeviceType;
+        napi_create_string_utf8(env, deviceType, NAPI_AUTO_LENGTH, &nDeviceType);
+        // 最后为了防止内存泄漏，手动释放
+        free(deviceType);
+        return nDeviceType;
     }
     ```
 
-**4. js侧调用**
+**4. 接口暴露**
+
+在src/main/cpp/types/libentry/Index.d.ts文件中，申明暴露接口。
+
+```js
+export const add: (a: number, b: number) => number;
+export const getCurrentApplicationInfo: () => object;   // 新增暴露方法 getCurrentApplicationInfo
+export const getAppId: () => string;                    // 新增暴露方法 getAppId
+export const getAppIdentifier: () => string;            // 新增暴露方法 getAppIdentifier
+export const getMainElementName: () => object;          // 新增暴露方法 getMainElementName
+export const getCompatibleDeviceType: () => string;     // 新增暴露方法 getCompatibleDeviceType
+```
+
+**5. js侧调用**
 
 1. 打开src\main\ets\pages\index.ets, 导入"libentry.so"。
 
@@ -109,45 +177,42 @@
 2. 调用Native接口getCurrentApplicationInfo即可获取应用信息。示例如下：
 
     ```js
-    import hilog from '@ohos.hilog';
+    import { hilog } from '@kit.PerformanceAnalysisKit';
     import testNapi from 'libentry.so';
+
+    const DOMAIN = 0x0000;
 
     @Entry
     @Component
     struct Index {
     @State message: string = 'Hello World';
 
-        build() {
-            Row() {
-            Column() {
-                Text(this.message)
-                .fontSize(50)
-                .fontWeight(FontWeight.Bold)
-
-                Button(){
-                Text("GetCurrentApplicationInfo").fontSize(30)
-                }.type(ButtonType.Capsule)
-                .margin({
-                top: 20
-                })
-                .backgroundColor('#0D9FFB')
-                .width('70%')
-                .height('5%')
-                .onClick(()=>{
-                try {
-                    let data = testNapi.getCurrentApplicationInfo();
-                    console.info("getCurrentApplicationInfo success, data is " + JSON.stringify(data));
-                } catch (error) {
-                    console.error("getCurrentApplicationInfo failed");
-                    this.message = "getCurrentApplicationInfo failed";
-                }
-                })
-            }
-            .width('100%')
-            }
-            .height('100%')
+    build() {
+        Row() {
+        Column() {
+            Text(this.message)
+            .fontSize($r('app.float.page_text_font_size'))
+            .fontWeight(FontWeight.Bold)
+            .onClick(() => {
+                this.message = 'Welcome';
+                hilog.info(DOMAIN, 'testTag', 'Test NAPI 2 + 3 = %{public}d', testNapi.add(2, 3));
+                let appInfo = testNapi.getCurrentApplicationInfo();
+                console.info("bundleNDK getCurrentApplicationInfo success, data is " + JSON.stringify(appInfo));
+                let appId = testNapi.getAppId();
+                console.info("bundleNDK getAppId success, appId is " + appId);
+                let appIdentifier = testNapi.getAppIdentifier();
+                console.info("bundleNDK getAppIdentifier success, appIdentifier is " + appIdentifier);
+                let mainElement = testNapi.getMainElementName();
+                console.info("bundleNDK getMainElementName success, data is " + JSON.stringify(mainElement));
+                let deviceType = testNapi.getCompatibleDeviceType();
+                console.info("bundleNDK getCompatibleDeviceType success, deviceType is " + deviceType);
+            })
         }
+        .width('100%')
+        }
+        .height('100%')
+    }
     }
     ```
 
-关于包管理NDK开发，可参考[Bundle模块介绍](../reference/apis-ability-kit/_bundle.md)。
+关于包管理NDK接口说明，可参考[Bundle模块介绍](../reference/apis-ability-kit/_bundle.md)。

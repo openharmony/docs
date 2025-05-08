@@ -1,6 +1,6 @@
 # @ohos.util.json (JSON解析与生成)
 
-本模块提供了将JSON文本转换为JSON对应对象或值，以及将对象转换为JSON字符串等功能。
+本模块提供了将JSON文本转换为JSON对象或值，以及将对象转换为JSON文本等功能。
 
 >**说明：**
 >
@@ -18,8 +18,8 @@ import { JSON } from '@kit.ArkTS';
 type Transformer = (this: Object, key: string, value: Object) => Object | undefined | null
 
 用于转换结果函数的类型。<br>
-作为[JSON.parse](#jsonparse)函数的参数时，对象的每个成员将会调用此函数，解析过程中允许对数据进行自定义处理或转换。<br>
-作为[JSON.stringify](#jsonstringify-1)函数的参数时，在序列化过程中，被序列化的值的每个属性都会经过该函数的转换和处理。
+作为[JSON.parse](#jsonparse)函数的参数时，对象的每个成员将会调用此函数，允许在解析过程中对数据进行自定义处理或转换。<br>
+作为[JSON.stringify](#jsonstringify-1)函数的参数时，序列化时，每个属性都会经过该函数的转换处理。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -69,7 +69,7 @@ type Transformer = (this: Object, key: string, value: Object) => Object | undefi
 
 parse(text: string, reviver?: Transformer, options?: ParseOptions): Object | null
 
-用于解析JSON字符串生成对应ArkTS对象或null。
+解析JSON字符串生成ArkTS对象或null。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -98,7 +98,7 @@ parse(text: string, reviver?: Transformer, options?: ParseOptions): Object | nul
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
-
+<!--code_no_check-->
 ```ts
 // /entry/src/main/ets/pages/test.ts
 export function reviverFunc(key, value) {
@@ -140,7 +140,7 @@ console.info((numberObj as object)?.["largeNumber"]);
 
 stringify(value: Object, replacer?: (number | string)[] | null, space?: string | number): string
 
-该方法将一个ArkTS对象或数组转换为JSON字符串，对于容器支持线性容器转换，非线性的容器不支持。
+该方法将一个ArkTS对象或数组转换为JSON字符串，支持线性容器的转换，不支持非线性容器。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -150,9 +150,9 @@ stringify(value: Object, replacer?: (number | string)[] | null, space?: string |
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| value | Object | 是 | ArkTS对象或数组，对于容器支持线性容器转换，非线性的容器不支持。|
+| value | Object | 是 | ArkTS对象或数组。支持线性容器转换，非线性容器不支持。|
 | replacer | number[] \| string[] \| null | 否 | 当参数是数组时，只有包含在这个数组中的属性名才会被序列化到最终的JSON字符串中；当参数为null或者未提供时，则对象所有的属性都会被序列化。默认值是undefined。|
-| space | string \| number | 否 | 指定缩进用的空格或字符串或空字符串，用于美化输出。当参数是数字时表示有多少个空格；当参数是字符串时，该字符串被当作空格；当参数没有提供时，将没有空格。默认值是空字符串。|
+| space | string \| number | 否 | 指定缩进用的空格或字符串，用于美化输出。当参数是数字时表示缩进空格数；当参数是字符串时表示缩进字符；无参数则无缩进。默认值是空字符串。|
 
 **返回值：**
 
@@ -169,6 +169,7 @@ stringify(value: Object, replacer?: (number | string)[] | null, space?: string |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
+<!--code_no_check-->
 ```ts
 // /entry/src/main/ets/pages/test.ts
 export let exportObj = {1: "John", 2: 30, 3: "New York"};

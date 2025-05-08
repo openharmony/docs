@@ -5,13 +5,15 @@
 
 Defines APIs and enums related to a single data value.
 
-**File to include**: &lt;database/rdb/oh_data_value.h&gt;
+Since API version 18, **OH_ColumnType** is moved from **oh_cursor.h** to this file. This type is supported in versions earlier than API version 18 and can be used in all versions.
+
+**File to include**: &lt;database/data/oh_data_value.h&gt;
 
 **Library**: libnative_rdb_ndk.z.so
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
-**Since**: 16
+**Since**: 18
 
 **Related module**: [RDB](_r_d_b.md)
 

@@ -22,11 +22,31 @@ Sets the outline attributes in one declaration.
 
 **Parameters**
 
+| Name| Type                                     | Mandatory| Description        |
+| ------ | ----------------------------------------- | ---- | ------------ |
+| value  | [OutlineOptions](#outlineoptions) | Yes  | Outline attributes.|
+
+## outline<sup>18+</sup>
+
+outline(options: Optional\<OutlineOptions>)
+
+Sets the outline attributes in one declaration. Compared to [outline](#outline), this API supports the **undefined** type for the **options** parameter.
+
+**Widget capability**: This API can be used in ArkTS widgets since API version 18.
+
+**Atomic service API**: This API can be used in atomic services since API version 18.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
 | Name| Type                                     | Mandatory| Description|
 | ------ | ----------------------------------------- | ---- | ---- |
-| value  | [OutlineOptions](#outlineoptions) | Yes  |   Outline attributes.  |
+| options | Optional\<[OutlineOptions](#outlineoptions)> | Yes  |   Outline attributes.<br>If **options** is **undefined**, the component reverts to its original style with no outline.  |
 
 ## OutlineStyle<sup>11+</sup>
+
+Outline attributes.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 11.
 
@@ -58,6 +78,24 @@ Sets the style of the outline.
 | ------ | ------------------------------------------------------------ | ---- | ----------------------------------------------------- |
 | value  | [OutlineStyle](#outlinestyle11) \| [EdgeOutlineStyles](#edgeoutlinestyles) | Yes  | Outline style.<br>Default value: **OutlineStyle.SOLID**|
 
+## outlineStyle<sup>18+</sup>
+
+outlineStyle(style: Optional\<OutlineStyle | EdgeOutlineStyles>)
+
+Sets the style of the outline. Compared to [outlineStyle](#outlinestyle), this API supports the **undefined** type for the **style** parameter.
+
+**Widget capability**: This API can be used in ArkTS widgets since API version 18.
+
+**Atomic service API**: This API can be used in atomic services since API version 18.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type                                                        | Mandatory| Description                                                        |
+| ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| style  | Optional\<[OutlineStyle](#outlinestyle11) \| [EdgeOutlineStyles](#edgeoutlinestyles)> | Yes  | Outline style.<br>Default value: **OutlineStyle.SOLID**<br>If **style** is **undefined**, the component reverts to its original style with no outline.|
+
 ## outlineWidth
 
 outlineWidth(value: Dimension | EdgeOutlineWidths)
@@ -72,9 +110,27 @@ Sets the thickness of the outline.
 
 **Parameters**
 
+| Name| Type                                                        | Mandatory| Description                                                 |
+| ------ | ------------------------------------------------------------ | ---- | ----------------------------------------------------- |
+| value  | [Dimension](ts-types.md#dimension10) \| [EdgeOutlineWidths](#edgeoutlinewidths) | Yes  | Outline thickness. Percentage values are not supported.<br>Default value: **0**|
+
+## outlineWidth<sup>18+</sup>
+
+outlineWidth(width: Optional\<Dimension | EdgeOutlineWidths>)
+
+Sets the thickness of the outline. Compared to [[outlineWidth](#outlinewidth), this API supports the **undefined** type for the **width** parameter.
+
+**Widget capability**: This API can be used in ArkTS widgets since API version 18.
+
+**Atomic service API**: This API can be used in atomic services since API version 18.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
 | Name| Type                                                        | Mandatory| Description                                                        |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | [Dimension](ts-types.md#dimension10) \| [EdgeOutlineWidths](#edgeoutlinewidths) | Yes  | Outline thickness. This parameter cannot be set in percentage.<br>Default value: **0**.|
+| width  | Optional\<[Dimension](ts-types.md#dimension10) \| [EdgeOutlineWidths](#edgeoutlinewidths)> | Yes  | Outline thickness. Percentage values are not supported.<br>Default value: **0**<br>If **width** is **undefined**, the component reverts to its original style with no outline width.|
 
 ## outlineColor
 
@@ -94,6 +150,24 @@ Sets the color of the outline.
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------ |
 | value  | [ResourceColor](ts-types.md#resourcecolor) \| [EdgeColors](#edgecolors) | Yes  | Outline color.<br>Default value: **Color.Black**|
 
+## outlineColor<sup>18+</sup>
+
+outlineColor(color: Optional\<ResourceColor | EdgeColors>)
+
+Sets the color of the outline. Compared to [outlineColor](#outlinecolor), this API supports the **undefined** type for the **color** parameter.
+
+**Widget capability**: This API can be used in ArkTS widgets since API version 18.
+
+**Atomic service API**: This API can be used in atomic services since API version 18.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type                                                        | Mandatory| Description                                                        |
+| ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| color  | Optional\<[ResourceColor](ts-types.md#resourcecolor) \| [EdgeColors](#edgecolors)> | Yes  | Outline color.<br>Default value: **Color.Black**<br>If **color** is **undefined**, the component reverts to its original style with the outline color of **Color.Black**.|
+
 ## outlineRadius
 
 outlineRadius(value: Dimension | OutlineRadiuses)
@@ -110,7 +184,25 @@ Sets the radius of the outline corners.
 
 | Name| Type                                                        | Mandatory| Description                                                        |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | [Dimension](ts-types.md#dimension10) \| [OutlineRadiuses](#outlineradiuses) | Yes  | Radius of the outline corners. This parameter cannot be set in percentage.<br>Default value: **0**<br>Maximum effective value: Component width/2 + outlineWidth or component height/2 + outlineWidth|
+| value  | [Dimension](ts-types.md#dimension10) \| [OutlineRadiuses](#outlineradiuses) | Yes  | Radius of the outline corners. Percentage values are not supported.<br>Default value: **0**<br>Maximum effective value: Component width/2 + outlineWidth or component height/2 + outlineWidth|
+
+## outlineRadius<sup>18+</sup>
+
+outlineRadius(radius: Optional\<Dimension | OutlineRadiuses>)
+
+Sets the radius of the outline corners. Compared to [outlineRadius](#outlineradius), this API supports the **undefined** type for the **radius** parameter.
+
+**Widget capability**: This API can be used in ArkTS widgets since API version 18.
+
+**Atomic service API**: This API can be used in atomic services since API version 18.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type                                                        | Mandatory| Description                                                        |
+| ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| radius | Optional\<[Dimension](ts-types.md#dimension10) \| [OutlineRadiuses](#outlineradiuses)> | Yes  | Radius of the outline corners. Percentage values are not supported.<br>Default value: **0**<br>Maximum effective value: Component width/2 + outlineWidth or component height/2 + outlineWidth<br>If **radius** is **undefined**, the component reverts to its original style with the outline corner radius of 0.|
 
 ## OutlineOptions
 
@@ -120,9 +212,9 @@ Sets the radius of the outline corners.
 
 | Name  | Type                  |Mandatory                                     | Description                                                        |
 | ------ | ----------------------|-------------------------------------- | ------------------------------------------------------------ |
-| width  | [Dimension](ts-types.md#dimension10) \| [EdgeOutlineWidths](#edgeoutlinewidths) | No| Outline thickness. This parameter cannot be set in percentage.<br>Default value: **0**|
+| width  | [Dimension](ts-types.md#dimension10) \| [EdgeOutlineWidths](#edgeoutlinewidths) | No| Outline thickness. Percentage values are not supported.<br>Default value: **0**|
 | color  | [ResourceColor](ts-types.md#resourcecolor) \| [EdgeColors](#edgecolors) \| [LocalizedEdgeColors](#localizededgecolors12)<sup>12+</sup> |No| Outline color.<br>Default value: **Color.Black**                  |
-| radius | [Dimension](ts-types.md#dimension10) \| [OutlineRadiuses](#outlineradiuses) | No| Radius of the outline corners. This parameter cannot be set in percentage.<br>Default value: **0**<br>Maximum effective value: Component width/2 + outlineWidth or component height/2 + outlineWidth|
+| radius | [Dimension](ts-types.md#dimension10) \| [OutlineRadiuses](#outlineradiuses) | No| Radius of the outline corners. Percentage values are not supported.<br>Default value: **0**<br>Maximum effective value: Component width/2 + outlineWidth or component height/2 + outlineWidth|
 | style  | [OutlineStyle](#outlinestyle11) \| [EdgeOutlineStyles](#edgeoutlinestyles) |No| Outline style.<br>Default value: **OutlineStyle.SOLID**           |
 
 ## EdgeOutlineWidths
@@ -204,9 +296,9 @@ To reference this object, at least one parameter must be passed.
 
 ## Example
 
-### Example 1: Using Outline Attributes
+### Example 1: Creating Outlines
 
-This example demonstrates how to implement component outlines using the outline attributes.
+This example demonstrates how to create component outlines using **outline**.
 
 ```ts
 // xxx.ets

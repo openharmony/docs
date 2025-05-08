@@ -186,3 +186,85 @@ struct OverlayExample {
 
 ```
 ![overlayManager-demo2](figures/overlaymanager-demo_2.gif)
+
+Since API version 18, you can use the **getOverlayManager** API in **UIContext** to obtain an **OverlayManager** object. With this object you can call [addComponentContentWithOrder](../reference/apis-arkui/js-apis-arkui-UIContext.md#addcomponentcontentwithorder18) to add components to specific layers, with overlays on higher layers covering those on lower ones.
+
+```ts
+import { ComponentContent, LevelOrder, OverlayManager } from '@kit.ArkUI';
+
+class Params {
+  text: string = ""
+  offset: Position
+  constructor(text: string, offset: Position) {
+    this.text = text
+    this.offset = offset
+  }
+}
+
+@Builder
+function builderTopText(params: Params) {
+  Column() {
+    Stack(){
+      Text(params.text)
+        .fontSize(30)
+        .fontWeight(FontWeight.Bold)
+    }.width(300).height(200).padding(5).backgroundColor('#F7F7F7').alignContent(Alignment.Top)
+  }.offset(params.offset)
+}
+
+@Builder
+function builderNormalText(params: Params) {
+  Column() {
+    Stack(){
+      Text(params.text)
+        .fontSize(30)
+        .fontWeight(FontWeight.Bold)
+    }.width(300).height(400).padding(5).backgroundColor('#D5D5D5').alignContent(Alignment.Top)
+  }.offset(params.offset)
+}
+
+@Entry
+@Component
+struct Index {
+  private ctx: UIContext = this.getUIContext()
+  private overlayManager: OverlayManager = this.ctx.getOverlayManager()
+  @StorageLink('contentArray') contentArray: ComponentContent<Params>[] = []
+  @StorageLink('componentContentIndex') componentContentIndex: number = 0
+  @StorageLink('arrayIndex') arrayIndex: number = 0
+  @StorageLink('componentOffset') componentOffset: Position = {x: 0, y: 80}
+
+  build() {
+    Row() {
+      Column({ space: 5 }) {
+        Button('Open Top-Level Dialog Box')
+          .onClick(() => {
+            let componentContent = new ComponentContent(
+              this.ctx, wrapBuilder<[Params]>(builderTopText),
+              new Params('I am a top-level dialog box', this.componentOffset)
+            )
+            this.contentArray.push(componentContent)
+            this.overlayManager.addComponentContentWithOrder(componentContent, LevelOrder.clamp(100000))
+          })
+        Button('Open Normal Dialog Box')
+          .onClick(() => {
+            let componentContent = new ComponentContent(
+              this.ctx, wrapBuilder<[Params]>(builderNormalText),
+              new Params('I am a normal dialog box', this.componentOffset)
+            )
+            this.contentArray.push(componentContent)
+            this.overlayManager.addComponentContentWithOrder(componentContent, LevelOrder.clamp(0))
+          })
+        Button("Remove Dialog Box").onClick(()=>{
+          if (this.arrayIndex >= 0 && this.arrayIndex < this.contentArray.length) {
+            let componentContent = this.contentArray.splice(this.arrayIndex, 1)
+            this.overlayManager.removeComponentContent(componentContent.pop())
+          } else {
+            console.info("Invalid arrayIndex.")
+          }
+        })
+      }.width('100%')
+    }
+  }
+}
+```
+![overlayManager-demo3](figures/overlaymanager-demo_3.gif)

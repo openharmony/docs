@@ -9,6 +9,7 @@
 
 **相关模块：**[Drawing](_drawing.md)
 
+**所在头文件：**[drawing_text_typography.h](drawing__text__typography_8h.md)
 
 ## 汇总
 
@@ -17,8 +18,8 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| char \* [familyName](#familyname) | 字体家族名  | 
-| int [weight](#weight) | 字体字重值，当字重值大于0时，表示此字体集只包含所指定weight的字体，当字重值等于0时，表示此字体集包含所有字体  | 
+| char \* [familyName](#familyname) | 字体家族名。  | 
+| int [weight](#weight) | 字体字重值，当字重值大于0时，表示此字体集只包含所指定weight的字体，当字重值等于0时，表示此字体集包含所有字体。  | 
 
 
 ## 结构体成员变量说明
@@ -31,7 +32,7 @@ char* OH_Drawing_FontAliasInfo::familyName
 ```
 **描述**
 
-字体家族名
+字体家族名。
 
 
 ### weight
@@ -41,4 +42,4 @@ int OH_Drawing_FontAliasInfo::weight
 ```
 **描述**
 
-字体字重值，当字重值大于0时，表示此字体集只包含所指定weight的字体，当字重值等于0时，表示此字体集包含所有字体
+字体字重值，当字重值大于0时，表示此字体集只包含所指定weight的字体，当字重值等于0时，表示此字体集包含所有字体。

@@ -21,4 +21,4 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| interface&nbsp;&nbsp;[INfcCallback](interface_i_nfc_callback_v10.md) | 用于从nfc芯片给nfc协议栈上报数据和事件的回调声明。  | 
+| interface&nbsp;&nbsp;[INfcCallback](interface_i_nfc_callback_v10.md) | 用于从NFC芯片给NFC协议栈上报数据和事件的回调声明。  | 

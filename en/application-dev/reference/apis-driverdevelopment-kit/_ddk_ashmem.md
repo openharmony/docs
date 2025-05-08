@@ -13,6 +13,7 @@ Defines the data structure of **Ashmem** objects.
 
 [Base DDK](_base_ddk.md)
 
+**Header file**: [ddk_types.h](ddk_types.md)
 
 ## Summary
 

@@ -1,21 +1,21 @@
-# IPC Kit (Inter-Process Communication Service)
+# IPC Kit<!--ipc-api-->
 
-- ArkTS APIs
+- ArkTS APIs<!--ipc-arkts-->
   - [@ohos.rpc (RPC)](js-apis-rpc.md)
-- C APIs
-  - Modules
+- C APIs<!--ipc-c-->
+  - Modules<!--ipc-moudle-->
     - [OHIPCParcel](_o_h_i_p_c_parcel.md)
     - [OHIPCRemoteObject](_o_h_i_p_c_remote_object.md)
     - [OHIPCSkeleton](_o_h_i_p_c_skeleton.md)
-    - [OH_IPC_ErrorCode](_o_h_i_p_c_error_code.md)
-    - [IPC Kit](_i_p_c_kit.md)
-  - Header Files
+    - [OHIPCErrorCode](_o_h_i_p_c_error_code.md)
+    - [IPCKit](_i_p_c_kit.md)
+  - Header Files<!--ipc-headerfile-->
     - [ipc_cparcel.h](ipc__cparcel_8h.md)
     - [ipc_cremote_object.h](ipc__cremote__object_8h.md)
     - [ipc_cskeleton.h](ipc__cskeleton_8h.md)
     - [ipc_error_code.h](ipc__error__code_8h.md)
     - [ipc_kit.h](ipc__kit_8h.md)
-  - Structs
+  - Structs<!--ipc-struct-->
     - [OH_IPC_MessageOption](_o_h___i_p_c___message_option.md)
-- Error Codes
+- Error Codes<!--ipc-arkts-errcode-->
   - [RPC Error Codes](errorcode-rpc.md)

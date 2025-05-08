@@ -9,6 +9,7 @@ websocket客户端主动关闭的参数。
 
 **相关模块：**[Netstack](netstack.md)
 
+**所在头文件：** [net_websocket_type.h](net__websocket__type_8h.md#net_websocket_typeh)
 
 ## 汇总
 

@@ -28,15 +28,15 @@ Marquee(options: MarqueeOptions)
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| options | [MarqueeOptions](#marqueeoptions14) | Yes| Parameters of the marquee.|
+| options | [MarqueeOptions](#marqueeoptions18) | Yes| Parameters of the marquee.|
 
-## MarqueeOptions<sup>14+</sup>
+## MarqueeOptions<sup>18+</sup>
 
 Describes the initialization options of the **Marquee** component.
 
-**Widget capability**: This API can be used in ArkTS widgets since API version 14.
+**Widget capability**: This API can be used in ArkTS widgets since API version 18.
 
-**Atomic service API**: This API can be used in atomic services since API version 14.
+**Atomic service API**: This API can be used in atomic services since API version 18.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -44,15 +44,15 @@ Describes the initialization options of the **Marquee** component.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| start | boolean | Yes| Whether to start scrolling.<br>**NOTE**<br>This parameter cannot be used to restart scrolling that has been completed.|
-| step | number | No| Scrolling step. If the step is greater than the text width, the default value is taken.<br>Default value: **6**, in vp|
-| loop | number | No| Number of times the marquee will scroll. If the value is less than or equal to **0**, the marquee will scroll continuously.<br>Default value: **-1**<br>**NOTE**<br>Regardless of the value, the marquee scrolls only once on an ArkTS widget.|
-| fromStart | boolean | No| Whether the text scrolls from the start.<br>Default value: **true**|
-| src | string | Yes| Text to scroll.|
+| start<sup>8+</sup> | boolean | Yes| Whether to start scrolling.<br>**true**: Start scrolling.<br>**false**: Do not start scrolling.<br>**NOTE**<br>This parameter cannot be used to restart scrolling that has been completed.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 9.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| step<sup>8+</sup> | number | No| Step length of the scrolling animation text. If the value is greater than the text width of the marquee, the default value is used.<br>Default value: **6**<br>Unit: vp<br>**Widget capability**: This API can be used in ArkTS widgets since API version 9.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| loop<sup>8+</sup> | number | No| Number of times the marquee will scroll. If the value is less than or equal to **0**, the marquee will scroll continuously.<br>Default value: **-1**<br>**NOTE**<br>Regardless of the value, the marquee scrolls only once on an ArkTS widget.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 9.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| fromStart<sup>8+</sup> | boolean | No| Whether the text scrolls from the start.<br>Default value: **true**<br>**Widget capability**: This API can be used in ArkTS widgets since API version 9.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| src<sup>8+</sup> | string | Yes| Text to scroll.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 9.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 
 ## Attributes
 
-In addition to the [universal attributes](ts-universal-attributes-size.md), the following attributes are supported.
+In addition to the [universal attributes](ts-component-general-attributes.md), the following attributes are supported.
 
 ### fontColor
 
@@ -207,19 +207,20 @@ This example demonstrates the dynamic updating of a marquee's content by setting
 @Entry
 @Component
 struct MarqueeExample {
-  @State start: boolean = false
-  @State src: string = ''
-  @State marqueeText: string = 'Running Marquee'
-  private fromStart: boolean = true
-  private step: number = 10
-  private loop: number = Number.POSITIVE_INFINITY
-  controller: TextClockController = new TextClockController()
-  convert2time(value: number): string{
-    let date = new Date(Number(value+'000'));
+  @State start: boolean = false;
+  @State src: string = '';
+  @State marqueeText: string = 'Running Marquee';
+  private fromStart: boolean = true;
+  private step: number = 10;
+  private loop: number = Number.POSITIVE_INFINITY;
+  controller: TextClockController = new TextClockController();
+
+  convert2time(value: number): string {
+    let date = new Date(Number(value + '000'));
     let hours = date.getHours().toString().padStart(2, '0');
     let minutes = date.getMinutes().toString().padStart(2, '0');
     let seconds = date.getSeconds().toString().padStart(2, '0');
-    return hours+ ":" + minutes + ":" + seconds;
+    return hours + ":" + minutes + ":" + seconds;
   }
 
   build() {
@@ -236,23 +237,25 @@ struct MarqueeExample {
         .height('80vp')
         .fontColor('#FFFFFF')
         .fontSize('48fp')
+        .allowScale(true) // Set this to true if you want the marquee text to scale with the system font size when using the fp unit for fontSize.
         .fontWeight(700)
+        .fontFamily('HarmonyOS Sans') // Use 'HarmonyOS Sans' to avoid following the theme font.
         .backgroundColor('#182431')
         .margin({ bottom: '40vp' })
         .onStart(() => {
-          console.info('Succeeded in completing the onStart callback of marquee animation')
+          console.info('Succeeded in completing the onStart callback of marquee animation');
         })
         .onBounce(() => {
-          console.info('Succeeded in completing the onBounce callback of marquee animation')
+          console.info('Succeeded in completing the onBounce callback of marquee animation');
         })
         .onFinish(() => {
-          console.info('Succeeded in completing the onFinish callback of marquee animation')
+          console.info('Succeeded in completing the onFinish callback of marquee animation');
         })
       Button('Start')
         .onClick(() => {
           this.start = true
           // Start the text clock.
-          this.controller.start()
+          this.controller.start();
         })
         .width('120vp')
         .height('40vp')

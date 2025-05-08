@@ -118,7 +118,7 @@
 | -------- | -------- |
 | EXTERN_C_START JSVM_EXTERN [JSVM_Status](#jsvm_status) [OH_JSVM_Init](#oh_jsvm_init) ([JSVM_InitOptions](_j_s_v_m___init_options.md) \*options) | 初始化一个JavaScript虚拟机。 | 
 | JSVM_EXTERN [JSVM_Status](#jsvm_status) [OH_JSVM_CreateVM](#oh_jsvm_createvm) (const [JSVM_CreateVMOptions](_j_s_v_m___create_v_m_options.md) \*options, [JSVM_VM](#jsvm_vm) \*result) | 创建一个虚拟机实例。 | 
-| JSVM_EXTERN [JSVM_Status](#jsvm_status) [OH_JSVM_SetMicrotaskPolicy](#oh_jsvm_setmicrotaskpolicy) (const [JSVM_VM ](#jsvm_vm) vm, [JSVM_MicrotaskPolicy ](#jsvm_microtaskpolicy) policy) | 用于设置虚拟机实例的微任务执行策略。<br/>如果该方法未被调用，虚拟机实例的默认策略为 JSVM_MicrotaskPolicy::JSVM_MICROTASK_AUTO。 |
+| JSVM_EXTERN [JSVM_Status](#jsvm_status) [OH_JSVM_SetMicrotaskPolicy](#oh_jsvm_setmicrotaskpolicy) ( [JSVM_VM ](#jsvm_vm) vm, [JSVM_MicrotaskPolicy ](#jsvm_microtaskpolicy) policy) | 用于设置虚拟机实例的微任务执行策略。<br/>如果该方法未被调用，虚拟机实例的默认策略为 JSVM_MicrotaskPolicy::JSVM_MICROTASK_AUTO。 |
 | JSVM_EXTERN [JSVM_Status](#jsvm_status) [OH_JSVM_DestroyVM](#oh_jsvm_destroyvm) ([JSVM_VM](#jsvm_vm) vm) | 销毁一个虚拟机实例。 | 
 | JSVM_EXTERN [JSVM_Status](#jsvm_status) [OH_JSVM_CreateProxy](#oh_jsvm_createproxy) (const [JSVM_Env](#jsvm_env) env, [JSVM_Value](#jsvm_value) target, [JSVM_Value](#jsvm_value) handler, [JSVM_Value](#jsvm_value) \*result) | 创建 JavaScript Proxy。<br/>该接口等价于在 JavaScript 中执行 new Proxy(target, handler)。 |
 | [JSVM_Status](#jsvm_status) JSVM_CDECL [OH_JSVM_IsProxy](#oh_jsvm_isproxy) ([JSVM_Env](#jsvm_env) env, [JSVM_Value](#jsvm_value) value, bool   \*isProxy) | 判断传入的值是否为 JavaScript Proxy。 |
@@ -1511,8 +1511,8 @@ JSVM_EXTERN JSVM_Status OH_JSVM_CompileScriptWithOptions (JSVM_Env env, JSVM_Val
 | -------- | -------- |
 | env | 目标环境，JSVM-API接口将在该环境下调用。 | 
 | script | 包含要编译的脚本的JavaScript代码。 | 
-| optionCount | 传入的 option 数组的长度. | 
-| options | option 数组，存放所有的编译选项. | 
+| optionCount | 传入的 option 数组的长度。 | 
+| options | option 数组，存放所有的编译选项。 | 
 | result | 编译后的脚本。 | 
 
 **返回：**
@@ -5172,7 +5172,7 @@ JSVM_EXTERN JSVM_Status OH_JSVM_OpenInspectorWithName (JSVM_Env env, int pid, co
 
 **描述**
 
-此函数打开一个命名为传入 name 的 inspector，为其打开对应 pid 的 unix domain 端口.
+此函数打开一个命名为传入 name 的 inspector，为其打开对应 pid 的 unix domain 端口。
 
 **起始版本：** 12
 
@@ -5180,15 +5180,15 @@ JSVM_EXTERN JSVM_Status OH_JSVM_OpenInspectorWithName (JSVM_Env env, int pid, co
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| env | 调用该API的环境. | 
-| pid | 用于标识 inspector 连接的进程ID. | 
-| name | inspector 的名字. 如果传入nullptr, 则默认名称为jsvm. | 
+| env | 调用该API的环境。 | 
+| pid | 用于标识 inspector 连接的进程ID。 | 
+| name | inspector 的名字. 如果传入nullptr, 则默认名称为jsvm。 | 
 
 **返回：**
 
 返回执行状态码 JSVM_Status JSVM_OK 表示执行成功。
 
-JSVM_PENDING_EXCEPTION 表示发生了异常.
+JSVM_PENDING_EXCEPTION 表示发生了异常。
 
 
 ### OH_JSVM_OpenVMScope()
@@ -5849,7 +5849,7 @@ JSVM_EXTERN JSVM_Status OH_JSVM_AddHandlerForGC(JSVM_VM vm, JSVM_CBTriggerTimeFo
 
 **描述**
 
-调用JSVM-API的环境。
+在VM中添加GC的回调函数。
 
 **起始版本：** 18
 
@@ -5878,7 +5878,7 @@ JSVM_EXTERN JSVM_Status OH_JSVM_RemoveHandlerForGC(JSVM_VM vm, JSVM_CBTriggerTim
 
 **描述**
 
-调用JSVM-API的环境。
+在VM中移除GC的回调函数。
 
 **起始版本：** 18
 
@@ -6096,7 +6096,7 @@ JSVM_EXTERN JSVM_Status OH_JSVM_RetainScript (JSVM_Env env, JSVM_Script script )
 
 **描述**
 
-持久保存一个JSVM_Script并将其生命周期延长到当前作用域之外.
+持久保存一个JSVM_Script并将其生命周期延长到当前作用域之外。
 
 **起始版本：** 12
 
@@ -6104,8 +6104,8 @@ JSVM_EXTERN JSVM_Status OH_JSVM_RetainScript (JSVM_Env env, JSVM_Script script )
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| env | 调用该API的环境. | 
-| script | 包含要持久化保存脚本的JavaScript字符串. | 
+| env | 调用该API的环境。 | 
+| script | 包含要持久化保存脚本的JavaScript字符串。 | 
 
 **返回：**
 

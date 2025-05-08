@@ -16,11 +16,11 @@ An unknown error is returned when the API is called.
 
 **Possible Causes**
 
-The plug-in returns an undefined or custom error.
+The plugin returns an undefined or custom error.
 
 **Procedure**
 
-Refer to the plug-in document to rectify the fault.
+Refer to the plugin document to rectify the fault.
 
 ## 24700102 Memory Allocation Failure
 

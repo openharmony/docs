@@ -4,7 +4,7 @@
 
 > **说明：**
 >
-> 该组件从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+> 该组件从API version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 
 ## 子组件
@@ -50,7 +50,7 @@ Path(options?: PathOptions)
 
 commands(value: string)
 
-设置路径绘制的命令字符串，单位为px。像素单位转换方法请参考[像素单位转换](ts-pixel-units.md)。
+设置符合[SVG路径描述规范](ts-drawing-components-path.md#svg路径描述规范)的命令字符串，单位为px。像素单位转换方法请参考[像素单位转换](ts-pixel-units.md)。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -104,7 +104,7 @@ fillOpacity(value: number | string | Resource)
 
 stroke(value: ResourceColor)
 
-设置边框颜色，不设置时，默认没有边框线条。异常值不会绘制边框线条。
+设置边框颜色，不设置时，默认有黑色边框线条。异常值不会绘制边框线条。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -122,7 +122,7 @@ stroke(value: ResourceColor)
 
 strokeDashArray(value: Array&lt;any&gt;)
 
-设置线条间隙。线段相交时可能会出现重叠现象。异常值按照默认值处理。
+设置线条间隙。线段相交时可能会出现重叠现象。取值范围≥0，异常值按照默认值处理。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -244,7 +244,7 @@ strokeWidth(value: Length)
 
 | 参数名 | 类型                         | 必填 | 说明                     |
 | ------ | ---------------------------- | ---- | ------------------------ |
-| value  | [Length](ts-types.md#length) | 是   | 线条宽度。<br/>默认值：1<br/>默认单位：vp |
+| value  | [Length](ts-types.md#length) | 是   | 线条宽度，取值范围≥0。<br/>默认值：1<br/>默认单位：vp<br/>异常值按照默认值处理。 |
 
 ### antiAlias
 
@@ -262,11 +262,11 @@ antiAlias(value: boolean)
 
 | 参数名 | 类型    | 必填 | 说明                                  |
 | ------ | ------- | ---- | ------------------------------------- |
-| value  | boolean | 是   | 是否开启抗锯齿效果。<br/>默认值：true |
+| value  | boolean | 是   | 是否开启抗锯齿效果。<br/>true：开启抗锯齿；false：关闭抗锯齿。<br/>默认值：true |
 
-## Commands
+## SVG路径描述规范
 
-commands支持的绘制命令如下：
+SVG路径描述规范支持的命令如下：
 
 | 命令   | 名称                               | 参数                                       | 说明                                       |
 | ---- | -------------------------------- | ---------------------------------------- | ---------------------------------------- |

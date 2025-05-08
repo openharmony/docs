@@ -4,7 +4,7 @@
 
 >  **说明：**
 >
->  从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>  从API version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 ## zIndex
 
@@ -39,7 +39,7 @@ struct ZIndexExample {
   build() {
     Column() {
       Stack() {
-        // stack会重叠组件, 默认后定义的在最上面，具有较高zIndex值的元素在zIndex较小的元素前面
+        // stack会重叠组件，默认后定义的在最上面，具有较高zIndex值的元素在zIndex较小的元素前面
         Text('1, zIndex(2)')
           .size({ width: '40%', height: '30%' }).backgroundColor(0xbbb2cb)
           .zIndex(2)

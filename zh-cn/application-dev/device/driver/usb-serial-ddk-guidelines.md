@@ -34,7 +34,7 @@
 
 ### 实现原理
 
-非标外设应用通过扩展外设管理服务获取USB串口设备的ID，通过RPC将ID和要操作的动作下发给USB串口驱动应用，USB串口驱动应用通过调用USB Serial DDK接口可设置串口属性（波特率、数据位、校验位等），读取串口数据，DDK接口使用hdi服务将指令下发至内核驱动，内核驱动使用指令与设备通信。
+非标外设应用通过扩展外设管理服务获取USB串口设备的ID，通过RPC将ID和要操作的动作下发给USB串口驱动应用，USB串口驱动应用通过调用USB Serial DDK接口可设置串口属性（波特率、数据位、校验位等），读取串口数据，DDK接口使用HDI服务将指令下发至内核驱动，内核驱动使用指令与设备通信。
 
 **图1** USB Serial DDK调用原理
 
@@ -44,7 +44,7 @@
 
 - USB Serial DDK开放API支持USB串口接口非标外设扩展驱动开发场景。
 
-- USB Serial DDK开放API使用范围内仅允许DriverExtensionAbilit生命周期内使用。
+- USB Serial DDK开放API使用范围内仅允许DriverExtensionAbility生命周期内使用。
 
 - 使用USB Serial DDK开放API需要在module.json5中声明匹配的ACL权限，例如ohos.permission.ACCESS_DDK_USB_SERIAL。
 

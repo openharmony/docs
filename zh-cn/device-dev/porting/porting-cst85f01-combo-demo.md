@@ -77,7 +77,7 @@ board_adapter_dir = "${ohos_root_path}device/soc/chipsea"
 
 ![ohos_config.json](figures/cst85_hb_set.png)
 
-选择好产品后，输入回车就会在根目录下自动生成`ohos_config.json`文件，这里会列出待编译的产品信息:
+选择好产品后，输入回车就会在根目录下自动生成`ohos_config.json`文件，这里会列出待编译的产品信息：
 
 ```
 {
@@ -338,7 +338,7 @@ static void OsVectorInit(void)
 #define LOSCFG_PLATFORM_HWI_LIMIT                           128
 ```
 我们需要128个中断，加上系统中断，总共(128+16)=144个中断，需要144\*4个表项，这些表项总共需要4个0x80才能盖的住，也即必须是0x200对齐才行。否则，会出现系统重启的现象。
-为此，我们需要把中断对齐覆盖为0x200:
+为此，我们需要把中断对齐覆盖为0x200：
 ```
 #ifndef LOSCFG_ARCH_HWI_VECTOR_ALIGN
 #define LOSCFG_ARCH_HWI_VECTOR_ALIGN                         0x200

@@ -20,7 +20,7 @@ USB DDK（USB Driver Develop Kit）是为开发者提供的USB驱动程序开发
 
 ### 实现原理
 
-非标外设应用通过扩展外设管理服务获取USB设备的ID，通过RPC将ID和要操作的动作下发给USB驱动应用，USB驱动应用通过调用USB DDK接口可获取设备描述符，配置描述符，以及发送控制传输，中断传输等请求，DDK接口使用hdi服务将指令下发至内核驱动，内核驱动使用指令与设备通信。
+非标外设应用通过扩展外设管理服务获取USB设备的ID，通过RPC将ID和要操作的动作下发给USB驱动应用，USB驱动应用通过调用USB DDK接口可获取设备描述符，配置描述符，以及发送控制传输，中断传输等请求，DDK接口使用HDI服务将指令下发至内核驱动，内核驱动使用指令与设备通信。
 
 **图1** USB DDK调用原理
 
@@ -28,11 +28,11 @@ USB DDK（USB Driver Develop Kit）是为开发者提供的USB驱动程序开发
 
 ## 约束与限制
 
-* USB DDK开放API支持USB接口非标外设扩展驱动开发场景。
+- USB DDK开放API支持USB接口非标外设扩展驱动开发场景。
 
-* USB DDK开放API仅允许DriverExtensionAbilit生命周期内使用。
+- USB DDK开放API仅允许DriverExtensionAbility生命周期内使用。
 
-* 使用USB DDK开放API需要在module.json5中声明匹配的ACL权限，例如ohos.permission.ACCESS_DDK_USB。
+- 使用USB DDK开放API需要在module.json5中声明匹配的ACL权限，例如ohos.permission.ACCESS_DDK_USB。
 
 ## 环境搭建
 

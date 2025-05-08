@@ -639,32 +639,49 @@ terminateSelf(callback: AsyncCallback&lt;void&gt;): void
 
 **示例：**
 
-```ts
-import { UIAbility } from '@kit.AbilityKit';
-import { BusinessError } from '@kit.BasicServicesKit';
+1. 使用terminateSelf接口停止UIAbility示例代码如下，默认情况下应用会在最近任务列表中保留快照。
 
-export default class EntryAbility extends UIAbility {
-  onForeground() {
-    try {
-      this.context.terminateSelf((err: BusinessError) => {
-        if (err.code) {
-          // 处理业务逻辑错误
-          console.error(`terminateSelf failed, code is ${err.code}, message is ${err.message}`);
-          return;
+    ```ts
+    import { UIAbility } from '@kit.AbilityKit';
+    import { BusinessError } from '@kit.BasicServicesKit';
+
+    export default class EntryAbility extends UIAbility {
+      onForeground() {
+        try {
+          this.context.terminateSelf((err: BusinessError) => {
+            if (err.code) {
+              // 处理业务逻辑错误
+              console.error(`terminateSelf failed, code is ${err.code}, message is ${err.message}`);
+              return;
+            }
+            // 执行正常业务
+            console.info('terminateSelf succeed');
+          });
+        } catch (err) {
+          // 捕获同步的参数错误
+          let code = (err as BusinessError).code;
+          let message = (err as BusinessError).message;
+          console.error(`terminateSelf failed, code is ${code}, message is ${message}`);
         }
-        // 执行正常业务
-        console.info('terminateSelf succeed');
-      });
-    } catch (err) {
-      // 捕获同步的参数错误
-      let code = (err as BusinessError).code;
-      let message = (err as BusinessError).message;
-      console.error(`terminateSelf failed, code is ${code}, message is ${message}`);
+      }
     }
-  }
-}
-```
+    ```
 
+2. （可选）如果需要在停止UIAbility时，清理任务中心的相关任务（即不保留最近任务列表中的快照），需要在[module.json5](../../quick-start/module-configuration-file.md)配置文件中将removeMissionAfterTerminate字段取值配置为true。
+
+    ```json
+    { 
+      "module": { 
+        // ... 
+        "abilities": [
+          {
+            // ...
+            "removeMissionAfterTerminate": true
+          }
+        ]
+      }
+    }
+    ```
 
 ## UIAbilityContext.terminateSelf
 
@@ -699,32 +716,49 @@ terminateSelf(): Promise&lt;void&gt;
 
 **示例：**
 
-```ts
-import { UIAbility } from '@kit.AbilityKit';
-import { BusinessError } from '@kit.BasicServicesKit';
+1. 使用terminateSelf接口停止UIAbility示例代码如下，默认情况下应用会在最近任务列表中保留快照。
 
-export default class EntryAbility extends UIAbility {
-  onForeground() {
-    try {
-      this.context.terminateSelf()
-        .then(() => {
-          // 执行正常业务
-          console.info('terminateSelf succeed');
-        })
-        .catch((err: BusinessError) => {
-          // 处理业务逻辑错误
-          console.error(`terminateSelf failed, code is ${err.code}, message is ${err.message}`);
-        });
-    } catch (err) {
-      // 捕获同步的参数错误
-      let code = (err as BusinessError).code;
-      let message = (err as BusinessError).message;
-      console.error(`terminateSelf failed, code is ${code}, message is ${message}`);
+    ```ts
+    import { UIAbility } from '@kit.AbilityKit';
+    import { BusinessError } from '@kit.BasicServicesKit';
+
+    export default class EntryAbility extends UIAbility {
+      onForeground() {
+        try {
+          this.context.terminateSelf()
+            .then(() => {
+              // 执行正常业务
+              console.info('terminateSelf succeed');
+            })
+            .catch((err: BusinessError) => {
+              // 处理业务逻辑错误
+              console.error(`terminateSelf failed, code is ${err.code}, message is ${err.message}`);
+            });
+        } catch (err) {
+          // 捕获同步的参数错误
+          let code = (err as BusinessError).code;
+          let message = (err as BusinessError).message;
+          console.error(`terminateSelf failed, code is ${code}, message is ${message}`);
+        }
+      }
     }
-  }
-}
-```
+    ```
 
+2. （可选）如果需要在停止UIAbility时，清理任务中心的相关任务（即不保留最近任务列表中的快照），需要在[module.json5](../../quick-start/module-configuration-file.md)配置文件中将removeMissionAfterTerminate字段取值配置为true。
+
+    ```json
+    {
+      "module": {
+        // ...
+        "abilities": [
+          {
+            // ...
+            "removeMissionAfterTerminate": true
+          }
+        ]
+      }
+    }
+    ```
 
 ## UIAbilityContext.terminateSelfWithResult
 
@@ -1092,12 +1126,16 @@ export default class EntryAbility extends UIAbility {
 
 startAbilityByCall(want: Want): Promise&lt;Caller&gt;
 
-跨设备场景下，启动指定Ability至前台或后台，同时获取其Caller通信接口，调用方可使用Caller与被启动的Ability进行通信。使用Promise异步回调。仅支持在主线程调用。
+启动指定Ability至前台或后台，同时获取其Caller通信接口，调用方可使用Caller与被启动的Ability进行通信。使用Promise异步回调。仅支持在主线程调用。
 该接口不支持拉起启动模式为[specified模式](../../application-models/uiability-launch-type.md#specified启动模式)的UIAbility。
 
 > **说明：**
 >
-> 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)。
+> - 跨设备场景下，调用方与目标方必须为同一应用，且具备ohos.permission.DISTRIBUTED_DATASYNC权限，才能启动成功。
+>
+> - 同设备场景下，调用方与目标方必须为不同应用，且具备ohos.permission.ABILITY_BACKGROUND_COMMUNICATION权限（该权限仅系统应用可申请），才能启动成功。
+>
+> - 如果调用方位于后台，还需要具备ohos.permission.START_ABILITIES_FROM_BACKGROUND（该权限仅系统应用可申请）。更多的组件启动规则详见[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)。
 
 **需要权限**：ohos.permission.DISTRIBUTED_DATASYNC
 
@@ -1872,7 +1910,7 @@ struct Index {
           .fontSize(30)
           .fontWeight(FontWeight.Bold)
           .onClick(() => {
-            let context = getContext(this) as common.UIAbilityContext;
+            let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 
             context.showAbility().then(() => {
               console.log(`showAbility success`);
@@ -1970,7 +2008,7 @@ struct Index {
           .fontSize(30)
           .fontWeight(FontWeight.Bold)
           .onClick(() => {
-            let context = getContext(this) as common.UIAbilityContext;
+            let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 
             context.hideAbility().then(() => {
               console.log(`hideAbility success`);
@@ -2068,7 +2106,7 @@ struct Index {
           .fontSize(30)
           .fontWeight(FontWeight.Bold)
           .onClick(() => {
-            let context = getContext(this) as common.UIAbilityContext;
+            let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 
             context.moveAbilityToBackground().then(() => {
               console.log(`moveAbilityToBackground success.`);
@@ -2243,7 +2281,7 @@ struct Index {
     RelativeContainer() {
       Button("Call StartAbilityForResult")
         .onClick(() => {
-          let context = getContext(this) as common.UIAbilityContext;
+          let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
           let link: string = 'https://www.example.com';
           let openLinkOptions: OpenLinkOptions = {
             appLinkingOnly: true,
@@ -2337,7 +2375,7 @@ struct Index {
 
         Button("Call StartAbilityForResult")
           .onClick(() => {
-            let context: common.UIAbilityContext = getContext() as common.UIAbilityContext;
+            let context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
             let want: Want = {
               bundleName: 'com.example.demo2',
               abilityName: 'EntryAbility'
@@ -2531,7 +2569,7 @@ struct Index {
         Button('start ability')
           .enabled(true)
           .onClick(() => {
-            let context = getContext(this) as common.UIAbilityContext;
+            let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
             let startWant: Want = {
               bundleName: 'com.acts.uiserviceextensionability',
               abilityName: 'UiServiceExtAbility',
@@ -2596,7 +2634,7 @@ connectUIServiceExtensionAbility(want: Want, callback: UIServiceExtensionConnect
 | 16000005 | The specified process does not have the permission.                                 |
 | 16000008 | The crowdtesting application expires.                                               |
 | 16000011 | The context does not exist.                                                         |
-| 16000013 | The EDM prohibits the application from launching.                                   |
+| 16000013 | The application is controlled by EDM.                                               |
 | 16000050 | Internal error.                                                                     |
 | 16000055 | Installation-free timed out.                                                        |
 
@@ -2624,7 +2662,7 @@ struct UIServiceExtensionAbility {
 
   async myConnect() {
     // 获取上下文
-    let context = getContext(this) as common.UIAbilityContext;
+    let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
     let startWant: Want = {
       deviceId: '',
       bundleName: 'com.example.myapplication',
@@ -2741,7 +2779,7 @@ struct UIServiceExtensionAbility {
   }
 
   myDisconnectUIServiceExtensionAbility() {
-    let context = getContext(this) as common.UIAbilityContext;
+    let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 
     try {
       // 断开UIServiceExtension连接
@@ -2836,6 +2874,77 @@ export default class EntryAbility extends UIAbility {
   }
 }
 ```
+
+## UIAbilityContext.revokeDelegator<sup>17+</sup>
+
+revokeDelegator() : Promise&lt;void&gt;
+
+如果Module下首个UIAbility启动时期望重定向到另一个UIAbility，该重定向的UIAbility被称为“DelegatorAbility”。DelegatorAbility的设置详见当前接口示例的步骤1。
+
+当DelegatorAbility完成特定操作时，可以使用该接口回到首个UIAbility。使用Promise异步回调。
+
+> **说明**：
+>
+> 当接口调用成功后，DelegatorAbility中的[Window](../apis-arkui/js-apis-window.md)方法会失效。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**返回值**：
+
+| 类型                | 说明                                   |
+| ------------------- | -------------------------------------- |
+| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
+
+**错误码**：
+
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 801 | Capability not support. |
+| 16000011 | The context does not exist. |
+| 16000050 | Internal error. |
+| 16000065 | The API can be called only when the ability is running in the foreground. |
+| 16000084 | Only allow DelegatorAbility to call the method once. |
+| 16000085 | The interaction process between Ability and Window encountered an error. |
+
+**示例**：
+
+1. 设置DelegatorAbility。
+
+    在[module.json5](../../quick-start/module-configuration-file.md#modulejson5配置文件)配置文件标签中配置abilitySrcEntryDelegator和abilityStageSrcEntryDelegator。当Module下首个UIAbility冷启动时，系统优先启动abilitySrcEntryDelegator指向的UIAbility。
+    > **说明**：
+    >
+    >  - 当UIAbility是通过[startAbilityByCall](#uiabilitycontextstartabilitybycall)启动时，系统会忽略在[module.json5](../../quick-start/module-configuration-file.md#modulejson5配置文件)配置文件标签中配置的abilitySrcEntryDelegator和abilityStageSrcEntryDelegator。
+    >  - abilityStageSrcEntryDelegator指定的ModuleName不能与当前ModuleName相同。
+    ```json
+    {
+      "module": {
+        // ...
+        "abilityStageSrcEntryDelegator": "xxxModuleName",
+        "abilitySrcEntryDelegator": "xxxAbilityName",
+        // ...
+      }
+    }
+    ```
+
+2. 取消DelegatorAbility。
+
+    ```ts
+    import { UIAbility } from '@kit.AbilityKit';
+    import { BusinessError } from '@kit.BasicServicesKit';
+
+    export default class DelegatorAbility extends UIAbility {
+      onForeground() {
+        // DelegatorAbility完成特定操作后，调用revokeDelegator回到首个UIAbility
+        this.context.revokeDelegator().then(() => {
+          console.info('revokeDelegator success');
+        }).catch((err: BusinessError) => {
+          console.error(`revokeDelegator failed, code is ${err.code}, message is ${err.message}`);
+        });
+      }
+    }
+    ```
 
 ## UIAbilityContext.setColorMode<sup>18+</sup>
 

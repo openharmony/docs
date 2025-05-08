@@ -204,7 +204,7 @@ OpenHarmony的设备安全等级管理模块提供了安全等级信息同步与
 
 #### 1. 构造header
 
-当前header为固定的json字符串，其格式化显示如下
+当前header为固定的json字符串，其格式化显示如下：
 
 ``` json
 {
@@ -274,7 +274,7 @@ eyJ0eXAiOiAiRFNMIn0=.eyJ0eXBlIjogImRlYnVnIiwgIm1hbnVmYWN0dXJlIjogIm9ob3MiLCAiYnJ
 凭据文件使用ECDSA签名算法对原始数据进行签名，首先生成签名用ECDSA密钥对：`<ecc-l3-pk>`和`<ecc-l3-sk>`
 
 > ![notice](../public_sys-resources/icon-notice.gif)**注意：**
-> 本流程需要在安全可靠的环境中执行，例如符合相关安全要求的服务器密码机中，以确保用于签名的密钥不被泄露
+> 本流程需要在安全可靠的环境中执行，例如符合相关安全要求的服务器密码机中，以确保用于签名的密钥不被泄露。
 
 ##### 3.3 对原始数据进行签名
 
@@ -287,7 +287,7 @@ MGUCMDb9xoiFzTWVkHDU3VWSVQ59gLyw4TchZ0+eQ3vUfQsLt3Hkg0r7a/PmhkNr3X/mTgIxAIywIRE6
 #### 4. 构造attestation
 
 > ![notice](../public_sys-resources/icon-notice.gif)**注意：**
-> 本流程需要在安全可靠的环境中执行，例如符合相关安全要求的服务器密码机中，以确保用于签名的密钥不被泄露
+> 本流程需要在安全可靠的环境中执行，例如符合相关安全要求的服务器密码机中，以确保用于签名的密钥不被泄露。
 > 本流程涉及到的各密钥对不需要每次都重复生成，在确保密钥安全的前提下，后续可以直接复用。
 
 ##### 4.1 生成三级签名验证信息
@@ -418,7 +418,7 @@ eyJ0eXAiOiAiRFNMIn0=.eyJ0eXBlIjogImRlYnVnIiwgIm1hbnVmYWN0dXJlIjogIm9ob3MiLCAiYnJ
 
 ### 工具使用介绍
 
-为方便开发者对于“凭据文件”的进一步理解，设备安全等级管理模块提供了[凭据工具](https://gitee.com/openharmony/security_device_security_level/blob/master/oem_property/ohos/standard/dslm_cred_tool.py)，该工具是一个python脚本，基于OPENSSL命令行的简单封装，可以便捷的提供凭据文件的签发和验证功能。
+为方便开发者对于“凭据文件”的进一步理解，设备安全等级管理模块提供了凭据工具，该工具是一个python脚本，基于OPENSSL命令行的简单封装，可以便捷的提供凭据文件的签发和验证功能。
 其使用方法如下：
 
 1. 签名密钥初始化：

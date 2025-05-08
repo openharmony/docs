@@ -41,7 +41,7 @@ getLauncherAbilityInfo(bundleName: string, userId: number, callback: AsyncCallba
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
-| 201 | Permission denied. |
+| 201 | Verify permission denied. |
 | 202 | Permission denied, non-system app called system api. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 801 | Capability not support. |
@@ -101,7 +101,7 @@ getLauncherAbilityInfo(bundleName: string, userId: number) : Promise\<Array\<[La
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
-| 201 | Permission denied. |
+| 201 | Verify permission denied. |
 | 202 | Permission denied, non-system app called system api. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 801 | Capability not support. |
@@ -153,7 +153,7 @@ getAllLauncherAbilityInfo(userId: number, callback: AsyncCallback\<Array\<[Launc
 
 | 错误码ID | 错误信息                                |
 | -------- | ---------------------------------------- |
-| 201 | Permission denied. |
+| 201 | Verify permission denied. |
 | 202 | Permission denied, non-system app called system api. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 801 | Capability not support. |
@@ -210,7 +210,7 @@ getAllLauncherAbilityInfo(userId: number) : Promise\<Array\<[LauncherAbilityInfo
 
 | 错误码ID | 错误信息                                |
 | -------- | ---------------------------------------- |
-| 201 | Permission denied. |
+| 201 | Verify permission denied. |
 | 202 | Permission denied, non-system app called system api. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 801 | Capability not support. |
@@ -261,7 +261,7 @@ getShortcutInfo(bundleName :string, callback: AsyncCallback\<Array\<[ShortcutInf
 
 | 错误码ID | 错误信息                                |
 | -------- | ---------------------------------------- |
-| 201 | Permission denied. |
+| 201 | Verify permission denied. |
 | 202 | Permission denied, non-system app called system api. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 801 | Capability not support. |
@@ -319,7 +319,7 @@ getShortcutInfo(bundleName : string) : Promise\<Array\<[ShortcutInfo](js-apis-bu
 
 | 错误码ID | 错误信息                                |
 | -------- | ---------------------------------------- |
-| 201 | Permission denied. |
+| 201 | Verify permission denied. |
 | 202 | Permission denied, non-system app called system api. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 801 | Capability not support. |
@@ -375,7 +375,7 @@ getShortcutInfoSync(bundleName : string) : Array\<[ShortcutInfo](js-apis-bundleM
 
 | 错误码ID | 错误信息                                |
 | -------- | ---------------------------------------- |
-| 201 | Permission denied. |
+| 201 | Verify permission denied. |
 | 202 | Permission denied, non-system app called system api. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 801 | Capability not support. |
@@ -428,7 +428,7 @@ getShortcutInfoSync(bundleName: string, userId: number) : Array\<[ShortcutInfo](
 
 | 错误码ID | 错误信息                                |
 | -------- | ---------------------------------------- |
-| 201 | Permission denied. |
+| 201 | Verify permission denied. |
 | 202 | Permission denied, non-system app called system api. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 801 | Capability not support. |
@@ -476,7 +476,7 @@ startShortcut(shortcutInfo: ShortcutInfo, options?: StartOptions): Promise\<void
 
 | 错误码ID | 错误信息                                |
 | -------- | ---------------------------------------- |
-| 201 | Permission denied. |
+| 201 | Verify permission denied. |
 | 202 | Permission denied, non-system app called system api. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 801 | Capability not support. |

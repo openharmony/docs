@@ -359,7 +359,7 @@ int OhosSystemAdapterHooks(void)
    - `block_size`配置成`4K`对齐，建议不修改。
    - `fs_size`是生成文件系统的大小。
    - `burn_name`是烧录`bin`名字的大小。
-   - `enable` 表示是否生成这个文件系统
+   - `enable` 表示是否生成这个文件系统。
 
 4. 在`//device/soc/bestechnic/bes2600/liteos_m/components/hdf_config/hdf.hcs`文件配置文件系统的烧录的起始地址、文件系统的大小以及读数据块的大小`block_size`等信息，参考配置如下：
 

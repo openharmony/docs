@@ -4,8 +4,8 @@ The **pbap** module provides APIs for accessing the phone book of a device using
 
 > **NOTE**
 >
-> - The initial APIs of this module are supported since API version 11. Newly added APIs will be marked with a superscript to indicate their earliest API version.
-> - This topic describes only the system APIs provided by the module. For details about its public APIs, see [@ohos.bluetooth.pbap (Bluetooth PBAP Module)](js-apis-bluetooth-pbap.md).
+> The initial APIs of this module are supported since API version 11. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> This topic describes only the system APIs provided by the module. For details about its public APIs, see [@ohos.bluetooth.pbap (Bluetooth PBAP Module)](js-apis-bluetooth-pbap.md).
 
 
 ## Modules to Import
@@ -38,7 +38,7 @@ Disconnects the PBAP service for a device.
 
 **Error codes**
 
-For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bluetooth Error Codes](errorcode-bluetoothManager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------- |
@@ -81,11 +81,11 @@ Sets the share type of the phone book information for a device. This API uses an
 | -------- | ------ | ---- | ----------------------------------- |
 | deviceId | string | Yes   | Address of the remote device, for example, XX:XX:XX:XX:XX:XX.|
 | type | [ShareType](#sharetype) | Yes   | Share type to set.|
-| callback | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result.<br>If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.  |
+| callback | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result.<br> If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.  |
 
 **Error codes**
 
-For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bluetooth Error Codes](errorcode-bluetoothManager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------- |
@@ -140,7 +140,7 @@ Sets the share type of the phone book information for a device. This API uses a 
 
 **Error codes**
 
-For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bluetooth Error Codes](errorcode-bluetoothManager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------- |
@@ -184,11 +184,11 @@ Obtains the phone book share type of a device. This API uses an asynchronous cal
 | Name     | Type    | Mandatory  | Description                                 |
 | -------- | ------ | ---- | ----------------------------------- |
 | deviceId | string | Yes   | Address of the remote device, for example, XX:XX:XX:XX:XX:XX.|
-| callback | AsyncCallback&lt;[ShareType](#sharetype)&gt; | Yes   | Callback used to return the result.<br>If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.  |
+| callback | AsyncCallback&lt;[ShareType](#sharetype)&gt; | Yes   | Callback used to return the result.<br> If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.  |
 
 **Error codes**
 
-For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bluetooth Error Codes](errorcode-bluetoothManager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------- |
@@ -241,7 +241,7 @@ Obtains the phone book share type of a device. This API uses a promise to return
 
 **Error codes**
 
-For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bluetooth Error Codes](errorcode-bluetoothManager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------- |
@@ -286,11 +286,11 @@ Sets the phone book access authorization for a device. This API uses an asynchro
 | -------- | ------ | ---- | ----------------------------------- |
 | deviceId | string | Yes   | Address of the remote device, for example, XX:XX:XX:XX:XX:XX.|
 | authorization | [AccessAuthorization](js-apis-bluetooth-constant-sys.md#AccessAuthorization) | Yes   | Phone book access authorization to set.|
-| callback | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result.<br>If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.  |
+| callback | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result.<br> If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.  |
 
 **Error codes**
 
-For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bluetooth Error Codes](errorcode-bluetoothManager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------- |
@@ -345,7 +345,7 @@ Sets the phone book access authorization for a device. This API uses a promise t
 
 **Error codes**
 
-For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bluetooth Error Codes](errorcode-bluetoothManager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------- |
@@ -389,11 +389,11 @@ Obtains the phone book access authorization of a device. This API uses an asynch
 | Name     | Type    | Mandatory  | Description                                 |
 | -------- | ------ | ---- | ----------------------------------- |
 | deviceId | string | Yes   | Address of the remote device, for example, XX:XX:XX:XX:XX:XX.|
-| callback | AsyncCallback&lt;[AccessAuthorization](js-apis-bluetooth-constant-sys.md#AccessAuthorization)&gt; | Yes   | Callback used to return the result.<br>If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.  |
+| callback | AsyncCallback&lt;[AccessAuthorization](js-apis-bluetooth-constant-sys.md#AccessAuthorization)&gt; | Yes   | Callback used to return the result.<br> If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.  |
 
 **Error codes**
 
-For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bluetooth Error Codes](errorcode-bluetoothManager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------- |
@@ -446,7 +446,7 @@ Obtains the phone book access authorization of a device. This API uses a promise
 
 **Error codes**
 
-For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bluetooth Error Codes](errorcode-bluetoothManager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------- |

@@ -45,7 +45,7 @@ ADC设备通常用于将模拟电压或电流转换为数字量，例如与NTC�
 
 ### 接口说明<a name="section8"></a>
 
-ADC模块提供的主要接口如表1所示，具体API详见//drivers/hdf_core/framework/include/platform/adc_if.h。
+ADC模块提供的主要接口如表1所示，具体API[详见](https://gitee.com/openharmony/drivers_hdf_core/blob/master/framework/include/platform/adc_if.h)。
 
 **表 1**  ADC驱动API接口功能介绍
 
@@ -142,7 +142,7 @@ void AdcClose(DevHandle handle);
 | 参数 | 参数描述 |
 | ------ | ----------- |
 | handle | DevHandle类型，ADC设备句柄 |
-| 返回值 | 返回值描述  |
+| **返回值**  | **返回值描述**  |
 | 无 | 无 |
 
 关闭ADC设备示例：

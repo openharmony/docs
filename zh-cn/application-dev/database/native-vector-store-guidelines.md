@@ -3,7 +3,8 @@
 
 ## 场景介绍
 
-向量数据库是一种支持存储、管理和检索向量数据的数据库，也支持标量的关系型数据处理。数据类型"floatvector"用来存储数据向量化的结果，从而实现对这些数据的快速检索和相似性搜索‌。
+向量数据库是一种支持存储、管理和检索向量数据的数据库，也支持标量的关系型数据处理。数据类型"floatvector"用来存储数据向量化的结果，从而实现对这些数据的快速检索和相似性搜索‌。</br>
+从API version 18开始，支持通过向量数据库实现数据持久化。
 
 ## 基本概念
 
@@ -134,7 +135,7 @@ libnative_rdb_ndk.z.so
 
    // 使用参数绑定删除数据
    OH_Data_Values *values2 = OH_Values_Create();
-   OH_Values_PutInt(values2, 01);
+   OH_Values_PutInt(values2, 1);
    OH_Rdb_ExecuteV2(store_, "delete from test where id = ?", values2, nullptr);
    OH_Values_Destroy(values2);
    ```
@@ -252,7 +253,7 @@ libnative_rdb_ndk.z.so
    OH_Rdb_ExecuteV2(store_, "CREATE INDEX diskann_l2_idx ON test USING GSDISKANN(repr L2) WITH (queue_size=20, out_degree=50);", nullptr, nullptr);
    ```
 
-8. 配置数据老化功能。当应用的数据需要经常清理时，可以按时间或空间配置数据老化策略，从而实现数据的自动化清理。
+8. 配置数据老化功能。当应用的数据需要定期清理时，可以按时间或空间配置数据老化策略，从而实现数据的自动化清理。
    
    语法如下所示：
 

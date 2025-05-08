@@ -42,7 +42,7 @@ FormBindingData相关描述。
 | data | Object | 是 | 卡片要展示的数据。可以是包含若干键值对的Object或者 json 格式的字符串。|
 | proxies<sup>10+</sup> | Array<[ProxyData](#proxydata10)> | 否 | 卡片代理刷新的订阅信息，默认为空数组。<br>**模型约束：** 此接口仅可在Stage模型下使用。<br>|
 
-## createFormBindingData
+## formBindingData.createFormBindingData
 
 createFormBindingData(obj?: Object | string): FormBindingData
 

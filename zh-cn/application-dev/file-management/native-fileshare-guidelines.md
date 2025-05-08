@@ -2,7 +2,7 @@
 
 ## 场景介绍
 
-应用通过Picker获取临时授权，临时授权在应用退出后或者设备重启后会清除，如果应用重启或者设备重启后需要直接访问之前已访问过的文件，则对文件进行[持久化授权](file-persistPermission.md#场景介绍)。FileShare提供了支持基于URI的文件及目录授于持久化权限、权限激活、权限查询等方法。
+应用通过Picker获取临时授权，临时授权在应用退出后或者设备重启后会清除。如果应用重启或者设备重启后需要直接访问之前已访问过的文件，则对文件进行[持久化授权](file-persistPermission.md#场景介绍)。FileShare提供了支持基于uri的文件及目录授于持久化权限、权限激活、权限查询等方法。
 
 ## 接口说明
 
@@ -10,11 +10,11 @@
 
 | 接口名称 | 描述 |
 | -------- | -------- |
-| OH_FileShare_PersistPermission(const FileShare_PolicyInfo *policies, unsigned int policyNum, FileShare_PolicyErrorResult **result, unsigned int *resultNum) | 对所选择的多个文件或目录URI持久化授权。 |
-| OH_FileShare_RevokePermission(const FileShare_PolicyInfo *policies, unsigned int policyNum, FileShare_PolicyErrorResult **result, unsigned int *resultNum) | 对所选择的多个文件或目录URI取消持久化授权。 |
-| OH_FileShare_ActivatePermission(const FileShare_PolicyInfo *policies, unsigned int policyNum, FileShare_PolicyErrorResult **result, unsigned int *resultNum) | 使能多个已经永久授权过的文件或目录URI。 |
-| OH_FileShare_DeactivatePermission(const FileShare_PolicyInfo *policies, unsigned int policyNum, FileShare_PolicyErrorResult **result, unsigned int *resultNum) | 取消使能授权过的多个文件或目录URI。 |
-| OH_FileShare_CheckPersistentPermission(const FileShare_PolicyInfo *policies, unsigned int policyNum, bool **result, unsigned int *resultNum) | 校验所选择的多个文件或目录URI的持久化权限结果。 |
+| OH_FileShare_PersistPermission(const FileShare_PolicyInfo *policies, unsigned int policyNum, FileShare_PolicyErrorResult **result, unsigned int *resultNum) | 对所选择的多个文件或目录uri持久化授权。 |
+| OH_FileShare_RevokePermission(const FileShare_PolicyInfo *policies, unsigned int policyNum, FileShare_PolicyErrorResult **result, unsigned int *resultNum) | 对所选择的多个文件或目录uri取消持久化授权。 |
+| OH_FileShare_ActivatePermission(const FileShare_PolicyInfo *policies, unsigned int policyNum, FileShare_PolicyErrorResult **result, unsigned int *resultNum) | 使能多个已经永久授权过的文件或目录uri。 |
+| OH_FileShare_DeactivatePermission(const FileShare_PolicyInfo *policies, unsigned int policyNum, FileShare_PolicyErrorResult **result, unsigned int *resultNum) | 取消使能授权过的多个文件或目录uri。 |
+| OH_FileShare_CheckPersistentPermission(const FileShare_PolicyInfo *policies, unsigned int policyNum, bool **result, unsigned int *resultNum) | 校验所选择的多个文件或目录uri的持久化权限结果。 |
 | OH_FileShare_ReleasePolicyErrorResult(FileShare_PolicyErrorResult *errorResult, unsigned int resultNum) | 释放FileShare_PolicyErrorResult内存。 |
 
 ## 约束与限制
@@ -41,7 +41,7 @@ target_link_libraries(sample PUBLIC libohfileshare.so)
 #include <filemanagement/fileshare/oh_file_share.h>
 #include <iostream>
 ```
-1. 创建FileShare_PolicyInfo实例,调用OH_FileShare_PersistPermission接口，设置URI的持久化授权，接口入参policyNum最大上限为500。
+1. 创建FileShare_PolicyInfo实例,调用OH_FileShare_PersistPermission接口，设置uri的持久化授权，接口入参policyNum最大上限为500。
     ```c++
     static const uint32_t POLICY_NUM = 2;
     char strTestPath1[] = "file://com.example.fileshare/data/storage/el2/base/files/test1.txt";
@@ -63,7 +63,7 @@ target_link_libraries(sample PUBLIC libohfileshare.so)
     }
     OH_FileShare_ReleasePolicyErrorResult(result, resultNum);
     ```
-2. 调用OH_FileShare_ActivatePermission接口，激活启用已授权过的URI，接口入参policyNum最大上限为500。
+2. 调用OH_FileShare_ActivatePermission接口，激活启用已授权过的uri，接口入参policyNum最大上限为500。
     ```c++
     auto ret = OH_FileShare_ActivatePermission(policy, POLICY_NUM, &result, &resultNum);
     if (ret != ERR_OK) {
@@ -77,7 +77,7 @@ target_link_libraries(sample PUBLIC libohfileshare.so)
     }
     OH_FileShare_ReleasePolicyErrorResult(result, resultNum);
     ```
-3. 调用OH_FileShare_DeactivatePermission接口，停止已启用授权过URI的访问权限，接口入参policyNum最大上限为500。
+3. 调用OH_FileShare_DeactivatePermission接口，停止已启用授权过uri的访问权限，接口入参policyNum最大上限为500。
     ```c++
     auto ret = OH_FileShare_DeactivatePermission(policy, POLICY_NUM, &result, &resultNum);
     if (ret != ERR_OK) {
@@ -91,7 +91,7 @@ target_link_libraries(sample PUBLIC libohfileshare.so)
     }
     OH_FileShare_ReleasePolicyErrorResult(result, resultNum);
     ```
-4. 调用OH_FileShare_RevokePermission接口，撤销已经授权的URI持久化权限，接口入参policyNum最大上限为500。
+4. 调用OH_FileShare_RevokePermission接口，撤销已经授权的uri持久化权限，接口入参policyNum最大上限为500。
     ```c++
     auto ret = OH_FileShare_RevokePermission(policy, POLICY_NUM, &result, &resultNum);
     if (ret != ERR_OK) {
@@ -105,7 +105,7 @@ target_link_libraries(sample PUBLIC libohfileshare.so)
     }
     OH_FileShare_ReleasePolicyErrorResult(result, resultNum);
     ```
-5. 调用OH_FileShare_CheckPersistentPermission接口，检查URI持久化权限，接口入参policyNum最大上限为500。
+5. 调用OH_FileShare_CheckPersistentPermission接口，检查uri持久化权限，接口入参policyNum最大上限为500。
     ```c++
     bool *result = nullptr;
     auto ret = OH_FileShare_CheckPersistentPermission(policy, POLICY_NUM, &result, &resultNum);

@@ -9,6 +9,8 @@
 
 **相关模块：**[Image_NativeModule](_image___native_module.md)
 
+**所在头文件：**[image_common.h](image__common_8h.md)
+
 
 ## 汇总
 

@@ -62,7 +62,8 @@ import { cardEmulation } from '@kit.ConnectivityKit';
 定义不同的NFC卡模拟类型。
 
 > **说明：**
-> 从 API version 6 开始支持，从 API version 9 开始废弃，建议使用[hasHceCapability](#hashcecapability9)替代。
+> 
+> 从 API version 6 开始支持，从 API version 9 开始废弃，建议使用[hasHceCapability](#cardemulationhashcecapability9)替代。
 
 **系统能力：** SystemCapability.Communication.NFC.CardEmulation
 
@@ -85,14 +86,15 @@ import { cardEmulation } from '@kit.ConnectivityKit';
 | PAYMENT | "payment" | 卡模拟应用所使用的业务是支付类型。 |
 | OTHER   | "other"   | 卡模拟应用所使用的业务是其他类型。 |
 
-## isSupported<sup>(deprecated)</sup>
+## cardEmulation.isSupported<sup>(deprecated)</sup>
 
 isSupported(feature: number): boolean
 
 是否支持某种类型的卡模拟。
 
 > **说明：**
-> 从 API version 6 开始支持，从 API version 9 开始废弃，建议使用[hasHceCapability](#hashcecapability9)替代。
+> 
+> 从 API version 6 开始支持，从 API version 9 开始废弃，建议使用[hasHceCapability](#cardemulationhashcecapability9)替代。
 
 **系统能力：** SystemCapability.Communication.NFC.CardEmulation
 
@@ -119,7 +121,7 @@ if (!isHceSupported) {
 }
 ```
 
-## hasHceCapability<sup>9+</sup>
+## cardEmulation.hasHceCapability<sup>9+</sup>
 
 hasHceCapability(): boolean
 
@@ -157,7 +159,7 @@ if (!hasHceCap) {
 }
 ```
 
-## isDefaultService<sup>9+</sup>
+## cardEmulation.isDefaultService<sup>9+</sup>
 
 isDefaultService(elementName: ElementName, type: CardType): boolean
 
@@ -345,7 +347,6 @@ on(type: 'hceCmd', callback: AsyncCallback\<number[]>): void
 | 错误码ID | 错误信息|
 | ------- | -------|
 |201 | Permission denied.                 |
-|401 | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
 |801 | Capability not supported.          |
 
 **示例：**
@@ -407,7 +408,7 @@ off(type: 'hceCmd', callback?: AsyncCallback\<number[]>): void
 | 错误码ID | 错误信息|
 | ------- | -------|
 |201 | Permission denied.                 |
-|401 | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
+|401 | Invalid parameter.                 |
 |801 | Capability not supported.          |
 
 **示例：**
@@ -536,7 +537,7 @@ transmit(response: number[], callback: AsyncCallback\<void>): void
 | 参数名  | 类型     | 必填 | 说明                    |
 | ------- | -------- | ---- | ----------------------- |
 | response | number[] | 是   | 发送到对端读卡设备的符合APDU协议的数据，每个number十六进制表示，范围是0x00~0xFF。 |
-| callback | AsyncCallback\<void> | 是   | 以callback形式异步返回发送APDU数据的结果。 |
+| callback | AsyncCallback\<void> | 是   | 回调函数。当发送APDU数据成功时，err为undefined，否则为错误对象。 |
 
 **错误码：**
 

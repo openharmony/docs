@@ -39,7 +39,7 @@ getAllAppPrivateCertificates(callback: AsyncCallback\<CMResult>): void
 
 | 参数名   | 类型                                                        | 必填 | 说明                                                         |
 | -------- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| callback | AsyncCallback\<[CMResult](js-apis-certManager.md#cmresult)> | 是   | 回调函数。当获取所有私有凭据列表成功时，err为null，data为[CMResult](#cmresult)对象中的credentialList属性；否则为错误对象。 |
+| callback | AsyncCallback\<[CMResult](js-apis-certManager.md#cmresult)> | 是   | 回调函数。当获取所有私有凭据列表成功时，err为null，data为[CMResult](js-apis-certManager.md#cmresult)对象中的credentialList属性；否则为错误对象。 |
 
 **错误码：**
 
@@ -92,7 +92,7 @@ getAllAppPrivateCertificates(): Promise\<CMResult>
 
 | 类型                                                  | 说明                                                         |
 | ----------------------------------------------------- | ------------------------------------------------------------ |
-| Promise\<[CMResult](js-apis-certManager.md#cmresult)> | Promise对象。表示获取所有私有凭据列表的结果，返回值为[CMResult](#cmresult)对象中的credentialList属性。 |
+| Promise\<[CMResult](js-apis-certManager.md#cmresult)> | Promise对象。表示获取所有私有凭据列表的结果，返回值为[CMResult](js-apis-certManager.md#cmresult)对象中的credentialList属性。 |
 
 **错误码：**
 
@@ -143,7 +143,7 @@ getAllSystemAppCertificates(): Promise\<CMResult>
 
 | 类型                                                  | 说明                                                         |
 | ----------------------------------------------------- | ------------------------------------------------------------ |
-| Promise\<[CMResult](js-apis-certManager.md#cmresult)> | Promise对象。表示获取所有系统凭据列表的结果，返回值为[CMResult](#cmresult)对象中的credentialList属性。 |
+| Promise\<[CMResult](js-apis-certManager.md#cmresult)> | Promise对象。表示获取所有系统凭据列表的结果，返回值为[CMResult](js-apis-certManager.md#cmresult)对象中的credentialList属性。 |
 
 **错误码：**
 

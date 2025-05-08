@@ -1,6 +1,5 @@
 # native_audiocapturer.h
 
-
 ## 概述
 
 声明输入类型的音频流相关接口。
@@ -15,8 +14,17 @@
 
 **相关模块：**[OHAudio](_o_h_audio.md)
 
-
 ## 汇总
+
+
+### 类型定义
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| typedef void(\* [OH_AudioCapturer_OnReadDataCallback](_o_h_audio.md#oh_audiocapturer_onreaddatacallback)) ([OH_AudioCapturer](_o_h_audio.md#oh_audiocapturer) \*capturer, void \*userData, void \*audioData, int32_t audioDataSize) | 读取音频数据的回调函数。 | 
+| typedef void(\* [OH_AudioCapturer_OnDeviceChangeCallback](_o_h_audio.md#oh_audiocapturer_ondevicechangecallback)) ([OH_AudioCapturer](_o_h_audio.md#oh_audiocapturer) \*capturer, void \*userData, OH_AudioDeviceDescriptorArray \*deviceArray) | 音频录制流的设备变化事件回调函数。 | 
+| typedef void(\* [OH_AudioCapturer_OnInterruptCallback](_o_h_audio.md#oh_audiocapturer_oninterruptcallback)) ([OH_AudioCapturer](_o_h_audio.md#oh_audiocapturer) \*capturer, void \*userData, [OH_AudioInterrupt_ForceType](_o_h_audio.md#oh_audiointerrupt_forcetype) type, [OH_AudioInterrupt_Hint](_o_h_audio.md#oh_audiointerrupt_hint) hint) | 音频录制流的中断事件回调函数。 | 
+| typedef void(\* [OH_AudioCapturer_OnErrorCallback](_o_h_audio.md#oh_audiocapturer_onerrorcallback)) ([OH_AudioCapturer](_o_h_audio.md#oh_audiocapturer) \*renderer, void \*userData, [OH_AudioStream_Result](_o_h_audio.md#oh_audiostream_result) error) | 音频录制流的错误事件回调函数。 | 
 
 
 ### 函数
@@ -26,7 +34,7 @@
 | [OH_AudioStream_Result](_o_h_audio.md#oh_audiostream_result) [OH_AudioCapturer_Release](_o_h_audio.md#oh_audiocapturer_release)([OH_AudioCapturer](_o_h_audio.md#oh_audiocapturer) \*capturer)                                                                                               | 释放输入音频流。  | 
 | [OH_AudioStream_Result](_o_h_audio.md#oh_audiostream_result) [OH_AudioCapturer_Start](_o_h_audio.md#oh_audiocapturer_start)([OH_AudioCapturer](_o_h_audio.md#oh_audiocapturer) \*capturer)                                                                                                   | 开始获取音频数据。  | 
 | [OH_AudioStream_Result](_o_h_audio.md#oh_audiostream_result) [OH_AudioCapturer_Pause](_o_h_audio.md#oh_audiocapturer_pause)([OH_AudioCapturer](_o_h_audio.md#oh_audiocapturer) \*capturer)                                                                                                   | 暂停输入音频流。  | 
-| [OH_AudioStream_Result](_o_h_audio.md#oh_audiostream_result) [OH_AudioCapturer_Stop](_o_h_audio.md#oh_audiocapturer_stop)([OH_AudioCapturer](_o_h_audio.md#oh_audiocapturer) \*capturer)                                                                                                     | 停止输入音频流  | 
+| [OH_AudioStream_Result](_o_h_audio.md#oh_audiostream_result) [OH_AudioCapturer_Stop](_o_h_audio.md#oh_audiocapturer_stop)([OH_AudioCapturer](_o_h_audio.md#oh_audiocapturer) \*capturer)                                                                                                     | 停止输入音频流。  | 
 | [OH_AudioStream_Result](_o_h_audio.md#oh_audiostream_result) [OH_AudioCapturer_Flush](_o_h_audio.md#oh_audiocapturer_flush)([OH_AudioCapturer](_o_h_audio.md#oh_audiocapturer) \*capturer)                                                                                                   | 丢弃获取的音频数据。  | 
 | [OH_AudioStream_Result](_o_h_audio.md#oh_audiostream_result) [OH_AudioCapturer_GetCurrentState](_o_h_audio.md#oh_audiocapturer_getcurrentstate)([OH_AudioCapturer](_o_h_audio.md#oh_audiocapturer) \*capturer, [OH_AudioStream_State](_o_h_audio.md#oh_audiostream_state) \*state)           | 查询当前输入音频流状态。  | 
 | [OH_AudioStream_Result](_o_h_audio.md#oh_audiostream_result) [OH_AudioCapturer_GetLatencyMode](_o_h_audio.md#oh_audiocapturer_getlatencymode)([OH_AudioCapturer](_o_h_audio.md#oh_audiocapturer) \*capturer, [OH_AudioStream_LatencyMode](_o_h_audio.md#oh_audiostream_latencymode) \*latencyMode) | 查询当前输入音频流时延模式。  | 

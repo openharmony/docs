@@ -67,6 +67,7 @@ Describes the edit menu options.
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | icon | [ResourceStr](ts-types.md#resourcestr) | Yes| Icon.|
+| symbolStyle<sup>18+</sup> | [SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md) | No| Symbol icon resource, which has higher priority than **icon**.<br>**Atomic service API**: This API can be used in atomic services since API version 18.|
 | builder | () =&gt; void | No| Builder of the custom component displayed upon click. It must be used with @Builder for building the custom component.|
 | action | () =&gt; void | No| Action triggered when the menu option is clicked.|
 
@@ -99,49 +100,57 @@ Provides the information about the selected content.
 
 ## Attributes
 
-The [universal attributes](ts-universal-attributes-size.md) are not supported. The default width is 224 vp, and the height is adaptive.
+The [universal attributes](ts-component-general-attributes.md) are not supported. The default width is 224 vp, and the height is adaptive.
 
 ## Events
-The [universal events](ts-universal-events-click.md) are not supported.
+The [universal events](ts-component-general-events.md) are not supported.
 
 ## Example
+### Example 1: Binding Context Menus on Selection with Different Trigger Methods
 
 This example demonstrates the effects of a custom context menu on selection bound to text with different triggering modes.
 
 ```ts
-import { SelectionMenu, EditorMenuOptions, ExpandedMenuOptions, EditorEventInfo, SelectionMenuOptions } from '@kit.ArkUI'
+import {
+  SelectionMenu,
+  EditorMenuOptions,
+  ExpandedMenuOptions,
+  EditorEventInfo,
+  SelectionMenuOptions
+} from '@kit.ArkUI'
 
 @Entry
 @Component
 struct Index {
-  @State select: boolean = true
+  @State select: boolean = true;
   controller: RichEditorController = new RichEditorController();
-  options: RichEditorOptions = { controller: this.controller }
-  @State message: string = 'Hello word'
-  @State textSize: number = 30
-  @State fontWeight: FontWeight = FontWeight.Normal
-  @State start: number = -1
-  @State end: number = -1
-  @State visibleValue: Visibility = Visibility.Visible
-  @State colorTransparent: Color = Color.Transparent
-  @State textStyle: RichEditorTextStyle = {}
+  options: RichEditorOptions = { controller: this.controller };
+  @State message: string = 'Hello world';
+  @State textSize: number = 30;
+  @State fontWeight: FontWeight = FontWeight.Normal;
+  @State start: number = -1;
+  @State end: number = -1;
+  @State visibleValue: Visibility = Visibility.Visible;
+  @State colorTransparent: Color = Color.Transparent;
+  @State textStyle: RichEditorTextStyle = {};
   private editorMenuOptions: Array<EditorMenuOptions> =
     [
-      { icon: $r("app.media.ic_notepad_textbold"), action: () => {
+      {
+        icon: $r("app.media.ic_notepad_textbold"), action: () => {
         if (this.controller) {
           let selection = this.controller.getSelection();
-          let spans = selection.spans
+          let spans = selection.spans;
           spans.forEach((item: RichEditorTextSpanResult | RichEditorImageSpanResult, index) => {
             if (typeof (item as RichEditorTextSpanResult)['textStyle'] != 'undefined') {
-              let span = item as RichEditorTextSpanResult
-              this.textStyle = span.textStyle
-              let start = span.offsetInSpan[0]
-              let end = span.offsetInSpan[1]
-              let offset = span.spanPosition.spanRange[0]
+              let span = item as RichEditorTextSpanResult;
+              this.textStyle = span.textStyle;
+              let start = span.offsetInSpan[0];
+              let end = span.offsetInSpan[1];
+              let offset = span.spanPosition.spanRange[0];
               if (this.textStyle.fontWeight != 11) {
-                this.textStyle.fontWeight = FontWeight.Bolder
+                this.textStyle.fontWeight = FontWeight.Bolder;
               } else {
-                this.textStyle.fontWeight = FontWeight.Normal
+                this.textStyle.fontWeight = FontWeight.Normal;
               }
               this.controller.updateSpanStyle({
                 start: offset + start,
@@ -151,22 +160,24 @@ struct Index {
             }
           })
         }
-      } },
-      { icon: $r("app.media.ic_notepad_texttilt"), action: () => {
+      }
+      },
+      {
+        icon: $r("app.media.ic_notepad_texttilt"), action: () => {
         if (this.controller) {
           let selection = this.controller.getSelection();
-          let spans = selection.spans
+          let spans = selection.spans;
           spans.forEach((item: RichEditorTextSpanResult | RichEditorImageSpanResult, index) => {
             if (typeof (item as RichEditorTextSpanResult)['textStyle'] != 'undefined') {
-              let span = item as RichEditorTextSpanResult
-              this.textStyle = span.textStyle
-              let start = span.offsetInSpan[0]
-              let end = span.offsetInSpan[1]
-              let offset = span.spanPosition.spanRange[0]
+              let span = item as RichEditorTextSpanResult;
+              this.textStyle = span.textStyle;
+              let start = span.offsetInSpan[0];
+              let end = span.offsetInSpan[1];
+              let offset = span.spanPosition.spanRange[0];
               if (this.textStyle.fontStyle == FontStyle.Italic) {
-                this.textStyle.fontStyle = FontStyle.Normal
+                this.textStyle.fontStyle = FontStyle.Normal;
               } else {
-                this.textStyle.fontStyle = FontStyle.Italic
+                this.textStyle.fontStyle = FontStyle.Italic;
               }
               this.controller.updateSpanStyle({
                 start: offset + start,
@@ -176,24 +187,26 @@ struct Index {
             }
           })
         }
-      } },
-      { icon: $r("app.media.ic_notepad_underline"),
+      }
+      },
+      {
+        icon: $r("app.media.ic_notepad_underline"),
         action: () => {
           if (this.controller) {
             let selection = this.controller.getSelection();
-            let spans = selection.spans
+            let spans = selection.spans;
             spans.forEach((item: RichEditorTextSpanResult | RichEditorImageSpanResult, index) => {
               if (typeof (item as RichEditorTextSpanResult)['textStyle'] != 'undefined') {
-                let span = item as RichEditorTextSpanResult
-                this.textStyle = span.textStyle
-                let start = span.offsetInSpan[0]
-                let end = span.offsetInSpan[1]
-                let offset = span.spanPosition.spanRange[0]
+                let span = item as RichEditorTextSpanResult;
+                this.textStyle = span.textStyle;
+                let start = span.offsetInSpan[0];
+                let end = span.offsetInSpan[1];
+                let offset = span.spanPosition.spanRange[0];
                 if (this.textStyle.decoration) {
                   if (this.textStyle.decoration.type == TextDecorationType.Underline) {
-                    this.textStyle.decoration.type = TextDecorationType.None
+                    this.textStyle.decoration.type = TextDecorationType.None;
                   } else {
-                    this.textStyle.decoration.type = TextDecorationType.Underline
+                    this.textStyle.decoration.type = TextDecorationType.Underline;
                   }
                 } else {
                   this.textStyle.decoration = { type: TextDecorationType.Underline, color: Color.Black }
@@ -208,23 +221,26 @@ struct Index {
           }
         }
       },
-      { icon: $r("app.media.app_icon"), action: () => {
-      }, builder: (): void => this.sliderPanel() },
-      { icon: $r("app.media.ic_notepad_textcolor"), action: () => {
+      {
+        icon: $r("app.media.ic_notepad_fontsize"), action: () => {
+      }, builder: (): void => this.sliderPanel()
+      },
+      {
+        icon: $r("app.media.ic_notepad_textcolor"), action: () => {
         if (this.controller) {
           let selection = this.controller.getSelection();
-          let spans = selection.spans
+          let spans = selection.spans;
           spans.forEach((item: RichEditorTextSpanResult | RichEditorImageSpanResult, index) => {
             if (typeof (item as RichEditorTextSpanResult)['textStyle'] != 'undefined') {
-              let span = item as RichEditorTextSpanResult
-              this.textStyle = span.textStyle
-              let start = span.offsetInSpan[0]
-              let end = span.offsetInSpan[1]
-              let offset = span.spanPosition.spanRange[0]
+              let span = item as RichEditorTextSpanResult;
+              this.textStyle = span.textStyle;
+              let start = span.offsetInSpan[0];
+              let end = span.offsetInSpan[1];
+              let offset = span.spanPosition.spanRange[0];
               if (this.textStyle.fontColor == Color.Orange || this.textStyle.fontColor == '#FFFFA500') {
-                this.textStyle.fontColor = Color.Black
+                this.textStyle.fontColor = Color.Black;
               } else {
-                this.textStyle.fontColor = Color.Orange
+                this.textStyle.fontColor = Color.Orange;
               }
               this.controller.updateSpanStyle({
                 start: offset + start,
@@ -234,12 +250,19 @@ struct Index {
             }
           })
         }
-      } }]
+      }
+      }]
   private expandedMenuOptions: Array<ExpandedMenuOptions> =
-    [{ startIcon: $r("app.media.icon"), content: 'Dictionary', action: () => {
-    } }, { startIcon: $r("app.media.icon"), content: 'Translate', action: () => {
-    } }, { startIcon: $r("app.media.icon"), content: 'Search', action: () => {
-    } }]
+    [{
+      startIcon: $r("app.media.startIcon"), content: 'Dictionary', action: () => {
+      }
+    }, {
+      startIcon: $r("app.media.startIcon"), content: 'Translate', action: () => {
+      }
+    }, {
+      startIcon: $r("app.media.startIcon"), content: 'Search', action: () => {
+      }
+    }]
   private expandedMenuOptions1: Array<ExpandedMenuOptions> = []
   private editorMenuOptions1: Array<EditorMenuOptions> = []
   private selectionMenuOptions: SelectionMenuOptions = {
@@ -250,9 +273,9 @@ struct Index {
       if (event && event.content) {
         event.content.spans.forEach((item: RichEditorTextSpanResult | RichEditorImageSpanResult, index) => {
           if (typeof (item as RichEditorTextSpanResult)['textStyle'] != 'undefined') {
-            let span = item as RichEditorTextSpanResult
-            console.info('test cut' + span.value)
-            console.info('test start ' + span.offsetInSpan[0] + ' end: ' + span.offsetInSpan[1])
+            let span = item as RichEditorTextSpanResult;
+            console.info('test cut' + span.value);
+            console.info('test start ' + span.offsetInSpan[0] + ' end: ' + span.offsetInSpan[1]);
           }
         })
       }
@@ -261,9 +284,9 @@ struct Index {
       if (event && event.content) {
         event.content.spans.forEach((item: RichEditorTextSpanResult | RichEditorImageSpanResult, index) => {
           if (typeof (item as RichEditorTextSpanResult)['textStyle'] != 'undefined') {
-            let span = item as RichEditorTextSpanResult
-            console.info('test onPaste' + span.value)
-            console.info('test start ' + span.offsetInSpan[0] + ' end: ' + span.offsetInSpan[1])
+            let span = item as RichEditorTextSpanResult;
+            console.info('test onPaste' + span.value);
+            console.info('test start ' + span.offsetInSpan[0] + ' end: ' + span.offsetInSpan[1]);
           }
         })
       }
@@ -272,9 +295,9 @@ struct Index {
       if (event && event.content) {
         event.content.spans.forEach((item: RichEditorTextSpanResult | RichEditorImageSpanResult, index) => {
           if (typeof (item as RichEditorTextSpanResult)['textStyle'] != 'undefined') {
-            let span = item as RichEditorTextSpanResult
-            console.info('test cut' + span.value)
-            console.info('test start ' + span.offsetInSpan[0] + ' end: ' + span.offsetInSpan[1])
+            let span = item as RichEditorTextSpanResult;
+            console.info('test cut' + span.value);
+            console.info('test start ' + span.offsetInSpan[0] + ' end: ' + span.offsetInSpan[1]);
           }
         })
       }
@@ -283,16 +306,17 @@ struct Index {
       if (event && event.content) {
         event.content.spans.forEach((item: RichEditorTextSpanResult | RichEditorImageSpanResult, index) => {
           if (typeof (item as RichEditorTextSpanResult)['textStyle'] != 'undefined') {
-            let span = item as RichEditorTextSpanResult
-            console.info('test onPaste' + span.value)
-            console.info('test start ' + span.offsetInSpan[0] + ' end: ' + span.offsetInSpan[1])
+            let span = item as RichEditorTextSpanResult;
+            console.info('test onPaste' + span.value);
+            console.info('test start ' + span.offsetInSpan[0] + ' end: ' + span.offsetInSpan[1]);
           }
         })
       }
     }
   }
 
-  @Builder sliderPanel() {
+  @Builder
+  sliderPanel() {
     Column() {
       Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
         Text('A').fontSize(15)
@@ -303,19 +327,350 @@ struct Index {
               let selection = this.controller.getSelection();
               if (mode == SliderChangeMode.End) {
                 if (this.textSize == undefined) {
-                  this.textSize = 0
+                  this.textSize = 0;
                 }
-                let spans = selection.spans
+                let spans = selection.spans;
                 spans.forEach((item: RichEditorTextSpanResult | RichEditorImageSpanResult, index) => {
                   if (typeof (item as RichEditorTextSpanResult)['textStyle'] != 'undefined') {
-                    this.textSize = Math.max(this.textSize, (item as RichEditorTextSpanResult).textStyle.fontSize)
+                    this.textSize = Math.max(this.textSize, (item as RichEditorTextSpanResult).textStyle.fontSize);
                   }
                 })
               }
               if (mode == SliderChangeMode.Moving || mode == SliderChangeMode.Click) {
-                this.start = selection.selection[0]
-                this.end = selection.selection[1]
-                this.textSize = value
+                this.start = selection.selection[0];
+                this.end = selection.selection[1];
+                this.textSize = value;
+                this.controller.updateSpanStyle({
+                  start: this.start,
+                  end: this.end,
+                  textStyle: { fontSize: this.textSize }
+                })
+              }
+            }
+          })
+        Text('A').fontSize(20).fontWeight(FontWeight.Medium)
+      }.borderRadius($r('sys.float.ohos_id_corner_radius_card'))
+    }
+    .shadow(ShadowStyle.OUTER_DEFAULT_MD)
+    .backgroundColor(Color.White)
+    .borderRadius($r('sys.float.ohos_id_corner_radius_card'))
+    .padding(15)
+    .height(48)
+  }
+
+  @Builder
+  MyMenu() {
+    Column() {
+      SelectionMenu(this.selectionMenuOptions)
+    }
+    .width(256)
+    .backgroundColor(Color.Transparent)
+  }
+
+  @Builder
+  MyMenu2() {
+    Column() {
+      SelectionMenu({
+        editorMenuOptions: this.editorMenuOptions,
+        expandedMenuOptions: this.expandedMenuOptions1,
+        controller: this.controller,
+      })
+    }
+    .width(256)
+    .backgroundColor(Color.Transparent)
+  }
+
+  @Builder
+  MyMenu3() {
+    Column() {
+      SelectionMenu({
+        editorMenuOptions: this.editorMenuOptions,
+        expandedMenuOptions: this.expandedMenuOptions,
+        controller: this.controller,
+      })
+    }
+    .width(256)
+    .backgroundColor(Color.Transparent)
+  }
+
+  build() {
+    Column() {
+      Button("SetSelection")
+        .onClick((event: ClickEvent) => {
+          if (this.controller) {
+            this.controller.setSelection(0, 2);
+          }
+        })
+
+      RichEditor(this.options)
+        .onReady(() => {
+          this.controller.addTextSpan(this.message, { style: { fontColor: Color.Orange, fontSize: 30 } });
+          this.controller.addTextSpan(this.message, { style: { fontColor: Color.Black, fontSize: 25 } });
+        })
+        .onSelect((value: RichEditorSelection) => {
+          if (value.selection[0] == -1 && value.selection[1] == -1) {
+            return;
+          }
+          this.start = value.selection[0];
+          this.end = value.selection[1];
+        })
+        .bindSelectionMenu(RichEditorSpanType.TEXT, this.MyMenu3(), RichEditorResponseType.RIGHT_CLICK)
+        .bindSelectionMenu(RichEditorSpanType.TEXT, this.MyMenu2(), RichEditorResponseType.SELECT)
+        .borderWidth(1)
+        .borderColor(Color.Red)
+        .width(200)
+        .height(200)
+        .margin(10)
+    }
+  }
+}
+```
+> **NOTE**
+>
+> Icons in bold and italics are not preset in the system. The sample code uses the default icons. You need to replace the icons in **editorMenuOptions** with the desired icons.
+
+![selectionmenu](figures/selectionmenu.gif)
+
+### Example 2: Setting the Symbol Icon
+
+This example demonstrates how to use **symbolStyle** in **EditorMenuOptions** to set custom symbol icons.
+
+```ts
+import {
+  SelectionMenu,
+  EditorMenuOptions,
+  ExpandedMenuOptions,
+  EditorEventInfo,
+  SelectionMenuOptions,
+  SymbolGlyphModifier
+} from '@kit.ArkUI'
+
+@Entry
+@Component
+struct Index {
+  @State select: boolean = true;
+  controller: RichEditorController = new RichEditorController();
+  options: RichEditorOptions = { controller: this.controller };
+  @State message: string = 'Hello world';
+  @State textSize: number = 30;
+  @State fontWeight: FontWeight = FontWeight.Normal;
+  @State start: number = -1;
+  @State end: number = -1;
+  @State visibleValue: Visibility = Visibility.Visible;
+  @State colorTransparent: Color = Color.Transparent;
+  @State textStyle: RichEditorTextStyle = {};
+  private editorMenuOptions: Array<EditorMenuOptions> =
+    [
+      {
+        icon: $r("sys.media.wifi_router_fill"),
+        symbolStyle: new SymbolGlyphModifier($r('sys.symbol.save')),
+        action: () => {
+          if (this.controller) {
+            let selection = this.controller.getSelection();
+            let spans = selection.spans;
+            spans.forEach((item: RichEditorTextSpanResult | RichEditorImageSpanResult, index) => {
+              if (typeof (item as RichEditorTextSpanResult)['textStyle'] != 'undefined') {
+                let span = item as RichEditorTextSpanResult;
+                this.textStyle = span.textStyle;
+                let start = span.offsetInSpan[0];
+                let end = span.offsetInSpan[1];
+                let offset = span.spanPosition.spanRange[0];
+                if (this.textStyle.fontWeight != 11) {
+                  this.textStyle.fontWeight = FontWeight.Bolder;
+                } else {
+                  this.textStyle.fontWeight = FontWeight.Normal;
+                }
+                this.controller.updateSpanStyle({
+                  start: offset + start,
+                  end: offset + end,
+                  textStyle: this.textStyle
+                })
+              }
+            })
+          }
+        }
+      },
+      {
+        icon: $r("sys.media.save_button_picture"),
+        symbolStyle: new SymbolGlyphModifier($r('sys.symbol.camera')),
+        action: () => {
+          if (this.controller) {
+            let selection = this.controller.getSelection();
+            let spans = selection.spans;
+            spans.forEach((item: RichEditorTextSpanResult | RichEditorImageSpanResult, index) => {
+              if (typeof (item as RichEditorTextSpanResult)['textStyle'] != 'undefined') {
+                let span = item as RichEditorTextSpanResult;
+                this.textStyle = span.textStyle;
+                let start = span.offsetInSpan[0];
+                let end = span.offsetInSpan[1];
+                let offset = span.spanPosition.spanRange[0];
+                if (this.textStyle.fontStyle == FontStyle.Italic) {
+                  this.textStyle.fontStyle = FontStyle.Normal;
+                } else {
+                  this.textStyle.fontStyle = FontStyle.Italic;
+                }
+                this.controller.updateSpanStyle({
+                  start: offset + start,
+                  end: offset + end,
+                  textStyle: this.textStyle
+                })
+              }
+            })
+          }
+        }
+      },
+      {
+        icon: $r("sys.media.waveform_folder_fill"),
+        symbolStyle: new SymbolGlyphModifier($r('sys.symbol.car')),
+        action: () => {
+          if (this.controller) {
+            let selection = this.controller.getSelection();
+            let spans = selection.spans;
+            spans.forEach((item: RichEditorTextSpanResult | RichEditorImageSpanResult, index) => {
+              if (typeof (item as RichEditorTextSpanResult)['textStyle'] != 'undefined') {
+                let span = item as RichEditorTextSpanResult;
+                this.textStyle = span.textStyle;
+                let start = span.offsetInSpan[0];
+                let end = span.offsetInSpan[1];
+                let offset = span.spanPosition.spanRange[0];
+                if (this.textStyle.decoration) {
+                  if (this.textStyle.decoration.type == TextDecorationType.Underline) {
+                    this.textStyle.decoration.type = TextDecorationType.None;
+                  } else {
+                    this.textStyle.decoration.type = TextDecorationType.Underline;
+                  }
+                } else {
+                  this.textStyle.decoration = { type: TextDecorationType.Underline, color: Color.Black }
+                }
+                this.controller.updateSpanStyle({
+                  start: offset + start,
+                  end: offset + end,
+                  textStyle: this.textStyle
+                })
+              }
+            })
+          }
+        }
+      },
+      {
+        icon: $r("app.media.app_icon"), action: () => {
+      }, builder: (): void => this.sliderPanel()
+      },
+      {
+        icon: $r("sys.media.thermometer_fill"), action: () => {
+        if (this.controller) {
+          let selection = this.controller.getSelection();
+          let spans = selection.spans;
+          spans.forEach((item: RichEditorTextSpanResult | RichEditorImageSpanResult, index) => {
+            if (typeof (item as RichEditorTextSpanResult)['textStyle'] != 'undefined') {
+              let span = item as RichEditorTextSpanResult;
+              this.textStyle = span.textStyle;
+              let start = span.offsetInSpan[0];
+              let end = span.offsetInSpan[1];
+              let offset = span.spanPosition.spanRange[0];
+              if (this.textStyle.fontColor == Color.Orange || this.textStyle.fontColor == '#FFFFA500') {
+                this.textStyle.fontColor = Color.Black;
+              } else {
+                this.textStyle.fontColor = Color.Orange;
+              }
+              this.controller.updateSpanStyle({
+                start: offset + start,
+                end: offset + end,
+                textStyle: this.textStyle
+              })
+            }
+          })
+        }
+      }
+      }]
+  private expandedMenuOptions: Array<ExpandedMenuOptions> =
+    [{
+      startIcon: $r("app.media.startIcon"), content: 'Dictionary', action: () => {
+      }
+    }, {
+      startIcon: $r("app.media.startIcon"), content: 'Translate', action: () => {
+      }
+    }, {
+      startIcon: $r("app.media.startIcon"), content: 'Search', action: () => {
+      }
+    }]
+  private expandedMenuOptions1: Array<ExpandedMenuOptions> = []
+  private editorMenuOptions1: Array<EditorMenuOptions> = []
+  private selectionMenuOptions: SelectionMenuOptions = {
+    editorMenuOptions: this.editorMenuOptions,
+    expandedMenuOptions: this.expandedMenuOptions,
+    controller: this.controller,
+    onCut: (event?: EditorEventInfo) => {
+      if (event && event.content) {
+        event.content.spans.forEach((item: RichEditorTextSpanResult | RichEditorImageSpanResult, index) => {
+          if (typeof (item as RichEditorTextSpanResult)['textStyle'] != 'undefined') {
+            let span = item as RichEditorTextSpanResult;
+            console.info('test cut' + span.value);
+            console.info('test start ' + span.offsetInSpan[0] + ' end: ' + span.offsetInSpan[1]);
+          }
+        })
+      }
+    },
+    onPaste: (event?: EditorEventInfo) => {
+      if (event && event.content) {
+        event.content.spans.forEach((item: RichEditorTextSpanResult | RichEditorImageSpanResult, index) => {
+          if (typeof (item as RichEditorTextSpanResult)['textStyle'] != 'undefined') {
+            let span = item as RichEditorTextSpanResult;
+            console.info('test onPaste' + span.value);
+            console.info('test start ' + span.offsetInSpan[0] + ' end: ' + span.offsetInSpan[1]);
+          }
+        })
+      }
+    },
+    onCopy: (event?: EditorEventInfo) => {
+      if (event && event.content) {
+        event.content.spans.forEach((item: RichEditorTextSpanResult | RichEditorImageSpanResult, index) => {
+          if (typeof (item as RichEditorTextSpanResult)['textStyle'] != 'undefined') {
+            let span = item as RichEditorTextSpanResult;
+            console.info('test cut' + span.value);
+            console.info('test start ' + span.offsetInSpan[0] + ' end: ' + span.offsetInSpan[1]);
+          }
+        })
+      }
+    },
+    onSelectAll: (event?: EditorEventInfo) => {
+      if (event && event.content) {
+        event.content.spans.forEach((item: RichEditorTextSpanResult | RichEditorImageSpanResult, index) => {
+          if (typeof (item as RichEditorTextSpanResult)['textStyle'] != 'undefined') {
+            let span = item as RichEditorTextSpanResult;
+            console.info('test onPaste' + span.value);
+            console.info('test start ' + span.offsetInSpan[0] + ' end: ' + span.offsetInSpan[1]);
+          }
+        })
+      }
+    }
+  }
+
+  @Builder
+  sliderPanel() {
+    Column() {
+      Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+        Text('A').fontSize(15)
+        Slider({ value: this.textSize, step: 10, style: SliderStyle.InSet })
+          .width(210)
+          .onChange((value: number, mode: SliderChangeMode) => {
+            if (this.controller) {
+              let selection = this.controller.getSelection();
+              if (mode == SliderChangeMode.End) {
+                if (this.textSize == undefined) {
+                  this.textSize = 0;
+                }
+                let spans = selection.spans;
+                spans.forEach((item: RichEditorTextSpanResult | RichEditorImageSpanResult, index) => {
+                  if (typeof (item as RichEditorTextSpanResult)['textStyle'] != 'undefined') {
+                    this.textSize = Math.max(this.textSize, (item as RichEditorTextSpanResult).textStyle.fontSize);
+                  }
+                })
+              }
+              if (mode == SliderChangeMode.Moving || mode == SliderChangeMode.Click) {
+                this.start = selection.selection[0];
+                this.end = selection.selection[1];
+                this.textSize = value;
                 this.controller.updateSpanStyle({
                   start: this.start,
                   end: this.end,
@@ -374,21 +729,21 @@ struct Index {
       Button("SetSelection")
         .onClick((event: ClickEvent) => {
           if (this.controller) {
-            this.controller.setSelection(0, 2)
+            this.controller.setSelection(0, 2);
           }
         })
 
       RichEditor(this.options)
         .onReady(() => {
-          this.controller.addTextSpan(this.message, { style: { fontColor: Color.Orange, fontSize: 30 } })
-          this.controller.addTextSpan(this.message, { style: { fontColor: Color.Black, fontSize: 25 } })
+          this.controller.addTextSpan(this.message, { style: { fontColor: Color.Orange, fontSize: 30 } });
+          this.controller.addTextSpan(this.message, { style: { fontColor: Color.Black, fontSize: 25 } });
         })
         .onSelect((value: RichEditorSelection) => {
           if (value.selection[0] == -1 && value.selection[1] == -1) {
-            return
+            return;
           }
-          this.start = value.selection[0]
-          this.end = value.selection[1]
+          this.start = value.selection[0];
+          this.end = value.selection[1];
         })
         .bindSelectionMenu(RichEditorSpanType.TEXT, this.MyMenu3(), RichEditorResponseType.RIGHT_CLICK)
         .bindSelectionMenu(RichEditorSpanType.TEXT, this.MyMenu2(), RichEditorResponseType.SELECT)
@@ -400,8 +755,5 @@ struct Index {
   }
 }
 ```
-> **NOTE**
->
-> Icons in bold and italics are not preset in the system. The sample code uses the default icons. You need to replace the icons in **editorMenuOptions** with the desired icons.
 
-![selectionmenu](figures/selectionmenu.jpeg)
+![selectionmenu02](figures/selectionmenu02.jpg)

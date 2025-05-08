@@ -1,10 +1,10 @@
-# Core File Kit (Basic File Services)
+# Core File Kit<!--core-file-kit-->
 
 - [Introduction to Core File Kit](core-file-kit-intro.md)
-- Application Files
+- Application Files<!--app-file-->
   - [Application File Overview](app-file-overview.md)
   - [Application Sandbox](app-sandbox-directory.md)
-  - Application File Access and Management
+  - Application File Access and Management<!--app-file-access-management-->
     - [Accessing Application Files (ArkTS)](app-file-access.md)
     - [Accessing Application Files (C/C++)](native-fileio-guidelines.md)
     - [Obtaining Application and File System Space Statistics](app-fs-space-statistics.md)
@@ -12,28 +12,28 @@
   - [Pushing Files to an Application Sandbox Directory](send-file-to-app-sandbox.md)
   <!--DelEnd-->
   - [Sharing an Application File](share-app-file.md)
-  - Application Data Backup and Restore
+  - Application Data Backup and Restore<!--app-file-backup-restore-->
     - [Application Data Backup and Restore Overview](app-file-backup-overview.md)
     - [Accessing Backup and Restore](app-file-backup-extension.md)
     <!--Del-->
     - [Triggering Backup and Restore (for System Applications Only)](app-file-backup.md)
     <!--DelEnd-->
-- User Files
+- User Files<!--user-files-->
   - [User File Overview](user-file-overview.md)
   - [User File URI](user-file-uri-intro.md)
   - [FileUri Development (C/C++)](native-fileuri-guidelines.md)
   - [Obtaining the User Directory Environment (C/C++)](native-environment-guidelines.md)
-  - Selecting and Saving User Files
+  - Selecting and Saving User Files<!--select-save-user-file-->
     - [Selecting User Files](select-user-file.md)
     - [Saving User Files](save-user-file.md)
     - [Persisting Temporary Permissions (ArkTS)](file-persistPermission.md)
     - [Persisting Temporary Permissions (C/C++)](native-fileshare-guidelines.md)
   - [Obtaining and Accessing a User Directory](request-dir-permission.md)
   <!--Del-->
-  - [Developing a File Manager Application (for System Applications Only)](dev-user-file-manager.md)
+  - [Developing a FileManager Application (for System Applications Only)](dev-user-file-manager.md)
   - [Managing External Storage Devices (for System Applications Only)](manage-external-storage.md)
   <!--DelEnd-->
-- Distributed File System
+- Distributed File System<!--distributed-fs-->
   - [Distributed File System Overview](distributed-fs-overview.md)
   - [Setting the Security Level of a Distributed File](set-security-label.md)
   - [Accessing Files Across Devices](file-access-across-devices.md)

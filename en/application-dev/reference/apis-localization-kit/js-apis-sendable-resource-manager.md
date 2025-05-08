@@ -122,4 +122,4 @@ type SendableResource = _SendableResource
 
 | Type        | Description    |
 | ---------- | ------ | 
-| [_SendableResource](sendableResource.md#sendableresource-1)|Defines a **SendableResource** object.|
+| [_SendableResource](js-apis-sendableResource.md#sendableresource-1)|Defines a **SendableResource** object.|

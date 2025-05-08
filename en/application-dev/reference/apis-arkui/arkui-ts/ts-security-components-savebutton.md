@@ -26,7 +26,7 @@ You may want to learn the [restrictions on security component styles](../../../s
 
 ### SaveButton
 
-SaveButton(options:SaveButtonOptions)
+SaveButton(options: SaveButtonOptions)
 
 Creates a **SaveButton** component that contains the specified elements.
 
@@ -97,7 +97,7 @@ Describes the icon, text, and other specific elements for the **SaveButton** com
 | EXPORT_TO_GALLERY<sup>12+</sup> | 9 | The text on the **SaveButton** component is **Export**.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | QUICK_SAVE_TO_GALLERY<sup>12+</sup> | 10 | The text on the **SaveButton** component is **Save to Gallery**.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | RESAVE_TO_GALLERY<sup>12+</sup> | 11 | The text on the **SaveButton** component is **Save**.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
-| SAVE_ALL<sup>16+</sup> | 12 | The text on the **SaveButton** component is **Save all**.<br>**Atomic service API**: This API can be used in atomic services since API version 16.|
+| SAVE_ALL<sup>18+</sup> | 12 | The text on the **SaveButton** component is **Save all**.<br>**Atomic service API**: This API can be used in atomic services since API version 18.|
 
 ## SaveButtonOnClickResult
 
@@ -110,13 +110,13 @@ Describes the icon, text, and other specific elements for the **SaveButton** com
 | SUCCESS | 0 | The **SaveButton** component is touched successfully.|
 | TEMPORARY_AUTHORIZATION_FAILED | 1 | Temporary authorization fails after the **SaveButton** component is touched.|
 
-## SaveButtonCallback
+## SaveButtonCallback<sup>18+</sup>
 
-SaveButtonCallback = (event: ClickEvent, result: SaveButtonOnClickResult, error?: BusinessError&lt;void&gt;) =&gt; void
+type SaveButtonCallback = (event: ClickEvent, result: SaveButtonOnClickResult, error?: BusinessError&lt;void&gt;) =&gt; void
 
 Triggered when the **SaveButton** component is clicked.
 
-**Atomic service API**: This API can be used in atomic services since API version 16.
+**Atomic service API**: This API can be used in atomic services since API version 18.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -148,7 +148,7 @@ Called when a click event occurs.
 
 | Name| Type                  | Mandatory| Description                  |
 |------------|------|-------|---------|
-| event | [SaveButtonCallback](#savebuttoncallback) |Yes|See **SaveButtonCallback**.|
+| event | [SaveButtonCallback](#savebuttoncallback18) |Yes|See **SaveButtonCallback**.<br>In API versions 10 to 17, the parameter type is event: [ClickEvent](ts-universal-events-click.md#clickevent), result: [SaveButtonOnClickResult](#savebuttononclickresult)) => void.<br>Since API version 18, the parameter type changes into SaveButtonCallback.|
 
 ## Example
 
@@ -161,39 +161,40 @@ import { BusinessError } from '@kit.BasicServicesKit';
 @Entry
 @Component
 struct Index {
-  handleSaveButtonClick: SaveButtonCallback = async (event: ClickEvent, result: SaveButtonOnClickResult, error: BusinessError<void>) => {
-    if (result == SaveButtonOnClickResult.SUCCESS) {
-      try {
-        const context = getContext(this);
-        let helper = photoAccessHelper.getPhotoAccessHelper(context);
-        // After onClick is triggered, the createAsset API can be called within 10 seconds to create an image file. After 10 seconds have elapsed, the permission to call createAsset is revoked.
-        let uri = await helper.createAsset(photoAccessHelper.PhotoType.IMAGE, 'png');
-        // Use the URI to open the file. The write process is not time bound.
-        let file = await fileIo.open(uri, fileIo.OpenMode.READ_WRITE | fileIo.OpenMode.CREATE);
-        // Write to the file.
-        await fileIo.write(file.fd, "context");
-        // Close the file.
-        await fileIo.close(file.fd);
-      } catch (error) {
-        console.error("error is "+ JSON.stringify(error));
+  handleSaveButtonClick: SaveButtonCallback =
+    async (event: ClickEvent, result: SaveButtonOnClickResult, error: BusinessError<void>) => {
+      if (result == SaveButtonOnClickResult.SUCCESS) {
+        try {
+          const context = getContext(this);
+          let helper = photoAccessHelper.getPhotoAccessHelper(context);
+          // After onClick is triggered, the createAsset API can be called within 10 seconds to create an image file. After 10 seconds have elapsed, the permission to call createAsset is revoked.
+          let uri = await helper.createAsset(photoAccessHelper.PhotoType.IMAGE, 'png');
+          // Use the URI to open the file. The write process is not time bound.
+          let file = await fileIo.open(uri, fileIo.OpenMode.READ_WRITE | fileIo.OpenMode.CREATE);
+          // Write to the file.
+          await fileIo.write(file.fd, "context");
+          // Close the file.
+          await fileIo.close(file.fd);
+        } catch (error) {
+          console.error("error is " + JSON.stringify(error));
+        }
+      } else {
+        console.info("errCode: " + error.code);
+        console.info("errMessage: " + error.message);
       }
-    } else {
-      console.info("errCode: " + error.code);
-      console.info("errMessage: " + error.message);
-    }
-  };
+    };
 
   build() {
     Row() {
       Column({ space: 10 }) {
-        // Create a default SaveButton component with an icon, text, and background.
+        // Create a default button with an icon, text, and background.
         SaveButton().onClick((this.handleSaveButtonClick))
         // Whether the button has an icon, text, and background depends on whether the corresponding parameter is passed in. If buttonType is not passed in, the button uses the ButtonType.Capsule settings.
         SaveButton({ icon: SaveIconStyle.FULL_FILLED })
-        // This button only has the icon and background. If the alpha value of the most significant eight bits of the background color is less than 0x1A, the system forcibly adjusts the alpha value to 0xFF.
+        // Create a button with only an icon and background. If the alpha value of the most significant eight bits of the background color is less than 0x1A, the system forcibly adjusts the alpha value to 0xFF.
         SaveButton({ icon: SaveIconStyle.FULL_FILLED, buttonType: ButtonType.Capsule })
           .backgroundColor(0x10007dff)
-        // The button has an icon, text, and background. If the alpha value of the most significant eight bits of the background color is less than 0x1A, the system forcibly adjusts the alpha value to 0xFF.
+        // Create a button with an icon, text, and background. If the alpha value of the most significant eight bits of the background color is less than 0x1A, the system forcibly adjusts the alpha value to 0xFF.
         SaveButton({ icon: SaveIconStyle.FULL_FILLED, text: SaveDescription.DOWNLOAD, buttonType: ButtonType.Capsule })
         // Create a button with an icon, text, and background. If the set width is less than the minimum allowed, the button's text will wrap to guarantee full text display.
         SaveButton({ icon: SaveIconStyle.FULL_FILLED, text: SaveDescription.DOWNLOAD, buttonType: ButtonType.Capsule })
@@ -206,7 +207,12 @@ struct Index {
         // Create a button with an icon, text, and background. If the set width is less than the minimum allowed, the button's text will wrap to guarantee full text display.
         SaveButton({ icon: SaveIconStyle.FULL_FILLED, text: SaveDescription.DOWNLOAD, buttonType: ButtonType.Capsule })
           .fontSize(16)
-          .constraintSize({ minWidth: 0, maxWidth: 30, minHeight: 0, maxHeight: 30 })
+          .constraintSize({
+            minWidth: 0,
+            maxWidth: 30,
+            minHeight: 0,
+            maxHeight: 30
+          })
       }.width('100%')
     }.height('100%')
   }

@@ -85,7 +85,7 @@ java -jar app_check_tool.jar --input ./test.app --out-path ./test --stat-file-si
 | ---------------- | ---------- | ----------------------------------------------------------- |
 | --input          | 是         | 指定传入的HAP、HSP、App包文件路径。                         |
 | --out-path       | 是         | 指定结果输出文件夹目录。                                    |
-| --stat-file-size | 否         | 扫描超过设定大小的文件，单位KB <br>范围为 0-4294967295 KB。 |
+| --stat-file-size | 否         | 扫描超过设定大小的文件，单位KB。 <br>范围为 0-4294967295 KB。 |
 
 <b>JSON统计结果：</b>
 
@@ -194,7 +194,7 @@ java -jar app_check_tool.jar --input ./test.app --out-path ./test --stat-suffix 
 | 字段      | 类型   | 描述                                       |
 | --------- | ------ | ------------------------------------------ |
 | suffix    | String | 同类型文件后缀名。                         |
-| totalSize | int    | 扫描的同类型<br>文件的总大小，单位为Byte。 |
+| totalSize | int    | 扫描的同类型文件的总大小，单位为Byte。 |
 | files     | Stuct  | [参考下表。](#section4)                      |
 
 **同类型文件的对应路径和大小字段信息**<a name="section4"></a>
@@ -202,4 +202,4 @@ java -jar app_check_tool.jar --input ./test.app --out-path ./test --stat-suffix 
 | -------- | ------ | ------------------------------------------------------------------- |
 | file     | String | 文件路径。                                                          |
 | size     | int    | 文件的大小。                                                        |
-| compress | bool   | 是否是压缩文件(仅so类型文件展示)。<br>true：是压缩文件。<br>false：不是压缩文件。 |
+| compress | bool   | 是否是压缩文件（仅so类型文件展示）。<br>true：是压缩文件。<br>false：不是压缩文件。 |

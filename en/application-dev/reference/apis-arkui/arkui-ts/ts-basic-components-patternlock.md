@@ -295,10 +295,10 @@ Sets the authentication challenge result for the pattern password.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name   | Description          |
-| ------- | -------------- |
-| CORRECT | The pattern password is correct.|
-| WRONG   | The pattern password is incorrect.|
+| Name   | Value   | Description          |
+| ------- | ----- | -------------- |
+| CORRECT | 1  | The pattern password is correct.|
+| WRONG   | 2  | The pattern password is incorrect.|
 
 ##  Example
 
@@ -415,4 +415,3 @@ struct PatternLockExample {
 ```
 
 ![patternlock](figures/patternlock.gif)
-<!--no_check-->

@@ -41,6 +41,7 @@
 | struct  [Camera_SmoothZoomInfo](_camera___smooth_zoom_info.md) | 平滑变焦参数信息。 | 
 | struct  [Camera_CaptureStartInfo](_camera___capture_start_info.md) | 拍照开始信息。 | 
 | struct  [Camera_FrameShutterEndInfo](_camera___frame_shutter_end_info.md) | 拍照曝光结束信息。 | 
+| struct  [Camera_ConcurrentInfo](_camera___concurrent_info.md) | 相机并发能力信息。 | 
 
 
 ### 类型定义
@@ -86,6 +87,8 @@
 | typedef struct [Camera_SmoothZoomInfo](_camera___smooth_zoom_info.md) [Camera_SmoothZoomInfo](_o_h___camera.md#camera_smoothzoominfo) | 平滑变焦参数信息。 | 
 | typedef struct [Camera_CaptureStartInfo](_camera___capture_start_info.md) [Camera_CaptureStartInfo](_o_h___camera.md#camera_capturestartinfo) | 拍照开始信息。 | 
 | typedef struct [Camera_FrameShutterEndInfo](_camera___frame_shutter_end_info.md) [Camera_FrameShutterEndInfo](_o_h___camera.md#camera_frameshutterendinfo) | 拍照曝光结束信息。 | 
+| typedef enum [Camera_ConcurrentType](_o_h___camera.md#camera_concurrenttype-1) [Camera_ConcurrentType](_o_h___camera.md#camera_concurrenttype) | 相机并发状态的枚举。 | 
+| typedef struct [Camera_ConcurrentInfo](_camera___concurrent_info.md) [Camera_ConcurrentInfo](_o_h___camera.md#camera_concurrentinfo) | 相机并发能力信息。 | 
 
 
 ### 枚举
@@ -113,6 +116,7 @@
 | [Camera_PreconfigRatio](_o_h___camera.md#camera_preconfigratio-1) {<br/>PRECONFIG_RATIO_1_1 = 0,<br/>PRECONFIG_RATIO_4_3 = 1,<br/>PRECONFIG_RATIO_16_9 = 2 } | 预配置照片比例的枚举。 | 
 | [Camera_HostDeviceType](_o_h___camera.md#camera_hostdevicetype) {<br/>HOST_DEVICE_TYPE_UNKNOWN_TYPE = 0,<br/>HOST_DEVICE_TYPE_PHONE = 0x0E,<br/>HOST_DEVICE_TYPE_TABLET = 0x11 } | 远程设备类型枚举。 | 
 | [Camera_QualityPrioritization](_o_h___camera.md#camera_qualityprioritization) { [HIGH_QUALITY](_o_h___camera.md) = 0, [POWER_BALANCE](_o_h___camera.md) = 1 } | 录像质量优先级的枚举。 | 
+| [Camera_ConcurrentType](_o_h___camera.md#camera_concurrenttype-1) {<br/>CAMERA_CONCURRENT_TYPE_LIMITED_CAPABILITY = 0,<br/>CAMERA_CONCURRENT_TYPE_FULL_CAPABILITY = 1 } | 相机并发状态的枚举。 | 
 
 
 ### 函数

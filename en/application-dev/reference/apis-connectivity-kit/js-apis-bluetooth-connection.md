@@ -41,7 +41,7 @@ Enumerates profiles of the Bluetooth device.
 | [constant.ProfileId](js-apis-bluetooth-constant.md#profileid) | Profile of the Bluetooth device.|
 
 
-## ProfileUuids
+## ProfileUuids<sup>12+</sup>
 
 type ProfileUuids = constant.ProfileUuids
 
@@ -199,7 +199,7 @@ Obtains the name of a remote Bluetooth device.
 
 | Name     | Type    | Mandatory  | Description                               |
 | -------- | ------ | ---- | --------------------------------- |
-| deviceId | string | Yes   | Address of the remote device, for example, XX:XX:XX:XX:XX:XX.|
+| deviceId | string | Yes   | Address of the peer device, for example, XX:XX:XX:XX:XX:XX.|
 
 **Return value**
 
@@ -232,11 +232,17 @@ try {
 ```
 
 
-## connection.getRemoteDeviceClass
+## connection.getRemoteDeviceName<sup>16+</sup>
 
-getRemoteDeviceClass(deviceId: string): DeviceClass
+getRemoteDeviceName(deviceId: string, alias?: boolean): string
 
-Obtains the class of a remote Bluetooth device. Since API version 16, the **ohos.permission.ACCESS_BLUETOOTH** permission is no longer verified.
+Obtains the name of the peer device. The **alias** parameter is optional.
+- If the **alias** parameter is specified, the application determines whether to obtain the alias of the peer device.
+- If the **alias** parameter is not specified, the alias of the peer device is returned by default.
+
+**Required permissions**: ohos.permission.ACCESS_BLUETOOTH
+
+**Atomic service API**: This API can be used in atomic services since API version 16.
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
@@ -244,13 +250,59 @@ Obtains the class of a remote Bluetooth device. Since API version 16, the **ohos
 
 | Name     | Type    | Mandatory  | Description                               |
 | -------- | ------ | ---- | --------------------------------- |
-| deviceId | string | Yes   | Address of the remote device, for example, XX:XX:XX:XX:XX:XX.|
+| deviceId | string | Yes   | Address of the peer device, for example, XX:XX:XX:XX:XX:XX.|
+| alias | boolean | No   | Whether to obtain the alias of the peer device. The value **true** means to obtain the alias, and the value **false** means the opposite.|
+
+**Return value**
+
+| Type    | Description           |
+| ------ | ------------- |
+| string | Device name (a string) obtained.|
+
+**Error codes**
+
+For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
+
+| ID| Error Message|
+| -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
+|801 | Capability not supported.          |
+|2900001 | Service stopped.                         |
+|2900003 | Bluetooth disabled.                 |
+|2900099 | Failed to obtain the name or alias of the peer Bluetooth device.                        |
+
+**Example**
+
+```js
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
+try {
+    let remoteDeviceName: string = connection.getRemoteDeviceName('XX:XX:XX:XX:XX:XX', true);
+} catch (err) {
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
+}
+```
+
+
+## connection.getRemoteDeviceClass
+
+getRemoteDeviceClass(deviceId: string): DeviceClass
+
+Obtains the class of a remote Bluetooth device. Since API version 18, the **ohos.permission.ACCESS_BLUETOOTH** permission is no longer verified.
+
+**System capability**: SystemCapability.Communication.Bluetooth.Core
+
+**Parameters**
+
+| Name     | Type    | Mandatory  | Description                               |
+| -------- | ------ | ---- | --------------------------------- |
+| deviceId | string | Yes   | Address of the peer device, for example, XX:XX:XX:XX:XX:XX.|
 
 **Return value**
 
 | Type                         | Description      |
 | --------------------------- | -------- |
-| [DeviceClass](#deviceclass) | Class of the remote device obtained.|
+| [DeviceClass](#deviceclass) | Class of the peer device obtained.|
 
 **Error codes**
 
@@ -469,7 +521,7 @@ Obtains the Bluetooth pairing state.
 
 | Name     | Type    | Mandatory  | Description                               |
 | -------- | ------ | ---- | --------------------------------- |
-| deviceId | string | Yes   | Address of the remote device, for example, XX:XX:XX:XX:XX:XX.|
+| deviceId | string | Yes   | Address of the peer device, for example, XX:XX:XX:XX:XX:XX.|
 
 **Return value**
 
@@ -568,7 +620,7 @@ Sets the device pairing confirmation.
 
 | Name   | Type     | Mandatory  | Description                              |
 | ------   | ------- | ---- | -------------------------------- |
-| deviceId | string  | Yes   | Address of the remote device, for example, XX:XX:XX:XX:XX:XX.|
+| deviceId | string  | Yes   | Address of the peer device, for example, XX:XX:XX:XX:XX:XX.|
 | accept   | boolean | Yes   | Whether to accept the pairing request. The value **true** means to accept the pairing request, and the value **false** means the opposite.       |
 
 **Error codes**
@@ -588,7 +640,7 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 
 ```js
 import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
-// Subscribe to the pinRequired event and configure the pairing confirmation after receiving a pairing request from the remote device.
+// Subscribe to the pinRequired event and configure the pairing confirmation after receiving a pairing request from the peer device.
 function onReceivePinRequiredEvent(data: connection.PinRequiredParam) { // data is the input parameter for the pairing request.
     console.info('pin required  = '+ JSON.stringify(data));
     connection.setDevicePairingConfirmation(data.deviceId, true);
@@ -615,7 +667,7 @@ Sets the PIN for the device when **PinType** is **PIN_TYPE_ENTER_PIN_CODE** or *
 
 | Name   | Type     | Mandatory  | Description                              |
 | ------ | ------- | ---- | -------------------------------- |
-| deviceId | string  | Yes   | MAC address of the remote device, for example, XX:XX:XX:XX:XX:XX.|
+| deviceId | string  | Yes   | MAC address of the peer device, for example, XX:XX:XX:XX:XX:XX.|
 | code   | string  | Yes   | PIN to set.       |
 | callback   | AsyncCallback&lt;void&gt;  | Yes   | Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.       |
 
@@ -661,7 +713,7 @@ Sets the PIN for the device when **PinType** is **PIN_TYPE_ENTER_PIN_CODE** or *
 
 | Name   | Type     | Mandatory  | Description                              |
 | ------ | ------- | ---- | -------------------------------- |
-| deviceId | string  | Yes   | MAC address of the remote device, for example, XX:XX:XX:XX:XX:XX.|
+| deviceId | string  | Yes   | MAC address of the peer device, for example, XX:XX:XX:XX:XX:XX.|
 | code   | string  | Yes   | PIN to set.       |
 
 **Return value**
@@ -749,7 +801,7 @@ try {
 
 setBluetoothScanMode(mode: ScanMode, duration: number): void
 
-Sets the Bluetooth scan mode so that the device can be discovered by a remote device.
+Sets the Bluetooth scan mode so that the device can be discovered by a peer device.
 
 **Required permissions**: ohos.permission.ACCESS_BLUETOOTH
 
@@ -960,8 +1012,8 @@ Sets the name of a remote Bluetooth device. This API uses a promise to return th
 
 | Name     | Type                                 | Mandatory  | Description                                    |
 | -------- | ----------------------------------- | ---- | -------------------------------------- |
-| deviceId     | string                              | Yes   | MAC address of the remote device, for example, XX:XX:XX:XX:XX:XX.|
-| name | string | Yes   | Name of the remote device to set. The name cannot exceed 64 bytes.   |
+| deviceId     | string                              | Yes   | MAC address of the peer device, for example, XX:XX:XX:XX:XX:XX.|
+| name | string | Yes   | Name of the peer device to set. The name cannot exceed 64 bytes.   |
 
 **Return value**
 
@@ -1012,7 +1064,7 @@ obtains the battery information of a remote Bluetooth device. This API uses a pr
 
 | Name   | Type     | Mandatory  | Description                              |
 | ------ | ------- | ---- | -------------------------------- |
-| deviceId | string  | Yes   | MAC address of the remote device, for example, **11:22:33:AA:BB:FF**.|
+| deviceId | string  | Yes   | MAC address of the peer device, for example, **11:22:33:AA:BB:FF**.|
 
 **Return value**
 
@@ -1393,7 +1445,7 @@ try {
 ```
 
 
-## connection.on('discoveryResult')<sup>16+</sup>
+## connection.on('discoveryResult')<sup>18+</sup>
 
 on(type: 'discoveryResult', callback: Callback&lt;Array&lt;DiscoveryResult&gt;&gt;): void
 
@@ -1408,7 +1460,7 @@ Subscribes to the Bluetooth device discovered. This API uses an asynchronous cal
 | Name     | Type                                 | Mandatory  | Description                                    |
 | -------- | ----------------------------------- | ---- | -------------------------------------- |
 | type     | string                              | Yes   | Event type. The value is **discoveryResult**, which indicates information about the Bluetooth devices discovered.|
-| callback | Callback&lt;Array&lt;[DiscoveryResult](#discoveryresult16)&gt;&gt; | Yes   | Callback used to return the discovered devices. You need to implement this callback.   |
+| callback | Callback&lt;Array&lt;[DiscoveryResult](#discoveryresult18)&gt;&gt; | Yes   | Callback used to return the discovered devices. You need to implement this callback.   |
 
 **Error codes**
 
@@ -1436,7 +1488,7 @@ try {
 ```
 
 
-## connection.off('discoveryResult')<sup>16+</sup>
+## connection.off('discoveryResult')<sup>18+</sup>
 
 off(type: 'discoveryResult', callback?: Callback&lt;Array&lt;DiscoveryResult&gt;&gt;): void
 
@@ -1451,7 +1503,7 @@ Unsubscribes from the Bluetooth device discovered.
 | Name     | Type                                 | Mandatory  | Description                                      |
 | -------- | ----------------------------------- | ---- | ---------------------------------------- |
 | type     | string                              | Yes   | Event type. The value is **discoveryResult**, which indicates information about the Bluetooth devices discovered.  |
-| callback | Callback&lt;Array&lt;[DiscoveryResult](#discoveryresult16)&gt;&gt; | No   | Callback to unregister. If this parameter is not set, this API unregisters all callbacks for the specified **type**.
+| callback | Callback&lt;Array&lt;[DiscoveryResult](#discoveryresult18)&gt;&gt; | No   | Callback to unregister. If this parameter is not set, this API unregisters all callbacks for the specified **type**.
 
 **Error codes**
 
@@ -1478,6 +1530,230 @@ try {
 }
 ```
 
+
+## connection.getLastConnectionTime<sup>15+</sup>
+
+getLastConnectionTime(deviceId: string): Promise&lt;number&gt;
+
+Obtains the timestamp of the most recent connection to the peer device. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Communication.Bluetooth.Core
+
+**Parameters**
+
+| Name   | Type     | Mandatory  | Description                              |
+| ------ | ------- | ---- | -------------------------------- |
+| deviceId | string  | Yes   | MAC address of the peer device, for example, XX:XX:XX:XX:XX:XX.|
+
+**Return value**
+
+| Type                 | Description        |
+| ------------------- | ------------- |
+| Promise&lt;number&gt; | Promise used to return the result, which is the timestamp of the most recent connection to the peer device.|
+
+**Error codes**
+
+For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
+
+| ID| Error Message|
+| -------- | ---------------------------- |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
+|801 | Capability not supported.          |
+|2900001 | Service stopped.                         |
+|2900003 | Bluetooth disabled.                 |
+|2900099 | Operation failed.                        |
+
+**Example**
+
+```js
+import { connection } from '@kit.ConnectivityKit';
+// promise
+try {
+    connection.getLastConnectionTime('11:22:33:44:55:66').then((time: number) => {
+        console.info('connectionTime: ${time}');
+    });
+} catch (err) {
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
+}
+```
+
+## connection.connectAllowedProfiles<sup>16+</sup>
+
+connectAllowedProfiles(deviceId: string, callback: AsyncCallback&lt;void&gt;): void
+
+Connects all profiles allowed for a peer device. This API uses an asynchronous callback to return the result.<br>Call **pairDevice** to initiate pairing first. This API can be called only once within 30 seconds after each pairing is initiated.<br>Recommended usage: Subscribe to UUID_VALUE common event callbacks so that the application can receive a callback upon successful pairing of a Bluetooth device. You are advised to call **connectAllowedProfiles** in this callback.
+
+**Required permissions**: ohos.permission.ACCESS_BLUETOOTH
+
+**System capability**: SystemCapability.Communication.Bluetooth.Core
+
+**Parameters**
+
+| Name    | Type   | Mandatory | Description                                |
+| -------- | ------ | ---- | ----------------------------------- |
+| deviceId | string | Yes  | Address of the peer device, for example, XX:XX:XX:XX:XX.|
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object. |
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bluetooth Error Codes](errorcode-bluetoothManager.md).
+
+| ID| Error Message|
+| -------- | ---------------------------- |
+|201     | Permission denied.                       |
+|401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                       |
+|801     | Capability not supported.                |
+|2900001 | Service stopped.                         |
+|2900003 | Bluetooth disabled.                 |
+|2900099 | Operation failed.                        |
+
+**Example**
+
+```js
+import { commonEventManager, AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
+import { connection } from '@kit.ConnectivityKit';
+// Define a subscriber to save the created subscriber object for subsequent subscription and unsubscription.
+let subscriber: commonEventManager.CommonEventSubscriber;
+// Subscriber information.
+let subscribeInfo: commonEventManager.CommonEventSubscribeInfo = {
+  events: ["usual.event.bluetooth.remotedevice.UUID_VALUE"]
+};
+// Subscribe to common event callbacks.
+function SubscribeCB(err: BusinessError, data: commonEventManager.CommonEventData) {
+  if (err) {
+    console.error(`Failed to subscribe. Code is ${err.code}, message is ${err.message}`);
+  } else {
+    console.info(`Succeeded in subscribing, data is ` + JSON.stringify(data));
+    // Before calling connectAllowedProfiles, ensure that the application has received the UUID_VALUE common event.
+    try {
+        connection.connectAllowedProfiles('68:13:24:79:4C:8C', (err: BusinessError) => {
+            if (err) {
+                console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
+                return;
+            }
+            console.info('connectAllowedProfiles, err: ' + JSON.stringify(err));
+        });
+    } catch (err) {
+        console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
+    }
+  }
+}
+// Callback for subscriber creation.
+function createCB(err: BusinessError, commonEventSubscriber: commonEventManager.CommonEventSubscriber) {
+  if(!err) {
+    console.info(`Succeeded in creating subscriber.`);
+    subscriber = commonEventSubscriber;
+    // Subscribe to common events.
+    try {
+      commonEventManager.subscribe(subscriber, SubscribeCB);
+    } catch (error) {
+      let err: BusinessError = error as BusinessError;
+      console.error(`Failed to subscribe. Code is ${err.code}, message is ${err.message}`);
+    }
+  } else {
+    console.error(`Failed to create subscriber. Code is ${err.code}, message is ${err.message}`);
+  }
+}
+
+// Create a subscriber and subscribe to the common event callbacks.
+try {
+  commonEventManager.createSubscriber(subscribeInfo, createCB);
+} catch (error) {
+  let err: BusinessError = error as BusinessError;
+  console.error(`Failed to create subscriber. Code is ${err.code}, message is ${err.message}`);
+}
+```
+
+
+## connection.connectAllowedProfiles<sup>16+</sup>
+
+connectAllowedProfiles(deviceId: string): Promise&lt;void&gt;
+
+Connects all profiles allowed for a peer device. This API uses a promise to return the result.<br>Call **pairDevice** to initiate pairing first. This API can be called only once within 30 seconds after each pairing is initiated.<br>Recommended usage: Subscribe to UUID_VALUE common event callbacks so that the application can receive a callback upon successful pairing of a Bluetooth device. You are advised to call **connectAllowedProfiles** in this callback.
+
+**Required permissions**: ohos.permission.ACCESS_BLUETOOTH
+
+**System capability**: SystemCapability.Communication.Bluetooth.Core
+
+**Parameters**
+
+| Name    | Type   | Mandatory | Description                                |
+| -------- | ------ | ---- | ----------------------------------- |
+| deviceId | string | Yes  | Address of the peer device, for example, XX:XX:XX:XX:XX.|
+
+**Return value**
+
+| Type                                            | Description              |
+| ------------------------------------------------- | ------------------- |
+| Promise&lt;void&gt; | Promise used to return the result.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bluetooth Error Codes](errorcode-bluetoothManager.md).
+
+| ID| Error Message|
+| -------- | ---------------------------- |
+|201     | Permission denied.                       |
+|401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                       |
+|801     | Capability not supported.                |
+|2900001 | Service stopped.                         |
+|2900003 | Bluetooth disabled.                 |
+|2900099 | Operation failed.                        |
+
+**Example**
+
+```js
+import { commonEventManager, AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
+import { connection } from '@kit.ConnectivityKit';
+// Define a subscriber to save the created subscriber object for subsequent subscription and unsubscription.
+let subscriber: commonEventManager.CommonEventSubscriber;
+// Subscriber information.
+let subscribeInfo: commonEventManager.CommonEventSubscribeInfo = {
+  events: ["usual.event.bluetooth.remotedevice.UUID_VALUE"]
+};
+// Subscribe to common event callbacks.
+function SubscribeCB(err: BusinessError, data: commonEventManager.CommonEventData) {
+  if (err) {
+    console.error(`Failed to subscribe. Code is ${err.code}, message is ${err.message}`);
+  } else {
+    console.info(`Succeeded in subscribing, data is ` + JSON.stringify(data));
+    // Before calling connectAllowedProfiles, ensure that the application has received the UUID_VALUE common event.
+    try {
+        connection.connectAllowedProfiles('68:13:24:79:4C:8C').then(() => {
+            console.info('connectAllowedProfiles');
+        }, (err: BusinessError) => {
+            console.error('connectAllowedProfiles:errCode' + err.code + ', errMessage: ' + err.message);
+        });
+    } catch (err) {
+        console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
+    }
+  }
+}
+// Callback for subscriber creation.
+function createCB(err: BusinessError, commonEventSubscriber: commonEventManager.CommonEventSubscriber) {
+  if(!err) {
+    console.info(`Succeeded in creating subscriber.`);
+    subscriber = commonEventSubscriber;
+    // Subscribe to common events.
+    try {
+      commonEventManager.subscribe(subscriber, SubscribeCB);
+    } catch (error) {
+      let err: BusinessError = error as BusinessError;
+      console.error(`Failed to subscribe. Code is ${err.code}, message is ${err.message}`);
+    }
+  } else {
+    console.error(`Failed to create subscriber. Code is ${err.code}, message is ${err.message}`);
+  }
+}
+
+// Create a subscriber and subscribe to the common event callbacks.
+try {
+  commonEventManager.createSubscriber(subscribeInfo, createCB);
+} catch (error) {
+  let err: BusinessError = error as BusinessError;
+  console.error(`Failed to create subscriber. Code is ${err.code}, message is ${err.message}`);
+}
+```
 
 ## BondStateParam
 
@@ -1526,7 +1802,7 @@ Represents the battery information.
 
 | Name      | Type  | Readable  | Writable  | Description         |
 | -------- | ------ | ---- | ---- | ----------- |
-| batteryLevel  | number | Yes   | No   | Battery level of the remote device. If the value is **-1**, there is no battery information.  |
+| batteryLevel  | number | Yes   | No   | Battery level of the peer device. If the value is **-1**, there is no battery information.  |
 | leftEarBatteryLevel  | number | Yes   | No   | Battery level of the left earphone. If the value is **-1**, there is no battery information.  |
 | leftEarChargeState  | [DeviceChargeState](#devicechargestate12) | Yes   | No   | Charging state of the left earphone.  |
 | rightEarBatteryLevel  | number | Yes   | No   | Battery level of the right earphone. If the value is **-1**, there is no battery information.  |
@@ -1587,9 +1863,9 @@ Enumerates the possible causes of a pairing failure.
 | Name                | Value | Description    |
 | ------------------ | ---- | ------ |
 | USER_REMOVED        | 0    | The user proactively removes the device.|
-| REMOTE_DEVICE_DOWN  | 1    | The remote device is shut down.|
+| REMOTE_DEVICE_DOWN  | 1    | The peer device is shut down.|
 | AUTH_FAILURE        | 2    | The PIN is incorrect.|
-| AUTH_REJECTED       | 3    | The remote device authentication is rejected.|
+| AUTH_REJECTED       | 3    | The peer device authentication is rejected.|
 | INTERNAL_ERROR      | 4    | Internal error.|
 
 
@@ -1606,7 +1882,7 @@ Enumerates the charging states.
 | DEVICE_SUPER_CHARGE_NOT_CHARGED        | 2    | The device is not charged and supports supercharging.|
 | DEVICE_SUPER_CHARGE_IN_CHARGING       | 3    | The device is being charged and supports supercharging.|
 
-## DiscoveryResult<sup>16+</sup>
+## DiscoveryResult<sup>18+</sup>
 
 Represents information about the discovered device.
 

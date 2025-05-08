@@ -26,7 +26,7 @@ Creates a distributed data object.
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | context | Context | Yes| Application context.<br>For details about the application context of the FA model, see [Context](../apis-ability-kit/js-apis-inner-app-context.md).<br>For details about the application context of the stage model, see [Context](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md).|
-  | source | object | Yes | Properties of the distributed data object. |
+  | source | object | Yes| Properties of the distributed data object.|
 
 **Return value**
 
@@ -126,7 +126,7 @@ Represents the information returned by the callback of [save](#save9).
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | sessionId | string | Yes| Unique ID for multi-device collaboration.|
-| version | number | Yes| Version of the distributed data object saved.|
+| version | number | Yes| Version of the saved object, which is a non-negative integer.|
 | deviceId | string | Yes| ID of the device where the distributed data object is stored. The value **local** indicates the local device.|
 
 ## RevokeSaveSuccessResponse<sup>9+</sup>
@@ -299,7 +299,7 @@ Subscribes to data changes of this distributed data object.
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | type | string | Yes| Event type. The value is **change**, which indicates data changes.|
-| callback | Function | Yes | Callback used to return the changes of the distributed data object.<br>**sessionId** indicates the session ID of the distributed data object.<br>**fields** indicates the changed properties of the distributed data object. |
+| callback | Function | Yes| Callback used to return the changes of the distributed data object.<br>**sessionId** indicates the session ID of the distributed data object.<br>**fields** indicates the changed properties of the distributed data object.|
 
 **Error codes**
 
@@ -335,7 +335,7 @@ Unsubscribes from the data changes of this distributed data object.
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | type | string | Yes| Event type. The value is **change**, which indicates data changes.|
-| callback | Function | No | Callback to unregister. If this parameter is not specified, this API unregisters all data change callbacks of this distributed data object.<br>**sessionId** indicates the session ID of the distributed data object.<br>**fields** indicates the changed properties of the distributed data object. |
+| callback | Function | No| Callback to unregister. If this parameter is not specified, this API unregisters all data change callbacks of this distributed data object.<br>**sessionId** indicates the session ID of the distributed data object.<br>**fields** indicates the changed properties of the distributed data object.|
 
 **Error codes**
 
@@ -516,11 +516,11 @@ The saved data will be released in the following cases:
 
 ```ts
 g_object.setSessionId("123456");
-g_object.save("local").then((result: distributedDataObject.SaveSuccessResponse) => {
+g_object.save("local").then((callbackInfo: distributedDataObject.SaveSuccessResponse) => {
     console.info("save callback");
-    console.info("save sessionId " + result.sessionId);
-    console.info("save version " + result.version);
-    console.info("save deviceId " + result.deviceId);
+    console.info("save sessionId " + callbackInfo.sessionId);
+    console.info("save version " + callbackInfo.version);
+    console.info("save deviceId " + callbackInfo.deviceId);
 }).catch((err: BusinessError) => {
     console.info("save failed, error code = " + err.code);
     console.info("save failed, error message: " + err.message);
@@ -815,7 +815,7 @@ Creates a distributed data object.
 
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | source | object | Yes | Properties of the distributed data object. |
+  | source | object | Yes| Properties of the distributed data object.|
 
 **Return value**
 
@@ -912,7 +912,7 @@ Subscribes to data changes of this distributed data object.
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | type | string | Yes| Event type. The value is **change**, which indicates data changes.|
-| callback | Function | Yes | Callback used to return the changes of the distributed data object.<br>**sessionId** indicates the session ID of the distributed data object.<br>**fields** indicates the changed properties of the distributed data object. |
+| callback | Function | Yes| Callback used to return the changes of the distributed data object.<br>**sessionId** indicates the session ID of the distributed data object.<br>**fields** indicates the changed properties of the distributed data object.|
 
 **Example**
 
@@ -958,7 +958,7 @@ Unsubscribes from the data changes of this distributed data object.
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | type | string | Yes| Event type. The value is **change**, which indicates data changes.|
-| callback | Function | No | Callback to unregister. If this parameter is not specified, this API unregisters all data change callbacks of this distributed data object.<br>**sessionId** indicates the session ID of the distributed data object.<br>**fields** indicates the changed properties of the distributed data object. |
+| callback | Function | No| Callback to unregister. If this parameter is not specified, this API unregisters all data change callbacks of this distributed data object.<br>**sessionId** indicates the session ID of the distributed data object.<br>**fields** indicates the changed properties of the distributed data object.|
 
 **Example**
 

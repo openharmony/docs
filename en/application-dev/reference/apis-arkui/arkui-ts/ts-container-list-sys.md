@@ -54,3 +54,5 @@ Provides the chained animation settings, which cover the maximum spacing, minimu
 | conductivity | number                                   | No   | Conductivity of the chained animations. The value range is [0,1]. A larger value indicates higher conductivity.<br>Default value: **0.7**|
 | intensity    | number                                   | No   | Intensity of the chained animations. The value range is [0,1]. A larger value indicates more obvious animations.<br>Default value: **0.3**|
 | edgeEffect   | [ChainEdgeEffect](#chainedgeeffect10)| No   | Chained animation edge scrolling effect.<br>Default value: **ChainEdgeEffect.DEFAULT**|
+| stiffness    | number                                   | No   | Stiffness of the chained animations.<br>Default value: **228**|
+| damping      | number                                   | No   | Damping of the chained animations.<br>Default value: **30**|

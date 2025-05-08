@@ -1,4 +1,4 @@
-# Hitrace
+# HiTrace
 
 
 ## Overview
@@ -40,7 +40,7 @@ HiTraceChain provides APIs for cross-thread and cross-process distributed tracin
 | typedef enum [HiTrace_Flag](#hitrace_flag) [HiTrace_Flag](#hitrace_flag) | Defines an enum for the HiTrace flags. | 
 | typedef enum [HiTrace_Tracepoint_Type](#hitrace_tracepoint_type) [HiTrace_Tracepoint_Type](#hitrace_tracepoint_type) | Defines an enum for the HiTrace tracepoint types. | 
 | typedef enum [HiTrace_Communication_Mode](#hitrace_communication_mode) [HiTrace_Communication_Mode](#hitrace_communication_mode) | Defines an enum for the HiTrace communication modes. | 
-|  typedef struct [HiTraceId](_hi_trace_id.md)**HiTraceId** |  | 
+| typedef struct [HiTraceId](_hi_trace_id.md) [HiTraceId](_hi_trace_id.md) | Defines a struct for the HiTrace ID.| 
 
 
 ### Enums
@@ -183,10 +183,10 @@ Enumerates the HiTrace communication modes.
 
 | Value| Description| 
 | -------- | -------- |
-| HITRACE_CM_DEFAULT | Unspecified<br>SysCap:<br>SystemCapability.HiviewDFX.HiTrace | 
-| HITRACE_CM_THREAD | Inter-Thread Communication<br>SysCap:<br>SystemCapability.HiviewDFX.HiTrace | 
-| HITRACE_CM_PROCESS | Inter-process communication (IPC)<br>SysCap:<br>SystemCapability.HiviewDFX.HiTrace | 
-| HITRACE_CM_DEVICE | Inter-device communication<br>SysCap:<br>SystemCapability.HiviewDFX.HiTrace | 
+| HITRACE_CM_DEFAULT | Unspecified.<br>SysCap:<br>SystemCapability.HiviewDFX.HiTrace | 
+| HITRACE_CM_THREAD | Inter-thread communication.<br>SysCap:<br>SystemCapability.HiviewDFX.HiTrace | 
+| HITRACE_CM_PROCESS | Inter-process communication (IPC).<br>SysCap:<br>SystemCapability.HiviewDFX.HiTrace | 
+| HITRACE_CM_DEVICE | Inter-device communication.<br>SysCap:<br>SystemCapability.HiviewDFX.HiTrace | 
 
 
 ### HiTrace_Flag
@@ -203,7 +203,7 @@ Enumerates the HiTrace flags.
 
 | Value| Description| 
 | -------- | -------- |
-| HITRACE_FLAG_DEFAULT | Default value<br>SysCap:<br>SystemCapability.HiviewDFX.HiTrace | 
+| HITRACE_FLAG_DEFAULT | Default value.<br>SysCap:<br>SystemCapability.HiviewDFX.HiTrace | 
 | HITRACE_FLAG_INCLUDE_ASYNC | Both synchronous and asynchronous calls are traced. By default, only synchronous calls are traced.<br>SysCap:<br>SystemCapability.HiviewDFX.HiTrace | 
 | HITRACE_FLAG_DONOT_CREATE_SPAN | Do not create a child span. By default, a child span is created.<br>SysCap:<br>SystemCapability.HiviewDFX.HiTrace | 
 | HITRACE_FLAG_TP_INFO | Trace points are automatically added to spans. By default, no trace point is added.<br>SysCap:<br>SystemCapability.HiviewDFX.HiTrace | 
@@ -295,7 +295,7 @@ This API starts tracing, creates a **HiTraceId** instance, and sets it to the TL
 
 **Returns**
 
-Generated **HitraceId**. For details, see [HiTraceId](_hi_trace_id.md).
+Returns the generated **HitraceId**. For details, see [HiTraceId](_hi_trace_id.md).
 
 
 ### OH_HiTrace_ClearId()
@@ -349,7 +349,7 @@ This API generates a new span and corresponding **HiTraceId** instance based on 
 
 **Returns**
 
-Valid span trace ID. For details, see [HiTraceId](_hi_trace_id.md). If span ID cannot be created, the ID of the calling thread is traced.
+Returns a valid span trace ID. For details, see [HiTraceId](_hi_trace_id.md). If the span ID cannot be created, the ID of the calling thread is traced.
 
 
 ### OH_HiTrace_EnableFlag()
@@ -444,7 +444,7 @@ Obtains a trace chain ID.
 
 **Returns**
 
-The trace chain ID of the specified **HiTraceId** instance.
+Returns the trace chain ID of the specified **HiTraceId** instance.
 
 
 ### OH_HiTrace_GetFlags()
@@ -467,7 +467,7 @@ Obtains the trace flags in a **HiTraceId** instance.
 
 **Returns**
 
-The trace flags set in the specified **HiTraceId** instance.
+Returns the trace flags set in the specified **HiTraceId** instance.
 
 
 ### OH_HiTrace_GetId()
@@ -486,7 +486,7 @@ Obtains the trace ID in TLS of the calling thread.
 
 **Returns**
 
-[HiTraceId](_hi_trace_id.md) of the calling thread. If the calling thread does not have a trace ID, an invalid trace ID is returned.
+Returns the [HiTraceId](_hi_trace_id.md) of the calling thread. Returns an invalid **HiTraceId** if the calling thread does not have a **HiTraceId**.
 
 
 ### OH_HiTrace_GetParentSpanId()
@@ -509,7 +509,7 @@ Obtains the parent span ID in a **HiTraceId** instance.
 
 **Returns**
 
-The parent span ID in the specified **HiTraceId** instance.
+Returns the parent span ID in the specified **HiTraceId** instance.
 
 
 ### OH_HiTrace_GetSpanId()
@@ -532,7 +532,7 @@ Obtains the span ID in a **HiTraceId** instance.
 
 **Returns**
 
-The span ID in the specified **HiTraceId** instance.
+Returns the span ID in the specified **HiTraceId** instance.
 
 
 ### OH_HiTrace_IdFromBytes()
@@ -578,7 +578,7 @@ Converts a **HiTraceId** instance into a byte array for caching or transfer.
 
 **Returns**
 
-The length of the byte array after conversion.
+Returns the length of the byte array after conversion.
 
 
 ### OH_HiTrace_InitId()

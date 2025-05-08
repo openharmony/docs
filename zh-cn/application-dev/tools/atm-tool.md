@@ -86,8 +86,8 @@ atm toggle [-h] [-u -s -i <user-id> -k <status>] [-u -o -i <user-id>]
 | 参数                                                           | 参数说明                                | 
 | ----------------------------------------------------------------- | ----------------------------------- | 
 | -h                                                     | 帮助信息。              | 
-| -u&nbsp;-s&nbsp;-i \<user-id\>&nbsp;-p \<permission-name\>&nbsp;-k \<status\> | -u、-s、-i、-k均为必选参数，在指定用户下，设置权限使用记录开关状态为status。返回是否成功。 | 
-| -u&nbsp;-o&nbsp;-i \<user-id\>&nbsp;-p \<permission-name\> | -u、-o、-i均为必选参数，在指定用户下，返回权限使用记录开关状态。 | 
+| -u&nbsp;-s&nbsp;-i \<user-id\>&nbsp;-k \<status\> | -u、-s、-i、-k均为必选参数，在指定用户下，设置权限使用记录开关状态为status。返回是否成功。 | 
+| -u&nbsp;-o&nbsp;-i \<user-id\>&nbsp; | -u、-o、-i均为必选参数，在指定用户下，返回权限使用记录开关状态。 | 
 
 示例：
 

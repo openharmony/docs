@@ -12,7 +12,7 @@ The **formInfo** module provides types and enums related to the widget informati
 import { formInfo } from '@kit.FormKit';
 ```
 
-## FormInfo
+## formInfo.FormInfo
 
 Defines the widget information.
 
@@ -28,9 +28,9 @@ Defines the widget information.
 | displayNameId<sup>11+</sup> | number               | Yes   | No    | ID of the widget name displayed during widget preview.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | description | string               | Yes   | No    | Description of the widget.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | descriptionId<sup>10+</sup>      | number               | Yes   | No    | ID of the widget description.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| type        | [FormType](#formtype)             | Yes   | No    | Type of the widget. Currently, JS and ArkTS widgets are supported.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| type        | [FormType](#forminfoformtype)             | Yes   | No    | Type of the widget. Currently, JS and ArkTS widgets are supported.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | jsComponentName      | string               | Yes   | No    | Name of the component used in the JS widget.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| colorMode  | [ColorMode](#colormode) | Yes   | No    | Color mode of the widget.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| colorMode  | [ColorMode](#forminfocolormode) | Yes   | No    | Color mode of the widget.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | isDefault    | boolean      | Yes   | No    | Whether the widget is the default one.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | updateEnabled  | boolean               | Yes   | No    | Whether the widget is updatable.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | formVisibleNotify  | boolean        | Yes   | No    | Whether to send a notification when the widget is visible.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
@@ -38,16 +38,16 @@ Defines the widget information.
 | formConfigAbility | string               | Yes   | No    | Configuration ability of the widget, that is, the ability corresponding to the option in the selection box displayed when the widget is long pressed.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | updateDuration        | number       | Yes   | No    | Update period of the widget.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | defaultDimension  | number | Yes   | No    | Widget specifications.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| supportDimensions    | Array&lt;number&gt;      | Yes   | No    | Dimensions supported by the widget. For details, see [FormDimension](#formdimension).<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| supportDimensions    | Array&lt;number&gt;      | Yes   | No    | Dimensions supported by the widget. For details, see [FormDimension](#forminfoformdimension).<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | customizeData    | Record\<string, string>      | Yes   | No    | Custom data of the widget.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | isDynamic<sup>10+</sup>      | boolean               | Yes   | No    | Whether the widget is a dynamic widget.<br>ArkTS widgets are classified into dynamic and static widgets. JS widgets are all dynamic widgets.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | transparencyEnabled<sup>11+</sup>      | boolean               | Yes   | No    | Whether the widget supports the setting of the background transparency.<br>For ArkTS widgets, the support for the background transparency setting depends on user configurations. For JS widgets, the background transparency setting is not supported.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| supportedShapes<sup>12+</sup>    | Array&lt;number&gt;      | Yes   | No    | Shapes supported by the widget. For details about the available shapes, see [FormShape<sup>12+</sup>](#formshape12).<br>**Atomic service API**: This API can be used in atomic services since API version 12. |
-| previewImages<sup>16+</sup> | Array&lt;number&gt; | Yes| No| Resource IDs of the preview images of the widget.<br>**Atomic service API**: This API can be used in atomic services since API version 16.
-| enableBlurBackground<sup>16+</sup>  | boolean               | Yes   | No    | Whether the widget uses a blur background.<br>**Atomic service API**: This API can be used in atomic services since API version 16.|
-|renderingMode<sup>16+</sup>|[RenderingMode](#renderingmode16)|Yes|No|Widget rendering mode.<br>**Atomic service API**: This API can be used in atomic services since API version 16.|
+| supportedShapes<sup>12+</sup>    | Array&lt;number&gt;      | Yes   | No    | Shapes supported by the widget. For details about the available shapes, see [FormShape<sup>12+</sup>](#forminfoformshape12).<br>**Atomic service API**: This API can be used in atomic services since API version 12. |
+| previewImages<sup>18+</sup> | Array&lt;number&gt; | Yes| No| Resource IDs of the preview images of the widget.<br>**Atomic service API**: This API can be used in atomic services since API version 18.
+| enableBlurBackground<sup>18+</sup>  | boolean               | Yes   | No    | Whether the widget uses a blur background.<br>**Atomic service API**: This API can be used in atomic services since API version 18.|
+|renderingMode<sup>18+</sup>|[RenderingMode](#forminforenderingmode18)|Yes|No|Widget rendering mode.<br>**Atomic service API**: This API can be used in atomic services since API version 18.|
 
-## FormType
+## formInfo.FormType
 
 Enumerates the widget types.
 
@@ -60,7 +60,7 @@ Enumerates the widget types.
 | JS      | 1    | JS widget.  |
 | eTS     | 2    | ArkTS widget.|
 
-## ColorMode
+## formInfo.ColorMode
 
 Enumerates the color modes supported by the widget.
 
@@ -74,7 +74,7 @@ Enumerates the color modes supported by the widget.
 | MODE_DARK    | 0   | Dark mode.  |
 | MODE_LIGHT     | 1   | Light mode.  |
 
-## FormStateInfo
+## formInfo.FormStateInfo
 
 Describes the widget state information.
 
@@ -84,10 +84,10 @@ Describes the widget state information.
 
 | Name       | Type                | Readable   | Writable   | Description                                                        |
 | ----------- | -------- | -------- | -------------------- | ------------------------------------------------------------ |
-| formState  | [FormState](#formstate)               | Yes   | No    | Widget state.                         |
+| formState  | [FormState](#forminfoformstate)               | Yes   | No    | Widget state.                         |
 | want  | [Want](../apis-ability-kit/js-apis-app-ability-want.md)         | Yes   | No    | Want text.   |
 
-##  FormState
+##  formInfo.FormState
 
 Enumerates the widget states.
 
@@ -101,7 +101,7 @@ Enumerates the widget states.
 | DEFAULT     | 0   | Default state.  |
 | READY      | 1   | Ready state.  |
 
-##  FormParam
+##  formInfo.FormParam
 
 Enumerates the widget parameters.
 
@@ -126,7 +126,7 @@ Enumerates the widget parameters.
 | FORM_PERMISSION_NAME_KEY<sup>12+</sup> | 'ohos.extra.param.key.permission_name' | Name of the permission.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | FORM_PERMISSION_GRANTED_KEY<sup>12+</sup> | 'ohos.extra.param.key.permission_granted' | Whether the permission is granted.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 
-##  FormDimension
+##  formInfo.FormDimension
 
 Enumerates the widget dimensions.
 
@@ -141,10 +141,10 @@ Enumerates the widget dimensions.
 | Dimension_2_1      | 5   | 2 x 1.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | DIMENSION_1_1<sup>11+<sup>      | 6   | 1 x 1.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | DIMENSION_6_4<sup>12+<sup>      | 7   | 6 x 4.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
-| DIMENSION_2_3<sup>14+<sup>      | 8   | 2 x 3.<br>**Atomic service API**: This API can be used for wearable devices in atomic services since API version 14.|
-| DIMENSION_3_3<sup>14+<sup>      | 9   | 3 x 3.<br>**Atomic service API**: This API can be used for wearable devices in atomic services since API version 14.|
+| DIMENSION_2_3<sup>18+<sup>      | 8   | 2 x 3.<br>**Atomic service API**: This API can be used for wearable devices in atomic services since API version 18.|
+| DIMENSION_3_3<sup>18+<sup>      | 9   | 3 x 3.<br>**Atomic service API**: This API can be used for wearable devices in atomic services since API version 18.|
 
-##  FormShape<sup>12+</sup> 
+##  formInfo.FormShape<sup>12+</sup> 
 
 Enumerates the widget shapes.
 
@@ -155,7 +155,7 @@ Enumerates the widget shapes.
 | RECT        | 1   | Rectangle.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | CIRCLE      | 2   | Circle.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 
-## FormInfoFilter
+## formInfo.FormInfoFilter
 
 Defines the widget information filter. Only the widget information that meets the filter is returned.
 
@@ -169,7 +169,7 @@ Defines the widget information filter. Only the widget information that meets th
 
 
 
-## VisibilityType
+## formInfo.VisibilityType
 
 Enumerates the visibility types of the widget.
 
@@ -184,7 +184,7 @@ Enumerates the visibility types of the widget.
 | FORM_INVISIBLE   | 2   | The widget is invisible.|
 
 
-## LaunchReason<sup>10+</sup>
+## formInfo.LaunchReason<sup>10+</sup>
 
 Enumerates the reasons for creating a widget.
 
@@ -196,11 +196,12 @@ Enumerates the reasons for creating a widget.
 | ----------- | ---- | ------------ |
 | FORM_DEFAULT | 1   | The widget is created by default.|
 | FORM_SHARE   | 2   | The widget is created for sharing.|
-## RenderingMode<sup>16+</sup>
+
+## formInfo.RenderingMode<sup>18+</sup>
 
 Enumerates the rendering modes supported by the widget.
 
-**Atomic service API**: This API can be used in atomic services since API version 16.
+**Atomic service API**: This API can be used in atomic services since API version 18.
 
 **System capability**: SystemCapability.Ability.Form
 

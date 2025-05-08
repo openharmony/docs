@@ -76,7 +76,7 @@ Provides C APIs for the multimodal input module.
 | [Input_TouchEventAction](#input_toucheventaction) { TOUCH_ACTION_CANCEL = 0, TOUCH_ACTION_DOWN = 1, TOUCH_ACTION_MOVE = 2, TOUCH_ACTION_UP = 3 } | Touch action. | 
 | [InputEvent_SourceType](#inputevent_sourcetype) { SOURCE_TYPE_MOUSE = 1, SOURCE_TYPE_TOUCHSCREEN = 2, SOURCE_TYPE_TOUCHPAD = 3 } | Event source type. | 
 | [Input_KeyboardType](#input_keyboardtype) {<br>KEYBOARD_TYPE_NONE = 0, KEYBOARD_TYPE_UNKNOWN = 1, KEYBOARD_TYPE_ALPHABETIC = 2, KEYBOARD_TYPE_DIGITAL = 3,<br>KEYBOARD_TYPE_STYLUS = 4, KEYBOARD_TYPE_REMOTE_CONTROL = 5<br>} | Keyboard type of the input device. | 
-| [Input_Result](#input_result) {<br>INPUT_SUCCESS = 0, INPUT_PERMISSION_DENIED = 201, INPUT_NOT_SYSTEM_APPLICATION = 202, INPUT_PARAMETER_ERROR = 401, INPUT_DEVICE_NOT_SUPPORTED = 801,<br>INPUT_SERVICE_EXCEPTION = 3800001, INPUT_REPEAT_INTERCEPTOR = 4200001, INPUT_OCCUPIED_BY_SYSTEM = 4200002, <br>INPUT_OCCUPIED_BY_OTHER = 4200003<br>} | Error code. | 
+| [Input_Result](#input_result) {<br>INPUT_SUCCESS = 0, INPUT_PERMISSION_DENIED = 201, INPUT_NOT_SYSTEM_APPLICATION = 202, INPUT_PARAMETER_ERROR = 401, INPUT_DEVICE_NOT_SUPPORTED = 801,<br>INPUT_SERVICE_EXCEPTION = 3800001, INPUT_KEYBOARD_DEVICE_NOT_EXIST = 3900002, INPUT_REPEAT_INTERCEPTOR = 4200001, INPUT_OCCUPIED_BY_SYSTEM = 4200002, <br>INPUT_OCCUPIED_BY_OTHER = 4200003<br>} | Error code. | 
 | [Input_KeyCode](#input_keycode) {<br>KEYCODE_UNKNOWN = -1, KEYCODE_FN = 0, KEYCODE_VOLUME_UP = 16, KEYCODE_VOLUME_DOWN = 17,<br>KEYCODE_POWER = 18, KEYCODE_CAMERA = 19, KEYCODE_VOLUME_MUTE = 22, KEYCODE_MUTE = 23,<br>KEYCODE_BRIGHTNESS_UP = 40, KEYCODE_BRIGHTNESS_DOWN = 41, KEYCODE_0 = 2000, KEYCODE_1 = 2001,<br>KEYCODE_2 = 2002, KEYCODE_3 = 2003, KEYCODE_4 = 2004, KEYCODE_5 = 2005,<br>KEYCODE_6 = 2006, KEYCODE_7 = 2007, KEYCODE_8 = 2008, KEYCODE_9 = 2009,<br>KEYCODE_STAR = 2010, KEYCODE_POUND = 2011, KEYCODE_DPAD_UP = 2012, KEYCODE_DPAD_DOWN = 2013,<br>KEYCODE_DPAD_LEFT = 2014, KEYCODE_DPAD_RIGHT = 2015, KEYCODE_DPAD_CENTER = 2016, KEYCODE_A = 2017,<br>KEYCODE_B = 2018, KEYCODE_C = 2019, KEYCODE_D = 2020, KEYCODE_E = 2021,<br>KEYCODE_F = 2022, KEYCODE_G = 2023, KEYCODE_H = 2024, KEYCODE_I = 2025,<br>KEYCODE_J = 2026, KEYCODE_K = 2027, KEYCODE_L = 2028, KEYCODE_M = 2029,<br>KEYCODE_N = 2030, KEYCODE_O = 2031, KEYCODE_P = 2032, KEYCODE_Q = 2033,<br>KEYCODE_R = 2034, KEYCODE_S = 2035, KEYCODE_T = 2036, KEYCODE_U = 2037,<br>KEYCODE_V = 2038, KEYCODE_W = 2039, KEYCODE_X = 2040, KEYCODE_Y = 2041,<br>KEYCODE_Z = 2042, KEYCODE_COMMA = 2043, KEYCODE_PERIOD = 2044, KEYCODE_ALT_LEFT = 2045,<br>KEYCODE_ALT_RIGHT = 2046, KEYCODE_SHIFT_LEFT = 2047, KEYCODE_SHIFT_RIGHT = 2048, KEYCODE_TAB = 2049,<br>KEYCODE_SPACE = 2050, KEYCODE_SYM = 2051, KEYCODE_EXPLORER = 2052, KEYCODE_ENVELOPE = 2053,<br>KEYCODE_ENTER = 2054, KEYCODE_DEL = 2055, KEYCODE_GRAVE = 2056, KEYCODE_MINUS = 2057,<br>KEYCODE_EQUALS = 2058, KEYCODE_LEFT_BRACKET = 2059, KEYCODE_RIGHT_BRACKET = 2060, KEYCODE_BACKSLASH = 2061,<br>KEYCODE_SEMICOLON = 2062, KEYCODE_APOSTROPHE = 2063, KEYCODE_SLASH = 2064, KEYCODE_AT = 2065,<br>KEYCODE_PLUS = 2066, KEYCODE_MENU = 2067, KEYCODE_PAGE_UP = 2068, KEYCODE_PAGE_DOWN = 2069,<br>KEYCODE_ESCAPE = 2070, KEYCODE_FORWARD_DEL = 2071, KEYCODE_CTRL_LEFT = 2072, KEYCODE_CTRL_RIGHT = 2073,<br>KEYCODE_CAPS_LOCK = 2074, KEYCODE_SCROLL_LOCK = 2075, KEYCODE_META_LEFT = 2076, KEYCODE_META_RIGHT = 2077,<br>KEYCODE_FUNCTION = 2078, KEYCODE_SYSRQ = 2079, KEYCODE_BREAK = 2080, KEYCODE_MOVE_HOME = 2081,<br>KEYCODE_MOVE_END = 2082, KEYCODE_INSERT = 2083, KEYCODE_FORWARD = 2084, KEYCODE_MEDIA_PLAY = 2085,<br>KEYCODE_MEDIA_PAUSE = 2086, KEYCODE_MEDIA_CLOSE = 2087, KEYCODE_MEDIA_EJECT = 2088, KEYCODE_MEDIA_RECORD = 2089,<br>KEYCODE_F1 = 2090, KEYCODE_F2 = 2091, KEYCODE_F3 = 2092, KEYCODE_F4 = 2093,<br>KEYCODE_F5 = 2094, KEYCODE_F6 = 2095, KEYCODE_F7 = 2096, KEYCODE_F8 = 2097,<br>KEYCODE_F9 = 2098, KEYCODE_F10 = 2099, KEYCODE_F11 = 2100, KEYCODE_F12 = 2101,<br>KEYCODE_NUM_LOCK = 2102, KEYCODE_NUMPAD_0 = 2103, KEYCODE_NUMPAD_1 = 2104, KEYCODE_NUMPAD_2 = 2105,<br>KEYCODE_NUMPAD_3 = 2106, KEYCODE_NUMPAD_4 = 2107, KEYCODE_NUMPAD_5 = 2108, KEYCODE_NUMPAD_6 = 2109,<br>KEYCODE_NUMPAD_7 = 2110, KEYCODE_NUMPAD_8 = 2111, KEYCODE_NUMPAD_9 = 2112, KEYCODE_NUMPAD_DIVIDE = 2113,<br>KEYCODE_NUMPAD_MULTIPLY = 2114, KEYCODE_NUMPAD_SUBTRACT = 2115, KEYCODE_NUMPAD_ADD = 2116, KEYCODE_NUMPAD_DOT = 2117,<br>KEYCODE_NUMPAD_COMMA = 2118, KEYCODE_NUMPAD_ENTER = 2119, KEYCODE_NUMPAD_EQUALS = 2120, KEYCODE_NUMPAD_LEFT_PAREN = 2121,<br>KEYCODE_NUMPAD_RIGHT_PAREN = 2122, KEYCODE_DAGGER_CLICK = 3211, KEYCODE_DAGGER_DOUBLE_CLICK = 3212, KEYCODE_DAGGER_LONG_PRESS = 3213<br>} | Key code value. | 
 
 
@@ -175,12 +175,12 @@ Provides C APIs for the multimodal input module.
 | [Input_Result](#input_result) [OH_Input_RemoveTouchEventMonitor](#oh_input_removetoucheventmonitor) ([Input_TouchEventCallback](#input_toucheventcallback) callback) | Removes the listener for touch events. | 
 | [Input_Result](#input_result) [OH_Input_RemoveAxisEventMonitorForAll](#oh_input_removeaxiseventmonitorforall) ([Input_AxisEventCallback](#input_axiseventcallback) callback) | Removes the listener for all types of axis events. | 
 | [Input_Result](#input_result) [OH_Input_RemoveAxisEventMonitor](#oh_input_removeaxiseventmonitor) ([InputEvent_AxisEventType](#inputevent_axiseventtype) axisEventType, [Input_AxisEventCallback](#input_axiseventcallback) callback) | Removes the listener for the specified type of axis events, which are defined in [InputEvent_AxisEventType](#inputevent_axiseventtype). | 
-| [Input_Result](#input_result) [OH_Input_AddKeyEventInterceptor](#oh_input_addkeyeventinterceptor) ([Input_KeyEventCallback](#input_keyeventcallback) callback, [Input_InterceptorOptions](#input_interceptoroptions) \*option) | Adds an interceptor for key events. If multiple interceptors are added, only the first one takes effect. | 
-| [Input_Result](#input_result) [OH_Input_AddInputEventInterceptor](#oh_input_addinputeventinterceptor) ([Input_InterceptorEventCallback](_input___interceptor_event_callback.md) \*callback [Input_InterceptorOptions](#input_interceptoroptions) \*option) | Adds an interceptor for input events, including mouse, touch, and axis events. If multiple interceptors are added, only the first one takes effect. | 
-| [Input_Result](#input_result) [OH_Input_RemoveKeyEventInterceptor](#oh_input_removekeyeventinterceptor) () | Removes the interceptor for key events. | 
-| [Input_Result](#input_result) [OH_Input_RemoveInputEventInterceptor](#oh_input_removeinputeventinterceptor) () | Removes the interceptor for input events, including mouse, touch, and axis events. | 
-| int32_t [OH_Input_GetIntervalSinceLastInput](#oh_input_getintervalsincelastinput) (int64_t \*timeInterval) | Obtains the interval since the last system input event. | 
-| [Input_Hotkey](#input_hotkey) \* [OH_Input_CreateHotkey](#oh_input_createhotkey) () | Creates a shortcut key object. | 
+| [Input_Result](#input_result) [OH_Input_AddKeyEventInterceptor](#oh_input_addkeyeventinterceptor) ([Input_KeyEventCallback](#input_keyeventcallback) callback, [Input_InterceptorOptions](#input_interceptoroptions) \*option) | Adds an interceptor for key events. If multiple interceptors are added, only the first one takes effect. Key events are intercepted only when the application gains focus. | 
+| [Input_Result](#input_result) [OH_Input_AddInputEventInterceptor](#oh_input_addinputeventinterceptor) ([Input_InterceptorEventCallback](_input___interceptor_event_callback.md) \*callback, [Input_InterceptorOptions](#input_interceptoroptions) \*option) | Adds an interceptor for input events, including mouse, touch, and axis events. If multiple interceptors are added, only the first one takes effect. Key events are intercepted only when the application window is hit. | 
+| [Input_Result](#input_result) [OH_Input_RemoveKeyEventInterceptor](#oh_input_removekeyeventinterceptor) (void) | Removes the interceptor for key events. | 
+| [Input_Result](#input_result) [OH_Input_RemoveInputEventInterceptor](#oh_input_removeinputeventinterceptor) (void) | Removes the interceptor for input events, including mouse, touch, and axis events. | 
+| [Input_Result](#input_result) [OH_Input_GetIntervalSinceLastInput](#oh_input_getintervalsincelastinput) (int64_t \*timeInterval) | Obtains the interval since the last system input event. | 
+| [Input_Hotkey](#input_hotkey) \* [OH_Input_CreateHotkey](#oh_input_createhotkey) (void) | Creates a shortcut key object. | 
 | void [OH_Input_DestroyHotkey](#oh_input_destroyhotkey) ([Input_Hotkey](#input_hotkey) \*\*hotkey) | Destroys a shortcut key object. | 
 | void [OH_Input_SetPreKeys](#oh_input_setprekeys) ([Input_Hotkey](#input_hotkey) \*hotkey, int32_t \*preKeys, int32_t size) | Sets the modifier key. | 
 | [Input_Result](#input_result) [OH_Input_GetPreKeys](#oh_input_getprekeys) (const [Input_Hotkey](#input_hotkey) \*hotkey, int32_t \*\*preKeys, int32_t \*preKeyCount) | Obtains the modifier key. | 
@@ -236,6 +236,12 @@ typedef void(* Input_AxisEventCallback) (const Input_AxisEvent *axisEvent)
 Defines a lifecycle callback for **axisEvent**. If the callback is triggered, **axisEvent** will be destroyed.
 
 **Since**: 12
+
+**Parameters**
+
+| Name| Description   | 
+| ------ | ------ |
+| axisEvent | Axis event object.|
 
 ### Input_DeviceAddedCallback
 
@@ -389,6 +395,11 @@ Defines a lifecycle callback for **keyEvent**. If the callback is triggered, **k
 
 **Since**: 12
 
+**Parameters**
+
+| Name|Description   | 
+| ------ | ------ |
+| keyEvent | Key event object.|
 
 ### Input_KeyState
 
@@ -460,6 +471,11 @@ Defines a lifecycle callback for **mouseEvent**. If the callback is triggered, *
 
 **Since**: 12
 
+**Parameters**
+
+| Name| Description   |
+| ------ | ------ |
+| mouseEvent | Mouse event object.|
 
 ### Input_Result
 
@@ -508,6 +524,11 @@ Defines a lifecycle callback for **touchEvent**. If the callback is triggered, *
 
 **Since**: 12
 
+**Parameters**
+
+| Name| Description   |
+| ------ | ------ |
+| touchEvent | Touch event object.|
 
 ### InputEvent_AxisAction
 
@@ -718,7 +739,7 @@ Enumerates key code values.
 | KEYCODE_F10  | F10 key| 
 | KEYCODE_F11  | F11 key| 
 | KEYCODE_F12  | F12 key| 
-| KEYCODE_NUM_LOCK  | Number Lock key| 
+| KEYCODE_NUM_LOCK  | Number Lock key on numeric keypad| 
 | KEYCODE_NUMPAD_0  | Key 0 on numeric keypad| 
 | KEYCODE_NUMPAD_1  | Key 1 on numeric keypad| 
 | KEYCODE_NUMPAD_2  | Key 2 on numeric keypad| 
@@ -739,9 +760,9 @@ Enumerates key code values.
 | KEYCODE_NUMPAD_EQUALS  | Key = on numeric keypad| 
 | KEYCODE_NUMPAD_LEFT_PAREN  | Key ( on numeric keypad| 
 | KEYCODE_NUMPAD_RIGHT_PAREN  | Key ) on numeric keypad| 
-| KEYCODE_DAGGER_CLICK  | Dagger click key on the smart watch<br>**Since**: 16| 
-| KEYCODE_DAGGER_DOUBLE_CLICK  | Dagger double-click key on the smart watch<br>**Since**: 16| 
-| KEYCODE_DAGGER_LONG_PRESS  | Dagger long-press key on the smart watch<br>**Since**: 16| 
+| KEYCODE_DAGGER_CLICK  | Dagger click key on the smart watch<br>**Since**: 18| 
+| KEYCODE_DAGGER_DOUBLE_CLICK  | Dagger double-click key on the smart watch<br>**Since**: 18| 
+| KEYCODE_DAGGER_LONG_PRESS  | Dagger long-press key on the smart watch<br>**Since**: 18| 
 
 
 ### Input_KeyEventAction
@@ -847,6 +868,7 @@ Provides the enum values of error codes.
 | INPUT_REPEAT_INTERCEPTOR  | Interceptor repeatedly created.| 
 | INPUT_OCCUPIED_BY_SYSTEM  | Occupied by a system application.<br>**Since**: API version 14| 
 | INPUT_OCCUPIED_BY_OTHER  | Occupied by other applications.<br>**Since**: API version 14| 
+| INPUT_KEYBOARD_DEVICE_NOT_EXIST | No keyboard connected.<br>**Since**: API version 15| 
 
 
 ### Input_TouchEventAction
@@ -862,10 +884,10 @@ Provides the enum values of touch actions.
 
 | Value| Description| 
 | -------- | -------- |
-| TOUCH_ACTION_CANCEL  | Cancellation of touch| 
-| TOUCH_ACTION_DOWN  | Pressing of touch| 
-| TOUCH_ACTION_MOVE  | Moving of touch| 
-| TOUCH_ACTION_UP  | Lifting of touch| 
+| TOUCH_ACTION_CANCEL  | Cancellation of touch.| 
+| TOUCH_ACTION_DOWN  | Pressing of touch.| 
+| TOUCH_ACTION_MOVE  | Moving of touch.| 
+| TOUCH_ACTION_UP  | Lifting of touch.| 
 
 
 ### InputEvent_AxisAction
@@ -937,8 +959,8 @@ Provides the enum values of mouse axis event types.
 
 | Value| Description| 
 | -------- | -------- |
-| MOUSE_AXIS_SCROLL_VERTICAL  | Vertical scroll axis| 
-| MOUSE_AXIS_SCROLL_HORIZONTAL  | Horizontal scroll axis| 
+| MOUSE_AXIS_SCROLL_VERTICAL  | Vertical scroll axis.| 
+| MOUSE_AXIS_SCROLL_HORIZONTAL  | Horizontal scroll axis.| 
 
 
 ### InputEvent_SourceType
@@ -1056,11 +1078,11 @@ INPUT_OCCUPIED_BY_OTHER if the shortcut key has been occupied by another applica
 ### OH_Input_AddInputEventInterceptor()
 
 ```
-Input_Result OH_Input_AddInputEventInterceptor (Input_InterceptorEventCallback *callback Input_InterceptorOptions * option)
+Input_Result OH_Input_AddInputEventInterceptor (Input_InterceptorEventCallback *callback, Input_InterceptorOptions * option)
 ```
 **Description**
 
-Adds an interceptor for input events, including mouse, touch, and axis events. If multiple interceptors are added, only the first one takes effect.
+Adds an interceptor for input events, including mouse, touch, and axis events. If multiple interceptors are added, only the first one takes effect. Key events are intercepted only when the application window is hit.
 
 **System capability**: SystemCapability.MultimodalInput.Input.Core
 
@@ -1097,7 +1119,7 @@ Input_Result OH_Input_AddKeyEventInterceptor (Input_KeyEventCallback callback, I
 ```
 **Description**
 
-Adds an interceptor for key events. If multiple interceptors are added, only the first one takes effect.
+Adds an interceptor for key events. If multiple interceptors are added, only the first one takes effect. Key events are intercepted only when the application gains focus.
 
 **System capability**: SystemCapability.MultimodalInput.Input.Core
 
@@ -1264,7 +1286,7 @@ OH_Input_CreateAllSystemHotkey status code, which is **INPUT_SUCCESS** if a doub
 ### OH_Input_CreateAxisEvent()
 
 ```
-Input_AxisEvent* OH_Input_CreateAxisEvent (void )
+Input_AxisEvent* OH_Input_CreateAxisEvent ( void )
 ```
 **Description**
 
@@ -1300,7 +1322,7 @@ Pointer to an [Input_DeviceInfo](#input_deviceinfo) object if the operation is s
 ### OH_Input_CreateHotkey()
 
 ```
-Input_Hotkey* OH_Input_CreateHotkey ()
+Input_Hotkey* OH_Input_CreateHotkey (void)
 ```
 **Description**
 
@@ -2086,7 +2108,7 @@ Obtains the function key status.
 ### OH_Input_GetIntervalSinceLastInput()
 
 ```
-int32_t OH_Input_GetIntervalSinceLastInput (int64_t * timeInterval)
+Input_Result OH_Input_GetIntervalSinceLastInput (int64_t * timeInterval)
 ```
 **Description**
 
@@ -2323,9 +2345,7 @@ Queries a key status enum object.
 
 **Returns**
 
-**INPUT_SUCCESS** if the operation is successful;
-
-an error code defined in [Input_Result](#input_result) otherwise.
+**Input_Result#INPUT_SUCCESS** if the operation is successful; an error code defined in [Input_Result](#input_result) otherwise.
 
 
 ### OH_Input_GetKeySwitch()
@@ -2613,7 +2633,7 @@ Checks whether to report repeated key events.
 | Name| Description| 
 | -------- | -------- |
 | hotkey | Shortcut key object. | 
-| isRepeat | Whether the reported key event is repeated. | 
+| isRepeat | Whether the reported key events is repeated. | 
 
 **Returns**
 
@@ -2972,7 +2992,7 @@ OH_Input_RemoveHotkeyMonitor status code, specifically, **INPUT_SUCCESS** if the
 ### OH_Input_RemoveInputEventInterceptor()
 
 ```
-Input_Result OH_Input_RemoveInputEventInterceptor ()
+Input_Result OH_Input_RemoveInputEventInterceptor (void)
 ```
 **Description**
 
@@ -2994,7 +3014,7 @@ ohos.permission.INTERCEPT_INPUT_EVENT
 ### OH_Input_RemoveKeyEventInterceptor()
 
 ```
-Input_Result OH_Input_RemoveKeyEventInterceptor ()
+Input_Result OH_Input_RemoveKeyEventInterceptor (void)
 ```
 **Description**
 
@@ -3613,7 +3633,7 @@ Sets the button for a mouse event.
 | Name| Description| 
 | -------- | -------- |
 | mouseEvent | Mouse event object. | 
-| button | Mouse button. | 
+| button | Enumerates mouse buttons. | 
 
 
 ### OH_Input_SetMouseEventDisplayId()

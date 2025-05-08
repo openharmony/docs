@@ -114,7 +114,7 @@ sendMessage\(options: SendMessageOptions\): void
 >
 > 从 API version 6开始支持，从API version 10开始废弃。建议使用[sendShortMessage](#smssendshortmessage10)替代。
 
-**需要权限**：ohos.permission.SEND_MESSAGES(该权限仅系统应用可申请)
+**需要权限**：ohos.permission.SEND_MESSAGES（该权限仅系统应用可申请）
 
 **系统能力**：SystemCapability.Telephony.SmsMms
 
@@ -167,7 +167,7 @@ sendShortMessage\(options: SendMessageOptions, callback: AsyncCallback&lt;void&g
 
 发送短信。使用callback异步回调。
 
-**需要权限**：ohos.permission.SEND_MESSAGES(该权限仅系统应用可申请)
+**需要权限**：ohos.permission.SEND_MESSAGES（该权限仅系统应用可申请）
 
 **系统能力**：SystemCapability.Telephony.SmsMms
 
@@ -223,7 +223,7 @@ sendShortMessage\(options: SendMessageOptions\): Promise&lt;void&gt;
 
 发送短信。使用Promise异步回调。
 
-**需要权限**：ohos.permission.SEND_MESSAGES(该权限仅系统应用可申请)
+**需要权限**：ohos.permission.SEND_MESSAGES（该权限仅系统应用可申请）
 
 **系统能力**：SystemCapability.Telephony.SmsMms
 
@@ -447,9 +447,9 @@ promise.then((data: number) => {
 
 |         名称             |                  类型                   | 必填 | 说明                                                         |
 | ------------------------ | --------------------------------------- | ---- | ------------------------------------------------------------ |
-| hasReplyPath             | boolean                                 |  是  | 收到的短信是否包含“TP-Reply-Path”，默认为false。<br/>“TP-Reply-Path”：设备根据发送SMS消息的短消息中心进行回复。  |
-| isReplaceMessage         | boolean                                 |  是  | 收到的短信是否为“替换短信”，默认为false。<br/>“替换短信”有关详细信息，参见 [“3GPP TS 23.040 9.2.3.9”](https://www.3gpp.org/ftp/specs/archive/23_series/23.040)。 |
-| isSmsStatusReportMessage | boolean                                 |  是  | 当前消息是否为“短信状态报告”，默认为false。<br/>“短信状态报告”是一种特定格式的短信，被用来从Service Center到Mobile Station传送状态报告。|
+| hasReplyPath             | boolean                                 |  是  | 收到的短信是否包含“TP-Reply-Path”，默认为false。<br/>-true：是<br/>-false：否<br/>“TP-Reply-Path”：设备根据发送SMS消息的短消息中心进行回复。  |
+| isReplaceMessage         | boolean                                 |  是  | 收到的短信是否为“替换短信”，默认为false。<br/>-true：是<br/>-false：否<br/>“替换短信”有关详细信息，参见 [“3GPP TS 23.040 9.2.3.9”](https://www.3gpp.org/ftp/specs/archive/23_series/23.040)。 |
+| isSmsStatusReportMessage | boolean                                 |  是  | 当前消息是否为“短信状态报告”，默认为false。<br/>-true：是<br/>-false：否<br/>“短信状态报告”是一种特定格式的短信，被用来从Service Center到Mobile Station传送状态报告。|
 | messageClass             | [ShortMessageClass](#shortmessageclass) |  是  | 短信类型。                                                   |
 | pdu                      | Array&lt;number&gt;                     |  是  | SMS消息中的协议数据单元 (PDU)。                            |
 | protocolId               | number                                  |  是  | 发送短信时使用的协议标识。                                   |
@@ -501,7 +501,7 @@ promise.then((data: number) => {
 
 |   名称     | 类型                            | 必填 |                                               说明                                         |
 | ---------- | ------------------------------- | ---- | ----------------------------------------------------------------------------------------- |
-| isLastPart | boolean                         | 是   | 指定这是否是长短信的最后一部分。true表示这是长短信的最后一部分，false表示不是。默认为false。 |
+| isLastPart | boolean                         | 是   | 指定这是否是长短信的最后一部分。默认为false。<br/>-true：是<br/>-false：否<br/> |
 | result     | [SendSmsResult](#sendsmsresult) | 是   | 短信发送结果。                                                                             |
 | url        | string                          | 是   | 存储发送短信的URI。                                                                        |
 

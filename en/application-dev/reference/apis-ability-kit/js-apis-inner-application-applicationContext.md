@@ -15,7 +15,7 @@ import { common } from '@kit.AbilityKit';
 
 ## Usage
 
-Before calling any APIs in **ApplicationContext**, obtain an **ApplicationContext** instance through the **context** instance.
+Before calling any APIs in **ApplicationContext**, obtain an **ApplicationContext** instance through the **Context** instance.
 
 ## ApplicationContext.on('abilityLifecycle')
 

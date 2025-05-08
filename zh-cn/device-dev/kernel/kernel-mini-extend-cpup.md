@@ -1,6 +1,5 @@
 # CPU占用率
 
-
 ## 基本概念
 
 CPU（中央处理器，Central Processing Unit）占用率分为系统CPU占用率和任务CPU占用率。
@@ -16,7 +15,6 @@ CPU（中央处理器，Central Processing Unit）占用率分为系统CPU占用
 此外开启CPUP的情况下，可选择开启中断占用率统计。
 
 **中断占用率**：是指单个中断在全部中断消耗时间的占用率。占用率的有效表示范围为0～100。100表示在一段时间内仅触发该中断。
-
 
 ## 运行机制
 
@@ -39,17 +37,16 @@ OpenHarmony  LiteOS-M提供以下两种CPU占用率的信息查询：
 
 中断占用率=单个中断运行时间/中断运行总时间
 
-
 ## 接口说明
 
   **表1** 功能列表
 
 | 功能分类 | 接口描述 |
 | -------- | -------- |
-| 获取系统CPU占用率 | &nbsp;LOS_SysCpuUsage：获取当前系统CPU占用率<br/>&nbsp;LOS_HistorySysCpuUsage：获取系统历史CPU占用率 |
-| 获取任务CPU占用率 | &nbsp;LOS_TaskCpuUsage：获取指定任务CPU占用率<br/>&nbsp;LOS_HistoryTaskCpuUsage：获取指定任务历史CPU占用率<br/>&nbsp;LOS_AllTaskCpuUsage：获取所有任务CPU占用率 |
-| 输出任务CPU占用率 | LOS_CpupUsageMonitor：输出任务历史CPU占用率 |
-| 获取中断CPU占用率 | LOS_GetAllIrqCpuUsage：获取所有中断CPU占用率 |
+| 获取系统CPU占用率 | &nbsp;LOS_SysCpuUsage：获取当前系统CPU占用率。<br/>&nbsp;LOS_HistorySysCpuUsage：获取系统历史CPU占用率。 |
+| 获取任务CPU占用率 | &nbsp;LOS_TaskCpuUsage：获取指定任务CPU占用率。<br/>&nbsp;LOS_HistoryTaskCpuUsage：获取指定任务历史CPU占用率。<br/>&nbsp;LOS_AllTaskCpuUsage：获取所有任务CPU占用率。 |
+| 输出任务CPU占用率 | LOS_CpupUsageMonitor：输出任务历史CPU占用率。 |
+| 获取中断CPU占用率 | LOS_GetAllIrqCpuUsage：获取所有中断CPU占用率。 |
 
 ## 开发流程
 
@@ -75,9 +72,7 @@ CPU占用率的典型开发流程：
    - 若CPUP已初始化，则关中断，根据不同模式正常获取，恢复中断；
    - 若CPUP未初始化或有非法入参，则返回错误码；
 
-
 ## 编程实例
-
 
 ### 实例描述
 
@@ -91,8 +86,7 @@ CPU占用率的典型开发流程：
 
 4. 获取创建的测试任务的CPUP。
 
-5. 以不同模式获取创建的测试任务的CPUP
-
+5. 以不同模式获取创建的测试任务的CPUP。
 
 ### 示例代码
 
@@ -103,7 +97,6 @@ CPU占用率的典型开发流程：
 代码实现如下：
 
 本演示代码在 ./kernel/liteos_m/testsuites/src/osTest.c 中编译验证，在TestTaskEntry中调用验证入口函数ExampleCpup。
-
 
 ```
 #include "los_task.h"
@@ -162,7 +155,6 @@ UINT32 ExampleCpup(VOID)
 }
 ```
 
-
 ### 结果验证
 
   编译运行得到的结果为：
@@ -180,5 +172,5 @@ cpu usage of the cpupTestTask in all time:
 
 exit cpup test example
 
-根据实际运行环境，上文中的数据会有差异，非固定结果
+根据实际运行环境，上文中的数据会有差异，非固定结果。
 ```

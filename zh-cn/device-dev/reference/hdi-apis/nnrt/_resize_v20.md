@@ -29,7 +29,7 @@
 | enum [ResizeMethod](_n_n_rt_v20.md#resizemethod)[method](#method) | 调整尺寸的方法，详情请参考：[ResizeMethod](_n_n_rt_v20.md#resizemethod)。  | 
 | long [newHeight](#newheight) | resize之后4维tensor的height值。  | 
 | long [newWidth](#newwidth) | resize之后4维tensor的width值。  | 
-| boolean [preserveAspectRatio](#preserveaspectratio) | 一个布尔值，指示resize操作是否保持x张量的height/width比例。  | 
+| boolean [preserveAspectRatio](#preserveaspectratio) | 一个布尔值，为true指示resize操作保持x张量的height/width比例，反之则不保持。  | 
 | enum [CoordinateTransformMode](_n_n_rt_v20.md#coordinatetransformmode)[coordinateTransformMode](#coordinatetransformmode) | 坐标变换方法，详情请参考：[CoordinateTransformMode](_n_n_rt_v20.md#coordinatetransformmode)。  | 
 | float [cubicCoeff](#cubiccoeff) | 立方系数，当method为RESIZE_METHOD_CUBIC时使用。  | 
 | long [excludeOutside](#excludeoutside) | 当excludeOutside==1时，超出x的边界的采样权重被置为0，其余权重重新归一化处理。  | 

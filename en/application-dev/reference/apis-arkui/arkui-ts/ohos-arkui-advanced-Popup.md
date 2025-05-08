@@ -38,19 +38,18 @@ Popup(options: PopupOptions): void
 
 Defines the style parameters of the popup.
 
-**Atomic service API**: This API can be used in atomic services since API version 12.
-
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 | Name       | Type      | Mandatory       | Description                           |
 | ----------- | ---------- | ------| --------------------------------- |
-| icon      | [PopupIconOptions](#popupiconoptions)                        | No  | Icon of the popup.<br>**NOTE**<br>The icon is not displayed when **size** is set to an invalid value or **0**.|
-| title     | [PopupTextOptions](#popuptextoptions)                        | No  | Title of the popup.                 |
-| message   | [PopupTextOptions](#popuptextoptions)                        | Yes  | Content of the popup.<br>**NOTE**<br>**fontWeight** is not available for **messages**.|
-| showClose | boolean \| [Resource](ts-types.md#resource)                | No  | Whether to show the close button.<br>Default value: **true**|
-| onClose   | () => void                                                   | No  | Callback for the popup close button.|
-| buttons   | [[PopupButtonOptions](#popupbuttonoptions)?,[PopupButtonOptions](#popupbuttonoptions)?] | No  | Buttons of the popup. A maximum of two buttons can be set.|
-| direction<sup>12+</sup> | [Direction](ts-appendix-enums.md#direction)                                             | No                               | Layout direction.<br>Default value: **Direction.Auto**                               |
+| icon      | [PopupIconOptions](#popupiconoptions)                        | No  | Icon of the popup.<br>**NOTE**<br>The icon is not displayed when **size** is set to an invalid value or **0**.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| title     | [PopupTextOptions](#popuptextoptions)                        | No  | Title of the popup.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| message   | [PopupTextOptions](#popuptextoptions)                        | Yes  | Content of the popup.<br>**NOTE**<br>**fontWeight** is not available for **messages**.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| showClose | boolean \| [Resource](ts-types.md#resource)                | No  | Whether to show the close button.<br>Default value: **true**<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| onClose   | () => void                                                   | No  | Callback for the popup close button.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| buttons   | [[PopupButtonOptions](#popupbuttonoptions)?,[PopupButtonOptions](#popupbuttonoptions)?] | No  | Buttons of the popup. A maximum of two buttons can be set.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| direction<sup>12+</sup> | [Direction](ts-appendix-enums.md#direction)                                             | No                               | Layout direction.<br>Default value: **Direction.Auto**<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| maxWidth<sup>18+</sup> | [Dimension](ts-types.md#dimension10)                                             | No                               | Maximum width of the popup. This API allows you to display the popup with a custom width.<br>Default value: 400 vp<br>**Atomic service API**: This API can be used in atomic services since API version 18.|
 
 ## PopupTextOptions
 
@@ -63,9 +62,9 @@ Defines the text parameters of the popup.
 | Name      | Type                                                        | Mandatory| Description        |
 | ---------- | ------------------------------------------------------------ | ---- | ------------------ |
 | text       | [ResourceStr](ts-types.md#resourcestr)                       | Yes  | Text content.    |
-| fontSize   | number \| string \| [Resource](ts-types.md#resource)         | No  | Text font size.<br>Default value: **$r('sys.float.ohos_id_text_size_body2')** |
+| fontSize   | number \| string \| [Resource](ts-types.md#resource)         | No  | Text font size.<br>Default value: **$r('sys.float.ohos_id_text_size_body2')**<br>The string value must be convertible to a number (for example, **'10'**) or include a length unit (for example, **'10px'**); percentage-based strings are not supported.<br>Value range of number values: (0, +∞)|
 | fontColor  | [ResourceColor](ts-types.md#resourcecolor)                   | No  | Text font color.<br>Default value: **$r('sys.color.ohos_id_color_text_secondary')**|
-| fontWeight | number \| [FontWeight](ts-appendix-enums.md#fontweight) \| string | No  | Text font weight.<br>Default value: **FontWeight.Regular**|
+| fontWeight | number \| [FontWeight](ts-appendix-enums.md#fontweight) \| string | No  | Text font weight.<br>For the number type, the value ranges from 100 to 900, at an interval of 100. A larger value indicates a heavier font weight. The default value is **400**.<br>For the string type, only strings of the number type are supported, for example, **"400"**, **"bold"**, **"bolder"**, **"lighter"**, **"regular"**, and **"medium"**, which correspond to the enumerated values in **FontWeight**.<br>Default value: **FontWeight.Regular**|
 
 ## PopupButtonOptions
 
@@ -84,7 +83,7 @@ Defines the button attributes and events.
 
 ##  PopupIconOptions
 
-Defines the attributes of the icon (in the upper right corner).
+Defines the attributes of the icon (in the upper left corner).
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -170,8 +169,8 @@ struct PopupExample {
 
 ![](figures/popup_7.png)
 
-### Example 2: Implementing a Mirroring Effect
-This example shows how to achieve a mirroring effect for a popup by configuring **direction**.
+### Example 2: Implementing a Mirror Effect
+This example shows how to achieve a mirror effect for a popup by configuring **direction**.
 
 ```ts
 // xxx.ets
@@ -242,3 +241,68 @@ struct PopupPage {
 ```
 
 ![](figures/popup_8.png)
+
+### Example 3: Setting the Custom Width
+This example demonstrates how to set the custom width for a popup using **maxWidth**.
+
+```ts
+// xxx.ets
+import { Popup, PopupTextOptions, PopupButtonOptions, PopupIconOptions } from '@kit.ArkUI'
+
+@Entry
+@Component
+struct PopupPage {
+  @State currentDirection: Direction = Direction.Rtl
+
+  build() {
+     Row() {
+       // Define a popup.
+       Popup({
+         // Set the custom width.
+         maxWidth:'50%',
+         // Set the icon through PopupIconOptions.
+         icon: {
+           image: $r('app.media.startIcon'),
+           width: 32,
+           height: 32,
+           fillColor: Color.White,
+           borderRadius: 16,
+         } as PopupIconOptions,
+         // Set the text through PopupTextOptions.
+         message: {
+           text: 'This is the message. This is the message. This is the message. This is the message.',
+           fontSize: 15,
+           fontColor: Color.Black
+         } as PopupTextOptions,
+         showClose: false,
+         onClose: () => {
+           console.info('close Button click')
+         },
+         // Set the button through PopupButtonOptions.
+         buttons: [{
+           text: 'OK',
+           action: () => {
+             console.info('confirm button click')
+           },
+           fontSize: 15,
+           fontColor: Color.Black,
+         },
+           {
+             text: 'Cancel',
+             action: () => {
+               console.info('cancel button click')
+             },
+             fontSize: 15,
+             fontColor: Color.Black
+           },] as [PopupButtonOptions?, PopupButtonOptions?]
+       })
+     }
+     .width(400)
+     .height(200)
+     .borderWidth(2)
+     .justifyContent(FlexAlign.Center)
+   }
+}
+```
+
+![](figures/popup_9.png)

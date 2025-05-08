@@ -56,7 +56,7 @@ typedef struct {
 ### 开发步骤
 1. 沙盒的创建方式
       - 创建system或者chipset沙盒，配置对应的system-sandbox.json或者chipset-sandbox.json文件，JSON文件配置参考: [沙盒JSON文件配置](#sandbox)。
-      - 默认情况下，服务的sandbox功能是打开的，如果不想让某个特定的服务进入沙盒，在cfg中配置sandbox ： 0。当在cfg配置sandbox ： 1，服务依进入沙盒。
+      - 默认情况下，服务的sandbox功能是开启的。如果某个特定的服务需要关闭沙盒功能，可在该服务的配置文件（cfg）中将 sandbox 设置为 0；如果服务需要开启沙盒功能，则将 sandbox 设置为 1。
         ```
         "sandbox" : 1
         ```

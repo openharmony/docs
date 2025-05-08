@@ -25,20 +25,20 @@ Toggle(options: ToggleOptions)
 
 | Name| Type| Mandatory  | Description          |
 | ---- | ---------- | -----| -------------- |
-| options | [ToggleOptions](#toggleoptions13) | Yes  | Options of the toggle.|
+| options | [ToggleOptions](#toggleoptions18) | Yes  | Options of the toggle.|
 
-## ToggleOptions<sup>13+</sup>
+## ToggleOptions<sup>18+</sup>
 
-**Widget capability**: This API can be used in ArkTS widgets since API version 13.
+**Widget capability**: This API can be used in ArkTS widgets since API version 18.
 
-**Atomic service API**: This API can be used in atomic services since API version 13.
+**Atomic service API**: This API can be used in atomic services since API version 18.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name| Type                             | Mandatory| Description                                                        |
-| ---- | --------------------------------- | ---- | ------------------------------------------------------------ |
-| type | [ToggleType](#toggletype) | Yes  | Type of the toggle.<br>Default value: **ToggleType.Switch**                  |
-| isOn | boolean                           | No  | Whether the toggle is turned on. The value **true** means that the toggle is turned on, and **false** means the opposite.<br>Default value: **false**<br>This parameter supports two-way binding through [$$](../../../quick-start/arkts-two-way-sync.md).|
+| Name             | Type                             | Mandatory| Description                                                        |
+| ----------------- | --------------------------------- | ---- | ------------------------------------------------------------ |
+| type<sup>8+</sup> | [ToggleType](#toggletype) | Yes  | Type of the toggle.<br>Default value: **ToggleType.Switch**<br>**Widget capability**: This API can be used in ArkTS widgets since API version 9.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| isOn<sup>8+</sup> | boolean                           | No  | Whether the toggle is turned on. The value **true** means that the toggle is turned on, and **false** means the opposite.<br>Default value: **false**<br>This parameter supports two-way binding through [$$](../../../ui/state-management/arkts-two-way-sync.md).<br>This parameter supports two-way binding through the [!! syntax](../../../ui/state-management/arkts-new-binding.md#two-way-binding-between-built-in-component-parameters).<br>**Widget capability**: This API can be used in ArkTS widgets since API version 9.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 
 ## ToggleType
 
@@ -48,15 +48,15 @@ Toggle(options: ToggleOptions)
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name      | Description              |
-| -------- | ---------------- |
+| Name    | Description                                                        |
+| -------- | ------------------------------------------------------------ |
 | Checkbox | Check box type.<br>**NOTE**<br>Since API version 11, the default style of the **Checkbox** component is changed from rounded square to circle.<br>The default value of the universal attribute [margin](ts-universal-attributes-size.md#margin) is as follows:<br>{<br> top: '14px',<br> right: '14px',<br> bottom: '14px',<br> left: '14px'<br> }.<br>Default size:<br>{width:'20vp', height:'20vp'}|
-| Button   | Button type. The set string, if any, will be displayed inside the button.<br>The default height is 28 vp, and there is no default width.      |
-| Switch   | Switch type.<br>**NOTE**<br>The default value of the universal attribute [margin](ts-universal-attributes-size.md) is as follows:<br>{<br> top: '6px',<br> right: '14px',<br> bottom: '6px',<br> left: '14px'<br> }.<br>Default size:<br>{width:'36vp', height:'20vp'}|
+| Button   | Button type. The set string, if any, will be displayed inside the button.<br>The default height is 28 vp, and there is no default width.|
+| Switch   | Switch type.<br>**NOTE**<br>The default value of the universal attribute [margin](ts-universal-attributes-size.md#margin) is as follows:<br>{<br> top: '6px',<br> right: '14px',<br> bottom: '6px',<br> left: '14px'<br> }.<br>Default size:<br>{width:'36vp', height:'20vp'}|
 
 ## Attributes
 
-In addition to the [universal attributes](ts-universal-attributes-size.md), the following attributes are supported.
+In addition to the [universal attributes](ts-component-general-attributes.md), the following attributes are supported.
 
 ### selectedColor
 
@@ -134,14 +134,14 @@ Creates a content modifier.
 
 | Name             | Type                                       | Mandatory| Description                                                        |
 | ----------------- | ------------------------------------------- | ---- | ------------------------------------------------------------ |
-| pointRadius       | number \|  [Resource](ts-types.md#resource) | No  | Radius of the circular slider when the component is of the **Switch** type.<br>**NOTE**<br>This parameter cannot be set in percentage. The value specified is used only when it is greater than or equal to 0.<br>If the value is not specified or the specified one is less than 0, the radius is set using the following formula:<br>(Component height (in vp)/2) - (2 vp x Component height (in vp)/20 vp)|
+| pointRadius       | number \|  [Resource](ts-types.md#resource) | No  | Radius of the circular slider when the component is of the **Switch** type. The unit is vp.<br>**NOTE**<br>This parameter cannot be set in percentage. The value specified is used only when it is greater than or equal to 0.<br>If the value is not specified or the specified one is less than 0, the radius is set using the following formula:<br>(Component height (in vp)/2) - (2 vp x Component height (in vp)/20 vp)|
 | unselectedColor   | [ResourceColor](ts-types.md#resourcecolor)  | No  | Background color of the component when it is of the **Switch** type and is disabled.<br>Default value: **0x337F7F7F**|
 | pointColor        | [ResourceColor](ts-types.md#resourcecolor)  | No  | Color of the circular slider when the component is of the **Switch** type.<br>Default value: **$r('sys.color.ohos_id_color_foreground_contrary')**|
-| trackBorderRadius | number \|  [Resource](ts-types.md#resource) | No  | Radius of the slider track border corners when the component is of the **Switch** type.<br>**NOTE**<br>This parameter cannot be set in percentage. If the value specified is less than 0, the radius is set using the default value formula. If the value specified is greater than half of the component height, the latter is used. In other cases, the value specified is used.<br>If the value is not specified or the specified one is less than 0, the radius is set using the default value formula.<br>Default value formula: Component height (in vp)/2|
+| trackBorderRadius | number \|  [Resource](ts-types.md#resource) | No  | Radius of the slider track border corners when the component is of the **Switch** type. The unit is vp.<br>**NOTE**<br>This parameter cannot be set in percentage. If the value specified is less than 0, the radius is set using the default value formula. If the value specified is greater than half of the component height, the latter is used. In other cases, the value specified is used.<br>If the value is not specified or the specified one is less than 0, the radius is set using the default value formula.<br>Default value formula: Component height (in vp)/2|
 
 ## Events
 
-In addition to the [universal events](ts-universal-events-click.md), the following events are supported.
+In addition to the [universal events](ts-component-general-events.md), the following events are supported.
 
 ### onChange
 
@@ -171,14 +171,16 @@ You need a custom class to implement the **ContentModifier** API.
 
 | Name | Type   |    Read-Only   |    Optional   |  Description             |
 | ------ | ------ | ------ |-------------------------------- |-------------------------------- |
-| isOn   | boolean| No | No| Whether the toggle is on.<br>Default value: **false**|
-| enabled | boolean | No| No| Whether the toggle is enabled.|
-| triggerChange |Callback\<boolean>| No| No|Triggers toggle status changes.|
+| isOn   | boolean| No | No| Whether the toggle is turned on.<br>Default value: **false**<br>The value **true** means that the toggle is turned on, and **false** means the opposite.|
+| enabled | boolean | No| No| Whether the toggle is enabled. When enabled, the toggle allows state switching.<br>Default value: **true**<br>The value **true** means that the toggle is enabled, and **false** means the opposite.|
+| triggerChange |Callback\<boolean>| No| No|Callback invoked when the toggle's state changes.<br>Whether the toggle is on.<br>**true**: The toggle is on. The value **true** means the state changes from off to on, and **false** means the state changes from on to off.|
 
 
 ## Example
 
-### Example 1
+### Example 1: Setting the Toggle Style
+
+This example demonstrates how to configure the style for different types of toggles (checkbox, switch, and button) using **ToggleType**.
 
 ```ts
 // xxx.ets
@@ -193,14 +195,14 @@ struct ToggleExample {
           .selectedColor('#007DFF')
           .switchPointColor('#FFFFFF')
           .onChange((isOn: boolean) => {
-            console.info('Component status:' + isOn)
+            console.info('Component status:' + isOn);
           })
 
         Toggle({ type: ToggleType.Switch, isOn: true })
           .selectedColor('#007DFF')
           .switchPointColor('#FFFFFF')
           .onChange((isOn: boolean) => {
-            console.info('Component status:' + isOn)
+            console.info('Component status:' + isOn);
           })
       }
 
@@ -210,14 +212,14 @@ struct ToggleExample {
           .size({ width: 20, height: 20 })
           .selectedColor('#007DFF')
           .onChange((isOn: boolean) => {
-            console.info('Component status:' + isOn)
+            console.info('Component status:' + isOn);
           })
 
         Toggle({ type: ToggleType.Checkbox, isOn: true })
           .size({ width: 20, height: 20 })
           .selectedColor('#007DFF')
           .onChange((isOn: boolean) => {
-            console.info('Component status:' + isOn)
+            console.info('Component status:' + isOn);
           })
       }
 
@@ -228,7 +230,7 @@ struct ToggleExample {
         }.width(106)
         .selectedColor('rgba(0,125,255,0.20)')
         .onChange((isOn: boolean) => {
-          console.info('Component status:' + isOn)
+          console.info('Component status:' + isOn);
         })
 
         Toggle({ type: ToggleType.Button, isOn: true }) {
@@ -236,7 +238,7 @@ struct ToggleExample {
         }.width(106)
         .selectedColor('rgba(0,125,255,0.20)')
         .onChange((isOn: boolean) => {
-          console.info('Component status:' + isOn)
+          console.info('Component status:' + isOn);
         })
       }
     }.width('100%').padding(24)
@@ -246,7 +248,7 @@ struct ToggleExample {
 
 ![toggle](figures/toggle.gif)
 
-### Example 2
+### Example 2: Customizing the Toggle Style
 
 This example implements a toggle of the **Switch** type with custom settings, including the radius and color of the circular slider, background color in the off state, and radius of the slider track border corners.
 
@@ -267,7 +269,7 @@ struct ToggleExample {
             pointColor: '#D2B48C',
             unselectedColor: Color.Pink })
           .onChange((isOn: boolean) => {
-            console.info('Component status:' + isOn)
+            console.info('Component status:' + isOn);
           })
 
         Toggle({ type: ToggleType.Switch, isOn: true })
@@ -278,7 +280,7 @@ struct ToggleExample {
             pointColor: '#D2B48C',
             unselectedColor: Color.Pink })
           .onChange((isOn: boolean) => {
-            console.info('Component status:' + isOn)
+            console.info('Component status:' + isOn);
           })
       }
     }.width('100%').padding(24)
@@ -288,34 +290,37 @@ struct ToggleExample {
 
 ![toggle](figures/toggleSwitchStyle.gif)
 
-### Example 3
+### Example 3: Implementing a Custom Toggle Style
 
 This example implements a toggle in a custom style. When you click the **Blue** button, the circle background turns blue. When you click the **Yellow** button, the circle background turns yellow.
 
 ```ts
 // xxx.ets
 class MySwitchStyle implements ContentModifier<ToggleConfiguration> {
-  selectedColor: Color = Color.White
+  selectedColor: Color = Color.White;
   lamp: string = 'string';
+
   constructor(selectedColor: Color, lamp: string) {
-    this.selectedColor = selectedColor
+    this.selectedColor = selectedColor;
     this.lamp = lamp;
   }
-  applyContent() : WrappedBuilder<[ToggleConfiguration]>
-  {
-    return wrapBuilder(buildSwitch)
+
+  applyContent(): WrappedBuilder<[ToggleConfiguration]> {
+    return wrapBuilder(buildSwitch);
   }
 }
-@Builder function buildSwitch(config: ToggleConfiguration) {
+
+@Builder
+function buildSwitch(config: ToggleConfiguration) {
   Column({ space: 50 }) {
     Circle({ width: 150, height: 150 })
       .fill(config.isOn ? (config.contentModifier as MySwitchStyle).selectedColor : Color.Blue)
     Row() {
-      Button('Blue '+ JSON.stringify((config.contentModifier as MySwitchStyle).lamp))
+      Button('Blue ' + JSON.stringify((config.contentModifier as MySwitchStyle).lamp))
         .onClick(() => {
           config.triggerChange(false);
         })
-      Button('Yellow '+ JSON.stringify((config.contentModifier as MySwitchStyle).lamp))
+      Button('Yellow ' + JSON.stringify((config.contentModifier as MySwitchStyle).lamp))
         .onClick(() => {
           config.triggerChange(true);
         })
@@ -328,11 +333,11 @@ class MySwitchStyle implements ContentModifier<ToggleConfiguration> {
 struct Index {
   build() {
     Column({ space: 50 }) {
-      Toggle({ type: ToggleType.Switch})
+      Toggle({ type: ToggleType.Switch })
         .enabled(true)
         .contentModifier(new MySwitchStyle(Color.Yellow, 'light'))
         .onChange((isOn: boolean) => {
-          console.info('Switch Log:' + isOn)
+          console.info('Switch Log:' + isOn);
         })
     }.height('100%').width('100%')
   }

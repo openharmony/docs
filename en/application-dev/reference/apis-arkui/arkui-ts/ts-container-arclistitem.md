@@ -4,7 +4,7 @@ The **ArcListItem** component is used to display individual child components in 
 
 > **NOTE**
 >
-> - This component is supported since API version 16. Updates will be marked with a superscript to indicate their earliest API version.
+> - This component is supported since API version 18. Updates will be marked with a superscript to indicate their earliest API version.
 > - This component can be used only as a child of [ArcList](ts-container-arclist.md).
 > - When this component is used with [LazyForEach](../../../quick-start/arkts-rendering-control-lazyforeach.md), its child components are created when it is created. When this component is used with [if/else](../../../quick-start/arkts-rendering-control-ifelse.md) or [ForEach](../../../quick-start/arkts-rendering-control-foreach.md), or when the parent component is [ArcList](ts-container-arclist.md), its child components are created when it is laid out.
 
@@ -26,13 +26,13 @@ ArcListItem()
 
 Creates an item for the **ArcList** component.
 
-**Atomic service API**: This API can be used in atomic services since API version 16.
+**Atomic service API**: This API can be used in atomic services since API version 18.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Circle
 
 ## Attributes
 
-In addition to the [universal attributes](ts-universal-attributes-size.md), the following attributes are supported.
+In addition to the [universal attributes](ts-component-general-attributes.md), the following attributes are supported.
 
 ### autoScale
 
@@ -40,7 +40,7 @@ autoScale(enable: Optional\<boolean>)
 
 Sets whether to enable auto-scaling for the **ArcListItem** component.
 
-**Atomic service API**: This API can be used in atomic services since API version 16.
+**Atomic service API**: This API can be used in atomic services since API version 18.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Circle
 
@@ -48,7 +48,7 @@ Sets whether to enable auto-scaling for the **ArcListItem** component.
 
 | Name| Type              | Mandatory| Description                                       |
 | ------ | ------------------ | ---- | ------------------------------------------- |
-| enable | Optional\<boolean> | Yes  | Whether to enable auto-scaling.<br>Default value: **true**|
+| enable | Optional\<boolean> | Yes  | Whether to enable auto-scaling.<br>**true**: Enable auto-scaling.<br>**false**: Disable auto-scaling.<br>Default value: **true**.|
 
 ### swipeAction
 
@@ -56,7 +56,7 @@ swipeAction(options: Optional\<SwipeActionOptions>)
 
 Sets the swipe action item displayed when the **ArcListItem** component is swiped out from the screen edge.
 
-**Atomic service API**: This API can be used in atomic services since API version 16.
+**Atomic service API**: This API can be used in atomic services since API version 18.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Circle
 

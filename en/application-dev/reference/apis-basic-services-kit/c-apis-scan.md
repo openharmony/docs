@@ -15,33 +15,33 @@ Enables applications to use CAPI to access scanners.
 
 | Name| Description|
 | -------- | -------- |
-| Scan_ScannerDevice | Device information of a scanner.|
-| Scan_PictureScanProgress | Image scanning progress.|
-| Scan_ScannerOptions | Scanner options.|
-| Scan_ScannerDiscoveryCallback | Callback function for scanner discovery.|
+| [Scan_ScannerDevice](#scan_scannerdevice) | Defines the device information of a scanner.|
+| [Scan_PictureScanProgress](#scan_picturescanprogress) | Defines the image scanning progress.|
+| [Scan_ScannerOptions](#scan_scanneroptions) | Defines the scanner options.|
+| [Scan_ScannerDiscoveryCallback](#scan_scannerdiscoverycallback) | Defines a callback to be invoked when a scanner is discovered.|
 
 
 ### Enums
 
 | Name| Description|
 | -------- | -------- |
-| Scan_ErrorCode | Enumerates the error codes.|
+| [Scan_ErrorCode](#scan_errorcode) | Enumerates the error codes.|
 
 
 ### Functions
 
 | Name| Description|
 | -------- | -------- |
-| OH_Scan_Init | Starts the scanning service, initializes the client, and establishes a connection with the scanning service.|
-| OH_Scan_StartScannerDiscovery | Searches for scanners and registers a callback function to process the found scanners.|
-| OH_Scan_OpenScanner | Connects to a scanner.|
-| OH_Scan_CloseScanner | Disconnects from the scanner.|
-| OH_Scan_GetScannerParameter | Obtains scanner settings.|
-| OH_Scan_SetScannerParameter | Sets the option parameters of the scanner.|
-| OH_Scan_StartScan | Starts the scanner.|
-| OH_Scan_CancelScan | Cancels scanning.|
-| OH_Scan_GetPictureScanProgress | Queries the image scanning progress.|
-| OH_Scan_Exit | Exits the scanning service and releases the client memory.|
+| [OH_Scan_Init](#oh_scan_init) | Starts the scanning service, initializes the client, and establishes a connection with the scanning service.|
+| [OH_Scan_StartScannerDiscovery](#oh_scan_startscannerdiscovery) | Searches for scanners and registers a callback function to process the found scanners.|
+| [OH_Scan_OpenScanner](#oh_scan_openscanner) | Connects to a scanner.|
+| [OH_Scan_CloseScanner](#oh_scan_closescanner) | Disconnects from the scanner.|
+| [OH_Scan_GetScannerParameter](#oh_scan_getscannerparameter) | Obtains scanner settings.|
+| [OH_Scan_SetScannerParameter](#oh_scan_setscannerparameter) | Sets the option parameters of the scanner.|
+| [OH_Scan_StartScan](#oh_scan_startscan) | Starts the scanner.|
+| [OH_Scan_CancelScan](#oh_scan_cancelscan) | Cancels scanning.|
+| [OH_Scan_GetPictureScanProgress](#oh_scan_getpicturescanprogress) | Queries the image scanning progress.|
+| [OH_Scan_Exit](#oh_scan_exit) | Exits the scanning service and releases the client memory.|
 
 
 ## Type Description
@@ -51,7 +51,7 @@ Enables applications to use CAPI to access scanners.
 
 **Description**
 
-Device information of a scanner.
+Defines the device information of a scanner.
 
 **Since**: 12
 
@@ -60,43 +60,43 @@ Device information of a scanner.
 | scannerId    | Scanner ID.|
 | manufacturer | Manufacturer.  |
 | model        | Device model.|
-| discoverMode | Device discovery mode|
+| discoverMode | Device discovery mode.|
 | serialNumber | Serial number.  |
 
 ### Scan_PictureScanProgress
 
 **Description**
 
-Image scanning progress.
+Defines the image scanning progress.
 
 **Since**: 12
 
 | Member    | Description                   |
 | -------- | ----------------------- |
 | progress | Image scanning progress. The value ranges from 0 to 100.|
-| fd       | Image handle.           |
+| fd       | Image file handle.           |
 | isFinal  | Whether the next image is available.       |
 
 ### Scan_ScannerOptions
 
 **Description**
 
-Scanner options.
+Defines the scanner options.
 
 **Since**: 12
 
 | Member        | Description        |
 | ------------ | ------------ |
-| titles       | Option title.    |
-| descriptions | Option description.|
-| ranges       | Option range.    |
+| titles       | Option titles.    |
+| descriptions | Descriptions of options.|
+| ranges       | Option ranges.    |
 | optionCount  | Number of options.    |
 
 ### Scan_ScannerDiscoveryCallback
 
 **Description**
 
-Callback function for scanner discovery.
+Defines a callback to be invoked when a scanner is discovered.
 
 **Since**: 12
 

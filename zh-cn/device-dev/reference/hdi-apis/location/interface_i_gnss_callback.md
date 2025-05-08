@@ -3,7 +3,7 @@
 
 ## 概述
 
-声明获取定位结果回调、获取GNSS模块工作状态回调、获取nmea回调、获取GNSS能力回调、 获取卫星状态信息回调、批量获取缓存位置回调、请求上层注入参考信息回调、 请求上层注入PGNSS数据回调。
+声明获取定位结果回调、获取GNSS模块工作状态回调、获取nmea回调、获取GNSS能力回调、获取卫星状态信息回调、批量获取缓存位置回调、请求上层注入参考信息回调、请求上层注入PGNSS数据回调。
 
 **起始版本：** 3.2
 
@@ -47,7 +47,7 @@ IGnssCallback::ReportCachedLocation ([in] struct LocationInfo[] gnssLocations)
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| gnssLocations | 表示GNSS芯片缓存的所有位置信息。详情参考[LocationInfo](_location_info.md)。 | 
+| gnssLocations | 表示GNSS芯片缓存的所有位置信息，详情参考[LocationInfo](_location_info.md)。 | 
 
 **返回：**
 
@@ -71,7 +71,7 @@ IGnssCallback::ReportGnssCapabilities ([in] enum GnssCapabilities capabilities)
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| capabilities | 表示GNSS的能力。详情参考[GnssCapabilities](_hdi_gnss.md#gnsscapabilities)。 | 
+| capabilities | 表示GNSS的能力，详情参考[GnssCapabilities](_hdi_gnss.md#gnsscapabilities)。 | 
 
 **返回：**
 

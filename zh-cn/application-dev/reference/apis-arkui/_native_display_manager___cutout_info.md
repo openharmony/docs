@@ -11,6 +11,7 @@
 
 **相关模块：**[OH_DisplayManager](_o_h___display_manager.md)
 
+**所在头文件：** [oh_display_info.h](oh__display__info_8h.md)
 
 ## 汇总
 

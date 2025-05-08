@@ -335,7 +335,7 @@ For details about the error codes, see [ohos.i18n Error Codes](errorcode-i18n.md
   ```
 
 
-### setTemperatureType<sup>16+</sup>
+### setTemperatureType<sup>18+</sup>
 
 static setTemperatureType(type: TemperatureType): void
 
@@ -351,7 +351,7 @@ Sets the preferred temperature unit for users.
 
 | Name | Type     | Mandatory  | Description                             |
 | ---- | ------- | ---- | ------------------------------- |
-| type | [TemperatureType](./js-apis-i18n.md#temperaturetype16) | Yes| Temperature unit.|
+| type | [TemperatureType](./js-apis-i18n.md#temperaturetype18) | Yes| Temperature unit.|
 
 **Error codes**
 
@@ -380,7 +380,7 @@ For details about the error codes, see [ohos.i18n Error Codes](errorcode-i18n.md
   }
   ```
 
-### setFirstDayOfWeek<sup>16+</sup>
+### setFirstDayOfWeek<sup>18+</sup>
 
 static setFirstDayOfWeek(type: WeekDay): void
 
@@ -396,7 +396,7 @@ Sets the preferred start day of a week for users.
 
 | Name | Type     | Mandatory  | Description                             |
 | ---- | ------- | ---- | ------------------------------- |
-| type | [WeekDay](./js-apis-i18n.md#weekday16) | Yes| Start day of a week.|
+| type | [WeekDay](./js-apis-i18n.md#weekday18) | Yes| Start day of a week.|
 
 **Error codes**
 
@@ -644,5 +644,5 @@ Represents the language or country/region sorting option.
 | Name           | Type           |  Mandatory|   Description                                |
 | --------------- | --------------- | ---- | --------------------------------------- |
 | locale          | string          |  No | [Locale information](../../internationalization/i18n-locale-culture.md#how-it-works), which consists of the language, script, and country/region, for example, **zh-Hans-CN**.<br>The default value of **locale** is the system locale.   |
-| isUseLocalName  | boolean         |  No | Whether to use the local name for sorting.<br>If **getLanguageInfoArray** is called, the default value of **isUseLocalName** is **true**.<br>If **getRegionInfoArray** is called, the default value of **isUseLocalName** is **false**.               |
-| isSuggestedFirst | boolean        |  No | Whether to move the recommended language or country/region to the top in the sorting result.<br>The default value of **isSuggestedFirst** is **true**. |
+| isUseLocalName  | boolean         |  No | Whether to use the local name for sorting. The value **true** means to use the local name for sorting, and the value **false** means the opposite.<br>If **getLanguageInfoArray** is called, the default value of **isUseLocalName** is **true**.<br>If **getRegionInfoArray** is called, the default value of **isUseLocalName** is **false**.               |
+| isSuggestedFirst | boolean        |  No | Whether to move the recommended language or country/region to the top in the sorting result. The value **true** means to move the recommended language or country/region to the top, and the value **false** means the opposite.<br>The default value of **isSuggestedFirst** is **true**. |

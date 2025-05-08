@@ -1,28 +1,33 @@
-# Globalization<a name="EN-US_TOPIC_0000001115837954"></a>
+# Globalization Subsystem<a name="ZH-CN_TOPIC_0000001115837954"></a>
+
+-   [Introduction](#section11660541593)
+-   [Architecture] (#section1558604311012)
+-   [Directory Structure](#section161941989596)
+-   [Repositories Involved](#section1371113476307)
 
 ## Introduction<a name="section11660541593"></a>
 
-If OpenHarmony devices and applications need to be used globally, they must meet the requirements of users in different regions on languages and cultures. The Globalization subsystem provides the multi-language and multi-cultural capabilities for global use, including:
+If OpenHarmony systems or applications need to be used globally, they must meet the requirements of users in different regions on languages and cultures. The Globalization subsystem provides the multi-language and multi-cultural capabilities for global use, including:
 
 -   **Resource management**
 
-    The subsystem loads, parses, and initializes system and application resources based on device types and system configurations, and provides APIs for obtaining resources such as character strings and media files.
+    The module loads, parses, and initializes system and application resources based on device types and system configurations, and provides APIs for obtaining resources such as character strings and media files.
 
--   **Internationalization \(i18n\)**
+-   **Internationalization (i18n)**
 
     The subsystem provides the bottom-layer resource backtracking capabilities, with a wide array of i18n APIs for implementing functions such as date/time formatting, number formatting, phone number formatting, and singular-plural formatting.
 
 
 ## Architecture<a name="section1558604311012"></a>
 
-**Figure 1** Architecture of the globalization subsystem<a name="fig1687592425010"></a>
+**Figure 1** Architecture of the globalization subsystem<a name="fig87184592416"></a> 
 
 
 ![](figures/architecture-of-the-globalization-subsystem.png "architecture-of-the-globalization-subsystem")
 
 ## Directory Structure<a name="section161941989596"></a>
 
-The source code of the Globalization subsystem is stored in the  **/base/global**  directory.
+The source code of the Globalization subsystem is stored in the **/base/global** directory.
 
 The directory structure of the Globalization subsystem for the mini and small systems is as follows:
 
@@ -51,7 +56,7 @@ The directory structure of the Globalization subsystem for the standard system i
 
 ```
 /base/global
-├── i18n           # Code repository for the i18n framework
+├── i18n_standard           # Code repository for the i18n framework
 │   ├── frameworks          # Core code of the i18n framework
 │   ├── interfaces          # APIs
 │   │   ├── js              # JavaScript APIs
@@ -59,8 +64,8 @@ The directory structure of the Globalization subsystem for the standard system i
 ├── resmgr_standard         # Code repository for the Resmgr module
 │   ├── frameworks          # Core code
 │   │   ├── resmgr          # Resource parsing code
-│   │   │   ├── include     # Header files
-│   │   │   ├── src         # Implementation code
+│   │   │   ├── include     # Header files 
+│   │   │   ├── src         # Implementation code 
 │   │   │   └── test        # Test code
 │   ├── interfaces          # APIs
 │   │   ├── innerkits       # APIs for internal subsystems
@@ -69,7 +74,7 @@ The directory structure of the Globalization subsystem for the standard system i
 
 ## Repositories Involved<a name="section1371113476307"></a>
 
-**Globalization subsystem**
+Globalization subsystem
 
 [global\_i18n\_lite](https://gitee.com/openharmony/global_i18n_lite)
 
@@ -78,4 +83,3 @@ The directory structure of the Globalization subsystem for the standard system i
 [global\_resmgr\_lite](https://gitee.com/openharmony/global_resmgr_lite)
 
 [global\_resmgr\_standard](https://gitee.com/openharmony/global_resmgr_standard)
-

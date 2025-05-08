@@ -465,15 +465,30 @@ struct SnapshotExample {
 | ---------------|------------     | -----------------------------| -----------------------------|
 | scale           | number | No| Scale ratio for rendering pixel maps during a snapshot. Note that a high scale ratio may increase the time taken for the snapshot or even result in a snapshot failure.<br> Default value: **1**<br>**NOTE**<br>Avoid capturing images that are excessively large, ideally not larger than the screen size. If the size of the image to capture exceeds device-specific underlying limits, the capture will fail.   |
 | waitUntilRenderFinished    | boolean | No| Whether to force the system to wait for all rendering commands to complete before taking the snapshot. This option ensures the snapshot reflects the most up-to-date content and should be enabled whenever possible. Note that enabling this option may increase the time required for the snapshot to complete, which depends on the size of the area that needs to be redrawn at the time.<br>Default value: **false**        |
-| region<sup>16+</sup> | [SnapshotRegion](#snapshotregion16)\|[LocalizedSnapshotRegion ](#localizedsnapshotregion16) | No| Rectangular region for the snapshot. The default region is the entire component.<br>If **LocalizedSnapshotRegion** is used, the region will be horizontally flipped based on the layout direction. Specifically, for RTL layouts, the specified region will be mirrored to accommodate the RTL direction.|
+| region<sup>15+</sup> | [SnapshotRegionType](#snapshotregiontype15) | No| Rectangular region for the snapshot. The default region is the entire component.|
 
-## SnapshotRegion<sup>16+</sup>
+## SnapshotRegionType<sup>15+</sup>
+
+type SnapshotRegionType =  SnapshotRegion | LocalizedSnapshotRegion
+
+Represents the region of a component to be captured in a snapshot. It can take one of the types listed in the table below.
+
+**Atomic service API**: This API can be used in atomic services since API version 15.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Type  | Description  |
+| ------ | ------ |
+| [SnapshotRegion](#snapshotregion15) | Rectangular region for capturing the component snapshot.|
+| [LocalizedSnapshotRegion ](#localizedsnapshotregion15) | Rectangular region for capturing the component snapshot, with horizontal flipping based on the layout direction. If the layout direction is right-to-left (RTL), the specified region is flipped horizontally to accommodate the RTL layout.|
+
+## SnapshotRegion<sup>15+</sup>
 
 Defines the rectangular region for capturing the component snapshot.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Atomic service API**: This API can be used in atomic services since API version 16.
+**Atomic service API**: This API can be used in atomic services since API version 15.
 
 | Name  | Type  | Mandatory| Description                                   |
 | ------ | ------ | ---- | --------------------------------------- |
@@ -482,13 +497,13 @@ Defines the rectangular region for capturing the component snapshot.
 | right  | number | Yes  | X-coordinate of the lower right corner of the rectangular region, in px.|
 | bottom | number | Yes  | Y-coordinate of the lower right corner of the rectangular region, in px.|
 
-## LocalizedSnapshotRegion<sup>16+</sup>
+## LocalizedSnapshotRegion<sup>15+</sup>
 
 Defines the rectangular region for capturing the component snapshot, with coordinates adjusted based on the layout direction (LTR or RTL).
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Atomic service API**: This API can be used in atomic services since API version 16.
+**Atomic service API**: This API can be used in atomic services since API version 15.
 
 | Name  | Type  | Mandatory| Description                                                        |
 | ------ | ------ | ---- | ------------------------------------------------------------ |

@@ -20,9 +20,7 @@ import { bundleManager } from '@kit.AbilityKit';
 
 For details about the APL, see [Basic Concepts in the Permission Mechanism](../../security/AccessToken/app-permission-mgmt-overview.md#basic-concepts-in-the-permission-mechanism).
 
-## Enums
-
-### BundleFlag
+## BundleFlag
 
 Enumerates the bundle flags, which indicate the type of bundle information to obtain.
 
@@ -43,7 +41,7 @@ Enumerates the bundle flags, which indicate the type of bundle information to ob
 | GET_BUNDLE_INFO_WITH_ROUTER_MAP<sup>12+</sup> | 0x00000200 | Used to obtain the bundle information with the router map. It must be used together with **GET_BUNDLE_INFO_WITH_HAP_MODULE**.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | GET_BUNDLE_INFO_WITH_SKILL<sup>12+</sup>      | 0x00000800 | Used to obtain the bundle information with the skills. It must be used together with **GET_BUNDLE_INFO_WITH_HAP_MODULE**, **GET_BUNDLE_INFO_WITH_ABILITY**, and **GET_BUNDLE_INFO_WITH_EXTENSION_ABILITY**.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 
-### ExtensionAbilityType
+## ExtensionAbilityType
 
 Enumerates the types of ExtensionAbilities.
 
@@ -54,30 +52,31 @@ Enumerates the types of ExtensionAbilities.
 | FORM             | 0   | [FormExtensionAbility](../apis-form-kit/js-apis-app-form-formExtensionAbility.md): provides APIs for widget development.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | WORK_SCHEDULER   | 1   | [WorkSchedulerExtensionAbility](../apis-backgroundtasks-kit/js-apis-WorkSchedulerExtensionAbility.md): enables applications to execute non-real-time tasks when the system is idle.|
 | INPUT_METHOD     | 2   | [InputMethodExtensionAbility](../apis-ime-kit/js-apis-inputmethod-extension-ability.md): provides APIs for developing input method applications.|
-| SERVICE          | 3   | <!--Del-->[<!--DelEnd-->ServiceExtensionAbility<!--Del-->](js-apis-app-ability-serviceExtensionAbility-sys.md)<!--DelEnd-->: enables applications to run in the background and provide services.|
+|<!--DelRow--> SERVICE          | 3   | [ServiceExtensionAbility](js-apis-app-ability-serviceExtensionAbility-sys.md): enables applications to run in the background and provide services.|
 | ACCESSIBILITY    | 4   | <!--RP1-->[AccessibilityExtensionAbility](../apis-accessibility-kit/js-apis-application-accessibilityExtensionAbility.md)<!--RP1End-->: provides accessibility for access to and operations on the UI.|
-| DATA_SHARE       | 5   | <!--Del-->[<!--DelEnd-->DataShareExtensionAbility <!--Del-->](../apis-arkdata/js-apis-application-dataShareExtensionAbility-sys.md)<!--DelEnd-->: enables applications to read and write data.|
-| FILE_SHARE       | 6   | FileShareExtensionAbility: enables file sharing between applications. This ability is reserved and supported only by system applications.|
-| STATIC_SUBSCRIBER| 7   | <!--Del-->[<!--DelEnd-->StaticSubscriberExtensionAbility <!--Del-->](../apis-basic-services-kit/js-apis-application-staticSubscriberExtensionAbility-sys.md)<!--DelEnd-->: provides APIs for processing static events, such as the startup event.|
-| WALLPAPER        | 8   | WallpaperExtensionAbility: provides APIs to implement the home screen wallpaper. This ability is reserved and supported only by system applications.|
+|<!--DelRow--> DATA_SHARE       | 5   | [DataShareExtensionAbility](../apis-arkdata/js-apis-application-dataShareExtensionAbility-sys.md): enables applications to read and write data.|
+|<!--DelRow--> FILE_SHARE       | 6   | FileShareExtensionAbility: enables file sharing between applications. This ability is reserved and supported only by system applications.|
+|<!--DelRow--> STATIC_SUBSCRIBER| 7   | [StaticSubscriberExtensionAbility](../apis-basic-services-kit/js-apis-application-staticSubscriberExtensionAbility-sys.md): provides APIs for processing static events, such as the startup event.|
+|<!--DelRow--> WALLPAPER        | 8   | WallpaperExtensionAbility: provides APIs to implement the home screen wallpaper. This ability is reserved and supported only by system applications.|
 | BACKUP           |  9  | [BackupExtensionAbility](../apis-core-file-kit/js-apis-application-backupExtensionAbility.md): provides APIs to implement application data backup and restore.|
-| WINDOW           |  10 | <!--Del-->[<!--DelEnd-->WindowExtensionAbility<!--Del-->](../apis-arkui/js-apis-application-windowExtensionAbility-sys.md)<!--DelEnd-->: allows system applications to display UIs of other applications.|
+|<!--DelRow--> WINDOW     |  10 | [WindowExtensionAbility](../apis-arkui/js-apis-application-windowExtensionAbility-sys.md): allows system applications to display UIs of other applications.|
 | ENTERPRISE_ADMIN |  11 | [EnterpriseAdminExtensionAbility](../apis-mdm-kit/js-apis-EnterpriseAdminExtensionAbility.md): provides APIs for processing enterprise management events, such as application installation events on devices and events indicating too many incorrect screen-lock password attempts.|
-| THUMBNAIL        | 13  | ThumbnailExtensionAbility: provides thumbnails for files. This ability is reserved and supported only by system applications.|
-| PREVIEW          | 14  | PreviewExtensionAbility: provides APIs for file preview so that other applications can be embedded and displayed in the current application. This ability is reserved and supported only by system applications.|
-| PRINT<sup>10+</sup> | 15 | PrintExtensionAbility: provides APIs for printing images. This ability is supported only by system applications.|
+|<!--DelRow--> THUMBNAIL        | 13  | ThumbnailExtensionAbility: provides thumbnails for files. This ability is reserved and supported only by system applications.|
+|<!--DelRow--> PREVIEW          | 14  | PreviewExtensionAbility: provides APIs for file preview so that other applications can be embedded and displayed in the current application. This ability is reserved and supported only by system applications.|
+|<!--DelRow--> PRINT<sup>10+</sup> | 15 | PrintExtensionAbility: provides APIs for printing images. This ability is supported only by system applications.|
 | SHARE<sup>10+</sup> | 16 | [ShareExtensionAbility](js-apis-app-ability-shareExtensionAbility.md): provides sharing service templates based on UIExtensionAbilities.|
-| PUSH<sup>10+</sup> | 17 | PushExtensionAbility: provides APIs for pushing scenario-specific messages. This ability is reserved and supported only by system applications.|
-| DRIVER<sup>10+</sup> | 18 | [DriverExtensionAbility](../apis-driverdevelopment-kit/js-apis-app-ability-driverExtensionAbility.md): provides APIs for the peripheral driver. This ability is supported only by system applications.|
+|<!--DelRow--> PUSH<sup>10+</sup> | 17 | PushExtensionAbility: provides APIs for pushing scenario-specific messages. This ability is reserved and supported only by system applications.|
+|<!--DelRow--> DRIVER<sup>10+</sup> | 18 | [DriverExtensionAbility](../apis-driverdevelopment-kit/js-apis-app-ability-driverExtensionAbility.md): provides APIs for the peripheral driver. This ability is supported only by system applications.|
 | ACTION<sup>10+</sup> | 19 | [ActionExtensionAbility](js-apis-app-ability-actionExtensionAbility.md): provides custom action service templates based on UIExtensionAbilities.|
-| ADS_SERVICE<sup>11+</sup> | 20 | AdsServiceExtensionAbility: provides background customized ad services for external systems. This ability is supported only by system applications.|
+|<!--DelRow--> ADS_SERVICE<sup>11+</sup> | 20 | AdsServiceExtensionAbility: provides background customized ad services for external systems. This ability is supported only by system applications.|
 | EMBEDDED_UI<sup>12+</sup> | 21 | [EmbeddedUIExtensionAbility](js-apis-app-ability-embeddedUIExtensionAbility.md): provides ExtensionAbilities for the embeddable UI across process.|
 | INSIGHT_INTENT_UI<sup>12+</sup> | 22 | **InsightIntentUIExtensionAbility**: provides APIs that enable applications to be called by Celia intents so as to be displayed in windows.|
-| ASSET_ACCELERATION<sup>16+</sup> | 26 | **AssetAccelerationExtensionAbility**: provides the capability of pre-downloading background resources when the device is idle.|
+| ASSET_ACCELERATION<sup>18+</sup> | 26 | **AssetAccelerationExtensionAbility**: provides the capability of pre-downloading background resources when the device is idle.|
+| DISTRIBUTED<sup>18+</sup> | 28 | [DistributedExtensionAbility](../apis-distributedservice-kit/js-apis-distributedExtensionAbility.md): provides DistributedExtensionAbility capabilities and lifecycle callbacks for creation, destruction, and connection of DistributedExtensionAbilities.|
 | UNSPECIFIED      | 255 | No type is specified. It is used together with **queryExtensionAbilityInfo** to query all types of ExtensionAbilities.|
 
 
-### PermissionGrantState
+## PermissionGrantState
 
 Enumerates the permission grant states.
 
@@ -90,7 +89,7 @@ Enumerates the permission grant states.
 | PERMISSION_DENIED|  -1 | Permission denied.|
 | PERMISSION_GRANTED |  0  |  Permission granted. |
 
-### SupportWindowMode
+## SupportWindowMode
 
 Enumerates the window modes supported by the ability.
 
@@ -104,7 +103,7 @@ Enumerates the window modes supported by the ability.
 | SPLIT            | 1   | A window in split-screen mode is supported.|
 | FLOATING         | 2   | A floating window is supported.  |
 
-### LaunchType
+## LaunchType
 
 Enumerates the launch types of the ability.
 
@@ -118,7 +117,7 @@ Enumerates the launch types of the ability.
 | MULTITON         | 1   | The ability can have multiple instances.|
 | SPECIFIED        | 2   | The ability can have one or multiple instances, depending on the internal service of the ability.|
 
-### AbilityType
+## AbilityType
 
 Enumerates the types of abilities.
 
@@ -132,7 +131,7 @@ Enumerates the types of abilities.
 | SERVICE | 2    | Ability of the background service type, without the UI. PA developed using the Service template to provide the capability of running tasks in the background. |
 |  DATA   | 3    | PA developed using the Data template to provide unified data access for external systems.|
 
-### DisplayOrientation
+## DisplayOrientation
 
 Enumerates the display orientations of the ability. This property applies only to the ability using the Page template.
 
@@ -156,7 +155,7 @@ Enumerates the display orientations of the ability. This property applies only t
 | AUTO_ROTATION_UNSPECIFIED<sup>12+</sup> |13|Auto rotation controlled by the switch and determined by the system.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | FOLLOW_DESKTOP<sup>12+</sup> |14|Following the orientation of the home screen.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 
-### CompatiblePolicy<sup>10+</sup>
+## CompatiblePolicy<sup>10+</sup>
 
 Defines the version compatibility type of the shared library.
 
@@ -168,7 +167,7 @@ Defines the version compatibility type of the shared library.
 | ---------------------- | ---- | -------------------------------- |
 | BACKWARD_COMPATIBILITY | 1    | The shared library is backward compatible.|
 
-### ModuleType
+## ModuleType
 
 Enumerates the module types.
 
@@ -182,7 +181,7 @@ Enumerates the module types.
 | FEATURE | 2    | Dynamic feature module of the application.|
 | SHARED  | 3    | Dynamic shared library module of the application. |
 
-### BundleType
+## BundleType
 
 Enumerates the bundle types.
 
@@ -195,7 +194,7 @@ Enumerates the bundle types.
 | APP            | 0    | The bundle is an application.   |
 | ATOMIC_SERVICE | 1    | The bundle is an atomic service.|
 
-### MultiAppModeType<sup>12+</sup>
+## MultiAppModeType<sup>12+</sup>
 Enumerates the types of the multi-app mode.
 
  **System capability**: SystemCapability.BundleManager.BundleFramework.Core
@@ -206,9 +205,7 @@ Enumerates the types of the multi-app mode.
 | MULTI_INSTANCE |  1  | Multiton mode. A resident process does not support this value. |
 | APP_CLONE |  2  |  App clone mode. |
 
-## APIs
-
-### bundleManager.getBundleInfoForSelf
+## bundleManager.getBundleInfoForSelf
 
 getBundleInfoForSelf(bundleFlags: number): Promise\<BundleInfo>
 
@@ -260,7 +257,7 @@ try {
 }
 ```
 
-### bundleManager.getBundleInfoForSelf
+## bundleManager.getBundleInfoForSelf
 
 getBundleInfoForSelf(bundleFlags: number, callback: AsyncCallback\<BundleInfo>): void
 
@@ -309,7 +306,7 @@ try {
 }
 ```
 
-### bundleManager.getProfileByAbility
+## bundleManager.getProfileByAbility
 
 getProfileByAbility(moduleName: string, abilityName: string, metadataName: string, callback: AsyncCallback\<Array\<string\>\>): void
 
@@ -370,7 +367,7 @@ try {
 }
 ```
 
-### bundleManager.getProfileByAbility
+## bundleManager.getProfileByAbility
 
 getProfileByAbility(moduleName: string, abilityName: string, metadataName?: string): Promise\<Array\<string\>\>
 
@@ -456,7 +453,7 @@ try {
 }
 ```
 
-### bundleManager.getProfileByAbilitySync<sup>10+</sup>
+## bundleManager.getProfileByAbilitySync<sup>10+</sup>
 
 getProfileByAbilitySync(moduleName: string, abilityName: string, metadataName?: string): Array\<string\>
 
@@ -536,7 +533,7 @@ try {
 }
 ```
 
-### bundleManager.getProfileByExtensionAbility
+## bundleManager.getProfileByExtensionAbility
 
 getProfileByExtensionAbility(moduleName: string, extensionAbilityName: string, metadataName: string, callback: AsyncCallback\<Array\<string\>\>): void
 
@@ -596,7 +593,7 @@ try {
 }
 ```
 
-### bundleManager.getProfileByExtensionAbility
+## bundleManager.getProfileByExtensionAbility
 
 getProfileByExtensionAbility(moduleName: string, extensionAbilityName: string, metadataName?: string): Promise\<Array\<string\>\>
 
@@ -670,7 +667,7 @@ try {
 }
 ```
 
-### bundleManager.getProfileByExtensionAbilitySync<sup>10+</sup>
+## bundleManager.getProfileByExtensionAbilitySync<sup>10+</sup>
 
 getProfileByExtensionAbilitySync(moduleName: string, extensionAbilityName: string, metadataName?: string): Array\<string\>
 
@@ -738,7 +735,7 @@ try {
 }
 ```
 
-### bundleManager.getBundleInfoForSelfSync<sup>10+</sup>
+## bundleManager.getBundleInfoForSelfSync<sup>10+</sup>
 
 getBundleInfoForSelfSync(bundleFlags: number): BundleInfo
 
@@ -786,7 +783,7 @@ try {
 }
 ```
 
-### bundleManager.canOpenLink<sup>12+</sup>
+## bundleManager.canOpenLink<sup>12+</sup>
 
 canOpenLink(link: string): boolean
 
@@ -835,7 +832,7 @@ try {
 }
 ```
 
-### bundleManager.getLaunchWant<sup>13+</sup>
+## bundleManager.getLaunchWant<sup>13+</sup>
 
 getLaunchWant(): Want
 
@@ -876,7 +873,7 @@ try {
 }
 ```
 
-### bundleManager.getBundleInfo<sup>14+</sup>
+## bundleManager.getBundleInfo<sup>14+</sup>
 
 getBundleInfo(bundleName: string, bundleFlags: number, userId: number, callback: AsyncCallback\<BundleInfo>): void
 
@@ -957,7 +954,7 @@ try {
 }
 ```
 
-### bundleManager.getBundleInfo<sup>14+</sup>
+## bundleManager.getBundleInfo<sup>14+</sup>
 
 getBundleInfo(bundleName: string, bundleFlags: number, callback: AsyncCallback\<BundleInfo>): void
 
@@ -1012,7 +1009,7 @@ try {
 }
 ```
 
-### bundleManager.getBundleInfo<sup>14+</sup>
+## bundleManager.getBundleInfo<sup>14+</sup>
 
 getBundleInfo(bundleName: string, bundleFlags: number, userId?: number): Promise\<BundleInfo>
 
@@ -1093,7 +1090,7 @@ try {
 
 ```
 
-### bundleManager.getBundleInfoSync<sup>14+</sup>
+## bundleManager.getBundleInfoSync<sup>14+</sup>
 
 getBundleInfoSync(bundleName: string, bundleFlags: number, userId: number): BundleInfo
 
@@ -1150,7 +1147,7 @@ try {
 }
 ```
 
-### bundleManager.getBundleInfoSync<sup>14+</sup>
+## bundleManager.getBundleInfoSync<sup>14+</sup>
 
 getBundleInfoSync(bundleName: string, bundleFlags: number): BundleInfo
 
@@ -1203,7 +1200,7 @@ try {
 }
 ```
 
-### bundleManager.getBundleNameByUid<sup>14+</sup>
+## bundleManager.getBundleNameByUid<sup>14+</sup>
 
 getBundleNameByUid(uid: number, callback: AsyncCallback\<string>): void
 
@@ -1251,7 +1248,7 @@ try {
 }
 ```
 
-### bundleManager.getBundleNameByUid<sup>14+</sup>
+## bundleManager.getBundleNameByUid<sup>14+</sup>
 
 getBundleNameByUid(uid: number): Promise\<string>
 
@@ -1302,7 +1299,7 @@ try {
 }
 ```
 
-### bundleManager.getBundleNameByUidSync<sup>14+</sup>
+## bundleManager.getBundleNameByUidSync<sup>14+</sup>
 
 getBundleNameByUidSync(uid: number): string
 
@@ -1350,7 +1347,7 @@ try {
 }
 ```
 
-### bundleManager.getAppCloneIdentity<sup>14+</sup>
+## bundleManager.getAppCloneIdentity<sup>14+</sup>
 
 getAppCloneIdentity(uid: number): Promise\<AppCloneIdentity>;
 
@@ -1370,7 +1367,7 @@ Obtains the bundle name and app index of an application clone based on the given
 
 | Type                                                       | Description                       |
 | ----------------------------------------------------------- | --------------------------- |
-| Promise\<AppCloneIdentity> | Promise used to return \<AppCloneIdentity>.|
+| Promise\<[AppCloneIdentity](js-apis-bundleManager-bundleInfo.md#appcloneidentity14)> | Promise used to return \<AppCloneIdentity>.|
 
 **Error codes**
 
@@ -1402,7 +1399,7 @@ try {
 }
 ```
 
-### bundleManager.getSignatureInfo<sup>16+</sup>
+## bundleManager.getSignatureInfo<sup>18+</sup>
 
 getSignatureInfo(uid: number): SignatureInfo
 
@@ -1450,7 +1447,7 @@ try {
 }
 ```
 
-### ApplicationInfo
+## ApplicationInfo
 
 type ApplicationInfo = _ApplicationInfo
 
@@ -1464,7 +1461,7 @@ Defines the application information.
 | ------------------------------------------------------------ | -------------- |
 | [_ApplicationInfo](js-apis-bundleManager-applicationInfo.md#applicationinfo-1) | Application information.|
 
-### ModuleMetadata<sup>10+</sup>
+## ModuleMetadata<sup>10+</sup>
 
 type ModuleMetadata = _ModuleMetadata
 
@@ -1478,7 +1475,7 @@ Defines the metadata of a module.
 | ------------------------------------------------------------ | -------------- |
 | [_ModuleMetadata](js-apis-bundleManager-applicationInfo.md#ModuleMetadata10) | Metadata of the module.|
 
-### Metadata
+## Metadata
 
 type Metadata = _Metadata
 
@@ -1492,7 +1489,7 @@ Defines the metadata.
 | ------------------------------------------------------------ | -------------- |
 | [_Metadata](js-apis-bundleManager-metadata.md#metadata) | Metadata.|
 
-### BundleInfo
+## BundleInfo
 
 type BundleInfo = _BundleInfo.BundleInfo
 
@@ -1507,7 +1504,7 @@ Defines the bundle information.
 | [_BundleInfo.BundleInfo](js-apis-bundleManager-bundleInfo.md#bundleinfo) | Bundle information.|
 
 
-### UsedScene
+## UsedScene
 
 type UsedScene = _BundleInfo.UsedScene
 
@@ -1521,7 +1518,7 @@ Defines the use scenario and timing for using the permission.
 | ------------------------------------------------------------ | -------------- |
 | [_BundleInfo.UsedScene](js-apis-bundleManager-bundleInfo.md#usedscene) | Use scenario and timing for using the permission.|
 
-### ReqPermissionDetail
+## ReqPermissionDetail
 
 type ReqPermissionDetail = _BundleInfo.ReqPermissionDetail
 
@@ -1535,7 +1532,7 @@ Defines the detailed information of the permissions to request from the system.
 | ------------------------------------------------------------ | -------------- |
 | [_BundleInfo.ReqPermissionDetail](js-apis-bundleManager-bundleInfo.md#reqpermissiondetail) | Detailed information of the permissions to request from the system.|
 
-### SignatureInfo
+## SignatureInfo
 
 type SignatureInfo = _BundleInfo.SignatureInfo
 
@@ -1549,7 +1546,7 @@ Defines the signature information of the bundle.
 | ------------------------------------------------------------ | -------------- |
 | [_BundleInfo.SignatureInfo](js-apis-bundleManager-bundleInfo.md#signatureinfo) | Signature information of the bundle.|
 
-### HapModuleInfo
+## HapModuleInfo
 
 type HapModuleInfo = _HapModuleInfo.HapModuleInfo
 
@@ -1563,7 +1560,7 @@ Defines the HAP module information.
 | ------------------------------------------------------------ | -------------- |
 | [_HapModuleInfo.HapModuleInfo](js-apis-bundleManager-hapModuleInfo.md#hapmoduleinfo-1) | HAP module information.|
 
-### PreloadItem
+## PreloadItem
 
 type PreloadItem = _HapModuleInfo.PreloadItem
 
@@ -1577,7 +1574,7 @@ Defines the preloaded module information in the atomic service.
 | ------------------------------------------------------------ | -------------- |
 | [_HapModuleInfo.PreloadItem](js-apis-bundleManager-hapModuleInfo.md#preloaditem) | Preloaded module information in the atomic service.|
 
-### Dependency
+## Dependency
 
 type Dependency = _HapModuleInfo.Dependency
 
@@ -1591,7 +1588,7 @@ Defines the information about the dynamic shared libraries on which the module d
 | ------------------------------------------------------------ | -------------- |
 | [_HapModuleInfo.Dependency](js-apis-bundleManager-hapModuleInfo.md#dependency) | Information about the dynamic shared libraries on which the module depends.|
 
-### RouterItem<sup>12+</sup>
+## RouterItem<sup>12+</sup>
 
 type RouterItem = _HapModuleInfo.RouterItem
 
@@ -1605,7 +1602,7 @@ Defines the router table configuration of the module.
 | ------------------------------------------------------------ | -------------- |
 | [_HapModuleInfo.RouterItem](js-apis-bundleManager-hapModuleInfo.md#routeritem12) | Router table configuration of the module.|
 
-### DataItem<sup>12+</sup>
+## DataItem<sup>12+</sup>
 
 type DataItem = _HapModuleInfo.DataItem
 
@@ -1619,7 +1616,7 @@ Defines the user-defined data in the routing table configuration of the module.
 | ------------------------------------------------------------ | -------------- |
 | [_HapModuleInfo.DataItem](js-apis-bundleManager-hapModuleInfo.md#dataitem12) | User-defined data in the routing table configuration of the module.|
 
-### AbilityInfo
+## AbilityInfo
 
 type AbilityInfo = _AbilityInfo.AbilityInfo
 
@@ -1633,7 +1630,7 @@ Defines the ability information.
 | ------------------------------------------------------------ | -------------- |
 | [_AbilityInfo.AbilityInfo](js-apis-bundleManager-abilityInfo.md#abilityinfo-1) |Ability information.|
 
-### WindowSize
+## WindowSize
 
 type WindowSize = _AbilityInfo.WindowSize
 
@@ -1648,7 +1645,7 @@ Defines the window size.
 | [_AbilityInfo.WindowSize](js-apis-bundleManager-abilityInfo.md#windowsize) |Window size.|
 
 
-### ExtensionAbilityInfo
+## ExtensionAbilityInfo
 
 type ExtensionAbilityInfo = _ExtensionAbilityInfo.ExtensionAbilityInfo
 
@@ -1662,7 +1659,7 @@ Defines the ExtensionAbility information.
 | ------------------------------------------------------------ | -------------- |
 | [_ExtensionAbilityInfo.ExtensionAbilityInfo](js-apis-bundleManager-extensionAbilityInfo.md#extensionabilityinfo-1) |ExtensionAbility information.|
 
-### ElementName
+## ElementName
 
 type ElementName = _ElementName
 
@@ -1676,7 +1673,7 @@ Defines the element name.
 | ------------------------------------------------------------ | -------------- |
 | [_ElementName](js-apis-bundleManager-elementName.md#elementname-1) |Element name.|
 
-### Skill<sup>12+</sup>
+## Skill<sup>12+</sup>
 
 type Skill = _Skill.Skill
 
@@ -1690,7 +1687,7 @@ Defines the skill information.
 | ------------------------------------------------------------ | -------------- |
 | [_Skill.Skill](js-apis-bundleManager-skill.md#skill-1) |Skill information.|
 
-### SkillUrl<sup>12+</sup>
+## SkillUrl<sup>12+</sup>
 
 type SkillUrl = _Skill.SkillUri
 
@@ -1703,3 +1700,15 @@ Defines the SkillUri information.
 | Type                                                        | Description          |
 | ------------------------------------------------------------ | -------------- |
 | [_Skill.SkillUri](js-apis-bundleManager-skill.md#skilluri) |SkillUri information.|
+
+## AppCloneIdentity<sup>15+</sup>
+
+type AppCloneIdentity = _BundleInfo.AppCloneIdentity
+
+Describes the identity information of an application clone.
+
+**System capability**: SystemCapability.BundleManager.BundleFramework.Core
+
+| Type                                                        | Description          |
+| ------------------------------------------------------------ | -------------- |
+| [_BundleInfo.AppCloneIdentity](js-apis-bundleManager-bundleInfo.md#appcloneidentity14) |Identity information of an application clone.|

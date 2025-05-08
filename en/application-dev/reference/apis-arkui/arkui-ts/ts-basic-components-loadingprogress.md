@@ -28,7 +28,11 @@ Creates a **LoadingProgress** component.
 
 ## Attributes
 
-In addition to the [universal attributes](ts-universal-attributes-size.md), the following attributes are supported.
+In addition to the [universal attributes](ts-component-general-attributes.md), the following attributes are supported.
+
+>  **NOTE**
+>
+> Set the component's width and height to reasonable values. If they are too large, the loading animation might not work as expected.
 
 ### color
 
@@ -63,7 +67,7 @@ Sets whether to show the loading animation. The component still takes up space i
 
 | Name| Type   | Mandatory| Description                                          |
 | ------ | ------- | ---- | ---------------------------------------------- |
-| value  | boolean | Yes  | Whether to show the loading animation.<br>Default value: **true**|
+| value  | boolean | Yes  | Whether to show the loading animation.<br>Default value: **true**<br>**true**: Show the loading animation.<br>**false**: Do not show the loading animation.|
 
 ### contentModifier<sup>12+</sup>
 
@@ -83,7 +87,7 @@ Creates a content modifier.
 
 ## Events
 
-The [universal events](ts-universal-events-click.md) are supported.
+The [universal events](ts-component-general-events.md) are supported.
 
 ## LoadingProgressConfiguration<sup>12+</sup>
 
@@ -95,7 +99,7 @@ You need a custom class to implement the **ContentModifier** API.
 
 | Name | Type   |    Read Only   |    Optional   |  Description             |
 | ------ | ------ | ------ |-------------------------------- |-------------------------------- |
-| enableLoading | boolean | No| No|Whether to show the loading animation.<br>Default value: **true**|
+| enableLoading | boolean | No| No|Whether to show the loading animation.<br>Default value: **true**<br>**true**: Show the loading animation.<br>**false**: Do not show the loading animation.|
 
 ## LoadingProgressStyle<sup>(deprecated)</sup>
 

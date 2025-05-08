@@ -22,7 +22,7 @@ import { usbManager } from '@kit.MDMKit';
 
 setUsbPolicy(admin: Want, usbPolicy: UsbPolicy, callback: AsyncCallback\<void>): void
 
-Sets the USB access policy through the specified device administrator application. This API uses an asynchronous callback to return the result.
+Sets the USB read/write policy. This API uses an asynchronous callback to return the result.
 
 Required permissions: ohos.permission.ENTERPRISE_MANAGE_USB
 
@@ -34,9 +34,9 @@ Required permissions: ohos.permission.ENTERPRISE_MANAGE_USB
 
 | Name  | Type                                 | Mandatory  | Description     |
 | ----- | ----------------------------------- | ---- | ------- |
-| admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes   | Device administrator application.|
+| admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes   | EnterpriseAdminExtensionAbility.|
 | usbPolicy  | [UsbPolicy](js-apis-enterprise-usbManager.md#usbpolicy) | Yes| USB access policy. This API supports **READ_WRITE** and **READ_ONLY** only.|
-| callback | AsyncCallback\<void> | Yes| Callback used to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.|
+| callback | AsyncCallback\<void> | Yes| Callback invoked to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -55,8 +55,8 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 ```ts
 import { Want } from '@kit.AbilityKit';
 let wantTemp: Want = {
-  bundleName: 'bundleName',
-  abilityName: 'abilityName',
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
 };
 let policy: usbManager.UsbPolicy = usbManager.UsbPolicy.READ_WRITE
 
@@ -73,7 +73,7 @@ usbManager.setUsbPolicy(wantTemp, policy, (err) => {
 
 setUsbPolicy(admin: Want, usbPolicy: UsbPolicy): Promise\<void>
 
-Sets the USB access policy through the specified device administrator application. This API uses a promise to return the result.
+Sets the USB read/write policy. This API uses a promise to return the result.
 
 Required permissions: ohos.permission.ENTERPRISE_MANAGE_USB
 
@@ -85,14 +85,14 @@ Required permissions: ohos.permission.ENTERPRISE_MANAGE_USB
 
 | Name  | Type                                 | Mandatory  | Description     |
 | ----- | ----------------------------------- | ---- | ------- |
-| admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes   | Device administrator application.|
+| admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes   | EnterpriseAdminExtensionAbility.|
 | usbPolicy  | [UsbPolicy](js-apis-enterprise-usbManager.md#usbpolicy) | Yes| USB access policy. This API supports **READ_WRITE** and **READ_ONLY** only.|
 
 **Return value**
 
 | Type  | Description                                 |
 | ----- | ----------------------------------- |
-| Promise\<void> | Promise that returns no value. An error object will be thrown if the operation fails.|
+| Promise\<void> | Promise that returns no value. An error object is thrown when the USB policy fails to be set.|
 
 **Error codes**
 
@@ -112,8 +112,8 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 import { Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 let wantTemp: Want = {
-  bundleName: 'bundleName',
-  abilityName: 'abilityName',
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
 };
 let policy: usbManager.UsbPolicy = usbManager.UsbPolicy.READ_WRITE
 
@@ -128,7 +128,7 @@ usbManager.setUsbPolicy(wantTemp, policy).then(() => {
 
 disableUsb(admin: Want, disable: boolean): void
 
-Enables or disables USB through the specified device administrator application.
+Enables or disables USB.
 
 Required permissions: ohos.permission.ENTERPRISE_MANAGE_USB
 
@@ -138,10 +138,10 @@ Required permissions: ohos.permission.ENTERPRISE_MANAGE_USB
 
 **Parameters**
 
-| Name | Type                               | Mandatory| Description                                            |
-| ------- | ----------------------------------- | ---- | ------------------------------------------------ |
-| admin   | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes  | Device administrator application.                                  |
-| disable | boolean                             | Yes  | Whether to disable USB. The value **true** means to disable USB; the value **false** means the opposite.|
+| Name | Type                                                   | Mandatory| Description                                            |
+| ------- | ------------------------------------------------------- | ---- | ------------------------------------------------ |
+| admin   | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes  | EnterpriseAdminExtensionAbility.          |
+| disable | boolean                                                 | Yes  | Whether to disable USB. The value **true** means to disable USB; the value **false** means the opposite.|
 
 **Error codes**
 
@@ -176,7 +176,7 @@ try {
 
 isUsbDisabled(admin: Want): boolean
 
-Checks whether USB is disabled through the specified device administrator application.
+Queries whether the USB is disabled.
 
 Required permissions: ohos.permission.ENTERPRISE_MANAGE_USB
 
@@ -186,15 +186,15 @@ Required permissions: ohos.permission.ENTERPRISE_MANAGE_USB
 
 **Parameters**
 
-| Name| Type                               | Mandatory| Description          |
-| ------ | ----------------------------------- | ---- | -------------- |
-| admin  | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes  | Device administrator application.|
+| Name| Type                                                   | Mandatory| Description                                  |
+| ------ | ------------------------------------------------------- | ---- | -------------------------------------- |
+| admin  | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes  | EnterpriseAdminExtensionAbility.|
 
 **Return value**
 
 | Type   | Description                                                  |
 | ------- | ------------------------------------------------------ |
-| boolean | Returns **true** if USB is disabled; returns **false** otherwise.|
+| boolean | Returns **true** if USB is disabled;<br>returns **false** otherwise.|
 
 **Error codes**
 

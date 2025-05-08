@@ -429,7 +429,7 @@ For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
 ```
 
 
-## wifiManager.getDeviceMacAddress<sup>9+</sup>
+## wifiManager.getDeviceMacAddress<sup>15+</sup>
 
 getDeviceMacAddress(): string[]
 
@@ -1036,7 +1036,7 @@ Checks whether the hotspot supports dual band.
 
   | **Type**| **Description**|
   | -------- | -------- |
-  | boolean | Returns **true** if the hotspot supports dual band; returns **false** otherwise.|
+  | boolean | Whether the hotspot supports dual band. The value **true** indicates dual band is supported, and the value **false** indicates the opposite.|
 
 **Error codes**
 
@@ -1061,7 +1061,7 @@ For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
 	}
 ```
 
-## wifiManager.isOpenSoftApAllowed<sup>16+</sup>
+## wifiManager.isOpenSoftApAllowed<sup>18+</sup>
 
 isOpenSoftApAllowed(): boolean
 
@@ -1676,7 +1676,7 @@ Subscribes to Wi-Fi device configuration changes. When the service exits, call o
 | **Name**| **Type**| **Mandatory**| **Description**|
 | -------- | -------- | -------- | -------- |
 | type | string | Yes| Event type, which has a fixed value of **deviceConfigChange**.|
-| callback | Callback&lt;number&gt; | Yes| Callback used to return the device configuration change, which can be any of the following values:<br>- **0**: device configuration added.<br>- **1**: device configuration changed.<br>- **2**: device configuration deleted.|
+| callback | Callback&lt;number&gt; | Yes| Callback for device configuration changes.<br>**0**: Configuration is added. **1**: Configuration is modified. **2**: Configuration is deleted.|
 
 **Error codes**
 
@@ -1707,7 +1707,7 @@ Unsubscribes from Wi-Fi device configuration changes.
 | **Name**| **Type**| **Mandatory**| **Description**|
 | -------- | -------- | -------- | -------- |
 | type | string | Yes| Event type, which has a fixed value of **deviceConfigChange**.|
-| callback | Callback&lt;number&gt; | No| Callback to unregister. The device configuration change can be any of the following values:<br>- **0**: device configuration added.<br>- **1**: device configuration changed.<br>- **2**: device configuration deleted.|
+| callback | Callback&lt;number&gt; | No| Callback for device configuration changes.<br>**0**: Configuration is added. **1**: Configuration is modified. **2**: Configuration is deleted.|
 
 **Error codes**
 
