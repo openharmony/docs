@@ -176,8 +176,9 @@ let pasteDataRecord: pasteboard.PasteDataRecord = pasteboard.createRecord('app/x
 **示例2：**
 
   ```ts
-let dataUri = 'dataability:///com.example.myapplication1/user.txt';
-let record: pasteboard.PasteDataRecord = pasteboard.createRecord(pasteboard.MIMETYPE_TEXT_URI, dataUri);
+let pasteData: pasteboard.PasteData = pasteboard.createData(pasteboard.MIMETYPE_TEXT_PLAIN, 'hello');
+let record: pasteboard.PasteDataRecord = pasteboard.createRecord(pasteboard.MIMETYPE_TEXT_URI, 'file://com.example.myapplication1/data/storage/el2/base/files/file.txt');
+pasteData.replaceRecord(0, record);
   ```
 
 ## pasteboard.getSystemPasteboard
@@ -644,9 +645,9 @@ toPlainText(): string
 **示例：**
 
 ```ts
-let record: pasteboard.PasteDataRecord = pasteboard.createRecord(pasteboard.MIMETYPE_TEXT_URI, 'dataability:///com.example.myapplication1/user.txt');
-let data: string = record.toPlainText();
-console.info(`Succeeded in converting to text. Data: ${data}`);
+let record: pasteboard.PasteDataRecord = pasteboard.createRecord(pasteboard.MIMETYPE_TEXT_HTML, '<html>hello<html>');
+let text: string = record.toPlainText();
+console.info(`Succeeded in converting to text. Text: ${text}`);
 ```
 
 ### addEntry<sup>14+</sup>
@@ -873,8 +874,14 @@ getPrimaryText(): string
 **示例：**
 
 ```ts
-let pasteData: pasteboard.PasteData = pasteboard.createData(pasteboard.MIMETYPE_TEXT_PLAIN, 'hello');
-let plainText: string = pasteData.getPrimaryText();
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
+systemPasteboard.getData().then((pasteData: pasteboard.PasteData) => {
+    let text: string = pasteData.getPrimaryText();
+}).catch((err: BusinessError) => {
+    console.error('Failed to get PasteData. Cause: ' + err.message);
+});
 ```
 
 ### getPrimaryHtml<sup>7+</sup>
@@ -896,9 +903,14 @@ getPrimaryHtml(): string
 **示例：**
 
 ```ts
-let html = "<!DOCTYPE html>\n" + "<html>\n" + "<head>\n" + "<meta charset=\"utf-8\">\n" + "<title>HTML-PASTEBOARD_HTML</title>\n" + "</head>\n" + "<body>\n" + "    <h1>HEAD</h1>\n" + "    <p></p>\n" + "</body>\n" + "</html>";
-let pasteData: pasteboard.PasteData = pasteboard.createData(pasteboard.MIMETYPE_TEXT_HTML, html);
-let htmlText: string = pasteData.getPrimaryHtml();
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
+systemPasteboard.getData().then((pasteData: pasteboard.PasteData) => {
+    let htmlText: string = pasteData.getPrimaryHtml();
+}).catch((err: BusinessError) => {
+    console.error('Failed to get PasteData. Cause: ' + err.message);
+});
 ```
 
 ### getPrimaryWant<sup>7+</sup>
@@ -921,13 +933,14 @@ getPrimaryWant(): Want
 
 ```ts
 import { Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let object: Want = {
-    bundleName: "com.example.aafwk.test",
-    abilityName: "com.example.aafwk.test.TwoAbility"
-};
-let pasteData: pasteboard.PasteData = pasteboard.createData(pasteboard.MIMETYPE_TEXT_WANT, object);
-let want: Want = pasteData.getPrimaryWant();
+let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
+systemPasteboard.getData().then((pasteData: pasteboard.PasteData) => {
+    let want: Want = pasteData.getPrimaryWant();
+}).catch((err: BusinessError) => {
+    console.error('Failed to get PasteData. Cause: ' + err.message);
+});
 ```
 
 ### getPrimaryUri<sup>7+</sup>
@@ -949,8 +962,14 @@ getPrimaryUri(): string
 **示例：**
 
 ```ts
-let pasteData: pasteboard.PasteData = pasteboard.createData(pasteboard.MIMETYPE_TEXT_URI, 'dataability:///com.example.myapplication1/user.txt');
-let uri: string = pasteData.getPrimaryUri();
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
+systemPasteboard.getData().then((pasteData: pasteboard.PasteData) => {
+    let uri: string = pasteData.getPrimaryUri();
+}).catch((err: BusinessError) => {
+    console.error('Failed to get PasteData. Cause: ' + err.message);
+});
 ```
 
 ### getPrimaryPixelMap<sup>9+</sup>
@@ -1183,19 +1202,7 @@ pasteData.setProperty(prop);
             prop.localOnly; // true
         });
     });
-
-    prop.shareOption = pasteboard.ShareOption.CROSSDEVICE;
-    prop.localOnly = true;
-    pasteData.setProperty(prop);
-
-    await systemPasteboard.setData(pasteData).then(async () => {
-        console.info('Succeeded in setting PasteData.');
-        await systemPasteboard.getData().then((pasteData: pasteboard.PasteData) => {
-            let prop: pasteboard.PasteDataProperty = pasteData.getProperty();
-            prop.localOnly; // false
-        });
-    });
-})()
+})
 ```
 
 ### getRecord<sup>9+</sup>
@@ -1381,7 +1388,7 @@ replaceRecord(index: number, record: PasteDataRecord): void
 
 ```ts
 let pasteData: pasteboard.PasteData = pasteboard.createData(pasteboard.MIMETYPE_TEXT_PLAIN, 'hello');
-let record: pasteboard.PasteDataRecord = pasteboard.createRecord(pasteboard.MIMETYPE_TEXT_URI, 'dataability:///com.example.myapplication1/user.txt');
+let record: pasteboard.PasteDataRecord = pasteboard.createRecord(pasteboard.MIMETYPE_TEXT_URI, 'file://com.example.myapplication1/data/storage/el2/base/files/file.txt');
 pasteData.replaceRecord(0, record);
 ```
 
@@ -2637,15 +2644,14 @@ getUnifiedData(): Promise&lt;unifiedDataChannel.UnifiedData&gt;
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
-import { unifiedDataChannel } from '@kit.ArkData';
-import { uniformTypeDescriptor } from '@kit.ArkData';
+import { unifiedDataChannel, uniformDataStruct, uniformTypeDescriptor } from '@kit.ArkData';
 
 let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
 systemPasteboard.getUnifiedData().then((data) => {
     let records: Array<unifiedDataChannel.UnifiedRecord> = data.getRecords();
     for (let j = 0; j < records.length; j++) {
         if (records[j].getType() === uniformTypeDescriptor.UniformDataType.PLAIN_TEXT) {
-            let text = records[j] as unifiedDataChannel.PlainText;
+            let text = records[j].getValue() as uniformDataStruct.PlainText;
             console.info(`${j + 1}.${text.textContent}`);
         }
     }
@@ -2731,23 +2737,22 @@ setUnifiedData(data: unifiedDataChannel.UnifiedData): Promise&lt;void&gt;
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
-import { unifiedDataChannel } from '@kit.ArkData';
+import { unifiedDataChannel, uniformDataStruct, uniformTypeDescriptor } from '@kit.ArkData';
 
-let plainTextData = new unifiedDataChannel.UnifiedData();
-let plainText = new unifiedDataChannel.PlainText();
-plainText.details = {
-    Key: 'delayPlaintext',
-    Value: 'delayPlaintext',
-};
-plainText.textContent = 'delayTextContent';
-plainText.abstract = 'delayTextContent';
-plainTextData.addRecord(plainText);
+let plainText : uniformDataStruct.PlainText = {
+    uniformDataType: uniformTypeDescriptor.UniformDataType.PLAIN_TEXT,
+    textContent : 'PLAINTEXT_CONTENT',
+    abstract : 'PLAINTEXT_ABSTRACT',
+}
+let record = new unifiedDataChannel.UnifiedRecord(uniformTypeDescriptor.UniformDataType.PLAIN_TEXT, plainText);
+let data = new unifiedDataChannel.UnifiedData();
+data.addRecord(record);
 
 let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
-systemPasteboard.setUnifiedData(plainTextData).then((data: void) => {
+systemPasteboard.setUnifiedData(data).then((data: void) => {
     console.info('Succeeded in setting UnifiedData.');
 }).catch((err: BusinessError) => {
-    console.error('Failed to set UnifiedData. Cause: ' + err.message);
+    console.error('Failed to setUnifiedData. Cause: ' + err.message);
 });
 ```
 
@@ -2797,7 +2802,7 @@ try {
     console.info('Succeeded in setting UnifiedData.');
 } catch (err) {
     console.error('Failed to set UnifiedData. Cause:' + err.message);
-};  
+};
 ```
 
 ### setAppShareOptions<sup>14+</sup>
