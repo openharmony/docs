@@ -312,17 +312,17 @@ struct ListItemExample {
 @Component
 struct ListItemExample2 {
   @State arr: number[] = [0, 1, 2, 3, 4];
-  @State enterEndDeleteAreaString: string = "not enterEndDeleteArea";
-  @State exitEndDeleteAreaString: string = "not exitEndDeleteArea";
+  @State enterEndDeleteAreaString: string = 'not enterEndDeleteArea';
+  @State exitEndDeleteAreaString: string = 'not exitEndDeleteArea';
   private scroller: ListScroller = new ListScroller();
 
   @Builder itemEnd() {
     Row() {
-      Button("Delete").margin("4vp")
-      Button("Set").margin("4vp").onClick(() => {
+      Button('Delete').margin('4vp')
+      Button('Set').margin('4vp').onClick(() => {
         this.scroller.closeAllSwipeActions();
       })
-    }.padding("4vp").justifyContent(FlexAlign.SpaceEvenly)
+    }.padding('4vp').justifyContent(FlexAlign.SpaceEvenly)
   }
 
   build() {
@@ -330,7 +330,7 @@ struct ListItemExample2 {
       List({ space: 10, scroller: this.scroller }) {
         ForEach(this.arr, (item: number) => {
           ListItem() {
-            Text("item" + item)
+            Text('item' + item)
               .width('100%')
               .height(100)
               .fontSize(16)
@@ -350,12 +350,12 @@ struct ListItemExample2 {
               },
               actionAreaDistance: 56,
               onEnterActionArea: () => {
-                this.enterEndDeleteAreaString = "enterEndDeleteArea";
-                this.exitEndDeleteAreaString = "not exitEndDeleteArea";
+                this.enterEndDeleteAreaString = 'enterEndDeleteArea';
+                this.exitEndDeleteAreaString = 'not exitEndDeleteArea';
               },
               onExitActionArea: () => {
-                this.enterEndDeleteAreaString = "not enterEndDeleteArea";
-                this.exitEndDeleteAreaString = "exitEndDeleteArea";
+                this.enterEndDeleteAreaString = 'not enterEndDeleteArea';
+                this.exitEndDeleteAreaString = 'exitEndDeleteArea';
               }
             }
           })
@@ -383,20 +383,20 @@ struct ListItemExample2 {
 struct ListItemExample3 {
   build() {
     Column() {
-      List({ space: "4vp", initialIndex: 0 }) {
+      List({ space: '4vp', initialIndex: 0 }) {
         ListItemGroup({ style: ListItemGroupStyle.CARD }) {
           ForEach([ListItemStyle.CARD, ListItemStyle.CARD, ListItemStyle.NONE], (itemStyle: number, index?: number) => {
             ListItem({ style: itemStyle }) {
-              Text("" + index)
-                .width("100%")
+              Text('' + index)
+                .width('100%')
                 .textAlign(TextAlign.Center)
             }
           })
         }
         ForEach([ListItemStyle.CARD, ListItemStyle.CARD, ListItemStyle.NONE], (itemStyle: number, index?: number) => {
           ListItem({ style: itemStyle }) {
-            Text("" + index)
-              .width("100%")
+            Text('' + index)
+              .width('100%')
               .textAlign(TextAlign.Center)
           }
         })

@@ -140,16 +140,16 @@ struct ListItemGroupExample {
     Text(text)
       .fontSize(20)
       .backgroundColor(0xAABBCC)
-      .width("100%")
+      .width('100%')
       .padding(10)
   }
 
   @Builder
   itemFoot(num: number) {
-    Text('共' + num + "节课")
+    Text('共' + num + '节课')
       .fontSize(16)
       .backgroundColor(0xAABBCC)
-      .width("100%")
+      .width('100%')
       .padding(5)
   }
 
@@ -161,7 +161,7 @@ struct ListItemGroupExample {
             ForEach(item.projects, (project: string) => {
               ListItem() {
                 Text(project)
-                  .width("100%")
+                  .width('100%')
                   .height(100)
                   .fontSize(20)
                   .textAlign(TextAlign.Center)
@@ -217,14 +217,14 @@ struct ListItemGroupExample2 {
 
   build() {
     Column() {
-      List({ space: "4vp", initialIndex: 0 }) {
+      List({ space: '4vp', initialIndex: 0 }) {
         ForEach(this.arr, (item: ArrObject, index?: number) => {
           ListItemGroup({ style: item.style }) {
             ForEach(item.itemStyles, (itemStyle: number, itemIndex?: number) => {
               ListItem({ style: itemStyle }) {
                 if (index != undefined && itemIndex != undefined) {
-                  Text("第" + (index + 1) + "个Group中第" + (itemIndex + 1) + "个item")
-                    .width("100%")
+                  Text('第' + (index + 1) + '个Group中第' + (itemIndex + 1) + '个item')
+                    .width('100%')
                     .textAlign(TextAlign.Center)
                 }
               }
@@ -280,7 +280,7 @@ function itemHead(params: HeadBuilderParams) {
   Text(params.text)
     .fontSize(20)
     .height('48vp')
-    .width("100%")
+    .width('100%')
     .padding(10)
     .backgroundColor($r('sys.color.background_tertiary'))
 }
@@ -290,14 +290,14 @@ function itemFoot(params: FootBuilderParams) {
   Text('共' + params.num + '节课')
     .fontSize(20)
     .height('48vp')
-    .width("100%")
+    .width('100%')
     .padding(10)
     .backgroundColor($r('sys.color.background_tertiary'))
 }
 
 @Component
 struct MyItemGroup {
-  item: TimeTable = { title: "", projects: [] };
+  item: TimeTable = { title: '', projects: [] };
   header?: ComponentContent<HeadBuilderParams> = undefined;
   footer?: ComponentContent<FootBuilderParams> = undefined;
   headerParam = new HeadBuilderParams(this.item.title);
@@ -325,7 +325,7 @@ struct MyItemGroup {
       ForEach(this.item.projects, (project: string) => {
         ListItem() {
           Text(project)
-            .width("100%")
+            .width('100%')
             .height(100)
             .fontSize(20)
             .textAlign(TextAlign.Center)
@@ -360,7 +360,7 @@ struct ListItemGroupExample {
 
   build() {
     Column() {
-      Button("update").width(100).height(50).onClick(() => {
+      Button('update').width(100).height(50).onClick(() => {
         this.timeTable[0] = {
           title: '更新后的星期一',
           projects: ['语文', '物理', '历史', '美术']
