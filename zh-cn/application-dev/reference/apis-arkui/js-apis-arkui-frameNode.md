@@ -57,6 +57,37 @@ import { FrameNode, LayoutConstraint, ExpandMode, typeNode, NodeAdapter } from "
 | nativeEventRegistered  | boolean | 否   | 否   | 是否将事件绑定为命令式NativeNode。 |
 | builtInEventRegistered  | boolean | 否   | 否   | 组件是否绑定内置事件。 |
 
+## UIState<sup>20+</sup>
+
+多态样式状态枚举。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称 | 值 | 说明 |
+| -------- | -------- | -------- |
+| NORMAL | 0 | 正常状态。 |
+| PRESSED | 1 << 0 | 按下状态。 |
+| FOCUSED | 1 << 1 | 获焦状态。 |
+| DISABLED | 1 << 2 | 禁用状态。 |
+| SELECTED | 1 << 3 | 选中状态。<br/>仅特定的组件支持此状态：Checkbox、Radio、Toggle、List、Grid、MenuItem。 |
+
+## UIStatesChangeHandler<sup>20+</sup>
+
+type UIStatesChangeHandler = (currentUIStates: number) => void
+
+当UI状态发生变化时触发的回调。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 参数名   | 类型                      | 必填 | 说明                                                     |
+| -------- | ----------------------------- | ---- | ------------------------------------------------------------ |
+| currentUIStates    | number         | 是   | 回调触发时当前的UI状态。<br>可以通过位与运算判断当前包含哪些状态，如：if (currentState & UIState.PRESSED == UIState.PRESSED)                                            |
+
+
 ## FrameNode
 
 ### constructor
@@ -1603,6 +1634,44 @@ reuse(): void
 **示例：**
 
 请参考[节点复用回收使用示例](#节点复用回收使用示例)。
+
+### addSupportedUIStates<sup>20+</sup>
+
+addSupportedUIStates(uiStates: number, statesChangeHandler: UIStatesChangeHandler, excludeInner?: boolean): void
+
+设置组件支持的多态样式状态。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 参数名   | 类型                      | 必填 | 说明                                                     |
+| -------- | ----------------------------- | ---- | ------------------------------------------------------------ |
+| uiStates    | number | 是   | 需要处理目标节点的UI状态。<br>可以通过位或计算同时指定设置多个状态，如：targetUIStates = UIState.PRESSED &nbsp;\|&nbsp; UIState.FOCUSED。                                       |
+| statesChangeHandler | [UIStatesChangeHandler](#uistateschangehandler20) | 是   | 状态变化时的回调函数。                                           |
+| excludeInner  | boolean | 否   | 禁止内部默认状态样式处理的标志，默认值为false。<br> true表示禁止内部默认状态样式处理，false不禁止内部默认状态样式处理。 |
+
+**示例：**
+
+请参考[组件设置和删除多态样式状态示例](#组件设置和删除多态样式状态示例)。
+
+### removeSupportedUIStates<sup>20+</sup>
+
+removeSupportedUIStates(uiStates: number): void
+
+删除组件当前注册的状态处理。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 参数名  | 类型 | 必填 | 说明                                                     |
+| ------- | -------- | ---- | ------------------------------------------------------------ |
+| uiStates  | number  | 是   | 需要删除的UI状态。<br>可以通过位或计算同时指定删除多个状态，如：removeUIStates = UIState.PRESSED &nbsp;\|&nbsp; UIState.FOCUSED。                          |
+
+**示例：**
+
+请参考[组件设置和删除多态样式状态示例](#组件设置和删除多态样式状态示例)。
 
 ## TypedFrameNode<sup>12+</sup>
 
@@ -5598,4 +5667,117 @@ struct Index {
   }
 }
 
+```
+
+## 组件设置和删除多态样式状态示例
+
+```ts
+import { NodeController, FrameNode, typeNode, UIState } from '@kit.ArkUI';
+
+class MyNodeController extends NodeController {
+  private isEnable: boolean = true;
+  private theStatesToBeSupported = UIState.NORMAL | UIState.PRESSED | UIState.FOCUSED | UIState.DISABLED | UIState.SELECTED;
+
+  makeNode(uiContext: UIContext): FrameNode | null {
+    //创建并组织节点关系
+    let node = new FrameNode(uiContext);
+    node.commonAttribute.width('100%')
+      .height('100%')
+      .borderColor(Color.Gray)
+      .borderWidth(1)
+      .margin({ left: 10 })
+
+    let column = typeNode.createNode(uiContext, 'Column');
+    column.initialize({ space: 20 })
+      .width('100%')
+      .height('100%')
+    node.appendChild(column);
+
+    let styleText = typeNode.createNode(uiContext, 'Text');
+    styleText.initialize("StyleTarget")
+      .width('50%')
+      .height('5%')
+      .margin({ top: 5, bottom:5 })
+      .fontSize(14)
+      .fontColor(Color.White)
+      .textAlign(TextAlign.Center)
+      .backgroundColor(Color.Green)
+      .borderWidth(2)
+      .borderColor(Color.Black)
+      .focusable(true)
+
+    //为Text组件添加多态样式处理能力
+    styleText.addSupportedUIStates(this.theStatesToBeSupported, (currentState: number) => {
+      if (currentState == UIState.NORMAL) { //判断是否normal要使用等于
+        //normal状态，刷normal的UI效果
+        console.info('Callback UIState.NORMAL')
+        styleText.commonAttribute.backgroundColor(Color.Green)
+        styleText.commonAttribute.borderWidth(2)
+        styleText.commonAttribute.borderColor(Color.Black)
+      }
+      if ((currentState & UIState.PRESSED) == UIState.PRESSED) {
+        //press状态，刷press的UI效果
+        console.info('Callback UIState.PRESSED')
+        styleText.commonAttribute.backgroundColor(Color.Brown)
+      }
+      if ((currentState & UIState.FOCUSED) == UIState.FOCUSED) {
+        //focused状态，刷focused的UI效果
+        console.info('Callback UIState.FOCUSED')
+        styleText.commonAttribute.borderWidth(5)
+        styleText.commonAttribute.borderColor(Color.Yellow)
+      }
+      if ((currentState & UIState.DISABLED) == UIState.DISABLED) {
+        //disabled状态，刷disabled的UI效果
+        console.info('Callback UIState.DISABLED')
+        styleText.commonAttribute.backgroundColor(Color.Gray)
+        styleText.commonAttribute.borderWidth(0)
+      }
+      if ((currentState & UIState.SELECTED) == UIState.SELECTED) {
+        //selected状态，刷selected的UI效果
+        console.info('Callback UIState.SELECTED')
+        styleText.commonAttribute.backgroundColor(Color.Pink)
+      }
+    }, false)
+
+    column.appendChild(styleText);
+
+    //为Text组件删除多态样式处理能力
+    let buttonRemove = typeNode.createNode(uiContext, 'Button');
+    buttonRemove.initialize("RemoveUIStatus")
+      .width('50%')
+      .height('5%')
+      .fontSize(14)
+      .margin({ top: 5, bottom:5 })
+      .onClick(() => {
+        styleText.removeSupportedUIStates(this.theStatesToBeSupported);
+      });
+    column.appendChild(buttonRemove);
+
+    //改变多态样式目标节点的使能状态
+    let buttonEnable = typeNode.createNode(uiContext, 'Button');
+    buttonEnable.initialize("DisableText")
+      .width('50%')
+      .height('5%')
+      .fontSize(14)
+      .margin({ top: 5, bottom:5 })
+      .onClick(() => {
+        this.isEnable = !this.isEnable;
+        buttonEnable.initialize(this.isEnable ? 'DisableText' : 'EnableText');
+        styleText.attribute.enabled(this.isEnable)
+      });
+    column.appendChild(buttonEnable);
+    return node;
+  }
+}
+
+@Entry
+@Component
+struct FrameNodeTypeTest {
+  private myNodeController: MyNodeController = new MyNodeController();
+  build() {
+    Row() {
+      NodeContainer(this.myNodeController);
+    }
+  }
+}
 ```
