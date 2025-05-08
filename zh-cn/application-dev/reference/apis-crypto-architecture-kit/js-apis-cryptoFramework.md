@@ -5134,7 +5134,7 @@ let saltLen = verifyer.getVerifySpec(cryptoFramework.SignSpecItem.PSS_SALT_LEN_N
 
 createKeyAgreement(algName: string): KeyAgreement
 
-KeyAgreement实例生成。
+生成KeyAgreement实例。
 
 支持的规格详见[密钥协商规格](../../security/CryptoArchitectureKit/crypto-key-agreement-overview.md)。
 
@@ -5278,7 +5278,7 @@ generateSecretSync(priKey: PriKey, pubKey: PubKey): DataBlob
 |[DataBlob](#datablob) | 共享密钥。 |
 
 **错误码：**
-以下错误码的详细介绍请参见[crypto framework错误码](errorcode-crypto-framework.md)
+以下错误码的详细介绍，请参见 [crypto framework 错误码](errorcode-crypto-framework.md)。
 
 | 错误码ID | 错误信息               |
 | -------- | ---------------------- |
@@ -5358,7 +5358,7 @@ API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从AP
 | Md   | 返回由输入算法指定生成的[Md](#md)对象。 |
 
 **错误码：**
-以下错误码的详细介绍请参见[crypto framework错误码](errorcode-crypto-framework.md)
+以下错误码的详细介绍请参见[crypto framework错误码](errorcode-crypto-framework.md)。
 
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
@@ -5382,7 +5382,7 @@ try {
 
 ## Md
 
-Md类，调用Md方法可以进行MD（Message Digest）摘要计算。调用前，需要通过[createMd](#cryptoframeworkcreatemd)构造Md实例。
+Md类用于进行MD（Message Digest）摘要计算。在调用Md方法之前，需要通过[createMd](#cryptoframeworkcreatemd)构造Md实例。
 
 ### 属性
 
@@ -5459,7 +5459,7 @@ API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从AP
 | Promise\<void> | 无返回结果的Promise对象。 |
 
 **错误码：**
-以下错误码的详细介绍请参见[crypto framework错误码](errorcode-crypto-framework.md)
+以下错误码的详细介绍请参见[crypto framework错误码](errorcode-crypto-framework.md)。
 
 | 错误码ID | 错误信息               |
 | -------- | ---------------------- |
@@ -5492,7 +5492,7 @@ updateSync(input: DataBlob): void
 | void | 无返回结果。 |
 
 **错误码：**
-以下错误码的详细介绍请参见[crypto framework错误码](errorcode-crypto-framework.md)
+以下错误码的详细介绍请参见[crypto framework错误码](errorcode-crypto-framework.md)。
 
 | 错误码ID | 错误信息               |
 | -------- | ---------------------- |
@@ -5521,7 +5521,8 @@ API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从AP
 | callback | AsyncCallback\<[DataBlob](#datablob)> | 是   | 回调函数，用于获取DataBlob数据。 |
 
 **错误码：**
-以下错误码的详细介绍请参见[crypto framework错误码](errorcode-crypto-framework.md)
+以下错误码的详细介绍请参见[crypto framework错误码](errorcode-crypto-framework.md)。
+
 
 | 错误码ID | 错误信息               |
 | -------- | ---------------------- |
@@ -5635,7 +5636,7 @@ async function mdBySync() {
 
 getMdLength(): number
 
-获取Md消息摘要长度（字节数）。
+获取Md消息摘要的字节长度。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -5650,7 +5651,7 @@ API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从AP
 | number | 返回md计算结果的字节长度。 |
 
 **错误码：**
-以下错误码的详细介绍请参见[crypto framework错误码](errorcode-crypto-framework.md)
+以下错误码的详细介绍请参见 [crypto framework 错误码](errorcode-crypto-framework.md)。
 
 | 错误码ID | 错误信息               |
 | -------- | ---------------------- |
@@ -5671,7 +5672,7 @@ function getLength() {
 
 createMac(algName: string): Mac
 
-生成Mac实例，用于进行消息认证码的计算与操作。
+生成Mac实例，用于消息认证码的计算与操作。
 
 支持的规格详见[HMAC消息认证码算法规格](../../security/CryptoArchitectureKit/crypto-compute-mac-overview.md#消息认证码计算介绍及算法规格)。
 
@@ -5799,7 +5800,7 @@ init(key: SymKey, callback: AsyncCallback\<void>): void
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Mac
 
-API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Mac
+API version 9-11 系统能力为SystemCapability.Security.CryptoFramework；从API version 12 开始为SystemCapability.Security.CryptoFramework.Mac
 
 **参数：**
 
@@ -5827,7 +5828,7 @@ init(key: SymKey): Promise\<void>
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Mac
 
-API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Mac
+API version 9-11 系统能力为SystemCapability.Security.CryptoFramework；从API version 12 开始为SystemCapability.Security.CryptoFramework.Mac
 
 **参数：**
 
@@ -5873,7 +5874,7 @@ initSync(key: SymKey): void
 | void | 无返回结果。 |
 
 **错误码：**
-以下错误码的详细介绍请参见[crypto framework错误码](errorcode-crypto-framework.md)
+以下错误码的详细介绍请参见[crypto framework错误码](errorcode-crypto-framework.md)。
 
 | 错误码ID | 错误信息               |
 | -------- | ---------------------- |
@@ -5889,7 +5890,7 @@ update(input: DataBlob, callback: AsyncCallback\<void>): void
 
 > **说明：**
 >
-> HMAC算法多次调用update更新的代码示例详见开发指导[消息认证码计算](../../security/CryptoArchitectureKit/crypto-compute-hmac.md#分段hmac)。
+> HMAC算法多次调用update更新的代码示例详见[消息认证码计算](../../security/CryptoArchitectureKit/crypto-compute-hmac.md#分段hmac)。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -5905,7 +5906,7 @@ API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从AP
 | callback | AsyncCallback\<void>  | 是   | 回调函数。当HMAC更新成功，err为undefined，否则为错误对象。|
 
 **错误码：**
-以下错误码的详细介绍请参见[crypto framework错误码](errorcode-crypto-framework.md)
+以下错误码的详细介绍请参见[crypto framework错误码](errorcode-crypto-framework.md)。
 
 | 错误码ID | 错误信息               |
 | -------- | ---------------------- |
@@ -5921,7 +5922,7 @@ update(input: DataBlob): Promise\<void>
 
 > **说明：**
 >
-> HMAC算法多次调用update更新的代码示例详见开发指导[消息认证码计算](../../security/CryptoArchitectureKit/crypto-compute-hmac.md#分段hmac)。
+> HMAC算法多次调用update更新的代码示例详见[消息认证码计算](../../security/CryptoArchitectureKit/crypto-compute-hmac.md#分段hmac)。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -5942,7 +5943,7 @@ API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从AP
 | Promise\<void> | 无返回结果的Promise对象。 |
 
 **错误码：**
-以下错误码的详细介绍请参见[crypto framework错误码](errorcode-crypto-framework.md)
+以下错误码的详细介绍请参见[crypto framework 错误码](errorcode-crypto-framework.md)。
 
 | 错误码ID | 错误信息               |
 | -------- | ---------------------- |
@@ -5958,7 +5959,7 @@ updateSync(input: DataBlob): void
 
 > **说明：**
 >
-> HMAC算法多次调用updateSync更新的代码示例详见开发指导[消息认证码计算](../../security/CryptoArchitectureKit/crypto-compute-hmac.md#分段hmac)。
+> HMAC算法多次调用updateSync更新。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -5970,14 +5971,9 @@ updateSync(input: DataBlob): void
 | ------ | -------- | ---- | ---------- |
 | input  | [DataBlob](#datablob) | 是   | 传入的消息。 |
 
-**返回值：**
-
-| 类型           | 说明          |
-| -------------- | ------------- |
-| void | 无返回结果的对象。 |
 
 **错误码：**
-以下错误码的详细介绍请参见[crypto framework错误码](errorcode-crypto-framework.md)
+以下错误码的详细介绍请参见[crypto framework 错误码](errorcode-crypto-framework.md)。
 
 | 错误码ID | 错误信息               |
 | -------- | ---------------------- |
@@ -6146,7 +6142,7 @@ API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从AP
 
 | 类型   | 说明                        |
 | ------ | --------------------------- |
-| number | 返回mac计算结果的字节长度。 |
+| number | 返回Mac计算结果的字节长度。 |
 
 **错误码：**
 以下错误码的详细介绍请参见[crypto framework错误码](errorcode-crypto-framework.md)
@@ -6368,7 +6364,7 @@ API version 10-11系统能力为SystemCapability.Security.CryptoFramework；从A
 |[DataBlob](#datablob) | 表示生成的随机数。 |
 
 **错误码：**
-以下错误码的详细介绍请参见[crypto framework错误码](errorcode-crypto-framework.md)
+以下错误码的详细介绍请参见 [crypto framework 错误码](errorcode-crypto-framework.md)。
 
 | 错误码ID | 错误信息               |
 | -------- | ---------------------- |
@@ -6413,7 +6409,7 @@ API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从AP
 | seed   | [DataBlob](#datablob) | 是   | 设置的种子。 |
 
 **错误码：**
-以下错误码的详细介绍请参见[crypto framework错误码](errorcode-crypto-framework.md)
+以下错误码的详细介绍请参见 [crypto framework 错误码](errorcode-crypto-framework.md)。
 
 | 错误码ID | 错误信息           |
 | -------- | ----------------- |
@@ -6518,7 +6514,7 @@ API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从AP
 | callback | AsyncCallback\<[DataBlob](#datablob)> | 是   | 回调函数，用于获取派生得到的密钥DataBlob数据。 |
 
 **错误码：**
-以下错误码的详细介绍请参见[crypto framework错误码](errorcode-crypto-framework.md)
+以下错误码的详细介绍，请参见[crypto framework错误码]。
 
 | 错误码ID | 错误信息               |
 | -------- | ---------------------- |
@@ -6592,7 +6588,7 @@ API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从AP
 
 | 类型               | 说明     |
 | ------------------ | -------- |
-| Promise\<[DataBlob](#datablob)> | 回调函数，用于获取派生得到的密钥DataBlob数据。 |
+| Promise\<[DataBlob](#datablob)> | 通过Promise形式返回派生得到的密钥。 |
 
 **错误码：**
 以下错误码的详细介绍请参见[crypto framework错误码](errorcode-crypto-framework.md)
