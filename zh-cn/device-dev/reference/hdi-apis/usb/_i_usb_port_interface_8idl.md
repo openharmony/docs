@@ -17,4 +17,4 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| interface&nbsp;&nbsp;[IUsbPortInterface](interface_i_usb_port_interface.md) |  | 
+| interface&nbsp;&nbsp;[IUsbPortInterface](interface_i_usb_port_interface.md) | 定义USB驱动基本的操作功能。<br/>上层USB服务调用端口相关功能接口，可以设置/查询USB设备端口的角色，查询USB设备所有端口的当前设置信息等。 | 
