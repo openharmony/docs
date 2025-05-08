@@ -72,7 +72,7 @@ width(widthValue: Length | LayoutPolicy)
 
 | 参数名   | 类型                           | 必填   | 说明                  |
 | ----- | ---------------------------- | ---- | ------------------- |
-| widthValue | [Length](ts-types.md#length)&nbsp;\|&nbsp;&nbsp;[LayoutPolicy](ts-types.md#layoutpolicy15) | 是    | 要设置的组件宽度。<br/>单位：vp |
+| widthValue | [Length](ts-types.md#length)&nbsp;\|&nbsp;&nbsp;[LayoutPolicy](ts-types.md#layoutpolicy15) | 是    | 要设置的组件宽度。<br/>单位：vp <br/>[Flex](./ts-container-flex.md)、[Row](./ts-container-row.md)、[Column](./ts-container-column.md)、[Stack](./ts-container-stack.md)支持设置[LayoutPolicy](ts-types.md#layoutpolicy15)类型中的所有参数。 <br/> [RelativeContainer](./ts-container-relativecontainer.md)、[FolderStack](./ts-container-folderstack.md)、[Divider](./ts-basic-components-divider.md)和[Blank](./ts-basic-components-blank.md)组件支持设置[LayoutPolicy](ts-types.md#layoutpolicy15)类型中的matchParent参数。|
 
 ## height<sup>15+</sup>
 
@@ -90,11 +90,7 @@ height(heightValue: Length | LayoutPolicy)
 
 | 参数名   | 类型                           | 必填   | 说明                  |
 | ----- | ---------------------------- | ---- | ------------------- |
-| heightValue | [Length](ts-types.md#length)&nbsp;\|&nbsp;&nbsp;[LayoutPolicy](ts-types.md#layoutpolicy15) | 是    | 要设置的组件高度。<br/>单位：vp |
-
->  **说明：**
-> 
->  [Flex](./ts-container-flex.md)、[Row](./ts-container-row.md)、[Column](./ts-container-column.md)、[RelativeContainer](./ts-container-relativecontainer.md)、[Stack](./ts-container-stack.md)、[FolderStack](./ts-container-folderstack.md)、[Divider](./ts-basic-components-divider.md)以及[Blank](./ts-basic-components-blank.md)组件的width、height属性支持设置[LayoutPolicy](ts-types.md#layoutpolicy15)类型参数。
+| heightValue | [Length](ts-types.md#length)&nbsp;\|&nbsp;&nbsp;[LayoutPolicy](ts-types.md#layoutpolicy15) | 是    | 要设置的组件高度。<br/>单位：vp <br/>[Flex](./ts-container-flex.md)、[Row](./ts-container-row.md)、[Column](./ts-container-column.md)、[Stack](./ts-container-stack.md)支持设置[LayoutPolicy](ts-types.md#layoutpolicy15)类型中的所有参数。 <br/> [RelativeContainer](./ts-container-relativecontainer.md)、[FolderStack](./ts-container-folderstack.md)、[Divider](./ts-basic-components-divider.md)和[Blank](./ts-basic-components-blank.md)组件支持设置[LayoutPolicy](ts-types.md#layoutpolicy15)类型中的matchParent参数。 <br/> [GridRow](./ts-container-gridrow.md)、[GridCol](./ts-container-gridcol.md)组件支持设置[LayoutPolicy](ts-types.md#layoutpolicy15)类型中的fixAtIdealSize参数。|
 
 ## size
 
