@@ -5,6 +5,8 @@
 
 维度信息，最大的维度为OH_AI_MAX_SHAPE_NUM。
 
+**系统能力：** SystemCapability.Ai.MindSpore
+
 **起始版本：** 9
 
 **相关模块：**[MindSpore](_mind_spore.md)

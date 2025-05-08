@@ -13,7 +13,7 @@
 
 >  **说明：**
 >
->  子组件类型：系统组件和自定义组件，支持渲染控制类型（[if/else](../../../quick-start/arkts-rendering-control-ifelse.md)、[ForEach](../../../quick-start/arkts-rendering-control-foreach.md)和[LazyForEach](../../../quick-start/arkts-rendering-control-lazyforeach.md)）。
+>  子组件类型：系统组件和自定义组件，支持渲染控制类型（[if/else](../../../ui/state-management/arkts-rendering-control-ifelse.md)、[ForEach](../../../ui/state-management/arkts-rendering-control-foreach.md)和[LazyForEach](../../../ui/state-management/arkts-rendering-control-lazyforeach.md)）。
 
 
 ## 接口
@@ -309,7 +309,7 @@ struct BadgeExample {
 @Entry
 @Component
 struct Index {
-  @State badgeCount: number = 1
+  @State badgeCount: number = 1;
 
   build() {
     Column({ space: 40 }) {
@@ -325,10 +325,10 @@ struct Index {
       .width(55)
 
       Button('count 0').onClick(() => {
-        this.badgeCount = 0
+        this.badgeCount = 0;
       })
       Button('count 1').onClick(() => {
-        this.badgeCount = 1
+        this.badgeCount = 1;
       })
     }
     .margin({ top: 20 })

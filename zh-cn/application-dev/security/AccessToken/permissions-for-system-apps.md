@@ -936,6 +936,18 @@
 
 **起始版本**：10
 
+## ohos.permission.UNLOCK_DEVELOPER_MODE
+
+允许应用解锁开发者模式。
+
+**权限级别**：system_basic
+
+**授权方式**：系统授权（system_grant）
+
+**ACL使能**：true
+
+**起始版本**：18
+
 ## ohos.permission.CAPTURE_VOICE_DOWNLINK_AUDIO
 
 允许应用采集语音下行音频。
@@ -2666,7 +2678,7 @@
 
 **ACL使能**：true
 
-**起始版本**：18
+**起始版本**：19
 
 ## ohos.permission.ACCESS_ADVANCED_SECURITY_MODE
 
@@ -4487,6 +4499,18 @@
 
 **起始版本**：18
 
+## ohos.permission.ACCESS_MEDIALIB_RESTORE
+
+允许应用挂载媒体恢复路径。
+
+**权限级别**：system_basic
+
+**授权方式**：系统授权（system_grant）
+
+**ACL使能**：true
+
+**起始版本**：17
+
 ## ohos.permission.ACCESS_TRUST_LIST_OOBE_MANAGER
 
 允许应用管理在开机向导中可被拉起的应用名单。
@@ -4547,7 +4571,7 @@
 
 **ACL使能**：true
 
-**起始版本**：18
+**起始版本**：19
 
 ## ohos.permission.UNINSTALL_PLUGIN_BUNDLE
 
@@ -4559,7 +4583,7 @@
 
 **ACL使能**：true
 
-**起始版本**：18
+**起始版本**：19
 
 ## ohos.permission.GET_EDM_CONFIG
 
@@ -4623,7 +4647,7 @@
 
 **ACL使能**：true
 
-**起始版本**：17
+**起始版本**：19
 
 ## ohos.permission.SEND_NOTIFICATION_CROSS_USER
 
@@ -4648,3 +4672,39 @@
 **ACL使能**：true
 
 **起始版本**：18
+
+### ohos.permission.UPDATE_FONT
+
+允许应用安装和卸载字体。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：19
+
+## ohos.permission.ACCESSIBILITY_EXTENSION_ABILITY
+
+允许应用通过无障碍服务接口查询和操作界面上的组件。
+
+**权限级别**：system_basic
+
+**授权方式**：系统授权（system_grant）
+
+**ACL使能**：true
+
+**起始版本**：20
+
+## ohos.permission.SANDBOX_ACCESS_MANAGER
+
+允许应用访问其它应用的沙箱目录。
+
+**权限级别**：system_core
+
+**授权方式**：系统授权（system_grant）
+
+**ACL使能**：true
+
+**起始版本**：17

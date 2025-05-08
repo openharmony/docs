@@ -130,7 +130,7 @@ struct Child {
 
 **参考文档**
 
-[@Require装饰器：校验构造传参](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/quick-start/arkts-require.md)
+[@Require装饰器：校验构造传参](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/ui/state-management/arkts-require.md)
 
 
 ## cl.arkui.2 编译转换增加对自定义组件成员属性访问限定符的使用限制
@@ -316,7 +316,7 @@ struct ComponentChild {
 
 **参考文档**
 
-[自定义组件成员属性访问限定符使用限制](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/quick-start/arkts-custom-components-access-restrictions.md)
+[自定义组件成员属性访问限定符使用限制](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/ui/state-management/arkts-custom-components-access-restrictions.md)
 
 
 6.由于AnimatorResult 中的onframe,onfinish,oncancel,onrepeat方法不符合语法规范，所以新增接口 onFrame,onFinish,onCancel,onRepeat。

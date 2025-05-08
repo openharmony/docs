@@ -36,7 +36,7 @@
 1. 创建文本组件。
 
     动效中用到了4个文本组件，因此可以先定义一个文本组件，然后对其进行重复调用。同时为文本组件添加[rotate](../application-dev/reference/apis-arkui/arkui-ts/ts-universal-attributes-transformation.md)属性，用来控制组件的旋转。
-    由于各组件旋转的角度和旋转中心不同，需要父组件在调用时传入对应的参数，所以需要为对应变量添加[@Prop](../application-dev/quick-start/arkts-prop.md)装饰器，用来控制变量传递。具体代码如下：
+    由于各组件旋转的角度和旋转中心不同，需要父组件在调用时传入对应的参数，所以需要为对应变量添加[@Prop](../application-dev/ui/state-management/arkts-prop.md)装饰器，用来控制变量传递。具体代码如下：
     ```ts
     @Component
     struct BookCard{

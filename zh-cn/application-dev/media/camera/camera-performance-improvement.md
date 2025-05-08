@@ -69,7 +69,7 @@ async function preview(baseContext: common.BaseContext, cameraInfo: camera.Camer
 
 | 接口 | 说明 |
 | ---- | ---- |
-| isQuickThumbnailSupported() : boolean | 是否支持快速缩略图。 |
+| isQuickThumbnailSupported() : boolean | 是否支持快速缩略图，true表示支持，false表示不支持。 |
 | enableQuickThumbnail(enabled:bool): void | 使能/去使能快速缩略图。 |
 | on(type: 'quickThumbnail', callback: AsyncCallback\<image.PixelMap>): void | 相机缩略图监听回调。 |
 
@@ -140,7 +140,7 @@ function showOrSavePicture(pixelMap: image.PixelMap): void {
 
 | 接口 | 说明 |
 | ---- | ---- |
-| isPrelaunchSupported(camera: CameraDevice) : boolean |  判断指定cameraDevice是否支持预热启动。 |
+| isPrelaunchSupported(camera: CameraDevice) : boolean |  判断指定cameraDevice是否支持预热启动，true表示支持，false表示不支持。 |
 | setPrelaunchConfig(prelaunchConfig: PrelaunchConfig) : void | 配置相机预热参数。 |
 | prelaunch() : void | 用户点击系统相机图标，拉起相机应用的同时调用，下发预热请求，使能相机预热启动。 |
 

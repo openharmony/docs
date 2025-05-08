@@ -61,12 +61,12 @@
   #include "napi/native_api.h"
   #include "hilog/log.h"
   #include "ark_runtime/jsvm.h"
-
+  
   #define LOG_DOMAIN 0x3200
   #define LOG_TAG "APP"
-
+  
   static int g_aa = 0;
-
+  
   #define CHECK_RET(theCall)                                                                                             \
       do {                                                                                                               \
           JSVM_Status cond = theCall;                                                                                    \
@@ -78,7 +78,7 @@
               return -1;                                                                                                 \
           }                                                                                                              \
       } while (0)
-
+  
   #define CHECK(theCall)                                                                                                 \
       do {                                                                                                               \
           JSVM_Status cond = theCall;                                                                                    \
@@ -88,7 +88,7 @@
               return -1;                                                                                                 \
           }                                                                                                              \
       } while (0)
-
+  
   // 用于调用theCall并检查其返回值是否为JSVM_OK。
   // 如果不是，则调用OH_JSVM_GetLastErrorInfo处理错误并返回retVal。
   #define JSVM_CALL_BASE(env, theCall, retVal)                                                                           \
@@ -102,10 +102,10 @@
               return retVal;                                                                                             \
           }                                                                                                              \
       } while (0)
-
+  
   // JSVM_CALL_BASE的简化版本，返回nullptr
   #define JSVM_CALL(theCall) JSVM_CALL_BASE(env, theCall, nullptr)
-
+  
   // OH_JSVM_StrictEquals的样例方法
   static JSVM_Value IsStrictEquals(JSVM_Env env, JSVM_CallbackInfo info) {
       // 接受两个入参
@@ -137,7 +137,7 @@
   const char *srcCallNative = R"JS(    let data = '123';
       let value = 123;
       isStrictEquals(data,value);)JS";
-
+  
   static int32_t TestJSVM() {
       JSVM_InitOptions initOptions = {0};
       JSVM_VM vm;
@@ -157,14 +157,14 @@
       CHECK(OH_JSVM_OpenVMScope(vm, &vmScope));
       CHECK_RET(OH_JSVM_OpenEnvScope(env, &envScope));
       CHECK_RET(OH_JSVM_OpenHandleScope(env, &handleScope));
-
+  
       // 通过script调用测试函数
       JSVM_Script script;
       JSVM_Value jsSrc;
       CHECK_RET(OH_JSVM_CreateStringUtf8(env, srcCallNative, JSVM_AUTO_LENGTH, &jsSrc));
       CHECK_RET(OH_JSVM_CompileScript(env, jsSrc, nullptr, 0, true, nullptr, &script));
       CHECK_RET(OH_JSVM_RunScript(env, script, &result));
-
+  
       // 销毁JSVM环境
       CHECK_RET(OH_JSVM_CloseHandleScope(env, handleScope));
       CHECK_RET(OH_JSVM_CloseEnvScope(env, envScope));
@@ -173,13 +173,13 @@
       CHECK(OH_JSVM_DestroyVM(vm));
       return 0;
   }
-
+  
   static napi_value RunTest(napi_env env, napi_callback_info info)
   {
       TestJSVM();
       return nullptr;
   }
-
+  
   // 模块初始化
   EXTERN_C_START
   static napi_value Init(napi_env env, napi_value exports) {
@@ -209,9 +209,9 @@
 ## ArkTS侧调用C/C++方法实现
 
 ```ts
-import hilog from '@ohos.hilog'
+import hilog from '@ohos.hilog';
 // 通过import的方式，引入Native能力。
-import napitest from 'libentry.so'
+import napitest from 'libentry.so';
 
 @Entry
 @Component

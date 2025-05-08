@@ -2663,13 +2663,17 @@ enableNativeMediaPlayer(config: NativeMediaPlayerConfig)
   }
   ```
 
-### selectionMenuOptions<sup>12+</sup>
+### selectionMenuOptions<sup>(deprecated)</sup>
 
 selectionMenuOptions(expandedMenuOptions: Array\<ExpandedMenuItemOptions>)
 
 Web组件自定义菜单扩展项接口，允许用户设置扩展项的文本内容、图标、回调方法。
 
 该接口只支持选中纯文本，当选中内容包含图片及其他非文本内容时，action信息中会显示乱码。
+
+> **说明：**
+>
+> 从API version 12开始支持，从API version 20开始废弃。建议使用[editMenuOptions<sup>12+</sup>](#editmenuoptions12)替代。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -2827,7 +2831,7 @@ Web组件自定义文本选择菜单。
 
 在[onMenuItemClick](../apis-arkui/arkui-ts/ts-text-common.md#onmenuitemclick)中，可以自定义菜单选项的回调函数。该函数在菜单选项被点击后触发，并根据返回值决定是否执行系统默认的回调。返回true不执行系统回调，返回false继续执行系统回调。
 
-本接口在与[selectionMenuOptions](#selectionmenuoptions12)同时使用时，会使selectionMenuOptions不生效。
+本接口在与[selectionMenuOptions<sup>(deprecated)</sup>](#selectionmenuoptionsdeprecated)同时使用时，会使selectionMenuOptions<sup>(deprecated)</sup>不生效。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -4295,9 +4299,8 @@ onShowFileSelector(callback: Callback\<OnShowFileSelectorEvent, boolean\>)
    import { BusinessError } from '@kit.BasicServicesKit';
    import { common } from '@kit.AbilityKit';
 
-   let mContext = getContext(this) as common.Context;
-
-   async function openCamera(callback: Callback<string>) {
+   async function openCamera(callback: Callback<string>, uiContext: UIContext) {
+    let mContext = uiContext.getHostContext() as common.Context;
      try {
        let pickerProfile: cameraPicker.PickerProfile = {
          cameraPosition: camera.CameraPosition.CAMERA_POSITION_BACK
@@ -4314,7 +4317,7 @@ onShowFileSelector(callback: Callback\<OnShowFileSelectorEvent, boolean\>)
    @Entry
    @Component
    struct WebComponent {
-     controller: webview.WebviewController = new webview.WebviewController()
+     controller: webview.WebviewController = new webview.WebviewController();
 
      build() {
        Column() {
@@ -4329,7 +4332,7 @@ onShowFileSelector(callback: Callback\<OnShowFileSelectorEvent, boolean\>)
                  console.log('Mime types are ' + event.fileSelector.getMimeTypes());
                  event.result.handleFileList([result]);
                }
-             })
+             }, this.getUIContext())
              return true;
            })
        }
@@ -4992,12 +4995,13 @@ onPermissionRequest(callback: Callback\<OnPermissionRequestEvent\>)
   @Component
   struct WebComponent {
     controller: webview.WebviewController = new webview.WebviewController();
+    uiContext: UIContext = this.getUIContext();
 
     aboutToAppear() {
       // 配置Web开启调试模式
       webview.WebviewController.setWebDebuggingAccess(true);
       let atManager = abilityAccessCtrl.createAtManager();
-      atManager.requestPermissionsFromUser(getContext(this), ['ohos.permission.CAMERA', 'ohos.permission.MICROPHONE'])
+      atManager.requestPermissionsFromUser(this.uiContext.getHostContext(), ['ohos.permission.CAMERA', 'ohos.permission.MICROPHONE'])
         .then((data) => {
           console.info('data:' + JSON.stringify(data));
           console.info('data permissions:' + data.permissions);
@@ -5012,7 +5016,7 @@ onPermissionRequest(callback: Callback\<OnPermissionRequestEvent\>)
         Web({ src: $rawfile('index.html'), controller: this.controller })
           .onPermissionRequest((event) => {
             if (event) {
-              AlertDialog.show({
+              this.uiContext.showAlertDialog({
                 title: 'title',
                 message: 'text',
                 primaryButton: {
@@ -7026,7 +7030,7 @@ onInterceptKeyboardAttach(callback: WebKeyboardCallback)
 
 onNativeEmbedVisibilityChange(callback: OnNativeEmbedVisibilityChangeCallback)
 
-网页中同层标签（如Embed标签或Object标签）在视口内的可见性发生变化时会触发该回调。同层标签默认不可见，如果首次进入页面可见则会上报，不可见则不会上报，当同层标签大小由非0值变为0 *0时，不会上报不可见，由0 *0变为非0值时会上报可见。同层标签全部不可见才算不可见，部分可见或全部可见算作可见。
+网页中同层标签（如Embed标签或Object标签）在视口内的可见性发生变化时会触发该回调。同层标签默认不可见，如果首次进入页面可见则会上报，不可见则不会上报，当同层标签大小由非0值变为0 *0时，不会上报不可见，由0 *0变为非0值时会上报可见。同层标签全部不可见才算不可见，部分可见或全部可见算作可见。不支持由于CSS样式变化导致的同层标签可见状态变化上报，例如display、opacity和visibility等。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -9811,7 +9815,7 @@ type OnSslErrorEventCallback = (sslErrorEvent: SslErrorEvent) => void
 | height            | number                              | 否    | 同层标签的高，单位为px。          |
 | url               | string                              | 否    | 同层标签的url信息。            |
 | tag<sup>12+</sup> | string              | 否    | 标签名，统一为大写字符。              |
-| params<sup>12+</sup>            | Map<string, string> | 否    | object标签包含的param标签键值对列表，该map本质为Object类型，请使用Object提供的方法操作该对象。  |
+| params<sup>12+</sup>            | Map<string, string> | 否    | object标签包含的param标签键值对列表，该map本质为Object类型，请使用Object提供的方法操作该对象，即embed.info?.param?.["name"]。  |
 | position<sup>12+</sup>          | Position            | 否    | 同层标签在屏幕坐标系中相对于Web组件的位置信息，此处区别于标准Position，单位为px。 |
 
 ## NativeEmbedDataInfo<sup>11+</sup>
@@ -10556,6 +10560,15 @@ type OnNativeEmbedVisibilityChangeCallback = (nativeEmbedVisibilityInfo: NativeE
 | onDisappear | Callback\<void\>  | 否     | 自定义选择菜单关闭时回调。     |
 | preview    | [CustomBuilder](../apis-arkui/arkui-ts/ts-types.md#custombuilder8)          | 否     | 自定义选择菜单的预览内容样式, 未配置时无预览内容。|
 | menuType   | [MenuType](../apis-arkui/arkui-ts/ts-text-common.md#menutype13枚举说明)      | 否     | 自定义选择菜单类型。<br>默认值：MenuType.SELECTION_MENU     |
+| previewMenuOptions<sup>20+</sup> | [PreviewMenuOptions](#previewmenuoptions20) | 否     | 自定义选择预览菜单选项。 |
+
+## PreviewMenuOptions<sup>20+</sup>
+预览菜单选项。
+**系统能力：** SystemCapability.Web.Webview.Core
+
+| 名称           | 类型                                             | 必填    | 说明             |
+| ---------- | -----------------------------------------------------| ------ | ---------------- |
+| hapticFeedbackMode   | [HapticFeedbackMode](../apis-arkui/arkui-ts/ts-universal-attributes-menu.md#hapticfeedbackmode18)   | 否     | 菜单弹出时振动效果。需配置"ohos.permission.VIBRATE"权限<br/>默认值：HapticFeedbackMode.DISABLED，菜单弹出时不振动。     |
 
 ## BlurOnKeyboardHideMode<sup>14+</sup>枚举说明
 

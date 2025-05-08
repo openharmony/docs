@@ -118,7 +118,7 @@ ScrollEvent滚动信息。
 | id           | string                                             | 是   | 滚动组件的id。                               |
 | uniqueId           | number                                             | 是   | 滚动组件的uniqueId。                               |
 | scrollEvent    | [ScrollEventType](#scrolleventtype12)                | 是   | 滚动事件的类型。                             |
-| offset       | number                                             | 是   | 滚动组件的当前偏移量。                        |
+| offset       | number                                             | 是   | 滚动组件的当前偏移量。                   |
 
 ## ObserverOptions<sup>12+</sup>
 
@@ -608,7 +608,7 @@ off(type: 'routerPageUpdate', context: UIAbilityContext | UIContext, callback?: 
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | string                                                       | 是   | 监听事件，固定为'routerPageUpdate'，即router中page页面的状态变化。 |
 | context  | [UIAbilityContext](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md)&nbsp;\|&nbsp;[UIContext](./js-apis-arkui-UIContext.md) | 是   | 上下文信息，用以指定监听页面的范围。 |
-| callback | Callback\<[RouterPageInfo](#routerpageinfo)\>        | 否   | 需要被注销的回调函。                 |
+| callback | Callback\<[RouterPageInfo](#routerpageinfo)\>        | 否   | 需要被注销的回调函数。                 |
 
 **示例：**
 
@@ -933,7 +933,7 @@ on(type: 'navDestinationSwitch', context: UIAbilityContext | UIContext, callback
 // uiObserver.off('navDestinationSwitch', UIAbilityContext, callback)
 import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 import { uiObserver, window } from '@kit.ArkUI';
-import { hilog } from "@kit.PerformanceAnalysisKit"
+import { hilog } from "@kit.PerformanceAnalysisKit";
 
 function callBackFunc(info: uiObserver.NavDestinationSwitchInfo) {
   console.info(`testTag navDestinationSwitch from: ${JSON.stringify(info.from)} to: ${JSON.stringify(info.to)}`)

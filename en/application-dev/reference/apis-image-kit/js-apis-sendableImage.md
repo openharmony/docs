@@ -334,8 +334,8 @@ Before calling any API in **PixelMap**, you must use [sendableImage.createPixelM
 
 | Name             | Type   | Readable| Writable| Description                      |
 | -----------------| ------- | ---- | ---- | -------------------------- |
-| isEditable        | boolean | Yes  | No  | Whether the pixels of an image are editable.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
-| isStrideAlignment | boolean | Yes  | No  | Whether the image memory is the DMA memory. In the case of DMA, a 256-byte alignment is carried out, which means that a padding area exists at the end of the line.|
+| isEditable        | boolean | Yes  | No  | Whether the PixelMap is editable. The value **true** means that the PixelMap is editable, and **false** means the opposite.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| isStrideAlignment | boolean | Yes  | No  | Whether the PixelMap uses DMA memory. The value** true** means that the PixelMap uses DMA memory, and **false** means the opposite. The PixelMap in DMA memory is aligned to 256-byte boundaries, with padding areas at the end of each row.|
 
 ### readPixelsToBuffer
 
@@ -805,7 +805,7 @@ let pixelBytesNumber: number = pixelMap.getPixelBytesNumber();
 
 getDensity():number
 
-Obtains the density of this image.
+Obtains the pixel density of this image.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -815,7 +815,7 @@ Obtains the density of this image.
 
 | Type  | Description           |
 | ------ | --------------- |
-| number | Density of the image.|
+| number | Pixel density, in ppi.|
 
 **Example**
 
@@ -837,7 +837,7 @@ Sets an opacity rate for this image. This API uses a promise to return the resul
 
 | Name| Type  | Mandatory| Description                       |
 | ------ | ------ | ---- | --------------------------- |
-| rate   | number | Yes  | Opacity rate.|
+| rate   | number | Yes  | Opacity rate. The value range is (0,1].|
 
 **Return value**
 
@@ -876,7 +876,7 @@ Sets the opacity rate for this PixelMap and initializes the PixelMap.
 
 | Name  | Type                | Mandatory| Description                          |
 | -------- | -------------------- | ---- | ------------------------------ |
-| rate     | number               | Yes  | Opacity rate.  |
+| rate     | number               | Yes  | Opacity rate. The value range is (0,1].  |
 
 **Error codes**
 
@@ -1064,8 +1064,8 @@ Translates this image based on given coordinates. This API uses a promise to ret
 
 | Name| Type  | Mandatory| Description       |
 | ------ | ------ | ---- | ----------- |
-| x      | number | Yes  | X coordinate to translate.|
-| y      | number | Yes  | Y coordinate to translate.|
+| x      | number | Yes  | X coordinate to translate, in px.|
+| y      | number | Yes  | Y coordinate to translate, in px.|
 
 **Return value**
 
@@ -1222,8 +1222,8 @@ Flips this image horizontally or vertically, or both. This API uses a promise to
 
 | Name    | Type   | Mandatory| Description     |
 | ---------- | ------- | ---- | --------- |
-| horizontal | boolean | Yes  | Whether to flip the image horizontally.|
-| vertical   | boolean | Yes  | Whether to flip the image vertically.|
+| horizontal | boolean              | Yes  | Whether to flip the image horizontally. The value **true** means to flip the image horizontally, and **false** means the opposite.           |
+| vertical   | boolean              | Yes  | Whether to flip the image vertically. The value **true** means to flip the image vertically, and **false** means the opposite.           |
 
 **Return value**
 
@@ -1264,8 +1264,8 @@ Flips this image horizontally or vertically, or both. This API returns the resul
 
 | Name    | Type                | Mandatory| Description                         |
 | ---------- | -------------------- | ---- | ----------------------------- |
-| horizontal | boolean              | Yes  | Whether to flip the image horizontally.                   |
-| vertical   | boolean              | Yes  | Whether to flip the image vertically.                   |
+| horizontal | boolean              | Yes  | Whether to flip the image horizontally. The value **true** means to flip the image horizontally, and **false** means the opposite.           |
+| vertical   | boolean              | Yes  | Whether to flip the image vertically. The value **true** means to flip the image vertically, and **false** means the opposite.           |
 
 **Error codes**
 
@@ -1719,8 +1719,8 @@ It inherits from [lang.ISendable](../../arkts-utils/arkts-sendable.md#isendable)
 | Name| Type         | Read Only| Optional| Description        |
 | ---- | ------------- | ---- | ---- | ------------ |
 | size | [Size](#size) | No  | No  | Region size.  |
-| x    | number        | No  | No  | X coordinate.|
-| y    | number        | No  | No  | Y coordinate.|
+| x    | number        | No  | No  | X coordinate, in px.|
+| y    | number        | No  | No  | Y coordinate, in px.|
 
 ## sendableImage.createImageSource
 

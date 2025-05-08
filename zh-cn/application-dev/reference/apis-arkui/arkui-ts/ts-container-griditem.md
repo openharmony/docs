@@ -7,7 +7,7 @@
 >  * 该组件从API version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 >  * 仅支持作为[Grid](ts-container-grid.md)组件的子组件使用。
 >  * 当GridItem配合LazyForEach使用时，GridItem子组件在GridItem创建时创建。配合if/else、ForEach使用时，或父组件为Grid时，GridItem子组件在GridItem布局时创建。
-
+>  * 当Grid中存在大量GridItem时，使用columnStart/columnEnd、rowStart/rowEnd设置GridItem大小会导致在使用scrollToIndex滑动到指定Index时，依次遍历GridItem节点，耗时较长。建议使用GridLayoutOptions布局，以提高查找GridItem位置的效率。最佳实践请参考[优化Grid组件加载慢丢帧问题](https://developer.huawei.com/consumer/cn/doc/best-practices/bpta-improve_grid_performance)。
 
 ## 子组件
 
@@ -155,7 +155,7 @@ selectable(value: boolean)
 
 selected(value: boolean)
 
-设置当前GridItem选中状态。该属性支持[$$](../../../quick-start/arkts-two-way-sync.md)双向绑定变量。
+设置当前GridItem选中状态。该属性支持[$$](../../../ui/state-management/arkts-two-way-sync.md)双向绑定变量。
 
 该属性需要在设置[选中态样式](./ts-universal-attributes-polymorphic-style.md#statestyles接口说明)前使用才能生效选中态样式。
 
@@ -226,7 +226,7 @@ GridItem通过设置合理的ColumnStart、ColumnEnd、RowStart、RowEnd属性�
 @Entry
 @Component
 struct GridItemExample {
-  @State numbers: string[] = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15"]
+  @State numbers: string[] = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15"];
 
   build() {
     Column() {
@@ -279,7 +279,7 @@ struct GridItemExample {
 @Entry
 @Component
 struct GridItemExample {
-  @State numbers: String[] = ['0', '1', '2']
+  @State numbers: String[] = ['0', '1', '2'];
 
   build() {
     Column({ space: 5 }) {

@@ -117,7 +117,7 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-## application.createPluginModuleContext<sup>18+</sup>
+## application.createPluginModuleContext<sup>19+</sup>
 
 createPluginModuleContext(context: Context, pluginBundleName: string, pluginModuleName: string): Promise\<Context>
 

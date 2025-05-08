@@ -20,4 +20,4 @@ websocket客户端和服务端建立连接的参数。
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [WebSocket_Header](_web_socket___header.md) \* **headers** | header头信息。 | 
+| [WebSocket_Header](_web_socket___header.md) \* headers | header头信息。 | 

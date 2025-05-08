@@ -58,9 +58,9 @@ class SourceObject {
     isVis: boolean
 
     constructor(name: string, age: number, isVis: boolean) {
-        this.name = name
-        this.age = age
-        this.isVis = isVis
+        this.name = name;
+        this.age = age;
+        this.isVis = isVis;
     }
 }
 
@@ -83,9 +83,9 @@ class SourceObject {
     isVis: boolean
 
     constructor(name: string, age: number, isVis: boolean) {
-        this.name = name
-        this.age = age
-        this.isVis = isVis
+        this.name = name;
+        this.age = age;
+        this.isVis = isVis;
     }
 }
 
@@ -203,8 +203,6 @@ setSessionId(callback: AsyncCallback&lt;void&gt;): void
 
 退出所有已加入的session，使用callback方式异步回调。
 
-**需要权限：** ohos.permission.DISTRIBUTED_DATASYNC
-
 **系统能力：** SystemCapability.DistributedDataManager.DataObject.DistributedObject
 
 **参数：**
@@ -219,7 +217,6 @@ setSessionId(callback: AsyncCallback&lt;void&gt;): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 201      | Permission verification failed. |
   | 401      | Parameter error. Incorrect parameter types. |
   | 15400001 | Failed to create the in-memory database. |
 
@@ -275,13 +272,13 @@ setSessionId(sessionId?: string): Promise&lt;void&gt;
 g_object.setSessionId(distributedDataObject.genSessionId()).then (()=>{
     console.info("join session.");
     }).catch((error: BusinessError)=>{
-        console.info("error:" + error.code + error.message);
+        console.error("error:" + error.code + error.message);
 });
 // 退出分布式组网
 g_object.setSessionId().then (()=>{
     console.info("leave all session.");
     }).catch((error: BusinessError)=>{
-        console.info("error:" + error.code + error.message);
+        console.error("error:" + error.code + error.message);
 });
 ```
 

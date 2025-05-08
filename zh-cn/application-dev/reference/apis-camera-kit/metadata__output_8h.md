@@ -23,7 +23,7 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| struct&nbsp;&nbsp;[MetadataOutput_Callbacks](_metadata_output___callbacks.md) | 元数据输出的回调。  | 
+| struct  [MetadataOutput_Callbacks](_metadata_output___callbacks.md) | 元数据输出的回调。  | 
 
 
 ### 类型定义

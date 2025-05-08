@@ -35,9 +35,9 @@ AVCastPicker({
 
 投播组件，可用于将音视频资源投放到其它设备播放。
 
-该组件为自定义组件，开发者在使用前需要先了解[@Component](../../quick-start/arkts-create-custom-components.md#component)。
+该组件为自定义组件，开发者在使用前需要先了解[@Component](../../ui/state-management/arkts-create-custom-components.md#component)。
 
-**装饰器类型：** [@Component](../../quick-start/arkts-create-custom-components.md)
+**装饰器类型：** [@Component](../../ui/state-management/arkts-create-custom-components.md)
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 

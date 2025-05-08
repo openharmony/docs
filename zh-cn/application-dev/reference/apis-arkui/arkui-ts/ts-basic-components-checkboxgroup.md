@@ -52,8 +52,8 @@ selectAll(value: boolean)
 
 设置是否全选。若同组的[Checkbox](ts-basic-components-checkbox.md)显式设置了select属性，则Checkbox的优先级高。
 
-从API version 10开始，该属性支持[$$](../../../quick-start/arkts-two-way-sync.md)双向绑定变量。
-从API version 18开始，该属性支持[!!](../../../quick-start/arkts-new-binding.md#系统组件参数双向绑定)双向绑定变量。
+从API version 10开始，该属性支持[$$](../../../ui/state-management/arkts-two-way-sync.md)双向绑定变量。
+从API version 18开始，该属性支持[!!](../../../ui/state-management/arkts-new-binding.md#系统组件参数双向绑定)双向绑定变量。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -73,8 +73,8 @@ selectAll(isAllSelected: Optional\<boolean>)
 
 设置是否全选。若同组的[Checkbox](ts-basic-components-checkbox.md)显式设置了select属性，则Checkbox的优先级高。与[selectAll](#selectall)相比，isAllSelected参数新增了对undefined类型的支持。
 
-该属性支持[$$](../../../quick-start/arkts-two-way-sync.md)双向绑定变量。
-该属性支持[!!](../../../quick-start/arkts-new-binding.md#系统组件参数双向绑定)双向绑定变量。
+该属性支持[$$](../../../ui/state-management/arkts-two-way-sync.md)双向绑定变量。
+该属性支持[!!](../../../ui/state-management/arkts-new-binding.md#系统组件参数双向绑定)双向绑定变量。
 
 **卡片能力：** 从API version 18开始，该接口支持在ArkTS卡片中使用。
 
@@ -329,7 +329,7 @@ struct CheckboxExample {
             .checkboxShape(CheckBoxShape.ROUNDED_SQUARE)
             .selectedColor('#007DFF')
             .onChange((itemName: CheckboxGroupResult) => {
-              console.info("checkbox group content" + JSON.stringify(itemName))
+              console.info("checkbox group content" + JSON.stringify(itemName));
             })
           Text('Select All').fontSize(14).lineHeight(20).fontColor('#182431').fontWeight(500)
         }
@@ -340,7 +340,7 @@ struct CheckboxExample {
             .selectedColor('#007DFF')
             .shape(CheckBoxShape.ROUNDED_SQUARE)
             .onChange((value: boolean) => {
-              console.info('Checkbox1 change is' + value)
+              console.info('Checkbox1 change is' + value);
             })
           Text('Checkbox1').fontSize(14).lineHeight(20).fontColor('#182431').fontWeight(500)
         }.margin({ left: 36 })
@@ -351,7 +351,7 @@ struct CheckboxExample {
             .selectedColor('#007DFF')
             .shape(CheckBoxShape.ROUNDED_SQUARE)
             .onChange((value: boolean) => {
-              console.info('Checkbox2 change is' + value)
+              console.info('Checkbox2 change is' + value);
             })
           Text('Checkbox2').fontSize(14).lineHeight(20).fontColor('#182431').fontWeight(500)
         }.margin({ left: 36 })
@@ -362,7 +362,7 @@ struct CheckboxExample {
             .selectedColor('#007DFF')
             .shape(CheckBoxShape.ROUNDED_SQUARE)
             .onChange((value: boolean) => {
-              console.info('Checkbox3 change is' + value)
+              console.info('Checkbox3 change is' + value);
             })
           Text('Checkbox3').fontSize(14).lineHeight(20).fontColor('#182431').fontWeight(500)
         }.margin({ left: 36 })
@@ -391,7 +391,7 @@ struct Index {
             .checkboxShape(CheckBoxShape.ROUNDED_SQUARE)
             .selectedColor(Color.Orange)
             .onChange((itemName: CheckboxGroupResult) => {
-              console.info("checkbox group content" + JSON.stringify(itemName))
+              console.info("checkbox group content" + JSON.stringify(itemName));
             })
             .mark({
               strokeColor:Color.Black,
@@ -408,7 +408,7 @@ struct Index {
             .selectedColor(0x39a2db)
             .shape(CheckBoxShape.ROUNDED_SQUARE)
             .onChange((value: boolean) => {
-              console.info('Checkbox1 change is'+ value)
+              console.info('Checkbox1 change is'+ value);
             })
             .mark({
               strokeColor:Color.Black,
@@ -425,7 +425,7 @@ struct Index {
             .selectedColor(0x39a2db)
             .shape(CheckBoxShape.ROUNDED_SQUARE)
             .onChange((value: boolean) => {
-              console.info('Checkbox2 change is' + value)
+              console.info('Checkbox2 change is' + value);
             })
             .width(30)
             .height(30)
@@ -436,7 +436,7 @@ struct Index {
             .selectedColor(0x39a2db)
             .shape(CheckBoxShape.ROUNDED_SQUARE)
             .onChange((value: boolean) => {
-              console.info('Checkbox3 change is' + value)
+              console.info('Checkbox3 change is' + value);
             })
             .width(30)
             .height(30)

@@ -1,6 +1,6 @@
 # Using AVPlayer to Play Streaming Media (ArkTS)
 
-In this topic, you will learn how to use the [AVPlayer](media-kit-intro.md#avplayer) to develop a service for streaming media playback, enabling the complete playback of a streaming video from beginning to end.
+In this topic, you will learn how to use the [AVPlayer](media-kit-intro.md#avplayer) to develop live streaming and Video on Demand (VOD) features, enabling the complete playback of a streaming video from beginning to end.
 
 This topic describes only how to implement streaming media playback. For details about other scenarios such as local playback, see [Video Playback](using-avplayer-for-playback.md).
 

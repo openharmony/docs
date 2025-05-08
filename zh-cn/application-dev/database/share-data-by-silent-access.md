@@ -57,7 +57,7 @@
 
     目前访问应用分身仅支持静默访问方式下，不支持非静默访问方式。故需要设置访问应用分身URI和参数时，请注意同步设置"Proxy"参数和"appIndex"参数。例如“datashareproxy://{bundleName}/{dataPath}?Proxy=true&appIndex=1”，表示将在数据访问方会在静默访问方式下访问应用的第一个分身。
 
-  - "user"仅支持设置为整型，表示要访问的数据提供方的用户ID。user的定义及获取参照[user](../reference/apis-basic-services-kit/js-apis-osAccount.md#getactivatedosaccountlocalids9)。user不填写时，默认为数据访问方所在的用户ID。
+  - "user"仅支持设置为整型，表示要访问的数据提供方的用户ID。user的定义及获取参照[user](../reference/apis-basic-services-kit/js-apis-osAccount.md#getactivatedosaccountlocalids9)。user不填写时，默认为数据访问方所在的用户ID。目前跨用户访问功能仅支持增删改查功能，订阅通知功能不支持跨用户。
 
     目前跨用户访问仅支持主空间和隐私空间之间的访问，且需要数据访问方配有跨用户访问权限ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS才可成功访问。
 

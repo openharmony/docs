@@ -38,7 +38,7 @@ Toggle(options: ToggleOptions)
 | Name             | Type                             | Mandatory| Description                                                        |
 | ----------------- | --------------------------------- | ---- | ------------------------------------------------------------ |
 | type<sup>8+</sup> | [ToggleType](#toggletype) | Yes  | Type of the toggle.<br>Default value: **ToggleType.Switch**<br>**Widget capability**: This API can be used in ArkTS widgets since API version 9.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| isOn<sup>8+</sup> | boolean                           | No  | Whether the toggle is turned on. The value **true** means that the toggle is turned on, and **false** means the opposite.<br>Default value: **false**<br>This parameter supports two-way binding through [$$](../../../quick-start/arkts-two-way-sync.md).<br>This attribute supports two-way binding through [!!](../../../quick-start/arkts-new-binding.md).<br>**Widget capability**: This API can be used in ArkTS widgets since API version 9.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| isOn<sup>8+</sup> | boolean                           | No  | Whether the toggle is turned on. The value **true** means that the toggle is turned on, and **false** means the opposite.<br>Default value: **false**<br>This parameter supports two-way binding through [$$](../../../ui/state-management/arkts-two-way-sync.md).<br>This parameter supports two-way binding through the [!! syntax](../../../ui/state-management/arkts-new-binding.md#two-way-binding-between-built-in-component-parameters).<br>**Widget capability**: This API can be used in ArkTS widgets since API version 9.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 
 ## ToggleType
 
@@ -48,10 +48,10 @@ Toggle(options: ToggleOptions)
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name      | Description              |
-| -------- | ---------------- |
+| Name    | Description                                                        |
+| -------- | ------------------------------------------------------------ |
 | Checkbox | Check box type.<br>**NOTE**<br>Since API version 11, the default style of the **Checkbox** component is changed from rounded square to circle.<br>The default value of the universal attribute [margin](ts-universal-attributes-size.md#margin) is as follows:<br>{<br> top: '14px',<br> right: '14px',<br> bottom: '14px',<br> left: '14px'<br> }.<br>Default size:<br>{width:'20vp', height:'20vp'}|
-| Button   | Button type. The set string, if any, will be displayed inside the button.<br>The default height is 28 vp, and there is no default width.      |
+| Button   | Button type. The set string, if any, will be displayed inside the button.<br>The default height is 28 vp, and there is no default width.|
 | Switch   | Switch type.<br>**NOTE**<br>The default value of the universal attribute [margin](ts-universal-attributes-size.md#margin) is as follows:<br>{<br> top: '6px',<br> right: '14px',<br> bottom: '6px',<br> left: '14px'<br> }.<br>Default size:<br>{width:'36vp', height:'20vp'}|
 
 ## Attributes
@@ -195,14 +195,14 @@ struct ToggleExample {
           .selectedColor('#007DFF')
           .switchPointColor('#FFFFFF')
           .onChange((isOn: boolean) => {
-            console.info('Component status:' + isOn)
+            console.info('Component status:' + isOn);
           })
 
         Toggle({ type: ToggleType.Switch, isOn: true })
           .selectedColor('#007DFF')
           .switchPointColor('#FFFFFF')
           .onChange((isOn: boolean) => {
-            console.info('Component status:' + isOn)
+            console.info('Component status:' + isOn);
           })
       }
 
@@ -212,14 +212,14 @@ struct ToggleExample {
           .size({ width: 20, height: 20 })
           .selectedColor('#007DFF')
           .onChange((isOn: boolean) => {
-            console.info('Component status:' + isOn)
+            console.info('Component status:' + isOn);
           })
 
         Toggle({ type: ToggleType.Checkbox, isOn: true })
           .size({ width: 20, height: 20 })
           .selectedColor('#007DFF')
           .onChange((isOn: boolean) => {
-            console.info('Component status:' + isOn)
+            console.info('Component status:' + isOn);
           })
       }
 
@@ -230,7 +230,7 @@ struct ToggleExample {
         }.width(106)
         .selectedColor('rgba(0,125,255,0.20)')
         .onChange((isOn: boolean) => {
-          console.info('Component status:' + isOn)
+          console.info('Component status:' + isOn);
         })
 
         Toggle({ type: ToggleType.Button, isOn: true }) {
@@ -238,7 +238,7 @@ struct ToggleExample {
         }.width(106)
         .selectedColor('rgba(0,125,255,0.20)')
         .onChange((isOn: boolean) => {
-          console.info('Component status:' + isOn)
+          console.info('Component status:' + isOn);
         })
       }
     }.width('100%').padding(24)
@@ -269,7 +269,7 @@ struct ToggleExample {
             pointColor: '#D2B48C',
             unselectedColor: Color.Pink })
           .onChange((isOn: boolean) => {
-            console.info('Component status:' + isOn)
+            console.info('Component status:' + isOn);
           })
 
         Toggle({ type: ToggleType.Switch, isOn: true })
@@ -280,7 +280,7 @@ struct ToggleExample {
             pointColor: '#D2B48C',
             unselectedColor: Color.Pink })
           .onChange((isOn: boolean) => {
-            console.info('Component status:' + isOn)
+            console.info('Component status:' + isOn);
           })
       }
     }.width('100%').padding(24)
@@ -297,27 +297,30 @@ This example implements a toggle in a custom style. When you click the **Blue** 
 ```ts
 // xxx.ets
 class MySwitchStyle implements ContentModifier<ToggleConfiguration> {
-  selectedColor: Color = Color.White
+  selectedColor: Color = Color.White;
   lamp: string = 'string';
+
   constructor(selectedColor: Color, lamp: string) {
-    this.selectedColor = selectedColor
+    this.selectedColor = selectedColor;
     this.lamp = lamp;
   }
-  applyContent() : WrappedBuilder<[ToggleConfiguration]>
-  {
-    return wrapBuilder(buildSwitch)
+
+  applyContent(): WrappedBuilder<[ToggleConfiguration]> {
+    return wrapBuilder(buildSwitch);
   }
 }
-@Builder function buildSwitch(config: ToggleConfiguration) {
+
+@Builder
+function buildSwitch(config: ToggleConfiguration) {
   Column({ space: 50 }) {
     Circle({ width: 150, height: 150 })
       .fill(config.isOn ? (config.contentModifier as MySwitchStyle).selectedColor : Color.Blue)
     Row() {
-      Button('Blue '+ JSON.stringify((config.contentModifier as MySwitchStyle).lamp))
+      Button('Blue ' + JSON.stringify((config.contentModifier as MySwitchStyle).lamp))
         .onClick(() => {
           config.triggerChange(false);
         })
-      Button('Yellow '+ JSON.stringify((config.contentModifier as MySwitchStyle).lamp))
+      Button('Yellow ' + JSON.stringify((config.contentModifier as MySwitchStyle).lamp))
         .onClick(() => {
           config.triggerChange(true);
         })
@@ -330,11 +333,11 @@ class MySwitchStyle implements ContentModifier<ToggleConfiguration> {
 struct Index {
   build() {
     Column({ space: 50 }) {
-      Toggle({ type: ToggleType.Switch})
+      Toggle({ type: ToggleType.Switch })
         .enabled(true)
         .contentModifier(new MySwitchStyle(Color.Yellow, 'light'))
         .onChange((isOn: boolean) => {
-          console.info('Switch Log:' + isOn)
+          console.info('Switch Log:' + isOn);
         })
     }.height('100%').width('100%')
   }

@@ -47,11 +47,12 @@ on(type:&nbsp;'collaborateEvent'&nbsp;|&nbsp;'receiveImage',&nbsp;sessionId:&nbs
   import { abilityConnectionManager } from '@kit.DistributedServiceKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
 
-  abilityConnectionManager.on("collaborateEvent", this.sessionId,(callbackInfo) => {
+  let sessionId = 100;
+  abilityConnectionManager.on("collaborateEvent", sessionId,(callbackInfo) => {
     hilog.info(0x0000, 'testTag', 'session collaborateEvent, sessionId is', callbackInfo.sessionId);
   });
 
-  abilityConnectionManager.on("receiveImage", this.sessionId,(callbackInfo) => {
+  abilityConnectionManager.on("receiveImage", sessionId,(callbackInfo) => {
     hilog.info(0x0000, 'testTag', 'session receiveImage, sessionId is', callbackInfo.sessionId);
   });
 
@@ -90,8 +91,9 @@ off(type:&nbsp;'collaborateEvent'&nbsp;|&nbsp;'receiveImage',&nbsp;sessionId:&nb
   import { abilityConnectionManager } from '@kit.DistributedServiceKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
 
-  abilityConnectionManager.off("collaborateEvent", this.sessionId);
-  abilityConnectionManager.off("receiveImage", this.sessionId);
+  let sessionId = 100;
+  abilityConnectionManager.off("collaborateEvent", sessionId);
+  abilityConnectionManager.off("receiveImage", sessionId);
   ```
 
 ## abilityConnectionManager.sendImage
@@ -152,10 +154,11 @@ sendImage(sessionId:&nbsp;number,&nbsp;image:&nbsp;image.PixelMap,&nbsp;quality?
       let file = fs.openSync(photoSelectResult.photoUris[0], fs.OpenMode.READ_ONLY);
       hilog.info(0x0000, 'testTag', 'file.fd:' + file.fd);
 
+      let sessionId = 100;
       let imageSourceApi: image.ImageSource = image.createImageSource(file.fd);
       if (imageSourceApi) {
         imageSourceApi.createPixelMap().then((pixelMap) => {
-          abilityConnectionManager.sendImage(this.sessionId, pixelMap)
+          abilityConnectionManager.sendImage(sessionId, pixelMap)
         });
       } else {
         hilog.info(0x0000, 'testTag', 'imageSourceApi is undefined');
@@ -392,6 +395,7 @@ destroyStream(sessionId:&nbsp;number):&nbsp;void
   import { abilityConnectionManager } from '@kit.DistributedServiceKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
 
+  let sessionId = 100;
   hilog.info(0x0000, 'testTag', 'destroyStream called');
   abilityConnectionManager.destroyStream(sessionId)
   ```
@@ -428,6 +432,7 @@ startStream(sessionId:&nbsp;number):&nbsp;void
   import { abilityConnectionManager } from '@kit.DistributedServiceKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
 
+  let sessionId = 100;
   hilog.info(0x0000, 'testTag', 'startStream called');
   abilityConnectionManager.startStream(sessionId)
   ```
@@ -463,6 +468,7 @@ stopStream(sessionId:&nbsp;number):&nbsp;void
   import { abilityConnectionManager } from '@kit.DistributedServiceKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
 
+  let sessionId = 100;
   hilog.info(0x0000, 'testTag', 'stopStream called');
   abilityConnectionManager.stopStream(sessionId)
   ```
@@ -549,3 +555,34 @@ Surface配置参数。
 | UNKNOWN   | 表示未知的像素格式。 |
 | NV12  | 表示NV12，YUV420半平面格式。 |
 | NV21  | 表示NV21，YUV420半平面格式。 |
+
+## ConnectOptions
+
+应用连接时所需的连接选项。
+
+**系统能力**：SystemCapability.DistributedSched.AppCollaboration
+
+| 名称          | 类型    | 只读   | 可选   | 说明          |
+| ----------- | ------- | ---- | ---- | ----------- |
+| needSendStream    | boolean  | 否    | 否    | true表示需要发送流，false表示不需要发送流。    |
+| needReceiveStream    | boolean  | 否    | 否    | true表示需要接收流，false表示不需要接收流。     |
+
+## EventCallbackInfo
+
+回调方法的接收信息。
+
+**系统能力**：SystemCapability.DistributedSched.AppCollaboration
+
+| 名称       | 类型    | 可读   | 可写   | 说明          |
+| -------- | ------ | ---- | ---- | ----------- |
+| image  | image.PixelMap | 是    | 否    |   表示接收的图片。 |
+
+## StartOptionParams
+
+启动选项参数的枚举。
+
+**系统能力**：SystemCapability.DistributedSched.AppCollaboration
+ 
+| 名称|  值 | 说明 |
+|-------|-------|-------|
+| START_IN_BACKGROUND | 1 |表示将对端应用启动至后台。|

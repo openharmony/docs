@@ -8,9 +8,9 @@ Currently, the following decoding capabilities are supported:
 
 | Video Hardware Decoding Type      | Video Software Decoding Type  |
 | --------------------- | ---------------- |
-| AVC (H.264) and HEVC (H.265)<!--RP14--><!--RP14End--> | MPEG2, MPEG4, and AVC (H.264)<!--RP12--><!--RP12End--> |
+| AVC (H.264), HEVC (H.265)<!--RP14--><!--RP14End--> | MPEG2, MPEG4, H.263, AVC (H.264)<!--RP12--><!--RP12End--> |
 
-Video software decoding and hardware decoding are different. When a decoder is created based on the MIME type, <!--RP13-->only MPEG2 (OH_AVCODEC_MIMETYPE_VIDEO_MPEG2), MPEG4 (OH_AVCODEC_MIMETYPE_VIDEO_MPEG4_PART2), and H.264 (OH_AVCODEC_MIMETYPE_VIDEO_AVC) are supported for software decoding, <!--RP13End--><!--RP15-->and H.264 (OH_AVCODEC_MIMETYPE_VIDEO_AVC) and H.265 (OH_AVCODEC_MIMETYPE_VIDEO_HEVC)<!--RP15End--> can be used for hardware decoding as long as they are supported by the hardware platform.
+Video software decoding and hardware decoding are different. When a decoder is created based on the MIME type, <!--RP13-->only MPEG2 (OH_AVCODEC_MIMETYPE_VIDEO_MPEG2), MPEG4 (OH_AVCODEC_MIMETYPE_VIDEO_MPEG4_PART2), H.263 (OH_AVCODEC_MIMETYPE_VIDEO_H263), and H.264 (OH_AVCODEC_MIMETYPE_VIDEO_AVC) are supported for software decoding, <!--RP13End--><!--RP15-->and H.264 (OH_AVCODEC_MIMETYPE_VIDEO_AVC) and H.265 (OH_AVCODEC_MIMETYPE_VIDEO_HEVC)<!--RP15End--> can be used for hardware decoding as long as they are supported by the hardware platform.
 
 For details about the range of each decoding capability, see [Obtaining Supported Codecs](obtain-supported-codecs.md).
 
@@ -22,7 +22,7 @@ Currently, the following encoding capabilities are supported:
 
 | Video Encoding Type                |
 | ---------------------------- |
-| HEVC (H.265) and AVC (H.264)|
+| HEVC (H.265), AVC (H.264)|
 
 Only hardware encoding is supported. When an encoder is created based on the MIME type, H.264 (OH_AVCODEC_MIMETYPE_VIDEO_AVC) and H.265 (OH_AVCODEC_MIMETYPE_VIDEO_HEVC) are supported.
 
@@ -49,11 +49,11 @@ AAC, FLAC, MP3, G.711Mu<!--RP3--><!--RP3End-->
 For details about the development guide, see [Audio Encoding](audio-encoding.md).
 
 
-## Media Data Muxing and Demuxing
+## Media Data Multiplexing and Demultiplexing
 
-### Media Data Demuxing
+### Media Data Demultiplexing
 
-The following container formats are supported:
+The following formats are supported:
 
 | Media Format | Container Format                     | Stream Format                     |
 | -------- | :----------------------------| :----------------------------|
@@ -75,12 +75,12 @@ The following container formats are supported:
 | External subtitle  | srt                        |Subtitle stream: SRT|
 | External subtitle  | webvtt                     |Subtitle stream: WEBVTT|
 
-The DRM demuxing capability supports the following formats: <!--RP10-->mp4 (H.264 and AAC) and mpeg-ts (H.264 and AAC)<!--RP10End-->.
+The DRM demultiplexing capability supports the following formats: <!--RP10-->mp4 (H.264 and AAC) and mpeg-ts (H.264 and AAC)<!--RP10End-->.
 
-For details about the development guide, see [Media Data Demuxing](audio-video-demuxer.md).
+For details about the development guide, see [Media Data Demultiplexing](audio-video-demuxer.md).
 
 
-### Media Data Muxing
+### Media Data Multiplexing
 
 Currently, the following muxer capabilities are supported:
 
@@ -90,7 +90,7 @@ Currently, the following muxer capabilities are supported:
 | m4a      | -                     | AAC              | jpeg, png, bmp|
 | mp3      | -                     | MPEG (MP3)     | -              |
 | amr      | -                     | AMR (AMR-NB and AMR-WB)| -             |
-| wav      | -                     | G711mu(pcm-mulaw) | -             |
+| wav      | -                     | G711mu (pcm-mulaw)| -             |
 | aac      | -                     | AAC               | -             |
 
 > **NOTE**
@@ -172,4 +172,4 @@ aac container format
    | OH_MD_KEY_PROFILE                  | Encoding profile             |  Mandatory |
    | OH_MD_KEY_AAC_IS_ADTS              | Whether the format is ADTS       |  Mandatory |
    
-For details about the development guide, see [Media Data Muxing](audio-video-muxer.md).
+For details about the development guide, see [Media Data Multiplexing](audio-video-muxer.md).

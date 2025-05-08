@@ -234,7 +234,7 @@ struct ViewA {
 
 如图，现在当二层变量发生变化时，可以完美的被监听到，并在UI中刷新出来了。
 
-当然，嵌套数组等也是同样的原理，大家可以参考[官方指南](../application-dev/quick-start/arkts-observed-and-objectlink.md)进行尝试。
+当然，嵌套数组等也是同样的原理，大家可以参考[官方指南](../application-dev/ui/state-management/arkts-observed-and-objectlink.md)进行尝试。
 
 ## 参考
-[@Observed和@ObjectLink：嵌套类对象属性变化](../application-dev/quick-start/arkts-observed-and-objectlink.md)
+[@Observed和@ObjectLink：嵌套类对象属性变化](../application-dev/ui/state-management/arkts-observed-and-objectlink.md)

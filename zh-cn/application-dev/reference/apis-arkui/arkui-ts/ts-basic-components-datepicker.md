@@ -38,7 +38,7 @@ DatePicker(options?: DatePickerOptions)
 | -------- | ---- | ---- | ------------------------------------------------------------ |
 | start    | Date | 否   | 指定选择器的起始日期。<br/>默认值：Date('1970-1-1')          |
 | end      | Date | 否   | 指定选择器的结束日期。<br/>默认值：Date('2100-12-31')        |
-| selected | Date | 否   | 设置选中项的日期。<br/>默认值：当前系统日期<br />从API version 10开始，该参数支持[$$](../../../quick-start/arkts-two-way-sync.md)双向绑定变量。 |
+| selected | Date | 否   | 设置选中项的日期。<br/>默认值：当前系统日期<br />从API version 10开始，该参数支持[$$](../../../ui/state-management/arkts-two-way-sync.md)双向绑定变量。 |
 | mode<sup>18+</sup> | [DatePickerMode](#datepickermode18枚举说明) | 否   | 设置DatePicker显示的日期选项列。<br/>默认值：DatePickerMode.DATE，日期列显示年、月、日三列。 小数值做取整处理。<br/>在DatePickerDialog中，当showTime=true时，此参数不生效，显示默认年月日三列。 |
 
 >  **说明：**
@@ -342,15 +342,15 @@ onDateChange(callback: Optional\<Callback\<Date>>)
 @Entry
 @Component
 struct DatePickerExample {
-  @State isLunar: boolean = false
-  private selectedDate: Date = new Date('2021-08-08')
+  @State isLunar: boolean = false;
+  private selectedDate: Date = new Date('2021-08-08');
 
   build() {
     Column() {
       Button('切换公历农历')
         .margin({ top: 30, bottom: 30 })
         .onClick(() => {
-          this.isLunar = !this.isLunar
+          this.isLunar = !this.isLunar;
         })
       DatePicker({
         start: new Date('1970-1-1'),
@@ -359,8 +359,8 @@ struct DatePickerExample {
       })
         .lunar(this.isLunar)
         .onDateChange((value: Date) => {
-          this.selectedDate = value
-          console.info('select current date is: ' + value.toString())
+          this.selectedDate = value;
+          console.info('select current date is: ' + value.toString());
         })
 
     }.width('100%')
@@ -379,7 +379,7 @@ struct DatePickerExample {
 @Entry
 @Component
 struct DatePickerExample {
-  private selectedDate: Date = new Date('2021-08-08')
+  private selectedDate: Date = new Date('2021-08-08');
 
   build() {
     Column() {
@@ -392,8 +392,8 @@ struct DatePickerExample {
         .textStyle({ color: '#ff182431', font: { size: '18fp', weight: FontWeight.Normal } })
         .selectedTextStyle({ color: '#ff0000FF', font: { size: '26fp', weight: FontWeight.Regular, family: "HarmonyOS Sans", style: FontStyle.Normal } })
         .onDateChange((value: Date) => {
-          this.selectedDate = value
-          console.info('select current date is: ' + value.toString())
+          this.selectedDate = value;
+          console.info('select current date is: ' + value.toString());
         })
 
     }.width('100%')
@@ -412,13 +412,13 @@ struct DatePickerExample {
 @Entry
 @Component
 struct DatePickerExample {
-  @State isLunar: boolean = false
-  private selectedDate: Date = new Date('2025-01-15')
+  @State isLunar: boolean = false;
+  private selectedDate: Date = new Date('2025-01-15');
   @State datePickerModeList: (DatePickerMode)[] = [
     DatePickerMode.DATE,
     DatePickerMode.YEAR_AND_MONTH,
     DatePickerMode.MONTH_AND_DAY,
-  ]
+  ];
   @State datePickerModeIndex: number = 0;
 
   build() {
@@ -426,7 +426,7 @@ struct DatePickerExample {
       Button('切换公历农历')
         .margin({ top: 30, bottom: 30 })
         .onClick(() => {
-          this.isLunar = !this.isLunar
+          this.isLunar = !this.isLunar;
         })
       DatePicker({
         start: new Date('1970-1-1'),
@@ -436,15 +436,15 @@ struct DatePickerExample {
       })
         .lunar(this.isLunar)
         .onDateChange((value: Date) => {
-          this.selectedDate = value
-          console.info('select current date is: ' + value.toString())
+          this.selectedDate = value;
+          console.info('select current date is: ' + value.toString());
         })
 
       Button('mode :' + this.datePickerModeIndex).margin({ top: 20 })
         .onClick(() => {
-          this.datePickerModeIndex++
+          this.datePickerModeIndex++;
           if(this.datePickerModeIndex >= this.datePickerModeList.length){
-            this.datePickerModeIndex = 0
+            this.datePickerModeIndex = 0;
           }
         })
     }.width('100%')

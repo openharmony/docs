@@ -50,7 +50,7 @@ try {
   let devices : Array<deviceManager.Device> = deviceManager.queryDevices(deviceManager.BusType.USB);
   for (let item of devices) {
     let device : deviceManager.USBDevice = item as deviceManager.USBDevice;
-    console.info(`Device id is ${device.deviceId}`)
+    console.info(`Device id is ${device.deviceId}`);
   }
 } catch (error) {
   console.error(`Failed to query device. Code is ${error.code}, message is ${error.message}`);
@@ -413,7 +413,7 @@ bindDriverWithDeviceId(deviceId: number, onDisconnect: AsyncCallback&lt;number&g
 | -------- | ---------------------------------------- |
 | 201      | The permission check failed.             |
 | 26300001  | ExternalDeviceManager service exception. |
-| 26300002  | Service not allowed. |
+| 26300002  | The driver service does not allow any client to bind. |
 
 **示例：**
 

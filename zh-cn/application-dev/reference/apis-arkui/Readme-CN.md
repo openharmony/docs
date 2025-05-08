@@ -267,7 +267,6 @@
     - [DataPanel](arkui-ts/ts-basic-components-datapanel.md)
     - [Gauge](arkui-ts/ts-basic-components-gauge.md)
     - [LoadingProgress](arkui-ts/ts-basic-components-loadingprogress.md)
-    - [LinearIndicator](arkui-ts/ts-basic-components-linearindicator.md)
     - [Marquee](arkui-ts/ts-basic-components-marquee.md)
     - [PatternLock](arkui-ts/ts-basic-components-patternlock.md)
     - [Progress](arkui-ts/ts-basic-components-progress.md)
@@ -438,7 +437,7 @@
     - [Native Accessibility](arkui_native_interface_accessibility.md)
     - [Native XComponent](_o_h___native_x_component.md)
     - [ArkUI_EventModule](_ark_u_i___event_module.md)
-    - [WindowManager_NativeModule](_window_manager___native_module.md)
+    - [WindowManager](_window_manager___native_module.md)
     - [OH_DisplayManager](_o_h___display_manager.md)
   - 头文件<!--arkui-headerfile-->
     - [drag_and_drop.h](drag__and__drop_8h.md)
@@ -519,6 +518,9 @@
     - [滚动类组件错误码](errorcode-scroll.md)
     - [截图错误码](errorcode-snapshot.md)
     - [UI上下文错误码](errorcode-uicontext.md)
+    <!--Del-->
+    - [UIExtension错误码](errorcode-uiextension.md)
+    <!--DelEnd-->
   - 图形图像<!--arkui-graphics-images-arkts-errcode-->
     - [屏幕错误码](errorcode-display.md)
     - [窗口错误码](errorcode-window.md)

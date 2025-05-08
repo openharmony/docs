@@ -74,9 +74,11 @@
 
 - [ohos.permission.READ_AUDIO](restricted-permissions.md#ohospermissionread_audio)
 
-## <!--RP2-->广告跟踪<!--RP2End-->
+<!--RP2-->
+## 广告跟踪
 
 - [ohos.permission.APP_TRACKING_CONSENT](permissions-for-all-user.md#ohospermissionapp_tracking_consent)
+<!--RP2End-->
 
 <!--Del-->
 ## 读取已安装应用列表

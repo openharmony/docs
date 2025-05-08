@@ -340,10 +340,11 @@ FFRT任务的调度和执行过程中，利用了OH系统的Trace打点能力，
     int a = 0;
     // ******并行任务******
     // 提交不带handle返回值的并行任务
-    ffrt_submit_base(ffrt_create_function_wrapper(OnePlusForTest, NULL, &a), NULL, NULL, &attr);
+    ffrt_submit_base(
+        ffrt_create_function_wrapper(OnePlusForTest, NULL, &a, ffrt_function_kind_general), NULL, NULL, &attr);
     // 提交带handle返回值的并行任务
     ffrt_task_handle_t task = ffrt_submit_h_base(
-        ffrt_create_function_wrapper(OnePlusForTest, NULL, &a), NULL, NULL, &attr);
+        ffrt_create_function_wrapper(OnePlusForTest, NULL, &a, ffrt_function_kind_general), NULL, NULL, &attr);
 
     // ******串行任务******
     // 提交不返回handle的串行队列任务

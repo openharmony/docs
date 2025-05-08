@@ -76,7 +76,7 @@ LazyForEach实现了按需加载，针对列表数据量大、列表组件复杂
 
 - 如果使用LazyForEach懒加载，建议在使用LazyForEach进行组件复用的key生成器函数里，不要使用stringify。
 
-限制：ForEach、LazyForEach必须在List、Grid以及Swiper等容器组件内使用，用于循环渲染具有相同布局的子组件。更多懒加载的信息，请参考官方资料[LazyForEach：数据懒加载](../quick-start/arkts-rendering-control-lazyforeach.md)。
+限制：ForEach、LazyForEach必须在List、Grid以及Swiper等容器组件内使用，用于循环渲染具有相同布局的子组件。更多懒加载的信息，请参考官方资料[LazyForEach：数据懒加载](../ui/state-management/arkts-rendering-control-lazyforeach.md)。
 
 LazyForEach懒加载API提供了cachedCount属性，用于配置可缓存列表项数量。除默认加载界面可视部分外，还可以加载屏幕可视区外指定数量（cachedCount）的缓存数据，详见下面“缓存列表项”章节。
 
@@ -190,7 +190,7 @@ struct ReusableKeyGeneratorUseStringify {
 
   aboutToAppear(): void {
     for (let index = 0; index < 200; index++) {
-      this.data.pushData(index.toString())
+      this.data.pushData(index.toString());
     }
   }
 
@@ -226,7 +226,7 @@ build() {
       LazyForEach(this.dataList, // 数据源          
         (item: ListItemData) => { // 根据列表项数据生成对应的组件  
           ListItem() {
-            this.initItem(item)
+            this.initItem(item);
           }
         },(item: ListItemData) => item.itemId) // 生成列表项键值
       }
@@ -253,33 +253,33 @@ class ChatListData extends BasicDataSource {
     /**  
     * 聊天列表项数组  
     */  
-    private chatList: Array<ChatModel> = []  
+    private chatList: Array<ChatModel> = [];
     /**  
     * 数据源的数据总量  
     */  
     public totalCount(): number {  
-        return this.chatList.length  
+        return this.chatList.length;
     }  
 
     /**  
     * 返回指定索引位置的数据  
     */  
     public getData(index: number): ChatModel {  
-        return this.chatList[index]  
+        return this.chatList[index];
     }  
     /**  
     * 指定位置添加一条聊天列表数据  
     */  
     public addData(index: number, data: ChatModel): void {  
-        this.chatList.splice(index, 0, data)  
-        this.notifyDataAdd(index)  
+        this.chatList.splice(index, 0, data);  
+        this.notifyDataAdd(index);  
     }  
     /**  
     * 添加一条聊天列表数据  
     */  
     public pushData(data: ChatModel): void {  
-        this.chatList.push(data)  
-        this.notifyDataAdd(this.chatList.length - 1)  
+        this.chatList.push(data);  
+        this.notifyDataAdd(this.chatList.length - 1);  
     }  
 }
 ```
@@ -309,7 +309,7 @@ build() {
       LazyForEach(this.chatListLazy, (msg: ChatModel) => {
         ListItem() {
           // ...
-          this.chatViewBuilder(msg)
+          this.chatViewBuilder(msg);
           // ...
         }
       }, (msg: ChatModel) => msg.user.userId)

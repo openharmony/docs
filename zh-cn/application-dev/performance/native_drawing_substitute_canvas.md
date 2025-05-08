@@ -11,7 +11,7 @@
 
 ## 原理机制
 由于 Canvas 的 CanvasRenderingContext2D 绘制本质上是对 Native Drawing 接口的封装，相对于直接使用 Native Drawing 接口，使用 Canvas 的 CanvasRenderingContext2D 绘制多了一层接口的调用，并且它依赖于浏览器的具体实现。如果图片绘制比较复杂，执行的绘制指令可能会成倍数的增长，进而绘制性能下降的更加严重，导致卡顿、掉帧等问题。下面我们以实现在背景图上绘制1000个透明空心圆的玻璃效果来对比两者的性能差异。
- 
+
 ## 场景示例
 
 ![](./figures/drawing-canvas.gif)
@@ -26,7 +26,7 @@ Canvas 的 CanvasRenderingContext2D 绘制使用 [globalCompositeOperation](../r
 
 ```ts
 //  \entry\src\main\ets\pages\Index.ets
-import GlassCoverView from '../view/GlassCoverView'
+import GlassCoverView from '../view/GlassCoverView';
 
 @Entry
 @Component
@@ -92,7 +92,7 @@ export default struct GlassCoverView {
         .width('100%')
         .height('100%')
         .onAreaChange((_: Area, newValue: Area) => {
-          this.handleAreaChange(newValue)
+          this.handleAreaChange(newValue);
         })
     }
     .height('100%')
@@ -161,10 +161,18 @@ enum DrawType { NONE, PATH, TEXT, IMAGE };
 class MyRenderNode extends RenderNode {
   private drawType: DrawType = DrawType.NONE;
   private pMap: image.PixelMap | undefined = undefined;
+  private uiContext: UIContext | undefined = undefined;
+  
   draw(context: DrawContext) {
     // 调用Native侧的nativeOnDraw接口进行绘制，将背景图 this.pMap 和图形绘制上下文 context 作为参数传入
-    testNapi.nativeOnDraw(666, context, vp2px(this.size.width), vp2px(this.size.height), this.drawType, this.pMap);
+    testNapi.nativeOnDraw(666, context, this.uiContext?.vp2px(this.size.width),
+      this.uiContext?.vp2px(this.size.height), this.drawType, this.pMap);
   }
+  
+  setUIContext(context: UIContext) {
+    this.uiContext = context;
+  }
+    
   // 设置绘制类型
   resetType(type: DrawType) {
     this.drawType = type;
@@ -215,13 +223,14 @@ struct Index {
   private myNodeController: MyNodeController = new MyNodeController();
 
   aboutToAppear(): void {
-    const context: Context = getContext(this);
+    const context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
     const resourceMgr: resourceManager.ResourceManager = context.resourceManager;
     resourceMgr.getRawFileContent('drawImage.png').then((fileData: Uint8Array) => {
       console.info('success in getRawFileContent');
       const buffer = fileData.buffer.slice(0);
       const imageSource: image.ImageSource = image.createImageSource(buffer);
       imageSource.createPixelMap().then((pMap: image.PixelMap) => {
+        newNode.setUIContext(this.getUIContext());
         // 自绘制渲染节点背景图
         newNode.setPixelMap(pMap);
 

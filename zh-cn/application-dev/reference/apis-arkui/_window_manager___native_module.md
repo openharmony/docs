@@ -1,4 +1,4 @@
-# WindowManager_NativeModule
+# WindowManager
 
 
 ## 概述
@@ -52,6 +52,8 @@
 
 | 名称 | 描述 |
 | -------- | -------- |
+| int32_t [OH_WindowManager_GetAllWindowLayoutInfoList](#oh_windowmanager_getallwindowlayoutinfolist) (int64_t displayId, [WindowManager_Rect](_window_manager___rect.md) \*\*windowLayoutInfoList, size_t \*windowLayoutInfoSize) | 获取指定屏幕上可见的窗口布局信息数组，按当前窗口层级排列，层级最高的对应数组下标为0。 | 
+| void [OH_WindowManager_ReleaseAllWindowLayoutInfoList](#oh_windowmanager_releaseallwindowlayoutinfolist) ([WindowManager_Rect](_window_manager___rect.md) \*windowLayoutInfoList) | 释放窗口布局信息数组占用的内存。 | 
 | int32_t [OH_WindowManager_SetWindowStatusBarEnabled](#oh_windowmanager_setwindowstatusbarenabled) (int32_t windowId, bool enabled, bool enableAnimation) | 设置指定窗口是否显示状态栏。 |
 | int32_t [OH_WindowManager_SetWindowStatusBarColor](#oh_windowmanager_setwindowstatusbarcolor) (int32_t windowId, int32_t color) | 设置指定窗口的状态栏内容颜色。 |
 | int32_t [OH_WindowManager_SetWindowNavigationBarEnabled](#oh_windowmanager_setwindownavigationbarenabled) (int32_t windowId, bool enabled, bool enableAnimation) | 设置指定窗口是否显示导航栏。 |
@@ -229,6 +231,55 @@ enum WindowManager_WindowType
 
 ## 函数说明
 
+### OH_WindowManager_GetAllWindowLayoutInfoList()
+
+```
+int32_t OH_WindowManager_GetAllWindowLayoutInfoList (int64_t displayId, WindowManager_Rect** windowLayoutInfoList, size_t* windowLayoutInfoSize )
+```
+
+**描述**
+
+获取指定屏幕上可见的窗口布局信息数组，按当前窗口层级排列，层级最高的对应数组下标为0。
+
+**起始版本：** 17
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| displayId | 指定屏幕的id。请通过窗口对象调用getWindowProperties接口（ArkTS接口）获取有效的屏幕id。 | 
+| windowLayoutInfoList | 指定屏幕上可见的窗口布局信息数组的数组指针，作为出参使用。 | 
+| windowLayoutInfoSize | 指定屏幕上可见的窗口布局信息数组长度的指针，作为出参使用。 | 
+
+**返回：**
+
+返回结果代码。
+
+返回OK，表示函数调用成功，返回指定屏幕上可见的窗口布局信息数组的数组指针和数组长度的指针。
+
+返回WINDOW_MANAGER_ERRORCODE_INVALID_PARAM，表示参数错误。
+
+返回WINDOW_MANAGER_ERRORCODE_DEVICE_NOT_SUPPORTED，表示不支持功能。
+
+返回WINDOW_MANAGER_ERRORCODE_SYSTEM_ABNORMAL，表示窗口管理器服务异常。
+
+### OH_WindowManager_ReleaseAllWindowLayoutInfoList()
+
+```
+void OH_WindowManager_ReleaseAllWindowLayoutInfoList (WindowManager_Rect* windowLayoutInfoList)
+```
+
+**描述**
+
+释放窗口布局信息数组占用的内存。
+
+**起始版本：** 17
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| windowLayoutInfoList | 指定屏幕上可见的窗口布局信息数组的数组指针，可通过[OH_WindowManager_GetAllWindowLayoutInfoList](#oh_windowmanager_getallwindowlayoutinfolist)接口获取。 | 
 
 ### OH_NativeWindowManager_RegisterKeyEventFilter()
 

@@ -155,7 +155,7 @@ Parameter verification rules are as follows:
 | ------------------------------------------------------------------------- | -------- | -------- | ------ |
 | OH_MD_KEY_WIDTH                                                           | AV_ERR_OK       | AV_ERR_INVALID_VAL       | AV_ERR_INVALID_VAL     |
 | OH_MD_KEY_HEIGHT                                                          | AV_ERR_OK       | AV_ERR_INVALID_VAL       | AV_ERR_INVALID_VAL     |
-| OH_MD_KEY_PIXEL_FORMAT<br>For details, see [OH_AVPixelFormat](_core.md#oh_avpixelformat).| AV_ERR_OK       | AV_ERR_UNSUPPORT       | AV_ERR_OK    |
+| OH_MD_KEY_PIXEL_FORMAT<br>For details, see [OH_AVPixelFormat](_core.md#oh_avpixelformat-1).| AV_ERR_OK       | AV_ERR_UNSUPPORT       | AV_ERR_OK    |
 | OH_MD_KEY_FRAME_RATE                                                       | AV_ERR_OK       | AV_ERR_INVALID_VAL       |AV_ERR_OK        |
 | OH_MD_KEY_PROFILE<br>For details, see [OH_MD_KEY_PROFILE](_codec_base.md#oh_md_key_profile).   | AV_ERR_OK       | AV_ERR_INVALID_VAL       |AV_ERR_OK       |
 | OH_MD_KEY_I_FRAME_INTERVAL                                                 | AV_ERR_OK       | \\       | AV_ERR_OK       |

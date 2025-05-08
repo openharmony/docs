@@ -1,6 +1,6 @@
 # BuilderNode
 
-提供能够挂载原生组件的自定义节点BuilderNode。BuilderNode仅可作为叶子节点使用。使用方式参考[BuilderNode开发指南](../../ui/arkts-user-defined-arktsNode-builderNode.md)。
+提供能够挂载系统组件的自定义节点BuilderNode。BuilderNode仅可作为叶子节点使用。使用方式参考[BuilderNode开发指南](../../ui/arkts-user-defined-arktsNode-builderNode.md)。
 
 > **说明：**
 >
@@ -33,7 +33,7 @@ import { BuilderNode, RenderOptions, NodeRenderType } from "@kit.ArkUI";
 >
 > RENDER_TYPE_TEXTURE类型目前仅在[BuilderNode](#buildernode-1)持有组件树的根节点为自定义组件时以及[XComponentNode](./js-apis-arkui-xcomponentNode.md)中设置生效。
 >
-> 在[BuilderNode](#buildernode-1)的情况下，目前在作为根节点的自定义组件中支持纹理导出的有以下组件：Badge、Blank、Button、CanvasGradient、CanvasPattern、CanvasRenderingContext2D、Canvas、CheckboxGroup、Checkbox、Circle、ColumnSplit、Column、ContainerSpan、Counter、DataPanel、Divider、Ellipse、Flex、Gauge、Hyperlink、ImageBitmap、ImageData、Image、Line、LoadingProgress、Marquee、Matrix2D、OffscreenCanvasRenderingContext2D、OffscreenCanvas、Path2D、Path、PatternLock、Polygon、Polyline、Progress、QRCode、Radio、Rating、Rect、RelativeContainer、RowSplit、Row、Shape、Slider、Span、Stack、TextArea、TextClock、TextInput、TextTimer、Text、Toggle、Video（不支持原生的全屏模式）、Web、XComponent。
+> 在[BuilderNode](#buildernode-1)的情况下，目前在作为根节点的自定义组件中支持纹理导出的有以下组件：Badge、Blank、Button、CanvasGradient、CanvasPattern、CanvasRenderingContext2D、Canvas、CheckboxGroup、Checkbox、Circle、ColumnSplit、Column、ContainerSpan、Counter、DataPanel、Divider、Ellipse、Flex、Gauge、Hyperlink、ImageBitmap、ImageData、Image、Line、LoadingProgress、Marquee、Matrix2D、OffscreenCanvasRenderingContext2D、OffscreenCanvas、Path2D、Path、PatternLock、Polygon、Polyline、Progress、QRCode、Radio、Rating、Rect、RelativeContainer、RowSplit、Row、Shape、Slider、Span、Stack、TextArea、TextClock、TextInput、TextTimer、Text、Toggle、Video（不含全屏播放能力）、Web、XComponent。
 >
 > 从API version 12开始，新增以下组件支持纹理导出：DatePicker、ForEach、Grid、IfElse、LazyForEach、List、Scroll、Swiper、TimePicker、@Component修饰的自定义组件、NodeContainer以及NodeContainer下挂载的FrameNode和RenderNode。
 >
@@ -57,7 +57,7 @@ import { BuilderNode, RenderOptions, NodeRenderType } from "@kit.ArkUI";
 
 class BuilderNode\<Args extends Object[]>
 
-BuilderNode支持通过无状态的UI方法[@Builder](../../quick-start/arkts-builder.md)生成组件树，并持有组件树的根节点。不支持定义为状态变量。BuilderNode中持有的FrameNode仅用于将该BuilderNode作为子节点挂载到其他FrameNode上。对BuilderNode持有的FrameNode进行属性设置与子节点操作可能会产生未定义行为，因此不建议通过BuilderNode的[getFrameNode](#getframenode)方法和[FrameNode](js-apis-arkui-frameNode.md#framenode)的[getRenderNode](js-apis-arkui-frameNode.md#getrendernode)方法获取RenderNode，并通过[RenderNode](js-apis-arkui-renderNode.md#rendernode)的接口对其进行属性设置与子节点操作。
+BuilderNode支持通过无状态的UI方法[@Builder](../../ui/state-management/arkts-builder.md)生成组件树，并持有组件树的根节点。不支持定义为状态变量。BuilderNode中持有的FrameNode仅用于将该BuilderNode作为子节点挂载到其他FrameNode上。对BuilderNode持有的FrameNode进行属性设置与子节点操作可能会产生未定义行为，因此不建议通过BuilderNode的[getFrameNode](#getframenode)方法和[FrameNode](js-apis-arkui-frameNode.md#framenode)的[getRenderNode](js-apis-arkui-frameNode.md#getrendernode)方法获取RenderNode，并通过[RenderNode](js-apis-arkui-renderNode.md#rendernode)的接口对其进行属性设置与子节点操作。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -85,9 +85,9 @@ constructor(uiContext: UIContext, options?: RenderOptions)
 
 build(builder: WrappedBuilder\<Args>, arg?: Object): void
 
-依照传入的对象创建组件树，并持有组件树的根节点。无状态的UI方法[@Builder](../../quick-start/arkts-builder.md)最多拥有一个根节点。
-支持自定义组件。不支持自定义组件使用[@Reusable](../../quick-start/arkts-create-custom-components.md#自定义组件的基本结构)、[@Link](../../quick-start/arkts-link.md)、[@Provide](../../quick-start/arkts-provide-and-consume.md)、[@Consume](../../quick-start/arkts-provide-and-consume.md)等装饰器，来同步BuilderNode挂载的页面与BuilderNode中自定义组件的状态。
-从API version 12开始，自定义组件支持接收[LocalStorage](../../quick-start/arkts-localstorage.md)实例。可以通过[传递LocalStorage实例](../../quick-start/arkts-localstorage.md#自定义组件接收localstorage实例)来使用LocalStorage相关的装饰器[@LocalStorageProp](../../quick-start/arkts-localstorage.md#localstorageprop)、[@LocalStorageLink](../../quick-start/arkts-localstorage.md#localstoragelink)。
+依照传入的对象创建组件树，并持有组件树的根节点。无状态的UI方法[@Builder](../../ui/state-management/arkts-builder.md)最多拥有一个根节点。
+支持自定义组件。不支持自定义组件使用[@Reusable](../../ui/state-management/arkts-create-custom-components.md#自定义组件的基本结构)、[@Link](../../ui/state-management/arkts-link.md)、[@Provide](../../ui/state-management/arkts-provide-and-consume.md)、[@Consume](../../ui/state-management/arkts-provide-and-consume.md)等装饰器，来同步BuilderNode挂载的页面与BuilderNode中自定义组件的状态。
+从API version 12开始，自定义组件支持接收[LocalStorage](../../ui/state-management/arkts-localstorage.md)实例。可以通过[传递LocalStorage实例](../../ui/state-management/arkts-localstorage.md#自定义组件接收localstorage实例)来使用LocalStorage相关的装饰器[@LocalStorageProp](../../ui/state-management/arkts-localstorage.md#localstorageprop)、[@LocalStorageLink](../../ui/state-management/arkts-localstorage.md#localstoragelink)。
 
 > **说明**
 > 
@@ -105,7 +105,7 @@ build(builder: WrappedBuilder\<Args>, arg?: Object): void
 
 | 参数名  | 类型                                                            | 必填 | 说明                                                                                   |
 | ------- | --------------------------------------------------------------- | ---- | -------------------------------------------------------------------------------------- |
-| builder | [WrappedBuilder\<Args>](../../quick-start/arkts-wrapBuilder.md) | 是   | 创建对应节点树的时候所需的无状态UI方法[@Builder](../../quick-start/arkts-builder.md)。 |
+| builder | [WrappedBuilder\<Args>](../../ui/state-management/arkts-wrapBuilder.md) | 是   | 创建对应节点树的时候所需的无状态UI方法[@Builder](../../ui/state-management/arkts-builder.md)。 |
 | arg     | Object                                                          | 否   | builder的入参。当前仅支持一个入参，且入参对象类型与@Builder定义的入参类型保持一致。                                          |
 
 
@@ -125,13 +125,13 @@ build的可选参数。
 
 build(builder: WrappedBuilder\<Args>, arg: Object, options: [BuildOptions](#buildoptions12)): void
 
-依照传入的对象创建组件树，并持有组件树的根节点。无状态的UI方法[@Builder](../../quick-start/arkts-builder.md)最多拥有一个根节点。
-支持自定义组件。不支持使用自定义组件使用[@Reusable](../../quick-start/arkts-create-custom-components.md#自定义组件的基本结构)、[@Link](../../quick-start/arkts-link.md)、[@Provide](../../quick-start/arkts-provide-and-consume.md)、[@Consume](../../quick-start/arkts-provide-and-consume.md)等装饰器用于当前页面与自定义组件的状态同步。
-从API version 12开始，自定义组件支持接收[LocalStorage](../../quick-start/arkts-localstorage.md)实例。可以通过[传递LocalStorage实例](../../quick-start/arkts-localstorage.md#自定义组件接收localstorage实例)来使用LocalStorage相关的装饰器[@LocalStorageProp](../../quick-start/arkts-localstorage.md#localstorageprop)、[@LocalStorageLink](../../quick-start/arkts-localstorage.md#localstoragelink)。
+依照传入的对象创建组件树，并持有组件树的根节点。无状态的UI方法[@Builder](../../ui/state-management/arkts-builder.md)最多拥有一个根节点。
+支持自定义组件。不支持使用自定义组件使用[@Reusable](../../ui/state-management/arkts-create-custom-components.md#自定义组件的基本结构)、[@Link](../../ui/state-management/arkts-link.md)、[@Provide](../../ui/state-management/arkts-provide-and-consume.md)、[@Consume](../../ui/state-management/arkts-provide-and-consume.md)等装饰器用于当前页面与自定义组件的状态同步。
+从API version 12开始，自定义组件支持接收[LocalStorage](../../ui/state-management/arkts-localstorage.md)实例。可以通过[传递LocalStorage实例](../../ui/state-management/arkts-localstorage.md#自定义组件接收localstorage实例)来使用LocalStorage相关的装饰器[@LocalStorageProp](../../ui/state-management/arkts-localstorage.md#localstorageprop)、[@LocalStorageLink](../../ui/state-management/arkts-localstorage.md#localstoragelink)。
 
 > **说明**
 > 
-> @Builder进行创建和更新的规格参考[@Builder](../../quick-start/arkts-builder.md)。
+> @Builder进行创建和更新的规格参考[@Builder](../../ui/state-management/arkts-builder.md)。
 > 
 > 最外层的@Builder只支持一个入参。
 
@@ -143,7 +143,7 @@ build(builder: WrappedBuilder\<Args>, arg: Object, options: [BuildOptions](#buil
 
 | 参数名  | 类型                                                            | 必填 | 说明                                                                                    |
 | ------- | --------------------------------------------------------------- | ---- | -------------------------------------------------------------------------------------- |
-| builder | [WrappedBuilder\<Args>](../../quick-start/arkts-wrapBuilder.md) | 是   | 创建对应节点树的时候所需的无状态UI方法[@Builder](../../quick-start/arkts-builder.md)。   |
+| builder | [WrappedBuilder\<Args>](../../ui/state-management/arkts-wrapBuilder.md) | 是   | 创建对应节点树的时候所需的无状态UI方法[@Builder](../../ui/state-management/arkts-builder.md)。   |
 | arg     | Object                                                          | 是   | builder的入参。当前仅支持一个入参，且入参对象类型与@Builder定义的入参类型保持一致。                                                            |
 | options | BuildOptions                                                    | 是   | build的配置参数，判断是否支持@Builder中嵌套@Builder的行为。                                         |
 
@@ -615,7 +615,7 @@ class MyNodeController extends NodeController {
   }
 
   // 坐标转换示例
-  postTouchEvent(event: TouchEvent): boolean {
+  postTouchEvent(event: TouchEvent, uiContext: UIContext): boolean {
     if (this.rootNode == null) {
       return false;
     }
@@ -626,8 +626,8 @@ class MyNodeController extends NodeController {
     let changedTouchLen = event.changedTouches.length;
     for (let i = 0; i < changedTouchLen; i++) {
       if (offsetX != null && offsetY != null && offsetX != undefined && offsetY != undefined) {
-        event.changedTouches[i].x = vp2px(offsetX + event.changedTouches[i].x);
-        event.changedTouches[i].y = vp2px(offsetY + event.changedTouches[i].y);
+        event.changedTouches[i].x = uiContext.vp2px(offsetX + event.changedTouches[i].x);
+        event.changedTouches[i].y = uiContext.vp2px(offsetY + event.changedTouches[i].y);
       }
     }
     let result = this.rootNode.postTouchEvent(event);
@@ -653,7 +653,7 @@ struct MyComponent {
         .backgroundColor(Color.Pink)
         .onTouch((event) => {
           if (event != undefined) {
-            this.nodeController.postTouchEvent(event);
+            this.nodeController.postTouchEvent(event, this.getUIContext());
           }
         })
     }

@@ -1,7 +1,9 @@
 # Media Kit
 
 - [Introduction to Media Kit](media-kit-intro.md)
+<!--Del-->
 - [Media Kit Development Overview](media-kit-quick-overview.md)
+<!--DelEnd-->
 - Media Development (ArkTS)<!--media-kit-dev--arkts-->
   - Playback<!--media-playback-arkts-->
     - [Using AVPlayer to Play Audio (ArkTS)](using-avplayer-for-playback.md)
@@ -19,6 +21,7 @@
     - [Using AVImageGenerator to Extract Video Images at a Specified Time (ArkTS)](avimagegenerator.md)
   - Video Transcoding<!--media-transcoder-arkts-->
     - [Using AVTranscoder to Transcode Videos (ArkTS)](using-avtranscoder-for-transcodering.md)
+    - [Creating an Asynchronous Thread for AVTranscoder Video Transcoding (ArkTS)](avtranscoder-practice.md)
 - Media Development (C/C++)<!--media-kit-dev--c-->
   - Playback<!--media-playback-c-->
     - [Using AVPlayer to Play Audio (C/C++)](using-ndk-avplayer-for-playback.md)

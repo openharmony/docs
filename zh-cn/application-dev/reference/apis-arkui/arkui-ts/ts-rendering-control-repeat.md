@@ -5,7 +5,7 @@
 > 本模块首批接口从API version 12开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 Repeat基于数组类型数据来进行循环渲染，一般与容器组件配合使用。
-本文档仅为API参数说明。开发者指南见：[Repeat开发者指南](../../../quick-start/arkts-new-rendering-control-repeat.md)。
+本文档仅为API参数说明。开发者指南见：[Repeat开发者指南](../../../ui/state-management/arkts-new-rendering-control-repeat.md)。
 
 ## 属性
 
@@ -247,16 +247,14 @@ Repeat数据源参数联合类型。
 
 ## VirtualScrollOptions对象说明
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称     | 类型   | 必填 | 说明                                                         |
 | ---------- | ------ | ---- | ------------------------------------------------------------ |
-| totalCount | number | 否   | 加载的数据项总数，可以不等于数据源长度。 |
-| reusable<sup>18+</sup> | boolean | 否   | 是否开启复用功能，true表示开启，false表示不开启，默认开启。 |
-| onLazyLoading<sup>18+</sup> | (index: number) => void | 否   | 数据懒加载函数，向指定的数据源index中写入数据。 |
-| onTotalCount<sup>18+</sup> | () => number | 否   | 数据项总数计算函数，返回值可以不等于数据源长度。推荐使用onTotalCount代替totalCount。同时设置totalCount与onTotalCount时，忽略totalCount。 |
+| totalCount | number | 否   | 加载的数据项总数，可以不等于数据源长度。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| reusable<sup>18+</sup> | boolean | 否   | 是否开启复用功能，true表示开启，false表示不开启，默认开启。<br>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。 |
+| onLazyLoading<sup>18+</sup> | (index: number) => void | 否   | 数据懒加载函数，向指定的数据源index中写入数据。<br>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。 |
+| onTotalCount<sup>18+</sup> | () => number | 否   | 数据项总数计算函数，返回值可以不等于数据源长度。推荐使用onTotalCount代替totalCount。同时设置totalCount与onTotalCount时，忽略totalCount。<br>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。 |
 
 **示例：**
 ```ts

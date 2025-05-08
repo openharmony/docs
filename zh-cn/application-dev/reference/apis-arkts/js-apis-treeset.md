@@ -2,11 +2,11 @@
 
 TreeSet基于[TreeMap](js-apis-treemap.md)实现，在TreeSet中，只对value对象进行处理。TreeSet可用于存储一系列值的集合，元素中value唯一且有序。
 
-TreeSet和[HashSet](js-apis-hashset.md)相比，HashSet中的数据无序存放，而TreeSet是有序存放。它们集合中的元素都不允许重复，但HashSet允许放入null值，TreeSet不建议插入空值，可能会影响排序结果。
+TreeSet和[HashSet](js-apis-hashset.md)中的元素都不允许重复。HashSet中的数据无序存放，而TreeSet是有序存放。HashSet允许插入null值，但TreeSet不建议插入空值，可能会影响排序结果。
 
 **推荐使用场景：** 一般需要存储有序集合的场景，可以使用TreeSet。
 
-文档中存在泛型的使用，涉及以下泛型标记符：
+文档中使用了泛型，涉及以下泛型标记符：
 
 - T：Type，类
 
@@ -101,7 +101,7 @@ console.log("treeSet: ", ts1.length);
 
 isEmpty(): boolean
 
-判断该容器是否为空。
+判断容器是否为空。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -133,7 +133,7 @@ let result = treeSet.isEmpty();
 
 has(value: T): boolean
 
-判断此容器中是否含有该指定元素。
+判断容器中是否包含指定元素。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -470,7 +470,7 @@ let result = treeSet.popLast();
 
 clear(): void
 
-清除容器中的所有元素，并把length置为0。
+清除容器中的所有元素，并将length置为0。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -537,7 +537,7 @@ while(!t.done) {
 
 forEach(callbackFn: (value?: T, key?: T, set?: TreeSet&lt;T&gt;) => void, thisArg?: Object): void
 
-通过回调函数来遍历实例对象上的元素以及元素对应的下标。
+通过回调函数来遍历实例对象上的元素及其下标。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -639,7 +639,7 @@ for(let i = 0; i < 10; i++) {
 
 [Symbol.iterator]\(): IterableIterator&lt;T&gt;
 
-返回一个迭代器，迭代器的每一项都是一个JavaScript对象，并返回该对象。
+返回一个迭代器，迭代器的每一项都是一个JavaScript对象。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 

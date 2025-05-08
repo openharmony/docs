@@ -158,4 +158,4 @@ struct Index {
 - [点击回弹效果](../application-dev/reference/apis-arkui/arkui-ts/ts-universal-attributes-click-effect.md)
 - [触摸事件](../application-dev/reference/apis-arkui/arkui-ts/ts-universal-events-touch.md)
 - [属性动画概述](../application-dev/ui/arkts-attribute-animation-overview.md)
-- [stateStyles：多态样式](../application-dev/quick-start/arkts-statestyles.md)
+- [stateStyles：多态样式](../application-dev/ui/state-management/arkts-statestyles.md)
