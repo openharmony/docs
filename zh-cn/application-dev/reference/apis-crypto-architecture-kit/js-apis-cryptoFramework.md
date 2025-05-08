@@ -3931,15 +3931,15 @@ Sign类，使用Sign方法之前需要创建该类的实例进行操作，通过
 
 Sign类不支持重复初始化，当业务方需要使用新密钥签名时，需要重新创建新Sign对象并调用init初始化。
 
-业务方使用时，在createSign时确定签名的模式，调用init接口设置密钥。
+业务方使用时，调用createSign接口确定签名的模式，调用init接口设置密钥。
 
-当待签名数据较短时，可在init初始化后，（无需update）直接调用sign接口传入原文数据进行签名。
+当待签名数据长度较短时，可在初始化后直接调用sign接口传入数据进行签名，无需调用update。
 
 当待签名数据较长时，可通过update接口分段传入切分后的原文数据，最后调用sign接口对整体原文数据进行签名。
 
 当使用update分段传入原文时，sign接口API 10之前只支持传入DataBlob， API 10之后增加支持null。业务方可在循环中调用update接口，循环结束后调用sign进行签名。
 
-当使用DSA算法进行签名，并设置了摘要算法为NoHash时，则不支持update操作，update接口会返回错误码ERR_CRYPTO_OPERATION。
+使用DSA算法签名时，如果摘要算法设置为NoHash，则不支持update操作，调用update接口将返回错误码ERR_CRYPTO_OPERATION。
 
 ### 属性
 
@@ -3959,7 +3959,7 @@ init(priKey: PriKey, callback: AsyncCallback\<void>): void
 
 使用私钥初始化Sign对象，通过注册回调函数获取结果。init、update、sign为三段式接口，需要成组使用。其中init和sign必选，update可选。
 
-Sign类暂不支持重复init。
+Sign类不支持重复初始化。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -3990,7 +3990,7 @@ init(priKey: PriKey): Promise\<void>
 
 使用私钥初始化Sign对象，通过Promise获取结果。init、update、sign为三段式接口，需要成组使用。其中init和sign必选，update可选。
 
-Sign类暂不支持重复init。
+Sign类不支持重复初始化。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -4026,7 +4026,7 @@ initSync(priKey: PriKey): void
 
 使用私钥初始化Sign对象，通过同步方式获取结果。initSync、updateSync、signSync为三段式接口，需要成组使用。其中initSync和signSync必选，updateSync可选。
 
-Sign类暂不支持重复initSync。
+Sign类不支持重复调用initSync。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -4078,7 +4078,7 @@ API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从AP
 | callback | AsyncCallback\<void>  | 是   | 回调函数。当签名更新成功，err为undefined，否则为错误对象。|
 
 **错误码：**
-以下错误码的详细介绍请参见[crypto framework错误码](errorcode-crypto-framework.md)
+以下错误码的详细介绍请参见[crypto framework错误码](errorcode-crypto-framework.md)。
 
 | 错误码ID | 错误信息               |
 | -------- | ---------------------- |
@@ -4093,12 +4093,12 @@ update(data: DataBlob): Promise\<void>
 
 追加待签名数据，通过Promise方式完成更新。
 
-必须在对[Sign](#sign)实例使用[init()](#init-3)初始化后，才能使用本函数。
+在使用本函数前，必须先使用[Sign](#sign)方法对[init()](#init-3)实例进行初始化。
 
 > **说明：**
 >
 > 根据数据量，可以不调用update（即[init](#init-3)完成后直接调用[sign](#sign-2)）或多次调用update。<br/>
-> 算法库目前没有对update（单次或累计）的数据量设置大小限制，建议对于大数据量的签名操作，采用多次update的方式传入数据，避免一次性申请过大内存。<br/>
+> 算法库不对单次或累计的update数据量设置大小限制。建议在处理大数据量的签名操作时，采用多次update方式传入数据，以避免一次性申请过多内存。
 > 签名使用多次update操作的示例代码详见[使用RSA密钥对分段签名验签](../../security/CryptoArchitectureKit/crypto-rsa-sign-sig-verify-pkcs1-by-segment.md)，其余算法操作类似。<br/>
 > OnlySign模式下，不支持update操作，需要直接使用sign传入数据。<br/>
 > 当使用DSA算法进行签名，并设置了摘要算法为NoHash时，则不支持update操作，update接口会返回错误码ERR_CRYPTO_OPERATION。
@@ -4122,7 +4122,7 @@ API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从AP
 | Promise\<void> | 无返回结果的Promise对象。 |
 
 **错误码：**
-以下错误码的详细介绍请参见[crypto framework错误码](errorcode-crypto-framework.md)
+以下错误码的详细介绍请参见 [crypto framework 错误码](errorcode-crypto-framework.md)。
 
 | 错误码ID | 错误信息               |
 | -------- | ---------------------- |
@@ -4164,7 +4164,7 @@ updateSync(data: DataBlob): void
 | void | 无返回结果。 |
 
 **错误码：**
-以下错误码的详细介绍请参见[crypto framework错误码](errorcode-crypto-framework.md)
+以下错误码的详细介绍请参见 [crypto framework 错误码](errorcode-crypto-framework.md)。
 
 | 错误码ID | 错误信息               |
 | -------- | ---------------------- |
@@ -4193,7 +4193,7 @@ API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从AP
 | callback | AsyncCallback\<[DataBlob](#datablob)> | 是   | 回调函数，用于获取DataBlob数据。 |
 
 **错误码：**
-以下错误码的详细介绍请参见[crypto framework错误码](errorcode-crypto-framework.md)
+以下错误码的详细介绍请参见[crypto framework错误码](errorcode-crypto-framework.md)。
 
 | 错误码ID | 错误信息               |
 | -------- | ---------------------- |
@@ -4365,7 +4365,8 @@ setSignSpec(itemType: SignSpecItem, itemValue: number): void
 
 setSignSpec(itemType: SignSpecItem, itemValue: number \| Uint8Array): void
 
-设置签名参数。常用的签名参数可以直接通过[createSign](#cryptoframeworkcreatesign) 来指定，剩余参数可以通过本接口指定。
+设置签名参数。常用签名参数可通过 [createSign](#cryptoframeworkcreatesign) 指定，其他参数则通过本接口设置。
+
 
 只支持RSA算法、SM2算法，从API version11开始，支持SM2算法设置签名参数。
 
@@ -4405,7 +4406,7 @@ signer.setSignSpec(cryptoFramework.SignSpecItem.PSS_SALT_LEN_NUM, setN);
 
 getSignSpec(itemType: SignSpecItem): string | number
 
-获取签名参数。当前只支持RSA算法。
+获取签名参数。当前仅支持RSA算法。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -4447,7 +4448,7 @@ let saltLen = signer.getSignSpec(cryptoFramework.SignSpecItem.PSS_SALT_LEN_NUM);
 
 createVerify(algName: string): Verify
 
-Verify实例生成。
+生成Verify实例。
 
 支持的规格详见[签名验签规格](../../security/CryptoArchitectureKit/crypto-sign-sig-verify-overview.md)。
 
@@ -4461,7 +4462,7 @@ API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从AP
 
 | 参数名  | 类型   | 必填 | 说明                                                         |
 | ------- | ------ | ---- | ------------------------------------------------------------ |
-| algName | string | 是   | 指定签名算法：RSA，ECC，DSA，SM2<sup>10+</sup>或ED25519<sup>11+</sup>。使用RSA PKCS1模式时需要设置摘要，使用RSA PSS模式时需要设置摘要和掩码摘要。<br/>使用RSA算法验签时，通过设置Recover参数可支持对签名后数据进行验签恢复。 |
+| algName | string | 是   | 指定签名算法：RSA、ECC、DSA、SM2<sup>10+</sup>或ED25519<sup>11+</sup>。使用RSA PKCS1模式时需设置摘要；使用RSA PSS模式时需设置摘要和掩码摘要。使用RSA算法验签时，设置Recover参数可支持验签恢复。 |
 
 **返回值**：
 
@@ -4470,7 +4471,7 @@ API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从AP
 | Verify | 返回由输入算法指定生成的Verify对象。 |
 
 **错误码：**
-以下错误码的详细介绍请参见[crypto framework错误码](errorcode-crypto-framework.md)
+以下错误码的详细介绍，请参见 [crypto framework 错误码](errorcode-crypto-framework.md)。
 
 | 错误码ID | 错误信息               |
 | -------- | ---------------------- |
@@ -4570,7 +4571,7 @@ API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从AP
 | Promise\<void> | 无返回结果的Promise对象。 |
 
 **错误码：**
-以下错误码的详细介绍请参见[crypto framework错误码](errorcode-crypto-framework.md)
+以下错误码的详细介绍请参见[crypto framework错误码](errorcode-crypto-framework.md)。
 
 | 错误码ID | 错误信息               |
 | -------- | ---------------------- |
@@ -4602,7 +4603,7 @@ initSync(pubKey: PubKey): void
 | void | 无返回结果。 |
 
 **错误码：**
-以下错误码的详细介绍请参见[crypto framework错误码](errorcode-crypto-framework.md)
+以下错误码的详细介绍请参见[crypto framework错误码](errorcode-crypto-framework.md)。
 
 | 错误码ID | 错误信息               |
 | -------- | ---------------------- |
