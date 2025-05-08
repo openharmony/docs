@@ -1,8 +1,11 @@
 # 前端页面调用应用侧函数
 
 
+## 背景
+
 开发者使用Web组件将应用侧代码注册到前端页面中，注册完成之后，前端页面中使用注册的对象名称就可以调用应用侧的函数，实现在前端页面中调用应用侧方法。
 
+## 如何建立应用侧与H5侧的交互通道
 
 注册应用侧代码有两种方式，一种在Web组件初始化调用，使用[javaScriptProxy()](../reference/apis-arkweb/ts-basic-components-web.md#javascriptproxy)接口。另外一种在Web组件初始化完成后调用，使用[registerJavaScriptProxy()](../reference/apis-arkweb/js-apis-webview.md#registerjavascriptproxy)接口。两种方式都需要和[deleteJavaScriptRegister](../reference/apis-arkweb/js-apis-webview.md#deletejavascriptregister)接口配合使用，防止内存泄漏。
 
@@ -778,3 +781,7 @@
   </body>
   </html>
   ```
+## 验证通道是否建立成功
+ 1.打开web调试
+ 
+ 2.举例说明通道是否建立成功
