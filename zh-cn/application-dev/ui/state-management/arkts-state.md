@@ -296,7 +296,7 @@ struct EntryComponent {
 struct MyComponent {
   @State title: Model = new Model('Hello World');
   @State count: number = 0;
-  private increaseBy: number = 1;
+  increaseBy: number = 1;
 
   build() {
     Column() {
