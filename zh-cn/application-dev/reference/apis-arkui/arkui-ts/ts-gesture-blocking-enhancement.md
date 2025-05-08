@@ -307,13 +307,13 @@ getPanGestureOptions(): PanGestureOptions
 | ------ | --------- |
 | [PanGestureOptions](./ts-basic-gestures-pangesture.md#pangestureoptions) | 当前拖动手势识别器的属性。 |
 
-### getDirection<sup>18+</sup>
+### getDirection<sup>19+</sup>
 
 getDirection(): PanDirection
 
 返回当前拖动手势识别器的方向。
 
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -323,13 +323,13 @@ getDirection(): PanDirection
 | ------ | --------- |
 | [PanDirection](./ts-basic-gestures-pangesture.md#pandirection枚举说明) | 当前拖动手势识别器的方向。 |
 
-### getDistance<sup>18+</sup>
+### getDistance<sup>19+</sup>
 
 getDistance(): number
 
 返回当前拖动手势识别器触发的最小滑动距离。
 
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -339,13 +339,13 @@ getDistance(): number
 | ------ | --------- |
 | number | 当前拖动手势识别器触发的最小滑动距离。 |
 
-### getDistanceMap<sup>18+</sup>
+### getDistanceMap<sup>19+</sup>
 
 getDistanceMap(): Map\<SourceTool, number\>
 
 返回不同输入源的拖动手势识别器触发的最小滑动距离。
 
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 

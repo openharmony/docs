@@ -18328,7 +18328,7 @@ ArkUI_ErrorCode OH_ArkUI_SetGestureParamDistanceMap(ArkUI_GestureRecognizer* rec
 
 设置手势最小滑动阈值表。
 
-**起始版本：** 18
+**起始版本：** 19
 
 **参数:**
 
@@ -18354,7 +18354,7 @@ ArkUI_ErrorCode OH_ArkUI_PanGesture_GetDistanceByToolType(ArkUI_GestureRecognize
 
 获取手势识别器的手势移动阈值表。
 
-**起始版本：** 18
+**起始版本：** 19
 
 **参数:**
 
