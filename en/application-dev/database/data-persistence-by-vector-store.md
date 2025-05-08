@@ -143,7 +143,7 @@ The following lists only the APIs for persisting vector store data. For details 
 
    > **NOTE**
    >
-   > Use **close()** to close the **ResultSet** that is no longer used in a timely manner so that the memory allocated can be released.
+   > Call **close()** to close the **ResultSet** that is no longer used in a timely manner so that the memory allocated can be released.
 
    The sample code is as follows:
 

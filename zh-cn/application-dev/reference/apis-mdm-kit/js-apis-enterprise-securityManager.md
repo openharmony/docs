@@ -60,7 +60,7 @@ let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
-let aliasStr = "certName"
+let aliasStr = "certName";
 securityManager.uninstallUserCertificate(wantTemp, aliasStr).then(() => {
   console.info(`Succeeded in uninstalling user certificate.`);
 }).catch((err: BusinessError) => {
@@ -125,7 +125,7 @@ context.resourceManager.getRawFileContent("test.cer").then((value) => {
     console.error(`Failed to install user certificate. Code: ${err.code}, message: ${err.message}`);
   })
 }).catch((err: BusinessError) => {
-  console.error(`Failed to get row file content. message: ${err.message}`);
+  console.error(`Failed to get raw file content. message: ${err.message}`);
   return;
 });
 ```

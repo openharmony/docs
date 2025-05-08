@@ -76,7 +76,7 @@ class EntryAbility extends UIAbility {
 
     graphStore.getStore(this.context, STORE_CONFIG).then(async (gdb: graphStore.GraphStore) => {
       store = gdb;
-      console.info('Get GraphStore successfully.')
+      console.info('Get GraphStore successfully.');
     }).catch((err: BusinessError) => {
       console.error(`Get GraphStore failed, code is ${err.code}, message is ${err.message}`);
     })
@@ -90,7 +90,7 @@ deleteStore(context: Context, config: StoreConfig): Promise&lt;void&gt;
 
 使用指定的数据库文件配置删除数据库，使用Promise异步回调。
 
-删除前，如果数据库未关闭，建议使用[close](#close)接口关闭数据后再进行删除。删除成功后，打开的数据库句柄已无效，建议将数据库对象置为null，不再使用。
+删除前，如果数据库未关闭，建议使用[close](#close)接口关闭数据库后再进行删除。删除成功后，打开的数据库句柄已无效，建议将数据库对象置为null，不再使用。
 
 **系统能力：** SystemCapability.DistributedDataManager.DataIntelligence.Core
 
@@ -133,8 +133,8 @@ const STORE_CONFIG: graphStore.StoreConfig = {
 };
 
 class EntryAbility extends UIAbility {
-  onWindowStageCreate(windowStage: window.WindowStage){
-    graphStore.deleteStore(this.context, STORE_CONFIG).then(()=>{
+  onWindowStageDestroy() {
+    graphStore.deleteStore(this.context, STORE_CONFIG).then(() => {
       store = null;
       console.info('Delete GraphStore successfully.');
     }).catch((err: BusinessError) => {
@@ -298,7 +298,7 @@ read(gql: string): Promise&lt;Result&gt;
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-const QUERY_PATH_GQL = "MATCH path=(a:Person {name : \'name_1\'})-[]->{2, 2}(b:Person {name : \'name_3\'}) RETURN path;"
+const QUERY_PATH_GQL = "MATCH path=(a:Person {name : \'name_1\'})-[]->{2, 2}(b:Person {name : \'name_3\'}) RETURN path;";
 if(transaction != undefined) {
   (transaction as graphStore.Transaction).read(QUERY_PATH_GQL).then((result: graphStore.Result) => {
     console.info('Read successfully');
@@ -363,7 +363,7 @@ write(gql: string): Promise&lt;Result&gt;
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-const INSERT_GQL = "INSERT (:Person {name: 'name_1', age: 11});"
+const INSERT_GQL = "INSERT (:Person {name: 'name_1', age: 11});";
 if(transaction != undefined) {
   (transaction as graphStore.Transaction).write(INSERT_GQL).then(() => {
     console.info('Write successfully');
@@ -509,7 +509,7 @@ read(gql: string): Promise&lt;Result&gt;
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-const QUERY_PATH_GQL = "MATCH path=(a:Person {name : \'name_1\'})-[]->{2, 2}(b:Person {name : \'name_3\'}) RETURN path;"
+const QUERY_PATH_GQL = "MATCH path=(a:Person {name : \'name_1\'})-[]->{2, 2}(b:Person {name : \'name_3\'}) RETURN path;";
 if(store != null) {
   (store as graphStore.GraphStore).read(QUERY_PATH_GQL).then((result: graphStore.Result) => {
     console.info('Read successfully');
@@ -619,7 +619,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let transaction: graphStore.Transaction | undefined = undefined;
 
-if(store != undefined) {
+if(store != null) {
   (store as graphStore.GraphStore).createTransaction().then((trans: graphStore.Transaction) => {
     transaction = trans;
     console.info('createTransaction successfully');

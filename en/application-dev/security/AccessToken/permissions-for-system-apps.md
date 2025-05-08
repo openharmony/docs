@@ -2666,7 +2666,7 @@ Allows a system application to uninstall other applications.
 
 **Enable via ACL**: true
 
-**Valid since**: 18
+**Valid since**: 19
 
 ## ohos.permission.ACCESS_ADVANCED_SECURITY_MODE
 
