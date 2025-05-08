@@ -200,7 +200,7 @@ struct StickyNestedScroll {
   listCard() {
     .backgroundColor(Color.White)
     .height(72)
-    .width("100%")
+    .width('100%')
     .borderRadius(12)
   }
 
@@ -209,8 +209,8 @@ struct StickyNestedScroll {
       Scroll() {
         Column() {
           Text('Scroll Area')
-            .width("100%")
-            .height("40%")
+            .width('100%')
+            .height('40%')
             .backgroundColor('#0080DC')
             .textAlign(TextAlign.Center)
           List({ space: 10, scroller: this.listScroller }) {
@@ -227,9 +227,9 @@ struct StickyNestedScroll {
             scrollForward: NestedScrollMode.PARENT_FIRST,
             scrollBackward: NestedScrollMode.SELF_FIRST
           })
-          .height("100%")
+          .height('100%')
         }
-        .width("100%")
+        .width('100%')
       }
       .edgeEffect(EdgeEffect.Spring)
       .backgroundColor('#DCDCDC')
