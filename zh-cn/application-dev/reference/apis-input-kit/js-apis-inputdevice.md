@@ -13,7 +13,7 @@
 
 
 ```js
-import { inputDevice } from '@kit.InputKit'; 
+import { inputDevice } from '@kit.InputKit';
 ```
 
 ## inputDevice.getDeviceList<sup>9+</sup>

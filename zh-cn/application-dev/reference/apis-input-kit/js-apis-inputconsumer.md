@@ -42,7 +42,7 @@ import { inputConsumer, KeyEvent } from '@kit.InputKit';
 
 getAllSystemHotkeys(): Promise&lt;Array&lt;HotkeyOptions&gt;&gt;
 
-获取系统所有快捷键，使用Promise进行异步回调。
+获取系统所有快捷键，使用Promise异步回调。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.InputConsumer
 
