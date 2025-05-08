@@ -46,7 +46,7 @@ totalCount(): number
 
 ### getData
 
-getData(index:&nbsp;number): Object
+getData(index:&nbsp;number): any
 
 获取索引值index对应的数据。
 
