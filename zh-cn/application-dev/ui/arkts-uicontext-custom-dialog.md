@@ -174,6 +174,56 @@ struct Index {
 
  ![UIContextPromptAction](figures/UIContextPromptActionDialogMask.gif)
 
+## 设置弹出框避让软键盘的距离
+
+当软键盘弹出时，默认情况下，弹出框会自动避开软键盘，并与之保持16vp的距离。开发者可以利用[BaseDialogOptions](../reference/apis-arkui/js-apis-promptAction.md#basedialogoptions11)中的keyboardAvoidMode和keyboardAvoidDistance这两个配置项，来设置弹出框在软键盘弹出时的行为，包括是否需要避开软键盘以及与软键盘之间的距离。
+设置软键盘间距时，需要将keyboardAvoidMode值设为KeyboardAvoidMode.DEFAULT。
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+import { LengthMetrics } from '@kit.ArkUI'
+
+@Entry
+@Component
+struct Index {
+  @Builder
+  customDialogComponent() {
+      Column() {
+        Text('keyboardAvoidDistance: 0vp')
+          .fontSize(20)
+          .margin({ bottom: 36 })
+        TextInput({ placeholder: '' })
+      }.backgroundColor('#FFF0F0F0')
+  }
+
+  build() {
+    Row() {
+      Row({ space: 20 }) {
+        Text('打开弹窗')
+          .fontSize(30)
+          .onClick(() => {
+            this.getUIContext().getPromptAction().openCustomDialog({
+              builder: () => {
+                this.customDialogComponent()
+              },
+              alignment:DialogAlignment.Bottom,
+              keyboardAvoidMode: KeyboardAvoidMode.DEFAULT, // 软键盘弹出时，弹出框自动避让
+              keyboardAvoidDistance: LengthMetrics.vp(0) // 软键盘弹出时与弹出框的距离为200vp
+            }).catch((error: BusinessError) => {
+                console.error(`openCustomDialog error code is ${error.code}, message is ${error.message}`)
+              })
+          })
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+```
+
+ ![UIContextPromptAction](figures/UIContextPromptActionCustomDialog.gif)
+
+
 ## 完整示例
 
 ```ts
