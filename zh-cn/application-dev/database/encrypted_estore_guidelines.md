@@ -3,9 +3,9 @@
 
 ## 场景介绍
 
-为了满足数据库的安全特性，存有敏感信息的应用会在[EL5](../reference/apis-ability-kit/js-apis-app-ability-contextConstant.md#areamode)（加密路径切换请参考[获取和修改加密分区](../application-models/application-context-stage.md#获取和修改加密分区)EL1-EL4路径切换）路径下创建了一个E类数据库。在锁屏的情况下，满足一定条件时，会触发密钥的销毁，此时E类数据库不可读写。当锁屏解锁后，密钥会恢复，E类数据库恢复正常读写操作。这样的设计可以有效防止用户数据的泄露。
+从安全角度考虑，为满足部分敏感数据的安全特性，提供了E类加密数据库的方案以提高锁屏下数据的安全性。存有敏感信息的应用在申请ohos.permission.PROTECT_SCREEN_LOCK_DATA权限后会在[EL5](../reference/apis-ability-kit/js-apis-app-ability-contextConstant.md#areamode)路径下创建一个E类数据库。在锁屏的情况下（未调用Access接口获取保留文件密钥）会触发文件密钥的销毁，此时E类数据库不可读写。当锁屏解锁后，密钥会恢复，E类数据库恢复正常读写操作。这样的设计可以有效防止用户数据的泄露。
 
-然而，在锁屏的情况下，应用程序仍然可以继续写入数据，由于此时E类数据库不可读写，可能会导致数据丢失。为了解决这个问题，当前提供了一种方案：在锁屏的情况下，将数据存储在[EL2](../reference/apis-ability-kit/js-apis-app-ability-contextConstant.md#areamode)路径下的C类数据库中。当解锁后，再将数据迁移到E类数据库中。这样可以确保数据在锁屏期间的安全性和完整性。
+在锁屏的情况下，应用程序仍然可以继续写入数据。由于此时E类数据库不可读写，这可能会导致数据丢失。为了解决这个问题，当前提供了一种方案：在锁屏的情况下，将数据存储在[EL2](../reference/apis-ability-kit/js-apis-app-ability-contextConstant.md#areamode)路径下的C类数据库中。当解锁后，再将数据迁移到E类数据库中。这样可以确保数据在锁屏期间的安全性和完整性。
 
 键值型数据库和关系型数据库均支持E类加密数据库。
 
