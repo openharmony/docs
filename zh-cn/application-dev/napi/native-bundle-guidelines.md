@@ -35,12 +35,13 @@
 2. 打开src/main/cpp/napi_init.cpp文件，添加头文件。
 
     ```c++
-    #include "bundle/native_interface_bundle.h"
+    #include "bundle/native_interface_bundle.h" //NDK接口依赖头文件
+    #include <cstdlib>  //free()函数依赖的基础库
     ```
 
 **3. 修改源文件**
 
-1. 打开src/main/cpp/napi_init.cpp文件，文件Init会对当前方法进行初始化映射，这里定义对外接口为getCurrentApplicationInfo。
+1. 打开src/main/cpp/napi_init.cpp文件，文件Init会对当前方法进行初始化映射，这里定义对外的接口。
 
     ```c++
     EXTERN_C_START
@@ -158,7 +159,7 @@
 
 **4. 接口暴露**
 
-在src/main/cpp/types/libentry/Index.d.ts文件中，申明暴露接口。
+在src/main/cpp/types/libentry/Index.d.ts文件中，声明暴露接口。
 
 ```js
 export const add: (a: number, b: number) => number;
@@ -174,7 +175,7 @@ export const getCompatibleDeviceType: () => string;     // 新增暴露方法 ge
 1. 打开src\main\ets\pages\index.ets, 导入"libentry.so"。
 
 
-2. 调用Native接口getCurrentApplicationInfo即可获取应用信息。示例如下：
+2. 调用Native接口打印出获取的信息内容。示例如下：
 
     ```js
     import { hilog } from '@kit.PerformanceAnalysisKit';
