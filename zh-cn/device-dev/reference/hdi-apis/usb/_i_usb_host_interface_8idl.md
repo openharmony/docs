@@ -17,4 +17,4 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| interface&nbsp;&nbsp;[IUsbHostInterface](interface_i_usb_host_interface.md) |  | 
+| interface&nbsp;&nbsp;[IUsbHostInterface](interface_i_usb_host_interface.md) | 定义USB驱动基本的操作功能。<br>上层USB服务调用相关功能接口，获取设备描述符，批量读取/写入数据等。 | 
