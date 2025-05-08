@@ -7879,6 +7879,79 @@ if(store != undefined) {
 }
 ```
 
+### rekey<sup>20+</sup>
+
+rekey(cryptoParam?: CryptoParam): Promise\<void>
+
+手动更新加密数据库的密钥。使用Promise异步回调。
+仅支持加密数据库到加密数据库的密钥更新，且保持密钥生成方式一致。
+
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
+
+**参数：**
+
+| 参数名       | 类型                               | 必填 | 说明                                                                        |
+| ------------ | --------------------------------- | ---- | --------------------------------------------------------------------------- |
+| cryptoParam  | [CryptoParam](#cryptoparam14)     | 否   | 指定用户自定义的加密参数。<br/>当此参数不填时，使用默认的加密参数，见CryptoParam。|
+
+**返回值：**
+
+| 类型          | 说明                       |
+| -------------- | ------------------------ |
+| Promise\<void> | 无返回结果的Promise对象。  |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[关系型数据库错误码](errorcode-data-rdb.md)。
+
+| **错误码ID** | **错误信息**                                                 |
+| ------------ | ------------------------------------------------------------ |
+| 801          | Capability not supported.                                    |
+| 14800001     | Invalid args.                                                |
+| 14800011     | Database corrupted.                                          |
+| 14800014     | Already closed.                                              |
+| 14800015     | The database does not respond.                               |
+| 14800021     | SQLite: Generic error.                                       |
+| 14800023     | SQLite: Access permission denied.                            |
+| 14800024     | SQLite: The database file is locked.                         |
+| 14800026     | SQLite: The database is out of memory.                       |
+| 14800027     | SQLite: Attempt to write a readonly database.                |
+| 14800028     | SQLite: Some kind of disk I/O error occurred.                |
+| 14800029     | SQLite: The database is full.                                |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+// 示例1：使用默认的加密参数
+let cryptoParam1: relationalStore.CryptoParam = {
+    encryptionKey: new Uint8Array(),
+};
+
+if(store != undefined) {
+  try {
+    (store as relationalStore.RdbStore).rekey(cryptoParam1);
+    console.info(`rekey is successful`);
+  } catch (err) {
+    console.error(`rekey is failed, code is ${err.code},message is ${err.message}`);
+  }
+}
+
+// 示例2：使用自定义的加密参数
+let cryptoParam2: relationalStore.CryptoParam = {
+    encryptionKey: new Uint8Array([6, 5, 4, 3, 2, 1]),
+};
+
+if(store != undefined) {
+  try {
+    (store as relationalStore.RdbStore).rekey(cryptoParam2);
+    console.info(`rekey is successful`);
+  } catch (err) {
+    console.error(`rekey is failed, code is ${err.code},message is ${err.message}`);
+  }
+}
+```
+
 ## ResultSet
 
 提供通过查询数据库生成的数据库结果集的访问方法。结果集是指用户调用关系型数据库查询接口之后返回的结果集合，提供了多种灵活的数据访问方式，以便用户获取各项数据。
