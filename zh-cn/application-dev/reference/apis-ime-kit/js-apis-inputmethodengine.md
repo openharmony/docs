@@ -824,9 +824,9 @@ on(type: 'discardTypingText', callback: Callback\<void>): void
 import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
-  console.log(`discard the typing text`);
+  console.info(`discard the typing text`);
   inputMethodEngine.getInputMethodAbility().on('discardTypingText', ( ) => {
-    console.log('InputMethodAbility discard the typing text.');
+    console.info('InputMethodAbility discard the typing text.');
   });
 } catch (err) {
   let error = err as BusinessError;
@@ -855,9 +855,9 @@ off(type: 'discardTypingText', callback?: Callback\<void>): void
 import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
-  console.log(`discard the typing text`);
+  console.info(`discard the typing text`);
   inputMethodEngine.getInputMethodAbility().off('discardTypingText', ( ) => {
-    console.log('InputMethodAbility discard the typing text.');
+    console.info('InputMethodAbility discard the typing text.');
   });
 } catch (err) {
   let error = err as BusinessError;
