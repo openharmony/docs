@@ -40,7 +40,7 @@ TokenId does not exist.
 
 **处理步骤**
 
-检查入参，修正参数值为有效值。
+检查入参，修正参数值为有效值，有效值请参考[权限列表](../../security/AccessToken/app-permissions.md)。
 
 
 ## 12100003 权限名不存在
@@ -57,7 +57,7 @@ Permission does not exist.
 
 **处理步骤**
 
-检查入参，修正参数值为有效值。[权限列表](../../security/AccessToken/app-permissions.md)。
+检查入参，修正参数值为有效值，有效值请参考[权限列表](../../security/AccessToken/app-permissions.md)。
 
 
 ## 12100004 接口未配套使用
@@ -86,7 +86,7 @@ The number of listeners exceeds the limit.
 
 **可能原因**
 
-该错误码表示当前监听器数量超过限制200。
+该错误码表示当前监听器数量超过限制200个。
 
 **处理步骤**
 

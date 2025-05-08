@@ -120,7 +120,7 @@ struct HoverEventExample {
 
 ### 示例2（使用onHoverMove）
 
-该实例设置了按钮的 `onHoverMove()` 事件。当手写笔悬浮在按钮时，UI界面会显示当前手写笔悬浮状的位置。
+该示例设置了按钮的 `onHoverMove()` 事件。当手写笔悬浮在按钮时，UI界面会显示当前手写笔悬浮状的位置。
 
 ```ts
 // xxx.ets

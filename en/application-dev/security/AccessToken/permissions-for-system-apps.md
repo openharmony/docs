@@ -4623,6 +4623,18 @@ Allows an application to send notifications to the specified users in the system
 
 **Valid since**: 18
 
+## ohos.permission.ACCESS_CALENDARDATA_FOR_BROKER
+
+Allows a system server to access calendar data.
+
+**Permission level**: system_core
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 17
+
 ## ohos.permission.ALLOW_ACCESS_TIPS
 
 Allows a system application to start the components provided by Tips.

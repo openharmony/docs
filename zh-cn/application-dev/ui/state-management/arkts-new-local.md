@@ -562,7 +562,7 @@ struct Index {
           this.w = 100;
           this.h = 100;
           this.message = 'Hello World';
-          animateTo({
+          this.getUIContext().animateTo({
             duration: 1000
           }, () => {
             this.w = 200;
@@ -608,7 +608,7 @@ struct Index {
             duration: 0
           }, () => {
           })
-          animateTo({
+          this.getUIContext().animateTo({
             duration: 1000
           }, () => {
             this.w = 200;

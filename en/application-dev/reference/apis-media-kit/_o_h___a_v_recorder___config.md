@@ -11,6 +11,8 @@ The OH_AVRecorder_Config struct describes the AVRecorder configuration.
 
 **Related module**: [AVRecorder](_a_v_recorder.md)
 
+**Header file**: [avrecorder_base.h](avrecorder__base_8h.md)
+
 
 ## Summary
 

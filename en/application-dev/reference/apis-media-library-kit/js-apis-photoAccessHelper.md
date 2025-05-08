@@ -48,7 +48,9 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 ```ts
 // The phAccessHelper instance obtained is a global object. It is used by default in subsequent operations. If the code snippet is not added, an error will be reported indicating that phAccessHelper is not defined.
-let context = getContext(this);
+// Obtain the context from the component and ensure that the return value of this.getUiContext().getHostContext() is UIAbilityContext.
+import { common } from '@kit.AbilityKit';
+let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
 ```
 
@@ -243,7 +245,7 @@ createAsset(photoType: PhotoType, extension: string, options: CreateOptions, cal
 
 Creates an image or video asset with the specified file type, file name extension, and options. This API uses an asynchronous callback to return the result.
 
-If the caller does not have the ohos.permission.WRITE_IMAGEVIDEO permission, you can create a media asset by using a security component. For details, see [Creating a Media Asset Using a Security Component](../../media/medialibrary/photoAccessHelper-savebutton.md).
+If you do not have the ohos.permission.WRITE_IMAGEVIDEO permission, you can create a media asset by using a security component. For details, see [Creating a Media Asset Using a Security Component](../../media/medialibrary/photoAccessHelper-savebutton.md).
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -298,7 +300,7 @@ createAsset(photoType: PhotoType, extension: string, callback: AsyncCallback&lt;
 
 Creates an image or video asset with the specified file type and file name extension. This API uses an asynchronous callback to return the result.
 
-If the caller does not have the ohos.permission.WRITE_IMAGEVIDEO permission, you can create a media asset by using a security component. For details, see [Creating a Media Asset Using a Security Component](../../media/medialibrary/photoAccessHelper-savebutton.md).
+If you do not have the ohos.permission.WRITE_IMAGEVIDEO permission, you can create a media asset by using a security component. For details, see [Creating a Media Asset Using a Security Component](../../media/medialibrary/photoAccessHelper-savebutton.md).
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -349,7 +351,7 @@ createAsset(photoType: PhotoType, extension: string, options?: CreateOptions): P
 
 Creates an image or video asset with the specified file type, file name extension, and options. This API uses a promise to return the result.
 
-If the caller does not have the ohos.permission.WRITE_IMAGEVIDEO permission, you can create a media asset by using a security component. For details, see [Creating a Media Asset Using a Security Component](../../media/medialibrary/photoAccessHelper-savebutton.md).
+If you do not have the ohos.permission.WRITE_IMAGEVIDEO permission, you can create a media asset by using a security component. For details, see [Creating a Media Asset Using a Security Component](../../media/medialibrary/photoAccessHelper-savebutton.md).
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -967,7 +969,7 @@ Shows the dialog box for the user to confirm whether to save the photos or video
 | Name  | Type                                                                  | Mandatory| Description                     |
 | -------- |----------------------------------------------------------------------| ---- | ------------------------- |
 | srcFileUris | Array&lt;string&gt; | Yes| [URIs](../../file-management/user-file-uri-intro.md#media-file-uri) of the images or videos to be saved to the media library.<br>**NOTE**<br>- Only image and video URIs are supported.<br>- URIs cannot be manually constructed. You must call APIs to obtain them. For details, see [Obtaining a Media File URI](../../file-management/user-file-uri-intro.md#obtaining-a-media-file-uri). |
-| photoCreationConfigs | Array&lt;[PhotoCreationConfig](#photocreationconfig12)&gt; | Yes| Configuration for saving the images or videos, including the names of the files to be saved. The value must be consistent with that of **srcFileUris**.|
+| photoCreationConfigs | Array&lt;[PhotoCreationConfig](#photocreationconfig12)&gt; | Yes| Configuration for saving the images or videos, including the file names. The value must be consistent with that of **srcFileUris**.|
 
 **Return value**
 
@@ -2159,7 +2161,7 @@ async function example() {
 
 close(): void
 
-Closes this **FetchFileResult** instance to invalidate it. After this instance is released, the APIs in this instance cannot be invoked.
+Closes this **FetchResult** instance to invalidate it. After this instance is released, the APIs in this instance cannot be invoked.
 
 **System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
@@ -2289,6 +2291,7 @@ async function example() {
 getNextObject(callback: AsyncCallback&lt;T&gt;): void
 
 Obtains the next file asset in the result set. This API uses an asynchronous callback to return the result.
+
 Before using this API, you must use [isAfterLast()](#isafterlast) to check whether the current position is the end of the result set.
 
 **System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
@@ -2297,7 +2300,7 @@ Before using this API, you must use [isAfterLast()](#isafterlast) to check wheth
 
 | Name   | Type                                         | Mandatory| Description                                     |
 | --------- | --------------------------------------------- | ---- | ----------------------------------------- |
-| callback | AsyncCallback&lt;T&gt; | Yes  | Callback used to return the next file asset.|
+| callback | AsyncCallback&lt;T&gt; | Yes  | Callback used to return the next file asset obtained.|
 
 **Error codes**
 
@@ -2625,7 +2628,7 @@ Obtains all the file assets in the result set. This API uses a promise to return
 
 | Type                                   | Description                      |
 | --------------------------------------- | -------------------------- |
-| Promise&lt;Array&lt;T&gt;&gt; | Promise used to return an array of all file assets in the result set.|
+| Promise&lt;Array&lt;T&gt;&gt; | Promise used to return an array of all file assets.|
 
 **Error codes**
 
@@ -3159,7 +3162,7 @@ Represents a media asset change request.
 
 constructor(asset: PhotoAsset)
 
-Constructor.
+Constructor used to initialize an asset change request.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -3372,7 +3375,7 @@ Deletes media assets. This API uses a promise to return the result. The deleted 
 | Name | Type   | Mandatory| Description                      |
 | ------- | ------- | ---- | -------------------------- |
 | context | [Context](../apis-ability-kit/js-apis-inner-application-context.md) | Yes  | Context of the ability instance.|
-| assets | Array&lt;[PhotoAsset](#photoasset)&gt; | Yes  | Array of assets to delete. |
+| assets | Array&lt;[PhotoAsset](#photoasset)&gt; | Yes  | Array of assets to delete.|
 
 **Return value**
 
@@ -3428,7 +3431,7 @@ Deletes media assets. This API uses a promise to return the result. The deleted 
 | Name | Type   | Mandatory| Description                      |
 | ------- | ------- | ---- | -------------------------- |
 | context | [Context](../apis-ability-kit/js-apis-inner-application-context.md) | Yes  | Context of the ability instance.|
-| uriList | Array&lt;string&gt; | Yes  | URIs of the media files to delete. |
+| uriList | Array&lt;string&gt; | Yes  | URIs of the media files to delete.|
 
 **Return value**
 
@@ -3888,7 +3891,7 @@ Provides APIs for managing the media album change request.
 
 constructor(album: Album)
 
-Constructor.
+Constructor used to initialize a new object.
 
 **System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
@@ -4028,7 +4031,7 @@ Add assets to the album.
 
 | Name       | Type     | Mandatory  | Description                                |
 | ---------- | ------- | ---- | ---------------------------------- |
-| assets | Array&lt;[PhotoAsset](#photoasset)&gt; | Yes  | Array of assets to add. |
+| assets | Array&lt;[PhotoAsset](#photoasset)&gt; | Yes  | Array of assets to add.|
 
 **Error codes**
 
@@ -4080,7 +4083,7 @@ Removes assets from the album.
 
 | Name       | Type     | Mandatory  | Description                                |
 | ---------- | ------- | ---- | ---------------------------------- |
-| assets | Array&lt;[PhotoAsset](#photoasset)&gt; | Yes  | Array of assets to remove. |
+| assets | Array&lt;[PhotoAsset](#photoasset)&gt; | Yes  | Array of assets to remove.|
 
 **Error codes**
 
@@ -4488,8 +4491,8 @@ Loads a moving photo in the application sandbox.
 | Name  | Type                                                                  | Mandatory| Description                     |
 | -------- |----------------------------------------------------------------------| ---- | ------------------------- |
 | context | [Context](../apis-ability-kit/js-apis-inner-application-context.md)   | Yes  | **AbilityContext** or **UIExtensionContext** instance.|
-| imageFileUri | string     | Yes  | URI of the image file of the moving photo in the application sandbox.|
-| videoFileUri | string     | Yes  | URI of the video file of the moving photo in the application sandbox.|
+| imageFileUri | string     | Yes  | URI of the image file of the moving photo in the application sandbox.<br>Example: **'file://com.example.temptest/data/storage/el2/base/haps/ImageFile.jpg'**.|
+| videoFileUri | string     | Yes  | URI of the video file of the moving photo in the application sandbox.<br>Example: **'file://com.example.temptest/data/storage/el2/base/haps/VideoFile.mp4'**.|
 
 **Return value**
 
@@ -5137,6 +5140,7 @@ Defines the key information about an image or video file.
 | DETAIL_TIME<sup>13+</sup>  | 'detail_time'  | Detailed time. The value is a string of time when the image or video was taken in the time zone and does not change with the time zone.|
 | DATE_TAKEN_MS<sup>13+</sup>  | 'date_taken_ms'  | Unix timestamp when the image was captured, in milliseconds.|
 | POSITION<sup>16+</sup>  | 'position'            | File location type.                              |
+| MEDIA_SUFFIX<sup>18+</sup>  | 'media_suffix'            | File name extension.                              |
 
 ## AlbumKeys
 
@@ -5176,7 +5180,7 @@ Defines the options for fetching media files.
 
 | Name                  | Type               | Readable| Writable| Description                                             |
 | ---------------------- | ------------------- | ---- |---- | ------------------------------------------------ |
-| fetchColumns           | Array&lt;string&gt; | Yes  | Yes  | Names of the columns specified for query.<br>If this parameter is left blank for photos, photos are fetched by **'uri'**, **'media_type'**, **'subtype'**, and **'display_name'** by default. An error will be thrown if [get](#get) is used to obtain other attributes of this object. <br>Example: **fetchColumns: ['uri', 'title']**.<br>If this parameter is left blank for albums, albums are fetched by **'uri'** and **'album_name'** by default. |
+| fetchColumns           | Array&lt;string&gt; | Yes  | Yes  | Names of the columns specified for query.<br>If this parameter is left blank for photos, photos are fetched by **'uri'**, **'media_type'**, **'subtype'**, and **'display_name'** by default. An error will be thrown if [get](#get) is used to obtain other attributes of this object. <br>Example: **fetchColumns: ['uri', 'title']**.<br>If this parameter is left blank for albums, albums are fetched by **'uri'** and **'album_name'** by default.|
 | predicates           | [dataSharePredicates.DataSharePredicates](../apis-arkdata/js-apis-data-dataSharePredicates.md#datasharepredicates) | Yes  | Yes  | Predicates that specify the fetch criteria.|
 
 ## RequestOptions<sup>11+</sup>
@@ -5233,7 +5237,7 @@ Defines the return value of the listener callback.
 | ------- | --------------------------- | ---- | ---- | ------------------------------------------------------------ |
 | type    | [NotifyType](#notifytype) | Yes  | No  | Notification type.                                      |
 | uris    | Array&lt;string&gt;         | Yes  | No  | All URIs with the same [NotifyType](#notifytype), which can be **PhotoAsset** or **Album**.|
-| extraUris | Array&lt;string&gt;         | Yes  | No  | URIs of the changed files in the album.                                   |
+| extraUris | Array&lt;string&gt;         | Yes  | No  | URIs of the changed files in the album. The value may be undefined. Check whether the value is undefined before using it.                          |
 
 ## NotifyType
 
@@ -5295,6 +5299,7 @@ Enumerates the types of recommended images.
 | DRIVER_LICENSE<sup>12+</sup> |  8 | Driver license.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | DRIVING_LICENSE<sup>12+</sup> |  9 | Vehicle license<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | FEATURED_SINGLE_PORTRAIT<sup>12+</sup> |  10 | Recommended portrait.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| COLOR_STYLE_PHOTO<sup>18+</sup> |  12 | Recommended style.<br>**Atomic service API**: This API can be used in atomic services since API version 18.|
 
 **Example**
 
@@ -5378,6 +5383,20 @@ Defines the image recommendation options. The image recommendation feature depen
 | recommendationType | [RecommendationType](#recommendationtype11)   | No  | Type of the recommended image.|
 | textContextInfo<sup>12+</sup> | [TextContextInfo](#textcontextinfo12)   | No  | Text based on which images are recommended. If both **recommendationType** and **textContextInfo** are set, **textContextInfo** takes precedence over **recommendationType**.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 
+## SingleSelectionMode<sup>18+</sup>
+
+Enumerates the single selection mode types.
+
+**Atomic service API**: This API can be used in atomic services since API version 18.
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+| Name                                   |  Value| Description      |
+|---------------------------------------|  ---- |----------|
+| BROWSER_MODE                          |  0 | Mode for previewing large images.   |
+| SELECT_MODE                           |  1 | Mode for direct selection.   |
+| BROWSER_AND_SELECT_MODE               |  2 | Compatibility mode. Tapping the bottom-right area enables direct selection, whereas tapping elsewhere switches to large image preview mode.|
+
 ## BaseSelectOptions<sup>12+</sup>
 
 Defines the basic options for selecting media assets from Gallery.
@@ -5392,7 +5411,8 @@ Defines the basic options for selecting media assets from Gallery.
 | isSearchSupported<sup>11+</sup> | boolean  | No  | Whether the image is searchable.<br>The value **true** means the image is searchable; the value **false** means the opposite.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | recommendationOptions<sup>11+</sup>       | [RecommendationOptions](#recommendationoptions11)   | No  | Image recommendation parameters.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | preselectedUris<sup>11+</sup> | Array&lt;string&gt;  | No  | URI of the preselected image.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| isPreviewForSingleSelectionSupported<sup>12+</sup> | boolean  | No  | Whether to enable full image preview if a single image is selected.<br>The value **true** means to enable full image preview; the value **false** means the opposite.<br>Default value: **true**<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| isPreviewForSingleSelectionSupported<sup>(deprecated)</sup> | boolean  | No  | Whether to enable full image preview if a single image is selected.<br>The value **true** means to enable full image preview; the value **false** means the opposite.<br>Default value: **true**<br>**Atomic service API**: This API can be used in atomic services since API version 12.<br>This API is supported since API version 12 and deprecated since API version 18.|
+| singleSelectionMode<sup>18+</sup> | [SingleSelectionMode](#singleselectionmode18) | No  | Single selection mode. The default value is **SingleSelectionMode.BROWSER_MODE**.<br>**Atomic service API**: This API can be used in atomic services since API version 18.|
 
 ## PhotoSelectOptions
 
@@ -5405,7 +5425,7 @@ Defines additional options for selecting media assets from Gallery. It inherits 
 | Name                   | Type               | Mandatory| Description                         |
 | ----------------------- | ------------------- | ---- | -------------------------------- |
 | isEditSupported<sup>11+</sup>       | boolean | No  | Whether the image can be edited.<br>The value **true** means the image can be edited; the value **false** means the opposite.    |
-| isOriginalSupported<sup>12+</sup>       | boolean | No  | Whether to display the button for selecting the original image. <br>The value **true** means to display the button; the value **false** means the opposite.<br>Default value: **false**<br>**Atomic service API**: This API can be used in atomic services since API version 12.    |
+| isOriginalSupported<sup>12+</sup>       | boolean | No  | Whether to display the button for selecting the original image. <br>The value **true** means to display the button; the value **false** means the opposite.<br>Default value: **true**<br>**Atomic service API**: This API can be used in atomic services since API version 12.    |
 | subWindowName<sup>12+</sup>       | string | No  | Name of the sub-window.<br>**Atomic service API**: This API can be used in atomic services since API version 12.    |
 | completeButtonText<sup>14+</sup>       | [CompleteButtonText](#completebuttontext14) | No  | Text displayed on the complete button.<br>The complete button is located in the lower right corner of the page. It is used by users to signify that they have finished selecting images.<br>**Atomic service API**: This API can be used in atomic services since API version 14.    |
 

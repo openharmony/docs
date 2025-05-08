@@ -5,9 +5,7 @@
 > The initial APIs of this module are supported since API version 6. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 
-You can use WebSocket to establish a bidirectional connection between a server and a client. Before doing this, you need to use the [createWebSocket](#websocketcreatewebsocket6) API to create a [WebSocket](#websocket6) object and then use the [connect](#connect6) API to connect to the server.
-If the connection is successful, the client will receive a callback of the [open](#onopen6) event. Then, the client can communicate with the server using the [send](#send6) API.
-When the server sends a message to the client, the client will receive a callback of the [message](#onmessage6) event. If the client no longer needs this connection, it can call the [close](#close6) API to disconnect from the server. Then, the client will receive a callback of the [close](#onclose6) event.
+You can use WebSocket to establish a bidirectional connection between a server and a client. Before doing this, you need to use the [createWebSocket](#websocketcreatewebsocket6) API to create a [WebSocket](#websocket6) object and then use the [connect](#connect6) API to connect to the server. If the connection is successful, the client will receive a callback of the [open](#onopen6) event. Then, the client can communicate with the server using the [send](#send6) API. When the server sends a message to the client, the client will receive a callback of the [message](#onmessage6) event. If the client no longer needs this connection, it can call the [close](#close6) API to disconnect from the server. Then, the client will receive a callback of the [close](#onclose6) event.
 
 If an error occurs in any of the preceding processes, the client will receive a callback of the [error](#onerror6) event.
 
@@ -134,7 +132,7 @@ Initiates a WebSocket request to establish a WebSocket connection to a given URL
 | Name  | Type                    | Mandatory| Description                        |
 | -------- | ------------------------ | ---- | ---------------------------- |
 | url      | string                   | Yes  | URL for establishing a WebSocket connection.|
-| callback | AsyncCallback\<boolean\> | Yes  | Callback used to return the result.                  |
+| callback | AsyncCallback\<boolean\> | Yes  | Callback used to return the result. The value **true** indicates that the operation is successful, and the value **false** indicates the opposite.                  |
 
 **Error codes**
 
@@ -191,7 +189,7 @@ Initiates a WebSocket request carrying specified options to establish a WebSocke
 | -------- | ------------------------ | ---- | ------------------------------------------------------- |
 | url      | string                   | Yes  | URL for establishing a WebSocket connection.                           |
 | options  | WebSocketRequestOptions  | Yes  | Request options. For details, see [WebSocketRequestOptions](#websocketrequestoptions).|
-| callback | AsyncCallback\<boolean\> | Yes  | Callback used to return the result.                                             |
+| callback | AsyncCallback\<boolean\> | Yes  | Callback used to return the result. The value **true** indicates that the operation is successful, and the value **false** indicates the opposite.                                             |
 
 **Error codes**
 
@@ -262,7 +260,7 @@ Initiates a WebSocket request carrying specified options to establish a WebSocke
 
 | Type              | Description                             |
 | :----------------- | :-------------------------------- |
-| Promise\<boolean\> | Promise used to return the result.|
+| Promise\<boolean\> | Promise used to return the result. The value **true** indicates that the operation is successful, and the value **false** indicates the opposite.|
 
 **Error codes**
 
@@ -311,7 +309,7 @@ Sends data through a WebSocket connection. This API uses an asynchronous callbac
 | Name  | Type                    | Mandatory| Description        |
 | -------- | ------------------------ | ---- | ------------ |
 | data     | string \| ArrayBuffer | Yes  | Data to send.<br>Only the string type is supported for API version 6 or earlier. Both the string and ArrayBuffer types are supported for API version 8 or later.|
-| callback | AsyncCallback\<boolean\> | Yes  | Callback used to return the result.  |
+| callback | AsyncCallback\<boolean\> | Yes  | Callback used to return the result. The value **true** indicates that the operation is successful, and the value **false** indicates the opposite.  |
 
 **Error codes**
 
@@ -377,7 +375,7 @@ Sends data through a WebSocket connection. This API uses a promise to return the
 
 | Type              | Description                             |
 | :----------------- | :-------------------------------- |
-| Promise\<boolean\> | Promise used to return the result.|
+| Promise\<boolean\> | Promise used to return the result. The value **true** indicates that the operation is successful, and the value **false** indicates the opposite.|
 
 **Error codes**
 
@@ -437,7 +435,7 @@ Closes a WebSocket connection. This API uses an asynchronous callback to return 
 
 | Name  | Type                    | Mandatory| Description      |
 | -------- | ------------------------ | ---- | ---------- |
-| callback | AsyncCallback\<boolean\> | Yes  | Callback used to return the result.|
+| callback | AsyncCallback\<boolean\> | Yes  | Callback used to return the result. The value **true** indicates that the operation is successful, and the value **false** indicates the opposite.|
 
 **Error codes**
 
@@ -479,7 +477,7 @@ Closes a WebSocket connection carrying specified options such as **code** and **
 | Name  | Type                    | Mandatory| Description                                                 |
 | -------- | ------------------------ | ---- | ----------------------------------------------------- |
 | options  | WebSocketCloseOptions    | Yes  | Request options. For details, see [WebSocketCloseOptions](#websocketcloseoptions).|
-| callback | AsyncCallback\<boolean\> | Yes  | Callback used to return the result.                                           |
+| callback | AsyncCallback\<boolean\> | Yes  | Callback used to return the result. The value **true** indicates that the operation is successful, and the value **false** indicates the opposite.                                           |
 
 **Error codes**
 
@@ -532,7 +530,7 @@ Closes a WebSocket connection carrying specified options such as **code** and **
 
 | Type              | Description                             |
 | :----------------- | :-------------------------------- |
-| Promise\<boolean\> | Promise used to return the result.|
+| Promise\<boolean\> | Promise used to return the result. The value **true** indicates that the operation is successful, and the value **false** indicates the opposite.|
 
 **Error codes**
 
@@ -709,7 +707,7 @@ Enables listening for the **close** events of a WebSocket connection. This API u
 | Name  | Type                                           | Mandatory| Description                          |
 | -------- | ----------------------------------------------- | ---- | ------------------------------ |
 | type     | string                                          | Yes  | Event type. <br />**close**: event indicating that a WebSocket connection has been closed.|
-| callback | AsyncCallback\<CloseResult\> | Yes  | Callback used to return the result.<br>**close** and **reason** indicate the error code and error cause for closing the connection, respectively.|
+| callback | AsyncCallback\<CloseResult\> | Yes  | Callback used to return the result.<br>**close** indicates the close error code and **reason** indicates the error code description.|
 
 **Example**
 
@@ -741,7 +739,7 @@ Disables listening for the **close** events of a WebSocket connection. This API 
 | Name  | Type                                           | Mandatory| Description                          |
 | -------- | ----------------------------------------------- | ---- | ------------------------------ |
 | type     | string                                          | Yes  | Event type. <br />**close**: event indicating that a WebSocket connection has been closed.|
-| callback | AsyncCallback\<CloseResult\> | No  | Callback used to return the result.<br>**close** and **reason** indicate the error code and error cause for closing the connection, respectively.|
+| callback | AsyncCallback\<CloseResult\> | No  | Callback used to return the result.<br>**close** indicates the close error code and **reason** indicates the error code description.|
 
 **Example**
 
@@ -994,7 +992,7 @@ Enumerates the response headers sent by the server.
 | ------ | ------------------------------------------------------------ |
 | {[k:string]:string \| string[] \| undefined} | The header data type can be key-value pair, string, or undefined.|
 
-## Result Codes for Connection Closing
+## Result Codes for Closing a WebSocket Connection
 
 You can customize the result codes sent to the server. The result codes in the following table are for reference only.
 
@@ -1014,7 +1012,7 @@ type HttpProxy = connection.HttpProxy
 
 Defines the global HTTP proxy configuration of the network.
 
-**System capability**: SystemCapability.Communication.NetStack
+**System capability**: SystemCapability.Communication.NetManager.Core
 
 |       Type      |            Description            |
 | ---------------- | --------------------------- |

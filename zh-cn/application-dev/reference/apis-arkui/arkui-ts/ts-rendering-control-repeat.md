@@ -243,16 +243,14 @@ Repeat数据源参数联合类型。
 
 ## VirtualScrollOptions对象说明
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称     | 类型   | 必填 | 说明                                                         |
 | ---------- | ------ | ---- | ------------------------------------------------------------ |
-| totalCount | number | 否   | 加载的数据项总数，可以不等于数据源长度。 |
-| reusable<sup>18+</sup> | boolean | 否   | 是否开启复用功能，true表示开启，false表示不开启，默认开启。 |
-| onLazyLoading<sup>18+</sup> | (index: number) => void | 否   | 数据懒加载函数，向指定的数据源index中写入数据。 |
-| onTotalCount<sup>18+</sup> | () => number | 否   | 数据项总数计算函数，返回值可以不等于数据源长度。推荐使用onTotalCount代替totalCount。同时设置totalCount与onTotalCount时，忽略totalCount。 |
+| totalCount | number | 否   | 加载的数据项总数，可以不等于数据源长度。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| reusable<sup>18+</sup> | boolean | 否   | 是否开启复用功能，true表示开启，false表示不开启，默认开启。<br>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。 |
+| onLazyLoading<sup>18+</sup> | (index: number) => void | 否   | 数据懒加载函数，向指定的数据源index中写入数据。<br>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。 |
+| onTotalCount<sup>18+</sup> | () => number | 否   | 数据项总数计算函数，返回值可以不等于数据源长度。推荐使用onTotalCount代替totalCount。同时设置totalCount与onTotalCount时，忽略totalCount。<br>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。 |
 
 **示例：**
 ```ts

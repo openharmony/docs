@@ -70,7 +70,7 @@ httpRequest.request(// Customize EXAMPLE_URL in extraData on your own. It is up 
         filePath: `${getContext(this).filesDir}/fileName.txt`, // File path, optional. This field is supported since API version 11.
         remoteFileName: 'fileName.txt' // Optional. This field is supported since API version 11.
       }
-    ]
+    ],
     addressFamily: http.AddressFamily.DEFAULT // Optional. By default, the IPv4 or IPv6 address of the target domain name is selected. This attribute is supported since API version 15.
   },
   (err: BusinessError, data: http.HttpResponse) => {
@@ -457,6 +457,8 @@ Initiates an HTTP request containing specified options to a given URL. This API 
 
 **Required permissions**: ohos.permission.INTERNET
 
+**Atomic service API**: This API can be used in atomic services since API version 15.
+
 **System capability**: SystemCapability.Communication.NetStack
 
 **Parameters**
@@ -531,6 +533,8 @@ requestInStream(url: string, options: HttpRequestOptions, callback: AsyncCallbac
 Initiates an HTTP request containing specified options to a given URL. This API uses an asynchronous callback to return the result, which is a streaming response.
 
 **Required permissions**: ohos.permission.INTERNET
+
+**Atomic service API**: This API can be used in atomic services since API version 15.
 
 **System capability**: SystemCapability.Communication.NetStack
 
@@ -629,6 +633,8 @@ requestInStream(url: string, options? : HttpRequestOptions): Promise\<number\>
 Initiates an HTTP request containing specified options to a given URL. This API uses a promise to return the result, which is a streaming response.
 
 **Required permissions**: ohos.permission.INTERNET
+
+**Atomic service API**: This API can be used in atomic services since API version 15.
 
 **System capability**: SystemCapability.Communication.NetStack
 
@@ -841,6 +847,8 @@ once(type: "headersReceive", callback: Callback\<Object\>): void
 
 Registers a one-time observer for HTTP Response Header events. Once triggered, the observer will be removed. This API uses an asynchronous callback to return the result.
 
+**Atomic service API**: This API can be used in atomic services since API version 15.
+
 **System capability**: SystemCapability.Communication.NetStack
 
 **Parameters**
@@ -866,6 +874,8 @@ httpRequest.once("headersReceive", (header: Object) => {
 on(type: "dataReceive", callback: Callback\<ArrayBuffer\>): void
 
 Registers an observer for events indicating receiving of HTTP streaming responses.
+
+**Atomic service API**: This API can be used in atomic services since API version 15.
 
 **System capability**: SystemCapability.Communication.NetStack
 
@@ -897,6 +907,8 @@ Unregisters the observer for events indicating receiving of HTTP streaming respo
 > **NOTE**
 > You can pass the callback of the **on** function if you want to cancel listening for a certain type of event. If you do not pass the callback, you will cancel listening for all events.
 
+**Atomic service API**: This API can be used in atomic services since API version 15.
+
 **System capability**: SystemCapability.Communication.NetStack
 
 **Parameters**
@@ -923,6 +935,8 @@ httpRequest.off("dataReceive");
 on(type: "dataEnd", callback: Callback\<void\>): void
 
 Registers an observer for events indicating completion of receiving HTTP streaming responses.
+
+**Atomic service API**: This API can be used in atomic services since API version 15.
 
 **System capability**: SystemCapability.Communication.NetStack
 
@@ -954,6 +968,8 @@ Unregisters the observer for events indicating completion of receiving HTTP stre
 > **NOTE**
 > You can pass the callback of the **on** function if you want to cancel listening for a certain type of event. If you do not pass the callback, you will cancel listening for all events.
 
+**Atomic service API**: This API can be used in atomic services since API version 15.
+
 **System capability**: SystemCapability.Communication.NetStack
 
 **Parameters**
@@ -980,6 +996,8 @@ httpRequest.off("dataEnd");
 on(type: 'dataReceiveProgress', callback: Callback\<DataReceiveProgressInfo\>): void
 
 Registers an observer for events indicating progress of receiving HTTP streaming responses.
+
+**Atomic service API**: This API can be used in atomic services since API version 15.
 
 **System capability**: SystemCapability.Communication.NetStack
 
@@ -1010,6 +1028,8 @@ Unregisters the observer for events indicating progress of receiving HTTP stream
 
 > **NOTE**
 > You can pass the callback of the **on** function if you want to cancel listening for a certain type of event. If you do not pass the callback, you will cancel listening for all events.
+
+**Atomic service API**: This API can be used in atomic services since API version 15.
 
 **System capability**: SystemCapability.Communication.NetStack
 
@@ -1104,13 +1124,13 @@ Specifies the type and value range of the optional parameters in the HTTP reques
 | method         | [RequestMethod](#requestmethod)               | No  | Request method. The default value is **GET**.<br>**Atomic service API**: This API can be used in atomic services since API version 11.                                                  |
 | extraData      | string \| Object \| ArrayBuffer | No  | Additional data for sending a request. This parameter is not used by default.<br>- If the HTTP request uses a POST or PUT method, this field serves as the content of the HTTP request and is encoded in UTF-8 format.<br>(1) If **content-Type** is **application/x-www-form-urlencoded**, the data in the request body must be encoded in the format of **key1=value1&key2=value2&key3=value3** after URL transcoding (**encodeURIComponent/encodeURI**) and this field is usually in the String format.<br>(2) If **content-Type** is **text/xml**, this field is usually in the String format.<br>(3) If **content-Type** is **application/json**, this field is usually in the Object format.<br>(4) If **content-Type** is **application/octet-stream**, this field is usually in the ArrayBuffer format.<br>(5) If **content-Type** is **multipart/form-data** and the content to be uploaded is a file, this field is usually in the ArrayBuffer format.<br>The preceding information is for reference only and may vary according to the actual situation.<br>- If the HTTP request uses the GET, OPTIONS, DELETE, TRACE, or CONNECT method, this parameter serves as a supplement to HTTP request parameters. Parameters of the string type need to be encoded before being passed to the HTTP request. Parameters of the object type do not need to be precoded and will be directly concatenated to the URL. Parameters of the ArrayBuffer type will not be concatenated to the URL.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | expectDataType<sup>9+</sup>  | [HttpDataType](#httpdatatype9)  | No  | Type of the returned data. This parameter is not used by default. If this parameter is set, the system returns the specified type of data preferentially. If the specified type is **Object**, the value can contain a maximum of 65536 characters.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| usingCache<sup>9+</sup>      | boolean                         | No  | Whether to use the cache. The default value is **true**. The cache takes effect with the current process. The new cache will replace the old one.<br>**Atomic service API**: This API can be used in atomic services since API version 11. |
+| usingCache<sup>9+</sup>      | boolean                         | No  | Whether to use the cache. The default value is **true**. The cache takes effect with the current process. The value **true** means to use the cache to replace the old one, and the value **false** means not to use the cache.<br>**Atomic service API**: This API can be used in atomic services since API version 11. |
 | priority<sup>9+</sup>        | number                          | No  | Priority of concurrent HTTP/HTTPS requests. A larger value indicates a higher priority. The value range is [1,1000]. The default value is **1**.<br>**Atomic service API**: This API can be used in atomic services since API version 11.                          |
 | header                       | Object                          | No  | HTTP request header. If the request method is POST, PUT, DELETE, or null, the default value is {'content-Type': 'application/json'}. Otherwise, the default value is {'content-Type': 'application/x-www-form-urlencoded'}.<br>**Atomic service API**: This API can be used in atomic services since API version 11.  |
 | readTimeout                  | number                          | No  | Read timeout duration. The default value is **60000**, in ms.<br>The value **0** indicates no timeout.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | connectTimeout               | number                          | No  | Connection timeout interval. The default value is **60000**, in ms.<br>**Atomic service API**: This API can be used in atomic services since API version 11.             |
 | usingProtocol<sup>9+</sup>   | [HttpProtocol](#httpprotocol9)  | No  | Protocol. The default value is automatically specified by the system.<br>**Atomic service API**: This API can be used in atomic services since API version 11.                            |
-| usingProxy<sup>10+</sup>     | boolean \| [HttpProxy](js-apis-net-connection.md#httpproxy10)               | No  | Whether to use HTTP proxy. The default value is **false**, which means not to use HTTP proxy.<br>- If **usingProxy** is of the **Boolean** type and the value is **true**, network proxy is used by default.<br>- If **usingProxy** is of the **HttpProxy** type, the specified network proxy is used.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| usingProxy<sup>10+</sup>     | boolean \| [HttpProxy](js-apis-net-connection.md#httpproxy10)               | No  | Whether to use the HTTP proxy. The value **true** means to use the HTTP proxy, and the value **false** means the opposite. The default value is **false**.<br>- If **usingProxy** is of the **Boolean** type and the value is **true**, network proxy is used by default.<br>- If **usingProxy** is of the **HttpProxy** type, the specified network proxy is used.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | caPath<sup>10+</sup>     | string               | No  | Path of the CA certificate. If this parameter is set, the system uses the CA certificate in the specified path. Otherwise, the system uses the preset CA certificate.<br>The preset CA certificate is available at **/etc/ssl/certs/cacert.pem**. This path is the sandbox mapping path, which can be obtained through **getContext().filesDir**. Currently, only **.pem** certificates are supported.<br>**Atomic service API**: This API can be used in atomic services since API version 11.                            |
 | resumeFrom<sup>11+</sup> | number | No| Download start position. This field can be used only for the GET method. As stipulated in section 3.1 of RFC 7233, servers are allowed to ignore range requests.<br>- If the HTTP PUT method is used, do not use this option because it may conflict with other options.<br>- The value ranges from **1** to **4294967296** (4 GB). If the value is out of this range, this field does not take effect.|
 | resumeTo<sup>11+</sup> | number | No| Download end position. This field can be used only for the GET method. As stipulated in section 3.1 of RFC 7233, servers are allowed to ignore range requests.<br>- If the HTTP PUT method is used, do not use this option because it may conflict with other options.<br>- The value ranges from **1** to **4294967296** (4 GB). If the value is out of this range, this field does not take effect.|
@@ -1121,6 +1141,9 @@ Specifies the type and value range of the optional parameters in the HTTP reques
 | multiFormDataList<sup>11+</sup> | Array<[MultiFormData](#multiformdata11)> | No| Form data list. This field is valid when **content-Type** is set to **multipart/form-data**.|
 | certificatePinning<sup>12+</sup> | [CertificatePinning](#certificatepinning12) \| CertificatePinning[] | No| Dynamic configuration of certificate pinning. One or more certificate PINs can be specified.|
 | addressFamily<sup>15+</sup> | [AddressFamily](#addressfamily15) | No| IP address family. You can specify an address type for domain name resolution.|
+| remoteValidation<sup>18+</sup> | [RemoteValidation](#remotevalidation18)                             | No| Certificate authority (CA), which is used to verify the identity of a remote server. If the parameter is not set, the default value is used. The options are as follows:<br>**Atomic service API**: This API can be used in atomic services since API version 18.   |
+| tlsOptions<sup>18+</sup> | [TlsOptions](#tlsoptions18)                                         | No| TLS configuration.<br>**Atomic service API**: This API can be used in atomic services since API version 18.                                                                                              |
+| serverAuthentication<sup>18+</sup> | [ServerAuthentication](#serverauthentication18)                     | No| Indicates whether to verify the server identity during a secure connection. The identity is not verified by default.<br>**Atomic service API**: This API can be used in atomic services since API version 18.                                                   |
 
 ## RequestMethod
 
@@ -1209,7 +1232,7 @@ Defines the client certificate type.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------| --- | ----------- |
-| certPath | string | Yes| Certificate path.|
+| certPath | string | Yes| Path of the certificate file.|
 | certType | [CertType](#certtype11) | No| Certificate type. The default value is **PEM**.|
 | keyPath | string | Yes| Path of the certificate key file.|
 | keyPassword | string | No | Password of the certificate key file.|
@@ -1237,12 +1260,14 @@ Configures the timing for performance tracing, in ms.
 
 Defines the data receiving progress information.
 
+**Atomic service API**: This API can be used in atomic services since API version 15.
+
 **System capability**: SystemCapability.Communication.NetStack
 
 | Name| Type| Mandatory| Description|
 | ---- | ---- | ---- | ---- |
-|  receiveSize        | number | Yes | Size of data that has been received, in bytes.          |
-| totalSize| number | Yes| Total size of data to be received, in bytes.|
+|  receiveSize        | number | Yes | Size of data that has been received, in bytes.<br>**Atomic service API**: This API can be used in atomic services since API version 15.          |
+| totalSize| number | Yes| Total size of data to be received, in bytes.<br>**Atomic service API**: This API can be used in atomic services since API version 15.|
 
 ## DataSendProgressInfo<sup>11+</sup>
 
@@ -1531,11 +1556,11 @@ Enumerates certificate types.
 
 **System capability**: SystemCapability.Communication.NetStack
 
-| Name| Description      |
-| --- | ---------- |
-| PEM | PEM certificate.|
-| DER | DER certificate.|
-| P12 | P12 certificate.|
+| Name|   Value  | Description      |
+| --- | ------ | ---------- |
+| PEM | PEM | PEM certificate.|
+| DER | DER | DER certificate.|
+| P12 | P12 | P12 certificate.|
 
 ## CertificatePinning<sup>12+</sup>
 
@@ -1568,8 +1593,259 @@ Enumerates the address types for domain name resolution.
 
 **System capability**: SystemCapability.Communication.NetStack
 
-|       Name      |            Description            |
-| ---------------- | --------------------------- |
-| DEFAULT | Automatically selects the IPv4 or IPv6 address of the target domain name.    |
-| ONLY_V4 | Resolves only the IPv4 address of the target domain name and ignores the IPv6 address.    |
-| ONLY_V6 | Resolves only the IPv6 address of the target domain name and ignores the IPv4 address.    |
+|       Name      |     Value    |            Description            |
+| ---------------- | --------------- | --------------------------- |
+| DEFAULT | CURL_IPRESOLVE_WHATEVER | Automatically selects the IPv4 or IPv6 address of the target domain name.    |
+| ONLY_V4 | CURL_IPRESOLVE_V4 | Resolves only the IPv4 address of the target domain name and ignores the IPv6 address.    |
+| ONLY_V6 | CURL_IPRESOLVE_V6 | Resolves only the IPv6 address of the target domain name and ignores the IPv4 address.    |
+
+## RemoteValidation<sup>18+</sup>
+
+type RemoteValidation = 'system' | 'skip'
+
+Certificate authority (CA), which is used to verify the identity of a remote server. You can configure **RemoteValidation** to use the system CA or skip CA verification.
+
+**Atomic service API**: This API can be used in atomic services since API version 18.
+
+**System capability**: SystemCapability.Communication.NetStack
+
+|       Type      | Description           |
+| ---------------- |---------------|
+| 'system' | Use of the system CA for verification.|
+| 'skip' | Skipping of CA verification. |
+
+## Credential<sup>18+</sup>
+
+Represents the credential used for server identity verification in a session, including the user name and password.
+
+**Atomic service API**: This API can be used in atomic services since API version 18.
+
+**System capability**: SystemCapability.Communication.NetStack
+
+|  Name |  Type |  Read Only | Optional |Description    |
+| ------------------  |---- |-- | -- |----------- |
+| username       | string | No|No|User name used for verification. The default value is **''**.|
+| password        | string |  No |No|Password used for verification. The default value is **''**.|
+
+## ServerAuthentication<sup>18+</sup>
+
+Defines HTTP server identity verification information.
+
+**Atomic service API**: This API can be used in atomic services since API version 18.
+
+**System capability**: SystemCapability.Communication.NetStack
+
+|  Name              |  Type                                           | Read Only   |    Optional    |Description    |
+| ------------------  |-------------------------------------------------|-------- |------------ |---------------|
+| credential          | [Credential](#credential18)                     | No     | No        |Server credential. The default value is **undefined**.    |
+| authenticationType  | [AuthenticationType](#authenticationtype18)     | No     | Yes       | Server identity verification type. If the type is not set, negotiation with the server is required.    |
+
+
+## TlsConfig<sup>18+</sup>
+
+Defines the the TLS configuration, including the version and cipher suite.
+
+**Atomic service API**: This API can be used in atomic services since API version 18.
+
+**System capability**: SystemCapability.Communication.NetStack
+
+|  Name              |  Type                           | Read Only   |    Optional    |Description    |
+| ------------------  |---------------------------------|-------- |-------- |---------------|
+| tlsVersionMin       | [TlsVersion](#tlsversion18)     | No     |No      | Earliest TLS version.    |
+| tlsVersionMax        | [TlsVersion](#tlsversion18)    | No     |No      | Latest TLS version.    |
+| cipherSuites        | [CipherSuite](#ciphersuite18)[] | No     |Yes      | Array of cipher suite types.|
+
+## TlsVersion<sup>18+</sup>
+
+Enumerates TLS versions.
+
+**Atomic service API**: This API can be used in atomic services since API version 18.
+
+**System capability**: SystemCapability.Communication.NetStack
+
+| Name       | Value| Description        |
+|:----------|:--|:-----------|
+| TLS_V_1_0 | 4 | TLS version 1.0.|
+| TLS_V_1_1 | 5 | TLS version 1.1.|
+| TLS_V_1_2 | 6 | TLS version 1.2.|
+| TLS_V_1_3 | 7 | TLS version 1.3.|
+
+## TlsOptions<sup>18+</sup>
+
+type TlsOptions = 'system' | TlsConfig
+
+Defines the TLS configuration.
+
+**Atomic service API**: This API can be used in atomic services since API version 18.
+
+**System capability**: SystemCapability.Communication.NetStack
+
+| Type                        | Description                                                                                |
+|-------------------------------|------------------------------------------------------------------------------------|
+| 'system'  | TLS version of the system. This field is defaulted to **system** when the value is not set.|
+| TlsOptions | Custom TLS version and cipher suites.|
+
+## RemoteValidation<sup>18+</sup>
+
+type RemoteValidation = 'system' | 'skip'
+
+Enumerates the identity verification modes of the remote server.
+
+**Atomic service API**: This API can be used in atomic services since API version 18.
+
+**System capability**: SystemCapability.Communication.NetStack
+
+| Type                        | Description                                                                                |
+|-------------------------------|------------------------------------------------------------------------------------|
+| 'system'  | Use of the system CA. This field is defaulted to **system** when the value is not set.|
+| 'skip'   | Skipping of CA verification. This field has a fixed value of **skip**.|
+
+## AuthenticationType<sup>18+</sup>
+
+type AuthenticationType = 'basic' | 'ntlm' | 'digest'
+
+Enumerates server authentication modes in a session.
+
+**Atomic service API**: This API can be used in atomic services since API version 18.
+
+**System capability**: SystemCapability.Communication.NetStack
+
+|Type                         | Description                                                                                                |
+|-------------------------------|----------------------------------------------------------------------------------------------------|
+| 'basic'  | Basic authentication mode. This field has a fixed value of **basic**.|
+| 'ntlm'   | NTLM authentication mode. This field has a fixed value of **ntlm**.|
+| 'digest' | Digest authentication mode. This field has a fixed value of **digest**.|
+
+## CipherSuite<sup>18+</sup>
+
+type CipherSuite = TlsV13CipherSuite
+
+Declares the cipher suite.
+
+**Atomic service API**: This API can be used in atomic services since API version 18.
+
+**System capability**: SystemCapability.Communication.NetStack
+
+|       Type      | Description                                                               |
+| ---------------- |-------------------------------------------------------------------|
+| TlsV13CipherSuite | Cipher suite defined in [TlsV13CipherSuite](#tlsv13ciphersuite18).                |
+
+## TlsV13CipherSuite<sup>18+</sup>
+
+type TlsV13CipherSuite = TlsV12CipherSuite | TlsV13SpecificCipherSuite
+
+Declares the cipher suite for TLS 1.3, which is also compatible with TLS 1.2.
+
+**Atomic service API**: This API can be used in atomic services since API version 18.
+
+**System capability**: SystemCapability.Communication.NetStack
+
+|       Type      | Description                                                               |
+| ---------------- |-------------------------------------------------------------------|
+| TlsV12CipherSuite | [TlsV11CipherSuite](#tlsv11ciphersuite18).                |
+| TlsV13SpecificCipherSuite | [TlsV13SpecificCipherSuite](#tlsv13specificciphersuite18).|
+
+## TlsV12CipherSuite<sup>18+</sup>
+
+type TlsV12CipherSuite = TlsV11CipherSuite | TlsV12SpecificCipherSuite
+
+Declares the cipher suite for TLS 1.2, which is also compatible with TLS 1.1.
+
+**Atomic service API**: This API can be used in atomic services since API version 18.
+
+**System capability**: SystemCapability.Communication.NetStack
+
+|       Type      | Description                                                               |
+| ---------------- |-------------------------------------------------------------------|
+| TlsV11CipherSuite | [TlsV11CipherSuite](#tlsv11ciphersuite18).                |
+| TlsV12SpecificCipherSuite | [TlsV12SpecificCipherSuite](#tlsv12specificciphersuite18).|
+
+## TlsV11CipherSuite<sup>18+</sup>
+
+type TlsV11CipherSuite = TlsV10CipherSuite
+
+Declares the cipher suite for TLS 1.1, which is the same as that for TLS1.0.
+
+**Atomic service API**: This API can be used in atomic services since API version 18.
+
+**System capability**: SystemCapability.Communication.NetStack
+
+|       Type      | Description                                               |
+| ---------------- |---------------------------------------------------|
+| TlsV10CipherSuite | [TlsV10CipherSuite](#tlsv10ciphersuite18).|
+
+## TlsV10CipherSuite<sup>18+</sup>
+
+type TlsV10CipherSuite = TlsV10SpecificCipherSuite
+
+Declares the cipher suite for TLS 1.0.
+
+**Atomic service API**: This API can be used in atomic services since API version 18.
+
+**System capability**: SystemCapability.Communication.NetStack
+
+|       Type      | Description                                                               |
+| ---------------- |-------------------------------------------------------------------|
+| TlsV10SpecificCipherSuite | [TlsV10SpecificCipherSuite](#tlsv10specificciphersuite18).|
+
+## TlsV13SpecificCipherSuite<sup>18+</sup>
+
+type TlsV13SpecificCipherSuite = 'TLS_AES_128_GCM_SHA256' | 'TLS_AES_256_GCM_SHA384' | 'TLS_CHACHA20_POLY1305_SHA256'
+
+Enumerates cipher suites supported by TLS 1.3 or later.
+
+**Atomic service API**: This API can be used in atomic services since API version 18.
+
+**System capability**: SystemCapability.Communication.NetStack
+
+|       Type      | Description  |
+| ---------------- |------|
+| 'TLS_AES_128_GCM_SHA256' | Supported cipher suite: TLS_AES_128_GCM_SHA256. The value is a string.|
+| 'TLS_AES_256_GCM_SHA384' | Supported cipher suite: TLS_AES_256_GCM_SHA384. The value is a string.|
+| 'TLS_CHACHA20_POLY1305_SHA256' | Supported cipher suite: TLS_CHACHA20_POLY1305_SHA256. The value is a string.|
+
+## TlsV12SpecificCipherSuite<sup>18+</sup>
+
+type TlsV12SpecificCipherSuite = 'TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256' | 'TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256' |
+'TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384' | 'TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384' |
+'TLS_ECDHE_ECDSA_WITH_CHACHA20_POLY1305_SHA256' | 'TLS_ECDHE_RSA_WITH_CHACHA20_POLY1305_SHA256' |
+'TLS_RSA_WITH_AES_128_GCM_SHA256' | 'TLS_RSA_WITH_AES_256_GCM_SHA384'
+
+Enumerates cipher suites supported by TLS 1.2 or later.
+
+**Atomic service API**: This API can be used in atomic services since API version 18.
+
+**System capability**: SystemCapability.Communication.NetStack
+
+|       Type      | Description  |
+| ---------------- |------|
+| 'TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256' | Supported cipher suite: TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256. The value is a string.|
+| 'TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256' | Supported cipher suite: TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256. The value is a string.|
+| 'TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384' | Supported cipher suite: TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384. The value is a string.|
+| 'TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384' | Supported cipher suite: TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384. The value is a string.|
+| 'TLS_ECDHE_ECDSA_WITH_CHACHA20_POLY1305_SHA256' | Supported cipher suite: TLS_ECDHE_ECDSA_WITH_CHACHA20_POLY1305_SHA256. The value is a string.|
+| 'TLS_ECDHE_RSA_WITH_CHACHA20_POLY1305_SHA256' | Supported cipher suite: TLS_ECDHE_RSA_WITH_CHACHA20_POLY1305_SHA256. The value is a string.|
+| 'TLS_RSA_WITH_AES_128_GCM_SHA256' | Supported cipher suite: TLS_RSA_WITH_AES_128_GCM_SHA256. The value is a string.|
+| 'TLS_RSA_WITH_AES_256_GCM_SHA384' | Supported cipher suite: TLS_RSA_WITH_AES_256_GCM_SHA384. The value is a string.|
+
+## TlsV10SpecificCipherSuite<sup>18+</sup>
+
+type TlsV10SpecificCipherSuite = 'TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA' | 'TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA' |
+'TLS_ECDHE_ECDSA_WITH_AES_256_CBC_SHA' | 'TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA' | 'TLS_RSA_WITH_AES_128_CBC_SHA' |
+'TLS_RSA_WITH_AES_256_CBC_SHA' | 'TLS_RSA_WITH_3DES_EDE_CBC_SHA'
+
+Enumerates cipher suites supported by TLS 1.0 or later.
+
+**Atomic service API**: This API can be used in atomic services since API version 18.
+
+**System capability**: SystemCapability.Communication.NetStack
+
+|       Type      | Description  |
+| ---------------- |------|
+| 'TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA' | Supported cipher suite: TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA. The value is a string.|
+| 'TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA' | Supported cipher suite: TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA. The value is a string.|
+| 'TLS_ECDHE_ECDSA_WITH_AES_256_CBC_SHA' | Supported cipher suite: TLS_ECDHE_ECDSA_WITH_AES_256_CBC_SHA. The value is a string.|
+| 'TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA' | Supported cipher suite: TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA. The value is a string.|
+| 'TLS_RSA_WITH_AES_128_CBC_SHA' | Supported cipher suite: TLS_RSA_WITH_AES_128_CBC_SHA. The value is a string.|
+| 'TLS_RSA_WITH_AES_256_CBC_SHA' | Supported cipher suite: TLS_RSA_WITH_AES_256_CBC_SHA. The value is a string.|
+| 'TLS_RSA_WITH_3DES_EDE_CBC_SHA' | Supported cipher suite: TLS_RSA_WITH_3DES_EDE_CBC_SHA. The value is a string.|

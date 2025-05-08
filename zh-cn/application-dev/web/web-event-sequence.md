@@ -42,7 +42,6 @@ Web组件的状态主要包括：Controller绑定到Web组件、网页加载开�
   // xxx.ets
   import { webview } from '@kit.ArkWeb';
   import { BusinessError } from '@kit.BasicServicesKit';
-  import { promptAction } from '@kit.ArkUI';
 
   @Entry
   @Component
@@ -104,8 +103,10 @@ Web组件的状态主要包括：Controller绑定到Web组件、网页加载开�
               headerKey: "Cache-Control",
               headerValue: "no-cache"
             }
+            // 将新元素追加到数组的末尾，并返回数组的新长度。
             let length = this.heads.push(head1);
             length = this.heads.push(head2);
+            console.log('The response header result length is :' + length);
             this.responseWeb.setResponseHeader(this.heads);
             this.responseWeb.setResponseData(this.webData);
             this.responseWeb.setResponseEncoding('utf-8');
@@ -147,7 +148,7 @@ Web组件的状态主要包括：Controller绑定到Web组件、网页加载开�
             }
           })
           .onDisAppear(() => {
-            promptAction.showToast({
+            this.getUIContext().getPromptAction().showToast({
               message: 'The web is hidden',
               duration: 2000
             })
@@ -174,7 +175,7 @@ Web组件的状态主要包括：Controller绑定到Web组件、网页加载开�
 
 ## Web组件网页加载的性能指标
 
-网页加载过程中需要关注一些重要的性能指标。例如，FCP(First Contentful Paint)首次内容绘制，FMP(First Meaningful Paint)首次有效绘制，LCP(Largest Contentful Paint)最大内容绘制等。Web组件提供了如下接口来通知开发者。
+网页加载过程中需要关注一些重要的性能指标。例如，FCP(First Contentful Paint)首次内容绘制，FMP(First Meaningful Paint)首次有效绘制，LCP(Largest Contentful Paint)最大内容绘制等。Web组件提供了如下接口来通知开发者，接口仅支持在线非PDF网页，不支持本地网页和PDF网页。
 
 - [onFirstContentfulPaint](../reference/apis-arkweb/ts-basic-components-web.md#onfirstcontentfulpaint10)事件：网页首次内容绘制的回调函数。首次绘制文本、图像、非空白Canvas或者SVG的时间点。
 

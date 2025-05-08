@@ -41,7 +41,7 @@ struct Index {
         Button('start ability')
           .enabled(true)
           .onClick(() => {
-            let context = getContext(this) as common.UIAbilityContext;
+            let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
             let startWant: Want = {
               bundleName: 'com.acts.uiserviceextensionability',
               abilityName: 'UiServiceExtAbility',
@@ -92,14 +92,14 @@ struct Index {
         Button("connect ability")
           .enabled(true)
           .onClick(() => {
-            let context = getContext(this) as common.UIAbilityContext;
+            let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
             let startWant:Want = {
               bundleName: 'com.acts.uiserviceextensionability',
               abilityName: 'UiServiceExtAbility',
             };
             try {
-            // 连接UIServiceExtensionAbility
-            context.connectUIServiceExtensionAbility(startWant, this.connectCallback).then((proxy: common.UIServiceProxy) => {
+              // 连接UIServiceExtensionAbility
+              context.connectUIServiceExtensionAbility(startWant, this.connectCallback).then((proxy: common.UIServiceProxy) => {
                 this.comProxy = proxy;
                 let formData: Record<string, string> = {
                   'test': 'test'
@@ -115,9 +115,9 @@ struct Index {
             } catch(err) {
               console.log("connectUIServiceExtensionAbility failed", JSON.stringify(err));
             };
-      })
+          })
       }
+    }
   }
-}
 }
 ```

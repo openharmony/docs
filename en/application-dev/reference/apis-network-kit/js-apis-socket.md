@@ -923,7 +923,7 @@ Defines other properties of the UDP socket connection. This API inherits from [E
 
 | Name           | Type   | Mandatory| Description                            |
 | ----------------- | ------- | ---- | -------------------------------- |
-| broadcast         | boolean | No  | Whether to send broadcast messages. The default value is **false**. |
+| broadcast         | boolean | No  | Whether to send broadcast messages. The default value is **false**. The value **true** means to send broadcast messages, and the value **false** means the opposite. |
 
 ## SocketMessageInfo<sup>11+</sup>
 
@@ -944,9 +944,9 @@ Defines the status of the socket connection.
 
 | Name     | Type   | Mandatory| Description      |
 | ----------- | ------- | ---- | ---------- |
-| isBound     | boolean | Yes  | Whether the connection is in the bound state.|
-| isClose     | boolean | Yes  | Whether the connection is in the closed state.|
-| isConnected | boolean | Yes  | Whether the connection is in the connected state.|
+| isBound     | boolean | Yes  | Whether the connection is in the bound state. The value **true** indicates that the connection is in the bound state, and the value **false** indicates the opposite.|
+| isClose     | boolean | Yes  | Whether the connection is in the closed state. The value **true** indicates that the connection is in the closed state, and the value **false** indicates the opposite.|
+| isConnected | boolean | Yes  | Whether the connection is in the connected state. The value **true** indicates that the connection is in the connected state, and the value **false** indicates the opposite.|
 
 ## SocketRemoteInfo
 
@@ -993,7 +993,7 @@ Defines a **MulticastSocket** connection. Before calling MulticastSocket APIs, y
 
 ### addMembership<sup>11+</sup>
 
-addMembership(multicastAddress: NetAddress, callback: AsyncCallback\<void\>): void;
+addMembership(multicastAddress: NetAddress, callback: AsyncCallback\<void\>): void
 
 Adds a member to a multicast group. This API uses an asynchronous callback to return the result.
 
@@ -1043,7 +1043,7 @@ multicast.addMembership(addr, (err: Object) => {
 
 ### addMembership<sup>11+</sup>
 
-addMembership(multicastAddress: NetAddress): Promise\<void\>;
+addMembership(multicastAddress: NetAddress): Promise\<void\>
 
 Adds a member to a multicast group. This API uses a promise to return the result.
 
@@ -1095,7 +1095,7 @@ multicast.addMembership(addr).then(() => {
 
 ### dropMembership<sup>11+</sup>
 
-dropMembership(multicastAddress: NetAddress, callback: AsyncCallback\<void\>): void;
+dropMembership(multicastAddress: NetAddress, callback: AsyncCallback\<void\>): void
 
 Drops a member from a multicast group. This API uses an asynchronous callback to return the result.
 
@@ -1144,7 +1144,7 @@ multicast.dropMembership(addr, (err: Object) => {
 
 ### dropMembership<sup>11+</sup>
 
-dropMembership(multicastAddress: NetAddress): Promise\<void\>;
+dropMembership(multicastAddress: NetAddress): Promise\<void\>
 
 Drops a member from a multicast group. This API uses a promise to return the result.
 
@@ -1196,7 +1196,7 @@ multicast.dropMembership(addr).then(() => {
 
 ### setMulticastTTL<sup>11+</sup>
 
-setMulticastTTL(ttl: number, callback: AsyncCallback\<void\>): void;
+setMulticastTTL(ttl: number, callback: AsyncCallback\<void\>): void
 
 Sets the time to live (TTL) for multicast packets. This API uses an asynchronous callback to return the result.
 
@@ -1241,9 +1241,9 @@ multicast.setMulticastTTL(ttl, (err: Object) => {
 
 ### setMulticastTTL<sup>11+</sup>
 
-setMulticastTTL(ttl: number): Promise\<void\>;
+setMulticastTTL(ttl: number): Promise\<void\>
 
-Sets the TTL for multicast packets. This API uses a promise to return the result.
+Sets the time to live (TTL) for multicast packets. This API uses a promise to return the result.
 
 > **NOTE**
 > TTL is used to limit the maximum number of router hops for packet transmission on a network.
@@ -1288,7 +1288,7 @@ multicast.setMulticastTTL(8).then(() => {
 
 ### getMulticastTTL<sup>11+</sup>
 
-getMulticastTTL(callback: AsyncCallback\<number\>): void;
+getMulticastTTL(callback: AsyncCallback\<number\>): void
 
 Obtains the TTL for multicast packets. This API uses an asynchronous callback to return the result.
 
@@ -1330,7 +1330,7 @@ multicast.getMulticastTTL((err: Object, value: Number) => {
 
 ### getMulticastTTL<sup>11+</sup>
 
-getMulticastTTL(): Promise\<number\>;
+getMulticastTTL(): Promise\<number\>
 
 Obtains the TTL for multicast packets. This API uses a promise to return the result.
 
@@ -1370,7 +1370,7 @@ multicast.getMulticastTTL().then((value: Number) => {
 
 ### setLoopbackMode<sup>11+</sup>
 
-setLoopbackMode(flag: boolean, callback: AsyncCallback\<void\>): void;
+setLoopbackMode(flag: boolean, callback: AsyncCallback\<void\>): void
 
 Sets the loopback mode flag for multicast communication. This API uses an asynchronous callback to return the result.
 
@@ -1412,7 +1412,7 @@ multicast.setLoopbackMode(false, (err: Object) => {
 
 ### setLoopbackMode<sup>11+</sup>
 
-setLoopbackMode(flag: boolean): Promise\<void\>;
+setLoopbackMode(flag: boolean): Promise\<void\>
 
 Sets the loopback mode flag for multicast communication. This API uses an asynchronous callback to return the result.
 
@@ -1457,7 +1457,7 @@ multicast.setLoopbackMode(false).then(() => {
 
 ### getLoopbackMode<sup>11+</sup>
 
-getLoopbackMode(callback: AsyncCallback\<boolean\>): void;
+getLoopbackMode(callback: AsyncCallback\<boolean\>): void
 
 Obtains the loopback mode flag for multicast communication. This API uses a promise to return the result.
 
@@ -1498,7 +1498,7 @@ multicast.getLoopbackMode((err: Object, value: Boolean) => {
 
 ### getLoopbackMode<sup>11+</sup>
 
-getLoopbackMode(): Promise\<boolean\>;
+getLoopbackMode(): Promise\<boolean\>
 
 Obtains the loopback mode flag for multicast communication. This API uses a promise to return the result.
 
@@ -2754,9 +2754,9 @@ Defines other properties of the TCP socket connection. This API inherits from [E
 
 | Name           | Type   | Mandatory| Description                                                        |
 | ----------------- | ------- | ---- | ------------------------------------------------------------ |
-| keepAlive         | boolean | No  | Whether to keep the connection alive. The default value is **false**.                                 |
-| OOBInline         | boolean | No  | Whether to enable OOBInline. The default value is **false**.                                |
-| TCPNoDelay        | boolean | No  | Whether to enable no-delay on the TCP socket connection. The default value is **false**.                      |
+| keepAlive         | boolean | No  | Whether to keep the connection alive. The default value is **false**. The value **true** means to keep the connection alive, and the value **false** indicates the opposite.                                 |
+| OOBInline         | boolean | No  | Whether to enable OOBInline. The default value is **false**. The value **true** means to enable OOBInline, and the value **false** indicates the opposite.                                |
+| TCPNoDelay        | boolean | No  | Whether to enable no-delay on the TCP socket connection. The default value is **false**. The value **true** means to enable no-delay on the TCP socket connection, and the value **false** indicates the opposite.                      |
 | socketLinger      | \{on:boolean, linger:number\}  | No  | Socket linger.<br>- **on**: whether to enable socket linger. The value true means to enable socket linger and false means the opposite.<br>- **linger**: linger time, in ms. The value ranges from **0** to **65535**.<br>Specify this parameter only when **on** is set to **true**.|
 
 ## socket.constructTCPSocketServerInstance<sup>10+</sup>
@@ -4780,7 +4780,7 @@ Defines other properties of the local socket connection.
 | ----------------- | ------- | ---- | ----------------------------- |
 | receiveBufferSize | number  | No  | Size of the receive buffer, in bytes.    |
 | sendBufferSize    | number  | No  | Size of the send buffer, in bytes.    |
-| reuseAddress      | boolean | No  | Whether to reuse addresses.                  |
+| reuseAddress      | boolean | No  | Whether to reuse addresses. The value **true** means to reuse addresses, and the value **false** means the opposite.                  |
 | socketTimeout     | number  | No  | Timeout duration of the local socket connection, in ms.   |
 
 ## socket.constructLocalSocketServerInstance<sup>11+</sup>
@@ -7291,7 +7291,7 @@ Defines TLS connection options.
 | address        | [NetAddress](#netaddress)             | Yes |  Gateway address.      |
 | secureOptions  | [TLSSecureOptions](#tlssecureoptions9) | Yes| TLS security options.|
 | ALPNProtocols  | Array\<string\>                         | No| ALPN protocol. The value range is ["spdy/1", "http/1.1"]. The default value is **[]**.     |
-| skipRemoteValidation<sup>12+</sup>  | boolean                         | No| Whether to skip certificate authentication on the server. The default value is **false**.     |
+| skipRemoteValidation<sup>12+</sup>  | boolean                         | No| Whether to skip certificate authentication on the server. The default value is **false**. The value **true** means to skip certificate authentication on the server, and the value **false** means the opposite.     |
 | proxy<sup>18+</sup>   | [ProxyOptions](#proxyoptions18) | No  | Proxy option. By default, no proxy is used.|
 
 ## TLSSecureOptions<sup>9+</sup>
@@ -7307,10 +7307,10 @@ TLS security options. When **cert** (local certificate) and **key** (private key
 | key                   | string                                                  | No| Private key of the local digital certificate.                  |
 | password                | string                                                  | No| Password for reading the private key.                     |
 | protocols             | [Protocol](#protocol9) \|Array\<[Protocol](#protocol9)\> | No| TLS protocol version. The default value is **TLSv1.2**.                 |
-| useRemoteCipherPrefer | boolean                                                 | No| Whether to use the remote cipher suite preferentially.       |
+| useRemoteCipherPrefer | boolean                                                 | No| Whether to use the remote cipher suite preferentially. The value **true** means to use the remote cipher suite preferentially, and the value **false** means the opposite.       |
 | signatureAlgorithms   | string                                                 | No| Signing algorithm used during communication. The default value is **""**.             |
 | cipherSuite           | string                                                 | No| Cipher suite used during communication. The default value is **""**.             |
-| isBidirectionalAuthentication<sup>12+</sup>           | boolean                                                 | No| Two-way authentication. The default value is **false**.             |
+| isBidirectionalAuthentication<sup>12+</sup>           | boolean                                                 | No| Whether to enable two-way authentication. The default value is **false**. The value **true** means to enable two-way authentication, and the value **false** means the opposite.             |
 
 ## Protocol<sup>9+</sup>
 

@@ -5,6 +5,8 @@
 
 Provides APIs related to MindSpore Lite model inference. The APIs in this module are non-thread-safe.
 
+**System capability**: SystemCapability.Ai.MindSpore
+
 **Since**: 9
 
 ## Summary

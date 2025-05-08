@@ -17,7 +17,7 @@
 
 | 名称                     | 类型                         | 默认值      | 必填   | 描述                                       |
 | ---------------------- | -------------------------- | -------- | ---- | ---------------------------------------- |
-| images                 | Array&lt;ImageFrame&gt;    | -        | 是    | 设置图片帧信息集合。每一帧的帧信息包含图片路径、图片大小和图片位置信息。目前支持以下图片格式：png、jpg。ImageFrame的详细说明请见表 ImageFrame说明。<br/>使用时需要使用数据绑定的方式：<br>- hml文件中引用图片资源：`images = {{images}}`，<br>- js文件中声明相应变量：<br>`images: [{src: "/common/heart-rate01.png",duration:"100"}]`。从API Version 6 开始，支持配置每一帧图片的时长，单位毫秒。 |
+| images                 | Array&lt;ImageFrame&gt;    | -        | 是    | 设置图片帧信息集合。每一帧的帧信息包含图片路径、图片大小和图片位置信息。目前支持以下图片格式：png、jpg。ImageFrame的详细说明请见表 ImageFrame说明。<br/>使用时需要使用数据绑定的方式：<br>- hml文件中引用图片资源：`images = {{images}}`，<br>- js文件中声明相应变量：<br>`images: [{src: "/common/heart-rate01.png",duration:"100"}]`。从API version 6 开始，支持配置每一帧图片的时长，单位毫秒。 |
 | predecode<sup>6+</sup> | number                     | 0        | 否    | 是否启用预解码，默认值为0，即不启用预解码，如该值设为2，则播放当前页时会提前加载后面两张图片至缓存以提升性能。 |
 | iteration              | number&nbsp;\|&nbsp;string | infinite | 否    | 设置帧动画播放次数。number表示固定次数，infinite枚举表示无限次数播放。 |
 | reverse                | boolean                    | false    | 否    | 设置播放顺序。false表示从第1张图片播放到最后1张图片；&nbsp;true表示从最后1张图片播放到第1张图片。 |

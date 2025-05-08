@@ -1,7 +1,7 @@
 # @ohos.net.vpnExtension (Enhanced VPN Management) (System API)
 
-This module implements virtual private network (VPN) management, such as starting and stopping a third-party VPN.
-Third-party VPNs refer to VPN services provided by third parties. They usually support more security and privacy functions and more comprehensive customization options.
+The **vpnExtension** module implements virtual private network (VPN) management, such as starting and stopping a third-party VPN.
+Third-party VPNs refer to VPN services provided by third parties. They usually provide more security and privacy functions and more comprehensive customization options.
 
 > **NOTE**
 > The initial APIs of this module are supported since API version 11. Newly added APIs will be marked with a superscript to indicate their earliest API version.

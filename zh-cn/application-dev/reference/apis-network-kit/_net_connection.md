@@ -28,7 +28,7 @@
 | [NetConn_NetAddr](_net_conn___net_addr.md) | 网络地址。 | 
 | [NetConn_Route](_net_conn___route.md) | 路由配置信息。 | 
 | [NetConn_HttpProxy](_net_conn___http_proxy.md) | 代理配置信息。 | 
-| [NetConn_ConnectionProperties](_net_conn___connection_properties.md) | 网络链接信息。 | 
+| [NetConn_ConnectionProperties](_net_conn___connection_properties.md) | 网络连接信息。 | 
 | [NetConn_NetHandleList](_net_conn___net_handle_list.md) | 网络列表。 | 
 | [NetConn_NetConnCallback](_net_conn___net_conn_callback.md) | 网络状态监听回调集合。 |
 | [NetConn_NetSpecifier](_net_conn___net_specifier.md) | 网络的特征集，包含网络的能力集与网络的标识符。 |
@@ -58,7 +58,7 @@
 | [NetConn_NetAddr](#netconn_netaddr) | 网络地址。 | 
 | [NetConn_Route](#netconn_route) | 路由配置信息。 | 
 | [NetConn_HttpProxy](#netconn_httpproxy) | 代理配置信息。 | 
-| [NetConn_ConnectionProperties](#netconn_connectionproperties) | 网络链接信息。 | 
+| [NetConn_ConnectionProperties](#netconn_connectionproperties) | 网络连接信息。 | 
 | [NetConn_NetHandleList](#netconn_nethandlelist) | 网络列表。 | 
 | (\*[OH_NetConn_CustomDnsResolver](#oh_netconn_customdnsresolver)) (const char \*host, const char \*serv, const struct addrinfo \*hint, struct addrinfo \*\*res) | 指向自定义 DNS 解析器的指针。 | 
 | [NetConn_NetConnCallback](#netconn_netconncallback) | 网络状态监听回调集合。 |
@@ -113,7 +113,7 @@ typedef struct NetConn_ConnectionProperties NetConn_ConnectionProperties
 
 **描述**
 
-网络链接信息。
+网络连接信息。
 
 **起始版本：** 11
 

@@ -161,7 +161,7 @@ static query(name: string): AsyncLockState
 
 | 类型                              | 说明                               |
 | --------------------------------- | ---------------------------------- |
-| [AsyncLockState](#asynclockstate) | 一个包含状态描述的异步锁状态实例。 |
+| [AsyncLockState](#asynclockstate) | 包含状态描述的异步锁状态实例。 |
 
 **错误码：**
 
@@ -205,7 +205,7 @@ static queryAll(): AsyncLockState[]
 
 ```ts
 let states: ArkTSUtils.locks.AsyncLockState[] = ArkTSUtils.locks.AsyncLock.queryAll();
-if (states.length == 0) {
+if (states.length === 0) {
     throw new Error('测试失败：期望至少有1个状态，但得到的是 ' + states.length);
 }
 ```
@@ -214,7 +214,7 @@ if (states.length == 0) {
 
 lockAsync\<T>(callback: AsyncLockCallback\<T>): Promise\<T>
 
-在获取的锁下独占执行操作。该方法首先获取锁，然后调用回调，最后释放锁。回调在调用[lockAsync](#lockasync)的同一线程中以异步方式执行。
+在获取的锁下执行操作。该方法首先获取锁，然后调用回调，最后释放锁。回调在调用[lockAsync](#lockasync)的同一线程中以异步方式执行。
 
 **原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
@@ -425,7 +425,7 @@ options.signal = s;
 | ----------- | ------------------------------------- | ---- | ---- | ------------------------------------------------------------------------------------------------------------------------- |
 | isAvailable | boolean                               | 是   | 是   | 当前锁是否可用。取值为true，则只有在尚未持有锁定请求时才会授予该锁定请求；为false则表示将等待当前锁被释放。默认为 false。 |
 | signal      | [AbortSignal\<T>](#abortsignal)\|null | 是   | 是   | 用于中止异步操作的对象。当signal.aborted为true时，锁请求将被丢弃；当signal.aborted为false时，请求会继续等待获取锁；当signal为null时，请求正常排队运行。默认为 null。               |
-| timeout     | number                                | 是   | 是   | 锁操作的超时时间（毫秒）。如果该值大于零，且运行超过该时间，[lockAsync](#lockasync)将返回被拒绝的Promise。默认为 0。      |
+| timeout     | number                                | 是   | 是   | 锁操作的超时时间，单位为毫秒。若该值大于零，且操作运行时间超过该时间，[lockAsync](#lockasync)将返回被拒绝的Promise。默认为 0。      |
 
 ### AsyncLockState
 
@@ -475,7 +475,7 @@ options.signal = s;
 
 ### ConditionVariable<sup>18+</sup>
 
-实现异步等待功能的类，允许执行异步等待通知操作。
+实现异步等待功能的类，支持异步等待通知操作。
 
 **原子化服务API**：从API version 18 开始，该接口支持在原子化服务中使用。
 
@@ -518,14 +518,6 @@ static request(name: string): ConditionVariable
 | 类型                    | 说明                             |
 | ----------------------- | -------------------------------- |
 | [ConditionVariable](#conditionvariable18) | 返回查找到或创建后的异步等待通知操作的实例。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
-
-| 错误码ID | 错误信息          |
-| -------- | ----------------- |
-| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 
 **示例：**
 
@@ -579,14 +571,6 @@ waitFor(timeout : number) : Promise\<void>
 | 类型        | 说明                        |
 | ----------- | --------------------------- |
 | Promise\<void> | 无返回结果的Promise对象。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
-
-| 错误码ID | 错误信息          |
-| -------- | ----------------- |
-| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 
 **示例：**
 
@@ -642,7 +626,7 @@ conditionVariable.notifyOne();
 
 ## ArkTSUtils.ASON
 
-为支持将JSON字符串解析成共享数据，即[Sendable支持的数据类型](../../arkts-utils/arkts-sendable.md#sendable支持的数据类型)，ArkTS语言基础库新增了ASON工具。ASON支持开发者解析JSON字符串，并生成共享数据进行跨并发域传输，同时ASON也支持将共享数据转换成JSON字符串。
+为支持将JSON字符串解析为共享数据，即[Sendable支持的数据类型](../../arkts-utils/arkts-sendable.md#sendable支持的数据类型)，ArkTS语言基础库新增了ASON工具。ASON工具支持解析JSON字符串并生成共享数据，用于跨并发域传输，同时也支持将共享数据转换为JSON字符串。
 
 ### ISendable
 
@@ -709,7 +693,7 @@ type Transformer = (this: ISendable, key: string, value: ISendable | undefined |
 
 ### ParseOptions
 
-解析的选项，可定义处理BigInt的模式与解析结果的返回类型。
+解析的选项，可定义处理BigInt的模式和解析结果的返回类型。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -742,7 +726,7 @@ parse(text: string, reviver?: Transformer, options?: ParseOptions): ISendable | 
 
 | 类型 | 说明 |
 | -------- | -------- |
-| [ISendable](#isendable) \| null | 返回ISendable数据或null。当入参是null时，返回null。|
+| [ISendable](#isendable) \| null | 返回ISendable数据或null。入参为null时，返回null。|
 
 **示例：**
 
@@ -928,7 +912,7 @@ if (ArkTSUtils.isSendable(sendableFunc)) {
 
 ## SendableLruCache<K, V><sup>18+</sup>
 
-SendableLruCache用于在缓存空间不够的时候，将近期最少使用的数据替换为新数据。此设计基于资源访问的考虑：近期访问的数据，可能在不久的将来会再次访问。于是最少访问的数据就是价值最小的数据，是最应该踢出缓存空间的数据。 SendableLruCache支持Sendable特性，保存Sendable对象，可以跨线程安全访问。
+SendableLruCache在缓存空间不足时，会用新数据替换近期最少使用的数据。此设计基于资源访问的考虑：近期访问的数据可能在不久的将来再次访问，因此最少访问的数据价值最小，应优先移出缓存。SendableLruCache支持Sendable特性，可保存Sendable对象，确保跨线程安全访问。
 
 ### 属性
 
@@ -965,7 +949,7 @@ constructor(capacity?: number)
 
 | 参数名   | 类型   | 必填 | 说明                         |
 | -------- | ------ | ---- | ---------------------------- |
-| capacity | number | 否   | 指示要为缓冲区自定义的容量，不传默认值为64，最大值不能超过2147483647。 |
+| capacity | number | 否   | 指示缓冲区的自定义容量。不传时，默认值为64，最大值不能超过2147483647。 |
 
 **示例：**
 
@@ -977,7 +961,7 @@ let pro = new ArkTSUtils.SendableLruCache<number, number>();
 
 updateCapacity(newCapacity: number): void
 
-将缓冲区容量更新为指定容量。当缓冲区中值的总数大于指定容量时，会执行删除操作，删除最少使用的键值对。
+将缓冲区容量设置为指定值。如果缓冲区中值的总数超过指定容量，将删除最少使用的键值对。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
@@ -1152,7 +1136,7 @@ console.info('result = ' + result);
 
 getRemoveCount(): number
 
-获取缓冲区键值对回收的次数，当缓冲区数超过容量限制后，最少使用的键值对会被回收。
+获取缓冲区键值对的回收次数。当缓冲区数量超过容量限制时，最少使用的键值对将被回收。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
@@ -1243,7 +1227,7 @@ isEmpty(): boolean
 
 | 类型    | 说明                                     |
 | ------- | ---------------------------------------- |
-| boolean | 返回true表示当前缓冲区为空不包含任何键值对；返回false表示当前缓冲区不为空。 |
+| boolean | 返回true表示当前缓冲区为空，不包含任何键值对；返回false表示当前缓冲区不为空。 |
 
 **示例：**
 
@@ -1277,14 +1261,6 @@ get(key: K): V | undefined
 | ------------------------ | ------------------------------------------------------------ |
 | V \| undefined | 如果指定的键存在于缓冲区中，则返回与键关联的值；否则调用createDefault接口，如果返回值为undefined，则返回undefined，否则返回createDefault接口结果。 |
 
-**错误码：**
-
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
-
-| 错误码ID | 错误信息 |
-| -------- | -------- |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-
 **示例：**
 
 ```ts
@@ -1299,7 +1275,7 @@ console.info('result = ' + result);
 
 put(key: K,value: V): V
 
-将键值对添加到缓冲区中，返回与添加的键关联的值。当缓冲区中值的总数大于容量时，会执行删除操作。
+将键值对添加到缓冲区，并返回与添加的键关联的值。当缓冲区中值的数量超过容量时，会执行删除操作。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
@@ -1310,21 +1286,13 @@ put(key: K,value: V): V
 | 参数名 | 类型 | 必填 | 说明                       |
 | ------ | ---- | ---- | -------------------------- |
 | key    | K    | 是   | 要添加的键。             |
-| value  | V    | 是   | 指示与要添加的键关联的值。 |
+| value  | V    | 是   | 与要添加的键关联的值。 |
 
 **返回值：**
 
 | 类型 | 说明                                                         |
 | ---- | ------------------------------------------------------------ |
-| V    | 返回与添加的键关联的值。如果键或值为空，则抛出错误ID为401的参数错误异常。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
-
-| 错误码ID | 错误信息 |
-| -------- | -------- |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| V    | 返回与添加的键关联的值。如果键或值为空，将抛出错误ID为401的参数错误异常。 |
 
 **示例：**
 
@@ -1339,7 +1307,7 @@ console.info('result = ' + result);
 
 values(): V[]
 
-获取当前缓冲区中所有值从最近访问到最少访问的顺序列表，最近访问表示有最新操作的键值对。
+获取当前缓冲区中所有值的列表，按从最近访问到最少访问的顺序排列，最近访问的键值对表示有最新操作。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
@@ -1349,7 +1317,7 @@ values(): V[]
 
 | 类型      | 说明                                                         |
 | --------- | ------------------------------------------------------------ |
-| V&nbsp;[] | 按从最近访问到最少访问的顺序返回当前缓冲区中所有值的列表。 |
+| V&nbsp;[] | 返回当前缓冲区中所有值的列表，按从最近访问到最少访问的顺序排列。 |
 
 **示例：**
 
@@ -1367,7 +1335,7 @@ console.info('result = ' + result);
 
 keys(): K[]
 
-获取当前缓冲区中所有键从最近访问到最近最少访问的升序列表。
+获取当前缓冲区中所有键，按从最近访问到最少访问的顺序排列。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
@@ -1377,7 +1345,7 @@ keys(): K[]
 
 | 类型      | 说明                                                         |
 | --------- | ------------------------------------------------------------ |
-| K&nbsp;[] | 按升序返回当前缓冲区中所有键的列表，从最近访问到最近最少访问。 |
+| K&nbsp;[] | 返回当前缓冲区中所有键的列表，按从最近访问到最少访问的升序排列。 |
 
 **示例：**
 
@@ -1394,7 +1362,7 @@ console.info('result = ' + result);
 
 remove(key: K): V | undefined
 
-从当前缓冲区中删除指定的键及其关联的值，返回键关联的值。如果键不存在时，则返回undefined。
+从当前缓冲区中删除指定键及其关联值，返回该键关联的值。若键不存在，则返回undefined。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
@@ -1412,14 +1380,6 @@ remove(key: K): V | undefined
 | ------------------------ | ------------------------------------------------------------ |
 | V&nbsp;\|&nbsp;undefined | 返回一个包含已删除键值对的Optional对象；如果key不存在，则返回undefined，如果key为null，则抛出异常。 |
 
-**错误码：**
-
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
-
-| 错误码ID | 错误信息 |
-| -------- | -------- |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-
 **示例：**
 
 ```ts
@@ -1434,7 +1394,7 @@ console.info('result = ' + result);
 
 contains(key: K): boolean
 
-检查当前缓冲区是否包含指定的键，假如存在，返回true，否则返回false。
+检查当前缓冲区是否包含指定的键，如果存在，返回true；否则，返回false。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
@@ -1451,14 +1411,6 @@ contains(key: K): boolean
 | 类型    | 说明                                       |
 | ------- | ------------------------------------------ |
 | boolean | 如果缓冲区包含指定的键，则返回true，否则返回false。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
-
-| 错误码ID | 错误信息 |
-| -------- | -------- |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **示例：**
 

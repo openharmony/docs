@@ -12,20 +12,23 @@
 
    ```ts
    import { common, abilityAccessCtrl } from '@kit.AbilityKit';
-   let context = getContext(this) as common.UIAbilityContext; // 获取UIAbilityContext信息
+   import { BusinessError } from '@kit.BasicServicesKit';
+   // 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+   let context = this.getUIContext().getHostContext() as common.UIAbilityContext; 
    let atManager = abilityAccessCtrl.createAtManager();
    try {
-     atManager.requestPermissionsFromUser(context, ['ohos.permission.DISTRIBUTED_DATASYNC']).then((data) => {
-       console.log(`data: ${JSON.stringify(data)}`);
-     }).catch((err: object) => {
-       console.log(`err: ${JSON.stringify(err)}`);
+     atManager.requestPermissionsFromUser(context, ['ohos.permission.DISTRIBUTED_DATASYNC']).then((result) => {
+       console.log(`Request permission result: ${JSON.stringify(result)}`);
+     }).catch((err: BusinessError) => {
+       console.error(`Failed to request permissions from user. Code: ${err.code}, message: ${err.message}`);
      })
-   } catch (err) {
-     console.log(`catch err-> ${JSON.stringify(err)}`);
+   } catch (error) {
+     let err: BusinessError = error as BusinessError;
+     console.error(`Catch err. Failed to request permissions from user. Code: ${err.code}, message: ${err.message}`);
    }
    ```
 
-3. 拷贝跨设备文件。
+3. 执行跨设备文件拷贝操作。
    同一应用不同设备之间实现跨设备文件拷贝，只需要将对应的文件放在应用沙箱的分布式文件路径即可。
 
    将A设备的待拷贝沙箱文件，拷贝到A设备的分布式路径下。
@@ -36,7 +39,8 @@
    import { BusinessError } from '@kit.BasicServicesKit';
    import { fileUri } from '@kit.CoreFileKit';
 
-   let context = getContext(this) as common.UIAbilityContext; // 获取设备A的UIAbilityContext信息
+   // 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+   let context = this.getUIContext().getHostContext() as common.UIAbilityContext; 
    let pathDir: string = context.filesDir;
    let distributedPathDir: string = context.distributedFilesDir;
    // 待拷贝文件沙箱路径
@@ -61,10 +65,10 @@
        console.info(`src: ${srcUri} dest: ${destUri}`);
      }).catch((error: BusinessError)=>{
        let err: BusinessError = error as BusinessError;
-       console.info(`Failed to copy. Code: ${err.code}, message: ${err.message}`);
+       console.error(`Failed to copy. Code: ${err.code}, message: ${err.message}`);
      })
    } catch (error) {
-     console.error(`Failed to getData. Code: ${error.code}, message: ${error.message}`);
+     console.error(`Catch err. Failed to copy. Code: ${error.code}, message: ${error.message}`);
    }
    ```
 
@@ -75,9 +79,10 @@
    import { common } from '@kit.AbilityKit';
    import { BusinessError } from '@kit.BasicServicesKit';
    import { fileUri } from '@kit.CoreFileKit';
-   import { distributedDeviceManager } from '@kit.DistributedServiceKit'
+   import { distributedDeviceManager } from '@kit.DistributedServiceKit';
 
-   let context = getContext(this) as common.UIAbilityContext; // 获取设备B的UIAbilityContext信息
+   // context是EntryAbility传过来的context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+   let context = this.getUIContext().getHostContext() as common.UIAbilityContext; 
    let pathDir: string = context.filesDir;
    let distributedPathDir: string = context.distributedFilesDir;
    // 待拷贝文件的目标路径(沙箱路径)
@@ -96,7 +101,7 @@
    };
    let options: fs.CopyOptions = {
      "progressListener" : progressListener
-   }
+   };
    // 通过分布式设备管理的接口获取设备A的networkId信息
    let dmInstance = distributedDeviceManager.createDeviceManager("com.example.hap");
    let deviceInfoList: Array<distributedDeviceManager.DeviceBasicInfo> = dmInstance.getAvailableDeviceListSync();
@@ -108,7 +113,7 @@
       onStatus: (networkId: string, status: number): void => {
         console.info(`Failed to access public directory`);
       }
-    }
+    };
     // 开始跨设备文件访问
     fs.connectDfs(networkId, listeners).then(()=>{
       try {
@@ -119,16 +124,19 @@
           fs.unlinkSync(srcPath); // 拷贝完成后清理分布式路径下的临时文件
         }).catch((error: BusinessError)=>{
           let err: BusinessError = error as BusinessError;
-          console.info(`Failed to copy. Code: ${err.code}, message: ${err.message}`);
+          console.error(`Failed to copy. Code: ${err.code}, message: ${err.message}`);
         })
       } catch (error) {
-        console.error(`Failed to copy. Code: ${error.code}, message: ${error.message}`);
+        console.error(`Catch err. Failed to copy. Code: ${error.code}, message: ${error.message}`);
       }
-    })
+    }).catch((error: BusinessError) => {
+     let err: BusinessError = error as BusinessError;
+     console.error(`Failed to connect dfs. Code: ${err.code}, message: ${err.message}`);
+    });
    }
    ```
 
-4. 跨设备文件copy完成，断开链路。
+4. 跨设备文件拷贝完成，断开链路。
 
    ```ts
    import { BusinessError } from '@kit.BasicServicesKit';
@@ -139,13 +147,14 @@
    let dmInstance = distributedDeviceManager.createDeviceManager("com.example.hap");
    let deviceInfoList: Array<distributedDeviceManager.DeviceBasicInfo> = dmInstance.getAvailableDeviceListSync();
    if (deviceInfoList && deviceInfoList.length > 0) {
+    console.info(`Success to get available device list`);
     let networkId = deviceInfoList[0].networkId; // 这里只是两个设备连接，列表中首个即为A设备的networkId
     // 关闭跨设备文件访问
     fs.disconnectDfs(networkId).then(() => {
-      console.info(`Success to disconnectDfs`);
+      console.info(`Success to disconnect dfs`);
     }).catch((error: BusinessError) => {
       let err: BusinessError = error as BusinessError;
-      console.error(`Failed to disconnectDfs Code: ${err.code}, message: ${err.message}`)
+      console.error(`Failed to disconnect dfs. Code: ${err.code}, message: ${err.message}`);
     })
    }
    ```

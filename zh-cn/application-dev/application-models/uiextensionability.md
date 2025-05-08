@@ -361,14 +361,14 @@ UIExtensionAbility通过[UIExtensionContext](../reference/apis-ability-kit/js-ap
     ```ts
     import { UIExtensionContentSession } from '@kit.AbilityKit';
 
-    let storage = LocalStorage.GetShared();
     const TAG: string = `[testTag] ExtensionPage`;
 
-    @Entry(storage)
+    @Entry()
     @Component
     struct Extension {
       @State message: string = `UIExtension provider`;
-      private session: UIExtensionContentSession | undefined = storage.get<UIExtensionContentSession>('session');
+      localStorage: LocalStorage | undefined = this.getUIContext().getSharedLocalStorage();
+      private session: UIExtensionContentSession | undefined = this.localStorage?.get<UIExtensionContentSession>('session');
 
       onPageShow() {
         console.info(TAG, 'show');
@@ -396,7 +396,7 @@ UIExtensionAbility通过[UIExtensionContext](../reference/apis-ability-kit/js-ap
               .margin({ top: 20 })
               .onClick(() => {
                 this.session?.terminateSelf();
-                storage.clear();
+                this.localStorage?.clear();
               })
 
             Button("terminate self with result")

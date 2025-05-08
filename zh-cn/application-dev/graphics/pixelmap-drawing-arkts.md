@@ -37,7 +37,7 @@
      }
    }
    // 设置像素属性
-   let opts: image.InitializationOptions = { editable: true, pixelFormat: image.PixelMapFormat.RGBA_8888, size: { height: height, width: width }}
+   let opts: image.InitializationOptions = { editable: true, pixelFormat: image.PixelMapFormat.RGBA_8888, size: { height: height, width: width }};
    // 创建PixelMap
    let pixelMap : image.PixelMap = image.createPixelMapSync(color, opts);
    ```
@@ -92,3 +92,11 @@
    绘制效果如下：
 
    ![zh-cn_image_0000002158584414](figures/zh-cn_image_0000002158584414.png)
+
+<!--RP1-->
+## 相关实例
+
+针对Drawing(ArkTS)的开发，有以下相关实例可供参考：
+
+- [ArkTSGraphicsDraw (API14)](https://gitee.com/openharmony/applications_app_samples/tree/master/code/DocsSample/Drawing/ArkTSGraphicsDraw)
+<!--RP1End-->

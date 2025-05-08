@@ -11,8 +11,9 @@
 
 ## 申请权限
 
+<!--RP2-->
 请参考[申请位置权限开发指导](../../device/location/location-permission-guidelines.md#开发步骤)。
-
+<!--RP2End-->
 
 ## 导入模块
 
@@ -448,7 +449,7 @@ GNSS地理围栏请求参数。
 | -------- | -------- | -------- |
 | LOCATING_FAILED_DEFAULT   | -1 |  默认值。 |
 | LOCATING_FAILED_LOCATION_PERMISSION_DENIED   | -2 | 表示ohos.permission.APPROXIMATELY_LOCATION权限或ohos.permission.LOCATION权限校验失败导致持续定位失败。 |
-| LOCATING_FAILED_BACKGROUND_PERMISSION_DENIED    | -3 | 表示应用在后台时位置权限校验失败导致持续定位失败。APP在后台定位时的位置权限申请方式参见[申请位置权限开发指导](../../device/location/location-permission-guidelines.md#开发步骤)。 |
+| LOCATING_FAILED_BACKGROUND_PERMISSION_DENIED    | -3 | 表示应用在后台时位置权限校验失败导致持续定位失败。<!--RP3-->APP在后台定位时的位置权限申请方式参见[申请位置权限开发指导](../../device/location/location-permission-guidelines.md#开发步骤)。<!--RP3End--> |
 | LOCATING_FAILED_LOCATION_SWITCH_OFF    | -4 | 表示位置信息开关关闭导致持续定位失败。 |
 | LOCATING_FAILED_INTERNET_ACCESS_FAILURE    | -5 | 表示无法访问网络，导致网络定位失败。 |
 
