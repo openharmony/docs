@@ -783,6 +783,7 @@
   ```
 ## 验证通道是否建立成功
  1.打开web调试
+
  开启web调试请参考[使用DevTools工具调试前端页面](../web/web-debugging-with-devtools.md)
 
  2.举例说明通道是否建立成功
