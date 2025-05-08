@@ -1102,7 +1102,7 @@ type ModifyTime = Map<PRIKeyType, UTCTime>
 
 | 名称     | 类型                                               | 只读 | 可选  |说明                                                         |
 | -------- | ------------------------------------------------- | ---- | ---- | -------------------------------------------------------- |
-| code<sup>20+</sup>      | number                        | 是   |   否   | 表示执行SQL返回的错误码 [sqlite错误码](https://www.sqlite.org/rescode.html) |
+| code<sup>20+</sup>      | number                        | 是   |   否   | 表示执行SQL返回的错误码，对应的取值和含义请见[sqlite错误码](https://www.sqlite.org/rescode.html) |
 | messgae<sup>20+</sup>       | string                        | 是   |   否   | 表示执行SQL返回的错误信息。                                         |
 | sql<sup>20+</sup>    | string                        | 是   |   否   | 表示报错执行的SQL语句。                         |
 
@@ -6865,7 +6865,7 @@ try {
 
 on(event: 'sqliteErrorOccurred', observer: Callback&lt;ExceptionMessage&gt;): void
 
-订阅执行SQL语句时异常日志。
+记录执行SQL语句时的异常日志。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -6873,7 +6873,7 @@ on(event: 'sqliteErrorOccurred', observer: Callback&lt;ExceptionMessage&gt;): vo
 
 | 参数名       | 类型                              | 必填 | 说明                                |
 | ------------ |---------------------------------| ---- |-----------------------------------|
-| event        | string                          | 是   | 订阅事件名称，取值为'sqliteErrorOccurred'，表示sql执行时出现的异常信息。 |
+| event        | string                          | 是   | 订阅事件名称，取值为'sqliteErrorOccurred'，记录SQL语句执行过程中的错误信息。 |
 | observer     | Callback&lt;[ExceptionMessage](#exceptionmessage20)&gt; | 是   | 回调函数。用于返回SQL执行时出现的异常信息。  |
 
 **错误码：**
@@ -6890,37 +6890,40 @@ on(event: 'sqliteErrorOccurred', observer: Callback&lt;ExceptionMessage&gt;): vo
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-try {
-  if (store != undefined) {
-    let exceptionMessage: relationalStore.ExceptionMessage;
-    store.on('sqliteErrorOccurred', exceptionMessage => {
-      let sqliteCode = exceptionMessage.code;
-      let sqliteMessage = exceptionMessage.message;
-      let errSQL = exceptionMessage.sql;
-      console.info(`error log is ${sqliteCode}, errMessage is ${sqliteMessage}, errSQL is ${errSQL}`);
-    })
+async test()
+{
+  try {
+    if (store != undefined) {
+      let exceptionMessage: relationalStore.ExceptionMessage;
+      store.on('sqliteErrorOccurred', exceptionMessage => {
+        let sqliteCode = exceptionMessage.code;
+        let sqliteMessage = exceptionMessage.message;
+        let errSQL = exceptionMessage.sql;
+        console.info(`error log is ${sqliteCode}, errMessage is ${sqliteMessage}, errSQL is ${errSQL}`);
+      })
+    }
+  } catch (err) {
+    let code = (err as BusinessError).code;
+    let message = (err as BusinessError).message;
+    console.error(`Register observer failed, code is ${code},message is ${message}`);
   }
-} catch (err) {
-  let code = (err as BusinessError).code;
-  let message = (err as BusinessError).message;
-  console.error(`Register observer failed, code is ${code},message is ${message}`);
-}
-const CREATE_TABLE_TEST = "CREATE TABLE IF NOT EXISTS test (" + "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
-  "name TEXT NOT NULL, " + "age INTEGER, " + "salary REAL)";
-try {
-  let value = new Uint8Array([1, 2, 3, 4, 5]);
-  const valueBucket: relationalStore.ValuesBucket = {
-    'name': "Lisa",
-    'age': 18,
-    'salary': 100.5,
-    'codes': value,
-  };
-  await store.executeSql(CREATE_TABLE_TEST);
-  if (store != undefined) {
-    (store as relationalStore.RdbStore).insert('test', valueBucket);
+  const CREATE_TABLE_TEST = "CREATE TABLE IF NOT EXISTS test (" + "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+    "name TEXT NOT NULL, " + "age INTEGER, " + "salary REAL)";
+  try {
+    let value = new Uint8Array([1, 2, 3, 4, 5]);
+    const valueBucket: relationalStore.ValuesBucket = {
+      'name': "Lisa",
+      'age': 18,
+      'salary': 100.5,
+      'codes': value,
+    };
+    await store.executeSql(CREATE_TABLE_TEST);
+    if (store != undefined) {
+      (store as relationalStore.RdbStore).insert('test', valueBucket);
+    }
+  } catch (err) {
+    console.error(`Insert fail, code:${err.code}, message: ${err.message}`);
   }
-} catch (err) {
-  console.error(`Insert fail, code:${err.code}, message: ${err.message}`);
 }
 ```
 
@@ -7205,7 +7208,7 @@ try {
 
 off(event: 'sqliteErrorOccurred', observer: Callback&lt;ExceptionMessage&gt;): void
 
-取消订阅执行SQL语句时异常日志。
+停止记录SQL执行过程中的异常日志。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -7213,7 +7216,7 @@ off(event: 'sqliteErrorOccurred', observer: Callback&lt;ExceptionMessage&gt;): v
 
 | 参数名       | 类型                              | 必填 | 说明                                |
 | ------------ |---------------------------------| ---- |-----------------------------------|
-| event        | string                          | 是   | 取消订阅事件名称，取值为'sqliteErrorOccurred'，表示sql执行时出现的异常信息。 |
+| event        | string                          | 是   | 取消订阅事件名称，取值为'sqliteErrorOccurred'，记录SQL语句执行过程中的错误信息。 |
 | observer     | Callback&lt;[ExceptionMessage](#exceptionmessage20)&gt; | 是   | 回调函数。该参数存在，则取消指定Callback监听回调，否则取消该event事件的所有监听回调。  |
 
 **错误码：**
