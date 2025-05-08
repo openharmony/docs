@@ -69,7 +69,7 @@ import { huks } from '@kit.UniversalKeystoreKit';
 let aesKeyAlias = 'test_aesKeyAlias';
 let handle: number;
 let plainText = '123456';
-let IV = '001122334455';
+let IV = '001122334455'; // 此处为样例代码，实际使用需采用随机值。
 let cipherData: Uint8Array;
 
 function StringToUint8Array(str: String) {
@@ -278,7 +278,7 @@ let handle: number;
 let plainText = '123456';
 let cipherData: Uint8Array;
 let AAD = '1234567890123456';
-let NONCE = '001122334455';
+let NONCE = '001122334455'; // 此处为样例代码，实际使用需采用随机值。
 
 function StringToUint8Array(str: String) {
   let arr: number[] = new Array();
@@ -1101,7 +1101,7 @@ import { huks } from '@kit.UniversalKeystoreKit';
 let desKeyAlias = 'test_desKeyAlias';
 let handle: number;
 let plainText = '12345678';
-let IV = '12345678';
+let IV = '12345678'; // 此处为样例代码，实际使用需采用随机值。
 let cipherData: Uint8Array;
 
 function StringToUint8Array(str: String) {

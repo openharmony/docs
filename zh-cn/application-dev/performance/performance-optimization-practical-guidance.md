@@ -35,6 +35,8 @@
 
 #### 反例
 ```typescript
+const LARGE_NUMBER = 1000000;
+
 @Entry
 @Component
 struct ViewA {
@@ -44,17 +46,18 @@ struct ViewA {
   aboutToAppear() {
     // 耗时操作
     this.computeTask();
-    let context = context.resourceManager.getStringSync($r('app.string.startup_text'));
+    let context = this.getUIContext().getHostContext() as Context;
+    this.text = context.resourceManager.getStringSync($r('app.string.startup_text'));
   }
 
   computeTask(): void {
     this.count = 0;
-    while (this.count < LARGE_NUMBER) {
-    this.count++;
+      while (this.count < LARGE_NUMBER) {
+      this.count++;
+    }
+    let context = this.getUIContext().getHostContext() as Context;
+    this.text = context.resourceManager.getStringSync($r('app.string.task_text'));
   }
-  let context = getContext(this) as Context;
-  this.text = context.resourceManager.getStringSync($r('app.string.task_text'));
-}
 }
 ```
 #### 正例
@@ -70,26 +73,26 @@ struct ViewB {
   aboutToAppear() {
     // 耗时操作
     this.computeTaskAsync(); // 异步任务
-    let context = getContext(this) as Context;
+    let context = this.getUIContext().getHostContext() as Context;
     this.text = context.resourceManager.getStringSync($r('app.string.startup_text'));
   }
 
   computeTask(): void {
     this.count = 0;
     while (this.count < LARGE_NUMBER) {
-    this.count++;
+      this.count++;
+    }
+    let context = this.getUIContext().getHostContext() as Context;
+    this.text = context.resourceManager.getStringSync($r('app.string.task_text'));
   }
-  let context = getContext(this) as Context;
-  this.text = context.resourceManager.getStringSync($r('app.string.task_text'));
-}
 
-// 运算任务异步处理
-private computeTaskAsync(): void {
-  setTimeout(() => {
-  // 这里使用setTimeout来实现异步延迟运行
-  this.computeTask();
-  }, DELAYED_TIME)
-}
+  // 运算任务异步处理
+  private computeTaskAsync(): void {
+    setTimeout(() => {
+      // 这里使用setTimeout来实现异步延迟运行
+      this.computeTask();
+    }, this.DELAYED_TIME)
+  }
 }
 ```
 #### 高频程度&收益（5满分）
@@ -127,12 +130,12 @@ requestByTaskPool(): void {
   // 创建任务项
   let task: taskpool.Task = new taskpool.Task(this.getInfoFromHttp);
   try {
-  // 执行网络加载函数
-  taskpool.execute(task, taskpool.Priority.HIGH).then((res: string[]) => {
-});
-} catch (err) {
-  logger.error(TAG, "failed, " + (err as BusinessError).toString());
-}
+    // 执行网络加载函数
+    taskpool.execute(task, taskpool.Priority.HIGH).then((res: string[]) => {
+    });
+  } catch (err) {
+    logger.error(TAG, "failed, " + (err as BusinessError).toString());
+  }
 }
 ```
 #### 高频程度&收益（5满分）
@@ -272,11 +275,11 @@ Web({ src: 'https://www.example.com', controller: this.controller })
 ```typescript
 export default class EntryAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
-    console.info("EntryAbility onCreate")
+    console.info("EntryAbility onCreate");
     // 在 Web 组件初始化之前，通过此接口加载 Web 引擎的动态库文件，以提高启动性能。
     setTimeout(() => {
       // 这里使用setTimeout来实现延迟运行
-      web_webview.WebviewController.initializeWebEngine()
+      web_webview.WebviewController.initializeWebEngine();
     }, 200)
     console.info("EntryAbility onCreate done");
   }
@@ -625,18 +628,18 @@ import promptAction from '@ohos.promptAction';
 @Component
 struct ViewA {
   aboutToAppear(): void {
-    hilog.info('Index.ets aboutToAppear')  // 无具体业务逻辑的日志
+    hilog.info(0x101, 'tag', 'Index.ets aboutToAppear');  // 无具体业务逻辑的日志
   }
 
   aboutToDisappear(): void{
-    hilog.info('Index.ets aboutToDisappear') // 无具体业务逻辑的日志
+    hilog.info(0x101, 'tag', 'Index.ets aboutToDisappear'); // 无具体业务逻辑的日志
   }
 
   /**
    * 弹窗函数
    */
   showToast() {
-    promptAction.showToast({
+    this.getUIContext().getPromptAction().showToast({
       message: $r('app.string.water_mark_toast_message')
     })
   }
@@ -662,7 +665,7 @@ struct ViewB {
    * 弹窗函数
    */
   showToast() {
-    promptAction.showToast({
+    this.getUIContext().getPromptAction().showToast({
       message: $r('app.string.water_mark_toast_message')
     })
   }
@@ -770,13 +773,13 @@ struct ViewA {
         .backgroundColor('#182431')
         .margin({ bottom: 40 })
         .onStart(() => {
-          console.info('Marquee animation complete onStart')
+          console.info('Marquee animation complete onStart');
         })
         .onBounce(() => {
-          console.info('Marquee animation complete onBounce')
+          console.info('Marquee animation complete onBounce');
         })
         .onFinish(() => {
-          console.info('Marquee animation complete onFinish')
+          console.info('Marquee animation complete onFinish');
         })
     }.width("100%")
   }
@@ -927,5 +930,4 @@ struct ViewB {
 1
 
 <!--no_check-->
-
 

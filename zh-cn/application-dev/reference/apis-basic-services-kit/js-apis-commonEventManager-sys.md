@@ -363,18 +363,9 @@ setStaticSubscriberState(enable: boolean, events?: Array\<string>): Promise\<voi
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
-import { promptAction } from '@kit.ArkUI';
 
 let evenName: string[] = ['usual.event.SEND_DATA'];
 commonEventManager.setStaticSubscriberState(true, evenName).then(() => {
-  try {
-    promptAction.showToast({
-      message: 'app.string.static_subscribe_enabled',
-      duration: 2000,
-    });
-  } catch (error) {
-    console.error(`showToast error code is ${error.code}, message is ${error.message}`);
-  }
   console.info(`setStaticSubscriberState success, state is ${true}`);
 }).catch((err: BusinessError) => {
   console.error(`setStaticSubscriberState failed, errCode: ${err.code}, errMes: ${err.message}`);

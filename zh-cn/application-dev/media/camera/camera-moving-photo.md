@@ -41,7 +41,7 @@
        photoOutput = cameraManager.createPhotoOutput(photoProfilesArray[0]);
      } catch (error) {
        let err = error as BusinessError;
-       console.error(`Failed to createPhotoOutput. error: ${JSON.stringify(err)}`);
+       console.error(`Failed to createPhotoOutput. error: ${err}`);
      }
      return photoOutput;
    }
@@ -107,7 +107,7 @@
    function onPhotoOutputPhotoAssetAvailable(photoOutput: camera.PhotoOutput, context: Context): void {
      photoOutput.on('photoAssetAvailable', (err: BusinessError, photoAsset: photoAccessHelper.PhotoAsset): void => {
        if (err) {
-         console.info(`photoAssetAvailable error: ${JSON.stringify(err)}.`);
+         console.info(`photoAssetAvailable error: ${err}.`);
          return;
        }
        console.info('photoOutPutCallBack photoAssetAvailable');

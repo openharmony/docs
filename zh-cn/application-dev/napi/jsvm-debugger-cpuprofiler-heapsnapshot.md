@@ -302,9 +302,14 @@ static JSVM_PropertyDescriptor descriptor[] = {
     {"runScriptWithStatistics", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
 };
 ```
-
-
 // 样例测试JS
 ```cpp
 const char *srcCallNative = R"JS(runScriptWithStatistics();)JS";
+```
+预计的输出结果：
+```
+在对应鸿蒙设备内生成两个文件用于后续调优：
+heap-snapshot-end.heapsnapshot,
+cpu-profile.cpuprofile
+文件功能见上文接口使用方法介绍
 ```

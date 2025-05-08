@@ -31,7 +31,7 @@
        photoOutput = cameraManager.createPhotoOutput(photoProfilesArray[0]);
      } catch (error) {
        let err = error as BusinessError;
-       console.error(`Failed to createPhotoOutput. error: ${JSON.stringify(err)}`);
+       console.error(`Failed to createPhotoOutput. error: ${err}`);
      }
      return photoOutput;
    }
@@ -49,7 +49,7 @@
    //设置回调之后，调用photoOutput的capture方法，就会将拍照的buffer回传到回调中。
      photoOutput.on('photoAvailable', (errCode: BusinessError, photo: camera.Photo): void => {
         console.info('getPhoto start');
-        console.info(`err: ${JSON.stringify(errCode)}`);
+        console.info(`err: ${errCode}`);
         if (errCode || photo === undefined) {
           console.error('getPhoto failed');
           return;
@@ -89,7 +89,7 @@
        flashStatus = photoSession.hasFlash();
      } catch (error) {
        let err = error as BusinessError;
-       console.error(`Failed to hasFlash. error: ${JSON.stringify(err)}`);
+       console.error(`Failed to hasFlash. error: ${err}`);
      }
      console.info(`Returned with the flash light support status: ${flashStatus}`);
      if (flashStatus) {
@@ -100,7 +100,7 @@
          flashModeStatus = status;
        } catch (error) {
          let err = error as BusinessError;
-         console.error(`Failed to check whether the flash mode is supported. error: ${JSON.stringify(err)}`);
+         console.error(`Failed to check whether the flash mode is supported. error: ${err}`);
        }
        if (flashModeStatus) {
          // 设置自动闪光灯模式。
@@ -108,7 +108,7 @@
            photoSession.setFlashMode(camera.FlashMode.FLASH_MODE_AUTO);
          } catch (error) {
            let err = error as BusinessError;
-           console.error(`Failed to set the flash mode. error: ${JSON.stringify(err)}`);
+           console.error(`Failed to set the flash mode. error: ${err}`);
          }
        }
      }
@@ -119,7 +119,7 @@
        focusModeStatus = status;
      } catch (error) {
        let err = error as BusinessError;
-       console.error(`Failed to check whether the focus mode is supported. error: ${JSON.stringify(err)}`);
+       console.error(`Failed to check whether the focus mode is supported. error: ${err}`);
      }
      if (focusModeStatus) {
        // 设置连续自动变焦模式。
@@ -127,7 +127,7 @@
          photoSession.setFocusMode(camera.FocusMode.FOCUS_MODE_CONTINUOUS_AUTO);
        } catch (error) {
          let err = error as BusinessError;
-         console.error(`Failed to set the focus mode. error: ${JSON.stringify(err)}`);
+         console.error(`Failed to set the focus mode. error: ${err}`);
        }
      }
      // 获取相机支持的可变焦距比范围。
@@ -136,7 +136,7 @@
        zoomRatioRange = photoSession.getZoomRatioRange();
      } catch (error) {
        let err = error as BusinessError;
-       console.error(`Failed to get the zoom ratio range. error: ${JSON.stringify(err)}`);
+       console.error(`Failed to get the zoom ratio range. error: ${err}`);
      }
      if (zoomRatioRange.length <= 0 ) {
        return;
@@ -146,7 +146,7 @@
        photoSession.setZoomRatio(zoomRatioRange[0]);
      } catch (error) {
        let err = error as BusinessError;
-       console.error(`Failed to set the zoom ratio value. error: ${JSON.stringify(err)}`);
+       console.error(`Failed to set the zoom ratio value. error: ${err}`);
      }
    }
    ```
@@ -167,7 +167,7 @@
      };
      photoOutput.capture(settings, (err: BusinessError) => {
        if (err) {
-         console.error(`Failed to capture the photo. error: ${JSON.stringify(err)}`);
+         console.error(`Failed to capture the photo. error: ${err}`);
          return;
        }
        console.info('Callback invoked to indicate the photo capture request success.');

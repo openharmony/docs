@@ -252,7 +252,7 @@ makeCall\(context: Context, phoneNumber: string\): Promise\<void\>
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 // 获取context
-let context = getContext(this) as Context;
+let context = this.getUIContext().getHostContext() as Context;
 // 从API15开始支持tel格式电话号码，如："tel:13xxxx"
 call.makeCall(context, "138xxxxxxxx").then(() => {
     console.log(`makeCall success`);

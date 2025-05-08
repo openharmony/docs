@@ -85,28 +85,39 @@ createAbilityConnectionSession(serviceName:&nbsp;string,&nbsp;context:&nbsp;Cont
      }
    }
  
-   const peerInfo: abilityConnectionManager.PeerInfo = {
-     deviceId: "sinkDeviceId",
-     bundleName: 'com.example.remotephotodemo',
-     moduleName: 'entry',
-     abilityName: 'EntryAbility',
-     serviceName: 'collabTest'
-   };
-   const myRecord: Record<string, string> = {
-     "newKey1": "value1",
-   };
+   @Entry
+   @Component
+   struct Index {
+     createSession(): void {
+       // 定义peer信息
+       const peerInfo: abilityConnectionManager.PeerInfo = {
+         deviceId: "sinkDeviceId",
+         bundleName: 'com.example.remotephotodemo',
+         moduleName: 'entry',
+         abilityName: 'EntryAbility',
+         serviceName: 'collabTest'
+       };
+       const myRecord: Record<string, string> = {
+         "newKey1": "value1",
+       };
  
-   const connectOptions: abilityConnectionManager.ConnectOptions = {
-     needSendData: true,
-     startOptions: abilityConnectionManager.StartOptionParams.START_IN_FOREGROUND,
-     parameters: myRecord
-   };
-   let context = this.getUIContext().getHostContext();
-   try {
-     let sessionId = abilityConnectionManager.createAbilityConnectionSession("collabTest", context, peerInfo, connectOptions);
-     hilog.info(0x0000, 'testTag', 'createSession sessionId is', sessionId);
-   } catch (error) {
-     hilog.error(0x0000, 'testTag', error);
+       // 定义连接选项
+       const connectOptions: abilityConnectionManager.ConnectOptions = {
+         needSendData: true,
+         startOptions: abilityConnectionManager.StartOptionParams.START_IN_FOREGROUND,
+         parameters: myRecord
+       };
+       let context = this.getUIContext().getHostContext();
+       try {
+         let sessionId = abilityConnectionManager.createAbilityConnectionSession("collabTest", context, peerInfo, connectOptions);
+         hilog.info(0x0000, 'testTag', 'createSession sessionId is', sessionId);
+       } catch (error) {
+         hilog.error(0x0000, 'testTag', error);
+       }
+     }
+ 
+     build() {
+     }
    }
    ```
 

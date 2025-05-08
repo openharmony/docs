@@ -258,3 +258,11 @@ GPU后端Canvas指画布是基于GPU进行绘制的，GPU的并行计算能力�
       mEGLDisplay = NULL;
    }
    ```
+
+<!--RP1-->
+## 相关实例
+
+针对Drawing(C/C++)的开发，有以下相关实例可供参考：
+
+- [NDKGraphicsDraw (API14)](https://gitee.com/openharmony/applications_app_samples/tree/master/code/DocsSample/Drawing/NDKGraphicsDraw)
+<!--RP1End-->

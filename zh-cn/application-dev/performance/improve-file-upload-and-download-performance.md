@@ -27,7 +27,7 @@
 7. 服务按需启停：上传下载服务不随系统自启。应用主动调用任意接口，上传下载服务自动启动。网络连接事件会触发上传下载服务启动。在任务队列中，没有正在处理的任务，或者等待网络恢复的任务，延迟10秒钟，再check一次，仍旧没有的，则通知系统服务框架（SAMGR）可以停止并卸载上传下载服务。在服务退出过程中，新的接口请求可能失败，在客户端检查服务状态、通过重试按需启动。
   
 8. 通知：任务从第一次开始到最终结束都应该有进度通知。目前采用固定时间间隔触发进度通知，前台任务1秒，后台任务3秒。任务状态的每次变化也要触发进度通知。当任务完成和失败，则触发其专用的进度通知。提供了抑制开关，可以在创建任务时打开，以避免频繁通知。
-  
+
 
 ### 下载任务的状态迁移流程
 
@@ -84,14 +84,14 @@
 **数据压缩的相关示例代码如下：**
 
 1. 导入相关模块：
-  
+
 ```ts
 import common from '@ohos.app.ability.common';
 import fs from '@ohos.file.fs';
 import zlib from '@ohos.zlib';
 ```
 2. 创建压缩上传相关类：
-  
+
 ```ts
 class ZipUpload {
   // 创建任务前存放的uri
@@ -102,12 +102,12 @@ class ZipUpload {
 }
 ```
 3. 建立用于接收图库图片的临时文件夹，并将整个临时文件夹打包添加到待上传list内：
-  
+
 ```ts
 // 文件压缩处理
 async zipUploadFiles(fileUris: Array<string>): Promise<void> {
-  this.context = getContext(this) as common.UIAbilityContext;
-  let cacheDir = this.context.cacheDir;
+  this.context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+  let cacheDir = this.context?.cacheDir;
   let tempDir = fs.mkdtempSync(`${cacheDir}/XXXXXX`);
   // 将图库图片获取的uri放入fileUris中，遍历复制到临时文件夹
   for (let i = 0; i < fileUris.length; i++) {
@@ -321,7 +321,7 @@ class Download {
 ```ts
 async createBackgroundTask(downloadList: Array<string[]>) {
   let splitUrl = url.split('//')[1].split('/');
-  let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext;
+  let context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
   let downloadConfig: request.agent.Config = {
     action: request.agent.Action.DOWNLOAD,
     url: url,

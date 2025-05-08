@@ -8,6 +8,6 @@ ArkTS基础类库和容器类库增强了语言的基础功能，提供包括[�
 
 针对TS/JS并发能力支持有限的问题，ArkTS对并发编程API和能力进行了增强，提供了[TaskPool](taskpool-introduction.md)和[Worker](worker-introduction.md)两种并发API供开发者选择。另外，ArkTS进一步提出了Sendable的概念来支持对象在并发实例间的引用传递，提升ArkTS对象在并发实例间的通信性能。
 
-方舟编译运行时（ArkCompiler）支持ArkTS、TS、JS的编译运行，目前它主要分为ArkTS编译工具链和ArkTS运行时两部分。其中ArkTS编译工具链负责在开发侧将高级语言编译为方舟字节码文件（\*.abc），而ArkTS运行时则负责在设备侧运行字节码文件执行程序逻辑。
+方舟编译运行时（ArkCompiler）支持ArkTS、TS和JS的编译运行，目前主要分为ArkTS编译工具链和ArkTS运行时两部分。ArkTS编译工具链负责将高级语言编译为方舟字节码文件（\*.abc），ArkTS运行时则负责在设备侧运行字节码文件，执行程序逻辑。
 
 未来，ArkTS会结合应用开发/运行的需求持续演进，逐步提供并发能力增强、系统类型增强、分布式开发范式等更多特性。
