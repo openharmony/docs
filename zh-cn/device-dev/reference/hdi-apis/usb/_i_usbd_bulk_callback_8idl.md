@@ -17,4 +17,4 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| interface&nbsp;&nbsp;[IUsbdBulkCallback](interface_i_usbd_bulk_callback.md) | SB驱动的回调函数。 | 
+| interface&nbsp;&nbsp;[IUsbdBulkCallback](interface_i_usbd_bulk_callback.md) | USB驱动的回调函数。 | 
