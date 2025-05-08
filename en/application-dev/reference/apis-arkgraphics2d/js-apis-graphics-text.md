@@ -66,11 +66,11 @@ Enumerates the word break types.
 
 **System capability**: SystemCapability.Graphics.Drawing
 
-| Name       | Value  | Description                                                                                                                 |
-| ----------- | ---- | -------------------------------------------------------------------------------------------------------------------- |
-| NORMAL      | 0    | Default mode. Word breaks are allowed between words as appropriate to the relevant language writing systems.                                                                 |
-| BREAK_ALL   | 1    | Word breaks are allowed between any characters for non-CJK text. (CJK means Chinese, Japanese, and Korean.) This value is suitable for Asian text that contains some non-Asian text. For example, it can be used to break consecutive English characters.|
-| BREAK_WORD  | 2    | Works in the same way as **BREAK_ALL**, except that it does not break unbreakable words.                                  |
+| Name                         | Value  | Description                                                                                                                 |
+|-----------------------------| ---- | -------------------------------------------------------------------------------------------------------------------- |
+| NORMAL                      | 0    | Default mode. Word breaks are allowed between words as appropriate to the relevant language writing systems.                                                                 |
+| BREAK_ALL                   | 1    | Word breaks are allowed between any characters for non-CJK text. (CJK means Chinese, Japanese, and Korean.) This value is suitable for Asian text that contains some non-Asian text. For example, it can be used to break consecutive English characters.|
+| BREAK_WORD                  | 2    | Works in the same way as **BREAK_ALL**, except that it does not break unbreakable words.                                  |
 
 ## Decoration
 
@@ -96,7 +96,7 @@ Enumerates the text decoration types.
 | NONE           | 0 | No decoration is used.|
 | UNDERLINE      | 1 | An underline is used for decoration.     |
 | OVERLINE       | 2 | An overline is used for decoration.    |
-| LINE_THROUGH   | 3 | A strikethrough is used for decoration.     |
+| LINE_THROUGH   | 4 | A strikethrough is used for decoration.     |
 
 ## TextDecorationStyle
 
@@ -171,7 +171,7 @@ Enumerates the text height modifier patterns.
 | ALL                   | 0x0 | Enables ascent for the first and last rows of a paragraph.           |
 | DISABLE_FIRST_ASCENT  | 0x1 | Disables ascent for the first row of a paragraph.                  |
 | DISABLE_LAST_ASCENT   | 0x2 | Disables ascent for the last row of a paragraph.                |
-| DISABLE_ALL           | 0x3 | Disables ascent for the first and last rows of a paragraph.         |
+| DISABLE_ALL           | 0x1 \| 0x2 | Disables ascent for the first and last rows of a paragraph.         |
 
 ## TextBaseline
 
@@ -267,7 +267,7 @@ Describes a text style.
 | heightOnly    | boolean                                              | Yes| Yes| How the height of the text box is set. The value **true** means that the height of the text box is set based on the font size and the value of **heightScale**, and **false** means that the height is set based on the line height and line spacing. The default value is **false**.|
 | halfLeading   | boolean                                              | Yes| Yes| Whether half leading is enabled. Half leading is the leading split in half and applied equally to the top and bottom edges. The value **true** means that half leading is enabled, and **false** means the opposite. The default value is **false**.|
 | ellipsis      | string                                               | Yes| Yes| Ellipsis content, which will be used to replace the extra content.      |
-| ellipsisMode  | [EllipsisMode](#ellipsismode)                        | Yes| Yes| Ellipsis type. The default value is **END**, indicating that the ellipsis is at the end of a line.                       |
+| ellipsisMode  | [EllipsisMode](#ellipsismode)                        | Yes| Yes| Ellipsis type. The default value is **END**, indicating that the ellipsis is at the end of a line.                      |
 | locale        | string                                               | Yes| Yes| Locale. For example, **'en'** indicates English, **'zh-Hans'** indicates Simplified Chinese, and **'zh-Hant'** indicates Traditional Chinese. For details, see ISO 639-1. The default value is an empty string.|
 | baselineShift | number                                               | Yes| Yes| Shift of the baseline. The value is a floating point number. The default value is **0.0px**.                |
 | fontFeatures  | Array\<[FontFeature](#fontfeature)>                  | Yes| Yes| Array of font features.|
@@ -928,14 +928,14 @@ Obtains the actually visible text range in the specified line, excluding the ell
 
 | Name| Type  | Mandatory| Description     |
 | ----- | ------ | ---- | --------- |
-| lineNumber  | number | Yes  | Line number of the text range, starting from 0.|
+| lineNumber  | number | Yes  | Line number of the text range, starting from 0. |
 | includeSpaces  | boolean | Yes  | Whether spaces are included. The value **true** means that spaces are contained, and **false** means the opposite.|
 
 **Return value**
 
 | Type            | Description                                             |
 | ---------------- | ------------------------------------------------ |
-| [Range](#range)  | Text range obtained.                              |
+| [Range](#range)  | Text range obtained.  |
 
 **Example**
 
@@ -1051,7 +1051,7 @@ Enumerates the rectangle width styles.
 
 | Name | Value| Description                                  |
 | ----- | - | -------------------------------------- |
-| TIGHT | 0 | If **letterSpacing** is not set, the rectangle conforms tightly to the text it contains. However, if **letterSpacing** is set, a gap is introduced between the rectangle and text.                           |
+| TIGHT | 0 | If **letterSpacing** is not set, the rectangle conforms tightly to the text it contains. However, if **letterSpacing** is set, a gap is introduced between the rectangle and text.|
 | MAX   | 1 | The rectangle's width is extended to align with the widest rectangle across all lines.  |
 
 ## RectHeightStyle
@@ -1387,7 +1387,7 @@ Inserts a symbol into the paragraph being built.
 
 | Name   | Type   | Mandatory| Description                                                       |
 | -------- | ------- | ---- | ----------------------------------------------------------- |
-| symbolId | number  | Yes  | Symbol code to insert. The value is a hexadecimal number in the range 0xF0000-0xF0C97. For details about the configurable symbol codes and symbol names, see the **value** and **name** fields in the [JSON file](https://gitee.com/openharmony/global_system_resources/blob/master/systemres/main/resources/base/element/symbol.json). |
+| symbolId | number  | Yes  | Symbol code to insert. The value is a hexadecimal number in the range 0xF0000-0xF0C97. For details about the configurable symbol codes and symbol names, see the **value** and **name** fields in the [JSON file](https://gitee.com/openharmony/global_system_resources/blob/master/systemres/main/resources/base/element/symbol.json).|
 
 **Example**
 
@@ -1427,7 +1427,7 @@ struct Index {
 
 Implements a carrier that describes the basic text line structure of a paragraph.
 
-Before calling any of the following APIs, you must use [getTextLines ()](#gettextlines) of the [Paragraph](#paragraph) class to create a **TextLine** object.
+Before calling any of the following APIs, you must use [getTextLines()](#gettextlines) of the [Paragraph](#paragraph) class to create a **TextLine** object.
 
 ### getGlyphCount
 
@@ -1802,22 +1802,26 @@ import { text } from "@kit.ArkGraphics2D"
 import { common2D } from "@kit.ArkGraphics2D"
 import { image } from '@kit.ImageKit';
 
-function textFunc() {
-  const color: ArrayBuffer = new ArrayBuffer(160000);
-  let opts: image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 200, width: 200 } }
-  let pixelMap: image.PixelMap = image.createPixelMapSync(color, opts);
-  let canvas = new drawing.Canvas(pixelMap);
+function textFunc(pixelmap: PixelMap) {
+  let canvas = new drawing.Canvas(pixelmap);
   runs[0].paint(canvas, 0, 0);
 }
 
 @Entry
 @Component
 struct Index {
+  @State pixelmap?: PixelMap = undefined;
   fun: Function = textFunc;
   build() {
     Column() {
+      Image(this.pixelmap).width(200).height(200);
       Button().onClick(() => {
-        this.fun();
+        if (this.pixelmap == undefined) {
+          const color: ArrayBuffer = new ArrayBuffer(160000);
+          let opts: image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 200, width: 200 } }
+          this.pixelmap = image.createPixelMapSync(color, opts);
+        }
+        this.fun(this.pixelmap);
       })
     }
   }

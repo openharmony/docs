@@ -27,4 +27,3 @@ After a valid expected frame rate is set, the system collects the configured fra
 
 The actual frame rate may be different from the expected one configured. It is limited by the system capability and screen refresh rate.
 
- <!--no_check--> 
