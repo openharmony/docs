@@ -121,6 +121,7 @@
 |FUNC|ubrk_preceding|
 |FUNC|ubrk_previous|
 |FUNC|ubrk_setText|
+|FUNC|ubrk_setUText|
 |FUNC|ucal_add|
 |FUNC|ucal_clear|
 |FUNC|ucal_clearField|
