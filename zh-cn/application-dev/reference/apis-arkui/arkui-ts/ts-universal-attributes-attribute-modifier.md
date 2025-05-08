@@ -8,7 +8,7 @@
 >
 > 在attributeModifier中设置的属性尽量不要与其他方法设置的属性相同，避免在页面刷新时attributeModifier不生效。
 >
-> attributeModifier不支持自定义组件。
+> 从API version 20开始，attributeModifier支持自定义组件。
 
 ## attributeModifier
 
@@ -440,6 +440,50 @@ struct attributeDemo {
 }
 ```
 ![applySelectedAttribute](figures/applySelectedAttribute.gif)
+
+### 示例8（自定义组件绑定Modifier实现按压态效果）
+
+该示例通过Common（自定义）绑定Modifier实现了按压态的效果。
+
+```ts
+// xxx.ets
+class CustomModifier implements AttributeModifier<CommonAttribute> {
+  applyNormalAttribute(instance: CommonAttribute): void {
+    instance.backgroundColor(Color.Blue)
+  }
+
+  applyPressedAttribute(instance: CommonAttribute): void {
+    instance.backgroundColor(Color.Red)
+  }
+}
+
+@Entry
+@Component
+struct attributePressedDemo {
+  @State  modifier: CustomModifier = new CustomModifier()
+
+  build() {
+    Row() {
+      Column() {
+        ChildCompoent()
+          .attributeModifier(this.modifier)
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+
+@Component
+struct ChildCompoent {
+  build() {
+    Text("common").fontColor(Color.Green).fontSize(28).textAlign(TextAlign.Center)
+      .width('35%')
+      .height('10%')
+  }
+}
+```
+![attributeModifier_common](figures/attributeModifier_common.gif)
 
 ## Attribute支持范围
 
