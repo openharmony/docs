@@ -7884,6 +7884,7 @@ if(store != undefined) {
 rekey(cryptoParam?: CryptoParam): Promise\<void>
 
 手动更新加密数据库的密钥。使用Promise异步回调。
+仅支持加密数据库到加密数据库的密钥更新，且保持密钥生成方式一致。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
