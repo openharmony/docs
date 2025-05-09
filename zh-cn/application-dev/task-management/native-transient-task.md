@@ -96,12 +96,10 @@
             napi_value napiWork = nullptr;
             napi_create_object(env, &napiWork);
    
-            // requestId
             napi_value napiRequestId = nullptr;
             napi_create_int32(env, transientTaskInfo.transientTasks[index].requestId, &napiRequestId);
             napi_set_named_property(env, napiWork, "requestId", napiRequestId);
    
-            // actualDelayTime
             napi_value napiActualDelayTime = nullptr;
             napi_create_int32(env, transientTaskInfo.transientTasks[index].actualDelayTime, &napiActualDelayTime);
             napi_set_named_property(env, napiWork, "actualDelayTime", napiActualDelayTime);
