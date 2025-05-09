@@ -316,7 +316,7 @@ The serial port device is occupied.
 
 **错误描述**
 
-串口设备已被占用
+串口设备已被占用。
 
 **可能原因**
 
