@@ -129,11 +129,11 @@
         napi_value bundleName;
         napi_create_string_utf8(env, elementName.bundleName, NAPI_AUTO_LENGTH, &bundleName);
         napi_set_named_property(env, result, "bundleName", bundleName);
-        // Native接口获取的指纹信息转为js对象里的moduleName属性
+        // Native接口获取的模块名称转为js对象里的moduleName属性
         napi_value moduleName;
         napi_create_string_utf8(env, elementName.moduleName, NAPI_AUTO_LENGTH, &moduleName);
         napi_set_named_property(env, result, "moduleName", moduleName);
-        // Native接口获取的指纹信息转为js对象里的abilityName属性
+        // Native接口获取的abilityName转为js对象里的abilityName属性
         napi_value abilityName;
         napi_create_string_utf8(env, elementName.abilityName, NAPI_AUTO_LENGTH, &abilityName);
         napi_set_named_property(env, result, "abilityName", abilityName);
