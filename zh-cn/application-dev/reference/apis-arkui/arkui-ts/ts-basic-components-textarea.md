@@ -743,7 +743,7 @@ lineSpacing(value: LengthMetrics)
 
 lineSpacing(value: LengthMetrics, options?: LineSpacingOptions)
 
-设置文本的行间距。当不配置LineSpacingOptions时，首行上方默认会有行间距。
+设置文本的行间距。当不配置LineSpacingOptions时，首行上方和尾行下方默认会有行间距。
 
 **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
