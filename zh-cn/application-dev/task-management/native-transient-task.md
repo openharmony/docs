@@ -79,13 +79,15 @@
       napi_create_object(env, &result);
       int32_t res = OH_BackgroundTaskManager_GetAllTransientTasks(&transientTaskInfo);
       napi_value napiRemainingQuota = nullptr;
+      // 获取成功，格式化数据并返回给接口
       if (res == 0) {
          napi_create_int32(env, transientTaskInfo.remainingQuota, &napiRemainingQuota);
-         napi_set_named_property(env, result, "remainingQuota", napiRemainingQuota);
+         napi_set_named_property(env, result, "remainingQuota", napiRemainingQuota); // 格式化当日总配额
    
          napi_value info {nullptr};
          napi_create_array(env, &info);
          uint32_t count = 0;
+         // 格式化所有已申请的短时任务信息
          for (int index = 0; index < 3; index++) {
             if (transientTaskInfo.transientTasks[index].requestId == 0) {
                 continue;
@@ -129,7 +131,7 @@
            {"RequestSuspendDelay", nullptr, RequestSuspendDelay, nullptr, nullptr, nullptr, napi_default, nullptr},
            {"GetRemainingDelayTime", nullptr, GetRemainingDelayTime, nullptr, nullptr, nullptr, napi_default, nullptr},
            {"CancelSuspendDelay", nullptr, CancelSuspendDelay, nullptr, nullptr, nullptr, napi_default, nullptr},
-           { "GetAllTransientTasks", nullptr, GetAllTransientTasks, nullptr, nullptr, nullptr, napi_default, nullptr },
+           {"GetAllTransientTasks", nullptr, GetAllTransientTasks, nullptr, nullptr, nullptr, napi_default, nullptr },
        };
        napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);
        return exports;
