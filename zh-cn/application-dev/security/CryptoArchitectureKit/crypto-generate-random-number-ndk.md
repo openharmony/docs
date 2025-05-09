@@ -34,15 +34,15 @@
 
 ## 开发步骤
 
-1. 调用[OH_CryptoRand_Create](../../reference/apis-crypto-architecture-kit/_crypto_rand_api.md#oh_cryptorand_create)，创建随机数生成器。
+1. 调用[OH_CryptoRand_Create]，创建随机数生成器。
 
-2. (可选)调用[OH_CryptoRand_SetSeed](../../reference/apis-crypto-architecture-kit/_crypto_rand_api.md#oh_cryptorand_setseed)，为随机数生成器设置种子。
+2. (可选)调用[OH_CryptoRand_SetSeed]，为随机数生成器设置种子。
 
-3. 调用[OH_CryptoRand_GenerateRandom](../../reference/apis-crypto-architecture-kit/_crypto_rand_api.md#oh_cryptorand_generaterandom)，生成指定长度的安全随机数。
+3. 调用[OH_CryptoRand_GenerateRandom]，生成指定长度的安全随机数。
 
    指定字节长度范围为1~INT_MAX。
 
-4. 调用[OH_CryptoRand_GetAlgoName](../../reference/apis-crypto-architecture-kit/_crypto_rand_api.md#oh_cryptorand_getalgoname)，获取随机数生成器使用的算法名称。
+4. 调用[OH_CryptoRand_GetAlgoName]，获取随机数生成器使用的算法名称。
 
 ```C++
 #include "CryptoArchitectureKit/crypto_architecture_kit.h"
