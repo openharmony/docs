@@ -1,27 +1,26 @@
 # AppStorage：应用全局的UI状态存储
 
 
-AppStorage是应用全局的UI状态存储，是和应用的进程绑定的，由UI框架在应用程序启动时创建，为应用程序UI状态属性提供中央存储。
+在阅读本文档前，建议提前阅读：[状态管理概述](./arkts-state-management-overview.md)，从而对状态管理框架中AppStorage的定位有一个宏观了解。
 
+AppStorage是与应用进程绑定的全局UI状态存储容器，由UI框架在应用程序启动时创建，为应用程序的UI状态数据提供中央存储。
 
-和AppStorage不同的是，LocalStorage是页面级的，通常应用于页面内的数据共享。而AppStorage是应用级的全局状态共享，还相当于整个应用的“中枢”，[持久化数据PersistentStorage](arkts-persiststorage.md)和[环境变量Environment](arkts-environment.md)都是通过AppStorage中转，才可以和UI交互。
+AppStorage会将UI状态数据存储在应用的运行内存中，不同于LocalStorage应用于页面内的数据共享，AppStorage存储的UI状态数据是应用级的全局状态共享。
 
+AppStorage还相当于整个应用的“中枢”，[持久化数据PersistentStorage](arkts-persiststorage.md)和[环境变量Environment](arkts-environment.md)都是通过AppStorage中转，才可以和UI交互。
 
-本文仅介绍AppStorage使用场景和相关的装饰器：\@StorageProp和\@StorageLink。
-
-
-AppStorage是应用全局的UI状态存储，不同于\@State等装饰器仅能在组件树上传递，AppStorage的目的是为了给开发者提供更大范围的跨ability基本的数据共享。在阅读本文档前，建议开发者对状态管理框架中AppStorage的定位有一个宏观了解。建议提前阅读：[状态管理概述](./arkts-state-management-overview.md)。
+AppStorage推出的目的是为了给开发者提供更大范围的跨ability的UI状态数据共享。
 
 AppStorage还提供了API接口，可以让开发者通过接口在自定义组件外手动触发AppStorage对应key的增删改查，建议配合[AppStorage API文档](../../reference/apis-arkui/arkui-ts/ts-state-management.md#appstorage)阅读。
 
 
 ## 概述
 
-AppStorage是在应用启动的时候会被创建的单例。它的目的是为了提供应用状态数据的中心存储，这些状态数据在应用级别都是可访问的。AppStorage将在应用运行过程保留其属性。属性通过唯一的键字符串值访问。
+AppStorage是在应用启动时被创建的单例。它为应用提供了状态数据的中心存储，是应用级可访问的状态数据。AppStorage会在应用运行过程中保留其属性。
 
-AppStorage可以和UI组件同步，且可以在应用业务逻辑中被访问。
+AppStorage中保存的属性通过唯一的字符串类型key值访问，该属性可以和UI组件同步，且可以在应用业务逻辑中被访问。
 
-AppStorage支持应用的[主线程](../../application-models/thread-model-stage.md)内多个UIAbility实例间的状态共享。
+AppStorage支持应用的[主线程](../../application-models/thread-model-stage.md)内多个[UIAbility](../../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md)实例间的UI状态数据共享。
 
 AppStorage中的属性可以被双向同步，数据可以是存在于本地或远程设备上，并具有不同的功能，比如数据持久化（详见[PersistentStorage](arkts-persiststorage.md)）。这些数据是通过业务逻辑中实现，与UI解耦，如果希望这些数据在UI中使用，需要用到[@StorageProp](#storageprop)和[@StorageLink](#storagelink)。
 

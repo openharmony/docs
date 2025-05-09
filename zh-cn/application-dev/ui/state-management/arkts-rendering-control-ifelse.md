@@ -278,7 +278,7 @@ struct Index {
 
       Button("play with animation")
         .onClick(() => {
-          animateTo({}, ()=>{
+          this.getUIContext().animateTo({}, ()=>{
             // 在animateTo中修改if条件，在动画当中，会给if下的第一层组件默认转场
             if (this.data1) {
               this.data1 = undefined;
@@ -342,7 +342,7 @@ struct Index {
 
       Button("play with animation")
         .onClick(() => {
-          animateTo({}, ()=>{
+          this.getUIContext().animateTo({}, ()=>{
             // 在animateTo中修改if条件，在动画当中，会给if下的第一层组件默认转场
             if (this.data1) {
               this.data1 = undefined;
@@ -391,7 +391,7 @@ struct Index {
 
       Button("play with animation")
         .onClick(() => {
-          animateTo({}, ()=>{
+          this.getUIContext().animateTo({}, ()=>{
             // 在animateTo中修改if条件，在动画当中，会给if下的第一层组件默认转场
             // 但由于已经显示指定转场了就不会再添加默认转场
             if (this.data1) {

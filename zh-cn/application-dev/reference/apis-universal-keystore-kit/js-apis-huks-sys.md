@@ -28,7 +28,7 @@ generateKeyItemAsUser(userId: number, keyAlias: string, huksOptions: HuksOptions
 | -------- | --------------------------- | ---- | ------------------------ |
 | userId   | number                      | 是   | 用户ID。                 |
 | keyAlias | string                      | 是   | 密钥别名。密钥别名的最大长度为128字节，建议不包含个人信息等敏感词汇。               |
-| options  | [HuksOptions](js-apis-huks.md#huksoptions) | 是   | 用于存放生成key所需的[属性标签](native__huks__type_8h.md#枚举)。其中密钥使用的算法、密钥用途、密钥长度为必选参数。 |
+| huksOptions  | [HuksOptions](js-apis-huks.md#huksoptions) | 是   | 用于存放生成key所需的[属性标签](native__huks__type_8h.md#枚举)。其中密钥使用的算法、密钥用途、密钥长度为必选参数。 |
 
 **错误码：**
 
@@ -121,7 +121,7 @@ deleteKeyItemAsUser(userId: number, keyAlias: string, huksOptions: HuksOptions) 
 | -------- | --------------------------- | ---- | ----------------------------------- |
 | userId   | number                      | 是   | 用户ID。                 |
 | keyAlias | string                      | 是   | 密钥别名，应为生成key时传入的别名。 |
-| options  | [HuksOptions](js-apis-huks.md#huksoptions) | 是   | 用于删除时指定密钥的属性TAG，如使用[HuksAuthStorageLevel](js-apis-huks.md#huksauthstoragelevel11)指定需删除密钥的安全级别，可传空，传空时默认DE。            |
+| huksOptions  | [HuksOptions](js-apis-huks.md#huksoptions) | 是   | 用于删除时指定密钥的属性TAG，如使用[HuksAuthStorageLevel](js-apis-huks.md#huksauthstoragelevel11)指定需删除密钥的安全级别，可传空，传空时默认DE。            |
 
 **错误码：**
 
@@ -225,7 +225,7 @@ importKeyItemAsUser(userId: number, keyAlias: string, huksOptions: HuksOptions) 
 | -------- | --------------------------- | ---- | ----------------------------------- |
 | userId   | number                      | 是   | 用户ID。                 |
 | keyAlias | string                      | 是   | 密钥别名。密钥别名的最大长度为128字节，建议不包含个人信息等敏感词汇。                          |
-| options  | [HuksOptions](js-apis-huks.md#huksoptions) | 是   | 用于导入时所需TAG和需要导入的密钥。其中密钥使用的算法、密钥用途、密钥长度为必选参数。 |
+| huksOptions  | [HuksOptions](js-apis-huks.md#huksoptions) | 是   | 用于导入时所需TAG和需要导入的密钥。其中密钥使用的算法、密钥用途、密钥长度为必选参数。 |
 
 **错误码：**
 
@@ -322,7 +322,7 @@ attestKeyItemAsUser(userId: number, keyAlias: string, huksOptions: HuksOptions) 
 | -------- | --------------------------- | ---- | ------------------------------------ |
 | userId   | number                      | 是   | 用户ID。                 |
 | keyAlias | string                      | 是   | 密钥别名，存放待获取证书密钥的别名。 |
-| options  | [HuksOptions](js-apis-huks.md#huksoptions) | 是   | 用于获取证书时指定所需参数与数据。   |
+| huksOptions  | [HuksOptions](js-apis-huks.md#huksoptions) | 是   | 用于获取证书时指定所需参数与数据。   |
 
 **返回值：**
 
@@ -476,7 +476,7 @@ anonAttestKeyItemAsUser(userId: number, keyAlias: string, huksOptions: HuksOptio
 | -------- | --------------------------- | ---- | ------------------------------------ |
 | userId   | number                      | 是   | 用户ID。                 |
 | keyAlias | string                      | 是   | 密钥别名，存放待获取证书密钥的别名。 |
-| options  | [HuksOptions](js-apis-huks.md#huksoptions) | 是   | 用于获取证书时指定所需参数与数据。   |
+| huksOptions  | [HuksOptions](js-apis-huks.md#huksoptions) | 是   | 用于获取证书时指定所需参数与数据。   |
 
 **返回值：**
 
@@ -630,7 +630,7 @@ importWrappedKeyItemAsUser(userId: number, keyAlias: string, wrappingKeyAlias: s
 | userId   | number                      | 是   | 用户ID。                 |
 | keyAlias         | string                      | 是   | 密钥别名，存放待导入密钥的别名。              |
 | wrappingKeyAlias | string                      | 是   | 密钥别名，对应密钥用于解密加密的密钥数据。    |
-| options          | [HuksOptions](js-apis-huks.md#huksoptions) | 是   | 用于导入时所需TAG和需要导入的加密的密钥数据。其中密钥使用的算法、密钥用途、密钥长度为必选参数。 |
+| huksOptions          | [HuksOptions](js-apis-huks.md#huksoptions) | 是   | 用于导入时所需TAG和需要导入的加密的密钥数据。其中密钥使用的算法、密钥用途、密钥长度为必选参数。 |
 
 **错误码：**
 
@@ -656,7 +656,7 @@ importWrappedKeyItemAsUser(userId: number, keyAlias: string, wrappingKeyAlias: s
 
 **示例：**
 
-- 以下代码示例接口调用的前置条件同上文[generateKeyItemAsUser](#huksgeneratekeyitemasuser)的前置条件
+- 以下代码示例接口调用的前置条件同上文[generateKeyItemAsUser](#huksgeneratekeyitemasuser)的前置条件。
 - 注意：下文密码学相关的变量（如initializationVector、associatedData、nonce）赋值，均为参考样例，不能直接适用于业务功能逻辑。开发者需要根据自身场景使用合适的初始值。
 
 ```ts
@@ -1285,7 +1285,7 @@ exportKeyItemAsUser(userId: number, keyAlias: string, huksOptions: HuksOptions) 
 | -------- | --------------------------- | ---- | -------------------------------------------- |
 | userId   | number                      | 是   | 用户ID。                 |
 | keyAlias | string                      | 是   | 密钥别名，应与所用密钥生成时使用的别名相同。 |
-| options  | [HuksOptions](js-apis-huks.md#huksoptions) | 是   | 空对象（此处传空即可）。                     |
+| huksOptions  | [HuksOptions](js-apis-huks.md#huksoptions) | 是   | 空对象（此处传空即可）。                     |
 
 **返回值：**
 
@@ -1403,7 +1403,7 @@ getKeyItemPropertiesAsUser(userId: number, keyAlias: string, huksOptions: HuksOp
 | -------- | --------------------------- | ---- | -------------------------------------------- |
 | userId   | number                      | 是   | 用户ID。                 |
 | keyAlias | string                      | 是   | 密钥别名，应与所用密钥生成时使用的别名相同。 |
-| options  | [HuksOptions](js-apis-huks.md#huksoptions) | 是   | 空对象（此处传空即可）。                     |
+| huksOptions  | [HuksOptions](js-apis-huks.md#huksoptions) | 是   | 空对象（此处传空即可）。                     |
 
 **返回值：**
 
@@ -1518,7 +1518,7 @@ hasKeyItemAsUser(userId: number, keyAlias: string, huksOptions: HuksOptions) : P
 | -------- | --------------------------- | ---- | ------------------------ |
 | userId   | number                      | 是   | 用户ID。                 |
 | keyAlias | string                      | 是   | 所需查找的密钥的别名。   |
-| options  | [HuksOptions](js-apis-huks.md#huksoptions) | 是   | 用于查询时指定密钥的属性TAG，如使用[HuksAuthStorageLevel](js-apis-huks.md#huksauthstoragelevel11)指定需查询密钥的安全级别，可传空，传空时默认DE。     |
+| huksOptions  | [HuksOptions](js-apis-huks.md#huksoptions) | 是   | 用于查询时指定密钥的属性TAG，如使用[HuksAuthStorageLevel](js-apis-huks.md#huksauthstoragelevel11)指定需查询密钥的安全级别，可传空，传空时默认DE。     |
 
 **返回值：**
 
@@ -1630,7 +1630,7 @@ initSessionAsUser(userId: number, keyAlias: string, huksOptions: HuksOptions) : 
 | -------- | ------------------------------------------------- | ---- | ------------------------------------------------ |
 | userId   | number                                            | 是   | 用户ID。                 |
 | keyAlias | string                                            | 是   | initSessionAsUser操作密钥的别名。                             |
-| options  | [HuksOptions](js-apis-huks.md#huksoptions)        | 是   | initSessionAsUser参数集合。                                   |
+| huksOptions  | [HuksOptions](js-apis-huks.md#huksoptions)        | 是   | initSessionAsUser参数集合。                                   |
 
 **返回值**：
 

@@ -50,7 +50,7 @@ ArkUI开发框架在NDK接口主要提供点击手势、拖动手势、滑动手
 
 ## 单一手势
 
-通过上文的示例已经了解了如果将手势绑定在节点上，接下来将分别介绍不同手势的创建方法，并分别支持哪些事件回调。
+通过上文的示例已经了解了如何将手势绑定在节点上，接下来将分别介绍不同手势的创建方法。
 
 - 点击手势
   通过给组件绑定点击手势可在组件被点击时触发此回调，可指定触发回调需要的点击次数和手指个数。
@@ -98,9 +98,9 @@ ArkUI开发框架在NDK接口主要提供点击手势、拖动手势、滑动手
 
 ## 组合手势
 
-组合手势由多种单一手势组合而成，通过在GroupGesture中使用不同的[ArkUI_GroupGestureMode](../reference/apis-arkui/_ark_u_i___native_module.md#arkui_groupgesturemode)来声明该组合手势的类型，支持顺序识别、并行识别、互斥识别三种类型。
+可以将多个不同类型的手势组合在一起，形成一个手势组，这个手势组可以作为一个识别整体，达到对用户多个不同类型手势序列的识别目的。
 
-ArkUI_GroupGestureMode枚举类，用于声明该组合手势的类型。顺序识别SEQUENTIAL_GROUP，并行识别PARALLEL_GROUP，互斥识别EXCLUSIVE_GROUP。
+通过设置[ArkUI_GroupGestureMode](../reference/apis-arkui/_ark_u_i___native_module.md#arkui_groupgesturemode)来指定这个手势组的识别模式，即组内的手势之间的关系，包含顺序识别SEQUENTIAL_GROUP，并行识别PARALLEL_GROUP，互斥识别EXCLUSIVE_GROUP。
 
 
 ### 顺序识别
@@ -513,7 +513,7 @@ ArkUI_NodeHandle testGestureExample() {
 
 ### 自定义手势判定
 
-支持自定义手势判定，当组件触发手势时，可根据回调内容判定当前响应的手势是否继续执行。
+当用户的操作符合某个手势识别器，该识别器即将触发成功时，可通过自定义手势判定能力来动态决策，是否希望该识别器被系统认定为识别成功。通过setGestureInterrupterToNode接口，绑定一个回调在该组件上，但组件上的某个手势即将识别成功时，通过返回CONTUNUE或REJECT来决定是否将成功机会让给其它手势识别器。
 
 在上文绑定手势事件的示例中按照如下方式进行调整即可实现自定义手势判定。
 

@@ -5,14 +5,13 @@
 
 Defines dimension information. The maximum dimension is set by **OH_AI_MAX_SHAPE_NUM**.
 
-**Since**
+**System capability**: SystemCapability.Ai.MindSpore
 
-9
+**Since**: 9
 
-**Related module**
+**Related module**: [MindSpore](_mind_spore.md)
 
-[MindSpore](_mind_spore.md)
-
+**Header file**: [model.h](model_8h.md)
 
 ## Summary
 

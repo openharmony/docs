@@ -484,7 +484,7 @@ struct TodoList {
   ];
   @Local newTaskName: string = '';
   @Local setting: Setting = AppStorageV2.connect(Setting, 'Setting', () => new Setting())!;
-  private context = getContext(this) as common.UIAbilityContext;
+  private context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 
   finishAll(ifFinish: boolean) {
     for (let task of this.tasks) {
@@ -554,7 +554,7 @@ export class Setting {
 @ComponentV2
 struct SettingPage {
   @Local setting: Setting = AppStorageV2.connect(Setting, 'Setting', () => new Setting())!;
-  private context = getContext(this) as common.UIAbilityContext;
+  private context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 
   build() {
     Column() {
@@ -652,7 +652,7 @@ struct TodoList {
   @Local taskList: TaskList = PersistenceV2.connect(TaskList, 'TaskList', () => new TaskList([]))!;
   @Local newTaskName: string = '';
   @Local setting: Setting = AppStorageV2.connect(Setting, 'Setting', () => new Setting())!;
-  private context = getContext(this) as common.UIAbilityContext;
+  private context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 
   async aboutToAppear() {
     this.taskList = PersistenceV2.connect(TaskList, 'TaskList', () => new TaskList([]))!;
@@ -814,7 +814,7 @@ struct TodoList {
   @Local taskList: TaskList = PersistenceV2.connect(TaskList, 'TaskList', () => new TaskList([]))!;
   @Local newTaskName: string = '';
   @Local setting: Setting = AppStorageV2.connect(Setting, 'Setting', () => new Setting())!;
-  private context = getContext(this) as common.UIAbilityContext;
+  private context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 
   async aboutToAppear() {
     this.taskList = PersistenceV2.connect(TaskList, 'TaskList', () => new TaskList([]))!;
@@ -1125,7 +1125,7 @@ import TaskListViewModel from '../viewmodel/TaskListViewModel';
 export default struct BottomView {
   @Param taskList: TaskListViewModel = new TaskListViewModel();
   @Local newTaskName: string = '';
-  private context = getContext() as common.UIAbilityContext;
+  private context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 
   build() {
     Column() {
@@ -1176,7 +1176,7 @@ import BottomView from '../view/BottomView';
 struct TodoList {
   @Local taskList: TaskListViewModel = PersistenceV2.connect(TaskListViewModel, 'TaskList', () => new TaskListViewModel())!;
   @Local setting: Setting = AppStorageV2.connect(Setting, 'Setting', () => new Setting())!;
-  private context = getContext(this) as common.UIAbilityContext;
+  private context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 
   async aboutToAppear() {
     this.taskList = PersistenceV2.connect(TaskListViewModel, 'TaskList', () => new TaskListViewModel())!;
@@ -1221,8 +1221,8 @@ export class Setting {
 @ComponentV2
 struct SettingPage {
   @Local setting: Setting = AppStorageV2.connect(Setting, 'Setting', () => new Setting())!;
-  private context = getContext(this) as common.UIAbilityContext;
-
+  private context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+  
   build(){
     Column(){
       Text('设置')

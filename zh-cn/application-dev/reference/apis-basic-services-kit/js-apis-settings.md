@@ -11,7 +11,7 @@
 ## 导入模块
 
 ```js
-import settings from '@ohos.settings';
+import { settings } from '@kit.BasicServicesKit';
 ```
 ## domainName
 
@@ -21,25 +21,26 @@ import settings from '@ohos.settings';
 
 **系统能力：** SystemCapability.Applications.Settings.Core
 
-| 名称                          | 类型   | 可读 | 可写 | 说明                                                         |
-|-----------------------------| ------ | ---- | ---- | ------------------------------------------------------------ |
-| DEVICE_SHARED<sup>11+</sup> | string | 是   | 是   | 设备属性共享域。                                          |
-| USER_PROPERTY<sup>11+</sup> | string | 是   | 是   | 为用户属性域。                                           |
+| 名称                          | 类型   | 可读 | 可写 | 说明                   |
+|-----------------------------| ------ | ---- | ---- |----------------------|
+| DEVICE_SHARED<sup>11+</sup> | string | 是   | 是   | 设备属性共享域，所有设置项不区分多用户。 |
+| USER_PROPERTY<sup>11+</sup> | string | 是   | 是   | 为用户属性域，该域下所有配置区分多用户。 |
 
 ## date
 
 提供设置时间和日期格式的数据项(暂不支持)。
 
+
 ### 属性
 
 **系统能力：** SystemCapability.Applications.Settings.Core
 
-| 名称                | 类型   | 可读 | 可写 | 说明                                                         |
-| ------------------- | ------ | ---- | ---- | ------------------------------------------------------------ |
-| DATE_FORMAT         | string | 是   | 是   | 日期格式。<br/>日期格式包括mm/dd/yyyy、dd/mm/yyyy和yyyy/mm/dd ，其中mm、dd和yyyy分别代表月份、日期和年份。 |
-| TIME_FORMAT         | string | 是   | 是   | 时间以12小时格式或24小时格式显示。<br>- 值为 "12"表示12小时格式。<br/>- 值为"24"表示24小时格式。 |
-| AUTO_GAIN_TIME      | string | 是   | 是   | 是否自动从网络获取日期、时间和时区。 <br>- 值为true表示自动从网络获取信息。<br/>- 值为false表示不自动获取信息。 |
-| AUTO_GAIN_TIME_ZONE | string | 是   | 是   | 是否自动从NITZ获取时区。 <br>- 值为true表示自动获取。<br/>- 值为false表示不自动获取。 |
+| 名称                | 类型   | 可读 | 可写 | 说明                                                                         |
+| ------------------- | ------ | ---- | ---- |----------------------------------------------------------------------------|
+| DATE_FORMAT         | string | 是   | 是   | 日期格式。<br/>日期格式包括mm/dd/yyyy、dd/mm/yyyy和yyyy/mm/dd，其中mm、dd和yyyy分别代表月份、日期和年份。 |
+| TIME_FORMAT         | string | 是   | 是   | 时间以12小时格式或24小时格式显示。<br>- 值为 "12"表示12小时格式。<br/>- 值为"24"表示24小时格式。            |
+| AUTO_GAIN_TIME      | string | 是   | 是   | 是否自动从网络获取日期、时间和时区。 <br>- 值为true，表示自动从网络获取信息。<br/>- 值为false，表示不自动获取信息。      |
+| AUTO_GAIN_TIME_ZONE | string | 是   | 是   | 是否自动从NITZ获取时区。 <br>- 值为true，表示自动获取。<br/>- 值为false，表示不自动获取。                 |
 
 ## display
 
@@ -49,19 +50,19 @@ import settings from '@ohos.settings';
 
 **系统能力：** SystemCapability.Applications.Settings.Core
 
-| 名称                          | 类型   | 可读 | 可写 | 说明                                                                                                          |
-| ----------------------------- | ------ | ---- | ---- |-------------------------------------------------------------------------------------------------------------|
-| FONT_SCALE                    | string | 是   | 是   | 字体的比例因子，值为浮点数。(当前版本参数仅支持固定值查询。)                                                                            |
-| SCREEN_BRIGHTNESS_STATUS      | string | 是   | 是   | 屏幕亮度。取值范围:0到255。                                                                                           |
-| AUTO_SCREEN_BRIGHTNESS        | string | 是   | 是   | 是否启用屏幕亮度自动调整。<br/>- 值为AUTO_SCREEN_BRIGHTNESS_MODE，表示启用自动调整。<br/>- 值为MANUAL_SCREEN_BRIGHTNESS_MODE，表示不启用自动调整。    |
-| AUTO_SCREEN_BRIGHTNESS_MODE   | number | 是   | 是   | 使用屏幕亮度自动调整时AUTO_SCREEN_BRIGHTNESS的值。                                                                        |
-| MANUAL_SCREEN_BRIGHTNESS_MODE | number | 是   | 是   | 使用屏幕亮度手动调整时的AUTO_SCREEN_BRIGHTNESS值。                                                                        |
-| SCREEN_OFF_TIMEOUT            | string | 是   | 是   | 设备在一段时间不活动后进入睡眠状态的等待时间(单位:ms)。                                                                              |
-| DEFAULT_SCREEN_ROTATION       | string | 是   | 是   | 启用屏幕的自动旋转时，此属性无效。不启用自动旋转时，以下值可用。<br>- 值为0，表示屏幕旋转0度。<br>- 值为1，表示屏幕旋转90度。<br/>- 值为2，表示屏幕旋转180度。<br/>- 值为3，表示屏幕旋转270度。 |
-| ANIMATOR_DURATION_SCALE       | string | 是   | 是   | 动画持续时间的比例因子。影响所有此类动画的开始延迟和持续时间。<br/>值为0，表示动画将立即结束。默认值为1。                                                  |
-| TRANSITION_ANIMATION_SCALE    | string | 是   | 是   | 过渡动画的比例因子。<br/>值为0，表示禁用过渡动画。                                                                                |
-| WINDOW_ANIMATION_SCALE        | string | 是   | 是   | 普通窗口动画的比例因子。<br/>值为0，表示禁用窗口动画。                                                                              |
-| DISPLAY_INVERSION_STATUS      | string | 是   | 是   | 是否启用显示颜色反转。<br/>- 值为1，表示启用显示颜色反转。<br/>- 值为0，表示不启用显示颜色反转。                                                        |
+| 名称                          | 类型   | 可读 | 可写 | 说明                                                                                                                   |
+| ----------------------------- | ------ | ---- | ---- |----------------------------------------------------------------------------------------------------------------------|
+| FONT_SCALE                    | string | 是   | 是   | 字体的比例因子，值为浮点数。(当前版本参数仅支持固定值查询。)                                                                                      |
+| SCREEN_BRIGHTNESS_STATUS      | string | 是   | 是   | 屏幕亮度。取值范围:0到255。                                                                                                     |
+| AUTO_SCREEN_BRIGHTNESS        | string | 是   | 是   | 是否启用屏幕亮度自动调整。<br/>- 值为AUTO_SCREEN_BRIGHTNESS_MODE，表示启用自动调整。<br/>- 值为MANUAL_SCREEN_BRIGHTNESS_MODE，表示不启用自动调整。         |
+| AUTO_SCREEN_BRIGHTNESS_MODE   | number | 是   | 是   | 使用屏幕亮度自动调整时AUTO_SCREEN_BRIGHTNESS的值。                                                                                 |
+| MANUAL_SCREEN_BRIGHTNESS_MODE | number | 是   | 是   | 使用屏幕亮度手动调整时的AUTO_SCREEN_BRIGHTNESS值。                                                                                 |
+| SCREEN_OFF_TIMEOUT            | string | 是   | 是   | 设备在一段时间不活动后进入睡眠状态的等待时间(单位: ms)。                                                                                      |
+| DEFAULT_SCREEN_ROTATION       | string | 是   | 是   | 启用屏幕的自动旋转时，此属性无效。不启用自动旋转时，以下值可用: <br>- 值为0，表示屏幕旋转0度。<br>- 值为1，表示屏幕旋转90度。<br/>- 值为2，表示屏幕旋转180度。<br/>- 值为3，表示屏幕旋转270度。 |
+| ANIMATOR_DURATION_SCALE       | string | 是   | 是   | 动画持续时间的比例因子。影响所有此类动画的开始延迟和持续时间。<br/>值为0，表示动画将立即结束。默认值为1。                                                             |
+| TRANSITION_ANIMATION_SCALE    | string | 是   | 是   | 过渡动画的比例因子。<br/>值为0，表示禁用过渡动画。                                                                                         |
+| WINDOW_ANIMATION_SCALE        | string | 是   | 是   | 普通窗口动画的比例因子。<br/>值为0，表示禁用窗口动画。                                                                                       |
+| DISPLAY_INVERSION_STATUS      | string | 是   | 是   | 是否启用显示颜色反转。<br/>- 值为1，表示启用显示颜色反转。<br/>- 值为0，表示不启用显示颜色反转。                                                             |
 
 ## general
 
@@ -87,12 +88,12 @@ import settings from '@ohos.settings';
 | ACCESSIBILITY_STATUS             | string | 是   | 是   | 是否启用辅助功能。<br>- 值为1，表示启用辅助功能。<br/>- 值为0，表示不启用辅助功能。 |
 | ACTIVATED_ACCESSIBILITY_SERVICES | string | 是   | 是   | 已激活的辅助功能的列表。                                     |
 | GEOLOCATION_ORIGINS_ALLOWED      | string | 是   | 是   | 浏览器可以使用的默认地理位置。多个地理位置由空格分隔。       |
-| SKIP_USE_HINTS                   | string | 是   | 是   | 应用程序是否应在首次启动时尝试跳过所有介绍性提示。适用于临时用户或熟悉环境的用户。<br>- 值为1，表示应用程序将尝试在第一次启动时跳过所有介绍性提示。<br/>- 值为0，表示应用程序不会在首次启动时跳过介绍性提示。 |
+| SKIP_USE_HINTS                   | string | 是   | 是   | 应用程序是否应在首次启动时跳过所有介绍性提示。适用于临时用户或熟悉环境的用户。<br>- 值为1，表示应用程序将在第一次启动时跳过所有介绍性提示。<br/>- 值为0，表示应用程序不会在首次启动时跳过介绍性提示。 |
 | TOUCH_EXPLORATION_STATUS         | string | 是   | 是   | 是否启用触摸浏览。<br>- 值为1，表示启用触摸浏览。<br/>- 值为0，表示不启用触摸浏览。 |
 
 ## input
 
-提供设置有关输入法信息的数据项。(暂不支持)
+提供设置有关输入法信息的数据项(暂不支持)。
 
 ### 属性
 
@@ -111,7 +112,7 @@ import settings from '@ohos.settings';
 
 ## network
 
-提供设置网络信息的数据项。(暂不支持)
+提供设置网络信息的数据项(暂不支持)。
 
 ### 属性
 
@@ -125,7 +126,7 @@ import settings from '@ohos.settings';
 
 ## phone
 
-提供设置来电和去电接听方式的数据项。(暂不支持)
+提供设置来电和去电接听方式的数据项(暂不支持)。
 
 ### 属性
 
@@ -137,29 +138,29 @@ import settings from '@ohos.settings';
 
 ## sound
 
-提供设置声音效果的数据项。(暂不支持)
+提供设置声音效果的数据项(暂不支持)。
 
 ### 属性
 
 **系统能力：** SystemCapability.Applications.Settings.Core
 
-| 名称                         | 类型   | 可读 | 可写 | 说明                                                         |
-| ---------------------------- | ------ | ---- | ---- | ------------------------------------------------------------ |
+| 名称                         | 类型   | 可读 | 可写 | 说明                                                                       |
+| ---------------------------- | ------ | ---- | ---- |--------------------------------------------------------------------------|
 | VIBRATE_WHILE_RINGING        | string | 是   | 是   | 设备在来电响铃时是否振动。此属性由电话和设置应用程序使用。<br/>该值是布尔类型，仅影响设备因来电而响铃的情况，不影响任何其他应用程序或场景。 |
-| DEFAULT_ALARM_ALERT          | string | 是   | 是   | 系统默认告警的存储区域。                                     |
-| DTMF_TONE_TYPE_WHILE_DIALING | string | 是   | 是   | 拨号时播放的双音多频(DTMF)音的类型。 <br>值为0表示常规的短音效。<br/>值为1表示长音效。 |
-| DTMF_TONE_WHILE_DIALING      | string | 是   | 是   | 拨号时是否播放DTMF音。<br>值为1，表示播放DTMF音。<br/>值为0，表示不播放。 |
-| AFFECTED_MODE_RINGER_STREAMS | string | 是   | 是   | 音频流受振铃模式和请勿打扰(DND)模式更改的影响。要求特定的音频流受到振铃模式和DDN模式变化的影响，将对应比特位设置为1。 |
-| AFFECTED_MUTE_STREAMS        | string | 是   | 是   | 受静音模式影响的音频流。要求特定音频流在静音模式下保持静音，将相应位设置为1。 |
-| DEFAULT_NOTIFICATION_SOUND   | string | 是   | 是   | 系统默认通知音的存储区域。                                   |
-| DEFAULT_RINGTONE             | string | 是   | 是   | 系统默认铃声的存储区域。                                     |
-| SOUND_EFFECTS_STATUS         | string | 是   | 是   | 声音功能是否可用。<br>值为0表示不可用。 <br/>值为1表示可用。   |
-| VIBRATE_STATUS               | string | 是   | 是   | 设备是否为事件振动。该参数在系统内部使用。 <br>值为1，表示设备会因事件而振动。 <br/>值为0，表示设备不因事件振动。 |
-| HAPTIC_FEEDBACK_STATUS       | string | 是   | 是   | 设备是否启用触觉反馈。<br/>值为true，表示启用触觉反馈。<br/>值为false，表示不启用触觉反馈。 |
+| DEFAULT_ALARM_ALERT          | string | 是   | 是   | 系统默认告警的存储区域。                                                             |
+| DTMF_TONE_TYPE_WHILE_DIALING | string | 是   | 是   | 拨号时播放的双音多频(DTMF)音的类型。 <br>值为0，表示常规的短音效。<br/>值为1，表示长音效。                   |
+| DTMF_TONE_WHILE_DIALING      | string | 是   | 是   | 拨号时是否播放DTMF音。<br>值为1，表示播放DTMF音。<br/>值为0，表示不播放。                           |
+| AFFECTED_MODE_RINGER_STREAMS | string | 是   | 是   | 音频流受振铃模式和请勿打扰(DND)模式更改的影响。要求特定的音频流受到振铃模式和DND模式变化的影响，将对应比特位设置为1。          |
+| AFFECTED_MUTE_STREAMS        | string | 是   | 是   | 受静音模式影响的音频流。要求特定音频流在静音模式下保持静音，将相应位设置为1。                                  |
+| DEFAULT_NOTIFICATION_SOUND   | string | 是   | 是   | 系统默认通知音的存储区域。                                                            |
+| DEFAULT_RINGTONE             | string | 是   | 是   | 系统默认铃声的存储区域。                                                             |
+| SOUND_EFFECTS_STATUS         | string | 是   | 是   | 声音功能是否可用。<br>值为0，表示不可用。 <br/>值为1，表示可用。                                   |
+| VIBRATE_STATUS               | string | 是   | 是   | 设备是否为事件振动。该参数在系统内部使用。 <br>值为1，表示设备会因事件而振动。 <br/>值为0，表示设备不因事件振动。          |
+| HAPTIC_FEEDBACK_STATUS       | string | 是   | 是   | 设备是否启用触觉反馈。<br/>值为true，表示启用触觉反馈。<br/>值为false，表示不启用触觉反馈。                  |
 
 ## TTS
 
-提供设置文本到语音(TTS)转换信息的数据项。(暂不支持)
+提供设置文本到语音(TTS)转换信息的数据项(暂不支持)。
 
 ### 属性
 
@@ -175,34 +176,34 @@ import settings from '@ohos.settings';
 
 ## wireless
 
-提供设置无线网络信息的数据项。(暂不支持)
+提供设置无线网络信息的数据项(暂不支持)。
 
 ### 属性
 
 **系统能力：** SystemCapability.Applications.Settings.Core
 
-| 名称                              | 类型   | 可读 | 可写 | 说明                                                         |
-| --------------------------------- | ------ | ---- | ---- | ------------------------------------------------------------ |
-| BLUETOOTH_DISCOVER_ABILITY_STATUS | string | 是   | 是   | 设备是否可以被其他设备通过蓝牙发现或连接。<br>值为0表示设备不可以被连接或发现。<br/>值为1表示设备可以被连接但不可以被发现。<br/>值为2表示设备可以被连接和发现。 |
-| BLUETOOTH_DISCOVER_TIMEOUT        | string | 是   | 是   | 通过蓝牙发现设备的持续时间(以秒为单位)。<br>这段时间后，设备不可以被蓝牙搜寻到。 |
+| 名称                              | 类型   | 可读 | 可写 | 说明                                                                                                       |
+| --------------------------------- | ------ | ---- | ---- |----------------------------------------------------------------------------------------------------------|
+| BLUETOOTH_DISCOVER_ABILITY_STATUS | string | 是   | 是   | 设备是否可以被其他设备通过蓝牙发现或连接。<br>值为0，表示设备不可以被连接或发现。<br/>值为1，表示设备可以被连接但不可以被发现。<br/>值为2，表示设备可以被连接和发现。              |
+| BLUETOOTH_DISCOVER_TIMEOUT        | string | 是   | 是   | 通过蓝牙发现设备的持续时间(以秒为单位)。<br>这段时间后，设备不可以被蓝牙搜寻到。                                                              |
 | AIRPLANE_MODE_RADIOS              | string | 是   | 是   | 启用飞行模式时要禁用的无线电信号列表。 <br>多个无线电信号用逗号(,)分隔。<br>取值包括以下常量：BLUETOOTH_RADIO、 CELL_RADIO、 NFC_RADIO、 WIFI_RADIO。 |
-| BLUETOOTH_RADIO                   | string | 是   | 否   | 常量，作为AIRPLANE_MODE_RADIOS的取值时表示蓝牙在飞行模式下禁用。 |
-| CELL_RADIO                        | string | 是   | 否   | 常量，作为AIRPLANE_MODE_RADIOS的取值时表示蜂窝无线电在飞行模式下禁用。 |
-| NFC_RADIO                         | string | 是   | 否   | 常量，作为AIRPLANE_MODE_RADIOS的取值时表示NFC在飞行模式下禁用。 |
-| WIFI_RADIO                        | string | 是   | 否   | 常量，作为AIRPLANE_MODE_RADIOS的取值时表示Wi-Fi在飞行模式下禁用。 |
-| BLUETOOTH_STATUS                  | string | 是   | 是   | 蓝牙是否可用。 <br>- 值为true表示蓝牙可用。<br/>- 值为false表示蓝牙不可用。 |
-| OWNER_LOCKDOWN_WIFI_CFG           | string | 是   | 是   | 是否应锁定由设备所有者的应用程序创建的Wi-Fi配置。<br>- 值为true表示Wi-Fi配置应该被锁定。<br/>- 值为false表示不应该被锁定。 |
-| WIFI_DHCP_MAX_RETRY_COUNT         | string | 是   | 是   | 尝试从DHCP服务器获取IP地址的最大次数。                     |
-| WIFI_TO_MOBILE_DATA_AWAKE_TIMEOUT | string | 是   | 是   | Wi-Fi连接断开后等待移动数据连接时保持唤醒锁的最长时间。  |
-| WIFI_STATUS                       | string | 是   | 是   | Wi-Fi是否可用。<br>- 值为true表示Wi-Fi可用。<br/>- 值为false表示Wi-Fi不可用。 |
-| WIFI_WATCHDOG_STATUS              | string | 是   | 是   | Wi-Fi的WatchDog是否可用。 <br>- 值为true表示可用。<br/>- 值为false表示不可用。 |
+| BLUETOOTH_RADIO                   | string | 是   | 否   | 常量，作为AIRPLANE_MODE_RADIOS的取值时表示蓝牙在飞行模式下禁用。                                                               |
+| CELL_RADIO                        | string | 是   | 否   | 常量，作为AIRPLANE_MODE_RADIOS的取值时表示蜂窝无线电在飞行模式下禁用。                                                            |
+| NFC_RADIO                         | string | 是   | 否   | 常量，作为AIRPLANE_MODE_RADIOS的取值时表示NFC在飞行模式下禁用。                                                              |
+| WIFI_RADIO                        | string | 是   | 否   | 常量，作为AIRPLANE_MODE_RADIOS的取值时表示Wi-Fi在飞行模式下禁用。                                                            |
+| BLUETOOTH_STATUS                  | string | 是   | 是   | 蓝牙是否可用。 <br>- 值为true，表示蓝牙可用。<br/>- 值为false，表示蓝牙不可用。                                                      |
+| OWNER_LOCKDOWN_WIFI_CFG           | string | 是   | 是   | 是否应锁定由设备所有者的应用程序创建的Wi-Fi配置。<br>- 值为true，表示Wi-Fi配置应该被锁定。<br/>- 值为false，表示不应该被锁定。                          |
+| WIFI_DHCP_MAX_RETRY_COUNT         | string | 是   | 是   | 尝试从DHCP服务器获取IP地址的最大次数。                                                                                   |
+| WIFI_TO_MOBILE_DATA_AWAKE_TIMEOUT | string | 是   | 是   | Wi-Fi连接断开后等待移动数据连接时保持唤醒锁的最长时间。                                                                           |
+| WIFI_STATUS                       | string | 是   | 是   | Wi-Fi是否可用。<br>- 值为true，表示Wi-Fi可用。<br/>- 值为false，表示Wi-Fi不可用。                                              |
+| WIFI_WATCHDOG_STATUS              | string | 是   | 是   | Wi-Fi的WatchDog是否可用。 <br>- 值为true，表示可用。<br/>- 值为false，表示不可用。                                              |
 
 
 ## settings.setValue<sup>10+</sup>
 
 setValue(context: Context, name: string, value: string, callback: AsyncCallback\<boolean>): void
 
-将数据项名称及数据项的值保存到数据库中，使用callback异步回调。
+将数据项名称及数据项的值保存到DEVICE_SHARED域数据库中，使用callback异步回调。
 
 **模型约束**：此接口仅可在Stage模型下使用。
 
@@ -222,10 +223,11 @@ setValue(context: Context, name: string, value: string, callback: AsyncCallback\
 **示例**：
 
 ```js
-import settings from '@ohos.settings';
+import { settings } from '@kit.BasicServicesKit';
+import { common } from '@kit.AbilityKit';
 
 // 更新数据项亮度的值(该数据项在数据库中已存在，故setValue方法将更新该数据项的值)。
-const context: Context =  getContext(this);
+const context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 settings.setValue(context, settings.display.SCREEN_BRIGHTNESS_STATUS, '100', (status) => {
   console.log('Callback return whether value is set.');
 });
@@ -235,7 +237,7 @@ settings.setValue(context, settings.display.SCREEN_BRIGHTNESS_STATUS, '100', (st
 
 setValue(context: Context, name: string, value: string): Promise\<boolean>
 
-将数据项名称及数据项的值保存到数据库中。使用Promise异步回调。
+将数据项名称及数据项的值保存到DEVICE_SHARED域数据库中。使用Promise异步回调。
 
 **模型约束**：此接口仅可在Stage模型下使用。
 
@@ -260,10 +262,11 @@ setValue(context: Context, name: string, value: string): Promise\<boolean>
 **示例**：
 
 ```js
-import settings from '@ohos.settings';
+import { settings } from '@kit.BasicServicesKit';
+import { common } from '@kit.AbilityKit';
 
 // 更新数据项亮度的值(该数据项在数据库中已存在，故setValue方法将更新该数据项的值)。
-const context: Context =  getContext(this);
+const context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 settings.setValue(context, settings.display.SCREEN_BRIGHTNESS_STATUS, '100').then((status) => {
   console.log('Callback return whether value is set.');
 });
@@ -309,10 +312,11 @@ setValue(context: Context, name: string, value: string, domainName: string): Pro
 **示例**：
 
 ```js
-import settings from '@ohos.settings';
+import { settings } from '@kit.BasicServicesKit';
+import { common } from '@kit.AbilityKit';
 
 // 更新数据项亮度的值(该数据项在数据库中已存在，故setValue方法将更新该数据项的值)。
-const context: Context =  getContext(this);
+const context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 settings.setValue(context, settings.display.SCREEN_BRIGHTNESS_STATUS, '100', settings.domainName.DEVICE_SHARED).then((status) => {
   console.log(`callback:return whether value is set.`)
 });
@@ -322,7 +326,7 @@ settings.setValue(context, settings.display.SCREEN_BRIGHTNESS_STATUS, '100', set
 
 getValue(context: Context, name: string, callback: AsyncCallback\<string>): void
 
-获取数据库中指定数据项的值。使用callback异步回调。
+获取数据库中DEVICE_SHARD域指定数据项的值。使用callback异步回调。
 
 **模型约束**：此接口仅可在Stage模型下使用。
 
@@ -339,8 +343,10 @@ getValue(context: Context, name: string, callback: AsyncCallback\<string>): void
 **示例**：
 
 ```js
-import settings from '@ohos.settings';
-const context: Context =  getContext(this);
+import { settings } from '@kit.BasicServicesKit';
+import { common } from '@kit.AbilityKit';
+
+const context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 settings.getValue(context, settings.display.SCREEN_BRIGHTNESS_STATUS, (err, value) => {
   if (err) {
     console.error(`Failed to get the setting. ${err.message} `);
@@ -354,7 +360,7 @@ settings.getValue(context, settings.display.SCREEN_BRIGHTNESS_STATUS, (err, valu
 
 getValue(context: Context, name: string): Promise\<string>
 
-获取数据库中指定数据项的值。使用Promise异步回调。
+获取数据库中DEVICE_SHARD域指定数据项的值。使用Promise异步回调。
 
 **模型约束**：此接口仅可在Stage模型下使用。
 
@@ -376,8 +382,10 @@ getValue(context: Context, name: string): Promise\<string>
 **示例**：
 
 ```js
-import settings from '@ohos.settings';
-const context: Context =  getContext(this);
+import { settings } from '@kit.BasicServicesKit';
+import { common } from '@kit.AbilityKit';
+
+const context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 settings.getValue(context, settings.display.SCREEN_BRIGHTNESS_STATUS).then((value) => {
   console.log(`promise:value -> ${value}`)
 });
@@ -413,10 +421,11 @@ getValue(context: Context, name: string, domainName: string): Promise\<string>;
 **示例**：
 
 ```js
-import settings from '@ohos.settings';
+import { settings } from '@kit.BasicServicesKit';
+import { common } from '@kit.AbilityKit';
 
 // 更新数据项亮度的值(该数据项在数据库中已存在，故getValue方法将更新该数据项的值)。
-const context: Context =  getContext(this);
+const context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 settings.getValue(context, settings.display.SCREEN_BRIGHTNESS_STATUS, settings.domainName.DEVICE_SHARED).then((value) => {
   console.log(`Promise:value -> ${value}`);
 });
@@ -449,10 +458,11 @@ getValueSync(context: Context, name: string, defValue: string): string;
 **示例**：
 
 ```js
-import settings from '@ohos.settings';
+import { settings } from '@kit.BasicServicesKit';
+import { common } from '@kit.AbilityKit';
 
 // 获取数据项亮度的值(该数据项在数据库中已存在)。
-const context: Context =  getContext(this);
+const context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 let value = settings.getValueSync(context, settings.display.SCREEN_BRIGHTNESS_STATUS, '10');
 ```
 
@@ -488,10 +498,11 @@ getValueSync(context: Context, name: string, defValue: string, domainName: strin
 **示例**：
 
 ```js
-import settings from '@ohos.settings';
+import { settings } from '@kit.BasicServicesKit';
+import { common } from '@kit.AbilityKit';
 
 // 更新数据项亮度的值(该数据项在数据库中已存在)。
-const context: Context =  getContext(this);
+const context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 let value = settings.getValueSync(context, settings.display.SCREEN_BRIGHTNESS_STATUS, '100',  settings.domainName.DEVICE_SHARED);
 ```
 
@@ -527,10 +538,11 @@ setValueSync(context: Context, name: string, value: string): boolean
 **示例**：
 
 ```js
-import settings from '@ohos.settings';
+import { settings } from '@kit.BasicServicesKit';
+import { common } from '@kit.AbilityKit';
 
 // 更新数据项亮度的值(该数据项在数据库中已存在，故setValueSync方法将更新该数据项的值)。
-const context: Context =  getContext(this);
+const context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 let ret = settings.setValueSync(context, settings.display.SCREEN_BRIGHTNESS_STATUS, '100');
 ```
 
@@ -577,10 +589,11 @@ setValueSync(context: Context, name: string, value: string, domainName: string):
 **示例**：
 
 ```js
-import settings from '@ohos.settings';
+import { settings } from '@kit.BasicServicesKit';
+import { common } from '@kit.AbilityKit';
 
 // 更新数据项亮度的值(该数据项在数据库中已存在，故setValueSync方法将更新该数据项的值)。
-const context: Context =  getContext(this);
+const context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 let ret = settings.setValueSync(context, settings.display.SCREEN_BRIGHTNESS_STATUS, '100', settings.domainName.DEVICE_SHARED);
 ```
 
@@ -588,7 +601,7 @@ let ret = settings.setValueSync(context, settings.display.SCREEN_BRIGHTNESS_STAT
 
 registerKeyObserver(context: Context, name: string, domainName: string, observer:AsyncCallback\<void>): boolean
 
-用于在指定上下文中注册一个观察者，以便在指定域名中观察指定的域名。当该键值发生变化时，将调用注册的回调函数。成功注册返回true，否则返回false。
+用于在指定上下文中注册一个观察者，以便在指定域名中观察指定的数据项。当该数据项的值发生变化时，将调用注册的回调函数。成功注册返回true，否则返回false。
 
 **模型约束**：此接口仅可在Stage模型下使用。
 
@@ -612,9 +625,10 @@ registerKeyObserver(context: Context, name: string, domainName: string, observer
 **示例**：
 
 ```js
-import settings from '@ohos.settings';
+import { settings } from '@kit.BasicServicesKit';
+import { common } from '@kit.AbilityKit';
 
-const context: Context =  getContext(this);
+const context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 settings.registerKeyObserver(context, settings.display.SCREEN_BRIGHTNESS_STATUS, settings.domainName.DEVICE_SHARED, (err, val) => {
   if (err) {
     console.error(`Failed to get the setting. ${err.message} `);
@@ -630,7 +644,7 @@ settings.registerKeyObserver(context, settings.display.SCREEN_BRIGHTNESS_STATUS,
 
 unregisterKeyObserver(context: Context, name: string, domainName: string): boolean
 
-同步方法，进行注销指定域名下对指定键的监视器。
+同步方法，进行注销指定域名下对指定数据项名称的监视器。
 
 **模型约束**：此接口仅可在Stage模型下使用。
 
@@ -651,9 +665,10 @@ unregisterKeyObserver(context: Context, name: string, domainName: string): boole
 **示例**：
 
 ```js
-import settings from '@ohos.settings';
+import { settings } from '@kit.BasicServicesKit';
+import { common } from '@kit.AbilityKit';
 
-const context: Context =  getContext(this);
+const context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 let ret = settings.unregisterKeyObserver(context, settings.display.SCREEN_BRIGHTNESS_STATUS,  settings.domainName.DEVICE_SHARED);
 ```
 
@@ -691,10 +706,11 @@ openNetworkManagerSettings(context: Context): Promise\<boolean>
 **示例**：
 
 ```js
-import settings from '@ohos.settings';
+import { settings } from '@kit.BasicServicesKit';
+import { common } from '@kit.AbilityKit';
 
 // 跳转网络管理器设置页面。
-const context: Context =  getContext(this);
+const context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 settings.openNetworkManagerSettings(context).then((status) => {
   console.log(`callback:return whether setings is open.`)
 });
@@ -704,7 +720,7 @@ settings.openNetworkManagerSettings(context).then((status) => {
 
 enableAirplaneMode(enable: boolean, callback: AsyncCallback\<void>): void
 
-启用或禁用飞行模式。使用callback异步回调。(暂不支持)
+启用或禁用飞行模式。使用callback异步回调(暂不支持)。
 
 **系统能力**：SystemCapability.Applications.Settings.Core
 
@@ -732,7 +748,7 @@ settings.enableAirplaneMode(isEnabled, (err:Error) => {
 
 enableAirplaneMode(enable: boolean): Promise\<void>
 
-启用或禁用飞行模式。使用Promise异步回调。(暂不支持)
+启用或禁用飞行模式。使用Promise异步回调(暂不支持)。
 
 **系统能力**：SystemCapability.Applications.Settings.Core
 
@@ -763,7 +779,7 @@ settings.enableAirplaneMode(isEnabled).then(() => {
 
 canShowFloating(callback: AsyncCallback\<boolean>): void
 
-检查应用是否能够以悬浮窗形式显示。使用callback异步回调。(暂不支持)
+检查应用是否能够以悬浮窗形式显示。使用callback异步回调(暂不支持)。
 
 **系统能力**：SystemCapability.Applications.Settings.Core
 
@@ -789,7 +805,7 @@ settings.canShowFloating((err:Error, status: boolean) => {
 
 canShowFloating(): Promise\<boolean>
 
-检查应用是否能够以悬浮窗形式显示。使用Promise异步回调。(暂不支持)
+检查应用是否能够以悬浮窗形式显示。使用Promise异步回调(暂不支持)。
 
 **系统能力**：SystemCapability.Applications.Settings.Core
 
@@ -811,7 +827,7 @@ settings.canShowFloating().then((status:boolean) => {
 
 getUriSync(name: string): string
 
-获取数据项的URI。(暂不支持)
+获取数据项的URI(暂不支持)。
 
 **系统能力**：SystemCapability.Applications.Settings.Core
 
@@ -838,7 +854,7 @@ let uriVar:string = settings.getUriSync(settings.display.SCREEN_BRIGHTNESS_STATU
 
 getURI(name: string, callback: AsyncCallback\<object>): void
 
-获取数据项的URI。使用callback异步回调。(暂不支持)
+获取数据项的URI。使用callback异步回调(暂不支持)。
 
 > **说明：**
 >
@@ -865,7 +881,7 @@ settings.getURI(settings.display.SCREEN_BRIGHTNESS_STATUS, (uri:string) => {
 
 getURI(name: string): Promise\<object>
 
-获取数据项的URI。使用Promise异步回调。(暂不支持)
+获取数据项的URI。使用Promise异步回调(暂不支持)。
 
 > **说明：**
 >
@@ -899,7 +915,7 @@ settings.getURI(settings.display.SCREEN_BRIGHTNESS_STATUS).then((uri:string) => 
 
 getValue(dataAbilityHelper: DataAbilityHelper, name: string, callback: AsyncCallback\<object>): void
 
-获取数据库中指定数据项的值。使用callback异步回调。
+获取数据库中DEVICE_SHARD域指定数据项的值。使用callback异步回调。
 
 > **说明：**
 >
@@ -937,7 +953,7 @@ settings.getValue(helper, settings.display.SCREEN_BRIGHTNESS_STATUS, (err:Error,
 
 getValue(dataAbilityHelper: DataAbilityHelper, name: string): Promise\<object>
 
-获取数据库中指定数据项的值。使用Promise异步回调。
+获取数据库中DEVICE_SHARD域指定数据项的值。使用Promise异步回调。
 
 > **说明：**
 >

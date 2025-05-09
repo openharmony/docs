@@ -130,8 +130,7 @@ The type of credential has not been enrolled.
 
 **可能原因**
 
-例如调用userAuth模块的getAvailableStatus接口，传入的authType参数为FACE，但是当前的设备没有录入人脸凭据，则会返回12500010错误码。
-调用start接口发起人脸认证，但是目前的设备没有录入人脸凭据，则会返回12500010错误码。
+例如调用userAuth模块的getAvailableStatus接口，传入的authType参数为FACE，但是当前的设备没有录入人脸凭据，则会返回12500010错误码。调用start接口发起人脸认证，但是目前的设备没有录入人脸凭据，则会返回12500010错误码。
 
 **处理步骤**
 
@@ -193,7 +192,6 @@ Operation failed because of authToken has expired.
 **处理步骤**
 
 重新发起认证，签发有效token。
-<!--DelEnd-->
 
 ## 12700001 人脸录入过程中的操作失败
 
@@ -211,3 +209,4 @@ Operation failed.
 **处理步骤**
 
 系统服务内部工作异常，请稍后重新调用接口，或者重启设备尝试。
+<!--DelEnd-->

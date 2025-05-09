@@ -4623,6 +4623,17 @@
 
 **起始版本**：18
 
+## ohos.permission.ACCESS_CALENDARDATA_FOR_BROKER
+
+允许系统服务broker访问日历数据。
+
+**权限级别**：system_core
+
+**授权方式**：系统授权（system_grant）
+
+**ACL使能**：true
+
+**起始版本**：17
 
 ## ohos.permission.ALLOW_ACCESS_TIPS
 

@@ -1,5 +1,6 @@
 # GridContainer
 
+<!--deprecated_code_no_check-->
 纵向排布栅格布局容器，仅在栅格布局场景中使用。
 
 >  **说明：**

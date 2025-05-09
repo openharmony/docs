@@ -139,13 +139,13 @@
 - ArkTS代码示例
     ```ts
     // index.ets
-    import testNapi from 'libentry.so'
-
+    import testNapi from 'libentry.so';
+    
     export function SetTimeout() : Promise<number> {
         return new Promise((resolve) => {
             setTimeout(() => {
                 resolve(42);
-            }, 1000)
+            }, 1000);
         })
     }
     testNapi.callArkTSAsync(SetTimeout);

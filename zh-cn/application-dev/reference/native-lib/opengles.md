@@ -812,6 +812,8 @@ EGLBoolean eglSwapBuffers(EGLDisplay dpy, // EGL显示连接
 
 eglSwapBuffers函数用于交换前后缓冲区的内容，并将渲染结果显示在屏幕上。
 
+<!--RP1--><!--RP1End-->
+
 ## 相关实例
 
 针对OpenGL ES的使用和相关开发，有以下相关实例可供参考：

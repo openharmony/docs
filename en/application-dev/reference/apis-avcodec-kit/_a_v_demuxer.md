@@ -5,7 +5,7 @@
 
 The AVDemuxer module provides the APIs for extracting [samples](../../media/avcodec/audio-video-demuxer.md) from media streams.
 
-For details about the development guide and sample, see [Media Data Demuxing](../../media/avcodec/audio-video-demuxer.md).
+For details about the development guide and sample, see [Media Data Demultiplexing](../../media/avcodec/audio-video-demuxer.md).
 
 **System capability**: SystemCapability.Multimedia.Media.Spliter
 

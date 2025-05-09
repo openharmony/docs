@@ -204,9 +204,9 @@ canvas.detachBrush();
 
 | 接口 | 描述 |
 | -------- | -------- |
-| save(): void; | 用于保存当前画布的状态（画布矩阵）到一个栈顶。 |
-| restore(): void; | 用于恢复保存在栈顶的画布状态（画布矩阵）。 |
-| restoreToCount(count: number): void; | 用于恢复到指定数量的画布状态（画布矩阵）。 |
+| save(): void | 用于保存当前画布的状态（画布矩阵）到一个栈顶。 |
+| restore(): void | 用于恢复保存在栈顶的画布状态（画布矩阵）。 |
+| restoreToCount(count: number): void | 用于恢复到指定数量的画布状态（画布矩阵）。 |
 
 简单示例和示意图如下所示：
 
@@ -236,3 +236,11 @@ canvas.detachPen();
 
 
 ![Screenshot_20241129152510415](figures/Screenshot_20241129152510415.jpg)
+
+<!--RP1-->
+## 相关实例
+
+针对Drawing(ArkTS)的开发，有以下相关实例可供参考：
+
+- [ArkTSGraphicsDraw (API14)](https://gitee.com/openharmony/applications_app_samples/tree/master/code/DocsSample/Drawing/ArkTSGraphicsDraw)
+<!--RP1End-->

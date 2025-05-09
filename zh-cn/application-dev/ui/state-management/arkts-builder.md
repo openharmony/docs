@@ -264,7 +264,7 @@ struct Parent {
         const child_value: ChildTmp = {
           val: 2
         }
-        this.objParam.arrayTmp_value.push(child_value)
+        this.objParam.arrayTmp_value.push(child_value);
       })
     }
   }
@@ -304,7 +304,7 @@ struct Parent {
         .backgroundColor('#000000').margin(10)
       Button('点击改变参数值').onClick(() => {
         this.objParam.str_value = 'str_value Hello World';
-        this.label = 'label Hello World'
+        this.label = 'label Hello World';
       })
     }
   }

@@ -21,7 +21,7 @@ Typical firewall scenarios include:
 1. Restricting network access for specific applications
 2. Restricting network communication to specific IP addresses, protocols, and ports
 3. Restricting network communication of specific applications to specific IP addresses, protocols, and ports
-4. Putting interception rules into effect immediately after delivery (This function is applicable only to the TCP protocol. An intercepted TCP connection must be disconnected.)  
+4. Putting interception rules into effect immediately after delivery (This function is applicable only to the TCP protocol. An intercepted TCP connection must be disconnected.)
 - Domain name-based access control
 1. Restricting DNS resolution of an application for specific domain names (This function is applicable to standard unencrypted DNS protocols, but not encrypted and private DNS protocols.)
 2. Restricting DNS resolution of specific applications for specific domain names (This function is applicable to standard unencrypted DNS protocols, but not encrypted and private DNS protocols.)

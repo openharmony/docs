@@ -123,7 +123,7 @@ stateStyles可以通过this绑定组件内的常规变量和状态变量。
 @Component
 struct CompWithInlineStateStyles {
   @State focusedColor: Color = Color.Red;
-  normalColor: Color = Color.Green
+  normalColor: Color = Color.Green;
 
   build() {
     Column() {
@@ -137,7 +137,7 @@ struct CompWithInlineStateStyles {
           }
         })
         .onClick(() => {
-          this.focusedColor = Color.Pink
+          this.focusedColor = Color.Pink;
         })
         .margin('30%')
     }

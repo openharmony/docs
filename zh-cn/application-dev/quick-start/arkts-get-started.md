@@ -1,7 +1,7 @@
 # 初识ArkTS语言
 
 
-ArkTS是OpenHarmony优选的主力应用开发语言。ArkTS围绕应用开发在[TypeScript](https://www.typescriptlang.org/)（简称TS）生态基础上做了进一步扩展，保持了TS的基本风格，同时通过规范定义强化开发期静态检查和分析，提升程序执行稳定性和性能。
+ArkTS是OpenHarmony优选的主力应用开发语言，它在[TypeScript](https://www.typescriptlang.org/)（简称TS）生态基础上做了扩展，保持TS的基本风格。通过规范定义强化开发期静态检查和分析，提升程序执行稳定性和性能。
 
 
 从API version 10开始，ArkTS进一步通过规范强化静态检查和分析，对比标准TS的差异可以参考[从TypeScript到ArkTS的适配规则](typescript-to-arkts-migration-guide.md)：
@@ -15,10 +15,8 @@ ArkTS是OpenHarmony优选的主力应用开发语言。ArkTS围绕应用开发�
 
 - 不支持Structural typing：对Structural typing的支持需要在语言、编译器和运行时进行大量的考虑和仔细的实现，当前ArkTS不支持该特性。根据实际场景的需求和反馈，我们后续会重新考虑。
 
-
-ArkTS兼容TS/JavaScript(简称JS)生态，开发者可以使用TS/JS进行开发或复用已有代码。OpenHarmony系统对TS/JS支持的详细情况参见[兼容TS/JS的约束](arkts-migration-background.md#方舟运行时兼容tsjs)。
-
+ArkTS兼容TS/JavaScript（简称JS）生态，开发者可以使用TS/JS进行开发或复用已有代码。OpenHarmony系统对TS/JS支持的详细情况见[兼容TS/JS的约束](arkts-migration-background.md#方舟运行时兼容tsjs)。
 
 未来，ArkTS会结合应用开发/运行的需求持续演进，逐步提供并行和并发能力增强、系统类型增强、分布式开发范式等更多特性。
 
-如需更详细了解ArkTS语言，可见[ArkTS具体指南](../arkts-utils/arkts-overview.md)。
+如需深入了解ArkTS语言，可参考[ArkTS具体指南](../arkts-utils/arkts-overview.md)。

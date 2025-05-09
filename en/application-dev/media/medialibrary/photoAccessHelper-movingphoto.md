@@ -34,6 +34,7 @@ For details, see [SaveButton](../../reference/apis-arkui/arkui-ts/ts-security-co
 
 ```ts
 import { photoAccessHelper } from '@kit.MediaLibraryKit';
+import { common } from '@kit.AbilityKit';
 
 @Entry
 @Component
@@ -55,7 +56,7 @@ struct Index {
           .onClick(async (event, result: SaveButtonOnClickResult) => {
              if (result == SaveButtonOnClickResult.SUCCESS) {
                try {
-                 let context = getContext();
+                 let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
                  let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
                  // Ensure that the assets specified by imageFileUri and videoFileUri exist. imageFileUri and videoFileUri specify the image and video of the moving photo to create.
                  let imageFileUri = 'file://com.example.temptest/data/storage/el2/base/haps/entry/files/create_moving_photo.jpg';
@@ -100,7 +101,10 @@ After obtaining a moving photo object, you can use [MovingPhotoView](movingphoto
 ```ts
 import { photoAccessHelper } from '@kit.MediaLibraryKit';
 import { dataSharePredicates } from '@kit.ArkData';
-let context = getContext(this);
+import { common } from '@kit.AbilityKit';
+
+// Obtain the context from the component and ensure that the return value of this.getUiContext().getHostContext() is UIAbilityContext.
+let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
 
 async function example() {
@@ -146,7 +150,10 @@ Call [MediaAssetManager.loadMovingPhoto](../../reference/apis-media-library-kit/
 
 ```ts
 import { photoAccessHelper } from '@kit.MediaLibraryKit';
-let context = getContext(this);
+import { common } from '@kit.AbilityKit';
+
+// Obtain the context from the component and ensure that the return value of this.getUiContext().getHostContext() is UIAbilityContext.
+let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 
 async function example() {
   try {

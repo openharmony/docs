@@ -1,5 +1,6 @@
 # 栅格设置
 
+<!--deprecated_code_no_check-->
 >  **说明：**
 >
 >  - 从API version 9开始，该模块不再维护，推荐使用新组件[GridCol](ts-container-gridcol.md)、[GridRow](ts-container-gridrow.md)替代。
