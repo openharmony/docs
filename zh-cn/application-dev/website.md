@@ -1068,6 +1068,7 @@
       - Connectivity Kit（短距通信服务）<!--connectivity-kit-->
         - [Connectivity Kit简介](connectivity/connectivity-kit-intro.md)
         - 蓝牙<!--bluetooth-->
+          - [蓝牙服务开发概述](connectivity/bluetooth/bluetooth-overview.md)
           - 传统蓝牙<!--bluetooth-br-->
             - [蓝牙设置](connectivity/bluetooth/br-development-guide.md)
             - [传输数据](connectivity/bluetooth/spp-development-guide.md)
