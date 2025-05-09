@@ -2120,7 +2120,7 @@ DLP沙箱身份。
 | offlineAccess | boolean | 否 | 是 | 表示是否是离线打开。true表示允许离线打开，false表示不可离线打开。 |
 | everyoneAccessList | Array&lt;[DLPFileAccess](js-apis-dlppermission.md#dlpfileaccess)&gt; | 否 | 否 | 表示授予所有人的权限，默认为空。 |
 | expireTime<sup>11+</sup> | number | 否 | 否 | 表示文件权限到期时间戳，默认为空。 |
-| actionUpomExpiry<sup>20+</sup> | [ActionType](#ActionType20) | 否 | 否 | 表示到期后文件权限，仅在expireTime不为空时生效。 |
+| actionUponExpiry<sup>20+</sup> | [ActionType](#ActionType20) | 否 | 否 | 表示到期后文件权限，仅在expireTime不为空时生效。 |
 
 ## GatheringPolicyType
 
