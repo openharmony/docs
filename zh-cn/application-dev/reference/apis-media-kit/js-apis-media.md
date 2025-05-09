@@ -4998,7 +4998,7 @@ prepare(config: AVTranscoderConfig): Promise\<void>
 
 | 参数名 | 类型                                   | 必填 | 说明                       |
 | ------ | -------------------------------------- | ---- | -------------------------- |
-| config | [AVTranscoderConfig](#avtranscoderconfig12) | 是   | 配置视频转码的相关参数。 |
+| config | [AVTranscoderConfig](#avtranscoderconfig12) | 是   | 配置视频转码的相关参数。 <!--RP1-->当config中设置的目标视频分辨率宽videoFrameWidth大于原视频的宽或目标视频分辨率宽videoFrameHeight大于原视频的高时，会上报错误码401。<!--RP1End-->|
 
 **返回值：**
 
@@ -5009,7 +5009,6 @@ prepare(config: AVTranscoderConfig): Promise\<void>
 **错误码：**
 
 以下错误码的详细介绍请参见[媒体错误码](errorcode-media.md)。
-<!--RP1-->当config中设置的目标视频分辨率宽videoFrameWidth大于原视频的宽或目标视频分辨率宽videoFrameHeight大于原视频的高时，会上报错误码401<!--RP1End-->
 
 | 错误码ID | 错误信息                               |
 | -------- | -------------------------------------- |
@@ -5030,10 +5029,6 @@ let avTranscoderConfig: media.AVTranscoderConfig = {
   fileFormat : media.ContainerFormatType.CFT_MPEG_4,
   videoBitrate : 3000000,
   videoCodec : media.CodecMimeType.VIDEO_AVC,
-  <!--RP2-->
-  videoFrameWidth : 1280,
-  videoFrameHeight : 720,
-  <!--RP2End-->
 }
 
 avTranscoder.prepare(avTranscoderConfig).then(() => {
@@ -5402,10 +5397,8 @@ avTranscoder.off('complete');
 | fileFormat         | [ContainerFormatType](#containerformattype8) | 否 | 否   | 输出视频文件的封装格式，当前视频文件仅支持MP4。|
 | videoBitrate         | number | 否 |  是  | 输出视频的码率，单位为比特率（bps）。默认码率按输出视频的分辨率设置，[240p，480P]默认码率值为1Mbps，(480P,720P]默认码率值为2Mbps，(720P,1080P]默认码率值为4Mbps，1080P及以上默认值为8Mbps。|
 | videoCodec        | [CodecMimeType](#codecmimetype8) | 否 | 是   | 输出视频的编码格式，当前仅支持AVC和HEVC。若源视频编码格式为HEVC，则默认设置为HEVC，否则默认设置为AVC。|
-<!--RP3-->
 | videoFrameWidth        | number | 否 |  是   | 输出视频帧的宽，单位为像素（px），支持范围[240-3840]。默认设置为源视频帧的宽。|
 | videoFrameHeight        | number | 否 |  是   | 输出视频帧的高，单位为像素（px），支持范围[240-2160]。默认设置为源视频帧的高。|
-<!--RP3End-->
 
 
 ## AVMetadataExtractor<sup>11+</sup>
