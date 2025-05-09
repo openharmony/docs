@@ -35,8 +35,10 @@
 2. 打开src/main/cpp/napi_init.cpp文件，添加头文件。
 
     ```c++
-    #include "bundle/native_interface_bundle.h" //NDK接口依赖头文件
-    #include <cstdlib>  //free()函数依赖的基础库
+    //NDK接口依赖头文件
+    #include "bundle/native_interface_bundle.h"
+    //free()函数依赖的基础库
+    #include <cstdlib>
     ```
 
 **3. 修改源文件**
@@ -133,7 +135,7 @@
         napi_value moduleName;
         napi_create_string_utf8(env, elementName.moduleName, NAPI_AUTO_LENGTH, &moduleName);
         napi_set_named_property(env, result, "moduleName", moduleName);
-        // Native接口获取的abilityName转为js对象里的abilityName属性
+        // Native接口获取的ability名称转为js对象里的abilityName属性
         napi_value abilityName;
         napi_create_string_utf8(env, elementName.abilityName, NAPI_AUTO_LENGTH, &abilityName);
         napi_set_named_property(env, result, "abilityName", abilityName);
