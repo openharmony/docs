@@ -62,7 +62,7 @@ The OH_NativeImage module provides the capabilities of **NativeImage**. Function
 | int32_t [OH_NativeImage_GetTransformMatrixV2](#oh_nativeimage_gettransformmatrixv2) ([OH_NativeImage](#oh_nativeimage-1) \*image, float matrix[16]) | Obtains, based on the rotation angle set by the producer, the transform matrix of the texture image that recently called the **OH_NativeImage_UpdateSurfaceImage** function.<br>The matrix is updated only after [OH_NativeImage_UpdateSurfaceImage](#oh_nativeimage_updatesurfaceimage) is called.<br>This function is not thread-safe.| 
 | int32_t [OH_NativeImage_GetBufferMatrix](#oh_nativeimage_getbuffermatrix) ([OH_NativeImage](#oh_nativeimage-1) \*image, float matrix[16]) | Obtains the transformation matrix calculated based on the rotation angle set by the producer and the actual valid content area of the buffer.| 
 | int32_t [OH_NativeImage_AcquireNativeWindowBuffer](#oh_nativeimage_acquirenativewindowbuffer) ([OH_NativeImage](#oh_nativeimage-1) \*image, [OHNativeWindowBuffer](_native_window.md#ohnativewindowbuffer) \*\*nativeWindowBuffer, int \*fenceFd) | Obtains an **OHNativeWindowBuffer** instance through an **OH_NativeImage** instance on the consumer side.<br>This function cannot be used together with [OH_NativeImage_UpdateSurfaceImage](#oh_nativeimage_updatesurfaceimage).<br>This function creates an **OHNativeWindowBuffer**.<br>When using the **OHNativeWindowBuffer**, call [OH_NativeWindow_NativeObjectReference](_native_window.md#oh_nativewindow_nativeobjectreference) to increase its reference count by one.<br>When finishing using the **OHNativeWindowBuffer**, call [OH_NativeWindow_NativeObjectUnreference](_native_window.md#oh_nativewindow_nativeobjectunreference) to decrease the reference count by one.<br>This function must be used in pair with [OH_NativeImage_ReleaseNativeWindowBuffer](#oh_nativeimage_releasenativewindowbuffer). Otherwise, memory leak occurs.<br>When **fenceFd** is used up, you must close it.<br>This function is not thread-safe.| 
-| int32_t [OH_NativeImage_ReleaseNativeWindowBuffer](#oh_nativeimage_releasenativewindowbuffer) ([OH_NativeImage](#oh_nativeimage-1) \*image, [OHNativeWindowBuffer](_native_window.md#ohnativewindowbuffer) \*nativeWindowBuffer, int fenceFd) | Releases an **OHNativeWindowBuffer** instance through an **OH_NativeImage** instance.<br>The system will close **fenFd**. You do not need to close it.<br>This function is not thread-safe.| 
+| int32_t [OH_NativeImage_ReleaseNativeWindowBuffer](#oh_nativeimage_releasenativewindowbuffer) ([OH_NativeImage](#oh_nativeimage-1) \*image, [OHNativeWindowBuffer](_native_window.md#ohnativewindowbuffer) \*nativeWindowBuffer, int fenceFd) | Releases an **OHNativeWindowBuffer** instance through an **OH_NativeImage** instance.<br>The system will close **fenceFd**. You do not need to close it.<br>This function is not thread-safe.| 
 | [OH_NativeImage](#oh_nativeimage-1) \* [OH_ConsumerSurface_Create](#oh_consumersurface_create) () | Creates an **OH_NativeImage** instance as the consumer of the surface.<br>This function is used only for memory cycling of the surface consumer. Memory rendering is not proactively performed in the created **OH_NativeImage** instance.<br>This function cannot be used together with [OH_NativeImage_UpdateSurfaceImage](#oh_nativeimage_updatesurfaceimage).<br>This function must be used in pair with **OH_NativeImage_AcquireNativeWindowBuffer** and **OH_NativeImage_ReleaseNativeWindowBuffer**.<br>This function must be used in pair with [OH_NativeImage_Destroy](#oh_nativeimage_destroy). Otherwise, memory leak occurs.<br>This function is not thread-safe.| 
 | int32_t [OH_ConsumerSurface_SetDefaultUsage](#oh_consumersurface_setdefaultusage) ([OH_NativeImage](#oh_nativeimage-1) \*image, uint64_t usage) | Sets the default read/write mode. This function is not thread-safe.| 
 | int32_t [OH_ConsumerSurface_SetDefaultSize](#oh_consumersurface_setdefaultsize) ([OH_NativeImage](#oh_nativeimage-1) \*image, int32_t width, int32_t height) | Sets the default size of a geometric shape. This function is not thread-safe.| 
@@ -191,9 +191,7 @@ Enumerates the error codes.
 | NATIVE_ERROR_EGL_STATE_UNKNOWN  | The EGL environment is abnormal.  | 
 | NATIVE_ERROR_EGL_API_FAILED  | Failed to call the EGL APIs.  | 
 
-
 ## Function Description
-
 ### OH_NativeImage_GetBufferMatrix()
 
 ```
@@ -367,7 +365,7 @@ int32_t OH_NativeImage_ReleaseNativeWindowBuffer (OH_NativeImage* image, OHNativ
 
 Releases an **OHNativeWindowBuffer** instance through an **OH_NativeImage** instance.
 
-The system will close **fenFd**. You do not need to close it.
+The system will close **fenceFd**. You do not need to close it.
 
 This function is not thread-safe.
 

@@ -11,8 +11,6 @@ The effector supports multiple input types, such as PixelMap, URI, surface, and 
 
 **Library**: libimage_effect.so
 
-**File to include**: &lt;multimedia/image_effect/image_effect.h&gt;
-
 **System capability**: SystemCapability.Multimedia.ImageEffect.Core
 
 **Since**: 12

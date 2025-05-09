@@ -1,6 +1,6 @@
 # 点击回弹效果
 
-设置组件点击时回弹效果。
+设置组件点击时的回弹效果。
 
 >  **说明：**
 >
@@ -49,7 +49,7 @@ struct ToggleExample {
           .selectedColor('#007DFF')
           .switchPointColor('#FFFFFF')
           .onChange((isOn: boolean) => {
-            console.info('Component status:' + isOn)
+            console.info('Component status:' + isOn);
           })
 
         Toggle({ type: ToggleType.Switch, isOn: true })
@@ -57,7 +57,7 @@ struct ToggleExample {
           .selectedColor('#007DFF')
           .switchPointColor('#FFFFFF')
           .onChange((isOn: boolean) => {
-            console.info('Component status:' + isOn)
+            console.info('Component status:' + isOn);
           })
       }
 
@@ -68,7 +68,7 @@ struct ToggleExample {
           .size({ width: 20, height: 20 })
           .selectedColor('#007DFF')
           .onChange((isOn: boolean) => {
-            console.info('Component status:' + isOn)
+            console.info('Component status:' + isOn);
           })
 
         Toggle({ type: ToggleType.Checkbox, isOn: true })
@@ -76,7 +76,7 @@ struct ToggleExample {
           .size({ width: 20, height: 20 })
           .selectedColor('#007DFF')
           .onChange((isOn: boolean) => {
-            console.info('Component status:' + isOn)
+            console.info('Component status:' + isOn);
           })
       }
 
@@ -88,7 +88,7 @@ struct ToggleExample {
         .clickEffect({level:ClickEffectLevel.HEAVY})
         .selectedColor('rgba(0,125,255,0.20)')
         .onChange((isOn: boolean) => {
-          console.info('Component status:' + isOn)
+          console.info('Component status:' + isOn);
         })
 
         Toggle({ type: ToggleType.Button, isOn: true }) {
@@ -97,7 +97,7 @@ struct ToggleExample {
         .clickEffect({level:ClickEffectLevel.HEAVY, scale: 0.5})
         .selectedColor('rgba(0,125,255,0.20)')
         .onChange((isOn: boolean) => {
-          console.info('Component status:' + isOn)
+          console.info('Component status:' + isOn);
         })
       }
     }.width('100%').padding(24)

@@ -9,7 +9,6 @@ The **Web** component supports debugging of web frontend pages by using DevTools
 ### Enabling Web Debugging for Application Code
 
 Before debugging a web page, call the [setWebDebuggingAccess()](../reference/apis-arkweb/js-apis-webview.md#setwebdebuggingaccess) API to enable the web debugging function. 
-
 If the web debugging function is not enabled, DevTools cannot detect the web page to be debugged.
 
 1. Enable web frontend page debugging in the application code.
@@ -56,24 +55,17 @@ Connect the device to a PC and enable Developer mode for subsequent port forward
    (2) Connect the device to the PC using a USB cable. Choose **Settings** > **System** > **Developer options** and enable USB debugging. In the displayed dialog box, touch **Allow**.
 
 2. Run the hdc command to connect to the device. 
-
    Run the following command in the CLI to check whether hdc can discover the device.
-   
    ```shell
    hdc list targets
    ```
-
    - If a device ID is returned, the device is connected. 
-
    ![hdc_list_targets_success](figures/devtools_resources_hdc_list_targets_success.png)
    - If **[Empty]** is returned, the device is not found. 
-
    ![hdc_list_targets_empty](figures/devtools_resources_hdc_list_targets_empty.jpg)
 
-3. Enter the hdc shell. 
-
+3. Enter the hdc shell.  
    After hdc is connected to the device, run the following command to enter hdc shell.
-
    ```shell
    hdc shell
    ```
@@ -87,7 +79,6 @@ However, Chrome cannot directly access the domain socket on the device. Therefor
    cat /proc/net/unix | grep devtools
    ```
    * If the preceding operations are correct, the domain socket port is displayed. 
-
    ![hdc_grep_devtools_38532](figures/devtools_resources_hdc_grep_devtools_38532.jpg)
 
    * If it is not displayed, check the following items again. 
@@ -95,9 +86,7 @@ However, Chrome cannot directly access the domain socket on the device. Therefor
      (2) The application uses the **Web** component to load the web page.
 
 2. Exit hdc shell, and run the following command to forward the obtained domain socket to TCP port 9222 of the PC. 
-   
    Run the **exit** command to exit the hdc shell.
-   
    ```shell
    exit
    ```
@@ -108,11 +97,9 @@ However, Chrome cannot directly access the domain socket on the device. Therefor
    > **NOTE**
    >
    > The number following **webview_devtools_remote_** indicates the process ID of the application where the **Web** component is located. The number is not fixed. Change the number to the obtained value. 
-   >
    > If the process ID of the application changes (for example, the application is restarted), forward the port again.
 
    The following figure shows a successful forwarding. 
-
    ![hdc_fport_38532_success](figures/devtools_resources_hdc_fport_38532_success.jpg)
 
 3. Run the following command to check whether the port is successfully forwarded.
@@ -120,34 +107,27 @@ However, Chrome cannot directly access the domain socket on the device. Therefor
    hdc fport ls
    ```
    * If a port forwarding task is returned, the operation is successful. 
-
    ![hdc_fport_ls_38532](figures/devtools_resources_hdc_fport_ls_38532.png)
-   * If **[Empty]** is returned, the operation fails.
-
+   * If **[Empty]** is returned, the operation fails. 
    ![hdc_fport_ls_empty](figures/devtools_resources_hdc_fport_ls_empty.jpg)
 
 ### Opening the Debugging Tool Page in Chrome
   1. Input **chrome://inspect/\#devices** in the address box of Chrome on the PC and open the page. 
-
   2. Configure the Chrome debugging tool. 
-
-     The web page to be debugged needs to be discovered from the local TCP port 9222. Therefore, ensure that **Discovery network targets** is selected. Then, configure the network. 
-
-     (1) Click the **Configure** button.
-
+     The web page to be debugged needs to be discovered from the local TCP port 9222. Therefore, ensure that **Discover network targets** is selected. Then, configure the network. 
+     (1) Click the **Configure** button. 
      (2) Add **localhost:9222** to **Target discovery settings**.
 
      ![chrome_configure](figures/devtools_resources_chrome_configure.jpg)
-     
+
   3. To debug multiple applications at the same time, add multiple port numbers in **Configure** of the **Devices** option on the Chrome debugging tool page.
 
      ![debug-effect](figures/debug-domains.png)
 
 ### Waiting for the Page to Be Debugged
 
-If the preceding steps are successful, the page to be debugged is displayed on the Chrome debugging page.
-
-![chrome_inspect](figures/devtools_resources_chrome_inspect.jpg)
+  If the preceding steps are successful, the page to be debugged is displayed on the Chrome debugging page. 
+  ![chrome_inspect](figures/devtools_resources_chrome_inspect.jpg)
 
 ### Starting Web Page Debugging
 
@@ -231,6 +211,7 @@ Copy the following information to create a .bat file, enable application debuggi
    ```
 ### On Linux or macOS
 Copy the following information to create an .sh file. Note that you need to run the **chmod** command and convert the file format. Enable the application debugging and run the file.
+This script will delete all port forwarding. If other tools (such as DevEco Studio) are using port forwarding, they will be affected.
    ```
    #!/bin/bash
 
@@ -297,7 +278,7 @@ Copy the following information to create an .sh file. Note that you need to run 
 ### What should I do if hdc cannot discover devices?
 **Symptom**
 
-The device ID is not displayed after the following command is executed.
+   The device ID is not displayed after the following command is executed.
    ```shell
    hdc list targets
    ```
@@ -310,20 +291,20 @@ The device ID is not displayed after the following command is executed.
 ### What should I do if "unauthorized" is displayed in the hdc command output?
 **Symptom**
 
-When the hdc command is executed, the system displays a message indicating that the device is "unauthorized".
+   When the hdc command is executed, the system displays a message indicating that the device is "unauthorized".
 
 **Possible Causes**
 
-The PC is not authorized to debug the device.
+   The PC is not authorized to debug the device.
 
 **Solution**
 
-When a device with USB debugging enabled is connected to an unauthorized PC, a dialog box is displayed, asking you whether to allow USB debugging. In this case, select **Allow**.
+  When a device with USB debugging enabled is connected to an unauthorized PC, a dialog box is displayed, asking you whether to allow USB debugging. In this case, select **Allow**.
 
 ### What should I do if the domain socket of DevTools cannot be found?
 **Symptom**
 
-No result is displayed after the following command is executed in hdc shell.
+   No result is displayed after the following command is executed in hdc shell.
    ```shell
    cat /proc/net/unix | grep devtools
    ```
@@ -333,10 +314,10 @@ No result is displayed after the following command is executed in hdc shell.
   * Ensure that the step of [Enabling Web Debugging for Application Code](#enabling-web-debugging-for-application-code) is performed.
   * Ensure that the application uses the **Web** component to load the web page.
 
-### What should I do if port forwarding fails
+### What should I do if port forwarding fails?
 **Symptom**
 
-The configured forwarding task is not displayed after the following command is executed.
+   The configured forwarding task is not displayed after the following command is executed.
    ```shell
    hdc fport ls
    ```
@@ -344,17 +325,14 @@ The configured forwarding task is not displayed after the following command is e
 **Solution**
 
   * Ensure that the domain socket exists on the device.
-
   * Ensure that **tcp:9222** on the PC is not occupied. 
-    
     If **tcp:9222** is occupied, forward the domain socket to another TCP port that is not occupied, for example, **tcp:9223**. 
-    
     If the domain socket is forwarded to a new TCP port, you need to change the port number in **Target discovery settings** of Chrome on the PC.
 
 ### What should I do if the web page to be debugged cannot be found in Chrome on the PC after port forwarding is successful?
 **Symptom**
 
-The web page to be debugged cannot be found in Chrome on the PC.
+  The web page to be debugged cannot be found in Chrome on the PC.
 
 **Possible Causes**
 
@@ -372,18 +350,15 @@ The port forwarding may be invalid due to the following reasons:
   * Delete unnecessary forwarding tasks from hdc.
   * After the domain socket is successfully forwarded, open **http://localhost:9222/json** using the Chrome on the PC. Change **9222** in the URL to the actual TCP port number.
 
-    - If the web page is normally displayed, the port forwarding is successful. On the Chrome debugging page, perform the operation of [Waiting for the Page to Be Debugged](#waiting-for-the-page-to-be-debugged).
-
+    - If the web page is normally displayed, the port forwarding is successful. On the Chrome debugging page, perform the operation of [Waiting for the Page to Be Debugged](#waiting-for-the-page-to-be-debugged). 
     ![chrome_localhost](figures/devtools_resources_chrome_localhost.jpg)
-- If an error page is displayed, port forwarding fails. For details about the solution, see [What should I do if port forwarding fails](#what-should-i-do-if-port-forwarding-fails). 
 
+    - If an error page is displayed, port forwarding fails. For details about the solution, see [What should I do if port forwarding fails](#what-should-i-do-if-port-forwarding-fails). 
     ![chrome_localhost_refused](figures/devtools_resources_chrome_localhost_refused.jpg)
-    
+
   * If the **http://localhost:9222/json** page is normally displayed on Chrome, but the debugging target cannot be found on the Chrome debugging page, perform the following operations:
     - Ensure that the port number in **Configure** on the Chrome debugging page is the same as the TCP port number specified for port forwarding.
-    
-    - In this topic, the default TCP port number is **9222**. 
-      
+    - In this topic, the default TCP port number is **9222**.  
       If you use another TCP port number (for example, **9223**), change the TCP port number in [Port Forwarding](#port-forwarding) and [Opening the Debugging Tool Page in Chrome](#opening-the-debugging-tool-page-in-chrome).
 
- <!--no_check--> 
+<!--no_check-->

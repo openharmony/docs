@@ -130,7 +130,6 @@ try {
 } catch (error) {
   console.log(`set shield status failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
-
 ```
 
 ## inputConsumer.getShieldStatus<sup>11+</sup>

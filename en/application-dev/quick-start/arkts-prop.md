@@ -19,11 +19,9 @@ For the \@Prop decorated variable of a child component, the change synchronizati
 
 - Whenever the data source changes, the \@Prop decorated variable gets updated, and any locally made changes are overwritten. In other words, the change is synchronized from the parent component to the (owning) child component, but not the other way around.
 
-## Restrictions
+## Constraints
 
 - When decorating variables, \@Prop makes a deep copy, during which all types, except primitive types, Map, Set, Date, and Array, will be lost. For example, for complex types provided by N-API, such as [PixelMap](../reference/apis-image-kit/js-apis-image.md#pixelmap7), because they are partially implemented in the native code, complete data cannot be obtained through a deep copy in ArkTS.
-
-- The \@Prop decorator cannot be used in custom components decorated by \@Entry.
 
 
 ## Rules of Use
@@ -32,7 +30,7 @@ For the \@Prop decorated variable of a child component, the change synchronizati
 | ----------- | ---------------------------------------- |
 | Decorator parameters      | None.                                       |
 | Synchronization type       | One-way: from the data source provided by the parent component to the \@Prop decorated variable. For details about the scenarios of nested types, see [Observed Changes](#observed-changes).|
-| Allowed variable types  | Object, class, string, number, Boolean, enum, and array of these types.<br>**undefined** or **null** (**any** is not supported).<br>Date type.<br>(Applicable to API version 11 or later) Map and Set types.<br>The union types defined by the ArkUI framework, including Length, ResourceStr, and ResourceColor, are supported.<br>The type must be specified.<br>The type must be the same as that of the [data source](arkts-state-management-overview.md#basic-concepts). There are three cases:<br>- Synchronizing the \@Prop decorated variable from a variable decorated by \@State or other decorators. Example: [Simple Type @Prop Synced from @State in Parent Component](#simple-type-prop-synced-from-state-in-parent-component).<br>- Synchronizing the \@Prop decorated variable from the item of an array decorated by an \@State or other decorators. Example: [Simple Type @Prop Synced from @State Array Item in Parent Component](#simple-type-prop-synced-from-state-array-item-in-parent-component).<br>- Synchronizing the \@Prop decorated variable from a state property of the Object or class type in the parent component. Example: [Class Object Type @Prop Synced from @State Class Object Property in Parent Component](#class-object-type-prop-synced-from-state-class-object-property-in-parent-component).<br>For details about the scenarios of supported types, see [Observed Changes](#observed-changes).<br>(Applicable to API version 11 or later) Union type of the preceding types, for example, **string \| number**, **string \| undefined** or **ClassA \| null**. For details, see [Union Type @Prop](#union-type-prop).<br>**NOTE**<br>When **undefined** or **null** is used, you are advised to explicitly specify the type to pass the TypeScript type check. For example, **@Prop a: string \| undefined = undefined** is recommended; **@Prop a: string = undefined** is not recommended.|
+| Allowed variable types  | Object, class, string, number, Boolean, enum, and array of these types.<br>**undefined** or **null** (**any** is not supported).<br>Date type.<br>(Applicable to API version 11 or later) Map and Set types.<br>The union types defined by the ArkUI framework, including Length, ResourceStr, and ResourceColor, are supported.<br>The type must be specified.<br>The type must be the same as that of the [data source](arkts-state-management-overview.md#basic-concepts). There are three cases:<br>- Synchronizing the \@Prop decorated variable from a variable decorated by \@State or other decorators. Example: [Simple Type @Prop Synced from @State in Parent Component](#simple-type-prop-synced-from-state-in-parent-component).<br>- Synchronizing the \@Prop decorated variable from the item of an array decorated by an \@State or other decorators. Example: [Simple Type @Prop Synced from @State Array Item in Parent Component](#simple-type-prop-synced-from-state-array-item-in-parent-component).<br>- Synchronizing the \@Prop decorated variable from a state property of the Object or class type in the parent component. Example: [Class Object Type @Prop Synced from @State Class Object Property in Parent Component](#class-object-type-prop-synced-from-state-class-object-property-in-parent-component).<br>For details about the scenarios of supported types, see [Observed Changes](#observed-changes).<br>(Applicable to API version 11 or later) Union type of the preceding types, for example, **string \| number**, **string \| undefined**, or **ClassA \| null**. For details, see [Union Type @Prop](#union-type-prop).<br>**NOTE**<br>When **undefined** or **null** is used, you are advised to explicitly specify the type to pass the TypeScript type check. For example, **@Prop a: string \| undefined = undefined** is supported, but **@Prop a: string = undefined** is not.|
 | Number of nested layers       | In component reuse scenarios, it is recommended that @Prop be nested with no more than five layers of data. If @Prop is nested with too many layers of data, garbage collection and increased memory usage caused by deep copy will arise, resulting in performance issues. To avoid such issues, use [\@ObjectLink](arkts-observed-and-objectlink.md) instead.|
 | Initial value for the decorated variable  | Local initialization is allowed. If this decorator is used together with [\@Require](arkts-require.md) in API version 11, the parent component must construct input parameters.|
 
@@ -45,8 +43,7 @@ For the \@Prop decorated variable of a child component, the change synchronizati
 | Child component initialization  | \@Prop can be used for initialization of a regular variable or \@State, \@Link, \@Prop, or \@Provide decorated variable in the child component.|
 | Access| Private, accessible only within the component.                |
 
-
-  **Figure 1** Initialization rule 
+**Figure 1** Initialization rule 
 
 
 ![en-us_image_0000001552972029](figures/en-us_image_0000001552972029.png)
@@ -186,11 +183,11 @@ struct ParentComponent {
 To understand the value initialization and update mechanism of the \@Prop decorated variable, it is necessary to understand the parent component and the initial render and update process of the child component that owns the \@Prop decorated variable.
 
 1. Initial render:
-   1. The execution of the parent component's **build()** function creates an instance of the child component, and the parent component provides a source for the @Prop decorated variable.
+   1. The execution of the parent component's **build()** function creates an instance of the child component, and the parent component provides a source for the \@Prop decorated variable.
    2. The @Prop decorated variable is initialized.
 
 2. Update:
-   1. When the @Prop decorated variable is modified locally, the change does not propagate back to its parent component.
+   1. When the \@Prop decorated variable is modified locally, the change does not propagate back to its parent component.
    2. When the data source of the parent component is updated, the \@Prop decorated variable in the child component is reset, and its local value changes are overwritten.
 
 > **NOTE**
@@ -257,13 +254,13 @@ struct ParentComponent {
 In the preceding example:
 
 
-1. On initial render, when the **CountDownComponent** child component is created, its @Prop decorated **count** variable is initialized from the \@State decorated **countDownStartValue** variable in the **ParentComponent**.
+1. On initial render, when the **CountDownComponent** child component is created, its \@Prop decorated **count** variable is initialized from the \@State decorated **countDownStartValue** variable in the **ParentComponent**.
 
-2. When the "+1" or "-1" button is touched, the @State decorated **countDownStartValue** of the **ParentComponent** changes. This will cause the **ParentComponent** to re-render. At the minimum, the **CountDownComponent** will be updated because of the change in the **count** variable value.
+2. When the "+1" or "-1" button is touched, the \@State decorated **countDownStartValue** of the **ParentComponent** changes. This will cause the **ParentComponent** to re-render. At the minimum, the **CountDownComponent** will be updated because of the change in the **count** variable value.
 
-3. Because of the change in the **count** variable value, the **CountDownComponent** child component will re-render. At a minimum, the **if** statement's condition (**this.counter> 0**) is evaluated, and the **Text** child component inside the **if** statement would be updated.
+3. Because of the change in the **count** variable value, the **CountDownComponent** child component will re-render. At a minimum, the **if** statement's condition (**this.counter > 0**) is evaluated, and the **Text** child component inside the **if** statement would be updated.
 
-4. When **Try again** in the **CountDownComponent** child component is touched, the value of the **count** variable is modified, but the change remains within the child component and does not affect the **countDownStartValue** in the parent component.
+4. When **Try again** in the **CountDownComponent** child component is touched, the value of the **count** variable is decorated, but the change remains within the child component and does not affect the **countDownStartValue** in the parent component.
 
 5. Updating **countDownStartValue** will overwrite the local value changes of the @Prop decorated **count** in the **CountDownComponent** child component.
 
@@ -543,9 +540,9 @@ To enable an \@Component decorated component to be reusable, \@Prop allows for o
 
 The following example includes two @Prop decorated variables in the child component.
 
-- The @Prop decorated variable **customCounter** has no local initialization, and therefore it requires a synchronization source in its parent component. When the source value changes, the @Prop decorated variable is updated.
+- **customCounter** is not initialized locally. Therefore, the parent component needs to provide the data source to deinitialize \@Prop. When the data source of the parent component changes, \@Prop is updated.
 
-- The @Prop decorated variable **customCounter2** has local initialization. In this case, specifying a synchronization source in the parent component is allowed but not mandatory.
+- **customCounter2** has local initialization. In this case, specifying a synchronization source in the parent component is allowed but not mandatory.
 
 
 ```ts
@@ -1012,7 +1009,7 @@ struct Parent {
 
 ### Using the a.b(this.object) Format Fails to Trigger UI Re-render
 
-In the **build** method, when the variable decorated by @Prop is of the object type and is called using the **a.b(this.object)** format, the native object of **this.object** is passed in the b method. If the property of **this.object** is changed, the UI cannot be re-rendered. In the following example, when the static method **Score.changeScore1** or **this.changeScore2** is used to change **this.score.value** in the custom component **Child**, the UI is not re-rendered.
+In the **build** method, when the variable decorated by @Prop is of the object type and is called using the **a.b(this.object)** format, the original object of **this.object** is passed in the b method. If the property of **this.object** is changed, the UI cannot be re-rendered. In the following example, when the static method **Score.changeScore1** or **this.changeScore2** is used to change **this.score.value** in the custom component **Child**, the UI is not re-rendered.
 
 [Incorrect Example]
 

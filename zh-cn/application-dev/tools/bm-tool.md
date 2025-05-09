@@ -1253,19 +1253,19 @@ error: install failed due to zero user can only install singleton app.
 
 **错误描述**
 
-UserID 0用户只允许安装singleton权限应用，singleton权限应用只允许被UserID 0用户安装。
-
+UserID 0用户只允许安装singleton权限应用。
+ 
 **可能原因**
-
-singleton权限应用安装未指定UserID 0。
-
+ 
+UserID 0用户安装了非singleton权限的应用。
+ 
 **处理步骤**
+ 
+1. 应用是非singleton权限的，不需要指定用户，直接安装。
 
-1. 应用是singleton权限，安装时指定UserID 0。
-	```
-	//指定userId安装命令
-	hdc install -p hap名.hap -u 0
-	```
+  ```bash
+  hdc install -p hap名.hap
+  ```
 
 
 ### 9568263 无法降级安装
@@ -2347,8 +2347,10 @@ error: install parse native so failed.
 
 **处理步骤**
 
-1. 将设备与DevEco Studio进行连接。
-2. 执行如下命令，查询设备支持的Abi列表，返回结果为default/armeabi-v7a/armeabi/arm64-v8a/x86/x86_64中的一个或多个Abi类型。
+1. 将设备或模拟器与DevEco Studio进行连接，具体指导及要求可查看[运行应用/元服务](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-running-app)。
+
+2. 在命令行执行如下[hdc命令](#环境要求hdc工具)，查询设备支持的Abi列表，返回结果为default/armeabi-v7a/armeabi/arm64-v8a/x86/x86_64中的一个或多个Abi类型。
+
     ```
     hdc shell
     param get const.product.cpu.abilist

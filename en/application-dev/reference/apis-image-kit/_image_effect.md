@@ -5,6 +5,8 @@
 
 The ImageEffect module provides the APIs for editing an image.
 
+For details about the development guide and sample, see [Using ImageEffect to Edit Images](../../media/image/image-effect-guidelines.md).
+
 **Since**: 12
 
 
@@ -1907,9 +1909,9 @@ Sets an input URI.
 
 **Parameters**
 
-| Name| Description| 
+| Name| Description|
 | -------- | -------- |
-| imageEffect | Pointer to the image effector.| 
+| imageEffect | Pointer to the image effector.|
 | uri | Pointer to the URI.| 
 
 **Returns**
@@ -1933,14 +1935,18 @@ Sets an output native buffer.
 
 **Parameters**
 
-| Name| Description| 
+| Name| Description|
 | -------- | -------- |
-| imageEffect | Pointer to the image effector.| 
-| nativeBuffer | Pointer to the **OH_NativeBuffer** instance.| 
+| imageEffect | Pointer to the image effector.|
+| nativeBuffer | Pointer to an **OH_NativeBuffer** instance. The value can be NULL. If NULL is passed, the rendering result is returned to the input **OH_NativeBuffer** object.|
 
 **Returns**
 
-Returns **EFFECT_SUCCESS** if the operation is successful; returns **EFFECT_ERROR_PARAM_INVALID** if the input parameter is a null pointer.
+Returns **EFFECT_SUCCESS** if the operation is successful.
+
+Returns **EFFECT_ERROR_PARAM_INVALID** if the input parameter of the effector is a null pointer.
+
+Returns **EFFECT_PARAM_ERROR** if the call fails because of abnormal parameters.
 
 
 ### OH_ImageEffect_SetOutputPicture()
@@ -1959,14 +1965,18 @@ Sets an output picture.
 
 **Parameters**
 
-| Name| Description| 
+| Name| Description|
 | -------- | -------- |
-| imageEffect | Pointer to the image effector. | 
-| picture | Pointer to an **OH_PictureNative** instance. | 
+| imageEffect | Pointer to the image effector. |
+| picture | Pointer to an **OH_PictureNative** instance. The value can be NULL. If NULL is passed, the rendering result is returned to the input **OH_PictureNative** object.|
 
 **Returns**
 
-Returns **EFFECT_SUCCESS** if the operation is successful; returns **EFFECT_ERROR_PARAM_INVALID** if the input parameter is a null pointer.
+Returns **EFFECT_SUCCESS** if the operation is successful.
+
+Returns **EFFECT_ERROR_PARAM_INVALID** if the input parameter of the effector is a null pointer.
+
+Returns **EFFECT_PARAM_ERROR** if the call fails because of abnormal parameters.
 
 
 ### OH_ImageEffect_SetOutputPixelmap()
@@ -1985,14 +1995,18 @@ Sets an output PixelMap.
 
 **Parameters**
 
-| Name| Description| 
+| Name| Description|
 | -------- | -------- |
-| imageEffect | Pointer to the image effector.| 
-| pixelmap | Pointer to the **OH_PixelmapNative** instance.| 
+| imageEffect | Pointer to the image effector.|
+| pixelmap | Pointer to an **OH_PixelmapNative** instance. The value can be NULL. If NULL is passed, the rendering result is returned to the input **OH_PixelmapNative** object.|
 
 **Returns**
 
-Returns **EFFECT_SUCCESS** if the operation is successful; returns **EFFECT_ERROR_PARAM_INVALID** if the input parameter is a null pointer.
+Returns **EFFECT_SUCCESS** if the operation is successful.
+
+Returns **EFFECT_ERROR_PARAM_INVALID** if the input parameter of the effector is a null pointer.
+
+Returns **EFFECT_PARAM_ERROR** if the call fails because of abnormal parameters.
 
 
 ### OH_ImageEffect_SetOutputSurface()
@@ -2037,9 +2051,9 @@ Sets an output URI.
 
 **Parameters**
 
-| Name| Description| 
+| Name| Description|
 | -------- | -------- |
-| imageEffect | Pointer to the image effector.| 
+| imageEffect | Pointer to the image effector.|
 | uri | Pointer to the URI.| 
 
 **Returns**

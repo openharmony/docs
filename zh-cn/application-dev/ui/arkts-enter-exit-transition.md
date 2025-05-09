@@ -24,7 +24,7 @@
   
    ```ts
    // 出现时会是所有转场效果的出现效果叠加，消失时会是所有消失转场效果的叠加
-   // 用于说明各个effect跟随的动画参数
+   // 说明各个effect跟随的动画参数
    private effect: object =
      TransitionEffect.OPACITY // 创建了透明度转场效果，这里没有调用animation接口，会跟随animateTo的动画参数
        // 通过combine方法，添加缩放转场效果，并指定了springMotion(0.6, 1.2)曲线
@@ -137,7 +137,7 @@ struct TransitionEffectDemo {
 ![zh-cn_image_0000001599818064](figures/zh-cn_image_0000001599818064.gif)
 
 
-对多个组件添加转场效果时，可以通过在animation动画参数中配置不同的delay值，实现组件渐次出现消失的效果：
+对多个组件添加转场效果时，可以在animation动画参数中配置不同的delay值，实现组件渐次出现消失的效果：
 
 ```ts
 const ITEM_COUNTS = 9;

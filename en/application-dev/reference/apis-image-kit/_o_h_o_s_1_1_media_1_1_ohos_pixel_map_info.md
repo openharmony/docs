@@ -13,8 +13,6 @@ The **OHOS::Media::OhosPixelMapInfo** struct describes the information about a P
 
 **Related module**: [Image](image.md)
 
-**Header file**: [image_pixel_map_napi.h](image__pixel__map__napi_8h.md)
-
 
 ## Summary
 

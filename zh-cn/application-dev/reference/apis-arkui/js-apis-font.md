@@ -13,7 +13,7 @@
 ## 导入模块
 
 ```ts
-import { font } from '@kit.ArkUI'
+import { font } from '@kit.ArkUI';
 ```
 
 ## font.registerFont
@@ -47,7 +47,7 @@ registerFont(options: FontOptions): void
 
 > **说明**
 >
-> 推荐通过使用[UIContext](./js-apis-arkui-UIContext.md#uicontext)中的[getFont](./js-apis-arkui-UIContext.md#getfont)方法获取当前UI上下文关联的[Font](./js-apis-arkui-UIContext.md#font)对象。
+> 直接使用font可能导致[UI上下文不明确](../../ui/arkts-global-interface.md)的问题，推荐通过使用[UIContext](./js-apis-arkui-UIContext.md#uicontext)中的[getFont](./js-apis-arkui-UIContext.md#getfont)方法获取当前UI上下文关联的[Font](./js-apis-arkui-UIContext.md#font)对象。
 
 ```ts
 // xxx.ets
@@ -155,7 +155,7 @@ struct FontExample {
         .width('60%')
         .height('6%')
         .onClick(() => {
-          this.fontList = font.getSystemFontList() // 建议使用 this.getUIContext().getFont().getSystemFontList()接口
+          this.fontList = font.getSystemFontList(); // 建议使用 this.getUIContext().getFont().getSystemFontList()接口
         })
     }.width('100%')
   }
@@ -224,17 +224,17 @@ struct FontExample {
       Button("getFontByName")
         .onClick(() => {
           this.fontInfo =
-            font.getFontByName('HarmonyOS Sans Italic') // 建议使用 this.getUIContext().getFont().getFontByName()接口
-          console.log("getFontByName(): path = " + this.fontInfo.path)
-          console.log("getFontByName(): postScriptName = " + this.fontInfo.postScriptName)
-          console.log("getFontByName(): fullName = " + this.fontInfo.fullName)
-          console.log("getFontByName(): Family = " + this.fontInfo.family)
-          console.log("getFontByName(): Subfamily = " + this.fontInfo.subfamily)
-          console.log("getFontByName(): weight = " + this.fontInfo.weight)
-          console.log("getFontByName(): width = " + this.fontInfo.width)
-          console.log("getFontByName(): italic = " + this.fontInfo.italic)
-          console.log("getFontByName(): monoSpace = " + this.fontInfo.monoSpace)
-          console.log("getFontByName(): symbolic = " + this.fontInfo.symbolic)
+            font.getFontByName('HarmonyOS Sans Italic'); // 建议使用 this.getUIContext().getFont().getFontByName()接口
+          console.log("getFontByName(): path = " + this.fontInfo.path);
+          console.log("getFontByName(): postScriptName = " + this.fontInfo.postScriptName);
+          console.log("getFontByName(): fullName = " + this.fontInfo.fullName);
+          console.log("getFontByName(): Family = " + this.fontInfo.family);
+          console.log("getFontByName(): Subfamily = " + this.fontInfo.subfamily);
+          console.log("getFontByName(): weight = " + this.fontInfo.weight);
+          console.log("getFontByName(): width = " + this.fontInfo.width);
+          console.log("getFontByName(): italic = " + this.fontInfo.italic);
+          console.log("getFontByName(): monoSpace = " + this.fontInfo.monoSpace);
+          console.log("getFontByName(): symbolic = " + this.fontInfo.symbolic);
         })
     }.width('100%')
   }

@@ -989,8 +989,6 @@ maxDisplayCount(maxDisplayCount: number): DotIndicator
 
 圆点导航点指示器样式下，导航点显示个数最大值。
 
-单独导航点组件在没有和Swiper绑定使用时，该属性不生效。
-
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full

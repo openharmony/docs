@@ -16,13 +16,15 @@ Note that the active or inactive state of a component is not equivalent to its v
 3. LazyForEach: Only the custom component in the currently displayed LazyForEach is in the active state, and the component of the cache node is in the inactive state.
 4. Navigation: Only the custom component in the currently displayed NavDestination is in the active state.
 5. Component reuse: The component that enters the reuse pool is in the inactive state, and the node attached from the reuse pool is in the active state.
-In other scenarios, for example, masked components in a stack layout are not considered to be in an inactive state although they are invisible. Therefore, component freezing cannot be applied to these components.
+6. Mixed use: For example, if **LazyForEach** is used under **TabContent**, all nodes in **LazyForEach** of API version 17 or earlier are set to the active state since when switching tabs. Since API version 18, only the on-screen nodes of **LazyForEach** are set to the active state, and other nodes are set to the inactive state.
 
 Before reading this topic, you are advised to read [Creating a Custom Component](./arkts-create-custom-components.md) to learn about the basic syntax.
 
 > **NOTE**
 >
 > Custom component freezing is supported since API version 11.
+>
+> Mixed use of custom component freezing is supported since API version 18.
 
 ## Use Scenarios
 
@@ -548,7 +550,7 @@ In the preceding example:
 
 ### Reusing Components
 
-<!--RP1-->[Components reuse](../performance/component-recycle.md)<!--RP1End--> existing nodes in the cache pool instead of creating new nodes to optimize UI performance and improve application smoothness. Although the nodes in the reuse pool are not displayed in the UI component tree, the change of the state variable still triggers the UI re-render. To solve the problem that components in the reuse pool are re-rendered abnormally, you can perform component freezing.
+[Components reuse](./arkts-reusable.md) existing nodes in the cache pool instead of creating new nodes to optimize UI performance and improve application smoothness. Although the nodes in the reuse pool are not displayed in the UI component tree, the change of the state variable still triggers the UI re-render. To solve the problem that components in the reuse pool are re-rendered abnormally, you can perform component freezing.
 
 #### Mixed Use of Component Reuse, if, and Component Freezing
 The following example shows that when the state variable bound to the **if** component changes to **false**, the detach of **ChildComponent** is triggered. Because **ChildComponent** is marked as component reuse, it is not destroyed but enters the reuse pool, in this case, if the component freezing is enabled at the same time, the component will not be re-rendered in the reuse pool.
@@ -623,7 +625,7 @@ In this case, if you trigger the re-render of all subnodes in **List**, the numb
 Example:
 1. Swipe the list to the position whose index is 14. There are 15 **ChildComponent** in the visible area on the current page.
 2. During swiping:
-    - **ChildComponent** in the upper part of the list is swiped out of the visible area. In this case, **ChildComponent** enters the cache area of LazyForEach and is set to inactive. After the component slides out of the **LazyForEach** area, the component is not destructed and enters the reuse pool because the component is marked for reuse. In this case, the component is set to inactive again.
+    - **ChildComponent** in the upper part of the list is swiped out of the visible area. In this case, **ChildComponent** enters the cache area of LazyForEach and is set to inactive. After the component slides out of the **LazyForEach** cache area, the component is not destructed and enters the reuse pool because the component is marked for reuse. In this case, the component is set to inactive again.
     - The cache node of **LazyForEach** at the bottom of the list enters the list. In this case, the system attempts to create a node to enter the cache of **LazyForEach**. If a node that can be reused is found, the system takes out the existing node from the reuse pool and triggers the **aboutToReuse** lifecycle callback, in this case, the node enters the cache area of **LazyForEach** and the state of the node is still inactive.
 3. Click **change desc** to trigger the change of the member variable **desc** of **Page**.
     - The change of \@State decorated **desc** will be notified to \@Link decorated **desc** of **ChildComponent**.
@@ -970,6 +972,392 @@ struct Page {
   }
 }
 ```
+
+### Mixing the Use of Components
+
+In the scenario where mixed use of component freezing is supported, the freezing behavior varies according to the API version. Set the component freezing flag for the parent component. In API version 17 or earlier, when the parent component is unfrozen, all nodes of its child components are unfrozen. Since API version 18, when the parent component is unfrozen, only the on-screen nodes of the child component are unfrozen. 
+
+#### Mixed Use of Navigation and TabContent
+
+The sample code is as follows:
+
+```ts
+// index.ets
+@Component
+struct ChildOfParamComponent {
+  @Prop @Watch('onChange') child_val: number;
+
+  onChange() {
+    console.log(`Appmonitor ChildOfParamComponent: child_val changed:${this.child_val}`);
+  }
+
+  build() {
+    Column() {
+      Text(`Child Param: ${this.child_val}`);
+    }
+  }
+}
+
+@Component
+struct ParamComponent {
+  @Prop @Watch('onChange')  paramVal: number;
+
+  onChange() {
+    console.log(`Appmonitor ParamComponent: paramVal changed:${this.paramVal}`);
+  }
+
+  build() {
+    Column() {
+      Text(`val: ${this.paramVal}`)
+      ChildOfParamComponent({child_val: this.paramVal});
+    }
+  }
+}
+
+
+
+@Component
+struct DelayComponent {
+  @Prop @Watch('onChange') delayVal: number;
+
+  onChange() {
+    console.log(`Appmonitor ParamComponent: delayVal changed:${this.delayVal}`);
+  }
+
+
+  build() {
+    Column() {
+      Text(`Delay Param: ${this.delayVal}`);
+    }
+  }
+}
+
+@Component ({freezeWhenInactive: true})
+struct TabsComponent {
+  private controller: TabsController = new TabsController();
+  @State @Watch('onChange') tabState: number = 47;
+
+  onChange() {
+    console.log(`Appmonitor TabsComponent: tabState changed:${this.tabState}`);
+  }
+
+  build() {
+    Column({space: 10}) {
+      Button(`Incr state ${this.tabState}`)
+        .fontSize(25)
+        .onClick(() => {
+          console.log('Button increment state value');
+          this.tabState = this.tabState + 1;
+        })
+
+      Tabs({ barPosition: BarPosition.Start, index: 0, controller: this.controller}) {
+        TabContent() {
+          ParamComponent({paramVal: this.tabState});
+        }.tabBar('Update')
+        TabContent() {
+          DelayComponent({delayVal: this.tabState});
+        }.tabBar('DelayUpdate')
+      }
+      .vertical(false)
+      .scrollable(true)
+      .barMode(BarMode.Fixed)
+      .barWidth(400).barHeight(150).animationDuration(400)
+      .width('100%')
+      .height(200)
+      .backgroundColor(0xF5F5F5)
+    }
+  }
+}
+
+@Entry
+@Component
+struct MyNavigationTestStack {
+  @Provide('pageInfo') pageInfo: NavPathStack = new NavPathStack();
+
+  @Builder
+  PageMap(name: string) {
+    if (name === 'pageOne') {
+      pageOneStack()
+    } else if (name === 'pageTwo') {
+      pageTwoStack()
+    }
+  }
+
+  build() {
+    Column() {
+      Navigation(this.pageInfo) {
+        Column() {
+          Button('Next Page', { stateEffect: true, type: ButtonType.Capsule })
+            .width('80%')
+            .height(40)
+            .margin(20)
+            .onClick(() => {
+              this.pageInfo.pushPath({ name: 'pageOne' }); // Push the navigation destination page specified by name to the navigation stack.
+            })
+        }
+      }.title('NavIndex')
+      .navDestination(this.PageMap)
+      .mode(NavigationMode.Stack)
+    }
+  }
+}
+
+@Component
+struct pageOneStack {
+  @Consume('pageInfo') pageInfo: NavPathStack;
+
+  build() {
+    NavDestination() {
+      Column() {
+        TabsComponent();
+
+        Button('Next Page', { stateEffect: true, type: ButtonType.Capsule })
+          .width('80%')
+          .height(40)
+          .margin(20)
+          .onClick(() => {
+            this.pageInfo.pushPathByName('pageTwo', null);
+          })
+      }.width('100%').height('100%')
+    }.title('pageOne')
+    .onBackPressed(() => {
+      this.pageInfo.pop();
+      return true;
+    })
+  }
+}
+
+@Component
+struct pageTwoStack {
+  @Consume('pageInfo') pageInfo: NavPathStack;
+
+  build() {
+    NavDestination() {
+      Column() {
+        Button('Back Page', { stateEffect: true, type: ButtonType.Capsule })
+          .width('80%')
+          .height(40)
+          .margin(20)
+          .onClick(() => {
+            this.pageInfo.pop();
+          })
+      }.width('100%').height('100%')
+    }.title('pageTwo')
+    .onBackPressed(() => {
+      this.pageInfo.pop();
+      return true;
+    })
+  }
+}
+```
+
+Final effect
+
+![freeze](figures/freeze_tabcontent.gif)
+
+Click the **Next Page** button to enter the **pageOne** page. There are two tabs on the page and the **Update** tab is displayed by default. Enable component freezing. If the **Tabcontent** tab is not selected, the state variable is not refreshed.
+
+Click the **Incr state** button to query **Appmonitor** in the log. Three records are displayed.
+
+![freeze](figures/freeze_tabcontent_update.png)
+
+Switch to the **DelayUpdate** tab and click the **Incr state** button to query **Appmonitor** in the log. Two records are displayed. The state variable in the **DelayUpdate** tab does not refresh the state variable related to the **Update** tab.
+
+![freeze](figures/freeze_tabcontent_delayupdate.png)
+
+For API version 17 or earlier:
+
+Click **Next page** to enter the next page and then return. The tab is **DelayUpdate** by default. Click **Incr state** to query **Appmonitor** in the log and four records are displayed. When the page route is returned, all tabs of **Tabcontent** are unfrozen.
+
+![freeze](figures/freeze_tabcontent_back_api15.png)
+
+For API version 18 or later:
+
+Click **Next page** to enter the next page and then return. The tab is **DelayUpdate** by default. Click **Incr state** to query **Appmonitor** in the log and two records are displayed. When the page route is returned, only the nodes with the corresponding tabs are unfrozen.
+
+![freeze](figures/freeze_tabcontent_back_api16.png)
+
+#### Page and LazyForEach
+
+When **Navigation** and **TabContent** are used together, the child nodes of **TabContent** are unlocked because the child component is recursively unfrozen from the parent component when the previous page is displayed. In addition, the page lifecycle **OnPageShow** shows a similar behavior. **OnPageShow** sets the root node of the current page to the active state. As a subnode of the page, **TabContent** is also set to the active state. When the screen is turned off or on, the page lifecycles **OnPageHide** and **OnPageShow** are triggered respectively. Therefore, when **LazyForEach** is used on the page, manual screen-off and screen-on can also implement the page routing effect. The sample code is as follows:
+
+```ts
+import { hiTraceMeter } from '@kit.PerformanceAnalysisKit';
+// Basic implementation of IDataSource used to listening for data.
+class BasicDataSource implements IDataSource {
+  private listeners: DataChangeListener[] = [];
+  private originDataArray: string[] = [];
+
+  public totalCount(): number {
+    return 0;
+  }
+
+  public getData(index: number): string {
+    return this.originDataArray[index];
+  }
+
+  // This method is called by the framework to add a listener to the LazyForEach data source.
+  registerDataChangeListener(listener: DataChangeListener): void {
+    if (this.listeners.indexOf(listener) < 0) {
+      console.info('add listener');
+      this.listeners.push(listener);
+    }
+  }
+
+  // This method is called by the framework to remove the listener from the LazyForEach data source.
+  unregisterDataChangeListener(listener: DataChangeListener): void {
+    const pos = this.listeners.indexOf(listener);
+    if (pos >= 0) {
+      console.info('remove listener');
+      this.listeners.splice(pos, 1);
+    }
+  }
+
+  // Notify LazyForEach that all child components need to be reloaded.
+  notifyDataReload(): void {
+    this.listeners.forEach(listener => {
+      listener.onDataReloaded();
+    })
+  }
+
+  // Notify LazyForEach that a child component needs to be added for the data item with the specified index.
+  notifyDataAdd(index: number): void {
+    this.listeners.forEach(listener => {
+      listener.onDataAdd(index);
+    })
+  }
+
+  // Notify LazyForEach that the data item with the specified index has changed and the child component needs to be rebuilt.
+  notifyDataChange(index: number): void {
+    this.listeners.forEach(listener => {
+      listener.onDataChange(index);
+    })
+  }
+
+  // Notify LazyForEach that the child component that matches the specified index needs to be deleted.
+  notifyDataDelete(index: number): void {
+    this.listeners.forEach(listener => {
+      listener.onDataDelete(index);
+    })
+  }
+
+  // Notify LazyForEach that data needs to be swapped between the from and to positions.
+  notifyDataMove(from: number, to: number): void {
+    this.listeners.forEach(listener => {
+      listener.onDataMove(from, to);
+    })
+  }
+}
+
+class MyDataSource extends BasicDataSource {
+  private dataArray: string[] = [];
+
+  public totalCount(): number {
+    return this.dataArray.length;
+  }
+
+  public getData(index: number): string {
+    return this.dataArray[index];
+  }
+
+  public addData(index: number, data: string): void {
+    this.dataArray.splice(index, 0, data);
+    this.notifyDataAdd(index);
+  }
+
+  public pushData(data: string): void {
+    this.dataArray.push(data);
+    this.notifyDataAdd(this.dataArray.length - 1);
+  }
+}
+
+@Reusable
+@Component({freezeWhenInactive: true})
+struct ChildComponent {
+  @State desc: string = '';
+  @Link @Watch('sumChange') sum: number;
+
+  sumChange() {
+    console.info(`sum: Change ${this.sum}`);
+  }
+
+  aboutToReuse(params: Record<string, Object>): void {
+    this.desc = params.desc as string;
+    this.sum = params.sum as number;
+  }
+
+  aboutToRecycle(): void {
+    console.info(`ChildComponent has been recycled`);
+  }
+  build() {
+    Column() {
+      Divider()
+        .color('#ff11acb8')
+      Text('Child component:' + this.desc)
+        .fontSize(30)
+        .fontWeight(30)
+      Text(`${this.sum}`)
+        .fontSize(30)
+        .fontWeight(30)
+    }
+  }
+}
+
+@Entry
+@Component ({freezeWhenInactive: true})
+struct Page {
+  private data: MyDataSource = new MyDataSource();
+  @State sum: number = 0;
+  @State desc: string = '';
+
+  aboutToAppear() {
+    for (let index = 0; index < 20; index++) {
+      this.data.pushData(index.toString());
+    }
+  }
+
+  build() {
+    Column() {
+      Button(`add sum`).onClick(() => {
+        this.sum++;
+      })
+        .fontSize(30)
+        .margin(20)
+      List() {
+        LazyForEach(this.data, (item: string) => {
+          ListItem() {
+            ChildComponent({desc: item, sum: this.sum});
+          }
+          .width('100%')
+          .height(100)
+        }, (item: string) => item)
+      }.cachedCount(5)
+    }
+    .height('100%')
+    .width('100%')
+  }
+}
+```
+
+As described in the mixed use scenario, the nodes of **LazyForEach** include the on-screen node and **cachedCount** node.
+
+![freeze](figures/freeze_lazyforeach.png)
+
+Swipe down **LazyForEach** to add nodes to **cachedCount**. Click the **add sum** button to search for the log "sum: Change." and eight records are displayed.
+
+![freeze](figures/freeze_lazyforeach_add.png)
+
+For API version 17 or earlier:
+
+Turn off and on the screen to trigger **OnPageShow** and then click **add sum**. The number of printed records is equal to the number of on-screen nodes and the **cachedCount** nodes.
+
+![freeze](figures/freeze_lazyforeach_api15.png)
+
+For API version 18 or later:
+
+Turn off and on the screen to trigger **OnPageShow** and then click **add sum**. Only the number of on-screen nodes is displayed, and the **cachedCount** nodes are not unfrozen.
+
+![freeze](figures/freeze_lazyforeach_api16.png)
 
 ## Constraints
 

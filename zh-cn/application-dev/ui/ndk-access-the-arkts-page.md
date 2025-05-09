@@ -5,6 +5,16 @@
 
 使用NDK接口构建UI界面时，需要在ArkTS页面创建用于挂载NDK接口创建组件的占位组件。占位组件类型为[ContentSlot](../reference/apis-arkui/arkui-ts/ts-components-contentSlot.md)，ContentSlot能够绑定一个[NodeContent](../reference/apis-arkui/js-apis-arkui-NodeContent.md)对象，该对象可通过Node-API传递到Native侧挂载显示Native组件。
 
+- NDK配置文件oh-package.json5如下。
+  ```ts
+  {
+    "name": "libentry.so",
+    "types": "./index.d.ts",
+    "version": "",
+    "description": "Please describe the basic information."
+  }
+  ```
+  
 - 占位组件和其他ArkTS系统组件使用方法相同。详细代码请参考[示例](#示例)。
   ```ts
   import { NodeContent } from '@kit.ArkUI';

@@ -5,13 +5,9 @@
 
 Provides functions related to rawfiles, including searching for, reading, and closing rawfiles.
 
-**System capability**: SystemCapability.Global.ResourceManager
-
-**Library**: librawfile.z.so
-
 **Since**: 8
 
-**Related module**: [Rawfile](rawfile.md)
+**Related module**: [Rawfile] (rawfile.md)
 
 
 ## Summary
@@ -29,8 +25,8 @@ Provides functions related to rawfiles, including searching for, reading, and cl
 
 | Name| Description| 
 | -------- | -------- |
-| typedef struct [RawFile](rawfile.md#rawfile)[RawFile](rawfile.md#rawfile) | Provides access to rawfiles. | 
-| typedef struct [RawFile64](rawfile.md#rawfile64)[RawFile64](rawfile.md#rawfile64) | Provides access to large rawfiles. | 
+| typedef struct [RawFile](rawfile.md#rawfile) [RawFile](rawfile.md#rawfile) | Provides access to rawfiles. | 
+| typedef struct [RawFile64](rawfile.md#rawfile64) [RawFile64](rawfile.md#rawfile64) | Provides access to large rawfiles. | 
 
 
 ### Function
@@ -45,6 +41,7 @@ Provides functions related to rawfiles, including searching for, reading, and cl
 | long [OH_ResourceManager_GetRawFileOffset](rawfile.md#oh_resourcemanager_getrawfileoffset) (const [RawFile](rawfile.md#rawfile) \*rawFile) | Obtains the current offset of a rawfile, in long. | 
 | bool [OH_ResourceManager_GetRawFileDescriptor](rawfile.md#oh_resourcemanager_getrawfiledescriptor) (const [RawFile](rawfile.md#rawfile) \*rawFile, [RawFileDescriptor](_raw_file_descriptor.md) &amp;descriptor) | Opens a rawfile based on the specified offset (in long) and file length (in long) and obtains the file descriptor. | 
 | bool [OH_ResourceManager_ReleaseRawFileDescriptor](rawfile.md#oh_resourcemanager_releaserawfiledescriptor) (const [RawFileDescriptor](_raw_file_descriptor.md) &amp;descriptor) | Releases a file descriptor. | 
+| bool [OH_ResourceManager_ReleaseRawFileDescriptorData](rawfile.md#oh_resourcemanager_releaserawfiledescriptordata) (const [RawFileDescriptor](_raw_file_descriptor.md) \*descriptor) | Releases a file descriptor.|
 | int64_t [OH_ResourceManager_ReadRawFile64](rawfile.md#oh_resourcemanager_readrawfile64) (const [RawFile64](rawfile.md#rawfile64) \*rawFile, void \*buf, int64_t length) | Reads data of the specified length from the current position in a large rawfile. | 
 | int [OH_ResourceManager_SeekRawFile64](rawfile.md#oh_resourcemanager_seekrawfile64) (const [RawFile64](rawfile.md#rawfile64) \*rawFile, int64_t offset, int whence) | Searches for the data read/write position in a large rawfile based on the specified offset. | 
 | int64_t [OH_ResourceManager_GetRawFileSize64](rawfile.md#oh_resourcemanager_getrawfilesize64) ([RawFile64](rawfile.md#rawfile64) \*rawFile) | Obtains the length of a large rawfile, in int64_t. | 

@@ -43,6 +43,7 @@
             - [Communication Between the TaskPool Task and Host Thread](taskpool-communicates-with-mainthread.md)
             - [Real-Time Communication Between the Worker Thread and Host Thread](worker-communicates-with-mainthread.md)
             - [Synchronous Calls to Host Thread Interfaces from Worker](worker-invoke-mainthread-interface.md)
+            - [High-Performance Communication Between Multi-Level Workers](worker-postMessage-sendable.md)
     - Multithreaded Development<!--multithread-develop-guide-->
         - [Overview of Multithreaded Development](multithread-develop-overview.md)
         - Concurrency in Time-Consuming Tasks<!--time-consuming-task-->
@@ -84,5 +85,10 @@
         - [Naming Conventions for Ark Bytecode Functions](arkts-bytecode-function-name.md)
         - [Customizing Ark Bytecode During Compilation](customize-bytecode-during-compilation.md)
     - [Disassembler](tool-disassembler.md)
-    - [ArkGuard for Code Obfuscation](source-obfuscation.md)
+    - ArkGuard for Code Obfuscation<!--arkts-arkguard-->
+        - [Overview of ArkGuard](source-obfuscation-overview.md)
+        - [Obfuscation Principles and Capabilities of ArkGuard](source-obfuscation.md)
+        - [Using ArkGuard for Obfuscation](source-obfuscation-guide.md)
+        - [Package-specific Obfuscation Recommendations](source-obfuscation-practice.md)
+        - [Common Issues with ArkGuard](source-obfuscation-questions.md)
     - [Configuring arkOptions in build-profile.json5](arkoptions-guide.md)

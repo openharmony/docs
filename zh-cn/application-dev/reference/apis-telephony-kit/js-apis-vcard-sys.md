@@ -137,7 +137,7 @@ importVCard\(context: Context, filePath: string, accountId?: number\): Promise\<
 | ------ | ------ | ---- | -------------------------------------- |
 | context   | Context                      | 是   | 应用上下文。|
 | filePath | string | 是   | vcf文件地址 。|
-| accountId   | number | 否   | 联系人账户ID。 |
+| accountId   | number | 否   | 联系人账户ID，如未传入，默认值为undefined。 |
 
 **返回值：**
 

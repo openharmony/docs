@@ -13,6 +13,8 @@ Defines standard interface descriptors, which correspond to **Standard Interface
 
 [USB DDK](_usb_ddk.md)
 
+**Header file**: [usb_ddk_types.h](usb__ddk__types_8h.md)
+
 
 ## Summary
 
