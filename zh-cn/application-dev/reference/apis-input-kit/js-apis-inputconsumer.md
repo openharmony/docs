@@ -14,7 +14,7 @@
 import { inputConsumer, KeyEvent } from '@kit.InputKit';
 ```
 
-## HotkeyOptions<sup>14+</sup>
+## HotkeyOptions
 
 快捷键选项。
 
@@ -22,9 +22,9 @@ import { inputConsumer, KeyEvent } from '@kit.InputKit';
 
 | 名称        | 类型   | 可读   | 可写   | 说明      |
 | --------- | ------ | ------- | ------- | ------- |
-| preKeys   | Array&lt;number&gt; | 是      | 否      | 修饰键集合，数量范围[1, 2]，无顺序要求。<br>例如，Ctrl+Shift+Esc中，Ctrl+Shift称为修饰键。 |
-| finalKey  | number  | 是      | 否      | 被修饰键，为除修饰键和 Meta 以外的按键。<br>例如，Ctrl+Shift+Esc中，Esc称为被修饰键。 |
-| isRepeat  | boolean  | 是      | 否      | 是否上报重复的按键事件。true表示上报，false表示不上报，若不填默认为true。 |
+| preKeys   | Array&lt;number&gt; | 是      | 否      | 修饰键集合，数量范围[1, 2]，无顺序要求。<br>例如，Ctrl+Shift+Esc中，Ctrl+Shift称为修饰键。<br>默认值为 []（空数组），表示不需要辅助键。 |
+| finalKey  | number  | 是      | 否      | 被修饰键，除修饰键和 Meta 以外的按键，详细按键介绍请参见[按键全集](js-apis-keycode.md)。<br>例如，Ctrl+Shift+Esc中，Esc称为被修饰键。没有默认值。 |
+| isRepeat  | boolean  | 是      | 否      | 是否上报短时间内重复的按键事件。true表示上报，false表示不上报，默认值为true。 |
 
 ## KeyPressedConfig<sup>16+</sup>
 
@@ -34,21 +34,21 @@ import { inputConsumer, KeyEvent } from '@kit.InputKit';
 
 | 名称        | 类型   | 可读   | 可写   | 说明      |
 | --------- | ------ | ------- | ------- | ------- |
-| key       | number  | 是      | 否      | 按键键值。<br>当前仅支持[KEYCODE_VOLUME_UP](js-apis-keycode.md#keycode)键和[KEYCODE_VOLUME_DOWN](js-apis-keycode.md#keycode)键。 |
-| action    | number  | 是      | 否      | 按键事件类型。取值如下，当前仅支持取值为1。<br>- 1：按键按下。<br>- 2：按键抬起。 |
-| isRepeat  | boolean  | 是      | 否      | 是否上报重复的按键事件。 |
+| key       | number  | 是      | 否      | 按键键值。<br>当前仅支持[KEYCODE_VOLUME_UP](js-apis-keycode.md#keycode)键和[KEYCODE_VOLUME_DOWN](js-apis-keycode.md#keycode)键，无默认取值。 |
+| action    | number  | 是      | 否      | 按键事件类型。当前仅支持取值为1，表示按键按下。 |
+| isRepeat  | boolean  | 是      | 否      | 是否上报短时间内重复的按键事件。true表示上报，false表示不上报，默认值为true。 |
 
-## inputConsumer.getAllSystemHotkeys<sup>14+</sup>
+## inputConsumer.getAllSystemHotkeys
 
 getAllSystemHotkeys(): Promise&lt;Array&lt;HotkeyOptions&gt;&gt;
 
-获取系统所有快捷键，使用Promise异步回调。
+获取所有系统快捷键，使用Promise异步回调。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.InputConsumer
 
 **返回值：**
 
-| 参数         |  说明                                       |
+| 类型         |  说明                                       |
 | ---------- |  ---------------------------------------- |
 | Promise&lt;Array&lt;HotkeyOptions&gt;&gt;                    | Promise对象，返回所有系统快捷键的列表。 |
 
@@ -63,16 +63,21 @@ getAllSystemHotkeys(): Promise&lt;Array&lt;HotkeyOptions&gt;&gt;
 **示例：**
 
 ```js
-inputConsumer.getAllSystemHotkeys().then((data: Array<inputConsumer.HotkeyOptions>) => {
-  console.log(`List of system hotkeys : ${JSON.stringify(data)}`);
-});
+inputConsumer.getAllSystemHotkeys()
+  .then((data: Array<inputConsumer.HotkeyOptions>) => {
+    console.log(`List of system hotkeys : ${JSON.stringify(data)}`);
+  })
+  .catch((error) => {
+    console.error("Error fetching system hotkeys:", error);
+  });
+
 ```
 
-## inputConsumer.on('hotkeyChange')<sup>14+</sup>
+## inputConsumer.on('hotkeyChange')
 
 on(type: 'hotkeyChange', hotkeyOptions: HotkeyOptions, callback: Callback&lt;HotkeyOptions&gt;): void
 
-订阅全局组合按键，当满足条件的组合按键输入事件发生时，使用Callback异步方式上报组合按键数据。
+订阅全局组合按键，当满足条件的组合按键输入事件发生时上报组合按键数据，使用Callback异步回调。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.InputConsumer
 
@@ -86,14 +91,14 @@ on(type: 'hotkeyChange', hotkeyOptions: HotkeyOptions, callback: Callback&lt;Hot
 
 **错误码**：
 
-有关错误码的详细介绍请参见[inputconsumer错误码](errorcode-inputconsumer.md)和[通用错误码](../errorcode-universal.md)。
+有关错误码的详细介绍请参见[全局快捷键管理错误码](errorcode-inputconsumer.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
 | 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
 | 801 | Capability not supported. |
 | 4200002  | The hotkey has been used by the system. |
-| 4200003  | The hotkey has been subscribed to by another. |
+| 4200003  | The hotkey has been subscribed to by another. <br>在cmd命令窗口执行(hidumper -s 3101 -a -s)查询已经被注册的快捷键，注册未被三方占用的快捷键。|
 
 **示例：**
 
@@ -103,7 +108,7 @@ let zKey = 2042;
 let hotkeyOptions: inputConsumer.HotkeyOptions = {
   preKeys: [ leftCtrlKey ],
   finalKey: zKey,
-  isRepeat: true
+  isRepeat: true,
 };
 let hotkeyCallback = (hotkeyOptions: inputConsumer.HotkeyOptions) => {
   console.log(`hotkeyOptions: ${JSON.stringify(hotkeyOptions)}`);
@@ -111,11 +116,11 @@ let hotkeyCallback = (hotkeyOptions: inputConsumer.HotkeyOptions) => {
 try {
   inputConsumer.on("hotkeyChange", hotkeyOptions, hotkeyCallback);
 } catch (error) {
-  console.log(`Subscribe failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Subscribe failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
-## inputConsumer.off('hotkeyChange')<sup>14+</sup>
+## inputConsumer.off('hotkeyChange')
 
 off(type: 'hotkeyChange', hotkeyOptions: HotkeyOptions, callback?: Callback&lt;HotkeyOptions&gt;): void
 
@@ -129,7 +134,7 @@ off(type: 'hotkeyChange', hotkeyOptions: HotkeyOptions, callback?: Callback&lt;H
 | ---------- | -------------------------- | ---- | ---------- |
 | type       | string                     | 是    | 事件类型，固定取值为'hotkeyChange'。        |
 | hotkeyOptions | [HotkeyOptions](#hotkeyoptions14) | 是    | 快捷键选项。             |
-| callback   | Callback&lt;HotkeyOptions&gt; | 否    | 需要取消订阅的回调函数。若不填，则取消当前应用全局快捷键选项已订阅的所有回调函数。 |
+| callback   | Callback&lt;HotkeyOptions&gt; | 否    | 用于指定要取消的回调函数。如果未指定，则将取消当前应用中所有已订阅的全局快捷键回调。 |
 
 **错误码**：
 
@@ -180,7 +185,7 @@ try {
 
 on(type: 'keyPressed', options: KeyPressedConfig, callback: Callback&lt;KeyEvent&gt;): void
 
-订阅按键按下事件。若当前应用处于前台焦点窗口，用户按下指定按键，会触发回调。
+订阅按键按下事件，使用callback异步回调。若当前应用窗口为前台焦点窗口，用户按下指定按键，会触发回调。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.InputConsumer
 
@@ -189,7 +194,7 @@ on(type: 'keyPressed', options: KeyPressedConfig, callback: Callback&lt;KeyEvent
 | 参数名         | 类型                                | 必填  | 说明                              |
 | ---------- | --------------------------             | ----  | ---------- |
 | type       | string                                 | 是     | 事件类型，固定取值为'keyPressed'。        |
-| options    | [KeyPressedConfig](#keypressedconfig16)| 是     | 按键事件消费设置。           |
+| options    | [KeyPressedConfig](#keypressedconfig16)| 是     | 设置按键事件的消费方式，仅支持按键按下事件。           |
 | callback   | Callback&lt;[KeyEvent](./js-apis-keyevent.md#keyevent)&gt; | 是    | 用于返回按键事件的回调函数。 |
 
 **错误码**：
@@ -222,7 +227,7 @@ try {
 
 off(type: 'keyPressed', callback?: Callback&lt;KeyEvent&gt;): void
 
-取消按键按下事件订阅。
+取消按键按下事件订阅，使用callback异步回调。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.InputConsumer
 
@@ -231,7 +236,7 @@ off(type: 'keyPressed', callback?: Callback&lt;KeyEvent&gt;): void
 | 参数名         | 类型                         | 必填   | 说明                              |
 | ---------- | -------------------------- | ---- | ---------- |
 | type       | string                     | 是    | 事件类型，固定取值为'keyPressed'。        |
-| callback   | Callback&lt;[KeyEvent](./js-apis-keyevent.md#keyevent)&gt; | 否    | 需要取消订阅的回调函数。若不填，则取消当前应用已订阅的所有回调函数。 |
+| callback   | Callback&lt;[KeyEvent](./js-apis-keyevent.md#keyevent)&gt; | 否    | 用于指定要取消的回调函数。如果未指定，则将取消当前应用中所有已订阅的全局快捷键回调。 |
 
 **错误码**：
 
