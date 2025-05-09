@@ -1,6 +1,6 @@
 # 拦截Web组件发起的网络请求
 
-通过[网络拦截接口(arkweb_scheme_handler.h)](../reference/apis-arkweb/arkweb__scheme__handler_8h.md)对Web组件发出的请求进行拦截，并可以为被拦截的请求提供自定义的响应头以及响应体。
+[网络拦截接口(arkweb_scheme_handler.h)](../reference/apis-arkweb/arkweb__scheme__handler_8h.md)可以对Web组件发出的请求进行拦截，并为被拦截的请求提供自定义的响应头以及响应体。
 
 ## 为Web组件设置网络拦截器
 
