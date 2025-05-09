@@ -71,7 +71,7 @@ TextPicker(options?: TextPickerOptions)
 | ----------- | ------------------------------------ | ---- | ------------------------------------------------------------ |
 | strokeWidth | [Dimension](ts-types.md#dimension10) | 否   | 分割线的线宽（默认单位vp），也可指定单位为px，不支持"百分比"类型。<br/>取值范围：strokeWidth小于0取默认值，最大不得超过列高的一半。<br/>默认值：2.0px |
 | startMargin | [Dimension](ts-types.md#dimension10) | 否   | 分割线与TextPicker侧边起始端的距离（默认单位vp），也可指定单位为px，不支持“百分比”类型。<br/>取值范围：startMargin小于0无效，最大不得超过TextPicker列宽。<br/>默认值：0 |
-| endMargin   | [Dimension](ts-types.md#dimension10) | 否   | 分割线与TextPicker侧边结束端的距离（默认单位vp），也可指定单位为px，不支持“百分比”类型。<br/>取值范围：startMargin小于0无效，最大不得超过TextPicker列宽。<br/>默认值：0 |
+| endMargin   | [Dimension](ts-types.md#dimension10) | 否   | 分割线与TextPicker侧边结束端的距离（默认单位vp），也可指定单位为px，不支持“百分比”类型。<br/>取值范围：endMargin小于0无效，最大不得超过TextPicker列宽。<br/>默认值：0 |
 | color       | [ResourceColor](ts-types.md#resourcecolor)  | 否   | 分割线的颜色。<br/>默认值：'#33000000'
 
 ## 属性
@@ -195,7 +195,7 @@ startMargin + endMargin 超过组件宽度后startMargin和endMargin会被置0�
 
 gradientHeight(value: Dimension)
 
-设置渐隐效果高度，不设置该属性则显示默认渐隐效果。
+设置渐隐效果的高度。若未设置该属性，则显示默认渐隐效果。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -240,8 +240,8 @@ defaultTextStyle(style: TextPickerTextStyle)
 | style  | [TextPickerTextStyle](#textpickertextstyle15类型说明) | 是   | 设置关闭滑动过程中文本样式变化动效时的各个选项文本的样式，仅当disableTextStyleAnimation为true时生效。<br/>默认值：与[Text](ts-basic-components-text.md)组件默认值相同。 |
 
 > **说明：**
->
-> 该组件不建议开发者在动效过程中修改属性数据。
+
+>不建议在动效过程中修改该组件的属性数据。
 
 ## 事件
 
@@ -340,7 +340,7 @@ type TextPickerScrollStopCallback = (value: string | string[], index: number | n
 | ----- | ---------------------------------------- | ---- | ------------------------- |
 | color | [ResourceColor](ts-types.md#resourcecolor) | 否    | 文本颜色。                     |
 | font  | [Font](ts-types.md#font)                 | 否    | 文本样式。 |
-| minFontSize  | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 否    | 文本最小显示字号，与maxFontSize配合使用，当设置minFontSize与maxFontSize时，font中的size设置不生效，默认最大行数为1，默认自适应高度方式为MIN_FONT_SIZE_FIRST。                     |
+| minFontSize  | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 否    | 文本最小显示字号，与maxFontSize配合使用。设置minFontSize与maxFontSize时，font中的size不生效。默认最大行数为1，自适应高度方式为MIN_FONT_SIZE_FIRST。                     |
 | maxFontSize  | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 否    | 文本最大显示字号。                     |
 |  overflow   |   [TextOverflow](ts-appendix-enums.md#textoverflow) | 否    | 文本截断方式，设置为MARQUEE时不生效。                     |
 
@@ -546,7 +546,7 @@ struct TextPickerExample {
 
 ### 示例6（设置禁用文本样式变化动效与对应文本样式）
 
-该示例通过配置disableTextStyleAnimation、defaultTextStyle实现文本选择器禁用文本样式变化动效与此时的文本样式。
+该示例通过配置disableTextStyleAnimation、defaultTextStyle实现文本选择器禁用文本样式变化动效与此时的文本样式设置。
 
 ```ts
 // xxx.ets

@@ -50,7 +50,7 @@ Image加载成功且组件不设置宽高时，其显示大小自适应父组件
 
 >**说明：**
 >
-> Image直接传入URL可能会带来的潜在性能问题，例如：(1) 大图加载时无法提前下载，白块显示的时间较长；(2) 小图设置同步加载，在弱网环境下，可能会阻塞UI线程造成冻屏问题；(3) 在快速滑动的瀑布流中，无法提前对即将要显示的图片进行下载，导致滑动白块较多；不同场景下，性能问题会有不同的表现，建议将网络下载部分与Image的显示剥离，可提前下载或者异步下载。如果图片加载过程中出现白色块，请参考[Image白块问题解决方案](https://developer.huawei.com/consumer/cn/doc/best-practices/bpta-image-white-lump-solution)。如果图片加载时间过长，请参考按照步骤[优化应用预置图片资源加载耗时问题](https://developer.huawei.com/consumer/cn/doc/best-practices/bpta-texture-compression-improve-performance)。
+> Image直接传入URL可能会带来的潜在性能问题，例如：(1) 大图加载时无法提前下载，白块显示的时间较长；(2) 小图设置同步加载，在弱网环境下，可能会阻塞UI线程造成冻屏问题；(3) 在快速滑动的瀑布流中，无法提前对即将要显示的图片进行下载，导致滑动白块较多。不同场景下，性能问题会有不同的表现，建议将网络下载部分与Image的显示剥离，可提前下载或者异步下载。如果图片加载过程中出现白色块，请参考[Image白块问题解决方案](https://developer.huawei.com/consumer/cn/doc/best-practices/bpta-image-white-lump-solution)。如果图片加载时间过长，请参考按照步骤[优化应用预置图片资源加载耗时问题](https://developer.huawei.com/consumer/cn/doc/best-practices/bpta-texture-compression-improve-performance)。
 >
 > src由有效切换为无效时，图片保持不动。
 >
@@ -625,7 +625,7 @@ orientation(orientation: ImageRotateOrientation)
 | DOWN | 3| 将当前图片旋转180度后显示。         |
 | LEFT | 4 | 将当前图片向左旋转90度后显示。         |
 
-## DrawableDescriptor<sup>10+<sup>
+## DrawableDescriptor<sup>10+</sup>
 
 type DrawableDescriptor = DrawableDescriptor
 
@@ -639,7 +639,7 @@ type DrawableDescriptor = DrawableDescriptor
 | ------ | ---------- |
 | [DrawableDescriptor](../js-apis-arkui-drawableDescriptor.md#drawabledescriptor)  | 返回一个DrawableDescriptor对象。 |
 
-## DrawingColorFilter<sup>12+<sup>
+## DrawingColorFilter<sup>12+</sup>
 
 type DrawingColorFilter = ColorFilter
 
@@ -763,7 +763,7 @@ onFinish(event: () =&gt; void)
 
 type ImageErrorCallback = (error: ImageError) => void
 
-图片加载异常时触发的回调。
+图片加载异常时触发此回调。
 
 当组件的参数类型为[AnimatedDrawableDescriptor](../js-apis-arkui-drawableDescriptor.md#animateddrawabledescriptor12)时该事件不触发。
 

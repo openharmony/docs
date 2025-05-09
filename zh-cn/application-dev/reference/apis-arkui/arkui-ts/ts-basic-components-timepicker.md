@@ -1,6 +1,6 @@
 # TimePicker
 
-时间选择组件，根据指定参数创建选择器，支持选择小时及分钟。
+时间选择组件支持根据指定参数创建选择器，可选择小时和分钟。
 
 >  **说明：**
 >
@@ -16,7 +16,7 @@
 
 TimePicker(options?: TimePickerOptions)
 
-默认以24小时的时间区间创建滑动选择器。
+创建滑动选择器，默认使用24小时的时间区间。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -56,7 +56,7 @@ TimePicker(options?: TimePickerOptions)
 
 useMilitaryTime(value: boolean)
 
-设置展示时间是否为24小时制。当展示时间为12小时制时，上下午与小时无联动关系。
+设置展示时间是否为24小时制。如果展示时间为12小时制，上下午与小时无联动。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -104,7 +104,7 @@ textStyle(value: PickerTextStyle)
 
 selectedTextStyle(value: PickerTextStyle)
 
-设置选中项的文本颜色、字号、字体粗细。
+设置选中项的文本颜色、字号和字体粗细。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -120,7 +120,7 @@ selectedTextStyle(value: PickerTextStyle)
 
 loop(value: boolean)
 
-设置是否启用循环模式。
+设置循环模式的启用状态。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -136,7 +136,7 @@ loop(value: boolean)
 
 dateTimeOptions(value: DateTimeOptions)
 
-设置时分秒是否显示前置0。
+设置时分秒是否显示前导0。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -158,7 +158,7 @@ enableHapticFeedback(enable: boolean)
 
 | 参数名 | 类型                                          | 必填  | 说明                                                                                  |
 | ------ | --------------------------------------------- |-----|-------------------------------------------------------------------------------------|
-| enable  | boolean | 是   | 是否支持触控反馈。<br/>默认值：true，true表示开启触控反馈，false表示不开启触控反馈。<br/>设置为true后是否生效，还取决于系统的硬件是否支持。 |
+| enable  | boolean | 是   | 是否支持触控反馈。<br/>默认值：true，表示开启触控反馈。<br/>设置为true后，其是否生效取决于系统的硬件支持情况。 |
 
 >  **说明：**
 >
