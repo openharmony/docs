@@ -1806,11 +1806,13 @@ try {
 
 generateDLPFileForEnterprise(plaintextFd: number, dlpFd: number, property: DLPProperty, customProperty: CustomProperty): Promise&lt;void&gt;
 
-将明文文件加密生成权限受控文件，仅在授权列表内的用户可以打开，授权又分为完全控制权限和只读权限。获取DLPFile管理对象，使用Promise方式异步返回结果。
+获取DLPFile管理对象。使用Promise异步回调。
+>**说明：**
+> 使用该接口可以将明文文件加密生成权限受控文件，仅拥有完全控制权限的用户可以打开。
 
 **系统接口：** 此接口为系统接口。
 
-**需要权限：** ohos.permission.ACCESS_DLP_FILE, ohos.permission.ENTERPEISE_ACCESS_DLP_FILE
+**需要权限：** ohos.permission.ENTERPEISE_ACCESS_DLP_FILE
 
 **系统能力：** SystemCapability.Security.DataLossPrevention
 
@@ -1820,35 +1822,31 @@ generateDLPFileForEnterprise(plaintextFd: number, dlpFd: number, property: DLPPr
 | -------- | -------- | -------- | -------- |
 | plaintextFd | number | 是 | 明文文件的fd。 |
 | dlpFd | number | 是 | 加密文件的fd。 |
-| property | [DLPProperty](#DLPProperty) | 是 | DLP文件通用策略。 |
-| customProperty | [CustomProperty](#CustomProperty20) | 是 | 企业定制策略。 |
+| property | [DLPProperty](#dlpproperty) | 是 | DLP文件通用策略。 |
+| customProperty | [CustomProperty](#customproperty20) | 是 | 企业定制策略。 |
 
 **返回值：**
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[DLP服务错误码](errorcode-dlp.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[DLP服务错误码](errorcode-dlp.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 201 | Permission denied. |
 | 202 | Non-system applications use system APIs. |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 19100001 | Invalid parameter value. |
-| 19100002 | Credential task error. |
+| 19100002 | Credential service busy due to too many tasks or duplicate tasks. |
 | 19100003 | Credential task time out. |
 | 19100004 | Credential service error. |
 | 19100005 | Credential authentication server error. |
 | 19100008 | The file is not a DLP file. |
 | 19100009 | Failed to operate the DLP file. |
 | 19100011 | The system ability works abnormally. |
-| 19100018 | Not authorized application. |
-| 19100019 | The DLP file has expired. |
-| 19100020 | No network connection. |
 
 **示例：**
 
@@ -1890,11 +1888,13 @@ async function(plainFilePath, dlpFilePath) {
 
 decryptDlpFile(dlpFd: number, plaintextFd: number): Promise&lt;void&gt;
 
-将DLP文件解密生成明文文件。仅拥有完全控制权限的用户可以解密，使用Promise异步返回结果。
+将DLP文件解密生成明文文件。使用Promise异步回调。
+>**说明：**
+> 仅拥有完全控制权限的用户可以解密DLP文件。
 
 **系统接口：** 此接口为系统接口。
 
-**需要权限：** ohos.permission.ACCESS_DLP_FILE, ohos.permission.ENTERPEISE_ACCESS_DLP_FILE
+**需要权限：** ohos.permission.ENTERPEISE_ACCESS_DLP_FILE
 
 **系统能力：** SystemCapability.Security.DataLossPrevention
 
@@ -1909,7 +1909,7 @@ decryptDlpFile(dlpFd: number, plaintextFd: number): Promise&lt;void&gt;
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -1919,18 +1919,14 @@ decryptDlpFile(dlpFd: number, plaintextFd: number): Promise&lt;void&gt;
 | -------- | -------- |
 | 201 | Permission denied. |
 | 202 | Non-system applications use system APIs. |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 19100001 | Invalid parameter value. |
-| 19100002 | Credential task error. |
+| 19100002 | Credential service busy due to too many tasks or duplicate tasks. |
 | 19100003 | Credential task time out. |
 | 19100004 | Credential service error. |
 | 19100005 | Credential authentication server error. |
 | 19100008 | The file is not a DLP file. |
 | 19100009 | Failed to operate the DLP file. |
 | 19100011 | The system ability works abnormally. |
-| 19100018 | Not authorized application. |
-| 19100019 | The DLP file has expired. |
-| 19100020 | No network connection. |
 
 **示例：**
 
@@ -1960,11 +1956,11 @@ async function(plainFilePath, dlpFilePath) {
 
 queryDlpPolicy(dlpFd: number): Promise&lt;string&gt;
 
-从DLP文件中解析文件头，获取DLP明文策略。
+从DLP文件中解析文件头，获取DLP明文策略。使用Promise异步回调。
 
 **系统接口：** 此接口为系统接口。
 
-**需要权限：** ohos.permission.ACCESS_DLP_FILE, ohos.permission.ENTERPEISE_ACCESS_DLP_FILE
+**需要权限：** ohos.permission.ENTERPEISE_ACCESS_DLP_FILE
 
 **系统能力：** SystemCapability.Security.DataLossPrevention
 
@@ -1973,7 +1969,6 @@ queryDlpPolicy(dlpFd: number): Promise&lt;string&gt;
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | dlpFd | number | 是 | 待解密文件的fd。 |
-| plaintextFd | number | 是 | 目标解密文件的fd。 |
 
 **返回值：**
 
@@ -1989,18 +1984,14 @@ queryDlpPolicy(dlpFd: number): Promise&lt;string&gt;
 | -------- | -------- |
 | 201 | Permission denied. |
 | 202 | Non-system applications use system APIs. |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 19100001 | Invalid parameter value. |
-| 19100002 | Credential task error. |
+| 19100002 | Credential service busy due to too many tasks or duplicate tasks. |
 | 19100003 | Credential task time out. |
 | 19100004 | Credential service error. |
 | 19100005 | Credential authentication server error. |
 | 19100008 | The file is not a DLP file. |
 | 19100009 | Failed to operate the DLP file. |
 | 19100011 | The system ability works abnormally. |
-| 19100018 | Not authorized application. |
-| 19100019 | The DLP file has expired. |
-| 19100020 | No network connection. |
 
 **示例：**
 
@@ -2064,7 +2055,7 @@ DLP沙箱身份。
 
 ## ActionType<sup>20+</sup>
 
-表示文件设定的权限时间到期后执行的动作，默认为NOTOPEN。
+表示文件设定的权限时间到期后执行的动作，默认为NOT_OPEN。
 
 **系统接口：** 此接口为系统接口。
 
@@ -2098,9 +2089,9 @@ DLP沙箱身份。
 
 **系统能力：** SystemCapability.Security.DataLossPrevention
 
-| 名称 | 类型 | 只读 | 必填 | 说明 |
+| 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| enterprise | string | 否 | 是 | 表示企业定制策略的json字符串。长度不超过4MB。 |
+| enterprise | string | 否 | 否 | 表示企业定制策略的json字符串。长度不超过4MB。 |
 
 ## DLPProperty
 
@@ -2120,7 +2111,7 @@ DLP沙箱身份。
 | offlineAccess | boolean | 否 | 是 | 表示是否是离线打开。true表示允许离线打开，false表示不可离线打开。 |
 | everyoneAccessList | Array&lt;[DLPFileAccess](js-apis-dlppermission.md#dlpfileaccess)&gt; | 否 | 否 | 表示授予所有人的权限，默认为空。 |
 | expireTime<sup>11+</sup> | number | 否 | 否 | 表示文件权限到期时间戳，默认为空。 |
-| actionUponExpiry<sup>20+</sup> | [ActionType](#ActionType20) | 否 | 否 | 表示到期后文件权限，仅在expireTime不为空时生效。 |
+| actionUponExpiry<sup>20+</sup> | [ActionType](#actiontype20) | 否 | 否 | 表示到期后文件是否允许打开（打开后拥有编辑权限），仅在expireTime不为空时生效。 |
 
 ## GatheringPolicyType
 
