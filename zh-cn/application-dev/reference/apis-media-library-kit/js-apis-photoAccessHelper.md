@@ -5626,8 +5626,8 @@ async function example() {
 
 | 名称                    | 类型                | 必填 | 说明                           |
 | ----------------------- | ------------------- | ---- |------------------------------ |
-| filterOperator        | [FilterOperator](#filteroperator19)    | 是  | 过滤操作符。<br>例如：按照大于/小于某个fileSize的方式过滤文件大小。 |
-| fileSize        | number    | 是 | 过滤可选择的媒体文件。<br>单位为字节（Byte）。 |
+| filterOperator        | [FilterOperator](#filteroperator19)    | 是  | 过滤操作符。<br>例如：按照大于/小于某个fileSize的方式过滤文件。 |
+| fileSize        | number    | 是 | 指定进行过滤的文件大小。<br>单位为字节（Byte）。 |
 | extraFileSize   | number    | 否 | 针对FilterOperator.BETWEEN情况下，配置文件大小的上限值。默认值为-1。<br>单位为字节（Byte） |
 
 ## VideoDurationFilter<sup>19+</sup>
