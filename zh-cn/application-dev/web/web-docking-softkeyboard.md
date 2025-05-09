@@ -158,7 +158,7 @@ struct KeyboardAvoidExample {
 >
 >布局视口指网页本身的宽度。
 
-（1）在应用代码中设置ArkWeb的软键盘避让模式。
+在应用代码中设置ArkWeb的软键盘避让模式。
 
 ```ts
 // Index.ets
