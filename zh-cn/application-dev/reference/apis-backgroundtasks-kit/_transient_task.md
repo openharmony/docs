@@ -21,7 +21,8 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| struct&nbsp;&nbsp;[TransientTask_DelaySuspendInfo](_transient_task___delay_suspend_info.md) | 定义短时任务返回信息结构体。  | 
+| struct&nbsp;&nbsp;[TransientTask_DelaySuspendInfo](_transient_task___delay_suspend_info.md) | 定义短时任务返回信息结构体。  |
+| struct&nbsp;&nbsp;[TransientTask_TransientTaskInfo](_transient_task___transient_task_info.md) | 定义所有短时任务返回信息结构体。 |
 
 
 ### 类型定义
@@ -30,7 +31,8 @@
 | -------- | -------- |
 | typedef enum [TransientTask_ErrorCode](#transienttask_errorcode) [TransientTask_ErrorCode](#transienttask_errorcode) | 定义短时任务错误码。  | 
 | typedef struct [TransientTask_DelaySuspendInfo](_transient_task___delay_suspend_info.md) [TransientTask_DelaySuspendInfo](_transient_task___delay_suspend_info.md)| 定义短时任务返回信息结构体。  | 
-| typedef void(\* [TransientTask_Callback](#transienttask_callback)) (void) | 定义短时任务超时回调类型。  | 
+| typedef void(\* [TransientTask_Callback](#transienttask_callback)) (void) | 定义短时任务超时回调类型。  |
+| typedef struct [TransientTask_TransientTaskInfo](_transient_task___transient_task_info.md) [TransientTask_TransientTaskInfo](_transient_task___transient_task_info.md)| 定义所有短时任务返回信息结构体。 | 
 
 
 ### 枚举
@@ -46,7 +48,8 @@
 | -------- | -------- |
 | int32_t [OH_BackgroundTaskManager_RequestSuspendDelay](#oh_backgroundtaskmanager_requestsuspenddelay) (const char \*reason, [TransientTask_Callback](#transienttask_callback) callback, [TransientTask_DelaySuspendInfo](_transient_task___delay_suspend_info.md) \*info) | 申请短时任务。  | 
 | int32_t [OH_BackgroundTaskManager_GetRemainingDelayTime](#oh_backgroundtaskmanager_getremainingdelaytime) (int32_t requestId, int32_t \*delayTime) | 获取本次短时任务的剩余时间。  | 
-| int32_t [OH_BackgroundTaskManager_CancelSuspendDelay](#oh_backgroundtaskmanager_cancelsuspenddelay) (int32_t requestId) | 取消短时任务。  | 
+| int32_t [OH_BackgroundTaskManager_CancelSuspendDelay](#oh_backgroundtaskmanager_cancelsuspenddelay) (int32_t requestId) | 取消短时任务。  |
+| int32_t [OH_BackgroundTaskManager_GetAllTransientTasks](#oh_backgroundtaskmanager_getalltransienttasks) ([TransientTask_TransientTaskInfo](_transient_task___transient_task_info.md) \*transientTaskInfo)                                                                  | 获取所有短时任务信息。    | 
 
 
 ## 类型定义说明
@@ -83,6 +86,17 @@ typedef enum TransientTask_ErrorCode TransientTask_ErrorCode
 定义短时任务错误码。
 
 **起始版本：** 13
+
+
+### TransientTask_TransientTaskInfo
+
+```
+typedef struct TransientTask_TransientTaskInfo TransientTask_TransientTaskInfo
+```
+**描述**
+定义所有短时任务返回信息结构体。
+
+**起始版本**： 20
 
 
 ## 枚举类型说明
@@ -182,3 +196,26 @@ int32_t OH_BackgroundTaskManager_RequestSuspendDelay (const char * reason, Trans
 **返回：**
 
 返回0，表示申请成功。 </br>返回401，表示入参错误。 </br>返回9800002，表示Parcel读写操作失败。 </br>返回9800003，表示IPC通信失败。 </br>返回9800004，表示系统服务失败。 </br>返回9900001，表示短时任务客户端信息校验失败。 </br>返回9900002，表示短时任务服务端校验失败。 </br>错误码的具体信息请参考[TransientTask_ErrorCode](#transienttask_errorcode)。
+
+
+### OH_BackgroundTaskManager_GetAllTransientTasks()
+
+```
+int32_t OH_BackgroundTaskManager_GetAllTransientTasks (TransientTask_TransientTaskInfo  *transientTaskInfo)
+```
+**描述**
+获取所有短时任务信息，如当日剩余总配额等。
+
+**系统能力：** SystemCapability.ResourceSchedule.BackgroundTaskManager.TransientTask
+
+**起始版本：** 20
+
+**参数:**
+
+| 名称 | 描述          | 
+| -------- |-------------|
+| transientTaskInfo | 返回所有短时任务信息。 | 
+
+**返回：**
+
+返回0，表示申请成功。 </br>返回401，表示入参错误。 </br>返回9800001，表示内存操作失败。 </br>返回9800002，表示Parcel读写操作失败。 </br>返回9800004，表示系统服务失败。</br>错误码的具体信息请参考[TransientTask_ErrorCode](#transienttask_errorcode)。
