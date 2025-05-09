@@ -6,7 +6,7 @@
 
 ## 接口说明
 
-常用接口如下表所示，具体API说明详见API参考(../reference/apis-backgroundtasks-kit/_transient_task.md#transienttask)。
+常用接口如下表所示，具体API说明详见API参考[TransientTask](../reference/apis-backgroundtasks-kit/_transient_task.md#transienttask)。
 
 
 | 接口名 | 描述 |
