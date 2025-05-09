@@ -28,7 +28,7 @@ Prepares for screen hopping. This API uses an asynchronous callback to return th
 
 | Name  | Type                     | Mandatory| Description                                                        |
 | -------- | ------------------------- | ---- | ------------------------------------------------------------ |
-| callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the operation result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -112,7 +112,7 @@ Cancels the preparation for screen hopping. This API uses an asynchronous callba
 
 | Name  | Type                     | Mandatory| Description                                                        |
 | -------- | ------------------------- | ---- | ------------------------------------------------------------ |
-| callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the operation result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -199,7 +199,7 @@ Starts screen hopping. This API uses an asynchronous callback to return the resu
 | --------------- | ------------------------- | ---- | ------------------------------------------------------------ |
 | targetNetworkId | string                    | Yes  | Descriptor of the target device for screen hopping.                                    |
 | inputDeviceId   | number                    | Yes  | Identifier of the input device for screen hopping.                                      |
-| callback        | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
+| callback        | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the operation result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -210,7 +210,7 @@ For details about the error codes, see [Screen Hopping Error Codes](errorcode-de
 | 201 | Permission denied. |
 | 202 | Not system application. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified.2.Incorrect parameter types.3.Parameter verification failed. |
-| 20900001 | Operation failed. |
+| 20900001 | Service Exception. Possible causes:  1. A system error, such as null pointer, container-related exception, IPC exception. 2. N-API invocation exception, invalid N-API status. |
 
 **Example**
 
@@ -263,7 +263,7 @@ For details about the error codes, see [Screen Hopping Error Codes](errorcode-de
 | 201 | Permission denied. |
 | 202 | Not system application. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified.2.Incorrect parameter types.3.Parameter verification failed. |
-| 20900001 | Operation failed. |
+| 20900001 | Service Exception. Possible causes:  1. A system error, such as null pointer, container-related exception, IPC exception. 2. N-API invocation exception, invalid N-API status. |
 
 **Example**
 
@@ -299,7 +299,7 @@ Stops screen hopping. This API uses an asynchronous callback to return the resul
 | Name     | Type                     | Mandatory| Description                                                        |
 | ----------- | ------------------------- | ---- | ------------------------------------------------------------ |
 | isUnchained | boolean                   | Yes  | Whether to disable the cross-device link. The value **true** means to disable the cross-device link, and the value **false** means the opposite.|
-| callback    | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
+| callback    | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the operation result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -708,10 +708,8 @@ Defines the mouse pointer position for screen hopping.
 | ---------      | -------------- | ---- | ---- | ------------------------       |
 | displayX       | number         | Yes  | No  | Position of the mouse pointer on the X coordinate of the screen.|
 | displayY       | number         | Yes  | No  | Position of the mouse pointer on the Y coordinate of the screen.|
-| displayWidth   | number         | Yes  | No  | Screen width.                     |
-| displayHeight  | number         | Yes  | No  | Screen height.                     |
-
-
+| displayWidth   | number         | Yes  | No  | Screen width, in pixels.                     |
+| displayHeight  | number         | Yes  | No  | Screen height, in pixels.                     |
 
 ## CooperateState<sup>11+</sup>
 
@@ -743,8 +741,8 @@ Represents the mouse cursor position.
 | ---------     | -------------- | ---- | ---- | ------------------------ |
 | displayX      | number         | Yes  | No  | X coordinate of the mouse cursor.|
 | displayY      | number         | Yes  | No  | Y coordinate of the mouse cursor.|
-| displayWidth  | number         | Yes  | No  | Width of the screen where the mouse cursor is located.|
-| displayHeight | number         | Yes  | No  | Height of the screen where the mouse cursor is located.|
+| displayWidth  | number         | Yes  | No  | Width of the screen where the mouse cursor is located, in pixels.|
+| displayHeight | number         | Yes  | No  | Height of the screen where the mouse cursor is located, in pixels.|
 
 
 ## cooperate.prepare<sup>(deprecated)</sup>
@@ -763,7 +761,7 @@ Prepares for screen hopping. This API uses an asynchronous callback to return th
 
 | Name   | Type     | Mandatory | Description   |
 | -------- | ------------------------- | ---- | --------------------------- |
-| callback | AsyncCallback&lt;void&gt;  | Yes|Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.  |
+| callback | AsyncCallback&lt;void&gt;  | Yes|Callback used to return the operation result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.  |
 
 **Error codes**
 
@@ -849,7 +847,7 @@ Cancels the preparation for screen hopping. This API uses an asynchronous callba
 
 | Name  | Type                     | Mandatory| Description                                      |
 | -------- | ------------------------- | ---- | ------------------------------------------ |
-| callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the operation result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -939,7 +937,7 @@ Starts screen hopping. This API uses an asynchronous callback to return the resu
 | --------             | ---------------------------- | ----  | ----------------------------   |
 | targetNetworkId | string                       |  Yes  | Descriptor of the target device for screen hopping.            |
 | inputDeviceId | number                       |  Yes  | Identifier of the input device for screen hopping.|
-| callback             | AsyncCallback&lt;void&gt; |  Yes   | Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
+| callback             | AsyncCallback&lt;void&gt; |  Yes   | Callback used to return the operation result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -947,7 +945,7 @@ For details about the error codes, see [Screen Hopping Error Codes](errorcode-de
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 20900001 | Operation failed.|
+| 20900001 | Service Exception. Possible causes:  1. A system error, such as null pointer, container-related exception, IPC exception. 2. N-API invocation exception, invalid N-API status. |
 | 202 | Not system application. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified.2.Incorrect parameter types.3.Parameter verification failed. |
 
@@ -1003,7 +1001,7 @@ For details about the error codes, see [Screen Hopping Error Codes](errorcode-de
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 20900001 | Operation failed.   |
+| 20900001 | Service Exception. Possible causes:  1. A system error, such as null pointer, container-related exception, IPC exception. 2. N-API invocation exception, invalid N-API status. |
 | 202 | Not system application. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified.2.Incorrect parameter types.3.Parameter verification failed. |
 
@@ -1043,7 +1041,7 @@ Stops screen hopping. This API uses an asynchronous callback to return the resul
 | Name               | Type                         | Mandatory | Description                           |
 | --------             | ---------------------------- | ----  | ----------------------------   |
 | isUnchained | boolean | Yes| Whether to disable the cross-device link.<br> The value **true** means to disable the cross-device link, and the value **false** means the opposite.|
-| callback     | AsyncCallback&lt;void&gt; |  Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
+| callback     | AsyncCallback&lt;void&gt; |  Yes  | Callback used to return the operation result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 **Error codes**
 

@@ -1,25 +1,53 @@
 # USB DDK Development
 
-## When to Use
+## Overview
 
-The USB Driver Development Kit (USB DDK) is a toolset that helps you develop USB device drivers at the application layer based on the user mode. It provides a series of device access APIs, for example, opening and closing USB interfaces, and performing non-isochronous transfer, isochronous transfer, control transfer, and interrupt transfer over USB pipes.
+The USB Driver Development Kit (DDK) is a toolset that helps you develop USB device drivers at the application layer based on the user mode. It provides a series of device access APIs, for example, opening and closing USB interfaces, and performing non-isochronous transfer, isochronous transfer, control transfer, and interrupt transfer over USB pipes.
+
+The USB DDK can be used to develop device drivers for all devices that use the USB protocol to transfer data over a USB bus. For the peripherals that are not supported by standard kernel drivers, you can use the peripheral driver application developed based on the USB DDK to implement unique device capabilities.
+
+### Basic Concepts
+
+Before developing the USB DDK, you must understand the following basic concepts:
+
+- **USB**
+
+  Universal Serial Bus (USB) is a widely used interface technology that connects a computer to various external devices, such as a keyboard, mouse, printer, storage device, and smartphone. The USB is designed to provide a standardized, efficient, and easy-to-use connection mode that replaces the traditional serial and parallel interface communication.
+
+- **DDK**
+
+  DDK is a tool package provided by OpenHarmony for developing drivers for non-standard USB serial port devices based on the peripheral framework.
+
+### Implementation Principles
+
+A non-standard peripheral application obtains the USB device ID by using the peripheral management service, and delivers the ID and the action to the USB driver application through RPC. The USB driver application can obtain or set the device descriptor and initiate a control transfer or interrupt transfer request by calling the USB DDK API. Then, the DDK API uses the HDI service to deliver instructions to the kernel driver, and the kernel driver uses instructions to communicate with the device.
+
+**Figure 1** Principles of invoking the USB DDK
+
+![USB_DDK schematic diagram](figures/ddk-schematic-diagram.png)
 
 ## Constraints
 
-* The open APIs of the USB DDK can be used to develop drivers of non-standard USB peripherals.
+- The open APIs of USB DDK can be used to develop drivers of non-standard USB peripherals.
 
-* The open APIs of the USB DDK can be used only within the DriverExtensionAbility lifecycle.
+- The open APIs of USB DDK can be used only within the lifecycle of **DriverExtensionAbility**.
 
-* To use the open APIs of the USB DDK, you need to declare the matching ACL permissions in **module.json5**, for example, **ohos.permission.ACCESS_DDK_USB**.
+- To use the open APIs of the USB DDK, you need to declare the matching ACL permissions in **module.json5**, for example, **ohos.permission.ACCESS_DDK_USB**.
 
-## Available APIs
+## Environment Setup
+
+Before you get started, make necessary preparations by following instructions in [Environment Preparation](environmental-preparation.md).
+
+## How to Develop
+
+### Available APIs
 
 | Name| Description|
 | -------- | -------- |
 | OH_Usb_Init(void) | Initializes the USB DDK.|
 | OH_Usb_Release(void) | Releases the USB DDK.|
-| OH_Usb_GetDeviceDescriptor(uint64_t deviceId, struct UsbDeviceDescriptor *desc) | Obtains a device descriptor.|
-| OH_Usb_GetConfigDescriptor(uint64_t deviceId, uint8_t configIndex, struct UsbDdkConfigDescriptor **const config) | Obtains a configuration descriptor. To avoid memory leakage, use **OH_Usb_FreeConfigDescriptor()** to release a descriptor after use.|
+| OH_Usb_GetDeviceDescriptor(uint64_t deviceId, struct UsbDeviceDescriptor *desc) | Obtains the device descriptor of a USB device.|
+| OH_Usb_GetConfigDescriptor(uint64_t deviceId, uint8_t configIndex, struct UsbDdkConfigDescriptor **const config) | Obtains a USB configuration descriptor. To avoid memory leakage, use **OH_Usb_FreeConfigDescriptor()** to release a descriptor after use.|
 | OH_Usb_FreeConfigDescriptor(const struct UsbDdkConfigDescriptor *const config) | Releases a configuration descriptor. To avoid memory leakage, release a descriptor in time after use.|
 | OH_Usb_ClaimInterface(uint64_t deviceId, uint8_t interfaceIndex, uint64_t *interfaceHandle) | Declares a USB interface.|
 | OH_Usb_SelectInterfaceSetting(uint64_t interfaceHandle, uint8_t settingIndex) | Activates the alternate setting of a USB interface.|
@@ -28,19 +56,19 @@ The USB Driver Development Kit (USB DDK) is a toolset that helps you develop USB
 | OH_Usb_SendControlWriteRequest(uint64_t interfaceHandle, const struct UsbControlRequestSetup \*setup, uint32_t, const uint8_t \*data, uint32_t dataLen) | Sends a control write transfer request. This API returns the result synchronously.|
 | OH_Usb_ReleaseInterface(uint64_t interfaceHandle) | Releases a USB interface.|
 | OH_Usb_SendPipeRequest(const struct UsbRequestPipe *pipe, UsbDeviceMemMap *devMmap) | Sends a pipe request. This API returns the result synchronously. It applies to interrupt transfer and bulk transfer.|
-| OH_Usb_CreateDeviceMemMap(uint64_t deviceId, size_t size, UsbDeviceMemMap **devMmap) | Creates a buffer. To avoid resource leakage, use **OH_Usb_DestroyDeviceMemMap()** to destroy a buffer after use.|
-| OH_Usb_DestroyDeviceMemMap(UsbDeviceMemMap *devMmap) | Destroys a buffer. To avoid resource leakage, destroy a buffer in time after use.|
+| OH_Usb_CreateDeviceMemMap(uint64_t deviceId, size_t size, UsbDeviceMemMap **devMmap) | Create a buffer. To avoid resource leakage, use **OH_Usb_DestroyDeviceMemMap()** to destroy a buffer after use.|
+| OH_Usb_DestroyDeviceMemMap(UsbDeviceMemMap *devMmap) | Destroy a buffer. To avoid resource leakage, destroy a buffer in time after use.|
 | OH_Usb_GetDevices(struct Usb_DeviceArray *devices) | Obtains the USB device ID list. Ensure that the input pointer is valid and the number of devices does not exceed 128. To prevent resource leakage, release the member memory after usage. Besides, make sure that the obtained USB device ID has been filtered by **vid** in the driver configuration information.|
 
-For details about the APIs, see [USB DDK](../reference/apis-driverdevelopment-kit/_usb_ddk.md).
+For details about the APIs, see [USB DDK](../../reference/apis-driverdevelopment-kit/_usb_ddk.md).
 
-## How to Develop
+### How to Develop
 
 To develop a USB driver using the USB DDK, perform the following steps:
 
 **Adding Dynamic Link Libraries**
 
-Add the following library to **CMakeLists.txt**:
+Add the following libraries to **CMakeLists.txt**.
 ```txt
 libusb_ndk.z.so
 ```
@@ -51,7 +79,7 @@ libusb_ndk.z.so
 #include <usb/usb_ddk_types.h>
 ```
 
-1. Obtains a device descriptor.
+1. Obtain the device descriptor of a USB device.
 
     Call **OH_Usb_Init** of **usb_ddk_api.h** to initialize the USB DDK, and call **OH_Usb_GetDeviceDescriptor** to obtain the device descriptor.
 
