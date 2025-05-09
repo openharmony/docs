@@ -201,7 +201,9 @@
       - [监听组件事件](ndk-listen-to-component-events.md)
       - [绑定手势事件](ndk-bind-gesture-events.md)
     - [使用动画](ndk-use-animation.md)
-    - [使用列表](ndk-loading-long-list.md)
+    - 构建布局<!--arkts-build-layout-ndk-->
+      - [使用列表](ndk-loading-long-list.md)
+      - [使用瀑布流](ndk-waterflow.md)
     - [构建弹窗](ndk-build-pop-up-window.md)
     - [构建自定义组件](ndk-build-custom-components.md)
     - [嵌入ArkTS组件](ndk-embed-arkts-components.md)
