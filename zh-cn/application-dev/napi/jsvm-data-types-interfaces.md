@@ -560,6 +560,8 @@ consoleinfo('Result is:' + value);\
 场景示例：
 编译及执行JS代码(创建vm，注册function，执行js，销毁vm)。
 
+cpp部分代码
+
 ```c++
 #include <cstring>
 #include <fstream>
@@ -780,7 +782,7 @@ static JSVM_PropertyDescriptor descriptor[] = {
 };
 
 // 样例测试js
-const char *srcCallNative = R"JS(RunDemo("gen-snapshot); RunDemo("use-snapshot"))JS";
+const char *srcCallNative = R"JS(RunDemo("gen-snapshot"); RunDemo("use-snapshot"))JS";
 ```
 
 预期输出结果
