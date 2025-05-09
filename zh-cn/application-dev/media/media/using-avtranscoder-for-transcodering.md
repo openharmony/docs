@@ -178,6 +178,7 @@
 import { media } from '@kit.MediaKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { common } from '@kit.AbilityKit';
+import fs from '@ohos.file.fs';
 
 export class AVTranscoderDemo {
   private avTranscoder: media.AVTranscoder | undefined = undefined;
