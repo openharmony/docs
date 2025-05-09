@@ -1788,7 +1788,7 @@ function MenuStyles() {
 
 ```ts
 // xxx.ets
-import { LengthMetrics } from '@kit.ArkUI'
+import { LengthMetrics } from '@kit.ArkUI';
 
 @Extend(Text)
 function style() {
@@ -1844,7 +1844,7 @@ struct TextExample9 {
 
 ```ts
 // xxx.ets
-import { text } from '@kit.ArkGraphics2D'
+import { text } from '@kit.ArkGraphics2D';
 
 @Entry
 @Component
