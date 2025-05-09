@@ -18,7 +18,7 @@
 | 名称                                                                                             | 描述             | 
 |------------------------------------------------------------------------------------------------|----------------|
 | int32_t [remainingQuota](#remainingquota)                                                      | 当日剩余总配额（单位：ms）。 | 
-| TransientTask_DelaySuspendInfo [transientTaskInfo[]](#_transient_task___delay_suspend_info.md) | 已申请的所有短时任务信息。   | 
+| TransientTask_DelaySuspendInfo [transientTaskInfo[]](#transienttaskinfo) | 已申请的所有短时任务信息。   | 
 
 
 ## 结构体成员变量说明
