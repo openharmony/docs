@@ -6,7 +6,7 @@
 
 ## 开发步骤
 
-多语言列表按照当地用户习惯进行排序，通过[Collator](../reference/apis-localization-kit/js-apis-intl.md#collator8)类的[compare](../reference/apis-localization-kit/js-apis-intl.md#compare8)接口实现，具体开发步骤如下。
+多语言列表按照当地用户习惯进行排序，通过[Collator](../reference/apis-localization-kit/js-apis-intl.md#collator8)类的[compare](../reference/apis-localization-kit/js-apis-intl.md#compare8)接口实现，具体开发步骤如下：
 
 1. 导入模块。
    ```ts
@@ -38,8 +38,8 @@
 | usage | sort | 用作排序 |  | 
 |  | search | 用作查找匹配的字符串 |  | 
 | sensitivity | base | 不同的字母比较不相等 | 'a' ≠ 'b', 'a' = 'á', 'a' = 'A' | 
-|  | accent | 不同的字母或读音比较不相等 | 'a' ≠ 'b', 'a' ≠ 'á', 'a' = 'A' | 
-|  | case | 不同的字母或同一字母大小写比较不相等 | 'a' ≠ 'b', 'a' = 'á', 'a' ≠ 'A' | 
+|  | accent | 不同的字母或不同读音的相同字母比较不相等 | 'a' ≠ 'b', 'a' ≠ 'á', 'a' = 'A' | 
+|  | case | 不同的字母或相同字母大小写比较不相等 | 'a' ≠ 'b', 'a' = 'á', 'a' ≠ 'A' | 
 |  | variant | 不同的字母或读音及其它有区别的标志或大小写都是不相等的 | 'a' ≠ 'b', 'a' ≠ 'á', 'a' ≠ 'A' | 
 | ignorePunctuation | true | 忽略标点 | 'a,b' = 'ab' | 
 |  | false | 不忽略标点 | 'a,b' &lt; 'ab' | 

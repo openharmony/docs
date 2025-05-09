@@ -729,6 +729,11 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
 
     ```c++
     std::unique_lock<std::shared_mutex> lock(codecMutex);
+    // 释放nativeWindow实例。
+    if(nativeWindow != nullptr){
+        OH_NativeWindow_DestroyNativeWindow(nativeWindow);
+        nativeWindow = nullptr;
+    }
     // 调用OH_VideoDecoder_Destroy，注销解码器。
     int32_t ret = AV_ERR_OK;
     if (videoDec != nullptr) {

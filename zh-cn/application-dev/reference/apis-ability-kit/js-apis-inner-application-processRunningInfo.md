@@ -1,4 +1,5 @@
 # ProcessRunningInfo
+<!--deprecated_code_no_check-->
 
 本模块提供对进程运行信息进行查询的能力。
 

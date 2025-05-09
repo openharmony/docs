@@ -161,7 +161,7 @@ struct Index {
           .domStorageAccess(true)
           .cacheMode(CacheMode.Default)
           .onPageBegin( event => {
-            testNapi.initResourceManager(getContext().resourceManager);
+            testNapi.initResourceManager(this.getUIContext().getHostContext()!.resourceManager);
           })
       }
       .width('100%')

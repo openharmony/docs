@@ -535,7 +535,7 @@ HarmonyAppProvision配置文件示例如下所示，修改"bundle-info" &gt; "ap
 
 **授权方式**：系统授权（system_grant）
 
-**起始版本**：18
+**起始版本**：19
 
 ### ohos.permission.CUSTOM_SANDBOX
 
@@ -554,6 +554,20 @@ HarmonyAppProvision配置文件示例如下所示，修改"bundle-info" &gt; "ap
 允许应用调用屏幕时间守护相关接口，进行屏幕使用限制、应用访问控制、管控使用时间等操作。
 
 <!--RP40--><!--RP40End-->
+
+**权限级别**：system_basic
+
+**授权方式**：系统授权（system_grant）
+
+**ACL使能**：true
+
+**起始版本**：20
+
+### ohos.permission.CUSTOMIZE_SAVE_BUTTON
+
+允许应用自定义保存控件的图标和文本。
+
+<!--RP41--><!--RP41End-->
 
 **权限级别**：system_basic
 

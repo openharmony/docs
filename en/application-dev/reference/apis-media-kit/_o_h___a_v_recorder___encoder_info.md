@@ -11,6 +11,8 @@ The OH_AVRecorder_EncoderInfo struct describes the encoder information.
 
 **Related module**: [AVRecorder](_a_v_recorder.md)
 
+**Header file**: [avrecorder_base.h](avrecorder__base_8h.md)
+
 
 ## Summary
 

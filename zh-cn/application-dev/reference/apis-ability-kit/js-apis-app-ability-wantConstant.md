@@ -30,7 +30,7 @@ want的Params操作的常量。
 | SHOW_MODE_KEY<sup>12+</sup>  | ohos.extra.param.key.showMode      | 指示展示模式，值为枚举类型wantConstant.ShowMode<br>**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。|
 | PARAMS_STREAM<sup>12+</sup>  | ability.params.stream  | 指示携带的文件URI要授权给目标方。对应的value必须是string类型的文件URI数组。文件URI的获取参考[fileUri](../apis-core-file-kit/js-apis-file-fileuri.md#fileurigeturifrompath) <br>**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。 |
 | APP_CLONE_INDEX_KEY<sup>12+</sup>  | ohos.extra.param.key.appCloneIndex  | 指示分身应用索引。 <br>**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。 |
-| CALLER_REQUEST_CODE<sup>12+</sup>  | ohos.extra.param.key.callerRequestCode  | 当调用[startAbilityForResult](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartabilityforresult)或[openLink](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextopenlink12)拉起目标方Ability时, 需要目标方返回结果。为了确保目标方能够将结果准确返回到调用方，系统会自动生成唯一的requestCode，以标识本次调用。 <br>**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。 |
+| CALLER_REQUEST_CODE<sup>12+</sup>  | ohos.extra.param.key.callerRequestCode  | 当调用[startAbilityForResult](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartabilityforresult)或[openLink](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextopenlink12)拉起目标方Ability时，需要目标方返回结果。为了确保目标方能够将结果准确返回到调用方，系统会自动生成唯一的requestCode，以标识本次调用。 <br>**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。 |
 | PAGE_PATH<sup>12+</sup>  | ohos.param.atomicservice.pagePath | 指示页面参数路径。<br>**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。  |
 | ROUTER_NAME<sup>12+</sup>  | ohos.param.atomicservice.routerName | 指示页面路由名称。<br>**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。  |
 | PAGE_SOURCE_FILE<sup>12+</sup>  | ohos.param.atomicservice.pageSourceFile | 指示页面源文件。<br>**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。  |

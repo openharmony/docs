@@ -493,7 +493,7 @@ export let funcResult = func();
   // har_library/src/main/ets/pages/MainPage.ets
   import { funcResult } from 'har_common';
   ```
-下面对优化前后启动性能进行对比分析。分析阶段的起点为启动Ability（即`H:void OHOS::AppExecFwk::MainThread::HandleLaunchAbility`的开始点），阶段终点为应用第一次接到vsync（即`H:ReceiveVsync dataCount:24Bytes now:timestamp expectedEnd:timestamp vsyncId:int`的开始点）。
+  下面对优化前后启动性能进行对比分析。分析阶段的起点为启动Ability（即`H:void OHOS::AppExecFwk::MainThread::HandleLaunchAbility`的开始点），阶段终点为应用第一次接到vsync（即`H:ReceiveVsync dataCount:24Bytes now:timestamp expectedEnd:timestamp vsyncId:int`的开始点）。
 
 【优化前】使用HSP包。
 ![](./figures/application_coldstart13.png)
@@ -675,15 +675,15 @@ const DELAYED_TIME = 1000;
 @Entry
 @Component
 struct Index {
-  @State private text: string = "";
+  @State private text: string | undefined = "";
   private count: number = 0;
 
   aboutToAppear() {
     // 耗时操作
     // this.computeTask();
     this.computeTaskAsync(); // 异步任务
-    let context = getContext(this) as Context;
-    this.text = context.resourceManager.getStringSync($r('app.string.startup_text'));
+    let context = this.getUIContext().getHostContext();
+    this.text = context?.resourceManager.getStringSync($r('app.string.startup_text'));
   }
 
   build() {
@@ -700,8 +700,8 @@ struct Index {
     while (this.count < LARGE_NUMBER) {
       this.count++;
     }
-    let context = getContext(this) as Context;
-    this.text = context.resourceManager.getStringSync($r('app.string.task_text'));
+    let context = this.getUIContext().getHostContext();
+    this.text = context?.resourceManager.getStringSync($r('app.string.task_text'));
   }
 
   // 运算任务异步处理

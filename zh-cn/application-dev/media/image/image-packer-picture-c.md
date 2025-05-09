@@ -67,7 +67,7 @@ target_link_libraries(entry PUBLIC libhilog_ndk.z.so libimage_packer.so)
             source = nullptr;
             return thisPicture->errorCode;
         }
-    OH_LOG_DEBUG(LOG_APP, "ReleaseImageSource source is null !");
+    OH_LOG_DEBUG(LOG_APP, "ReleaseImageSource source is null!");
         return IMAGE_SUCCESS;
     }
 
@@ -85,7 +85,7 @@ target_link_libraries(entry PUBLIC libhilog_ndk.z.so libimage_packer.so)
         size_t argc = 2;
         napi_value args[2] = {nullptr};
         if (napi_get_cb_info(env, info, &argc, args, nullptr, nullptr) != napi_ok) {
-            OH_LOG_ERROR(LOG_APP, "napi_get_cb_info failed !");
+            OH_LOG_ERROR(LOG_APP, "napi_get_cb_info failed!");
             return getJsResult(env, thisPicture->errorCode);
         }
         uint32_t fd = 0;
@@ -137,7 +137,7 @@ target_link_libraries(entry PUBLIC libhilog_ndk.z.so libimage_packer.so)
         size_t argc = 2;
         napi_value args[2] = {nullptr};
         if (napi_get_cb_info(env, info, &argc, args, nullptr, nullptr) != napi_ok) {
-        OH_LOG_ERROR(LOG_APP, "napi_get_cb_info failed !");
+        OH_LOG_ERROR(LOG_APP, "napi_get_cb_info failed!");
             return getJsResult(env, thisPicture->errorCode);
         }
         uint32_t fd = 0;

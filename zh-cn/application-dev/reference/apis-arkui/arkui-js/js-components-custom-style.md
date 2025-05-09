@@ -10,7 +10,7 @@
 | ------------- | ------ | ---- | ---- | -------------------------------- |
 | inherit-class | string | -    | 否    | 从父组件继承的class样式，多个class样式之间用空格分隔。 |
 
-可以通过设置inherit-calss属性来继承父组件的样式。
+可以通过设置inherit-class属性来继承父组件的样式。
 
 父组件的hml文件，其中自定义组件comp通过inherit-class属性来指定继承其父组件的样式，即parent-class1和parent-class2：
 

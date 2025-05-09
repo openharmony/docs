@@ -131,7 +131,7 @@ specified启动模式为指定实例模式，针对一些特殊场景使用（�
             // ...
             Button()
               .onClick(() => {
-                let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext;
+                let context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
                 // context为调用方UIAbility的UIAbilityContext;
                 let want: Want = {
                   deviceId: '', // deviceId为空表示本设备
@@ -153,7 +153,7 @@ specified启动模式为指定实例模式，针对一些特殊场景使用（�
             // ...
             Button()
               .onClick(() => {
-                let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext;
+                let context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
                 // context为调用方UIAbility的UIAbilityContext;
                 let want: Want = {
                   deviceId: '', // deviceId为空表示本设备

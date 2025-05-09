@@ -59,6 +59,7 @@ AudioCapturer是音频采集器，用于录制PCM（Pulse Code Modulation）音�
    ```ts
     import { BusinessError } from '@kit.BasicServicesKit';
     import { fileIo as fs } from '@kit.CoreFileKit';
+    import { common } from '@kit.AbilityKit';
 
     class Options {
       offset?: number;
@@ -66,7 +67,9 @@ AudioCapturer是音频采集器，用于录制PCM（Pulse Code Modulation）音�
     }
 
     let bufferSize: number = 0;
-    let path = getContext().cacheDir;
+    // 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext。
+    let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+    let path = context.cacheDir;
     let filePath = path + '/StarWars10s-2C-48000-4SW.pcm';
     let file: fs.File = fs.openSync(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
     let readDataCallback = (buffer: ArrayBuffer) => {
@@ -131,6 +134,7 @@ AudioCapturer是音频采集器，用于录制PCM（Pulse Code Modulation）音�
 import { audio } from '@kit.AudioKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { fileIo as fs } from '@kit.CoreFileKit';
+import { common } from '@kit.AbilityKit';
 
 const TAG = 'AudioCapturerDemo';
 
@@ -155,7 +159,9 @@ let audioCapturerOptions: audio.AudioCapturerOptions = {
   streamInfo: audioStreamInfo,
   capturerInfo: audioCapturerInfo
 };
-let path = getContext().cacheDir;
+// 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext。
+let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+let path = context.cacheDir;
 let filePath = path + '/StarWars10s-2C-48000-4SW.pcm';
 let file: fs.File = fs.openSync(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
 let readDataCallback = (buffer: ArrayBuffer) => {

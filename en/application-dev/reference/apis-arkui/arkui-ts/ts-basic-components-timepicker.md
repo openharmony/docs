@@ -34,7 +34,7 @@ Creates a time picker, which is in 24-hour format by default.
 
 | Name                | Type                                           | Mandatory| Description                                                        |
 | -------------------- | ----------------------------------------------- | ---- | ------------------------------------------------------------ |
-| selected             | Date                                            | No  | Time of the selected item.<br>Default value: current system time<br>Since API version 10, this parameter supports two-way binding through [$$](../../../quick-start/arkts-two-way-sync.md).<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| selected             | Date                                            | No  | Time of the selected item.<br>Default value: current system time<br>Since API version 10, this parameter supports two-way binding through [$$](../../../ui/state-management/arkts-two-way-sync.md).<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | format<sup>11+</sup> | [TimePickerFormat](#timepickerformat11)| No  | Time format.<br>Default value: **TimePickerFormat.HOUR_MINUTE**<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | start<sup>18+</sup>  | Date | No  | Start time of the time picker.<br>Default value: **Date(0, 0, 0, 0, 0, 0)**; only the hour and minute settings take effect.<br>If both start and end are set to non-default values, the loop feature is disabled.<br>**Atomic service API**: This API can be used in atomic services since API version 18.|
 | end<sup>18+</sup>    | Date | No  | End time of the time picker.<br>Default value: **Date(0, 0, 0, 23, 59, 59)**; only the hour and minute settings take effect.<br>If both start and end are set to non-default values, the loop feature is disabled.<br>**Atomic service API**: This API can be used in atomic services since API version 18.|
@@ -106,7 +106,7 @@ Sets whether to display time in 24-hour format. When the display time is in 12-h
 
 | Name| Type   | Mandatory| Description                                      |
 | ------ | ------- | ---- | ------------------------------------------ |
-| value  | boolean | Yes  | Whether the display time is in 24-hour format.<br>Default value: **false**|
+| value  | boolean | Yes  | Whether the display time is in 24-hour format.<br>Default value: **false**.<br>**true**: The display time is in 24-hour format.<br>**false**: The display time is in 12-hour format.|
 
 ### useMilitaryTime<sup>18+</sup>
 
@@ -122,7 +122,7 @@ Sets whether to display time in 24-hour format. Compared to [useMilitaryTime](#u
 
 | Name| Type   | Mandatory| Description                                      |
 | ------ | ------- | ---- | ------------------------------------------ |
-| isMilitaryTime | [Optional](ts-universal-attributes-custom-property.md#optional12)\<boolean> | Yes  | Whether the display time is in 24-hour format.<br>If **isMilitaryTime** is set to **undefined**, the default value **false** is used.|
+| isMilitaryTime | [Optional](ts-universal-attributes-custom-property.md#optional12)\<boolean> | Yes  | Whether the display time is in 24-hour format.<br>If **isMilitaryTime** is set to **undefined**, the default value **false** is used.<br>**true**: The display time is in 24-hour format.<br>**false**: The display time is in 12-hour format.|
 
 ### disappearTextStyle<sup>10+</sup>
 
@@ -234,7 +234,7 @@ Sets whether to enable the loop mode.
 
 | Name| Type   | Mandatory| Description                                                        |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
-| value  | boolean | Yes  | Whether to enable the loop mode.<br>Default value: **true**<br>The value **true** means to enable  loop mode, and **false** means the opposite.|
+| value  | boolean | Yes  | Whether to enable the loop mode.<br>Default value: **true**.<br>The value **true** means to enable  loop mode, and **false** means the opposite.|
 
 ### loop<sup>18+</sup>
 
