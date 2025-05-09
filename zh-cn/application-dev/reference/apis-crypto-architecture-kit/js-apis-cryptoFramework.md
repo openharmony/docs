@@ -52,7 +52,7 @@ buffer数组，提供blob数据类型。
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Cipher
 
-API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Cipher
+API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Cipher。
 
 | 名称    | 类型   | 可读 | 可写 | 说明                                                         |
 | ------- | ------ | ---- | ---- | ------------------------------------------------------------ |
@@ -72,7 +72,7 @@ API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从AP
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Cipher
 
-API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Cipher
+API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Cipher。
 
 | 名称 | 类型                  | 可读 | 可写 | 说明                                                         |
 | ---- | --------------------- | ---- | ---- | ------------------------------------------------------------ |
@@ -92,7 +92,7 @@ API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从AP
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Cipher
 
-API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Cipher
+API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Cipher。
 
 | 名称    | 类型                  | 可读 | 可写 | 说明                                                         |
 | ------- | --------------------- | ---- | ---- | ------------------------------------------------------------ |
@@ -103,8 +103,8 @@ API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从AP
 > **说明：**
 >
 > 1. 传入[init()](#init-2)方法前需要指定其algName属性（来源于父类[ParamsSpec](#paramsspec)）。
-对于1~16字节长度的iv，加解密算法库无额外限制，但结果取决于底层openssl的支持情况。
-当aad参数不需要使用或aad长度为0时，可以将aad的data属性设置为一个空的Uint8Array，来构造GcmParamsSpec，写法为 `aad: { data: new Uint8Array() }`。
+> 2. 对于1~16字节长度的iv，加解密算法库无额外限制，但结果取决于底层openssl的支持情况。
+> 3. 当aad参数不需要使用或aad长度为0时，可以将aad的data属性设置为一个空的Uint8Array，来构造GcmParamsSpec，写法为aad: { data: new Uint8Array() }。
 
 ## CcmParamsSpec
 
@@ -116,7 +116,7 @@ API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从AP
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Cipher
 
-API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Cipher
+API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Cipher。
 
 | 名称    | 类型                  | 可读 | 可写 | 说明                                                         |
 | ------- | --------------------- | ---- | ---- | ------------------------------------------------------------ |
@@ -136,7 +136,7 @@ API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从AP
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Cipher
 
-API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Cipher
+API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Cipher。
 
 | 名称         | 值   | 说明               |
 | ------------ | ---- | ------------------ |
@@ -151,7 +151,7 @@ API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从AP
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Key.AsymKey
 
-API version 10-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始SystemCapability.Security.CryptoFramework.Key.AsymKey
+API version 10-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey。
 
 | 名称         | 值   | 说明             |
 | ------------ | ---- | ---------------- |
@@ -194,7 +194,7 @@ API version 10-11系统能力为SystemCapability.Security.CryptoFramework；从A
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Key.AsymKey
 
-API version 10-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始SystemCapability.Security.CryptoFramework.Key.AsymKey
+API version 10-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey。
 
 | 名称         | 值   | 说明             |
 | ------------ | ---- | ---------------- |
@@ -269,7 +269,7 @@ API version10-11系统能力为SystemCapability.Security.CryptoFramework；从AP
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Key.AsymKey
 
-API version10-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始SystemCapability.Security.CryptoFramework.Key.AsymKey。
+API version10-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey。
 
 | 名称    | 类型   | 可读 | 可写 | 说明                                                         |
 | ------- | ------ | ---- | ---- | ------------------------------------------------------------ |
@@ -304,7 +304,7 @@ API version10-11系统能力为SystemCapability.Security.CryptoFramework；从AP
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Key.AsymKey
 
-API version 10-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始SystemCapability.Security.CryptoFramework.Key.AsymKey
+API version 10-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey。
 
 | 名称    | 类型   | 可读 | 可写 | 说明                                                         |
 | ------- | ------ | ---- | ---- | ------------------------------------------------------------ |
@@ -320,7 +320,7 @@ API version 10-11系统能力为SystemCapability.Security.CryptoFramework；从A
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Key.AsymKey
 
-API version 10-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始SystemCapability.Security.CryptoFramework.Key.AsymKey
+API version 10-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey。
 
 | 名称    | 类型   | 可读 | 可写 | 说明                                                         |
 | ------- | ------ | ---- | ---- | ------------------------------------------------------------ |
@@ -403,7 +403,7 @@ API version 10-11系统能力为SystemCapability.Security.CryptoFramework；从A
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Key.AsymKey
 
-API version 10-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始SystemCapability.Security.CryptoFramework.Key.AsymKey
+API version 10-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey。
 
 | 名称    | 类型   | 可读 | 可写 | 说明                                                         |
 | ------- | ------ | ---- | ---- | ------------------------------------------------------------ |
@@ -420,7 +420,7 @@ API version 10-11系统能力为SystemCapability.Security.CryptoFramework；从A
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Key.AsymKey
 
-API version 10-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始SystemCapability.Security.CryptoFramework.Key.AsymKey
+API version 10-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey。
 
 | 名称    | 类型   | 可读 | 可写 | 说明                                                         |
 | ------- | ------ | ---- | ---- | ------------------------------------------------------------ |
@@ -438,7 +438,7 @@ API version 10-11系统能力为SystemCapability.Security.CryptoFramework；从A
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Key.AsymKey
 
-API version 10-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始SystemCapability.Security.CryptoFramework.Key.AsymKey
+API version 10-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey。
 
 | 名称    | 类型   | 可读 | 可写 | 说明                                                         |
 | ------- | ------ | ---- | ---- | ------------------------------------------------------------ |
@@ -454,7 +454,7 @@ API version 10-11系统能力为SystemCapability.Security.CryptoFramework；从A
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Key.AsymKey
 
-API version 10-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始SystemCapability.Security.CryptoFramework.Key.AsymKey
+API version 10-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey。
 
 | 名称    | 类型   | 可读 | 可写 | 说明                                                         |
 | ------- | ------ | ---- | ---- | ------------------------------------------------------------ |
@@ -471,7 +471,7 @@ API version 10-11系统能力为SystemCapability.Security.CryptoFramework；从A
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Key.AsymKey
 
-API version 10-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始SystemCapability.Security.CryptoFramework.Key.AsymKey
+API version 10-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey。
 
 | 名称    | 类型   | 可读 | 可写 | 说明                                                         |
 | ------- | ------ | ---- | ---- | ------------------------------------------------------------ |
@@ -489,7 +489,7 @@ API version 10-11系统能力为SystemCapability.Security.CryptoFramework；从A
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Key.AsymKey
 
-API version 11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey
+API version 11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey。
 
 | 名称 | 类型   | 可读 | 可写 | 说明                      |
 | ---- | ------ | ---- | ---- | ------------------------- |
@@ -505,7 +505,7 @@ API version 11系统能力为SystemCapability.Security.CryptoFramework；从API 
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Key.AsymKey
 
-API version 11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey
+API version 11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey。
 
 | 名称 | 类型   | 可读 | 可写 | 说明                      |
 | ---- | ------ | ---- | ---- | ------------------------- |
@@ -521,7 +521,7 @@ API version 11系统能力为SystemCapability.Security.CryptoFramework；从API 
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Key.AsymKey
 
-API version 11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey
+API version 11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey。
 
 | 名称 | 类型   | 可读 | 可写 | 说明                      |
 | ---- | ------ | ---- | ---- | ------------------------- |
@@ -538,7 +538,7 @@ API version 11系统能力为SystemCapability.Security.CryptoFramework；从API 
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Key.AsymKey
 
-API version 11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey
+API version 11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey。
 
 | 名称 | 类型   | 可读 | 可写 | 说明                     |
 | ---- | ------ | ---- | ---- | ------------------------ |
@@ -554,7 +554,7 @@ API version 11系统能力为SystemCapability.Security.CryptoFramework；从API 
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Key.AsymKey
 
-API version 11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey
+API version 11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey。
 
 | 名称 | 类型   | 可读 | 可写 | 说明                     |
 | ---- | ------ | ---- | ---- | ------------------------ |
@@ -570,7 +570,7 @@ API version 11系统能力为SystemCapability.Security.CryptoFramework；从API 
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Key.AsymKey
 
-API version 11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey
+API version 11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey。
 
 | 名称 | 类型   | 可读 | 可写 | 说明                     |
 | ---- | ------ | ---- | ---- | ------------------------ |
@@ -587,7 +587,7 @@ API version 11系统能力为SystemCapability.Security.CryptoFramework；从API 
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Key.AsymKey
 
-API version 11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey
+API version 11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey。
 
 | 名称 | 类型   | 可读 | 可写 | 说明                                |
 | ---- | ------ | ---- | ---- | ----------------------------------- |
@@ -605,7 +605,7 @@ API version 11系统能力为SystemCapability.Security.CryptoFramework；从API 
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Key.AsymKey
 
-API version 11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey
+API version 11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey。
 
 | 名称   | 类型               | 可读 | 可写 | 说明                                 |
 | ------ | ------------------ | ---- | ---- | ------------------------------------ |
@@ -622,7 +622,7 @@ API version 11系统能力为SystemCapability.Security.CryptoFramework；从API 
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Key.AsymKey
 
-API version 11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey
+API version 11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey。
 
 | 名称   | 类型               | 可读 | 可写 | 说明                                 |
 | ------ | ------------------ | ---- | ---- | ------------------------------------ |
@@ -639,7 +639,7 @@ API version 11系统能力为SystemCapability.Security.CryptoFramework；从API 
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Key.AsymKey
 
-API version 11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey
+API version 11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey。
 
 | 名称   | 类型               | 可读 | 可写 | 说明                                 |
 | ------ | ------------------ | ---- | ---- | ------------------------------------ |
@@ -655,7 +655,7 @@ API version 11系统能力为SystemCapability.Security.CryptoFramework；从API 
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Kdf
 
-API version 11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Kdf
+API version 11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Kdf。
 
 | 名称    | 类型   | 可读 | 可写 | 说明                                                         |
 | ------- | ------ | ---- | ---- | ------------------------------------------------------------ |
@@ -669,7 +669,7 @@ API version 11系统能力为SystemCapability.Security.CryptoFramework；从API 
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Kdf
 
-API version 11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Kdf
+API version 11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Kdf。
 
 | 名称    | 类型   | 可读 | 可写 | 说明                                                         |
 | ------- | ------ | ---- | ---- | ------------------------------------------------------------ |
@@ -769,7 +769,7 @@ RSA私钥编码参数，使用获取私钥字符串时，可以添加此参数�
 > - cipherName是必选参数，可以指定编码用到的算法。当前仅支持AES-128-CBC、AES-192-CBC、AES-256-CBC、DES-EDE3-CBC。
 
 ## MacSpec<sup>18+</sup>
-计算HMAC、CMAC消息认证码时，需要构建子类对象并作为输入参数。
+消息认证码参数，计算HMAC、CMAC消息认证码时，需要构建子类对象并作为输入参数。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
@@ -825,7 +825,7 @@ RSA私钥编码参数，使用获取私钥字符串时，可以添加此参数�
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Key
 
-API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Key
+API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Key。
 
 | 名称    | 类型   | 可读 | 可写 | 说明                         |
 | ------- | ------ | ---- | ---- | ---------------------------- |
@@ -840,13 +840,13 @@ getEncoded(): DataBlob
 
 > **说明：**
 >
-> 使用RSA算法生成私钥时，私钥对象不支持getEncoded方法。
+> RSA算法使用密钥参数生成私钥时，私钥对象不支持getEncoded。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Key
 
-API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Key
+API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Key。
 
 **返回值：**
 
@@ -892,7 +892,7 @@ clearMem(): void
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Key.SymKey
 
-API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Key.SymKey
+API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Key.SymKey。
 
 **示例：**
 
@@ -922,7 +922,7 @@ getAsyKeySpec(itemType: AsyKeySpecItem): bigint | string | number
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Key.AsymKey
 
-API version 10-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始SystemCapability.Security.CryptoFramework.Key.AsymKey
+API version 10-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey。
 
 **参数：**
 
@@ -963,7 +963,10 @@ getEncodedDer(format: string): DataBlob
 
 > **说明：**
 >
-> 本接口和[Key.getEncoded()](#getencoded)的区别是：<br/>1. 本接口可根据入参决定数据的输出格式。<br/>2. [Key.getEncoded()](#getencoded)接口，不支持指定密钥格式，生成的数据格式与原始数据格式保持一致。（原始数据格式，指通过[convertKey](#convertkey-3)接口生成密钥对象时的数据格式）。
+> 本接口和[Key.getEncoded()](#getencoded)的区别是：
+>
+> 1. 本接口可根据入参决定数据的输出格式。
+> 2. [Key.getEncoded()](#getencoded)接口，不支持指定密钥格式，生成的数据格式与原始数据格式保持一致。（原始数据格式，指通过[convertKey](#convertkey-3)接口生成密钥对象时的数据格式）。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1067,7 +1070,7 @@ clearMem(): void
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Key.AsymKey
 
-API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始SystemCapability.Security.CryptoFramework.Key.AsymKey
+API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey。
 
 **示例：**
 
@@ -1087,7 +1090,7 @@ getAsyKeySpec(itemType: AsyKeySpecItem): bigint | string | number
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Key.AsymKey
 
-API version 10-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始SystemCapability.Security.CryptoFramework.Key.AsymKey
+API version 10-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey。
 
 **参数：**
 
@@ -1313,7 +1316,7 @@ function TestPriKeyPkcs1Encoded() {
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Key.AsymKey
 
-API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey
+API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey。
 
 | 名称    | 类型   | 可读 | 可写 | 说明           |
 | ------- | ------ | ---- | ---- | ------------ |
@@ -1332,7 +1335,7 @@ createSymKeyGenerator(algName: string): SymKeyGenerator
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Key.SymKey
 
-API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Key.SymKey
+API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Key.SymKey。
 
 **参数：**
 
@@ -1374,7 +1377,7 @@ let symKeyGenerator = cryptoFramework.createSymKeyGenerator('3DES192');
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Key.SymKey
 
-API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Key.SymKey
+API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Key.SymKey。
 
 | 名称    | 类型   | 可读 | 可写 | 说明                           |
 | ------- | ------ | ---- | ---- | ------------------------------ |
@@ -1398,7 +1401,7 @@ generateSymKey(callback: AsyncCallback\<SymKey>): void
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Key.SymKey
 
-API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Key.SymKey
+API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Key.SymKey。
 
 **参数：**
 
@@ -1438,7 +1441,7 @@ generateSymKey(): Promise\<SymKey>
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Key.SymKey
 
-API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Key.SymKey
+API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Key.SymKey。
 
 **返回值：**
 
@@ -1524,7 +1527,7 @@ convertKey(key: DataBlob, callback: AsyncCallback\<SymKey>): void
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Key.SymKey
 
-API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Key.SymKey
+API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Key.SymKey。
 
 **参数：**
 
@@ -1576,7 +1579,7 @@ convertKey(key: DataBlob): Promise\<SymKey>
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Key.SymKey
 
-API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Key.SymKey
+API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Key.SymKey。
 
 **参数：**
 
@@ -1692,7 +1695,7 @@ createAsyKeyGenerator(algName: string): AsyKeyGenerator
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Key.AsymKey
 
-API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始SystemCapability.Security.CryptoFramework.Key.AsymKey
+API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey。
 
 **参数：**
 
@@ -1733,7 +1736,7 @@ let asyKeyGenerator = cryptoFramework.createAsyKeyGenerator('ECC256');
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Key.AsymKey
 
-API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始SystemCapability.Security.CryptoFramework.Key.AsymKey
+API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey。
 
 | 名称    | 类型   | 可读 | 可写 | 说明                             |
 | ------- | ------ | ---- | ---- | -------------------------------- |
@@ -1749,7 +1752,7 @@ generateKeyPair(callback: AsyncCallback\<KeyPair>): void
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Key.AsymKey
 
-API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始SystemCapability.Security.CryptoFramework.Key.AsymKey
+API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey。
 
 **参数：**
 
@@ -1791,7 +1794,7 @@ generateKeyPair(): Promise\<KeyPair>
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Key.AsymKey
 
-API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始SystemCapability.Security.CryptoFramework.Key.AsymKey
+API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey。
 
 **返回值：**
 
@@ -1876,7 +1879,7 @@ convertKey(pubKey: DataBlob | null, priKey: DataBlob | null, callback: AsyncCall
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Key.AsymKey
 
-API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始SystemCapability.Security.CryptoFramework.Key.AsymKey
+API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey。
 
 **参数：**
 
@@ -1924,7 +1927,7 @@ convertKey(pubKey: DataBlob | null, priKey: DataBlob | null): Promise\<KeyPair>
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Key.AsymKey
 
-API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始SystemCapability.Security.CryptoFramework.Key.AsymKey
+API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey。
 
 **参数：**
 
@@ -1981,7 +1984,7 @@ convertKeySync(pubKey: DataBlob | null, priKey: DataBlob | null): KeyPair
 
 | 参数名   | 类型    | 必填 | 说明             |
 | ------ | -------- | ---- | ---------------- |
-| pubKey | [DataBlob](#datablob) \| null<sup>10+</sup> | 是   | 指定公钥材料。如果公钥无需转换，传入null。API 10前仅支持DataBlob，API 10起支持null |
+| pubKey | [DataBlob](#datablob) \| null<sup>10+</sup> | 是   | 指定公钥材料。如果公钥无需转换，传入null。API 10前仅支持DataBlob，API 10起支持传入null。 |
 | priKey | [DataBlob](#datablob) \| null<sup>10+</sup> | 是   | 指定私钥材料。API 10前仅支持DataBlob，API 10起支持传入null。 |
 
 **返回值：**
@@ -2419,7 +2422,7 @@ createAsyKeyGeneratorBySpec(asyKeySpec: AsyKeySpec): AsyKeyGeneratorBySpec
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Key.AsymKey
 
-API version 10-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始SystemCapability.Security.CryptoFramework.Key.AsymKey
+API version 10-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey。
 
 **参数：**
 
@@ -2486,7 +2489,7 @@ let asyKeyGeneratorBySpec = cryptoFramework.createAsyKeyGeneratorBySpec(asyKeyPa
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Key.AsymKey
 
-API version 10-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始SystemCapability.Security.CryptoFramework.Key.AsymKey
+API version 10-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey。
 
 | 名称    | 类型   | 可读 | 可写 | 说明                       |
 | ------- | ------ | ---- | ---- | -------------------------- |
@@ -2504,7 +2507,7 @@ generateKeyPair(callback: AsyncCallback\<KeyPair>): void
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Key.AsymKey
 
-API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始SystemCapability.Security.CryptoFramework.Key.AsymKey
+API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey。
 
 **参数：**
 
@@ -2548,7 +2551,7 @@ generateKeyPair(): Promise\<KeyPair>
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Key.AsymKey
 
-API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始SystemCapability.Security.CryptoFramework.Key.AsymKey
+API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey。
 
 **返回值：**
 
@@ -2641,7 +2644,7 @@ generatePriKey(callback: AsyncCallback\<PriKey>): void
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Key.AsymKey
 
-API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始SystemCapability.Security.CryptoFramework.Key.AsymKey
+API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey。
 
 **参数：**
 
@@ -2650,7 +2653,7 @@ API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从AP
 | callback | AsyncCallback\<[PriKey](#prikey)> | 是   | 回调函数，用于获取非对称密钥。 |
 
 **错误码：**
-以下错误码的详细介绍，请参见 [crypto framework 错误码](errorcode-crypto-framework.md)。
+以下错误码的详细介绍请参见[crypto framework错误码](errorcode-crypto-framework.md)。
 
 | 错误码ID | 错误信息               |
 | -------- | ---------------------- |
@@ -2685,7 +2688,7 @@ generatePriKey(): Promise\<PriKey>
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Key.AsymKey
 
-API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始SystemCapability.Security.CryptoFramework.Key.AsymKey
+API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey。
 
 **返回值：**
 
@@ -2694,7 +2697,7 @@ API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从AP
 | Promise\<[PriKey](#prikey)> | 使用Promise的方式获取非对称密钥。 |
 
 **错误码：**
-以下错误码的详细介绍，请参见 [crypto framework 错误码](errorcode-crypto-framework.md)。
+以下错误码的详细介绍请参见[crypto framework错误码](errorcode-crypto-framework.md)。
 
 | 错误码ID | 错误信息               |
 | -------- | ---------------------- |
@@ -2819,7 +2822,7 @@ generatePubKey(): Promise\<PubKey>
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Key.AsymKey
 
-API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始SystemCapability.Security.CryptoFramework.Key.AsymKey
+API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey。
 
 **返回值：**
 
@@ -2911,7 +2914,7 @@ static genECCCommonParamsSpec(curveName: string): ECCCommonParamsSpec
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Key.AsymKey
 
-API version 11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey
+API version 11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey。
 
 **参数：**
 
@@ -3066,7 +3069,7 @@ static genDHCommonParamsSpec(pLen: number, skLen?: number): DHCommonParamsSpec
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Key.AsymKey
 
-API version 11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey
+API version 11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey。
 
 **参数：**
 
@@ -3219,7 +3222,7 @@ createCipher(transformation: string): Cipher
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Cipher
 
-API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Cipher
+API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Cipher。
 
 **参数：**
 
@@ -3281,7 +3284,7 @@ try {
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Cipher
 
-API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Cipher
+API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Cipher。
 
 | 名称    | 类型   | 可读 | 可写 | 说明                         |
 | ------- | ------ | ---- | ---- | ---------------------------- |
@@ -3299,7 +3302,7 @@ init(opMode: CryptoMode, key: Key, params: ParamsSpec | null, callback: AsyncCal
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Cipher
 
-API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Cipher
+API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Cipher。
 
 **参数：**
 
@@ -3311,7 +3314,7 @@ API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从AP
 | callback | AsyncCallback\<void>      | 是   | 回调函数。当加解密初始化成功，err为undefined，否则为错误对象。     |
 
 **错误码：**
-以下错误码的详细介绍，请参见 [crypto framework 错误码](errorcode-crypto-framework.md)。
+以下错误码的详细介绍请参见[crypto framework错误码](errorcode-crypto-framework.md)。
 
 | 错误码ID | 错误信息                                                 |
 | -------- | --------------------------------------------------------- |
@@ -3332,7 +3335,7 @@ init(opMode: CryptoMode, key: Key, params: ParamsSpec | null): Promise\<void>
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Cipher
 
-API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Cipher
+API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Cipher。
 
 **参数：**
 
@@ -3398,14 +3401,20 @@ update(data: DataBlob, callback: AsyncCallback\<DataBlob>): void
 
 > **说明：**
 >
-> 1. "在进行对称加解密操作时，如果开发者对各个分组模式不够熟悉，建议对每次 update和doFinal的结果进行判断，确保其不为null，并在结果不为null时取出数据进行拼接，形成完整的密文或明文。这是因选择的分组模式等各项规格可能对update和doFinal的结果产生影响。
-
-例如，对于 ECB 和 CBC 模式，不论update传入的数据是否为分组长度的整数倍，都会以分组为单位进行加解密，并输出本次update新产生的加解密分组结果。可以理解为update只要凑满一个新的分组就会有输出，如果没有凑满则此次update输出为null，将当前未被加解密的数据留着，等下一次update或doFinal传入数据时，拼接起来继续凑分组。最后doFinal时，会将剩下的未加解密的数据根据[createCipher](#cryptoframeworkcreatecipher)时设置的填充模式进行填充，补齐到分组的整数倍长度，再输出剩余的加解密结果。
-
-对于可以将分组密码转化为流模式实现的模式，还可能出现密文长度与明文长度相同的情况。"
-
-> 2. 根据数据量，可以不调用update（即init完成后直接调用doFinal）或多次调用update。<br/>
+> 1. 在进行对称加解密操作时，如果开发者对各个分组模式不够熟悉，建议对每次update和doFinal的结果进行判断，确保其不为null，并在结果不为null时取出数据进行拼接，形成完整的密文或明文。这是因选择的分组模式等各项规格可能对update和doFinal的结果产生影响。
+>
+>    例如，对于ECB和CBC模式，不论update传入的数据是否为分组长度的整数倍，都会以分组为单位进行加解密，并输出本次update新产生的加解密分组结果。
+>
+>    可以理解为update只要凑满一个新的分组就会有输出，如果没有凑满则此次update输出为null，将当前未被加解密的数据留着，等下一次update或doFinal传入数据时，拼接起来继续凑分组。
+>
+>    最后doFinal时，会将剩下的未加解密的数据根据[createCipher](#cryptoframeworkcreatecipher)时设置的填充模式进行填充，补齐到分组的整数倍长度，再输出剩余的加解密结果。
+>
+>    对于可以将分组密码转化为流模式实现的模式，还可能出现密文长度与明文长度相同的情况。
+>
+> 2. 根据数据量，可以不调用update（即init完成后直接调用doFinal）或多次调用update。
+>
 >    算法库未对单次或累计的update数据量设置限制。对于大数据量的对称加解密操作，建议分多次调用update方法传入数据。
+>
 >    AES使用多次update操作的示例代码详见[使用AES对称密钥分段加解密](../../security/CryptoArchitectureKit/crypto-aes-sym-encrypt-decrypt-gcm-by-segment.md)。
 > 3. RSA、SM2非对称加解密不支持update操作。
 > 4. 对于CCM模式的对称加解密算法，加密时只能调用1次update接口加密数据并调用doFinal接口获取tag，或直接调用doFinal接口加密数据并获取tag，解密时只能调用1次update接口或调用1次doFinal接口解密数据并验证tag。
@@ -3414,7 +3423,7 @@ update(data: DataBlob, callback: AsyncCallback\<DataBlob>): void
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Cipher
 
-API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Cipher
+API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Cipher。
 
 **参数：**
 
@@ -3455,7 +3464,7 @@ update(data: DataBlob): Promise\<DataBlob>
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Cipher
 
-API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Cipher
+API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Cipher。
 
 **参数：**
 
@@ -3540,7 +3549,7 @@ doFinal(data: DataBlob | null, callback: AsyncCallback\<DataBlob>): void
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Cipher
 
-API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Cipher
+API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Cipher。
 
 **参数：**
 
@@ -3561,7 +3570,7 @@ API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从AP
 
 **以AES GCM模式加密为例：**
 
-更多加解密流程的完整示例请参考 [加解密开发指导](../../security/CryptoArchitectureKit/crypto-aes-sym-encrypt-decrypt-gcm.md)。
+更多加解密流程的完整示例请参考[加解密开发指导](../../security/CryptoArchitectureKit/crypto-aes-sym-encrypt-decrypt-gcm.md)。
 
 ```ts
 import { cryptoFramework } from '@kit.CryptoArchitectureKit';
@@ -3624,18 +3633,22 @@ doFinal(data: DataBlob | null): Promise\<DataBlob>
 
 > **说明：**
 >
->  1. 对称加解密中，调用doFinal标志着一次加解密流程完成，[Cipher](#cipher)实例状态被清除。因此，后续开启新流程时，需重新调用init并传入完整参数列表进行初始化。即使是对同一个Cipher实例，使用相同对称密钥，进行加密后解密时，调用init仍需填写params参数，不能省略为null。
+>  1. 对称加解密中，调用doFinal标志着一次加解密流程完成，[Cipher](#cipher)实例状态被清除。因此，后续开启新流程时，需重新调用init并传入完整参数列表进行初始化。
+>
+>     即使是对同一个Cipher实例，使用相同对称密钥，进行加密后解密时，调用init仍需填写params参数，不能省略为null。
 >  2. 如果遇到解密失败，检查加解密数据和初始化时的参数是否匹配，包括GCM模式下加密得到的authTag是否填入解密时的GcmParamsSpec。
 >  3. doFinal的结果可能为null，因此在使用.data字段访问doFinal结果的具体数据前，请先判断结果是否为null，以避免产生异常。
->    对于加密，CFB、OFB 和 CTR 模式，如果doFinal传入null，则返回结果为null。
->    对于解密，GCM、CCM、CFB、OFB和CTR模式，如果doFinal传null，则返回结果为null；对于其他模式，如果明文是加密块大小的整倍数，调用update传入所有密文，调用doFinal传null, 则返回结果为null。
+>
+>     对于加密，CFB、OFB 和 CTR 模式，如果doFinal传入null，则返回结果为null。
+>
+>     对于解密，GCM、CCM、CFB、OFB和CTR模式，如果doFinal传null，则返回结果为null；对于其他模式，如果明文是加密块大小的整倍数，调用update传入所有密文，调用doFinal传null, 则返回结果为null。
 >  4. 非对称加解密时多次doFinal操作的示例代码详见[使用RSA非对称密钥分段加解密](../../security/CryptoArchitectureKit/crypto-rsa-asym-encrypt-decrypt-by-segment.md)，SM2和RSA的操作类似。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Cipher
 
-API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Cipher
+API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Cipher。
 
 **参数：**
 
@@ -3710,10 +3723,15 @@ async function cipherByPromise() {
 
 doFinalSync(data: DataBlob | null): DataBlob
 
-（1）在对称加解密中，doFinalSync用于处理剩余数据和本次传入的数据，并结束加密或解密操作，通过注册回调函数获取加密或解密结果。如果数据量较小，可以在doFinalSync中一次性传入数据，而不使用updateSync。如果在本次加解密流程中已经使用[updateSync](#updatesync12)传入过数据，可以在doFinalSync的data参数处传入null。根据对称加解密的模式不同，doFinalSync的输出有以下区别：
+（1）在对称加解密中，doFinalSync用于处理剩余数据和本次传入的数据，并结束加密或解密操作，通过注册回调函数获取加密或解密结果。
 
-- "对于GCM和CCM模式的对称加密：一次加密流程中，如果将每次updateSync和doFinalSync的结果拼接起来，会得到“密文 + authTag”。即末尾的16字节（GCM模式）或12字节（CCM模式）是 authTag，其余部分均为密文。也就是说，如果doFinalSync的data参数传入null，则 doFinalSync的结果就是 authTag。  
-authTag 需要填入解密时的[GcmParamsSpec](#gcmparamsspec)或[CcmParamsSpec](#ccmparamsspec)；密文则作为解密时的入参data。"
+如果数据量较小，可以在doFinalSync中一次性传入数据，而不使用updateSync。如果在本次加解密流程中已经使用[updateSync](#updatesync12)传入过数据，可以在doFinalSync的data参数处传入null。
+
+根据对称加解密的模式不同，doFinalSync的输出有以下区别：
+
+- 对于GCM和CCM模式的对称加密：一次加密流程中，如果将每次updateSync和doFinalSync的结果拼接起来，会得到“密文 + authTag”。即末尾的16字节（GCM模式）或12字节（CCM模式）是authTag，其余部分均为密文。也就是说，如果doFinalSync的data参数传入null，则doFinalSync的结果就是 authTag。  
+
+  authTag需要填入解密时的[GcmParamsSpec](#gcmparamsspec)或[CcmParamsSpec](#ccmparamsspec)；密文则作为解密时的入参data。
 - 对于其他模式的对称加解密以及GCM和CCM模式的对称解密：在一次加/解密流程中，每次updateSync和doFinalSync的结果拼接起来，得到完整的明文或密文。
 
 （2）在RSA和SM2非对称加解密中，doFinalSync用于加解密本次传入的数据，通过注册回调函数获取加密或解密后的数据。如果数据量超过单次处理能力，可以多次调用doFinalSync，并将结果拼接以获得完整的明文或密文。
@@ -3804,7 +3822,7 @@ setCipherSpec(itemType: CipherSpecItem, itemValue: Uint8Array): void
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Cipher
 
-API version 10-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Cipher
+API version 10-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Cipher。
 
 **参数：**
 
@@ -3842,7 +3860,7 @@ getCipherSpec(itemType: CipherSpecItem): string | Uint8Array
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Cipher
 
-API version 10-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Cipher
+API version 10-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Cipher。
 
 **参数：**
 
@@ -3886,7 +3904,7 @@ createSign(algName: string): Sign
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Signature
 
-API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Signature
+API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Signature。
 
 **参数：**
 
@@ -3947,7 +3965,7 @@ Sign类不支持重复初始化，当业务方需要使用新密钥签名时，�
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Signature
 
-API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Signature
+API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Signature。
 
 | 名称    | 类型   | 可读 | 可写 | 说明                         |
 | ------- | ------ | ---- | ---- | ---------------------------- |
@@ -3965,7 +3983,7 @@ Sign类不支持重复初始化。
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Signature
 
-API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Signature
+API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Signature。
 
 **参数：**
 
@@ -3996,7 +4014,7 @@ Sign类不支持重复初始化。
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Signature
 
-API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Signature
+API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Signature。
 
 **参数：**
 
@@ -4068,7 +4086,7 @@ update(data: DataBlob, callback: AsyncCallback\<void>): void
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Signature
 
-API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Signature
+API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Signature。
 
 **参数：**
 
@@ -4107,7 +4125,7 @@ update(data: DataBlob): Promise\<void>
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Signature
 
-API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Signature
+API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Signature。
 
 **参数：**
 
@@ -4183,7 +4201,7 @@ sign(data: DataBlob | null, callback: AsyncCallback\<DataBlob>): void
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Signature
 
-API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Signature
+API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Signature。
 
 **参数：**
 
@@ -4212,7 +4230,7 @@ sign(data: DataBlob | null): Promise\<DataBlob>
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Signature
 
-API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Signature
+API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Signature。
 
 **参数：**
 
@@ -4374,7 +4392,7 @@ setSignSpec(itemType: SignSpecItem, itemValue: number \| Uint8Array): void
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Signature
 
-API version 10-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Signature
+API version 10-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Signature。
 
 **参数：**
 
@@ -4412,7 +4430,7 @@ getSignSpec(itemType: SignSpecItem): string | number
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Signature
 
-API version 10-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Signature
+API version 10-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Signature。
 
 **参数：**
 
@@ -4456,7 +4474,7 @@ createVerify(algName: string): Verify
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Signature
 
-API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Signature
+API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Signature。
 
 **参数：**
 
@@ -4471,7 +4489,7 @@ API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从AP
 | Verify | 返回由输入算法指定生成的Verify对象。 |
 
 **错误码：**
-以下错误码的详细介绍，请参见 [crypto framework 错误码](errorcode-crypto-framework.md)。
+以下错误码的详细介绍请参见[crypto framework错误码](errorcode-crypto-framework.md)。
 
 | 错误码ID | 错误信息               |
 | -------- | ---------------------- |
@@ -4511,7 +4529,7 @@ Verify类不支持重复初始化，当业务方需要使用新密钥验签时�
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Signature
 
-API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Signature
+API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Signature。
 
 | 名称    | 类型   | 可读 | 可写 | 说明                         |
 | ------- | ------ | ---- | ---- | ---------------------------- |
@@ -4527,7 +4545,7 @@ init(pubKey: PubKey, callback: AsyncCallback\<void>): void
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Signature
 
-API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Signature
+API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Signature。
 
 **参数：**
 
@@ -4556,7 +4574,7 @@ init(pubKey: PubKey): Promise\<void>
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Signature
 
-API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Signature
+API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Signature。
 
 **参数：**
 
@@ -4631,7 +4649,7 @@ update(data: DataBlob, callback: AsyncCallback\<void>): void
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Signature
 
-API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Signature
+API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Signature。
 
 **参数：**
 
@@ -4669,7 +4687,7 @@ update(data: DataBlob): Promise\<void>
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Signature
 
-API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Signature
+API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Signature。
 
 **参数：**
 
@@ -4725,7 +4743,7 @@ updateSync(data: DataBlob): void
 | void | 无返回结果。 |
 
 **错误码：**
-以下错误码的详细介绍，请参见 [crypto framework 错误码](errorcode-crypto-framework.md)。
+以下错误码的详细介绍请参见[crypto framework错误码](errorcode-crypto-framework.md)。
 
 | 错误码ID | 错误信息               |
 | -------- | ---------------------- |
@@ -4744,7 +4762,7 @@ verify(data: DataBlob | null, signatureData: DataBlob, callback: AsyncCallback\<
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Signature
 
-API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Signature
+API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Signature。
 
 **参数：**
 
@@ -4774,7 +4792,7 @@ verify(data: DataBlob | null, signatureData: DataBlob): Promise\<boolean>
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Signature
 
-API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Signature
+API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Signature。
 
 **参数：**
 
@@ -4820,7 +4838,7 @@ verifySync(data: DataBlob | null, signatureData: DataBlob): boolean
 
 | 类型              | 说明                           |
 | ----------------- | ------------------------------ |
-| boolean | 同步返回值，表示验签是否成功 |
+| boolean | 同步返回值，表示验签是否成功。 |
 
 **错误码：**
 以下错误码的详细介绍请参见[crypto framework错误码](errorcode-crypto-framework.md)
@@ -4959,7 +4977,7 @@ recover(signatureData: DataBlob): Promise\<DataBlob | null>
 | Promise\<[DataBlob](#datablob)  \| null> | 验签恢复的数据。 |
 
 **错误码：**
-以下错误码的详细介绍，请参见 [crypto framework 错误码](errorcode-crypto-framework.md)。
+以下错误码的详细介绍请参见[crypto framework错误码](errorcode-crypto-framework.md)。
 
 | 错误码ID | 错误信息               |
 | -------- | ---------------------- |
@@ -5058,7 +5076,7 @@ setVerifySpec(itemType: SignSpecItem, itemValue: number \| Uint8Array): void
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Signature
 
-API version 10-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Signature
+API version 10-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Signature。
 
 **参数：**
 
@@ -5098,7 +5116,7 @@ getVerifySpec(itemType: SignSpecItem): string | number
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Signature
 
-API version 10-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Signature
+API version 10-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Signature。
 
 **参数：**
 
@@ -5142,7 +5160,7 @@ createKeyAgreement(algName: string): KeyAgreement
 
 **系统能力：** SystemCapability.Security.CryptoFramework.KeyAgreement
 
-API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.KeyAgreement
+API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.KeyAgreement。
 
 **参数：**
 
@@ -5183,7 +5201,7 @@ KeyAgreement类，使用密钥协商方法之前需要创建该类的实例进�
 
 **系统能力：** SystemCapability.Security.CryptoFramework.KeyAgreement
 
-API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.KeyAgreement
+API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.KeyAgreement。
 
 | 名称    | 类型   | 可读 | 可写 | 说明                         |
 | ------- | ------ | ---- | ---- | ---------------------------- |
@@ -5199,7 +5217,7 @@ generateSecret(priKey: PriKey, pubKey: PubKey, callback: AsyncCallback\<DataBlob
 
 **系统能力：** SystemCapability.Security.CryptoFramework.KeyAgreement
 
-API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.KeyAgreement
+API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.KeyAgreement。
 
 **参数：**
 
@@ -5229,7 +5247,7 @@ generateSecret(priKey: PriKey, pubKey: PubKey): Promise\<DataBlob>
 
 **系统能力：** SystemCapability.Security.CryptoFramework.KeyAgreement
 
-API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.KeyAgreement
+API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.KeyAgreement。
 
 **参数：**
 
@@ -5278,7 +5296,7 @@ generateSecretSync(priKey: PriKey, pubKey: PubKey): DataBlob
 |[DataBlob](#datablob) | 共享密钥。 |
 
 **错误码：**
-以下错误码的详细介绍，请参见 [crypto framework 错误码](errorcode-crypto-framework.md)。
+以下错误码的详细介绍请参见[crypto framework错误码](errorcode-crypto-framework.md)。
 
 | 错误码ID | 错误信息               |
 | -------- | ---------------------- |
@@ -5335,15 +5353,13 @@ console.info("[Sync]keyAgreement output is " + secret.data);
 
 createMd(algName: string): Md
 
-生成Md实例，用于进行消息摘要的计算与操作。
-
-支持的规格详见[MD消息摘要算法规格](../../security/CryptoArchitectureKit/crypto-generate-message-digest-overview.md#支持的算法与规格)。
+Md类，调用Md方法可以进行MD（Message Digest）摘要计算。调用前，需要通过[createMd](#cryptoframeworkcreatemd)构造Md实例。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Security.CryptoFramework.MessageDigest
 
-API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.MessageDigest
+API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.MessageDigest。
 
 **参数：**
 
@@ -5390,7 +5406,7 @@ Md类用于进行MD（Message Digest）摘要计算。在调用Md方法之前，
 
 **系统能力：** SystemCapability.Security.CryptoFramework.MessageDigest
 
-API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.MessageDigest
+API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.MessageDigest。
 
 | 名称    | 类型   | 可读 | 可写 | 说明                   |
 | ------- | ------ | ---- | ---- | ---------------------- |
@@ -5412,7 +5428,7 @@ update(input: DataBlob, callback: AsyncCallback\<void>): void
 
 **系统能力：** SystemCapability.Security.CryptoFramework.MessageDigest
 
-API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.MessageDigest
+API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.MessageDigest。
 
 **参数：**
 
@@ -5446,7 +5462,7 @@ update(input: DataBlob): Promise\<void>
 
 **系统能力：** SystemCapability.Security.CryptoFramework.MessageDigest
 
-API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.MessageDigest
+API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.MessageDigest。
 
 | 参数名 | 类型     | 必填 | 说明         |
 | ------ | -------- | ---- | ------------ |
@@ -5514,7 +5530,7 @@ digest(callback: AsyncCallback\<DataBlob>): void
 
 **系统能力：** SystemCapability.Security.CryptoFramework.MessageDigest
 
-API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.MessageDigest
+API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.MessageDigest。
 
 | 参数名   | 类型                     | 必填 | 说明       |
 | -------- | ------------------------ | ---- | ---------- |
@@ -5560,7 +5576,7 @@ digest(): Promise\<DataBlob>
 
 **系统能力：** SystemCapability.Security.CryptoFramework.MessageDigest
 
-API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.MessageDigest
+API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.MessageDigest。
 
 **返回值：**
 
@@ -5642,7 +5658,7 @@ getMdLength(): number
 
 **系统能力：** SystemCapability.Security.CryptoFramework.MessageDigest
 
-API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.MessageDigest
+API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.MessageDigest。
 
 **返回值：**
 
@@ -5680,7 +5696,7 @@ createMac(algName: string): Mac
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Mac
 
-API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Mac
+API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Mac。
 
 **参数：**
 
@@ -5780,7 +5796,7 @@ Mac类，调用Mac方法可以进行MAC（Message Authentication Code）加密�
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Mac
 
-API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Mac
+API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Mac。
 
 | 名称    | 类型   | 可读 | 可写 | 说明                   |
 | ------- | ------ | ---- | ---- | ---------------------- |
@@ -5800,7 +5816,7 @@ init(key: SymKey, callback: AsyncCallback\<void>): void
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Mac
 
-API version 9-11 系统能力为SystemCapability.Security.CryptoFramework；从API version 12 开始为SystemCapability.Security.CryptoFramework.Mac
+API version 9-11 系统能力为SystemCapability.Security.CryptoFramework；从API version 12 开始为SystemCapability.Security.CryptoFramework.Mac。
 
 **参数：**
 
@@ -5828,7 +5844,7 @@ init(key: SymKey): Promise\<void>
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Mac
 
-API version 9-11 系统能力为SystemCapability.Security.CryptoFramework；从API version 12 开始为SystemCapability.Security.CryptoFramework.Mac
+API version 9-11 系统能力为SystemCapability.Security.CryptoFramework；从API version 12 开始为SystemCapability.Security.CryptoFramework.Mac。
 
 **参数：**
 
@@ -5890,13 +5906,13 @@ update(input: DataBlob, callback: AsyncCallback\<void>): void
 
 > **说明：**
 >
-> HMAC算法多次调用update更新的代码示例详见[消息认证码计算](../../security/CryptoArchitectureKit/crypto-compute-hmac.md#分段hmac)。
+> HMAC算法多次调用updateSync更新的代码示例详见[消息认证码计算](../../security/CryptoArchitectureKit/crypto-compute-hmac.md#分段hmac)。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Mac
 
-API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Mac
+API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Mac。
 
 **参数：**
 
@@ -5928,7 +5944,7 @@ update(input: DataBlob): Promise\<void>
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Mac
 
-API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Mac
+API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Mac。
 
 **参数：**
 
@@ -5991,7 +6007,7 @@ doFinal(callback: AsyncCallback\<DataBlob>): void
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Mac
 
-API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Mac
+API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Mac。
 
 **参数：**
 
@@ -6042,7 +6058,7 @@ doFinal(): Promise\<DataBlob>
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Mac
 
-API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Mac
+API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Mac。
 
 **返回值：**
 
@@ -6136,7 +6152,7 @@ getMacLength(): number
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Mac
 
-API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Mac
+API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Mac。
 
 **返回值：**
 
@@ -6195,7 +6211,7 @@ createRandom(): Random
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Rand
 
-API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Rand
+API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Rand。
 
 **返回值**：
 
@@ -6234,7 +6250,7 @@ Random类，调用Random方法可以进行随机数计算。调用前，需要�
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Rand
 
-API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Rand
+API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Rand。
 
 | 名称    | 类型   | 可读 | 可写 | 说明                 |
 | ------- | ------ | ---- | ---- | -------------------- |
@@ -6254,7 +6270,7 @@ generateRandom(len: number, callback: AsyncCallback\<DataBlob>): void
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Rand
 
-API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Rand
+API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Rand。
 
 **参数：**
 
@@ -6301,7 +6317,7 @@ generateRandom(len: number): Promise\<DataBlob>
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Rand
 
-API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Rand
+API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Rand。
 
 **参数：**
 
@@ -6349,7 +6365,7 @@ generateRandomSync(len: number): DataBlob
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Rand
 
-API version 10-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Rand
+API version 10-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Rand。
 
 **参数：**
 
@@ -6402,7 +6418,7 @@ setSeed(seed: DataBlob): void
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Rand
 
-API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Rand
+API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Rand。
 
 | 参数名 | 类型     | 必填 | 说明         |
 | ------ | -------- | ---- | ------------ |
@@ -6447,7 +6463,7 @@ createKdf(algName: string): Kdf
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Kdf
 
-API version 11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Kdf
+API version 11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Kdf。
 
 **参数：**
 
@@ -6488,7 +6504,7 @@ let kdf = cryptoFramework.createKdf('PBKDF2|SHA256');
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Kdf
 
-API version 11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Kdf
+API version 11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Kdf。
 
 | 名称    | 类型   | 可读 | 可写 | 说明                         |
 | ------- | ------ | ---- | ---- | ---------------------------- |
@@ -6504,7 +6520,7 @@ generateSecret(params: KdfSpec, callback: AsyncCallback\<DataBlob>): void
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Kdf
 
-API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Kdf
+API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Kdf。
 
 **参数：**
 
@@ -6576,7 +6592,7 @@ generateSecret(params: KdfSpec): Promise\<DataBlob>
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Kdf
 
-API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Kdf
+API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Kdf。
 
 **参数：**
 
