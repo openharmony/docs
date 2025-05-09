@@ -1888,7 +1888,7 @@ async function(plainFilePath, dlpFilePath) {
 
 ## dlpPermission.decryptDlpFile<sup>20+</sup>
 
-decryptDLPFile(dlpFd: number, plaintextFd: number): Promise&lt;void&gt;
+decryptDlpFile(dlpFd: number, plaintextFd: number): Promise&lt;void&gt;
 
 将DLP文件解密生成明文文件。仅拥有完全控制权限的用户可以解密，使用Promise异步返回结果。
 
@@ -1943,7 +1943,7 @@ async function(plainFilePath, dlpFilePath) {
   let plaintextFd = fileIo.openSync(plainFilePath, fileIo.OpenMode.READ_WRITE | fileIo.OpenMode.CREATE).fd;
   let dlpFd = fileIo.openSync(dlpFilePath, fileIo.OpenMode.READ_ONLY).fd;
   try {
-    dlpPermission.decryptDLPFile(dlpFd, plaintextFd).then(() => {
+    dlpPermission.decryptDlpFile(dlpFd, plaintextFd).then(() => {
       console.info('Successfully decrypt DLP file.');
       fileIo.closeSync(plaintextFd);
       fileIo.closeSync(dlpFd);
