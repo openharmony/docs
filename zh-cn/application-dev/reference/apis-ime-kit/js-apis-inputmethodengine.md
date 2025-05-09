@@ -38,6 +38,10 @@ import { inputMethodEngine } from '@kit.IMEKit';
 | PATTERN_PASSWORD | number | 7 | 密码编辑框。 |
 | PATTERN_PASSWORD_NUMBER<sup>11+</sup> | number | 8 | 数字密码编辑框。 |
 | PATTERN_PASSWORD_SCREEN_LOCK<sup>11+</sup> | number | 9 | 锁屏密码编辑框。 |
+| PATTERN_USER_NAME<sup>20+</sup> | number | 10 | 用户名编辑框。 |
+| PATTERN_NEW_PASSWORD<sup>20+</sup> | number | 11 | 新密码编辑框。 |
+| PATTERN_NUMBER_DECIMAL<sup>20+</sup> | number | 12 | 带小数点的数字编辑框。 |
+| PATTERN_ONE_TIME_CODE<sup>20+</sup> | number | 13 | 验证码编辑框。 |
 | OPTION_ASCII | number | 20 | 允许输入ASCII值。 |
 | OPTION_NONE | number | 0 | 不指定编辑框输入属性。 |
 | OPTION_AUTO_CAP_CHARACTERS | number | 2 | 允许输入字符。 |
