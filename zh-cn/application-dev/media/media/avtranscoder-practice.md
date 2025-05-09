@@ -110,8 +110,10 @@ export class AVTranscoderDemo {
         fileFormat: media.ContainerFormatType.CFT_MPEG_4, // 封装格式。
         videoBitrate: 1000000, // 视频比特率。
         videoCodec: media.CodecMimeType.VIDEO_AVC, // 视频编码格式。
+<!--RP1-->
         videoFrameWidth: 1280, // 视频分辨率的宽。
         videoFrameHeight: 720  // 视频分辨率的高。
+<!--RP1End-->
     };
     // 注册avTranscoder回调函数。
     setAVTranscoderCallback() {
@@ -142,7 +144,9 @@ export class AVTranscoderDemo {
             // 2.获取转码源文件fd和目标文件fd赋予avTranscoder；参考FilePicker文档。
             let fileDescriptor = await this.context.resourceManager.getRawFd('H264_AAC.mp4');
             this.avTranscoder.fdSrc = fileDescriptor;
-            this.avTranscoder.fdDst = 55;
+            let outputFilePath = this.context.filesDir + "/output.mp4";
+            let file = fs.openSync(outputFilePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
+            this.avTranscoder.fdDst = file.fd;
             // 3.配置转码参数完成准备工作。
             await this.avTranscoder.prepare(this.avConfig);
             // 4.开始转码。
@@ -326,8 +330,10 @@ export class AVTranscoderDemo {
                 fileFormat: media.ContainerFormatType.CFT_MPEG_4,
                 videoBitrate: 200000,
                 videoCodec: media.CodecMimeType.VIDEO_AVC,
+            <!--RP2-->
                 videoFrameWidth: 640,
                 videoFrameHeight: 480,
+            <!--RP2End-->
             }
             await transcoder?.prepare(config);
             await transcoder?.start();
@@ -528,8 +534,10 @@ async function doSome(context: common.Context) {
             audioCodec: media.CodecMimeType.AUDIO_AAC,
             videoCodec: media.CodecMimeType.VIDEO_AVC,
             videoBitrate: 200000,
+        <!--RP3-->
             videoFrameWidth: 640,
             videoFrameHeight: 480,
+        <!--RP3End-->
         }
         await transcoder?.prepare(config);
         await transcoder?.start();

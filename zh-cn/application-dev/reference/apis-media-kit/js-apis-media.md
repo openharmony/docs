@@ -4973,7 +4973,7 @@ type OnAVRecorderStateChangeHandler = (state: AVRecorderState, reason: StateChan
 
 ## AVTranscoder<sup>12+</sup>
 
-视频转码管理类，用于视频转码。在调用AVTranscoder的方法前，需要先通过createAVTranscoder()构建一个AVTranscoder实例。
+视频转码管理类，用于视频转码。在调用AVTranscoder的方法前，需要先通过[createAVTranscoder()](#mediacreateavtranscoder12)构建一个AVTranscoder实例。
 
 视频转码demo可参考：[视频转码开发指导](../../media/media/using-avtranscoder-for-transcodering.md)
 
@@ -5009,6 +5009,7 @@ prepare(config: AVTranscoderConfig): Promise\<void>
 **错误码：**
 
 以下错误码的详细介绍请参见[媒体错误码](errorcode-media.md)。
+<!--RP1-->当config中设置的目标视频分辨率宽videoFrameWidth大于原视频的宽或目标视频分辨率宽videoFrameHeight大于原视频的高时，会上报错误码401<!--RP1End-->
 
 | 错误码ID | 错误信息                               |
 | -------- | -------------------------------------- |
