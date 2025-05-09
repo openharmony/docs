@@ -217,8 +217,8 @@
       - [拖拽事件](ndk-drag-event.md)
     - [使用动画](ndk-use-animation.md)
     - 构建布局<!--arkts-build-layout-ndk-->
-      - [使用列表](ui/ndk-loading-long-list.md)
-      - [使用瀑布流](ui/ndk-waterflow.md)
+      - [使用列表](ndk-loading-long-list.md)
+      - [使用瀑布流](ndk-waterflow.md)
     - [构建弹窗](ndk-build-pop-up-window.md)
     - [构建自定义组件](ndk-build-custom-components.md)
     - [嵌入ArkTS组件](ndk-embed-arkts-components.md)
