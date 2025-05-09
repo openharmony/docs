@@ -235,6 +235,8 @@ int32_t OH_Usb_CreateDeviceMemMap (uint64_t deviceId, size_t size, UsbDeviceMemM
 
 **需要权限**：ohos.permission.ACCESS_DDK_USB
 
+**起始版本：** 10
+
 **参数:**
 
 | 名称 | 描述 |
