@@ -1,6 +1,6 @@
 # @ohos.i18n (国际化-I18n)
 
-本模块提供系统相关的或者增强的国际化能力，包括区域管理、电话号码处理、日历等，相关接口为ECMA 402标准中未定义的补充接口。[Intl模块](js-apis-intl.md)提供了ECMA 402标准定义的基础国际化接口，与本模块共同使用可提供完整地国际化支持能力。
+本模块提供系统相关的或者增强的[国际化](../../internationalization/i18n-l10n.md#国际化和本地化概述)能力，包括区域管理、电话号码处理、日历等，相关接口为[ECMA 402](https://dev.ecma-international.org/publications-and-standards/standards/ecma-402/)标准中未定义的补充接口。[Intl模块](js-apis-intl.md)提供了ECMA 402标准定义的基础国际化接口，与本模块共同使用可提供完整地国际化能力。
 
 >  **说明：**
 >
@@ -23,25 +23,25 @@ import { i18n } from '@kit.LocalizationKit';
 
 static getDisplayCountry(country: string, locale: string, sentenceCase?: boolean): string
 
-获取指定国家的本地化名称。
+获取国家地区名称在指定语言下的翻译。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Global.I18n
+**系统能力：** SystemCapability.Global.I18n
 
 **参数：**
 
 | 参数名          | 类型      | 必填   | 说明               |
 | ------------ | ------- | ---- | ---------------- |
-| country      | string  | 是    | 用于指定国家，要求是合法的国家码。            |
-| locale       | string  | 是    | [表示区域ID的字符串](../../internationalization/i18n-locale-culture.md#实现原理)，由语言、脚本、国家或地区组成。     |
+| country      | string  | 是    | 国家地区，要求是合法的国家地区码。            |
+| locale       | string  | 是    | [表示区域ID的字符串](../../internationalization/i18n-locale-culture.md#实现原理)，由语言、脚本、国家地区组成。     |
 | sentenceCase | boolean | 否    | true表示按照首字母大写的格式显示文本，false表示按照区域默认的大小写格式显示文本。默认值：true。 |
 
 **返回值：**
 
 | 类型     | 说明            |
 | ------ | ------------- |
-| string | 指定国家的本地化名称。 |
+| string | 国家地区名称在指定语言下的翻译。 |
 
 **错误码：**
 
@@ -72,25 +72,25 @@ static getDisplayCountry(country: string, locale: string, sentenceCase?: boolean
 
 static getDisplayLanguage(language: string, locale: string, sentenceCase?: boolean): string
 
-获取指定语言的本地化名称。
+获取语言名称在指定语言下的翻译。
 
-**原子化服务API**： 从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Global.I18n
+**系统能力：** SystemCapability.Global.I18n
 
 **参数：**
 
 | 参数名          | 类型      | 必填   | 说明               |
 | ------------ | ------- | ---- | ---------------- |
-| language     | string  | 是    | 指定语言，要求是合法的语言ID。            |
-| locale       | string  | 是    | [表示区域ID的字符串](../../internationalization/i18n-locale-culture.md#实现原理)，由语言、脚本、国家或地区组成。     |
+| language     | string  | 是    | 语言，要求是合法的语言ID。            |
+| locale       | string  | 是    | [表示区域ID的字符串](../../internationalization/i18n-locale-culture.md#实现原理)，由语言、脚本、国家地区组成。     |
 | sentenceCase | boolean | 否    | true表示按照首字母大写的格式显示文本，false表示按照区域默认的大小写格式显示文本。默认值：true。 |
 
 **返回值：**
 
 | 类型     | 说明            |
 | ------ | ------------- |
-| string | 指定语言的本地化名称。 |
+| string | 语言名称在指定语言下的翻译。 |
 
 **错误码：**
 
@@ -106,8 +106,8 @@ static getDisplayLanguage(language: string, locale: string, sentenceCase?: boole
   import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
-    // 用英文形式显示中文，displayLanguage = 'Chinese'
-    let displayLanguage: string = i18n.System.getDisplayLanguage('zh', 'en-GB');
+    // 获取“中文”在英文下的翻译
+    let displayLanguage: string = i18n.System.getDisplayLanguage('zh', 'en-GB'); // displayLanguage = 'Chinese'
   } catch (error) {
     let err: BusinessError = error as BusinessError;
     console.error(`call System.getDisplayLanguage failed, error code: ${err.code}, message: ${err.message}.`);
@@ -118,19 +118,19 @@ static getDisplayLanguage(language: string, locale: string, sentenceCase?: boole
 
 static getSystemLanguages(): Array&lt;string&gt;
 
-获取系统支持的语言ID列表。
+获取系统支持的语言列表。
 
 从API version 11开始，该类型支持在ArkTS卡片中使用。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Global.I18n
+**系统能力：** SystemCapability.Global.I18n
 
 **返回值：**
 
 | 类型                  | 说明           |
 | ------------------- | ------------ |
-| Array&lt;string&gt; | 系统支持的语言ID列表。 |
+| Array&lt;string&gt; | 系统支持的语言列表。 |
 
 **示例：**
   ```ts
@@ -142,11 +142,11 @@ static getSystemLanguages(): Array&lt;string&gt;
 
 static getSystemCountries(language: string): Array&lt;string&gt;
 
-获取输入语言下系统支持的国家或地区ID列表。
+获取输入语言下系统支持的国家地区列表。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Global.I18n
+**系统能力：** SystemCapability.Global.I18n
 
 **参数：**
 
@@ -158,7 +158,7 @@ static getSystemCountries(language: string): Array&lt;string&gt;
 
 | 类型                  | 说明           |
 | ------------------- | ------------ |
-| Array&lt;string&gt; | 某种特定语言下系统支持的国家或地区ID列表。 |
+| Array&lt;string&gt; | 某种特定语言下系统支持的国家地区列表。 |
 
 **错误码：**
 
@@ -190,24 +190,24 @@ static getSystemCountries(language: string): Array&lt;string&gt;
 
 static isSuggested(language: string, region?: string): boolean
 
-判断当前语言和地区是否匹配。
+判断语言是否是地区的推荐语言。用于根据地区推荐语言或根据语言推荐地区。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Global.I18n
+**系统能力：** SystemCapability.Global.I18n
 
 **参数：**
 
 | 参数名      | 类型     | 必填   | 说明            |
 | -------- | ------ | ---- | ------------- |
 | language | string | 是    | 合法的语言ID，例如zh。 |
-| region   | string | 否    | 合法的地区ID，例如CN。<br>默认值：SIM卡国家或地区。  |
+| region   | string | 否    | 合法的地区ID，例如CN。<br>默认值：SIM卡国家地区。  |
 
 **返回值：**
 
 | 类型      | 说明                                       |
 | ------- | ---------------------------------------- |
-| boolean | true表示当前语言和地区匹配，false表示当前语言和地区不匹配。 |
+| boolean | true表示语言是地区的推荐语言，false表示语言不是地区的推荐语言。 |
 
 **错误码：**
 
@@ -229,6 +229,7 @@ static isSuggested(language: string, region?: string): boolean
 
   try {
     let isSuggestedCountry: boolean = i18n.System.isSuggested('zh', 'CN'); // isSuggestedCountry = true
+    isSuggestedCountry = i18n.System.isSuggested('en'); // 结果和系统当前地区相关
   } catch (error) {
     let err: BusinessError = error as BusinessError;
     console.error(`call System.isSuggested failed, error code: ${err.code}, message: ${err.message}.`);
@@ -239,19 +240,19 @@ static isSuggested(language: string, region?: string): boolean
 
 static getSystemLanguage(): string
 
-获取系统语言。
+获取系统当前设置的语言。
 
-**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **卡片能力**：从API version 11开始，该接口支持在ArkTS卡片中使用。
 
-**系统能力**：SystemCapability.Global.I18n
+**系统能力：** SystemCapability.Global.I18n
 
 **返回值：**
 
 | 类型     | 说明      |
 | ------ | ------- |
-| string | 系统语言ID。 |
+| string | 表示语言ID的字符串。 |
 
 **示例：**
   ```ts
@@ -262,17 +263,17 @@ static getSystemLanguage(): string
 
 static getSystemRegion(): string
 
-获取系统地区。
+获取系统当前设置的国家地区。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Global.I18n
+**系统能力：** SystemCapability.Global.I18n
 
 **返回值：**
 
 | 类型     | 说明      |
 | ------ | ------- |
-| string | 系统地区ID。 |
+| string | 表示国家地区ID的字符串。 |
 
 **示例：**
   ```ts
@@ -283,11 +284,11 @@ static getSystemRegion(): string
 
 static getSystemLocale(): string
 
-获取系统区域ID。
+获取系统当前设置的区域。
 
-**原子化服务API**： 从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Global.I18n
+**系统能力：** SystemCapability.Global.I18n
 
 **返回值：**
 
@@ -304,19 +305,19 @@ static getSystemLocale(): string
 
 static is24HourClock(): boolean
 
-判断系统时间是否为24小时制。
+判断系统时制是否为24小时制。
 
 **卡片能力**：从API version 11开始，该接口支持在ArkTS卡片中使用。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Global.I18n
+**系统能力：** SystemCapability.Global.I18n
 
 **返回值：**
 
 | 类型      | 说明                                       |
 | ------- | ---------------------------------------- |
-| boolean | true表示系统24小时开关开启，false表示系统24小时开关关闭。 |
+| boolean | true表示系统时制为24小时制，false表示系统时制为12小时制。 |
 
 **示例：**
   ```ts
@@ -332,7 +333,7 @@ static getPreferredLanguageList(): Array&lt;string&gt;
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Global.I18n
+**系统能力：** SystemCapability.Global.I18n
 
 **返回值：**
 
@@ -353,13 +354,13 @@ static getFirstPreferredLanguage(): string
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Global.I18n
+**系统能力：** SystemCapability.Global.I18n
 
 **返回值：**
 
 | 类型     | 说明             |
 | ------ | -------------- |
-| string | 偏好语言列表中的第一个语言。 |
+| string | 系统偏好语言列表中的第一个语言。 |
 
 **示例：**
   ```ts
@@ -370,11 +371,11 @@ static getFirstPreferredLanguage(): string
 
 static setAppPreferredLanguage(language: string): void
 
-设置应用偏好语言。设置偏好语言为'default'后，应用语言将跟随系统语言，应用冷启动生效。
+设置应用偏好语言。设置后，应用将优先加载应用偏好语言对应的资源。设置偏好语言为'default'后，应用语言将跟随系统语言，应用冷启动生效。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Global.I18n
+**系统能力：** SystemCapability.Global.I18n
 
 **参数：**
 
@@ -411,7 +412,7 @@ static getAppPreferredLanguage(): string
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Global.I18n
+**系统能力：** SystemCapability.Global.I18n
 
 **返回值：**
 
@@ -433,13 +434,13 @@ static getUsingLocalDigit(): boolean
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Global.I18n
+**系统能力：** SystemCapability.Global.I18n
 
 **返回值：**
 
 | 类型      | 说明                                       |
 | ------- | ---------------------------------------- |
-| boolean | true表示本地数字开关已打开，false表示本地数字开关未打开。 |
+| boolean | true表示系统当前使用本地数字，false表示系统当前不使用本地数字。 |
 
 **示例：**
   ```ts
@@ -454,7 +455,7 @@ static getSimplifiedLanguage(language?: string): string
 
 **原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Global.I18n
+**系统能力：** SystemCapability.Global.I18n
 
 **参数：**
 
@@ -484,7 +485,7 @@ static getSimplifiedLanguage(language?: string): string
   try {
     // simplifiedLanguage = 'zh'
     let simplifiedLanguage: string = i18n.System.getSimplifiedLanguage('zh-Hans-CN');
-    // simplifiedSystemLanguage = 'zh-Hans', 如果当前系统语言为简体中文
+    // 获取当前系统语言的简化表示
     let simplifiedSystemLanguage: string = i18n.System.getSimplifiedLanguage();
   } catch (error) {
     let err: BusinessError = error as BusinessError;
@@ -496,28 +497,28 @@ static getSimplifiedLanguage(language?: string): string
 
 isRTL(locale: string): boolean
 
-判断某区域语言是否从右到左显示。
+判断语言是否为镜像语言。在镜像语言下，UI界面需要[镜像显示](../../internationalization/i18n-ui-design.md#界面镜像)。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Global.I18n
+**系统能力：** SystemCapability.Global.I18n
 
 **参数：**
 
 | 参数名    | 类型     | 必填   | 说明      |
 | ------ | ------ | ---- | ------- |
-| locale | string | 是    | [表示区域ID的字符串](../../internationalization/i18n-locale-culture.md#实现原理)，由语言、脚本、国家或地区组成。  |
+| locale | string | 是    | [表示区域ID的字符串](../../internationalization/i18n-locale-culture.md#实现原理)，由语言、脚本、国家地区组成。  |
 
 **返回值：**
 
 | 类型      | 说明                                       |
 | ------- | ---------------------------------------- |
-| boolean | true表示该区域语言从右到左显示，false表示该区域语言从左到右显示。 |
+| boolean | true表示该语言是镜像语言，false表示该语言不是镜像语言。 |
 
 **示例：**
   ```ts
-  let isZhRTL: boolean = i18n.isRTL('zh-CN'); // 中文不是RTL语言，返回false
-  let isArRTL: boolean = i18n.isRTL('ar-EG'); // 阿语是RTL语言，返回true
+  let isZhRTL: boolean = i18n.isRTL('zh-CN'); // 中文不是镜像语言，返回false
+  let isArRTL: boolean = i18n.isRTL('ar-EG'); // 阿语是镜像语言，返回true
   ```
 
 ## i18n.getCalendar<sup>8+</sup>
@@ -528,14 +529,14 @@ getCalendar(locale: string, type? : string): Calendar
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Global.I18n
+**系统能力：** SystemCapability.Global.I18n
 
 **参数：**
 
 | 参数名    | 类型     | 必填   | 说明                                       |
 | ------ | ------ | ---- | ---------------------------------------- |
-| locale | string | 是    | [表示区域ID的字符串](../../internationalization/i18n-locale-culture.md#实现原理)，由语言、脚本、国家或地区组成，例如zh-Hans-CN。                 |
-| type   | string | 否    | 表示历法，取值包括：buddhist,&nbsp;chinese,&nbsp;coptic,&nbsp;ethiopic,&nbsp;hebrew,&nbsp;gregory,&nbsp;indian,&nbsp;islamic_civil,&nbsp;islamic_tbla,&nbsp;islamic_umalqura,&nbsp;japanese,&nbsp;persian。<br>默认值：区域默认的历法。不同取值代表的含义和不同场景下取值请参考[设置日历和历法](../../internationalization/i18n-calendar.md)。 |
+| locale | string | 是    | [表示区域ID的字符串](../../internationalization/i18n-locale-culture.md#实现原理)，由语言、脚本、国家地区组成，例如zh-Hans-CN。                 |
+| type   | string | 否    | 表示历法，取值包括：buddhist,&nbsp;chinese,&nbsp;coptic,&nbsp;ethiopic,&nbsp;hebrew,&nbsp;gregory,&nbsp;indian,&nbsp;islamic_civil,&nbsp;islamic_tbla,&nbsp;islamic_umalqura,&nbsp;japanese,&nbsp;persian。<br>默认值：区域默认的历法。不同取值代表的含义和使用场景请参考[设置日历和历法](../../internationalization/i18n-calendar.md)。 |
 
 **返回值：**
 
@@ -554,17 +555,17 @@ getCalendar(locale: string, type? : string): Calendar
 
 constructor(locale?: string)
 
-创建实体识别对象。
+创建实体识别对象。该对象根据区域规则识别文本中的实体。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Global.I18n
+**系统能力：** SystemCapability.Global.I18n
 
 **参数：**
 
 | 参数名  | 类型   | 必填   | 说明                |
 | ---- | ---- | ---- | ----------------- |
-| locale | string | 否    | [表示区域ID的字符串](../../internationalization/i18n-locale-culture.md#实现原理)，由语言、脚本、国家或地区组成，例如zh-Hans-CN。<br>默认值：系统当前区域ID。 |
+| locale | string | 否    | [表示区域ID的字符串](../../internationalization/i18n-locale-culture.md#实现原理)，由语言、脚本、国家地区组成，例如zh-Hans-CN。<br>默认值：系统当前区域ID。 |
 
 **错误码：**
 
@@ -595,13 +596,13 @@ findEntityInfo(text: string): Array&lt;EntityInfoItem&gt;
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Global.I18n
+**系统能力：** SystemCapability.Global.I18n
 
 **参数：**
 
 | 参数名  | 类型   | 必填   | 说明                |
 | ---- | ---- | ---- | ----------------- |
-| text | string | 是    | 需要被识别的文本。 |
+| text | string | 是    | 输入文本。 |
 
 **返回值：**
 
@@ -641,13 +642,13 @@ findEntityInfo(text: string): Array&lt;EntityInfoItem&gt;
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Global.I18n
+**系统能力：** SystemCapability.Global.I18n
 
 | 名称  | 类型   | 可读   | 可写   | 说明                |
 | ---- | ---- | ---- | ---- | ----------------- |
-| type | string | 是    | 是    | 实体的类型，当前支持phone_number和date类型。 |
-| begin | number | 是    | 是    | 实体的起始位置。 |
-| end | number | 是    | 是    | 实体的终止位置。 |
+| type | string | 是    | 是    | 实体的类型，当前支持phone_number和date类型。phone_number表示实体类型是电话号码，date表示实体类型是时间日期。 |
+| begin | number | 是    | 是    | 实体在输入字符串中的起始位置。 |
+| end | number | 是    | 是    | 实体在输入字符串中的终止位置。 |
 
 ## Calendar<sup>8+</sup>
 
@@ -659,7 +660,7 @@ setTime(date: Date): void
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Global.I18n
+**系统能力：** SystemCapability.Global.I18n
 
 **参数：**
 
@@ -683,13 +684,13 @@ setTime(time: number): void
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Global.I18n
+**系统能力：** SystemCapability.Global.I18n
 
 **参数：**
 
 | 参数名  | 类型     | 必填   | 说明                                       |
 | ---- | ------ | ---- | ---------------------------------------- |
-| time | number | 是    | time为从1970.1.1&nbsp;00:00:00&nbsp;GMT逝去的毫秒数。 |
+| time | number | 是    | Unix时间戳，表示从1970.1.1&nbsp;00:00:00&nbsp;GMT逝去的毫秒数。 |
 
 **示例：**
   ```ts
@@ -705,7 +706,7 @@ set(year: number, month: number, date:number, hour?: number, minute?: number, se
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Global.I18n
+**系统能力：** SystemCapability.Global.I18n
 
 **参数：**
 
@@ -714,9 +715,9 @@ set(year: number, month: number, date:number, hour?: number, minute?: number, se
 | year   | number | 是    | 设置的年。  |
 | month  | number | 是    | 设置的月。说明：月份从0开始计数，例如0表示一月。  |
 | date   | number | 是    | 设置的日。  |
-| hour   | number | 否    | 设置的小时。默认值：系统小时。 |
-| minute | number | 否    | 设置的分钟。默认值：系统分钟。 |
-| second | number | 否    | 设置的秒。默认值：系统秒。 |
+| hour   | number | 否    | 设置的小时。默认值：系统当前时间。 |
+| minute | number | 否    | 设置的分钟。默认值：系统当前时间。 |
+| second | number | 否    | 设置的秒。默认值：系统当前时间。 |
 
 **示例：**
   ```ts
@@ -732,7 +733,7 @@ setTimeZone(timezone: string): void
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Global.I18n
+**系统能力：** SystemCapability.Global.I18n
 
 **参数：**
 
@@ -751,17 +752,17 @@ setTimeZone(timezone: string): void
 
 getTimeZone(): string
 
-获取日历对象的时区。
+获取日历对象的时区ID。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Global.I18n
+**系统能力：** SystemCapability.Global.I18n
 
 **返回值：**
 
 | 类型     | 说明         |
 | ------ | ---------- |
-| string | 日历对象的时区ID。 |
+| string | 表示时区ID的字符串。 |
 
 **示例：**
   ```ts
@@ -775,17 +776,17 @@ getTimeZone(): string
 
 getFirstDayOfWeek(): number
 
-获取日历对象一周的起始日。
+获取日历对象的周起始日。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Global.I18n
+**系统能力：** SystemCapability.Global.I18n
 
 **返回值：**
 
 | 类型     | 说明                    |
 | ------ | --------------------- |
-| number | 一周的起始日，1代表周日，7代表周六。 |
+| number | 周起始日，1代表周日，7代表周六。 |
 
 **示例：**
   ```ts
@@ -798,11 +799,11 @@ getFirstDayOfWeek(): number
 
 setFirstDayOfWeek(value: number): void
 
-设置一周的起始日。
+设置日历对象的周起始日。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Global.I18n
+**系统能力：** SystemCapability.Global.I18n
 
 **参数：**
 
@@ -821,11 +822,11 @@ setFirstDayOfWeek(value: number): void
 
 getMinimalDaysInFirstWeek(): number
 
-获取一年中第一周的最小天数。
+获取日历对象一年中第一周的最小天数。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Global.I18n
+**系统能力：** SystemCapability.Global.I18n
 
 **返回值：**
 
@@ -844,11 +845,11 @@ getMinimalDaysInFirstWeek(): number
 
 setMinimalDaysInFirstWeek(value: number): void
 
-设置一年中第一周的最小天数。
+设置日历对象一年中第一周的最小天数。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Global.I18n
+**系统能力：** SystemCapability.Global.I18n
 
 **参数：**
 
@@ -872,7 +873,7 @@ get(field: string): number
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Global.I18n
+**系统能力：** SystemCapability.Global.I18n
 
 **参数：**
 
@@ -924,23 +925,23 @@ get(field: string): number
 
 getDisplayName(locale: string): string
 
-获取日历对象在指定语言下的显示名称。
+获取日历对象名称在指定语言下的翻译。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Global.I18n
+**系统能力：** SystemCapability.Global.I18n
 
 **参数：**
 
 | 参数名    | 类型     | 必填   | 说明                                       |
 | ------ | ------ | ---- | ---------------------------------------- |
-| locale | string | 是    | [表示区域ID的字符串](../../internationalization/i18n-locale-culture.md#实现原理)，由语言、脚本、国家或地区组成。 |
+| locale | string | 是    | [表示区域ID的字符串](../../internationalization/i18n-locale-culture.md#实现原理)，由语言、脚本、国家地区组成。 |
 
 **返回值：**
 
 | 类型     | 说明                  |
 | ------ | ------------------- |
-| string | 日历对象的显示名称。如buddhist在en-US上显示的名称为“Buddhist&nbsp;Calendar”。|
+| string | 日历对象名称在指定语言下的翻译。如buddhist在en-US上显示的名称为“Buddhist&nbsp;Calendar”。|
 
 **示例：**
   ```ts
@@ -953,17 +954,17 @@ getDisplayName(locale: string): string
 
 isWeekend(date?: Date): boolean
 
-判断指定的日期在日历中是否为周末。
+判断指定的日期在日历对象中是否为周末。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Global.I18n
+**系统能力：** SystemCapability.Global.I18n
 
 **参数：**
 
 | 参数名  | 类型   | 必填   | 说明                                       |
 | ---- | ---- | ---- | ---------------------------------------- |
-| date | Date | 否    | 时间、日期。说明：月份从0开始计数，例如0表示一月。<br>默认值：系统当前日期。 |
+| date | Date | 否    | 时间、日期。说明：月份从0开始计数，例如0表示一月。<br>默认值：日历对象的当前日期。 |
 
 **返回值：**
 
@@ -985,11 +986,11 @@ isWeekend(date?: Date): boolean
 
 add(field: string, amount: number): void
 
-对日历中的表示时间日期的日历属性值进行加减操作。
+对日历对象中的表示时间日期的日历属性值进行加减操作。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Global.I18n
+**系统能力：** SystemCapability.Global.I18n
 
 **参数：**
 
@@ -1027,17 +1028,17 @@ add(field: string, amount: number): void
 
 getTimeInMillis(): number
 
-获取当前日历的UTC毫秒数。
+获取当前日历对象的时间戳。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Global.I18n
+**系统能力：** SystemCapability.Global.I18n
 
 **返回值：**
 
 | 类型      | 说明                                  |
 | ------- | ----------------------------------- |
-| number | 当前日历的UTC毫秒数。 |
+| number | Unix时间戳，表示从1970.1.1&nbsp;00:00:00&nbsp;GMT逝去的毫秒数。 |
 
 **示例：**
   ```ts
@@ -1051,11 +1052,11 @@ getTimeInMillis(): number
 
 compareDays(date: Date): number
 
-比较日历和指定日期相差的天数。
+比较日历对象当前日期和指定日期相差的天数。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Global.I18n
+**系统能力：** SystemCapability.Global.I18n
 
 **参数：**
 
@@ -1103,13 +1104,13 @@ constructor(country: string, options?: PhoneNumberFormatOptions)
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Global.I18n
+**系统能力：** SystemCapability.Global.I18n
 
 **参数：**
 
 | 参数名     | 类型                                       | 必填   | 说明               |
 | ------- | ---------------------------------------- | ---- | ---------------- |
-| country | string                                   | 是    | 表示电话号码所属的国家或地区代码。 |
+| country | string                                   | 是    | 表示电话号码所属的国家地区代码。 |
 | options | [PhoneNumberFormatOptions](#phonenumberformatoptions8) | 否    | 电话号码格式化时设置的配置项。默认值：NATIONAL。  |
 
 **示例：**
@@ -1122,11 +1123,11 @@ constructor(country: string, options?: PhoneNumberFormatOptions)
 
 isValidNumber(number: string): boolean
 
-判断传入的电话号码是否有效。
+判断电话号码是否为当前电话号码格式化对象中国家的有效号码。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Global.I18n
+**系统能力：** SystemCapability.Global.I18n
 
 **参数：**
 
@@ -1158,7 +1159,7 @@ format(number: string): string
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Global.I18n
+**系统能力：** SystemCapability.Global.I18n
 
 **参数：**
 
@@ -1193,24 +1194,24 @@ format(number: string): string
 
 getLocationName(number: string, locale: string): string
 
-判断电话号码归属地。
+获取电话号码归属地。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Global.I18n
+**系统能力：** SystemCapability.Global.I18n
 
 **参数：**
 
 | 参数名    | 类型     | 必填   | 说明   |
 | ------ | ------ | ---- | ---- |
 | number | string | 是    | 电话号码。获取其他地区电话号码的归属地时，需要在电话号码前加00+国际区号。 |
-| locale | string | 是    | [表示区域ID的字符串](../../internationalization/i18n-locale-culture.md#实现原理)，由语言、脚本、国家或地区组成。 |
+| locale | string | 是    | [表示区域ID的字符串](../../internationalization/i18n-locale-culture.md#实现原理)，由语言、脚本、国家地区组成。 |
 
 **返回值：**
 
 | 类型     | 说明       |
 | ------ | -------- |
-| string | 电话号码归属地。 |
+| string | 电话号码归属地。无效号码时返回空字符串。 |
 
 **示例：**
   ```ts
@@ -1226,11 +1227,11 @@ getLocationName(number: string, locale: string): string
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Global.I18n
+**系统能力：** SystemCapability.Global.I18n
 
 | 名称   | 类型     | 可读   | 可写   | 说明                                       |
 | ---- | ------ | ---- | ---- | ---------------------------------------- |
-| type | string | 是    | 是    | 表示对电话号码格式化的类型，取值包括：'E164',&nbsp;'INTERNATIONAL',&nbsp;'NATIONAL',&nbsp;'RFC3966',&nbsp;'TYPING'。<br>-在API version 8版本，type为必填项。 <br>-API version 9版本开始，type为选填项。<br>-API version 12版本开始支持TYPING，表示对拨号中的电话号码格式化。|
+| type | string | 是    | 是    | 表示对电话号码格式化的类型，取值包括：'E164',&nbsp;'INTERNATIONAL',&nbsp;'NATIONAL',&nbsp;'RFC3966',&nbsp;'TYPING'。<br>-在API version 8版本，type为必填项。 <br>-API version 9版本开始，type为选填项。<br>-API version 12版本开始支持TYPING，表示对拨号中的电话号码实时格式化。|
 
 
 ## UnitInfo<sup>8+</sup>
@@ -1239,7 +1240,7 @@ getLocationName(number: string, locale: string): string
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Global.I18n
+**系统能力：** SystemCapability.Global.I18n
 
 | 名称            | 类型     | 可读   | 可写   | 说明                                       |
 | ------------- | ------ | ---- | ---- | ---------------------------------------- |
@@ -1255,13 +1256,13 @@ getInstance(locale?: string): IndexUtil
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Global.I18n
+**系统能力：** SystemCapability.Global.I18n
 
 **参数：**
 
 | 参数名    | 类型     | 必填   | 说明                           |
 | ------ | ------ | ---- | ---------------------------- |
-| locale | string | 否    | [表示区域ID的字符串](../../internationalization/i18n-locale-culture.md#实现原理)，由语言、脚本、国家或地区组成。<br>默认值：系统当前区域ID。 |
+| locale | string | 否    | [表示区域ID的字符串](../../internationalization/i18n-locale-culture.md#实现原理)，由语言、脚本、国家地区组成。<br>默认值：系统当前区域ID。 |
 
 **返回值：**
 
@@ -1277,7 +1278,6 @@ getInstance(locale?: string): IndexUtil
 
 ## IndexUtil<sup>8+</sup>
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 ### getIndexList<sup>8+</sup>
 
@@ -1287,13 +1287,13 @@ getIndexList(): Array&lt;string&gt;
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Global.I18n
+**系统能力：** SystemCapability.Global.I18n
 
 **返回值：**
 
 | 类型                  | 说明                 |
 | ------------------- | ------------------ |
-| Array&lt;string&gt; | 返回当前区域的索引列表。 |
+| Array&lt;string&gt; | 当前区域的索引列表。第一个元素和最后一个元素为“...”。 |
 
 **示例：**
   ```ts
@@ -1312,13 +1312,13 @@ addLocale(locale: string): void
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Global.I18n
+**系统能力：** SystemCapability.Global.I18n
 
 **参数：**
 
 | 参数名    | 类型     | 必填   | 说明                           |
 | ------ | ------ | ---- | ---------------------------- |
-| locale | string | 是    | [表示区域ID的字符串](../../internationalization/i18n-locale-culture.md#实现原理)，由语言、脚本、国家或地区组成。 |
+| locale | string | 是    | [表示区域ID的字符串](../../internationalization/i18n-locale-culture.md#实现原理)，由语言、脚本、国家地区组成。 |
 
 **示例：**
   ```ts
@@ -1330,23 +1330,23 @@ addLocale(locale: string): void
 
 getIndex(text: string): string
 
-获取text对应的索引。
+获取输入文本对应的索引值。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Global.I18n
+**系统能力：** SystemCapability.Global.I18n
 
 **参数：**
 
 | 参数名  | 类型     | 必填   | 说明           |
 | ---- | ------ | ---- | ------------ |
-| text | string | 是    | 待计算索引值的输入文本。 |
+| text | string | 是    | 输入文本。 |
 
 **返回值：**
 
 | 类型     | 说明          |
 | ------ | ----------- |
-| string | 输入文本对应的索引值。 |
+| string | 输入文本对应的索引值。无合适索引时返回空字符串。 |
 
 **示例：**
   ```ts
@@ -1359,17 +1359,17 @@ getIndex(text: string): string
 
 getLineInstance(locale: string): BreakIterator
 
-获取用于获取可换行点的[BreakIterator](#breakiterator8)对象。
+获取用于获取可换行点的BreakIterator对象。BreakIterator对象内部维护一个换行迭代器，可以用于访问各个可换行点。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Global.I18n
+**系统能力：** SystemCapability.Global.I18n
 
 **参数：**
 
 | 参数名    | 类型     | 必填   | 说明                                       |
 | ------ | ------ | ---- | ---------------------------------------- |
-| locale | string | 是    | [表示区域ID的字符串](../../internationalization/i18n-locale-culture.md#实现原理)，由语言、脚本、国家或地区组成。<br>生成的[BreakIterator](#breakiterator8)将按照指定区域的规则计算可换行点的位置。 |
+| locale | string | 是    | [表示区域ID的字符串](../../internationalization/i18n-locale-culture.md#实现原理)，由语言、脚本、国家地区组成。<br>生成的[BreakIterator](#breakiterator8)将按照指定区域的规则计算可换行点的位置。 |
 
 **返回值：**
 
@@ -1394,13 +1394,13 @@ setLineBreakText(text: string): void
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Global.I18n
+**系统能力：** SystemCapability.Global.I18n
 
 **参数：**
 
 | 参数名  | 类型     | 必填   | 说明                      |
 | ---- | ------ | ---- | ----------------------- |
-| text | string | 是    | 指定BreakIterator对象获取可换行点的文本。 |
+| text | string | 是    | 输入文本。 |
 
 **示例：**
   ```ts
@@ -1417,7 +1417,7 @@ getLineBreakText(): string
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Global.I18n
+**系统能力：** SystemCapability.Global.I18n
 
 **返回值：**
 
@@ -1437,17 +1437,17 @@ getLineBreakText(): string
 
 current(): number
 
-获取BreakIterator对象在被处理文本中的位置。
+获取换行迭代器在当前处理文本中的位置。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Global.I18n
+**系统能力：** SystemCapability.Global.I18n
 
 **返回值：**
 
 | 类型     | 说明                          |
 | ------ | --------------------------- |
-| number | BreakIterator对象在当前所处理的文本中的位置。 |
+| number | 获取换行迭代器在当前处理的文本中的位置。 |
 
 **示例：**
   ```ts
@@ -1461,11 +1461,11 @@ current(): number
 
 first(): number
 
-将BreakIterator对象移动到第一个可换行点。第一个可换行点总是在被处理文本的起始位置。
+将换行迭代器移动到第一个可换行点。第一个可换行点总是在被处理文本的起始位置。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Global.I18n
+**系统能力：** SystemCapability.Global.I18n
 
 **返回值：**
 
@@ -1485,11 +1485,11 @@ first(): number
 
 last(): number
 
-将BreakIterator对象移动到最后一个可换行点。最后一个可换行点总是在被处理文本末尾的下一个位置。
+将换行迭代器移动到最后一个可换行点。最后一个可换行点总是在被处理文本末尾的下一个位置。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Global.I18n
+**系统能力：** SystemCapability.Global.I18n
 
 **返回值：**
 
@@ -1509,23 +1509,23 @@ last(): number
 
 next(index?: number): number
 
-将BreakIterator对象向后移动index个可换行点。
+将换行迭代器向后移动index个可换行点。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Global.I18n
+**系统能力：** SystemCapability.Global.I18n
 
 **参数：**
 
 | 参数名   | 类型     | 必填   | 说明                                       |
 | ----- | ------ | ---- | ---------------------------------------- |
-| index | number | 否    | BreakIterator对象将要移动的可换行点数，取值为整数。<br>正数表示向后移动index个可换行点，负数表示向前移动index个可换行点。<br>默认值：1。 |
+| index | number | 否    | 换行迭代器将要移动的可换行点数，取值为整数。<br>正数表示向后移动index个可换行点，负数表示向前移动index个可换行点。<br>默认值：1。 |
 
 **返回值：**
 
 | 类型     | 说明                                       |
 | ------ | ---------------------------------------- |
-| number | 移动index个可换行点后，当前BreakIterator对象在文本中的位置。<br>若移动index个可换行点后超出了所处理的文本的长度范围，返回-1。 |
+| number | 移动index个可换行点后，当前换行迭代器在文本中的位置。<br>若移动index个可换行点后超出了所处理的文本的长度范围，返回-1。 |
 
 **示例：**
   ```ts
@@ -1541,17 +1541,17 @@ next(index?: number): number
 
 previous(): number
 
-将BreakIterator对象向前移动一个可换行点。
+将换行迭代器向前移动一个可换行点。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Global.I18n
+**系统能力：** SystemCapability.Global.I18n
 
 **返回值：**
 
 | 类型     | 说明                                       |
 | ------ | ---------------------------------------- |
-| number | 移动到前一个可换行点后，当前BreakIterator对象在文本中的位置。<br>若移动index个可换行点后超出了所处理的文本的长度范围，返回-1。 |
+| number | 移动到前一个可换行点后，当前换行迭代器在文本中的位置。<br>若移动后超出了所处理的文本的长度范围，返回-1。 |
 
 **示例：**
   ```ts
@@ -1567,23 +1567,23 @@ previous(): number
 
 following(offset: number): number
 
-将BreakIterator对象移动到指定位置后面一个可换行点。
+将换行迭代器移动到指定位置后面一个可换行点。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Global.I18n
+**系统能力：** SystemCapability.Global.I18n
 
 **参数：**
 
 | 参数名    | 类型     | 必填   | 说明                                       |
 | ------ | ------ | ---- | ---------------------------------------- |
-| offset | number | 是    | 将BreakIterator对象移动到指定位置的后面一个可换行点。 |
+| offset | number | 是    | 将换行迭代器移动到文本指定位置的后面一个可换行点。 |
 
 **返回值：**
 
 | 类型     | 说明                                       |
 | ------ | ---------------------------------------- |
-| number | BreakIterator对象移动后的位置。若offset所指定位置的下一个可换行点超出了文本的范围，则返回-1。 |
+| number | 换行迭代器移动后的位置。若offset所指定位置的下一个可换行点超出了文本的范围，则返回-1。 |
 
 **示例：**
   ```ts
@@ -1603,19 +1603,19 @@ isBoundary(offset: number): boolean
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Global.I18n
+**系统能力：** SystemCapability.Global.I18n
 
 **参数：**
 
 | 参数名    | 类型     | 必填   | 说明          |
 | ------ | ------ | ---- | ----------- |
-| offset | number | 是    | 指定位置。 |
+| offset | number | 是    | 文本指定位置。 |
 
 **返回值：**
 
 | 类型      | 说明                              |
 | ------- | ------------------------------- |
-| boolean | true表示offset指定的文本位置是一个可换行点，false表示offset指定的文本位置不是一个可换行点。<br>返回true时，会将BreakIterator对象移动到offset指定的位置，否则相当于调用following。 |
+| boolean | true表示offset指定的文本位置是一个可换行点，false表示offset指定的文本位置不是一个可换行点。<br>返回true时，会将换行迭代器移动到offset指定的位置，否则相当于调用following。 |
 
 **示例：**
   ```ts
@@ -1634,7 +1634,7 @@ getTimeZone(zoneID?: string): TimeZone
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Global.I18n
+**系统能力：** SystemCapability.Global.I18n
 
 **参数：**
 
@@ -1663,7 +1663,7 @@ getID(): string
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Global.I18n
+**系统能力：** SystemCapability.Global.I18n
 
 **返回值：**
 
@@ -1682,24 +1682,24 @@ getID(): string
 
 getDisplayName(locale?: string, isDST?: boolean): string
 
-获取时区对象的本地化表示。
+获取时区对象名称在指定语言下的翻译。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Global.I18n
+**系统能力：** SystemCapability.Global.I18n
 
 **参数：**
 
 | 参数名    | 类型      | 必填   | 说明                   |
 | ------ | ------- | ---- | -------------------- |
-| locale | string  | 否    | [表示区域ID的字符串](../../internationalization/i18n-locale-culture.md#实现原理)，由语言、脚本、国家或地区组成。默认值：系统当前区域ID。                |
-| isDST  | boolean | 否    | true表示时区对象本地化时考虑夏令时，false表示时区对象本地化时不考虑夏令时。默认值：false。 |
+| locale | string  | 否    | [表示区域ID的字符串](../../internationalization/i18n-locale-culture.md#实现原理)，由语言、脚本、国家地区组成。默认值：系统当前区域ID。                |
+| isDST  | boolean | 否    | true表示显示夏令时信息，false表示不显示夏令时信息。默认值：false。 |
 
 **返回值：**
 
 | 类型     | 说明            |
 | ------ | ------------- |
-| string | 时区对象在指定区域的本地化表示。 |
+| string | 时区对象名称在指定语言下的翻译。 |
 
 **示例：**
   ```ts
@@ -1712,17 +1712,17 @@ getDisplayName(locale?: string, isDST?: boolean): string
 
 getRawOffset(): number
 
-获取时区对象表示的时区与UTC时区的偏差。
+获取时区对象所表示时区的原始偏移量。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Global.I18n
+**系统能力：** SystemCapability.Global.I18n
 
 **返回值：**
 
 | 类型     | 说明                  |
 | ------ | ------------------- |
-| number | 时区对象表示的时区与UTC时区的偏差，单位是毫秒。 |
+| number | 时区的原始偏移量，单位是毫秒。 |
 
 **示例：**
   ```ts
@@ -1735,23 +1735,23 @@ getRawOffset(): number
 
 getOffset(date?: number): number
 
-获取某一时刻时区对象表示的时区与UTC时区的偏差。
+获取某一时刻时区对象所表示时区的偏移量。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Global.I18n
+**系统能力：** SystemCapability.Global.I18n
 
 **参数：**
 
 | 参数名    | 类型     | 必填   | 说明     |
 | ------ | ------ | ---- | ------ |
-| date | number | 否    | 待计算偏差的时刻，单位是毫秒。默认值：系统时间。 |
+| date | number | 否    | 待计算时区偏移量的时刻，单位是毫秒。默认值：系统时间。 |
 
 **返回值：**
 
 | 类型     | 说明                      |
 | ------ | ----------------------- |
-| number | 某一时刻时区对象表示的时区与UTC时区的偏差。 |
+| number | 时区的偏移量，单位是毫秒。当处于夏令时时，时区偏移量为时区原始偏移量加夏令时偏移量 |
 
 **示例：**
   ```ts
@@ -1768,7 +1768,7 @@ static getAvailableIDs(): Array&lt;string&gt;
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Global.I18n
+**系统能力：** SystemCapability.Global.I18n
 
 **返回值：**
 
@@ -1791,7 +1791,7 @@ static getAvailableZoneCityIDs(): Array&lt;string&gt;
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Global.I18n
+**系统能力：** SystemCapability.Global.I18n
 
 **返回值：**
 
@@ -1809,24 +1809,24 @@ static getAvailableZoneCityIDs(): Array&lt;string&gt;
 
 static getCityDisplayName(cityID: string, locale: string): string
 
-获取某时区城市在该区域的本地化显示。
+获取时区城市名称在指定语言下的翻译。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Global.I18n
+**系统能力：** SystemCapability.Global.I18n
 
 **参数：**
 
 | 参数名    | 类型     | 必填   | 说明     |
 | ------ | ------ | ---- | ------ |
 | cityID | string | 是    | 时区城市ID。 |
-| locale | string | 是    | [表示区域ID的字符串](../../internationalization/i18n-locale-culture.md#实现原理)，由语言、脚本、国家或地区组成。  |
+| locale | string | 是    | [表示区域ID的字符串](../../internationalization/i18n-locale-culture.md#实现原理)，由语言、脚本、国家地区组成。  |
 
 **返回值：**
 
 | 类型     | 说明                 |
 | ------ | ------------------ |
-| string | 时区城市在某区域的本地化显示。 |
+| string | 时区城市名称在指定语言下的翻译。 |
 
 **示例：**
   ```ts
@@ -1842,13 +1842,13 @@ static getTimezoneFromCity(cityID: string): TimeZone
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Global.I18n
+**系统能力：** SystemCapability.Global.I18n
 
 **参数：**
 
 | 参数名    | 类型     | 必填   | 说明     |
 | ------ | ------ | ---- | ------ |
-| cityID | string | 是    | 时区城市ID。 |
+| cityID | string | 是    | 时区城市ID，要求是系统支持的时区城市ID。 |
 
 **返回值：**
 
@@ -1865,11 +1865,11 @@ static getTimezoneFromCity(cityID: string): TimeZone
 
 static getTimezonesByLocation(longitude: number, latitude: number): Array&lt;TimeZone&gt;
 
-创建对应经纬度的时区对象数组。
+创建地理位置对应的时区对象数组。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Global.I18n
+**系统能力：** SystemCapability.Global.I18n
 
 **参数：**
 
@@ -1882,7 +1882,7 @@ static getTimezonesByLocation(longitude: number, latitude: number): Array&lt;Tim
 
 | 类型       | 说明          |
 | -------- | ----------- |
-| Array&lt;[TimeZone](#timezone)&gt; | 时区对象数组。 |
+| Array&lt;[TimeZone](#timezone)&gt; | 时区对象数组，数组中对象对应的时区为该地理位置推荐的时区。 |
 
 **错误码：**
 
@@ -1922,7 +1922,7 @@ static getAvailableIDs(): string[]
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Global.I18n
+**系统能力：** SystemCapability.Global.I18n
 
 **返回值：**
 
@@ -1946,7 +1946,7 @@ static getInstance(id: string): Transliterator
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Global.I18n
+**系统能力：** SystemCapability.Global.I18n
 
 **参数：**
 
@@ -1970,23 +1970,23 @@ static getInstance(id: string): Transliterator
 
 transform(text: string): string
 
-将输入字符串从源格式转换为目标格式。
+将输入文本从源格式转换为目标格式。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Global.I18n
+**系统能力：** SystemCapability.Global.I18n
 
 **参数：**
 
 | 参数名  | 类型     | 必填   | 说明     |
 | ---- | ------ | ---- | ------ |
-| text | string | 是    | 输入字符串。 |
+| text | string | 是    | 输入文本。 |
 
 **返回值：**
 
 | 类型     | 说明       |
 | ------ | -------- |
-| string | 转换后的字符串。 |
+| string | 转换后的文本。 |
 
 **示例：**
   ```ts
@@ -2020,7 +2020,7 @@ static isDigit(char: string): boolean
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Global.I18n
+**系统能力：** SystemCapability.Global.I18n
 
 **参数：**
 
@@ -2048,7 +2048,7 @@ static isSpaceChar(char: string): boolean
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Global.I18n
+**系统能力：** SystemCapability.Global.I18n
 
 **参数：**
 
@@ -2076,7 +2076,7 @@ static isWhitespace(char: string): boolean
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Global.I18n
+**系统能力：** SystemCapability.Global.I18n
 
 **参数：**
 
@@ -2104,7 +2104,7 @@ static isRTL(char: string): boolean
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Global.I18n
+**系统能力：** SystemCapability.Global.I18n
 
 **参数：**
 
@@ -2132,7 +2132,7 @@ static isIdeograph(char: string): boolean
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Global.I18n
+**系统能力：** SystemCapability.Global.I18n
 
 **参数：**
 
@@ -2160,7 +2160,7 @@ static isLetter(char: string): boolean
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Global.I18n
+**系统能力：** SystemCapability.Global.I18n
 
 **参数：**
 
@@ -2188,7 +2188,7 @@ static isLowerCase(char: string): boolean
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Global.I18n
+**系统能力：** SystemCapability.Global.I18n
 
 **参数：**
 
@@ -2216,7 +2216,7 @@ static isUpperCase(char: string): boolean
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Global.I18n
+**系统能力：** SystemCapability.Global.I18n
 
 **参数：**
 
@@ -2244,7 +2244,7 @@ static getType(char: string): string
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Global.I18n
+**系统能力：** SystemCapability.Global.I18n
 
 **参数：**
 
@@ -2310,7 +2310,7 @@ static unitConvert(fromUnit: UnitInfo, toUnit: UnitInfo, value: number, locale: 
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Global.I18n
+**系统能力：** SystemCapability.Global.I18n
 
 **参数：**
 
@@ -2319,14 +2319,14 @@ static unitConvert(fromUnit: UnitInfo, toUnit: UnitInfo, value: number, locale: 
 | fromUnit | [UnitInfo](#unitinfo8) | 是    | 需要转换的单位。                                 |
 | toUnit   | [UnitInfo](#unitinfo8) | 是    | 转换成的目标单位。                                 |
 | value    | number                 | 是    | 需要转换的单位的数量值。                             |
-| locale   | string                 | 是    | [表示区域ID的字符串](../../internationalization/i18n-locale-culture.md#实现原理)，由语言、脚本、国家或地区组成，如：zh-Hans-CN。                |
+| locale   | string                 | 是    | [表示区域ID的字符串](../../internationalization/i18n-locale-culture.md#实现原理)，由语言、脚本、国家地区组成，如：zh-Hans-CN。                |
 | style    | string                 | 否    | 格式化使用的风格，取值包括：'long',&nbsp;'short',&nbsp;'narrow'。默认值：short。<br>不同取值显示效果请参考[数字与度量衡国际化](../../internationalization/i18n-numbers-weights-measures.md)。 |
 
 **返回值：**
 
 | 类型     | 说明                      |
 | ------ | ----------------------- |
-| string | 按照toUnit的单位格式化后，得到的字符串。 |
+| string | 转换单位后的度量衡格式化结果。 |
 
 **示例：**
   ```ts
@@ -2344,19 +2344,19 @@ static getDateOrder(locale: string): string
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Global.I18n
+**系统能力：** SystemCapability.Global.I18n
 
 **参数：**
 
 | 参数名    | 类型     | 必填   | 说明                        |
 | ------ | ------ | ---- | ------------------------- |
-| locale | string | 是    | [表示区域ID的字符串](../../internationalization/i18n-locale-culture.md#实现原理)，由语言、脚本、国家或地区组成，如：zh-Hans-CN。 |
+| locale | string | 是    | [表示区域ID的字符串](../../internationalization/i18n-locale-culture.md#实现原理)，由语言、脚本、国家地区组成，如：zh-Hans-CN。 |
 
 **返回值：**
 
 | 类型     | 说明                  |
 | ------ | ------------------- |
-| string | 返回该区域年、月、日的排列顺序。 |
+| string | 该区域年、月、日的排列顺序。“y”表示年，“L”表示月，“d”表示日。 |
 
 **示例：**
   ```ts
@@ -2372,14 +2372,14 @@ static getTimePeriodName(hour:number, locale?: string): string
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Global.I18n
+**系统能力：** SystemCapability.Global.I18n
 
 **参数：**
 
 | 参数名    | 类型     | 必填   | 说明                        |
 | ------ | ------ | ---- | ------------------------- |
 | hour | number | 是    | 指定的时间，例如16。 |
-| locale | string | 否    | [表示区域ID的字符串](../../internationalization/i18n-locale-culture.md#实现原理)，由语言、脚本、国家或地区组成。如：zh-Hans-CN。<br>默认值：系统当前区域ID。|
+| locale | string | 否    | [表示区域ID的字符串](../../internationalization/i18n-locale-culture.md#实现原理)，由语言、脚本、国家地区组成。如：zh-Hans-CN。<br>默认值：系统当前区域ID。|
 
 **返回值：**
 
@@ -2416,14 +2416,14 @@ static getBestMatchLocale(locale: string, localeList: string[]): string
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Global.I18n
+**系统能力：** SystemCapability.Global.I18n
 
 **参数：**
 
 | 参数名    | 类型     | 必填   | 说明                        |
 | ------ | ------ | ---- | ------------------------- |
 | locale | string | 是    | 待匹配的[区域ID字符串](../../internationalization/i18n-locale-culture.md#实现原理)，如：zh-Hans-CN。 |
-| localeList | string[] | 是   | 被指定的区域ID字符串列表。 |
+| localeList | string[] | 是   | 指定的区域ID字符串列表。 |
 
 **返回值：**
 
@@ -2458,11 +2458,11 @@ static getBestMatchLocale(locale: string, localeList: string[]): string
 
 static getThreeLetterLanguage(locale: string): string
 
-将语言代码由二字母转换为三字母。<br>例如，中文的二字母语言代码是zh，对应的三字母语言代码是zho，更多详细信息可参考[ISO 639](https://www.iso.org/iso-639-language-code)。
+将语言代码由二字母转换为三字母。二字母和三字母语言代码的规格参考[ISO 639](https://www.iso.org/iso-639-language-code)。<br>例如，中文的二字母语言代码是zh，对应的三字母语言代码是zho。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Global.I18n
+**系统能力：** SystemCapability.Global.I18n
 
 **参数：**
 
@@ -2502,11 +2502,11 @@ static getThreeLetterLanguage(locale: string): string
 
 static getThreeLetterRegion(locale: string): string
 
-将语言代码由二字母转换为三字母。<br>例如，中国的二字母地区代码是CN, 三字母是CHN，更多详细信息可参考[ISO 3166](https://www.iso.org/iso-3166-country-codes.html)。
+将地区代码由二字母转换为三字母。二字母和三字母地区代码的规格参考[ISO 3166](https://www.iso.org/iso-3166-country-codes.html)<br>例如，中国的二字母地区代码是CN, 三字母是CHN。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Global.I18n
+**系统能力：** SystemCapability.Global.I18n
 
 **参数：**
 
@@ -2553,7 +2553,7 @@ static getInstance(mode: NormalizerMode): Normalizer
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Global.I18n
+**系统能力：** SystemCapability.Global.I18n
 
 **参数：**
 
@@ -2596,13 +2596,13 @@ normalize(text: string): string
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Global.I18n
+**系统能力：** SystemCapability.Global.I18n
 
 **参数：**
 
 | 参数名    | 类型     | 必填   | 说明                        |
 | ------ | ------ | ---- | ------------------------- |
-| text | string | 是    | 待标准化处理的字符串。 |
+| text | string | 是    | 输入文本。 |
 
 **返回值：**
 
@@ -2637,7 +2637,7 @@ normalize(text: string): string
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力：** ：SystemCapability.Global.I18n
+**系统能力：** SystemCapability.Global.I18n
 
 | 名称 | 值 | 说明 |
 | -------- | -------- | -------- |
@@ -2654,11 +2654,11 @@ normalize(text: string): string
 
 constructor(icsPath: string)
 
-创建HolidayManager对象。
+创建HolidayManager对象，用于解析节假日数据。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Global.I18n
+**系统能力：** SystemCapability.Global.I18n
 
 **参数：**
 
@@ -2695,7 +2695,7 @@ isHoliday(date?: Date): boolean
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Global.I18n
+**系统能力：** SystemCapability.Global.I18n
 
 **参数：**
 
@@ -2741,7 +2741,7 @@ getHolidayInfoItemArray(year?: number): Array&lt;[HolidayInfoItem](#holidayinfoi
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Global.I18n
+**系统能力：** SystemCapability.Global.I18n
 
 **参数：**
 
@@ -2784,7 +2784,7 @@ getHolidayInfoItemArray(year?: number): Array&lt;[HolidayInfoItem](#holidayinfoi
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Global.I18n
+**系统能力：** SystemCapability.Global.I18n
 
 | 名称            | 类型             |  必填   |  说明                                   |
 | --------------- | --------------- | ------  | --------------------------------------- |
@@ -2796,16 +2796,16 @@ getHolidayInfoItemArray(year?: number): Array&lt;[HolidayInfoItem](#holidayinfoi
 
 ## HolidayLocalName<sup>11+</sup>
 
-节假日本地名称。
+节假日名称在不同语言下的翻译。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Global.I18n
+**系统能力：** SystemCapability.Global.I18n
 
 | 名称            | 类型             |  必填   |  说明                                   |
 | --------------- | -----------------| ------  | --------------------------------------- |
-| language        | string           |   是    | 节假日的本地语言，例如ar，en，tr。          |
-| name            | string           |   是    | 节假日的本地名称，例如Sacrifice Feast(宰牲节)的土耳其语名称为Kurban Bayrami。      |
+| language        | string           |   是    | 语言，例如ar，en，tr。          |
+| name            | string           |   是    | 节假日的本地名称，例如Sacrifice Feast（宰牲节）的土耳其语名称为Kurban Bayrami。      |
 
 
 ## i18n.getDisplayCountry<sup>(deprecated)</sup>
@@ -2816,14 +2816,14 @@ getDisplayCountry(country: string, locale: string, sentenceCase?: boolean): stri
 
 从API version 9开始不再维护，建议使用[System.getDisplayCountry](#getdisplaycountry9)代替。
 
-**系统能力**：SystemCapability.Global.I18n
+**系统能力：** SystemCapability.Global.I18n
 
 **参数：**
 
 | 参数名          | 类型      | 必填   | 说明               |
 | ------------ | ------- | ---- | ---------------- |
 | country      | string  | 是    | 指定国家。            |
-| locale       | string  | 是    | [表示区域ID的字符串](../../internationalization/i18n-locale-culture.md#实现原理)，由语言、脚本、国家或地区组成。      |
+| locale       | string  | 是    | [表示区域ID的字符串](../../internationalization/i18n-locale-culture.md#实现原理)，由语言、脚本、国家地区组成。      |
 | sentenceCase | boolean | 否    | true表示按照首字母大写的格式显示文本，false表示按照区域默认的大小写格式显示文本。默认值：true。 |
 
 **返回值：**
@@ -2846,14 +2846,14 @@ getDisplayLanguage(language: string, locale: string, sentenceCase?: boolean): st
 
 从API version 9开始不再维护，建议使用[System.getDisplayLanguage](#getdisplaylanguage9)代替。
 
-**系统能力**：SystemCapability.Global.I18n
+**系统能力：** SystemCapability.Global.I18n
 
 **参数：**
 
 | 参数名          | 类型      | 必填   | 说明               |
 | ------------ | ------- | ---- | ---------------- |
 | language     | string  | 是    | 指定语言。            |
-| locale       | string  | 是    | [表示区域ID的字符串](../../internationalization/i18n-locale-culture.md#实现原理)，由语言、脚本、国家或地区组成。      |
+| locale       | string  | 是    | [表示区域ID的字符串](../../internationalization/i18n-locale-culture.md#实现原理)，由语言、脚本、国家地区组成。      |
 | sentenceCase | boolean | 否    | true表示按照首字母大写的格式显示文本，false表示按照区域默认的大小写格式显示文本。默认值：true。 |
 
 **返回值：**
@@ -2877,7 +2877,7 @@ getSystemLanguage(): string
 
 从API version 9开始不再维护，建议使用[System.getSystemLanguage](#getsystemlanguage9)代替。
 
-**系统能力**：SystemCapability.Global.I18n
+**系统能力：** SystemCapability.Global.I18n
 
 **返回值：**
 
@@ -2899,7 +2899,7 @@ getSystemRegion(): string
 
 从API version 9开始不再维护，建议使用[System.getSystemRegion](#getsystemregion9)代替。
 
-**系统能力**：SystemCapability.Global.I18n
+**系统能力：** SystemCapability.Global.I18n
 
 **返回值：**
 
@@ -2921,7 +2921,7 @@ getSystemLocale(): string
 
 从API version 9开始不再维护，建议使用[System.getSystemLocale](#getsystemlocale9)代替。
 
-**系统能力**：SystemCapability.Global.I18n
+**系统能力：** SystemCapability.Global.I18n
 
 **返回值：**
 
@@ -2943,7 +2943,7 @@ is24HourClock(): boolean
 
 从API version 9开始不再维护，建议使用[System.is24HourClock](#is24hourclock9)代替。
 
-**系统能力**：SystemCapability.Global.I18n
+**系统能力：** SystemCapability.Global.I18n
 
 **返回值：**
 
@@ -2967,7 +2967,7 @@ set24HourClock(option: boolean): boolean
 
 **需要权限**：ohos.permission.UPDATE_CONFIGURATION
 
-**系统能力**：SystemCapability.Global.I18n
+**系统能力：** SystemCapability.Global.I18n
 
 **参数：**
 
@@ -2998,7 +2998,7 @@ addPreferredLanguage(language: string, index?: number): boolean
 
 **需要权限**：ohos.permission.UPDATE_CONFIGURATION
 
-**系统能力**：SystemCapability.Global.I18n
+**系统能力：** SystemCapability.Global.I18n
 
 **参数：**
 
@@ -3032,7 +3032,7 @@ removePreferredLanguage(index: number): boolean
 
 **需要权限**：ohos.permission.UPDATE_CONFIGURATION
 
-**系统能力**：SystemCapability.Global.I18n
+**系统能力：** SystemCapability.Global.I18n
 
 **参数：**
 
@@ -3062,7 +3062,7 @@ getPreferredLanguageList(): Array&lt;string&gt;
 
 从API version 8开始支持，从API version 9开始不再维护，建议使用[System.getPreferredLanguageList](#getpreferredlanguagelist9)代替。
 
-**系统能力**：SystemCapability.Global.I18n
+**系统能力：** SystemCapability.Global.I18n
 
 **返回值：**
 
@@ -3084,7 +3084,7 @@ getFirstPreferredLanguage(): string
 
 从API version 8开始支持，从API version 9开始不再维护，建议使用[System.getFirstPreferredLanguage](#getfirstpreferredlanguage9)代替。
 
-**系统能力**：SystemCapability.Global.I18n
+**系统能力：** SystemCapability.Global.I18n
 
 **返回值：**
 
@@ -3109,7 +3109,7 @@ unitConvert(fromUnit: UnitInfo, toUnit: UnitInfo, value: number, locale: string,
 
 从API version 8开始支持，从API version 9开始不再维护，建议使用[unitConvert](#unitconvert9)代替。
 
-**系统能力**：SystemCapability.Global.I18n
+**系统能力：** SystemCapability.Global.I18n
 
 **参数：**
 
@@ -3139,7 +3139,7 @@ isDigit(char: string): boolean
 
 从API version 8开始支持，从API version 9开始不再维护，建议使用[isDigit](#isdigit9)代替。
 
-**系统能力**：SystemCapability.Global.I18n
+**系统能力：** SystemCapability.Global.I18n
 
 **参数：**
 
@@ -3162,7 +3162,7 @@ isSpaceChar(char: string): boolean
 
 从API version 8开始支持，从API version 9开始不再维护，建议使用[isSpaceChar](#isspacechar9)代替。
 
-**系统能力**：SystemCapability.Global.I18n
+**系统能力：** SystemCapability.Global.I18n
 
 **参数：**
 
@@ -3185,7 +3185,7 @@ isWhitespace(char: string): boolean
 
 从API version 8开始支持，从API version 9开始不再维护，建议使用[isWhitespace](#iswhitespace9)代替。
 
-**系统能力**：SystemCapability.Global.I18n
+**系统能力：** SystemCapability.Global.I18n
 
 **参数：**
 
@@ -3208,7 +3208,7 @@ isRTL(char: string): boolean
 
 从API version 8开始支持，从API version 9开始不再维护，建议使用[isRTL](#isrtl9)代替。
 
-**系统能力**：SystemCapability.Global.I18n
+**系统能力：** SystemCapability.Global.I18n
 
 **参数：**
 
@@ -3231,7 +3231,7 @@ isIdeograph(char: string): boolean
 
 从API version 8开始支持，从API version 9开始不再维护，建议使用[isIdeograph](#isideograph9)代替。
 
-**系统能力**：SystemCapability.Global.I18n
+**系统能力：** SystemCapability.Global.I18n
 
 **参数：**
 
@@ -3254,7 +3254,7 @@ isLetter(char: string): boolean
 
 从API version 8开始支持，从API version 9开始不再维护，建议使用[isLetter](#isletter9)代替。
 
-**系统能力**：SystemCapability.Global.I18n
+**系统能力：** SystemCapability.Global.I18n
 
 **参数：**
 
@@ -3277,7 +3277,7 @@ isLowerCase(char: string): boolean
 
 从API version 8开始支持，从API version 9开始不再维护，建议使用[isLowerCase](#islowercase9)代替。
 
-**系统能力**：SystemCapability.Global.I18n
+**系统能力：** SystemCapability.Global.I18n
 
 **参数：**
 
@@ -3300,7 +3300,7 @@ isUpperCase(char: string): boolean
 
 从API version 8开始支持，从API version 9开始不再维护，建议使用[isUpperCase](#isuppercase9)代替。
 
-**系统能力**：SystemCapability.Global.I18n
+**系统能力：** SystemCapability.Global.I18n
 
 **参数：**
 
@@ -3323,7 +3323,7 @@ getType(char: string): string
 
 从API version 8开始支持，从API version 9开始不再维护，建议使用[getType](#gettype9)代替。
 
-**系统能力**：SystemCapability.Global.I18n
+**系统能力：** SystemCapability.Global.I18n
 
 **参数：**
 
