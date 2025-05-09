@@ -36,7 +36,7 @@ int32_t TransientTask_TransientTaskInfo::remainingQuota
 ### transientTaskInfo[]
 
 ```
-int32_t TransientTask_TransientTaskInfo::transientTaskInfo[]
+TransientTask_DelaySuspendInfo TransientTask_TransientTaskInfo::transientTaskInfo[]
 ```
 **描述**
 已申请的所有短时任务信息
