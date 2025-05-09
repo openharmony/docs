@@ -1,10 +1,10 @@
 # \@Builder装饰器：自定义构建函数
 
-ArkUI提供了一种轻量的UI元素复用机制\@Builder，其内部UI结构固定，仅与使用方进行数据传递，开发者可以将重复使用的UI元素抽象成一个方法，在build方法里调用。
+ArkUI提供轻量的UI元素复用机制\@Builder，其内部UI结构固定，仅与使用方进行数据传递。开发者可将重复使用的UI元素抽象成方法，在build方法中调用。
 
-为了简化语言，我们将\@Builder装饰的函数也称为“自定义构建函数”。
+\@Builder装饰的函数也称为“自定义构建函数”。
 
-在阅读本文档前，建议提前阅读：[基本语法概述](./arkts-basic-syntax-overview.md)，[声明式UI描述](./arkts-declarative-ui-description.md)，[自定义组件-创建自定义组件](./arkts-create-custom-components.md)。
+在阅读本文档前，建议提前阅读：[基本语法概述](./arkts-basic-syntax-overview.md)、[声明式UI描述](./arkts-declarative-ui-description.md)、[自定义组件-创建自定义组件](./arkts-create-custom-components.md)。
 
 > **说明：**
 >
@@ -19,7 +19,7 @@ ArkUI提供了一种轻量的UI元素复用机制\@Builder，其内部UI结构�
 
 ### 私有自定义构建函数
 
-定义的语法：
+定义语法：
 
 ```ts
 @Entry
@@ -53,17 +53,16 @@ struct BuilderDemo {
 ```ts
 this.showTextBuilder()
 ```
-
 - 允许在自定义组件内定义一个或多个@Builder方法，该方法被认为是该组件的私有、特殊类型的成员函数。
 
 - 私有自定义构建函数允许在自定义组件内、build方法和其他自定义构建函数中调用。
 
-- 在自定义函数体中，this指代当前所属组件，组件的状态变量可以在自定义构建函数内访问。建议通过this访问自定义组件的状态变量而不是参数传递。
+- 在自定义函数体中，`this`指代当前所属组件，组件的状态变量可在自定义构建函数内访问。建议通过`this`访问组件的状态变量，而不是通过参数传递。
 
 
 ### 全局自定义构建函数
 
-定义的语法：
+定义语法：
 
 ```ts
 @Builder
@@ -89,7 +88,7 @@ struct BuilderDemo {
 showTextBuilder()
 ```
 
-- 如果不涉及组件状态变化，建议使用全局的自定义构建方法。
+- 如果不涉及组件状态变化，建议使用全局的自定义构建函数。
 
 - 全局自定义构建函数允许在build方法和其他自定义构建函数中调用。
 
@@ -104,7 +103,7 @@ showTextBuilder()
 
 - \@Builder内UI语法遵循[UI语法规则](arkts-create-custom-components.md#build函数)。
 
-- 只有传入一个参数，且参数需要直接传入对象字面量才会按引用传递该参数，其余传递方式均为按值传递。
+- 只有当传入一个参数且该参数直接传入对象字面量时，才会按引用传递，其他传递方式均为按值传递。
 
 ### 按值传递参数
 
@@ -130,7 +129,7 @@ struct Parent {
 
 ### 按引用传递参数
 
-按引用传递参数时，传递的参数可为状态变量，且状态变量的改变会引起\@Builder方法内的UI刷新。
+按引用传递参数时，传递的状态变量的改变会引起\@Builder方法内的UI刷新。
 
 ```ts
 class Tmp {
@@ -166,18 +165,18 @@ struct Parent {
 
 2. \@Builder通过按引用传递的方式传入参数，才会触发动态渲染UI，并且参数只能是一个。请参考[按引用传递参数](#按引用传递参数)。
 
-3. \@Builder如果传入的参数是两个或两个以上，不会触发动态渲染UI。请参考[@Builder存在两个或者两个以上参数](#builder存在两个或者两个以上参数)。
+3. 如果\@Builder传入的参数是两个或两个以上，不会触发动态渲染UI。请参考[@Builder存在两个或者两个以上参数](#builder存在两个或者两个以上参数)。
 
-4. \@Builder传入的参数中同时包含按值传递和按引用传递两种方式，不会触发动态渲染UI。请参考[@Builder存在两个或者两个以上参数](#builder存在两个或者两个以上参数)。
+4. \@Builder传入的参数中同时包含按值传递和按引用传递，不会触发动态渲染UI。请参考[@Builder存在两个或者两个以上参数](#builder存在两个或者两个以上参数)。
 
-5. \@Builder的参数必须按照对象字面量的形式，把所需要的属性一一传入，才会触发动态渲染UI。请参考[@Builder存在两个或者两个以上参数](#builder存在两个或者两个以上参数)。
+5. \@Builder的参数必须按照对象字面量的形式，把所需属性一一传入，才会触发动态渲染UI。请参考[@Builder存在两个或者两个以上参数](#builder存在两个或者两个以上参数)。
 
 
 ## 使用场景
 
 ### 自定义组件内使用自定义构建函数
 
-创建私有的\@Builder方法，在Column里面使用this.builder()方式调用，通过aboutToAppear生命周期函数和按钮的点击事件改变builder_value的内容，实现动态渲染UI。
+创建私有的`@Builder`方法，在`Column`中使用`this.builder()`调用。通过`aboutToAppear`生命周期函数和按钮的点击事件更新`builder_value`，实现UI的动态渲染。
 
 ```ts
 @Entry
@@ -218,7 +217,7 @@ struct PrivateBuilder {
 
 ### 使用全局自定义构建函数
 
-创建全局的\@Builder方法，在Column里面使用overBuilder()方式调用，通过以对象字面量的形式传递参数，无论是简单类型还是复杂类型，值的改变都会引起UI界面的刷新。
+创建全局的\@Builder方法，并在Column中使用overBuilder()方式调用。通过对象字面量的形式传递参数，无论是简单类型还是复杂类型，值的改变都会引起UI界面的刷新。
 
 ```ts
 class ChildTmp {
@@ -273,7 +272,7 @@ struct Parent {
 
 ### 修改装饰器修饰的变量触发UI刷新
 
-此种场景@Builder只是用来展示Text组件，没有参与动态UI刷新的功能，Text组件中值的变化是使用了装饰器的特性，监听到值的改变触发的UI刷新，而不是通过\@Builder的能力触发的。
+在该场景中，`@Builder`被用来展示Text组件，不会参与动态UI刷新。Text组件中值的变化是通过使用装饰器的特性，监听到值的改变触发的UI刷新，而不是通过`@Builder`的能力触发的。
 
 ```ts
 class Tmp {
@@ -313,7 +312,7 @@ struct Parent {
 
 ### 使用全局和局部的@Builder传入customBuilder类型
 
-当某个参数类型为customBuilder的时候，可以把定义的\@Builder函数传入，因为customBuilder实际是一个Function(() => any)或者是void类型，而\@Builder实际也是一个Function类型。此场景中通过把\@Builder传入已实现特定的效果。
+当参数类型为`customBuilder`时，可以传入定义的`@Builder`函数。因为`customBuilder`实际上是`Function(() => any)`或`void`类型，而`@Builder`也是`Function`类型。所以通过传入`@Builder`可以实现特定效果。
 
 ```ts
 @Builder
@@ -371,7 +370,7 @@ struct customBuilderDemo {
 
 ### 多层\@Builder方法嵌套使用
 
-在\@Builder方法内调用自定义组件或者其他\@Builder方法，以实现多个\@Builder嵌套使用的场景，要想实现最里面的\@Builder动态UI刷新功能，必须要保证每层调用\@Builder的地方使用按引用传递的方式。这里的[\$$](./arkts-two-way-sync.md)也可以换成其他名称，[\$$](./arkts-two-way-sync.md)不是必须的参数形式。
+在\@Builder方法内调用自定义组件或其他\@Builder方法，以实现多层嵌套。要实现最内层\@Builder的动态UI刷新功能，必须确保每层调用\@Builder时使用按引用传递的方式。这里的[\$$](./arkts-two-way-sync.md)也可以换成其他名称，[\$$](./arkts-two-way-sync.md)不是必须的参数形式。
 
 ```ts
 class Tmp {
@@ -468,7 +467,7 @@ struct Parent {
 
 ### \@Builder函数联合V2装饰器使用
 
-使用全局@Builder和局部@Builder在@ComponentV2修饰的自定义组件中调用，配合@ObservedV2和@Trace装饰器来监听具体值的变化，以达到触发UI刷新的功能。
+使用全局`@Builder`和局部`@Builder`在`@ComponentV2`装饰的自定义组件中调用，配合`@ObservedV2`和`@Trace`装饰器来监听值的变化，从而触发UI刷新。
 
 ```ts
 @ObservedV2
@@ -563,7 +562,7 @@ struct ParentPage {
 
 ### \@Builder存在两个或者两个以上参数
 
-当参数存在两个或者两个以上的时候，就算通过对象字面量的形式传递，值的改变也不会引起UI刷新。
+当存在两个或两个以上的参数时，即使通过对象字面量形式传递，值的改变也不会触发UI刷新。
 
 【反例】
 
@@ -683,7 +682,7 @@ struct Parent {
 
 ### 使用@ComponentV2装饰器触发动态刷新
 
-使用按值传递的方式，在@ComponentV2装饰器修饰的自定义组件里配合使用@ObservedV2和@Trace装饰器可以实现刷新UI功能。
+在@ComponentV2装饰器装饰的自定义组件中配合@ObservedV2和@Trace装饰器，通过按值传递的方式可以实现UI刷新功能。
 
 【反例】
 
@@ -734,7 +733,7 @@ struct PageBuilder {
 
 【正例】
 
-在@ComponentV2装饰中，只有使用@ObservedV2修饰的ParamTmp类和@Trace修饰的count属性才可以触发UI的刷新。
+在@ComponentV2装饰器装饰的自定义组件中，只有使用@ObservedV2装饰的ParamTmp类和使用@Trace装饰的count属性才能触发UI刷新。
 
 ```ts
 @ObservedV2
