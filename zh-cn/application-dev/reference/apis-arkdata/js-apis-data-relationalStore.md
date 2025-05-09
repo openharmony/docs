@@ -6905,6 +6905,7 @@ try {
   console.error(`insert fail, code:${err.code}, message: ${err.message}`);
 }
 ```
+
 ### on('sqliteErrorOccurred')<sup>20+</sup>
 
 on(event: 'sqliteErrorOccurred', observer: Callback&lt;ExceptionMessage&gt;): void
@@ -6968,6 +6969,75 @@ async test()
   } catch (err) {
     console.error(`Insert fail, code:${err.code}, message: ${err.message}`);
   }
+}
+```
+
+### on('perfStat')<sup>20+</sup>
+
+on(event: 'perfStat', observer: Callback&lt;SqlExecutionInfo&gt;): void
+
+订阅SQL统计信息。使用createTransation创建的事务进行相关操作（[Transaction](#transaction14)），只会在事务结束（COMMIT/ROLLBACK）时通知一次统计信息。
+
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
+
+**ArkTS版本：** 仅适用于ArkTS1.2版本。
+
+**参数：**
+
+| 参数名       | 类型                              | 必填 | 说明                                |
+| ------------ |---------------------------------| ---- |-----------------------------------|
+| event        | string                          | 是   | 订阅事件名称，取值为'perfStat'，统计执行SQL的时间。 |
+| observer     | Callback&lt;[SqlExecutionInfo](#sqlexecutioninfo12)&gt; | 是   | 回调函数。用于返回数据库执行SQL的时间。  |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[关系型数据库错误码](errorcode-data-rdb.md)。
+
+| **错误码ID** | **错误信息**    |
+|-----------|--------|
+| 801       | Capability not supported.  |
+| 14800014  | Already closed.     |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let sqlExecutionInfo = (sqlExecutionInfo: relationalStore.SqlExecutionInfo) => {
+  console.info(`sql: ${sqlExecutionInfo.sql[0]}`);
+  console.info(`totalTime: ${sqlExecutionInfo.totalTime}`);
+  console.info(`waitTime: ${sqlExecutionInfo.waitTime}`);
+  console.info(`prepareTime: ${sqlExecutionInfo.prepareTime}`);
+  console.info(`executeTime: ${sqlExecutionInfo.executeTime}`);
+};
+
+try {
+  if (store != undefined) {
+    (store as relationalStore.RdbStore).on('perfStat', sqlExecutionInfo);
+  }
+} catch (err) {
+  let code = (err as BusinessError).code;
+  let message = (err as BusinessError).message;
+  console.error(`Register observer failed, code is ${code},message is ${message}`);
+}
+
+try {
+  let value1 = "Lisa";
+  let value2 = 18;
+  let value3 = 100.5;
+  let value4 = new Uint8Array([1, 2, 3, 4, 5]);
+
+  const valueBucket: relationalStore.ValuesBucket = {
+    'NAME': value1,
+    'AGE': value2,
+    'SALARY': value3,
+    'CODES': value4
+  };
+  if (store != undefined) {
+    (store as relationalStore.RdbStore).insert('test', valueBucket);
+  }
+} catch (err) {
+  console.error(`insert fail, code:${err.code}, message: ${err.message}`);
 }
 ```
 
@@ -7280,6 +7350,47 @@ import { BusinessError } from '@kit.BasicServicesKit';
 try {
   if (store != undefined) {
     (store as relationalStore.RdbStore).off('sqliteErrorOccurred');
+  }
+} catch (err) {
+  let code = (err as BusinessError).code;
+  let message = (err as BusinessError).message;
+  console.error(`Unregister observer failed, code is ${code},message is ${message}`);
+}
+```
+
+### off('perfStat')<sup>20+</sup>
+
+off(event: 'perfStat', observer?: Callback&lt;SqlExecutionInfo&gt;): void
+
+取消订阅SQL统计信息。
+
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
+
+**ArkTS版本：** 仅适用于ArkTS1.2版本。
+
+**参数：**
+
+| 参数名       | 类型                              | 必填 | 说明                                |
+| ------------ |---------------------------------| ---- |-----------------------------------|
+| event        | string                          | 是   | 取消订阅事件名称。取值为'perfStat'，统计执行SQL的时间。 |
+| observer     | Callback&lt;[SqlExecutionInfo](#sqlexecutioninfo12)&gt; | 否   | 回调函数，表示订阅时的回调函数。该参数存在，则取消指定Callback监听回调，否则取消该event事件的所有监听回调。  |
+
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[关系型数据库错误码](errorcode-data-rdb.md)。
+
+| **错误码ID** | **错误信息**    |
+|-----------|--------|
+| 801       | Capability not supported.  |
+| 14800014  | Already closed.     |
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+  if (store != undefined) {
+    (store as relationalStore.RdbStore).off('perfStat');
   }
 } catch (err) {
   let code = (err as BusinessError).code;
