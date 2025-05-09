@@ -537,16 +537,20 @@
             - [属性修改器 (AttributeModifier)](ui/arkts-user-defined-extension-attributeModifier.md)
             - [属性更新器 (AttributeUpdater)](ui/arkts-user-defined-extension-attributeUpdater.md)
         - [使用镜像能力](ui/arkts-mirroring-display.md)
-        - [支持适老化](ui/arkui-support-for-aging-adaptation.md)
+        - 无障碍与适老化<!--arkts-support-accessibility-friendliness-->
+          - [支持无障碍](ui/arkts-universal-attributes-accessibility.md)
+          - [支持适老化](ui/arkui-support-for-aging-adaptation.md)
         - 主题设置<!--arkts-theme-->
           - [应用深浅色适配](ui/ui-dark-light-color-adaptation.md)
           - [设置应用内主题换肤](ui/theme_skinning.md)
         - [使用UI上下文接口操作界面（UIContext）](ui/arkts-global-interface.md)
-        - 跨进程拉起页面<!--arkts-ui-cross-process-->
-          - [全屏启动原子化服务 (FullScreenLaunchComponent)](ui/arkts-FullScreenComponent.md)
-        <!--Del-->
-        - [跨进程应用能力扩展（UIExtension，仅对系统应用开放）](ui/arkts-ui-extension-components.md)
-        <!--DelEnd-->
+        - 嵌入式组件<!--arkts-ui-cross-process-->
+          - [全屏启动原子化服务 (FullScreenLaunchComponent)](arkts-FullScreenComponent.md)
+          - [同应用进程嵌入式组件 (EmbeddedComponent)](arkts-embedded-components.md)
+          <!--Del-->
+           - [跨进程应用能力扩展（UIExtension，仅对系统应用开放）](arkts-ui-extension-components.md)
+           - [跨线程嵌入式组件 (IsolatedComponent，仅对系统应用开放)](arkts-isolated-components.md)
+          <!--DelEnd-->
         - 使用NDK接口构建UI<!--arkts-use-ndk-->
           - [NDK接口概述](ui/ndk-build-ui-overview.md)
           - [接入ArkTS页面](ui/ndk-access-the-arkts-page.md)
