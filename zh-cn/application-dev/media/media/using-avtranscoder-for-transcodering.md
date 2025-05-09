@@ -126,8 +126,6 @@
      fileFormat: media.ContainerFormatType.CFT_MPEG_4, // 封装格式。
      videoBitrate: 2000000, // 视频比特率。
      videoCodec: media.CodecMimeType.VIDEO_AVC, // 视频编码格式。
-     videoFrameWidth: 640, // 视频分辨率的宽为640。
-     videoFrameHeight: 480, // 视频分辨率的高为480。
    };
    avTranscoder.prepare(avConfig).then(() => {
      console.log('Invoke prepare succeeded.');
