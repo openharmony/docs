@@ -17,52 +17,60 @@
 具体接口及功能，可见[分布式键值数据库](../reference/apis-arkdata/js-apis-distributedKVStore.md)。
 
 ```ts
+import { AbilityConstant, ConfigurationConstant, UIAbility, Want } from '@kit.AbilityKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 import { distributedKVStore } from '@kit.ArkData';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let kvManager: distributedKVStore.KVManager | undefined = undefined;
-let kvStore: distributedKVStore.SingleKVStore | undefined = undefined;
-let context = getContext(this);
-const kvManagerConfig: distributedKVStore.KVManagerConfig = {
-  context: context,
-  bundleName: 'com.example.datamanagertest',
-}
-try {
-  kvManager = distributedKVStore.createKVManager(kvManagerConfig);
-  console.info('Succeeded in creating KVManager.');
-} catch (e) {
-  let error = e as BusinessError;
-  console.error(`Failed to create KVManager. Code:${error.code},message:${error.message}`);
-}
-if (kvManager !== undefined) {
-  kvManager = kvManager as distributedKVStore.KVManager;
-  try {
-    const options: distributedKVStore.Options = {
-      createIfMissing: true,
-      // 设置数据库加密
-      encrypt: true,
-      backup: false,
-      autoSync: false,
-      kvStoreType: distributedKVStore.KVStoreType.SINGLE_VERSION,
-      securityLevel: distributedKVStore.SecurityLevel.S3
-    };
-    kvManager.getKVStore<distributedKVStore.SingleKVStore>('storeId', options, (err, store: distributedKVStore.SingleKVStore) => {
-      if (err) {
-        console.error(`Fail to get KVStore. Code:${err.code},message:${err.message}`);
-        return;
+export default class EntryAbility extends UIAbility {
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
+    this.context.getApplicationContext().setColorMode(ConfigurationConstant.ColorMode.COLOR_MODE_NOT_SET);
+    hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onCreate');
+    let kvManager: distributedKVStore.KVManager | undefined = undefined;
+    let kvStore: distributedKVStore.SingleKVStore | undefined = undefined;
+    let context = this.context;
+    const kvManagerConfig: distributedKVStore.KVManagerConfig = {
+      context: context,
+      bundleName: 'com.example.datamanagertest',
+    }
+    try {
+      kvManager = distributedKVStore.createKVManager(kvManagerConfig);
+      console.info('Succeeded in creating KVManager.');
+    } catch (e) {
+      let error = e as BusinessError;
+      console.error(`Failed to create KVManager. Code:${error.code},message:${error.message}`);
+    }
+    if (kvManager !== undefined) {
+      kvManager = kvManager as distributedKVStore.KVManager;
+      try {
+        const options: distributedKVStore.Options = {
+          createIfMissing: true,
+          // 设置数据库加密
+          encrypt: true,
+          backup: false,
+          autoSync: false,
+          kvStoreType: distributedKVStore.KVStoreType.SINGLE_VERSION,
+          securityLevel: distributedKVStore.SecurityLevel.S3
+        };
+        kvManager.getKVStore<distributedKVStore.SingleKVStore>('storeId', options, (err, store: distributedKVStore.SingleKVStore) => {
+          if (err) {
+            console.error(`Fail to get KVStore. Code:${err.code},message:${err.message}`);
+            return;
+          }
+          console.info('Succeeded in getting KVStore.');
+          kvStore = store;
+        });
+      } catch (e) {
+        let error = e as BusinessError;
+        console.error(`An unexpected error occurred. Code:${error.code},message:${error.message}`);
       }
-      console.info('Succeeded in getting KVStore.');
-      kvStore = store;
-    });
-  } catch (e) {
-    let error = e as BusinessError;
-    console.error(`An unexpected error occurred. Code:${error.code},message:${error.message}`);
+    }
+    if (kvStore !== undefined) {
+      kvStore = kvStore as distributedKVStore.SingleKVStore;
+      //进行后续操作
+      //...
+    }
   }
-}
-if (kvStore !== undefined) {
-  kvStore = kvStore as distributedKVStore.SingleKVStore;
-    //进行后续操作
-    //...
 }
 ```
 
@@ -79,67 +87,79 @@ if (kvStore !== undefined) {
 
 
 ```ts
+import { UIAbility } from '@kit.AbilityKit';
 import { relationalStore } from '@kit.ArkData';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let store: relationalStore.RdbStore;
-let context = getContext(this);
-const STORE_CONFIG: relationalStore.StoreConfig = {
-  name: 'RdbTest.db',
-  securityLevel: relationalStore.SecurityLevel.S3,
-  encrypt: true
-};
-relationalStore.getRdbStore(context, STORE_CONFIG, (err, rdbStore) => {
-  store = rdbStore;
-  if (err) {
-    console.error(`Failed to get RdbStore. Code:${err.code},message:${err.message}`);
-    return;
+export default class EntryAbility extends UIAbility {
+  async onCreate(): Promise<void> {
+    let store: relationalStore.RdbStore | undefined = undefined;
+    let context = this.context;
+
+    try {
+      const STORE_CONFIG: relationalStore.StoreConfig = {
+        name: 'RdbTest.db',
+        securityLevel: relationalStore.SecurityLevel.S3,
+        encrypt: true
+      };
+      store = await relationalStore.getRdbStore(context, STORE_CONFIG);
+      console.info('Succeeded in getting RdbStore.');
+    } catch (e) {
+      const err = e as BusinessError;
+      console.error(`Failed to get RdbStore. Code:${err.code}, message:${err.message}`);
+    }
   }
-  console.info('Succeeded in getting RdbStore.');
-})
+}
 ```
 
 场景2：配置cryptoParam属性，此时会使用开发者自定义的密钥和算法参数进行数据库的加密/解密。
 
 ```ts
+import { UIAbility } from '@kit.AbilityKit';
 import { relationalStore } from '@kit.ArkData';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let context = getContext(this);
-
-// 初始化需要使用的密钥
-let key = new Uint8Array(32);
-for (let i = 0; i < 32; i++) {
-    key[i] = i;
-}
-
-// 初始化加密算法
-const CRYPTO_PARAM : relationalStore.CryptoParam = {
-    encryptionKey: key, // 必选参数，使用指定的密钥打开加密数据库。为空则由数据库负责生成并保存密钥，并使用生成的密钥打开数据库文件。
-    iterationCount: 25000, // 可选参数，迭代次数。迭代次数必须大于零。不指定或等于零则使用默认值10000和默认加密算法。
-    encryptionAlgo: relationalStore.EncryptionAlgo.AES_256_CBC, // 可选参数，加密/解密算法。如不指定，默认算法为AES_256_GCM。
-    hmacAlgo: relationalStore.HmacAlgo.SHA256, // 可选参数，HMAC算法。如不指定，默认值为SHA256。
-    kdfAlgo: relationalStore.KdfAlgo.KDF_SHA512, // 可选参数，KDF算法。如不指定，默认值和HMAC算法相等。
-    cryptoPageSize: 2048 // 可选参数，加密/解密时使用的页大小。必须为1024到65536范围内的整数并且为2的幂。如不指定，默认值为1024。
-}
-
-const STORE_CONFIG : relationalStore.StoreConfig = {
-    name: "encrypted.db",
-    securityLevel: relationalStore.SecurityLevel.S3,
-    encrypt: true,
-    cryptoParam: CRYPTO_PARAM
-}
-
-async function run() {
-    let store = await relationalStore.getRdbStore(context, STORE_CONFIG);
-    if (store == null) {
-      console.error('Failed to get RdbStore.');
-    } else {
-      console.info('Succeeded in getting RdbStore.');
+export default class EntryAbility extends UIAbility {
+  async onCreate(): Promise<void> {
+    let store: relationalStore.RdbStore | undefined = undefined;
+    let context = this.context;
+    // 初始化需要使用的密钥
+    let key = new Uint8Array(32);
+    for (let i = 0; i < 32; i++) {
+      key[i] = i;
     }
-    // 调用完后需要将密钥清零
-    CRYPTO_PARAM.encryptionKey.fill(0);
-}
 
-run();
+    // 初始化加密算法
+    const CRYPTO_PARAM: relationalStore.CryptoParam = {
+      encryptionKey: key, // 必选参数，使用指定的密钥打开加密数据库。为空则由数据库负责生成并保存密钥，并使用生成的密钥打开数据库文件。
+      iterationCount: 25000, // 可选参数，迭代次数。迭代次数必须大于零。不指定或等于零则使用默认值10000和默认加密算法。
+      encryptionAlgo: relationalStore.EncryptionAlgo.AES_256_CBC, // 可选参数，加密/解密算法。如不指定，默认算法为AES_256_GCM。
+      hmacAlgo: relationalStore.HmacAlgo.SHA256, // 可选参数，HMAC算法。如不指定，默认值为SHA256。
+      kdfAlgo: relationalStore.KdfAlgo.KDF_SHA512, // 可选参数，KDF算法。如不指定，默认值和HMAC算法相等。
+      cryptoPageSize: 2048 // 可选参数，加密/解密时使用的页大小。必须为1024到65536范围内的整数并且为2的幂。如不指定，默认值为1024。
+    }
+
+    const STORE_CONFIG: relationalStore.StoreConfig = {
+      name: "encrypted.db",
+      securityLevel: relationalStore.SecurityLevel.S3,
+      encrypt: true,
+      cryptoParam: CRYPTO_PARAM
+    }
+    try {
+      let store = await relationalStore.getRdbStore(context, STORE_CONFIG);
+      if (store == null) {
+        console.error('Failed to get RdbStore.');
+      } else {
+        console.info('Succeeded in getting RdbStore.');
+      }
+      // 调用完后需要将密钥清零
+      CRYPTO_PARAM.encryptionKey.fill(0);
+    } catch (e) {
+      const err = e as BusinessError;
+      console.error(`Failed to get RdbStore. Code:${err.code}, message:${err.message}`);
+    }
+  }
+}
 ```
 
 如果开发者不关心加密使用的算法及参数，则无需配置cryptoParam属性，使用默认加密配置即可。当开发者需要自定义加密配置，或需要打开非默认配置的加密数据库时，则需要配置cryptoParam属性。

@@ -46,7 +46,7 @@ struct MyComponent {
           const thisCount: number = this.count;
           this.show = true;
           // 通过改变透明度属性，对Text控件做隐藏或出现的动画
-          animateTo({ duration: 1000, onFinish: () => {
+          this.getUIContext().animateTo({ duration: 1000, onFinish: () => {
             // 在最后一个动画中，先让Text控件隐藏，再改变条件让Text控件消失
             if (thisCount === this.count && this.mOpacity === 0) {
               this.show = false;
@@ -124,7 +124,7 @@ struct MyComponent {
         .borderRadius(30)
         .padding(10)
         .onClick(() => {
-          animateTo({ duration: 1000 }, () => {
+          this.getUIContext().animateTo({ duration: 1000 }, () => {
             this.textWidth = 100;
             this.textHeight = 100;
           })
@@ -164,7 +164,7 @@ struct MyComponent {
         .borderRadius(30)
         .padding(10)
         .onClick(() => {
-          animateTo({ duration: 1000 }, () => {
+          this.getUIContext().animateTo({ duration: 1000 }, () => {
             this.textScaleX = 10;
             this.textScaleY = 10;
           })
@@ -188,13 +188,13 @@ struct MyComponent {
   @State color: Color = Color.Red;
   
   func1() {
-    animateTo({ curve: Curve.Sharp, duration: 1000 }, () => {
+    this.getUIContext().animateTo({ curve: Curve.Sharp, duration: 1000 }, () => {
       this.textWidth = (this.textWidth === 100 ? 200 : 100);
     });
   }
   
   func2() {
-    animateTo({ curve: Curve.Sharp, duration: 1000 }, () => {
+    this.getUIContext().animateTo({ curve: Curve.Sharp, duration: 1000 }, () => {
       this.color = (this.color === Color.Yellow ? Color.Red : Color.Yellow);
     });
   }
@@ -227,7 +227,7 @@ struct MyComponent {
   @State color: Color = Color.Red;
   
   func() {
-    animateTo({ curve: Curve.Sharp, duration: 1000 }, () => {
+    this.getUIContext().animateTo({ curve: Curve.Sharp, duration: 1000 }, () => {
       this.textWidth = (this.textWidth === 100 ? 200 : 100);
       this.color = (this.color === Color.Yellow ? Color.Red : Color.Yellow);
     });
@@ -280,11 +280,11 @@ struct MyComponent {
           this.textWidth = 100;
           // textHeight是非动画属性
           this.textHeight = 100;
-          animateTo({ curve: Curve.Sharp, duration: 1000 }, () => {
+          this.getUIContext().animateTo({ curve: Curve.Sharp, duration: 1000 }, () => {
             this.textWidth = 200;
           });
           this.color = Color.Yellow;
-          animateTo({ curve: Curve.Linear, duration: 2000 }, () => {
+          this.getUIContext().animateTo({ curve: Curve.Linear, duration: 2000 }, () => {
             this.color = Color.Red;
           });
         })
@@ -321,10 +321,10 @@ struct MyComponent {
       Text('click')
         .height(this.textHeight)
         .onClick(() => {
-          animateTo({ curve: Curve.Sharp, duration: 1000 }, () => {
+          this.getUIContext().animateTo({ curve: Curve.Sharp, duration: 1000 }, () => {
             this.textWidth = (this.textWidth === 100 ? 200 : 100);
           });
-          animateTo({ curve: Curve.Linear, duration: 2000 }, () => {
+          this.getUIContext().animateTo({ curve: Curve.Linear, duration: 2000 }, () => {
             this.color = (this.color === Color.Yellow ? Color.Red : Color.Yellow);
           });
         })
@@ -358,10 +358,10 @@ struct MyComponent {
         .onClick(() => {
           this.textWidth = 100;
           this.color = Color.Yellow;
-          animateTo({ curve: Curve.Sharp, duration: 1000 }, () => {
+          this.getUIContext().animateTo({ curve: Curve.Sharp, duration: 1000 }, () => {
             this.textWidth = 200;
           });
-          animateTo({ curve: Curve.Linear, duration: 2000 }, () => {
+          this.getUIContext().animateTo({ curve: Curve.Linear, duration: 2000 }, () => {
             this.color = Color.Red;
           });
           this.textHeight = 100;

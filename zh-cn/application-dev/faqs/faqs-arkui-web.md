@@ -317,46 +317,6 @@ struct Index {
 **参考链接**
 
 [userAgent](../reference/apis-arkweb/ts-basic-components-web.md#useragentdeprecated)、[getUserAgent](../reference/apis-arkweb/js-apis-webview.md#getuseragent)
-
-
-## Web组件中如何通过手势滑动返回上一个Web页面(API 9)
-
-**解决措施**
-
-通过重写onBackPress函数来自定义返回逻辑，使用WebviewController判断是否返回上一个Web页面。
-
-**示例代码**
-
-```
-import web_webview from '@ohos.web.webview';
-@Entry
-@Component
-struct Index {
-  controller: web_webview.WebviewController = new web_webview.WebviewController();
-  build() {
-    Column() {
-      Web({ src: 'http://www.example.com', controller: this.controller })//需要手动替换为真实网站
-    }
-  }
-  onBackPress() {
-    // 当前页面是否可前进或者后退给定的step步(-1),正数代表前进，负数代表后退
-    if (this.controller.accessStep(-1)) {
-      this.controller.backward(); // 返回上一个web页
-      // 执行用户自定义返回逻辑
-      return true
-    } else {
-      // 执行系统默认返回逻辑，返回上一个page页
-      return false
-    }
-  }
-}
-```
-
-**参考链接**
-
-[accessStep](../reference/apis-arkweb/js-apis-webview.md#accessstep)
-
-
 ## WebView支持同层渲染吗(API 10)
 
 **解决措施**

@@ -20,7 +20,7 @@
 | -------- | -------- |
 | char \* [groupName](#groupname) | 备用字体集所对应的字体集名称，如果值为空，表示可以使用备用字体集列表集所有的字体。  | 
 | size_t [fallbackInfoSize](#fallbackinfosize) | 备用字体集数量。  | 
-| [OH_Drawing_FontFallbackInfo](_o_h___drawing___font_fallback_info.md) \* [fallbackInfoSet](#fallbackinfoset) | 备用字体字体集列表。  | 
+| [OH_Drawing_FontFallbackInfo](_o_h___drawing___font_fallback_info.md) \* [fallbackInfoSet](#fallbackinfoset) | 备用字体集列表。  | 
 
 
 ## 结构体成员变量说明
@@ -33,7 +33,7 @@ OH_Drawing_FontFallbackInfo* OH_Drawing_FontFallbackGroup::fallbackInfoSet
 ```
 **描述**
 
-备用字体字体集列表。
+备用字体集列表。
 
 
 ### fallbackInfoSize

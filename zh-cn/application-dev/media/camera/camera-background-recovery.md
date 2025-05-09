@@ -7,11 +7,11 @@
 - 当相机应用从后台切换至前台时，相机状态回调会返回相机不可用状态，表示当前相机设备被打开，处于忙碌状态。
 - 相机应用从后台切换至前台时，需要重启相机设备的预览流、拍照流以及相机会话管理。
 
-在参考以下示例前，建议开发者建议开发者查看[相机开发指导(ArkTS)](camera-preparation.md)的具体章节，了解[相机管理](camera-device-management.md)、[设备输入](camera-device-input.md)、[会话管理](camera-session-management.md)等单个操作。 
+在参考以下示例前，建议开发者查看[相机开发指导(ArkTS)](camera-preparation.md)的具体章节，了解[相机管理](camera-device-management.md)、[设备输入](camera-device-input.md)、[会话管理](camera-session-management.md)等单个操作。 
 
 ## 开发流程
 
-相机应用从后台切换至前台启动恢复调用流程图建议如下：
+相机应用从后台切换至前台启动恢复的调用流程建议如下：
 
 ![Camera Background recovery processing](figures/camera-background-recovery.png)
 

@@ -1,12 +1,12 @@
 # 常驻任务开发指导（Worker）
 
-此处提供使用Worker进行常驻任务的开发指导，Worker会持续执行任务直到宿主线程发出终止指令。
+提供使用Worker进行常驻任务的开发指导。Worker将持续执行任务，直到宿主线程发送终止指令。
 
-开发过程和示例如下所示：
+开发过程和示例如下：
 
 1. DevEco Studio支持一键生成Worker，在对应的{moduleName}目录下任意位置，点击鼠标右键 &gt; New &gt; Worker，即可自动生成Worker的模板文件及配置信息。本文以创建“Worker”为例。
 
-   此外，还支持手动创建Worker文件，具体方式和相关注意事项请见[创建Worker的注意事项](worker-introduction.md#创建worker的注意事项)。
+   此外，还支持手动创建Worker文件，具体方式和相关注意事项请参见[创建Worker的注意事项](worker-introduction.md#创建worker的注意事项)。
 
 2. 导入Worker模块。
 
@@ -22,7 +22,7 @@
    const workerInstance: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/Worker.ets');
    ```
 
-4. 此处宿主线程为UI主线程，宿主线程发送'start'，开始执行某个长期运行的任务并接收子线程返回的相关消息。在不需要执行该任务时发送'stop'，停止该任务执行，该示例中10s后结束该任务。
+4. 此处的宿主线程为UI主线程，宿主线程发送'start'以开始执行某个长期运行的任务，并接收子线程返回的相关消息。当不需要执行该任务时，发送'stop'以停止该任务的执行。在此示例中，任务将在10秒后结束。
 
    ```ts
    // Index.ets
@@ -53,7 +53,7 @@
    }
    ```
 
-5. 在Worker线程中当接受到宿主线程发送的消息为'start'时，开始执行某个长时间不定期运行的任务并实时返回消息给宿主线程。当接收到的消息为'stop'时结束该任务执行并返回相应消息给宿主线程。
+5. 在Worker线程中，当接收到宿主线程发送的消息为'start'时，开始执行某个长时间不定期运行的任务，并实时向宿主线程返回消息。当接收到的消息为'stop'时，结束该任务的执行并返回相应的消息给宿主线程。
 
    ```ts
    // Worker.ets

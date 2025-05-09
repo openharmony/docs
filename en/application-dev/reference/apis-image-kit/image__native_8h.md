@@ -9,6 +9,8 @@ The **image_native.h** file declares the cropping rectangle, size, and component
 
 **System capability**: SystemCapability.Multimedia.Image.Core
 
+**File to include**: &lt;multimedia/image_framework/image/image_native.h&gt;
+
 **Since**: 12
 
 **Related module**: [Image_NativeModule](_image___native_module.md)

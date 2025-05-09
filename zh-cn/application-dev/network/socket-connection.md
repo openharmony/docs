@@ -350,8 +350,13 @@ multicast.dropMembership(addr).then(() => {
 
 6. Socket 连接使用完毕后，取消事件的注册，并关闭套接字。
 
+>**说明：** 
+>
+>在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../application-models/uiability-usage.md#获取uiability的上下文信息)。
+
 ```ts
 import { socket } from '@kit.NetworkKit';
+import { common } from '@kit.AbilityKit';
 
 // 创建一个LocalSocket连接，返回一个LocalSocket对象。
 let client: socket.LocalSocket = socket.constructLocalSocketInstance();
@@ -372,7 +377,8 @@ client.on('close', () => {
 });
 
 // 传入指定的本地套接字路径，连接服务端。
-let sandboxPath: string = getContext(this).filesDir + '/testSocket'
+let context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
+let sandboxPath: string = context.filesDir + '/testSocket';
 let localAddress : socket.LocalAddress = {
   address: sandboxPath
 }
@@ -427,13 +433,19 @@ client.close().then(() => {
 
 9. 取消 LocalSocketConnection 和 LocalSocketServer 相关事件的订阅。
 
+>**说明：** 
+>
+>在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../application-models/uiability-usage.md#获取uiability的上下文信息)。
+
 ```ts
 import { socket } from '@kit.NetworkKit';
+import { common } from '@kit.AbilityKit';
 
 // 创建一个LocalSocketServer连接，返回一个LocalSocketServer对象。
 let server: socket.LocalSocketServer = socket.constructLocalSocketServerInstance();
 // 创建并绑定本地套接字文件testSocket，进行监听
-let sandboxPath: string = getContext(this).filesDir + '/testSocket'
+let context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
+let sandboxPath: string = context.filesDir + '/testSocket';
 let listenAddr: socket.LocalAddress = {
   address: sandboxPath
 }

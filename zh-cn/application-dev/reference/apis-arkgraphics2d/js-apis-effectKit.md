@@ -39,7 +39,7 @@ createEffect(source: image.PixelMap): Filter
 
 | 类型                             | 说明           |
 | -------------------------------- | -------------- |
-| [Filter](#filter) | 返回不带任何效果的Filter链表的头节点，失败时返回null。 |
+| [Filter](#filter) | 返回不带任何效果的Filter链表头节点，失败时返回null。 |
 
 **示例：**
 
@@ -136,7 +136,7 @@ createColorPicker(source: image.PixelMap, region: Array\<number>): Promise\<Colo
 | 参数名     | 类型         | 必填 | 说明                       |
 | -------- | ----------- | ---- | -------------------------- |
 | source   | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | 是   |  image模块创建的PixelMap实例。可通过图片解码或直接创建获得，具体可见[图片开发指导](../../media/image/image-overview.md)。 |
-| region   | Array\<number> | 是   |  指定图片的取色区域。<br>数组元素个数为4，取值范围为[0, 1]，数组元素分别表示图片区域的左、上、右、下位置，图片最左侧和最上侧对应位置0，最右侧和最下侧对应位置1。数组第三个元素需大于第一个元素，第四个元素需大于第二个元素。|
+| region   | Array\<number> | 是   |  指定图片的取色区域。<br>数组元素个数为4，取值范围为[0, 1]，分别表示图片区域的左、上、右、下位置，图片最左侧和最上侧对应位置0，最右侧和最下侧对应位置1。数组第三个元素需大于第一个元素，第四个元素需大于第二个元素。|
 
 **返回值：**
 
@@ -515,7 +515,7 @@ image.createPixelMap(color, opts).then((pixelMap) => {
   })
 })
 ```
-![zh-ch_image_Largest_Proportion_Color.png](figures/zh-ch_image_Top_Proportion_Colors.png)
+![zh-ch_image_Top_Proportion_Colors.png](figures/zh-ch_image_Top_Proportion_Colors.png)
 
 ### getHighestSaturationColor<sup>10+</sup>
 
@@ -633,7 +633,7 @@ isBlackOrWhiteOrGrayColor(color: number): boolean
 
 | 类型           | 说明                                            |
 | :------------- | :---------------------------------------------- |
-| boolean              | 如果此图像为黑白灰颜色，则返回true；否则返回false。 |
+| boolean              | 如果图像为黑白灰颜色，则返回true；否则返回false。 |
 
 **示例：**
 
@@ -671,7 +671,7 @@ image.createPixelMap(color, opts).then((pixelMap) => {
 
 blur(radius: number): Filter
 
-将模糊效果添加到效果链表中，结果返回效果链表的头节点。
+将模糊效果添加到效果链表中，返回链表的头节点。
 
 >  **说明：**
 >
@@ -724,7 +724,7 @@ image.createPixelMap(color, opts).then((pixelMap) => {
 
 blur(radius: number, tileMode: TileMode): Filter
 
-将模糊效果添加到效果链表中，结果返回效果链表的头节点。
+将模糊效果添加到效果链表中，返回链表的头节点。
 
 >  **说明：**
 >
@@ -774,7 +774,7 @@ image.createPixelMap(color, opts).then((pixelMap) => {
 
 invert(): Filter
 
-将反转效果添加到效果链表中，结果返回效果链表的头节点。
+将反转效果添加到效果链表中，返回链表的头节点。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -812,7 +812,7 @@ image.createPixelMap(color, opts).then((pixelMap) => {
 
 setColorMatrix(colorMatrix: Array\<number>): Filter
 
-将自定义效果添加到效果链表中，结果返回效果链表的头节点。
+将自定义效果添加到效果链表中，返回链表的头节点。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -869,7 +869,7 @@ image.createPixelMap(color, opts).then((pixelMap) => {
 
 brightness(bright: number): Filter
 
-将高亮效果添加到效果链表中，结果返回效果链表的头节点。
+将高亮效果添加到效果链表中，返回链表的头节点。
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
@@ -918,7 +918,7 @@ image.createPixelMap(color, opts).then((pixelMap) => {
 
 grayscale(): Filter
 
-将灰度效果添加到效果链表中，结果返回效果链表的头节点。
+将灰度效果添加到效果链表中，返回链表的头节点。
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 

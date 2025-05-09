@@ -42,9 +42,9 @@ isIdleState(bundleName: string, callback: AsyncCallback&lt;boolean&gt;): void
 | 401 | Parameter error. |
 | 801 | Capability not supported.|
 | 10000001   | Memory operation failed.         |
-| 10000002   | Parcel operation failed.         |
-| 10000003   | System service operation failed. |
-| 10000004   | IPC failed.        |
+| 10000002   | Failed to write data into parcel. Possible reasons: 1. Invalid parameters; 2. Failed to apply for memory.         |
+| 10000003   | Failed to get system ability manager. |
+| 10000004   | Failed to access the device usage service.        |
 | 10000006   | Failed to get the application information.    |
 
 **示例**：
@@ -93,9 +93,9 @@ isIdleState(bundleName: string): Promise&lt;boolean&gt;
 | 401 | Parameter error. |
 | 801 | Capability not supported.|
 | 10000001   | Memory operation failed.         |
-| 10000002   | Parcel operation failed.         |
-| 10000003   | System service operation failed. |
-| 10000004   | IPC failed.        |
+| 10000002   | Failed to write data into parcel. Possible reasons: 1. Invalid parameters; 2. Failed to apply for memory.         |
+| 10000003   | Failed to get system ability manager. |
+| 10000004   | Failed to access the device usage service.        |
 | 10000006   | Failed to get the application information.     |
 
 **示例**：
@@ -142,9 +142,9 @@ isIdleStateSync(bundleName: string): boolean
 | 401 | Parameter error. |
 | 801 | Capability not supported.|
 | 10000001   | Memory operation failed.         |
-| 10000002   | Parcel operation failed.         |
-| 10000003   | System service operation failed. |
-| 10000004   | IPC failed.        |
+| 10000002   | Failed to write data into parcel. Possible reasons: 1. Invalid parameters; 2. Failed to apply for memory.         |
+| 10000003   | Failed to get system ability manager. |
+| 10000004   | Failed to access the device usage service.        |
 | 10000006   | Failed to get the application information.    |
 
 **示例**：
@@ -179,9 +179,9 @@ queryAppGroup(): Promise&lt;number&gt;
 | 401 | Parameter error. |
 | 801 | Capability not supported.|
 | 10000001   | Memory operation failed.           |
-| 10000002   | Parcel operation failed.           |
-| 10000003   | System service operation failed.   |
-| 10000004   | IPC failed.          |
+| 10000002   | Failed to write data into parcel. Possible reasons: 1. Invalid parameters; 2. Failed to apply for memory.         |
+| 10000003   | Failed to get system ability manager. |
+| 10000004   | Failed to access the device usage service.        |
 | 10000005   | Application is not installed.      |
 | 10000006   | Failed to get the application information.       |
 | 10100002   | Failed to get the application group information. |
@@ -225,9 +225,9 @@ queryAppGroup(callback: AsyncCallback&lt;number&gt;): void
 | 401 | Parameter error. |
 | 801 | Capability not supported.|
 | 10000001   | Memory operation failed.           |
-| 10000002   | Parcel operation failed.           |
-| 10000003   | System service operation failed.   |
-| 10000004   | IPC failed.          |
+| 10000002   | Failed to write data into parcel. Possible reasons: 1. Invalid parameters; 2. Failed to apply for memory.         |
+| 10000003   | Failed to get system ability manager. |
+| 10000004   | Failed to access the device usage service.        |
 | 10000005   | Application is not installed.      |
 | 10000006   | Failed to get the application information.       |
 | 10100002   | Failed to get the application group information. |
@@ -273,9 +273,9 @@ queryAppGroupSync(): number
 | 401 | Parameter error. |
 | 801 | Capability not supported.|
 | 10000001   | Memory operation failed.           |
-| 10000002   | Parcel operation failed.           |
-| 10000003   | System service operation failed.   |
-| 10000004   | IPC failed.          |
+| 10000002   | Failed to write data into parcel. Possible reasons: 1. Invalid parameters; 2. Failed to apply for memory.         |
+| 10000003   | Failed to get system ability manager. |
+| 10000004   | Failed to access the device usage service.        |
 | 10000005   | Application is not installed.      |
 | 10000006   | Failed to get the application information.       |
 | 10100002   | Failed to get the application group information. |
@@ -319,9 +319,9 @@ queryAppGroup(bundleName : string): Promise&lt;number&gt;
 | 401 | Parameter error. |
 | 801 | Capability not supported.|
 | 10000001   | Memory operation failed.           |
-| 10000002   | Parcel operation failed.           |
-| 10000003   | System service operation failed.   |
-| 10000004   | IPC failed.          |
+| 10000002   | Failed to write data into parcel. Possible reasons: 1. Invalid parameters; 2. Failed to apply for memory.         |
+| 10000003   | Failed to get system ability manager. |
+| 10000004   | Failed to access the device usage service.        |
 | 10000005   | Application is not installed.      |
 | 10000006   | Failed to get the application information.       |
 | 10100002   | Failed to get the application group information. |
@@ -368,9 +368,9 @@ queryAppGroup(bundleName : string, callback: AsyncCallback&lt;number&gt;): void
 | 401 | Parameter error. |
 | 801 | Capability not supported.|
 | 10000001   | Memory operation failed.           |
-| 10000002   | Parcel operation failed.           |
-| 10000003   | System service operation failed.   |
-| 10000004   | IPC failed.          |
+| 10000002   | Failed to write data into parcel. Possible reasons: 1. Invalid parameters; 2. Failed to apply for memory.         |
+| 10000003   | Failed to get system ability manager. |
+| 10000004   | Failed to access the device usage service.        |
 | 10000005   | Application is not installed.      |
 | 10000006   | Failed to get the application information.       |
 | 10100002   | Failed to get the application group information. |
@@ -423,9 +423,9 @@ queryAppGroupSync(bundleName: string): number
 | 401 | Parameter error. |
 | 801 | Capability not supported.|
 | 10000001   | Memory operation failed.           |
-| 10000002   | Parcel operation failed.           |
-| 10000003   | System service operation failed.   |
-| 10000004   | IPC failed.          |
+| 10000002   | Failed to write data into parcel. Possible reasons: 1. Invalid parameters; 2. Failed to apply for memory.         |
+| 10000003   | Failed to get system ability manager. |
+| 10000004   | Failed to access the device usage service.        |
 | 10000005   | Application is not installed.      |
 | 10000006   | Failed to get the application information.       |
 | 10100002   | Failed to get the application group information. |
@@ -470,9 +470,9 @@ setAppGroup(bundleName: string, newGroup: GroupType): Promise&lt;void&gt;
 | 401 | Parameter error. |
 | 801 | Capability not supported.|
 | 10000001   | Memory operation failed.              |
-| 10000002   | Parcel operation failed.              |
-| 10000003   | System service operation failed.      |
-| 10000004   | IPC failed.             |
+| 10000002   | Failed to write data into parcel. Possible reasons: 1. Invalid parameters; 2. Failed to apply for memory.         |
+| 10000003   | Failed to get system ability manager. |
+| 10000004   | Failed to access the device usage service.        |
 | 10000006   | Failed to get the application information.          |
 | 10100001   | Repeated operation on the application group. |
 
@@ -520,9 +520,9 @@ setAppGroup(bundleName: string, newGroup: GroupType, callback: AsyncCallback&lt;
 | 401 | Parameter error. |
 | 801 | Capability not supported.|
 | 10000001   | Memory operation failed.              |
-| 10000002   | Parcel operation failed.              |
-| 10000003   | System service operation failed.      |
-| 10000004   | IPC failed.             |
+| 10000002   | Failed to write data into parcel. Possible reasons: 1. Invalid parameters; 2. Failed to apply for memory.         |
+| 10000003   | Failed to get system ability manager. |
+| 10000004   | Failed to access the device usage service.        |
 | 10000006   | Failed to get the application information.          |
 | 10100001   | Repeated operation on the application group. |
 
@@ -572,9 +572,9 @@ queryBundleStatsInfos(begin: number, end: number, callback: AsyncCallback&lt;Bun
 | 401 | Parameter error. |
 | 801 | Capability not supported.|
 | 10000001   | Memory operation failed.           |
-| 10000002   | Parcel operation failed.           |
-| 10000003   | System service operation failed.   |
-| 10000004   | IPC failed.          |
+| 10000002   | Failed to write data into parcel. Possible reasons: 1. Invalid parameters; 2. Failed to apply for memory.         |
+| 10000003   | Failed to get system ability manager. |
+| 10000004   | Failed to access the device usage service.        |
 | 10000006   | Failed to get the application information.       |
 | 10000007   | Failed to get the system time.  |
 
@@ -627,9 +627,9 @@ queryBundleStatsInfos(begin: number, end: number): Promise&lt;BundleStatsMap&gt;
 | 401 | Parameter error. |
 | 801 | Capability not supported.|
 | 10000001   | Memory operation failed.           |
-| 10000002   | Parcel operation failed.           |
-| 10000003   | System service operation failed.   |
-| 10000004   | IPC failed.          |
+| 10000002   | Failed to write data into parcel. Possible reasons: 1. Invalid parameters; 2. Failed to apply for memory.         |
+| 10000003   | Failed to get system ability manager. |
+| 10000004   | Failed to access the device usage service.        |
 | 10000006   | Failed to get the application information.       |
 | 10000007   | Failed to get the system time.  |
 
@@ -680,9 +680,9 @@ queryAppStatsInfos(begin: number, end: number): Promise&lt;AppStatsMap&gt;
 | 401 | Parameter error. |
 | 801 | Capability not supported.|
 | 10000001   | Memory operation failed.           |
-| 10000002   | Parcel operation failed.           |
-| 10000003   | System service operation failed.   |
-| 10000004   | IPC failed.          |
+| 10000002   | Failed to write data into parcel. Possible reasons: 1. Invalid parameters; 2. Failed to apply for memory.         |
+| 10000003   | Failed to get system ability manager. |
+| 10000004   | Failed to access the device usage service.        |
 | 10000006   | Failed to get the application information.       |
 | 10000007   | Failed to get the system time.  |
 
@@ -732,9 +732,9 @@ queryLastUseTime(appInfo: Record&lt;string, Array&lt;number&gt;&gt;): Promise&lt
 | 401 | Parameter error. |
 | 801 | Capability not supported.|
 | 10000001   | Memory operation failed.           |
-| 10000002   | Parcel operation failed.           |
-| 10000003   | System service operation failed.   |
-| 10000004   | IPC failed.          |
+| 10000002   | Failed to write data into parcel. Possible reasons: 1. Invalid parameters; 2. Failed to apply for memory.         |
+| 10000003   | Failed to get system ability manager. |
+| 10000004   | Failed to access the device usage service.        |
 | 10000006   | Failed to get the application information.       |
 | 10000007   | Failed to get the system time.  |
 
@@ -781,9 +781,9 @@ queryBundleStatsInfoByInterval(byInterval: IntervalType, begin: number, end: num
 | 401 | Parameter error. |
 | 801 | Capability not supported.|
 | 10000001   | Memory operation failed.           |
-| 10000002   | Parcel operation failed.           |
-| 10000003   | System service operation failed.   |
-| 10000004   | IPC failed.          |
+| 10000002   | Failed to write data into parcel. Possible reasons: 1. Invalid parameters; 2. Failed to apply for memory.         |
+| 10000003   | Failed to get system ability manager. |
+| 10000004   | Failed to access the device usage service.        |
 | 10000006   | Failed to get the application information.       |
 | 10000007   | Failed to get the system time.  |
 
@@ -840,9 +840,9 @@ queryBundleStatsInfoByInterval(byInterval: IntervalType, begin: number, end: num
 | 401 | Parameter error. |
 | 801 | Capability not supported.|
 | 10000001   | Memory operation failed.           |
-| 10000002   | Parcel operation failed.           |
-| 10000003   | System service operation failed.   |
-| 10000004   | IPC failed.          |
+| 10000002   | Failed to write data into parcel. Possible reasons: 1. Invalid parameters; 2. Failed to apply for memory.         |
+| 10000003   | Failed to get system ability manager. |
+| 10000004   | Failed to access the device usage service.        |
 | 10000006   | Failed to get the application information.       |
 | 10000007   | Failed to get the system time.  |
 
@@ -891,9 +891,9 @@ queryBundleEvents(begin: number, end: number, callback: AsyncCallback&lt;Array&l
 | 401 | Parameter error. |
 | 801 | Capability not supported.|
 | 10000001   | Memory operation failed.           |
-| 10000002   | Parcel operation failed.           |
-| 10000003   | System service operation failed.   |
-| 10000004   | IPC failed.          |
+| 10000002   | Failed to write data into parcel. Possible reasons: 1. Invalid parameters; 2. Failed to apply for memory.         |
+| 10000003   | Failed to get system ability manager. |
+| 10000004   | Failed to access the device usage service.        |
 | 10000006   | Failed to get the application information.       |
 | 10000007   | Failed to get the system time.  |
 
@@ -949,9 +949,9 @@ queryBundleEvents(begin: number, end: number): Promise&lt;Array&lt;BundleEvents&
 | 401 | Parameter error. |
 | 801 | Capability not supported.|
 | 10000001   | Memory operation failed.           |
-| 10000002   | Parcel operation failed.           |
-| 10000003   | System service operation failed.   |
-| 10000004   | IPC failed.          |
+| 10000002   | Failed to write data into parcel. Possible reasons: 1. Invalid parameters; 2. Failed to apply for memory.         |
+| 10000003   | Failed to get system ability manager. |
+| 10000004   | Failed to access the device usage service.        |
 | 10000006   | Failed to get the application information.       |
 | 10000007   | Failed to get the system time.  |
 
@@ -997,9 +997,9 @@ queryCurrentBundleEvents(begin: number, end: number, callback: AsyncCallback&lt;
 | 401 | Parameter error. |
 | 801 | Capability not supported.|
 | 10000001   | Memory operation failed.           |
-| 10000002   | Parcel operation failed.           |
-| 10000003   | System service operation failed.   |
-| 10000004   | IPC failed.          |
+| 10000002   | Failed to write data into parcel. Possible reasons: 1. Invalid parameters; 2. Failed to apply for memory.         |
+| 10000003   | Failed to get system ability manager. |
+| 10000004   | Failed to access the device usage service.        |
 | 10000006   | Failed to get the application information.       |
 | 10000007   | Failed to get the system time.  |
 
@@ -1052,9 +1052,9 @@ queryCurrentBundleEvents(begin: number, end: number): Promise&lt;Array&lt;Bundle
 | 401 | Parameter error. |
 | 801 | Capability not supported.|
 | 10000001   | Memory operation failed.           |
-| 10000002   | Parcel operation failed.           |
-| 10000003   | System service operation failed.   |
-| 10000004   | IPC failed.          |
+| 10000002   | Failed to write data into parcel. Possible reasons: 1. Invalid parameters; 2. Failed to apply for memory.         |
+| 10000003   | Failed to get system ability manager. |
+| 10000004   | Failed to access the device usage service.        |
 | 10000006   | Failed to get the application information.      |
 | 10000007   | Failed to get the system time.  |
 
@@ -1108,9 +1108,9 @@ queryDeviceEventStats(begin: number, end: number): Promise&lt;Array&lt;DeviceEve
 | 401 | Parameter error. |
 | 801 | Capability not supported.|
 | 10000001   | Memory operation failed.              |
-| 10000002   | Parcel operation failed.              |
-| 10000003   | System service operation failed.      |
-| 10000004   | IPC failed.             |
+| 10000002   | Failed to write data into parcel. Possible reasons: 1. Invalid parameters; 2. Failed to apply for memory.         |
+| 10000003   | Failed to get system ability manager. |
+| 10000004   | Failed to access the device usage service.        |
 | 10000006   | Failed to get the application information.          |
 | 10000007   | Failed to get the system time.     |
 
@@ -1156,9 +1156,9 @@ queryDeviceEventStats(begin: number, end: number, callback: AsyncCallback&lt;Arr
 | 401 | Parameter error. |
 | 801 | Capability not supported.|
 | 10000001   | Memory operation failed.              |
-| 10000002   | Parcel operation failed.              |
-| 10000003   | System service operation failed.      |
-| 10000004   | IPC failed.             |
+| 10000002   | Failed to write data into parcel. Possible reasons: 1. Invalid parameters; 2. Failed to apply for memory.         |
+| 10000003   | Failed to get system ability manager. |
+| 10000004   | Failed to access the device usage service.        |
 | 10000006   | Failed to get the application information.           |
 | 10000007   | Failed to get the system time.     |
 
@@ -1211,9 +1211,9 @@ queryNotificationEventStats(begin: number, end: number): Promise&lt;Array&lt;Dev
 | 401 | Parameter error. |
 | 801 | Capability not supported.|
 | 10000001   | Memory operation failed.              |
-| 10000002   | Parcel operation failed.              |
-| 10000003   | System service operation failed.      |
-| 10000004   | IPC failed.             |
+| 10000002   | Failed to write data into parcel. Possible reasons: 1. Invalid parameters; 2. Failed to apply for memory.         |
+| 10000003   | Failed to get system ability manager. |
+| 10000004   | Failed to access the device usage service.        |
 | 10000006   | Failed to get the application information.          |
 | 10000007   | Failed to get the system time.     |
 
@@ -1259,9 +1259,9 @@ queryNotificationEventStats(begin: number, end: number, callback: AsyncCallback&
 | 401 | Parameter error. |
 | 801 | Capability not supported.|
 | 10000001   | Memory operation failed.              |
-| 10000002   | Parcel operation failed.              |
-| 10000003   | System service operation failed.      |
-| 10000004   | IPC failed.             |
+| 10000002   | Failed to write data into parcel. Possible reasons: 1. Invalid parameters; 2. Failed to apply for memory.         |
+| 10000003   | Failed to get system ability manager. |
+| 10000004   | Failed to access the device usage service.        |
 | 10000006   | Failed to get the application information.          |
 | 10000007   | Failed to get the system time.     |
 
@@ -1309,9 +1309,9 @@ queryModuleUsageRecords(): Promise&lt;Array&lt;HapModuleInfo&gt;&gt;
 | 401 | Parameter error. |
 | 801 | Capability not supported.|
 | 10000001   | Memory operation failed.           |
-| 10000002   | Parcel operation failed.           |
-| 10000003   | System service operation failed.   |
-| 10000004   | IPC failed.          |
+| 10000002   | Failed to write data into parcel. Possible reasons: 1. Invalid parameters; 2. Failed to apply for memory.         |
+| 10000003   | Failed to get system ability manager. |
+| 10000004   | Failed to access the device usage service.        |
 | 10000006   | Failed to get the application information.       |
 | 10000007   | Failed to get the system time.  |
 
@@ -1355,9 +1355,9 @@ queryModuleUsageRecords(callback: AsyncCallback&lt;Array&lt;HapModuleInfo&gt;&gt
 | 错误码ID        | 错误信息                       |
 | ---------- | ----------------------------       |
 | 10000001   | Memory operation failed.           |
-| 10000002   | Parcel operation failed.           |
-| 10000003   | System service operation failed.   |
-| 10000004   | IPC failed.          |
+| 10000002   | Failed to write data into parcel. Possible reasons: 1. Invalid parameters; 2. Failed to apply for memory.         |
+| 10000003   | Failed to get system ability manager. |
+| 10000004   | Failed to access the device usage service.        |
 | 10000006   | Failed to get the application information.       |
 | 10000007   | Failed to get the system time.  |
 
@@ -1412,9 +1412,9 @@ queryModuleUsageRecords(maxNum: number): Promise&lt;Array&lt;HapModuleInfo&gt;&g
 | 401 | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed. |
 | 801 | Capability not supported.|
 | 10000001   | Memory operation failed.           |
-| 10000002   | Parcel operation failed.           |
-| 10000003   | System service operation failed.   |
-| 10000004   | IPC failed.          |
+| 10000002   | Failed to write data into parcel. Possible reasons: 1. Invalid parameters; 2. Failed to apply for memory.         |
+| 10000003   | Failed to get system ability manager. |
+| 10000004   | Failed to access the device usage service.        |
 | 10000006   | Failed to get the application information.       |
 | 10000007   | Failed to get the system time.  |
 
@@ -1462,9 +1462,9 @@ queryModuleUsageRecords(maxNum: number, callback: AsyncCallback&lt;Array&lt;HapM
 | 401 | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed. |
 | 801 | Capability not supported.|
 | 10000001   | Memory operation failed.           |
-| 10000002   | Parcel operation failed.           |
-| 10000003   | System service operation failed.   |
-| 10000004   | IPC failed.          |
+| 10000002   | Failed to write data into parcel. Possible reasons: 1. Invalid parameters; 2. Failed to apply for memory.         |
+| 10000003   | Failed to get system ability manager. |
+| 10000004   | Failed to access the device usage service.        |
 | 10000006   | Failed to get the application information.       |
 | 10000007   | Failed to get the system time.  |
 
@@ -1519,9 +1519,9 @@ registerAppGroupCallBack(groupCallback: Callback&lt;AppGroupCallbackInfo&gt;): P
 | 401 | Parameter error. |
 | 801 | Capability not supported.|
 | 10000001   | Memory operation failed.              |
-| 10000002   | Parcel operation failed.              |
-| 10000003   | System service operation failed.      |
-| 10000004   | IPC failed.             |
+| 10000002   | Failed to write data into parcel. Possible reasons: 1. Invalid parameters; 2. Failed to apply for memory.         |
+| 10000003   | Failed to get system ability manager. |
+| 10000004   | Failed to access the device usage service.        |
 | 10100001   | Repeated operation on the application group. |
 
 
@@ -1573,9 +1573,9 @@ registerAppGroupCallBack(groupCallback: Callback&lt;AppGroupCallbackInfo&gt;, ca
 | 401 | Parameter error. |
 | 801 | Capability not supported.|
 | 10000001   | Memory operation failed.              |
-| 10000002   | Parcel operation failed.              |
-| 10000003   | System service operation failed.      |
-| 10000004   | IPC failed.             |
+| 10000002   | Failed to write data into parcel. Possible reasons: 1. Invalid parameters; 2. Failed to apply for memory.         |
+| 10000003   | Failed to get system ability manager. |
+| 10000004   | Failed to access the device usage service.        |
 | 10100001   | Repeated operation on the application group. |
 
 
@@ -1628,9 +1628,9 @@ unregisterAppGroupCallBack(): Promise&lt;void&gt;
 | 401 | Parameter error. |
 | 801 | Capability not supported.|
 | 10000001   | Memory operation failed.              |
-| 10000002   | Parcel operation failed.              |
-| 10000003   | System service operation failed.      |
-| 10000004   | IPC failed.             |
+| 10000002   | Failed to write data into parcel. Possible reasons: 1. Invalid parameters; 2. Failed to apply for memory.         |
+| 10000003   | Failed to get system ability manager. |
+| 10000004   | Failed to access the device usage service.        |
 | 10100001   | Repeated operation on the application group. |
 
 **示例**：
@@ -1672,9 +1672,9 @@ unregisterAppGroupCallBack(callback: AsyncCallback&lt;void&gt;): void;
 | 401 | Parameter error. |
 | 801 | Capability not supported.|
 | 10000001   | Memory operation failed.              |
-| 10000002   | Parcel operation failed.              |
-| 10000003   | System service operation failed.      |
-| 10000004   | IPC failed.             |
+| 10000002   | Failed to write data into parcel. Possible reasons: 1. Invalid parameters; 2. Failed to apply for memory.         |
+| 10000003   | Failed to get system ability manager. |
+| 10000004   | Failed to access the device usage service.        |
 | 10100001   | Repeated operation on the application group. |
 
 **示例**：

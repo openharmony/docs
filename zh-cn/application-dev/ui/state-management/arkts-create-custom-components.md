@@ -86,13 +86,13 @@ struct ParentComponent {
 
 ### \@Component
 
-\@Component装饰器仅能装饰struct关键字声明的数据结构。struct被\@Component装饰后具备组件化的能力，需要实现build方法描述UI，一个struct只能被一个\@Component装饰。\@Component可以接受一个可选的bool类型参数。
+\@Component装饰器仅能装饰struct关键字声明的数据结构。struct被\@Component装饰后具备组件化的能力，需要实现build方法描述UI，一个struct只能被一个\@Component装饰。\@Component可以接受一个可选的boolean类型参数。
 
   > **说明：**
   >
   > 从API version 9开始，该装饰器支持在ArkTS卡片中使用。
   > 
-  > 从API version 11开始，\@Component可以接受一个可选的bool类型参数。
+  > 从API version 11开始，\@Component可以接受一个可选的boolean类型参数。
 
   ```ts
   @Component
@@ -105,7 +105,7 @@ struct ParentComponent {
 
   | 名称   | 类型   | 必填 | 说明                                                         |
   | ------ | ------ | ---- | ------------------------------------------------------------ |
-  | freezeWhenInactive | boolean | 否 | 是否开启组件冻结，默认值false。 |
+  | freezeWhenInactive | boolean | 否 | 是否开启组件冻结。默认值false。true：开启组件冻结，false：不开启组件冻结。 |
 
   ```ts
   @Component({ freezeWhenInactive: true })
@@ -152,7 +152,7 @@ build()函数用于定义自定义组件的声明式UI描述，自定义组件�
   | ------ | ------ | ---- | ------------------------------------------------------------ |
   | routeName | string | 否 | 表示作为命名路由页面的名字。 |
   | storage | [LocalStorage](arkts-localstorage.md) | 否 | 页面级的UI状态存储。 |
-  | useSharedStorage<sup>12+</sup> | boolean | 否 | 是否使用LocalStorage.getShared()接口返回的[LocalStorage](arkts-localstorage.md)实例对象，默认值false。 |
+  | useSharedStorage<sup>12+</sup> | boolean | 否 | 是否使用LocalStorage.getShared()接口返回的共享的[LocalStorage](arkts-localstorage.md)实例对象。默认值false。true：使用共享的[LocalStorage](arkts-localstorage.md)实例对象。false：不使用共享的[LocalStorage](arkts-localstorage.md)实例对象。 |
 
   > **说明：**
   >
