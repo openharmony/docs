@@ -14,7 +14,7 @@
 | int32_t OH_BackgroundTaskManager_RequestSuspendDelay(const char *reason, TransientTask_Callback callback, TransientTask_DelaySuspendInfo *info); | 申请短时任务。 |
 | int32_t OH_BackgroundTaskManager_GetRemainingDelayTime(int32_t requestId, int32_t *delayTime); | 获取对应短时任务的剩余时间。 |
 | int32_t OH_BackgroundTaskManager_CancelSuspendDelay(int32_t requestId); | 取消短时任务。 |
-| int32_t OH_BackgroundTaskManager_GetAllTransientTasks(TransientTask_TransientTaskInfo  *transientTaskInfo); | 获取所有短时任务信息。 |
+| int32_t OH_BackgroundTaskManager_GetAllTransientTasks(TransientTask_TransientTaskInfo  *transientTaskInfo); | 获取所有短时任务信息，如当日剩余总配额等。 |
 
 ## 开发步骤
 
