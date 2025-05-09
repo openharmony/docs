@@ -1,6 +1,6 @@
-# @ohos.multimodalInput.inputConsumer (组合按键)
+# @ohos.multimodalInput.inputConsumer (全局快捷键)
 
-组合按键订阅模块，用于处理组合按键的订阅。
+全局快捷键订阅模块，用于处理全局快捷键的订阅。
 
 > **说明：**
 >
@@ -22,7 +22,7 @@ import { inputConsumer, KeyEvent } from '@kit.InputKit';
 
 | 名称        | 类型   | 可读   | 可写   | 说明      |
 | --------- | ------ | ------- | ------- | ------- |
-| preKeys   | Array&lt;number&gt; | 是      | 否      | 修饰键集合，数量范围[1, 2]，无顺序要求。<br>例如，Ctrl+Shift+Esc中，Ctrl+Shift称为修饰键。<br>默认值为 []（空数组），表示不需要辅助键。 |
+| preKeys   | Array&lt;number&gt; | 是      | 否      | 修饰键（包括 Ctrl、Shift 和 Alt）集合，数量范围[1, 2]，无顺序要求。<br>例如，Ctrl+Shift+Esc中，Ctrl+Shift称为修饰键。<br>默认值为 []（空数组），表示不需要辅助键。 |
 | finalKey  | number  | 是      | 否      | 被修饰键，除修饰键和 Meta 以外的按键，详细按键介绍请参见[按键全集](js-apis-keycode.md)。<br>例如，Ctrl+Shift+Esc中，Esc称为被修饰键。没有默认值。 |
 | isRepeat  | boolean  | 是      | 否      | 是否上报短时间内重复的按键事件。true表示上报，false表示不上报，默认值为true。 |
 
@@ -77,7 +77,7 @@ inputConsumer.getAllSystemHotkeys()
 
 on(type: 'hotkeyChange', hotkeyOptions: HotkeyOptions, callback: Callback&lt;HotkeyOptions&gt;): void
 
-订阅全局组合按键，当满足条件的组合按键输入事件发生时上报组合按键数据，使用Callback异步回调。
+订阅全局快捷键，当满足条件的快捷键输入事件发生时上报快捷键数据，使用Callback异步回调。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.InputConsumer
 
@@ -87,11 +87,11 @@ on(type: 'hotkeyChange', hotkeyOptions: HotkeyOptions, callback: Callback&lt;Hot
 | ---------- | -------------------------- | ---- | ---------- |
 | type       | string                     | 是    | 事件类型，固定取值为'hotkeyChange'。                   |
 | hotkeyOptions | [HotkeyOptions](#hotkeyoptions14) | 是    | 快捷键选项。                 |
-| callback   | Callback&lt;HotkeyOptions&gt; | 是    | 回调函数，当满足条件的全局组合按键输入事件发生时，异步上报组合按键数据。 |
+| callback   | Callback&lt;HotkeyOptions&gt; | 是    | 回调函数，当满足条件的全局快捷键输入事件发生时，异步上报快捷键数据。 |
 
 **错误码**：
 
-有关错误码的详细介绍请参见[全局快捷键管理错误码](errorcode-inputconsumer.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[全局快捷键管理错误码](errorcode-inputconsumer.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
@@ -124,7 +124,7 @@ try {
 
 off(type: 'hotkeyChange', hotkeyOptions: HotkeyOptions, callback?: Callback&lt;HotkeyOptions&gt;): void
 
-取消订阅全局组合按键。
+取消订阅全局快捷键。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.InputConsumer
 
