@@ -29,7 +29,7 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [OH_AVBuffer](_core.md#oh_avbuffer) \* [OH_AVBuffer_Create](_core.md#oh_avbuffer_create) (int32_t capacity) | 创建OH_AVBuffer实例。 需要注意的是，返回值指向的创建OH_AVBuffer的实例需要调用者手动释放，请参阅[OH_AVBuffer_Destroy](_core.md#oh_avbuffer_destroy)。 | 
+| [OH_AVBuffer](_core.md#oh_avbuffer) \* [OH_AVBuffer_Create](_core.md#oh_avbuffer_create) (int32_t capacity) | 创建OH_AVBuffer实例。 需要注意的是，返回值指向的创建OH_AVBuffer的实例需要开发者手动释放，请参阅[OH_AVBuffer_Destroy](_core.md#oh_avbuffer_destroy)。 | 
 | [OH_AVErrCode](_core.md#oh_averrcode) [OH_AVBuffer_Destroy](_core.md#oh_avbuffer_destroy) (OH_AVBuffer \*buffer) | 释放OH_AVBuffer实例指针的资源。 | 
 | [OH_AVErrCode](_core.md#oh_averrcode) [OH_AVBuffer_GetBufferAttr](_core.md#oh_avbuffer_getbufferattr) (OH_AVBuffer \*buffer, [OH_AVCodecBufferAttr](_o_h___a_v_codec_buffer_attr.md) \*attr) | 获取数据缓冲区的pts、size、offset、flags高频属性参数。 | 
 | [OH_AVErrCode](_core.md#oh_averrcode) [OH_AVBuffer_SetBufferAttr](_core.md#oh_avbuffer_setbufferattr) (OH_AVBuffer \*buffer, const [OH_AVCodecBufferAttr](_o_h___a_v_codec_buffer_attr.md) \*attr) | 设置数据缓冲区的pts、size、offset、flags高频属性参数。 | 

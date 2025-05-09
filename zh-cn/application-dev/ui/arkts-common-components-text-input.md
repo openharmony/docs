@@ -152,6 +152,8 @@ TextInput有以下类型可选择：Normal基本输入模式、Password密码输
 >  在密码模式下，设置showPassword属性时，在onSecurityStateChange回调中，建议增加状态同步，具体详见如下示例。
 >
 > onWillInsert、onDidInsert、onWillDelete、onDidDelete回调仅支持系统输入法的场景。
+>
+> [onWillChange](../reference/apis-arkui/arkui-ts/ts-basic-components-textinput.md#onwillchange15)的回调时序晚于onWillInsert、onWillDelete，早于onDidInsert、onDidDelete。
 
 ```ts
 TextInput({ text: this.text, placeholder: 'input your word...', controller: this.controller })

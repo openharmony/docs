@@ -29,7 +29,7 @@ Enumerates the asset statuses. Use the enum name rather than the enum value.
 
 ## Asset
 
-Defines information about an asset (such as a document, image, and video).
+Represents asset (such as a file, image, or video) information. For details, see the sample code in [Using Distributed Data Objects in Cross-Device Migration](../../database/data-sync-of-distributed-data-object.md#using-distributed-data-objects-in-cross-device migration).
 
 **System capability**: SystemCapability.DistributedDataManager.CommonType
 

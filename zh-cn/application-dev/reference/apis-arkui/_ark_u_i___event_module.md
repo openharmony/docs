@@ -1562,7 +1562,7 @@ double OH_ArkUI_FocusAxisEvent_GetAxisValue (const ArkUI_UIInputEvent * event，
 
 **返回：**
 
-返回焦点轴事件的轴值，如果参数异常则返回0.0。
+返回焦点轴事件的轴值，表示手柄上摇杆推动或按键按下的程度，如果参数异常则返回0.0。
 
 
 ### OH_ArkUI_FocusAxisEvent_SetStopPropagation()

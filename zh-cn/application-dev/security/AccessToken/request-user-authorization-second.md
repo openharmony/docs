@@ -11,7 +11,9 @@
 
 效果展示：
 
+<!--RP2-->
 ![zh-cn_image_location](figures/zh-cn_image_location_second.png)
+<!--RP2End-->
 
 以下示例代码以再次拉起弹窗申请ohos.permission.APPROXIMATELY_LOCATION权限为例。
 

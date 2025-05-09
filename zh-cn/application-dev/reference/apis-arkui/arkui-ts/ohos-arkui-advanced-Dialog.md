@@ -6,13 +6,13 @@
 
 > **说明：**
 >
-> 该组件从API Version 10开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+> 该组件从API version 10开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 
 ## 导入模块
 
 ```
-import { TipsDialog, SelectDialog, ConfirmDialog, AlertDialog, LoadingDialog, CustomContentDialog } from '@kit.ArkUI'
+import { TipsDialog, SelectDialog, ConfirmDialog, AlertDialog, LoadingDialog, CustomContentDialog } from '@kit.ArkUI';
 ```
 
 
@@ -278,7 +278,7 @@ struct Index {
 纯列表弹出框，包含selectedIndex、radioContent等内容。
 
 ```ts
-import { SelectDialog } from '@kit.ArkUI'
+import { SelectDialog } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -344,7 +344,7 @@ struct Index {
 文本与勾选弹出框，包含content、checkTips等内容。
 
 ```ts
-import { ConfirmDialog } from '@kit.ArkUI'
+import { ConfirmDialog } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -406,7 +406,7 @@ struct Index {
 纯文本弹出框，包含primaryTitle、secondaryTitle、content等内容。
 
 ```ts
-import { AlertDialog } from '@kit.ArkUI'
+import { AlertDialog } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -460,7 +460,7 @@ struct Index {
 进度条弹出框，包含content等内容。
 
 ```ts
-import { LoadingDialog } from '@kit.ArkUI'
+import { LoadingDialog } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -500,7 +500,7 @@ struct Index {
 自定义主题风格弹出框，包含content、theme等内容。
 
 ```ts
-import { CustomColors, CustomTheme, LoadingDialog } from '@kit.ArkUI'
+import { CustomColors, CustomTheme, LoadingDialog } from '@kit.ArkUI';
 
 class CustomThemeImpl implements CustomTheme {
   colors?: CustomColors;
@@ -556,7 +556,7 @@ struct Index {
 自定义深浅色模式弹出框，包含content、themeColorMode等内容。
 
 ```ts
-import { LoadingDialog } from '@kit.ArkUI'
+import { LoadingDialog } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -597,7 +597,7 @@ struct Index {
 支持自定义内容弹出框，包含contentBuilder、buttons等内容。
 
 ```ts
-import { CustomContentDialog } from '@kit.ArkUI'
+import { CustomContentDialog } from '@kit.ArkUI';
 
 @Entry
 @Component

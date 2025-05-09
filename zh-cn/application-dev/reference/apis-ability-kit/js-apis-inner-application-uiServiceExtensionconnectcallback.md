@@ -84,7 +84,7 @@ struct UIServiceExtensionAbility {
 
   myConnectUIServiceExtensionAbility() {
     // 获取上下文
-    let context = getContext(this) as common.UIAbilityContext;
+    let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
     let startWant: Want = {
       deviceId: '',
       bundleName: 'com.acts.myapplication',
@@ -186,7 +186,7 @@ struct UIServiceExtensionAbility {
 
   myConnectUIServiceExtensionAbility() {
     // 获取上下文
-    let context = getContext(this) as common.UIAbilityContext;
+    let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
     // 断开链接的UIServiceExtensionAbility
     try {
       // this.comProxy在链接成功后保存

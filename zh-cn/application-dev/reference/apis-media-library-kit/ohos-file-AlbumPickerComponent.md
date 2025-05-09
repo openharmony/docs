@@ -11,7 +11,8 @@
 ## 导入模块
 
 ```ts
-import { AlbumPickerComponent, AlbumPickerOptions, AlbumInfo, photoAccessHelper, EmptyAreaClickCallback } from '@kit.MediaLibraryKit';
+import { AlbumPickerComponent, AlbumPickerOptions, AlbumInfo, photoAccessHelper, PickerColorMode } from '@kit.MediaLibraryKit';
+import { EmptyAreaClickCallback } from '@ohos.file.AlbumPickerComponent';
 ```
 
 ## 属性
@@ -110,7 +111,7 @@ struct PickerDemo {
       AlbumPickerComponent({
         albumPickerOptions: this.albumPickerOptions,
         onAlbumClick:(albumInfo: AlbumInfo): boolean => this.onAlbumClick(albumInfo),
-        onEmptyAreaClick(): this.emptyAreaClickCallback,
+        onEmptyAreaClick: this.emptyAreaClickCallback,
       }).height('100%').width('100%')
     }
   }

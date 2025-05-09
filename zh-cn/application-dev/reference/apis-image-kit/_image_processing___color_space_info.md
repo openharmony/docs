@@ -17,6 +17,8 @@
 
 **相关模块：**[ImageProcessing](_image_processing.md)
 
+**所在头文件：**[image_processing_types.h](image__processing__types_8h.md)
+
 
 ## 汇总
 

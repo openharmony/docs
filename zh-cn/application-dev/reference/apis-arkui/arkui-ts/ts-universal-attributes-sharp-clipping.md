@@ -4,7 +4,7 @@
 
 >  **说明：**
 >
-> 从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+> 从API version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 ## clip<sup>12+</sup>
 
@@ -197,7 +197,7 @@ enableBreathingAnimation(value: boolean): void
 
 ```ts
 // xxx.ets
-import { CircleShape, RectShape } from '@kit.ArkUI'
+import { CircleShape, RectShape } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -283,7 +283,7 @@ struct ProgressMaskExample {
       // 开关呼吸光晕动画
       Button('enableBreathingAnimation:' + this.enableBreathingAnimation)
         .onClick((event?: ClickEvent) => {
-          this.enableBreathingAnimation = !this.enableBreathingAnimation
+          this.enableBreathingAnimation = !this.enableBreathingAnimation;
           this.progress.enableBreathingAnimation(this.enableBreathingAnimation);
         }).width(200).height(50).margin(20)
 

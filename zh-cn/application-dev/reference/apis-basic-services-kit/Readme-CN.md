@@ -110,6 +110,7 @@
     - [os_account.h](os__account_8h.md)
     - [os_account_common.h](os__account__common_8h.md)
     - [ohprint.h](ohprint_8h.md)
+    - [ohscan.h](c-apis-scan.md)
     - [time_service.h](time__service_8h.md)
   - 结构体<!--basic-services-struct-->
     - [Print_Margin](_print___margin.md)

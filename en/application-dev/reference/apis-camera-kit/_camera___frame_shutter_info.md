@@ -9,6 +9,8 @@ The Camera_FrameShutterInfo struct describes the frame shutter information.
 
 **Related module**: [OH_Camera](_o_h___camera.md)
 
+**Header file**: [camera.h](camera_8h.md)
+
 
 ## Summary
 

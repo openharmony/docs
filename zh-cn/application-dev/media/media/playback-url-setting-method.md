@@ -128,6 +128,8 @@
 ```
 
 **情况二：本地文件播放**
+> **说明：**
+> 当使用AVPlayer播放本地资源时，AVPlayer会独占此fd。
 ```ts
   // 创建avPlayer实例对象。
   let avPlayer: media.AVPlayer = await media.createAVPlayer();

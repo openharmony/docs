@@ -153,6 +153,7 @@ struct Parent {
 
 @ComponentV2
 struct Child {
+  // @Consumer装饰的属性str和Parent组件中@Provider装饰的属性str名称相同，因此建立了双向绑定关系
   @Consumer() str: string = 'world';
 
   build() {
@@ -194,6 +195,7 @@ struct Parent {
 
 @ComponentV2
 struct Child {
+  // @Consumer装饰的属性str和Parent组件中@Provider装饰的属性str1名称不同，无法建立双向绑定关系
   @Consumer() str: string = 'world';
 
   build() {

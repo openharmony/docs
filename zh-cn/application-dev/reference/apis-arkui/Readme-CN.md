@@ -495,6 +495,9 @@
     - [半模态错误码](errorcode-bindSheet.md)
     - [滚动类组件错误码](errorcode-scroll.md)
     - [UI上下文错误码](errorcode-uicontext.md)
+    <!--Del-->
+    - [UIExtension错误码](errorcode-uiextension.md)
+    <!--DelEnd-->
   - 图形图像<!--arkui-graphics-images-arkts-errcode-->
     - [屏幕错误码](errorcode-display.md)
     - [窗口错误码](errorcode-window.md)

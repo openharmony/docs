@@ -3,7 +3,7 @@
 
 ## 概述
 
-OH_AVScreenCapture中所有异步回调函数指针的集合。将该结构体的实例注册到OH_AVScreenCapture实例中， 并处理回调上报的信息，以保证OH_AVScreenCapture的正常运行。
+OH_AVScreenCapture中所有异步回调函数指针的集合。将该结构体的实例注册到OH_AVScreenCapture实例中，并处理回调上报的信息，以保证OH_AVScreenCapture的正常运行。
 
 从API 12开始，推荐使用接口[OH_AVScreenCapture_OnError](_a_v_screen_capture.md#oh_avscreencapture_onerror) [OH_AVScreenCapture_OnBufferAvailable](_a_v_screen_capture.md#oh_avscreencapture_onbufferavailable)替代。
 
@@ -12,6 +12,8 @@ OH_AVScreenCapture中所有异步回调函数指针的集合。将该结构体�
 **起始版本：** 10
 
 **相关模块：**[AVScreenCapture](_a_v_screen_capture.md)
+
+**所在头文件：**[native_avscreen_capture_base.h](native__avscreen__capture__base_8h.md)
 
 
 ## 汇总

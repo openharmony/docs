@@ -104,33 +104,33 @@ DRM系统管理（MediaKeySystem）支持MediaKeySystem实例管理、设备DRM�
 
 11. 生成设备DRM证书请求。
 
-   DRM解决方案创建MediaKeySession会话时，如果没有设备DRM证书会触发DRM证书请求事件，此时，先获取设备上设备DRM证书状态，若设备上没有DRM证书或DRM证书状态异常（状态不是drm.CertificateStatus.CERT_STATUS_PROVISIONED），生成设备DRM证书请求。
+    DRM解决方案创建MediaKeySession会话时，如果没有设备DRM证书会触发DRM证书请求事件，此时，先获取设备上设备DRM证书状态，若设备上没有DRM证书或DRM证书状态异常（状态不是drm.CertificateStatus.CERT_STATUS_PROVISIONED），生成设备DRM证书请求。
 
-  ```ts
-    if(certificateStatus != drm.CertificateStatus.CERT_STATUS_PROVISIONED){
-      mediaKeySystem.generateKeySystemRequest().then(async (drmRequest: drm.ProvisionRequest) => {
-        console.info("generateKeySystemRequest success", drmRequest.data, drmRequest.defaultURL);
-      }).catch((err:BusinessError) =>{
-          console.info("generateKeySystemRequest err end", err.code);
-       });
-    } else {
-      console.info("The certificate already exists.");
-    }
-  ```
+    ```ts
+      if(certificateStatus != drm.CertificateStatus.CERT_STATUS_PROVISIONED){
+        mediaKeySystem.generateKeySystemRequest().then(async (drmRequest: drm.ProvisionRequest) => {
+          console.info("generateKeySystemRequest success", drmRequest.data, drmRequest.defaultURL);
+        }).catch((err:BusinessError) =>{
+            console.info("generateKeySystemRequest err end", err.code);
+         });
+      } else {
+        console.info("The certificate already exists.");
+      }
+    ```
 
 12. 处理设备DRM证书响应。
 
-   在将设备DRM证书请求发送到DRM服务获取设备DRM证书请求响应后，处理设备DRM证书响应。
+     在将设备DRM证书请求发送到DRM服务获取设备DRM证书请求响应后，处理设备DRM证书响应。
 
-  ```ts
-    // 将设备DRM证书请求返回的drmRequest.data通过网络请求发送给DRM证书服务获取设备DRM证书请求响应，设置设备DRM证书请求响应。
-    let provisionResponseByte = new Uint8Array([0x00, 0x00, 0x00, 0x00]);
-    mediaKeySystem.processKeySystemResponse(provisionResponseByte).then(() => {
-      console.info("processKeySystemResponse success");
-    }).catch((err:BusinessError) =>{
-      console.info("processKeySystemResponse err end", err.code);
-    });
-  ```
+     ```ts
+       // 将设备DRM证书请求返回的drmRequest.data通过网络请求发送给DRM证书服务获取设备DRM证书请求响应，设置设备DRM证书请求响应。
+       let provisionResponseByte = new Uint8Array([0x00, 0x00, 0x00, 0x00]);
+       mediaKeySystem.processKeySystemResponse(provisionResponseByte).then(() => {
+         console.info("processKeySystemResponse success");
+       }).catch((err:BusinessError) =>{
+         console.info("processKeySystemResponse err end", err.code);
+       });
+     ```
 
 13. 创建MediaKeySession会话。
 

@@ -85,10 +85,10 @@ Defines common attributes and events of counters.
 
 | Name           | Type                     | Mandatory| Description                                                        |
 | --------------- | ------------------------- | ---- | ------------------------------------------------------------ |
-| focusable       | boolean                   | No  | Whether the counter is focusable.<br>**NOTE**<br>This attribute takes effect for the number style counter.<br>Default value: **true**|
+| focusable       | boolean                   | No  | Whether the counter is focusable.<br>**NOTE**<br>This attribute takes effect for the number style counter.<br>Default value: **true**<br>**true**: The counter is focusable.<br>**false**: The counter is not focusable.|
 | step            | number                    | No  | Step of the counter.<br>Value range: an integer greater than or equal to 1.<br>Default value: **1**|
-| onHoverIncrease | (isHover: boolean) =>void | No  | Callback invoked when the mouse pointer is moved over or away from the Increase button of the counter.<br>**isHover**: whether the mouse pointer hovers over the component. The value **true** means that the mouse pointer enters the component, and the value **false** means that the mouse pointer leaves the component.|
-| onHoverDecrease | (isHover: boolean) =>void | No  | Callback invoked when the mouse pointer is moved over or away from the Decrease button of the counter.<br>**isHover**: whether the mouse pointer hovers over the component. The value **true** means that the mouse pointer enters the component, and the value **false** means that the mouse pointer leaves the component.|
+| onHoverIncrease | (isHover: boolean) =>void | No  | Callback invoked when the mouse pointer is moved over or away from the increase button of the counter.<br>**isHover**: whether the mouse pointer hovers over the component. The value **true** means that the mouse pointer enters the component, and the value **false** means that the mouse pointer leaves the component.|
+| onHoverDecrease | (isHover: boolean) =>void | No  | Callback invoked when the mouse pointer is moved over or away from the decrease button of the counter.<br>**isHover**: whether the mouse pointer hovers over the component. The value **true** means that the mouse pointer enters the component, and the value **false** means that the mouse pointer leaves the component.|
 
 ##  InlineStyleOptions
 
@@ -121,10 +121,10 @@ Inherits from [InlineStyleOptions](#inlinestyleoptions).
 | Name           | Type                                  | Mandatory| Description                                         |
 | --------------- | -------------------------------------- | ---- | --------------------------------------------- |
 | label           | [ResourceStr](ts-types.md#resourcestr) | No  | Label of the counter.                      |
-| onFocusIncrease | () =>void                              | No  | Callback invoked when the Increase button of the counter gains focus.|
-| onFocusDecrease | () =>void                              | No  | Callback invoked when the Decrease button of the counter gains focus.|
-| onBlurIncrease  | () =>void                              | No  | Callback invoked when the Increase button of the counter loses focus.|
-| onBlurDecrease  | () =>void                              | No  | Callback invoked when the Decrease button of the counter loses focus.|
+| onFocusIncrease | () =>void                              | No  | Callback invoked when the increase button of the counter gains focus.|
+| onFocusDecrease | () =>void                              | No  | Callback invoked when the decrease button of the counter gains focus.|
+| onBlurIncrease  | () =>void                              | No  | Callback invoked when the increase button of the counter loses focus.|
+| onBlurDecrease  | () =>void                              | No  | Callback invoked when the decrease button of the counter loses focus.|
 
 ## DateStyleOptions
 

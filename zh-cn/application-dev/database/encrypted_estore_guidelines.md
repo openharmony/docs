@@ -784,7 +784,7 @@ export class ECStoreManager {
 
 ```ts
 // EntryAbility.ets
-import { AbilityConstant, contextConstant, UIAbility, Want } from '@kit.AbilityKit';
+import { AbilityConstant, contextConstant, UIAbility, Want, application } from '@kit.AbilityKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { window } from '@kit.ArkUI';
 import { relationalStore } from '@kit.ArkData';
@@ -830,7 +830,7 @@ let cInfo: StoreInfo | null = null;
 let eInfo: StoreInfo | null = null;
 
 export default class EntryAbility extends UIAbility {
-  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
+  async onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): Promise<void> {
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onCreate');
     let cContext = this.context;
     cInfo = {
@@ -840,8 +840,8 @@ export default class EntryAbility extends UIAbility {
         securityLevel: relationalStore.SecurityLevel.S3,
       },
       storeId: "cstore.db"
-    }
-    let eContext = this.context.createModuleContext("entry");
+    };
+    let eContext = await application.createModuleContext(this.context, "entry");
     eContext.area = contextConstant.AreaMode.EL5;
     eInfo = {
       context: eContext,
@@ -850,7 +850,7 @@ export default class EntryAbility extends UIAbility {
         securityLevel: relationalStore.SecurityLevel.S3,
       },
       storeId: "estore.db",
-    }
+    };
     // 监听COMMON_EVENT_SCREEN_LOCK_FILE_ACCESS_STATE_CHANGED事件 code == 1解锁状态，code==0加锁状态
     console.info(`ECDB_Encry store area : estore:${eContext.area},cstore${cContext.area}`)
     try {

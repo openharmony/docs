@@ -143,7 +143,7 @@ backgroundBlurStyle(value: BlurStyle, options?: BackgroundBlurStyleOptions)
 | 参数名                | 类型                                                         | 必填 | 说明                                                         |
 | --------------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | value                 | [BlurStyle](#blurstyle9)                 | 是   | 背景模糊样式。模糊样式中封装了模糊半径、蒙版颜色、蒙版透明度、饱和度、亮度五个参数。 |
-| options<sup>10+</sup> | [BackgroundBlurStyleOptions](#backgroundblurstyleoptions10对象说明) | 否   | 背景模糊选项。                                               |
+| options<sup>10+</sup> | [BackgroundBlurStyleOptions](#backgroundblurstyleoptions10对象说明) | 否   | 背景模糊选项。 <br/>该参数在ArkTS卡片中，暂不支持使用。                                              |
 
 >  **说明：**
 >
@@ -228,7 +228,7 @@ backgroundImageResizable(value: ResizableOptions)
 
 ## BackgroundBlurStyleOptions<sup>10+</sup>对象说明
 
-继承自[BlurStyleOptions](ts-universal-attributes-foreground-blur-style.md)。
+继承自[BlurStyleOptions](ts-universal-attributes-foreground-blur-style.md#blurstyleoptions)。
 
 **原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
 

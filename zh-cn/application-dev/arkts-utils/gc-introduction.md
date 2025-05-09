@@ -1,17 +1,17 @@
 # GC垃圾回收
 
-GC（全称 Garbage Collection），即垃圾回收。在计算机领域，GC就是找到内存中的垃圾，释放和回收内存空间。当前主流编程语言实现的GC算法主要分为两大类：引用计数和对象追踪（即Tracing GC）。
+GC（全称 Garbage Collection），即垃圾回收。在计算机领域，GC是指识别并释放内存中的不再使用的对象，以回收内存空间。当前主流编程语言实现的GC算法主要分为两大类：引用计数和对象追踪（即Tracing GC）。
 
 ## GC算法简述
 
 ### GC的类型
 
 #### 引用计数
-当一个对象A被另一个对象B指向时，A引用计数+1；反之当该指向断开时，A引用计数-1。当A引用计数为0时，回收对象A。
 
-- 优点：引用计数算法设计简单，并且内存回收及时，在对象成为垃圾的第一时间就会被回收，所以没有单独的暂停业务代码(Stop The World，STW)阶段。
-- 缺点：在对对象操作的过程中额外插入了计数环节，增加了内存分配和内存赋值的开销，对程序性能必然会有影响。最致命的一点是存在循环引用问题。
+当对象B指向对象A时，A的引用计数加1；当该指向断开时，A的引用计数减1。如果A的引用计数为0，回收对象A。  
 
+- 优点：引用计数算法设计简单，内存回收及时，在对象成为垃圾时立即回收，因此无需引入单独的暂停业务代码（Stop The World，STW）阶段。
+- 缺点：对对象操作时插入计数环节，增加了内存分配和赋值的开销，影响程序性能。更严重的是存在循环引用问题。
 ```
 class Parent {
   constructor() {
@@ -34,18 +34,16 @@ function main() {
   child.parent = parent;
 }
 ```
-比如以上代码中，对象parent被另一个对象child持有，对象parent引用计数加1，同时child也被parent持有，对象child引用计数也加1，这就是循环引用。一直到main函数结束后，对象parent和child依然无法释放，导致内存泄漏。
-
+在上述代码中，对象parent被对象child持有，parent的引用计数加1。同时，child也被parent持有，child的引用计数也加1。这导致了循环引用，直到main函数结束，parent和child仍无法释放，从而引发内存泄漏。
 #### 对象追踪
 
 ![image](./figures/tracing-gc.png)
 
-根对象包括程序运行中的栈内对象，全局对象等当前时刻一定存活的对象，同时被根对象所引用的对象也是存活状态，由此可以通过遍历得到所有存活的对象。如图所示，从根对象开始遍历对象以及对象的域，所有可达的对象打上标记（蓝色），即为活对象，剩下的不可达对象（黄色）即为垃圾。
-
+根对象包括程序运行中的栈内对象和全局对象等当前时刻一定存活的对象。被根对象引用的对象也是存活状态。通过遍历可以找到所有存活的对象。如图所示，从根对象开始遍历对象及其域，所有可达的对象标记为蓝色，即为活对象；剩下的不可达对象标记为黄色，即为垃圾。
 - 优点：对象追踪算法可以解决循环引用的问题，且对内存的分配和赋值没有额外的开销。
 - 缺点：和引用计数算法相反，对象追踪算法较为复杂，且有短暂的STW阶段。此外，回收会有延迟，导致比较多的浮动垃圾。
 
-引用计数和对象追踪算法各有优劣，但考虑到引用计数存在循环引用的致命性能问题，ArkTS运行时选择基于对象追踪（即Tracing GC）算法来设计GC算法。
+引用计数和对象追踪算法各有优劣。由于引用计数存在循环引用的性能问题，ArkTS运行时选择基于对象追踪（即Tracing GC）算法设计GC。
 
 ### 对象追踪的三种类型
 
@@ -54,24 +52,23 @@ function main() {
 #### 标记-清扫回收
 
 ![image](./figures/mark-clearn.png)
-
-完成对象图遍历后，将不可达对象内容擦除，并放入一个空闲队列，用于下次对象的再分配。  
-该种回收方式不需要搬移对象，所以回收效率非常高。但由于回收的对象内存地址不一定连续，所以该回收方式最大的缺点是会导致内存空间碎片化，降低内存分配效率，极端情况下甚至会出现还有大量内存的情况下分配不出一个比较大的对象的情况。
+  
+完成对象图遍历后，擦除不可达对象内容，并将其放入空闲队列，以便下次对象分配。  
+该回收方式不搬移对象，因此效率高。但因回收对象内存地址不连续，会导致内存碎片化，降低分配效率。极端情况下，即使有大量空闲内存，也可能无法放入较大的对象。  
 
 #### 标记-复制回收
 
 ![image](./figures/mark-copy.png)
 
-在对象图的遍历过程中，将找到的可达对象直接复制到一个全新的内存空间中。遍历完成后，一次将旧的内存空间全部回收。
-显然，这种方式可以解决内存碎片的问题，且通过一次遍历便完成整个GC过程，效率较高。但同时在极端情况下，这种回收方式需要预留一半的内存空间，以确保所有活的对象能被拷贝，空间利用率较低。
+遍历对象图时，将可达对象复制到新内存空间。遍历完成后，一次回收旧内存空间。  
+这种方式可以解决内存碎片问题，并通过一次遍历完成整个GC过程，效率较高。但在极端情况下，需要预留一半的内存空间以确保所有活动对象可以被拷贝，导致空间利用率较低。  
 
 #### 标记-整理回收
 
 ![image](./figures/mark-shuffle.png)
 
-完成对象图遍历后，将可达对象（蓝色）往本区域（或指定区域）的头部空闲位置复制，然后将已经完成复制的对象回收整理到空闲队列中。
-这种回收方式既解决了“标记-清扫回收”引入的大量内存空间碎片的问题，又不需要像“标记-复制回收”那样浪费一半的内存空间，但是性能上开销比“标记-复制回收”多。
-
+完成对象图遍历后，将可达对象（蓝色）往本区域（或指定区域）的头部空闲位置复制，然后将已经完成复制的对象回收整理到空闲队列中。  
+这种回收方式既解决了“标记-清扫回收”导致的大量内存碎片问题，同时避免了“标记-复制回收”浪费一半内存空间的缺点，但性能开销比“标记-复制回收”高。  
 ### HPP GC
 
 HPP GC（High Performance Partial Garbage Collection），即高性能部分垃圾回收，其中“High Performance”主要体现在三方面，分代模型、混合算法和GC流程优化。在算法方面，HPP GC会根据不同对象区域、采取不同的回收方式。
@@ -82,18 +79,18 @@ ArkTS运行时采用传统的分代模型，将对象进行分类。考虑到大
 
 ![image](./figures/generational-model.png)
 
-ArkTS运行时将新分配的对象直接分配到年轻代（Young Space）的From空间。经过一次GC后依然存活的对象，会进入To空间，然后会交换from和to空间的类型。而经过再次GC后依然存活的对象，会被复制到老年代（Old Space）。
+ArkTS运行时将新分配的对象直接分配到年轻代（Young Space）的From空间。经过一次GC后依然存活的对象，会移动到To空间，然后会交换from和to空间的类型。而经过再次GC后依然存活的对象，会被复制到老年代（Old Space）。
 
 #### 混合算法
 
-HPP GC是一种“部分复制+部分整理+部分清扫”的混合算法，支持根据年轻代对象和老年代对象的不同特点，分别采取不同的回收方式。
+HPP GC是部分复制、部分整理和部分清扫的混合算法，根据年轻代和老年代对象特点采取不同的回收方式。  
 
 - 部分复制
-考虑到年轻代对象生命周期较短，回收较为频繁，且年轻代对象大小有限的特点，ArkTS运行时对年轻代对象采用“标记-复制回收”算法。
+考虑到年轻代对象生命周期短、回收频繁且大小有限，ArkTS运行时对年轻代对象采用“标记-复制回收”算法。
 - 部分整理+部分清扫
 根据老年代对象的特点，引入启发式Collection Set（简称CSet）选择算法。此选择算法的基本原理是：在标记阶段对每个区域的存活对象进行大小统计，然后在回收阶段优先选出存活对象少、回收代价小的区域进行对象整理回收，再对剩下的区域进行清扫回收。
 
-具体的回收策略如下：
+回收策略如下：
 
 - 根据设定的区域存活对象大小阈值，将满足条件的区域纳入初步的CSet队列，并根据存活率进行从低到高的排序（注：存活率=存活对象大小/区域大小）。
 
@@ -101,7 +98,7 @@ HPP GC是一种“部分复制+部分整理+部分清扫”的混合算法，支
 
 - 对未被选入CSet队列的区域进行清扫回收。
 
-启发式CSet选择算法同时兼顾了“标记-整理回收”和“标记-清扫回收”这两种算法的优点，既避免了内存碎片问题，也兼顾了性能。
+启发式CSet选择算法结合了“标记-整理回收”和“标记-清扫回收”算法的优点，避免了内存碎片问题，同时提升了性能。
 
 #### 流程优化
 
@@ -115,13 +112,13 @@ HPP GC流程中引入了大量的并发和并行优化，以减少对应用性�
 
 - SemiSpace：年轻代（Young Generation），存放新创建出来的对象，存活率低，主要使用copying算法进行内存回收。
 - OldSpace：老年代（Old Generation），存放年轻代多次回收仍存活的对象会被复制到该空间，根据场景混合多种算法进行内存回收。
-- HugeObjectSpace：大对象空间，使用单独的region存放一个大对象的空间。
+- HugeObjectSpace：大对象空间，使用单独的Region存放一个大对象的空间。
 - ReadOnlySpace：只读空间，存放运行期间的只读数据。
 - NonMovableSpace：不可移动空间，存放不可移动的对象。
 - SnapshotSpace：快照空间，转储堆快照时使用的空间。
 - MachineCodeSpace：机器码空间，存放程序机器码。
 
-注：每个空间会有一个或多个region进行分区域管理，region是空间向内存分配器申请的单位。
+注：每个空间由一个或多个Region进行分区域管理，Region是空间向内存分配器申请的单位。
 
 ### 相关参数
 
@@ -129,15 +126,14 @@ HPP GC流程中引入了大量的并发和并行优化，以减少对应用性�
 > 
 > 以下参数未提示可配置的均为不可配置项，由系统自行设定。
 
-根据系统分配heap总大小64MB-128MB/128MB-256MB/大于256MB的三个范围，以下参数系统会设置不同的大小。如果表格内范围仅有一个值，则表示该参数值不随heap总大小变化。手机设备heap总大小默认为大于256MB。
-开发者可以查看[hidebug接口文档](../reference/apis-performance-analysis-kit/js-apis-hidebug.md)，使用相关接口查询内存信息。
-
+根据系统分配堆空间总大小64MB-128MB/128MB-256MB/大于256MB的三个范围，以下参数系统会设置不同的大小。如果表格内范围仅有一个值，则表示该参数值不随堆空间总大小变化。手机设备堆空间总大小默认为大于256MB。  
+开发者可以查阅[hidebug接口文档](../reference/apis-performance-analysis-kit/js-apis-hidebug.md)，使用相关接口查询内存信息。
 #### 堆大小相关参数
 
 | 参数名 | 范围 | 作用 |
 | --- | --- | --- |
 | HeapSize | 448MB | 主线程默认堆空间总大小，小内存设备会依据实际内存池大小修正。 |
-| SemiSpaceSize | 2MB-4MB/2MB-8MB/2MB-16MB | semispace空间大小。 |
+| SemiSpaceSize | 2MB-4MB/2MB-8MB/2MB-16MB | Semispace空间大小。 |
 | NonmovableSpaceSize | 2MB/6MB/64MB | nonmovableSpace空间大小。 |
 | SnapshotSpaceSize | 512KB | 快照空间大小。 |
 | MachineCodeSpaceSize | 2MB | 机器码空间大小。 |
@@ -149,11 +145,10 @@ HPP GC流程中引入了大量的并发和并行优化，以减少对应用性�
 | HeapSize  | 768 MB | work类型线程堆空间大小。 |
 
 #### Semi Space
-heap中会生成两个Semi Space供copying使用。
-
+heap中生成两个Semi Space供copying使用。
 | 参数名 | 范围 | 作用 |
 | --- | --- | --- |
-| semiSpaceSize | 2MB-4MB/2MB-8MB/2MB-16MB | semispace空间大小，会根据堆总大小有不同的范围限制。 |
+| semiSpaceSize | 2MB-4MB/2MB-8MB/2MB-16MB | Semispace空间大小，会根据堆总大小有不同的范围限制。 |
 | semiSpaceTriggerConcurrentMark | 1M/1.5M/1.5M| 首次单独触发Semi Space的并发mark的界限值，超过该值则触发。 |
 | semiSpaceStepOvershootSize| 2MB | 允许过冲最大大小。 |
 
@@ -162,7 +157,7 @@ heap中会生成两个Semi Space供copying使用。
 
 | 参数名 | 范围 | 作用 |
 | --- | --- | --- |
-| oldSpaceOvershootSize | 4MB/8MB/8MB | oldSpace允许过冲最大大小。 |
+| oldSpaceOvershootSize | 4MB/8MB/8MB | OldSpace允许过冲最大大小。 |
 
 #### 其他空间
 
@@ -187,7 +182,7 @@ heap中会生成两个Semi Space供copying使用。
 | MIN_TASKPOOL_THREAD_NUM | 3 | 线程池最小线程数。 |
 | MAX_TASKPOOL_THREAD_NUM | 7 | 线程池最大线程数。 |
 
-注：该线程池主要用于执行GC流程中的并发任务，实际线程池初始化综合参考gcThreadNum以及线程上下限，gcThreadNum为负值时初始化线程池线程数 = CPU核心数/2。
+注：该线程池主要用于执行GC流程中的并发任务。线程池初始化时，会综合参考gcThreadNum和线程上下限。如果gcThreadNum为负值，线程池的线程数将初始化为CPU核心数的一半。
 
 #### 其他参数
 
@@ -226,7 +221,7 @@ heap中会生成两个Semi Space供copying使用。
 - **场景**：后台场景。
 - **日志关键词**：`[ CompressGC ]`
 
-此后的Smart GC或者IDLE GC都是在上述三种GC中做选择。
+此后的Smart GC或IDLE GC都会从上述三种GC中选择。
 
 ### 触发策略
 
@@ -246,8 +241,8 @@ heap中会生成两个Semi Space供copying使用。
 #### 切换后台触发GC
 
 - 函数方法：`ChangeGCParams`
-- 说明：切换后台主动触发一次Full GC。
-- 典型日志：`app is inBackground`，`app is not inBackground`。
+- 说明：切换后台后主动触发一次Full GC。
+- 典型日志：`app is inBackground` 和 `app is not inBackground`。
   GC 日志中可区分GCReason::SWITCH_BACKGROUND。
 
 ### 执行策略
@@ -261,28 +256,28 @@ heap中会生成两个Semi Space供copying使用。
 #### new space GC前后的阈值调整
 
 - 函数方法：`AdjustCapacity`
-- 说明： 在GC后调整SemiSpace触发水线，优化空间结构。
-- 典型日志：无直接日志，可以通过GC统计日志看出，GC前 young space 的阈值有动态调整。
+- 说明：GC后调整SemiSpace的触发水线，优化空间结构。
+- 典型日志：无直接日志，可以通过GC统计日志看出，GC前young space的阈值有动态调整。
 
 #### 第一次OldGC后阈值的调整
 
 - 函数方法：`AdjustOldSpaceLimit`
 - 说明：根据最小增长步长以及平均存活率调整OldSpace阈值限制。
-- 日志关键词：`AdjustOldSpaceLimit`
+- 日志关键词：`AdjustOldSpaceLimit`。
 
 #### 第二次及以后的OldGC对old Space/global space阈值调整，以及增长因子的调整
 
 - 函数方法：`RecomputeLimits`
-- 说明：根据当前GC统计的数据变化重新计算调整`newOldSpaceLimit`，`newGlobalSpaceLimit`，`globalSpaceNativeLimit`和增长因子。
-- 日志关键词：`RecomputeLimits`
+- 说明：根据当前GC统计的数据变化，重新计算并调整`newOldSpaceLimit`、`newGlobalSpaceLimit`、`globalSpaceNativeLimit`和增长因子。
+- 日志关键词：`RecomputeLimits`。
 
 #### PartialGC的Cset 选择策略
 
 - 函数方法：`OldSpace::SelectCSet()`
-- 说明：PartialGC执行时采用该策略选择存活对象数量少，回收代价小的Region优先进行GC。
+- 说明：PartialGC执行时采用该策略，优先选择存活对象数量少、回收代价小的Region进行GC。
 - 典型日志：
     - `Select CSet failure: number is too few`
-    - `Max evacuation size is 6_MB. The CSet region number`
+    - `Max evacuation size is 6_MB. The CSet Region number`
     - `Select CSet success: number is`
 
 ## SharedHeap
@@ -292,11 +287,11 @@ heap中会生成两个Semi Space供copying使用。
 ![image](./figures/gc-shared-heap.png)
 
 - SharedOldSpace：共享老年代空间（这里并不区分年轻代老年代），存放一般的共享对象。
-- SharedHugeObjectSpace：共享大对象空间，使用单独的region存放一个大对象的空间。
+- SharedHugeObjectSpace：共享大对象空间，使用单独的Region存放一个大对象的空间。
 - SharedReadOnlySpace：共享只读空间，存放运行期间的只读数据。
 - SharedNonMovableSpace：共享不可移动空间，存放不可移动的对象。
 
-注：SharedHeap主要用于线程间共享使用的对象，提高效率并节省内存的产物。共享堆并不单独属于某个线程，保存具有共享价值的对象，存活率会更高，去除了SemiSpace的类型。
+注：SharedHeap用于线程间共享对象，提高效率并节省内存。共享堆不单独属于任何线程，保存具有共享价值的对象，提高对象的存活率，去除了SemiSpace类型。
 
 ## 特性
 
@@ -327,7 +322,7 @@ heap中会生成两个Semi Space供copying使用。
 
 ### 开启全量日志
 
-默认情况下详细的GC日志仅在GC耗时超过40ms的情况下才会打印，如果需要开启所有GC执行的日志需要使用命令在设备中开启。
+默认情况下，详细的GC日志仅在GC耗时超过40毫秒时才会打印。若需开启所有GC执行的日志，需使用命令在设备中开启。
 
 **使用样例：**
 
@@ -340,10 +335,10 @@ hdc shell reboot
 
 ### 典型日志
 
-以下日志为一次GC完整执行后的统计信息，具体到GC的类型不同会有一些差异。开发者可以在导出的日志文件中搜索关键词`[gc]`查看GC相关的日志，也可以查看关键词`ArkCompiler`查看更为全面虚拟机相关的日志。
+以下日志统计了GC完整执行后的信息，不同GC类型可能有所差异。开发者可以在导出的日志文件中搜索关键词`[gc]`查看GC相关日志，或搜索关键词`ArkCompiler`查看更全面的虚拟机相关日志。
 
 ```
-// GC前对象实际占用大小（region实际占用大小）->GC后对象实际占用大小（region实际占用大小），总耗时（+concurrentMark耗时），GC触发原因。
+// GC前对象实际占用大小（Region实际占用大小）->GC后对象实际占用大小（Region实际占用大小），总耗时（+concurrentMark耗时），GC触发原因。
 C03F00/ArkCompiler: [gc]  [ CompressGC ] 26.1164 (35) -> 7.10049 (10.5) MB, 160.626(+0)ms, Switch to background
 // GC运行时的各种状态以及应用名称
 C03F00/ArkCompiler: [gc] IsInBackground: 1; SensitiveStatus: 0; OnStartupEvent: 0; BundleName: com.example.demo;
@@ -389,7 +384,7 @@ C03F00/ArkCompiler: Heap average alive rate: 0.635325
 - SensitiveStatus：是否为敏感场景，1：为敏感场景，0：非敏感场景。
 - OnStartupEvent：是否为冷启动场景，1：为冷启动场景，0：非冷启动场景。
 - used：当前已分配的对象实际占用的内存空间大小。
-- committed：当前实际分配给heap内存空间大小。因为各个空间是按region进行分配的，而region一般也不会被对象完全占满，因此committedSize大于等于usedSize，hugeSpace是会完全相等，因为其一个对象单独占一个region。
+- committed：当前实际分配给heap内存空间的大小。由于各空间按Region分配，而Region通常不会被对象完全占满，因此committedSize大于等于usedSize。hugeSpace会完全相等，因为每个对象单独占用一个Region。
 - Anno memory usage size：当前进程所有堆申请的内存大小，包括heap与sharedHeap。
 - Native memory usage size：当前进程所申请的Native内存大小。
 - NativeBindingSize：当前进程堆内对象绑定的Native内存大小。
@@ -408,7 +403,7 @@ C03F00/ArkCompiler: Heap average alive rate: 0.635325
 
 - 调用方式：`ArkTools.hintGC()`
 - 接口类型：ArkTS接口。
-- 作用：调用后由VM主动触发判断当前是否适合进行一次full GC。后台场景、内存预期存活率低于设定值，则会触发，判断为敏感状态则不会触发。
+- 作用：调用后，VM主动判断是否适合进行full GC。如果后台场景中内存预期存活率低于设定值，则触发full GC；若判断为敏感状态，则不触发。
 - 使用场景：开发者提示系统进行GC。
 - 典型日志：无直接日志，仅可区分外部触发（`GCReason::TRIGGER_BY_JS`）。
 

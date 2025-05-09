@@ -100,6 +100,10 @@ import { BusinessError } from '@kit.BasicServicesKit';
 import { common } from '@kit.AbilityKit';
 export class AVTranscoderDemo {
     private avTranscoder: media.AVTranscoder | undefined = undefined;
+    private context: Context | undefined;
+    constructor(context: Context) {
+        this.context = context;
+    }
     private avConfig: media.AVTranscoderConfig = {
         // audioBitrate: 100000, // 音频比特率。
         // audioCodec: media.CodecMimeType.AUDIO_AAC, // 音频编码格式。
@@ -127,7 +131,7 @@ export class AVTranscoderDemo {
     }
     // 开始转码对应的流程。
     async startTranscoderingProcess() {
-        if (canIUse("SystemCapability.Multimedia.Media.AVTranscoder")) {
+        if (canIUse("SystemCapability.Multimedia.Media.AVTranscoder") && this.context != undefined) {
             if (this.avTranscoder != undefined) {
                 await this.avTranscoder.release();
                 this.avTranscoder = undefined;
@@ -136,8 +140,7 @@ export class AVTranscoderDemo {
             this.avTranscoder = await media.createAVTranscoder();
             this.setAVTranscoderCallback();
             // 2.获取转码源文件fd和目标文件fd赋予avTranscoder；参考FilePicker文档。
-            let context = getContext(this) as common.UIAbilityContext;
-            let fileDescriptor = await context.resourceManager.getRawFd('H264_AAC.mp4');
+            let fileDescriptor = await this.context.resourceManager.getRawFd('H264_AAC.mp4');
             this.avTranscoder.fdSrc = fileDescriptor;
             this.avTranscoder.fdDst = 55;
             // 3.配置转码参数完成准备工作。
@@ -265,8 +268,8 @@ export class AVTranscoderDemo {
 
     ```ts
     // 向Worker线程发送消息
-    const context:common.Context = await getContext();
-    const sendableContext: sendableContextManager.SendableContext = sendableContextManager.convertFromContext(context);
+    this.context = this.getUIContext().getHostContext();
+    const sendableContext: sendableContextManager.SendableContext = sendableContextManager.convertFromContext(this.context);
     const sendableObject: SendableObject = new SendableObject(sendableContext, "some information");
     this.workerInstance.postMessageWithSharedSendable(sendableObject);
     ```
@@ -372,6 +375,7 @@ import { common, sendableContextManager } from '@kit.AbilityKit';
 @Component
 struct Index {
     private workerInstance?: worker.ThreadWorker;
+    private context: Context | undefined;
 
     build() {
         RelativeContainer() {
@@ -422,10 +426,12 @@ struct Index {
         }
 
         // 向Worker线程发送消息
-        const context:common.Context = await getContext();
-        const sendableContext: sendableContextManager.SendableContext = sendableContextManager.convertFromContext(context);
-        const sendableObject: SendableObject = new SendableObject(sendableContext, "some information");
-        this.workerInstance.postMessageWithSharedSendable(sendableObject);
+        this.context = this.getUIContext().getHostContext();
+        if (this.context != undefined) {
+            const sendableContext: sendableContextManager.SendableContext = sendableContextManager.convertFromContext(this.context);
+            const sendableObject: SendableObject = new SendableObject(sendableContext, "some information");
+            this.workerInstance.postMessageWithSharedSendable(sendableObject);
+        }
     }
 }
 ```

@@ -42,7 +42,7 @@ By decorating a variable with \@StorageProp(key), a one-way data synchronization
 | \@StorageProp Decorator| Description                                                        |
 | ----------------------- | ------------------------------------------------------------ |
 | Decorator parameters             | **key**: constant string, mandatory (the string must be quoted)                 |
-| Allowed variable types     | Object, class, string, number, Boolean, enum, and array of these types.<br>(Applicable to API version 12 or later) Map, Set, and Date types. For details about the scenarios of nested objects, see [Observed Changes and Behavior](#observed-changes-and-behavior).<br>The type must be specified. Whenever possible, use the same type as that of the corresponding attribute in AppStorage. Otherwise, implicit type conversion occurs, which may cause application behavior exceptions.<br>**any** is not supported. **undefined** and **null** are supported since API version 12.<br>(Applicable to API version 12 or later) Union type of the preceding types, for example, **string \| number**, **string \| undefined** or **ClassA \| null**. For details, see [Union Type](#union-type).<br>**NOTE**<br>When **undefined** or **null** is used, you are advised to explicitly specify the type to pass the TypeScript type check. For example, **@StorageProp("AA") a: number \| null = null** is recommended; **@StorageProp("AA") a: number = null** is not recommended. |
+| Allowed variable types     | Object, class, string, number, Boolean, enum, and array of these types.<br>(Applicable to API version 12 or later) Map, Set, and Date types. For details about the scenarios of nested objects, see [Observed Changes and Behavior](#observed-changes-and-behavior).<br>The type must be specified. Whenever possible, use the same type as that of the corresponding attribute in AppStorage. Otherwise, implicit type conversion occurs, which may cause application behavior exceptions.<br>**any** is not supported. **undefined** and **null** are supported since API version 12.<br>(Applicable to API version 12 or later) Union type of the preceding types, for example, **string \| number**, **string \| undefined**, or **ClassA \| null**. For details, see [Union Type](#union-type).<br>**NOTE**<br>When **undefined** or **null** is used, you are advised to explicitly specify the type to pass the TypeScript type check. For example, **@StorageProp("AA") a: number \| null = null** is recommended; **@StorageProp("AA") a: number = null** is not recommended.|
 | Synchronization type               | One-way: from the attribute in AppStorage to the component variable.<br>The component variable can be changed locally, but an update from AppStorage will overwrite local changes.|
 | Initial value for the decorated variable     | Mandatory. If the attribute does not exist in AppStorage, it will be created and initialized with this value.|
 
@@ -51,7 +51,7 @@ By decorating a variable with \@StorageProp(key), a one-way data synchronization
 
 | Transfer/Access     | Description                                      |
 | ---------- | ---------------------------------------- |
-| Initialization and update from the parent component| Forbidden.|
+| Initialization and update from the parent component| Forbidden. Only the attribute corresponding to the key in AppStorage can be initialized. If there is no corresponding key, the local default value is used for initialization.|
 | Child component initialization    | Supported. The \@StorageProp decorated variable can be used to initialize an \@State, \@Link, \@Prop, or \@Provide decorated variable in the child component.|
 | Access from outside the component | Not supported.                                      |
 
@@ -109,7 +109,7 @@ By decorating a variable with \@StorageProp(key), a one-way data synchronization
 | \@StorageLink Decorator| Description                                      |
 | ------------------ | ---------------------------------------- |
 | Decorator parameters             | **key**: constant string, mandatory (the string must be quoted)                 |
-| Allowed variable types         | Object, class, string, number, Boolean, enum, and array of these types.<br>(Applicable to API version 12 or later) Map, Set, and Date types. For details about the scenarios of nested objects, see [Observed Changes and Behavior](#observed-changes-and-behavior).<br>The type must be specified. Whenever possible, use the same type as that of the corresponding attribute in AppStorage. Otherwise, implicit type conversion occurs, which may cause application behavior exceptions.<br>**any** is not supported. **undefined** and **null** are supported since API version 12.<br>(Applicable to API version 12 or later) Union type of the preceding types, for example, **string \| number**, **string \| undefined** or **ClassA \| null**. For details, see [Union Type](#union-type).<br>**NOTE**<br>When **undefined** or **null** is used, you are advised to explicitly specify the type to pass the TypeScript type check. For example, **@StorageLink("AA") a: number \| null = null** is recommended; **@StorageLink("AA") a: number = null** is not recommended. |
+| Allowed variable types         | Object, class, string, number, Boolean, enum, and array of these types.<br>(Applicable to API version 12 or later) Map, Set, and Date types. For details about the scenarios of nested objects, see [Observed Changes and Behavior](#observed-changes-and-behavior-1).<br>The type must be specified. Whenever possible, use the same type as that of the corresponding attribute in AppStorage. Otherwise, implicit type conversion occurs, which may cause application behavior exceptions.<br>**any** is not supported. **undefined** and **null** are supported since API version 12.<br>(Applicable to API version 12 or later) Union type of the preceding types, for example, **string \| number**, **string \| undefined**, or **ClassA \| null**. For details, see [Union Type](#union-type).<br>**NOTE**<br>When **undefined** or **null** is used, you are advised to explicitly specify the type to pass the TypeScript type check. For example, **@StorageLink("AA") a: number \| null = null** is supported, but **@StorageLink("AA") a: number = null** is not.|
 | Synchronization type              | Two-way: from the attribute in AppStorage to the custom component variable and vice versa|
 | Initial value for the decorated variable         | Mandatory. If the attribute does not exist in AppStorage, it will be created and initialized with this value.|
 
@@ -161,17 +161,17 @@ By decorating a variable with \@StorageProp(key), a one-way data synchronization
 
 1. The parameter of \@StorageProp and \@StorageLink must be of the string type. Otherwise, an error is reported during compilation.
 
-```ts
-AppStorage.setOrCreate('PropA', 47);
+    ```ts
+    AppStorage.setOrCreate('PropA', 47);
 
-// Incorrect format. An error is reported during compilation.
-@StorageProp() storageProp: number = 1;
-@StorageLink() storageLink: number = 2;
+    // Incorrect format. An error is reported during compilation.
+    @StorageProp() storageProp: number = 1;
+    @StorageLink() storageLink: number = 2;
 
-// Correct format.
-@StorageProp('PropA') storageProp: number = 1;
-@StorageLink('PropA') storageLink: number = 2;
-```
+    // Correct format.
+    @StorageProp('PropA') storageProp: number = 1;
+    @StorageLink('PropA') storageLink: number = 2;
+    ```
 
 2. \@StorageProp and \@StorageLink cannot decorate variables of the function type. Otherwise, the framework throws a runtime error.
 

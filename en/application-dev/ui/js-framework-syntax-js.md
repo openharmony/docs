@@ -127,7 +127,7 @@ The ES6 syntax is supported.
 - Event methods
   | Name | Parameter | Description |
   | -------- | -------- | -------- |
-  | $watch | data: string, callback: string \| Function | Listens for attribute changes. If the value of the data attribute changes, the bound event is triggered. For details, see Monitoring Data Changes by \$watch.<br/>Usage:<br/>this.$watch('key', callback): triggers the callback event by listening for changes in the value of the **key** property. |
+  | $watch | data: string, callback: string \| Function | Listens for attribute changes. If the value of the data attribute changes, the bound event is triggered. For details, see [Monitoring Data Changes by \$watch](../reference/apis-arkui/arkui-js/js-components-custom-props.md#monitoring-data-changes-by-watch).<br/>Usage:<br/>this.$watch('key', callback): triggers the callback event by listening for changes in the value of the **key** property. |
 
 - Page methods
   | Name | Parameter | Description |
