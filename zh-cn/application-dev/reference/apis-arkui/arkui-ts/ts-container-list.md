@@ -657,7 +657,7 @@ onScrollFrameBegin(event: (offset: number, state: ScrollState) => { offsetRemain
 
 onScrollStart(event: () => void)
 
-列表滑动开始时触发。手指拖动列表或列表的滚动条触发的滑动开始时，会触发该事件。使用[Scroller](ts-container-scroll.md#scroller)滑动控制器触发的带动画的滑动，动画开始时会触发该事件
+列表滑动开始时触发。手指拖动列表或列表的滚动条触发的滑动开始时，会触发该事件。使用[Scroller](ts-container-scroll.md#scroller)滑动控制器触发的带动画的滑动，动画开始时会触发该事件。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
