@@ -288,6 +288,8 @@ void OH_Usb_FreeConfigDescriptor (struct UsbDdkConfigDescriptor *const config)
 
 **需要权限**：ohos.permission.ACCESS_DDK_USB
 
+**起始版本：** 10
+
 **参数:**
 
 | 名称 | 描述 |
