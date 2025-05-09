@@ -782,7 +782,7 @@ static JSVM_PropertyDescriptor descriptor[] = {
 };
 
 // 样例测试js
-const char *srcCallNative = R"JS(RunDemo("gen-snapshot); RunDemo("use-snapshot"))JS";
+const char *srcCallNative = R"JS(RunDemo("gen-snapshot"); RunDemo("use-snapshot"))JS";
 ```
 
 预期输出结果
