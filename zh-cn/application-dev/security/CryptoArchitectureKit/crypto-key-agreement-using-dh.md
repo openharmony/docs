@@ -1,4 +1,4 @@
-# 使用DH进行密钥协商
+# 使用DH进行密钥协商(ArkTS)
 
 对应的算法规格请查看[密钥协商算法规格：DH](crypto-key-agreement-overview.md#dh)。
 
