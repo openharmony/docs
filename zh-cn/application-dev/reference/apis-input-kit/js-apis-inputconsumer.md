@@ -1,6 +1,6 @@
-# @ohos.multimodalInput.inputConsumer (全局快捷键)
+# @ohos.multimodalInput.inputConsumer (组合按键)
 
-全局快捷键订阅模块，用于处理全局快捷键的订阅。
+组合按键订阅模块，用于处理全局快捷键的订阅。
 
 > **说明：**
 >
@@ -22,8 +22,8 @@ import { inputConsumer, KeyEvent } from '@kit.InputKit';
 
 | 名称        | 类型   | 可读   | 可写   | 说明      |
 | --------- | ------ | ------- | ------- | ------- |
-| preKeys   | Array&lt;number&gt; | 是      | 否      | 修饰键（包括 Ctrl、Shift 和 Alt）集合，数量范围[1, 2]，无顺序要求。<br>例如，Ctrl+Shift+Esc中，Ctrl+Shift称为修饰键。<br>默认值为 []（空数组），表示不需要辅助键。 |
-| finalKey  | number  | 是      | 否      | 被修饰键，除修饰键和 Meta 以外的按键，详细按键介绍请参见[按键全集](js-apis-keycode.md)。<br>例如，Ctrl+Shift+Esc中，Esc称为被修饰键。没有默认值。 |
+| preKeys   | Array&lt;number&gt; | 是      | 否      | 修饰键（包括 Ctrl、Shift 和 Alt）集合，数量范围[1, 2]，无顺序要求。<br>例如，Ctrl+Shift+Esc中，Ctrl+Shift称为修饰键。<br>默认值为 []（空数组），表示无修饰键。 |
+| finalKey  | number  | 是      | 否      | 被修饰键，除修饰键和 Meta 以外的按键，详细按键介绍请参见[按键全集](js-apis-keycode.md)。<br>例如，Ctrl+Shift+Esc中，Esc称为被修饰键。 |
 | isRepeat  | boolean  | 是      | 否      | 是否上报短时间内重复的按键事件。true表示上报，false表示不上报，默认值为true。 |
 
 ## KeyPressedConfig<sup>16+</sup>
@@ -34,7 +34,7 @@ import { inputConsumer, KeyEvent } from '@kit.InputKit';
 
 | 名称        | 类型   | 可读   | 可写   | 说明      |
 | --------- | ------ | ------- | ------- | ------- |
-| key       | number  | 是      | 否      | 按键键值。<br>当前仅支持[KEYCODE_VOLUME_UP](js-apis-keycode.md#keycode)键和[KEYCODE_VOLUME_DOWN](js-apis-keycode.md#keycode)键，无默认取值。 |
+| key       | number  | 是      | 否      | 按键键值。<br>当前仅支持[KEYCODE_VOLUME_UP](js-apis-keycode.md#keycode)键和[KEYCODE_VOLUME_DOWN](js-apis-keycode.md#keycode)键。 |
 | action    | number  | 是      | 否      | 按键事件类型。当前仅支持取值为1，表示按键按下。 |
 | isRepeat  | boolean  | 是      | 否      | 是否上报短时间内重复的按键事件。true表示上报，false表示不上报，默认值为true。 |
 
@@ -98,7 +98,7 @@ on(type: 'hotkeyChange', hotkeyOptions: HotkeyOptions, callback: Callback&lt;Hot
 | 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
 | 801 | Capability not supported. |
 | 4200002  | The hotkey has been used by the system. |
-| 4200003  | The hotkey has been subscribed to by another. <br>在cmd命令窗口执行(hidumper -s 3101 -a -s)查询已经被注册的快捷键，注册未被三方占用的快捷键。|
+| 4200003  | The hotkey has been subscribed to by another. |
 
 **示例：**
 
@@ -134,7 +134,7 @@ off(type: 'hotkeyChange', hotkeyOptions: HotkeyOptions, callback?: Callback&lt;H
 | ---------- | -------------------------- | ---- | ---------- |
 | type       | string                     | 是    | 事件类型，固定取值为'hotkeyChange'。        |
 | hotkeyOptions | [HotkeyOptions](#hotkeyoptions14) | 是    | 快捷键选项。             |
-| callback   | Callback&lt;HotkeyOptions&gt; | 否    | 用于指定要取消的回调函数。如果未指定，则将取消当前应用中所有已订阅的全局快捷键回调。 |
+| callback   | Callback&lt;HotkeyOptions&gt; | 否    | 需要取消订阅的回调函数。若缺省，则取消当前已订阅的所有回调函数。 |
 
 **错误码**：
 
@@ -236,7 +236,7 @@ off(type: 'keyPressed', callback?: Callback&lt;KeyEvent&gt;): void
 | 参数名         | 类型                         | 必填   | 说明                              |
 | ---------- | -------------------------- | ---- | ---------- |
 | type       | string                     | 是    | 事件类型，固定取值为'keyPressed'。        |
-| callback   | Callback&lt;[KeyEvent](./js-apis-keyevent.md#keyevent)&gt; | 否    | 用于指定要取消的回调函数。如果未指定，则将取消当前应用中所有已订阅的全局快捷键回调。 |
+| callback   | Callback&lt;[KeyEvent](./js-apis-keyevent.md#keyevent)&gt; | 否    | 需要取消订阅的回调函数。若缺省，则取消当前已订阅的所有回调函数。 |
 
 **错误码**：
 
