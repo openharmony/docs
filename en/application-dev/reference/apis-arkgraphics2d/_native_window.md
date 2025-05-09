@@ -3,7 +3,7 @@
 
 ## Overview
 
-The **NativeWindow** module provides the **NativeWindow** capability for connection to the EGL.
+The NativeWindow module provides the image buffer rotation capability, compatible with EGL. As the producer of the image buffer, your application produces the buffer and transfers the buffer through NativeWindow for the consumer to read.
 
 **System capability**: SystemCapability.Graphic.Graphic2D.NativeWindow
 
@@ -27,7 +27,7 @@ The **NativeWindow** module provides the **NativeWindow** capability for connect
 | struct  [Region](_region.md) | Describes the rectangle (dirty region) where the content is to be updated in the local **OHNativeWindow**.| 
 | struct  [OHHDRMetaData](_o_h_h_d_r_meta_data.md) | Describes the HDR metadata.<br>**Deprecated**: This struct is deprecated since API version 10. No substitute is provided.| 
 | struct  [OHExtDataHandle](_o_h_ext_data_handle.md) | Describes the extended data handle.<br>**Deprecated**: This struct is deprecated since API version 10. No substitute is provided.| 
-
+| struct  [BufferHandle](_buffer_handle.md) | Describes the buffer handle, which is used to transfer and obtain buffer information. The handle contains the file descriptor, size, format, usage, virtual address, shared memory key, physical address, and custom data of the buffer. |
 
 ### Types
 
@@ -50,7 +50,7 @@ The **NativeWindow** module provides the **NativeWindow** capability for connect
 | [OHScalingMode](#ohscalingmode) { OH_SCALING_MODE_FREEZE = 0, OH_SCALING_MODE_SCALE_TO_WINDOW, OH_SCALING_MODE_SCALE_CROP, OH_SCALING_MODE_NO_SCALE_CROP } | Enumerates the scaling modes.<br>**Deprecated**: This enum is deprecated since API version 10. No substitute is provided.| 
 | [OHScalingModeV2](#ohscalingmodev2-1) {<br>OH_SCALING_MODE_FREEZE_V2 = 0, OH_SCALING_MODE_SCALE_TO_WINDOW_V2, OH_SCALING_MODE_SCALE_CROP_V2, OH_SCALING_MODE_NO_SCALE_CROP_V2,<br>OH_SCALING_MODE_SCALE_FIT_V2<br>} | Enumerates the rendering scaling modes. | 
 | [OHHDRMetadataKey](#ohhdrmetadatakey) {<br>OH_METAKEY_RED_PRIMARY_X = 0, OH_METAKEY_RED_PRIMARY_Y = 1, OH_METAKEY_GREEN_PRIMARY_X = 2, OH_METAKEY_GREEN_PRIMARY_Y = 3,<br>OH_METAKEY_BLUE_PRIMARY_X = 4, OH_METAKEY_BLUE_PRIMARY_Y = 5, OH_METAKEY_WHITE_PRIMARY_X = 6, OH_METAKEY_WHITE_PRIMARY_Y = 7,<br>OH_METAKEY_MAX_LUMINANCE = 8, OH_METAKEY_MIN_LUMINANCE = 9, OH_METAKEY_MAX_CONTENT_LIGHT_LEVEL = 10, OH_METAKEY_MAX_FRAME_AVERAGE_LIGHT_LEVEL = 11,<br>OH_METAKEY_HDR10_PLUS = 12, OH_METAKEY_HDR_VIVID = 13<br>} | Enumerates the HDR metadata keys.<br>**Deprecated**: This enum is deprecated since API version 10. No substitute is provided.| 
-| [OHNativeErrorCode](#ohnativeerrorcode-1) {<br>NATIVE_ERROR_OK = 0, NATIVE_ERROR_INVALID_ARGUMENTS = 40001000, NATIVE_ERROR_NO_PERMISSION = 40301000, NATIVE_ERROR_NO_BUFFER = 40601000,<br>NATIVE_ERROR_NO_CONSUMER = 41202000, NATIVE_ERROR_NOT_INIT = 41203000, NATIVE_ERROR_CONSUMER_CONNECTED = 41206000, NATIVE_ERROR_BUFFER_STATE_INVALID = 41207000,<br>NATIVE_ERROR_BUFFER_IN_CACHE = 41208000, NATIVE_ERROR_BUFFER_QUEUE_FULL = 41209000, NATIVE_ERROR_BUFFER_NOT_IN_CACHE = 41210000,NATIVE_ERROR_CONSUMER_DISCONNECTED = 41211000,NATIVE_ERROR_CONSUMER_NO_LISTENER_REGISTERED = 41212000, NATIVE_ERROR_UNSUPPORTED = 50102000,<br>NATIVE_ERROR_UNKNOWN = 50002000, NATIVE_ERROR_HDI_ERROR = 50007000,NATIVE_ERROR_BINDER_ERROR = 50401000,NATIVE_ERROR_EGL_STATE_UNKNOWN = 60001000, NATIVE_ERROR_EGL_API_FAILED = 60002000<br>} | Enumerates the error codes. | 
+| [OHNativeErrorCode](#ohnativeerrorcode-1) {<br/>NATIVE_ERROR_OK = 0, NATIVE_ERROR_INVALID_ARGUMENTS = 40001000, NATIVE_ERROR_NO_PERMISSION = 40301000, NATIVE_ERROR_NO_BUFFER = 40601000,<br/>NATIVE_ERROR_NO_CONSUMER = 41202000, NATIVE_ERROR_NOT_INIT = 41203000, NATIVE_ERROR_CONSUMER_CONNECTED = 41206000, NATIVE_ERROR_BUFFER_STATE_INVALID = 41207000,<br/>NATIVE_ERROR_BUFFER_IN_CACHE = 41208000, NATIVE_ERROR_BUFFER_QUEUE_FULL = 41209000, NATIVE_ERROR_BUFFER_NOT_IN_CACHE = 41210000,NATIVE_ERROR_CONSUMER_DISCONNECTED = 41211000,NATIVE_ERROR_CONSUMER_NO_LISTENER_REGISTERED = 41212000, NATIVE_ERROR_UNSUPPORTED = 50102000,<br/>NATIVE_ERROR_UNKNOWN = 50002000, NATIVE_ERROR_HDI_ERROR = 50007000,NATIVE_ERROR_BINDER_ERROR = 50401000,NATIVE_ERROR_EGL_STATE_UNKNOWN = 60001000, NATIVE_ERROR_EGL_API_FAILED = 60002000<br/>} | Enumerates the error codes.  | 
 | [OHSurfaceSource](#ohsurfacesource-1) {<br>OH_SURFACE_SOURCE_DEFAULT = 0, OH_SURFACE_SOURCE_UI, OH_SURFACE_SOURCE_GAME, OH_SURFACE_SOURCE_CAMERA,OH_SURFACE_SOURCE_VIDEO<br>} | Enumerates the sources of content displayed in the local window.| 
 
 ### Functions
@@ -67,7 +67,7 @@ The **NativeWindow** module provides the **NativeWindow** capability for connect
 | int32_t [OH_NativeWindow_GetLastFlushedBuffer](#oh_nativewindow_getlastflushedbuffer) ([OHNativeWindow](#ohnativewindow) \*window, [OHNativeWindowBuffer](#ohnativewindowbuffer) \*\*buffer, int \*fenceFd, float matrix[16]) | Obtains the **OHNativeWindowBuffer** that was flushed to the buffer queue last time through an **OHNativeWindow** instance.| 
 | int32_t [OH_NativeWindow_NativeWindowAbortBuffer](#oh_nativewindow_nativewindowabortbuffer) ([OHNativeWindow](#ohnativewindow) \*window, [OHNativeWindowBuffer](#ohnativewindowbuffer) \*buffer) | Returns the **OHNativeWindowBuffer** to the buffer queue through an **OHNativeWindow** instance, without filling in any content. The **OHNativeWindowBuffer** can be used for a new request.| 
 | int32_t [OH_NativeWindow_NativeWindowHandleOpt](#oh_nativewindow_nativewindowhandleopt) ([OHNativeWindow](#ohnativewindow) \*window, int code,...) | Sets or obtains the attributes of an **OHNativeWindow** instance, including the width, height, and content format.| 
-| BufferHandle \* [OH_NativeWindow_GetBufferHandleFromNative](#oh_nativewindow_getbufferhandlefromnative) ([OHNativeWindowBuffer](#ohnativewindowbuffer) \*buffer) | Obtains the pointer to a **BufferHandle** of an **OHNativeWindowBuffer** instance.| 
+| [BufferHandle](_buffer_handle.md) \* [OH_NativeWindow_GetBufferHandleFromNative](#oh_nativewindow_getbufferhandlefromnative) ([OHNativeWindowBuffer](#ohnativewindowbuffer) \*buffer) | Obtains the pointer to a **BufferHandle** of an **OHNativeWindowBuffer** instance.<br>This function is not thread-safe.| 
 | int32_t [OH_NativeWindow_NativeObjectReference](#oh_nativewindow_nativeobjectreference) (void \*obj) | Adds the reference count of a native object.| 
 | int32_t [OH_NativeWindow_NativeObjectUnreference](#oh_nativewindow_nativeobjectunreference) (void \*obj) | Decreases the reference count of a native object and, when the reference count reaches 0, destroys this object.| 
 | int32_t [OH_NativeWindow_GetNativeObjectMagic](#oh_nativewindow_getnativeobjectmagic) (void \*obj) | Obtains the magic ID of a native object.| 
@@ -267,10 +267,10 @@ Enumerates the operation codes in the **OH_NativeWindow_NativeWindowHandleOpt** 
 | SET_FORMAT | Setting the format for the local window buffer.<br>Variable argument in the function: [Input] int32_t format.<br>For details about the available options, see [OH_NativeBuffer_Format](_o_h___native_buffer.md#oh_nativebuffer_format-1).| 
 | GET_USAGE | Obtaining the usage mode of the local window buffer.<br>Variable argument in the function: [Output] uint64_t \*usage.<br>For details about the available options, see [OH_NativeBuffer_Usage](_o_h___native_buffer.md#oh_nativebuffer_usage-1).| 
 | SET_USAGE | Setting the usage mode for the local window buffer.<br>Variable argument in the function: [Input] uint64_t usage.<br>For details about the available options, see [OH_NativeBuffer_Usage](_o_h___native_buffer.md#oh_nativebuffer_usage-1).| 
-| SET_STRIDE | Setting the stride for the local window buffer, in bytes.<br>Variable argument in the function: [Input] int32_t stride.| 
-| GET_STRIDE | Obtaining the stride of the local window buffer, in bytes.<br>Variable argument in the function: [Output] int32_t \*stride.| 
+| SET_STRIDE<sup>(deprecated)</sup>  | Setting the stride for the local window buffer.<br>Variable argument in the function: [Input] int32_t stride.<br>**Deprecated**: This API is deprecated since API version 16.| 
+| GET_STRIDE<sup>(deprecated)</sup>  | Obtaining the stride of the local window buffer.<br>Variable argument in the function: [Output] int32_t *stride.<br>**Deprecated**: This API is deprecated since API version 16.<br>**Substitute**: Use [OH_NativeWindow_GetBufferHandleFromNative](#oh_nativewindow_getbufferhandlefromnative) to obtain a [BufferHandle](_buffer_handle.md) instance, and obtain the stride from this instance.| 
 | SET_SWAP_INTERVAL | Setting the swap interval for the local window buffer.<br>Variable argument in the function: [Input] int32_t interval.| 
-| GET_SWAP_INTERVAL | Obtaining the swap interval of the local window buffer.<br>Variable argument in the function: [Output] int32_t \*interval.| 
+| GET_SWAP_INTERVAL | Obtaining the swap interval of the local window buffer.<br>Variable argument in the function: [Output] int32_t *interval.| 
 | SET_TIMEOUT | Setting the timeout duration for requesting the local window buffer, in ms.<br>Default value: 3000 ms.<br>Variable argument in the function: [Input] int32_t timeout.| 
 | GET_TIMEOUT | Obtaining the timeout duration for requesting the local window buffer, in ms.<br>Default value: 3000 ms.<br>Variable argument in the function: [Output] int32_t \*timeout.| 
 | SET_COLOR_GAMUT | Setting the color gamut for the local window buffer.<br>Variable argument in the function: [Input] int32_t colorGamut.<br>For details about the available options, see [OH_NativeBuffer_ColorGamut](_o_h___native_buffer.md#oh_nativebuffer_colorgamut-1).| 
@@ -388,7 +388,7 @@ This function is not thread-safe.
 
 **Returns**
 
-Returns **0** if the operation is successful; returns an error code defined in [OHNativeErrorCode](_o_h___native_buffer.md#ohnativeerrorcode) otherwise.
+Returns **0** if the operation is successful; returns an error code defined in [OHNativeErrorCode](_o_h___native_buffer.md#ohnativeerrorcode-1) otherwise.
 
 
 ### OH_NativeWindow_SetMetadataValue()
@@ -418,7 +418,7 @@ This function is not thread-safe.
 
 **Returns**
 
-Returns **0** if the operation is successful; returns an error code defined in [OHNativeErrorCode](_o_h___native_buffer.md#ohnativeerrorcode) otherwise.
+Returns **0** if the operation is successful; returns an error code defined in [OHNativeErrorCode](_o_h___native_buffer.md#ohnativeerrorcode-1) otherwise.
 
 ### OH_NativeWindow_GetColorSpace()
 
@@ -445,7 +445,7 @@ This function is not thread-safe.
 
 **Returns**
 
-Returns **0** if the operation is successful; returns an error code defined in [OHNativeErrorCode](_o_h___native_buffer.md#ohnativeerrorcode) otherwise.
+Returns **0** if the operation is successful; returns an error code defined in [OHNativeErrorCode](_o_h___native_buffer.md#ohnativeerrorcode-1) otherwise.
 
 
 ### OH_NativeWindow_GetMetadataValue()
@@ -475,7 +475,7 @@ This function is not thread-safe.
 
 **Returns**
 
-Returns **0** if the operation is successful; returns an error code defined in [OHNativeErrorCode](_o_h___native_buffer.md#ohnativeerrorcode) otherwise.
+Returns **0** if the operation is successful; returns an error code defined in [OHNativeErrorCode](_o_h___native_buffer.md#ohnativeerrorcode-1) otherwise.
 
 
 ### OH_NativeWindow_WriteToParcel()
@@ -780,7 +780,7 @@ This function is not thread-safe.
 
 **Returns**
 
-Returns the pointer to the **BufferHandle** instance obtained.
+Returns the pointer to the [BufferHandle](_buffer_handle.md) instance obtained.
 
 
 ### OH_NativeWindow_GetLastFlushedBuffer()
@@ -1035,7 +1035,7 @@ This function is not thread-safe.
 | -------- | -------- |
 | window | Pointer to an **OHNativeWindow** instance.| 
 | buffer | Pointer to an **OHNativeWindowBuffer** instance.| 
-| fenceFd | File descriptor handle, which is used for timing synchronization.| 
+| fenceFd |File descriptor handle, which is used for timing synchronization. | 
 | region | Dirty region where content is updated.| 
 
 **Returns**
@@ -1099,8 +1099,8 @@ This function is not thread-safe.
 | Name| Description| 
 | -------- | -------- |
 | window | Pointer to an **OHNativeWindow** instance.| 
-| buffer | Double pointer to an **OHNativeWindowBuffer** instance.| 
-| fenceFd | Pointer to a file descriptor handle.| 
+| buffer | Double pointer to an **OHNativeWindowBuffer** instance. | 
+| fenceFd | Pointer to a file descriptor. | 
 
 **Returns**
 
@@ -1204,7 +1204,9 @@ Returns **0** if the operation is successful; returns an error code defined in [
 ```
 int32_t OH_NativeWindow_NativeWindowSetScalingModeV2 (OHNativeWindow* window, OHScalingModeV2 scalingMode )
 ```
+
 **Description**
+
 Sets a rendering scaling mode for an **OHNativeWindow** instance.
 
 This function is not thread-safe.
