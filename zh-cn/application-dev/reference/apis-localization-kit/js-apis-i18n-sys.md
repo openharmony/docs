@@ -171,7 +171,7 @@ static setSystemLocale(locale: string): void
 
 static set24HourClock(option: boolean): void
 
-设置系统时间为24小时。
+设置系统时制是否为24小时制。
 
 **系统接口**：此接口为系统接口。
 
@@ -183,7 +183,7 @@ static set24HourClock(option: boolean): void
 
 | 参数名    | 类型      | 必填   | 说明                                       |
 | ------ | ------- | ---- | ---------------------------------------- |
-| option | boolean | 是    | true表示开启系统24小时制开关，false表示关闭系统24小时开关。 |
+| option | boolean | 是    | true表示设置系统时制为24小时制，false表示设置系统时制为12小时制。 |
 
 **错误码：**
 
@@ -199,7 +199,7 @@ static set24HourClock(option: boolean): void
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
 
-  // 将系统时间设置为24小时制
+  // 将系统时制设置为24小时制
   try {
     i18n.System.set24HourClock(true);
   } catch(error) {
@@ -339,7 +339,7 @@ static setUsingLocalDigit(flag: boolean): void
 
 static setTemperatureType(type: TemperatureType): void
 
-设置用户偏好的温度单位。
+设置系统的温度单位。
 
 **系统接口**：此接口为系统接口。
 
@@ -383,7 +383,7 @@ static setTemperatureType(type: TemperatureType): void
 
 static setFirstDayOfWeek(type: WeekDay): void
 
-设置用户偏好的周起始日。
+设置系统的周起始日。
 
 **系统接口**：此接口为系统接口。
 
