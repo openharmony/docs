@@ -35,7 +35,7 @@ import { UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPatter
 
 loadAndSetupUiTest(): void
 
-在测试启动前必须调用一次，用于初始化测试环境。
+在ArkTS1.2的测试启动前必须调用一次，用于初始化测试环境。
 
 **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
