@@ -94,6 +94,7 @@ typedef enum TransientTask_ErrorCode TransientTask_ErrorCode
 typedef struct TransientTask_TransientTaskInfo TransientTask_TransientTaskInfo
 ```
 **描述**
+
 定义所有短时任务返回信息结构体。
 
 **起始版本**： 20
