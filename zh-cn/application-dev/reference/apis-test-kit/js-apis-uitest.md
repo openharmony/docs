@@ -3304,7 +3304,7 @@ mouseScroll(p: Point, down: boolean, d: number, key1?: number, key2?: number, sp
 | down   | boolean          | 是   | 滚轮滑动方向是否向下。true表示向下滑动。false表示向上滚动。  |
 | d      | number           | 是   | 鼠标滚轮滚动的格数，每格对应目标点位移120px，取值大于等于0的整数。          |
 | key1   | number           | 否   | 指定的第一个key值。默认值为0，取值大于等于0的整数。                               |
-| key2   | number           | 否   | 指定的第二个key值。默认值为0，取值大于等于0。                               |
+| key2   | number           | 否   | 指定的第二个key值。默认值为0，取值大于等于0的整数。                               |
 | speed  | number           | 否   | 鼠标滚轮滚动的速度，范围：1-500，不在范围内设为默认值为20，单位：格/秒。 |
 
 **错误码：**
