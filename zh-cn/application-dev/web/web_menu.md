@@ -1,6 +1,10 @@
 # Web组件的菜单功能
 菜单作为用户交互的关键组件，其作用是构建清晰的导航体系，通过结构化布局展示功能入口，使用户能够迅速找到目标内容或执行操作。作为人机交互的重要枢纽，它显著提升了Web组件的可访问性和用户体验，是应用设计中必不可少的部分。Web组件菜单类型包括[文本选中菜单](./web_menu.md#文本选中菜单)、[上下文菜单](./web_menu.md#上下文菜单)和[自定义菜单](./web_menu.md#自定义菜单)，应用可根据具体需求灵活选择。
-
+|菜单类型|目标元素|响应类型|是否支持自定义|
+|----|----|----|----|
+|[文本选中菜单](./web_menu.md#文本选中菜单)|文本|手势长按|是|
+|[上下文菜单](./web_menu.md#上下文菜单)|超链接、图片、文字|手势长按、鼠标右键|是|
+|[自定义菜单](./web_menu.md#自定义菜单)|开发者自定义|手势长按、鼠标右键|是|
 ## 文本选中菜单
 Web组件的文本选中菜单是一种通过自定义元素实现的上下文交互组件，当用户选中文本时会动态显示，提供复制、分享、标注等语义化操作，具备标准化功能与可扩展性，是移动端文本操作的核心功能。文本选中菜单在用户长按选中文本或编辑状态下长按出现单手柄时弹出，菜单项横向排列。系统提供默认的菜单实现。应用可通过[editMenuOptions](../../application-dev/reference/apis-arkweb/ts-basic-components-web.md#editmenuoptions12)接口对文本选中菜单进行自定义操作。
 1. 通过onCreateMenu方法自定义菜单项，通过操作Array<[TextMenuItem](../../application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-menuitem.md)>数组可对显示菜单项进行增减操作，在[TextMenuItem](../../application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-menuitem.md)中定义菜单项名称、图标、ID等内容。
