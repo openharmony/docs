@@ -23,7 +23,7 @@ import { i18n } from '@kit.LocalizationKit';
 
 static getDisplayCountry(country: string, locale: string, sentenceCase?: boolean): string
 
-文本按指定国家进行本地化显示。
+获取指定国家的本地化名称。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -41,7 +41,7 @@ static getDisplayCountry(country: string, locale: string, sentenceCase?: boolean
 
 | 类型     | 说明            |
 | ------ | ------------- |
-| string | 按指定国家，本地化显示的文本。 |
+| string | 指定国家的本地化名称。 |
 
 **错误码：**
 
@@ -72,7 +72,7 @@ static getDisplayCountry(country: string, locale: string, sentenceCase?: boolean
 
 static getDisplayLanguage(language: string, locale: string, sentenceCase?: boolean): string
 
-文本按指定语言进行本地化显示。例如，getDisplayLanguage('de', 'zh-Hans-CN')用中文显示德文，接口输出结果为：德文。
+获取指定语言的本地化名称。
 
 **原子化服务API**： 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -90,7 +90,7 @@ static getDisplayLanguage(language: string, locale: string, sentenceCase?: boole
 
 | 类型     | 说明            |
 | ------ | ------------- |
-| string | 按指定语言，本地化显示的语言。 |
+| string | 指定语言的本地化名称。 |
 
 **错误码：**
 
@@ -118,7 +118,7 @@ static getDisplayLanguage(language: string, locale: string, sentenceCase?: boole
 
 static getSystemLanguages(): Array&lt;string&gt;
 
-获取系统支持的语言列表。
+获取系统支持的语言ID列表。
 
 从API version 11开始，该类型支持在ArkTS卡片中使用。
 
@@ -142,7 +142,7 @@ static getSystemLanguages(): Array&lt;string&gt;
 
 static getSystemCountries(language: string): Array&lt;string&gt;
 
-针对输入语言，系统支持的国家或地区列表。
+获取输入语言下系统支持的国家或地区ID列表。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -158,7 +158,7 @@ static getSystemCountries(language: string): Array&lt;string&gt;
 
 | 类型                  | 说明           |
 | ------------------- | ------------ |
-| Array&lt;string&gt; | 系统支持某种特定语言的国家或地区列表。 |
+| Array&lt;string&gt; | 某种特定语言下系统支持的国家或地区ID列表。 |
 
 **错误码：**
 
@@ -201,7 +201,7 @@ static isSuggested(language: string, region?: string): boolean
 | 参数名      | 类型     | 必填   | 说明            |
 | -------- | ------ | ---- | ------------- |
 | language | string | 是    | 合法的语言ID，例如zh。 |
-| region   | string | 否    | 合法的地区ID，例如CN。<br>默认值：使用SIM卡国家或地区。  |
+| region   | string | 否    | 合法的地区ID，例如CN。<br>默认值：SIM卡国家或地区。  |
 
 **返回值：**
 
@@ -349,7 +349,7 @@ static getPreferredLanguageList(): Array&lt;string&gt;
 
 static getFirstPreferredLanguage(): string
 
-获取系统偏好语言列表中的第一个偏好语言。
+获取系统偏好语言列表中的第一个语言。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -370,7 +370,7 @@ static getFirstPreferredLanguage(): string
 
 static setAppPreferredLanguage(language: string): void
 
-设置应用的偏好语言。设置偏好语言为'default'后，应用语言将跟随系统语言，应用冷启动生效。
+设置应用偏好语言。设置偏好语言为'default'后，应用语言将跟随系统语言，应用冷启动生效。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -407,7 +407,7 @@ static setAppPreferredLanguage(language: string): void
 
 static getAppPreferredLanguage(): string
 
-获取应用的偏好语言。
+获取应用偏好语言。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -417,7 +417,7 @@ static getAppPreferredLanguage(): string
 
 | 类型     | 说明       |
 | ------ | -------- |
-| string | 应用的偏好语言。 |
+| string | 应用偏好语言。 |
 
 **示例：**
   ```ts
@@ -450,7 +450,7 @@ static getUsingLocalDigit(): boolean
 
 static getSimplifiedLanguage(language?: string): string
 
-获取语言的简化表示。如：'en-Latn-US'的简化表示是'en'，'en-Latn-GB'的简化表示为'en-GB'。
+获取语言的简化表示。例如：'en-Latn-US'的简化表示为'en'，'en-Latn-GB'的简化表示为'en-GB'。
 
 **原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
@@ -635,7 +635,7 @@ isRTL(locale: string): boolean
 
 | 类型      | 说明                                       |
 | ------- | ---------------------------------------- |
-| boolean | true表示该区域语言从右至左显示，false表示该区域语言从左至右显示。 |
+| boolean | true表示该区域语言从右到左显示，false表示该区域语言从左到右显示。 |
 
 **示例：**
   ```ts
@@ -647,7 +647,7 @@ isRTL(locale: string): boolean
 
 getCalendar(locale: string, type? : string): Calendar
 
-获取日历对象。
+获取指定区域和历法的日历对象。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -714,7 +714,7 @@ constructor(locale?: string)
 
 findEntityInfo(text: string): Array&lt;EntityInfoItem&gt;
 
-识别文本中的实体信息。
+获取文本中的实体信息。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -768,7 +768,7 @@ findEntityInfo(text: string): Array&lt;EntityInfoItem&gt;
 
 | 名称  | 类型   | 可读   | 可写   | 说明                |
 | ---- | ---- | ---- | ---- | ----------------- |
-| type | string | 是    | 是    | 实体类型，当前支持phone_number和date类型。 |
+| type | string | 是    | 是    | 实体的类型，当前支持phone_number和date类型。 |
 | begin | number | 是    | 是    | 实体的起始位置。 |
 | end | number | 是    | 是    | 实体的终止位置。 |
 
@@ -788,7 +788,7 @@ setTime(date: Date): void
 
 | 参数名  | 类型   | 必填   | 说明                |
 | ---- | ---- | ---- | ----------------- |
-| date | Date | 是    | 时间、日期。说明：月份从0开始计数，如0表示一月。 |
+| date | Date | 是    | 时间、日期。说明：月份从0开始计数，例如0表示一月。 |
 
 **示例：**
   ```ts
@@ -835,7 +835,7 @@ set(year: number, month: number, date:number, hour?: number, minute?: number, se
 | 参数名    | 类型     | 必填   | 说明     |
 | ------ | ------ | ---- | ------ |
 | year   | number | 是    | 设置的年。  |
-| month  | number | 是    | 设置的月。说明：月份从0开始计数，如0表示一月。  |
+| month  | number | 是    | 设置的月。说明：月份从0开始计数，例如0表示一月。  |
 | date   | number | 是    | 设置的日。  |
 | hour   | number | 否    | 设置的小时。默认值：系统小时。 |
 | minute | number | 否    | 设置的分钟。默认值：系统分钟。 |
@@ -931,7 +931,7 @@ setFirstDayOfWeek(value: number): void
 
 | 参数名   | 类型     | 必填   | 说明                    |
 | ----- | ------ | ---- | --------------------- |
-| value | number | 是    | 一周起始日，1代表周日，7代表周六。 |
+| value | number | 是    | 一周的起始日，1代表周日，7代表周六。 |
 
 **示例：**
   ```ts
@@ -991,7 +991,7 @@ setMinimalDaysInFirstWeek(value: number): void
 
 get(field: string): number
 
-获取日历对象与field相关联的值。
+获取日历对象中日历属性的值。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1001,14 +1001,14 @@ get(field: string): number
 
 | 参数名   | 类型     | 必填   | 说明                                       |
 | ----- | ------ | ---- | ---------------------------------------- |
-| field | string | 是    | 通过field来获取日历对象相应的值，目前支持的field值请参考下表。 |
+| field | string | 是    | 指定的日历属性，目前支持的属性值请参考下表。 |
 
 
-| field名称   | 说明                                       |
+| 属性名称   | 说明                                       |
 | ----- | ---------------------------------------- |
 | era | 纪元，例如公历中的公元前或者公元后。 |
 | year | 年。 |
-| month | 月。说明：月份从0开始计数，如0表示一月。 |
+| month | 月。说明：月份从0开始计数，例如0表示一月。 |
 | date | 日。 |
 | hour | 挂钟小时数。 |
 | hour_of_day | 一天中的第几小时。 |
@@ -1033,7 +1033,7 @@ get(field: string): number
 
 | 类型     | 说明                                       |
 | ------ | ---------------------------------------- |
-| number | 与field相关联的值，如当前Calendar对象的内部日期的年份为1990，get('year')返回1990。 |
+| number | 日历属性的值，如当前Calendar对象的内部日期的年份为1990，get('year')返回1990。 |
 
 **示例：**
   ```ts
@@ -1047,7 +1047,7 @@ get(field: string): number
 
 getDisplayName(locale: string): string
 
-获取日历对象在某语言下的显示名称。
+获取日历对象在指定语言下的显示名称。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1063,7 +1063,7 @@ getDisplayName(locale: string): string
 
 | 类型     | 说明                  |
 | ------ | ------------------- |
-| string | 日历的显示名称。如buddhist在en-US上显示的名称为“Buddhist&nbsp;Calendar”。|
+| string | 日历对象的显示名称。如buddhist在en-US上显示的名称为“Buddhist&nbsp;Calendar”。|
 
 **示例：**
   ```ts
@@ -1086,7 +1086,7 @@ isWeekend(date?: Date): boolean
 
 | 参数名  | 类型   | 必填   | 说明                                       |
 | ---- | ---- | ---- | ---------------------------------------- |
-| date | Date | 否    | 时间、日期。说明：月份从0开始计数，如0表示一月。<br>默认值：系统日期。若不填，则判断当前日期是否为周末。 |
+| date | Date | 否    | 时间、日期。说明：月份从0开始计数，例如0表示一月。<br>默认值：系统当前日期。 |
 
 **返回值：**
 
@@ -1108,7 +1108,7 @@ isWeekend(date?: Date): boolean
 
 add(field: string, amount: number): void
 
-将日历中的某些字段进行加减操作。
+对日历中的表示时间日期的日历属性值进行加减操作。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1118,7 +1118,7 @@ add(field: string, amount: number): void
 
 | 参数名  | 类型   | 必填   | 说明                                       |
 | ---- | ---- | ---- | ---------------------------------------- |
-| field | string | 是    | 指定日历字段，目前支持的field值有&nbsp;year,&nbsp;month,&nbsp;week_of_year,&nbsp;week_of_month,&nbsp;date,&nbsp;day_of_year,&nbsp;day_of_week,&nbsp;day_of_week_in_month,&nbsp;hour,&nbsp;hour_of_day,&nbsp;minute,&nbsp;second,&nbsp;millisecond。<br>各取值代表的含义请参考[get](#get8)。 |
+| field | string | 是    | 指定的日历属性，目前支持的属性值有&nbsp;year,&nbsp;month,&nbsp;week_of_year,&nbsp;week_of_month,&nbsp;date,&nbsp;day_of_year,&nbsp;day_of_week,&nbsp;day_of_week_in_month,&nbsp;hour,&nbsp;hour_of_day,&nbsp;minute,&nbsp;second,&nbsp;millisecond。<br>各取值代表的含义请参考[get](#get8)。 |
 | amount | number | 是    | 进行加减操作的具体数值。 |
 
 **错误码：**
@@ -1184,13 +1184,13 @@ compareDays(date: Date): number
 
 | 参数名  | 类型   | 必填   | 说明                                       |
 | ---- | ---- | ---- | ---------------------------------------- |
-| date | Date | 是    | 时间、日期。说明：月份从0开始计数，如0表示一月。 |
+| date | Date | 是    | 时间、日期。说明：月份从0开始计数，例如0表示一月。 |
 
 **返回值：**
 
 | 类型      | 说明                                  |
 | ------- | ----------------------------------- |
-| number | 相差的天数，正数代表日历时间更早，负数代表指定时间更早。<br>按毫秒级的精度，不足一天将按一天进行计算。 |
+| number | 相差的天数，正数表示日历时间更早，负数表示指定时间更早。<br>按毫秒级的精度，不足一天按一天计。 |
 
 **错误码：**
 
@@ -1232,7 +1232,7 @@ constructor(country: string, options?: PhoneNumberFormatOptions)
 
 | 参数名     | 类型                                       | 必填   | 说明               |
 | ------- | ---------------------------------------- | ---- | ---------------- |
-| country | string                                   | 是    | 表示电话号码所属国家或地区代码。 |
+| country | string                                   | 是    | 表示电话号码所属的国家或地区代码。 |
 | options | [PhoneNumberFormatOptions](#phonenumberformatoptions8) | 否    | 电话号码格式化时设置的配置项。默认值：NATIONAL。  |
 
 **示例：**
@@ -1245,7 +1245,7 @@ constructor(country: string, options?: PhoneNumberFormatOptions)
 
 isValidNumber(number: string): boolean
 
-判断传入的电话号码格式是否正确。
+判断传入的电话号码是否有效。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1261,7 +1261,7 @@ isValidNumber(number: string): boolean
 
 | 类型      | 说明                                    |
 | ------- | ------------------------------------- |
-| boolean | true表示电话号码的格式正确，false表示电话号码的格式错误。 |
+| boolean | true表示电话号码有效，false表示电话号码无效。 |
 
 **示例：**
   ```ts
@@ -1277,7 +1277,7 @@ format(number: string): string
 对电话号码进行格式化。
 
 > **说明**
-> 从API version 12开始，支持对拨号中的号码进行格式化。
+> 从API version 12开始，支持对拨号中的电话号码进行格式化。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1301,7 +1301,7 @@ format(number: string): string
   // formattedPhoneNumber = '158 **** 2312'
   let formattedPhoneNumber: string = phonenumberfmt.format('158****2312');
 
-  // 拨号中的号码格式化
+  // 拨号中的电话号码格式化
   let option: i18n.PhoneNumberFormatOptions = { type: 'TYPING' };
   let phoneNumberFmt: i18n.PhoneNumberFormat = new i18n.PhoneNumberFormat('CN', option);
   let phoneNumber: string = '130493';
@@ -1326,7 +1326,7 @@ getLocationName(number: string, locale: string): string
 
 | 参数名    | 类型     | 必填   | 说明   |
 | ------ | ------ | ---- | ---- |
-| number | string | 是    | 电话号码。获取其他地区号码的归属地时，需要在号码前加00+国际区号。 |
+| number | string | 是    | 电话号码。获取其他地区电话号码的归属地时，需要在电话号码前加00+国际区号。 |
 | locale | string | 是    | [表示区域ID的字符串](../../internationalization/i18n-locale-culture.md#实现原理)，由语言、脚本、国家或地区组成。 |
 
 **返回值：**
@@ -1353,7 +1353,7 @@ getLocationName(number: string, locale: string): string
 
 | 名称   | 类型     | 可读   | 可写   | 说明                                       |
 | ---- | ------ | ---- | ---- | ---------------------------------------- |
-| type | string | 是    | 是    | 表示对电话号码格式化的类型，取值包括：'E164',&nbsp;'INTERNATIONAL',&nbsp;'NATIONAL',&nbsp;'RFC3966',&nbsp;'TYPING'。<br>-在API version 8版本，type为必填项。 <br>-API version 9版本开始，type为选填项。<br>-API version 12版本开始支持TYPING，表示对拨号中的号码格式化。|
+| type | string | 是    | 是    | 表示对电话号码格式化的类型，取值包括：'E164',&nbsp;'INTERNATIONAL',&nbsp;'NATIONAL',&nbsp;'RFC3966',&nbsp;'TYPING'。<br>-在API version 8版本，type为必填项。 <br>-API version 9版本开始，type为选填项。<br>-API version 12版本开始支持TYPING，表示对拨号中的电话号码格式化。|
 
 
 ## UnitInfo<sup>8+</sup>
@@ -1482,7 +1482,7 @@ getIndex(text: string): string
 
 getLineInstance(locale: string): BreakIterator
 
-获取一个用于获取可换行点的[BreakIterator](#breakiterator8)对象。
+获取用于获取可换行点的[BreakIterator](#breakiterator8)对象。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1513,7 +1513,7 @@ getLineInstance(locale: string): BreakIterator
 
 setLineBreakText(text: string): void
 
-设置BreakIterator要处理的文本。
+设置BreakIterator对象要处理的文本。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1523,7 +1523,7 @@ setLineBreakText(text: string): void
 
 | 参数名  | 类型     | 必填   | 说明                      |
 | ---- | ------ | ---- | ----------------------- |
-| text | string | 是    | 指定BreakIterator获取可换行点的文本。 |
+| text | string | 是    | 指定BreakIterator对象获取可换行点的文本。 |
 
 **示例：**
   ```ts
@@ -1536,7 +1536,7 @@ setLineBreakText(text: string): void
 
 getLineBreakText(): string
 
-获取BreakIterator当前处理的文本。
+获取BreakIterator对象当前处理的文本。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1560,7 +1560,7 @@ getLineBreakText(): string
 
 current(): number
 
-获取BreakIterator对象在处理文本中的位置。
+获取BreakIterator对象在被处理文本中的位置。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1570,7 +1570,7 @@ current(): number
 
 | 类型     | 说明                          |
 | ------ | --------------------------- |
-| number | BreakIterator在当前所处理的文本中的位置。 |
+| number | BreakIterator对象在当前所处理的文本中的位置。 |
 
 **示例：**
   ```ts
@@ -1584,7 +1584,7 @@ current(): number
 
 first(): number
 
-将BreakIterator移动到第一个可换行点。第一个可换行点总是在被处理文本的起始位置。
+将BreakIterator对象移动到第一个可换行点。第一个可换行点总是在被处理文本的起始位置。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1608,7 +1608,7 @@ first(): number
 
 last(): number
 
-将BreakIterator移动到最后一个可换行点。最后一个可换行点总是在被处理文本末尾的下一个位置。
+将BreakIterator对象移动到最后一个可换行点。最后一个可换行点总是在被处理文本末尾的下一个位置。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1632,7 +1632,7 @@ last(): number
 
 next(index?: number): number
 
-将BreakIterator向后移动相应个可换行点。
+将BreakIterator对象向后移动index个可换行点。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1642,13 +1642,13 @@ next(index?: number): number
 
 | 参数名   | 类型     | 必填   | 说明                                       |
 | ----- | ------ | ---- | ---------------------------------------- |
-| index | number | 否    | BreakIterator将要移动的可换行点数。<br>正数代表向后移动，即将BreakIterator向后移动index个可换行点；负数代表向前移动，即向前移动相应个可换行点。<br>默认值：1。 |
+| index | number | 否    | BreakIterator对象将要移动的可换行点数，取值为整数。<br>正数表示向后移动index个可换行点，负数表示向前移动index个可换行点。<br>默认值：1。 |
 
 **返回值：**
 
 | 类型     | 说明                                       |
 | ------ | ---------------------------------------- |
-| number | 移动了index个可换行点后，当前BreakIterator在文本中的位置。<br>若移动index个可换行点后超出了所处理的文本的长度范围，返回-1。 |
+| number | 移动index个可换行点后，当前BreakIterator对象在文本中的位置。<br>若移动index个可换行点后超出了所处理的文本的长度范围，返回-1。 |
 
 **示例：**
   ```ts
@@ -1664,7 +1664,7 @@ next(index?: number): number
 
 previous(): number
 
-将BreakIterator向前移动一个可换行点。
+将BreakIterator对象向前移动一个可换行点。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1674,7 +1674,7 @@ previous(): number
 
 | 类型     | 说明                                       |
 | ------ | ---------------------------------------- |
-| number | 移动到前一个可换行点后，当前BreakIterator在文本中的位置。<br>若移动index个可换行点后超出了所处理的文本的长度范围，返回-1。 |
+| number | 移动到前一个可换行点后，当前BreakIterator对象在文本中的位置。<br>若移动index个可换行点后超出了所处理的文本的长度范围，返回-1。 |
 
 **示例：**
   ```ts
@@ -1690,7 +1690,7 @@ previous(): number
 
 following(offset: number): number
 
-将BreakIterator移动到指定位置后面一个可换行点。
+将BreakIterator对象移动到指定位置后面一个可换行点。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1700,13 +1700,13 @@ following(offset: number): number
 
 | 参数名    | 类型     | 必填   | 说明                                       |
 | ------ | ------ | ---- | ---------------------------------------- |
-| offset | number | 是    | 将BreakIterator移动到指定位置的后面一个可换行点。 |
+| offset | number | 是    | 将BreakIterator对象移动到指定位置的后面一个可换行点。 |
 
 **返回值：**
 
 | 类型     | 说明                                       |
 | ------ | ---------------------------------------- |
-| number | BreakIterator移动后的位置。若offset所指定位置的下一个可换行点超出了文本的范围，则返回-1。 |
+| number | BreakIterator对象移动后的位置。若offset所指定位置的下一个可换行点超出了文本的范围，则返回-1。 |
 
 **示例：**
   ```ts
@@ -1887,7 +1887,7 @@ getOffset(date?: number): number
 
 static getAvailableIDs(): Array&lt;string&gt;
 
-获取系统支持的时区ID。
+获取系统支持的时区ID列表。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1910,7 +1910,7 @@ static getAvailableIDs(): Array&lt;string&gt;
 
 static getAvailableZoneCityIDs(): Array&lt;string&gt;
 
-获取系统支持的时区城市ID。
+获取系统支持的时区城市ID列表。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1961,7 +1961,7 @@ static getCityDisplayName(cityID: string, locale: string): string
 
 static getTimezoneFromCity(cityID: string): TimeZone
 
-创建某时区城市对应的时区对象。
+创建对应时区城市的时区对象。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1988,7 +1988,7 @@ static getTimezoneFromCity(cityID: string): TimeZone
 
 static getTimezonesByLocation(longitude: number, latitude: number): Array&lt;TimeZone&gt;
 
-创建某经纬度对应的时区对象数组。
+创建对应经纬度的时区对象数组。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1998,8 +1998,8 @@ static getTimezonesByLocation(longitude: number, latitude: number): Array&lt;Tim
 
 | 参数名     | 类型     | 必填   | 说明     |
 | --------- | ------ | ---- | ------ |
-| longitude | number | 是    | 经度, 范围[-180, 179.9), 东经取正值, 西经取负值。 |
-| latitude  | number | 是    | 纬度, 范围[-90, 89.9), 北纬取正值, 南纬取负值。 |
+| longitude | number | 是    | 经度，范围[-180, 179.9)，东经取正值，西经取负值。 |
+| latitude  | number | 是    | 纬度，范围[-90, 89.9)，北纬取正值，南纬取负值。 |
 
 **返回值：**
 
@@ -2065,7 +2065,7 @@ static getAvailableIDs(): string[]
 
 static getInstance(id: string): Transliterator
 
-创建音译对象。
+创建指定转换ID的音译对象。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -2139,7 +2139,7 @@ transform(text: string): string
 
 static isDigit(char: string): boolean
 
-判断字符串char是否是数字。
+判断输入的字符是否是数字。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -2149,7 +2149,7 @@ static isDigit(char: string): boolean
 
 | 参数名  | 类型     | 必填   | 说明    |
 | ---- | ------ | ---- | ----- |
-| char | string | 是    | 输入字符串。 |
+| char | string | 是    | 输入的字符。如果输入的是字符串，则只判断首字符的类别。 |
 
 **返回值：**
 
@@ -2167,7 +2167,7 @@ static isDigit(char: string): boolean
 
 static isSpaceChar(char: string): boolean
 
-判断字符串char是否是空格符。
+判断输入的字符是否是空格符。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -2177,7 +2177,7 @@ static isSpaceChar(char: string): boolean
 
 | 参数名  | 类型     | 必填   | 说明    |
 | ---- | ------ | ---- | ----- |
-| char | string | 是    | 输入字符串。 |
+| char | string | 是    | 输入的字符。如果输入的是字符串，则只判断首字符的类别。 |
 
 **返回值：**
 
@@ -2195,7 +2195,7 @@ static isSpaceChar(char: string): boolean
 
 static isWhitespace(char: string): boolean
 
-判断字符串char是否是空白符。
+判断输入的字符是否是空白符。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -2205,7 +2205,7 @@ static isWhitespace(char: string): boolean
 
 | 参数名  | 类型     | 必填   | 说明    |
 | ---- | ------ | ---- | ----- |
-| char | string | 是    | 字符串。 |
+| char | string | 是    | 输入的字符。如果输入的是字符串，则只判断首字符的类别。 |
 
 **返回值：**
 
@@ -2223,7 +2223,7 @@ static isWhitespace(char: string): boolean
 
 static isRTL(char: string): boolean
 
-判断字符串char是否是从右到左语言的字符。
+判断输入的字符是否是从右到左语言的字符。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -2233,7 +2233,7 @@ static isRTL(char: string): boolean
 
 | 参数名  | 类型     | 必填   | 说明    |
 | ---- | ------ | ---- | ----- |
-| char | string | 是    | 输入字符。 |
+| char | string | 是    | 输入的字符。如果输入的是字符串，则只判断首字符的类别。 |
 
 **返回值：**
 
@@ -2251,7 +2251,7 @@ static isRTL(char: string): boolean
 
 static isIdeograph(char: string): boolean
 
-判断字符串char是否是表意文字。
+判断输入的字符是否是表意文字。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -2261,7 +2261,7 @@ static isIdeograph(char: string): boolean
 
 | 参数名  | 类型     | 必填   | 说明    |
 | ---- | ------ | ---- | ----- |
-| char | string | 是    | 输入字符。 |
+| char | string | 是    | 输入的字符。如果输入的是字符串，则只判断首字符的类别。 |
 
 **返回值：**
 
@@ -2279,7 +2279,7 @@ static isIdeograph(char: string): boolean
 
 static isLetter(char: string): boolean
 
-判断字符串char是否是字母。
+判断输入的字符是否是字母。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -2289,7 +2289,7 @@ static isLetter(char: string): boolean
 
 | 参数名  | 类型     | 必填   | 说明    |
 | ---- | ------ | ---- | ----- |
-| char | string | 是    | 输入字符。 |
+| char | string | 是    | 输入的字符。如果输入的是字符串，则只判断首字符的类别。 |
 
 **返回值：**
 
@@ -2307,7 +2307,7 @@ static isLetter(char: string): boolean
 
 static isLowerCase(char: string): boolean
 
-判断字符串char是否是小写字母。
+判断输入的字符是否是小写字母。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -2317,7 +2317,7 @@ static isLowerCase(char: string): boolean
 
 | 参数名  | 类型     | 必填   | 说明    |
 | ---- | ------ | ---- | ----- |
-| char | string | 是    | 输入字符。 |
+| char | string | 是    | 输入的字符。如果输入的是字符串，则只判断首字符的类别。 |
 
 **返回值：**
 
@@ -2335,7 +2335,7 @@ static isLowerCase(char: string): boolean
 
 static isUpperCase(char: string): boolean
 
-判断字符串char是否是大写字母。
+判断输入的字符是否是大写字母。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -2345,7 +2345,7 @@ static isUpperCase(char: string): boolean
 
 | 参数名  | 类型     | 必填   | 说明    |
 | ---- | ------ | ---- | ----- |
-| char | string | 是    | 输入字符。 |
+| char | string | 是    | 输入的字符。如果输入的是字符串，则只判断首字符的类别。 |
 
 **返回值：**
 
@@ -2363,7 +2363,7 @@ static isUpperCase(char: string): boolean
 
 static getType(char: string): string
 
-获取输入字符串的一般类别值。
+获取输入的字符的一般类别值。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -2373,7 +2373,7 @@ static getType(char: string): string
 
 | 参数名  | 类型     | 必填   | 说明    |
 | ---- | ------ | ---- | ----- |
-| char | string | 是    | 输入字符。 |
+| char | string | 是    | 输入的字符。如果输入的是字符串，则只判断首字符的类别。 |
 
 **返回值：**
 
@@ -2386,18 +2386,18 @@ static getType(char: string): string
 | 名称 | 值 | 说明 |
 | ---- | -------- | ---------- |
 | U_UNASSIGNED | U_UNASSIGNED | 表示未分配和非字符代码点对应类别。 |
-| U_GENERAL_OTHER_TYPES | U_GENERAL_OTHER_TYPES | 与 U_UNASSIGNED 相同。 |
+| U_GENERAL_OTHER_TYPES | U_GENERAL_OTHER_TYPES | 与 U_UNASSIGNED 一致。 |
 | U_UPPERCASE_LETTER | U_UPPERCASE_LETTER | 表示大写字母。 |
 | U_LOWERCASE_LETTER | U_LOWERCASE_LETTER | 表示小写字母。  |
 | U_TITLECASE_LETTER | U_TITLECASE_LETTER | 表示首字母大写。 |
 | U_MODIFIER_LETTER | U_MODIFIER_LETTER | 表示字母修饰符。 |
 | U_OTHER_LETTER | U_OTHER_LETTER | 表示其它字母，不属于大写字母、小写字母、首字母大写或修饰符字母的字母。 |
-| U_NON_SPACING_MARK | U_NON_SPACING_MARK | 表示非间距标记，如重音符号'，变音符号#。 |
+| U_NON_SPACING_MARK | U_NON_SPACING_MARK | 表示非间距标记，例如重音符号'，变音符号#。 |
 | U_ENCLOSING_MARK | U_ENCLOSING_MARK | 表示封闭标记和能围住其它字符的标记，如圆圈、方框等。 |
-| U_COMBINING_SPACING_MARK | U_COMBINING_SPACING_MARK | 表示间距标记，如元音符号[ ]。 |
+| U_COMBINING_SPACING_MARK | U_COMBINING_SPACING_MARK | 表示间距标记，例如元音符号[ ]。 |
 | U_DECIMAL_DIGIT_NUMBER | U_DECIMAL_DIGIT_NUMBER | 表示十进制数字。 |
 | U_LETTER_NUMBER | U_LETTER_NUMBER | 表示字母数字，罗马数字。 |
-| U_OTHER_NUMBER | U_OTHER_NUMBER | 表示其它作为加密符号和记号的数字，非阿拉伯数字的数字表示符，如@、#、（1）、①等。 |
+| U_OTHER_NUMBER | U_OTHER_NUMBER | 表示其它作为加密符号和记号的数字，非阿拉伯数字的数字表示符，例如@、#、（1）、①等。 |
 | U_SPACE_SEPARATOR | U_SPACE_SEPARATOR | 表示空白分隔符，如空格符、不间断空格、固定宽度的空白符。 |
 | U_LINE_SEPARATOR | U_LINE_SEPARATOR | 表示行分隔符。|
 | U_PARAGRAPH_SEPARATOR | U_PARAGRAPH_SEPARATOR | 表示段落分割符。 |
@@ -2408,8 +2408,8 @@ static getType(char: string): string
 | U_DASH_PUNCTUATION | U_DASH_PUNCTUATION | 表示短划线标点。 |
 | U_START_PUNCTUATION | U_START_PUNCTUATION | 表示开始标点，如左括号。 |
 | U_END_PUNCTUATION | U_END_PUNCTUATION | 表示结束标点，如右括号。 |
-| U_INITIAL_PUNCTUATION | U_INITIAL_PUNCTUATION | 表示前引号，如左双引号、左单引号。 |
-| U_FINAL_PUNCTUATION | U_FINAL_PUNCTUATION | 表示后引号，如右双引号、右单引号。 |
+| U_INITIAL_PUNCTUATION | U_INITIAL_PUNCTUATION | 表示前引号，例如左双引号、左单引号。 |
+| U_FINAL_PUNCTUATION | U_FINAL_PUNCTUATION | 表示后引号，例如右双引号、右单引号。 |
 | U_CONNECTOR_PUNCTUATION | U_CONNECTOR_PUNCTUATION | 表示连接符标点。 |
 | U_OTHER_PUNCTUATION | U_OTHER_PUNCTUATION | 表示其他标点。 |
 | U_MATH_SYMBOL | U_MATH_SYMBOL | 表示数学符号。 |
@@ -2491,7 +2491,7 @@ static getDateOrder(locale: string): string
 
 static getTimePeriodName(hour:number, locale?: string): string
 
-获取某区域指定时间的本地化表达。
+获取指定时间在某区域的本地化表达。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -2501,14 +2501,14 @@ static getTimePeriodName(hour:number, locale?: string): string
 
 | 参数名    | 类型     | 必填   | 说明                        |
 | ------ | ------ | ---- | ------------------------- |
-| hour | number | 是    | 指定的时间，如：16。 |
+| hour | number | 是    | 指定的时间，例如16。 |
 | locale | string | 否    | [表示区域ID的字符串](../../internationalization/i18n-locale-culture.md#实现原理)，由语言、脚本、国家或地区组成。如：zh-Hans-CN。<br>默认值：系统当前区域ID。|
 
 **返回值：**
 
 | 类型     | 说明                  |
 | ------ | ------------------- |
-| string | 返回某区域指定时间的本地化表达。 |
+| string | 指定时间在某区域的本地化表达。 |
 
 **错误码：**
 
@@ -2625,7 +2625,7 @@ static getThreeLetterLanguage(locale: string): string
 
 static getThreeLetterRegion(locale: string): string
 
-将地区的二字母代码转换为三字母。<br>例如，中国的二字母地区代码是CN, 三字母是CHN，更多详细信息可参考[ISO 3166](https://www.iso.org/iso-3166-country-codes.html)。
+将语言代码由二字母转换为三字母。<br>例如，中国的二字母地区代码是CN, 三字母是CHN，更多详细信息可参考[ISO 3166](https://www.iso.org/iso-3166-country-codes.html)。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -2681,7 +2681,7 @@ static getUnicodeWrappedFilePath(path: string, delimiter?: string, locale?: intl
 | ------ | ------ | ---- | ------------------------ |
 | path | string | 是   | 待处理的路径，如：/data/out/tmp。 |
 | delimiter | string | 否   | 路径分隔符，默认值：/。 |
-| locale | [intl.Locale](./js-apis-intl.md#locale) | 否   | 区域对象，默认值：new intl.Locale([i18n.System.getSystemLocale()](#getsystemlocale9))。 |
+| locale | [intl.Locale](./js-apis-intl.md#locale) | 否   | 区域对象，默认值：系统区域对象。 |
 
 **返回值：**
 
@@ -2825,7 +2825,7 @@ normalize(text: string): string
 
 ### constructor<sup>11+</sup>
 
-constructor(icsPath: String)
+constructor(icsPath: string)
 
 创建HolidayManager对象。
 
@@ -2837,7 +2837,7 @@ constructor(icsPath: String)
 
 |   参数名  |      类型      | 必填 |     说明      |
 | --------- | ------------- | ---- | ------------- |
-| icsPath   | String | 是   | 在设备上有应用读取权限的iCalendar格式的ics文件路径。  |
+| icsPath   | string | 是   | 在设备上有应用读取权限的iCalendar格式的ics文件路径。  |
 
 **错误码：**
 
@@ -2874,7 +2874,7 @@ isHoliday(date?: Date): boolean
 
 |   参数名  |      类型      | 必填 |     说明      |
 | --------- | ---------------| ---- | ------------- |
-| date      | Date           | 否   | 时间、日期。说明：月份从0开始计数，如0表示一月。<br>如果没有指定日期，默认为当天。|
+| date      | Date           | 否   | 时间、日期。说明：月份从0开始计数，例如0表示一月。<br>默认值：当前日期。|
 
 **返回值：**
 
@@ -2920,7 +2920,7 @@ getHolidayInfoItemArray(year?: number): Array&lt;[HolidayInfoItem](#holidayinfoi
 
 |   参数名  |      类型      | 必填 |     说明      |
 | --------- | -------------  | ---- | ------------- |
-| year      | number         | 否   | 年，例如2023。<br>如果没有指定年，默认为当年。|
+| year      | number         | 否   | 年，例如2023。<br>默认值：当前年份。|
 
 **返回值：**
 
@@ -3087,7 +3087,7 @@ format(date: Date): string
 
 | 参数名  | 类型   | 必填   | 说明                |
 | ---- | ---- | ---- | ----------------- |
-| date | Date | 是    | 时间、日期。说明：月份从0开始计数，如0表示一月。 |
+| date | Date | 是    | 时间、日期。说明：月份从0开始计数，例如0表示一月。 |
 
 **返回值：**
 
@@ -3171,7 +3171,7 @@ getSimpleNumberFormatBySkeleton(skeleton: string, locale?: intl.Locale): SimpleN
 
 format(value: number): string
 
-格式化数字字符串。
+对数字进行格式化。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
@@ -3262,7 +3262,7 @@ constructor(numberFormat: intl.NumberFormat | SimpleNumberFormat, options?: Styl
 
 format(value: number): StyledString
 
-对创建的数字格式化对象处理，返回富文本对象。
+使用数字格式化对象对数字进行格式化，返回富文本对象。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
@@ -3278,7 +3278,7 @@ format(value: number): StyledString
 
 |       类型        |         说明          |
 | ----------------- | ----------------------|
-| [StyledString](../apis-arkui/arkui-ts/ts-universal-styled-string.md#styledstring) | 返回格式化后的富文本对象。 |
+| [StyledString](../apis-arkui/arkui-ts/ts-universal-styled-string.md#styledstring) | 格式化后的富文本对象。 |
 
 **示例：**
   ```ts
@@ -3321,7 +3321,7 @@ format(value: number): StyledString
 
 ## StyledNumberFormatOptions<sup>18+</sup>
 
-创建需要富文本显示的数字格式化的对象时，可选的配置项。
+创建富文本显示的数字格式化对象时的可选配置项。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
@@ -3338,7 +3338,7 @@ format(value: number): StyledString
 
 getDisplayCountry(country: string, locale: string, sentenceCase?: boolean): string
 
-获取指定国家的本地化显示文本。
+获取指定国家的本地化名称。
 
 从API version 9开始不再维护，建议使用[System.getDisplayCountry](#getdisplaycountry9)代替。
 
@@ -3363,37 +3363,6 @@ getDisplayCountry(country: string, locale: string, sentenceCase?: boolean): stri
   let countryName: string = i18n.getDisplayCountry('zh-CN', 'en-GB', true); // countryName = 'China'
   countryName = i18n.getDisplayCountry('zh-CN', 'en-GB'); // countryName = 'China'
   ```
-
-## i18n.getDisplayCountry<sup>(deprecated)</sup>
-
-getDisplayCountry(country: string, locale: string, sentenceCase?: boolean): string
-
-获取指定国家的本地化显示文本。
-
-从API version 9开始不再维护，建议使用[System.getDisplayCountry](#getdisplaycountry9)代替。
-
-**系统能力**：SystemCapability.Global.I18n
-
-**参数：**
-
-| 参数名          | 类型      | 必填   | 说明               |
-| ------------ | ------- | ---- | ---------------- |
-| country      | string  | 是    | 指定国家。            |
-| locale       | string  | 是    | [表示区域ID的字符串](../../internationalization/i18n-locale-culture.md#实现原理)，由语言、脚本、国家或地区组成。      |
-| sentenceCase | boolean | 否    | true表示按照首字母大写的格式显示文本，false表示按照区域默认的大小写格式显示文本。默认值：true。 |
-
-**返回值：**
-
-| 类型     | 说明            |
-| ------ | ------------- |
-| string | 指定国家的本地化显示文本。 |
-
-**示例：**
-  ```ts
-  let countryName: string = i18n.getDisplayCountry('zh-CN', 'en-GB', true); // countryName = 'China'
-  countryName = i18n.getDisplayCountry('zh-CN', 'en-GB'); // countryName = 'China'
-  ```
-
 
 ## i18n.getDisplayLanguage<sup>(deprecated)</sup>
 
@@ -3549,7 +3518,7 @@ set24HourClock(option: boolean): boolean
 
 addPreferredLanguage(language: string, index?: number): boolean
 
-在系统偏好语言列表中的指定位置添加偏好语言。
+在系统偏好语言列表的指定位置添加偏好语言。
 
 从API version 8开始支持，从API version 9开始不再维护，替代接口仅支持系统应用使用。
 
@@ -3583,7 +3552,7 @@ addPreferredLanguage(language: string, index?: number): boolean
 
 removePreferredLanguage(index: number): boolean
 
-删除系统偏好语言列表中指定位置的偏好语言。
+从系统偏好语言列表中移除指定位置的偏好语言。
 
 从API version 8开始支持，从API version 9开始不再维护，替代接口仅支持系统应用使用。
 
@@ -3595,17 +3564,17 @@ removePreferredLanguage(index: number): boolean
 
 | 参数名   | 类型     | 必填   | 说明                    |
 | ----- | ------ | ---- | --------------------- |
-| index | number | 是    | 待删除偏好语言在系统偏好语言列表中的位置。 |
+| index | number | 是    | 待移除偏好语言在系统偏好语言列表中的位置。 |
 
 **返回值：**
 
 | 类型      | 说明                            |
 | ------- | ----------------------------- |
-| boolean | true表示删除成功，false表示删除失败。 |
+| boolean | true表示移除成功，false表示移除失败。 |
 
 **示例：**
   ```ts
-  // 删除系统偏好语言列表中的第一个偏好语言
+  // 移除系统偏好语言列表中的第一个偏好语言
   let index: number = 0;
   let success: boolean = i18n.removePreferredLanguage(index);
   ```
@@ -3637,7 +3606,7 @@ getPreferredLanguageList(): Array&lt;string&gt;
 
 getFirstPreferredLanguage(): string
 
-获取偏好语言列表中的第一个偏好语言。
+获取偏好语言列表中的第一个语言。
 
 从API version 8开始支持，从API version 9开始不再维护，建议使用[System.getFirstPreferredLanguage](#getfirstpreferredlanguage9)代替。
 
@@ -3692,7 +3661,7 @@ unitConvert(fromUnit: UnitInfo, toUnit: UnitInfo, value: number, locale: string,
 
 isDigit(char: string): boolean
 
-判断字符串char是否是数字。
+判断输入的字符是否是数字。
 
 从API version 8开始支持，从API version 9开始不再维护，建议使用[isDigit](#isdigit9)代替。
 
@@ -3702,7 +3671,7 @@ isDigit(char: string): boolean
 
 | 参数名  | 类型     | 必填   | 说明    |
 | ---- | ------ | ---- | ----- |
-| char | string | 是    | 输入字符。 |
+| char | string | 是    | 输入的字符。如果输入的是字符串，则只判断首字符的类别。 |
 
 **返回值：**
 
@@ -3715,7 +3684,7 @@ isDigit(char: string): boolean
 
 isSpaceChar(char: string): boolean
 
-判断字符串char是否是空格符。
+判断输入的字符是否是空格符。
 
 从API version 8开始支持，从API version 9开始不再维护，建议使用[isSpaceChar](#isspacechar9)代替。
 
@@ -3725,7 +3694,7 @@ isSpaceChar(char: string): boolean
 
 | 参数名  | 类型     | 必填   | 说明    |
 | ---- | ------ | ---- | ----- |
-| char | string | 是    | 输入字符。 |
+| char | string | 是    | 输入的字符。如果输入的是字符串，则只判断首字符的类别。 |
 
 **返回值：**
 
@@ -3738,7 +3707,7 @@ isSpaceChar(char: string): boolean
 
 isWhitespace(char: string): boolean
 
-判断字符串char是否是空白符。
+判断输入的字符是否是空白符。
 
 从API version 8开始支持，从API version 9开始不再维护，建议使用[isWhitespace](#iswhitespace9)代替。
 
@@ -3748,7 +3717,7 @@ isWhitespace(char: string): boolean
 
 | 参数名  | 类型     | 必填   | 说明    |
 | ---- | ------ | ---- | ----- |
-| char | string | 是    | 输入字符。 |
+| char | string | 是    | 输入的字符。如果输入的是字符串，则只判断首字符的类别。 |
 
 **返回值：**
 
@@ -3761,7 +3730,7 @@ isWhitespace(char: string): boolean
 
 isRTL(char: string): boolean
 
-判断字符串char是否是从右到左语言的字符。
+判断输入的字符是否是从右到左语言的字符。
 
 从API version 8开始支持，从API version 9开始不再维护，建议使用[isRTL](#isrtl9)代替。
 
@@ -3771,7 +3740,7 @@ isRTL(char: string): boolean
 
 | 参数名  | 类型     | 必填   | 说明    |
 | ---- | ------ | ---- | ----- |
-| char | string | 是    | 输入字符。 |
+| char | string | 是    | 输入的字符。如果输入的是字符串，则只判断首字符的类别。 |
 
 **返回值：**
 
@@ -3784,7 +3753,7 @@ isRTL(char: string): boolean
 
 isIdeograph(char: string): boolean
 
-判断字符串char是否是表意文字。
+判断输入的字符是否是表意文字。
 
 从API version 8开始支持，从API version 9开始不再维护，建议使用[isIdeograph](#isideograph9)代替。
 
@@ -3794,7 +3763,7 @@ isIdeograph(char: string): boolean
 
 | 参数名  | 类型     | 必填   | 说明    |
 | ---- | ------ | ---- | ----- |
-| char | string | 是    | 输入字符。 |
+| char | string | 是    | 输入的字符。如果输入的是字符串，则只判断首字符的类别。 |
 
 **返回值：**
 
@@ -3807,7 +3776,7 @@ isIdeograph(char: string): boolean
 
 isLetter(char: string): boolean
 
-判断字符串char是否是字母。
+判断输入的字符是否是字母。
 
 从API version 8开始支持，从API version 9开始不再维护，建议使用[isLetter](#isletter9)代替。
 
@@ -3817,7 +3786,7 @@ isLetter(char: string): boolean
 
 | 参数名  | 类型     | 必填   | 说明    |
 | ---- | ------ | ---- | ----- |
-| char | string | 是    | 输入字符。 |
+| char | string | 是    | 输入的字符。如果输入的是字符串，则只判断首字符的类别。 |
 
 **返回值：**
 
@@ -3830,7 +3799,7 @@ isLetter(char: string): boolean
 
 isLowerCase(char: string): boolean
 
-判断字符串char是否是小写字母。
+判断输入的字符是否是小写字母。
 
 从API version 8开始支持，从API version 9开始不再维护，建议使用[isLowerCase](#islowercase9)代替。
 
@@ -3840,7 +3809,7 @@ isLowerCase(char: string): boolean
 
 | 参数名  | 类型     | 必填   | 说明    |
 | ---- | ------ | ---- | ----- |
-| char | string | 是    | 输入字符。 |
+| char | string | 是    | 输入的字符。如果输入的是字符串，则只判断首字符的类别。 |
 
 **返回值：**
 
@@ -3853,7 +3822,7 @@ isLowerCase(char: string): boolean
 
 isUpperCase(char: string): boolean
 
-判断字符串char是否是大写字母。
+判断输入的字符是否是大写字母。
 
 从API version 8开始支持，从API version 9开始不再维护，建议使用[isUpperCase](#isuppercase9)代替。
 
@@ -3863,7 +3832,7 @@ isUpperCase(char: string): boolean
 
 | 参数名  | 类型     | 必填   | 说明    |
 | ---- | ------ | ---- | ----- |
-| char | string | 是    | 输入字符。 |
+| char | string | 是    | 输入的字符。如果输入的是字符串，则只判断首字符的类别。 |
 
 **返回值：**
 
@@ -3876,7 +3845,7 @@ isUpperCase(char: string): boolean
 
 getType(char: string): string
 
-获取输入字符串的一般类别值。
+获取输入的字符的一般类别值。
 
 从API version 8开始支持，从API version 9开始不再维护，建议使用[getType](#gettype9)代替。
 
@@ -3886,7 +3855,7 @@ getType(char: string): string
 
 | 参数名  | 类型     | 必填   | 说明    |
 | ---- | ------ | ---- | ----- |
-| char | string | 是    | 输入字符。 |
+| char | string | 是    | 输入的字符。如果输入的是字符串，则只判断首字符的类别。 |
 
 **返回值：**
 
