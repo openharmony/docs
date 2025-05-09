@@ -936,6 +936,18 @@
 
 **起始版本**：10
 
+## ohos.permission.UNLOCK_DEVELOPER_MODE
+
+允许应用解锁开发者模式。
+
+**权限级别**：system_basic
+
+**授权方式**：系统授权（system_grant）
+
+**ACL使能**：true
+
+**起始版本**：18
+
 ## ohos.permission.CAPTURE_VOICE_DOWNLINK_AUDIO
 
 允许应用采集语音下行音频。

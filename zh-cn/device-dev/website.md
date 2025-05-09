@@ -1665,6 +1665,9 @@
         - [HdiUsbfnMtp](reference/hdi-apis/usb/_hdi_usbfn_mtp.md)
         - [HdiUsb](reference/hdi-apis/usb/_hdi_usb.md)
         - [USB (V1_0)](reference/hdi-apis/usb/_u_s_b_v10.md)
+        - [HdiUsb（V1_1）](reference/hdi-apis/usb/_hdi_usb_v1_1.md)
+        - [HdiUsb（V1_2）](reference/hdi-apis/usb/_hdi_usb_v1_2.md)
+        - [HdiUsb（V2_0）](reference/hdi-apis/usb/_hdi_usb_v2_0.md)
         - [USB](reference/hdi-apis/usb/_u_s_b.md)
       - 头文件
         - HdiUsbfnMtp
@@ -1678,6 +1681,21 @@
           - [IUsbdSubscriber.idl](reference/hdi-apis/usb/_i_usbd_subscriber_8idl_v10.md)
           - [IUsbInterface.idl](reference/hdi-apis/usb/_i_usb_interface_8idl_v10.md)
           - [UsbTypes.idl](reference/hdi-apis/usb/_usb_types_8idl_v10.md)
+        - HdiUsb模块头文件（V1_1）
+          - [IUsbInterface.idl](reference/hdi-apis/usb/_i_usb_interface_8idl_v11.md)
+          - [UsbTypes.idl](reference/hdi-apis/usb/_usb_types_8idl_v11.md)
+        - HdiUsb模块头文件（V1_2）
+          - [IUsbdTransferCallback.idl](reference/hdi-apis/usb/_i_usbd_transfer_callback_8idl_v1_2.md)
+          - [IUsbInterface.idl](reference/hdi-apis/usb/_i_usb_interface_8idl.md)
+          - [UsbTypes.idl](reference/hdi-apis/usb/_usb_types_8idl_v1_2.md)
+        - HdiUsb模块头文件（V2_0）
+          - [IUsbdBulkCallback.idl](reference/hdi-apis/usb/_i_usbd_bulk_callback_8idl.md)
+          - [IUsbDeviceInterface.idl](reference/hdi-apis/usb/_i_usb_device_interface_8idl.md)
+          - [IUsbdSubscriber.idl](reference/hdi-apis/usb/_i_usbd_subscriber_8idl.md)
+          - [IUsbdTransferCallback.idl](reference/hdi-apis/usb/_i_usbd_transfer_callback_8idl.md)
+          - [IUsbHostInterface.idl](reference/hdi-apis/usb/_i_usb_host_interface_8idl.md)
+          - [IUsbPortInterface.idl](reference/hdi-apis/usb/_i_usb_port_interface_8idl.md)
+          - [UsbTypes.idl](reference/hdi-apis/usb/_usb_types_8idl.md)
         - USB
           - [usb_info.h](reference/hdi-apis/usb/usb__info_8h.md)
           - [usbd_client.h](reference/hdi-apis/usb/usbd__client_8h.md)
@@ -1699,6 +1717,31 @@
           - [UsbDev](reference/hdi-apis/usb/_usb_dev_v10.md)
           - [USBDeviceInfo](reference/hdi-apis/usb/_u_s_b_device_info_v10.md)
           - [UsbPipe](reference/hdi-apis/usb/_usb_pipe_v10.md)
+        - HdiUsb模块结构体（V1_1）
+          - [IUsbInterface](reference/hdi-apis/usb/interface_i_usb_interface_v11.md)
+          - [UsbCtrlTransferParams](reference/hdi-apis/usb/_usb_ctrl_transfer_params_v11.md)
+        - HdiUsb模块结构体（V1_2）
+          - [IUsbdTransferCallback](reference/hdi-apis/usb/interface_i_usbd_transfer_callback_v1_2.md)
+          - [IUsbInterface](reference/hdi-apis/usb/interface_i_usb_interface.md)
+          - [UsbIsoPacketDescriptor](reference/hdi-apis/usb/_usb_iso_packet_descriptor.md)
+          - [USBTransferInfo](reference/hdi-apis/usb/_u_s_b_transfer_info.md)
+        - HdiUsb模块结构体（V2_0）
+          - [IUsbdBulkCallback](reference/hdi-apis/usb/interface_i_usbd_bulk_callback.md)
+          - [IUsbDeviceInterface](reference/hdi-apis/usb/interface_i_usb_device_interface.md)
+          - [IUsbdSubscriber](reference/hdi-apis/usb/interface_i_usbd_subscriber.md)
+          - [IUsbdTransferCallback](reference/hdi-apis/usb/interface_i_usbd_transfer_callback_v2_0.md)
+          - [IUsbHostInterface](reference/hdi-apis/usb/interface_i_usb_host_interface.md)
+          - [IUsbPortInterface](reference/hdi-apis/usb/interface_i_usb_port_interface.md)
+          - [PortInfo](reference/hdi-apis/usb/_port_info.md)
+          - [UsbCtrlTransfer](reference/hdi-apis/usb/_usb_ctrl_transfer.md)
+          - [UsbCtrlTransferParams](reference/hdi-apis/usb/_usb_ctrl_transfer_params.md)
+          - [UsbDev](reference/hdi-apis/usb/_usb_dev.md)
+          - [USBDeviceInfo](reference/hdi-apis/usb/_u_s_b_device_info.md)
+          - [UsbIsoPacketDescriptor](reference/hdi-apis/usb/_usb_iso_packet_descriptor_v2_0.md)
+          - [UsbPipe](reference/hdi-apis/usb/_usb_pipe.md)
+          - [UsbPort](reference/hdi-apis/usb/_usb_port.md)
+          - [UsbPortStatus](reference/hdi-apis/usb/_usb_port_status.md)
+          - [USBTransferInfo](reference/hdi-apis/usb/_u_s_b_transfer_info_v2_0.md)
         - USB
           - [UsbCtrlTransfer](reference/hdi-apis/usb/_o_h_o_s_1_1_u_s_b_1_1_usb_ctrl_transfer.md)
           - [UsbdClient](reference/hdi-apis/usb/_o_h_o_s_1_1_u_s_b_1_1_usbd_client.md)

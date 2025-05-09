@@ -3688,7 +3688,7 @@ sendControlCommand(command: AVCastControlCommand): Promise\<void>
 | -------- | ---------------------------------------- |
 | 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Parameter verification failed. |
 | 6600101  | Session service exception.You are advised to:1.Scheduled retry.2.Destroy the current session or session controller and re-create it. |
-| 6600105  | Invalid session command. |
+| 6600105  | Invalid session command.Stop sending the command or event,sending commands supported by the controlled end. |
 | 6600109  | The remote connection is not established. |
 
 **示例：**
@@ -3728,7 +3728,7 @@ sendControlCommand(command: AVCastControlCommand, callback: AsyncCallback\<void>
 | -------- | ------------------------------- |
 | 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Parameter verification failed. |
 | 6600101  | Session service exception.You are advised to:1.Scheduled retry.2.Destroy the current session or session controller and re-create it. |
-| 6600105  | Invalid session command. |
+| 6600105  | Invalid session command.Stop sending the command or event,sending commands supported by the controlled end. |
 | 6600109  | The remote connection is not established. |
 
 **示例：**
@@ -6683,9 +6683,9 @@ sendControlCommand(command: AVControlCommand): Promise\<void>
 | 6600101  | Session service exception.You are advised to:1.Scheduled retry.2.Destroy the current session or session controller and re-create it. |
 | 6600102  | The session does not exist. |
 | 6600103  | The session controller does not exist. |
-| 6600105  | Invalid session command. |
+| 6600105  | Invalid session command.Stop sending the command or event,sending commands supported by the controlled end. |
 | 6600106  | The session is not activated. |
-| 6600107  | Too many commands or events. |
+| 6600107  | Too many commands or events.Controls the frequency of sending self-query and control commands. |
 
 **示例：**
 
@@ -6729,9 +6729,9 @@ sendControlCommand(command: AVControlCommand, callback: AsyncCallback\<void>): v
 | 6600101  | Session service exception.You are advised to:1.Scheduled retry.2.Destroy the current session or session controller and re-create it. |
 | 6600102  | The session does not exist.     |
 | 6600103  | The session controller does not exist.   |
-| 6600105  | Invalid session command.           |
+| 6600105  | Invalid session command.Stop sending the command or event,sending commands supported by the controlled end. |
 | 6600106  | The session is not activated.                |
-| 6600107  | Too many commands or events.      |
+| 6600107  | Too many commands or events.Controls the frequency of sending self-query and control commands. |
 
 **示例：**
 
@@ -6784,9 +6784,9 @@ sendCommonCommand(command: string, args: {[key: string]: Object}): Promise\<void
 | 6600101  | Session service exception.You are advised to:1.Scheduled retry.2.Destroy the current session or session controller and re-create it. |
 | 6600102  | The session does not exist. |
 | 6600103  | The session controller does not exist. |
-| 6600105  | Invalid session command. |
+| 6600105  | Invalid session command.Stop sending the command or event,sending commands supported by the controlled end. |
 | 6600106  | The session is not activated. |
-| 6600107  | Too many commands or events. |
+| 6600107  | Too many commands or events.Controls the frequency of sending self-query and control commands. |
 
 **示例：**
 
@@ -6860,9 +6860,9 @@ sendCommonCommand(command: string, args: {[key: string]: Object}, callback: Asyn
 | 6600101  | Session service exception.You are advised to:1.Scheduled retry.2.Destroy the current session or session controller and re-create it. |
 | 6600102  | The session does not exist.     |
 | 6600103  | The session controller does not exist.   |
-| 6600105  | Invalid session command.           |
+| 6600105  | Invalid session command.Stop sending the command or event,sending commands supported by the controlled end. |
 | 6600106  | The session is not activated.                |
-| 6600107  | Too many commands or events.      |
+| 6600107  | Too many commands or events.Controls the frequency of sending self-query and control commands. |
 
 **示例：**
 
@@ -6933,8 +6933,8 @@ getExtras(): Promise\<{[key: string]: Object}>
 | 6600101  | Session service exception.You are advised to:1.Scheduled retry.2.Destroy the current session or session controller and re-create it. |
 | 6600102  | The session does not exist. |
 | 6600103  | The session controller does not exist. |
-| 6600105  | Invalid session command. |
-| 6600107  | Too many commands or events. |
+| 6600105  | Invalid session command.Stop sending the command or event,sending commands supported by the controlled end. |
+| 6600107  | Too many commands or events.Controls the frequency of sending self-query and control commands. |
 
 **示例：**
 
@@ -7002,8 +7002,8 @@ getExtras(callback: AsyncCallback\<{[key: string]: Object}>): void
 | 6600101  | Session service exception.You are advised to:1.Scheduled retry.2.Destroy the current session or session controller and re-create it. |
 | 6600102  | The session does not exist. |
 | 6600103  | The session controller does not exist. |
-| 6600105  | Invalid session command. |
-| 6600107  | Too many commands or events. |
+| 6600105  | Invalid session command.Stop sending the command or event,sending commands supported by the controlled end. |
+| 6600107  |Too many commands or events.Controls the frequency of sending self-query and control commands. |
 
 **示例：**
 
@@ -7078,7 +7078,7 @@ getExtrasWithEvent(extraEvent: string): Promise\<ExtraInfo>
 | 6600101  | Session service exception.You are advised to:1.Scheduled retry.2.Destroy the current session or session controller and re-create it. |
 | 6600102  | The session does not exist. |
 | 6600103  | The session controller does not exist. |
-| 6600105  | Invalid session command. |
+| 6600105  | Invalid session command.Stop sending the command or event,sending commands supported by the controlled end. |
 
 **示例：**
 
