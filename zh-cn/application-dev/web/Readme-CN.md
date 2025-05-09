@@ -49,6 +49,7 @@
   - [使用Web组件打印前端页面](web-print.md)
   - [使用Web组件的PDF文档预览能力](web-pdf-preview.md)
   - [网页中安全区域计算和避让适配](web-safe-area-insets.md)
+  - [Web组件的菜单功能](web_menu.md)
 - [同层渲染](web-same-layer.md)
 - [使用离线Web组件](web-offline-mode.md)
 - Web调试维测<!--web-debugging-->
