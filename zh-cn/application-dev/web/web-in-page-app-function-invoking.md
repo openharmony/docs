@@ -3,7 +3,7 @@
 
 ## 背景
 
-开发者使用Web组件将应用侧代码注册到前端页面中，注册完成之后，前端页面中使用注册的对象名称就可以调用应用侧的函数，实现在前端页面中调用应用侧方法。
+开发者使用Web组件将应用侧代码注册到前端页面中，注册完成之后，前端页面中使用注册的对象名称就可以调用应用侧的方法，实现在前端页面中调用应用侧方法。
 
 ## 如何建立应用侧与H5侧的交互通道
 
@@ -137,7 +137,7 @@
 
   > **说明：**
   >
-  > - 使用[registerJavaScriptProxy()](../reference/apis-arkweb/js-apis-webview.md#registerjavascriptproxy)接口注册方法时，注册后需调用[refresh()](../reference/apis-arkweb/js-apis-webview.md#refresh)接口生效。
+  > - 使用[registerJavaScriptProxy()](../reference/apis-arkweb/js-apis-webview.md#registerjavascriptproxy)方法注册时，注册后需调用[refresh()](../reference/apis-arkweb/js-apis-webview.md#refresh)方法生效。
 
 - 可选参数permission是一个json字符串，示例如下：
   ```json
