@@ -34,8 +34,8 @@ import { intl } from '@kit.LocalizationKit';
 | --------------- | ------- | -------- | ---------------------------------------- |
 | language        | string  | 是    | 与区域设置相关的语言，如：zh。取值遵循ISO&nbsp;639标准。 |
 | script          | string  | 是    | 区域语言的书写方式（脚本），如：Hans。取值遵循Unicode&nbsp;ISO&nbsp;15924标准。 |
-| region          | string  | 是    | 与区域设置相关的国家或地区，如：CN。取值遵循ISO&nbsp;3166标准。 |
-| baseName        | string  | 是    | 区域对象的基本信息，由语言、脚本、国家或地区组成，如：zh-Hans-CN。  |
+| region          | string  | 是    | 与区域设置相关的国家地区，如：CN。取值遵循ISO&nbsp;3166标准。 |
+| baseName        | string  | 是    | 区域对象的基本信息，由语言、脚本、国家地区组成，如：zh-Hans-CN。  |
 | caseFirst       | string  | 是    | 区域的排序规则是否考虑大小写，取值包括：<br>"upper",&nbsp;"lower",&nbsp;"false"。<br>不同取值表示的含义请参考[本地习惯排序表1](../../internationalization/i18n-sorting-local.md)。 |
 | calendar        | string  | 是    | 区域的日历信息，取值包括：<br>"buddhist",&nbsp;"chinese",&nbsp;"coptic","dangi",&nbsp;"ethioaa",&nbsp;"ethiopic",&nbsp;"gregory",&nbsp;"hebrew",&nbsp;"indian",&nbsp;"islamic",&nbsp;"islamic-umalqura",&nbsp;"islamic-tbla",&nbsp;"islamic-civil",&nbsp;"islamic-rgsa",&nbsp;"iso8601",&nbsp;"japanese",&nbsp;"persian",&nbsp;"roc",&nbsp;"islamicc"。<br>不同取值表示的含义请参考[设置日历和历法表1](../../internationalization/i18n-calendar.md)。 |
 | collation       | string  | 是    | 区域的排序规则，取值包括：<br>"big5han",&nbsp;"compat",&nbsp;"dict",&nbsp;"direct",&nbsp;"ducet",&nbsp;"eor",&nbsp;"gb2312",&nbsp;"phonebk",&nbsp;"phonetic",&nbsp;"pinyin",&nbsp;"reformed",&nbsp;"searchjl",&nbsp;"stroke",&nbsp;"trad",&nbsp;"unihan",&nbsp;"zhuyin"。<br>不同取值表示的含义请参考[本地习惯排序表1](../../internationalization/i18n-sorting-local.md)。 |
@@ -79,7 +79,7 @@ constructor(locale: string, options?: LocaleOptions)
 
 | 参数名                  | 类型                               | 必填   | 说明                           |
 | -------------------- | -------------------------------- | ---- | ---------------------------- |
-| locale               | string                           | 是    | 表示区域ID的字符串，由语言、脚本、国家或地区组成。<br>区域ID可填写组成部分中的一个或多个。|
+| locale               | string                           | 是    | 表示区域ID的字符串，由语言、脚本、国家地区组成。|
 | options             | [LocaleOptions](#localeoptions) | 否    | 创建区域对象的选项。 |
 
 **示例：**
@@ -119,7 +119,7 @@ toString(): string
 
 maximize(): Locale
 
-最大化区域信息，补齐区域对象中缺少的脚本、国家或地区信息。
+最大化区域信息，补齐区域对象中缺少的脚本、国家地区信息。
 
 **卡片能力**：从API version 11开始，该接口支持在ArkTS卡片中使用。
 
@@ -131,7 +131,7 @@ maximize(): Locale
 
 | 类型                | 说明         |
 | ----------------- | ---------- |
-| [Locale](#locale) | 补齐完脚本、国家或地区信息后的区域对象。 |
+| [Locale](#locale) | 补齐完脚本、国家地区信息后的区域对象。 |
 
 **示例：**
   ```ts
@@ -153,7 +153,7 @@ maximize(): Locale
 
 minimize(): Locale
 
-最小化区域信息，移除区域对象中的脚本、国家或地区信息。
+最小化区域信息，移除区域对象中的脚本、国家地区信息。
 
 **卡片能力**：从API version 11开始，该接口支持在ArkTS卡片中使用。
 
@@ -165,7 +165,7 @@ minimize(): Locale
 
 | 类型                | 说明         |
 | ----------------- | ---------- |
-| [Locale](#locale) | 移除完脚本、国家或地区信息后的区域对象。 |
+| [Locale](#locale) | 移除完脚本、国家地区信息后的区域对象。 |
 
 **示例：**
   ```ts
@@ -199,7 +199,7 @@ minimize(): Locale
 | hourCycle       | string  | 否     |时制格式，取值包括：<br>"h11",&nbsp;"h12",&nbsp;"h23",&nbsp;"h24"。 |
 | numberingSystem | string  | 否     |数字系统，取值包括：<br>"adlm",&nbsp;"ahom",&nbsp;"arab",&nbsp;"arabext",&nbsp;"bali",&nbsp;"beng",&nbsp;"bhks",&nbsp;"brah",&nbsp;"cakm",&nbsp;"cham",&nbsp;"deva",&nbsp;"diak",&nbsp;"fullwide",&nbsp;"gong",&nbsp;"gonm",&nbsp;"gujr",&nbsp;"guru",&nbsp;"hanidec",&nbsp;"hmng",&nbsp;"hmnp",&nbsp;"java",&nbsp;"kali",&nbsp;"khmr",&nbsp;"knda",&nbsp;"lana",&nbsp;"lanatham",&nbsp;"laoo",&nbsp;"latn",&nbsp;"lepc",&nbsp;"limb",&nbsp;"mathbold",&nbsp;"mathdbl",&nbsp;"mathmono",&nbsp;"mathsanb",&nbsp;"mathsans",&nbsp;"mlym",&nbsp;"modi",&nbsp;"mong",&nbsp;"mroo",&nbsp;"mtei",&nbsp;"mymr",&nbsp;"mymrshan",&nbsp;"mymrtlng",&nbsp;"newa",&nbsp;"nkoo",&nbsp;"olck",&nbsp;"orya",&nbsp;"osma",&nbsp;"rohg",&nbsp;"saur",&nbsp;"segment",&nbsp;"shrd",&nbsp;"sind",&nbsp;"sinh",&nbsp;"sora",&nbsp;"sund",&nbsp;"takr",&nbsp;"talu",&nbsp;"tamldec",&nbsp;"telu",&nbsp;"thai",&nbsp;"tibt",&nbsp;"tirh",&nbsp;"vaii",&nbsp;"wara",&nbsp;"wcho"。 |
 | numeric         | boolean | 否     | true表示对数字字符进行特殊的排序规则处理，false表示不对数字字符进行特殊的排序规则处理。默认值：false。                               |
-| caseFirst       | string  | 否     | 表示大写、小写的排序顺序，取值范围：<br>"upper",&nbsp;"lower",&nbsp;"false"。 |
+| caseFirst       | string  | 否     | 表示大写、小写的排序顺序，取值范围："upper",&nbsp;"lower",&nbsp;"false"。 |
 
 >  **说明：**
 >
@@ -245,7 +245,7 @@ constructor(locale: string | Array&lt;string&gt;, options?: DateTimeOptions)
 
 | 参数名                  | 类型                                   | 必填   | 说明                           |
 | -------------------- | ------------------------------------ | ---- | ---------------------------- |
-| locale               | string \| Array&lt;string&gt;        | 是    | 表示区域ID的字符串，由语言、脚本、国家或地区组成。<br>区域ID可填写组成部分中的一个或多个。 |
+| locale               | string \| Array&lt;string&gt;        | 是    | 区域ID或区域ID数组。输入是区域ID数组时，使用第一个有效的区域ID。 |
 | options              | [DateTimeOptions](#datetimeoptions) | 否    | 创建时间、日期格式化对象时可设置的配置项。<br>若所有选项均未设置时，year、month、day三个属性的默认值为numeric。 |
 
 **示例：**
@@ -420,7 +420,7 @@ constructor(locale: string | Array&lt;string&gt;, options?: NumberOptions)
 
 | 参数名                  | 类型                               | 必填   | 说明                           |
 | -------------------- | -------------------------------- | ---- | ---------------------------- |
-| locale               | string \| Array&lt;string&gt;    | 是    | 表示区域ID的字符串，由语言、脚本、国家或地区组成。 |
+| locale               | string \| Array&lt;string&gt;    | 是    | 区域ID或区域ID数组。输入是区域ID数组时，使用第一个有效的区域ID。 |
 | options              | [NumberOptions](#numberoptions) | 否    | 创建数字格式化对象时可设置的配置项。               |
 
 **示例：**
@@ -552,7 +552,7 @@ resolvedOptions(): NumberOptions
 | maximumSignificantDigits | number  | 否    | 表示要使用的最大有效位数，取值范围：1~21。<br>默认值：21。<br>**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。                  |
 | roundingPriority<sup>18+</sup>   | string  | 否    | 最大分数位数和最大有效位数同时设置时的舍入优先级，取值包括："auto"，"morePrecision"&nbsp;取最大分数位数，"lessPrecision"&nbsp;取最大有效位数。<br>默认值：auto。<br>**原子化服务API**：从API version 18开始，该接口支持在原子化服务中使用。                  |
 | roundingIncrement<sup>18+</sup>  | number  | 否    | 表示舍入增量，取值范围：1，2，5，10，20，25，50，100，200，250，500，1000，2000，2500，5000。<br>默认值：1。<br>**原子化服务API**：从API version 18开始，该接口支持在原子化服务中使用。                  |
-| roundingMode<sup>18+</sup>       | string  | 否    | 表示舍入模式，取值包括：<br>"ceil"：向上取整；<br>"floor"：向下取整；<br>"expand"：远离零取整；<br>"trunc"：向零取整；<br>"halfCeil"：半向上取整，大于等于增量的一半时向上取整，小于增量的一半时向下取整；<br>"halfFloor"：半向下取整，大于增量的一半时向上取整，小于等于增量的一半时向下取整；<br>"halfExpand"：半远离零取整，大于等于增量的一半时远离零取整，小于增量的一半时向零取整；<br>"halfTrunc"：半向零取整，大于增量的一半时远离零取整，小于等于增量的一半时向零取整；<br>"halfEven"：半向偶数取整，大于半增量的一半时 远离零取整，小于增量的一半时向零取整，等于增量的一半时向最近的偶数位舍入。<br>默认值：halfExpand。<br>**原子化服务API**：从API version 18开始，该接口支持在原子化服务中使用。 |
+| roundingMode<sup>18+</sup>       | string  | 否    | 表示舍入模式，取值包括：<br>"ceil"：向上取整；<br>"floor"：向下取整；<br>"expand"：远离零取整；<br>"trunc"：向零取整；<br>"halfCeil"：半向上取整，大于等于增量的一半时向上取整，小于增量的一半时向下取整；<br>"halfFloor"：半向下取整，大于增量的一半时向上取整，小于等于增量的一半时向下取整；<br>"halfExpand"：半远离零取整，大于等于增量的一半时远离零取整，小于增量的一半时向零取整；<br>"halfTrunc"：半向零取整，大于增量的一半时远离零取整，小于等于增量的一半时向零取整；<br>"halfEven"：半向偶数取整，大于增量的一半时 远离零取整，小于增量的一半时向零取整，等于增量的一半时向最近的偶数位舍入。<br>默认值：halfExpand。<br>**原子化服务API**：从API version 18开始，该接口支持在原子化服务中使用。 |
 
 >  **说明：**
 >
@@ -591,7 +591,7 @@ constructor(locale: string | Array&lt;string&gt;, options?: CollatorOptions)
 
 | 参数名                  | 类型                                   | 必填   | 说明                           |
 | -------------------- | ------------------------------------ | ---- | ---------------------------- |
-| locale               | string \| Array&lt;string&gt;        | 是    | 表示区域ID的字符串，由语言、脚本、国家或地区组成。  |
+| locale               | string \| Array&lt;string&gt;        | 是    | 区域ID或区域ID数组。输入是区域ID数组时，使用第一个有效的区域ID。  |
 | options              | [CollatorOptions](#collatoroptions8) | 否    | 创建排序对象时可设置的配置项。       |
 
 **示例：**
@@ -718,7 +718,7 @@ constructor(locale: string | Array&lt;string&gt;, options?: PluralRulesOptions)
 
 | 参数名                  | 类型                                       | 必填   | 说明                           |
 | -------------------- | ---------------------------------------- | ---- | ---------------------------- |
-| locale               | string \| Array&lt;string&gt;            | 是    | 表示区域ID的字符串，由语言、脚本、国家或地区组成。 |
+| locale               | string \| Array&lt;string&gt;            | 是    | 区域ID或区域ID数组。输入是区域ID数组时，使用第一个有效的区域ID。 |
 | options              | [PluralRulesOptions](#pluralrulesoptions8) | 否    | 创建单复数对象时设置的配置项。       |
 
 **示例：**
@@ -815,7 +815,7 @@ constructor(locale: string | Array&lt;string&gt;, options?: RelativeTimeFormatIn
 
 | 参数名                  | 类型                                       | 必填   | 说明                           |
 | -------------------- | ---------------------------------------- | ---- | ---------------------------- |
-| locale               | string \| Array&lt;string&gt;            | 是    | 表示区域ID的字符串，由语言、脚本、国家或地区组成。 |
+| locale               | string \| Array&lt;string&gt;            | 是    | 区域ID或区域ID数组。输入是区域ID数组时，使用第一个有效的区域ID。 |
 | options              | [RelativeTimeFormatInputOptions](#relativetimeformatinputoptions8) | 否    | 创建相对时间格式化对象时可配置的选项。     |
 
 **示例：**
