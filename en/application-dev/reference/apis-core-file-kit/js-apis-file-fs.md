@@ -482,7 +482,7 @@ copy(srcUri: string, destUri: string, options?: CopyOptions): Promise\<void>
 
 Copies a file or directory. This API uses a promise to return the result.
 
-File copy across devices is supported. This API forcibly overwrites the file or folder with the same name in the destination directory. The file or directory URI is supported.\n
+File copy across devices is supported. This API forcibly overwrites the file or directory. The input parameter can be the URI of the file or directory.<br>
 A maximum of 10 cross-device copy tasks are allowed at the same time, and the number of files to be copied at a time cannot exceed 500.
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
@@ -491,8 +491,8 @@ A maximum of 10 cross-device copy tasks are allowed at the same time, and the nu
 
   | Name | Type                        | Mandatory  | Description                                      |
   | ---- | -------------------------- | ---- | ---------------------------------------- |
-  | srcUri  | string | Yes   | URI of the file or folder to copy.                     |
-  | destUri | string | Yes   | URI of the destination file or folder.                         |
+  | srcUri  | string | Yes   | URI of the file or directory to copy.                     |
+  | destUri | string | Yes   | URI of the destination file or directory.                         |
   | options | [CopyOptions](#copyoptions11)| No| Callback invoked to provide the copy progress. If this parameter is not set, the callback will not be invoked.|
 
 **Return value**
@@ -539,9 +539,9 @@ try {
 
 copy(srcUri: string, destUri: string, callback: AsyncCallback\<void>): void
 
-Copies a file or folder. This API uses an asynchronous callback to return the result.
+Copies a file or directory. This API uses an asynchronous callback to return the result.
 
-File copy across devices is supported. This API forcibly overwrites the file or folder with the same name in the destination directory. The file or directory URI is supported.\n
+File copy across devices is supported. This API forcibly overwrites the file or directory. The file or directory URI is supported.<br>
 A maximum of 10 cross-device copy tasks are allowed at the same time, and the number of files to be copied at a time cannot exceed 500.
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
@@ -550,8 +550,8 @@ A maximum of 10 cross-device copy tasks are allowed at the same time, and the nu
 
   | Name | Type   | Mandatory  | Description         |
   | ---- | ------------------ | ---- | ----------------------------|
-  | srcUri  | string | Yes   | URI of the file or folder to copy.                     |
-  | destUri | string | Yes   | URI of the destination file or folder.                         |
+  | srcUri  | string | Yes   | URI of the file or directory to copy.                     |
+  | destUri | string | Yes   | URI of the destination file or directory.                         |
   | callback | AsyncCallback\<void>| Yes| Callback used to return the result.|
 
 **Error codes**
@@ -587,9 +587,9 @@ try {
 
 copy(srcUri: string, destUri: string, options: CopyOptions, callback: AsyncCallback\<void>): void
 
-Copies a file or folder. This API uses an asynchronous callback to return the result.
+Copies a file or directory. This API uses an asynchronous callback to return the result.
 
-File copy across devices is supported. This API forcibly overwrites the file or folder with the same name in the destination directory. The file or directory URI is supported.\n
+File copy across devices is supported. This API forcibly overwrites the file or directory. The file or directory URI is supported.<br>
 A maximum of 10 cross-device copy tasks are allowed at the same time, and the number of files to be copied at a time cannot exceed 500.
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
@@ -598,8 +598,8 @@ A maximum of 10 cross-device copy tasks are allowed at the same time, and the nu
 
   | Name | Type                        | Mandatory  | Description                                      |
   | ---- | -------------------------- | ---- | ---------------------------------------- |
-  | srcUri  | string | Yes   | URI of the file or folder to copy.                     |
-  | destUri | string | Yes   | URI of the destination file or folder.                         |
+  | srcUri  | string | Yes   | URI of the file or directory to copy.                     |
+  | destUri | string | Yes   | URI of the destination file or directory.                         |
   | options | [CopyOptions](#copyoptions11) |Yes| Callback used to return the copy progress.                         |
   | callback | AsyncCallback\<void>| Yes| Callback used to return the result.|
 
@@ -790,7 +790,7 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
 
 copyDir(src: string, dest: string, mode?: number): Promise\<void>
 
-Copies a directory. This API uses a promise to return the result.
+Copies the source directory to the destination directory. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
@@ -798,9 +798,9 @@ Copies a directory. This API uses a promise to return the result.
 
   | Name   | Type    | Mandatory  | Description                         |
   | ------ | ------ | ---- | --------------------------- |
-  | src | string | Yes   | Application sandbox path of the folder to copy.|
-  | dest | string | Yes   | Application sandbox path of the destination folder.|
-  | mode | number | No   | Copy mode. The default value is **0**.<br>- **0**: Throw an exception if a file conflict occurs.<br> Throw an exception if there is a folder with the same name in the destination folder and there are files with the same name in the conflicting folder. All the non-conflicting files in the source folder will be moved to the destination folder, and the non-conflicting files in the destination folder will be retained. The **data** attribute in the error returned provides information about the conflicting files in the Array\<[ConflictFiles](#conflictfiles10)> format.<br>- **1**: Forcibly overwrite the files with the same name in the destination folder. If there is a folder with the same name in the destination directory and there are files with the same name in the conflicting folder, all the files with the same name in the destination folder will be overwritten and the non-conflicting files will be retained.|
+  | src | string | Yes   | Application sandbox path of the source directory.|
+  | dest | string | Yes   | Application sandbox path of the destination directory.|
+  | mode | number | No   | Copy mode. The default value is **0**.<br>- **0**: Throw an exception if a file conflict occurs.<br> An exception will be thrown if the destination directory contains a directory with the same name as the source directory, and a file with the same name exists in the conflict directory. All the non-conflicting files in the source directory will be moved to the destination directory, and the non-conflicting files in the destination directory will be retained. The data attribute in the error returned provides information about the conflicting files in the Array\<[ConflictFiles](#conflictfiles10)> format.<br>- **1**: Forcibly overwrite the files with the same name in the destination directory. When the destination directory contains a directory with the same name as the source directory, the files with the same names in the destination directory are overwritten forcibly; the files without conflicts in the destination directory are retained.|
 
 **Return value**
 
@@ -830,7 +830,7 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
 
 copyDir(src: string, dest: string, mode: number, callback: AsyncCallback\<void, Array\<ConflictFiles>>): void
 
-Copies a folder with the specified mode. This API uses an asynchronous callback to return the result.
+Copies the source directory to the destination directory. You can set the copy mode. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
@@ -838,9 +838,9 @@ Copies a folder with the specified mode. This API uses an asynchronous callback 
 
   | Name   | Type    | Mandatory  | Description                         |
   | ------ | ------ | ---- | --------------------------- |
-  | src | string | Yes   | Application sandbox path of the folder to copy.|
-  | dest | string | Yes   | Application sandbox path of the destination folder.|
-  | mode | number | Yes   | Copy mode. The default value is **0**.<br>- **0**: Throw an exception if a file conflict occurs.<br> Throw an exception if there is a folder with the same name in the destination folder and there are files with the same name in the conflicting folder. All the non-conflicting files in the source folder will be moved to the destination folder, and the non-conflicting files in the destination folder will be retained. The **data** attribute in the error returned provides information about the conflicting files in the Array\<[ConflictFiles](#conflictfiles10)> format.<br>- **1**: Forcibly overwrite the files with the same name in the destination folder. If there is a folder with the same name in the destination directory and there are files with the same name in the conflicting folder, all the files with the same name in the destination folder will be overwritten and the non-conflicting files will be retained.|
+  | src | string | Yes   | Application sandbox path of the source directory.|
+  | dest | string | Yes   | Application sandbox path of the destination directory.|
+  | mode | number | Yes   | Copy mode. The default value is **0**.<br>- **0**: Throw an exception if a file conflict occurs.<br> An exception will be thrown if the destination directory contains a directory with the same name as the source directory, and a file with the same name exists in the conflict directory. All the non-conflicting files in the source directory will be moved to the destination directory, and the non-conflicting files in the destination directory will be retained. The data attribute in the error returned provides information about the conflicting files in the Array\<[ConflictFiles](#conflictfiles10)> format.<br>- **1**: Forcibly overwrite the files with the same name in the destination directory. When the destination directory contains a directory with the same name as the source directory, the files with the same names in the destination directory are overwritten forcibly; the files without conflicts in the destination directory are retained.|
   | callback | AsyncCallback&lt;void, Array&lt;[ConflictFiles](#conflictfiles10)&gt;&gt; | Yes   | Callback used to return the result.             |
 
 **Error codes**
@@ -872,9 +872,9 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
 
 copyDir(src: string, dest: string, callback: AsyncCallback\<void, Array\<ConflictFiles>>): void
 
-Copies a directory. This API uses an asynchronous callback to return the result.
+Copies the source directory to the destination directory. This API uses an asynchronous callback to return the result.
 
-An exception will be thrown if there is a folder with the same name in the destination directory and there are files with the same name in the conflicting folder. All the non-conflicting files in the source folder will be moved to the destination folder, and the non-conflicting files in the destination folder will be retained. The **data** attribute in the error returned provides information about the conflicting files in the Array\<[ConflictFiles](#conflictfiles10)> format.
+An exception will be thrown if the destination directory contains a directory with the same name as the source directory and there are files with the same name in the conflicting directory. All the non-conflicting files in the source directory will be moved to the destination directory, and the non-conflicting files in the destination directory will be retained. The data attribute in the error returned provides information about the conflicting files in the Array\<[ConflictFiles](#conflictfiles10)> format.
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
@@ -882,8 +882,8 @@ An exception will be thrown if there is a folder with the same name in the desti
 
   | Name   | Type    | Mandatory  | Description                         |
   | ------ | ------ | ---- | --------------------------- |
-  | src | string | Yes   | Application sandbox path of the folder to copy.|
-  | dest | string | Yes   | Application sandbox path of the destination folder.|
+  | src | string | Yes   | Application sandbox path of the source directory.|
+  | dest | string | Yes   | Application sandbox path of the destination directory.|
   | callback | AsyncCallback&lt;void, Array&lt;[ConflictFiles](#conflictfiles10)&gt;&gt; | Yes   | Callback used to return the result.             |
 
 **Error codes**
@@ -915,7 +915,7 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
 
 copyDirSync(src: string, dest: string, mode?: number): void
 
-Copies a folder. This API returns the result synchronously.
+Copies the source directory to the destination directory. This API returns the result synchronously.
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
@@ -923,9 +923,9 @@ Copies a folder. This API returns the result synchronously.
 
   | Name   | Type    | Mandatory  | Description                         |
   | ------ | ------ | ---- | --------------------------- |
-  | src | string | Yes   | Application sandbox path of the folder to copy.|
-  | dest | string | Yes   | Application sandbox path of the destination folder.|
-  | mode | number | No   | Copy mode. The default value is **0**.<br>- **0**: Throw an exception if a file conflict occurs.<br> Throw an exception if there is a folder with the same name in the destination folder and there are files with the same name in the conflicting folder. All the non-conflicting files in the source folder will be moved to the destination folder, and the non-conflicting files in the destination folder will be retained. The **data** attribute in the error returned provides information about the conflicting files in the Array\<[ConflictFiles](#conflictfiles10)> format.<br>- **1**: Forcibly overwrite the files with the same name in the destination folder. If there is a folder with the same name in the destination directory and there are files with the same name in the conflicting folder, all the files with the same name in the destination folder will be overwritten and the non-conflicting files will be retained.|
+  | src | string | Yes   | Application sandbox path of the source directory.|
+  | dest | string | Yes   | Application sandbox path of the destination directory.|
+  | mode | number | No   | Copy mode. The default value is **0**.<br>- **0**: Throw an exception if a file conflict occurs.<br> An exception will be thrown if the destination directory contains a directory with the same name as the source directory, and a file with the same name exists in the conflict directory. All the non-conflicting files in the source directory will be moved to the destination directory, and the non-conflicting files in the destination directory will be retained. The data attribute in the error returned provides information about the conflicting files in the Array\<[ConflictFiles](#conflictfiles10)> format.<br>- **1**: Forcibly overwrite the files with the same name in the destination directory. When the destination directory contains a directory with the same name as the source directory, the files with the same names in the destination directory are overwritten forcibly; the files without conflicts in the destination directory are retained.|
 
 **Error codes**
 
@@ -1018,17 +1018,20 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
   import { distributedDeviceManager } from '@kit.DistributedServiceKit';
   let dmInstance = distributedDeviceManager.createDeviceManager("com.example.filesync");
   let deviceInfoList: Array<distributedDeviceManager.DeviceBasicInfo> = dmInstance.getAvailableDeviceListSync();
-  let networkId = deviceInfoList[0].networkId;
-  let listeners: fs.DfsListeners = {
-    onStatus(networkId, status) {
-      console.info('onStatus');
-    }
+  if (deviceInfoList && deviceInfoList.length > 0) {
+    console.info(`Success to get available device list`);
+    let networkId = deviceInfoList[0].networkId;
+    let listeners: fs.DfsListeners = {
+      onStatus(networkId, status) {
+        console.info('onStatus');
+      }
+    };
+    fs.connectDfs(networkId, listeners).then(() => {
+      console.info("Success to connectDfs");
+    }).catch((err: BusinessError) => {
+      console.error(`Failed to connectDfs. Code: ${err.code}, message: ${err.message}`);
+    });
   }
-  fs.connectDfs(networkId, listeners).then(() => {
-    console.info("Success to connectDfs");
-  }).catch((err: BusinessError) => {
-    console.error("connectDfs failed with error message: " + err.message + ", error code: " + err.code);
-  });
   ```
 
 ## fs.disconnectDfs<sup>12+</sup>
@@ -1065,12 +1068,15 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
   import { distributedDeviceManager } from '@kit.DistributedServiceKit';
   let dmInstance = distributedDeviceManager.createDeviceManager("com.example.filesync");
   let deviceInfoList: Array<distributedDeviceManager.DeviceBasicInfo> = dmInstance.getAvailableDeviceListSync();
-  let networkId = deviceInfoList[0].networkId;
-  fs.disconnectDfs(networkId).then(() => {
-    console.info("Success to disconnectDfs");
-  }).catch((err: BusinessError) => {
-    console.error('disconnectDfs failed with error message: ${JSON.stringify(err)}')
-  })
+  if (deviceInfoList && deviceInfoList.length > 0) {
+    console.info(`Success to get available device list`);
+    let networkId = deviceInfoList[0].networkId;
+    fs.disconnectDfs(networkId).then(() => {
+      console.info("Success to disconnect dfs");
+    }).catch((err: BusinessError) => {
+      console.error(`Failed to disconnect dfs. Code: ${err.code}, message: ${err.message}`);
+    })
+  }
   ```
 
 ## fs.setxattr<sup>12+</sup>
@@ -1723,7 +1729,7 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
 
 rmdir(path: string): Promise&lt;void&gt;
 
-Deletes a directory. This API uses a promise to return the result.
+Removes a directory. This API uses a promise to return the result.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -1761,7 +1767,7 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
 
 rmdir(path: string, callback: AsyncCallback&lt;void&gt;): void
 
-Deletes a directory. This API uses an asynchronous callback to return the result.
+Removes a directory. This API uses an asynchronous callback to return the result.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -1796,7 +1802,7 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
 
 rmdirSync(path: string): void
 
-Deletes a directory. This API returns the result synchronously.
+Removes a directory. This API returns the result synchronously.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -2557,11 +2563,11 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
 
 rename(oldPath: string, newPath: string): Promise&lt;void&gt;
 
-Renames a file or folder. This API uses a promise to return the result.
+Renames a file or directory. This API uses a promise to return the result.
 
 > **NOTE**
 > 
-> This API is not applicable to the files or folders in a distributed directory.
+> This API is not supported in a distributed directory.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -2571,8 +2577,8 @@ Renames a file or folder. This API uses a promise to return the result.
 
 | Name | Type  | Mandatory| Description                        |
 | ------- | ------ | ---- | ---------------------------- |
-| oldPath | string | Yes  | Application sandbox path of the file or folder to rename.|
-| newPath | string | Yes  | Application sandbox path of the renamed file or folder.  |
+| oldPath | string | Yes  | Application sandbox path of the file or directory to rename.|
+| newPath | string | Yes  | Application sandbox path of the renamed file or directory.  |
 
 **Return value**
 
@@ -2601,11 +2607,11 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
 
 rename(oldPath: string, newPath: string, callback: AsyncCallback&lt;void&gt;): void
 
-Renames a file or folder. This API uses an asynchronous callback to return the result.
+Renames a file or directory. This API uses an asynchronous callback to return the result.
 
 > **NOTE**
 > 
-> This API is not applicable to the files or folders in a distributed directory.
+> This API is not supported in a distributed directory.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -2615,8 +2621,8 @@ Renames a file or folder. This API uses an asynchronous callback to return the r
 
 | Name  | Type                     | Mandatory| Description                        |
 | -------- | ------------------------- | ---- | ---------------------------- |
-| oldPath | string | Yes  | Application sandbox path of the file or folder to rename.|
-| newPath | string | Yes  | Application sandbox path of the renamed file or folder.  |
+| oldPath | string | Yes  | Application sandbox path of the file or directory to rename.|
+| newPath | string | Yes  | Application sandbox path of the renamed file or directory.  |
 | callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.  |
 
 **Error codes**
@@ -2642,11 +2648,11 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
 
 renameSync(oldPath: string, newPath: string): void
 
-Renames a file or folder. This API returns the result synchronously.
+Renames a file or directory. This API returns the result synchronously.
 
 > **NOTE**
 >
-> This API is not applicable to the files or folders in a distributed directory.
+> This API is not supported in a distributed directory.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -2656,8 +2662,8 @@ Renames a file or folder. This API returns the result synchronously.
 
 | Name | Type  | Mandatory| Description                        |
 | ------- | ------ | ---- | ---------------------------- |
-| oldPath | string | Yes  | Application sandbox path of the file or folder to rename.|
-| newPath | string | Yes  | Application sandbox path of the renamed file or folder.  |
+| oldPath | string | Yes  | Application sandbox path of the file or directory to rename.|
+| newPath | string | Yes  | Application sandbox path of the renamed file or directory.  |
 
 **Error codes**
 
@@ -2977,7 +2983,7 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
 ## fs.listFile
 listFile(path: string, options?: ListFileOptions): Promise<string[]>
 
-Lists all files in a directory. This API supports recursive listing of all files (including files in subfolders) and file filtering. This API uses a promise to return the result starting with a slash (/).
+Lists all file names in a directory. This API supports recursive listing of all file names and file filtering. The returned result starts with a slash (/) and contains the subdirectory. This API uses a promise to return the result.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -2987,7 +2993,7 @@ Lists all files in a directory. This API supports recursive listing of all files
 
   | Name   | Type    | Mandatory  | Description                         |
   | ------ | ------ | ---- | --------------------------- |
-  | path | string | Yes   | Application sandbox path of the folder.|
+  | path | string | Yes   | Application sandbox path of the directory.|
   | options | [ListFileOptions](#listfileoptions11) | No   | Options for filtering files. The files are not filtered by default.|
 
 
@@ -3028,7 +3034,7 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
 ## fs.listFile
 listFile(path: string, options?: ListFileOptions, callback: AsyncCallback<string[]>): void
 
-Lists all files in a directory. This API supports recursive listing of all files (including files in subfolders) and file filtering. This API uses an asynchronous callback to return the result starting with a slash (/).
+Lists all file names in a directory. This API supports recursive listing of all file names and file filtering. The returned result starts with a slash (/) and contains the subdirectory. This API uses an asynchronous callback to return the result.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -3038,7 +3044,7 @@ Lists all files in a directory. This API supports recursive listing of all files
 
   | Name   | Type    | Mandatory  | Description                         |
   | ------ | ------ | ---- | --------------------------- |
-  | path | string | Yes   | Application sandbox path of the folder.|
+  | path | string | Yes   | Application sandbox path of the directory.|
   | options | [ListFileOptions](#listfileoptions11) | No   | Options for filtering files. The files are not filtered by default.|
   | callback | AsyncCallback&lt;string[]&gt; | Yes   | Callback used to return the file names listed.             |
 
@@ -3077,7 +3083,7 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
 
 listFileSync(path: string, options?: ListFileOptions): string[]
 
-Lists all file names in a folder synchronously. This API supports recursive listing of all files (including files in subfolders) and file filtering. The returned result starts with a slash (/).
+Lists all file names in a directory. This API returns the result synchronously. This API supports recursive listing of all file names and file filtering. The returned result starts with a slash (/) and contains the subdirectory.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -3087,7 +3093,7 @@ Lists all file names in a folder synchronously. This API supports recursive list
 
   | Name   | Type    | Mandatory  | Description                         |
   | ------ | ------ | ---- | --------------------------- |
-  | path | string | Yes   | Application sandbox path of the folder.|
+  | path | string | Yes   | Application sandbox path of the directory.|
   | options | [ListFileOptions](#listfileoptions11) | No   | Options for filtering files. The files are not filtered by default.|
 
 
@@ -3160,11 +3166,11 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
 
 moveDir(src: string, dest: string, mode?: number): Promise\<void>
 
-Moves a directory. This API uses a promise to return the result.
+Moves the source directory to the destination directory. This API uses a promise to return the result.
 
 > **NOTE**
 >
-> This API is not applicable to the files or folders in a distributed directory.
+> This API is not supported in a distributed directory.
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
@@ -3172,9 +3178,9 @@ Moves a directory. This API uses a promise to return the result.
 
   | Name   | Type    | Mandatory  | Description                         |
   | ------ | ------ | ---- | --------------------------- |
-  | src | string | Yes   | Application sandbox path of the folder to copy.|
-  | dest | string | Yes   | Application sandbox path of the destination folder.|
-  | mode | number | No   | Mode for moving the folder. The default value is **0**.<br>- **0**: Throw an exception if a directory conflict occurs.<br> Throw an exception if there is a non-empty folder with the same name in the destination directory.<br>- **1**: Throw an exception if a file conflict occurs.<br> Throw an exception if there is a folder with the same name in the destination folder and there are files with the same name in the conflicting folder. All the non-conflicting files in the source folder will be moved to the destination folder, and the non-conflicting files in the destination folder will be retained. The **data** attribute in the error returned provides information about the conflicting files in the Array\<[ConflictFiles](#conflictfiles10)> format.<br>- **2**: Forcibly overwrite the conflicting files in the destination directory. If there is a folder with the same name in the destination directory and there are files with the same name in the conflicting folder, all the files with the same name in the destination folder will be overwritten and the non-conflicting files will be retained.<br>- **3**: Forcibly overwrite the conflicting folder.<br> Move the source folder to the destination directory and overwrite the conflicting folder completely. Original files in the folder will be deleted if there is a folder with the same name in the destination directory.|
+  | src | string | Yes   | Application sandbox path of the source directory.|
+  | dest | string | Yes   | Application sandbox path of the destination directory.|
+  | mode | number | No   | Move mode. The default value is **0**.<br>- **0**: Throw an exception if a directory conflict occurs.<br> An exception will be thrown if the destination directory contains a non-empty directory with the same name as the source directory.<br>- **1**: Throw an exception if a file conflict occurs.<br> An exception will be thrown if the destination directory contains a directory with the same name as the source directory, and a file with the same name exists in the conflict directory. All the non-conflicting files in the source directory will be moved to the destination directory, and the non-conflicting files in the destination directory will be retained. The data attribute in the error returned provides information about the conflicting files in the Array\<[ConflictFiles](#conflictfiles10)> format.<br>- **2**: Forcibly overwrite the conflicting files in the destination directory. When the destination directory contains a directory with the same name as the source directory, the files with the same names in the destination directory are overwritten forcibly; the files without conflicts in the destination directory are retained.<br>- **3**: Forcibly overwrite the conflicting directory.<br> The source directory is moved to the destination directory, and the content of the moved directory is the same as that of the source directory. If the destination directory contains a directory with the same name as the source directory, all original files in the directory will be deleted.|
 
 **Return value**
 
@@ -3204,11 +3210,11 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
 
 moveDir(src: string, dest: string, mode: number, callback: AsyncCallback\<void, Array\<ConflictFiles>>): void
 
-Moves a folder with the specified mode. This API uses an asynchronous callback to return the result.
+Moves the source directory to the destination directory. You can set the move mode. This API uses an asynchronous callback to return the result.
 
 > **NOTE**
 >
-> This API is not applicable to the files or folders in a distributed directory.
+> This API is not supported in a distributed directory.
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
@@ -3216,9 +3222,9 @@ Moves a folder with the specified mode. This API uses an asynchronous callback t
 
   | Name   | Type    | Mandatory  | Description                         |
   | ------ | ------ | ---- | --------------------------- |
-  | src | string | Yes   | Application sandbox path of the folder to copy.|
-  | dest | string | Yes   | Application sandbox path of the destination folder.|
-  | mode | number | Yes   | Mode for moving the folder. The default value is **0**.<br>- **0**: Throw an exception if a directory conflict occurs.<br> Throw an exception if there is a folder with the same name in the destination directory.<br>- **1**: Throw an exception if a file conflict occurs.<br> Throw an exception if there is a folder with the same name in the destination folder and there are files with the same name in the conflicting folder. All the non-conflicting files in the source folder will be moved to the destination folder, and the non-conflicting files in the destination folder will be retained. The **data** attribute in the error returned provides information about the conflicting files in the Array\<[ConflictFiles](#conflictfiles10)> format.<br>- **2**: Forcibly overwrite the conflicting files in the destination directory. If there is a folder with the same name in the destination directory and there are files with the same name in the conflicting folder, all the files with the same name in the destination folder will be overwritten and the non-conflicting files will be retained.<br>- **3**: Forcibly overwrite the conflicting folder.<br> Move the source folder to the destination directory and overwrite the conflicting folder completely. Original files in the folder will be deleted if there is a folder with the same name in the destination directory.|
+  | src | string | Yes   | Application sandbox path of the source directory.|
+  | dest | string | Yes   | Application sandbox path of the destination directory.|
+  | mode | number | Yes   | Move mode. The default value is **0**.<br>- **0**: Throw an exception if a directory conflict occurs.<br> An exception will be thrown if the destination directory contains a directory with the same name as the source directory.<br>- **1**: Throw an exception if a file conflict occurs.<br> An exception will be thrown if the destination directory contains a directory with the same name as the source directory, and a file with the same name exists in the conflict directory. All the non-conflicting files in the source directory will be moved to the destination directory, and the non-conflicting files in the destination directory will be retained. The data attribute in the error returned provides information about the conflicting files in the Array\<[ConflictFiles](#conflictfiles10)> format.<br>- **2**: Forcibly overwrite the conflicting files in the destination directory. When the destination directory contains a directory with the same name as the source directory, the files with the same names in the destination directory are overwritten forcibly; the files without conflicts in the destination directory are retained.<br>- **3**: Forcibly overwrite the conflicting directory.<br> The source directory is moved to the destination directory, and the content of the moved directory is the same as that of the source directory. If the destination directory contains a directory with the same name as the source directory, all original files in the directory will be deleted.|
   | callback | AsyncCallback&lt;void, Array&lt;[ConflictFiles](#conflictfiles10)&gt;&gt; | Yes   | Callback used to return the result.             |
 
 **Error codes**
@@ -3250,13 +3256,13 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
 
 moveDir(src: string, dest: string, callback: AsyncCallback\<void, Array\<ConflictFiles>>): void
 
-Moves a folder. This API uses an asynchronous callback to return the result.
+Moves the source directory to the destination directory. This API uses an asynchronous callback to return the result.
 
-An exception will be thrown if there is a folder with the same name in the destination directory.
+An exception will be thrown if a directory conflict occurs, that is, the destination directory contains a directory with the same name as the source directory.
 
 > **NOTE**
 >
-> This API is not applicable to the files or folders in a distributed directory.
+> This API is not supported in a distributed directory.
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
@@ -3264,8 +3270,8 @@ An exception will be thrown if there is a folder with the same name in the desti
 
   | Name   | Type    | Mandatory  | Description                         |
   | ------ | ------ | ---- | --------------------------- |
-  | src | string | Yes   | Application sandbox path of the folder to copy.|
-  | dest | string | Yes   | Application sandbox path of the destination folder.|
+  | src | string | Yes   | Application sandbox path of the source directory.|
+  | dest | string | Yes   | Application sandbox path of the destination directory.|
   | callback | AsyncCallback&lt;void, Array&lt;[ConflictFiles](#conflictfiles10)&gt;&gt; | Yes   | Callback used to return the result.             |
 
 **Error codes**
@@ -3297,11 +3303,11 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
 
 moveDirSync(src: string, dest: string, mode?: number): void
 
-Moves a folder. This API returns the result synchronously.
+Moves the source directory to the destination directory. This API returns the result synchronously.
 
 > **NOTE**
 >
-> This API is not applicable to the files or folders in a distributed directory.
+> This API is not supported in a distributed directory.
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
@@ -3309,9 +3315,9 @@ Moves a folder. This API returns the result synchronously.
 
   | Name   | Type    | Mandatory  | Description                         |
   | ------ | ------ | ---- | --------------------------- |
-  | src | string | Yes   | Application sandbox path of the folder to copy.|
-  | dest | string | Yes   | Application sandbox path of the destination folder.|
-  | mode | number | No   | Mode for moving the folder. The default value is **0**.<br>- **0**: Throw an exception if a directory conflict occurs.<br> Throw an exception if there is a folder with the same name in the destination directory.<br>- **1**: Throw an exception if a file conflict occurs.<br> Throw an exception if there is a folder with the same name in the destination folder and there are files with the same name in the conflicting folder. All the non-conflicting files in the source folder will be moved to the destination folder, and the non-conflicting files in the destination folder will be retained. The **data** attribute in the error returned provides information about the conflicting files in the Array\<[ConflictFiles](#conflictfiles10)> format.<br>- **2**: Forcibly overwrite the conflicting files in the destination directory. If there is a folder with the same name in the destination directory and there are files with the same name in the conflicting folder, all the files with the same name in the destination folder will be overwritten and the non-conflicting files will be retained.<br>- **3**: Forcibly overwrite the conflicting folder.<br> Move the source folder to the destination directory and overwrite the conflicting folder completely. Original files in the folder will be deleted if there is a folder with the same name in the destination directory.|
+  | src | string | Yes   | Application sandbox path of the source directory.|
+  | dest | string | Yes   | Application sandbox path of the destination directory.|
+  | mode | number | No   | Move mode. The default value is **0**.<br>- **0**: Throw an exception if a directory conflict occurs.<br> An exception will be thrown if the destination directory contains a directory with the same name as the source directory.<br>- **1**: Throw an exception if a file conflict occurs.<br> An exception will be thrown if the destination directory contains a directory with the same name as the source directory, and a file with the same name exists in the conflict directory. All the non-conflicting files in the source directory will be moved to the destination directory, and the non-conflicting files in the destination directory will be retained. The data attribute in the error returned provides information about the conflicting files in the Array\<[ConflictFiles](#conflictfiles10)> format.<br>- **2**: Forcibly overwrite the conflicting files in the destination directory. When the destination directory contains a directory with the same name as the source directory, the files with the same names in the destination directory are overwritten forcibly; the files without conflicts in the destination directory are retained.<br>- **3**: Forcibly overwrite the conflicting directory.<br> The source directory is moved to the destination directory, and the content of the moved directory is the same as that of the source directory. If the destination directory contains a directory with the same name as the source directory, all original files in the directory will be deleted.|
 
 **Error codes**
 
@@ -3348,7 +3354,7 @@ Moves a file. This API uses a promise to return the result.
 
 > **NOTE**
 >
-> This API is not applicable to the files or folders in a distributed directory.
+> This API is not supported in a distributed directory.
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
@@ -3358,7 +3364,7 @@ Moves a file. This API uses a promise to return the result.
   | ------ | ------ | ---- | --------------------------- |
   | src | string | Yes   | Application sandbox path of the file to move.|
   | dest | string | Yes   | Application sandbox path of the destination file.|
-  | mode | number | No   | Whether to overwrite the file with the same name in the destination directory.<br> The value **0** means to overwrite the file with the same name in the destination directory; the value **1** means to throw an exception.<br> The default value is **0**.|
+  | mode | number | No   | Move mode. The value **0** means to overwrite the file with the same name in the destination directory; the value **1** means to throw an exception. The default value is **0**.|
 
 **Return value**
 
@@ -3391,7 +3397,7 @@ Moves a file with the specified mode. This API uses an asynchronous callback to 
 
 > **NOTE**
 >
-> This API is not applicable to the files or folders in a distributed directory.
+> This API is not supported in a distributed directory.
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
@@ -3401,7 +3407,7 @@ Moves a file with the specified mode. This API uses an asynchronous callback to 
   | ------ | ------ | ---- | --------------------------- |
   | src | string | Yes   | Application sandbox path of the file to move.|
   | dest | string | Yes   | Application sandbox path of the destination file.|
-  | mode | number | Yes   | Whether to overwrite the file with the same name in the destination directory.<br> The value **0** means to overwrite the file with the same name in the destination directory; the value **1** means to throw an exception.<br> The default value is **0**.|
+  | mode | number | Yes   | Move mode. The value **0** means to overwrite the file with the same name in the destination directory; the value **1** means to throw an exception. The default value is **0**.|
   | callback | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result.             |
 
 **Error codes**
@@ -3431,7 +3437,7 @@ Moves a file and forcibly overwrites the file with the same name in the destinat
 
 > **NOTE**
 >
-> This API is not applicable to the files or folders in a distributed directory.
+> This API is not supported in a distributed directory.
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
@@ -3470,7 +3476,7 @@ Moves a file. This API returns the result synchronously.
 
 > **NOTE**
 >
-> This API is not applicable to the files or folders in a distributed directory.
+> This API is not supported in a distributed directory.
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
@@ -3480,7 +3486,7 @@ Moves a file. This API returns the result synchronously.
   | ------ | ------ | ---- | --------------------------- |
   | src | string | Yes   | Application sandbox path of the file to move.|
   | dest | string | Yes   | Application sandbox path of the destination file.|
-  | mode | number | No   | Whether to overwrite the file with the same name in the destination directory.<br> The value **0** means to overwrite the file with the same name in the destination directory; the value **1** means to throw an exception.<br> The default value is **0**.|
+  | mode | number | No   | Move mode. The value **0** means to overwrite the file with the same name in the destination directory; the value **1** means to throw an exception. The default value is **0**.|
 
 **Error codes**
 
@@ -3534,7 +3540,7 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
 
 mkdtemp(prefix: string, callback: AsyncCallback&lt;string&gt;): void
 
-Creates a temporary directory. This API uses an asynchronous callback to return the result. The folder name is created by replacing a string (specified by **prefix**) with six randomly generated characters.
+Creates a temporary directory. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
@@ -3566,7 +3572,7 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
 
 mkdtempSync(prefix: string): string
 
-Creates a temporary directory. This API returns the result synchronously. The folder name is created by replacing a string (specified by **prefix**) with six randomly generated characters.
+Creates a temporary directory. This API returns the result synchronously.
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
@@ -3624,7 +3630,7 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
 
 createRandomAccessFile(file: string | File, mode?: number): Promise&lt;RandomAccessFile&gt;
 
-Creates a **RandomAccessFile** instance based on a file path or file object. This API uses a promise to return the result.
+Creates a **RandomAccessFile** instance based on the specified file path or file object. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
@@ -3735,7 +3741,7 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
 
 createRandomAccessFile(file: string | File, mode?: number, options?: RandomAccessFileOptions): Promise&lt;RandomAccessFile&gt;
 
-Creates a **RandomAccessFile** instance based on a file path or file object. This API uses a promise to return the result.
+Creates a **RandomAccessFile** instance based on the specified file path or file object. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
@@ -4130,7 +4136,7 @@ Creates a writeable stream. This API returns the result synchronously.
   | Name | Type    | Mandatory  | Description                                      |
   | ---- | ------ | ---- | ---------------------------------------- |
   | path   | string | Yes   | Path of the file.                            |
-  | options | [WriteStreamOptions](#writestreamoptions12) | No   | The options are as follows:<br>- **start** (number): start position to write the data in the file. This parameter is optional. The default value is the current position.<br>- **mode** (number): [mode](#openmode) for creating the writeable stream. This parameter is optional. The default value is the write-only mode.|
+  | options | [WriteStreamOptions](#writestreamoptions12) | No   | The options are as follows:<br>- **start** (number): start position to write the data in the file. This parameter is optional. By default, data is written from the current position.<br>- **mode** (number): [mode](#openmode) for creating the writeable stream. This parameter is optional. The default value is the write-only mode.|
 
 **Return value**
 
@@ -4188,7 +4194,7 @@ getBaseFile(): File
 
 Obtains the file object through the **AtomicFile** object.
 
-You can call **close()** to close the FD.
+The FD needs to be closed by calling **close()**.
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
@@ -4491,7 +4497,7 @@ Creates a **Watcher** object to listen for file or directory changes.
   | Name | Type    | Mandatory  | Description                                      |
   | ---- | ------ | ---- | ---------------------------------------- |
   | path   | string | Yes   | Application sandbox path of the file or directory to observe.                            |
-  | events | number | Yes   | Events to observe. Multiple events can be separated by a bitwise OR operator (\|).<br>- **0x1: IN_ACCESS**: A file is accessed.<br>- **0x2: IN_MODIFY**: The file content is modified.<br>- **0x4: IN_ATTRIB**: The file metadata is modified.<br>- **0x8: IN_CLOSE_WRITE**: A file is opened, written with data, and then closed.<br>- **0x10: IN_CLOSE_NOWRITE**: A file or directory is opened and then closed without data written.<br>- **0x20: IN_OPEN**: A file or directory is opened.<br>- **0x40: IN_MOVED_FROM**: A file in the observed directory is moved.<br>- **0x80: IN_MOVED_TO**: A file is moved to the observed directory.<br>- **0x100: IN_CREATE**: A file or directory is created in the observed directory.<br>- **0x200: IN_DELETE**: A file or directory is deleted from the observed directory.<br>- **0x400: IN_DELETE_SELF**: The observed directory is deleted. After the directory is deleted, the listening stops.<br>- **0x800: IN_MOVE_SELF**: The observed file or folder is moved. After the file or folder is moved, the listening continues.<br>- **0xfff: IN_ALL_EVENTS**: All events.|
+  | events | number | Yes   | Events to observe. Multiple events can be separated by a bitwise OR operator (\|).<br>- **0x1: IN_ACCESS**: A file is accessed.<br>- **0x2: IN_MODIFY**: The file content is modified.<br>- **0x4: IN_ATTRIB**: The file metadata is modified.<br>- **0x8: IN_CLOSE_WRITE**: A file is opened, written with data, and then closed.<br>- **0x10: IN_CLOSE_NOWRITE**: A file or directory is opened and then closed without data written.<br>- **0x20: IN_OPEN**: A file or directory is opened.<br>- **0x40: IN_MOVED_FROM**: A file in the observed directory is moved.<br>- **0x80: IN_MOVED_TO**: A file is moved to the observed directory.<br>- **0x100: IN_CREATE**: A file or directory is created in the observed directory.<br>- **0x200: IN_DELETE**: A file or directory is deleted from the observed directory.<br>- **0x400: IN_DELETE_SELF**: The observed directory is deleted. After the directory is deleted, the listening stops.<br>- **0x800: IN_MOVE_SELF**: The observed file or directory is moved. After the file or directory is moved, the listening continues.<br>- **0xfff: IN_ALL_EVENTS**: All events.|
   | listener   | [WatchEventListener](#watcheventlistener10) | Yes   | Callback invoked when an observed event occurs. The callback will be invoked each time an observed event occurs.                            |
 
 **Return value**
@@ -4530,7 +4536,7 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
 
 (event: WatchEvent): void
 
-Called when an observed event occurs.
+Provides APIs for observing events.
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
@@ -4551,7 +4557,7 @@ Defines the event to observe.
 | Name  | Type  | Read-Only  | Optional  | Description     |
 | ---- | ------ | ---- | ---- | ------- |
 | fileName | string | Yes   | No   | Sandbox path of the file to observe. The sandbox path contains the file name.|
-| event | number | Yes   | No   | Events to observe. Multiple events can be separated by a bitwise OR operator (\|).<br>- **0x1: IN_ACCESS**: A file is accessed.<br>- **0x2: IN_MODIFY**: The file content is modified.<br>- **0x4: IN_ATTRIB**: The file metadata is modified.<br>- **0x8: IN_CLOSE_WRITE**: A file is opened, written with data, and then closed.<br>- **0x10: IN_CLOSE_NOWRITE**: A file or directory is opened and then closed without data written.<br>- **0x20: IN_OPEN**: A file or directory is opened.<br>- **0x40: IN_MOVED_FROM**: A file in the observed directory is moved.<br>- **0x80: IN_MOVED_TO**: A file is moved to the observed directory.<br>- **0x100: IN_CREATE**: A file or directory is created in the observed directory.<br>- **0x200: IN_DELETE**: A file or directory is deleted from the observed directory.<br>- **0x400: IN_DELETE_SELF**: The observed directory is deleted. After the directory is deleted, the listening stops.<br>- **0x800: IN_MOVE_SELF**: The observed file or folder is moved. After the file or folder is moved, the listening continues.<br>- **0xfff: IN_ALL_EVENTS**: All events.|
+| event | number | Yes   | No   | Events to observe. Multiple events can be separated by a bitwise OR operator (\|).<br>- **0x1: IN_ACCESS**: A file is accessed.<br>- **0x2: IN_MODIFY**: The file content is modified.<br>- **0x4: IN_ATTRIB**: The file metadata is modified.<br>- **0x8: IN_CLOSE_WRITE**: A file is opened, written with data, and then closed.<br>- **0x10: IN_CLOSE_NOWRITE**: A file or directory is opened and then closed without data written.<br>- **0x20: IN_OPEN**: A file or directory is opened.<br>- **0x40: IN_MOVED_FROM**: A file in the observed directory is moved.<br>- **0x80: IN_MOVED_TO**: A file is moved to the observed directory.<br>- **0x100: IN_CREATE**: A file or directory is created in the observed directory.<br>- **0x200: IN_DELETE**: A file or directory is deleted from the observed directory.<br>- **0x400: IN_DELETE_SELF**: The observed directory is deleted. After the directory is deleted, the listening stops.<br>- **0x800: IN_MOVE_SELF**: The observed file or directory is moved. After the file or directory is moved, the listening continues.<br>- **0xfff: IN_ALL_EVENTS**: All events.|
 | cookie | number | Yes   | No   | Cookie bound with the event. Currently, only the **IN_MOVED_FROM** and **IN_MOVED_TO** events are supported. The **IN_MOVED_FROM** and **IN_MOVED_TO** events of the same file have the same **cookie** value.|
 
 ## Progress<sup>11+</sup>
@@ -5585,7 +5591,7 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
 
 write(buffer: ArrayBuffer | string, options?: WriteOptions): Promise&lt;number&gt;
 
-Writes data to a file. This API uses a promise to return the result.
+Writes data into a file. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
@@ -5905,7 +5911,7 @@ Obtains a **WriteStream** instance of this **RandomAccessFile**.
 
 ## Watcher<sup>10+</sup>
 
-Provides APIs for observing the changes of files or folders. Before using the APIs of **Watcher**, call **createWatcher()** to create a **Watcher** object.
+Provides APIs for observing the changes of files or directories. Before using the APIs of **Watcher**, call **createWatcher()** to create a **Watcher** object.
 
 ### start<sup>10+</sup>
 
@@ -6101,7 +6107,7 @@ Defines the options used in **listFile()**.
 
 | Name       | Type      | Mandatory      |  Description               |
 | ----------- | --------------- | ------------------ | ------------------ |
-| recursion | boolean     | No| Whether to list all files in the subfolders recursively. This parameter is optional. The default value is **false**. If **recursion** is **false**, the names of the files and folders that meet the specified conditions in the current directory are returned. If **recursion** is **true**, relative paths (starting with /) of all files that meet the specified conditions in the current directory are returned.          |
+| recursion | boolean     | No| Whether to list all files in the subdirectories recursively. This parameter is optional. The default value is **false**. If **recursion** is **false**, the names of files and directories that meet the filtering requirements in the current directory are returned. If **recursion** is **true**, relative paths (starting with /) of all files that meet the specified conditions in the current directory are returned.          |
 |  listNum    | number     | No| Number of file names to list. This parameter is optional. The default value is **0**, which means to list all files.|
 | filter    | [Filter](#filter10) | No| File filtering configuration. This parameter is optional. It specifies the file filtering conditions.|
 
