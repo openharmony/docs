@@ -5572,9 +5572,9 @@ async function example() {
 | preselectedUris<sup>11+</sup> | Array&lt;string&gt;  | 否   | 预选择图片的uri数据。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | isPreviewForSingleSelectionSupported<sup>(deprecated)</sup> | boolean  | 否   | 单选模式下是否需要进大图预览，true表示需要，false表示不需要，默认为true。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。<br>从API version 12开始支持，从API version 18开始废弃。 |
 | singleSelectionMode<sup>18+</sup> | [SingleSelectionMode](#singleselectionmode18) | 否   | 单选模式类型。默认为大图预览模式（SingleSelectionMode.BROWSER_MODE）。<br>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。 |
-| mimeTypeFilter<sup>19+</sup> | [MimeTypeFilter](#mimetypefilter19)  | 否   | 可选择媒体文件的过滤配置，支持指定多个类型过滤。<br>当配置mimeTypeFilter参数时，MIMEType的配置自动失效。<br>配置该参数时，查询结果不一定是全量数据，仅显示配置过滤类型对应的媒体文件。<br>**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。 |
-| fileSizeFilter<sup>19+</sup> | [FileSizeFilter](#filesizefilter19)  | 否   | 可选择媒体文件大小的过滤配置。<br>配置该参数时，查询结果不一定是全量数据，仅显示配置文件大小范围的媒体文件。<br>**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。 |
-| videoDurationFilter<sup>19+</sup> | [VideoDurationFilter](#videodurationfilter19)  | 否   | 可选择媒体文件时长的过滤配置。<br>配置该参数时，查询结果不一定是全量数据，仅显示配置视频时长范围的媒体文件。<br>**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。 |
+| mimeTypeFilter<sup>19+</sup> | [MimeTypeFilter](#mimetypefilter19)  | 否   | 文件类型的过滤配置，支持指定多个类型过滤。<br>当配置mimeTypeFilter参数时，MIMEType的配置自动失效。<br>配置该参数时，仅显示配置过滤类型对应的媒体文件，建议提示用户仅支持选择指定类型的图片/视频。<br>**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。 |
+| fileSizeFilter<sup>19+</sup> | [FileSizeFilter](#filesizefilter19)  | 否   | 可选择媒体文件大小的过滤配置。<br>配置该参数时，仅显示配置文件大小范围的媒体文件，建议提示用户仅支持选择指定大小的图片/视频。。<br>**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。 |
+| videoDurationFilter<sup>19+</sup> | [VideoDurationFilter](#videodurationfilter19)  | 否   | 可选择媒体文件时长的过滤配置。<br>配置该参数时，仅显示配置视频时长范围的媒体文件，建议提示用户仅支持选择指定时长视频。<br>**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。 |
 
 ## PhotoSelectOptions
 
@@ -5626,13 +5626,13 @@ async function example() {
 
 | 名称                    | 类型                | 必填 | 说明                           |
 | ----------------------- | ------------------- | ---- |------------------------------ |
-| filterOperator        | [FilterOperator](#filteroperator19)    | 是  |过滤操作符。<br>例如：按照大于/小于某个fileSize的方式过滤文件大小。 |
-| fileSize        | number    | 是 | 指定过滤文件的大小。<br>单位为字节（Byte）。 |
+| filterOperator        | [FilterOperator](#filteroperator19)    | 是  | 过滤操作符。<br>例如：按照大于/小于某个fileSize的方式过滤文件大小。 |
+| fileSize        | number    | 是 | 过滤可选择的媒体文件。<br>单位为字节（Byte）。 |
 | extraFileSize   | number    | 否 | 针对FilterOperator.BETWEEN情况下，配置文件大小的上限值。默认值为-1。<br>单位为字节（Byte） |
 
 ## VideoDurationFilter<sup>19+</sup>
 
-返回图库选择后的结果集。
+可选择媒体文件视频时长的过滤配置。
 
 **原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
@@ -5640,13 +5640,13 @@ async function example() {
 
 | 名称                    | 类型                | 必填 | 说明                           |
 | ----------------------- | ------------------- | ---- |------------------------------ |
-| filterOperator        | [FilterOperator](#filteroperator19)    | 是  |过滤操作符。<br>例如：按照大于/小于某个videoDuration的方式过滤视频时长。 |
-| videoDuration        | number    | 是 | 指定过滤视频的大小。<br>单位为毫秒（ms）。 |
+| filterOperator        | [FilterOperator](#filteroperator19)    | 是  |过滤操作符。<br>例如：按照大于/小于某个videoDuration的方式过滤可选择的视频。 |
+| videoDuration        | number    | 是 | 指定过滤视频的时长。<br>单位为毫秒（ms）。 |
 | extraVideoDuration   | number    | 否 | 针对FilterOperator.BETWEEN情况下，配置视频时长的上限值。默认值为-1。<br>单位为毫秒（ms）。 |
 
 ## FilterOperator<sup>19+</sup>
 
-枚举，支持过滤文件大小以及视频时长的过滤操作符。
+枚举，支持进行过滤的操作符。
 
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
 
