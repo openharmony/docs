@@ -126,10 +126,8 @@
      fileFormat: media.ContainerFormatType.CFT_MPEG_4, // 封装格式。
      videoBitrate: 2000000, // 视频比特率。
      videoCodec: media.CodecMimeType.VIDEO_AVC, // 视频编码格式。
-<!--RP1-->
      videoFrameWidth: 640, // 视频分辨率的宽为640。
      videoFrameHeight: 480, // 视频分辨率的高为480。
-<!--RP1End-->
    };
    avTranscoder.prepare(avConfig).then(() => {
      console.log('Invoke prepare succeeded.');
@@ -137,6 +135,7 @@
      console.error(`Invoke prepare failed, code is ${err.code}, message is ${err.message}`);
    });
    ```
+   <!--RP2--><!--RP2End-->
 
 6. 开始转码，调用start()接口。
 
@@ -196,10 +195,6 @@ export class AVTranscoderDemo {
     fileFormat: media.ContainerFormatType.CFT_MPEG_4, // 封装格式。
     videoBitrate: 200000, // 视频比特率。
     videoCodec: media.CodecMimeType.VIDEO_AVC, // 视频编码格式。
-<!--RP2-->
-    videoFrameWidth: 640, // 视频分辨率的宽。
-    videoFrameHeight: 480, // 视频分辨率的高。
-<!--RP2End-->
   };
 
   // 注册avTranscoder回调函数。
