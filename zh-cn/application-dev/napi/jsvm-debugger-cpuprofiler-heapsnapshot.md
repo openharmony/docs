@@ -47,9 +47,10 @@ JSVM，既标准JS引擎，是严格遵守Ecmascript规范的JavaScript代码执
 
 #### 示例代码
 JSVM-API接口开发流程参考[使用JSVM-API实现JS与C/C++语言交互开发流程](use-jsvm-process.md)，本文仅对接口对应C++相关代码进行展示。
-```cpp
-#include "ark_runtime/jsvm.h"
 
+cpp部分代码
+
+```cpp
 #include <string>
 
 using namespace std;
@@ -91,33 +92,31 @@ static void RunScript(JSVM_Env env) {
     OH_JSVM_CloseHandleScope(env, handleScope);
 }
 
-void TestJSVM() {
-    JSVM_InitOptions initOptions{};
-    OH_JSVM_Init(&initOptions);
-
-    JSVM_VM vm;
-    OH_JSVM_CreateVM(nullptr, &vm);
-    JSVM_VMScope vmScope;
-    OH_JSVM_OpenVMScope(vm, &vmScope);
-
-    JSVM_Env env;
-    OH_JSVM_CreateEnv(vm, 0, nullptr, &env);
-    // 执行JS代码之前打开debugger。
+static JSVM_Value RunDemo(JSVM_Env env, JSVM_CallbackInfo info) {
+    // 执行JS代码之前打开debugger
     EnableInspector(env);
-    JSVM_EnvScope envScope;
-    OH_JSVM_OpenEnvScope(env, &envScope);
 
-    // 执行JS代码。
+    // 执行JS代码
     RunScript(env);
 
-    OH_JSVM_CloseEnvScope(env, envScope);
-    // 执行JS代码之后关闭debugger。
+    // 执行JS代码之后关闭debugger
     CloseInspector(env);
-    OH_JSVM_DestroyEnv(env);
-    OH_JSVM_CloseVMScope(vm, vmScope);
-    OH_JSVM_DestroyVM(vm);
+
+    return nullptr;
 }
 
+// RunDemo注册回调
+static JSVM_CallbackStruct param[] = {
+    {.data = nullptr, .callback = RunDemo},
+};
+static JSVM_CallbackStruct *method = param;
+// RunDemo方法别名，供JS调用
+static JSVM_PropertyDescriptor descriptor[] = {
+    {"RunDemo", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
+};
+
+// 样例测试js
+const char *srcCallNative = R"JS(RunDemo();)JS";
 ```
 
 ### 使用 OH_JSVM_OpenInspectorWithName
