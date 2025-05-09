@@ -402,6 +402,8 @@ int32_t OH_Usb_Init (void )
 
 **需要权限**：ohos.permission.ACCESS_DDK_USB
 
+**起始版本：** 10
+
 **返回:**
 
 - [USB_DDK_SUCCESS](#usbddkerrcode)：表示调用接口成功。
@@ -420,6 +422,8 @@ void OH_Usb_Release (void)
 释放DDK。
 
 **需要权限**：ohos.permission.ACCESS_DDK_USB
+
+**起始版本：** 10
 
 ### OH_Usb_ReleaseResource()
 
