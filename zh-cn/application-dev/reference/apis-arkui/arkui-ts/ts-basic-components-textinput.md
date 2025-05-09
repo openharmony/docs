@@ -451,7 +451,7 @@ enableKeyboardOnFocus(value: boolean)
 
 | 参数名 | 类型    | 必填 | 说明                                                        |
 | ------ | ------- | ---- | ----------------------------------------------------------- |
-| value  | boolean | 是   | 通过点击以外的方式获焦时，是否主动拉起软键盘。<br/>默认值：true |
+| value  | boolean | 是   | 通过点击以外的方式获焦时，是否主动拉起软键盘。<br/>true表示主动拉起软键盘，false表示不主动拉起。<br/>默认值：true |
 
 ### selectionMenuHidden<sup>10+</sup>
 
@@ -594,7 +594,7 @@ selectAll(value: boolean)
 
 | 参数名 | 类型    | 必填 | 说明                              |
 | ------ | ------- | ---- | --------------------------------- |
-| value  | boolean | 是   | 是否全选文本。<br />默认值：false |
+| value  | boolean | 是   | 是否全选文本。<br/>true表示会全选文本，false表示不会全选文本。<br />默认值：false |
 
 ### showCounter<sup>11+</sup>
 
@@ -875,7 +875,7 @@ showPassword(visible: boolean)
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| visible  | boolean | 是  | 是否显示密码。<br/>默认值：false |
+| visible  | boolean | 是  | 是否显示密码。<br/>true表示会显示密码，false表示不会显示密码。<br/>默认值：false |
 
 ### lineBreakStrategy<sup>12+</sup>
 
@@ -925,7 +925,7 @@ enablePreviewText(enable: boolean)
 
 | 参数名 | 类型    | 必填 | 说明                               |
 | ------ | ------- | ---- | ---------------------------------- |
-| enable | boolean | 是   | 是否开启输入预上屏。<br/>默认值：true |
+| enable | boolean | 是   | 是否开启输入预上屏。<br/>true表示开启输入预上屏，false表示不开启输入预上屏。<br/>默认值：true |
 
 ### enableHapticFeedback<sup>13+</sup>
 
@@ -941,7 +941,7 @@ enableHapticFeedback(isEnabled: boolean)
 
 | 参数名 | 类型    | 必填 | 说明                               |
 | ------ | ------- | ---- | ---------------------------------- |
-| isEnabled | boolean | 是   | 是否开启触控反馈。<br/>默认值：true |
+| isEnabled | boolean | 是   | 是否开启触控反馈。<br/>true表示开启触控反馈，false表示不开启触控反馈。<br/>默认值：true |
 
 >  **说明：**
 >
@@ -984,7 +984,7 @@ stopBackPress(isStopped: Optional\<boolean>)
 
 | 参数名 | 类型                                                | 必填 | 说明                                      |
 | ------ | --------------------------------------------------- | ---- | ----------------------------------------- |
-| isStopped  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<boolean> | 是   | 是否消费返回键。 <br />默认值：true |
+| isStopped  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<boolean> | 是   | 是否阻止返回键。<br/>true表示阻止返回键向其它组件或应用侧传递，false表示不阻止。<br />默认值：true |
 
 ### halfLeading<sup>18+</sup>
 
@@ -1423,8 +1423,8 @@ TextInput组件的控制器继承自[TextContentControllerBase](ts-types.md#text
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 ### 导入对象
-```
-controller: TextInputController = new TextInputController()
+```ts
+controller: TextInputController = new TextInputController();
 ```
 
 ### constructor<sup>8+</sup>
@@ -1608,10 +1608,10 @@ type OnContentScrollCallback = (totalOffsetX: number, totalOffsetY: number) => v
 @Entry
 @Component
 struct TextInputExample {
-  @State text: string = ''
-  @State positionInfo: CaretOffset = { index: 0, x: 0, y: 0 }
-  @State passwordState: boolean = false
-  controller: TextInputController = new TextInputController()
+  @State text: string = '';
+  @State positionInfo: CaretOffset = { index: 0, x: 0, y: 0 };
+  @State passwordState: boolean = false;
+  controller: TextInputController = new TextInputController();
 
   build() {
     Column() {
@@ -1626,19 +1626,19 @@ struct TextInputExample {
         .fontSize(14)
         .fontColor(Color.Black)
         .inputFilter('[a-z]', (e) => {
-          console.log(JSON.stringify(e))
+          console.log(JSON.stringify(e));
         })
       Text(this.text)
       Button('Set caretPosition 1')
         .margin(15)
         .onClick(() => {
           // 将光标移动至第一个字符后
-          this.controller.caretPosition(1)
+          this.controller.caretPosition(1);
         })
       Button('Get CaretOffset')
         .margin(15)
         .onClick(() => {
-          this.positionInfo = this.controller.getCaretOffset()
+          this.positionInfo = this.controller.getCaretOffset();
         })
       // 密码输入框
       TextInput({ placeholder: 'input your password...' })
@@ -1651,8 +1651,8 @@ struct TextInputExample {
         .showPassword(this.passwordState)
         .onSecurityStateChange(((isShowPassword: boolean) => {
           // 更新密码显示状态
-          console.info('isShowPassword', isShowPassword)
-          this.passwordState = isShowPassword
+          console.info('isShowPassword', isShowPassword);
+          this.passwordState = isShowPassword;
         }))
       // 邮箱地址自动填充类型
       TextInput({ placeholder: 'input your email...' })
@@ -1740,7 +1740,7 @@ struct TextInputExample {
         .width(350)
         .showError(this.textError)
         .onChange((value: string) => {
-          this.text = value
+          this.text = value;
         })
         .onSubmit((enterKey: EnterKeyType, event: SubmitEvent) => {
           // 用户名不正确会清空输入框和用户名并提示错误文本
@@ -2403,7 +2403,7 @@ struct TextInputExample {
 @Entry
 @Component
 struct TextInputExample {
-  @State text: string = 'TextInput editMenuOptions'
+  @State text: string = 'TextInput editMenuOptions';
   onCreateMenu = (menuItems: Array<TextMenuItem>) => {
     let item1: TextMenuItem = {
       content: 'custom1',
@@ -2436,7 +2436,7 @@ struct TextInputExample {
   }
   @State editMenuOptions: EditMenuOptions = {
     onCreateMenu: this.onCreateMenu, onMenuItemClick: this.onMenuItemClick
-  }
+  };
 
   build() {
     Column() {
@@ -2495,16 +2495,16 @@ struct EllipsisModeExample {
   @State text: string = "As the sun begins to set, casting a warm golden hue across the sky," +
     "the world seems to slow down and breathe a sigh of relief. The sky is painted with hues of orange, " +
     " pink, and lavender, creating a breath taking tapestry that stretches as far as the eye can see." +
-    "The air is filled with the sweet scent of blooming flowers, mingling with the earthy aroma of freshly turned soil."
-  @State ellipsisModeIndex: number = 0
-  @State ellipsisMode: (EllipsisMode | undefined | null)[] = [EllipsisMode.END, EllipsisMode.START, EllipsisMode.CENTER]
-  @State ellipsisModeStr: string[] = ['END ', 'START', 'CENTER']
-  @State textOverflowIndex: number = 0
-  @State textOverflow: TextOverflow[] = [TextOverflow.Ellipsis, TextOverflow.Clip]
-  @State textOverflowStr: string[] = ['Ellipsis', 'Clip']
-  @State styleInputIndex: number = 0
-  @State styleInput: TextInputStyle[] = [TextInputStyle.Inline, TextInputStyle.Default]
-  @State styleInputStr: string[] = ['Inline', 'Default']
+    "The air is filled with the sweet scent of blooming flowers, mingling with the earthy aroma of freshly turned soil.";
+  @State ellipsisModeIndex: number = 0;
+  @State ellipsisMode: (EllipsisMode | undefined | null)[] = [EllipsisMode.END, EllipsisMode.START, EllipsisMode.CENTER];
+  @State ellipsisModeStr: string[] = ['END ', 'START', 'CENTER'];
+  @State textOverflowIndex: number = 0;
+  @State textOverflow: TextOverflow[] = [TextOverflow.Ellipsis, TextOverflow.Clip];
+  @State textOverflowStr: string[] = ['Ellipsis', 'Clip'];
+  @State styleInputIndex: number = 0;
+  @State styleInput: TextInputStyle[] = [TextInputStyle.Inline, TextInputStyle.Default];
+  @State styleInputStr: string[] = ['Inline', 'Default'];
   build() {
     Row() {
       Column({ space: 20 }) {
@@ -2516,21 +2516,21 @@ struct EllipsisModeExample {
           .fontSize(30)
           .margin(30)
         Button('更改ellipsisMode模式：' + this.ellipsisModeStr[this.ellipsisModeIndex]).onClick(() => {
-          this.ellipsisModeIndex++
+          this.ellipsisModeIndex++;
           if (this.ellipsisModeIndex > (this.ellipsisModeStr.length - 1)) {
-            this.ellipsisModeIndex = 0
+            this.ellipsisModeIndex = 0;
           }
         }).fontSize(20)
         Button('更改textOverflow模式：' + this.textOverflowStr[this.textOverflowIndex]).onClick(() => {
-          this.textOverflowIndex++
+          this.textOverflowIndex++;
           if (this.textOverflowIndex > (this.textOverflowStr.length - 1)) {
-            this.textOverflowIndex = 0
+            this.textOverflowIndex = 0;
           }
         }).fontSize(20)
         Button('更改Style大小：' + this.styleInputStr[this.styleInputIndex]).onClick(() => {
-          this.styleInputIndex++
+          this.styleInputIndex++;
           if (this.styleInputIndex > (this.styleInputStr.length - 1)) {
-            this.styleInputIndex = 0
+            this.styleInputIndex = 0;
           }
         }).fontSize(20)
       }
@@ -2715,9 +2715,9 @@ struct TextInputExample {
 @Entry
 @Component
 struct TextInputExample {
-  controller: TextInputController = new TextInputController()
-  @State startIndex: number = 0
-  @State endIndex: number = 0
+  controller: TextInputController = new TextInputController();
+  @State startIndex: number = 0;
+  @State endIndex: number = 0;
 
   build() {
     Column({ space: 3 }) {
@@ -2728,13 +2728,13 @@ struct TextInputExample {
         .defaultFocus(true)
         .enableKeyboardOnFocus(true)
         .onTextSelectionChange((selectionStart: number, selectionEnd: number) => {
-          this.startIndex = selectionStart
-          this.endIndex = selectionEnd
+          this.startIndex = selectionStart;
+          this.endIndex = selectionEnd;
         })
 
       Button('setTextSelection [0,3], set menuPolicy is MenuPolicy.SHOW')
         .onClick(() => {
-          this.controller.setTextSelection(0, 3, { menuPolicy: MenuPolicy.SHOW })
+          this.controller.setTextSelection(0, 3, { menuPolicy: MenuPolicy.SHOW });
         })
     }
     .width('100%')
