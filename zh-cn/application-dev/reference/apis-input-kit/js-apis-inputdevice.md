@@ -274,7 +274,7 @@ off(type: "change", listener?: Callback&lt;DeviceListener&gt;): void
 **示例**：
 
 ```js
-function callback(data: inputDevice.DeviceListener) {
+let callback = (data: inputDevice.DeviceListener) => {
   console.log(`Report device event info: ${JSON.stringify(data, [`type`, `deviceId`])}`);
 };
 
