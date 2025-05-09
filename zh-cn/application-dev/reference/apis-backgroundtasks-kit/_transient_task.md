@@ -204,13 +204,14 @@ int32_t OH_BackgroundTaskManager_RequestSuspendDelay (const char * reason, Trans
 int32_t OH_BackgroundTaskManager_GetAllTransientTasks (TransientTask_TransientTaskInfo  *transientTaskInfo)
 ```
 **描述**
+
 获取所有短时任务信息，如当日剩余总配额等。
 
 **系统能力：** SystemCapability.ResourceSchedule.BackgroundTaskManager.TransientTask
 
 **起始版本：** 20
 
-**参数:**
+**参数：**
 
 | 名称 | 描述          | 
 | -------- |-------------|
