@@ -175,6 +175,8 @@ enum UsbDdkErrCode
 
 USB DDK 错误码定义。
 
+**起始版本：** 10
+
 | 枚举定义 | 值 | 描述 |
 | -------- | -------- |-------- |
 | USB_DDK_SUCCESS | 0 | 操作成功。 |
@@ -201,6 +203,8 @@ int32_t OH_Usb_ClaimInterface (uint64_t deviceId, uint8_t interfaceIndex, uint64
 声明接口。
 
 **需要权限**：ohos.permission.ACCESS_DDK_USB
+
+**起始版本：** 10
 
 **参数:**
 
@@ -259,6 +263,8 @@ void OH_Usb_DestroyDeviceMemMap (UsbDeviceMemMap * devMmap)
 销毁缓冲区。请在缓冲区使用完后及时销毁缓冲区，否则会造成资源泄露。
 
 **需要权限**：ohos.permission.ACCESS_DDK_USB
+
+**起始版本：** 10
 
 **参数:**
 
@@ -330,6 +336,8 @@ int32_t OH_Usb_GetCurrentInterfaceSetting (uint64_t interfaceHandle, uint8_t * s
 获取接口当前激活的备用设置。
 
 **需要权限**：ohos.permission.ACCESS_DDK_USB
+
+**起始版本：** 10
 
 **参数:**
 
@@ -437,6 +445,8 @@ int32_t OH_Usb_ReleaseInterface (uint64_t interfaceHandle)
 
 **需要权限**：ohos.permission.ACCESS_DDK_USB
 
+**起始版本**：10
+
 **参数:**
 
 | 名称 | 描述 |
@@ -464,6 +474,8 @@ int32_t OH_Usb_SelectInterfaceSetting (uint64_t interfaceHandle, uint8_t setting
 
 **需要权限**：ohos.permission.ACCESS_DDK_USB
 
+**起始版本**：10
+
 **参数:**
 
 | 名称 | 描述 |
@@ -490,6 +502,8 @@ int32_t OH_Usb_SendControlReadRequest (uint64_t interfaceHandle, const struct Us
 发送控制读请求，该接口为同步接口。
 
 **需要权限**：ohos.permission.ACCESS_DDK_USB
+
+**起始版本**：10
 
 **参数:**
 
@@ -525,6 +539,8 @@ int32_t OH_Usb_SendControlWriteRequest (uint64_t interfaceHandle, const struct U
 
 **需要权限**：ohos.permission.ACCESS_DDK_USB
 
+**起始版本**：10
+
 **参数:**
 
 | 名称 | 描述 |
@@ -558,6 +574,8 @@ int32_t OH_Usb_SendPipeRequest (const struct UsbRequestPipe * pipe, UsbDeviceMem
 发送管道请求，该接口为同步接口。中断传输和批量传输都使用该接口发送请求。
 
 **需要权限**：ohos.permission.ACCESS_DDK_USB
+
+**起始版本**：10
 
 **参数:**
 
