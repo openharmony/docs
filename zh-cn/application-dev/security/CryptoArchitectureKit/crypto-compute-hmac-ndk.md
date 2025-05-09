@@ -10,19 +10,19 @@ HMAC通过指定摘要算法，以通信双方共享密钥与消息作为输入�
 
 ### HMAC（一次性传入）
 
-1. 调用[OH_CryptoSymKeyGenerator_Create](../../reference/apis-crypto-architecture-kit/_crypto_sym_key_api.md#oh_cryptosymkeygenerator_create)、[OH_CryptoSymKeyGenerator_Generate](../../reference/apis-crypto-architecture-kit/_crypto_sym_key_api.md#oh_cryptosymkeygenerator_generate)生成密钥算法为HMAC的对称密钥（symKey）。
+1. 调用[OH_CryptoSymKeyGenerator_Create]、[OH_CryptoSymKeyGenerator_Generate]生成密钥算法为HMAC的对称密钥（symKey）。
 
-2. 调用[OH_CryptoMac_Create](../../reference/apis-crypto-architecture-kit/_crypto_mac_api.md#oh_cryptomac_create)，指定字符串参数'HMAC'，创建MAC算法为HMAC的MAC生成器。
+2. 调用[OH_CryptoMac_Create]，指定字符串参数'HMAC'，创建MAC算法为HMAC的MAC生成器。
 
-3. 调用[OH_CryptoMac_SetParam](../../reference/apis-crypto-architecture-kit/_crypto_mac_api.md#oh_cryptomac_setparam)，指定参数CRYPTO_MAC_DIGEST_NAME_STR，设置摘要算法名称。
+3. 调用[OH_CryptoMac_SetParam]，指定参数CRYPTO_MAC_DIGEST_NAME_STR，设置摘要算法名称。
 
-4. 调用[OH_CryptoMac_Init](../../reference/apis-crypto-architecture-kit/_crypto_mac_api.md#oh_cryptomac_init)，指定共享对称密钥（symKey），初始化MAC对象。
+4. 调用[OH_CryptoMac_Init]，指定共享对称密钥（symKey），初始化MAC对象。
 
-5. 调用[OH_CryptoMac_Update](../../reference/apis-crypto-architecture-kit/_crypto_mac_api.md#oh_cryptomac_update)，传入自定义消息，进行消息认证码计算。
+5. 调用[OH_CryptoMac_Update]，传入自定义消息，进行消息认证码计算。
 
-6. 调用[OH_CryptoMac_Final](../../reference/apis-crypto-architecture-kit/_crypto_mac_api.md#oh_cryptomac_final)，获取MAC计算结果。
+6. 调用[OH_CryptoMac_Final]，获取MAC计算结果。
 
-7. 调用[OH_CryptoMac_GetLength](../../reference/apis-crypto-architecture-kit/_crypto_mac_api.md#oh_cryptomac_getlength)，获取MAC消息认证码的长度，单位为字节。
+7. 调用[OH_CryptoMac_GetLength]，获取MAC消息认证码的长度，单位为字节。
 
 ```C++
 #include "CryptoArchitectureKit/crypto_architecture_kit.h"
@@ -126,7 +126,7 @@ static OH_Crypto_ErrCode doTestHmacOnce()
 
 ### 分段HMAC
 
-与一次性传入的步骤基本相同，区别在于多次调用[OH_CryptoMac_Update](../../reference/apis-crypto-architecture-kit/_crypto_mac_api.md#oh_cryptomac_update)来处理分段数据。
+与一次性传入的步骤基本相同，区别在于多次调用[OH_CryptoMac_Update]来处理分段数据。
 
 ```C++
 #include "CryptoArchitectureKit/crypto_architecture_kit.h"

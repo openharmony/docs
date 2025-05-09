@@ -6,13 +6,13 @@
 
 **指定密文参数，生成标准ASN.1密文**
 
-1. 调用[OH_CryptoSm2CiphertextSpec_Create](../../reference/apis-crypto-architecture-kit/_crypto_asym_cipher_api.md#oh_cryptosm2ciphertextspec_create)，创建空的SM2密文规格对象。
+1. 调用[OH_CryptoSm2CiphertextSpec_Create]，创建空的SM2密文规格对象。
 
-2. 调用[OH_CryptoSm2CiphertextSpec_SetItem](../../reference/apis-crypto-architecture-kit/_crypto_asym_cipher_api.md#oh_cryptosm2ciphertextspec_setitem)，设置密文的各个参数（C1.x、C1.y、C2、C3）。
+2. 调用[OH_CryptoSm2CiphertextSpec_SetItem]，设置密文的各个参数（C1.x、C1.y、C2、C3）。
 
-3. 调用[OH_CryptoSm2CiphertextSpec_Encode](../../reference/apis-crypto-architecture-kit/_crypto_asym_cipher_api.md#oh_cryptosm2ciphertextspec_encode)，生成ASN.1格式的密文。
+3. 调用[OH_CryptoSm2CiphertextSpec_Encode]，生成ASN.1格式的密文。
 
-4. 使用完毕后，调用[OH_CryptoSm2CiphertextSpec_Destroy](../../reference/apis-crypto-architecture-kit/_crypto_asym_cipher_api.md#oh_cryptosm2ciphertextspec_destroy)销毁SM2密文规格对象。
+4. 使用完毕后，调用[OH_CryptoSm2CiphertextSpec_Destroy]销毁SM2密文规格对象。
 
 ```C++
 #include "CryptoArchitectureKit/crypto_architecture_kit.h"
@@ -79,11 +79,11 @@ static OH_Crypto_ErrCode doTestGenCipherTextBySpec()
 
 **从标准ASN.1密文中获取密文参数**
 
-1. 调用[OH_CryptoSm2CiphertextSpec_Create](../../reference/apis-crypto-architecture-kit/_crypto_asym_cipher_api.md#oh_cryptosm2ciphertextspec_create)，从ASN.1格式密文创建SM2密文规格对象。
+1. 调用[OH_CryptoSm2CiphertextSpec_Create]，从ASN.1格式密文创建SM2密文规格对象。
 
-2. 调用[OH_CryptoSm2CiphertextSpec_GetItem](../../reference/apis-crypto-architecture-kit/_crypto_asym_cipher_api.md#oh_cryptosm2ciphertextspec_getitem)，获取密文中的各个参数（C1.x、C1.y、C2、C3）。
+2. 调用[OH_CryptoSm2CiphertextSpec_GetItem]，获取密文中的各个参数（C1.x、C1.y、C2、C3）。
 
-3. 使用完毕后，调用[OH_CryptoSm2CiphertextSpec_Destroy](../../reference/apis-crypto-architecture-kit/_crypto_asym_cipher_api.md#oh_cryptosm2ciphertextspec_destroy)销毁SM2密文规格对象。
+3. 使用完毕后，调用[OH_CryptoSm2CiphertextSpec_Destroy]销毁SM2密文规格对象。
 
 ```C++
 static OH_Crypto_ErrCode doTestGetCipherTextSpec()

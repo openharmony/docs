@@ -4,9 +4,9 @@
 
 ## 开发步骤
 
-1. 调用[OH_CryptoKdfParams_Create](../../reference/apis-crypto-architecture-kit/_crypto_kdf_api.md#oh_cryptokdfparams_create)，指定字符串参数'SCRYPT'，创建密钥派生参数对象。
+1. 调用[OH_CryptoKdfParams_Create]，指定字符串参数'SCRYPT'，创建密钥派生参数对象。
 
-2. 调用[OH_CryptoKdfParams_SetParam](../../reference/apis-crypto-architecture-kit/_crypto_kdf_api.md#oh_cryptokdfparams_setparam)，设置Scrypt所需的参数：
+2. 调用[OH_CryptoKdfParams_SetParam]，设置Scrypt所需的参数：
    - CRYPTO_KDF_KEY_DATABLOB：用于生成派生密钥的原始密码
    - CRYPTO_KDF_SALT_DATABLOB：盐值
    - CRYPTO_KDF_SCRYPT_N_UINT64：CPU/内存开销参数，必须是2的幂
@@ -14,9 +14,9 @@
    - CRYPTO_KDF_SCRYPT_P_UINT64：并行化参数
    - CRYPTO_KDF_SCRYPT_MAX_MEM_UINT64：最大内存限制（字节）
 
-3. 调用[OH_CryptoKdf_Create](../../reference/apis-crypto-architecture-kit/_crypto_kdf_api.md#oh_cryptokdf_create)，指定字符串参数'SCRYPT'，创建密钥派生函数对象。
+3. 调用[OH_CryptoKdf_Create]，指定字符串参数'SCRYPT'，创建密钥派生函数对象。
 
-4. 调用[OH_CryptoKdf_Derive](../../reference/apis-crypto-architecture-kit/_crypto_kdf_api.md#oh_cryptokdf_derive)，指定目标密钥的字节长度，进行密钥派生。
+4. 调用[OH_CryptoKdf_Derive]，指定目标密钥的字节长度，进行密钥派生。
 
 ```C++
 #include "CryptoArchitectureKit/crypto_architecture_kit.h"
