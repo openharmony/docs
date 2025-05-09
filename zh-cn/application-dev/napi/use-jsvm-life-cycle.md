@@ -252,7 +252,7 @@ JSVM UseReference success
 为 JavaScript 对象添加 JSVM_Finalize 回调，当 JavaScript 对象被垃圾回收时执行函数回调，该接口通常被用于释放与 JavaScript 对象相关的原生对象。如果传入的参数类型不是 JavaScript 对象，该接口调用失败并返回错误码。
 Finalizer 方法被注册后无法取消，如果在调用 OH_JSVM_DestroyEnv 前均未被执行，则在 OH_JVSM_DestroyEnv 时执行。
 
-cpp部分代码
+cpp 部分代码
 
 ```cpp
 static int AddFinalizer(JSVM_VM vm, JSVM_Env env) {
@@ -281,6 +281,7 @@ static int AddFinalizer(JSVM_VM vm, JSVM_Env env) {
 
 static JSVM_Value RunDemo(JSVM_Env env, JSVM_CallbackInfo info) {
     JSVM_VM vm;
+    OH_JSVM_GetVM(env, &vm);
     if (AddFinalizer(vm, env) != 0) {
         OH_LOG_INFO(LOG_APP, "Run PromiseRegisterHandler failed");
     }
@@ -299,7 +300,7 @@ static JSVM_PropertyDescriptor descriptor[] = {
 };
 
 // 样例测试js
-const char *srcCallNative = R"JS(RunDemo("gen-snapshot"); RunDemo("use-snapshot"))JS";
+const char *srcCallNative = R"JS(RunDemo();)JS";
 ```
 
 预期结果
