@@ -54,15 +54,11 @@ createDeviceManager(bundleName: string): DeviceManager;
   import { distributedDeviceManager } from '@kit.DistributedServiceKit';
   import { BusinessError } from '@kit.BasicServicesKit';
 
-  let dmInstance : distributedDeviceManager.DeviceManager;
-
-  function initDmClass() : void {
-    try {
-      dmInstance = distributedDeviceManager.createDeviceManager('ohos.samples.jsHelloWorld');
-    } catch(err) {
-      let e: BusinessError = err as BusinessError;
-      console.error('createDeviceManager errCode:' + e.code + ',errMessage:' + e.message);
-    }
+  try {
+    dmInstance = distributedDeviceManager.createDeviceManager('ohos.samples.jsHelloWorld');
+  } catch(err) {
+    let e: BusinessError = err as BusinessError;
+    console.error('createDeviceManager errCode:' + e.code + ',errMessage:' + e.message);
   }
   ```
 

@@ -115,7 +115,7 @@ startDiscovering(discoverParam: {[key:&nbsp;string]:&nbsp;Object;} , filterOptio
    import { BusinessError } from '@kit.BasicServicesKit';
    ```
 
-4. 创建设备管理实例[createDeviceManager](../reference/apis-distributedservice-kit/js-apis-distributedDeviceManager.md#distributeddevicemanagercreatedevicemanager)。设备管理实例是分布式设备管理方法的调用入口，并注册发现设备的回调。
+4. 创建设备管理实例，设备管理实例是分布式设备管理方法的调用入口，并注册发现设备的回调。
 
    ```ts
    try {
@@ -258,7 +258,7 @@ on(type: 'deviceStateChange', callback: Callback&lt;{ action: DeviceStateChange;
    import { BusinessError } from '@kit.BasicServicesKit';
    ```
 
-4. 创建设备管理实例[createDeviceManager](../reference/apis-distributedservice-kit/js-apis-distributedDeviceManager.md#distributeddevicemanagercreatedevicemanager)。设备管理实例是分布式设备管理方法的调用入口，并注册设备上下线回调。
+4. 创建设备管理实例，设备管理实例是分布式设备管理方法的调用入口，并注册设备上下线回调。
 
    ```ts
    try {
