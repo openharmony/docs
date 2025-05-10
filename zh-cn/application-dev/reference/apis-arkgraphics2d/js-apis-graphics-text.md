@@ -1435,10 +1435,7 @@ updateColor(color: common2D.Color): void;
 **示例：**
 
 ```ts
-paragraph.layoutSync(100);
-paragraph.updateColor(color: { alpha: 255, red: 255, green: 0, blue: 0 });
-let canvas = new drawing.Canvas(pixelMap);
-paragraph.paint(canvas, 0, 0);
+paragraph.updateColor({ alpha: 255, red: 255, green: 0, blue: 0 });
 ```
 
 ### updateDecoration<sup>20+</sup>
@@ -1458,15 +1455,12 @@ updateDecoration(decoration: Decoration): void;
 **示例：**
 
 ```ts
-paragraph.layoutSync(100);
 paragraph.updateDecoration({
   textDecoration: text.TextDecorationType.OVERLINE,
   color: { alpha: 255, red: 255, green: 0, blue: 0 },
   decorationStyle: text.TextDecorationStyle.WAVY,
   decorationThicknessScale: 2.0,
 });
-let canvas = new drawing.Canvas(pixelMap);
-paragraph.paint(canvas, 0, 0);
 ```
 
 ## LineTypeset<sup>18+</sup>
