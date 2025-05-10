@@ -56,7 +56,7 @@ try {
 
 ## 删除群组关键资产
 
-在群组中删除单条别名是demo_alias的关键资产。
+在群组中删除别名是demo_alias的关键资产。
 
 ```typescript
 import { asset } from '@kit.AssetStoreKit';

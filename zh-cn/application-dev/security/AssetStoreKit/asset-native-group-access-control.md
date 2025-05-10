@@ -24,7 +24,7 @@
 
 ## 新增群组关键资产
 
-在群组中新增一条关键资产，密码为demo_pwd，别名为demo_alias，附属信息为demo_label。该关键资产在首次解锁设备后可被访问。
+在群组中新增密码为demo_pwd、别名为demo_alias、附属信息为demo_label的关键资产。用户首次解锁设备后，该关键资产可被访问。
 
 ```c
 #include <string.h>
