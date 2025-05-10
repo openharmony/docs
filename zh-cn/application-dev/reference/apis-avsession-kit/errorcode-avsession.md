@@ -714,11 +714,29 @@ The number of times this content has been used as requested has reached the maxi
 
 检查自身命令发送是否过于频繁，控制自身查询和命令的发送频率。
 
-## 6612107 解析异常
+## 6612107 资源发送异常
 
 **错误信息**
 
 An error occurs when sending packet from source device to sink device.
+
+**错误描述**
+
+本端向远端发送资源包失败。
+
+**可能原因**
+
+网络异常、对端状态异常、无法接收等。
+
+**处理步骤**
+
+当前网络异常，先重新连接网络，再重新发起会话。
+
+## 6613000 解析异常
+
+**错误信息**
+
+Unspecified error related to content parsing.
 
 **错误描述**
 
@@ -731,3 +749,417 @@ An error occurs when sending packet from source device to sink device.
 **处理步骤**
 
 当远端设备异常，先重启远端设备，再重新发起会话。
+
+## 6613001 非法类型
+
+**错误信息**
+
+Parsing error associated with media container format bit streams.
+
+**错误描述**
+
+当前播放的资源是不受AVTransport服务支持的MIME类型。
+
+**可能原因**
+
+检查设置的资源MIME类型是否正常。
+
+**处理步骤**
+
+可更换其他类型的资源，再重新发起会话。
+
+## 6613002 解析异常
+
+**错误信息**
+
+Parsing error associated with the media manifest.
+
+**错误描述**
+
+相关媒体清单的解析错误。
+
+**可能原因**
+
+此设备不支持播放当前加载的媒体存储格式。
+
+**处理步骤**
+
+检查设置的资源格式是否正常，可更换其他格式的资源，重新发起会话。
+
+## 6613003 不支持该媒体格式
+
+**错误信息**
+
+An error occurs when attempting to extract a file with an unsupported media container format or an unsupported media container feature.
+
+**错误描述**
+
+不支持媒体格式
+
+**可能原因**
+
+此设备不支持播放当前加载的媒体存储格式。
+
+**处理步骤**
+
+检查设置的资源格式是否正常，可更换其他格式的资源，重新发起会话。
+
+## 6613004 媒体清单中不支持此功能
+
+**错误信息**
+
+Unsupported feature in the media manifest.
+
+**错误描述**
+
+媒体清单中不支持此功能。
+
+**可能原因**
+
+此设备不支持播放当前加载的媒体的存储格式。
+
+**处理步骤**
+
+检查设置的资源格式是否正常，可更换其他格式的资源，重新发起会话。
+
+## 6614000 解码异常
+
+**错误信息**
+
+Unspecified decoding error.
+
+**错误描述**
+
+当前播放的资源是不受AVTransport服务支持的MIME类型。
+
+**可能原因**
+
+检查设置的资源MIME类型是否正常。
+
+**处理步骤**
+
+可更换其他类型的资源，再重新发起会话。
+
+## 6614001 解码器初始化失败
+
+**错误信息**
+
+Decoder initialization failed.
+
+**错误描述**
+
+解码器初始化失败。
+
+**可能原因**
+
+远端设备解码器初始化出现异常。
+
+**处理步骤**
+
+当前远端设备异常，先重启远端设备，再重新发起会话。
+
+## 6614002 解码器查询失败
+
+**错误信息**
+
+Decoder query failed.
+
+**错误描述**
+
+解码器查询失败。
+
+**可能原因**
+
+尝试播放或处理媒体文件时，设备或软件无法正确解码文件中的数据。
+
+**处理步骤**
+
+检查文件格式，确保是支持该媒体文件的格式。
+
+## 6614003 解码媒体样本时失败
+
+**错误信息**
+
+Decoding the media samples failed.
+
+**错误描述**
+
+解码媒体样本时失败
+
+**可能原因**
+
+尝试访问的文件格式超出了当前设备的支持范围。
+
+**处理步骤**
+
+检查文件格式，确保是支持该媒体文件的格式。
+
+## 6614004 不支持解码
+
+**错误信息**
+
+The format of the content to decode exceeds the capabilities of the device.
+
+**错误描述**
+
+所需解码的内容格式超出设备能力而导致失败。
+
+**可能原因**
+
+尝试访问的文件格式超出了当前设备的支持范围。
+
+**处理步骤**
+
+检查文件格式，确保是支持该媒体文件的格式。
+
+## 6614005 不支持解码
+
+**错误信息**
+
+The format of the content to decode is not supported.
+
+**错误描述**
+
+解码不支持的内容格式而导致失败。
+
+**可能原因**
+
+尝试访问的文件类型超出了当前设备的支持范围。
+
+**处理步骤**
+
+检查文件格式，确保是支持该媒体文件的格式。
+
+## 6615000 音频渲染器异常
+
+**错误信息**
+
+Unspecified errors related to the audio renderer.
+
+**错误描述**
+
+音频渲染器相关的未知错误引起。
+
+**可能原因**
+
+远端设备的音频渲染器出现问题，无法识别当前音轨。
+
+**处理步骤**
+
+检查文件格式，确保是支持该媒体文件的格式。
+
+## 6615001 音频渲染器初始化异常
+
+**错误信息**
+
+Initializing the audio renderer failed.
+
+**错误描述**
+
+AudioTrack初始化失败。
+
+**可能原因**
+
+远端设备的音频渲染器初始化出现问题。
+
+**处理步骤**
+
+当前远端设备异常，先重启远端设备，再重新发起会话。
+
+## 6615002 音频渲染器写数据异常
+
+**错误信息**
+
+The audio renderer fails to write data.
+
+**错误描述**
+
+AudioTrack写操作失败。
+
+**可能原因**
+
+远端设备的音频渲染器无法写数据。
+
+**处理步骤**
+
+当前远端设备异常，先重启远端设备，再重新发起会话。
+
+## 6616000 DRM异常
+
+**错误信息**
+
+Unspecified error related to DRM.
+
+**错误描述**
+
+DRM相关的未知错误。
+
+**可能原因**
+
+远端设备的DRM识别出现异常。
+
+**处理步骤**
+
+当前远端设备的DRM出现异常，更新DRM组件之后重新发起会话。
+
+## 6616001 当前设备不支持DRM
+
+**错误信息**
+
+The chosen DRM protection scheme is not supported by the device.
+
+**错误描述**
+
+由设备不支持所选的DRM保护方案。
+
+**可能原因**
+
+发生了未知的DRM错误。
+
+**处理步骤**
+
+当前远端设备的DRM出现异常，更新DRM组件之后重新发起会话。
+
+## 6616002 设备异常
+
+**错误信息**
+
+Device provisioning failed.
+
+**错误描述**
+
+调配设备时出现故障。
+
+**可能原因**
+
+播放的DRM格式内容不兼容。
+
+**处理步骤**
+
+检查文件DRM格式，确保是支持该媒体文件的DRM格式。
+
+## 6616003 DRM不兼容
+
+**错误信息**
+
+The DRM-protected content to play is incompatible.
+
+**错误描述**
+
+由于尝试播放不兼容的DRM保护内容导致。
+
+**可能原因**
+
+播放的DRM保护内容不兼容。
+
+**处理步骤**
+
+当前远端设备的DRM出现异常，更新DRM组件之后重新发起会话。
+
+## 6616004 许可证获取失败
+
+**错误信息**
+
+Failed to obtain a license.
+
+**错误描述**
+
+许可证获取失败。
+
+**可能原因**
+
+违反数字版权管理（DRM）保护内容的许可证条款。
+
+**处理步骤**
+
+检查文件的DRM格式，确保是支持该媒体文件的DRM格式。
+
+## 6616005 非法行为
+
+**错误信息**
+
+The operation is disallowed by the license policy.
+
+**错误描述**
+
+由许可证策略不允许的操作引起。
+
+**可能原因**
+
+违反数字版权管理（DRM）保护内容的许可证条款。
+
+**处理步骤**
+
+检查文件的DRM格式，确保是支持该媒体文件的DRM格式。
+
+## 6616006 DRM系统异常
+
+**错误信息**
+
+An error occurs in the DRM system.
+
+**错误描述**
+
+DRM系统错误导致。
+
+**可能原因**
+
+远端设备的DRM识别出现异常。
+
+**处理步骤**
+
+检查文件DRM格式，确保是支持该问题文件的DRM格式。
+
+## 6616007 DRM权限缺失
+
+**错误信息**
+
+The device has revoked DRM privileges.
+
+**错误描述**
+
+设备已吊销DRM权限。
+
+**可能原因**
+
+通常表示设备的数字版权管理（DRM）权限被禁用或撤销，导致无法播放或处理DRM保护的内容。
+
+**处理步骤**
+
+当前远端设备的DRM出现异常，更新DRM组件之后重新发起会话。
+
+## 6616008 DRM许可证异常
+
+**错误信息**
+
+The DRM license being loaded into the open DRM session has expired.
+
+**错误描述**
+
+由已过期的DRM许可证被加载到打开的DRM会话中导致。
+
+**可能原因**
+
+DRM许可证已过期。
+
+**处理步骤**
+
+当前远端设备的DRM出现异常，更新DRM组件之后重新发起会话。
+
+## 6616100 DRM进程响应异常
+
+**错误信息**
+
+An error occurs when the DRM processes the key response.
+
+**错误描述**
+
+DRM进程秘钥响应错误。
+
+**可能原因**
+
+DRM秘钥响应的处理过程出现了问题。
+
+**处理步骤**
+
+当前远端设备的DRM出现异常，更新DRM组件之后重新发起会话。
