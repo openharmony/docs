@@ -1,6 +1,8 @@
 # @ohos.resourceManager (资源管理)
 
-资源管理模块，根据当前configuration：语言、区域、横竖屏、Mcc（移动国家码）和Mnc（移动网络码）、Device capability（设备类型）、Density（分辨率）提供获取应用资源信息读取接口。
+本模块提供资源获取能力。根据设备当前的[Configuration](#configuration)配置，获取最匹配的应用资源或系统资源。具体匹配规则参考[资源匹配](../../quick-start/resource-categories-and-access.md#资源匹配)。
+
+设备Configuration配置包括语言、区域、横竖屏、Mcc（移动国家码）和Mnc（移动网络码）、Device capability（设备类型）、Density（分辨率）。
 
 > **说明：**
 >
@@ -9,13 +11,13 @@
 ## 导入模块
 
 ```js
-import { resourceManager } from '@kit.LocalizationKit'
+import { resourceManager } from '@kit.LocalizationKit';
 ```
 
 ## 使用说明
 
-从API Version9开始，Stage模型通过context获取resourceManager对象的方式后，可直接调用其内部获取资源的接口，无需再导入包。
-FA模型仍需要先导入包，再调用[getResourceManager](#resourcemanagergetresourcemanager)接口获取资源对象。 
+从API version 9开始，Stage模型支持通过Context获取资源管理resourceManager对象，无需再导入包。
+FA模型仍需要先导入包，再调用[getResourceManager](#resourcemanagergetresourcemanager)接口获取资源管理对象。 
 Stage模型下Context的引用方法请参考[Stage模型的Context详细介绍](../../application-models/application-context-stage.md)。
 
 ```ts
@@ -36,19 +38,23 @@ getResourceManager(callback: AsyncCallback&lt;ResourceManager&gt;): void
 
 获取当前应用的资源管理对象，使用callback异步回调。
 
-**系统能力**：SystemCapability.Global.ResourceManager
+**系统能力：** SystemCapability.Global.ResourceManager
 
-**模型约束**：此接口仅可在FA模型下使用。
+**模型约束：** 此接口仅可在FA模型下使用。
 
 **参数：** 
 
 | 参数名      | 类型                                       | 必填   | 说明                            |
 | -------- | ---------------------------------------- | ---- | ----------------------------- |
-| callback | [AsyncCallback](#asynccallbackdeprecated)&lt;[ResourceManager](#resourcemanager)&gt; | 是    |返回资源管理ResourceManager对象。 |
+| callback | [AsyncCallback](#asynccallbackdeprecated)&lt;[ResourceManager](#resourcemanager)&gt; | 是    | 回调函数，返回资源管理ResourceManager对象。 |
 
-**示例：** 
+**示例：**
+
   <!--code_no_check_fa-->
   ```js
+  import { resourceManager } from '@kit.LocalizationKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
+
   resourceManager.getResourceManager((error, mgr) => {
     if (error != null) {
       console.error("error is " + error);
@@ -70,21 +76,28 @@ getResourceManager(bundleName: string, callback: AsyncCallback&lt;ResourceManage
 
 获取指定应用的资源管理对象，使用callback异步回调。
 
-**系统能力**：SystemCapability.Global.ResourceManager
+**系统能力：** SystemCapability.Global.ResourceManager
 
-**模型约束**：此接口仅可在FA模型下使用。
+**模型约束：** 此接口仅可在FA模型下使用。
 
 **参数：** 
 
 | 参数名        | 类型                                       | 必填   | 说明                            |
 | ---------- | ---------------------------------------- | ---- | ----------------------------- |
-| bundleName | string                                   | 是    | 应用的Bundle名称。                 |
-| callback   | [AsyncCallback](#asynccallbackdeprecated)&lt;[ResourceManager](#resourcemanager)&gt; | 是    | 返回资源管理ResourceManager对象。 |
+| bundleName | string                                   | 是    | 应用包名。                 |
+| callback   | [AsyncCallback](#asynccallbackdeprecated)&lt;[ResourceManager](#resourcemanager)&gt; | 是    | 回调函数，返回应用包名对应的资源管理ResourceManager对象。 |
 
-**示例：** 
+**示例：**
   <!--code_no_check_fa-->
   ```js
+  import { resourceManager } from '@kit.LocalizationKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
+
   resourceManager.getResourceManager("com.example.myapplication", (error, mgr) => {
+    if (error != null) {
+      console.error("error is " + error);
+      return;
+    }
   });
   ```
 
@@ -94,20 +107,20 @@ getResourceManager(): Promise&lt;ResourceManager&gt;
 
 获取当前应用的资源管理对象，使用Promise异步回调。
 
-**系统能力**：SystemCapability.Global.ResourceManager
+**系统能力：** SystemCapability.Global.ResourceManager
 
-**模型约束**：此接口仅可在FA模型下使用。
+**模型约束：** 此接口仅可在FA模型下使用。
 
 **返回值：**
 
 | 类型                                       | 说明                |
 | ---------------------------------------- | ----------------- |
-| Promise&lt;[ResourceManager](#resourcemanager)&gt; | 返回资源管理ResourceManager对象。 |
+| Promise&lt;[ResourceManager](#resourcemanager)&gt; | Promise对象，返回资源管理ResourceManager对象。 |
 
-**示例：** 
+**示例：**
   <!--code_no_check_fa-->
   ```js
-  import { resourceManager } from '@kit.LocalizationKit'
+  import { resourceManager } from '@kit.LocalizationKit';
   import { BusinessError } from '@kit.BasicServicesKit';
 
   resourceManager.getResourceManager().then((mgr: resourceManager.ResourceManager) => {
@@ -129,30 +142,31 @@ getResourceManager(bundleName: string): Promise&lt;ResourceManager&gt;
 
 获取指定应用的资源管理对象，使用Promise异步回调。
 
-**系统能力**：SystemCapability.Global.ResourceManager
+**系统能力：** SystemCapability.Global.ResourceManager
 
-**模型约束**：此接口仅可在FA模型下使用。
+**模型约束：** 此接口仅可在FA模型下使用。
 
 **参数：** 
 
 | 参数名        | 类型     | 必填   | 说明            |
 | ---------- | ------ | ---- | ------------- |
-| bundleName | string | 是    | 应用的Bundle名称。 |
+| bundleName | string | 是    | 应用包名。 |
 
 **返回值：**
 
 | 类型                                       | 说明                 |
 | ---------------------------------------- | ------------------ |
-| Promise&lt;[ResourceManager](#resourcemanager)&gt; | 返回资源管理ResourceManager对象。 |
+| Promise&lt;[ResourceManager](#resourcemanager)&gt; | Promise对象，返回应用包名对应的资源管理ResourceManager对象。 |
 
-**示例：** 
+**示例：**
   <!--code_no_check_fa-->
   ```js
-  import { resourceManager } from '@kit.LocalizationKit'
+  import { resourceManager } from '@kit.LocalizationKit';
   import { BusinessError } from '@kit.BasicServicesKit';
 
   resourceManager.getResourceManager("com.example.myapplication").then((mgr: resourceManager.ResourceManager) => {
   }).catch((error: BusinessError) => {
+    console.error("error is " + error);
   });
   ```
 
@@ -162,15 +176,15 @@ getSystemResourceManager(): ResourceManager
 
 获取系统资源管理对象，返回系统资源的ResourceManager对象。
 
-**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Global.ResourceManager
+**系统能力：** SystemCapability.Global.ResourceManager
 
 **返回值：**
 
 | 类型                                       | 说明                 |
 | ---------------------------------------- | ------------------ |
-| [Resourcemanager](#resourcemanager) | 返回系统资源的管理对象。 |
+| [ResourceManager](#resourcemanager) | 系统资源管理对象。 |
 
 **错误码：**
 
@@ -178,11 +192,11 @@ getSystemResourceManager(): ResourceManager
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 9001009  | Failed to access the system resource.which is not mapped to application sandbox, This error code will be thrown. |
+| 9001009  | Failed to access the system resource. which is not mapped to application sandbox, This error code will be thrown. |
 
 **示例：**
   ```js
-import { resourceManager } from '@kit.LocalizationKit'
+import { resourceManager } from '@kit.LocalizationKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
@@ -195,7 +209,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
   } catch (error) {
     let code = (error as BusinessError).code;
     let message = (error as BusinessError).message;
-    console.error(`systemResourceManager getStringValue failed, error code: ${code}, message: ${message}.`);
+    console.error(`getSystemResourceManager failed, error code: ${code}, message: ${message}.`);
   }
   ```
 
@@ -203,9 +217,9 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 用于表示设备屏幕方向。
 
-**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Global.ResourceManager
+**系统能力：** SystemCapability.Global.ResourceManager
 
 | 名称                   | 值  | 说明   |
 | -------------------- | ---- | ---- |
@@ -217,45 +231,45 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 用于表示当前设备类型。
 
-**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Global.ResourceManager
+**系统能力：** SystemCapability.Global.ResourceManager
 <!--RP1-->
 | 名称                   | 值  | 说明   |
 | -------------------- | ---- | ---- |
 | DEVICE_TYPE_PHONE    | 0x00 | 手机。   |
 | DEVICE_TYPE_TABLET   | 0x01 | 平板。   |
-| DEVICE_TYPE_CAR      | 0x02 | 汽车。   |
-| DEVICE_TYPE_TV       | 0x04 | 电视。  |
-| DEVICE_TYPE_WEARABLE | 0x06 | 穿戴。   |
-| DEVICE_TYPE_2IN1<sup>11+</sup>     | 0x07 | 2in1。   |
+| DEVICE_TYPE_CAR      | 0x02 | 车机。   |
+| DEVICE_TYPE_TV       | 0x04 | 智慧屏。  |
+| DEVICE_TYPE_WEARABLE | 0x06 | 智能手表。   |
+| DEVICE_TYPE_2IN1<sup>11+</sup>     | 0x07 | PC/2in1。   |
 <!--RP1End-->
 
 ## ScreenDensity
 
 用于表示当前设备屏幕密度。
 
-**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Global.ResourceManager
+**系统能力：** SystemCapability.Global.ResourceManager
 
 | 名称             | 值  | 说明         |
 | -------------- | ---- | ---------- |
-| SCREEN_SDPI    | 120  | 小规模的屏幕密度。  |
-| SCREEN_MDPI    | 160  | 中规模的屏幕密度。   |
-| SCREEN_LDPI    | 240  | 大规模的屏幕密度。   |
-| SCREEN_XLDPI   | 320  | 特大规模的屏幕密度。  |
-| SCREEN_XXLDPI  | 480  | 超大规模的屏幕密度。  |
-| SCREEN_XXXLDPI | 640  | 超特大规模的屏幕密度。 |
+| SCREEN_SDPI    | 120  | 低屏幕密度。  |
+| SCREEN_MDPI    | 160  | 中屏幕密度。   |
+| SCREEN_LDPI    | 240  | 高屏幕密度。   |
+| SCREEN_XLDPI   | 320  | 特高屏幕密度。  |
+| SCREEN_XXLDPI  | 480  | 超高屏幕密度。  |
+| SCREEN_XXXLDPI | 640  | 超特高屏幕密度。 |
 
 
 ## ColorMode<sup>12+</sup>
 
 用于表示当前设备颜色模式。
 
-**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Global.ResourceManager
+**系统能力：** SystemCapability.Global.ResourceManager
 
 | 名称  | 值   | 说明       |
 | ----- | ---- | ---------- |
@@ -267,17 +281,17 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 表示当前设备的状态。
 
-**系统能力**：SystemCapability.Global.ResourceManager
+**系统能力：** SystemCapability.Global.ResourceManager
 
 | 名称                        | 类型                            | 可读 | 可写 | 说明               |
 | --------------------------- | ------------------------------- | ---- | ---- | ------------------ |
-| direction                   | [Direction](#direction)         | 是   | 是   | 屏幕方向。<br>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。         |
-| locale                      | string                          | 是   | 是   | 语言文字国家地区。<br>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
-| deviceType<sup>12+</sup>    | [DeviceType](#devicetype)       | 是   | 是   | 设备类型。<br>**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。         |
-| screenDensity<sup>12+</sup> | [ScreenDensity](#screendensity) | 是   | 是   | 屏幕密度。<br>**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。         |
-| colorMode<sup>12+</sup>     | [ColorMode](#colormode12)       | 是   | 是   | 颜色模式。 <br>**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。        |
-| mcc<sup>12+</sup>           | number                          | 是   | 是   | 移动国家码。<br>**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。       |
-| mnc<sup>12+</sup>           | number                          | 是   | 是   | 移动网络码。<br>**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。       |
+| direction                   | [Direction](#direction)         | 是   | 是   | 屏幕方向。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。         |
+| locale                      | string                          | 是   | 是   | 语言文字国家地区。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| deviceType<sup>12+</sup>    | [DeviceType](#devicetype)       | 是   | 是   | 设备类型。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。         |
+| screenDensity<sup>12+</sup> | [ScreenDensity](#screendensity) | 是   | 是   | 屏幕密度。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。         |
+| colorMode<sup>12+</sup>     | [ColorMode](#colormode12)       | 是   | 是   | 颜色模式。 <br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。        |
+| mcc<sup>12+</sup>           | number                          | 是   | 是   | 移动国家码。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。       |
+| mnc<sup>12+</sup>           | number                          | 是   | 是   | 移动网络码。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。       |
 
 
 
@@ -285,9 +299,9 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 表示设备支持的能力。
 
-**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Global.ResourceManager
+**系统能力：** SystemCapability.Global.ResourceManager
 
 | 名称            | 类型                            | 可读   | 可写   | 说明       |
 | ------------- | ------------------------------- | ---- | ---- | -------- |
@@ -299,13 +313,13 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 type RawFileDescriptor = _RawFileDescriptor
 
-**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Global.ResourceManager
 
 | 类型    | 说明   |
 | ------  | ---- | 
-|[_RawFileDescriptor](js-apis-rawFileDescriptor.md#rawfiledescriptor-1)|表示rawfile文件所在hap的descriptor信息。|
+|[_RawFileDescriptor](js-apis-rawFileDescriptor.md#rawfiledescriptor-1)|表示rawfile文件所在HAP的descriptor信息。|
 
 ## Resource<sup>9+</sup>
 
@@ -317,7 +331,7 @@ type Resource = _Resource
 
 | 类型    | 说明   |
 | ------  | ---- | 
-|[_Resource](js-apis-resource.md#resource-1)|表示资源信息。|
+|[_Resource](js-apis-resource.md#resource-1)|表示资源信息，包含资源ID值、应用包名、模块名称等信息，一般可使用$r方式获取。|
 
 ## ResourceManager
 
@@ -329,7 +343,7 @@ type Resource = _Resource
 >
 > - 资源文件在工程的resources目录中定义，通过resId、resName、resource对象等可以获取对应的字符串、字符串数组等，resId可通过`$r(资源地址).id`的方式获取，例如`$r('app.string.test').id`。
 >
-> - resource对象适用于多工程应用内的跨包访问，因resource对象需创建对应module的context获取资源，故相比于入参为resId、resName的接口耗时长。
+> - [resource](#resource9)对象适用于多工程应用内的跨包访问，因resource对象需创建对应module的context获取资源，故相比于入参为resId、resName的接口耗时更长。
 >
 > - 单HAP包和跨HAP/HSP包资源的访问方式具体请参考[资源访问](../../quick-start/resource-categories-and-access.md#资源访问)。
 >
@@ -339,11 +353,11 @@ type Resource = _Resource
 
 getStringSync(resId: number): string
 
-用户获取指定资源ID对应的字符串，使用同步方式返回。
+获取指定资源ID对应的字符串，使用同步方式返回。
 
-**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Global.ResourceManager
+**系统能力：** SystemCapability.Global.ResourceManager
 
 **参数：** 
 
@@ -368,12 +382,24 @@ getStringSync(resId: number): string
 | 9001002  | No matching resource is found based on the resource ID.         |
 | 9001006  | The resource is referenced cyclically.            |
 
-**示例：** 
+**示例：**
+  ```json
+  {
+    "string": [
+      {
+        "name": "test",
+        "value": "I'm a test string resource."
+      }
+    ]
+  }
+  ```
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
-    this.context.resourceManager.getStringSync($r('app.string.test').id);
+    let testStr = this.context.resourceManager.getStringSync($r('app.string.test').id);
+    console.log(`getStringSync, result: ${testStr}`);
+    // 打印输出结果: getStringSync, result: I'm a test string resource.
   } catch (error) {
     let code = (error as BusinessError).code;
     let message = (error as BusinessError).message;
@@ -385,18 +411,18 @@ getStringSync(resId: number): string
 
 getStringSync(resId: number, ...args: Array<string | number>): string
 
-用户获取指定资源ID对应的字符串，根据args参数进行格式化，使用同步方式返回。
+获取指定资源ID对应的字符串，并根据args参数对字符串进行格式化，使用同步方式返回。
 
-**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Global.ResourceManager
+**系统能力：** SystemCapability.Global.ResourceManager
 
 **参数：** 
 
 | 参数名   | 类型     | 必填   | 说明    |
 | ----- | ------ | ---- | ----- |
 | resId | number | 是    | 资源ID值。 |
-| ...args | Array<string \| number> | 否    | 格式化字符串资源参数。<br>支持参数类型：%d、%f、%s、%%、%数字`$d`、%数字`$f`、%数字`$s`。<br>说明：%%转义为%; %数字`$d`表示使用第几个参数。<br>举例：%%d格式化后为%d字符串; %1`$d`表示使用第一个参数。|
+| ...args | Array<string \| number> | 否 | 格式化字符串资源参数。<br>支持参数类型：`%d`、`%f`、`%s`、`%%`、`%数字$d`、`%数字$f`、`%数字$s`。<br>说明：`%%`转义为`%`; `%数字$d`中的数字表示使用args中的第几个参数。<br>举例：`%%d`格式化后为`%d`字符串; `%1$d`表示使用第一个参数。 |
 
 **返回值：**
 
@@ -405,6 +431,7 @@ getStringSync(resId: number, ...args: Array<string | number>): string
 | string | 资源ID值对应的格式化字符串。|
 
 **错误码：**
+
 以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
@@ -415,12 +442,24 @@ getStringSync(resId: number, ...args: Array<string | number>): string
 | 9001006  | The resource is referenced cyclically.                    |
 | 9001007  | Failed to format the resource obtained based on the resource ID. |
 
-**示例：** 
+**示例：**
+  ```json
+  {
+    "string": [
+      {
+        "name": "test",
+        "value": "I'm a %1$s, format int: %2$d, format float: %3$f."
+      }
+    ]
+  }
+  ```
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
-    this.context.resourceManager.getStringSync($r('app.string.test').id, "format string", 10, 98.78);
+    let testStr = this.context.resourceManager.getStringSync($r('app.string.test').id, "format string", 10, 98.78);
+    console.log(`getStringSync, result: ${testStr}`);
+    // 打印输出结果: getStringSync, result: I'm a format string, format int: 10, format float: 98.78.
   } catch (error) {
     let code = (error as BusinessError).code;
     let message = (error as BusinessError).message;
@@ -432,13 +471,13 @@ getStringSync(resId: number, ...args: Array<string | number>): string
 
 getStringSync(resource: Resource): string
 
-用户获取指定resource对象对应的字符串，使用同步方式返回字符串。
+获取指定resource对象对应的字符串，使用同步方式返回。
 
-**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Global.ResourceManager
+**系统能力：** SystemCapability.Global.ResourceManager
 
-**模型约束**：此接口仅可在Stage模型下使用。
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：** 
 
@@ -463,9 +502,19 @@ getStringSync(resource: Resource): string
 | 9001002  | No matching resource is found based on the resource ID.         |
 | 9001006  | The resource is referenced cyclically.            |
 
-**示例：** 
+**示例：**
+  ```json
+  {
+    "string": [
+      {
+        "name": "test",
+        "value": "I'm a test string resource."
+      }
+    ]
+  }
+  ```
   ```ts
-  import { resourceManager } from '@kit.LocalizationKit'
+  import { resourceManager } from '@kit.LocalizationKit';
   import { BusinessError } from '@kit.BasicServicesKit';
 
   let resource: resourceManager.Resource = {
@@ -474,7 +523,9 @@ getStringSync(resource: Resource): string
     id: $r('app.string.test').id
   };
   try {
-    this.context.resourceManager.getStringSync(resource);
+    let testStr = this.context.resourceManager.getStringSync(resource);
+    console.log(`getStringSync, result: ${testStr}`);
+    // 打印输出结果: getStringSync, result: I'm a test string resource.
   } catch (error) {
     let code = (error as BusinessError).code;
     let message = (error as BusinessError).message;
@@ -486,20 +537,20 @@ getStringSync(resource: Resource): string
 
 getStringSync(resource: Resource, ...args: Array<string | number>): string
 
-用户获取指定resource对象对应的字符串，根据args参数进行格式化，使用同步方式返回相应字符串。
+获取指定resource对象对应的字符串，并根据args参数对字符串进行格式化，使用同步方式返回。
 
-**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Global.ResourceManager
+**系统能力：** SystemCapability.Global.ResourceManager
 
-**模型约束**：此接口仅可在Stage模型下使用。
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：** 
 
 | 参数名      | 类型                     | 必填   | 说明   |
 | -------- | ---------------------- | ---- | ---- |
 | resource | [Resource](#resource9) | 是    | 资源信息。 |
-| ...args | Array<string \| number> | 否    | 格式化字符串资源参数。<br>支持参数类型：%d、%f、%s、%%、%数字`$d`、%数字`$f`、%数字`$s`。<br>说明：%%转义为%; %数字`$d`表示使用第几个参数。<br>举例：%%d格式化后为%d字符串; %1`$d`表示使用第一个参数。|
+| ...args | Array<string \| number> | 否    | 格式化字符串资源参数。<br>支持参数类型：`%d`、`%f`、`%s`、`%%`、`%数字$d`、`%数字$f`、`%数字$s`。<br>说明：`%%`转义为`%`; `%数字$d`中的数字表示使用args中的第几个参数。<br>举例：`%%d`格式化后为`%d`字符串; `%1$d`表示使用第一个参数。|
 
 **返回值：**
 
@@ -508,6 +559,7 @@ getStringSync(resource: Resource, ...args: Array<string | number>): string
 | string | resource对象对应的格式化字符串。|
 
 **错误码：**
+
 以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
@@ -518,9 +570,19 @@ getStringSync(resource: Resource, ...args: Array<string | number>): string
 | 9001006  | The resource is referenced cyclically.            |
 | 9001007  | Failed to format the resource obtained based on the resource ID. |
 
-**示例：** 
+**示例：**
+  ```json
+  {
+    "string": [
+      {
+        "name": "test",
+        "value": "I'm a %1$s, format int: %2$d, format float: %3$f."
+      }
+    ]
+  }
+  ```
   ```ts
-  import { resourceManager } from '@kit.LocalizationKit'
+  import { resourceManager } from '@kit.LocalizationKit';
   import { BusinessError } from '@kit.BasicServicesKit';
 
   let resource: resourceManager.Resource = {
@@ -529,7 +591,9 @@ getStringSync(resource: Resource, ...args: Array<string | number>): string
     id: $r('app.string.test').id
   };
   try {
-    this.context.resourceManager.getStringSync(resource, "format string", 10, 98.78);
+    let testStr = this.context.resourceManager.getStringSync(resource, "format string", 10, 98.78);
+    console.log(`getStringSync, result: ${testStr}`);
+    // 打印输出结果: getStringSync, result: I'm a format string, format int: 10, format float: 98.78.
   } catch (error) {
     let code = (error as BusinessError).code;
     let message = (error as BusinessError).message;
@@ -541,11 +605,11 @@ getStringSync(resource: Resource, ...args: Array<string | number>): string
 
 getStringByNameSync(resName: string): string
 
-用户获取指定资源名称对应的字符串，使用同步方式返回字符串。
+获取指定资源名称对应的字符串，使用同步方式返回。
 
-**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Global.ResourceManager
+**系统能力：** SystemCapability.Global.ResourceManager
 
 **参数：** 
 
@@ -570,12 +634,24 @@ getStringByNameSync(resName: string): string
 | 9001004  | No matching resource is found based on the resource name.       |
 | 9001006  | The resource is referenced cyclically.            |
 
-**示例：** 
+**示例：**
+  ```json
+  {
+    "string": [
+      {
+        "name": "test",
+        "value": "I'm a test string resource."
+      }
+    ]
+  }
+  ```
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
-    this.context.resourceManager.getStringByNameSync("test");
+    let testStr = this.context.resourceManager.getStringByNameSync("test");
+    console.log(`getStringByNameSync, result: ${testStr}`);
+    // 打印输出结果: getStringByNameSync, result: I'm a test string resource.
   } catch (error) {
     let code = (error as BusinessError).code;
     let message = (error as BusinessError).message;
@@ -587,18 +663,18 @@ getStringByNameSync(resName: string): string
 
 getStringByNameSync(resName: string, ...args: Array<string | number>): string
 
-用户获取指定资源名称对应的字符串，根据args参数进行格式化，使用同步方式返回相应字符串。
+获取指定资源名称对应的字符串，并根据args参数对字符串进行格式化，使用同步方式返回。
 
-**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Global.ResourceManager
+**系统能力：** SystemCapability.Global.ResourceManager
 
 **参数：** 
 
 | 参数名     | 类型     | 必填   | 说明   |
 | ------- | ------ | ---- | ---- |
 | resName | string | 是    | 资源名称。 |
-| ...args | Array<string \| number> | 否    | 格式化字符串资源参数。<br>支持参数类型：%d、%f、%s、%%、%数字`$d`、%数字`$f`、%数字`$s`。<br>说明：%%转义为%; %数字`$d`表示使用第几个参数。<br>举例：%%d格式化后为%d字符串; %1`$d`表示使用第一个参数。|
+| ...args | Array<string \| number> | 否    | 格式化字符串资源参数。<br>支持参数类型：`%d`、`%f`、`%s`、`%%`、`%数字$d`、`%数字$f`、`%数字$s`。<br>说明：`%%`转义为`%`; `%数字$d`中的数字表示使用args中的第几个参数。<br>举例：`%%d`格式化后为`%d`字符串; `%1$d`表示使用第一个参数。|
 
 **返回值：**
 
@@ -618,12 +694,24 @@ getStringByNameSync(resName: string, ...args: Array<string | number>): string
 | 9001006  | The resource is referenced cyclically.            |
 | 9001008  | Failed to format the resource obtained based on the resource Name. |
 
-**示例：** 
+**示例：**
+  ```json
+  {
+    "string": [
+      {
+        "name": "test",
+        "value": "I'm a %1$s, format int: %2$d, format float: %3$f."
+      }
+    ]
+  }
+  ```
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
-    this.context.resourceManager.getStringByNameSync("test", "format string", 10, 98.78);
+    let testStr = this.context.resourceManager.getStringByNameSync("test", "format string", 10, 98.78);
+    console.log(`getStringByNameSync, result: ${testStr}`);
+    // 打印输出结果: getStringByNameSync, result: I'm a format string, format int: 10, format float: 98.78.
   } catch (error) {
     let code = (error as BusinessError).code;
     let message = (error as BusinessError).message;
@@ -635,18 +723,18 @@ getStringByNameSync(resName: string, ...args: Array<string | number>): string
 
 getStringValue(resId: number, callback: _AsyncCallback&lt;string&gt;): void
 
-用户获取指定资源ID对应的字符串，使用callback异步回调。
+获取指定资源ID对应的字符串，使用callback异步回调。
 
-**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Global.ResourceManager
+**系统能力：** SystemCapability.Global.ResourceManager
 
 **参数：** 
 
 | 参数名      | 类型                          | 必填   | 说明              |
 | -------- | --------------------------- | ---- | --------------- |
 | resId    | number                      | 是    | 资源ID值。           |
-| callback | [_AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;string&gt; | 是    | 返回获取的字符串。 |
+| callback | [_AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;string&gt; | 是    | 回调函数，返回获取的字符串。 |
 
 **错误码：**
 
@@ -660,33 +748,38 @@ getStringValue(resId: number, callback: _AsyncCallback&lt;string&gt;): void
 | 9001006  | The resource is referenced cyclically.         |
 
 **示例Stage：** 
+  ```json
+  {
+    "string": [
+      {
+        "name": "test",
+        "value": "I'm a test string resource."
+      }
+    ]
+  }
+  ```
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
 
-  try {
-    this.context.resourceManager.getStringValue($r('app.string.test').id, (error: BusinessError, value: string) => {
-      if (error != null) {
-        console.error("error is " + error);
-      } else {
-        let str = value;
-      }
-    });
-  } catch (error) {
-    let code = (error as BusinessError).code;
-    let message = (error as BusinessError).message;
-    console.error(`callback getStringValue failed, error code: ${code}, message: ${message}.`);
-  }
+  this.context.resourceManager.getStringValue($r('app.string.test').id, (error: BusinessError, value: string) => {
+    if (error != null) {
+      console.error(`callback getStringValue failed, error code: ${error.code}, message: ${error.message}.`);
+    } else {
+      console.log(`getStringValue, result: ${value}`);
+      // 打印输出结果: getStringValue, result: I'm a test string resource.
+    }
+  });
   ```
 
 ### getStringValue<sup>9+</sup>
 
 getStringValue(resId: number): Promise&lt;string&gt;
 
-用户获取指定资源ID对应的字符串，使用Promise异步回调。
+获取指定资源ID对应的字符串，使用Promise异步回调。
 
-**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Global.ResourceManager
+**系统能力：** SystemCapability.Global.ResourceManager
 
 **参数：** 
 
@@ -698,7 +791,7 @@ getStringValue(resId: number): Promise&lt;string&gt;
 
 | 类型                    | 说明          |
 | --------------------- | ----------- |
-| Promise&lt;string&gt; | 资源ID值对应的字符串。 |
+| Promise&lt;string&gt; | Promise对象，返回资源ID值对应的字符串。 |
 
 **错误码：**
 
@@ -711,45 +804,50 @@ getStringValue(resId: number): Promise&lt;string&gt;
 | 9001002  | No matching resource is found based on the resource ID.         |
 | 9001006  | The resource is referenced cyclically.            |
 
-**示例：** 
+**示例：**
+  ```json
+  {
+    "string": [
+      {
+        "name": "test",
+        "value": "I'm a test string resource."
+      }
+    ]
+  }
+  ```
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
 
-  try {
-    this.context.resourceManager.getStringValue($r('app.string.test').id).then((value: string) => {
-      let str = value;
-    }).catch((error: BusinessError) => {
-      console.error("getStringValue promise error is " + error);
-    });
-  } catch (error) {
-    let code = (error as BusinessError).code;
-    let message = (error as BusinessError).message;
-    console.error(`promise getStringValue failed, error code: ${code}, message: ${message}.`);
-  }
+  this.context.resourceManager.getStringValue($r('app.string.test').id).then((value: string) => {
+    console.log(`getStringValue, result: ${value}`);
+    // 打印输出结果: getStringValue, result: I'm a test string resource.
+  }).catch((error: BusinessError) => {
+    console.error(`promise getStringValue failed, error code: ${error.code}, message: ${error.message}.`);
+  });
   ```
 
 ### getStringValue<sup>9+</sup>
 
 getStringValue(resource: Resource, callback: _AsyncCallback&lt;string&gt;): void
 
-用户获取指定resource对象对应的字符串，使用callback异步回调。
+获取指定resource对象对应的字符串，使用callback异步回调。
 
-**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Global.ResourceManager
+**系统能力：** SystemCapability.Global.ResourceManager
 
-**模型约束**：此接口仅可在Stage模型下使用。
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：** 
 
 | 参数名      | 类型                          | 必填   | 说明              |
 | -------- | --------------------------- | ---- | --------------- |
 | resource | [Resource](#resource9)      | 是    | 资源信息。            |
-| callback | [_AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;string&gt; | 是    | 返回获取的字符串。 |
+| callback | [_AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;string&gt; | 是    | 回调函数，返回resource对象对应的字符串。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -758,9 +856,19 @@ getStringValue(resource: Resource, callback: _AsyncCallback&lt;string&gt;): void
 | 9001002  | No matching resource is found based on the resource ID.         |
 | 9001006  | The resource is referenced cyclically.            |
 
-**示例：** 
+**示例：**
+  ```json
+  {
+    "string": [
+      {
+        "name": "test",
+        "value": "I'm a test string resource."
+      }
+    ]
+  }
+  ```
   ```ts
-  import { resourceManager } from '@kit.LocalizationKit'
+  import { resourceManager } from '@kit.LocalizationKit';
   import { BusinessError } from '@kit.BasicServicesKit';
 
   let resource: resourceManager.Resource = {
@@ -768,32 +876,27 @@ getStringValue(resource: Resource, callback: _AsyncCallback&lt;string&gt;): void
     moduleName: "entry",
     id: $r('app.string.test').id
   };
-  try {
-    this.context.resourceManager.getStringValue(resource, (error: BusinessError, value: string) => {
-      if (error != null) {
-        console.error("error is " + error);
-      } else {
-        let str = value;
-      }
-    });
-  } catch (error) {
-    let code = (error as BusinessError).code;
-    let message = (error as BusinessError).message;
-    console.error(`callback getStringValue failed, error code: ${code}, message: ${message}.`);
-  }
+  this.context.resourceManager.getStringValue(resource, (error: BusinessError, value: string) => {
+    if (error != null) {
+      console.error(`callback getStringValue failed, error code: ${error.code}, message: ${error.message}.`);
+    } else {
+      console.log(`getStringValue, result: ${value}`);
+      // 打印输出结果: getStringValue, result: I'm a test string resource.
+    }
+  });
   ```
 
 ### getStringValue<sup>9+</sup>
 
 getStringValue(resource: Resource): Promise&lt;string&gt;
 
-用户获取指定resource对象对应的字符串，使用Promise异步回调。
+获取指定resource对象对应的字符串，使用Promise异步回调。
 
-**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Global.ResourceManager
+**系统能力：** SystemCapability.Global.ResourceManager
 
-**模型约束**：此接口仅可在Stage模型下使用。
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -805,11 +908,11 @@ getStringValue(resource: Resource): Promise&lt;string&gt;
 
 | 类型                    | 说明               |
 | --------------------- | ---------------- |
-| Promise&lt;string&gt; | resource对象对应的字符串。 |
+| Promise&lt;string&gt; | Promise对象，返回resource对象对应的字符串。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -818,9 +921,9 @@ getStringValue(resource: Resource): Promise&lt;string&gt;
 | 9001002  | No matching resource is found based on the resource ID.         |
 | 9001006  | The resource is referenced cyclically.            |
 
-**示例：** 
+**示例：**
   ```ts
-  import { resourceManager } from '@kit.LocalizationKit'
+  import { resourceManager } from '@kit.LocalizationKit';
   import { BusinessError } from '@kit.BasicServicesKit';
 
   let resource: resourceManager.Resource = {
@@ -828,28 +931,25 @@ getStringValue(resource: Resource): Promise&lt;string&gt;
     moduleName: "entry",
     id: $r('app.string.test').id
   };
-  try {
-    this.context.resourceManager.getStringValue(resource).then((value: string) => {
-      let str = value;
-    }).catch((error: BusinessError) => {
-      console.error("getStringValue promise error is " + error);
-    });
-  } catch (error) {
-    let code = (error as BusinessError).code;
-    let message = (error as BusinessError).message;
-    console.error(`promise getStringValue failed, error code: ${code}, message: ${message}.`);
-  }
+  this.context.resourceManager.getStringValue(resource, (error: BusinessError, value: string) => {
+    if (error != null) {
+      console.error(`callback getStringValue failed, error code: ${error.code}, message: ${error.message}.`);
+    } else {
+      console.log(`getStringValue, result: ${value}`);
+      // 打印输出结果: getStringValue, result: I'm a test string resource.
+    }
+  });
   ```
 
 ### getStringByName<sup>9+</sup>
 
 getStringByName(resName: string, callback: _AsyncCallback&lt;string&gt;): void
 
-用户获取指定资源名称对应的字符串，使用callback异步回调。
+获取指定资源名称对应的字符串，使用callback异步回调。
 
-**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Global.ResourceManager
+**系统能力：** SystemCapability.Global.ResourceManager
 
 **参数：**
 
@@ -859,6 +959,7 @@ getStringByName(resName: string, callback: _AsyncCallback&lt;string&gt;): void
 | callback | [_AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;string&gt; | 是    |返回获取的字符串。 |
 
 **错误码：**
+
 以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
@@ -869,33 +970,38 @@ getStringByName(resName: string, callback: _AsyncCallback&lt;string&gt;): void
 | 9001006  | The resource is referenced cyclically.            |
 
 **示例：**
+  ```json
+  {
+    "string": [
+      {
+        "name": "test",
+        "value": "I'm a test string resource."
+      }
+    ]
+  }
+  ```
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
 
-  try {
-    this.context.resourceManager.getStringByName("test", (error: BusinessError, value: string) => {
-      if (error != null) {
-        console.error("error is " + error);
-      } else {
-        let str = value;
-      }
-    });
-  } catch (error) {
-    let code = (error as BusinessError).code;
-    let message = (error as BusinessError).message;
-    console.error(`callback getStringByName failed, error code: ${code}, message: ${message}.`);
-  }
+  this.context.resourceManager.getStringByName("test", (error: BusinessError, value: string) => {
+    if (error != null) {
+      console.error(`callback getStringByName failed, error code: ${error.code}, message: ${error.message}.`);
+    } else {
+      console.log(`getStringByName, result: ${value}`);
+      // 打印输出结果: getStringByName, result: I'm a test string resource.
+    }
+  });
   ```
 
 ### getStringByName<sup>9+</sup>
 
 getStringByName(resName: string): Promise&lt;string&gt;
 
-用户获取指定资源名称对应的字符串，使用Promise异步回调。
+获取指定资源名称对应的字符串，使用Promise异步回调。
 
-**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Global.ResourceManager
+**系统能力：** SystemCapability.Global.ResourceManager
 
 **参数：**
 
@@ -907,7 +1013,7 @@ getStringByName(resName: string): Promise&lt;string&gt;
 
 | 类型                    | 说明         |
 | --------------------- | ---------- |
-| Promise&lt;string&gt; | 资源名称对应的字符串。 |
+| Promise&lt;string&gt; | Promise对象，返回资源名称对应的字符串。 |
 
 **错误码：**
 
@@ -921,20 +1027,25 @@ getStringByName(resName: string): Promise&lt;string&gt;
 | 9001006  | The resource is referenced cyclically.            |
 
 **示例：**
+  ```json
+  {
+    "string": [
+      {
+        "name": "test",
+        "value": "I'm a test string resource."
+      }
+    ]
+  }
+  ```
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
 
-  try {
-    this.context.resourceManager.getStringByName("test").then((value: string) => {
-      let str = value;
-    }).catch((error: BusinessError) => {
-      console.error("getStringByName promise error is " + error);
-    });
-  } catch (error) {
-    let code = (error as BusinessError).code;
-    let message = (error as BusinessError).message;
-    console.error(`promise getStringByName failed, error code: ${code}, message: ${message}.`);
-  }
+  this.context.resourceManager.getStringByName("test").then((value: string) => {
+    console.log(`getStringByName, result: ${value}`);
+    // 打印输出结果: getStringByName, result: I'm a test string resource.
+  }).catch((error: BusinessError) => {
+    console.error(`promise getStringByName failed, error code: ${error.code}, message: ${error.message}.`);
+  });
   ```
 
 ### getStringArrayValueSync<sup>10+</sup>
