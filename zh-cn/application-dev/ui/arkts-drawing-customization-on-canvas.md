@@ -81,7 +81,7 @@ Canvas提供画布组件，用于自定义绘制图形，开发者使用CanvasRe
 
   >**说明：**
   >
-  >在画布组件中，通过CanvasRenderingContext2D对象和OffscreenCanvasRenderingContext2D对象在Canvas组件上进行绘制时调用的接口相同，另接口参数如无特别说明，单位均为vp。
+  >在画布组件中，通过CanvasRenderingContext2D对象和OffscreenCanvasRenderingContext2D对象在Canvas组件上进行绘制时调用的接口相同，另外，接口参数如无特别说明，单位均为vp。
 
 - 在Canvas上加载Lottie动画时，需要先按照如下方式下载Lottie。
 
