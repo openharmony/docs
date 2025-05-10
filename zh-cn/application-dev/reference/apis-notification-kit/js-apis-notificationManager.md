@@ -1715,3 +1715,52 @@ class MyAbility extends UIAbility {
 | LIVE_VIEW<sup>11+</sup>            | 4 | 实况窗。不支持三方应用直接创建该渠道类型通知，可以由系统代理创建后，三方应用发布同ID的通知来更新指定内容。该类型对应[SlotLevel](#slotlevel)为LEVEL_DEFAULT。 |
 | CUSTOMER_SERVICE<sup>11+</sup>     | 5 | 客服消息。该类型用于用户与商家之间的客服消息，需由用户主动发起。该类型对应[SlotLevel](#slotlevel)为LEVEL_DEFAULT。  |
 | OTHER_TYPES          | 0xFFFF | 其他。该类型对应[SlotLevel](#slotlevel)为LEVEL_MIN。 |
+
+
+## NotificationSetting <sup>20+</sup>
+
+通知设置状态，包括是否开启振动、是否开启响铃。
+
+**系统能力**：SystemCapability.Notification.Notification
+
+
+| 名称    | 类型                                  | 必填 | 说明                   |
+| ------- | ------------------------------------ | ---- | ---------------------- |
+| vibrationEnabled | boolean | 是 | 表示是否开启振动。true表示开启，false表示关闭。 |
+| soundEnabled | boolean | 是 | 表示是否开启响铃。true表示开启，false表示关闭。 |
+
+## notificationManager.getNotificationSetting<sup>20+</sup>
+
+getNotificationSetting(): Promise\<NotificationSetting\>
+
+获取应用程序的通知设置。使用Promise异步回调。
+
+**系统能力**：SystemCapability.Notification.Notification
+
+**返回值：**
+
+| 类型               | 说明            |
+| ------------------ | --------------- |
+| Promise\<[NotificationSetting](#notificationSetting)\> | Promise对象，返回此应用程序的通知设置。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通知错误码](./errorcode-notification.md)。
+
+| 错误码ID | 错误信息                            |
+| -------- | ----------------------------------- |
+| 1600001  | Internal error.                     |
+| 1600002  | Marshalling or unmarshalling error. |
+| 1600003  | Failed to connect to the service.          |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+notificationManager.getNotificationSetting().then((data: notificationManager.NotificationSetting) => {
+    console.info("getNotificationSetting success, data: " + JSON.stringify(data));
+}).catch((err: BusinessError) => {
+    console.error(`getNotificationSetting failed, code is ${err.code}, message is ${err.message}`);
+});
+```
