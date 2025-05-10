@@ -6020,13 +6020,15 @@ release()
 
 用户释放创建的resourceManager, 此接口暂不支持。
 
-从API version 7开始支持，API version 12开始不再维护。
+> **说明**
+>
+> 从API version 7开始支持，从API version 12开始废弃。
 
-**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Global.ResourceManager
+**系统能力：** SystemCapability.Global.ResourceManager
 
-**示例：** 
+**示例：**
   ```ts
   try {
     this.context.resourceManager.release();
@@ -6039,18 +6041,20 @@ release()
 
 getString(resId: number, callback: AsyncCallback&lt;string&gt;): void
 
-用户获取指定资源ID对应的字符串，使用callback异步回调。
+获取指定资源ID对应的字符串，使用callback异步回调。
 
-从API version 9开始不再维护，建议使用[getStringValue](#getstringvalue9)代替。
+> **说明**
+>
+> 从API version 6开始支持，从API version 9开始废弃，建议使用[getStringValue](#getstringvalue9)替代。
 
-**系统能力**：SystemCapability.Global.ResourceManager
+**系统能力：** SystemCapability.Global.ResourceManager
 
 **参数：** 
 
 | 参数名      | 类型                          | 必填   | 说明              |
 | -------- | --------------------------- | ---- | --------------- |
 | resId    | number                      | 是    | 资源ID值。           |
-| callback | [AsyncCallback](#asynccallbackdeprecated)&lt;string&gt; | 是    | 返回获取的字符串。 |
+| callback | [AsyncCallback](#asynccallbackdeprecated)&lt;string&gt; | 是    | 回调函数，返回资源ID值对应的字符串。 |
 
 **示例：**
   ```ts
@@ -6070,11 +6074,13 @@ getString(resId: number, callback: AsyncCallback&lt;string&gt;): void
 
 getString(resId: number): Promise&lt;string&gt;
 
-用户获取指定资源ID对应的字符串，使用Promise异步回调。
+获取指定资源ID对应的字符串，使用Promise异步回调。
 
-从API version 9开始不再维护，建议使用[getStringValue](#getstringvalue9-1)代替。
+> **说明**
+>
+> 从API version 6开始支持，从API version 9开始废弃，建议使用[getStringValue](#getstringvalue9-1)替代。
 
-**系统能力**：SystemCapability.Global.ResourceManager
+**系统能力：** SystemCapability.Global.ResourceManager
 
 **参数：** 
 
@@ -6086,9 +6092,9 @@ getString(resId: number): Promise&lt;string&gt;
 
 | 类型                    | 说明          |
 | --------------------- | ----------- |
-| Promise&lt;string&gt; | 资源ID值对应的字符串。 |
+| Promise&lt;string&gt; | Promise对象，返回资源ID值对应的字符串。 |
 
-**示例：** 
+**示例：**
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -6106,20 +6112,22 @@ getString(resId: number): Promise&lt;string&gt;
 
 getStringArray(resId: number, callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void
 
-用户获取指定资源ID对应的字符串数组，使用callback异步回调。
+获取指定资源ID对应的字符串数组，使用callback异步回调。
 
-从API version 9开始不再维护，建议使用[getStringArrayValue](#getstringarrayvalue9)代替。
+> **说明**
+>
+> 从API version 6开始支持，从API version 9开始废弃，建议使用[getStringArrayValue](#getstringarrayvalue9)替代。
 
-**系统能力**：SystemCapability.Global.ResourceManager
+**系统能力：** SystemCapability.Global.ResourceManager
 
 **参数：** 
 
 | 参数名      | 类型                                       | 必填   | 说明                |
 | -------- | ---------------------------------------- | ---- | ----------------- |
 | resId    | number                                   | 是    | 资源ID值。             |
-| callback | [AsyncCallback](#asynccallbackdeprecated)&lt;Array&lt;string&gt;&gt; | 是    | 返回获取的字符串数组。 |
+| callback | [AsyncCallback](#asynccallbackdeprecated)&lt;Array&lt;string&gt;&gt; | 是    | 回调函数，返回资源ID值对应的字符串数组。 |
 
-**示例：** 
+**示例：**
   ```ts
   resourceManager.getResourceManager((error, mgr) => {
       mgr.getStringArray($r('app.strarray.test').id, (error: Error, value: Array<string>) => {
@@ -6137,11 +6145,13 @@ getStringArray(resId: number, callback: AsyncCallback&lt;Array&lt;string&gt;&gt;
 
 getStringArray(resId: number): Promise&lt;Array&lt;string&gt;&gt;
 
-用户获取指定资源ID对应的字符串数组，使用Promise异步回调。
+获取指定资源ID对应的字符串数组，使用Promise异步回调。
 
-从API version 9开始不再维护，建议使用[getStringArrayValue](#getstringarrayvalue9-1)代替。
+> **说明**
+>
+> 从API version 6开始支持，从API version 9开始废弃，建议使用[getStringArrayValue](#getstringarrayvalue9-1)替代。
 
-**系统能力**：SystemCapability.Global.ResourceManager
+**系统能力：** SystemCapability.Global.ResourceManager
 
 **参数：** 
 
@@ -6153,9 +6163,9 @@ getStringArray(resId: number): Promise&lt;Array&lt;string&gt;&gt;
 
 | 类型                                 | 说明            |
 | ---------------------------------- | ------------- |
-| Promise&lt;Array&lt;string&gt;&gt; | 资源ID值对应的字符串数组。 |
+| Promise&lt;Array&lt;string&gt;&gt; | Promise对象，返回资源ID值对应的字符串数组。 |
 
-**示例：** 
+**示例：**
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -6173,20 +6183,22 @@ getStringArray(resId: number): Promise&lt;Array&lt;string&gt;&gt;
 
 getMedia(resId: number, callback: AsyncCallback&lt;Uint8Array&gt;): void
 
-用户获取指定资源ID对应的媒体文件内容，使用callback异步回调。
+获取指定资源ID对应的媒体文件内容，使用callback异步回调。
 
-从API version 9开始不再维护，建议使用[getMediaContent](#getmediacontent9)代替。
+> **说明**
+>
+> 从API version 6开始支持，从API version 9开始废弃，建议使用[getMediaContent](#getmediacontent9)替代。
 
-**系统能力**：SystemCapability.Global.ResourceManager
+**系统能力：** SystemCapability.Global.ResourceManager
 
 **参数：** 
 
 | 参数名      | 类型                              | 必填   | 说明                 |
 | -------- | ------------------------------- | ---- | ------------------ |
 | resId    | number                          | 是    | 资源ID值。              |
-| callback | [AsyncCallback](#asynccallbackdeprecated)&lt;Uint8Array&gt; | 是    | 返回获取的媒体文件内容。 |
+| callback | [AsyncCallback](#asynccallbackdeprecated)&lt;Uint8Array&gt; | 是    | 回调函数，返回资源ID值对应的媒体文件内容。 |
 
-**示例：** 
+**示例：**
   ```ts
   resourceManager.getResourceManager((error, mgr) => {
       mgr.getMedia($r('app.media.test').id, (error: Error, value: Uint8Array) => {
@@ -6203,11 +6215,13 @@ getMedia(resId: number, callback: AsyncCallback&lt;Uint8Array&gt;): void
 
 getMedia(resId: number): Promise&lt;Uint8Array&gt;
 
-用户获取指定资源ID对应的媒体文件内容，使用Promise异步回调。
+获取指定资源ID对应的媒体文件内容，使用Promise异步回调。
 
-从API version 9开始不再维护，建议使用[getMediaContent](#getmediacontent9-1)代替。
+> **说明**
+>
+> 从API version 6开始支持，从API version 9开始废弃，建议使用[getMediaContent](#getmediacontent9-1)替代。
 
-**系统能力**：SystemCapability.Global.ResourceManager
+**系统能力：** SystemCapability.Global.ResourceManager
 
 **参数：** 
 
@@ -6219,9 +6233,9 @@ getMedia(resId: number): Promise&lt;Uint8Array&gt;
 
 | 类型                        | 说明             |
 | ------------------------- | -------------- |
-| Promise&lt;Uint8Array&gt; | 资源ID值对应的媒体文件内容。 |
+| Promise&lt;Uint8Array&gt; | Promise对象，返回资源ID值对应的媒体文件内容。 |
 
-**示例：** 
+**示例：**
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -6239,20 +6253,22 @@ getMedia(resId: number): Promise&lt;Uint8Array&gt;
 
 getMediaBase64(resId: number, callback: AsyncCallback&lt;string&gt;): void
 
-用户获取指定资源ID对应的图片资源Base64编码，使用callback异步回调。
+获取指定资源ID对应的图片资源Base64编码，使用callback异步回调。
 
-从API version 9开始不再维护，建议使用[getMediaContentBase64](#getmediacontentbase649)代替。
+> **说明**
+>
+> 从API version 6开始支持，从API version 9开始废弃，建议使用[getMediaContentBase64](#getmediacontentbase649)替代。
 
-**系统能力**：SystemCapability.Global.ResourceManager
+**系统能力：** SystemCapability.Global.ResourceManager
 
 **参数：** 
 
 | 参数名      | 类型                          | 必填   | 说明                       |
 | -------- | --------------------------- | ---- | ------------------------ |
 | resId    | number                      | 是    | 资源ID值。                    |
-| callback | [AsyncCallback](#asynccallbackdeprecated)&lt;string&gt; | 是    | 异步回调，用于返回获取的图片资源Base64编码。 |
+| callback | [AsyncCallback](#asynccallbackdeprecated)&lt;string&gt; | 是    | 回调函数，返回资源ID值对应的图片资源Base64编码。 |
 
-**示例：** 
+**示例：**
   ```ts
   resourceManager.getResourceManager((error, mgr) => {
       mgr.getMediaBase64($r('app.media.test').id, ((error: Error, value: string) => {
@@ -6270,11 +6286,13 @@ getMediaBase64(resId: number, callback: AsyncCallback&lt;string&gt;): void
 
 getMediaBase64(resId: number): Promise&lt;string&gt;
 
-用户获取指定资源ID对应的图片资源Base64编码，使用Promise异步回调。
+获取指定资源ID对应的图片资源Base64编码，使用Promise异步回调。
 
-从API version 9开始不再维护，建议使用[getMediaContentBase64](#getmediacontentbase649-1)代替。
+> **说明**
+>
+> 从API version 6开始支持，从API version 9开始废弃，建议使用[getMediaContentBase64](#getmediacontentbase649-1)替代。
 
-**系统能力**：SystemCapability.Global.ResourceManager
+**系统能力：** SystemCapability.Global.ResourceManager
 
 **参数：** 
 
@@ -6286,9 +6304,9 @@ getMediaBase64(resId: number): Promise&lt;string&gt;
 
 | 类型                    | 说明                   |
 | --------------------- | -------------------- |
-| Promise&lt;string&gt; | 资源ID值对应的图片资源Base64编码。 |
+| Promise&lt;string&gt; | Promise对象，返回资源ID值对应的图片资源Base64编码。 |
 
-**示例：** 
+**示例：**
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -6309,13 +6327,13 @@ getPluralStringValueSync(resId: number, num: number): string
 
 > **说明**
 >
-> 中文环境下，字符串不区分单复数；英文环境下，字符串区分单复数。
+> 中文环境下，字符串不区分单复数；其他语言环境下，字符串区分单复数，具体规则参考[语言单复数规则](https://www.unicode.org/cldr/charts/45/supplemental/language_plural_rules.html)。
 >
 > 从API version 10开始支持，从API version 18开始废弃，建议使用[getIntPluralStringValueSync](#getintpluralstringvaluesync18)替代。
 
-**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Global.ResourceManager
+**系统能力：** SystemCapability.Global.ResourceManager
 
 **参数：** 
 
@@ -6332,7 +6350,7 @@ getPluralStringValueSync(resId: number, num: number): string
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -6341,13 +6359,35 @@ getPluralStringValueSync(resId: number, num: number): string
 | 9001002  | No matching resource is found based on the resource ID.      |
 | 9001006  | The resource is referenced cyclically.                       |
 
-**示例：** 
-
+**示例：**
+  ```json
+  {
+    "plural": [
+      {
+        "name": "test",
+        "value": [
+          {
+            "quantity": "one",
+            "value": "%d apple"
+          },
+          {
+            "quantity": "other",
+            "value": "%d apples"
+          }
+        ]
+      }
+    ]
+  }
+  ```
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
-    this.context.resourceManager.getPluralStringValueSync($r('app.plural.test').id, 1);
+    // 根据语言单复数规则，参数num取值为1，英文环境下对应单复数类别为one
+    // 在资源文件中用quantity字段表示单复数类别，因此会获取quantity为one的字符串
+    let pluralValue = this.context.resourceManager.getPluralStringValueSync($r('app.plural.test').id, 1);
+    console.log(`getPluralStringValueSync, result: ${pluralValue}`);
+    // 打印输出结果: getPluralStringValueSync, result: 1 apple
   } catch (error) {
     let code = (error as BusinessError).code;
     let message = (error as BusinessError).message;
@@ -6363,15 +6403,15 @@ getPluralStringValueSync(resource: Resource, num: number): string
 
 > **说明**
 >
-> 中文环境下，字符串不区分单复数；英文环境下，字符串区分单复数。
+> 中文环境下，字符串不区分单复数；其他语言环境下，字符串区分单复数，具体规则参考[语言单复数规则](https://www.unicode.org/cldr/charts/45/supplemental/language_plural_rules.html)。
 >
 > 从API version 10开始支持，从API version 18开始废弃，建议使用[getIntPluralStringValueSync](#getintpluralstringvaluesync18-1)替代。
 
-**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Global.ResourceManager
+**系统能力：** SystemCapability.Global.ResourceManager
 
-**模型约束**：此接口仅可在Stage模型下使用。
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：** 
 
@@ -6388,7 +6428,7 @@ getPluralStringValueSync(resource: Resource, num: number): string
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -6397,10 +6437,28 @@ getPluralStringValueSync(resource: Resource, num: number): string
 | 9001002  | No matching resource is found based on the resource ID.      |
 | 9001006  | The resource is referenced cyclically.                       |
 
-**示例：** 
-
+**示例：**
+  ```json
+  {
+    "plural": [
+      {
+        "name": "test",
+        "value": [
+          {
+            "quantity": "one",
+            "value": "%d apple"
+          },
+          {
+            "quantity": "other",
+            "value": "%d apples"
+          }
+        ]
+      }
+    ]
+  }
+  ```
   ```ts
-  import { resourceManager } from '@kit.LocalizationKit'
+  import { resourceManager } from '@kit.LocalizationKit';
   import { BusinessError } from '@kit.BasicServicesKit';
 
   let resource: resourceManager.Resource = {
@@ -6409,7 +6467,11 @@ getPluralStringValueSync(resource: Resource, num: number): string
     id: $r('app.plural.test').id
   };
   try {
-    this.context.resourceManager.getPluralStringValueSync(resource, 1);
+    // 根据语言单复数规则，参数num取值为1，英文环境下对应单复数类别为one
+    // 在资源文件中用quantity字段表示单复数类别，因此会获取quantity为one的字符串
+    let pluralValue = this.context.resourceManager.getPluralStringValueSync(resource, 1);
+    console.log(`getPluralStringValueSync, result: ${pluralValue}`);
+    // 打印输出结果: getPluralStringValueSync, result: 1 apple
   } catch (error) {
     let code = (error as BusinessError).code;
     let message = (error as BusinessError).message;
@@ -6425,13 +6487,13 @@ getPluralStringByNameSync(resName: string, num: number): string
 
 > **说明**
 >
-> 中文环境下，字符串不区分单复数；英文环境下，字符串区分单复数。
+> 中文环境下，字符串不区分单复数；其他语言环境下，字符串区分单复数，具体规则参考[语言单复数规则](https://www.unicode.org/cldr/charts/45/supplemental/language_plural_rules.html)。
 >
 > 从API version 10开始支持，从API version 18开始废弃，建议使用[getIntPluralStringByNameSync](#getintpluralstringbynamesync18)替代。
 
-**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Global.ResourceManager
+**系统能力：** SystemCapability.Global.ResourceManager
 
 **参数：** 
 
@@ -6448,7 +6510,7 @@ getPluralStringByNameSync(resName: string, num: number): string
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -6457,13 +6519,35 @@ getPluralStringByNameSync(resName: string, num: number): string
 | 9001004  | No matching resource is found based on the resource name.    |
 | 9001006  | The resource is referenced cyclically.                       |
 
-**示例：** 
-
+**示例：**
+  ```json
+  {
+    "plural": [
+      {
+        "name": "test",
+        "value": [
+          {
+            "quantity": "one",
+            "value": "%d apple"
+          },
+          {
+            "quantity": "other",
+            "value": "%d apples"
+          }
+        ]
+      }
+    ]
+  }
+  ```
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
-    this.context.resourceManager.getPluralStringByNameSync("test", 1);
+    // 根据语言单复数规则，参数num取值为1，英文环境下对应单复数类别为one
+    // 在资源文件中用quantity字段表示单复数类别，因此会获取quantity为one的字符串
+    let pluralValue = this.context.resourceManager.getPluralStringByNameSync("test", 1);
+    console.log(`getPluralStringByNameSync, result: ${pluralValue}`);
+    // 打印输出结果: getPluralStringByNameSync, result: 1 apple
   } catch (error) {
     let code = (error as BusinessError).code;
     let message = (error as BusinessError).message;
@@ -6479,13 +6563,13 @@ getPluralStringValue(resId: number, num: number, callback: _AsyncCallback&lt;str
 
 > **说明**
 >
-> 中文环境下，字符串不区分单复数；英文环境下，字符串区分单复数。
+> 中文环境下，字符串不区分单复数；其他语言环境下，字符串区分单复数，具体规则参考[语言单复数规则](https://www.unicode.org/cldr/charts/45/supplemental/language_plural_rules.html)。
 >
 > 从API version 9开始支持，从API version 18开始废弃，建议使用[getIntPluralStringValueSync](#getintpluralstringvaluesync18)替代。
 
-**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Global.ResourceManager
+**系统能力：** SystemCapability.Global.ResourceManager
 
 **参数：** 
 
@@ -6493,7 +6577,7 @@ getPluralStringValue(resId: number, num: number, callback: _AsyncCallback&lt;str
 | -------- | --------------------------- | ---- | ------------------------------------------------------------ |
 | resId    | number                      | 是   | 资源ID值。                                                   |
 | num      | number                      | 是   | 数量值。根据当前语言的复数规则获取该数量值对应的字符串数字，语言的复数规则参见[语言单复数规则](https://www.unicode.org/cldr/charts/45/supplemental/language_plural_rules.html)。 |
-| callback | [_AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;string&gt; | 是   | 根据指定数量，获取指定ID字符串表示的单复数字符串。           |
+| callback | [_AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;string&gt; | 是   | 回调函数，返回资源ID值对应的指定数量的单复数字符串。           |
 
 **错误码：**
 
@@ -6506,24 +6590,40 @@ getPluralStringValue(resId: number, num: number, callback: _AsyncCallback&lt;str
 | 9001002  | No matching resource is found based on the resource ID.      |
 | 9001006  | The resource is referenced cyclically.                       |
 
-**示例：** 
-
+**示例：**
+  ```json
+  {
+    "plural": [
+      {
+        "name": "test",
+        "value": [
+          {
+            "quantity": "one",
+            "value": "%d apple"
+          },
+          {
+            "quantity": "other",
+            "value": "%d apples"
+          }
+        ]
+      }
+    ]
+  }
+  ```
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
 
-  try {
-    this.context.resourceManager.getPluralStringValue($r("app.plural.test").id, 1, (error: BusinessError, value: string) => {
+  // 根据语言单复数规则，参数num取值为1，英文环境下对应单复数类别为one
+  // 在资源文件中用quantity字段表示单复数类别，因此会获取quantity为one的字符串
+  this.context.resourceManager.getPluralStringValue($r("app.plural.test").id, 1,
+    (error: BusinessError, value: string) => {
       if (error != null) {
-        console.error("error is " + error);
+        console.error(`callback getPluralStringValue failed, error code: ${error.code}, message: ${error.message}.`);
       } else {
-        let str = value;
+        console.log(`getPluralStringValue, result: ${value}`);
+        // 打印输出结果: getPluralStringValue, result: 1 apple
       }
     });
-  } catch (error) {
-    let code = (error as BusinessError).code;
-    let message = (error as BusinessError).message;
-    console.error(`callback getPluralStringValue failed, error code: ${code}, message: ${message}.`);
-  }
   ```
 
 ### getPluralStringValue<sup>(deprecated)</sup>
@@ -6534,13 +6634,13 @@ getPluralStringValue(resId: number, num: number): Promise&lt;string&gt;
 
 > **说明**
 >
-> 中文环境下，字符串不区分单复数；英文环境下，字符串区分单复数。
+> 中文环境下，字符串不区分单复数；其他语言环境下，字符串区分单复数，具体规则参考[语言单复数规则](https://www.unicode.org/cldr/charts/45/supplemental/language_plural_rules.html)。
 >
 > 从API version 9开始支持，从API version 18开始废弃，建议使用[getIntPluralStringValueSync](#getintpluralstringvaluesync18)替代。
 
-**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Global.ResourceManager
+**系统能力：** SystemCapability.Global.ResourceManager
 
 **参数：** 
 
@@ -6553,7 +6653,7 @@ getPluralStringValue(resId: number, num: number): Promise&lt;string&gt;
 
 | 类型                  | 说明                                                 |
 | --------------------- | ---------------------------------------------------- |
-| Promise&lt;string&gt; | 根据提供的数量，获取对应ID字符串表示的单复数字符串。 |
+| Promise&lt;string&gt; | Promise对象，返回资源ID值对应的指定数量的单复数字符串。 |
 
 **错误码：**
 
@@ -6566,22 +6666,39 @@ getPluralStringValue(resId: number, num: number): Promise&lt;string&gt;
 | 9001002  | No matching resource is found based on the resource ID.      |
 | 9001006  | The resource is referenced cyclically.                       |
 
-**示例：** 
-
+**示例：**
+  ```json
+  {
+    "plural": [
+      {
+        "name": "test",
+        "value": [
+          {
+            "quantity": "one",
+            "value": "%d apple"
+          },
+          {
+            "quantity": "other",
+            "value": "%d apples"
+          }
+        ]
+      }
+    ]
+  }
+  ```
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
 
-  try {
-    this.context.resourceManager.getPluralStringValue($r("app.plural.test").id, 1).then((value: string) => {
-      let str = value;
-    }).catch((error: BusinessError) => {
-      console.error("getPluralStringValue promise error is " + error);
+  // 根据语言单复数规则，参数num取值为1，英文环境下对应单复数类别为one
+  // 在资源文件中用quantity字段表示单复数类别，因此会获取quantity为one的字符串
+  this.context.resourceManager.getPluralStringValue($r("app.plural.test").id, 1)
+    .then((value: string) => {
+      console.log(`getPluralStringValue, result: ${value}`);
+      // 打印输出结果: getPluralStringValue, result: 1 apple
+    })
+    .catch((error: BusinessError) => {
+      console.error(`promise getPluralStringValue failed, error code: ${error.code}, message: ${error.message}.`);
     });
-  } catch (error) {
-    let code = (error as BusinessError).code;
-    let message = (error as BusinessError).message;
-    console.error(`promise getPluralStringValue failed, error code: ${code}, message: ${message}.`);
-  }
   ```
 
 ### getPluralStringValue<sup>(deprecated)</sup>
@@ -6592,15 +6709,15 @@ getPluralStringValue(resource: Resource, num: number, callback: _AsyncCallback&l
 
 > **说明**
 >
-> 中文环境下，字符串不区分单复数；英文环境下，字符串区分单复数。
+> 中文环境下，字符串不区分单复数；其他语言环境下，字符串区分单复数，具体规则参考[语言单复数规则](https://www.unicode.org/cldr/charts/45/supplemental/language_plural_rules.html)。
 >
 > 从API version 9开始支持，从API version 18开始废弃，建议使用[getIntPluralStringValueSync](#getintpluralstringvaluesync18-1)替代。
 
-**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Global.ResourceManager
+**系统能力：** SystemCapability.Global.ResourceManager
 
-**模型约束**：此接口仅可在Stage模型下使用。
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：** 
 
@@ -6608,11 +6725,11 @@ getPluralStringValue(resource: Resource, num: number, callback: _AsyncCallback&l
 | -------- | --------------------------- | ---- | ------------------------------------------------------------ |
 | resource | [Resource](#resource9)      | 是   | 资源信息。                                                   |
 | num      | number                      | 是   | 数量值。根据当前语言的复数规则获取该数量值对应的字符串数字，语言的复数规则参见[语言单复数规则](https://www.unicode.org/cldr/charts/45/supplemental/language_plural_rules.html)。 |
-| callback | [_AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;string&gt; | 是   | 根据指定数量，获取指定resource对象表示的单复数字符串。       |
+| callback | [_AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;string&gt; | 是   | 回调函数，返回resource对象对应的指定数量的单复数字符串。       |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -6621,10 +6738,28 @@ getPluralStringValue(resource: Resource, num: number, callback: _AsyncCallback&l
 | 9001002  | No matching resource is found based on the resource ID.      |
 | 9001006  | The resource is referenced cyclically.                       |
 
-**示例：** 
-
+**示例：**
+  ```json
+  {
+    "plural": [
+      {
+        "name": "test",
+        "value": [
+          {
+            "quantity": "one",
+            "value": "%d apple"
+          },
+          {
+            "quantity": "other",
+            "value": "%d apples"
+          }
+        ]
+      }
+    ]
+  }
+  ```
   ```ts
-  import { resourceManager } from '@kit.LocalizationKit'
+  import { resourceManager } from '@kit.LocalizationKit';
   import { BusinessError } from '@kit.BasicServicesKit';
 
   let resource: resourceManager.Resource = {
@@ -6632,19 +6767,17 @@ getPluralStringValue(resource: Resource, num: number, callback: _AsyncCallback&l
     moduleName: "entry",
     id: $r('app.plural.test').id
   };
-  try {
-    this.context.resourceManager.getPluralStringValue(resource, 1, (error: BusinessError, value: string) => {
+  // 根据语言单复数规则，参数num取值为1，英文环境下对应单复数类别为one
+  // 在资源文件中用quantity字段表示单复数类别，因此会获取quantity为one的字符串
+  this.context.resourceManager.getPluralStringValue(resource, 1,
+    (error: BusinessError, value: string) => {
       if (error != null) {
-        console.error("error is " + error);
+        console.error(`callback getPluralStringValue failed, error code: ${error.code}, message: ${error.message}.`);
       } else {
-        let str = value;
+        console.log(`getPluralStringValue, result: ${value}`);
+        // 打印输出结果: getPluralStringValue, result: 1 apple
       }
     });
-  } catch (error) {
-    let code = (error as BusinessError).code;
-    let message = (error as BusinessError).message;
-    console.error(`callback getPluralStringValue failed, error code: ${code}, message: ${message}.`);
-  }
   ```
 
 ### getPluralStringValue<sup>(deprecated)</sup>
@@ -6655,15 +6788,15 @@ getPluralStringValue(resource: Resource, num: number): Promise&lt;string&gt;
 
 > **说明**
 >
-> 中文环境下，字符串不区分单复数；英文环境下，字符串区分单复数。
+> 中文环境下，字符串不区分单复数；其他语言环境下，字符串区分单复数，具体规则参考[语言单复数规则](https://www.unicode.org/cldr/charts/45/supplemental/language_plural_rules.html)。
 >
 > 从API version 9开始支持，从API version 18开始废弃，建议使用[getIntPluralStringValueSync](#getintpluralstringvaluesync18-1)替代。
 
-**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Global.ResourceManager
+**系统能力：** SystemCapability.Global.ResourceManager
 
-**模型约束**：此接口仅可在Stage模型下使用。
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：** 
 
@@ -6676,7 +6809,7 @@ getPluralStringValue(resource: Resource, num: number): Promise&lt;string&gt;
 
 | 类型                  | 说明                                                     |
 | --------------------- | -------------------------------------------------------- |
-| Promise&lt;string&gt; | 根据提供的数量，获取对应resource对象表示的单复数字符串。 |
+| Promise&lt;string&gt; | Promise对象，返回resource对象对应的指定数量的单复数字符串。  |
 
 **错误码：**
 
@@ -6689,10 +6822,28 @@ getPluralStringValue(resource: Resource, num: number): Promise&lt;string&gt;
 | 9001002  | No matching resource is found based on the resource ID.      |
 | 9001006  | The resource is referenced cyclically.                       |
 
-**示例：** 
-
+**示例：**
+  ```json
+  {
+    "plural": [
+      {
+        "name": "test",
+        "value": [
+          {
+            "quantity": "one",
+            "value": "%d apple"
+          },
+          {
+            "quantity": "other",
+            "value": "%d apples"
+          }
+        ]
+      }
+    ]
+  }
+  ```
   ```ts
-  import { resourceManager } from '@kit.LocalizationKit'
+  import { resourceManager } from '@kit.LocalizationKit';
   import { BusinessError } from '@kit.BasicServicesKit';
 
   let resource: resourceManager.Resource = {
@@ -6700,17 +6851,16 @@ getPluralStringValue(resource: Resource, num: number): Promise&lt;string&gt;
     moduleName: "entry",
     id: $r('app.plural.test').id
   };
-  try {
-    this.context.resourceManager.getPluralStringValue(resource, 1).then((value: string) => {
-      let str = value;
-    }).catch((error: BusinessError) => {
-      console.error("getPluralStringValue promise error is " + error);
+  // 根据语言单复数规则，参数num取值为1，英文环境下对应单复数类别为one
+  // 在资源文件中用quantity字段表示单复数类别，因此会获取quantity为one的字符串
+  this.context.resourceManager.getPluralStringValue(resource, 1)
+    .then((value: string) => {
+      console.log(`getPluralStringValue, result: ${value}`);
+      // 打印输出结果: getPluralStringValue, result: 1 apple
+    })
+    .catch((error: BusinessError) => {
+      console.error(`promise getPluralStringValue failed, error code: ${error.code}, message: ${error.message}.`);
     });
-  } catch (error) {
-    let code = (error as BusinessError).code;
-    let message = (error as BusinessError).message;
-    console.error(`promise getPluralStringValue failed, error code: ${code}, message: ${message}.`);
-  }
   ```
 
 ### getPluralStringByName<sup>(deprecated)</sup>
@@ -6721,13 +6871,13 @@ getPluralStringByName(resName: string, num: number, callback: _AsyncCallback&lt;
 
 > **说明**
 >
-> 中文环境下，字符串不区分单复数；英文环境下，字符串区分单复数。
+> 中文环境下，字符串不区分单复数；其他语言环境下，字符串区分单复数，具体规则参考[语言单复数规则](https://www.unicode.org/cldr/charts/45/supplemental/language_plural_rules.html)。
 >
 > 从API version 9开始支持，从API version 18开始废弃，建议使用[getIntPluralStringByNameSync](#getintpluralstringbynamesync18)替代。
 
-**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Global.ResourceManager
+**系统能力：** SystemCapability.Global.ResourceManager
 
 **参数：** 
 
@@ -6735,7 +6885,7 @@ getPluralStringByName(resName: string, num: number, callback: _AsyncCallback&lt;
 | -------- | --------------------------- | ---- | ------------------------------------------------------------ |
 | resName  | string                      | 是   | 资源名称。                                                   |
 | num      | number                      | 是   | 数量值。根据当前语言的复数规则获取该数量值对应的字符串数字，语言的复数规则参见[语言单复数规则](https://www.unicode.org/cldr/charts/45/supplemental/language_plural_rules.html)。 |
-| callback | [_AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;string&gt; | 是   | 根据传入的数量值，获取资源名称对应的字符串资源。             |
+| callback | [_AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;string&gt; | 是   | 回调函数，返回资源名称对应的指定数量的单复数字符串。             |
 
 **错误码：**
 
@@ -6748,24 +6898,39 @@ getPluralStringByName(resName: string, num: number, callback: _AsyncCallback&lt;
 | 9001004  | No matching resource is found based on the resource name.    |
 | 9001006  | The resource is referenced cyclically.                       |
 
-**示例：** 
-
+**示例：**
+  ```json
+  {
+    "plural": [
+      {
+        "name": "test",
+        "value": [
+          {
+            "quantity": "one",
+            "value": "%d apple"
+          },
+          {
+            "quantity": "other",
+            "value": "%d apples"
+          }
+        ]
+      }
+    ]
+  }
+  ```
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
 
-  try {
-    this.context.resourceManager.getPluralStringByName("test", 1, (error: BusinessError, value: string) => {
-      if (error != null) {
-        console.error("error is " + error);
-      } else {
-        let str = value;
-      }
-    });
-  } catch (error) {
-    let code = (error as BusinessError).code;
-    let message = (error as BusinessError).message;
-    console.error(`callback getPluralStringByName failed, error code: ${code}, message: ${message}.`);
-  }
+  // 根据语言单复数规则，参数num取值为1，英文环境下对应单复数类别为one
+  // 在资源文件中用quantity字段表示单复数类别，因此会获取quantity为one的字符串
+  this.context.resourceManager.getPluralStringByName("test", 1, (error: BusinessError, value: string) => {
+    if (error != null) {
+      console.error(`callback getPluralStringByName failed, error code: ${error.code}, message: ${error.message}.`);
+    } else {
+      console.log(`getPluralStringByName, result: ${value}`);
+      // 打印输出结果: getPluralStringByName, result: 1 apple
+    }
+  });
   ```
 
 ### getPluralStringByName<sup>(deprecated)</sup>
@@ -6776,13 +6941,13 @@ getPluralStringByName(resName: string, num: number): Promise&lt;string&gt;
 
 > **说明**
 >
-> 中文环境下，字符串不区分单复数；英文环境下，字符串区分单复数。
+> 中文环境下，字符串不区分单复数；其他语言环境下，字符串区分单复数，具体规则参考[语言单复数规则](https://www.unicode.org/cldr/charts/45/supplemental/language_plural_rules.html)。
 >
 > 从API version 9开始支持，从API version 18开始废弃，建议使用[getIntPluralStringByNameSync](#getintpluralstringbynamesync18)替代。
 
-**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Global.ResourceManager
+**系统能力：** SystemCapability.Global.ResourceManager
 
 **参数：** 
 
@@ -6808,22 +6973,39 @@ getPluralStringByName(resName: string, num: number): Promise&lt;string&gt;
 | 9001004  | No matching resource is found based on the resource name.    |
 | 9001006  | The resource is referenced cyclically.                       |
 
-**示例：** 
-
+**示例：**
+  ```json
+  {
+    "plural": [
+      {
+        "name": "test",
+        "value": [
+          {
+            "quantity": "one",
+            "value": "%d apple"
+          },
+          {
+            "quantity": "other",
+            "value": "%d apples"
+          }
+        ]
+      }
+    ]
+  }
+  ```
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
 
-  try {
-    this.context.resourceManager.getPluralStringByName("test", 1).then((value: string) => {
-      let str = value;
-    }).catch((error: BusinessError) => {
-      console.error("getPluralStringByName promise error is " + error);
+  // 根据语言单复数规则，参数num取值为1，英文环境下对应单复数类别为one
+  // 在资源文件中用quantity字段表示单复数类别，因此会获取quantity为one的字符串
+  this.context.resourceManager.getPluralStringByName("test", 1)
+    .then((value: string) => {
+      console.log(`getPluralStringByName, result: ${value}`);
+      // 打印输出结果: getPluralStringByName, result: 1 apple
+    })
+    .catch((error: BusinessError) => {
+      console.error(`promise getPluralStringByName failed, error code: ${error.code}, message: ${error.message}.`);
     });
-  } catch (error) {
-    let code = (error as BusinessError).code;
-    let message = (error as BusinessError).message;
-    console.error(`promise getPluralStringByName failed, error code: ${code}, message: ${message}.`);
-  }
   ```
 
 ### getPluralString<sup>(deprecated)</sup>
@@ -6834,11 +7016,11 @@ getPluralString(resId: number, num: number): Promise&lt;string&gt;
 
 > **说明**
 >
-> 中文环境下，字符串不区分单复数；英文环境下，字符串区分单复数。
+> 中文环境下，字符串不区分单复数；其他语言环境下，字符串区分单复数，具体规则参考[语言单复数规则](https://www.unicode.org/cldr/charts/45/supplemental/language_plural_rules.html)。
 >
 > 从API version 6开始支持，从API version 9开始废弃，建议使用[getIntPluralStringValueSync](#getintpluralstringvaluesync18)替代。
 
-**系统能力**：SystemCapability.Global.ResourceManager
+**系统能力：** SystemCapability.Global.ResourceManager
 
 **参数：** 
 
@@ -6851,9 +7033,9 @@ getPluralString(resId: number, num: number): Promise&lt;string&gt;
 
 | 类型                    | 说明                        |
 | --------------------- | ------------------------- |
-| Promise&lt;string&gt; | 根据提供的数量获取对应ID字符串表示的单复数字符串。 |
+| Promise&lt;string&gt; | Promise对象，返回资源ID值对应的指定数量的单复数字符串。 |
 
-**示例：** 
+**示例：**
 
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
@@ -6876,11 +7058,11 @@ getPluralString(resId: number, num: number, callback: AsyncCallback&lt;string&gt
 
 > **说明**
 >
-> 中文环境下，字符串不区分单复数；英文环境下，字符串区分单复数。
+> 中文环境下，字符串不区分单复数；其他语言环境下，字符串区分单复数，具体规则参考[语言单复数规则](https://www.unicode.org/cldr/charts/45/supplemental/language_plural_rules.html)。
 >
 > 从API version 6开始支持，从API version 9开始废弃，建议使用[getIntPluralStringValueSync](#getintpluralstringvaluesync18)替代。
 
-**系统能力**：SystemCapability.Global.ResourceManager
+**系统能力：** SystemCapability.Global.ResourceManager
 
 **参数：** 
 
@@ -6888,11 +7070,13 @@ getPluralString(resId: number, num: number, callback: AsyncCallback&lt;string&gt
 | -------- | --------------------------- | ---- | ------------------------------- |
 | resId    | number                      | 是    | 资源ID值。                           |
 | num      | number                      | 是    | 数量值。根据当前语言的复数规则获取该数量值对应的字符串数字，语言的复数规则参见[语言单复数规则](https://www.unicode.org/cldr/charts/45/supplemental/language_plural_rules.html)。 |
-| callback | [AsyncCallback](#asynccallbackdeprecated)&lt;string&gt; | 是    | 异步回调，返回根据指定数量获取指定ID字符串表示的单复数字符串。 |
+| callback | [AsyncCallback](#asynccallbackdeprecated)&lt;string&gt; | 是    | 回调函数，返回资源ID值对应的指定数量的单复数字符串。 |
 
-**示例：** 
+**示例：**
 
   ```ts
+  import { resourceManager } from '@kit.LocalizationKit';
+
   resourceManager.getResourceManager((error, mgr) => {
       mgr.getPluralString($r("app.plural.test").id, 1, (error: Error, value: string) => {
           if (error != null) {
@@ -6909,23 +7093,25 @@ getPluralString(resId: number, num: number, callback: AsyncCallback&lt;string&gt
 
 getRawFile(path: string, callback: AsyncCallback&lt;Uint8Array&gt;): void
 
-用户获取resources/rawfile目录下对应的rawfile文件内容，使用callback异步回调。
+获取resources/rawfile目录下对应的rawfile文件内容，使用callback异步回调。
 
 > **说明**
 >
 > 从API version 8开始支持，从API version 9开始废弃，建议使用[getRawFileContent](#getrawfilecontent9)替代。
 
-**系统能力**：SystemCapability.Global.ResourceManager
+**系统能力：** SystemCapability.Global.ResourceManager
 
 **参数：** 
 
 | 参数名      | 类型                              | 必填   | 说明                      |
 | -------- | ------------------------------- | ---- | ----------------------- |
 | path     | string                          | 是    | rawfile文件路径。             |
-| callback | [AsyncCallback](#asynccallbackdeprecated)&lt;Uint8Array&gt; | 是    | 异步回调，用于返回获取的rawfile文件内容。 |
+| callback | [AsyncCallback](#asynccallbackdeprecated)&lt;Uint8Array&gt; | 是    | 回调函数，返回rawfile文件内容。 |
 
-**示例：** 
+**示例：**
   ```ts
+  import { resourceManager } from '@kit.LocalizationKit';
+
   resourceManager.getResourceManager((error, mgr) => {
       mgr.getRawFile("test.txt", (error: Error, value: Uint8Array) => {
           if (error != null) {
@@ -6942,13 +7128,13 @@ getRawFile(path: string, callback: AsyncCallback&lt;Uint8Array&gt;): void
 
 getRawFile(path: string): Promise&lt;Uint8Array&gt;
 
-用户获取resources/rawfile目录下对应的rawfile文件内容，使用Promise异步回调。
+获取resources/rawfile目录下对应的rawfile文件内容，使用Promise异步回调。
 
 > **说明**
 >
 > 从API version 8开始支持，从API version 9开始废弃，建议使用[getRawFileContent](#getrawfilecontent9-1)替代。
 
-**系统能力**：SystemCapability.Global.ResourceManager
+**系统能力：** SystemCapability.Global.ResourceManager
 
 **参数：** 
 
@@ -6960,9 +7146,9 @@ getRawFile(path: string): Promise&lt;Uint8Array&gt;
 
 | 类型                        | 说明          |
 | ------------------------- | ----------- |
-| Promise&lt;Uint8Array&gt; | rawfile文件内容。 |
+| Promise&lt;Uint8Array&gt; | Promise对象，返回rawfile文件内容。 |
 
-**示例：** 
+**示例：**
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -6980,24 +7166,24 @@ getRawFile(path: string): Promise&lt;Uint8Array&gt;
 
 getRawFileDescriptor(path: string, callback: AsyncCallback&lt;RawFileDescriptor&gt;): void
 
-用户获取resources/rawfile目录下对应rawfile文件的descriptor，使用callback异步回调。
+获取resources/rawfile目录下对应rawfile文件的descriptor，使用callback异步回调。
 
 > **说明**
 >
 > 从API version 8开始支持，从API version 9开始废弃，建议使用[getRawFd](#getrawfd9)替代。
 
-**系统能力**：SystemCapability.Global.ResourceManager
+**系统能力：** SystemCapability.Global.ResourceManager
 
 **参数：** 
 
 | 参数名      | 类型                                       | 必填   | 说明                               |
 | -------- | ---------------------------------------- | ---- | -------------------------------- |
 | path     | string                                   | 是    | rawfile文件路径。                      |
-| callback | [AsyncCallback](#asynccallbackdeprecated)&lt;[RawFileDescriptor](#rawfiledescriptor9)&gt; | 是    | 异步回调，用于返回获取的rawfile文件的descriptor。 |
+| callback | [AsyncCallback](#asynccallbackdeprecated)&lt;[RawFileDescriptor](#rawfiledescriptor9)&gt; | 是    | 回调函数，返回rawfile文件的descriptor。 |
 
-**示例：** 
+**示例：**
   ```ts
-  import { resourceManager } from '@kit.LocalizationKit'
+  import { resourceManager } from '@kit.LocalizationKit';
 
   resourceManager.getResourceManager((error, mgr) => {
       mgr.getRawFileDescriptor("test.txt", (error: Error, value: resourceManager.RawFileDescriptor) => {
@@ -7016,13 +7202,13 @@ getRawFileDescriptor(path: string, callback: AsyncCallback&lt;RawFileDescriptor&
 
 getRawFileDescriptor(path: string): Promise&lt;RawFileDescriptor&gt;
 
-用户获取resources/rawfile目录下对应rawfile文件的descriptor，使用Promise异步回调。
+获取resources/rawfile目录下对应rawfile文件的descriptor，使用Promise异步回调。
 
 > **说明**
 >
 > 从API version 8开始支持，从API version 9开始废弃，建议使用[getRawFd](#getrawfd9-1)替代。
 
-**系统能力**：SystemCapability.Global.ResourceManager
+**系统能力：** SystemCapability.Global.ResourceManager
 
 **参数：** 
 
@@ -7034,9 +7220,9 @@ getRawFileDescriptor(path: string): Promise&lt;RawFileDescriptor&gt;
 
 | 类型                                       | 说明                  |
 | ---------------------------------------- | ------------------- |
-| Promise&lt;[RawFileDescriptor](#rawfiledescriptor9)&gt; | rawfile文件descriptor。 |
+| Promise&lt;[RawFileDescriptor](#rawfiledescriptor9)&gt; | Promise对象，返回rawfile文件的descriptor。 |
 
-**示例：** 
+**示例：**
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -7061,7 +7247,7 @@ closeRawFileDescriptor(path: string, callback: AsyncCallback&lt;void&gt;): void
 >
 > 从API version 8开始支持，从API version 9开始废弃，建议使用[closeRawFd](#closerawfd9)替代。
 
-**系统能力**：SystemCapability.Global.ResourceManager
+**系统能力：** SystemCapability.Global.ResourceManager
 
 **参数：** 
 
@@ -7070,10 +7256,12 @@ closeRawFileDescriptor(path: string, callback: AsyncCallback&lt;void&gt;): void
 | 参数名      | 类型                        | 必填   | 说明          |
 | -------- | ------------------------- | ---- | ----------- |
 | path     | string                    | 是    | rawfile文件路径。 |
-| callback | [AsyncCallback](#asynccallbackdeprecated)&lt;void&gt; | 是    | 异步回调。        |
+| callback | [AsyncCallback](#asynccallbackdeprecated)&lt;void&gt; | 是    | 回调函数。当关闭rawfile所在HAP的descriptor成功，err为undefined，否则为错误对象。|
 
-**示例：** 
+**示例：**
   ```ts
+  import { resourceManager } from '@kit.LocalizationKit';
+
   resourceManager.getResourceManager((error, mgr) => {
       mgr.closeRawFileDescriptor("test.txt", (error: Error) => {
           if (error != null) {
@@ -7093,7 +7281,7 @@ closeRawFileDescriptor(path: string): Promise&lt;void&gt;
 >
 > 从API version 8开始支持，从API version 9开始废弃，建议使用[closeRawFd](#closerawfd9-1)替代。
 
-**系统能力**：SystemCapability.Global.ResourceManager
+**系统能力：** SystemCapability.Global.ResourceManager
 
 **参数：** 
 
@@ -7105,10 +7293,12 @@ closeRawFileDescriptor(path: string): Promise&lt;void&gt;
 
 | 类型                  | 说明   |
 | ------------------- | ---- |
-| Promise&lt;void&gt; | 无返回值。 |
+| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
 
-**示例：** 
+**示例：**
   ```ts
+  import { resourceManager } from '@kit.LocalizationKit';
+
   resourceManager.getResourceManager((error, mgr) => {
       mgr.closeRawFileDescriptor("test.txt");
   });
@@ -7116,11 +7306,11 @@ closeRawFileDescriptor(path: string): Promise&lt;void&gt;
 
 ## AsyncCallback<sup>(deprecated)</sup>
 
-```
-AsyncCallback<T> {
-  (err: Error, data: T): void;
-}
-```
+  ```ts
+  AsyncCallback<T> {
+    (err: Error, data: T): void;
+  }
+  ```
 
 异步回调函数，携带错误参数和异步返回值。
 
@@ -7144,7 +7334,7 @@ AsyncCallback<T> {
       "string": [
         {
           "name": "test",
-          "value": "10"
+          "value": "I'm a test string resource."
         }
       ]
     }
@@ -7155,7 +7345,7 @@ AsyncCallback<T> {
       "string": [
         {
           "name": "test",
-          "value": "%s %d %f"
+          "value": "I'm a %1$s, format int: %2$d, format float: %3$f."
         }
       ]
     }
@@ -7170,7 +7360,7 @@ AsyncCallback<T> {
           "name": "test",
           "value": [
             {
-              "value": "strarray_test"
+              "value": "I'm one of the array's values."
             }
           ]
         }
@@ -7209,11 +7399,11 @@ AsyncCallback<T> {
           "value": [
             {
               "quantity": "one",
-              "value": "%d apple, %s, %f"
+              "value": "There is %d apple in the %s, the total amount is %f kg."
             },
             {
               "quantity": "other",
-              "value": "%d apples, %s, %f"
+              "value": "There are %d apples in the %s, the total amount is %f kg."
             }
           ]
         }
@@ -7250,7 +7440,7 @@ AsyncCallback<T> {
       "float": [
         {
           "name": "float_test",
-          "value": "30.6"
+          "value": "30.6vp"
         }
       ]
     }
