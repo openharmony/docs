@@ -188,7 +188,7 @@ No such device (it may have been disconnected).
 
 **错误信息**
 
-Insufficient memory. Possible causes: 1. Malloc memory failed.
+Insufficient memory. Possible causes: 1. Malloc allocation failed.
 
 **错误描述**
 
@@ -356,7 +356,7 @@ transfer timeout.
 
 **错误信息**
 
-IO exception. Possible causes: 1. The transfer was canceled. 2. The device offered more data.
+IO exception. Possible causes: 1. The transfer was canceled. 2. The device offered more data than allowed.
 
 **错误描述**
 
