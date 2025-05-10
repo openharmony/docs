@@ -4805,9 +4805,9 @@ getColorByName(resName: string): Promise&lt;number&gt;
 
 getRawFileContentSync(path: string): Uint8Array
 
-用户获取resources/rawfile目录下对应的rawfile文件内容，使用同步形式返回。
+获取resources/rawfile目录下对应的rawfile文件内容，使用同步形式返回。
 
-**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Global.ResourceManager
 
@@ -4825,7 +4825,7 @@ getRawFileContentSync(path: string): Uint8Array
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -4849,18 +4849,18 @@ getRawFileContentSync(path: string): Uint8Array
 
 getRawFileContent(path: string, callback: _AsyncCallback&lt;Uint8Array&gt;): void
 
-用户获取resources/rawfile目录下对应的rawfile文件内容，使用callback异步回调。
+获取resources/rawfile目录下对应的rawfile文件内容，使用callback异步回调。
 
-**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Global.ResourceManager
+**系统能力：** SystemCapability.Global.ResourceManager
 
 **参数：** 
 
 | 参数名      | 类型                              | 必填   | 说明                      |
 | -------- | ------------------------------- | ---- | ----------------------- |
 | path     | string                          | 是    | rawfile文件路径。             |
-| callback | [_AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;Uint8Array&gt; | 是    | 返回获取的rawfile文件内容。 |
+| callback | [_AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;Uint8Array&gt; | 是    | 回调函数，返回获取的rawfile文件内容。 |
 
 **错误码：**
 
@@ -4869,8 +4869,9 @@ getRawFileContent(path: string, callback: _AsyncCallback&lt;Uint8Array&gt;): voi
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001005  | Invalid relative path.          |
 
-**示例：** 
+**示例：**
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -4893,11 +4894,11 @@ getRawFileContent(path: string, callback: _AsyncCallback&lt;Uint8Array&gt;): voi
 
 getRawFileContent(path: string): Promise&lt;Uint8Array&gt;
 
-用户获取resources/rawfile目录下对应的rawfile文件内容，使用Promise异步回调。
+获取resources/rawfile目录下对应的rawfile文件内容，使用Promise异步回调。
 
-**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Global.ResourceManager
+**系统能力：** SystemCapability.Global.ResourceManager
 
 **参数：** 
 
@@ -4909,7 +4910,7 @@ getRawFileContent(path: string): Promise&lt;Uint8Array&gt;
 
 | 类型                        | 说明          |
 | ------------------------- | ----------- |
-| Promise&lt;Uint8Array&gt; | rawfile文件内容。 |
+| Promise&lt;Uint8Array&gt; | Promise对象，返回获取的rawfile文件内容。 |
 
 **错误码：**
 
@@ -4920,7 +4921,7 @@ getRawFileContent(path: string): Promise&lt;Uint8Array&gt;
 | 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
 | 9001005  | Invalid relative path.          |
 
-**示例：** 
+**示例：**
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -4941,13 +4942,13 @@ getRawFileContent(path: string): Promise&lt;Uint8Array&gt;
 
 getRawFileListSync(path: string): Array\<string>
 
-用户获取resources/rawfile目录下文件夹及文件列表，使用同步形式返回。
+获取resources/rawfile目录下文件夹及文件列表，使用同步形式返回。
 
 >**说明**
 >
-> 若文件夹中无文件，则不返回；若文件夹中有文件，则返回文件夹及文件列表。
+> 若文件夹中无文件，则抛出异常；若文件夹中有文件，则返回文件夹及文件列表。
 
-**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Global.ResourceManager
 
@@ -4965,7 +4966,7 @@ getRawFileListSync(path: string): Array\<string>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -4976,8 +4977,11 @@ getRawFileListSync(path: string): Array\<string>
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
 
-  try { // 传入""表示获取rawfile根目录下的文件列表
-    this.context.resourceManager.getRawFileListSync("")
+  try {
+    // 传入""表示获取rawfile根目录下的文件列表，假设rawfile根目录下存在test.txt文件
+    let fileList: Array<string> = this.context.resourceManager.getRawFileListSync("");
+    console.log(`getRawFileListSync, result: ${JSON.stringify(fileList)}`);
+    // 打印输出结果: getRawFileListSync, result: ["test.txt"] 
   } catch (error) {
     let code = (error as BusinessError).code;
     let message = (error as BusinessError).message;
@@ -4987,66 +4991,62 @@ getRawFileListSync(path: string): Array\<string>
 
 ### getRawFileList<sup>10+</sup>
 
-getRawFileList(path: string, callback: _AsyncCallback&lt;Array\<string\>&gt;): void;
+getRawFileList(path: string, callback: _AsyncCallback&lt;Array\<string\>&gt;): void
 
-用户获取resources/rawfile目录下文件夹及文件列表，使用callback异步回调。
+获取resources/rawfile目录下文件夹及文件列表，使用callback异步回调。
 
 >**说明**
 >
-> 若文件夹中无文件，则不返回；若文件夹中有文件，则返回文件夹及文件列表。
+> 若文件夹中无文件，则抛出异常；若文件夹中有文件，则返回文件夹及文件列表。
 
-**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Global.ResourceManager
+**系统能力：** SystemCapability.Global.ResourceManager
 
 **参数：** 
 
 | 参数名      | 类型                              | 必填   | 说明                      |
 | -------- | ------------------------------- | ---- | ----------------------- |
 | path     | string                          | 是    | rawfile文件夹路径。             |
-| callback | [_AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;Array\<string\>&gt; | 是 | rawfile文件目录下的文件夹及文件列表。 |
+| callback | [_AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;Array\<string\>&gt; | 是 | 回调函数，返回rawfile文件目录下的文件夹及文件列表。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
 | 9001005  | Invalid relative path.       |
 
-**示例：** 
+**示例：**
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
 
-  try { // 传入""表示获取rawfile根目录下的文件列表
-    this.context.resourceManager.getRawFileList("", (error: BusinessError, value: Array<string>) => {
-      if (error != null) {
-        console.error(`callback getRawFileList failed, error code: ${error.code}, message: ${error.message}.`);
-      } else {
-        let rawFile = value;
-      }
-    });
-  } catch (error) {
-    let code = (error as BusinessError).code;
-    let message = (error as BusinessError).message;
-    console.error(`callback getRawFileList failed, error code: ${code}, message: ${message}.`);
-  }
+  // 传入""表示获取rawfile根目录下的文件列表，假设rawfile根目录下存在test.txt文件
+  this.context.resourceManager.getRawFileList("", (error: BusinessError, value: Array<string>) => {
+    if (error != null) {
+      console.error(`callback getRawFileList failed, error code: ${error.code}, message: ${error.message}.`);
+    } else {
+      console.log(`getRawFileListSync, result: ${JSON.stringify(value)}`);
+      // 打印输出结果: getRawFileListSync, result: ["test.txt"]
+    }
+  });
   ```
 
 ### getRawFileList<sup>10+</sup>
 
 getRawFileList(path: string): Promise&lt;Array\<string\>&gt;
 
-用户获取resources/rawfile目录下文件夹及文件列表，使用Promise异步回调。
+获取resources/rawfile目录下文件夹及文件列表，使用Promise异步回调。
 
 >**说明**
 >
-> 若文件夹中无文件，则不返回；若文件夹中有文件，则返回文件夹及文件列表。
+> 若文件夹中无文件，则抛出异常；若文件夹中有文件，则返回文件夹及文件列表。
 
-**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Global.ResourceManager
+**系统能力：** SystemCapability.Global.ResourceManager
 
 **参数：** 
 
@@ -5058,41 +5058,43 @@ getRawFileList(path: string): Promise&lt;Array\<string\>&gt;
 
 | 类型                        | 说明          |
 | ------------------------- | ----------- |
-| Promise&lt;Array\<string\>&gt; | rawfile文件目录下的文件夹及文件列表。 |
+| Promise&lt;Array\<string\>&gt; | Promise对象，返回rawfile文件目录下的文件夹及文件列表。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
 | 9001005  | Invalid relative path.          |
 
-**示例：** 
+**示例：**
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
 
-  try { // 传入""表示获取rawfile根目录下的文件列表
-    this.context.resourceManager.getRawFileList("").then((value: Array<string>) => {
-      let rawFile = value;
-    }).catch((error: BusinessError) => {
+  // 传入""表示获取rawfile根目录下的文件列表，假设rawfile根目录下存在test.txt文件
+  this.context.resourceManager.getRawFileList("")
+    .then((value: Array<string>) => {
+      console.log(`getRawFileListSync, result: ${JSON.stringify(value)}`);
+      // 打印输出结果: getRawFileListSync, result: ["test.txt"]
+    })
+    .catch((error: BusinessError) => {
       console.error(`promise getRawFileList failed, error code: ${error.code}, message: ${error.message}.`);
     });
-  } catch (error) {
-    let code = (error as BusinessError).code;
-    let message = (error as BusinessError).message;
-    console.error(`promise getRawFileList failed, error code: ${code}, message: ${message}.`);
-  }
   ```
 
 ### getRawFdSync<sup>10+</sup>
 
 getRawFdSync(path: string): RawFileDescriptor
 
-用户获取resources/rawfile目录下rawfile文件所在hap的descriptor信息。
+获取resources/rawfile目录下rawfile文件所在HAP的descriptor信息。
 
-**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+> **说明**
+>
+> FileDescriptor使用完毕后需调用[closeRawFdSync](#closerawfdsync10)或[closeRawFd](#closerawfd9)关闭fd，避免资源泄露。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Global.ResourceManager
 
@@ -5106,11 +5108,11 @@ getRawFdSync(path: string): RawFileDescriptor
 
 | 类型                        | 说明          |
 | ------------------------- | ----------- |
-| [RawFileDescriptor](#rawfiledescriptor9) | rawfile文件所在hap的descriptor信息。 |
+| [RawFileDescriptor](#rawfiledescriptor9) | rawfile文件所在HAP的descriptor信息。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -5134,18 +5136,22 @@ getRawFdSync(path: string): RawFileDescriptor
 
 getRawFd(path: string, callback: _AsyncCallback&lt;RawFileDescriptor&gt;): void
 
-用户获取resources/rawfile目录下对应rawfile文件所在hap的descriptor信息，使用callback异步回调。
+获取resources/rawfile目录下对应rawfile文件所在HAP的descriptor信息。
 
-**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+> **说明**
+>
+> FileDescriptor使用完毕后需调用[closeRawFdSync](#closerawfdsync10)或[closeRawFd](#closerawfd9)关闭fd，避免资源泄露。
 
-**系统能力**：SystemCapability.Global.ResourceManager
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Global.ResourceManager
 
 **参数：** 
 
 | 参数名      | 类型                                       | 必填   | 说明                               |
 | -------- | ---------------------------------------- | ---- | -------------------------------- |
 | path     | string                                   | 是    | rawfile文件路径。                      |
-| callback | [_AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;[RawFileDescriptor](#rawfiledescriptor9)&gt; | 是    | 返回获取的rawfile文件所在hap的descriptor信息。 |
+| callback | [_AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;[RawFileDescriptor](#rawfiledescriptor9)&gt; | 是    | 回调函数，返回获取的rawfile文件所在HAP的descriptor信息。 |
 
 **错误码：**
 
@@ -5156,10 +5162,10 @@ getRawFd(path: string, callback: _AsyncCallback&lt;RawFileDescriptor&gt;): void
 | 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
 | 9001005  | Invalid relative path.          |
 
-**示例：** 
+**示例：**
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
-  import { resourceManager } from '@kit.LocalizationKit'
+  import { resourceManager } from '@kit.LocalizationKit';
 
   try {
     this.context.resourceManager.getRawFd("test.txt", (error: BusinessError, value: resourceManager.RawFileDescriptor) => {
@@ -5182,11 +5188,15 @@ getRawFd(path: string, callback: _AsyncCallback&lt;RawFileDescriptor&gt;): void
 
 getRawFd(path: string): Promise&lt;RawFileDescriptor&gt;
 
-用户获取resources/rawfile目录下rawfile文件所在hap的descriptor信息，使用Promise异步回调。
+获取resources/rawfile目录下rawfile文件所在HAP的descriptor信息。
 
-**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+> **说明**
+>
+> FileDescriptor使用完毕后需调用[closeRawFdSync](#closerawfdsync10)或[closeRawFd](#closerawfd9)关闭fd，避免资源泄露。
 
-**系统能力**：SystemCapability.Global.ResourceManager
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Global.ResourceManager
 
 **参数：** 
 
@@ -5198,7 +5208,7 @@ getRawFd(path: string): Promise&lt;RawFileDescriptor&gt;
 
 | 类型                                       | 说明                  |
 | ---------------------------------------- | ------------------- |
-| Promise&lt;[RawFileDescriptor](#rawfiledescriptor9)&gt; | rawfile文件所在hap的descriptor信息。 |
+| Promise&lt;[RawFileDescriptor](#rawfiledescriptor9)&gt; | Promise对象，返回rawfile文件所在HAP的descriptor信息。 |
 
 **错误码：**
 
@@ -5209,10 +5219,10 @@ getRawFd(path: string): Promise&lt;RawFileDescriptor&gt;
 | 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
 | 9001005  | Invalid relative path.          |
 
-**示例：** 
+**示例：**
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
-  import { resourceManager } from '@kit.LocalizationKit'
+  import { resourceManager } from '@kit.LocalizationKit';
 
   try {
     this.context.resourceManager.getRawFd("test.txt").then((value: resourceManager.RawFileDescriptor) => {
@@ -5233,11 +5243,11 @@ getRawFd(path: string): Promise&lt;RawFileDescriptor&gt;
 
 closeRawFdSync(path: string): void
 
-用户关闭resources/rawfile目录下rawfile文件所在hap的descriptor信息。
+用户关闭resources/rawfile目录下rawfile文件所在HAP的descriptor信息。
 
-**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Global.ResourceManager
+**系统能力：** SystemCapability.Global.ResourceManager
 
 **参数：**
 
@@ -5247,7 +5257,7 @@ closeRawFdSync(path: string): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -5271,18 +5281,18 @@ closeRawFdSync(path: string): void
 
 closeRawFd(path: string, callback: _AsyncCallback&lt;void&gt;): void
 
-用户关闭resources/rawfile目录下rawfile文件所在hap的descriptor信息，使用callback异步回调。
+用户关闭resources/rawfile目录下rawfile文件所在HAP的descriptor信息，使用callback异步回调。
 
-**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Global.ResourceManager
+**系统能力：** SystemCapability.Global.ResourceManager
 
 **参数：** 
 
 | 参数名      | 类型                        | 必填   | 说明          |
 | -------- | ------------------------- | ---- | ----------- |
 | path     | string                    | 是    | rawfile文件路径。 |
-| callback | [_AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;void&gt; | 是    | 异步回调。        |
+| callback | [_AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;void&gt; | 是    | 回调函数。当关闭rawfile所在HAP的descriptor成功，err为undefined，否则为错误对象。|
 
 **错误码：**
 
@@ -5293,7 +5303,7 @@ closeRawFd(path: string, callback: _AsyncCallback&lt;void&gt;): void
 | 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
 | 9001005  | The resource not found by path.          |
 
-**示例：** 
+**示例：**
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -5314,11 +5324,11 @@ closeRawFd(path: string, callback: _AsyncCallback&lt;void&gt;): void
 
 closeRawFd(path: string): Promise&lt;void&gt;
 
-用户关闭resources/rawfile目录下rawfile文件所在hap的descriptor信息，使用Promise异步回调。
+用户关闭resources/rawfile目录下rawfile文件所在HAP的descriptor信息，使用Promise异步回调。
 
-**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Global.ResourceManager
+**系统能力：** SystemCapability.Global.ResourceManager
 
 **参数：** 
 
@@ -5330,7 +5340,7 @@ closeRawFd(path: string): Promise&lt;void&gt;
 
 | 类型                  | 说明   |
 | ------------------- | ---- |
-| Promise&lt;void&gt; | 无返回结果的promise对象。 |
+| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -5341,7 +5351,7 @@ closeRawFd(path: string): Promise&lt;void&gt;
 | 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
 | 9001005  | Invalid relative path.          |
 
-**示例：** 
+**示例：**
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -5358,11 +5368,11 @@ closeRawFd(path: string): Promise&lt;void&gt;
 
 getConfigurationSync(): Configuration
 
-用户获取设备的Configuration，使用同步形式返回。
+获取设备的Configuration，使用同步形式返回。
 
-**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Global.ResourceManager
+**系统能力：** SystemCapability.Global.ResourceManager
 
 **返回值：**
 
@@ -5370,7 +5380,7 @@ getConfigurationSync(): Configuration
 | ---------------------------------------- | ---------------- |
 | [Configuration](#configuration) | 设备的Configuration。 |
 
-**示例：** 
+**示例：**
   ```ts
   try {
     let value = this.context.resourceManager.getConfigurationSync();
@@ -5385,21 +5395,21 @@ getConfigurationSync(): Configuration
 
 getConfiguration(callback: _AsyncCallback&lt;Configuration&gt;): void
 
-用户获取设备的Configuration，使用callback异步回调。
+获取设备的Configuration，使用callback异步回调。
 
-**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Global.ResourceManager
+**系统能力：** SystemCapability.Global.ResourceManager
 
 **参数：** 
 
 | 参数名      | 类型                                       | 必填   | 说明                        |
 | -------- | ---------------------------------------- | ---- | ------------------------- |
-| callback | [_AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;[Configuration](#configuration)&gt; | 是    | 返回设备的Configuration。 |
+| callback | [_AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;[Configuration](#configuration)&gt; | 是    | 回调函数，返回设备的Configuration。 |
 
-**示例：** 
+**示例：**
   ```ts
-  import { resourceManager } from '@kit.LocalizationKit'
+  import { resourceManager } from '@kit.LocalizationKit';
 
   try {
     this.context.resourceManager.getConfiguration((error: BusinessError, value: resourceManager.Configuration) => {
@@ -5419,22 +5429,22 @@ getConfiguration(callback: _AsyncCallback&lt;Configuration&gt;): void
 
 getConfiguration(): Promise&lt;Configuration&gt;
 
-用户获取设备的Configuration，使用Promise异步回调。
+获取设备的Configuration，使用Promise异步回调。
 
-**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Global.ResourceManager
+**系统能力：** SystemCapability.Global.ResourceManager
 
 **返回值：**
 
 | 类型                                       | 说明               |
 | ---------------------------------------- | ---------------- |
-| Promise&lt;[Configuration](#configuration)&gt; | 设备的Configuration。 |
+| Promise&lt;[Configuration](#configuration)&gt; | Promise对象，返回设备的Configuration。 |
 
-**示例：** 
+**示例：**
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
-  import { resourceManager } from '@kit.LocalizationKit'
+  import { resourceManager } from '@kit.LocalizationKit';
 
   try {
     this.context.resourceManager.getConfiguration().then((value: resourceManager.Configuration) => {
@@ -5452,11 +5462,11 @@ getConfiguration(): Promise&lt;Configuration&gt;
 
 getDeviceCapabilitySync(): DeviceCapability
 
-用户获取设备的DeviceCapability，使用同步形式返回。
+获取设备的DeviceCapability，使用同步形式返回。
 
-**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Global.ResourceManager
+**系统能力：** SystemCapability.Global.ResourceManager
 
 **返回值：**
 
@@ -5464,7 +5474,7 @@ getDeviceCapabilitySync(): DeviceCapability
 | ---------------------------------------- | ------------------- |
 | [DeviceCapability](#devicecapability) | 设备的DeviceCapability。 |
 
-**示例：** 
+**示例：**
   ```ts
   try {
     let value = this.context.resourceManager.getDeviceCapabilitySync();
@@ -5479,21 +5489,21 @@ getDeviceCapabilitySync(): DeviceCapability
 
 getDeviceCapability(callback: _AsyncCallback&lt;DeviceCapability&gt;): void
 
-用户获取设备的DeviceCapability，使用callback异步回调。
+获取设备的DeviceCapability，使用callback异步回调。
 
-**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Global.ResourceManager
+**系统能力：** SystemCapability.Global.ResourceManager
 
 **参数：** 
 
 | 参数名      | 类型                                       | 必填   | 说明                           |
 | -------- | ---------------------------------------- | ---- | ---------------------------- |
-| callback | [_AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;[DeviceCapability](#devicecapability)&gt; | 是    | 返回设备的DeviceCapability。 |
+| callback | [_AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;[DeviceCapability](#devicecapability)&gt; | 是    | 回调函数，返回设备的DeviceCapability。 |
 
-**示例：** 
+**示例：**
   ```ts
-  import { resourceManager } from '@kit.LocalizationKit'
+  import { resourceManager } from '@kit.LocalizationKit';
 
   try {
     this.context.resourceManager.getDeviceCapability((error: BusinessError, value: resourceManager.DeviceCapability) => {
@@ -5513,22 +5523,22 @@ getDeviceCapability(callback: _AsyncCallback&lt;DeviceCapability&gt;): void
 
 getDeviceCapability(): Promise&lt;DeviceCapability&gt;
 
-用户获取设备的DeviceCapability，使用Promise异步回调。
+获取设备的DeviceCapability，使用Promise异步回调。
 
-**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Global.ResourceManager
+**系统能力：** SystemCapability.Global.ResourceManager
 
 **返回值：**
 
 | 类型                                       | 说明                  |
 | ---------------------------------------- | ------------------- |
-| Promise&lt;[DeviceCapability](#devicecapability)&gt; | 设备的DeviceCapability。 |
+| Promise&lt;[DeviceCapability](#devicecapability)&gt; | Promise对象，返回设备的DeviceCapability。 |
 
-**示例：** 
+**示例：**
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
-  import { resourceManager } from '@kit.LocalizationKit'
+  import { resourceManager } from '@kit.LocalizationKit';
 
   try {
     this.context.resourceManager.getDeviceCapability().then((value: resourceManager.DeviceCapability) => {
@@ -5544,13 +5554,17 @@ getDeviceCapability(): Promise&lt;DeviceCapability&gt;
 
 ### addResource<sup>10+</sup>
 
-addResource(path: string) : void
+addResource(path: string): void
 
-应用运行时，加载指定的资源路径，实现资源覆盖。
+应用运行时加载指定的资源路径，实现资源覆盖。
 
-**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+> **说明**
+>
+> rawfile和resfile目录不支持资源覆盖。
 
-**系统能力**：SystemCapability.Global.ResourceManager
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Global.ResourceManager
 
 **参数：**
 
@@ -5560,7 +5574,7 @@ addResource(path: string) : void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -5583,13 +5597,17 @@ addResource(path: string) : void
 
 ### removeResource<sup>10+</sup>
 
-removeResource(path: string) : void
+removeResource(path: string): void
 
-用户运行时，移除指定的资源路径，还原被覆盖前的资源。
+应用运行时移除指定的资源路径，还原被覆盖前的资源。
 
-**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+> **说明**
+>
+> rawfile和resfile目录不支持资源覆盖。
 
-**系统能力**：SystemCapability.Global.ResourceManager
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Global.ResourceManager
 
 **参数：**
 
@@ -5599,7 +5617,7 @@ removeResource(path: string) : void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -5626,15 +5644,15 @@ getLocales(includeSystem?: boolean): Array\<string>
 
 获取应用的语言列表。
 
-**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Global.ResourceManager
+**系统能力：** SystemCapability.Global.ResourceManager
 
 **参数：**
 
 | 参数名         | 类型    | 必填   | 说明       |
 | -------------- | ------- | ------ | -------------------- |
-| includeSystem  | boolean |  否    | 是否包含系统资源，默认值为false。 <br> false：表示仅获取应用资源的语言列表。 <br>true：表示获取系统资源和应用资源的语言列表。 <br>当系统资源管理对象获取语言列表时，includeSystem值无效，返回获取系统资源语言列表 。|
+| includeSystem  | boolean |  否    | 是否包含系统资源，默认值为false。 <br> - false：表示仅获取应用资源的语言列表。 <br> - true：表示获取系统资源和应用资源的语言列表。 <br>当使用系统资源管理对象获取语言列表时，includeSystem值无效，始终返回系统资源语言列表。|
 
 **返回值：**
 
@@ -5644,7 +5662,7 @@ getLocales(includeSystem?: boolean): Array\<string>
 
 **示例：**
   ```ts
-  import { resourceManager } from '@kit.LocalizationKit'
+  import { resourceManager } from '@kit.LocalizationKit';
   import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
@@ -5674,13 +5692,13 @@ getLocales(includeSystem?: boolean): Array\<string>
 
 ### getSymbol<sup>11+</sup>
 
-getSymbol(resId: number):number
+getSymbol(resId: number): number
 
-用户获取指定资源ID对应的符号值，使用同步方式返回。
+获取指定资源ID对应的Symbol字符[Unicode码](https://home.unicode.org/)，使用同步方式返回。
 
-**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Global.ResourceManager
+**系统能力：** SystemCapability.Global.ResourceManager
 
 **参数：**
 
@@ -5692,11 +5710,11 @@ getSymbol(resId: number):number
 
 | 类型     | 说明          |
 | ------ | ----------- |
-| number | 资源ID值对应的符号值（十进制）。 |
+| number | 资源ID值对应的Symbol字符[Unicode码](https://home.unicode.org/)（十进制）。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -5710,7 +5728,9 @@ getSymbol(resId: number):number
   import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
-    this.context.resourceManager.getSymbol($r('app.symbol.test').id);
+    let symbolValue = this.context.resourceManager.getSymbol($r('sys.symbol.message').id);
+    console.log(`getSymbol, result: ${symbolValue}`);
+    // 打印输出结果: getSymbol, result: 983183
   } catch (error) {
     let code = (error as BusinessError).code;
     let message = (error as BusinessError).message;
@@ -5721,13 +5741,13 @@ getSymbol(resId: number):number
 ### getSymbol<sup>11+</sup>
 getSymbol(resource: Resource): number
 
-用户获取指定resource对象对应的符号值，使用同步方式返回。
+获取指定resource对象对应的Symbol字符[Unicode码](https://home.unicode.org/)，使用同步方式返回。
 
-**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Global.ResourceManager
+**系统能力：** SystemCapability.Global.ResourceManager
 
-**模型约束**：此接口仅可在Stage模型下使用。
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -5739,11 +5759,11 @@ getSymbol(resource: Resource): number
 
 | 类型     | 说明          |
 | ------ | ----------- |
-| number | resource对象对应的符号值（十进制）。 |
+| number | resource对象对应的Symbol字符[Unicode码](https://home.unicode.org/)（十进制）。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -5754,16 +5774,18 @@ getSymbol(resource: Resource): number
 
 **示例：**
   ```ts
-  import { resourceManager } from '@kit.LocalizationKit'
+  import { resourceManager } from '@kit.LocalizationKit';
   import { BusinessError } from '@kit.BasicServicesKit';
 
   let resource: resourceManager.Resource = {
     bundleName: "com.example.myapplication",
     moduleName: "entry",
-    id: $r('app.symbol.test').id
+    id: $r('sys.symbol.message').id
   };
   try {
-    this.context.resourceManager.getSymbol(resource);
+    let symbolValue = this.context.resourceManager.getSymbol(resource);
+    console.log(`getSymbol, result: ${symbolValue}`);
+    // 打印输出结果: getSymbol, result: 983183
   } catch (error) {
     let code = (error as BusinessError).code;
     let message = (error as BusinessError).message;
@@ -5773,13 +5795,13 @@ getSymbol(resource: Resource): number
 
 ### getSymbolByName<sup>11+</sup>
 
-getSymbolByName(resName: string) : number;
+getSymbolByName(resName: string): number
 
-用户获取指定资源名称对应的符号值，使用同步方式返回。
+获取指定资源名称对应的Symbol字符[Unicode码](https://home.unicode.org/)，使用同步方式返回。
 
-**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Global.ResourceManager
+**系统能力：** SystemCapability.Global.ResourceManager
 
 **参数：**
 
@@ -5791,11 +5813,11 @@ getSymbolByName(resName: string) : number;
 
 | 类型     | 说明         |
 | ------ | ---------- |
-| number | 资源名称对应的符号值（十进制）。 |
+| number | 资源名称对应的Symbol字符[Unicode码](https://home.unicode.org/)（十进制）。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -5809,7 +5831,9 @@ getSymbolByName(resName: string) : number;
   import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
-    this.context.resourceManager.getSymbolByName("test");
+    let symbolValue = this.context.resourceManager.getSymbolByName("message");
+    console.log(`getSymbolByName, result: ${symbolValue}`);
+    // 打印输出结果: getSymbolByName, result: 983183
   } catch (error) {
     let code = (error as BusinessError).code;
     let message = (error as BusinessError).message;
@@ -5819,13 +5843,13 @@ getSymbolByName(resName: string) : number;
 
 ### isRawDir<sup>12+</sup>
 
-isRawDir(path: string) : bool
+isRawDir(path: string): boolean
 
-用户判断指定路径是否是rawfile下的目录，使用同步方式返回。
+判断指定路径是否为rawfile下的目录，使用同步方式返回。
 
-**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Global.ResourceManager
+**系统能力：** SystemCapability.Global.ResourceManager
 
 **参数：**
 
@@ -5837,11 +5861,11 @@ isRawDir(path: string) : bool
 
 | 类型     | 说明         |
 | ------ | ---------- |
-| bool |是否是rawfile下的目录。<br>true：表示是rawfile下的目录 <br>false：表示不是rawfile下的目录|
+| boolean |是否为rawfile下的目录。<br> - true：表示是rawfile下的目录。 <br> - false：表示非rawfile下的目录。|
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -5853,7 +5877,10 @@ isRawDir(path: string) : bool
   import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
-    this.context.resourceManager.isRawDir("test.txt");
+    // 假设rawfile根目录下存在test.txt文件
+    let isRawDir = this.context.resourceManager.isRawDir("test.txt");
+    console.log(`test.txt isRawDir, result: ${isRawDir}`);
+    // 打印输出结果: test.txt isRawDir, result: false
   } catch (error) {
     let code = (error as BusinessError).code;
     let message = (error as BusinessError).message;
@@ -5863,21 +5890,21 @@ isRawDir(path: string) : bool
 
 ### getOverrideResourceManager<sup>12+</sup>
 
-getOverrideResourceManager(configuration?: Configuration) : ResourceManager
+getOverrideResourceManager(configuration?: Configuration): ResourceManager
 
 获取可以加载差异化资源的资源管理对象，使用同步方式返回。
 
-普通的资源管理对象获取的资源的样式（语言、深浅色、分辨率、横竖屏等）是由系统决定的，而通过该接口返回的对象，应用可以获取符合指定配置的资源，即差异化资源，比如浅色模式时可以获取深色资源。
+普通的资源管理对象获取的资源的配置（语言、深浅色、分辨率、横竖屏等）是由系统决定的，而通过该接口返回的对象，应用可以获取符合指定配置的资源，即差异化资源，比如在浅色模式时可以获取深色资源。
 
-**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Global.ResourceManager
+**系统能力：** SystemCapability.Global.ResourceManager
 
 **参数：**
 
 | 参数名        | 类型                            | 必填 | 说明                                                         |
 | ------------- | ------------------------------- | ---- | ------------------------------------------------------------ |
-| configuration | [Configuration](#configuration) | 否   | 指定想要获取的资源样式。<br>通过[getOverrideConfiguration](#getoverrideconfiguration12)获取差异化配置后，根据需求修改配置项，再作为参数传入该函数。<br>若缺省则获取与当前系统最匹配的资源。 |
+| configuration | [Configuration](#configuration) | 否   | 指定想要获取的资源配置。<br>通过[getOverrideConfiguration](#getoverrideconfiguration12)获取差异化配置后，根据需求修改配置项，再作为参数传入该函数。<br>若缺省则表示使用当前系统的configuration。 |
 
 **返回值：**
 
@@ -5897,13 +5924,13 @@ getOverrideResourceManager(configuration?: Configuration) : ResourceManager
 
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
-  import { resourceManager } from '@kit.LocalizationKit'
+  import { resourceManager } from '@kit.LocalizationKit';
 
   try {
-    let resMgr = this.context.resourceManager
-    let overrideConfig = resMgr.getOverrideConfiguration()
-    overrideConfig.colorMode = resourceManager.ColorMode.DARK
-    let overrideResMgr = resMgr.getOverrideResourceManager(overrideConfig)
+    let resMgr = this.context.resourceManager;
+    let overrideConfig = resMgr.getOverrideConfiguration();
+    overrideConfig.colorMode = resourceManager.ColorMode.DARK;
+    let overrideResMgr = resMgr.getOverrideResourceManager(overrideConfig);
   } catch (error) {
     let code = (error as BusinessError).code;
     let message = (error as BusinessError).message;
@@ -5913,13 +5940,13 @@ getOverrideResourceManager(configuration?: Configuration) : ResourceManager
 
 ### getOverrideConfiguration<sup>12+</sup>
 
-getOverrideConfiguration() : Configuration
+getOverrideConfiguration(): Configuration
 
 获取差异化资源的配置，使用同步方式返回。普通资源管理对象与通过它的[getOverrideResourceManager](#getoverrideresourcemanager12)接口获取的差异化资源管理对象调用该方法可获得相同的返回值。
 
-**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Global.ResourceManager
+**系统能力：** SystemCapability.Global.ResourceManager
 
 **返回值：**
 
@@ -5931,26 +5958,35 @@ getOverrideConfiguration() : Configuration
 
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
-  import { resourceManager } from '@kit.LocalizationKit'
+  import { resourceManager } from '@kit.LocalizationKit';
 
-  let overrideConfig = this.context.resourceManager.getOverrideConfiguration()
+  try {
+    let resMgr = this.context.resourceManager;
+    let overrideConfig = resMgr.getOverrideConfiguration();
+    overrideConfig.colorMode = resourceManager.ColorMode.DARK;
+    let overrideResMgr = resMgr.getOverrideResourceManager(overrideConfig);
+  } catch (error) {
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`getOverrideResourceManager failed, error code: ${code}, message: ${message}.`);
+  }
   ```
 
 ### updateOverrideConfiguration<sup>12+</sup>
 
-updateOverrideConfiguration(configuration: Configuration) : void
+updateOverrideConfiguration(configuration: Configuration): void
 
 更新差异化资源配置。普通资源管理对象与通过它的[getOverrideResourceManager](#getoverrideresourcemanager12)接口获取的差异化资源管理对象调用该方法均可更新差异化资源管理对象的配置。
 
-**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Global.ResourceManager
+**系统能力：** SystemCapability.Global.ResourceManager
 
 **参数：**
 
 | 参数名        | 类型                            | 必填 | 说明                                                         |
 | ------------- | ------------------------------- | ---- | ------------------------------------------------------------ |
-| configuration | [Configuration](#configuration) | 是   | 指定差异化资源的配置项。通过[getOverrideConfiguration](#getoverrideconfiguration12)获取差异化配置后，根据需求修改配置项，再作为参数传入。 |
+| configuration | [Configuration](#configuration) | 是   | 指定差异化资源的配置。通过[getOverrideConfiguration](#getoverrideconfiguration12)获取差异化配置后，根据需求修改配置项，再作为参数传入。 |
 
 **错误码：**
 
@@ -5964,13 +6000,13 @@ updateOverrideConfiguration(configuration: Configuration) : void
 
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
-  import { resourceManager } from '@kit.LocalizationKit'
+  import { resourceManager } from '@kit.LocalizationKit';
 
   try {
-    let resMgr = this.context.resourceManager
-    let overrideConfig = resMgr.getOverrideConfiguration()
-    overrideConfig.colorMode = resourceManager.ColorMode.DARK
-    let overrideResMgr = resMgr.updateOverrideConfiguration(overrideConfig)
+    let resMgr = this.context.resourceManager;
+    let overrideConfig = resMgr.getOverrideConfiguration();
+    overrideConfig.colorMode = resourceManager.ColorMode.DARK;
+    let overrideResMgr = resMgr.updateOverrideConfiguration(overrideConfig);
   } catch (error) {
     let code = (error as BusinessError).code;
     let message = (error as BusinessError).message;
