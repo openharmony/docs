@@ -47,7 +47,7 @@ let callback = (keyOptions: inputConsumer.KeyOptions) => {
 try {
   inputConsumer.on("key", keyOptions, callback);
 } catch (error) {
-  console.log(`Subscribe failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Subscribe failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -83,7 +83,7 @@ try {
   inputConsumer.off("key", keyOption, callback);
   console.log(`Unsubscribe success`);
 } catch (error) {
-  console.log(`Execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 ```js
@@ -99,7 +99,7 @@ try {
   inputConsumer.off("key", keyOption);
   console.log(`Unsubscribe success`);
 } catch (error) {
-  console.log(`Execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -117,7 +117,7 @@ setShieldStatus(shieldMode: ShieldMode, isShield: boolean): void
 
 | 参数名         | 类型                         | 必填   | 说明                                       |
 | ---------- | -------------------------- | ---- | ---------------------------------------- |
-| shieldMode       | ShieldMode                     | 是    | 屏蔽类型，目前仅支持'FACTORY_MODE'。                       |
+| shieldMode       | [ShieldMode](#shieldMode<sup>11+</sup>)                     | 是    | 屏蔽类型，目前仅支持'FACTORY_MODE'。                       |
 | isShield | boolean  | 是    | 屏蔽类型生效状态，true代表屏蔽类型生效，flase代表不生效。              |
 
 **示例：** 
@@ -128,7 +128,7 @@ try {
   inputConsumer.setShieldStatus(FACTORY_MODE,true);
   console.log(`set shield status success`);
 } catch (error) {
-  console.log(`set shield status failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`set shield status failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -146,7 +146,7 @@ getShieldStatus(shieldMode: ShieldMode): boolean
 
 | 参数名         | 类型                         | 必填   | 说明                                       |
 | ---------- | -------------------------- | ---- | ---------------------------------------- |
-| shieldMode       | ShieldMode                    | 是    | 屏蔽类型，目前仅支持'FACTORY_MODE'。                       |
+| shieldMode       | [ShieldMode](#shieldMode<sup>11+</sup>)                    | 是    | 屏蔽类型，目前仅支持'FACTORY_MODE'。                       |
 
 **返回值：** 
 
@@ -162,7 +162,7 @@ try {
   let shieldstatusResult:Boolean =  inputConsumer.getShieldStatus(FACTORY_MODE);
   console.log(` get shield status result:${JSON.stringify(shieldstatusResult)}`);
 } catch (error) {
-  console.log(`Failed to get shield status, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Failed to get shield status, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -188,4 +188,4 @@ try {
 
 | 名称                        | 类型  | 可读 | 可写 | 说明           |
 | ------------------------------ | ----------- | ---------------- | ---------------- | ---------------- |
-| FACTORY_MODE | number | 是 | 否 | 屏蔽类型，屏蔽所有快捷键。 |
+| FACTORY_MODE | number | 是 | 否 | 值为0，屏蔽类型为屏蔽所有快捷键。 |
