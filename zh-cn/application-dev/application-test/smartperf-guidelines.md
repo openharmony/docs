@@ -763,7 +763,7 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
     | gpuLoad                 | 整机GPU的负载占比。      |%|
     | cycles per instruction  | 每条指令的平均周期数。    |ns|
     | hw-cpu-cycles           | CPU时钟周期数。          |ns|
-    | hw-instructions         | CPU时钟周期数。          |-|
+    | hw-instructions         | 执行的指令数。          |-|
     | currentNow              | 当前读到的电流值。       |单位：mA| 
     | voltageNow              | 当前读到的电压值。       |单位：μV| 
     | fps                     | 每秒帧数。              |单位：fps|
