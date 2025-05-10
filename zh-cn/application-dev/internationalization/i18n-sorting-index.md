@@ -43,6 +43,6 @@ indexUtil.addLocale('ru-RU');
 // indexList = ['…', 'A', 'B', 'C', ... 'X', 'Y', 'Z', '…', 'А', 'Б', 'В', ... 'Э', 'Ю', 'Я', '…']
 indexList = indexUtil.getIndexList(); 
 
-// 获取字符串的索引
+// 获取字符串的索引值
 let index: string = indexUtil.getIndex('你好'); // index = 'N'
 ```
