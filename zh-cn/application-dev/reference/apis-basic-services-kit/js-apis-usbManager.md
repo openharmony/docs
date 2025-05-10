@@ -810,7 +810,7 @@ usbSubmitTransfer(transfer: UsbDataTransferParams): void
 | 14400001 | Access right denied. Call requestRight to get the USBDevicePipe access right first. |
 | 14400007 | Resource busy. Possible causes: 1. The transfer has already been submitted. 2. The interface is claimed by another program or driver.|
 | 14400008 | No such device (it may have been disconnected). |
-| 14400009 | Insufficient memory. Possible causes: 1. Malloc memory failed. |
+| 14400009 | Insufficient memory. Possible causes: 1. Malloc allocation failed. |
 | 14400012 | Transmission I/O error. |
 
 **示例：**
