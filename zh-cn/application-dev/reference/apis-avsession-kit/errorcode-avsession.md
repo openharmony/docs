@@ -261,7 +261,7 @@ The runtime check failed.
 
 **处理步骤**
 
-对接口入参，按照API要求进行校验避免异常。
+对接口入参，按照API要求进行校验，避免异常。
 
 ## 6611100 跨设备数据传输被锁定
 
@@ -325,7 +325,7 @@ The specified playback mode is not supported.
 
 **错误描述**
 
-不支持当前播放模式。
+设备不支持当前播放模式。
 
 **可能原因**
 
@@ -650,7 +650,7 @@ The content using the validity interval has expired.
 
 **错误描述**
 
-操作失败，内容使用有效期已过。
+内容使用有效期已过。
 
 **可能原因**
 
@@ -686,11 +686,11 @@ The use of the allowed content cannot be verified.
 
 **错误描述**
 
-读取数据超出数据范围。
+无法验证允许使用的内容。
 
 **可能原因**
 
-文件读取异常。
+无法验证允许使用的内容。
 
 **处理步骤**
 
@@ -794,7 +794,7 @@ An error occurs when attempting to extract a file with an unsupported media cont
 
 **错误描述**
 
-不支持媒体格式
+不支持该媒体格式。
 
 **可能原因**
 
@@ -830,15 +830,15 @@ Unspecified decoding error.
 
 **错误描述**
 
-当前播放的资源是不受AVTransport服务支持的MIME类型。
+由未知的解码错误引起。
 
 **可能原因**
 
-检查设置的资源MIME类型是否正常。
+远端设备解码器出现异常。
 
 **处理步骤**
 
-可更换其他类型的资源，再重新发起会话。
+当前远端设备异常，先重启远端设备，在重新发起会话。
 
 ## 6614001 解码器初始化失败
 
@@ -888,7 +888,7 @@ Decoding the media samples failed.
 
 **可能原因**
 
-尝试访问的文件格式超出了当前设备的支持范围。
+尝试访问的文件类型超出了当前设备的支持范围。
 
 **处理步骤**
 
@@ -906,7 +906,7 @@ The format of the content to decode exceeds the capabilities of the device.
 
 **可能原因**
 
-尝试访问的文件格式超出了当前设备的支持范围。
+尝试访问的文件类型超出了当前设备的支持范围。
 
 **处理步骤**
 
@@ -1010,7 +1010,7 @@ The chosen DRM protection scheme is not supported by the device.
 
 **错误描述**
 
-由设备不支持所选的DRM保护方案。
+由设备不支持所选的DRM保护方案导致。
 
 **可能原因**
 
