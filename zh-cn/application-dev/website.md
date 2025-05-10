@@ -1789,6 +1789,7 @@
             - [使用JSVM-API接口操作bigint类型值](napi/use-jsvm-about-bigint.md)
             - [使用JSVM进行class相关开发](napi/use-jsvm-about-class.md)
             - [使用JSVM-API接口进行Date相关开发](napi/use-jsvm-about-date.md)
+            - [使用JSVM-API接口进行debug操作](napi/use-jsvm-about-debug-option.md)
             - [使用JSVM-API接口进行object相关开发](napi/use-jsvm-about-object.md)
             - [使用JSVM-API接口进行primitive类相关开发](napi/use-jsvm-about-primitive.md)
             - [使用JSVM-API接口处理异步操作](napi/use-jsvm-about-promise.md)
