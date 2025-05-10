@@ -84,7 +84,7 @@ try {
 
 getDeviceInfo(deviceId: number, callback: AsyncCallback&lt;InputDeviceData&gt;): void
 
-获取指定输入设备的信息，使用AsyncCallback异步方式返回结果。
+获取指定输入设备的信息，使用Callback异步回调。
 
 **系统能力**：SystemCapability.MultimodalInput.Input.InputDevice
 
@@ -93,7 +93,7 @@ getDeviceInfo(deviceId: number, callback: AsyncCallback&lt;InputDeviceData&gt;):
 | 参数名     | 类型                                                     | 必填 | 说明                                    |
 | -------- | -------------------------------------------------------- | ---- | --------------------------------------- |
 | deviceId | number                                                   | 是   | 输入设备id。                  |
-| callback | AsyncCallback&lt;[InputDeviceData](#inputdevicedata)&gt; | 是   | 回调函数，异步返回输入设备信息。 |
+| callback | AsyncCallback&lt;[InputDeviceData](#inputdevicedata)&gt; | 是   | 回调函数，异步返回输入设备信息，包括输入设备id、名称、支持的源类型、物理地址、版本信息及产品信息，如果传入的输入设备编号无效，返回空。 |
 
 **错误码**：
 
@@ -138,7 +138,7 @@ getDeviceInfo(deviceId: number): Promise&lt;InputDeviceData&gt;
 
 | 参数                                               | 说明                            |
 | -------------------------------------------------- | ------------------------------- |
-| Promise&lt;[InputDeviceData](#inputdevicedata)&gt; | Promise对象，异步返回输入设备信息。 |
+| Promise&lt;[InputDeviceData](#inputdevicedata)&gt; | Promise对象，异步返回输入设备信息，如果传入的输入设备编号无效，返回空。 |
 
 **错误码**：
 
@@ -173,7 +173,7 @@ getDeviceInfoSync(deviceId: number): InputDeviceData
 
 | 参数名     | 类型   | 必填 | 说明                   |
 | -------- | ------ | ---- | ---------------------- |
-| deviceId | number | 是   | 输入设备id。 |
+| deviceId | number | 是   | 输入设备id，如果传入的输入设备编号无效，返回空。 |
 
 **返回值**：
 
@@ -205,7 +205,7 @@ try {
 
 on(type: "change", listener: Callback&lt;DeviceListener&gt;): void
 
-监听输入设备的热插拔事件，使用时需连接鼠标键盘等外部设备。
+注册监听输入设备的热插拔事件，使用时需连接鼠标、键盘、触摸屏等外部设备。
 
 **系统能力**：SystemCapability.MultimodalInput.Input.InputDevice
 
@@ -261,7 +261,7 @@ off(type: "change", listener?: Callback&lt;DeviceListener&gt;): void
 | 参数名       | 类型                                       | 必填   | 说明          |
 | -------- | ---------------------------------------- | ---- | ----------- |
 | type     | string                                   | 是    | 输入设备的事件【鼠标、键盘、触摸屏等】类型。  |
-| listener | Callback&lt;[DeviceListener](#devicelistener9)&gt; | 否    | 取消监听的回调函数。 |
+| listener | Callback&lt;[DeviceListener](#devicelistener9)&gt; | 否    | 取消监听的回调函数，缺省时取消所有输入设备热插拔事件的监听。 |
 
 **错误码**：
 
@@ -416,7 +416,7 @@ inputDevice.getDevice(1).then((deviceData: inputDevice.InputDeviceData) => {
 
 supportKeys(deviceId: number, keys: Array&lt;KeyCode&gt;, callback: AsyncCallback &lt;Array&lt;boolean&gt;&gt;): void
 
-获取输入设备是否支持指定的键码值，使用AsyncCallback异步方式返回结果。
+获取输入设备是否支持指定的键码值，使用AsyncCallback异步方式返回结果。是否支持以输入设备声明的信息为准。
 
 **系统能力**：SystemCapability.MultimodalInput.Input.InputDevice
 
@@ -536,7 +536,7 @@ try {
 
 getKeyboardType(deviceId: number, callback: AsyncCallback&lt;KeyboardType&gt;): void
 
-获取输入设备的键盘类型，使用AsyncCallback异步方式返回结果。
+获取输入设备的键盘类型，如无按键、未知按键、全键盘、小键盘、手写笔、遥控器设备，使用Callback异步回调。
 
 **系统能力**：SystemCapability.MultimodalInput.Input.InputDevice
 
@@ -657,7 +657,7 @@ try {
 
 isFunctionKeyEnabled(functionKey: FunctionKey): Promise&lt;boolean&gt;
 
-检查功能键是否使能。使用Promise异步回调。
+检查功能键（如：CapsLock键）是否使能。使用Promise异步回调。
 
 **系统能力**：SystemCapability.MultimodalInput.Input.InputDevice
 
@@ -700,7 +700,7 @@ try {
 
 setFunctionKeyEnabled(functionKey: FunctionKey, enabled: boolean): Promise&lt;void&gt;
 
-设置功能键使能状态。使用Promise异步回调。
+设置功能键（如：CapsLock键）使能状态。使用Promise异步回调。
 
 **需要权限**：ohos.permission.INPUT_KEYBOARD_CONTROLLER
 
@@ -746,7 +746,7 @@ try {
 
 getIntervalSinceLastInput(): Promise&lt;number&gt;
 
-获取距离上次系统输入事件的时间间隔，使用Promise异步回调。
+获取距离上次系统输入事件的时间间隔（包含设备休眠时间），使用Promise异步回调。
 
 **系统能力**：SystemCapability.MultimodalInput.Input.InputDevice
 
@@ -773,7 +773,7 @@ getIntervalSinceLastInput(): Promise&lt;number&gt;
 | 名称        | 类型   | 可读   | 可写   | 说明      |
 | --------- | ------ | ---- | ---- | ------- |
 | type     | [ChangedType](#changedtype9)| 是 | 否 | 输入设备插入或者移除。|
-| deviceId | number                      | 是 | 否 | 输入设备的唯一标识，同一个物理设备反复插拔，设备id会发生变化。 |
+| deviceId | number                      | 是 | 否 | 输入设备的唯一标识，同一个物理设备反复插拔或重启，设备id会发生变化。 |
 
 ## InputDeviceData
 
@@ -785,7 +785,7 @@ getIntervalSinceLastInput(): Promise&lt;number&gt;
 | --------- | ------ | ---- | ---- | ------- |
 | id                   | number                                 | 是 | 否 | 输入设备的唯一标识，同一个物理设备反复插拔，设备id会发生变化。 |
 | name                 | string                                 | 是 | 否 | 输入设备的名字。                                             |
-| sources              | Array&lt;[SourceType](#sourcetype9)&gt; | 是 | 否 | 输入设备支持的源类型。比如有的键盘上附带触摸板，则此设备有keyboard和touchpad两种输入源。 |
+| sources              | Array&lt;[SourceType](#sourcetype9)&gt; | 是 | 否 | 输入设备支持的输入能力。一个输入设备可以同时具备多种输入能力，如有的键盘上附带触摸板，则此设备有keyboard和touchpad两种输入能力。 |
 | axisRanges           | Array&lt;[AxisRange](#axisrange)&gt;  | 是 | 否 | 输入设备的轴信息。                                           |
 | bus<sup>9+</sup>     | number                                 | 是 | 否 | 输入设备的总线类型。                                         |
 | product<sup>9+</sup> | number                                 | 是 | 否 | 输入设备的产品信息。                                         |

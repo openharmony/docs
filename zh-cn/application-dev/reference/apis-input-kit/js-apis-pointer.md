@@ -16,7 +16,7 @@ import { pointer } from '@kit.InputKit';
 
 setPointerVisible(visible: boolean, callback: AsyncCallback&lt;void&gt;): void
 
-设置鼠标指针显示或者隐藏，使用AsyncCallback异步方式返回结果。
+设置鼠标指针显示或者隐藏，使用Callback异步回调，若为应用设置则以应用为准，仅对当前应用生效；若为系统设置，则全局生效。
 
 **系统能力**：SystemCapability.MultimodalInput.Input.Pointer
 
@@ -130,7 +130,7 @@ try {
 
 isPointerVisible(callback: AsyncCallback&lt;boolean&gt;): void
 
-获取鼠标指针显示或隐藏状态，使用AsyncCallback异步方式返回结果。
+检查鼠标指针是否显示，使用Callback异步回调，以系统参数为准，若系统没有设置过则返回应用本身的鼠标光标状态。
 
 **系统能力**：SystemCapability.MultimodalInput.Input.Pointer
 
@@ -168,7 +168,7 @@ try {
 
 isPointerVisible(): Promise&lt;boolean&gt;
 
-获取鼠标指针显示或隐藏状态，使用Promise异步方式返回结果。
+检查鼠标指针是否显示，使用Callback异步回调，以系统参数为准，若系统没有设置过则返回应用本身的鼠标光标状态。
 
 **系统能力**：SystemCapability.MultimodalInput.Input.Pointer
 
@@ -227,7 +227,7 @@ getPointerStyle(windowId: number, callback: AsyncCallback&lt;PointerStyle&gt;): 
 
 | 参数名       | 类型                                       | 必填   | 说明             |
 | -------- | ---------------------------------------- | ---- | -------------- |
-| windowId | number                                   | 是    | 窗口id。    |
+| windowId | number                                   | 是    | 窗口id。取值范围为大于等于-1的整数，取值为-1时表示全局窗口。    |
 | callback | AsyncCallback&lt;[PointerStyle](#pointerstyle)&gt; | 是    | 回调函数，异步返回鼠标样式类型。 |
 
 **错误码**：
@@ -601,7 +601,7 @@ setCustomCursor(windowId: number, pixelMap: image.PixelMap, focusX?: number, foc
 | 参数名    | 类型     | 必填   | 说明                                  |
 | ----- | ------ | ---- | ----------------------------------- |
 | windowId  | number  | 是    | 窗口id。                          |
-| pixelMap  | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | 是    | 自定义光标资源。 |
+| pixelMap  | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | 是    | 自定义光标资源。资源图最大为128MB。 |
 | focusX  | number | 否    | 自定义光标焦点x，取值范围：大于等于0，默认为0。 |
 | focusY  | number | 否    | 自定义光标焦点y，取值范围：大于等于0，默认为0。 |
 
