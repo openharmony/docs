@@ -302,7 +302,7 @@ enableCloud(accountId: string, switches: Record<string, boolean>): Promise&lt;vo
 | 参数名     | 类型   | 必填 | 说明 |
 | ---------- | ------ | ---- | ---- |
 | accountId | string | 是   | 账号Id。|
-| switches | object | 是   | 应用的端云协同特性使能开关，bundleName为string类型应用包名，开关状态是个boolean类型。|
+| switches | Record<string, boolean> | 是   | 应用的端云协同特性使能开关，string类型为应用包名，boolean类型为开关状态。true为打开；false为关闭。|
 
 **返回值：**
 
@@ -351,7 +351,7 @@ enableCloud(accountId: string, switches: Record<string, boolean>, callback: Asyn
 | 参数名     | 类型   | 必填 | 说明 |
 | ---------- | ------ | ---- | ---- |
 | accountId | string | 是   | 账号Id。|
-| switches | object | 是   | 应用的端云协同特性使能开关，bundleName为string类型应用包名，开关状态是个boolean类型。|
+| switches | Record<string, boolean> | 是   | 应用的端云协同特性使能开关，string类型为应用包名，boolean类型为开关状态。true为打开；false为关闭。|
 | callback | AsyncCallback&lt;void&gt; | 是   | 异步使能端云协同能力之后的回调。 |
 
 **错误码：**
@@ -495,7 +495,7 @@ clean(accountId: string, appActions: Record<string, Action>): Promise&lt;void&gt
 | 参数名     | 类型   | 必填 | 说明 |
 | ---------- | ------ | ---- | ---- |
 | accountId | string | 是   | 账号Id。|
-| appActions | object | 是   | 清理动作类型，bundleName为string类型待清理应用包名, [Action](#action)为清理动作类型。|
+| appActions | Record<string, Action> | 是   | 清理动作类型，string类型为待清理应用包名， [Action](#action)为清理动作类型。|
 
 **返回值：**
 
@@ -544,7 +544,7 @@ clean(accountId: string, appActions: Record<string, Action>, callback: AsyncCall
 | 参数名     | 类型   | 必填 | 说明 |
 | ---------- | ------ | ---- | ---- |
 | accountId | string | 是   | 账号Id。|
-| appActions | object | 是   | 清理动作类型，bundleName为string类型待清理应用包名, [Action](#action)为清理动作类型。|
+| appActions | Record<string, Action> | 是   | 清理动作类型，string类型为待清理应用包名， [Action](#action)为清理动作类型。|
 | callback | AsyncCallback&lt;void&gt; | 是   | 异步方法清理本地云相关数据。 |
 
 **错误码：**
