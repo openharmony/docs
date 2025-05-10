@@ -2083,11 +2083,11 @@ getDoublePluralStringByNameSync(resName: string, num: number, ...args: Array<str
 
 getMediaContentSync(resId: number, density?: number): Uint8Array
 
-用户获取指定资源ID对应的默认或指定的屏幕密度媒体文件内容，使用同步方式返回。
+获取指定资源ID对应的默认或指定的屏幕密度媒体文件内容，使用同步方式返回。
 
-**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Global.ResourceManager
+**系统能力：** SystemCapability.Global.ResourceManager
 
 **参数：**
 
@@ -2104,7 +2104,7 @@ getMediaContentSync(resId: number, density?: number): Uint8Array
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -2137,13 +2137,13 @@ getMediaContentSync(resId: number, density?: number): Uint8Array
 
 getMediaContentSync(resource: Resource, density?: number): Uint8Array
 
-用户获取指定resource对象对应的默认或指定的屏幕密度媒体文件内容，使用同步方式返回。
+获取指定resource对象对应的默认或指定的屏幕密度媒体文件内容，使用同步方式返回。
 
-**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Global.ResourceManager
+**系统能力：** SystemCapability.Global.ResourceManager
 
-**模型约束**：此接口仅可在Stage模型下使用。
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -2160,7 +2160,7 @@ getMediaContentSync(resource: Resource, density?: number): Uint8Array
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -2170,7 +2170,7 @@ getMediaContentSync(resource: Resource, density?: number): Uint8Array
 
 **示例：**
   ```ts
-  import { resourceManager } from '@kit.LocalizationKit'
+  import { resourceManager } from '@kit.LocalizationKit';
   import { BusinessError } from '@kit.BasicServicesKit';
 
   let resource: resourceManager.Resource = {
@@ -2199,11 +2199,11 @@ getMediaContentSync(resource: Resource, density?: number): Uint8Array
 
 getMediaByNameSync(resName: string, density?: number): Uint8Array
 
-用户获取指定资源名称对应的默认或指定的屏幕密度媒体文件内容，使用同步方式返回。
+获取指定资源名称对应的默认或指定的屏幕密度媒体文件内容，使用同步方式返回。
 
-**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Global.ResourceManager
+**系统能力：** SystemCapability.Global.ResourceManager
 
 **参数：**
 
@@ -2216,11 +2216,11 @@ getMediaByNameSync(resName: string, density?: number): Uint8Array
 
 | 类型                    | 说明          |
 | --------------------- | ----------- |
-| Uint8Array | 对应资源名称的媒体文件内容。 |
+| Uint8Array | 资源名称对应的媒体文件内容。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -2253,18 +2253,18 @@ getMediaByNameSync(resName: string, density?: number): Uint8Array
 
 getMediaContent(resId: number, callback: _AsyncCallback&lt;Uint8Array&gt;): void
 
-用户获取指定资源ID对应的媒体文件内容，使用callback异步回调。
+获取指定资源ID对应的媒体文件内容，使用callback异步回调。
 
-**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Global.ResourceManager
+**系统能力：** SystemCapability.Global.ResourceManager
 
 **参数：** 
 
 | 参数名      | 类型                              | 必填   | 说明                 |
 | -------- | ------------------------------- | ---- | ------------------ |
 | resId    | number                          | 是    | 资源ID值。              |
-| callback | [_AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;Uint8Array&gt; | 是    | 返回获取的媒体文件内容。 |
+| callback | [_AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;Uint8Array&gt; | 是    | 回调函数，返回资源ID对应的媒体文件内容。 |
 
 **错误码：**
 
@@ -2276,7 +2276,7 @@ getMediaContent(resId: number, callback: _AsyncCallback&lt;Uint8Array&gt;): void
 | 9001001  | Invalid resource ID.                       |
 | 9001002  | No matching resource is found based on the resource ID.         |
 
-**示例：** 
+**示例：**
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -2299,11 +2299,11 @@ getMediaContent(resId: number, callback: _AsyncCallback&lt;Uint8Array&gt;): void
 
 getMediaContent(resId: number, density: number, callback: _AsyncCallback&lt;Uint8Array&gt;): void
 
-用户获取指定资源ID对应的指定屏幕密度媒体文件内容，使用callback异步回调。
+获取指定资源ID对应的指定屏幕密度媒体文件内容，使用callback异步回调。
 
-**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Global.ResourceManager
+**系统能力：** SystemCapability.Global.ResourceManager
 
 **参数：** 
 
@@ -2311,7 +2311,7 @@ getMediaContent(resId: number, density: number, callback: _AsyncCallback&lt;Uint
 | -------- | ------------------------------- | ---- | ------------------ |
 | resId    | number                          | 是    | 资源ID值。              |
 | [density](#screendensity)  | number                          | 是    | 资源获取需要的屏幕密度，0表示默认屏幕密度。    |
-| callback | [_AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;Uint8Array&gt; | 是    | 返回获取的媒体文件内容。 |
+| callback | [_AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;Uint8Array&gt; | 是    | 回调函数，返回资源ID对应的媒体文件内容。 |
 
 **错误码：**
 
@@ -2323,7 +2323,7 @@ getMediaContent(resId: number, density: number, callback: _AsyncCallback&lt;Uint
 | 9001001  | Invalid resource ID.                       |
 | 9001002  | No matching resource is found based on the resource ID.         |
 
-**示例：** 
+**示例：**
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -2346,11 +2346,11 @@ getMediaContent(resId: number, density: number, callback: _AsyncCallback&lt;Uint
 
 getMediaContent(resId: number): Promise&lt;Uint8Array&gt;
 
-用户获取指定资源ID对应的媒体文件内容，使用Promise异步回调。
+获取指定资源ID对应的媒体文件内容，使用Promise异步回调。
 
-**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Global.ResourceManager
+**系统能力：** SystemCapability.Global.ResourceManager
 
 **参数：** 
 
@@ -2362,7 +2362,7 @@ getMediaContent(resId: number): Promise&lt;Uint8Array&gt;
 
 | 类型                        | 说明             |
 | ------------------------- | -------------- |
-| Promise&lt;Uint8Array&gt; | 资源ID值对应的媒体文件内容。 |
+| Promise&lt;Uint8Array&gt; | Promise对象，返回资源ID值对应的媒体文件内容。 |
 
 **错误码：**
 
@@ -2374,7 +2374,7 @@ getMediaContent(resId: number): Promise&lt;Uint8Array&gt;
 | 9001001  | Invalid resource ID.                       |
 | 9001002  | No matching resource is found based on the resource ID.         |
 
-**示例：** 
+**示例：**
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -2395,11 +2395,11 @@ getMediaContent(resId: number): Promise&lt;Uint8Array&gt;
 
 getMediaContent(resId: number, density: number): Promise&lt;Uint8Array&gt;
 
-用户获取指定资源ID对应的指定屏幕密度媒体文件内容，使用Promise异步回调。
+获取指定资源ID对应的指定屏幕密度媒体文件内容，使用Promise异步回调。
 
-**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Global.ResourceManager
+**系统能力：** SystemCapability.Global.ResourceManager
 
 **参数：** 
 
@@ -2412,11 +2412,11 @@ getMediaContent(resId: number, density: number): Promise&lt;Uint8Array&gt;
 
 | 类型                        | 说明             |
 | ------------------------- | -------------- |
-| Promise&lt;Uint8Array&gt; | 资源ID值对应的媒体文件内容。 |
+| Promise&lt;Uint8Array&gt; | Promise对象，返回资源ID值对应的媒体文件内容。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -2424,7 +2424,7 @@ getMediaContent(resId: number, density: number): Promise&lt;Uint8Array&gt;
 | 9001001  | Invalid resource ID.                       |
 | 9001002  | No matching resource is found based on the resource ID.         |
 
-**示例：** 
+**示例：**
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -2445,24 +2445,24 @@ getMediaContent(resId: number, density: number): Promise&lt;Uint8Array&gt;
 
 getMediaContent(resource: Resource, callback: _AsyncCallback&lt;Uint8Array&gt;): void
 
-用户获取指定resource对象对应的媒体文件内容，使用callback异步回调。
+获取指定resource对象对应的媒体文件内容，使用callback异步回调。
 
-**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Global.ResourceManager
+**系统能力：** SystemCapability.Global.ResourceManager
 
-**模型约束**：此接口仅可在Stage模型下使用。
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：** 
 
 | 参数名      | 类型                              | 必填   | 说明                 |
 | -------- | ------------------------------- | ---- | ------------------ |
 | resource | [Resource](#resource9)          | 是    | 资源信息。               |
-| callback | [_AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;Uint8Array&gt; | 是    | 返回获取的媒体文件内容。 |
+| callback | [_AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;Uint8Array&gt; | 是    | 回调函数，返回resource对象对应的媒体文件内容。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -2470,9 +2470,9 @@ getMediaContent(resource: Resource, callback: _AsyncCallback&lt;Uint8Array&gt;):
 | 9001001  | Invalid resource ID.                       |
 | 9001002  | No matching resource is found based on the resource ID.         |
 
-**示例：** 
+**示例：**
   ```ts
-  import { resourceManager } from '@kit.LocalizationKit'
+  import { resourceManager } from '@kit.LocalizationKit';
   import { BusinessError } from '@kit.BasicServicesKit';
 
   let resource: resourceManager.Resource = {
@@ -2499,13 +2499,13 @@ getMediaContent(resource: Resource, callback: _AsyncCallback&lt;Uint8Array&gt;):
 
 getMediaContent(resource: Resource, density: number, callback: _AsyncCallback&lt;Uint8Array&gt;): void
 
-用户获取指定resource对象对应的指定屏幕密度媒体文件内容，使用callback异步回调。
+获取指定resource对象对应的指定屏幕密度媒体文件内容，使用callback异步回调。
 
-**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Global.ResourceManager
+**系统能力：** SystemCapability.Global.ResourceManager
 
-**模型约束**：此接口仅可在Stage模型下使用。
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：** 
 
@@ -2513,11 +2513,11 @@ getMediaContent(resource: Resource, density: number, callback: _AsyncCallback&lt
 | -------- | ------------------------------- | ---- | ------------------ |
 | resource | [Resource](#resource9)          | 是    | 资源信息。               |
 | [density](#screendensity)  | number        | 是    | 资源获取需要的屏幕密度，0表示默认屏幕密度。    |
-| callback | [_AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;Uint8Array&gt; | 是    | 返回获取的媒体文件内容。 |
+| callback | [_AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;Uint8Array&gt; | 是    | 回调函数，返回resource对象对应的媒体文件内容。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -2525,9 +2525,9 @@ getMediaContent(resource: Resource, density: number, callback: _AsyncCallback&lt
 | 9001001  | Invalid resource ID.                       |
 | 9001002  | No matching resource is found based on the resource ID.         |
 
-**示例：** 
+**示例：**
   ```ts
-  import { resourceManager } from '@kit.LocalizationKit'
+  import { resourceManager } from '@kit.LocalizationKit';
   import { BusinessError } from '@kit.BasicServicesKit';
 
   let resource: resourceManager.Resource = {
@@ -2554,13 +2554,13 @@ getMediaContent(resource: Resource, density: number, callback: _AsyncCallback&lt
 
 getMediaContent(resource: Resource): Promise&lt;Uint8Array&gt;
 
-用户获取指定resource对象对应的媒体文件内容，使用Promise异步回调。
+获取指定resource对象对应的媒体文件内容，使用Promise异步回调。
 
-**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Global.ResourceManager
+**系统能力：** SystemCapability.Global.ResourceManager
 
-**模型约束**：此接口仅可在Stage模型下使用。
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：** 
 
@@ -2572,11 +2572,11 @@ getMediaContent(resource: Resource): Promise&lt;Uint8Array&gt;
 
 | 类型                        | 说明                  |
 | ------------------------- | ------------------- |
-| Promise&lt;Uint8Array&gt; | resource对象对应的媒体文件内容。 |
+| Promise&lt;Uint8Array&gt; | Promise对象，返回resource对象对应的媒体文件内容。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -2584,9 +2584,9 @@ getMediaContent(resource: Resource): Promise&lt;Uint8Array&gt;
 | 9001001  | Invalid resource ID.                       |
 | 9001002  | No matching resource is found based on the resource ID.         |
 
-**示例：** 
+**示例：**
   ```ts
-  import { resourceManager } from '@kit.LocalizationKit'
+  import { resourceManager } from '@kit.LocalizationKit';
   import { BusinessError } from '@kit.BasicServicesKit';
 
   let resource: resourceManager.Resource = {
@@ -2611,13 +2611,13 @@ getMediaContent(resource: Resource): Promise&lt;Uint8Array&gt;
 
 getMediaContent(resource: Resource, density: number): Promise&lt;Uint8Array&gt;
 
-用户获取指定resource对象对应的指定屏幕密度媒体文件内容，使用Promise异步回调。
+获取指定resource对象对应的指定屏幕密度媒体文件内容，使用Promise异步回调。
 
-**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Global.ResourceManager
+**系统能力：** SystemCapability.Global.ResourceManager
 
-**模型约束**：此接口仅可在Stage模型下使用。
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：** 
 
@@ -2630,11 +2630,11 @@ getMediaContent(resource: Resource, density: number): Promise&lt;Uint8Array&gt;
 
 | 类型                        | 说明                  |
 | ------------------------- | ------------------- |
-| Promise&lt;Uint8Array&gt; | resource对象对应的媒体文件内容。 |
+| Promise&lt;Uint8Array&gt; | Promise对象，返回resource对象对应的媒体文件内容。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -2642,9 +2642,9 @@ getMediaContent(resource: Resource, density: number): Promise&lt;Uint8Array&gt;
 | 9001001  | Invalid resource ID.                       |
 | 9001002  | No matching resource is found based on the resource ID.         |
 
-**示例：** 
+**示例：**
   ```ts
-  import { resourceManager } from '@kit.LocalizationKit'
+  import { resourceManager } from '@kit.LocalizationKit';
   import { BusinessError } from '@kit.BasicServicesKit';
 
   let resource: resourceManager.Resource = {
@@ -2669,20 +2669,21 @@ getMediaContent(resource: Resource, density: number): Promise&lt;Uint8Array&gt;
 
 getMediaByName(resName: string, callback: _AsyncCallback&lt;Uint8Array&gt;): void
 
-用户获取指定资源名称对应的媒体文件内容，使用callback异步回调。
+获取指定资源名称对应的媒体文件内容，使用callback异步回调。
 
-**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Global.ResourceManager
+**系统能力：** SystemCapability.Global.ResourceManager
 
 **参数：** 
 
 | 参数名      | 类型                              | 必填   | 说明                 |
 | -------- | ------------------------------- | ---- | ------------------ |
 | resName  | string                          | 是    | 资源名称。               |
-| callback | [_AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;Uint8Array&gt; | 是    | 返回获取的媒体文件内容。 |
+| callback | [_AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;Uint8Array&gt; | 是    | 回调函数，返回资源名称对应的媒体文件内容。 |
 
 **错误码：**
+
 以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
@@ -2691,7 +2692,7 @@ getMediaByName(resName: string, callback: _AsyncCallback&lt;Uint8Array&gt;): voi
 | 9001003  | Invalid resource name.                     |
 | 9001004  | No matching resource is found based on the resource name.       |
 
-**示例：** 
+**示例：**
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -2714,11 +2715,11 @@ getMediaByName(resName: string, callback: _AsyncCallback&lt;Uint8Array&gt;): voi
 
 getMediaByName(resName: string, density: number, callback: _AsyncCallback&lt;Uint8Array&gt;): void
 
-用户获取指定资源名称对应的指定屏幕密度媒体文件内容，使用callback异步回调。
+获取指定资源名称对应的指定屏幕密度媒体文件内容，使用callback异步回调。
 
-**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Global.ResourceManager
+**系统能力：** SystemCapability.Global.ResourceManager
 
 **参数：** 
 
@@ -2726,11 +2727,11 @@ getMediaByName(resName: string, density: number, callback: _AsyncCallback&lt;Uin
 | -------- | ------------------------------- | ---- | ------------------ |
 | resName  | string                          | 是    | 资源名称。               |
 | [density](#screendensity)  | number        | 是    | 资源获取需要的屏幕密度，0表示默认屏幕密度。    |
-| callback | [_AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;Uint8Array&gt; | 是    | 返回获取的媒体文件内容。 |
+| callback | [_AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;Uint8Array&gt; | 是    | 回调函数，返回资源名称对应的媒体文件内容。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -2738,7 +2739,7 @@ getMediaByName(resName: string, density: number, callback: _AsyncCallback&lt;Uin
 | 9001003  | Invalid resource name.                     |
 | 9001004  | No matching resource is found based on the resource name.       |
 
-**示例：** 
+**示例：**
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -2761,11 +2762,11 @@ getMediaByName(resName: string, density: number, callback: _AsyncCallback&lt;Uin
 
 getMediaByName(resName: string): Promise&lt;Uint8Array&gt;
 
-用户获取指定资源名称对应的媒体文件内容，使用Promise异步回调。
+获取指定资源名称对应的媒体文件内容，使用Promise异步回调。
 
-**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Global.ResourceManager
+**系统能力：** SystemCapability.Global.ResourceManager
 
 **参数：** 
 
@@ -2777,7 +2778,7 @@ getMediaByName(resName: string): Promise&lt;Uint8Array&gt;
 
 | 类型                        | 说明            |
 | ------------------------- | ------------- |
-| Promise&lt;Uint8Array&gt; | 资源名称对应的媒体文件内容。 |
+| Promise&lt;Uint8Array&gt; | Promise对象，返回资源名称对应的媒体文件内容。 |
 
 **错误码：**
 
@@ -2789,7 +2790,7 @@ getMediaByName(resName: string): Promise&lt;Uint8Array&gt;
 | 9001003  | Invalid resource name.                     |
 | 9001004  | No matching resource is found based on the resource name.       |
 
-**示例：** 
+**示例：**
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -2810,11 +2811,11 @@ getMediaByName(resName: string): Promise&lt;Uint8Array&gt;
 
 getMediaByName(resName: string, density: number): Promise&lt;Uint8Array&gt;
 
-用户获取指定资源名称对应的指定屏幕密度媒体文件内容，使用Promise异步回调。
+获取指定资源名称对应的指定屏幕密度媒体文件内容，使用Promise异步回调。
 
-**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Global.ResourceManager
+**系统能力：** SystemCapability.Global.ResourceManager
 
 **参数：** 
 
@@ -2827,11 +2828,11 @@ getMediaByName(resName: string, density: number): Promise&lt;Uint8Array&gt;
 
 | 类型                        | 说明            |
 | ------------------------- | ------------- |
-| Promise&lt;Uint8Array&gt; | 资源名称对应的媒体文件内容。 |
+| Promise&lt;Uint8Array&gt; | Promise对象，返回资源名称对应的媒体文件内容。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -2839,7 +2840,7 @@ getMediaByName(resName: string, density: number): Promise&lt;Uint8Array&gt;
 | 9001003  | Invalid resource name.                     |
 | 9001004  | No matching resource is found based on the resource name.       |
 
-**示例：** 
+**示例：**
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -2860,11 +2861,11 @@ getMediaByName(resName: string, density: number): Promise&lt;Uint8Array&gt;
 
 getMediaContentBase64Sync(resId: number, density?: number): string
 
-用户获取指定资源ID对应的默认或指定的屏幕密度图片资源Base64编码，使用同步方式返回。
+获取指定资源ID对应的默认或指定的屏幕密度图片资源Base64编码，使用同步方式返回。
 
-**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Global.ResourceManager
+**系统能力：** SystemCapability.Global.ResourceManager
 
 **参数：** 
 
@@ -2881,7 +2882,7 @@ getMediaContentBase64Sync(resId: number, density?: number): string
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -2889,7 +2890,7 @@ getMediaContentBase64Sync(resId: number, density?: number): string
 | 9001001  | Invalid resource ID.                       |
 | 9001002  | No matching resource is found based on the resource ID.         |
 
-**示例：** 
+**示例：**
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -2914,13 +2915,13 @@ getMediaContentBase64Sync(resId: number, density?: number): string
 
 getMediaContentBase64Sync(resource: Resource, density?: number): string
 
-用户获取指定resource对象对应的默认或指定的屏幕密度图片资源Base64编码，使用同步方式返回。
+获取指定resource对象对应的默认或指定的屏幕密度图片资源Base64编码，使用同步方式返回。
 
-**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Global.ResourceManager
+**系统能力：** SystemCapability.Global.ResourceManager
 
-**模型约束**：此接口仅可在Stage模型下使用。
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：** 
 
@@ -2937,7 +2938,7 @@ getMediaContentBase64Sync(resource: Resource, density?: number): string
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -2945,9 +2946,9 @@ getMediaContentBase64Sync(resource: Resource, density?: number): string
 | 9001001  | Invalid resource ID.                       |
 | 9001002  | No matching resource is found based on the resource ID.         |
 
-**示例：** 
+**示例：**
   ```ts
-  import { resourceManager } from '@kit.LocalizationKit'
+  import { resourceManager } from '@kit.LocalizationKit';
   import { BusinessError } from '@kit.BasicServicesKit';
 
   let resource: resourceManager.Resource = {
@@ -2976,11 +2977,11 @@ getMediaContentBase64Sync(resource: Resource, density?: number): string
 
 getMediaBase64ByNameSync(resName: string, density?: number): string
 
-用户获取指定资源名称对应的默认或指定的屏幕密度图片资源Base64编码，使用同步方式返回。
+获取指定资源名称对应的默认或指定的屏幕密度图片资源Base64编码，使用同步方式返回。
 
-**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Global.ResourceManager
+**系统能力：** SystemCapability.Global.ResourceManager
 
 **参数：** 
 
@@ -2997,7 +2998,7 @@ getMediaBase64ByNameSync(resName: string, density?: number): string
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -3005,7 +3006,7 @@ getMediaBase64ByNameSync(resName: string, density?: number): string
 | 9001003  | Invalid resource name.                       |
 | 9001004  | No matching resource is found based on the resource name.         |
 
-**示例：** 
+**示例：**
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -3030,18 +3031,18 @@ getMediaBase64ByNameSync(resName: string, density?: number): string
 
 getMediaContentBase64(resId: number, callback: _AsyncCallback&lt;string&gt;): void
 
-用户获取指定资源ID对应的图片资源Base64编码，使用callback异步回调。
+获取指定资源ID对应的图片资源Base64编码，使用callback异步回调。
 
-**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Global.ResourceManager
+**系统能力：** SystemCapability.Global.ResourceManager
 
-**参数：** Content
+**参数：**
 
 | 参数名      | 类型                          | 必填   | 说明                       |
 | -------- | --------------------------- | ---- | ------------------------ |
 | resId    | number                      | 是    | 资源ID值。                    |
-| callback | [_AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;string&gt; | 是    | 返回获取的图片资源Base64编码。 |
+| callback | [_AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;string&gt; | 是    | 回调函数，返回资源ID值对应的图片资源Base64编码。 |
 
 **错误码：**
 
@@ -3053,7 +3054,7 @@ getMediaContentBase64(resId: number, callback: _AsyncCallback&lt;string&gt;): vo
 | 9001001  | Invalid resource ID.                       |
 | 9001002  | No matching resource is found based on the resource ID.         |
 
-**示例：** 
+**示例：**
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -3076,11 +3077,11 @@ getMediaContentBase64(resId: number, callback: _AsyncCallback&lt;string&gt;): vo
 
 getMediaContentBase64(resId: number, density: number, callback: _AsyncCallback&lt;string&gt;): void
 
-用户获取指定资源ID对应的指定屏幕密度图片资源Base64编码，使用callback异步回调。
+获取指定资源ID对应的指定屏幕密度图片资源Base64编码，使用callback异步回调。
 
-**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Global.ResourceManager
+**系统能力：** SystemCapability.Global.ResourceManager
 
 **参数：** 
 
@@ -3088,11 +3089,11 @@ getMediaContentBase64(resId: number, density: number, callback: _AsyncCallback&l
 | -------- | --------------------------- | ---- | ------------------------ |
 | resId    | number                      | 是    | 资源ID值。                    |
 | [density](#screendensity)  | number        | 是    | 资源获取需要的屏幕密度，0表示默认屏幕密度。    |
-| callback | [_AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;string&gt; | 是    | 获取的图片资源Base64编码。 |
+| callback | [_AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;string&gt; | 是    | 回调函数，返回资源ID值对应的图片资源Base64编码。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -3100,7 +3101,7 @@ getMediaContentBase64(resId: number, density: number, callback: _AsyncCallback&l
 | 9001001  | Invalid resource ID.                       |
 | 9001002  | No matching resource is found based on the resource ID.         |
 
-**示例：** 
+**示例：**
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -3123,11 +3124,11 @@ getMediaContentBase64(resId: number, density: number, callback: _AsyncCallback&l
 
 getMediaContentBase64(resId: number): Promise&lt;string&gt;
 
-用户获取指定资源ID对应的图片资源Base64编码，使用Promise异步回调。
+获取指定资源ID对应的图片资源Base64编码，使用Promise异步回调。
 
-**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Global.ResourceManager
+**系统能力：** SystemCapability.Global.ResourceManager
 
 **参数：** 
 
@@ -3139,7 +3140,7 @@ getMediaContentBase64(resId: number): Promise&lt;string&gt;
 
 | 类型                    | 说明                   |
 | --------------------- | -------------------- |
-| Promise&lt;string&gt; | 资源ID值对应的图片资源Base64编码。 |
+| Promise&lt;string&gt; | Promise对象，返回资源ID值对应的图片资源Base64编码。 |
 
 **错误码：**
 
@@ -3151,7 +3152,7 @@ getMediaContentBase64(resId: number): Promise&lt;string&gt;
 | 9001001  | Invalid resource ID.                       |
 | 9001002  | No matching resource is found based on the resource ID.         |
 
-**示例：** 
+**示例：**
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -3172,11 +3173,11 @@ getMediaContentBase64(resId: number): Promise&lt;string&gt;
 
 getMediaContentBase64(resId: number, density: number): Promise&lt;string&gt;
 
-用户获取指定资源ID对应的指定屏幕密度图片资源Base64编码，使用Promise异步回调。
+获取指定资源ID对应的指定屏幕密度图片资源Base64编码，使用Promise异步回调。
 
-**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Global.ResourceManager
+**系统能力：** SystemCapability.Global.ResourceManager
 
 **参数：** 
 
@@ -3189,11 +3190,11 @@ getMediaContentBase64(resId: number, density: number): Promise&lt;string&gt;
 
 | 类型                    | 说明                   |
 | --------------------- | -------------------- |
-| Promise&lt;string&gt; | 资源ID值对应的图片资源Base64编码。 |
+| Promise&lt;string&gt; | Promise对象，返回资源ID值对应的图片资源Base64编码。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -3201,7 +3202,7 @@ getMediaContentBase64(resId: number, density: number): Promise&lt;string&gt;
 | 9001001  | Invalid resource ID.                       |
 | 9001002  | No matching resource is found based on the resource ID.         |
 
-**示例：** 
+**示例：**
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -3222,24 +3223,24 @@ getMediaContentBase64(resId: number, density: number): Promise&lt;string&gt;
 
 getMediaContentBase64(resource: Resource, callback: _AsyncCallback&lt;string&gt;): void
 
-用户获取指定resource对象对应的图片资源Base64编码，使用callback异步回调。
+获取指定resource对象对应的图片资源Base64编码，使用callback异步回调。
 
-**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Global.ResourceManager
+**系统能力：** SystemCapability.Global.ResourceManager
 
-**模型约束**：此接口仅可在Stage模型下使用。
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
 | 参数名      | 类型                          | 必填   | 说明                       |
 | -------- | --------------------------- | ---- | ------------------------ |
 | resource | [Resource](#resource9)      | 是    | 资源信息。                     |
-| callback | [_AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;string&gt; | 是    | 返回获取的图片资源Base64编码。 |
+| callback | [_AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;string&gt; | 是    | 回调函数，返回resource对象对应的图片资源Base64编码。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -3247,9 +3248,9 @@ getMediaContentBase64(resource: Resource, callback: _AsyncCallback&lt;string&gt;
 | 9001001  | Invalid resource ID.                       |
 | 9001002  | No matching resource is found based on the resource ID.         |
 
-**示例：** 
+**示例：**
   ```ts
-  import { resourceManager } from '@kit.LocalizationKit'
+  import { resourceManager } from '@kit.LocalizationKit';
   import { BusinessError } from '@kit.BasicServicesKit';
 
   let resource: resourceManager.Resource = {
@@ -3276,13 +3277,13 @@ getMediaContentBase64(resource: Resource, callback: _AsyncCallback&lt;string&gt;
 
 getMediaContentBase64(resource: Resource, density: number, callback: _AsyncCallback&lt;string&gt;): void
 
-用户获取指定resource对象对应的指定屏幕密度图片资源Base64编码，使用callback异步回调。
+获取指定resource对象对应的指定屏幕密度图片资源Base64编码，使用callback异步回调。
 
-**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Global.ResourceManager
+**系统能力：** SystemCapability.Global.ResourceManager
 
-**模型约束**：此接口仅可在Stage模型下使用。
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -3290,11 +3291,11 @@ getMediaContentBase64(resource: Resource, density: number, callback: _AsyncCallb
 | -------- | --------------------------- | ---- | ------------------------ |
 | resource | [Resource](#resource9)      | 是    | 资源信息。                     |
 | [density](#screendensity)  | number        | 是    | 资源获取需要的屏幕密度，0表示默认屏幕密度。    |
-| callback | [_AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;string&gt; | 是    | 获取的图片资源Base64编码。 |
+| callback | [_AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;string&gt; | 是    | 回调函数，返回resource对象对应的图片资源Base64编码。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -3302,9 +3303,9 @@ getMediaContentBase64(resource: Resource, density: number, callback: _AsyncCallb
 | 9001001  | Invalid resource ID.                       |
 | 9001002  | No matching resource is found based on the resource ID.         |
 
-**示例：** 
+**示例：**
   ```ts
-  import { resourceManager } from '@kit.LocalizationKit'
+  import { resourceManager } from '@kit.LocalizationKit';
   import { BusinessError } from '@kit.BasicServicesKit';
 
   let resource: resourceManager.Resource = {
@@ -3331,13 +3332,13 @@ getMediaContentBase64(resource: Resource, density: number, callback: _AsyncCallb
 
 getMediaContentBase64(resource: Resource): Promise&lt;string&gt;
 
-用户获取指定resource对象对应的图片资源Base64编码，使用Promise异步回调。
+获取指定resource对象对应的图片资源Base64编码，使用Promise异步回调。
 
-**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Global.ResourceManager
+**系统能力：** SystemCapability.Global.ResourceManager
 
-**模型约束**：此接口仅可在Stage模型下使用。
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：** 
 
@@ -3349,11 +3350,11 @@ getMediaContentBase64(resource: Resource): Promise&lt;string&gt;
 
 | 类型                    | 说明                        |
 | --------------------- | ------------------------- |
-| Promise&lt;string&gt; | resource对象对应的图片资源Base64编码。 |
+| Promise&lt;string&gt; | Promise对象，返回resource对象对应的图片资源Base64编码。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -3361,9 +3362,9 @@ getMediaContentBase64(resource: Resource): Promise&lt;string&gt;
 | 9001001  | Invalid resource ID.                       |
 | 9001002  | No matching resource is found based on the resource ID.         |
 
-**示例：** 
+**示例：**
   ```ts
-  import { resourceManager } from '@kit.LocalizationKit'
+  import { resourceManager } from '@kit.LocalizationKit';
   import { BusinessError } from '@kit.BasicServicesKit';
 
   let resource: resourceManager.Resource = {
@@ -3388,13 +3389,13 @@ getMediaContentBase64(resource: Resource): Promise&lt;string&gt;
 
 getMediaContentBase64(resource: Resource, density: number): Promise&lt;string&gt;
 
-用户获取指定resource对象对应的指定屏幕密度图片资源Base64编码，使用Promise异步回调。
+获取指定resource对象对应的指定屏幕密度图片资源Base64编码，使用Promise异步回调。
 
-**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Global.ResourceManager
+**系统能力：** SystemCapability.Global.ResourceManager
 
-**模型约束**：此接口仅可在Stage模型下使用。
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：** 
 
@@ -3407,11 +3408,11 @@ getMediaContentBase64(resource: Resource, density: number): Promise&lt;string&gt
 
 | 类型                    | 说明                        |
 | --------------------- | ------------------------- |
-| Promise&lt;string&gt; | resource对象对应的图片资源Base64编码。 |
+| Promise&lt;string&gt; | Promise对象，返回resource对象对应的图片资源Base64编码。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -3419,9 +3420,9 @@ getMediaContentBase64(resource: Resource, density: number): Promise&lt;string&gt
 | 9001001  | Invalid resource ID.                       |
 | 9001002  | No matching resource is found based on the resource ID.         |
 
-**示例：** 
+**示例：**
   ```ts
-  import { resourceManager } from '@kit.LocalizationKit'
+  import { resourceManager } from '@kit.LocalizationKit';
   import { BusinessError } from '@kit.BasicServicesKit';
 
   let resource: resourceManager.Resource = {
@@ -3446,18 +3447,18 @@ getMediaContentBase64(resource: Resource, density: number): Promise&lt;string&gt
 
 getMediaBase64ByName(resName: string, callback: _AsyncCallback&lt;string&gt;): void
 
-用户获取指定资源名称对应的图片资源Base64编码，使用callback异步回调。
+获取指定资源名称对应的图片资源Base64编码，使用callback异步回调。
 
-**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Global.ResourceManager
+**系统能力：** SystemCapability.Global.ResourceManager
 
 **参数：** 
 
 | 参数名      | 类型                          | 必填   | 说明                       |
 | -------- | --------------------------- | ---- | ------------------------ |
 | resName  | string                      | 是    | 资源名称。                     |
-| callback | [_AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;string&gt; | 是    | 返回获取的图片资源Base64编码。 |
+| callback | [_AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;string&gt; | 是    | 回调函数，返回资源名称的图片资源Base64编码。 |
 
 **错误码：**
 
@@ -3469,7 +3470,7 @@ getMediaBase64ByName(resName: string, callback: _AsyncCallback&lt;string&gt;): v
 | 9001003  | Invalid resource name.                     |
 | 9001004  | No matching resource is found based on the resource name.       |
 
-**示例：** 
+**示例：**
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -3492,11 +3493,11 @@ getMediaBase64ByName(resName: string, callback: _AsyncCallback&lt;string&gt;): v
 
 getMediaBase64ByName(resName: string, density: number, callback: _AsyncCallback&lt;string&gt;): void
 
-用户获取指定资源名称对应的指定屏幕密度图片资源Base64编码，使用callback异步回调。
+获取指定资源名称对应的指定屏幕密度图片资源Base64编码，使用callback异步回调。
 
-**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Global.ResourceManager
+**系统能力：** SystemCapability.Global.ResourceManager
 
 **参数：** 
 
@@ -3504,11 +3505,11 @@ getMediaBase64ByName(resName: string, density: number, callback: _AsyncCallback&
 | -------- | --------------------------- | ---- | ------------------------ |
 | resName  | string                      | 是    | 资源名称。                     |
 | [density](#screendensity)  | number        | 是    | 资源获取需要的屏幕密度，0表示默认屏幕密度。    |
-| callback | [_AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;string&gt; | 是    | 返回获取的图片资源Base64编码。 |
+| callback | [_AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;string&gt; | 是    | 回调函数，返回资源名称的图片资源Base64编码。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -3516,7 +3517,7 @@ getMediaBase64ByName(resName: string, density: number, callback: _AsyncCallback&
 | 9001003  | Invalid resource name.                     |
 | 9001004  | No matching resource is found based on the resource name.       |
 
-**示例：** 
+**示例：**
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -3539,11 +3540,11 @@ getMediaBase64ByName(resName: string, density: number, callback: _AsyncCallback&
 
 getMediaBase64ByName(resName: string): Promise&lt;string&gt;
 
-用户获取指定资源名称对应的图片资源Base64编码，使用Promise异步回调。
+获取指定资源名称对应的图片资源Base64编码，使用Promise异步回调。
 
-**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Global.ResourceManager
+**系统能力：** SystemCapability.Global.ResourceManager
 
 **参数：** 
 
@@ -3555,7 +3556,7 @@ getMediaBase64ByName(resName: string): Promise&lt;string&gt;
 
 | 类型                    | 说明                  |
 | --------------------- | ------------------- |
-| Promise&lt;string&gt; | 资源名称对应的图片资源Base64编码。 |
+| Promise&lt;string&gt; | Promise对象，返回资源名称对应的图片资源Base64编码。 |
 
 **错误码：**
 
@@ -3567,7 +3568,7 @@ getMediaBase64ByName(resName: string): Promise&lt;string&gt;
 | 9001003  | Invalid resource name.                     |
 | 9001004  | No matching resource is found based on the resource name.       |
 
-**示例：** 
+**示例：**
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -3588,11 +3589,11 @@ getMediaBase64ByName(resName: string): Promise&lt;string&gt;
 
 getMediaBase64ByName(resName: string, density: number): Promise&lt;string&gt;
 
-用户获取指定资源名称对应的指定屏幕密度图片资源Base64编码，使用Promise异步回调。
+获取指定资源名称对应的指定屏幕密度图片资源Base64编码，使用Promise异步回调。
 
-**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Global.ResourceManager
+**系统能力：** SystemCapability.Global.ResourceManager
 
 **参数：** 
 
@@ -3605,11 +3606,11 @@ getMediaBase64ByName(resName: string, density: number): Promise&lt;string&gt;
 
 | 类型                    | 说明                  |
 | --------------------- | ------------------- |
-| Promise&lt;string&gt; | 资源名称对应的图片资源Base64编码 。|
+| Promise&lt;string&gt; | Promise对象，返回资源名称对应的图片资源Base64编码。|
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -3617,7 +3618,7 @@ getMediaBase64ByName(resName: string, density: number): Promise&lt;string&gt;
 | 9001003  | Invalid resource name.                     |
 | 9001004  | No matching resource is found based on the resource name.       |
 
-**示例：** 
+**示例：**
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -3638,11 +3639,11 @@ getMediaBase64ByName(resName: string, density: number): Promise&lt;string&gt;
 
 getDrawableDescriptor(resId: number, density?: number, type?: number): DrawableDescriptor
 
-用户获取指定资源ID对应的DrawableDescriptor对象，用于图标的显示，使用同步方式返回。
+获取指定资源ID对应的DrawableDescriptor对象，用于图标的显示，使用同步方式返回。
 
-**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Global.ResourceManager
+**系统能力：** SystemCapability.Global.ResourceManager
 
 **参数：**
 
@@ -3650,7 +3651,7 @@ getDrawableDescriptor(resId: number, density?: number, type?: number): DrawableD
 | ----- | ------ | ---- | ----- |
 | resId | number | 是    | 资源ID值。 |
 | [density](#screendensity) | number | 否    | 资源获取需要的屏幕密度，0或缺省表示默认屏幕密度。 |
-| type<sup>11+</sup> | number | 否    | 1表示用于取主题资源包中应用的分层图标资源，0或缺省表示取应用自身图标资源。 |
+| type<sup>11+</sup> | number | 否    | - 1表示获取主题资源包中应用的分层图标资源。<br> - 0或缺省表示获取应用自身图标资源。 |
 
 **返回值：**
 
@@ -3700,13 +3701,13 @@ getDrawableDescriptor(resId: number, density?: number, type?: number): DrawableD
 
 getDrawableDescriptor(resource: Resource, density?: number, type?: number): DrawableDescriptor
 
-用户获取指定resource对应的DrawableDescriptor对象，用于图标的显示，使用同步方式返回。
+获取指定resource对应的DrawableDescriptor对象，用于图标的显示，使用同步方式返回。
 
-**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Global.ResourceManager
+**系统能力：** SystemCapability.Global.ResourceManager
 
-**模型约束**：此接口仅可在Stage模型下使用。
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -3714,7 +3715,7 @@ getDrawableDescriptor(resource: Resource, density?: number, type?: number): Draw
 | -------- | ---------------------- | ---- | ---- |
 | resource | [Resource](#resource9) | 是    | 资源信息。 |
 | [density](#screendensity) | number | 否    | 资源获取需要的屏幕密度，0或缺省表示默认屏幕密度。 |
-| type<sup>11+</sup> | number | 否    | 1表示用于取主题资源包中应用的分层图标资源，0或缺省表示取应用自身图标资源。 |
+| type<sup>11+</sup> | number | 否    | - 1表示获取主题资源包中应用的分层图标资源。<br> - 0或缺省表示获取应用自身图标资源。 |
 
 **返回值：**
 
@@ -3734,7 +3735,7 @@ getDrawableDescriptor(resource: Resource, density?: number, type?: number): Draw
 
 **示例：**
   ```ts
-  import { resourceManager } from '@kit.LocalizationKit'
+  import { resourceManager } from '@kit.LocalizationKit';
   import { BusinessError } from '@kit.BasicServicesKit';
   import { DrawableDescriptor } from '@kit.ArkUI';
 
@@ -3770,11 +3771,11 @@ getDrawableDescriptor(resource: Resource, density?: number, type?: number): Draw
 
 getDrawableDescriptorByName(resName: string, density?: number, type?: number): DrawableDescriptor
 
-用户获取指定资源名称对应的DrawableDescriptor对象，用于图标的显示，使用同步方式返回。
+获取指定资源名称对应的DrawableDescriptor对象，用于图标的显示，使用同步方式返回。
 
-**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Global.ResourceManager
+**系统能力：** SystemCapability.Global.ResourceManager
 
 **参数：**
 
@@ -3782,13 +3783,13 @@ getDrawableDescriptorByName(resName: string, density?: number, type?: number): D
 | ------- | ------ | ---- | ---- |
 | resName | string | 是    | 资源名称。 |
 | [density](#screendensity) | number | 否    | 资源获取需要的屏幕密度，0或缺省表示默认屏幕密度。 |
-| type<sup>11+</sup> | number | 否    | 1表示用于取主题资源包中应用的分层图标资源，0或缺省表示取应用自身图标资源。 |
+| type<sup>11+</sup> | number | 否    | - 1表示获取主题资源包中应用的分层图标资源。<br> - 0或缺省表示获取应用自身图标资源。 |
 
 **返回值：**
 
 | 类型     | 说明        |
 | ------ | --------- |
-| [DrawableDescriptor](../apis-arkui/js-apis-arkui-drawableDescriptor.md#drawabledescriptor) | 资源ID值对应的DrawableDescriptor对象。 |
+| [DrawableDescriptor](../apis-arkui/js-apis-arkui-drawableDescriptor.md#drawabledescriptor) | 资源名称对应的DrawableDescriptor对象。 |
 
 **错误码：**
 
