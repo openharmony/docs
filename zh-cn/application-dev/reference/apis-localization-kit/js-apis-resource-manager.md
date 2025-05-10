@@ -1052,11 +1052,11 @@ getStringByName(resName: string): Promise&lt;string&gt;
 
 getStringArrayValueSync(resId: number): Array&lt;string&gt;
 
-用户获取指定资源ID对应的字符串数组，使用同步方式返回。
+获取指定资源ID对应的字符串数组，使用同步方式返回。
 
-**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Global.ResourceManager
+**系统能力：** SystemCapability.Global.ResourceManager
 
 **参数：** 
 
@@ -1072,7 +1072,7 @@ getStringArrayValueSync(resId: number): Array&lt;string&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -1081,12 +1081,28 @@ getStringArrayValueSync(resId: number): Array&lt;string&gt;
 | 9001002  | No matching resource is found based on the resource ID.         |
 | 9001006  | The resource is referenced cyclically.            |
 
-**示例：** 
+**示例：**
+  ```json
+  {
+    "strarray": [
+      {
+        "name": "test",
+        "value": [
+          {
+            "value": "I'm one of the array's values."
+          }
+        ]
+      }
+    ]
+  }
+  ```
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
-    this.context.resourceManager.getStringArrayValueSync($r('app.strarray.test').id);
+    let strArray: Array<string> = this.context.resourceManager.getStringArrayValueSync($r('app.strarray.test').id);
+    console.log(`getStringArrayValueSync, result: ${strArray[0]}`);
+    // 打印输出结果: getStringArrayValueSync, result: I'm one of the array's values.
   } catch (error) {
     let code = (error as BusinessError).code;
     let message = (error as BusinessError).message;
@@ -1098,13 +1114,13 @@ getStringArrayValueSync(resId: number): Array&lt;string&gt;
 
 getStringArrayValueSync(resource: Resource): Array&lt;string&gt;
 
-用户获取指定resource对象对应的字符串数组，使用同步方式返回。
+获取指定resource对象对应的字符串数组，使用同步方式返回。
 
-**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Global.ResourceManager
+**系统能力：** SystemCapability.Global.ResourceManager
 
-**模型约束**：此接口仅可在Stage模型下使用。
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：** 
 
@@ -1120,7 +1136,7 @@ getStringArrayValueSync(resource: Resource): Array&lt;string&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -1129,9 +1145,23 @@ getStringArrayValueSync(resource: Resource): Array&lt;string&gt;
 | 9001002  | No matching resource is found based on the resource ID.         |
 | 9001006  | The resource is referenced cyclically.            |
 
-**示例：** 
+**示例：**
+  ```json
+  {
+    "strarray": [
+      {
+        "name": "test",
+        "value": [
+          {
+            "value": "I'm one of the array's values."
+          }
+        ]
+      }
+    ]
+  }
+  ```
   ```ts
-  import { resourceManager } from '@kit.LocalizationKit'
+  import { resourceManager } from '@kit.LocalizationKit';
   import { BusinessError } from '@kit.BasicServicesKit';
 
   let resource: resourceManager.Resource = {
@@ -1140,7 +1170,9 @@ getStringArrayValueSync(resource: Resource): Array&lt;string&gt;
     id: $r('app.strarray.test').id
   };
   try {
-    this.context.resourceManager.getStringArrayValueSync(resource);
+    let strArray: Array<string> = this.context.resourceManager.getStringArrayValueSync(resource);
+    console.log(`getStringArrayValueSync, result: ${strArray[0]}`);
+    // 打印输出结果: getStringArrayValueSync, result: I'm one of the array's values.
   } catch (error) {
     let code = (error as BusinessError).code;
     let message = (error as BusinessError).message;
@@ -1152,11 +1184,11 @@ getStringArrayValueSync(resource: Resource): Array&lt;string&gt;
 
 getStringArrayByNameSync(resName: string): Array&lt;string&gt;
 
-用户获取指定资源名称对应的字符串数组，使用同步方式返回。
+获取指定资源名称对应的字符串数组，使用同步方式返回。
 
-**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Global.ResourceManager
+**系统能力：** SystemCapability.Global.ResourceManager
 
 **参数：** 
 
@@ -1172,7 +1204,7 @@ getStringArrayByNameSync(resName: string): Array&lt;string&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -1181,10 +1213,28 @@ getStringArrayByNameSync(resName: string): Array&lt;string&gt;
 | 9001004  | No matching resource is found based on the resource name.         |
 | 9001006  | The resource is referenced cyclically.            |
 
-**示例：** 
+**示例：**
+  ```json
+  {
+    "strarray": [
+      {
+        "name": "test",
+        "value": [
+          {
+            "value": "I'm one of the array's values."
+          }
+        ]
+      }
+    ]
+  }
+  ```
   ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
   try {
-    this.context.resourceManager.getStringArrayByNameSync("test");
+    let strArray: Array<string> = this.context.resourceManager.getStringArrayByNameSync("test");
+    console.log(`getStringArrayByNameSync, result: ${strArray[0]}`);
+    // 打印输出结果: getStringArrayByNameSync, result: I'm one of the array's values.
   } catch (error) {
     let code = (error as BusinessError).code;
     let message = (error as BusinessError).message;
@@ -1196,20 +1246,21 @@ getStringArrayByNameSync(resName: string): Array&lt;string&gt;
 
 getStringArrayValue(resId: number, callback: _AsyncCallback&lt;Array&lt;string&gt;&gt;): void
 
-用户获取指定资源ID对应的字符串数组，使用callback异步回调。
+获取指定资源ID对应的字符串数组，使用callback异步回调。
 
-**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Global.ResourceManager
+**系统能力：** SystemCapability.Global.ResourceManager
 
 **参数：** 
 
 | 参数名      | 类型                                       | 必填   | 说明                |
 | -------- | ---------------------------------------- | ---- | ----------------- |
 | resId    | number                                   | 是    | 资源ID值。             |
-| callback | [_AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;Array&lt;string&gt;&gt; | 是    | 返回获取的字符串数组。 |
+| callback | [_AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;Array&lt;string&gt;&gt; | 是    | 回调函数，返回资源ID值对应的字符串数组。 |
 
 **错误码：**
+
 以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
@@ -1219,34 +1270,44 @@ getStringArrayValue(resId: number, callback: _AsyncCallback&lt;Array&lt;string&g
 | 9001002  | No matching resource is found based on the resource ID.         |
 | 9001006  | The resource is referenced cyclically.            |
 
-**示例：** 
+**示例：**
+  ```json
+  {
+    "strarray": [
+      {
+        "name": "test",
+        "value": [
+          {
+            "value": "I'm one of the array's values."
+          }
+        ]
+      }
+    ]
+  }
+  ```
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
 
-  try {
-    this.context.resourceManager.getStringArrayValue($r('app.strarray.test').id, (error: BusinessError, value: Array<string>) => {
+  this.context.resourceManager.getStringArrayValue($r('app.strarray.test').id,
+    (error: BusinessError, value: Array<string>) => {
       if (error != null) {
-        console.error("error is " + error);
+        console.error(`callback getStringArrayValue failed, error code: ${error.code}, message: ${error.message}.`);
       } else {
-        let strArray = value;
+        console.log(`getStringArrayValue, result: ${value[0]}`);
+        // 打印输出结果: getStringArrayValue, result: I'm one of the array's values.
       }
     });
-  } catch (error) {
-    let code = (error as BusinessError).code;
-    let message = (error as BusinessError).message;
-    console.error(`callback getStringArrayValue failed, error code: ${code}, message: ${message}.`);
-  }
   ```
 
 ### getStringArrayValue<sup>9+</sup>
 
 getStringArrayValue(resId: number): Promise&lt;Array&lt;string&gt;&gt;
 
-用户获取指定资源ID对应的字符串数组，使用Promise异步回调。
+获取指定资源ID对应的字符串数组，使用Promise异步回调。
 
-**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Global.ResourceManager
+**系统能力：** SystemCapability.Global.ResourceManager
 
 **参数：** 
 
@@ -1258,9 +1319,10 @@ getStringArrayValue(resId: number): Promise&lt;Array&lt;string&gt;&gt;
 
 | 类型                                 | 说明            |
 | ---------------------------------- | ------------- |
-| Promise&lt;Array&lt;string&gt;&gt; | 资源ID值对应的字符串数组。 |
+| Promise&lt;Array&lt;string&gt;&gt; | Promise对象，返回资源ID值对应的字符串数组。 |
 
 **错误码：**
+
 以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
@@ -1270,45 +1332,56 @@ getStringArrayValue(resId: number): Promise&lt;Array&lt;string&gt;&gt;
 | 9001002  | No matching resource is found based on the resource ID.         |
 | 9001006  | The resource is referenced cyclically.            |
 
-**示例：** 
+**示例：**
+  ```json
+  {
+    "strarray": [
+      {
+        "name": "test",
+        "value": [
+          {
+            "value": "I'm one of the array's values."
+          }
+        ]
+      }
+    ]
+  }
+  ```
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
 
-  try {
-    this.context.resourceManager.getStringArrayValue($r('app.strarray.test').id).then((value: Array<string>) => {
-      let strArray = value;
-    }).catch((error: BusinessError) => {
-      console.error("getStringArrayValue promise error is " + error);
+  this.context.resourceManager.getStringArrayValue($r('app.strarray.test').id)
+    .then((value: Array<string>) => {
+      console.log(`getStringArrayValue, result: ${value[0]}`);
+      // 打印输出结果: getStringArrayValue, result: I'm one of the array's values.
+    })
+    .catch((error: BusinessError) => {
+      console.error(`promise getStringArrayValue failed, error code: ${error.code}, message: ${error.message}.`);
     });
-  } catch (error) {
-    let code = (error as BusinessError).code;
-    let message = (error as BusinessError).message;
-    console.error(`promise getStringArrayValue failed, error code: ${code}, message: ${message}.`);
-  }
   ```
 
 ### getStringArrayValue<sup>9+</sup>
 
 getStringArrayValue(resource: Resource, callback: _AsyncCallback&lt;Array&lt;string&gt;&gt;): void
 
-用户获取指定resource对象对应的字符串数组，使用callback异步回调。
+获取指定resource对象对应的字符串数组，使用callback异步回调。
 
-**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Global.ResourceManager
+**系统能力：** SystemCapability.Global.ResourceManager
 
-**模型约束**：此接口仅可在Stage模型下使用。
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：** 
 
 | 参数名      | 类型                                       | 必填   | 说明                |
 | -------- | ---------------------------------------- | ---- | ----------------- |
 | resource | [Resource](#resource9)                   | 是    | 资源信息。              |
-| callback | [_AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;Array&lt;string&gt;&gt; | 是    | 返回获取的字符串数组。|
+| callback | [_AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;Array&lt;string&gt;&gt; | 是    | 回调函数，返回resource对象对应的字符串数组。|
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -1317,9 +1390,23 @@ getStringArrayValue(resource: Resource, callback: _AsyncCallback&lt;Array&lt;str
 | 9001002  | No matching resource is found based on the resource ID.         |
 | 9001006  | The resource is referenced cyclically.            |
 
-**示例：** 
+**示例：**
+  ```json
+  {
+    "strarray": [
+      {
+        "name": "test",
+        "value": [
+          {
+            "value": "I'm one of the array's values."
+          }
+        ]
+      }
+    ]
+  }
+  ```
   ```ts
-  import { resourceManager } from '@kit.LocalizationKit'
+  import { resourceManager } from '@kit.LocalizationKit';
   import { BusinessError } from '@kit.BasicServicesKit';
 
   let resource: resourceManager.Resource = {
@@ -1327,32 +1414,27 @@ getStringArrayValue(resource: Resource, callback: _AsyncCallback&lt;Array&lt;str
     moduleName: "entry",
     id: $r('app.strarray.test').id
   };
-  try {
-    this.context.resourceManager.getStringArrayValue(resource, (error: BusinessError, value: Array<string>) => {
-      if (error != null) {
-        console.error("error is " + error);
-      } else {
-        let strArray = value;
-      }
-    });
-  } catch (error) {
-    let code = (error as BusinessError).code;
-    let message = (error as BusinessError).message;
-    console.error(`callback getStringArrayValue failed, error code: ${code}, message: ${message}.`);
-  }
+  this.context.resourceManager.getStringArrayValue(resource, (error: BusinessError, value: Array<string>) => {
+    if (error != null) {
+      console.error(`callback getStringArrayValue failed, error code: ${error.code}, message: ${error.message}.`);
+    } else {
+      console.log(`getStringArrayValue, result: ${value[0]}`);
+      // 打印输出结果: getStringArrayValue, result: I'm one of the array's values.
+    }
+  });
   ```
 
 ### getStringArrayValue<sup>9+</sup>
 
 getStringArrayValue(resource: Resource): Promise&lt;Array&lt;string&gt;&gt;
 
-用户获取指定resource对象对应的字符串数组，使用Promise异步回调。
+获取指定resource对象对应的字符串数组，使用Promise异步回调。
 
-**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Global.ResourceManager
+**系统能力：** SystemCapability.Global.ResourceManager
 
-**模型约束**：此接口仅可在Stage模型下使用。
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：** 
 
@@ -1364,11 +1446,11 @@ getStringArrayValue(resource: Resource): Promise&lt;Array&lt;string&gt;&gt;
 
 | 类型                                 | 说明                 |
 | ---------------------------------- | ------------------ |
-| Promise&lt;Array&lt;string&gt;&gt; | resource对象对应的字符串数组。 |
+| Promise&lt;Array&lt;string&gt;&gt; | Promise对象，返回resource对象对应的字符串数组。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -1377,9 +1459,23 @@ getStringArrayValue(resource: Resource): Promise&lt;Array&lt;string&gt;&gt;
 | 9001002  | No matching resource is found based on the resource ID.         |
 | 9001006  | The resource is referenced cyclically.            |
 
-**示例：** 
+**示例：**
+  ```json
+  {
+    "strarray": [
+      {
+        "name": "test",
+        "value": [
+          {
+            "value": "I'm one of the array's values."
+          }
+        ]
+      }
+    ]
+  }
+  ```
   ```ts
-  import { resourceManager } from '@kit.LocalizationKit'
+  import { resourceManager } from '@kit.LocalizationKit';
   import { BusinessError } from '@kit.BasicServicesKit';
 
   let resource: resourceManager.Resource = {
@@ -1387,35 +1483,32 @@ getStringArrayValue(resource: Resource): Promise&lt;Array&lt;string&gt;&gt;
     moduleName: "entry",
     id: $r('app.strarray.test').id
   };
-  try {
-    this.context.resourceManager.getStringArrayValue(resource).then((value: Array<string>) => {
-      let strArray = value;
-    }).catch((error: BusinessError) => {
-      console.error("getStringArray promise error is " + error);
+  this.context.resourceManager.getStringArrayValue(resource)
+    .then((value: Array<string>) => {
+      console.log(`getStringArrayValue, result: ${value[0]}`);
+      // 打印输出结果: getStringArrayValue, result: I'm one of the array's values.
+    })
+    .catch((error: BusinessError) => {
+      console.error(`promise getStringArrayValue failed, error code: ${error.code}, message: ${error.message}.`);
     });
-  } catch (error) {
-    let code = (error as BusinessError).code;
-    let message = (error as BusinessError).message;
-    console.error(`promise getStringArrayValue failed, error code: ${code}, message: ${message}.`);
-  }
   ```
 
 ### getStringArrayByName<sup>9+</sup>
 
 getStringArrayByName(resName: string, callback: _AsyncCallback&lt;Array&lt;string&gt;&gt;): void
 
-用户获取指定资源名称对应的字符串数组，使用callback异步回调。
+获取指定资源名称对应的字符串数组，使用callback异步回调。
 
-**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Global.ResourceManager
+**系统能力：** SystemCapability.Global.ResourceManager
 
 **参数：**
 
 | 参数名      | 类型                                       | 必填   | 说明                |
 | -------- | ---------------------------------------- | ---- | ----------------- |
 | resName  | string                                   | 是    | 资源名称。              |
-| callback | [_AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;Array&lt;string&gt;&gt; | 是    | 返回获取的字符串数组。 |
+| callback | [_AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;Array&lt;string&gt;&gt; | 是    | 回调函数，返回资源名称对应的字符串数组。 |
 
 **错误码：**
 
@@ -1428,34 +1521,44 @@ getStringArrayByName(resName: string, callback: _AsyncCallback&lt;Array&lt;strin
 | 9001004  | No matching resource is found based on the resource name.       |
 | 9001006  | The resource is referenced cyclically.            |
 
-**示例：** 
+**示例：**
+  ```json
+  {
+    "strarray": [
+      {
+        "name": "test",
+        "value": [
+          {
+            "value": "I'm one of the array's values."
+          }
+        ]
+      }
+    ]
+  }
+  ```
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
 
-  try {
-    this.context.resourceManager.getStringArrayByName("test", (error: BusinessError, value: Array<string>) => {
-      if (error != null) {
-        console.error("error is " + error);
-      } else {
-        let strArray = value;
-      }
-    });
-  } catch (error) {
-    let code = (error as BusinessError).code;
-    let message = (error as BusinessError).message;
-    console.error(`callback getStringArrayByName failed, error code: ${code}, message: ${message}.`);
-  }
+  this.context.resourceManager.getStringArrayByName("test", (error: BusinessError, value: Array<string>) => {
+    if (error != null) {
+      console.error(`callback getStringArrayByName failed, error code: ${error.code}, message: ${error.message}.`);
+    } else {
+      let strArray = value;
+      console.log(`getStringArrayByName, result: ${value[0]}`);
+      // 打印输出结果: getStringArrayByName, result: I'm one of the array's values.
+    }
+  });
   ```
 
 ### getStringArrayByName<sup>9+</sup>
 
 getStringArrayByName(resName: string): Promise&lt;Array&lt;string&gt;&gt;
 
-用户获取指定资源名称对应的字符串数组，使用Promise异步回调。
+获取指定资源名称对应的字符串数组，使用Promise异步回调。
 
-**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Global.ResourceManager
+**系统能力：** SystemCapability.Global.ResourceManager
 
 **参数：** 
 
@@ -1467,7 +1570,7 @@ getStringArrayByName(resName: string): Promise&lt;Array&lt;string&gt;&gt;
 
 | 类型                                 | 说明           |
 | ---------------------------------- | ------------ |
-| Promise&lt;Array&lt;string&gt;&gt; | 资源名称对应的字符串数组。 |
+| Promise&lt;Array&lt;string&gt;&gt; | Promise对象，返回资源名称对应的字符串数组。 |
 
 **错误码：**
 
@@ -1480,54 +1583,65 @@ getStringArrayByName(resName: string): Promise&lt;Array&lt;string&gt;&gt;
 | 9001004  | No matching resource is found based on the resource name.       |
 | 9001006  | The resource is referenced cyclically.            |
 
-**示例：** 
+**示例：**
+  ```json
+  {
+    "strarray": [
+      {
+        "name": "test",
+        "value": [
+          {
+            "value": "I'm one of the array's values."
+          }
+        ]
+      }
+    ]
+  }
+  ```
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
 
-  try {
-    this.context.resourceManager.getStringArrayByName("test").then((value: Array<string>) => {
-      let strArray = value;
-    }).catch((error: BusinessError) => {
-      console.error("getStringArrayByName promise error is " + error);
+  this.context.resourceManager.getStringArrayByName("test")
+    .then((value: Array<string>) => {
+      console.log(`getStringArrayByName, result: ${value[0]}`);
+      // 打印输出结果: getStringArrayByName, result: I'm one of the array's values.
+    })
+    .catch((error: BusinessError) => {
+      console.error(`promise getStringArrayByName failed, error code: ${error.code}, message: ${error.message}.`);
     });
-  } catch (error) {
-    let code = (error as BusinessError).code;
-    let message = (error as BusinessError).message;
-    console.error(`promise getStringArrayByName failed, error code: ${code}, message: ${message}.`);
-  }
   ```
 
 ### getIntPluralStringValueSync<sup>18+</sup>
 
-getIntPluralStringValueSync(resId: number, num: number, ...args: Array<string | number>): string;
+getIntPluralStringValueSync(resId: number, num: number, ...args: Array<string | number>): string
 
-获取指定资源ID的单复数字符串。
+获取指定资源ID对应的[单复数](../../internationalization/l10n-singular-plural.md)字符串，并根据args参数对字符串进行格式化，使用同步方式返回。
 
 > **说明**
 >
-> 中文环境下，字符串不区分单复数；英文环境下，字符串区分单复数。
+> 中文环境下，字符串不区分单复数；其他语言环境下，字符串区分单复数，具体规则参考[语言单复数规则](https://www.unicode.org/cldr/charts/45/supplemental/language_plural_rules.html)。
 
-**原子化服务API**：从API version 18开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Global.ResourceManager
+**系统能力：** SystemCapability.Global.ResourceManager
 
 **参数：** 
 
 | 参数名  | 类型                    | 必填 | 说明                                                         |
 | ------- | ----------------------- | ---- | ------------------------------------------------------------ |
 | resId   | number                  | 是   | 资源ID值。                                                   |
-| num     | number                  | 是   | 数量值（整数）。根据当前语言的复数规则获取该数量值对应的字符串数字，语言的复数规则参见[语言单复数规则](https://www.unicode.org/cldr/charts/45/supplemental/language_plural_rules.html)。 |
-| ...args | Array<string \| number> | 否   | 格式化字符串资源参数。<br>支持参数类型：%d、%f、%s、%%、%数字`$d`、%数字`$f`、%数字`$s`。<br>说明：%%转义为%; %数字`$d`表示使用第几个参数。<br>举例：%%d格式化后为%d字符串; %1`$d`表示使用第一个参数。 |
+| num     | number                  | 是   | 数量值（整数）。根据当前语言的[单复数规则](https://www.unicode.org/cldr/charts/45/supplemental/language_plural_rules.html)获取该数量值对应的字符串。 |
+| ...args | Array<string \| number> | 否   | 格式化字符串资源参数。<br>支持参数类型：`%d`、`%f`、`%s`、`%%`、`%数字$d`、`%数字$f`、`%数字$s`。<br>说明：`%%`转义为`%`; `%数字$d`中的数字表示使用args中的第几个参数。<br>举例：`%%d`格式化后为`%d`字符串; `%1$d`表示使用第一个参数。 |
 
 **返回值：**
 
 | 类型   | 说明                   |
 | ------ | ---------------------- |
-| string | 指定ID的单复数字符串。 |
+| string | 资源ID值对应的格式化单复数字符串。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -1536,54 +1650,75 @@ getIntPluralStringValueSync(resId: number, num: number, ...args: Array<string | 
 | 9001006  | The resource is referenced cyclically.                       |
 | 9001007  | Failed to format the resource obtained based on the resource ID. |
 
-**示例：** 
-
+**示例：**
+  ```json
+  {
+    "plural": [
+      {
+        "name": "format_test",
+        "value": [
+          {
+            "quantity": "one",
+            "value": "There is %d apple in the %s, the total amount is %f kg."
+          },
+          {
+            "quantity": "other",
+            "value": "There are %d apples in the %s, the total amount is %f kg."
+          }
+        ]
+      }
+    ]
+  }
+  ```
   ```ts
-import { BusinessError } from '@kit.BasicServicesKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
-try {
-    // 参数num取值为1，根据语言单复数规则对应的quantity为one, 因此在资源$r('app.plural.format_test')中取quantity为one的字符串
-	this.context.resourceManager.getIntPluralStringValueSync($r('app.plural.format_test').id, 1, 1, "aaa", 1.1);
-} catch (error) {
-	let code = (error as BusinessError).code;
-	let message = (error as BusinessError).message;
-	console.error(`getIntPluralStringValueSync failed, error code: ${code}, message: ${message}.`);
-}
+  try {
+    // 根据语言单复数规则，参数num取值为1，英文环境下对应单复数类别为one
+    // 在资源文件中用quantity字段表示单复数类别，因此会获取quantity为one的字符串
+    let pluralStr = this.context.resourceManager.getIntPluralStringValueSync($r('app.plural.format_test').id, 1, 1, "basket", 0.3);
+    console.log(`getIntPluralStringValueSync, result: ${pluralStr}`);
+    // 打印输出结果: getIntPluralStringValueSync, result: There is 1 apple in the basket, the total amount is 0.3 kg.
+  } catch (error) {
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`getIntPluralStringValueSync failed, error code: ${code}, message: ${message}.`);
+  }
   ```
 
 ### getIntPluralStringValueSync<sup>18+</sup>
 
-getIntPluralStringValueSync(resource: Resource, num: number, ...args: Array<string | number>): string;
+getIntPluralStringValueSync(resource: Resource, num: number, ...args: Array<string | number>): string
 
-获取指定资源信息的单复数字符串。
+获取指定resource对象对应的[单复数](../../internationalization/l10n-singular-plural.md)字符串，并根据args参数对字符串进行格式化，使用同步方式返回。
 
 > **说明**
 >
-> 中文环境下，字符串不区分单复数；英文环境下，字符串区分单复数。
+> 中文环境下，字符串不区分单复数；其他语言环境下，字符串区分单复数，具体规则参考[语言单复数规则](https://www.unicode.org/cldr/charts/45/supplemental/language_plural_rules.html)。
 
-**原子化服务API**：从API version 18开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Global.ResourceManager
+**系统能力：** SystemCapability.Global.ResourceManager
 
-**模型约束**：此接口仅可在Stage模型下使用。
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：** 
 
 | 参数名   | 类型                    | 必填 | 说明                                                         |
 | -------- | ----------------------- | ---- | ------------------------------------------------------------ |
 | resource | [Resource](#resource9)  | 是   | 资源信息。                                                   |
-| num      | number                  | 是   | 数量值（整数）。根据当前语言的复数规则获取该数量值对应的字符串数字，语言的复数规则参见[语言单复数规则](https://www.unicode.org/cldr/charts/45/supplemental/language_plural_rules.html)。 |
-| ...args  | Array<string \| number> | 否   | 格式化字符串资源参数。<br>支持参数类型：%d、%f、%s、%%、%数字`$d`、%数字`$f`、%数字`$s`。<br>说明：%%转义为%; %数字`$d`表示使用第几个参数。<br>举例：%%d格式化后为%d字符串; %1`$d`表示使用第一个参数。 |
+| num      | number                  | 是   | 数量值（整数）。根据当前语言的[单复数规则](https://www.unicode.org/cldr/charts/45/supplemental/language_plural_rules.html)获取该数量值对应的字符串。 |
+| ...args  | Array<string \| number> | 否   | 格式化字符串资源参数。<br>支持参数类型：`%d`、`%f`、`%s`、`%%`、`%数字$d`、`%数字$f`、`%数字$s`。<br>说明：`%%`转义为`%`; `%数字$d`中的数字表示使用args中的第几个参数。<br>举例：`%%d`格式化后为`%d`字符串; `%1$d`表示使用第一个参数。 |
 
 **返回值：**
 
 | 类型   | 说明                                 |
 | ------ | ------------------------------------ |
-| string | 指定resource对象表示的单复数字符串。 |
+| string | resource对象对应的格式化单复数字符串。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -1592,58 +1727,80 @@ getIntPluralStringValueSync(resource: Resource, num: number, ...args: Array<stri
 | 9001006  | The resource is referenced cyclically.                       |
 | 9001007  | Failed to format the resource obtained based on the resource ID. |
 
-**示例：** 
-
+**示例：**
+  ```json
+  {
+    "plural": [
+      {
+        "name": "format_test",
+        "value": [
+          {
+            "quantity": "one",
+            "value": "There is %d apple in the %s, the total amount is %f kg."
+          },
+          {
+            "quantity": "other",
+            "value": "There are %d apples in the %s, the total amount is %f kg."
+          }
+        ]
+      }
+    ]
+  }
+  ```
   ```ts
-import { resourceManager } from '@kit.LocalizationKit'
-import { BusinessError } from '@kit.BasicServicesKit';
+  import { resourceManager } from '@kit.LocalizationKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
-let resource: resourceManager.Resource = {
-	bundleName: "com.example.myapplication",
-	moduleName: "entry",
-	id: $r('app.plural.format_test').id
-};
-try {
-    // 参数num取值为1，根据语言单复数规则对应的quantity为one, 因此在资源$r('app.plural.format_test')中取quantity为one的字符串
-	this.context.resourceManager.getIntPluralStringValueSync(resource, 1, 1, "aaa", 1.1);
-} catch (error) {
-	let code = (error as BusinessError).code;
-	let message = (error as BusinessError).message;
-	console.error(`getIntPluralStringValueSync failed, error code: ${code}, message: ${message}.`);
-}
+  let resource: resourceManager.Resource = {
+    bundleName: "com.example.myapplication",
+    moduleName: "entry",
+    id: $r('app.plural.format_test').id
+  };
+
+  try {
+    // 根据语言单复数规则，参数num取值为1，英文环境下对应单复数类别为one
+    // 在资源文件中用quantity字段表示单复数类别，因此会获取quantity为one的字符串
+    let pluralStr = this.context.resourceManager.getIntPluralStringValueSync(resource, 1, 1, "basket", 0.3);
+    console.log(`getIntPluralStringValueSync, result: ${pluralStr}`);
+    // 打印输出结果: getIntPluralStringValueSync, result: There is 1 apple in the basket, the total amount is 0.3 kg.
+  } catch (error) {
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`getIntPluralStringValueSync failed, error code: ${code}, message: ${message}.`);
+  }
   ```
 
 ### getIntPluralStringByNameSync<sup>18+</sup>
 
-getIntPluralStringByNameSync(resName: string, num: number, ...args: Array<string | number>): string;
+getIntPluralStringByNameSync(resName: string, num: number, ...args: Array<string | number>): string
 
-获取指定资源名称的单复数字符串。
+获取指定资源名称对应的[单复数](../../internationalization/l10n-singular-plural.md)字符串，并根据args参数对字符串进行格式化，使用同步方式返回。
 
 > **说明**
 >
-> 中文环境下，字符串不区分单复数；英文环境下，字符串区分单复数。
+> 中文环境下，字符串不区分单复数；其他语言环境下，字符串区分单复数，具体规则参考[语言单复数规则](https://www.unicode.org/cldr/charts/45/supplemental/language_plural_rules.html)。
 
-**原子化服务API**：从API version 18开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Global.ResourceManager
+**系统能力：** SystemCapability.Global.ResourceManager
 
 **参数：** 
 
 | 参数名  | 类型                    | 必填 | 说明                                                         |
 | ------- | ----------------------- | ---- | ------------------------------------------------------------ |
 | resName | string                  | 是   | 资源名称。                                                   |
-| num     | number                  | 是   | 数量值（整数）。根据当前语言的复数规则获取该数量值对应的字符串数字，语言的复数规则参见[语言单复数规则](https://www.unicode.org/cldr/charts/45/supplemental/language_plural_rules.html)。 |
-| ...args | Array<string \| number> | 否   | 格式化字符串资源参数。<br>支持参数类型：%d、%f、%s、%%、%数字`$d`、%数字`$f`、%数字`$s`。<br>说明：%%转义为%; %数字`$d`表示使用第几个参数。<br>举例：%%d格式化后为%d字符串; %1`$d`表示使用第一个参数。 |
+| num     | number                  | 是   | 数量值（整数）。根据当前语言的[单复数规则](https://www.unicode.org/cldr/charts/45/supplemental/language_plural_rules.html)获取该数量值对应的字符串。 |
+| ...args | Array<string \| number> | 否   | 格式化字符串资源参数。<br>支持参数类型：`%d`、`%f`、`%s`、`%%`、`%数字$d`、`%数字$f`、`%数字$s`。<br>说明：`%%`转义为`%`; `%数字$d`中的数字表示使用args中的第几个参数。<br>举例：`%%d`格式化后为`%d`字符串; `%1$d`表示使用第一个参数。 |
 
 **返回值：**
 
 | 类型   | 说明                                 |
 | ------ | ------------------------------------ |
-| string | 获取指定资源名称表示的单复数字符串。 |
+| string | 资源名称对应的格式化单复数字符串。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -1652,52 +1809,73 @@ getIntPluralStringByNameSync(resName: string, num: number, ...args: Array<string
 | 9001006  | The resource is referenced cyclically.                       |
 | 9001008  | Failed to format the resource obtained based on the resource name. |
 
-**示例：** 
-
+**示例：**
+  ```json
+  {
+    "plural": [
+      {
+        "name": "format_test",
+        "value": [
+          {
+            "quantity": "one",
+            "value": "There is %d apple in the %s, the total amount is %f kg."
+          },
+          {
+            "quantity": "other",
+            "value": "There are %d apples in the %s, the total amount is %f kg."
+          }
+        ]
+      }
+    ]
+  }
+  ```
   ```ts
-import { BusinessError } from '@kit.BasicServicesKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
-try {
-    // 参数num取值为1，根据语言单复数规则对应的quantity为one, 因此在资源$r('app.plural.format_test')中取quantity为one的字符串
-	this.context.resourceManager.getIntPluralStringByNameSync("format_test", 1, 1, "aaa", 1.1);
-} catch (error) {
-	let code = (error as BusinessError).code;
+  try {
+    // 根据语言单复数规则，参数num取值为1，英文环境下对应单复数类别为one
+    // 在资源文件中用quantity字段表示单复数类别，因此会获取quantity为one的字符串
+    let pluralStr = this.context.resourceManager.getIntPluralStringByNameSync("format_test", 1, 1, "basket", 0.3);
+    console.log(`getIntPluralStringByNameSync, result: ${pluralStr}`);
+    // 打印输出结果: getIntPluralStringByNameSync, result: There is 1 apple in the basket, the total amount is 0.3 kg.
+  } catch (error) {
+    let code = (error as BusinessError).code;
     let message = (error as BusinessError).message;
-	console.error(`getIntPluralStringByNameSync failed, error code: ${code}, message: ${message}.`);
-}
+    console.error(`getIntPluralStringByNameSync failed, error code: ${code}, message: ${message}.`);
+  }
   ```
 
 ### getDoublePluralStringValueSync<sup>18+</sup>
 
-getDoublePluralStringValueSync(resId: number, num: number, ...args: Array<string | number>): string;
+getDoublePluralStringValueSync(resId: number, num: number, ...args: Array<string | number>): string
 
-获取指定资源ID的单复数字符串。
+获取指定资源ID对应的[单复数](../../internationalization/l10n-singular-plural.md)字符串，并根据args参数对字符串进行格式化，使用同步方式返回。
 
 > **说明**
 >
-> 中文环境下，字符串不区分单复数；英文环境下，字符串区分单复数。
+> 中文环境下，字符串不区分单复数；其他语言环境下，字符串区分单复数，具体规则参考[语言单复数规则](https://www.unicode.org/cldr/charts/45/supplemental/language_plural_rules.html)。
 
-**原子化服务API**：从API version 18开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Global.ResourceManager
+**系统能力：** SystemCapability.Global.ResourceManager
 
 **参数：** 
 
 | 参数名  | 类型                    | 必填 | 说明                                                         |
 | ------- | ----------------------- | ---- | ------------------------------------------------------------ |
 | resId   | number                  | 是   | 资源ID值。                                                   |
-| num     | number                  | 是   | 数量值（浮点数）。根据当前语言的复数规则获取该数量值对应的字符串数字，语言的复数规则参见[语言单复数规则](https://www.unicode.org/cldr/charts/45/supplemental/language_plural_rules.html)。 |
-| ...args | Array<string \| number> | 否   | 格式化字符串资源参数。<br>支持参数类型：%d、%f、%s、%%、%数字`$d`、%数字`$f`、%数字`$s`。<br>说明：%%转义为%; %数字`$d`表示使用第几个参数。<br>举例：%%d格式化后为%d字符串; %1`$d`表示使用第一个参数。 |
+| num     | number                  | 是   | 数量值（浮点数）。根据当前语言的[单复数规则](https://www.unicode.org/cldr/charts/45/supplemental/language_plural_rules.html)获取该数量值对应的字符串。 |
+| ...args | Array<string \| number> | 否   | 格式化字符串资源参数。<br>支持参数类型：`%d`、`%f`、`%s`、`%%`、`%数字$d`、`%数字$f`、`%数字$s`。<br>说明：`%%`转义为`%`; `%数字$d`中的数字表示使用args中的第几个参数。<br>举例：`%%d`格式化后为`%d`字符串; `%1$d`表示使用第一个参数。 |
 
 **返回值：**
 
 | 类型   | 说明                             |
 | ------ | -------------------------------- |
-| string | 指定ID字符串表示的单复数字符串。 |
+| string | 资源ID值对应的格式化单复数字符串。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -1706,54 +1884,75 @@ getDoublePluralStringValueSync(resId: number, num: number, ...args: Array<string
 | 9001006  | The resource is referenced cyclically.                       |
 | 9001007  | Failed to format the resource obtained based on the resource ID. |
 
-**示例：** 
-
+**示例：**
+  ```json
+  {
+    "plural": [
+      {
+        "name": "format_test",
+        "value": [
+          {
+            "quantity": "one",
+            "value": "There is %d apple in the %s, the total amount is %f kg."
+          },
+          {
+            "quantity": "other",
+            "value": "There are %d apples in the %s, the total amount is %f kg."
+          }
+        ]
+      }
+    ]
+  }
+  ```
   ```ts
-import { BusinessError } from '@kit.BasicServicesKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
-try {
-    // 参数num取值为2.1，根据语言单复数规则对应的quantity为other, 因此在资源$r('app.plural.format_test')中取quantity为other的字符串
-	this.context.resourceManager.getDoublePluralStringValueSync($r('app.plural.format_test').id, 2.1, 2, "aaa", 1.1);
-} catch (error) {
-	let code = (error as BusinessError).code;
-	let message = (error as BusinessError).message;
-	console.error(`getDoublePluralStringValueSync failed, error code: ${code}, message: ${message}.`);
-}
+  try {
+    // 根据语言单复数规则，参数num取值为2.1，英文环境下对应单复数类别为other
+    // 在资源文件中用quantity字段表示单复数类别，因此会获取quantity为other的字符串
+    let pluralStr = this.context.resourceManager.getDoublePluralStringValueSync($r('app.plural.format_test').id, 2.1, 2, "basket", 0.6);
+    console.log(`getDoublePluralStringValueSync, result: ${pluralStr}`);
+    // 打印输出结果: getDoublePluralStringValueSync, result: There are 2 apples in the basket, the total amount is 0.6 kg.
+  } catch (error) {
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`getDoublePluralStringValueSync failed, error code: ${code}, message: ${message}.`);
+  }
   ```
 
 ### getDoublePluralStringValueSync<sup>18+</sup>
 
-getDoublePluralStringValueSync(resource: Resource, num: number, ...args: Array<string | number>): string;
+getDoublePluralStringValueSync(resource: Resource, num: number, ...args: Array<string | number>): string
 
-获取指定资源信息的单复数字符串。
+获取指定resource对象对应的[单复数](../../internationalization/l10n-singular-plural.md)字符串，并根据args参数对字符串进行格式化，使用同步方式返回。
 
 > **说明**
 >
-> 中文环境下，字符串不区分单复数；英文环境下，字符串区分单复数。
+> 中文环境下，字符串不区分单复数；其他语言环境下，字符串区分单复数，具体规则参考[语言单复数规则](https://www.unicode.org/cldr/charts/45/supplemental/language_plural_rules.html)。
 
-**原子化服务API**：从API version 18开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Global.ResourceManager
+**系统能力：** SystemCapability.Global.ResourceManager
 
-**模型约束**：此接口仅可在Stage模型下使用。
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：** 
 
 | 参数名   | 类型                    | 必填 | 说明                                                         |
 | -------- | ----------------------- | ---- | ------------------------------------------------------------ |
 | resource | [Resource](#resource9)  | 是   | 资源信息。                                                   |
-| num      | number                  | 是   | 数量值（浮点数）。根据当前语言的复数规则获取该数量值对应的字符串数字，语言的复数规则参见[语言单复数规则](https://www.unicode.org/cldr/charts/45/supplemental/language_plural_rules.html)。 |
-| ...args  | Array<string \| number> | 否   | 格式化字符串资源参数。<br>支持参数类型：%d、%f、%s、%%、%数字`$d`、%数字`$f`、%数字`$s`。<br>说明：%%转义为%; %数字`$d`表示使用第几个参数。<br>举例：%%d格式化后为%d字符串; %1`$d`表示使用第一个参数。 |
+| num      | number                  | 是   | 数量值（浮点数）。根据当前语言的[单复数规则](https://www.unicode.org/cldr/charts/45/supplemental/language_plural_rules.html)获取该数量值对应的字符串。 |
+| ...args  | Array<string \| number> | 否   | 格式化字符串资源参数。<br>支持参数类型：`%d`、`%f`、`%s`、`%%`、`%数字$d`、`%数字$f`、`%数字$s`。<br>说明：`%%`转义为`%`; `%数字$d`中的数字表示使用args中的第几个参数。<br>举例：`%%d`格式化后为`%d`字符串; `%1$d`表示使用第一个参数。 |
 
 **返回值：**
 
 | 类型   | 说明                                     |
 | ------ | ---------------------------------------- |
-| string | 获取指定resource对象表示的单复数字符串。 |
+| string | resource对象对应的格式化单复数字符串。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -1762,58 +1961,80 @@ getDoublePluralStringValueSync(resource: Resource, num: number, ...args: Array<s
 | 9001006  | The resource is referenced cyclically.                       |
 | 9001007  | Failed to format the resource obtained based on the resource ID. |
 
-**示例：** 
-
+**示例：**
+  ```json
+  {
+    "plural": [
+      {
+        "name": "format_test",
+        "value": [
+          {
+            "quantity": "one",
+            "value": "There is %d apple in the %s, the total amount is %f kg."
+          },
+          {
+            "quantity": "other",
+            "value": "There are %d apples in the %s, the total amount is %f kg."
+          }
+        ]
+      }
+    ]
+  }
+  ```
   ```ts
-import { resourceManager } from '@kit.LocalizationKit'
-import { BusinessError } from '@kit.BasicServicesKit';
+  import { resourceManager } from '@kit.LocalizationKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
-let resource: resourceManager.Resource = {
-	bundleName: "com.example.myapplication",
-	moduleName: "entry",
-	id: $r('app.plural.format_test').id
-};
-try {
-    // 参数num取值为2.1，根据语言单复数规则对应的quantity为other, 因此在资源$r('app.plural.format_test')中取quantity为other的字符串
-	this.context.resourceManager.getDoublePluralStringValueSync(resource, 2.1, 2, "aaa", 1.1);
-} catch (error) {
-	let code = (error as BusinessError).code;
-	let message = (error as BusinessError).message;
-	console.error(`getDoublePluralStringValueSync failed, error code: ${code}, message: ${message}.`);
-}
+  let resource: resourceManager.Resource = {
+    bundleName: "com.example.myapplication",
+    moduleName: "entry",
+    id: $r('app.plural.format_test').id
+  };
+
+  try {
+    // 根据语言单复数规则，参数num取值为2.1，英文环境下对应单复数类别为other
+    // 在资源文件中用quantity字段表示单复数类别，因此会获取quantity为other的字符串
+    let pluralStr = this.context.resourceManager.getDoublePluralStringValueSync(resource, 2.1, 2, "basket", 0.6);
+    console.log(`getDoublePluralStringValueSync, result: ${pluralStr}`);
+    // 打印输出结果: getIntPluralStringValueSync, result: There are 2 apples in the basket, the total amount is 0.6 kg.
+  } catch (error) {
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`getDoublePluralStringValueSync failed, error code: ${code}, message: ${message}.`);
+  }
   ```
 
 ### getDoublePluralStringByNameSync<sup>18+</sup>
 
-getDoublePluralStringByNameSync(resName: string, num: number, ...args: Array<string | number>): string;
+getDoublePluralStringByNameSync(resName: string, num: number, ...args: Array<string | number>): string
 
-获取指定资源名称的单复数字符串。
+获取指定资源名称对应的[单复数](../../internationalization/l10n-singular-plural.md)字符串，并根据args参数对字符串进行格式化，使用同步方式返回。
 
 > **说明**
 >
-> 中文环境下，字符串不区分单复数；英文环境下，字符串区分单复数。
+> 中文环境下，字符串不区分单复数；其他语言环境下，字符串区分单复数，具体规则参考[语言单复数规则](https://www.unicode.org/cldr/charts/45/supplemental/language_plural_rules.html)。
 
-**原子化服务API**：从API version 18开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Global.ResourceManager
+**系统能力：** SystemCapability.Global.ResourceManager
 
 **参数：** 
 
 | 参数名  | 类型                    | 必填 | 说明                                                         |
 | ------- | ----------------------- | ---- | ------------------------------------------------------------ |
 | resName | string                  | 是   | 资源名称。                                                   |
-| num     | number                  | 是   | 数量值（浮点数）。根据当前语言的复数规则获取该数量值对应的字符串数字，语言的复数规则参见[语言单复数规则](https://www.unicode.org/cldr/charts/45/supplemental/language_plural_rules.html)。 |
-| ...args | Array<string \| number> | 否   | 格式化字符串资源参数。<br>支持参数类型：%d、%f、%s、%%、%数字`$d`、%数字`$f`、%数字`$s`。<br>说明：%%转义为%; %数字`$d`表示使用第几个参数。<br>举例：%%d格式化后为%d字符串; %1`$d`表示使用第一个参数。 |
+| num     | number                  | 是   | 数量值（浮点数）。根据当前语言的[单复数规则](https://www.unicode.org/cldr/charts/45/supplemental/language_plural_rules.html)获取该数量值对应的字符串。 |
+| ...args | Array<string \| number> | 否   | 格式化字符串资源参数。<br>支持参数类型：`%d`、`%f`、`%s`、`%%`、`%数字$d`、`%数字$f`、`%数字$s`。<br>说明：`%%`转义为`%`; `%数字$d`中的数字表示使用args中的第几个参数。<br>举例：`%%d`格式化后为`%d`字符串; `%1$d`表示使用第一个参数。 |
 
 **返回值：**
 
 | 类型   | 说明                             |
 | ------ | -------------------------------- |
-| string | 指定资源名称表示的单复数字符串。 |
+| string | 资源名称对应的格式化单复数字符串。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -1822,19 +2043,40 @@ getDoublePluralStringByNameSync(resName: string, num: number, ...args: Array<str
 | 9001006  | The resource is referenced cyclically.                       |
 | 9001008  | Failed to format the resource obtained based on the resource name. |
 
-**示例：** 
-
+**示例：**
+  ```json
+  {
+    "plural": [
+      {
+        "name": "format_test",
+        "value": [
+          {
+            "quantity": "one",
+            "value": "There is %d apple in the %s, the total amount is %f kg."
+          },
+          {
+            "quantity": "other",
+            "value": "There are %d apples in the %s, the total amount is %f kg."
+          }
+        ]
+      }
+    ]
+  }
+  ```
   ```ts
-import { BusinessError } from '@kit.BasicServicesKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
-try {
-    // 参数num取值为2.1，根据语言单复数规则对应的quantity为other, 因此在资源$r('app.plural.format_test')中取quantity为other的字符串
-	this.context.resourceManager.getDoublePluralStringByNameSync("format_test", 2.1, 2, "aaa", 1.1);
-} catch (error) {
-	let code = (error as BusinessError).code;
-	let message = (error as BusinessError).message;
-	console.error(`getDoublePluralStringByNameSync failed, error code: ${code}, message: ${message}.`);
-}
+  try {
+    // 根据语言单复数规则，参数num取值为2.1，英文环境下对应单复数类别为other
+    // 在资源文件中用quantity字段表示单复数类别，因此会获取quantity为other的字符串
+    let pluralStr = this.context.resourceManager.getDoublePluralStringByNameSync("format_test", 2.1, 2, "basket", 0.6);
+    console.log(`getDoublePluralStringByNameSync, result: ${pluralStr}`);
+    // 打印输出结果: getIntPluralStringValueSync, result: There are 2 apples in the basket, the total amount is 0.6 kg.
+  } catch (error) {
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`getDoublePluralStringByNameSync failed, error code: ${code}, message: ${message}.`);
+  }
   ```
 
 ### getMediaContentSync<sup>10+</sup>
