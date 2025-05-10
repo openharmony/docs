@@ -47,10 +47,10 @@ PinchGesture(value?: { fingers?: number, distance?: number })
 @Entry
 @Component
 struct PinchGestureExample {
-  @State scaleValue: number = 1
-  @State pinchValue: number = 1
-  @State pinchX: number = 0
-  @State pinchY: number = 0
+  @State scaleValue: number = 1;
+  @State pinchValue: number = 1;
+  @State pinchX: number = 0;
+  @State pinchY: number = 0;
 
   build() {
     Column() {

@@ -350,12 +350,12 @@ type GestureRecognizerJudgeBeginCallback = (event: BaseGestureEvent, current: Ge
 @Entry
 @Component
 struct FatherControlChild {
-  scroller: Scroller = new Scroller()
+  scroller: Scroller = new Scroller();
   scroller2: Scroller = new Scroller()
-  private arr: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
-  private childRecognizer: GestureRecognizer = new GestureRecognizer()
-  private currentRecognizer: GestureRecognizer = new GestureRecognizer()
-  private lastOffset: number = 0
+  private arr: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+  private childRecognizer: GestureRecognizer = new GestureRecognizer();
+  private currentRecognizer: GestureRecognizer = new GestureRecognizer();
+  private lastOffset: number = 0;
 
   build() {
     Stack({ alignContent: Alignment.TopStart }) {
@@ -512,11 +512,11 @@ struct FatherControlChild {
 @Entry
 @Component
 struct Index {
-  @State currentIndex: number = 0
-  @State selectedIndex: number = 0
-  @State fontColor: string = '#182431'
-  @State selectedFontColor: string = '#007DFF'
-  innerSelectedIndex: number = 0 // 记录内层Tabs的索引
+  @State currentIndex: number = 0;
+  @State selectedIndex: number = 0;
+  @State fontColor: string = '#182431';
+  @State selectedFontColor: string = '#007DFF';
+  innerSelectedIndex: number = 0; // 记录内层Tabs的索引
   controller?: TabsController = new TabsController();
   @Builder
   tabBuilder(index: number, name: string) {
