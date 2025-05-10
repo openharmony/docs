@@ -24,7 +24,7 @@ import { inputConsumer, KeyEvent } from '@kit.InputKit';
 | --------- | ------ | ------- | ------- | ------- |
 | preKeys   | Array&lt;number&gt; | 是      | 否      | 修饰键（包括 Ctrl、Shift 和 Alt）集合，数量范围[1, 2]，无顺序要求。<br>例如，Ctrl+Shift+Esc中，Ctrl+Shift称为修饰键。<br>默认值为 []（空数组），表示无修饰键。 |
 | finalKey  | number  | 是      | 否      | 被修饰键，除修饰键和 Meta 以外的按键，详细按键介绍请参见[按键全集](js-apis-keycode.md)。<br>例如，Ctrl+Shift+Esc中，Esc称为被修饰键。 |
-| isRepeat  | boolean  | 是      | 否      | 是否上报短时间内重复的按键事件。true表示上报，false表示不上报，默认值为true。 |
+| isRepeat  | boolean  | 是      | 否      | 是否上报重复的按键事件。true表示上报，false表示不上报，若缺省，默认值为true。 |
 
 ## KeyPressedConfig<sup>16+</sup>
 
@@ -36,13 +36,13 @@ import { inputConsumer, KeyEvent } from '@kit.InputKit';
 | --------- | ------ | ------- | ------- | ------- |
 | key       | number  | 是      | 否      | 按键键值。<br>当前仅支持[KEYCODE_VOLUME_UP](js-apis-keycode.md#keycode)键和[KEYCODE_VOLUME_DOWN](js-apis-keycode.md#keycode)键。 |
 | action    | number  | 是      | 否      | 按键事件类型。当前仅支持取值为1，表示按键按下。 |
-| isRepeat  | boolean  | 是      | 否      | 是否上报短时间内重复的按键事件。true表示上报，false表示不上报，默认值为true。 |
+| isRepeat  | boolean  | 是      | 否      | 是否上报重复的按键事件。true表示上报，false表示不上报，若缺省，默认值为true。 |
 
 ## inputConsumer.getAllSystemHotkeys
 
 getAllSystemHotkeys(): Promise&lt;Array&lt;HotkeyOptions&gt;&gt;
 
-获取所有系统快捷键，使用Promise异步回调。
+获取所有全局快捷键，使用Promise异步回调。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.InputConsumer
 
@@ -50,7 +50,7 @@ getAllSystemHotkeys(): Promise&lt;Array&lt;HotkeyOptions&gt;&gt;
 
 | 类型         |  说明                                       |
 | ---------- |  ---------------------------------------- |
-| Promise&lt;Array&lt;HotkeyOptions&gt;&gt;                    | Promise对象，返回所有系统快捷键的列表。 |
+| Promise&lt;Array&lt;HotkeyOptions&gt;&gt;                    | Promise对象，返回所有全局快捷键的列表。 |
 
 **错误码**：
 
@@ -63,14 +63,9 @@ getAllSystemHotkeys(): Promise&lt;Array&lt;HotkeyOptions&gt;&gt;
 **示例：**
 
 ```js
-inputConsumer.getAllSystemHotkeys()
-  .then((data: Array<inputConsumer.HotkeyOptions>) => {
-    console.log(`List of system hotkeys : ${JSON.stringify(data)}`);
-  })
-  .catch((error) => {
-    console.error("Error fetching system hotkeys:", error);
-  });
-
+inputConsumer.getAllSystemHotkeys().then((data: Array<inputConsumer.HotkeyOptions>) => {
+  console.log(`List of system hotkeys : ${JSON.stringify(data)}`);
+});
 ```
 
 ## inputConsumer.on('hotkeyChange')
@@ -95,7 +90,7 @@ on(type: 'hotkeyChange', hotkeyOptions: HotkeyOptions, callback: Callback&lt;Hot
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
-| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 801 | Capability not supported. |
 | 4200002  | The hotkey has been used by the system. |
 | 4200003  | The hotkey has been subscribed to by another. |
@@ -134,7 +129,7 @@ off(type: 'hotkeyChange', hotkeyOptions: HotkeyOptions, callback?: Callback&lt;H
 | ---------- | -------------------------- | ---- | ---------- |
 | type       | string                     | 是    | 事件类型，固定取值为'hotkeyChange'。        |
 | hotkeyOptions | [HotkeyOptions](#hotkeyoptions14) | 是    | 快捷键选项。             |
-| callback   | Callback&lt;HotkeyOptions&gt; | 否    | 需要取消订阅的回调函数。若缺省，则取消当前已订阅的所有回调函数。 |
+| callback   | Callback&lt;HotkeyOptions&gt; | 否    | 需要取消订阅的回调函数。若缺省，则取消当前应用全局快捷键选项已订阅的所有回调函数。 |
 
 **错误码**：
 
@@ -142,7 +137,7 @@ off(type: 'hotkeyChange', hotkeyOptions: HotkeyOptions, callback?: Callback&lt;H
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
-| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 801 | Capability not supported. |
 
 **示例：**
@@ -194,8 +189,8 @@ on(type: 'keyPressed', options: KeyPressedConfig, callback: Callback&lt;KeyEvent
 | 参数名         | 类型                                | 必填  | 说明                              |
 | ---------- | --------------------------             | ----  | ---------- |
 | type       | string                                 | 是     | 事件类型，固定取值为'keyPressed'。        |
-| options    | [KeyPressedConfig](#keypressedconfig16)| 是     | 设置按键事件的消费方式，仅支持按键按下事件。           |
-| callback   | Callback&lt;[KeyEvent](./js-apis-keyevent.md#keyevent)&gt; | 是    | 用于返回按键事件的回调函数。 |
+| options    | [KeyPressedConfig](#keypressedconfig16)| 是     | 设置按键事件的消费方式，仅支持物理按键按下事件。           |
+| callback   | Callback&lt;[KeyEvent](./js-apis-keyevent.md#keyevent)&gt; | 是    | 回调函数，用于返回按键事件。 |
 
 **错误码**：
 
@@ -203,7 +198,7 @@ on(type: 'keyPressed', options: KeyPressedConfig, callback: Callback&lt;KeyEvent
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
-| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 801 | Capability not supported. |
 
 **示例：**
@@ -244,7 +239,7 @@ off(type: 'keyPressed', callback?: Callback&lt;KeyEvent&gt;): void
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
-| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 801 | Capability not supported. |
 
 **示例：**
