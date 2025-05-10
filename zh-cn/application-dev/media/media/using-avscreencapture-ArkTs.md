@@ -106,12 +106,21 @@
     2in1设备配置displayId为扩展屏Id，可拉起录屏窗口选择界面，用户在界面上选择录屏内容，最终录屏内容以用户在弹窗界面上的选择为准。
 
     ```javascript
+    // 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+    context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+
+    public getFileFd(): number {
+      let filesDir = this.context.filesDir;
+      let file = fs.openSync(filesDir + '/screenCapture.mp4', fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
+      return file.fd;
+    }
+
     captureConfig: media.AVScreenCaptureRecordConfig = {
         // 开发者可以根据自身的需要设置宽高。
         frameWidth: 768,
         frameHeight: 1280,
-        // 参考应用文件访问与管理开发示例新建并读写一个文件fd。
-        fd: 0,
+        // 参考应用文件访问与管理开发示例[新建并读写一个文件fd](../../file-management/app-file-access.md)。
+        fd: this.getFileFd(),
         // 可选参数及其默认值。
         videoBitrate: 10000000,
         audioSampleRate: 48000,
@@ -166,12 +175,14 @@ import media from '@ohos.multimedia.media';
 
 export class AVScreenCaptureDemo {
   private screenCapture?: media.AVScreenCaptureRecorder;
+  // 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+  context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   captureConfig: media.AVScreenCaptureRecordConfig = {
     // 开发者可以根据自身的需要设置宽高。
     frameWidth: 768,
     frameHeight: 1280,
-    // 参考应用文件访问与管理开发示例新建并读写一个文件fd。
-    fd: 0,
+    // 参考应用文件访问与管理开发示例[新建并读写一个文件fd](../../file-management/app-file-access.md)。
+    fd: this.getFileFd(),
     // 可选参数及其默认值。
     videoBitrate: 10000000,
     audioSampleRate: 48000,
@@ -180,6 +191,12 @@ export class AVScreenCaptureDemo {
     displayId: 0,
     preset: media.AVScreenCaptureRecordPreset.SCREEN_RECORD_PRESET_H264_AAC_MP4
   };
+
+  public getFileFd(): number {
+    let filesDir = this.context.filesDir;
+    let file = fs.openSync(filesDir + '/screenCapture.mp4', fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
+    return file.fd;
+  }
 
   // 调用startRecording方法可以开始一次录屏存文件的流程，结束录屏可以通过点击录屏胶囊停止按钮进行操作。
   public async startRecording() {

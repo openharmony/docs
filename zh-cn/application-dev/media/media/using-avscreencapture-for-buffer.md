@@ -188,7 +188,7 @@ config_.videoInfo.videoCapInfo.missionIDsLen = static_cast<int32_t>(missionIds.s
 
     // 设置录屏模式为OH_CAPTURE_HOME_SCREEN，传入屏幕Id。
     config_.captureMode = OH_CAPTURE_HOME_SCREEN;
-    config_.videoInfo.videoCapInfo.displayId = 0;
+    // OH_CAPTURE_HOME_SCREEN模式下，配置的videoCapInfo.displayId不会生效，默认使用主屏displayId。
     ```
 
 ## 详细说明
