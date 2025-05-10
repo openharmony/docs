@@ -3833,11 +3833,11 @@ getDrawableDescriptorByName(resName: string, density?: number, type?: number): D
 
 getBoolean(resId: number): boolean
 
-使用同步方式，返回获取指定资源ID对应的布尔结果。
+获取指定资源ID值对应的布尔值，使用同步方式返回。
 
-**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Global.ResourceManager
+**系统能力：** SystemCapability.Global.ResourceManager
 
 **参数：** 
 
@@ -3849,7 +3849,7 @@ getBoolean(resId: number): boolean
 
 | 类型      | 说明           |
 | ------- | ------------ |
-| boolean | 资源ID值对应的布尔结果。 |
+| boolean | 资源ID值对应的布尔值。 |
 
 **错误码：**
 
@@ -3862,12 +3862,24 @@ getBoolean(resId: number): boolean
 | 9001002  | No matching resource is found based on the resource ID.         |
 | 9001006  | The resource is referenced cyclically.            |
 
-**示例：** 
+**示例：**
+  ```json
+  {
+    "boolean": [
+      {
+        "name": "boolean_test",
+        "value": true
+      }
+    ]
+  }
+  ```
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
-    this.context.resourceManager.getBoolean($r('app.boolean.boolean_test').id);
+    let boolTest = this.context.resourceManager.getBoolean($r('app.boolean.boolean_test').id);
+    console.log(`getBoolean, result: ${boolTest}`);
+    // 打印输出结果: getBoolean, result: true
   } catch (error) {
     let code = (error as BusinessError).code;
     let message = (error as BusinessError).message;
@@ -3878,13 +3890,13 @@ getBoolean(resId: number): boolean
 
 getBoolean(resource: Resource): boolean
 
-使用同步方式，返回获取指定resource对象对应的布尔结果。
+获取指定resource对象对应的布尔值，使用同步方式返回。
 
-**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Global.ResourceManager
+**系统能力：** SystemCapability.Global.ResourceManager
 
-**模型约束**：此接口仅可在Stage模型下使用。
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：** 
 
@@ -3896,7 +3908,7 @@ getBoolean(resource: Resource): boolean
 
 | 类型      | 说明                |
 | ------- | ----------------- |
-| boolean | resource对象对应的布尔结果。 |
+| boolean | resource对象对应的布尔值。 |
 
 **错误码：**
 
@@ -3909,9 +3921,19 @@ getBoolean(resource: Resource): boolean
 | 9001002  | No matching resource is found based on the resource ID.         |
 | 9001006  | The resource is referenced cyclically.            |
 
-**示例：** 
+**示例：**
+  ```json
+  {
+    "boolean": [
+      {
+        "name": "boolean_test",
+        "value": true
+      }
+    ]
+  }
+  ```
   ```ts
-  import { resourceManager } from '@kit.LocalizationKit'
+  import { resourceManager } from '@kit.LocalizationKit';
   import { BusinessError } from '@kit.BasicServicesKit';
 
   let resource: resourceManager.Resource = {
@@ -3920,7 +3942,9 @@ getBoolean(resource: Resource): boolean
     id: $r('app.boolean.boolean_test').id
   };
   try {
-    this.context.resourceManager.getBoolean(resource);
+    let boolTest = this.context.resourceManager.getBoolean(resource);
+    console.log(`getBoolean, result: ${boolTest}`);
+    // 打印输出结果: getBoolean, result: true
   } catch (error) {
     let code = (error as BusinessError).code;
     let message = (error as BusinessError).message;
@@ -3932,11 +3956,11 @@ getBoolean(resource: Resource): boolean
 
 getBooleanByName(resName: string): boolean
 
-使用同步方式，返回获取指定资源名称对应的布尔结果。
+获取指定资源名称对应的布尔值，使用同步方式返回。
 
-**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Global.ResourceManager
+**系统能力：** SystemCapability.Global.ResourceManager
 
 **参数：** 
 
@@ -3948,7 +3972,7 @@ getBooleanByName(resName: string): boolean
 
 | 类型      | 说明          |
 | ------- | ----------- |
-| boolean | 资源名称对应的布尔结果。 |
+| boolean | 资源名称对应的布尔值。 |
 
 **错误码：**
 
@@ -3961,12 +3985,24 @@ getBooleanByName(resName: string): boolean
 | 9001004  | No matching resource is found based on the resource name.       |
 | 9001006  | The resource is referenced cyclically.            |
 
-**示例：** 
+**示例：**
+  ```json
+  {
+    "boolean": [
+      {
+        "name": "boolean_test",
+        "value": true
+      }
+    ]
+  }
+  ```
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
-    this.context.resourceManager.getBooleanByName("boolean_test");
+    let boolTest = this.context.resourceManager.getBooleanByName("boolean_test");
+    console.log(`getBooleanByName, result: ${boolTest}`);
+    // 打印输出结果: getBooleanByName, result: true
   } catch (error) {
     let code = (error as BusinessError).code;
     let message = (error as BusinessError).message;
@@ -3978,11 +4014,11 @@ getBooleanByName(resName: string): boolean
 
 getNumber(resId: number): number
 
-用户获取指定资源ID对应的integer数值或者float数值，使用同步方式返回。
+获取指定资源ID对应的integer数值或者float数值，使用同步方式返回。
 
-**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Global.ResourceManager
+**系统能力：** SystemCapability.Global.ResourceManager
 
 **参数：** 
 
@@ -3994,7 +4030,7 @@ getNumber(resId: number): number
 
 | 类型     | 说明         |
 | ------ | ---------- | 
-| number | 资源ID值对应的数值。integer对应的是原数值，float对应的是真实像素点值，具体参考示例代码。 |
+| number | 资源ID值对应的数值。<br>integer对应的是原数值，float不带单位时对应的是原数值，带"vp","fp"单位时对应的是px值，具体参考示例代码。 |
 
 **错误码：**
 
@@ -4007,12 +4043,37 @@ getNumber(resId: number): number
 | 9001002  | No matching resource is found based on the resource ID.         |
 | 9001006  | The resource is referenced cyclically.            |
 
-**示例：** 
+**示例：**
+  ```json
+  {
+    "integer": [
+      {
+        "name": "integer_test",
+        "value": 100
+      }
+    ]
+  }
+  ```
+
+  ```json
+  {
+    "float": [
+      {
+        "name": "float_test",
+        "value": "30.6vp"
+      }
+    ]
+  }
+  ```
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
+  import { display } from '@kit.ArkUI';
 
   try {
-    this.context.resourceManager.getNumber($r('app.integer.integer_test').id); // integer对应返回的是原数值
+    // integer对应返回的是原数值
+    let intValue = this.context.resourceManager.getNumber($r('app.integer.integer_test').id);
+    console.log(`getNumber, int value: ${intValue}`);
+    // 打印输出结果: getNumber, int value: 100
   } catch (error) {
     let code = (error as BusinessError).code;
     let message = (error as BusinessError).message;
@@ -4020,7 +4081,10 @@ getNumber(resId: number): number
   }
 
   try {
-    this.context.resourceManager.getNumber($r('app.float.float_test').id); // float对应返回的是真实像素点值
+    // float对应返回的是真实像素点值，带"vp","fp"单位的像素值 = 原数值 * densityPixels
+    let floatValue = this.context.resourceManager.getNumber($r('app.float.float_test').id);
+    console.log(`getNumber, densityPixels: ${display.getDefaultDisplaySync().densityPixels}, float value: ${floatValue}`);
+    // 打印输出结果: getNumber, densityPixels: 3.25, float value: 99.45000457763672
   } catch (error) {
     let code = (error as BusinessError).code;
     let message = (error as BusinessError).message;
@@ -4032,17 +4096,17 @@ getNumber(resId: number): number
 
 getNumber(resource: Resource): number
 
-用户获取指定resource对象对应的integer数值或者float数值，使用同步方式返回。
+获取指定resource对象对应的integer数值或者float数值，使用同步方式返回。
 
 > **说明**
 >
 > 使用接口获取单位为"vp"的float值时，通过resId和resource对象获取到的值不一致，resId获取的值是准确的。该问题正在优化改进。
 
-**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Global.ResourceManager
+**系统能力：** SystemCapability.Global.ResourceManager
 
-**模型约束**：此接口仅可在Stage模型下使用。
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：** 
 
@@ -4054,7 +4118,7 @@ getNumber(resource: Resource): number
 
 | 类型     | 说明              |
 | ------ | --------------- |
-| number | 资源名称对应的数值。<br>integer对应的是原数值，float不带单位时对应的是原数值，带"vp","fp"单位时对应的是px值。 |
+| number | resource对象对应的数值。<br>integer对应的是原数值，float不带单位时对应的是原数值，带"vp","fp"单位时对应的是px值。 |
 
 **错误码：**
 
@@ -4067,18 +4131,62 @@ getNumber(resource: Resource): number
 | 9001002  | No matching resource is found based on the resource ID.         |
 | 9001006  | The resource is referenced cyclically.            |
 
-**示例：** 
+**示例：**
+  ```json
+  {
+    "integer": [
+      {
+        "name": "integer_test",
+        "value": 100
+      }
+    ]
+  }
+  ```
+
+  ```json
+  {
+    "float": [
+      {
+        "name": "float_test",
+        "value": "30.6vp"
+      }
+    ]
+  }
+  ```
   ```ts
-  import { resourceManager } from '@kit.LocalizationKit'
+  import { resourceManager } from '@kit.LocalizationKit';
   import { BusinessError } from '@kit.BasicServicesKit';
+  import { display } from '@kit.ArkUI';
 
   let resource: resourceManager.Resource = {
     bundleName: "com.example.myapplication",
     moduleName: "entry",
     id: $r('app.integer.integer_test').id
   };
+
   try {
-    this.context.resourceManager.getNumber(resource);
+    let intValue = this.context.resourceManager.getNumber(resource);
+    // integer对应返回的是原数值
+    console.log(`getNumber, int value: ${intValue}`);
+    // 打印输出结果: getNumber, int value: 100
+  } catch (error) {
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`getNumber failed, error code: ${code}, message: ${message}.`);
+  }
+
+  let resource2: resourceManager.Resource = {
+    bundleName: "com.example.myapplication",
+    moduleName: "entry",
+    id: $r('app.float.float_test').id
+  };
+
+  try {
+    // float对应返回的是真实像素点值，带"vp","fp"单位的像素值 = 原数值 * densityPixels
+    // resource对象获取到的值不一致，resId获取的值是准确的。该问题正在优化改进。
+    let floatValue = this.context.resourceManager.getNumber(resource2);
+    console.log(`getNumber, densityPixels: ${display.getDefaultDisplaySync().densityPixels}, float value: ${floatValue}`);
+    // 打印输出结果: getNumber, densityPixels: 3.25, float value: 30.600000381469727
   } catch (error) {
     let code = (error as BusinessError).code;
     let message = (error as BusinessError).message;
@@ -4090,11 +4198,11 @@ getNumber(resource: Resource): number
 
 getNumberByName(resName: string): number
 
-用户获取指定资源名称对应的integer数值或者float数值，使用同步方式返回。
+获取指定资源名称对应的integer数值或者float数值，使用同步方式返回。
 
-**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Global.ResourceManager
+**系统能力：** SystemCapability.Global.ResourceManager
 
 **参数：** 
 
@@ -4119,12 +4227,37 @@ getNumberByName(resName: string): number
 | 9001004  | No matching resource is found based on the resource name.       |
 | 9001006  | The resource is referenced cyclically.            |
 
-**示例：** 
+**示例：**
+  ```json
+  {
+    "integer": [
+      {
+        "name": "integer_test",
+        "value": 100
+      }
+    ]
+  }
+  ```
+
+  ```json
+  {
+    "float": [
+      {
+        "name": "float_test",
+        "value": "30.6vp"
+      }
+    ]
+  }
+  ```
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
+  import { display } from '@kit.ArkUI';
 
   try {
-    this.context.resourceManager.getNumberByName("integer_test");
+    // integer对应返回的是原数值
+    let intValue = this.context.resourceManager.getNumberByName("integer_test");
+    console.log(`getNumberByName, int value: ${intValue}`);
+    // 打印输出结果: getNumberByName, int value: 100
   } catch (error) {
     let code = (error as BusinessError).code;
     let message = (error as BusinessError).message;
@@ -4132,7 +4265,10 @@ getNumberByName(resName: string): number
   }
 
   try {
-    this.context.resourceManager.getNumberByName("float_test");
+    // float对应返回的是真实像素点值，带"vp","fp"单位的像素值 = 原数值 * densityPixels
+    let floatValue = this.context.resourceManager.getNumberByName("float_test");
+    console.log(`getNumberByName, densityPixels: ${display.getDefaultDisplaySync().densityPixels}, float value: ${floatValue}`);
+    // 打印输出结果: getNumberByName, densityPixels: 3.25, float value: 99.45000457763672
   } catch (error) {
     let code = (error as BusinessError).code;
     let message = (error as BusinessError).message;
@@ -4142,13 +4278,13 @@ getNumberByName(resName: string): number
 
 ### getColorSync<sup>10+</sup>
 
-getColorSync(resId: number) : number;
+getColorSync(resId: number) : number
 
-用户获取指定资源ID对应的颜色值，使用同步方式返回。
+获取指定资源ID对应的颜色值，使用同步方式返回。
 
-**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Global.ResourceManager
+**系统能力：** SystemCapability.Global.ResourceManager
 
 **参数：**
 
@@ -4164,7 +4300,7 @@ getColorSync(resId: number) : number;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -4174,11 +4310,23 @@ getColorSync(resId: number) : number;
 | 9001006  | The resource is referenced cyclically.            |
 
 **示例：**
+  ```json
+  {
+    "color": [
+      {
+        "name": "test",
+        "value": "#FFFFFF"
+      }
+    ]
+  }
+  ```
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
-    this.context.resourceManager.getColorSync($r('app.color.test').id);
+    let colorValue = this.context.resourceManager.getColorSync($r('app.color.test').id);
+    console.log(`getColorSync, result: ${colorValue}`);
+    // 打印输出结果: getColorSync, result: 4294967295
   } catch (error) {
     let code = (error as BusinessError).code;
     let message = (error as BusinessError).message;
@@ -4190,13 +4338,13 @@ getColorSync(resId: number) : number;
 
 getColorSync(resource: Resource): number
 
-用户获取指定resource对象对应的颜色值，使用同步方式返回。
+获取指定resource对象对应的颜色值，使用同步方式返回。
 
-**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Global.ResourceManager
+**系统能力：** SystemCapability.Global.ResourceManager
 
-**模型约束**：此接口仅可在Stage模型下使用。
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -4212,7 +4360,7 @@ getColorSync(resource: Resource): number
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -4222,8 +4370,18 @@ getColorSync(resource: Resource): number
 | 9001006  | The resource is referenced cyclically.            |
 
 **示例：**
+  ```json
+  {
+    "color": [
+      {
+        "name": "test",
+        "value": "#FFFFFF"
+      }
+    ]
+  }
+  ```
   ```ts
-  import { resourceManager } from '@kit.LocalizationKit'
+  import { resourceManager } from '@kit.LocalizationKit';
   import { BusinessError } from '@kit.BasicServicesKit';
 
   let resource: resourceManager.Resource = {
@@ -4232,7 +4390,9 @@ getColorSync(resource: Resource): number
     id: $r('app.color.test').id
   };
   try {
-    this.context.resourceManager.getColorSync(resource);
+    let colorValue = this.context.resourceManager.getColorSync(resource);
+    console.log(`getColorSync, result: ${colorValue}`);
+    // 打印输出结果: getColorSync, result: 4294967295
   } catch (error) {
     let code = (error as BusinessError).code;
     let message = (error as BusinessError).message;
@@ -4242,13 +4402,13 @@ getColorSync(resource: Resource): number
 
 ### getColorByNameSync<sup>10+</sup>
 
-getColorByNameSync(resName: string) : number;
+getColorByNameSync(resName: string) : number
 
-用户获取指定资源名称对应的颜色值，使用同步方式返回。
+获取指定资源名称对应的颜色值，使用同步方式返回。
 
-**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Global.ResourceManager
+**系统能力：** SystemCapability.Global.ResourceManager
 
 **参数：**
 
@@ -4264,7 +4424,7 @@ getColorByNameSync(resName: string) : number;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -4274,11 +4434,23 @@ getColorByNameSync(resName: string) : number;
 | 9001006  | The resource is referenced cyclically.            |
 
 **示例：**
+  ```json
+  {
+    "color": [
+      {
+        "name": "test",
+        "value": "#FFFFFF"
+      }
+    ]
+  }
+  ```
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
-    this.context.resourceManager.getColorByNameSync("test");
+    let colorValue = this.context.resourceManager.getColorByNameSync("test");
+    console.log(`getColorByNameSync, result: ${colorValue}`);
+    // 打印输出结果: getColorByNameSync, result: 4294967295
   } catch (error) {
     let code = (error as BusinessError).code;
     let message = (error as BusinessError).message;
@@ -4288,11 +4460,11 @@ getColorByNameSync(resName: string) : number;
 
 ### getColor<sup>10+</sup>
 
-getColor(resId: number, callback: _AsyncCallback&lt;number&gt;): void;
+getColor(resId: number, callback: _AsyncCallback&lt;number&gt;): void
 
-用户获取指定资源ID对应的颜色值，使用callback异步回调。
+获取指定资源ID对应的颜色值，使用callback异步回调。
 
-**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Global.ResourceManager
 
@@ -4301,11 +4473,11 @@ getColor(resId: number, callback: _AsyncCallback&lt;number&gt;): void;
 | 参数名      | 类型                          | 必填   | 说明              |
 | -------- | --------------------------- | ---- | --------------- |
 | resId    | number                      | 是    | 资源ID值。           |
-| callback | [_AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;number&gt; | 是    | 返回获取的颜色值（十进制）。 |
+| callback | [_AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;number&gt; | 是    | 回调函数，返回资源ID值对应的颜色值（十进制）。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -4315,33 +4487,38 @@ getColor(resId: number, callback: _AsyncCallback&lt;number&gt;): void;
 | 9001006  | The resource is referenced cyclically.         |
 
 **示例Stage：**
+  ```json
+  {
+    "color": [
+      {
+        "name": "test",
+        "value": "#FFFFFF"
+      }
+    ]
+  }
+  ```
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
 
-  try {
-    this.context.resourceManager.getColor($r('app.color.test').id, (error: BusinessError, value: number) => {
-      if (error != null) {
-        console.error("error is " + error);
-      } else {
-        let str = value;
-      }
-    });
-  } catch (error) {
-    let code = (error as BusinessError).code;
-    let message = (error as BusinessError).message;
-    console.error(`callback getColor failed, error code: ${code}, message: ${message}.`);
-  }
+  this.context.resourceManager.getColor($r('app.color.test').id, (error: BusinessError, value: number) => {
+    if (error != null) {
+      console.error(`callback getColor failed, error code: ${error.code}, message: ${error.message}.`);
+    } else {
+      console.log(`getColor, result: ${value}`);
+      // 打印输出结果: getColor, result: 4294967295
+    }
+  });
   ```
 
 ### getColor<sup>10+</sup>
 
 getColor(resId: number): Promise&lt;number&gt;
 
-用户获取指定资源ID对应的颜色值，使用Promise异步回调。
+获取指定资源ID对应的颜色值，使用Promise异步回调。
 
-**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Global.ResourceManager
+**系统能力：** SystemCapability.Global.ResourceManager
 
 **参数：**
 
@@ -4353,11 +4530,11 @@ getColor(resId: number): Promise&lt;number&gt;
 
 | 类型                    | 说明          |
 | --------------------- | ----------- |
-| Promise&lt;number&gt; | 资源ID值对应的颜色值（十进制）。 |
+| Promise&lt;number&gt; | Promise对象，返回资源ID值对应的颜色值（十进制）。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -4367,44 +4544,51 @@ getColor(resId: number): Promise&lt;number&gt;
 | 9001006  | The resource is referenced cyclically.            |
 
 **示例：**
+  ```json
+  {
+    "color": [
+      {
+        "name": "test",
+        "value": "#FFFFFF"
+      }
+    ]
+  }
+  ```
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
 
-  try {
-    this.context.resourceManager.getColor($r('app.color.test').id).then((value: number) => {
-      let str = value;
-    }).catch((error: BusinessError) => {
-      console.error("getColor promise error is " + error);
+  this.context.resourceManager.getColor($r('app.color.test').id)
+    .then((value: number) => {
+      console.log(`getColor, result: ${value}`);
+      // 打印输出结果: getColor, result: 4294967295
+    })
+    .catch((error: BusinessError) => {
+      console.error(`promise getColor failed, error code: ${error.code}, message: ${error.message}.`);
     });
-  } catch (error) {
-    let code = (error as BusinessError).code;
-    let message = (error as BusinessError).message;
-    console.error(`promise getColor failed, error code: ${code}, message: ${message}.`);
-  }
   ```
 
 ### getColor<sup>10+</sup>
 
-getColor(resource: Resource, callback: _AsyncCallback&lt;number&gt;): void;
+getColor(resource: Resource, callback: _AsyncCallback&lt;number&gt;): void
 
-用户获取指定resource对象对应的颜色值，使用callback异步回调。
+获取指定resource对象对应的颜色值，使用callback异步回调。
 
-**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Global.ResourceManager
 
-**模型约束**：此接口仅可在Stage模型下使用。
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
 | 参数名      | 类型                          | 必填   | 说明              |
 | -------- | --------------------------- | ---- | --------------- |
 | resource | [Resource](#resource9)      | 是    | 资源信息。            |
-| callback | [_AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;number&gt; | 是    | 返回获取的颜色值（十进制）。 |
+| callback | [_AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;number&gt; | 是    | 回调函数，返回resource对象对应的颜色值（十进制）。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -4414,8 +4598,18 @@ getColor(resource: Resource, callback: _AsyncCallback&lt;number&gt;): void;
 | 9001006  | The resource is referenced cyclically.            |
 
 **示例：**
+  ```json
+  {
+    "color": [
+      {
+        "name": "test",
+        "value": "#FFFFFF"
+      }
+    ]
+  }
+  ```
   ```ts
-  import { resourceManager } from '@kit.LocalizationKit'
+  import { resourceManager } from '@kit.LocalizationKit';
   import { BusinessError } from '@kit.BasicServicesKit';
 
   let resource: resourceManager.Resource = {
@@ -4423,32 +4617,27 @@ getColor(resource: Resource, callback: _AsyncCallback&lt;number&gt;): void;
     moduleName: "entry",
     id: $r('app.color.test').id
   };
-  try {
-    this.context.resourceManager.getColor(resource, (error: BusinessError, value: number) => {
-      if (error != null) {
-        console.error("error is " + error);
-      } else {
-        let str = value;
-      }
-    });
-  } catch (error) {
-    let code = (error as BusinessError).code;
-    let message = (error as BusinessError).message;
-    console.error(`callback getColor failed, error code: ${code}, message: ${message}.`);
-  }
+  this.context.resourceManager.getColor(resource, (error: BusinessError, value: number) => {
+    if (error != null) {
+      console.error(`callback getColor failed, error code: ${error.code}, message: ${error.message}.`);
+    } else {
+      console.log(`getColor, result: ${value}`);
+      // 打印输出结果: getColor, result: 4294967295
+    }
+  });
   ```
 
 ### getColor<sup>10+</sup>
 
-getColor(resource: Resource): Promise&lt;number&gt;;
+getColor(resource: Resource): Promise&lt;number&gt;
 
-用户获取指定resource对象对应的颜色值，使用Promise异步回调。
+获取指定resource对象对应的颜色值，使用Promise异步回调。
 
-**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Global.ResourceManager
+**系统能力：** SystemCapability.Global.ResourceManager
 
-**模型约束**：此接口仅可在Stage模型下使用。
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -4460,11 +4649,11 @@ getColor(resource: Resource): Promise&lt;number&gt;;
 
 | 类型                    | 说明               |
 | --------------------- | ---------------- |
-| Promise&lt;number&gt; | resource对象对应的颜色值（十进制）。 |
+| Promise&lt;number&gt; | Promise对象，返回resource对象对应的颜色值（十进制）。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -4474,8 +4663,18 @@ getColor(resource: Resource): Promise&lt;number&gt;;
 | 9001006  | The resource is referenced cyclically.            |
 
 **示例：**
+  ```json
+  {
+    "color": [
+      {
+        "name": "test",
+        "value": "#FFFFFF"
+      }
+    ]
+  }
+  ```
   ```ts
-  import { resourceManager } from '@kit.LocalizationKit'
+  import { resourceManager } from '@kit.LocalizationKit';
   import { BusinessError } from '@kit.BasicServicesKit';
 
   let resource: resourceManager.Resource = {
@@ -4483,39 +4682,36 @@ getColor(resource: Resource): Promise&lt;number&gt;;
     moduleName: "entry",
     id: $r('app.color.test').id
   };
-  try {
-    this.context.resourceManager.getColor(resource).then((value: number) => {
-      let str = value;
-    }).catch((error: BusinessError) => {
-      console.error("getColor promise error is " + error);
+  this.context.resourceManager.getColor(resource)
+    .then((value: number) => {
+      console.log(`getColor, result: ${value}`);
+      // 打印输出结果: getColor, result: 4294967295
+    })
+    .catch((error: BusinessError) => {
+      console.error(`promise getColor failed, error code: ${error.code}, message: ${error.message}.`);
     });
-  } catch (error) {
-    let code = (error as BusinessError).code;
-    let message = (error as BusinessError).message;
-    console.error(`promise getColor failed, error code: ${code}, message: ${message}.`);
-  }
   ```
 
 ### getColorByName<sup>10+</sup>
 
 getColorByName(resName: string, callback: _AsyncCallback&lt;number&gt;): void
 
-用户获取指定资源名称对应的颜色值，使用callback异步回调。
+获取指定资源名称对应的颜色值，使用callback异步回调。
 
-**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Global.ResourceManager
+**系统能力：** SystemCapability.Global.ResourceManager
 
 **参数：**
 
 | 参数名      | 类型                          | 必填   | 说明              |
 | -------- | --------------------------- | ---- | --------------- |
 | resName  | string                      | 是    | 资源名称。            |
-| callback | [_AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;number&gt; | 是    | 异步回调，用于返回获取的颜色值（十进制）。 |
+| callback | [_AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;number&gt; | 是    | 回调函数，返回资源名称对应的颜色值（十进制）。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -4525,33 +4721,38 @@ getColorByName(resName: string, callback: _AsyncCallback&lt;number&gt;): void
 | 9001006  | The resource is referenced cyclically.            |
 
 **示例：**
+  ```json
+  {
+    "color": [
+      {
+        "name": "test",
+        "value": "#FFFFFF"
+      }
+    ]
+  }
+  ```
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
 
-  try {
-    this.context.resourceManager.getColorByName("test", (error: BusinessError, value: number) => {
-      if (error != null) {
-        console.error("error is " + error);
-      } else {
-        let string = value;
-      }
-    });
-  } catch (error) {
-    let code = (error as BusinessError).code;
-    let message = (error as BusinessError).message;
-    console.error(`callback getColorByName failed, error code: ${code}, message: ${message}.`);
-  }
+  this.context.resourceManager.getColorByName("test", (error: BusinessError, value: number) => {
+    if (error != null) {
+      console.error(`callback getColorByName failed, error code: ${error.code}, message: ${error.message}.`);
+    } else {
+      console.log(`getColorByName, result: ${value}`);
+      // 打印输出结果: getColorByName, result: 4294967295
+    }
+  });
   ```
 
 ### getColorByName<sup>10+</sup>
 
 getColorByName(resName: string): Promise&lt;number&gt;
 
-用户获取指定资源名称对应的颜色值，使用Promise异步回调。
+获取指定资源名称对应的颜色值，使用Promise异步回调。
 
-**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Global.ResourceManager
+**系统能力：** SystemCapability.Global.ResourceManager
 
 **参数：**
 
@@ -4563,11 +4764,11 @@ getColorByName(resName: string): Promise&lt;number&gt;
 
 | 类型                    | 说明         |
 | --------------------- | ---------- |
-| Promise&lt;number&gt; | 资源名称对应的颜色值（十进制）。 |
+| Promise&lt;number&gt; | Promise对象，返回资源名称对应的颜色值（十进制）。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -4577,20 +4778,27 @@ getColorByName(resName: string): Promise&lt;number&gt;
 | 9001006  | The resource is referenced cyclically.            |
 
 **示例：**
+  ```json
+  {
+    "color": [
+      {
+        "name": "test",
+        "value": "#FFFFFF"
+      }
+    ]
+  }
+  ```
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
 
-  try {
-    this.context.resourceManager.getColorByName("test").then((value: number) => {
-      let string = value;
-    }).catch((error: BusinessError) => {
-      console.error("getColorByName promise error is " + error);
+  this.context.resourceManager.getColorByName("test")
+    .then((value: number) => {
+      console.log(`getColorByName, result: ${value}`);
+      // 打印输出结果: getColorByName, result: 4294967295
+    })
+    .catch((error: BusinessError) => {
+      console.error(`promise getColorByName failed, error code: ${error.code}, message: ${error.message}.`);
     });
-  } catch (error) {
-    let code = (error as BusinessError).code;
-    let message = (error as BusinessError).message;
-    console.error(`promise getColorByName failed, error code: ${code}, message: ${message}.`);
-  }
   ```
 
 ### getRawFileContentSync<sup>10+</sup>
