@@ -75,7 +75,7 @@
 ```html
 <!-- xxx.hml -->
 <div class="container">
-  <video id='videoId' src='/common/myDeram.mp4' muted='false' autoplay='false'
+  <video id='videoId' src='/common/myDream.mp4' muted='false' autoplay='false'
          controls='true' onprepared='preparedCallback' onstart='startCallback'
          onpause='pauseCallback' onfinish='finishCallback' onerror='errorCallback'
          onseeking='seekingCallback' onseeked='seekedCallback' 

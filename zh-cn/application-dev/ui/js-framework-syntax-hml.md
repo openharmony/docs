@@ -165,7 +165,7 @@ export default {
       clickfunc: function(e) {
           console.log(e);
       },
-      touchstartfuc: function(e) {
+      touchstartfunc: function(e) {
           console.log(e);
       },
   }
@@ -198,7 +198,7 @@ Touch触摸类事件支持捕获，捕获阶段位于冒泡阶段之前，捕获
   ```js
   // xxx.js
   export default {
-      touchstartfuc: function(e) {
+      touchstartfunc: function(e) {
           console.log(e);
       },
   }
