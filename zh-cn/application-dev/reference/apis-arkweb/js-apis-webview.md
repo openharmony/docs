@@ -8693,7 +8693,7 @@ struct WebComponent {
 
 ```
 
-加载的html文件，位于应用资源目录resource/rawfile/index.html。
+加载的html文件，位于应用资源目录resource/resfile/index.html。
 ```html
 <!-- index.html -->
 <!DOCTYPE html>
@@ -8739,7 +8739,7 @@ struct WebComponent {
 </html>
 ```
 
-html中使用file协议通过XMLHttpRequest跨域访问本地js文件，js文件位于resource/rawfile/js/script.js。
+html中使用file协议通过XMLHttpRequest跨域访问本地js文件，js文件位于resource/resfile/js/script.js。
 <!--code_no_check-->
 ```javascript
 const body = document.body;
