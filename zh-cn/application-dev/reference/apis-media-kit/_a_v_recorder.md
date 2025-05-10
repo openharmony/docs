@@ -474,7 +474,7 @@ enum OH_AVRecorder_ContainerFormatType
 | AVRECORDER_CFT_AMR | 音频容器格式类型 amr。 | 
 | AVRECORDER_CFT_MP3 | 音频容器格式类型 mp3。 | 
 | AVRECORDER_CFT_WAV | 音频容器格式类型 wav。 | 
-| AVRECORDER_CFT_AAC | 音频容器格式类型 aac。 | 
+| AVRECORDER_CFT_AAC<sup>20+</sup> | 音频容器格式类型 aac。 | 
 
 
 ### OH_AVRecorder_FileGenerationMode
