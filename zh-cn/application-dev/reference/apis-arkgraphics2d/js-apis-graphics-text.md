@@ -1341,7 +1341,7 @@ getActualTextRange(lineNumber: number, includeSpaces: boolean): Range
 | 参数名 | 类型   | 必填 | 说明      |
 | ----- | ------ | ---- | --------- |
 | lineNumber  | number | 是   | 要获取文本范围的行索引，行索引从0开始。该接口只能获取已有行的边界，即输入行索引从0开始。最大行索引为文本行数量-1，文本行数量可通过[getLineCount](#getlinecount)接口获取。|
-| includeSpaces  | boolean | 是   | 指示是否应包含空白字符。true表示包含空白字符，false表示不包含空白字符。|
+| includeSpaces  | boolean | 是   | 表示是否应包含空白字符。true表示包含空白字符，false表示不包含空白字符。|
 
 **返回值：**
 
@@ -1400,6 +1400,51 @@ getLineMetrics(lineNumber: number): LineMetrics | undefined
 
 ```ts
 let lineMetrics =  paragraph.getLineMetrics(0);
+```
+
+### updateColor<sup>20+</sup>
+
+updateColor(color: common2D.Color): void;
+
+更新文本段落的颜色。需要在排版后使用，并且更新的是整个文本段落的颜色。
+
+**系统能力**：SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名 | 类型                                                  | 必填 | 说明                    |
+| ------ | ---------------------------------------------------- | ---- | ---------------------- |
+| color  | [common2D.Color](js-apis-graphics-common2D.md#color) | 是   | 更新后的字体色。|
+
+**示例：**
+
+```ts
+paragraph.updateColor({ alpha: 255, red: 255, green: 0, blue: 0 });
+```
+
+### updateDecoration<sup>20+</sup>
+
+updateDecoration(decoration: Decoration): void;
+
+更新文本段落的装饰线。需要在排版后使用，并且更新的是整个文本段落的装饰线。
+
+**系统能力**：SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名 | 类型                                                  | 必填 | 说明                    |
+| ------ | ---------------------------------------------------- | ---- | ---------------------- |
+| decoration | [Decoration](#decoration)                        | 是 | 更新后的装饰线。|
+
+**示例：**
+
+```ts
+paragraph.updateDecoration({
+  textDecoration: text.TextDecorationType.OVERLINE,
+  color: { alpha: 255, red: 255, green: 0, blue: 0 },
+  decorationStyle: text.TextDecorationStyle.WAVY,
+  decorationThicknessScale: 2.0,
+});
 ```
 
 ## LineTypeset<sup>18+</sup>
