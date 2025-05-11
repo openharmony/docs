@@ -1422,7 +1422,7 @@ let lineMetrics =  paragraph.getLineMetrics(0);
 
 updateColor(color: common2D.Color): void;
 
-更新文本段落的颜色。需要在layout接口后使用，并且更新的是整个文本段落的颜色。
+更新文本段落的颜色。需要在排版后使用，并且更新的是整个文本段落的颜色。
 
 **系统能力**：SystemCapability.Graphics.Drawing
 
@@ -1442,7 +1442,7 @@ paragraph.updateColor({ alpha: 255, red: 255, green: 0, blue: 0 });
 
 updateDecoration(decoration: Decoration): void;
 
-更新文本段落的装饰线。需要在layout接口后使用，并且更新的是整个文本段落的装饰线。
+更新文本段落的装饰线。需要在排版后使用，并且更新的是整个文本段落的装饰线。
 
 **系统能力**：SystemCapability.Graphics.Drawing
 
