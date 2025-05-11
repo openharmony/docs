@@ -717,15 +717,15 @@ menuBackgroundBlurStyle(style: Optional\<BlurStyle>)
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | style  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[BlurStyle](ts-universal-attributes-background.md#blurstyle9)> | 是   | 下拉菜单的背景模糊材质。<br/>当style的值为undefined时，默认值：BlurStyle.COMPONENT_ULTRA_THICK |
 
-### avoidance<sup>18+</sup>
+### avoidance<sup>19+</sup>
 
 avoidance(mode: AvoidanceMode)
 
 设置下拉菜单的避让模式。
 
-**卡片能力：** 从API version 18开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 19开始，该接口支持在ArkTS卡片中使用。
 
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -733,7 +733,7 @@ avoidance(mode: AvoidanceMode)
 
 | 参数名    | 类型                                      | 必填 | 说明                                                         |
 | --------- | ----------------------------------------- | ---- | ------------------------------------------------------------ |
-| mode      | [AvoidanceMode](#avoidancemode18枚举说明)  | 是   | 设置下拉菜单的避让模式。<br/>默认值：AvoidanceMode.COVER_TARGET |
+| mode      | [AvoidanceMode](#avoidancemode19枚举说明)  | 是   | 设置下拉菜单的避让模式。<br/>默认值：AvoidanceMode.COVER_TARGET |
 
 ### menuOutline<sup>20+</sup>
 
@@ -842,13 +842,13 @@ selectedOptionTextModifier(modifier: Optional\<[TextModifier](ts-universal-attri
 | CENTER              | 1 |居中对齐。 |
 | END                 | 2 |按照语言方向末端对齐。 |
 
-## AvoidanceMode<sup>18+</sup>枚举说明
+## AvoidanceMode<sup>19+</sup>枚举说明
 
 下拉菜单避让模式的枚举选项。
 
-**卡片能力：** 从API version 18开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 19开始，该接口支持在ArkTS卡片中使用。
 
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
