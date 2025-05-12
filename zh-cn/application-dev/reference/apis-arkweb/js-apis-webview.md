@@ -1775,7 +1775,7 @@ struct Index {
 
 runJavaScript(script: string, callback : AsyncCallback\<string>): void
 
-异步执行JavaScript脚本，并通过回调方式返回脚本执行的结果。runJavaScript需要在[loadUrl](#loadurl)完成后，比如[onPageEnd](#onpageend)中调用。
+异步执行JavaScript脚本，并通过回调方式返回脚本执行的结果。runJavaScript需要在[loadUrl](#loadurl)完成后，比如[onPageEnd](ts-basic-components-web.md#onpageend)中调用。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
