@@ -3407,7 +3407,7 @@ onAlert(callback: Callback\<OnAlertEvent, boolean\>)
 
 onBeforeUnload(callback: Callback\<OnBeforeUnloadEvent, boolean\>)
 
-刷新或关闭场景下，在即将离开当前页面时触发此回调。刷新或关闭当前页面应先通过点击等方式获取焦点，才会触发此回调。
+即将离开刷新或关闭当前页面时触发此回调。刷新或关闭当前页面应先通过点击等方式获取焦点，才会触发此回调。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -3415,7 +3415,7 @@ onBeforeUnload(callback: Callback\<OnBeforeUnloadEvent, boolean\>)
 
 | 参数名     | 类型                  | 必填   | 说明            |
 | ------- | --------------------- | ---- | --------------- |
-| callback     | Callback\<[OnBeforeUnloadEvent](#onbeforeunloadevent12), boolean\>                | 是    | 刷新或关闭场景下，在即将离开当前页面时触发。<br>返回值boolean。当回调返回true时，应用可以调用自定义弹窗能力（包括确认和取消），并且需要根据用户的确认或取消操作调用JsResult通知Web组件最终是否离开当前页面。当回调返回false时，函数中绘制的自定义弹窗无效。 |
+| callback     | Callback\<[OnBeforeUnloadEvent](#onbeforeunloadevent12), boolean\>                | 是    | 即将离开刷新或关闭当前页面时触发。<br>返回值boolean。当回调返回true时，应用可以调用自定义弹窗能力（包括确认和取消），并且需要根据用户的确认或取消操作调用JsResult通知Web组件最终是否离开当前页面。当回调返回false时，函数中绘制的自定义弹窗无效。 |
 
 **示例：**
 
