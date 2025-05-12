@@ -2329,28 +2329,30 @@ nestedScroll(value: NestedScrollOptions | NestedScrollOptionsExt)
   <!DOCTYPE html>
   <html>
   <head>
-    <style>
-      .blue {
-        background-color: lightblue;
-      }
-      .green {
-        background-color: lightgreen;
-      }
-      .blue, .green {
-       width: 100%;
-  	 font-size:70px;
-  	 height:1000px;
-      }
-    </style>
+      <meta name="viewport" id="viewport" content="width=device-width, initial-scale=1.0">
+      <style>
+          .blue {
+            background-color: lightblue;
+          }
+          .green {
+            background-color: lightgreen;
+          }
+          .blue, .green {
+          font-size:16px;
+          height:200px;
+          text-align: center;       /* 水平居中 */
+          line-height: 200px;       /* 垂直居中（值等于容器高度） */
+          }
+      </style>
   </head>
   <body>
-    <div class="blue" align="center" >webArea</div>
-    <div class="green" align="center">webArea</div>
-    <div class="blue" align="center">webArea</div>
-    <div class="green" align="center">webArea</div>
-    <div class="blue" align="center">webArea</div>
-    <div class="green" align="center">webArea</div>
-    <div class="blue" align="center">webArea</div>
+  <div class="blue" >webArea</div>
+  <div class="green">webArea</div>
+  <div class="blue">webArea</div>
+  <div class="green">webArea</div>
+  <div class="blue">webArea</div>
+  <div class="green">webArea</div>
+  <div class="blue">webArea</div>
   </body>
   </html>
   ```
