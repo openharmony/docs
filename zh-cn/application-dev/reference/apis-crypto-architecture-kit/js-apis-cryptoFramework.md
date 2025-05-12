@@ -233,7 +233,7 @@ API version 10-11 系统能力为 SystemCapability.Security.CryptoFramework；�
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Signature
 
-API version 10-11 系统能力为 SystemCapability.Security.CryptoFramework；从 API version 12 开始为 SystemCapability.Security.CryptoFramework.Signature
+API version 10-11 系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为 SystemCapability.Security.CryptoFramework.Signature。
 
 | 名称         | 值   | 说明             |
 | ------------ | ---- | ---------------- |
@@ -1984,7 +1984,7 @@ convertKeySync(pubKey: DataBlob | null, priKey: DataBlob | null): KeyPair
 
 | 参数名   | 类型    | 必填 | 说明             |
 | ------ | -------- | ---- | ---------------- |
-| pubKey | [DataBlob](#datablob) \| null<sup>10+</sup> | 是   | 指定公钥材料。如果公钥无需转换，传入null。API 10前仅支持DataBlob，API 10起支持传入null |
+| pubKey | [DataBlob](#datablob) \| null<sup>10+</sup> | 是   | 指定公钥材料。如果公钥无需转换，传入null。API 10前仅支持DataBlob，API 10起支持传入null。 |
 | priKey | [DataBlob](#datablob) \| null<sup>10+</sup> | 是   | 指定私钥材料。API 10前仅支持DataBlob，API 10起支持传入null。 |
 
 **返回值：**
