@@ -1114,10 +1114,10 @@
             - [以太网连接管理（仅对系统应用开放）](network/net-ethernet.md)   
             - [VPN管理（仅对系统应用开放）](network/net-vpn.md)
             <!--DelEnd-->
-      - Telephony Kit（蜂窝通信服务）<!--telephony-kit-->
-        - [Telephony Kit简介](telephony/telephony-overview.md)
-        - [拨打电话](telephony/telephony-call.md)
-        - [短信服务](telephony/telephony-sms.md)
+        - Telephony Kit（蜂窝通信服务）<!--telephony-kit-->
+          - [Telephony Kit简介](telephony/telephony-overview.md)
+          - [拨打电话](telephony/telephony-call.md)
+          - [短信服务](telephony/telephony-sms.md)
     - 基础功能<!--system-basicfun-->
       - Basic Services Kit（基础服务）<!--basic-services-kit-->
         - [Basic Services Kit简介](basic-services/basic-services-kit-overview.md)
