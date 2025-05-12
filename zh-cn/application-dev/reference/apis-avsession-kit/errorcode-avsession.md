@@ -614,7 +614,7 @@ The media does not contain any contents that can be played.
 
 **错误信息**
 
-The media cannot be read, for example, because of dust or scratches.
+The media cannot be read.
 
 **错误描述**
 
@@ -754,7 +754,7 @@ Unspecified error related to content parsing.
 
 当远端设备异常，先重启远端设备，再重新发起会话。
 
-## 6613001 当前播放的资源是不受AVTransport服务支持的MIME类
+## 6613001 非法类型
 
 **错误信息**
 
@@ -762,11 +762,11 @@ Parsing error associated with media container format bit streams.
 
 **错误描述**
 
-当前播放的资源是不受AVTransport服务支持的MIME类型。
+非法类型。
 
 **可能原因**
 
-检查设置的资源MIME类型是否正常。
+当前播放的资源是不受AVTransport服务支持的MIME类型。
 
 **处理步骤**
 
