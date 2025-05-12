@@ -38,8 +38,8 @@ You can implement the sorting function by using the [compare](../reference/apis-
 | usage | sort | Sorting.|  | 
 |  | search | Search for matched strings.|  | 
 | sensitivity | base | Compare different letters.| 'a' ≠ 'b', 'a' = 'á', 'a' = 'A' | 
-|  | accent | Compare different letters or accents.| 'a' ≠ 'b', 'a' ≠ 'á', 'a' = 'A' | 
-|  | case | Compare the capitalization of different letters or the same letter.| 'a' ≠ 'b', 'a' = 'á', 'a' ≠ 'A' | 
+|  | accent | Compare different letters or accents of the same letters.| 'a' ≠ 'b', 'a' ≠ 'á', 'a' = 'A' | 
+|  | case | Compare the capitalization of different letters or the same letters.| 'a' ≠ 'b', 'a' = 'á', 'a' ≠ 'A' | 
 |  | variant | Compare different letters or accents, and other distinctive signs or capitalization.| 'a' ≠ 'b', 'a' ≠ 'á', 'a' ≠ 'A' | 
 | ignorePunctuation | true | Ignore punctuation.| 'a,b' = 'ab' | 
 |  | false | Not ignore punctuation.| 'a,b' &lt; 'ab' | 
