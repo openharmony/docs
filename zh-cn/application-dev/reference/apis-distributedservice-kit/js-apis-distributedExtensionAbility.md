@@ -24,7 +24,7 @@ import { DistributedExtensionAbility} from '@kit.DistributedServiceKit';
 
 ## DistributedExtensionAbility.onCreate
 
-onCreate(want: Want): void;
+onCreate(want: Want): void
 
 Extension生命周期回调，在创建时回调，执行初始化业务逻辑操作。
 
@@ -40,13 +40,13 @@ Extension生命周期回调，在创建时回调，执行初始化业务逻辑�
 
 ```ts
 import { Want } from '@kit.AbilityKit';
-import { DistributedExtensionAbility} from '@kit.DistributedServiceKit';
+import { DistributedExtensionAbility } from '@kit.DistributedServiceKit';
 
-class DistributedExtensionAbility {
+class MyDistributedExtensionAbility extends DistributedExtensionAbility {
    onCreate(want: Want) {
-       console.log(TAG, `DistributedExterntion Create ok`);
-       console.log(TAG, `DistributedExterntionon onCollabRequest ${JSON.stringify(want)}`);
-       console.log(TAG, `DistributedExterntionon Create end`);
+       console.info(`DistributedExterntion Create ok`);
+       console.info(`DistributedExterntionon onCollabRequest ${JSON.stringify(want)}`);
+       console.info(`DistributedExterntionon Create end`);
   }
 }
 ```
@@ -63,29 +63,29 @@ onCollaborate(wantParam: Record <string, Object>) : AbilityConstant.CollaborateR
 
 | 参数名    | 类型   | 必填 | 说明                                                                                                                                   |
 | --------- | ------ | ---- | -------------------------------------------------------------------------------------------------------------------------------------- |
-| wantParam | Record | 是   | want相关参数，仅支持key值取"ohos.extra.param.key.supportCollaborateIndex"。通过该key值可以可以获取到调用方传输的数据并进行相应的处理。 |
+| wantParam | Record <string, Object> | 是   | want相关参数，仅支持key值取"ohos.extra.param.key.supportCollaborateIndex"。通过该key值可以可以获取到调用方传输的数据并进行相应的处理。 |
 
 **返回值：**
 
-| 名称 | 说明 |
+| 类型 | 说明 |
 | ---------- | ---- |
 | [AbilityConstant.CollaborateResult](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-ability-kit/js-apis-app-ability-abilityConstant.md#collaborateresult) | 协同方应用是否接受协同。 |
 
 **示例**
 
 ```ts
-import { DistributedExtensionAbility} from '@kit.DistributedServiceKit';
+import { DistributedExtensionAbility } from '@kit.DistributedServiceKit';
 import { AbilityConstant } from '@kit.AbilityKit';
 
-class DistributedExtensionAbility  {
+class MyDistributedExtensionAbility extends DistributedExtensionAbility  {
     onCollaborate(wantParam: Record<string, Object>)  {
-        console.info(TAG, `DistributedExterntionon onCollabRequest Accept to the result of Ability collaborate`);
+        console.info(`DistributedExterntionon onCollabRequest Accept to the result of Ability collaborate`);
         let sessionId = -1;
         const collabrationType = wantParam["CollabrationType"] as abilityConnectionManager.CollabrationType;
         if (collabrationType == undefined) {
             return sessionId;
         }
-        console.info(TAG, `onCollab, peerInfo: ${JSON.stringify(collabrationType)}`);
+        console.info(`onCollab, peerInfo: ${JSON.stringify(collabrationType)}`);
         return AbilityConstant.CollaborateResult.ACCEPT;
   }
 }
@@ -93,7 +93,7 @@ class DistributedExtensionAbility  {
 
 ## DistributedExtensionAbility.onDestroy
 
-onDestroy(): void;
+onDestroy(): void
 
 Extension生命周期回调，在销毁时回调，执行资源清理等操作。
 
@@ -102,11 +102,11 @@ Extension生命周期回调，在销毁时回调，执行资源清理等操作�
 **示例：**
 
 ```ts
-import { DistributedExtensionAbility} from '@kit.DistributedServiceKit';
+import { DistributedExtensionAbility } from '@kit.DistributedServiceKit';
 
-class DistributedExtensionAbility{
+class MyDistributedExtensionAbility extends DistributedExtensionAbility {
   onDestroy() {
-    console.log('DistributedExterntion onDestroy ok');
+    console.info('DistributedExterntion onDestroy ok');
   }
 }
 ```
