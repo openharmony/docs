@@ -102,7 +102,7 @@ import { bundleManager } from '@kit.AbilityKit';
 |:----------------:|:---:|:---:|
 | FULL_SCREEN      | 0   | 窗口支持全屏显示。 |
 | SPLIT            | 1   | 窗口支持分屏显示。 |
-| FLOATING         | 2   | 支持窗口化显示（悬浮窗口）。   |
+| FLOATING         | 2   | 支持窗口化显示，即显示悬浮窗口。   |
 
 ## LaunchType
 
@@ -146,9 +146,9 @@ import { bundleManager } from '@kit.AbilityKit';
 | FOLLOW_RECENT                      |3 |表示跟随上一个显示模式。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | LANDSCAPE_INVERTED                 |4 |表示反向横屏显示模式。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | PORTRAIT_INVERTED                  |5 |表示反向竖屏显示模式。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| AUTO_ROTATION                      |6 |表示在横向和竖向跟随传感器判定的方向自动旋转模式。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| AUTO_ROTATION_LANDSCAPE            |7 |表示在横向跟随传感器判定的方向自动旋转模式。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| AUTO_ROTATION_PORTRAIT             |8 |表示在竖向跟随传感器判定的方向自动旋转模式。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| AUTO_ROTATION                      |6 |表示传感器在旋转到横向和竖向时，页面会自动旋转。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| AUTO_ROTATION_LANDSCAPE            |7 |表示传感器在旋转到横向时，页面会自动旋转。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| AUTO_ROTATION_PORTRAIT             |8 |表示传感器在旋转到竖向时，页面会自动旋转。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | AUTO_ROTATION_RESTRICTED           |9 |表示受开关控制的自动旋转模式。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | AUTO_ROTATION_LANDSCAPE_RESTRICTED |10|表述受开关控制的自动横向旋转模式。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
 | AUTO_ROTATION_PORTRAIT_RESTRICTED  |11|表示受开关控制的自动竖向旋转模式。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
@@ -202,7 +202,7 @@ import { bundleManager } from '@kit.AbilityKit';
 
 | 名称 | 值 | 说明 |
 |:----------------:|:---:|:---:|
-| UNSPECIFIED|  0 | 未指定类型，[multiAppMode配置](../../quick-start/app-configuration-file.md#multiappmode标签)未配置时默认状态。 |
+| UNSPECIFIED|  0 | 未指定类型，表示[multiAppMode配置](../../quick-start/app-configuration-file.md#multiappmode标签)未配置时的默认状态。 |
 | MULTI_INSTANCE |  1  | [多实例模式](../../quick-start/multiInstance.md)。常驻进程不支持该字段。  |
 | APP_CLONE |  2  |  [分身模式](../../quick-start/app-clone.md)。  |
 
@@ -234,12 +234,12 @@ getBundleInfoForSelf(bundleFlags: number): Promise\<BundleInfo>
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 401 | Parameter error. Possible causes: <br/>1. Mandatory parameters are left unspecified;<br/>2. Incorrect parameter types.|
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 
 **示例：**
 
 ```ts
-// 获取bundleInfo，包含带有metadataArray信息的appInfo信息。
+// 获取bundleInfo，包含带有metadataArray信息的appInfo信息
 import { bundleManager } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
@@ -281,12 +281,12 @@ getBundleInfoForSelf(bundleFlags: number, callback: AsyncCallback\<BundleInfo>):
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 401 | Parameter error. Possible causes: <br/>1. Mandatory parameters are left unspecified;<br/>2. Incorrect parameter types.|
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 
 **示例：**
 
 ```ts
-// 获取bundleInfo，包含permissions信息的abilitiesInfo信息。
+// 获取bundleInfo，包含permissions信息的abilitiesInfo信息
 import { bundleManager } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
@@ -334,7 +334,7 @@ getProfileByAbility(moduleName: string, abilityName: string, metadataName: strin
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 401 | Parameter error. Possible causes: <br/>1. Mandatory parameters are left unspecified;<br/>2. Incorrect parameter types.|
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700002 | The specified moduleName is not existed.                      |
 | 17700003 | The specified abilityName is not existed.                     |
 | 17700024 | Failed to get the profile because there is no profile in the HAP. |
@@ -398,7 +398,7 @@ getProfileByAbility(moduleName: string, abilityName: string, metadataName?: stri
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 401 | Parameter error. Possible causes: <br/>1. Mandatory parameters are left unspecified;<br/>2. Incorrect parameter types.|
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700002 | The specified moduleName is not existed.                      |
 | 17700003 | The specified abilityName is not existed.                     |
 | 17700024 | Failed to get the profile because there is no profile in the HAP. |
@@ -482,7 +482,7 @@ getProfileByAbilitySync(moduleName: string, abilityName: string, metadataName?: 
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 401 | Parameter error. Possible causes: <br/>1. Mandatory parameters are left unspecified;<br/>2. Incorrect parameter types.|
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700002 | The specified moduleName is not existed.                      |
 | 17700003 | The specified abilityName is not existed.                     |
 | 17700024 | Failed to get the profile because there is no profile in the HAP. |
@@ -555,7 +555,7 @@ getProfileByExtensionAbility(moduleName: string, extensionAbilityName: string, m
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 401 | Parameter error. Possible causes: <br/>1. Mandatory parameters are left unspecified;<br/>2. Incorrect parameter types.|
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700002 | The specified moduleName is not existed.                      |
 | 17700003 | The specified extensionAbilityName not existed.            |
 | 17700024 | Failed to get the profile because there is no profile in the HAP. |
@@ -618,7 +618,7 @@ getProfileByExtensionAbility(moduleName: string, extensionAbilityName: string, m
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 401 | Parameter error. Possible causes: <br/>1. Mandatory parameters are left unspecified;<br/>2. Incorrect parameter types.|
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700002 | The specified moduleName is not existed.                      |
 | 17700003 | The specified extensionAbilityName not existed.            |
 | 17700024 | Failed to get the profile because there is no profile in the HAP. |
@@ -690,7 +690,7 @@ getProfileByExtensionAbilitySync(moduleName: string, extensionAbilityName: strin
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 401 | Parameter error. Possible causes: <br/>1. Mandatory parameters are left unspecified;<br/>2. Incorrect parameter types.|
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700002 | The specified moduleName is not existed.                      |
 | 17700003 | The specified extensionAbilityName not existed.            |
 | 17700024 | Failed to get the profile because there is no profile in the HAP. |
@@ -752,7 +752,7 @@ getBundleInfoForSelfSync(bundleFlags: number): BundleInfo
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 401 | Parameter error. Possible causes: <br/>1. Mandatory parameters are left unspecified;<br/>2. Incorrect parameter types.|
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 
 **示例：**
 
@@ -800,7 +800,7 @@ canOpenLink(link: string): boolean
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 401 | Parameter error. Possible causes: <br/>1. Mandatory parameters are left unspecified;<br/>2. Incorrect parameter types.|
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700055 | The specified link is invalid.                      |
 | 17700056 | The scheme of the specified link is not in the querySchemes.        |
 
@@ -880,7 +880,7 @@ getBundleInfo(bundleName: string, bundleFlags: number, userId: number, callback:
 | ----------- | ------ | ---- | ---------------------------- |
 | bundleName  | string | 是   | 表示要查询的应用Bundle名称。 |
 | [bundleFlags](js-apis-bundleManager.md#bundleflag) | number | 是   | 指定返回的BundleInfo所包含的信息。|
-| userId      | number | 是   | 表示[用户ID](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9)。  |
+| userId      | number | 是   | 表示用户ID，可以通过[getOsAccountLocalId接口](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9)获取。  |
 | callback | AsyncCallback\<[BundleInfo](js-apis-bundleManager-bundleInfo.md)> | 是 | [回调函数](../apis-basic-services-kit/js-apis-base.md#asynccallback)，当获取成功时，err为null，data为获取到的bundleInfo；否则为错误对象。 |
 
 **错误码：**
@@ -890,7 +890,7 @@ getBundleInfo(bundleName: string, bundleFlags: number, userId: number, callback:
 | 错误码ID | 错误信息                              |
 | -------- | ------------------------------------- |
 | 201 | Permission denied. |
-| 401 | Parameter error. Possible causes: <br/>1. Mandatory parameters are left unspecified;<br/>2. Incorrect parameter types.|
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700001 | The specified bundleName is not found. |
 | 17700004 | The specified user ID is not found.     |
 | 17700026 | The specified bundle is disabled.     |
@@ -972,7 +972,7 @@ getBundleInfo(bundleName: string, bundleFlags: number, callback: AsyncCallback\<
 | 错误码ID | 错误信息                              |
 | -------- | ------------------------------------- |
 | 201 | Permission denied. |
-| 401 | Parameter error. Possible causes: <br/>1. Mandatory parameters are left unspecified;<br/>2. Incorrect parameter types.|
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700001 | The specified bundleName is not found. |
 | 17700026 | The specified bundle is disabled.     |
 
@@ -1019,7 +1019,7 @@ getBundleInfo(bundleName: string, bundleFlags: number, userId?: number): Promise
 | ----------- | ------ | ---- | ---------------------------- |
 | bundleName  | string | 是   | 表示要查询的应用Bundle名称。 |
 | [bundleFlags](js-apis-bundleManager.md#bundleflag) | number | 是   | 指定返回的BundleInfo所包含的信息。       |
-| userId      | number | 否   | 表示[用户ID](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9)，默认值：调用方所在用户，取值范围：大于等于0。  |
+| userId      | number | 否   | 表示用户ID，可以通过[getOsAccountLocalId接口](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9)获取，默认值：调用方所在用户，取值范围：大于等于0。  |
 
 **返回值：**
 
@@ -1034,7 +1034,7 @@ getBundleInfo(bundleName: string, bundleFlags: number, userId?: number): Promise
 | 错误码ID | 错误信息                            |
 | -------- | --------------------------------------|
 | 201 | Permission denied. |
-| 401 | Parameter error. Possible causes: <br/>1. Mandatory parameters are left unspecified;<br/>2. Incorrect parameter types.|
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700001 | The specified bundleName is not found. |
 | 17700004 | The specified user ID is not found.     |
 | 17700026 | The specified bundle is disabled.     |
@@ -1102,7 +1102,7 @@ getBundleInfoSync(bundleName: string, bundleFlags: number, userId: number): Bund
 | ----------- | ------ | ---- | -------------------------------------------------------- |
 | bundleName  | string | 是   | 表示要查询的应用Bundle名称。                                 |
 | [bundleFlags](js-apis-bundleManager.md#bundleflag) | number | 是   | 指定返回的BundleInfo所包含的信息。 |
-| userId      | number | 是   | 表示[用户ID](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9)。                                             |
+| userId      | number | 是   | 表示用户ID，可以通过[getOsAccountLocalId接口](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9)获取。              |
 
 **返回值：**
 
@@ -1117,7 +1117,7 @@ getBundleInfoSync(bundleName: string, bundleFlags: number, userId: number): Bund
 | 错误码ID | 错误信息                             |
 | -------- | ------------------------------------- |
 | 201 | Permission denied. |
-| 401 | Parameter error. Possible causes: <br/>1. Mandatory parameters are left unspecified;<br/>2. Incorrect parameter types.|
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700001 | The specified bundleName is not found. |
 | 17700004 | The specified user ID is not found.     |
 | 17700026 | The specified bundle is disabled.     |
@@ -1174,7 +1174,7 @@ getBundleInfoSync(bundleName: string, bundleFlags: number): BundleInfo
 | 错误码ID | 错误信息                               |
 | -------- | -------------------------------------- |
 | 201 | Permission denied. |
-| 401 | Parameter error. Possible causes: <br/>1. Mandatory parameters are left unspecified;<br/>2. Incorrect parameter types.|
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700001 | The specified bundleName is not found. |
 | 17700026 | The specified bundle is disabled.     |
 
@@ -1220,7 +1220,7 @@ getBundleNameByUid(uid: number, callback: AsyncCallback\<string>): void
 | 错误码ID | 错误信息            |
 | -------- | --------------------- |
 | 201 | Permission denied. |
-| 401 | Parameter error. Possible causes: <br/>1. Mandatory parameters are left unspecified;<br/>2. Incorrect parameter types.|
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700021 | The uid is not found. |
 
 **示例：**
@@ -1274,7 +1274,7 @@ getBundleNameByUid(uid: number): Promise\<string>
 | 错误码ID | 错误信息            |
 | -------- | ---------------------|
 | 201 | Permission denied. |
-| 401 | Parameter error. Possible causes: <br/>1. Mandatory parameters are left unspecified;<br/>2. Incorrect parameter types.|
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700021 | The uid is not found. |
 
 **示例：**
@@ -1326,7 +1326,7 @@ getBundleNameByUidSync(uid: number): string
 | 错误码ID | 错误信息            |
 | -------- | ---------------------|
 | 201 | Permission denied. |
-| 401 | Parameter error. Possible causes: <br/>1. Mandatory parameters are left unspecified;<br/>2. Incorrect parameter types.|
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700021 | The uid is not found. |
 
 **示例：**
@@ -1375,7 +1375,7 @@ getAppCloneIdentity(uid: number): Promise\<AppCloneIdentity>;
 | 错误码ID | 错误信息                            |
 | -------- | --------------------------------------|
 | 201 | Permission denied. |
-| 401 | Parameter error. Possible causes: <br/>1. Mandatory parameters are left unspecified;<br/>2. Incorrect parameter types.|
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700021 | The uid is not found. |
 
 **示例：**
