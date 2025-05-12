@@ -515,7 +515,7 @@ prefix(content: ComponentContent, options?: SliderPrefixOptions)
 | 参数名      | 类型                                                         | 必填 | 说明                                                    |
 | ----------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------- |
 | content | [ComponentContent](../js-apis-arkui-ComponentContent.md) | 是   | 自定义组件内容，用于定义滑块前缀的可视化内容，该内容会显示在滑块的起始位置。 |
-| options | [SliderPrefixOptions](#sliderprefixoptions20对象属性) | 否   | 滑块前缀的配置选项，用于设置与无障碍功能相关的属性。 |
+| options | [SliderPrefixOptions](#sliderprefixoptions20) | 否   | 滑块前缀的配置选项，用于设置与无障碍功能相关的属性。 |
 
 ### suffix<sup>20+</sup>
 
@@ -532,7 +532,22 @@ suffix(content: ComponentContent, options?: SliderSuffixOptions)
 | 参数名      | 类型                                                         | 必填 | 说明                                                    |
 | ----------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------- |
 | content | [ComponentContent](../js-apis-arkui-ComponentContent.md)    | 是   | 自定义组件内容，用于定义滑块后缀的可视化内容，该内容会显示在滑块的结束位置。 |
-| options | [SliderSuffixOptions](#slidersuffixoptions20对象属性) | 否   | 滑块前缀的配置选项，用于设置与无障碍功能相关的属性。 |
+| options | [SliderSuffixOptions](#slidersuffixoptions20) | 否   | 滑块后缀的配置选项，用于设置与无障碍功能相关的属性。 |
+
+## SliderCustomContentOptions<sup>20+</sup>
+
+Slider前后缀组件无障碍信息参数。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称                     | 类型        | 必填 | 说明                                                         |
+| ------------------------ | ----------- | ---- | ------------------------------------------------------------ |
+| accessibilityText        | [ResourceStr](ts-types.md#resourcestr) | 否   | 用于提供辅助功能的文本，供屏幕阅读器等工具读取，增强无障碍功能。 <br/>默认值："" |
+| accessibilityDescription | [ResourceStr](ts-types.md#resourcestr) | 否   | 用于提供辅助功能的详细描述，描述滑块前缀或后缀的功能或用途，供屏幕阅读器等工具使用。 <br/>默认值为“单指双击即可执行”。 |
+| accessibilityLevel       | string      | 否   | 用于控制某个组件是否可被无障碍辅助服务所识别。<br>支持的值为:<br>"auto"：当前组件会转换为“yes”。<br>"yes"：当前组件可被无障碍辅助服务所识别。<br>"no"：当前组件不可被无障碍辅助服务所识别。<br>"no-hide-descendants"：当前组件及其所有子组件不可被无障碍辅助服务所识别。<br>默认值："auto"。 |
+| accessibilityGroup       | boolean     | 否   | 用于标识该元素是否属于一个无障碍的组，帮助屏幕阅读器等工具将相关元素进行分组处理。设置为true时表示该组件及其所有子组件为一整个可以选中的组件，无障碍服务将不再关注其子组件内容。<br/>默认值：false |
 
 ## SliderPrefixOptions<sup>20+</sup>
 
@@ -542,12 +557,7 @@ Slider前缀组件无障碍信息参数。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称                     | 类型        | 必填 | 说明                                                         |
-| ------------------------ | ----------- | ---- | ------------------------------------------------------------ |
-| accessibilityText        | ResourceStr | 否   | 用于提供辅助功能的文本，供屏幕阅读器等工具读取，增强无障碍功能。 <br/>默认值："" |
-| accessibilityDescription | ResourceStr | 否   | 用于提供辅助功能的详细描述，描述滑块前缀或后缀的功能或用途，供屏幕阅读器等工具使用。 <br/>默认值为“单指双击即可执行”。 |
-| accessibilityLevel       | string      | 否   | 用于控制某个组件是否可被无障碍辅助服务所识别。<br>支持的值为:<br>"auto"：当前组件会转换为“yes”。<br>"yes"：当前组件可被无障碍辅助服务所识别。<br>"no"：当前组件不可被无障碍辅助服务所识别。<br>"no-hide-descendants"：当前组件及其所有子组件不可被无障碍辅助服务所识别。<br>默认值："auto"。 |
-| accessibilityGroup       | boolean     | 否   | 用于标识该元素是否属于一个无障碍的组，帮助屏幕阅读器等工具将相关元素进行分组处理。设置为true时表示该组件及其所有子组件为一整个可以选中的组件，无障碍服务将不再关注其子组件内容。<br/>默认值：false |
+提供前缀组件的无障碍信息，继承自[SliderCustomContentOptions](#slidercustomcontentoptions)。
 
 ## SliderSuffixOptions<sup>20+</sup>
 
@@ -557,12 +567,7 @@ Slider后缀组件无障碍信息参数。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称                     | 类型        | 必填 | 说明                                                         |
-| ------------------------ | ----------- | ---- | ------------------------------------------------------------ |
-| accessibilityText        | ResourceStr | 否   | 用于提供辅助功能的文本，供屏幕阅读器等工具读取，增强无障碍功能。 <br/>默认值："" |
-| accessibilityDescription | ResourceStr | 否   | 用于提供辅助功能的详细描述，描述滑块前缀或后缀的功能或用途，供屏幕阅读器等工具使用。 <br/>默认值为“单指双击即可执行”。 |
-| accessibilityLevel       | string      | 否   | 用于控制某个组件是否可被无障碍辅助服务所识别。<br>支持的值为:<br>"auto"：当前组件会转换为“yes”。<br>"yes"：当前组件可被无障碍辅助服务所识别。<br>"no"：当前组件不可被无障碍辅助服务所识别。<br>"no-hide-descendants"：当前组件及其所有子组件不可被无障碍辅助服务所识别。<br>默认值："auto"。 |
-| accessibilityGroup       | boolean     | 否   | 用于标识该元素是否属于一个无障碍的组，帮助屏幕阅读器等工具将相关元素进行分组处理。设置为true时表示该组件及其所有子组件为一整个可以选中的组件，无障碍服务将不再关注其子组件内容。<br/>默认值：false  |
+提供后缀组件的无障碍信息，继承自[SliderCustomContentOptions](#slidercustomcontentoptions)。
 
 ## SliderBlockStyle<sup>10+</sup>对象说明
 
@@ -1055,4 +1060,167 @@ struct SliderExample {
 ```
 
 ![slider_3](figures/slider_builder.gif)
+
+
+### 示例4（滑动条设置前后缀内容）
+
+该示例实现了Slider组件通过prefix、suffix属性设置滑动条的前后缀内容，定制其内容区以及无障碍属性。设置无障碍属性后，屏幕阅读器将以设置的无障碍内容进行朗读。
+
+```ts
+// xxx.ets
+import { ComponentContent } from '@kit.ArkUI';
+
+class NodeParams {
+  param: ResourceStr = ""
+
+  constructor(param: ResourceStr) {
+    this.param = param;
+  }
+}
+
+@Builder
+function textBuilder(params: NodeParams) {
+  Text(params.param)
+    .fontSize($r('sys.float.Caption_L'))
+    .clip(true)
+    .textAlign(TextAlign.Center)
+    .fontColor(Color.Black)
+}
+
+@Entry
+@Component
+struct SliderExample {
+
+  @State private preNodeIndex: number = 0;
+  @State private sufNodeIndex: number = 0;
+  private title: string = 'SliderTest';
+
+  private pre: string = '低';
+  private suf: string = '高';
+  private uiContext: UIContext = this.getUIContext();
+
+  private preNode1: ComponentContent<NodeParams> = new ComponentContent(this.uiContext, wrapBuilder(textBuilder), new NodeParams(this.pre));
+  private sufNode1: ComponentContent<NodeParams> = new ComponentContent(this.uiContext, wrapBuilder(textBuilder), new NodeParams(this.suf));
+  private preNode2: ComponentContent<NodeParams> = new ComponentContent(this.uiContext, wrapBuilder(textBuilder), new NodeParams(this.pre));
+  private sufNode2: ComponentContent<NodeParams> = new ComponentContent(this.uiContext, wrapBuilder(textBuilder), new NodeParams(this.suf));
+  private preNode3: ComponentContent<NodeParams> = new ComponentContent(this.uiContext, wrapBuilder(textBuilder), new NodeParams(this.pre));
+  private sufNode3: ComponentContent<NodeParams> = new ComponentContent(this.uiContext, wrapBuilder(textBuilder), new NodeParams(this.suf));
+  private preNode4: ComponentContent<NodeParams> = new ComponentContent(this.uiContext, wrapBuilder(textBuilder), new NodeParams(this.pre));
+  private sufNode4: ComponentContent<NodeParams> = new ComponentContent(this.uiContext, wrapBuilder(textBuilder), new NodeParams(this.suf));
+
+  build() {
+    Column({ space: 8 }) {
+      Text('outset slider').fontSize(9).fontColor(0xCCCCCC).width('90%').margin(15)
+      Row() {
+        Slider({
+          value: 50,
+          min: 0,
+          max: 100,
+          style: SliderStyle.OutSet
+        })
+          .showTips(true)
+          .prefix(this.preNode1, {
+            accessibilityText: 'prefixText',
+            accessibilityDescription: 'prefixDescription',
+            accessibilityLevel: 'auto',
+            accessibilityGroup: true
+          })
+          .suffix(this.sufNode1, {
+            accessibilityText: 'suffixText',
+            accessibilityDescription: 'suffixDescription',
+            accessibilityLevel: 'auto',
+            accessibilityGroup: true
+          })
+      }
+      .width('80%')
+
+      Row() {
+        Slider({
+          value: 50,
+          min: 0,
+          max: 100,
+          style: SliderStyle.OutSet
+        })
+          .showTips(true)
+          .prefix(this.preNode3)
+      }
+      .width('80%')
+
+      Row() {
+        Slider({
+          value: 50,
+          min: 0,
+          max: 100,
+          style: SliderStyle.OutSet
+        })
+          .showTips(true)
+          .suffix(this.sufNode3)
+      }
+      .width('80%')
+
+      Text('inset slider').fontSize(9).fontColor(0xCCCCCC).width('90%').margin(15)
+      Row() {
+        Slider({
+          value: 50,
+          min: 0,
+          max: 100,
+          style: SliderStyle.InSet
+        })
+          .blockColor('#191970')
+          .trackColor('#ADD8E6')
+          .selectedColor('#4169E1')
+          .showTips(true)
+          .trackThickness(36)
+          .prefix(this.preNode2, {
+            accessibilityText: 'prefixText',
+            accessibilityDescription: 'prefixDescription',
+            accessibilityLevel: 'auto',
+            accessibilityGroup: true
+          })
+          .suffix(this.sufNode2, {
+            accessibilityText: 'suffixText',
+            accessibilityDescription: 'suffixDescription',
+            accessibilityLevel: 'auto',
+            accessibilityGroup: true
+          })
+      }
+      .width('80%')
+
+      Row() {
+        Slider({
+          value: 50,
+          min: 0,
+          max: 100,
+          style: SliderStyle.InSet
+        })
+          .blockColor('#191970')
+          .trackColor('#ADD8E6')
+          .selectedColor('#4169E1')
+          .showTips(true)
+          .trackThickness(36)
+          .prefix(this.preNode4)
+      }
+      .width('80%')
+
+      Row() {
+        Slider({
+          value: 50,
+          min: 0,
+          max: 100,
+          style: SliderStyle.InSet
+        })
+          .blockColor('#191970')
+          .trackColor('#ADD8E6')
+          .selectedColor('#4169E1')
+          .showTips(true)
+          .trackThickness(36)
+          .suffix(this.sufNode4)
+      }
+      .width('80%')
+    }.width('100%')
+  }
+}
+```
+
+![slider_4](figures/slider_4.jpeg)
 
