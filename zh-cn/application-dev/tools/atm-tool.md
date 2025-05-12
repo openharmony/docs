@@ -125,9 +125,9 @@ atm dump [-h] [-t [-i <token-id>] [-b <bundle-name>] [-n <process-name>]] [-r [-
 | <!--DelRow-->-r                        |  必选参数，查询系统内的所有[权限使用记录](../reference/apis-ability-kit/js-apis-privacyManager-sys.md#permissionusedresponse)。                           | 
 | <!--DelRow-->-r&nbsp;-i \<token-id\>        | 可选参数，通过应用进程的tokenid，查询该应用的[权限使用记录](../reference/apis-ability-kit/js-apis-privacyManager-sys.md#permissionusedresponse)。        | 
 | <!--DelRow-->-r&nbsp;-p \<permission-name\> | 可选参数，通过权限名，查询该权限的[使用记录](../reference/apis-ability-kit/js-apis-privacyManager-sys.md#permissionusedresponse)。                        |
-| -v                                     | 必选参数，查询系统中所有应用进程的[权限使用类型](../reference/apis-ability-kit/js-apis-privacyManager-sys.md#permissionusedtypeinfo12)。                    | 
-| -v&nbsp;-i \<token-id\>                     | 可选参数，通过应用进程的tokenid，查询该应用的[权限使用类型](../reference/apis-ability-kit/js-apis-privacyManager-sys.md#permissionusedtypeinfo12)。         | 
-| -v&nbsp;-p \<permission-name\>              | 可选参数，通过权限名，查询该权限的[使用类型](../reference/apis-ability-kit/js-apis-privacyManager-sys.md#permissionusedtypeinfo12)。                        | 
+| -v                                     | 必选参数，查询系统中所有应用进程的权限使用类型。                    | 
+| -v&nbsp;-i \<token-id\>                     | 可选参数，通过应用进程的tokenid，查询该应用的权限使用类型。         | 
+| -v&nbsp;-p \<permission-name\>              | 可选参数，通过权限名，查询该权限的使用类型。                        | 
 
 示例：
 
