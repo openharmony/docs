@@ -7293,7 +7293,7 @@ Web组件获取控制台信息对象。示例代码参考[onConsole事件](#onco
 
 constructor(message: string, sourceId: string, lineNumber: number, messageLevel: MessageLevel)
 
-ConsoleMessage的构造函数。
+[ConsoleMessage](#consolemessage)的构造函数。
 
 > **说明：**
 >
