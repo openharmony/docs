@@ -1129,7 +1129,9 @@ UDMF已经支持的数据通路枚举类型。其主要用途是标识各种UDMF
 |----------|-----------|---------|
 | DATA_HUB | 'DataHub' | 公共数据通路。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
 | DRAG<sup>14+</sup> | 'Drag' | 拖拽类型数据通道。<br/>**模型约束：** 此接口仅可在Stage模型下使用。 |
-
+| SYSTEM_SHARE<sup>20+</sup> | 'SystemShare' | 系统分享类型数据通道。<br/>**模型约束：** 此接口仅可在Stage模型下使用。 |
+| PICKER<sup>20+</sup> | 'Picker' | Picker类型数据通道。<br/>**模型约束：** 此接口仅可在Stage模型下使用。 |
+| MENU<sup>20+</sup> | 'Menu' | 菜单类型数据通道。<br/>**模型约束：** 此接口仅可在Stage模型下使用。 |
 ## Options
 
 type Options = { intention?: Intention; key?: string; }
