@@ -4709,7 +4709,7 @@ onSslErrorEventReceive(callback: Callback\<OnSslErrorEventReceiveEvent\>)
 
 onSslErrorEvent(callback: OnSslErrorEventCallback)
 
-通知用户加载资源（主资源+子资源）时发生SSL错误，如果只想处理主资源的SSL错误，请用isMainFrame字段进行区分。
+通知用户加载资源（主资源+子资源）时发生SSL错误，如果只想处理主资源的SSL错误，请用[isMainFrame](ismainframe)字段进行区分。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
