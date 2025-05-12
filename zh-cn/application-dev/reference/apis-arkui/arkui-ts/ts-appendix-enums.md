@@ -356,6 +356,28 @@
 | Bottom      | 底部横向居中。  |
 | BottomEnd   | 底部尾端。    |
 
+## LocalizedAlignment<sup>20+</sup>
+
+用于支持align属性镜像特性的枚举类型。
+
+**卡片能力：** 从API version 20开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称          | 值            | 说明       |
+| ------------- | ------------- |
+| TOP_START     | 'top_start'   | 顶部起始端。   |
+| TOP           | 'top'         | 顶部横向居中。  |
+| TOP_END       | 'top_end'     | 顶部尾端。    |
+| START         | 'start'       | 起始端纵向居中。 |
+| CENTER        | 'center'      | 横向和纵向居中。 |
+| End           | 'end'         | 尾端纵向居中。  |
+| BOTTOM_START  | 'bottom_start'| 底部起始端。   |
+| BOTTOM        | 'bottom'      | 底部横向居中。  |
+| BOTTOM_END    | 'bottom_end'  | 底部尾端。    |
+
 ## TransitionType
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
