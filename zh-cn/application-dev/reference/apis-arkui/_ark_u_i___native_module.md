@@ -12079,7 +12079,7 @@ ArkUI_ErrorCode OH_ArkUI_KeyEvent_IsNumLockOn(const ArkUI_UIInputEvent* event, b
 
 获取按键事件发生时NumLock的状态。
 
-**起始版本：** 18
+**起始版本：** 19
 
 **参数:**
 
@@ -12101,7 +12101,7 @@ ArkUI_ErrorCode OH_ArkUI_KeyEvent_IsCapsLockOn(const ArkUI_UIInputEvent* event, 
 
 获取按键事件发生时CapsLock的状态。
 
-**起始版本：** 18
+**起始版本：** 19
 
 **参数:**
 
@@ -12123,7 +12123,7 @@ ArkUI_ErrorCode OH_ArkUI_KeyEvent_IsScrollLockOn(const ArkUI_UIInputEvent* event
 
 获取按键事件发生时ScrollLock的状态。
 
-**起始版本：** 18
+**起始版本：** 19
 
 **参数:**
 
