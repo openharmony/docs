@@ -180,6 +180,7 @@ config_.videoInfo.videoCapInfo.missionIDsLen = static_cast<int32_t>(missionIds.s
 3. OH_CAPTURE_HOME_SCREEN模式。
 
     PC/2in1设备不弹Picker选择界面，弹出隐私允许/不允许弹窗；
+    此模式下，配置的videoCapInfo.displayId不会生效，默认使用主屏displayId。
 
     ```c++
     // 根据PC/2in1设备分辨率在config_中配置录屏的宽度、高度。
@@ -188,7 +189,6 @@ config_.videoInfo.videoCapInfo.missionIDsLen = static_cast<int32_t>(missionIds.s
 
     // 设置录屏模式为OH_CAPTURE_HOME_SCREEN，传入屏幕Id。
     config_.captureMode = OH_CAPTURE_HOME_SCREEN;
-    config_.videoInfo.videoCapInfo.displayId = 0;
     ```
 
 ## 详细说明
@@ -495,7 +495,8 @@ void OnDisplaySelected(struct OH_AVScreenCapture *capture, uint64_t displayId, v
 }
 
 struct OH_AVScreenCapture *capture;
-static napi_value Screencapture(napi_env env, napi_callback_info info) {
+// 开始录屏时调用StartScreencapture。
+static napi_value StartScreencapture(napi_env env, napi_callback_info info) {
     // 从js端获取窗口id number[]。
     std::vector<int> windowIdsExclude = {};
     size_t argc = 1;
@@ -578,15 +579,56 @@ static napi_value Screencapture(napi_env env, napi_callback_info info) {
     // 可选 设置录屏时的最大帧率 需在启动后调用。
     // OH_AVScreenCapture_SetMaxVideoFrameRate(capture, 20);
 
-    sleep(10); // 录制10s。
-    // 结束录屏。
-    OH_AVScreenCapture_StopScreenCapture(capture);
-    // 释放ScreenCapture。
-    OH_AVScreenCapture_Release(capture);
+        // 结束录屏见StopScreencapture。
+    
     // 返回调用结果，示例仅返回随意值。
     napi_value sum;
     napi_create_double(env, 5, &sum);
 
     return sum;
 }
+
+// 停止录屏时调用StopScreencapture。
+static napi_value StopScreencapture(napi_env env, napi_callback_info info) {
+    if (IsCaptureStreamRunning && capture != nullptr) {
+        // 停止录屏。
+        OH_AVScreenCapture_StopScreenCapture(capture);
+
+        // 释放录屏资源。
+        OH_AVScreenCapture_Release(capture);
+
+        // 清理其他资源，如关闭文件等。
+
+        // 录屏取码流状态置为false，录屏服务实例置空。
+        IsCaptureStreamRunning = false;
+        capture = nullptr;
+    }
+    // 返回调用结果，示例仅返回随意值。
+    napi_value sum;
+    napi_create_double(env, 5, &sum);
+
+    return sum;
+}
+
+EXTERN_C_START
+static napi_value Init(napi_env env, napi_value exports) {
+    napi_property_descriptor desc[] = {
+        {"startScreencapture", nullptr, StartScreencapture, nullptr, nullptr, nullptr, napi_default, nullptr},
+        {"stopScreencapture", nullptr, StopScreencapture, nullptr, nullptr, nullptr, napi_default, nullptr}};
+    napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);
+    return exports;
+}
+EXTERN_C_END
+
+static napi_module demoModule = {
+    .nm_version = 1,
+    .nm_flags = 0,
+    .nm_filename = nullptr,
+    .nm_register_func = Init,
+    .nm_modname = "entry",
+    .nm_priv = ((void *)0),
+    .reserved = {0},
+};
+
+extern "C" __attribute__((constructor)) void RegisterEntryModule(void) { napi_module_register(&demoModule); }
 ```
