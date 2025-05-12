@@ -189,7 +189,7 @@ No such device (it may have been disconnected).
 
 **错误信息**
 
-Insufficient memory. Possible causes: 1. Malloc memory failed.
+Insufficient memory. Possible causes: 1. Malloc allocation failed.
 
 **错误描述**
 
