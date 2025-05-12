@@ -51,7 +51,7 @@ getWindowAvoidArea(type: window.AvoidAreaType): window.AvoidArea
 | ------- | -------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
 
-**示例**
+**示例：**
 
 ```ts
 // ExtensionProvider.ts
@@ -91,7 +91,7 @@ on(type: 'avoidAreaChange', callback: Callback&lt;AvoidAreaInfo&gt;): void
 | ------- | -------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
 
-**示例**
+**示例：**
 
 ```ts
 // ExtensionProvider.ts
@@ -132,7 +132,7 @@ off(type: 'avoidAreaChange', callback?: Callback&lt;AvoidAreaInfo&gt;): void
 | -------- | ------------------------------------------------------------ |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed. |
 
-**示例**
+**示例：**
 
 ```ts
 // ExtensionProvider.ts
@@ -170,7 +170,7 @@ on(type: 'windowSizeChange', callback: Callback<window.Size>): void
 | ------- | -------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
 
-**示例**
+**示例：**
 
 ```ts
 // ExtensionProvider.ts
@@ -211,7 +211,7 @@ off(type: 'windowSizeChange', callback?: Callback<window.Size>): void
 | ------- | -------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
 
-**示例**
+**示例：**
 
 ```ts
 // ExtensionProvider.ts

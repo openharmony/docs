@@ -38,13 +38,13 @@ getWindowAvoidArea(type: window.AvoidAreaType): window.AvoidArea
 | -------- | -------- |
 | [window.AvoidArea](js-apis-window.md#avoidarea7) | 宿主窗口内容规避区域。 |
 
-**返回值：** 
+**错误码：**
 
 | 错误码ID | 错误信息         |
 | -------- | ---------------- |
 | 401      | Parameter error. |
 
-**示例**
+**示例：**
 
 ```ts
 // ExtensionProvider.ts
@@ -83,7 +83,7 @@ on(type: 'avoidAreaChange', callback: Callback<{ type: window.AvoidAreaType, are
 | -------- | ------------------------------------------------------------ |
 | 401      | Parameter error. Possible causes: <br/> 1. Mandatory parameters are left unspecified.<br/> 2. Incorrect parameters types.<br/> 3. Parameter verification failed. |
 
-**示例**
+**示例：**
 
 ```ts
 // ExtensionProvider.ts
@@ -121,7 +121,7 @@ off(type: 'avoidAreaChange', callback?: Callback<{ type: window.AvoidAreaType, a
 | -------- | ------------------------------------------------------------ |
 | 401      | Parameter error. Possible causes: <br/> 1. Mandatory parameters are left unspecified.<br/> 2. Incorrect parameters types.<br/> 3. Parameter verification failed. |
 
-**示例**
+**示例：**
 
 ```ts
 // ExtensionProvider.ts
@@ -157,7 +157,7 @@ on(type: 'windowSizeChange', callback: Callback<window.Size>): void
 | -------- | ------------------------------------------------------------ |
 | 401      | Parameter error. Possible causes: <br/> 1. Mandatory parameters are left unspecified.<br/> 2. Incorrect parameters types.<br/> 3. Parameter verification failed. |
 
-**示例**
+**示例：**
 
 ```ts
 // ExtensionProvider.ts
@@ -195,7 +195,7 @@ off(type: 'windowSizeChange', callback?: Callback<window.Size>): void
 | -------- | ------------------------------------------------------------ |
 | 401      | Parameter error. Possible causes: <br/> 1. Mandatory parameters are left unspecified.<br/> 2. Incorrect parameters types.<br/> 3. Parameter verification failed. |
 
-**示例**
+**示例：**
 
 ```ts
 // ExtensionProvider.ts
@@ -224,7 +224,7 @@ properties: UIExtensionHostWindowProxyProperties
 | ---------- | ------------------------------------ | -------------------------------- |
 | properties | [UIExtensionHostWindowProxyProperties](#uiextensionhostwindowproxyproperties) | UIExtensionComponent组件以及宿主窗口的信息。 |
 
-**示例**
+**示例：**
 
 ```ts
 // ExtensionProvider.ts
@@ -274,7 +274,7 @@ hideNonSecureWindows(shouldHide: boolean): Promise&lt;void&gt;
 | 1300002  | Abnormal state. Possible causes: <br> 1. Permission denied. Interface caller does not have permission "ohos.permission.ALLOW_SHOW_NON_SECURE_WINDOWS". <br> 2. The UIExtension window proxy is abnormal. |
 | 1300003  | This window manager service works abnormally. |
 
-**示例**
+**示例：**
 
 ```ts
 // ExtensionProvider.ts
@@ -420,7 +420,7 @@ setWaterMarkFlag(enable: boolean): Promise&lt;void&gt;
 | 1300003 | This window manager service works abnormally.  |
 | 1300008 | The operation is on invalid display. |
 
-**示例**
+**示例：**
 
 ```ts
 // ExtensionProvider.ts
@@ -484,7 +484,7 @@ hidePrivacyContentForHost(shouldHide: boolean): Promise&lt;void&gt;
 | 401      | Parameter error. Possible causes: <br> 1. Mandatory parameters are left unspecified. <br> 2. Incorrect parameters types. <br> 3. Parameter verification failed. |
 | 1300002  | The UIExtension window proxy is abnormal.                    |
 
-**示例**
+**示例：**
 
 ```ts
 // ExtensionProvider.ts
