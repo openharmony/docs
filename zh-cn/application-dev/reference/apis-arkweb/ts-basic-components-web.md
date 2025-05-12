@@ -7313,7 +7313,7 @@ ConsoleMessage的构造函数。
 
 getLineNumber(): number
 
-获取[ConsoleMessage](#ConsoleMessage)的行数。
+获取[ConsoleMessage](#consolemessage)的行数。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
