@@ -210,7 +210,8 @@ static napi_value StartScreencapture(napi_env env, napi_callback_info info) {
         .videoInfo = videoInfo,
     };
 
-    struct OH_AVScreenCapture *capture = OH_AVScreenCapture_Create();
+    // 实例化ScreenCapture。
+    capture = OH_AVScreenCapture_Create();
 
     // 初始化录屏参数，传入配置信息OH_AVScreenRecorderConfig。
     OH_RecorderInfo recorderInfo;
