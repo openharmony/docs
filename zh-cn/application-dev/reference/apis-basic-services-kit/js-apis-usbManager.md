@@ -1264,6 +1264,58 @@ try {
 }
 ```
 
+## usbManager.resetUsbDevice<sup>20+</sup>
+
+resetUsbDevice(pipe: USBDevicePipe): boolean
+
+重置USB外设。
+
+本接口调用后会重置此前设置的配置和替换接口，请在调用之前确认相关业务已结束。在调用本接口之前，需要进行如下操作：
+
+1. 调用[usbManager.getDevices](#usbmanagergetdevices)获取设备列表；
+2. 调用[usbManager.requestRight](#usbmanagerrequestright)获取设备请求权限；
+3. 调用[usbManager.connectDevice](#usbmanagerconnectdevice)获取devicepipe作为本接口的入参。
+
+**系统能力：**  SystemCapability.USB.USBManager
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| pipe | [USBDevicePipe](#usbdevicepipe) | 是 | 用于确定总线号和设备地址，需要调用connectDevice获取。|
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| boolean | true表示重置设备成功，false表示重置设备失败。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[USB服务错误码](errorcode-usb.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 801 | Capability not supported. |
+| 14400004 | Service exception. Possible causes: 1. No accessory is plugged in. |
+| 14400008 | No such device (it may have been disconnected). |
+| 14400010 | Other USB error. Possible causes:<br>1.Unrecognized discard error code. |
+| 14400013 | The USBDevicePipe validity check failed. Possible causes:<br>1. The input parameters fails the validation check.<br>2. The call chain used to obtain the input parameters is not reasonable. |
+
+**示例：**
+
+```ts
+let devicesList: Array<usbManager.USBDevice> = usbManager.getDevices();
+if (devicesList.length == 0) {
+  console.log(`device list is empty`);
+}
+
+usbManager.requestRight(devicesList[0].name);
+let devicepipe: usbManager.USBDevicePipe = usbManager.connectDevice(devicesList[0]);
+let ret: number = usbManager.resetUsbDevice(devicepipe);
+console.log(`resetUsbDevice = ${ret}`);
+```
+
 ## USBEndpoint
 
 通过USB发送和接收数据的端口。通过[USBInterface](#usbinterface)获取。

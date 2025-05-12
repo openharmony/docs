@@ -244,6 +244,27 @@ I/O通道异常，实际读/写操作失败。
 
 尝试重新操作。
 
+## 14400013 参数合法性检查失败
+
+**错误信息**
+
+The USBDevicePipe validity check failed. Possible causes: 1. The input parameters fails the validation check. 2. The call chain used to obtain the input parameters is not reasonable.
+
+**错误描述**
+
+参数合法性检查失败。
+
+ **可能原因**
+
+1. 输入参数合法性检查失败。
+
+2. 入参获取调用链不合理。
+
+**处理步骤**
+
+采用合理的调用链获取入参。
+
+
 ## 31400001 串口服务异常
 
 **错误信息**
