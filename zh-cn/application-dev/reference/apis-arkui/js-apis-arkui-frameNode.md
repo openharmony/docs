@@ -3740,7 +3740,7 @@ struct FrameNodeTypeTest {
 
 ## 节点操作示例
 ```ts
-import { NodeController, FrameNode, UIContext } from '@kit.ArkUI';
+import { NodeController, FrameNode, UIContext, typeNode } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 const TEST_TAG: string = "FrameNode "
@@ -3767,6 +3767,8 @@ class MyNodeController extends NodeController {
       this.childList.push(childNode);
       this.frameNode.appendChild(childNode);
     }
+    let stackNode = typeNode.createNode(uiContext, "Stack");
+    this.frameNode.appendChild(stackNode);
     return this.rootNode;
   }
 
@@ -3847,7 +3849,7 @@ class MyNodeController extends NodeController {
   }
 
   moveFrameNode() {
-    const currentNode = this.frameNode!.getChild(4);
+    const currentNode = this.frameNode!.getChild(10);
     try {
       currentNode!.moveTo(this.rootNode, 0);
       if (this.rootNode!.getChild(0) === currentNode) {
