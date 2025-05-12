@@ -103,6 +103,10 @@ onGestureJudgeBegin(callback: (gestureInfo: GestureInfo, event: BaseGestureEvent
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
+| 名称      | 类型      | 必填                                | 说明         |
+| ---------  | --- | -------------------------------------  | -----------|
+| tapLocation<sup>20+</sup>  | [EventLocationInfo](ts-basic-gestures-tapgesture.md#eventlocationinfo20对象说明) | 否 | 获取点击手势的坐标信息。<br/>取值范围：[0, +∞)<br/> **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。|
+
 ## LongPressGestureEvent对象说明
 继承于[BaseGestureEvent](#basegestureevent对象说明)。可将该对象作为[onGestureJudgeBegin](#ongesturejudgebegin)的event参数来传递。
 
