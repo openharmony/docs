@@ -108,11 +108,9 @@
     2in1设备配置displayId为扩展屏Id，可拉起录屏窗口选择界面，用户在界面上选择录屏内容，最终录屏内容以用户在弹窗界面上的选择为准。
 
     ```javascript
-    // 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
-    context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 
     public getFileFd(): number {
-      let filesDir = this.context.filesDir;
+      let filesDir = '/data/storage/el2/base/haps';
       let file = fs.openSync(filesDir + '/screenCapture.mp4', fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
       return file.fd;
     }
@@ -178,8 +176,6 @@ import { common } from '@kit.AbilityKit';
 
 export class AVScreenCaptureDemo {
   private screenCapture?: media.AVScreenCaptureRecorder;
-  // 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
-  context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   captureConfig: media.AVScreenCaptureRecordConfig = {
     // 开发者可以根据自身的需要设置宽高。
     frameWidth: 768,
@@ -196,7 +192,7 @@ export class AVScreenCaptureDemo {
   };
 
   public getFileFd(): number {
-    let filesDir = this.context.filesDir;
+    let filesDir = '/data/storage/el2/base/haps';
     let file = fs.openSync(filesDir + '/screenCapture.mp4', fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
     return file.fd;
   }
