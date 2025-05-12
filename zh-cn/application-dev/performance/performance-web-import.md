@@ -326,7 +326,7 @@ struct WebComponent {
     // 使用NodeController的Page页
     // Index.ets
     import {createNWeb, getNWeb} from "./common"
-   
+      
     @Entry
     @Component
     struct Index {
@@ -1279,7 +1279,8 @@ Web({ src: 'https://www.example.com/a.html', controller: this.controller })
   .onControllerAttached(async () => {
     // 读取配置，进行预编译
     for (const config of this.configs) {
-      let content = await getContext().resourceManager.getRawFileContentSync(config.localPath);
+      let content = await (this.getUIContext()
+              .getHostContext() as Context).resourceManager.getRawFileContentSync(config.localPath);
 
       try {
         this.controller.precompileJavaScript(config.url, content, config.options)
@@ -1559,7 +1560,7 @@ export default class EntryAbility extends UIAbility {
 4. 正常情况下，资源的有效期由提供的Cache-Control或Expires响应头控制其有效期，默认的有效期为86400秒，即1天。
 5. 资源的MIMEType通过提供的参数中的Content-Type响应头配置，Content-Type需符合标准，否则无法正常使用，MODULE_JS必须提供有效的MIMEType，其他类型可不提供。
 6. 仅支持通过HTML中的标签加载。
-7. 如果业务网页中的script标签使用了crossorigin属性，则必须在接口的responseHeaders参数中设置Cross-Origin响应头的值为anoymous或use-credentials。
+7. 如果业务网页中的script标签使用了crossorigin属性，则必须在接口的responseHeaders参数中设置Cross-Origin响应头的值为anonymous或use-credentials。
 8. 当调用web_webview.WebviewController.SetRenderProcessMode(web_webview.RenderProcessMode.MULTIPLE)接口后，应用会启动多渲染进程模式，此方案在此场景下不会生效。
 9. 单次调用最大支持注入30个资源，单个资源最大支持10Mb。
 
@@ -1651,7 +1652,8 @@ Web({ src: 'https://www.example.com/a.html', controller: this.controller })
       const resourceMapArr: Array<webview.OfflineResourceMap> = [];
       // 读取配置，从rawfile目录中读取文件内容
       for (const config of this.configs) {
-        const buf: Uint8Array = await getContext().resourceManager.getRawFileContentSync(config.localPath);
+        const buf: Uint8Array = await (this.getUIContext()
+              .getHostContext() as Context).resourceManager.getRawFileContentSync(config.localPath);
         resourceMapArr.push({
           urlList: config.urlList,
           resource: buf,
@@ -1889,7 +1891,7 @@ document.querySelectorAll('img').forEach(img => {observer.observe(img)});
 Button('进入网页')
   .onClick(() => {
     hilog.info(0x0001, "WebPerformance", "UnInitializedWeb");
-    router.pushUrl({ url: 'pages/WebBrowser' });
+    this.getUIContext().getRouter().pushUrl({ url: 'pages/WebBrowser' });
   })
 ```
 Web页使用Web组件加载指定网页
@@ -1931,7 +1933,7 @@ struct WebComponent {
       Button('进入网页')
         .onClick(() => {
           hilog.info(0x0001, "WebPerformance", "InitializedWeb");
-          router.pushUrl({ url: 'pages/WebBrowser' });
+          this.getUIContext().getRouter().pushUrl({ url: 'pages/WebBrowser' });
         })
     }
   }

@@ -47,7 +47,7 @@ import { window } from '@kit.ArkUI';
 | TYPE_HANDWRITE<sup>12+</sup>        | 21      | 表示手写笔窗口。<br>**模型约束：** 此接口仅可在Stage模型下使用。<br>**系统接口：** 此接口为系统接口。<br>**系统能力：** SystemCapability.Window.SessionManager |
 | TYPE_WALLET_SWIPE_CARD<sup>15+</sup>| 22      | 表示钱包刷卡窗口。<br>**模型约束：** 此接口仅可在Stage模型下使用。<br>**系统接口：** 此接口为系统接口。<br>**系统能力：** SystemCapability.Window.SessionManager |
 | TYPE_SCREEN_CONTROL<sup>15+</sup>   | 23      | 表示锁定触控的顶层窗口，用于拦截屏幕触摸和点击事件。<br>**模型约束：** 此接口仅可在Stage模型下使用。<br>**系统接口：** 此接口为系统接口。<br>**系统能力：** SystemCapability.Window.SessionManager |
-| TYPE_FLOAT_NAVIGATION<sup>16+</sup> | 24      | 表示悬浮的三键导航窗口。<br>**模型约束：** 此接口仅可在Stage模型下使用。<br>**系统接口：** 此接口为系统接口。<br>**系统能力：** SystemCapability.Window.SessionManager |
+| TYPE_FLOAT_NAVIGATION<sup>17+</sup> | 24      | 表示悬浮的三键导航窗口。<br>**模型约束：** 此接口仅可在Stage模型下使用。<br>**系统接口：** 此接口为系统接口。<br>**系统能力：** SystemCapability.Window.SessionManager |
 
 ## WindowMode<sup>7+</sup>
 
@@ -1700,7 +1700,9 @@ try {
 ### setSnapshotSkip<sup>9+</sup>
 setSnapshotSkip(isSkip: boolean): void
 
-截屏录屏是否忽略当前窗口。此接口一般用于禁止截屏/录屏的场景。
+截屏录屏或投屏是否忽略当前窗口。此接口一般用于禁止截屏/录屏/投屏的场景。
+
+若要实现窗口始终在前台忽略截屏/录屏或投屏，在窗口从后台回到前台时，需要通过[on('windowEvent')](js-apis-window.md#onwindowevent10)监听窗口生命周期变化，在后台状态时设置为false，而在前台状态时设置为true。
 
 **系统接口：** 此接口为系统接口。
 
@@ -3362,7 +3364,7 @@ completeTransition(isCompleted: boolean): void
 ```ts
 (context: window.TransitionContext) => {
   let toWindow: window.Window = context.toWindow;
-  animateTo({
+  this.getUIContext()?.animateTo({
     duration: 1000, // 动画时长
     tempo: 0.5, // 播放速率
     curve: Curve.EaseInOut, // 动画曲线
@@ -3470,7 +3472,7 @@ try {
   animationConfig?.ShowWindowWithCustomAnimation(systemTypeWindow, (context : window.TransitionContext)=>{
     console.info('complete transition end');
     let toWindow = context.toWindow;
-    animateTo({
+    this.getUIContext()?.animateTo({
       duration: 1000, // 动画时长
       tempo: 0.5, // 播放速率
       curve: Curve.EaseInOut, // 动画曲线
@@ -3553,7 +3555,7 @@ try {
   animationConfig?.HideWindowWithCustomAnimation(systemTypeWindow, (context : window.TransitionContext)=>{
     console.info('complete transition end');
     let toWindow = context.toWindow;
-    animateTo({
+    this.getUIContext()?.animateTo({
       duration: 1000, // 动画时长
       tempo: 0.5, // 播放速率
       curve: Curve.EaseInOut, // 动画曲线

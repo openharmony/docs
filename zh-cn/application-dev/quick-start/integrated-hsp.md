@@ -58,7 +58,7 @@
 
     ![](./figures/ide-release-setting.png)
 
-    (3) 选择library目录，Build -> Make Module 'libray'。
+    (3) 选择library目录，Build -> Make Module 'library'。
 
 4. 使用方-创建目录拷贝文件，在entry目录下新建libs目录，将集成态打包产物tgz包拷贝到libs目录下。
 

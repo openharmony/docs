@@ -1,6 +1,6 @@
 # 媒体子系统Changelog
 
-## cl.media.1 应用创建SoundPool时调用media.createSoundPool接口变更
+## cl.media.1 应用创建SoundPool时调用media.createSoundPool接口行为变更
 
 **访问级别**
 
@@ -20,7 +20,7 @@
 
 **起始API Level**
 
-API 18
+API 10
 
 **变更发生版本**
 

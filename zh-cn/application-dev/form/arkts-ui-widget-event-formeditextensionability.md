@@ -68,7 +68,7 @@ export default class EntryFormEditAbility extends FormEditExtensionAbility {
 import { UIExtensionContentSession } from '@kit.AbilityKit';
 import { ExtensionEvent } from './model/ExtensionEvent';
 
-let storage = LocalStorage.getShared();
+let storage = new LocalStorage();
 const TAG: string = 'FormEditDemo[Extension] -->';
 @Entry(storage)
 @Component

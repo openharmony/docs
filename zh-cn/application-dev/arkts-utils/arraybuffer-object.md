@@ -1,28 +1,28 @@
 # ArrayBuffer对象
 
-ArrayBuffer内部包含一块Native内存，该ArrayBuffer的JS对象壳被分配在虚拟机本地堆（LocalHeap）。与普通对象一样，需要经过序列化与反序列化拷贝传递，但是Native内存有两种传输方式：拷贝和转移。
+ArrayBuffer由两部分组成：底层存储数据的Native内存区域，以及封装操作的JS对象壳，该JS对象壳被分配在虚拟机本地堆（LocalHeap）。跨线程传递时，JS对象壳需要经过序列化与反序列化拷贝传递，Native内存区域则有两种传递方式：拷贝和转移。
 
-传输时采用拷贝的话，需要经过深拷贝（递归遍历），传输后两个线程都可以独立访问ArrayBuffer。通信过程如下图所示：
+采用拷贝方式（递归遍历），传输后两个线程可以独立访问ArrayBuffer。通信过程如下图所示：
 
 ![copy_transfer](figures/copy_transfer.png)
 
-如果采用转移的方式，则原线程无法使用此ArrayBuffer对象，跨线程时只需重建JS壳，Native内存无需拷贝，效率更高。通信过程如下图所示：
+采用转移方式，传输后原线程将无法使用此ArrayBuffer对象。跨线程时只需重建JS壳，Native内存无需拷贝，效率更高。通信过程如下图所示：
 
 ![transfer](figures/transfer.png)
 
-ArrayBuffer可以用来表示图片等资源，在应用开发中，会遇到需要进行图片处理的场景（比如需要调整一张图片的亮度、饱和度、大小等），为了避免阻塞UI主线程，可以将图片传递到子线程中执行这些操作。转移方式性能更高，但是原线程不能再访问ArrayBuffer对象，如果两个线程都需要访问，则需要采用拷贝方式，否则建议采用转移方式，提升性能。
+ArrayBuffer可以用来表示图片等资源，在应用开发中，处理图片（如调整亮度、饱和度、大小等）时，为了避免阻塞UI主线程，可以将图片传递到子线程中进行处理。转移方式性能更高，但原线程无法再访问ArrayBuffer对象。如果两个线程都需要访问该对象，建议采用拷贝方式。否则，建议采用转移方式，以提升性能。
 
 下面将分别通过拷贝和转移的方式，将图片传递到子线程中。
 
 ## ArrayBuffer拷贝传输方式
 
-在ArkTS中，TaskPool传递ArrayBuffer数据时，默认使用转移的方式，通过调用setTransferList()接口，指定对应的部分数据传递方式为转移方式，其余部分数据可以切换成拷贝的方式。
+在ArkTS中，TaskPool传递ArrayBuffer数据时，默认使用转移方式，通过调用setTransferList()接口，可以指定部分数据的传递方式为转移方式，而其他部分数据可以切换为拷贝方式。
 
-首先，实现一个需要在Task中执行的用于处理ArrayBuffer的接口。
+首先，实现一个处理ArrayBuffer的接口，该接口在Task中执行。
 
-然后，通过拷贝的方式将ArrayBuffer数据传递到Task中，并在Task中处理ArrayBuffer。
+然后，通过拷贝方式将ArrayBuffer数据传递到Task中，并处理。
 
-最后，UI主线程接收到Task执行完毕后返回的ArrayBuffer数据，拼接数据展示。
+最后，UI主线程接收到Task执行完毕后返回的ArrayBuffer数据，拼接并展示。
 
 ```ts
 // Index.ets
@@ -85,4 +85,4 @@ struct Index {
 
 ## ArrayBuffer转移传输方式
 
-在TaskPool中，传递ArrayBuffer数据，默认使用转移方式，原线程不能再使用传输给子线程的ArrayBuffer。所以在上文示例的基础上，去除task.setTransferList接口就可以实现，即createImageTask第二个参数传入true。
+在TaskPool中，传递ArrayBuffer数据时默认使用转移方式，原线程将无法再使用已传输给子线程的ArrayBuffer。在上文示例的基础上去除task.setTransferList接口调用，即在createImageTask的第二个参数传入true，就可以实现转移方式的传输。

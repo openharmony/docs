@@ -228,7 +228,7 @@ struct ComponentChild1 {
         .width('100%')
         .height(200)
         .onClick(() => {
-          animateTo({ duration: 1000 }, () => {
+          this.getUIContext()?.animateTo({ duration: 1000 }, () => {
             this.flag = !this.flag;
           })
         })
@@ -246,7 +246,7 @@ struct ComponentChild2 {
         .width('100%')
         .height(200)
         .onClick(() => {
-          animateTo({ duration: 1000 }, () => {
+          this.getUIContext()?.animateTo({ duration: 1000 }, () => {
             this.flag = !this.flag;
           })
         })
@@ -325,7 +325,7 @@ struct ComponentChild2 {
     if (Number(item.data) != this.dragIndex) {
       let current = this.dataSource.findIndex((element) => element.data === this.dragItem.data)
       let index = this.dataSource.findIndex((element) => element.data === item.data)
-      animateTo({
+      this.getUIContext()?.animateTo({
         curve: curves.interpolatingSpring(0, 1, 400, 38)
       }, () => {
         this.dataSource.splice(current, 1)
@@ -340,7 +340,7 @@ struct ComponentChild2 {
     let downLocation = getInspectorByKey(item.data)
     let currentLocation = dragEvent.getPreviewRect()
     this.dragItem.scale = 1.05
-    animateTo({
+    this.getUIContext()?.animateTo({
       curve: curves.interpolatingSpring(14, 1, 170, 17)
     }, () => {
       this.dragItem.scale = 1

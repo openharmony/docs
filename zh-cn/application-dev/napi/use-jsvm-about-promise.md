@@ -151,12 +151,12 @@ static JSVM_CallbackStruct *method = param;
 static JSVM_PropertyDescriptor descriptor[] = {
     {"createPromise", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
     {"resolveRejectDeferred", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
-}
+};
 
 // 样例测试js
-const char *srcCallNativeCreatePromise = R"JS(createPromise())JS";
-const char *srcCallNativeResolveRejectDeferred1 = R"JS(resolveRejectDeferred('success','fail', true))JS";
-const char *srcCallNativeResolveRejectDeferred2 = R"JS(resolveRejectDeferred('success','fail', false))JS";
+const char *srcCallNative = R"JS(createPromise();
+                                 resolveRejectDeferred('success','fail', true);
+                                 resolveRejectDeferred('success','fail', false);)JS";
 ```
 
 预期结果
@@ -171,7 +171,8 @@ OH_JSVM_RejectDeferred reject
 用于设置 Promise 解析或拒绝后的回调，效果等价于调用原生的 `Promise.then()` 或 `Promise.catch()`
 
 cpp 部分代码
-```
+
+```cpp
 static int PromiseRegisterHandler(JSVM_VM vm, JSVM_Env env) {
     const char *defineFunction = R"JS(
         var x1 = 0;
@@ -250,11 +251,28 @@ static int PromiseRegisterHandler(JSVM_VM vm, JSVM_Env env) {
     return 0;
 }
 
-static void RunDemo(JSVM_VM vm, JSVM_Env env) {
+static JSVM_Value RunDemo(JSVM_Env env, JSVM_CallbackInfo info) {
+    JSVM_VM vm;
+    OH_JSVM_GetVM(env, &vm);
     if (PromiseRegisterHandler(vm, env) != 0) {
         OH_LOG_INFO(LOG_APP, "Run PromiseRegisterHandler failed");
     }
+
+    return nullptr;
 }
+
+// RunDemo注册回调
+static JSVM_CallbackStruct param[] = {
+    {.data = nullptr, .callback = RunDemo},
+};
+static JSVM_CallbackStruct *method = param;
+// RunDemo方法别名，供JS调用
+static JSVM_PropertyDescriptor descriptor[] = {
+    {"RunDemo", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
+};
+
+// 样例测试js
+const char *srcCallNative = R"JS(RunDemo();)JS";
 ```
 
 预期结果

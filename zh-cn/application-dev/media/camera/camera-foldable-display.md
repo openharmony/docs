@@ -2,12 +2,14 @@
 
 在开发相机应用时，需要先参考开发准备[申请相关权限](camera-preparation.md)。
 
-一台可折叠设备在不同折叠状态下，可使用不同的摄像头，应用可调用[CameraManager.on('foldStatusChange')](../../reference/apis-camera-kit/js-apis-camera.md#onfoldstatuschange12)或[display.on('foldStatusChange')](../../reference/apis-arkui/js-apis-display.md#displayonfoldstatuschange10)监听设备的折叠状态变化，并调用[CameraManager.getSupportedCameras](../../reference/apis-camera-kit/js-apis-camera.md#getsupportedcameras)获取当前状态下可用摄像头，完成相应适配，确保应用在折叠状态变更时的用户体验。
+一台可折叠设备在不同折叠状态下，可使用不同的相机，应用可调用[CameraManager.on('foldStatusChange')](../../reference/apis-camera-kit/js-apis-camera.md#onfoldstatuschange12)或[display.on('foldStatusChange')](../../reference/apis-arkui/js-apis-display.md#displayonfoldstatuschange10)监听设备的折叠状态变化，并调用[CameraManager.getSupportedCameras](../../reference/apis-camera-kit/js-apis-camera.md#getsupportedcameras)获取当前状态下可用相机，完成相应适配，确保应用在折叠状态变更时的用户体验。
 
 详细的API说明请参考[Camera API参考](../../reference/apis-camera-kit/js-apis-camera.md)。
 
+Context获取方式请参考：[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
+
 ## 创建XComponent
-   使用两个[XComponent](../../reference/apis-arkui/arkui-ts/ts-basic-components-xcomponent.md)分别展示折叠态和展开态，防止切换折叠屏状态亮屏的时候上一个摄像头还未关闭，残留上一个摄像头的画面。
+   使用两个[XComponent](../../reference/apis-arkui/arkui-ts/ts-basic-components-xcomponent.md)分别展示折叠态和展开态，防止切换折叠屏状态亮屏的时候上一个相机还未关闭，残留上一个相机的画面。
 
    ```ts
     @Entry
@@ -36,15 +38,15 @@
               .onLoad(async () => {
                 await this.loadXComponent();
               })
-              .width(px2vp(1080))
-              .height(px2vp(1920))
+              .width(this.getUIContext().px2vp(1080))
+              .height(this.getUIContext().px2vp(1920))
           } else {
             XComponent(this.mXComponentOptions)
               .onLoad(async () => {
                 await this.loadXComponent();
               })
-              .width(px2vp(1080))
-              .height(px2vp(1920))
+              .width(this.getUIContext().px2vp(1080))
+              .height(this.getUIContext().px2vp(1920))
           }
         }
         .size({ width: '100%', height: '100%' })
@@ -61,22 +63,25 @@
     import { camera } from '@kit.CameraKit';
     import { BusinessError } from '@kit.BasicServicesKit';
 
-    let cameraManager = camera.getCameraManager(getContext())
-
     function registerFoldStatusChanged(err: BusinessError, foldStatusInfo: camera.FoldStatusInfo) {
       // foldStatus 变量用来控制显示XComponent组件。
       AppStorage.setOrCreate<number>('foldStatus', foldStatusInfo.foldStatus);
     }
 
-    cameraManager.on('foldStatusChange', registerFoldStatusChanged);
-    //cameraManager.off('foldStatusChange', registerFoldStatusChanged);
+    function onFoldStatusChange(cameraManager: camera.CameraManager) {
+      cameraManager.on('foldStatusChange', registerFoldStatusChanged);
+    }
+
+    function offFoldStatusChange(cameraManager: camera.CameraManager) {
+      cameraManager.off('foldStatusChange', registerFoldStatusChanged);
+    }
     ```
 - **方案二：使用图形图像的[display.on('foldStatusChange')](../../reference/apis-arkui/js-apis-display.md#displayonfoldstatuschange10)监听设备折叠态变化。**
     ```ts
     import { display } from '@kit.ArkUI';
     let preFoldStatus: display.FoldStatus = display.getFoldStatus();
     display.on('foldStatusChange', (foldStatus: display.FoldStatus) => {
-      // 从半折叠态（FOLD_STATUS_HALF_FOLDED）和展开态（FOLD_STATUS_EXPANDED），相机框架返回所支持的摄像头是一致的，所以从半折叠态到展开态不需要重新配流，从展开态到半折叠态也是一样的。
+      // 从半折叠态（FOLD_STATUS_HALF_FOLDED）和展开态（FOLD_STATUS_EXPANDED），相机框架返回所支持的相机是一致的，所以从半折叠态到展开态不需要重新配流，从展开态到半折叠态也是一样的。
       if ((preFoldStatus === display.FoldStatus.FOLD_STATUS_HALF_FOLDED &&
         foldStatus === display.FoldStatus.FOLD_STATUS_EXPANDED) ||
         (preFoldStatus === display.FoldStatus.FOLD_STATUS_EXPANDED &&
@@ -97,8 +102,6 @@ import { BusinessError } from '@kit.BasicServicesKit';
 import { abilityAccessCtrl } from '@kit.AbilityKit';
 import { display } from '@kit.ArkUI';
 
-let context = getContext(this);
-
 const TAG = 'FoldScreenCameraAdaptationDemo ';
 
 @Entry
@@ -114,7 +117,7 @@ struct Index {
   }
   private mSurfaceId: string = '';
   private mCameraPosition: camera.CameraPosition = camera.CameraPosition.CAMERA_POSITION_BACK;
-  private mCameraManager: camera.CameraManager = camera.getCameraManager(context);
+  private mCameraManager: camera.CameraManager | undefined = undefined;
   // surface宽高根据需要自行选择。
   private surfaceRect: SurfaceRect = {
     surfaceWidth: 1080,
@@ -132,6 +135,7 @@ struct Index {
       height: 1080
     }
   };
+  private mContext: Context | undefined = undefined;
 
   private preFoldStatus: display.FoldStatus = display.getFoldStatus();
   // 监听折叠屏状态，可以使用cameraManager.on(type: 'foldStatusChange', callback: AsyncCallback<FoldStatusInfo>): void;
@@ -161,7 +165,6 @@ struct Index {
       return;
     }
     this.preFoldStatus = foldStatus;
-    // 获取当前打开的相机摄像头，如果是后置，折叠状态不影响当前摄像头的使用。
     if (!this.curCameraDevice) {
       return;
     }
@@ -171,7 +174,7 @@ struct Index {
 
   requestPermissionsFn(): void {
     let atManager = abilityAccessCtrl.createAtManager();
-    atManager.requestPermissionsFromUser(context, [
+    atManager.requestPermissionsFromUser(this.mContext, [
       'ohos.permission.CAMERA'
     ]).then((): void => {
       this.isShow = true;
@@ -180,8 +183,19 @@ struct Index {
     });
   }
 
+  initContext(): void {
+    let uiContext = this.getUIContext();
+    this.mContext = uiContext.getHostContext();
+  }
+
+  initCameraManager(): void {
+    this.mCameraManager = camera.getCameraManager(this.mContext);
+  }
+
   aboutToAppear(): void {
     console.log(TAG + 'aboutToAppear is called');
+    this.initContext();
+    this.initCameraManager();
     this.requestPermissionsFn();
     this.onFoldStatusChange();
   }
@@ -236,12 +250,12 @@ struct Index {
   }
 
   onFoldStatusChange(): void {
-    this.mCameraManager.on('foldStatusChange', this.foldStatusCallback);
+    this.mCameraManager?.on('foldStatusChange', this.foldStatusCallback);
     // display.on('foldStatusChange', this.displayFoldStatusCallback);
   }
 
   offFoldStatusChange(): void {
-    this.mCameraManager.off('foldStatusChange', this.foldStatusCallback);
+    this.mCameraManager?.off('foldStatusChange', this.foldStatusCallback);
     // display.off('foldStatusChange', this.displayFoldStatusCallback);
   }
 
@@ -416,17 +430,17 @@ struct Index {
             .onLoad(async () => {
               await this.loadXComponent();
             })
-            .width(px2vp(1080))
-            .height(px2vp(1920))
+            .width(this.getUIContext().px2vp(1080))
+            .height(this.getUIContext().px2vp(1920))
         } else {
           XComponent(this.mXComponentOptions)
             .onLoad(async () => {
               await this.loadXComponent();
             })
-            .width(px2vp(1080))
-            .height(px2vp(1920))
+            .width(this.getUIContext().px2vp(1080))
+            .height(this.getUIContext().px2vp(1920))
         }
-        Text('切换摄像头')
+        Text('切换相机')
           .size({ width: 80, height: 48 })
           .position({ x: 1, y: 1 })
           .backgroundColor(Color.White)

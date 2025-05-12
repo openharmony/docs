@@ -1,10 +1,10 @@
 # @ohos.curves (插值计算)
 
-本模块提供设置动画插值曲线功能，用于构造阶梯曲线对象、构造三阶贝塞尔曲线对象和构造弹簧曲线对象。
+本模块提供设置动画插值曲线功能，用于构造阶梯曲线对象、三阶贝塞尔曲线对象和弹簧曲线对象。
 
 > **说明：**
 > 
-> 本模块首批接口从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+> 本模块首批接口从API version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 
 ## 导入模块
@@ -83,7 +83,7 @@ stepsCurve(count: number, end: boolean): ICurve
 | 参数名 | 类型    | 必填 | 说明                                                         |
 | ------ | ------- | ----| ------------------------------------------------------------ |
 | count  | number  | 是   | 阶梯的数量，需要为正整数。<br/>取值范围：[1, +∞)<br/>**说明：** <br/>设置小于1的值时，按值为1处理。 |
-| end    | boolean | 是   | 在每个间隔的起点或是终点发生阶跃变化。<br>-true：在终点发生阶跃变化。<br>-false：在起点发生阶跃变化。 |
+| end    | boolean | 是   | 在每个间隔的起点或终点发生阶跃变化。<br>-true：在终点发生阶跃变化。<br>-false：在起点发生阶跃变化。 |
 
 **返回值：**
 
@@ -103,7 +103,7 @@ curves.stepsCurve(9, true)  //创建一个阶梯曲线
 
 cubicBezierCurve(x1: number, y1: number, x2: number, y2: number): ICurve
 
-构造三阶贝塞尔曲线对象，曲线的值必须处于0-1之间。
+构造三阶贝塞尔曲线对象，确保曲线的值在0到1之间。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -407,13 +407,13 @@ spring(velocity: number, mass: number, stiffness: number, damping: number): stri
 
 ```ts
 // xxx.ets
-import { curves } from '@kit.ArkUI'
+import { curves } from '@kit.ArkUI';
 
 @Entry
 @Component
 struct ImageComponent {
-  @State widthSize: number = 200
-  @State heightSize: number = 200
+  @State widthSize: number = 200;
+  @State heightSize: number = 200;
 
   build() {
     Column() {

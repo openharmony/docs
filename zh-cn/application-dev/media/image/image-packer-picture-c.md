@@ -6,7 +6,7 @@
 
 ### 添加链接库
 
-在进行应用开发之前，开发者需要打开native工程的src/main/cpp/CMakeLists.txt，在target_link_libraries依赖中添libimage_packer.so 以及日志依赖libhilog_ndk.z.so。
+在进行应用开发之前，开发者需要打开native工程的src/main/cpp/CMakeLists.txt，在target_link_libraries依赖中添加libimage_packer.so 以及日志依赖libhilog_ndk.z.so。
 
 ```txt
 target_link_libraries(entry PUBLIC libhilog_ndk.z.so libimage_packer.so)
@@ -16,7 +16,7 @@ target_link_libraries(entry PUBLIC libhilog_ndk.z.so libimage_packer.so)
 
 具体接口说明请参考[API文档](../../reference/apis-image-kit/_image___native_module.md)。
 
-在Deveco Studio新建Native C++应用，默认生成的项目中包含index.ets文件，在entry\src\main\cpp目录下会自动生成一个cpp文件（hello.cpp或napi_init.cpp，本示例以hello.cpp文件名为例）。在hello.cpp中实现C API接口调用逻辑，示例代码如下：
+在DevEco Studio新建Native C++应用，默认生成的项目中包含index.ets文件，在entry\src\main\cpp目录下会自动生成一个cpp文件（hello.cpp或napi_init.cpp，本示例以hello.cpp文件名为例）。在hello.cpp中实现C API接口调用逻辑，示例代码如下：
 
 **编码接口使用示例**
 
@@ -67,7 +67,7 @@ target_link_libraries(entry PUBLIC libhilog_ndk.z.so libimage_packer.so)
             source = nullptr;
             return thisPicture->errorCode;
         }
-    OH_LOG_DEBUG(LOG_APP, "ReleaseImageSource source is null !");
+    OH_LOG_DEBUG(LOG_APP, "ReleaseImageSource source is null!");
         return IMAGE_SUCCESS;
     }
 
@@ -85,7 +85,7 @@ target_link_libraries(entry PUBLIC libhilog_ndk.z.so libimage_packer.so)
         size_t argc = 2;
         napi_value args[2] = {nullptr};
         if (napi_get_cb_info(env, info, &argc, args, nullptr, nullptr) != napi_ok) {
-            OH_LOG_ERROR(LOG_APP, "napi_get_cb_info failed !");
+            OH_LOG_ERROR(LOG_APP, "napi_get_cb_info failed!");
             return getJsResult(env, thisPicture->errorCode);
         }
         uint32_t fd = 0;
@@ -137,7 +137,7 @@ target_link_libraries(entry PUBLIC libhilog_ndk.z.so libimage_packer.so)
         size_t argc = 2;
         napi_value args[2] = {nullptr};
         if (napi_get_cb_info(env, info, &argc, args, nullptr, nullptr) != napi_ok) {
-        OH_LOG_ERROR(LOG_APP, "napi_get_cb_info failed !");
+        OH_LOG_ERROR(LOG_APP, "napi_get_cb_info failed!");
             return getJsResult(env, thisPicture->errorCode);
         }
         uint32_t fd = 0;

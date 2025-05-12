@@ -23,8 +23,8 @@
 | step | number | 1 | 否 | 每次滑动的步长。 |
 | value | number | 0 | 否 | 滑动选择器的初始值。 |
 | mode<sup>5+</sup> | string | outset | 否 | 滑动条样式：<br/>-&nbsp;outset：滑块在滑杆上；<br/>-&nbsp;inset：滑块在滑杆内。 |
-| showsteps<sup>5+</sup> | boolean | false | 否 | 是否显示步长标识。 |
-| showtips<sup>5+</sup> | boolean | false | 否 | 滑动时是否有气泡提示百分比。 |
+| showsteps<sup>5+</sup> | boolean | false | 否 | 是否显示步长标识。true表示显示步长标识，false表示不显示步长标识。 |
+| showtips<sup>5+</sup> | boolean | false | 否 | 滑动时是否有气泡提示百分比。true表示有气泡提示百分比，false表示没有气泡提示百分比。 |
 
 
 ## 样式

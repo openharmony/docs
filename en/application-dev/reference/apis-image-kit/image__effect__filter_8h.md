@@ -9,6 +9,8 @@ With these APIs, you can quickly implement basic effect processing or connect mu
 
 **Library**: libimage_effect.so
 
+**File to include**: &lt;multimedia/image_effect/image_effect_filter.h&gt;
+
 **System capability**: SystemCapability.Multimedia.ImageEffect.Core
 
 **Since**: 12

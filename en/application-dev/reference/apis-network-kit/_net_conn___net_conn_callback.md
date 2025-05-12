@@ -8,6 +8,7 @@ Defines network status callbacks.
 
 **Related module**: [NetConnection](_net_connection.md)
 
+**Header file**: [net_connection_type.h](net__connection__type_8h.md#net_connection_typeh)
 
 ## Summary
 
@@ -64,7 +65,7 @@ After the callback is complete, the parameter memory is automatically cleared an
 | Name| Type| Description|
 | -------- | -------- | -------- |
 | netHandle | [NetHandle](js-apis-net-connection.md#nethandle) | Network handle.|
-| netCapabilities | [NetCapabilities](js-apis-net-connection.md#netcapabilities)| Network capabilities.|
+| netCapabilities | [NetCapabilities](js-apis-net-connection.md#netcapabilities)| Network capability set.|
 
 ### onConnetionProperties
 

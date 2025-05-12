@@ -6,6 +6,7 @@ No additional configuration is required in application development. When **reque
 
 The following figure shows an example of the user authorization dialog box.
 
+<!--RP1-->
 ![alt text](figures/allow_this_time.png)
 
 The following figure shows the options in **Settings**.
@@ -13,6 +14,7 @@ The following figure shows the options in **Settings**.
 ![alt text](figures/setting_allow_this.png)
 
 Path: **Settings** > **Privacy** > **Permission manager** > **Apps** > *Target application* > **Location**
+<!--RP1End-->
 
 ## Supported Permissions
 
@@ -35,8 +37,10 @@ Currently, the **Allow this time only** option is available only for the followi
   
       When the application widget is invisible on the home screen or the continuous task is complete, the timer starts again. The temporary permission will be revoked when the timer has expired.
 
+      <!--RP2-->
       As shown in the following figure, the camera widget is visible on the home screen.
 
       ![alt text](figures/form_visible.png)
+      <!--RP2End-->
 
 - If the user selects **Ask each time** in the permission settings, the ohos.permission.LOCATION and ohos.permission.APPROXIMATELY_LOCATION permissions will be granted to the application temporarily. The permissions will be revoked in the same way as described above.

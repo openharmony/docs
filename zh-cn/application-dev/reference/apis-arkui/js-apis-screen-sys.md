@@ -813,59 +813,6 @@ screen.setVirtualScreenSurface(screenId, surfaceId, (err: BusinessError) => {
   console.info('Succeeded in setting the surface for the virtual screen.');
 });
 ```
-## screen.setScreenPrivacyMaskImage<sup>18+</sup>
-
-setScreenPrivacyMaskImage(screenId:number, image?: image.PixelMap): Promise&lt;void&gt;
-
-设置屏幕的隐私蒙版图片，使用Promise异步回调。
-
-**系统能力：** SystemCapability.Window.SessionManager
-
-**参数：**
-
-| 参数名    | 类型   | 必填 | 说明          |
-| --------- | ------ | ---- | ------------- |
-| screenId  | number | 是   | 屏幕的id，该参数仅支持正整数输入。    |
-| image | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | 否   | 屏幕的隐私蒙版图片，不传入时，则清除隐私蒙版图片，恢复为未传入的样式。 |
-
-**返回值：**
-
-| 类型                | 说明                      |
-| ------------------- | ------------------------- |
-| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[屏幕错误码](errorcode-display.md)。
-
-| 错误码ID | 错误信息 |
-| ------- | ----------------------- |
-| 202     | Permission verification failed. A non-system application calls a system API.|
-| 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types.|
-| 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
-| 1400001 | Invalid display or screen. |
-| 1400003 | This display manager service works abnormally. |
-
-**示例：**
-
-```ts
-import { BusinessError } from '@kit.BasicServicesKit';
-import { image } from '@kit.ImageKit';
-
-const color: ArrayBuffer = new ArrayBuffer(96); // 96为需要创建的像素buffer大小，取值为：height * width *4
-let opts: image.InitializationOptions = { editable: true, pixelFormat: image.PixelMapFormat.RGBA_8888, size: { height: 4, width: 6 } }
-image.createPixelMap(color, opts).then((pixelMap: image.PixelMap) => {
-  console.info('Succeeded in creating pixelmap.');
-  let screenId: number = 1;
-  screen.setScreenPrivacyMaskImage(screenId, pixelMap).then(() => {
-    console.info('Succeeded in setting the privacy mask image for the screen.');
-  }).catch((err: BusinessError) => {
-    console.error(`Failed to set the privacy mask image for the screen. Code:${err.code},message is ${err.message}`);
-  });
-}).catch((error: BusinessError) => {
-  console.error(`Failed to create pixelmap. code is ${error.code}, message is ${error.message}`);
-})
-```
 ## screen.setVirtualScreenSurface
 
 setVirtualScreenSurface(screenId:number, surfaceId: string): Promise&lt;void&gt;
@@ -989,7 +936,7 @@ console.info('Succeeded in getting the screen rotation lock status. isLocked:' +
 
 setScreenRotationLocked(isLocked: boolean): Promise&lt;void&gt;
 
-设置自动转屏开关是否锁定，使用Promise异步回调。
+设置自动转屏开关是否锁定，使用Promise异步回调，不适用于2in1设备。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -1217,60 +1164,6 @@ screen.setMultiScreenRelativePosition(mainScreenOptions, secondaryScreenOptions)
 | height    | number   | 是   | 是   | 指定虚拟屏幕的高度，单位为px，该参数应为整数。 |
 | density   | number   | 是   | 是   | 指定虚拟屏幕的密度，单位为px，该参数为浮点数。 |
 | surfaceId | string   | 是   | 是   | 指定虚拟屏幕的surfaceId。        |
-
-## screen.makeMirrorWithRegion<sup>15+</sup>
-
-makeMirrorWithRegion(mainScreen:number, mirrorScreen:Array&lt;number&gt;, mainScreenRegion:Rect): Promise&lt;number&gt;
-
-将屏幕的某一矩形区域设置为镜像模式，使用Promise异步回调。
-
-**系统能力：** SystemCapability.WindowManager.WindowManager.Core
-
-**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
-
-**参数：**
-
-| 参数名       | 类型                | 必填 | 说明                 |
-| ------------ | ------------------- | ---- |--------------------|
-| mainScreen   | number              | 是   | 主屏幕id，该参数仅支持正整数输入。  |
-| mirrorScreen | Array&lt;number&gt; | 是   | 镜像屏幕id集合。其中id应为正整数。  |
-| mainScreenRegion | [Rect](#rect15) | 是   | 主屏创建镜像的矩形区域。         |
-
-**返回值：**
-
-| 类型                  | 说明                              |
-| --------------------- |---------------------------------|
-| Promise&lt;number&gt; | Promise对象。返回镜像屏幕的群组id，其中id应为正整数。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[屏幕错误码](errorcode-display.md)。
-
-| 错误码ID | 错误信息 |
-| ------- | ----------------------- |
-| 202     | Permission verification failed. A non-system application calls a system API.|
-| 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types.|
-| 1400001 | Invalid display or screen. |
-
-**示例：**
-
-```ts
-import { BusinessError } from '@kit.BasicServicesKit';
-
-let mainScreenId: number = 0;
-let mirrorScreenIds: Array<number> = [1, 2, 3];
-let mainScreenRegion: screen.Rect = {
-  left : 0,
-  top : 0,
-  width : 1920,
-  height : 1080
-};
-screen.makeMirrorWithRegion(mainScreenId, mirrorScreenIds, mainScreenRegion).then((data: number) => {
-  console.info(`Succeeded in setting screen mirroring. Data: ${JSON.stringify(data)}`);
-}).catch((err: BusinessError) => {
-  console.error(`Failed to set screen area mirroring. Code:${err.code},message is ${err.message}`);
-});
-```
 
 ## Screen
 
@@ -1702,18 +1595,3 @@ screen.createVirtualScreen(option).then((data: screen.Screen) => {
 | width       | number   | 是   | 是   | 屏幕的宽度，单位为px，该参数应为整数。                                |
 | height      | number   | 是   | 是   | 屏幕的高度，单位为px，该参数应为整数。                                |
 | refreshRate | number   | 是   | 是   | 屏幕的刷新率，单位为hz，该参数应为整数。                                     |
-
-## Rect<sup>15+</sup>
-
-矩形信息。
-
-**系统能力：** SystemCapability.WindowManager.WindowManager.Core
-
-**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
-
-| 名称        | 类型 | 可读 | 可写 | 说明                                               |
-| ----------- | -------- | ---- | ---- | -------------------------------------------------- |
-| left    | number   | 是   | 是   | 矩形左上角顶点的X轴坐标，单位为px，该参数应为整数。 |
-| top     | number   | 是   | 是   | 矩形左上角顶点的Y轴坐标，单位为px，该参数应为整数。 |
-| width   | number   | 是   | 是   | 矩形的宽度，单位为px，该参数应为整数。             |
-| height  | number   | 是   | 是   | 矩形的高度，单位为px，该参数应为整数。             |

@@ -206,7 +206,7 @@ struct ScreenTest {
 
   setOrientation() {
     try {
-      window.getLastWindow(getContext(this), (err, data) => { // 获取window实例
+      window.getLastWindow(this.getUIContext().getHostContext(), (err, data) => { // 获取window实例
         if (err.code) {
           console.error(TAG, 'Failed to obtain the top window. Cause: ' + JSON.stringify(err));
           return;

@@ -4,8 +4,9 @@ Applications can call **photoAccessHelper** APIs to manage media assets (images 
 
 > **NOTE**
 >
-> - Before you get started, obtain a **PhotoAccessHelper** instance and apply for required permissions. For details, see [Before You Start](photoAccessHelper-preparation.md).
-> - Unless otherwise specified, the **PhotoAccessHelper** instance obtained in the **Before You Start** section is used to call **photoAccessHelper** APIs. If the code for obtaining the **PhotoAccessHelper** instance is missing, an error will be reported to indicate that **photoAccessHelper** is not defined.
+> Before you get started, obtain a **PhotoAccessHelper** instance and apply for required permissions. For details, see [Before You Start](photoAccessHelper-preparation.md).
+>
+> Unless otherwise specified, the **PhotoAccessHelper** instance obtained in the **Before You Start** section is used to call **photoAccessHelper** APIs. If the code for obtaining the **PhotoAccessHelper** instance is missing, an error will be reported to indicate that **photoAccessHelper** is not defined.
 
 To ensure application running efficiency, most PhotoAccessHelper APIs are asynchronously implemented in callback or promise mode. The following examples use promise-based APIs. For details about the APIs, see [Album Management](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md).
 
@@ -30,7 +31,10 @@ Example: Obtain the image **test.jpg**.
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 import { photoAccessHelper } from '@kit.MediaLibraryKit';
-const context = getContext(this);
+import { common } from '@kit.AbilityKit';
+
+// Obtain the context from the component and ensure that the return value of this.getUiContext().getHostContext() is UIAbilityContext.
+let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
 
 async function example() {
@@ -65,7 +69,7 @@ The thumbnails offer a quick preview on images and videos. You can use [PhotoAss
 
 Your application may need to obtain the thumbnail of an image or video for preview purposes.
 
-For example, obtain the file descriptor (FD) of an image, and decode the image into a pixel map for display or processing. For details, see [Image Decoding](../image/image-decoding.md).
+For example, obtain the file descriptor (FD) of an image, and decode the image into a PixelMap for display or processing. For details, see [Image Decoding](../image/image-decoding.md).
 
 Example: Obtain the thumbnail at the size of 720 x 720 of an image.
 
@@ -80,7 +84,10 @@ Example: Obtain the thumbnail at the size of 720 x 720 of an image.
 import { dataSharePredicates } from '@kit.ArkData';
 import { image } from '@kit.ImageKit';
 import { photoAccessHelper } from '@kit.MediaLibraryKit';
-const context = getContext(this);
+import { common } from '@kit.AbilityKit';
+
+// Obtain the context from the component and ensure that the return value of this.getUiContext().getHostContext() is UIAbilityContext.
+let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
 
 async function example() {
@@ -121,7 +128,7 @@ Example: Create an image asset.
 
 **How to Develop**
 
-1. Set the file name and create **createOption** for setting attributes for the image asset to create.
+1. Set the file name and **createOption** for setting attributes for the image asset to create.
 2. Call **MediaAssetChangeRequest.createAssetRequest** to create a media asset change request object.
 3. Call **MediaAssetChangeRequest.getWriteCacheHandler** to obtain the handle of the file to write and write the content of the image asset.
 4. Call **PhotoAccessHelper.applyChanges** to apply the changes to the image.
@@ -129,7 +136,10 @@ Example: Create an image asset.
 ```ts
 import { photoAccessHelper } from '@kit.MediaLibraryKit';
 import { fileIo } from '@kit.CoreFileKit';
-let context = getContext(this);
+import { common } from '@kit.AbilityKit';
+
+// Obtain the context from the component and ensure that the return value of this.getUiContext().getHostContext() is UIAbilityContext.
+let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
 
 async function example() {
@@ -140,7 +150,7 @@ async function example() {
     };
     let assetChangeRequest: photoAccessHelper.MediaAssetChangeRequest = photoAccessHelper.MediaAssetChangeRequest.createAssetRequest(context, displayName, createOption);
     let fd: number = await assetChangeRequest.getWriteCacheHandler();
-    // write date into fd
+    // write date into fd.
     await fileIoclose(fd);
     await phAccessHelper.applyChanges(assetChangeRequest);
   } catch (err) {
@@ -176,7 +186,10 @@ Example: Rename the first image in the obtained image assets.
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 import { photoAccessHelper } from '@kit.MediaLibraryKit';
-let context = getContext(this);
+import { common } from '@kit.AbilityKit';
+
+// Obtain the context from the component and ensure that the return value of this.getUiContext().getHostContext() is UIAbilityContext.
+let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
 
 async function example() {
@@ -223,7 +236,10 @@ Example: Move the first file in the result set to the trash.
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 import { photoAccessHelper } from '@kit.MediaLibraryKit';
-let context = getContext(this);
+import { common } from '@kit.AbilityKit';
+
+// Obtain the context from the component and ensure that the return value of this.getUiContext().getHostContext() is UIAbilityContext.
+let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
 
 async function example() {

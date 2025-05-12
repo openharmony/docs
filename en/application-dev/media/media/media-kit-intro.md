@@ -292,7 +292,7 @@ The full process of obtaining the metadata of an audio asset includes creating a
 
 ### Supported Formats
 
-For details about the supported audio and video sources, see [Demuxing Media Data](../avcodec/audio-video-demuxer.md).
+For details about the supported audio and video sources, see [Media Data Demultiplexing](../avcodec/audio-video-demuxer.md).
 
 ## AVImageGenerator
 
@@ -310,11 +310,11 @@ The AVTranscoder is used to convert a compressed video file into a video in anot
 
 The AVTranscoder provides the following services:
 
-The encoding parameters (format and bit rate) and container format of the source video file can be modified. The audio and video encoding and container formats of the source video are compatible with the AVCodec for decoding and demuxing purposes, whereas those of the target video are compatible with the AVCodec for encoding and muxing purposes.
+The encoding parameters (format and bit rate) and container format of the source video file can be modified. The audio and video encoding and container formats of the source video are compatible with the AVCodec for decoding and demultiplexing purposes, whereas those of the target video are compatible with the AVCodec for encoding and multiplexing purposes.
 
 <!--RP1--><!--RP1End-->
 - The following source video formats are supported:
-  - [Demuxing formats](../avcodec/avcodec-support-formats.md#media-data-demuxing)
+  - [Demultiplexing formats](../avcodec/avcodec-support-formats.md#media-data-demultiplexing)
   - [Audio decoding formats](../avcodec/avcodec-support-formats.md#audio-decoding)
   - [Video decoding formats](../avcodec/avcodec-support-formats.md#video-decoding)
     <!--Del-->
@@ -324,7 +324,7 @@ The encoding parameters (format and bit rate) and container format of the source
 
     <!--DelEnd-->
 - The following target video formats are supported:
-  - [Container formats](../avcodec/avcodec-support-formats.md#media-data-muxing)
+  - [Container formats](../avcodec/avcodec-support-formats.md#media-data-multiplexing)
   - [Audio encoding formats](../avcodec/avcodec-support-formats.md#audio-encoding)
   - [Video encoding formats](../avcodec/avcodec-support-formats.md#video-encoding)
     <!--Del-->
@@ -334,11 +334,11 @@ The encoding parameters (format and bit rate) and container format of the source
    
     <!--DelEnd-->
 - The support for tracks is as follows:
-  - Subtitle tracks are not supported. If subtitle tracks exist, they are discarded.
-  - If there are multiple video tracks, only one video track is output.
-  - If there are multiple audio tracks, only one audio track is output.
+  - Subtitle tracks are not supported. If the original video has subtitle tracks, they are discarded after transcoding.
+  - Only one video track can be output. If the original video has multiple video tracks, the first one is selected for transcoding.
+  - Only one audio track can be output. If the original video has multiple audio tracks, the first one is selected for transcoding.
 
 > **NOTE**
 >
-> - The transcoded video output supports only the MP4 container format.
-> - The formats of both the source and target videos must be met during transcoding.
+> - Transcoding output video supports only the MP4 container format.
+> - Transcoding output audio supports only AAC encoding, and transcoding output video supports only AVC or HEVC encoding.
