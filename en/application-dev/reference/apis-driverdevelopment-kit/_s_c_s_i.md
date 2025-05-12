@@ -640,6 +640,7 @@ ohos.permission.ACCESS_DDK_SCSI_PERIPHERAL
 
 - SCSIPERIPHERAL_DDK_INVALID_OPERATION: Operation not supported.
 
+- SCSIPERIPHERAL_DDK_TIMEOUT: Transfer timeout.
 
 ### OH_ScsiPeripheral_ParseBasicSenseInfo()
 
@@ -851,7 +852,7 @@ Sends SCSI commands in command descriptor block (CDB) mode.
 
 | Name| Description| 
 | -------- | -------- |
-| dev | Device handle. For details, see [ScsiPeripheral_Device] (#scsiperipheral_device).| 
+| dev | Device handle. For details, see [ScsiPeripheral_Device](#scsiperipheral_device).| 
 | request | Request. For details, see [ScsiPeripheral_Request](_scsi_peripheral___request.md).| 
 | response | Response. For details, see [ScsiPeripheral_Response](_scsi_peripheral___response.md).| 
 
@@ -1013,5 +1014,3 @@ ohos.permission.ACCESS_DDK_SCSI_PERIPHERAL
 - SCSIPERIPHERAL_DDK_TIMEOUT: Transfer timeout.
 
 - SCSIPERIPHERAL_DDK_INVALID_OPERATION: Operation not supported.
-
-<!--no_check-->
