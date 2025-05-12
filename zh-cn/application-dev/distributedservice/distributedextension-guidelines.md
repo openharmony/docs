@@ -109,49 +109,38 @@ hidumper -s 4700 -a "buscenter -l remote_device_info"
 2. 导入开发所需模块。
    
    ```ts
-   import { AbilityConstant } from '@kit.AbilityKit';
-   import { connection } from '@kit.NetworkKit';
-   import { AsyncCallback,BusinessError } from '@kit.BasicServicesKit';
-   import { abilityAccessCtrl, bundleManager, Permissions } from '@kit.AbilityKit'
-   import {DistributedExtensionAbility} from '@kit.DistributedServiceKit';
+   import { AbilityConstant, Want } from '@kit.AbilityKit';
+   import { abilityConnectionManager, DistributedExtensionAbility } from '@kit.DistributedServiceKit';
    ```
 3. 开发者可以自定义 `MDSExtension.ets`文件，类中继承 `DistributedExtensionAbility`，通过重写其 `onCreate、onDestroy`和 `onCollaborate`方法，使其达到在分布式能力扩展的创建、销毁和连接回调的使用。
    
-   下面的示例展示了一个空实现的 `MDSExtension.ets`文件，根据对应Logger可观测其生命周期：
+   下面的示例展示了一个空实现的 `MDSExtension.ets`文件，根据对应日志可观测其生命周期：
    
    ```ts
-   import DistributedExtensionAbility from '@ohos.application.DistributedExtensionAbility';
-   import Logger from '../common/Logger'
-   import abilityConnectionManager from '@ohos.distributedsched.abilityConnectionManager';
-   import { AbilityConstant } from '@kit.AbilityKit';
-   import { connection } from '@kit.NetworkKit';
-   import { AsyncCallback,BusinessError } from '@kit.BasicServicesKit';
-   import { abilityAccessCtrl, bundleManager, Permissions } from '@kit.AbilityKit'
+   import { AbilityConstant, Want } from '@kit.AbilityKit';
+   import { abilityConnectionManager, DistributedExtensionAbility } from '@kit.DistributedServiceKit';   
    
-   
-   const TAG = `FileDistributedExtensionAbility`;
-   
-   export default class DistributedExtension extends  DistributedExtensionAbility {
-     onCreate (want) {
-       Logger.info(TAG, `DistributedExterntion Create ok`);
-       Logger.info(TAG, `DistributedExterntion on Create want ： ${JSON.stringify(want)}`);
-       Logger.info(TAG, `DistributedExterntion on Create end`);
+   export default class DistributedExtension extends DistributedExtensionAbility {
+     onCreate(want: Want) {
+       console.info(`DistributedExterntion Create ok`);
+       console.info(`DistributedExterntion on Create want: ${JSON.stringify(want)}`);
+       console.info(`DistributedExterntion on Create end`);
      }
    
-     onCollaborate (wantParam: Record<string, Object>) {
-       Logger.info(TAG, `DistributedExterntionon onCollabRequest Accept to the result of Ability collaborate`);
+     onCollaborate(wantParam: Record<string, Object>) {
+       console.info(`DistributedExterntion onCollabRequest Accept to the result of Ability collaborate`);
        let sessionId = -1;
-       const collabrationType = wantParam["CollaborationKeys.COLLABORATE_TYPE"] as abilityConnectionManager.CollabrationType;
-       if (collabrationType == undefined) {
+       const collabrationValues = wantParam["CollabrationValues"] as abilityConnectionManager.CollabrationValues;
+       if (collabrationValues == undefined) {
          return sessionId;
        }
    
-       Logger.info(TAG, `onCollab, peerInfo: ${JSON.stringify(collabrationType)}`);
+       console.info(`onCollab, collabrationValues: ${JSON.stringify(collabrationValues)}`);
        return AbilityConstant.CollaborateResult.ACCEPT;
      }
    
-     onDestroy () {
-       Logger.info(TAG, `DistributedExterntion onDestroy ok`);
+     onDestroy() {
+       console.info(`DistributedExterntion onDestroy ok`);
      }
    }
    ```
