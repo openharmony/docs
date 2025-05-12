@@ -10,7 +10,7 @@ The full screen capture process involves creating an **AVScreenCaptureRecorder**
 
 If you are in a call when screen capture starts or a call is coming during screen capture, screen capture automatically stops, and the **SCREENCAPTURE_STATE_STOPPED_BY_CALL** status is reported.
 
-This topic describes how to use the **AVScreenCaptureRecorder** APIs to carry out one-time screen capture. For details about the API reference, see [AVScreenCaptureRecoder](../../reference/apis-media-kit/js-apis-media.md#avscreencapturerecorder12).
+This topic describes how to use the **AVScreenCaptureRecorder** APIs to carry out one-time screen capture. For details about the API reference, see [AVScreenCaptureRecorder](../../reference/apis-media-kit/js-apis-media.md#avscreencapturerecorder12).
 
 If microphone data collection is configured, configure the permission **ohos.permission.MICROPHONE** and request a continuous task. For details, see [Requesting User Authorization](../../security/AccessToken/request-user-authorization.md) and [Continuous Task](../../task-management/continuous-task.md).
 
