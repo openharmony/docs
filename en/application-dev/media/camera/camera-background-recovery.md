@@ -1,4 +1,4 @@
-# Sample for Camera Recovery from the Background (ArkTS)
+# Practices for Camera Recovery from the Background (ArkTS)
 
 This sample demonstrates the complete process for transitioning a camera application from the background to the foreground, providing you with a clear understanding of the entire sequence of API calls.
 
@@ -8,6 +8,7 @@ The state changes during the camera application's transition between foreground 
 - Upon transitioning from the background to the foreground, the camera application must restart the preview stream, photo stream, and camera session management accordingly.
 
 Before referring to the sample code, you are advised to read [Camera Device Management](camera-device-management.md), [Device Input Management](camera-device-input.md), [Camera Session Management](camera-session-management.md), and other related topics in [Camera Development (ArkTS)](camera-preparation.md).
+
 
 ## Development Process
 
