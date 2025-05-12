@@ -923,8 +923,8 @@ routerMap配置文件描述模块的路由表信息，routerMap标签值为数�
 | name          | 标识跳转页面的名称。取值为长度不超过1023字节的字符串。 | 字符串  | 该标签不可缺省。       |
 | pageSourceFile| 标识页面在模块内的路径。取值为长度不超过255字节的字符串。 | 字符串 | 该标签不可缺省。  |
 | buildFunction | 标识被@Builder修饰的函数，该函数描述页面的UI。取值为长度不超过1023字节的字符串。 | 字符串  | 该标签不可缺省。   |
-| [data](#data标签)  | 标识字符串类型的自定义数据。 每个自定义数据字符串取值不超过128字节。 | 对象   | 该标签可缺省，缺省值为空。   |
-| [customData](#customdata标签)  | 标识任意类型的自定义数据，总长度不超过4096字节。  | 对象   | 该标签可缺省，缺省值为空。   |
+| [data](#data标签)  | 标识字符串类型的自定义数据，开发者自行扩展能力，可以通过[HapModuleInfo对象](../reference/apis-ability-kit/js-apis-bundleManager-hapModuleInfo.md)中routerMap集合对象下的data获取字段内容，该字段已由系统解析，无需开发者自行解析。 每个自定义数据字符串取值不超过128字节。 | 对象   | 该标签可缺省，缺省值为空。   |
+| [customData](#customdata标签)  | 标识任意类型的自定义数据，开发者自行扩展能力，可以通过[HapModuleInfo对象](../reference/apis-ability-kit/js-apis-bundleManager-hapModuleInfo.md)中routerMap集合对象下的customData获取字段内容，开发者需要调用JSON.parse函数解析出具体内容。总长度不超过4096字节。  | 对象   | 该标签可缺省，缺省值为空。   |
 
 示例如下：
 
