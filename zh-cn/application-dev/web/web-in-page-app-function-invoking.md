@@ -214,7 +214,7 @@
   </html>
   ```
 ## 复杂类型使用方法
-- 应用侧和前端页面之间传递Array。
+- ### 应用侧和前端页面之间传递Array。
   ```ts
   // xxx.ets
   import { webview } from '@kit.ArkWeb';
@@ -286,7 +286,7 @@
   </body>
   </html>
   ```
-- 应用侧和前端页面之间传递基础类型，非Function等复杂类型。
+- ### 应用侧和前端页面之间传递基础类型，非Function等复杂类型。
   ```ts
   // xxx.ets
   import { webview } from '@kit.ArkWeb';
@@ -366,7 +366,7 @@
   </html>
   ```
 
-- 应用侧调用前端页面的Callback。
+- ### 应用侧调用前端页面的Callback。
   ```ts
   // xxx.ets
   import { webview } from '@kit.ArkWeb';
@@ -439,7 +439,7 @@
   </html>
   ```
 
-- 应用侧调用前端页面Object里的Function。
+- ### 应用侧调用前端页面Object里的Function。
   ```ts
   // xxx.ets
   import { webview } from '@kit.ArkWeb';
@@ -536,7 +536,7 @@
   </html>
   ```
 
-- 前端页面调用应用侧Object里的Function。
+- ### 前端页面调用应用侧Object里的Function。
   ```ts
   // xxx.ets
   import { webview } from '@kit.ArkWeb';
@@ -624,7 +624,7 @@
   </html>
   ```
 
-- Promise场景。<br>
+- ### Promise场景。<br>
   第一种使用方法，在应用侧new Promise。
   ```ts
   // xxx.ets
