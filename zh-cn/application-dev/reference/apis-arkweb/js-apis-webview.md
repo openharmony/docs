@@ -9692,7 +9692,7 @@ static configCookieSync(url: string, value: string, incognito?: boolean): void
 
 > **说明：**
 >
-> configCookie中的url，可以指定域名的方式来使得页面内请求也附带上cookie。
+> configCookieSync中的url，可以指定域名的方式来使得页面内请求也附带上cookie。
 >
 > 同步cookie的时机建议在Web组件加载之前完成。
 >
