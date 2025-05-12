@@ -130,7 +130,7 @@ try {
 
 isPointerVisible(callback: AsyncCallback&lt;boolean&gt;): void
 
-检查鼠标指针是否显示，使用Callback异步回调，以系统参数为准，若系统没有设置过则返回应用本身的鼠标光标状态。
+检查鼠标指针是否显示，使用Callback异步回调。
 
 **系统能力**：SystemCapability.MultimodalInput.Input.Pointer
 
@@ -592,7 +592,7 @@ window.getLastWindow(this.getUIContext().getHostContext(), (error: BusinessError
 
 setCustomCursor(windowId: number, pixelMap: image.PixelMap, focusX?: number, focusY?: number): Promise&lt;void&gt;
 
-设置自定义光标样式，使用Promise异步方式返回结果。
+设置自定义光标样式，使用Promise异步回调。
 
 **系统能力**：SystemCapability.MultimodalInput.Input.Pointer
 

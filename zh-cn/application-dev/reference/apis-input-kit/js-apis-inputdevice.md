@@ -93,7 +93,7 @@ getDeviceInfo(deviceId: number, callback: AsyncCallback&lt;InputDeviceData&gt;):
 | 参数名     | 类型                                                     | 必填 | 说明                                    |
 | -------- | -------------------------------------------------------- | ---- | --------------------------------------- |
 | deviceId | number                                                   | 是   | 输入设备id。                  |
-| callback | AsyncCallback&lt;[InputDeviceData](#inputdevicedata)&gt; | 是   | 回调函数，异步返回输入设备信息，包括输入设备id、名称、支持的源类型、物理地址、版本信息及产品信息，如果传入的输入设备编号无效，返回空。 |
+| callback | AsyncCallback&lt;[InputDeviceData](#inputdevicedata)&gt; | 是   | 回调函数。返回输入设备信息，包括输入设备id、名称、支持的输入能力、物理地址、版本信息及产品信息。如果传入的输入设备编号无效，则返回描述信息中的输入设备名称等信息为空。 |
 
 **错误码**：
 
@@ -138,7 +138,7 @@ getDeviceInfo(deviceId: number): Promise&lt;InputDeviceData&gt;
 
 | 参数                                               | 说明                            |
 | -------------------------------------------------- | ------------------------------- |
-| Promise&lt;[InputDeviceData](#inputdevicedata)&gt; | Promise对象，异步返回输入设备信息，如果传入的输入设备编号无效，返回空。 |
+| Promise&lt;[InputDeviceData](#inputdevicedata)&gt; | Promise对象，返回输入设备信息。如果传入的输入设备编号无效，则返回描述信息中的输入设备名称等信息为空。 |
 
 **错误码**：
 
@@ -173,7 +173,7 @@ getDeviceInfoSync(deviceId: number): InputDeviceData
 
 | 参数名     | 类型   | 必填 | 说明                   |
 | -------- | ------ | ---- | ---------------------- |
-| deviceId | number | 是   | 输入设备id，如果传入的输入设备编号无效，返回空。 |
+| deviceId | number | 是   | 输入设备id。若传入的输入设备id无效，则返回空。 |
 
 **返回值**：
 
@@ -416,7 +416,7 @@ inputDevice.getDevice(1).then((deviceData: inputDevice.InputDeviceData) => {
 
 supportKeys(deviceId: number, keys: Array&lt;KeyCode&gt;, callback: AsyncCallback &lt;Array&lt;boolean&gt;&gt;): void
 
-获取输入设备是否支持指定的键码值，使用AsyncCallback异步方式返回结果。是否支持以输入设备声明的信息为准。
+获取输入设备是否支持指定的键码值，使用AsyncCallback异步方式返回结果。
 
 **系统能力**：SystemCapability.MultimodalInput.Input.InputDevice
 
@@ -536,7 +536,7 @@ try {
 
 getKeyboardType(deviceId: number, callback: AsyncCallback&lt;KeyboardType&gt;): void
 
-获取输入设备的键盘类型，如无按键、未知按键、全键盘、小键盘、手写笔、遥控器设备，使用Callback异步回调。
+获取输入设备的键盘类型，如全键盘、小键盘等，使用callback异步回调。
 
 **系统能力**：SystemCapability.MultimodalInput.Input.InputDevice
 
@@ -785,7 +785,7 @@ getIntervalSinceLastInput(): Promise&lt;number&gt;
 | --------- | ------ | ---- | ---- | ------- |
 | id                   | number                                 | 是 | 否 | 输入设备的唯一标识，同一个物理设备反复插拔，设备id会发生变化。 |
 | name                 | string                                 | 是 | 否 | 输入设备的名字。                                             |
-| sources              | Array&lt;[SourceType](#sourcetype9)&gt; | 是 | 否 | 输入设备支持的输入能力。一个输入设备可以同时具备多种输入能力，如有的键盘上附带触摸板，则此设备有keyboard和touchpad两种输入能力。 |
+| sources              | Array&lt;[SourceType](#sourcetype9)&gt; | 是 | 否 | 输入设备支持的输入能力。一个输入设备可以同时具备多种输入能力，如有的键盘上附带触摸板，则此设备有键盘和触摸板两种输入能力。 |
 | axisRanges           | Array&lt;[AxisRange](#axisrange)&gt;  | 是 | 否 | 输入设备的轴信息。                                           |
 | bus<sup>9+</sup>     | number                                 | 是 | 否 | 输入设备的总线类型。                                         |
 | product<sup>9+</sup> | number                                 | 是 | 否 | 输入设备的产品信息。                                         |
@@ -822,7 +822,7 @@ type AxisType = 'touchmajor' | 'touchminor' | 'orientation' | 'x' | 'y' | 'press
 
 | 名称        | 类型   | 可读   | 可写   | 说明      |
 | --------- | ------ | ---- | ---- | ------- |
-| source                  | [SourceType](#sourcetype9) | 是 | 否 | 轴的输入源类型。 |
+| source                  | [SourceType](#sourcetype9) | 是 | 否 | 轴的输入能力。 |
 | axis                    | [AxisType](#axistype9)    | 是 | 否 | 轴的类型。    |
 | max                     | number                    | 是 | 否 | 轴的最大值。   |
 | min                     | number                    | 是 | 否 | 轴的最小值。   |
@@ -834,7 +834,7 @@ type AxisType = 'touchmajor' | 'touchminor' | 'orientation' | 'x' | 'y' | 'press
 
 type SourceType = 'keyboard' | 'mouse' | 'touchpad' | 'touchscreen' | 'joystick' | 'trackball'
 
-轴的输入源类型。比如鼠标设备可上报x轴事件，则x轴的输入源就是鼠标。
+轴的输入能力。比如鼠标设备可上报x轴事件，则x轴的输入源就是鼠标。
 
 **系统能力**：SystemCapability.MultimodalInput.Input.InputDevice
 
