@@ -7321,7 +7321,7 @@ getLineNumber(): number
 
 | 类型     | 说明                   |
 | ------ | -------------------- |
-| number | 返回ConsoleMessage的行数。 |
+| number | 返回[ConsoleMessage](#ConsoleMessage)的行数。 |
 
 ### getMessage
 
