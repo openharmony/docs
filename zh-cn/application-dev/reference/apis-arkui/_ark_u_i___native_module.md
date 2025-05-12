@@ -9424,7 +9424,7 @@ int32_t OH_ArkUI_DragAction_SetTouchPointY (ArkUI_DragAction * dragAction, float
 ```
 **描述：**
 
-设置跟手点,相对于设置的第一个pixelmap的左上角。
+设置跟手点，相对于设置的第一个pixelmap的左上角。
 
 **起始版本：** 12
 
@@ -9541,7 +9541,7 @@ int32_t OH_ArkUI_DragEvent_GetDataTypes (ArkUI_DragEvent * event, char * eventTy
 | 名称 | 描述 |
 | -------- | -------- |
 | event | ArkUI_DragEvent事件指针。  |
-| char | eventTypeArray 返回拖拽数据的类型列表，需要先自行创建字符串数组。  |
+| eventTypeArray | 返回拖拽数据的类型列表，需要先自行创建字符串数组。  |
 | length | 数组总长度，不应少于使用[OH_ArkUI_DragEvent_GetDataTypeCount](#oh_arkui_dragevent_getdatatypecount)获取到的数量。  |
 | maxStrLen | 拖拽数据类型的最大字符串长度。  |
 
@@ -9968,8 +9968,8 @@ int32_t OH_ArkUI_DragEvent_SetSuggestedDropOperation (ArkUI_DragEvent * event, A
 
 | 名称 | 描述 |
 | -------- | -------- |
-| proposal | 设置建议的数据处理方式。  |
-| proposal | 角标显示状态的类型。  |
+| event | ArkUI_DragEvent事件指针。  |
+| dropOperation | 角标显示状态的类型。  |
 
 **返回：**
 
@@ -10093,7 +10093,7 @@ int32_t OH_ArkUI_DragPreviewOption_SetNumberBadgeEnabled (ArkUI_DragPreviewOptio
 ```
 **描述：**
 
-设置跟手图背板是否显示角标,开启后,系统会根据拖拽数量自动进行角标显示。
+设置跟手图背板是否显示角标，开启后，系统会根据拖拽数量自动进行角标显示。
 
 **起始版本：** 12
 
