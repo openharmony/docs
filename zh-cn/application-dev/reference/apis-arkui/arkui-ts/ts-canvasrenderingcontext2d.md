@@ -46,7 +46,7 @@ RenderingContextSettings(antialias?: boolean)
 
 | 参数名       | 类型    | 必填   | 说明                          |
 | --------- | ------- | ---- | ----------------------------- |
-| antialias | boolean | 否    | 表明canvas是否开启抗锯齿。<br>默认值：false。 |
+| antialias | boolean | 否    | 表明canvas是否开启抗锯齿。<br>默认值：false，表示不开启抗锯齿功能。 |
 
 ### LengthMetricsUnit<sup>12+</sup>
 
