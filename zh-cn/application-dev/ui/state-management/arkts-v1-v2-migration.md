@@ -1168,7 +1168,7 @@ LocalStorage的目的是为了实现页面间的状态变量共享。之所以�
 **基本场景**
 
 V1:
-通过windowStage.[loadContent](../../reference/apis-arkui/js-apis-window.md#loadcontent9)和[getShared](../../reference/apis-arkui/arkui-ts/ts-state-management.md#getshareddeprecated)接口实现页面间的状态变量共享。
+通过windowStage.[loadContent](../../reference/apis-arkui/js-apis-window.md#loadcontent9)和this.getUIContext().[getSharedLocalStorage](../../reference/apis-arkui/js-apis-arkui-UIContext.md#getsharedlocalstorage12)接口实现页面间的状态变量共享。
 ```
 // EntryAbility.ets
 import { UIAbility } from '@kit.AbilityKit';
@@ -1187,8 +1187,8 @@ export default class EntryAbility extends UIAbility {
 
 ```
 // Page1.ets
-// 通过getShared接口获取stage共享的LocalStorage实例
-@Entry(LocalStorage.getShared())
+// 预览器上不支持获取页面共享的LocalStorage实例。
+@Entry({ useSharedStorage: true })
 @Component
 struct Page1 {
   @LocalStorageLink('count') count: number = 0;
@@ -1223,6 +1223,7 @@ export function Page2Builder() {
 struct Page2 {
   @LocalStorageLink('count') count: number = 0;
   pathStack: NavPathStack = new NavPathStack();
+
   build() {
     NavDestination() {
       Column() {
@@ -1230,6 +1231,14 @@ struct Page2 {
           .fontSize(50)
           .onClick(() => {
             this.count++;
+          })
+        Button('change')
+          .fontSize(50)
+          .onClick(() => {
+            const storage = this.getUIContext().getSharedLocalStorage();
+            if (storage) {
+              storage.set('count', 20);
+            }
           })
       }
     }
