@@ -255,7 +255,7 @@ config_.videoInfo.videoCapInfo.missionIDsLen = static_cast<int32_t>(missionIds.s
         if (stateCode == OH_SCREEN_CAPTURE_STATE_INTERRUPTED_BY_OTHER) {
             // 录屏被打断状态处理。
         }
-        ...
+        // 其他回调枚举处理
         if (stateCode == OH_SCREEN_CAPTURE_STATE_EXIT_PRIVATE_SCENE) {
             // 录屏退出隐私模式状态处理。
         }
@@ -398,7 +398,7 @@ void OnStateChange(struct OH_AVScreenCapture *capture, OH_AVScreenCaptureStateCo
     if (stateCode == OH_SCREEN_CAPTURE_STATE_INTERRUPTED_BY_OTHER) {
         // 录屏被打断状态处理。
     }
-    ...
+    // 其他回调枚举处理
     if (stateCode == OH_SCREEN_CAPTURE_STATE_EXIT_PRIVATE_SCENE) {
         // 录屏退出隐私模式状态处理。
     }
