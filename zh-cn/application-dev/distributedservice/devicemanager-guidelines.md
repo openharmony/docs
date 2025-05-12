@@ -176,6 +176,9 @@ bindTarget(deviceId: string, bindParam: {[key:&nbsp;string]:&nbsp;Object;} , cal
 3. 选择不可信设备id，发起设备绑定。
 
    ```ts
+   import { distributedDeviceManager } from '@kit.DistributedServiceKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
+
    class Data {
      deviceId: string = '';
    }
@@ -225,6 +228,9 @@ getAvailableDeviceListSync(): Array&lt;DeviceBasicInfo&gt;;
 4. 查询周围上线并且可信的设备。
 
    ```ts
+   import { distributedDeviceManager } from '@kit.DistributedServiceKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
+
    try {
      let dmInstance = distributedDeviceManager.createDeviceManager('ohos.samples.jsHelloWorld');
      let deviceInfoList: Array<distributedDeviceManager.DeviceBasicInfo> = dmInstance.getAvailableDeviceListSync();
