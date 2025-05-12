@@ -32,8 +32,7 @@ class EntryAbility extends AccessibilityExtensionAbility {
 
 | 名称                   | 类型                                                              | 可读 | 可写 | 说明              |
 |----------------------|--------------------------------------------------------------------|------|------|-------------------|
-| accessibilityFocused | boolean                                                            | 是   | 否   | 表示元素是否处于无障碍焦点状态。true
-表示元素当前处于无障碍焦点状态，false表示元素当前不处于无障碍焦点状态，默认值为false。|
+| accessibilityFocused | boolean                                                            | 是   | 否   | 表示元素是否处于无障碍焦点状态。true表示元素当前处于无障碍焦点状态，false表示元素当前不处于无障碍焦点状态，默认值为false。|
 | accessibilityText<sup>12+</sup> | string                                                  | 是   | 否   | 元素的无障碍文本信息。 |
 | bundleName           | string                                                             | 是   | 否   | 应用包名。 |
 | checkable            | boolean                                                            | 是   | 否   | 表示元素是否支持点击操作。true表示元素支持点击操作，false表示元素不支持点击操作，默认值为false。 |
@@ -253,7 +252,7 @@ getFocusElement(isAccessibilityFocus?: boolean): Promise\<AccessibilityElement>;
 
 | 参数名                  | 类型      | 必填   | 说明                  |
 | -------------------- | ------- | ---- | ------------------- |
-| isAccessibilityFocus | boolean | 否    | 获取的是否是无障碍焦点元素，True表示是，False表示否，默认为否。 |
+| isAccessibilityFocus | boolean | 否    | 获取的是否是无障碍焦点元素，true表示是，false表示否，默认为否。 |
 
 **返回值：**
 | 类型                                  | 说明                     |
@@ -522,7 +521,7 @@ axContext.getWindowRootElement(windowId, (err: BusinessError, data: Accessibilit
 
 getWindows(displayId?: number): Promise\<Array\<AccessibilityElement>>;
 
-获取指定屏幕中的所有窗口, 使用Promise异步回调。
+获取指定屏幕中的所有窗口，使用Promise异步回调。
 
 > **说明：**
 >
@@ -568,7 +567,7 @@ axContext.getWindows().then((data: AccessibilityElement[]) => {
 
 getWindows(callback: AsyncCallback\<Array\<AccessibilityElement>>): void;
 
-获取指定屏幕中的所有窗口, 使用callback异步回调。
+获取指定屏幕中的所有窗口，使用callback异步回调。
 
 > **说明：**
 >
@@ -610,7 +609,7 @@ axContext.getWindows((err: BusinessError, data: AccessibilityElement[]) => {
 
 getWindows(displayId: number, callback: AsyncCallback\<Array\<AccessibilityElement>>): void;
 
-获取指定屏幕中的所有窗口, 使用callback异步回调。
+获取指定屏幕中的所有窗口，使用callback异步回调。
 
 > **说明：**
 >
@@ -1316,7 +1315,7 @@ findElement(type: 'focusType', condition: FocusType): Promise\<AccessibilityElem
 
 | 参数名       | 类型                      | 必填   | 说明                                 |
 | --------- | ----------------------- | ---- | ---------------------------------- |
-| type      | string                  | 是    | 固定为'focusType', 表示查询的类型为节点的焦点元素类型。 |
+| type      | string                  | 是    | 固定为'focusType'，表示查询的类型为节点的焦点元素类型。 |
 | condition | [FocusType](#focustype) | 是    | 表示查询焦点元素的类型。                       |
 
 **返回值：**

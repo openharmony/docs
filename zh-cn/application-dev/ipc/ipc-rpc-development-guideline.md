@@ -91,9 +91,7 @@ IPC/RPC的主要工作是跨进程建立对象通信的连接（客户端进程�
     import { Want, common } from '@kit.AbilityKit';
     import { rpc } from '@kit.IPCKit';
     import { hilog } from '@kit.PerformanceAnalysisKit';
-    import { distributedDeviceManager } from '@kit.DistributedServiceKit';
 
-    let dmInstance: distributedDeviceManager.DeviceManager | undefined;
     let proxy: rpc.IRemoteObject | undefined;
 
     let want: Want = {

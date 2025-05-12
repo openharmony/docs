@@ -550,15 +550,15 @@ It is not allowed to access this domain.
 
 可参考配置服务器域名文档完成服务器域名相关配置。
 
-## 2300999 未知错误
+## 2300999 内部错误
 
 **错误信息**
 
-Unknown error.
+Internal error.
 
 **错误描述**
 
-未知错误。
+内部错误。
 
 **可能原因**
 

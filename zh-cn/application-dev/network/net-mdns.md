@@ -44,7 +44,9 @@ MDNS管理的典型场景有：
 4. 通过resolveLocalService方法，解析本地网络的IP地址（非必要，根据需求使用）。
 5. 通过removeLocalService方法，移除本地服务。
 
-**注意：** 关于示例代码中this的说明：在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需在页面中使用UIAbilityContext提供的能力，[请参见获取UIAbility的上下文消息](http://gitee.com/openharmony/docs/blob/222f8d93e6f0056409aac096e041df3fdd8ae5ec/zh-cn/application-dev/application-models/uiability-usage.md)。
+>**说明：** 
+>
+>在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../application-models/uiability-usage.md#获取uiability的上下文信息)。
 
 ```ts
 // 从@kit.NetworkKit中导入mdns命名空间

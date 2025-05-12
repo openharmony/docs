@@ -906,9 +906,13 @@ setPlaybackStrategy(strategy: PlaybackStrategy): Promise\<void>
 ```ts
 import { common } from '@kit.AbilityKit';
 
+private context: Context | undefined;
+constructor(context: Context) {
+  this.context = context; // this.getUIContext().getHostContext();
+}
+
 let player = await media.createAVPlayer();
-let context = getContext(this) as common.UIAbilityContext
-let fileDescriptor = await context.resourceManager.getRawFd('xxx.mp4')
+let fileDescriptor = await this.context.resourceManager.getRawFd('xxx.mp4')
 player.fdSrc = fileDescriptor
 let playStrategy : media.PlaybackStrategy = {
   preferredWidth: 1,
@@ -1854,16 +1858,12 @@ avPlayer.seek(seekTime, media.SeekMode.SEEK_PREV_SYNC)
 ```
 
 ```ts
-// SEEK_CONTINUOUS 可以结合seekBar/slider的回调方法进行对应处理。
-async onSlideMoving(position : number) : Promise<void> {
-  // seekBar/slider移动过程中回调触发，调用seek(position, media.SeekMode.SEEK_CONTINUOUS)进行seek。
-  this.avPlayer.seek(position, media.SeekMode.SEEK_CONTINUOUS)
-}
+// SEEK_CONTINUOUS 可以结合Slider的onChange回调方法进行对应处理，当slideMode为Moving时，触发拖动过程的SeekContinuous。
+let slideMovingTime: number = 2000
+avPlayer.seek(slideMovingTime, media.SeekMode.SEEK_CONTINUOUS)
 
-async onSlideEnd(position : number) : Promise<void> {
-  // seekBar/slider移动结束回调触发，调用seek(-1, media.SeekMode.SEEK_CONTINUOUS)结束seek。
-  this.avPlayer.seek(-1, media.SeekMode.SEEK_CONTINUOUS)
-}
+// 当slideMode为End时，调用seek(-1, media.SeekMode.SEEK_CONTINUOUS)结束seek。
+avPlayer.seek(-1, media.SeekMode.SEEK_CONTINUOUS)
 ```
 
 ### isSeekContinuousSupported<sup>18+</sup>
@@ -2676,8 +2676,11 @@ addSubtitleFromFd(fd: number, offset?: number, length?: number): Promise\<void>
 ```ts
 import { common } from '@kit.AbilityKit'
 
-let context = getContext(this) as common.UIAbilityContext
-let fileDescriptor = await context.resourceManager.getRawFd('xxx.srt')
+private context: Context | undefined;
+constructor(context: Context) {
+  this.context = context; // this.getUIContext().getHostContext();
+}
+let fileDescriptor = await this.context.resourceManager.getRawFd('xxx.srt');
 
 avPlayer.addSubtitleFromFd(fileDescriptor.fd, fileDescriptor.offset, fileDescriptor.length)
 ```
@@ -4739,13 +4742,16 @@ on(type: 'photoAssetAvailable', callback: Callback\<photoAccessHelper.PhotoAsset
 import { photoAccessHelper } from '@kit.MediaLibraryKit';
 import { common } from '@kit.AbilityKit'
 let photoAsset: photoAccessHelper.PhotoAsset;
-let context = getContext(this) as common.UIAbilityContext
+private context: Context | undefined;
+constructor(context: Context) {
+  this.context = context; // this.getUIContext().getHostContext();
+}
 
 // 例:处理photoAsset回调，保存video。
 async function saveVideo(asset: photoAccessHelper.PhotoAsset) {
   console.info("saveVideo called");
   try {
-    let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
+    let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(this.context);
     let assetChangeRequest: photoAccessHelper.MediaAssetChangeRequest = new photoAccessHelper.MediaAssetChangeRequest(asset);
     assetChangeRequest.saveCameraPhoto();
     await phAccessHelper.applyChanges(assetChangeRequest);
@@ -4967,7 +4973,7 @@ type OnAVRecorderStateChangeHandler = (state: AVRecorderState, reason: StateChan
 
 ## AVTranscoder<sup>12+</sup>
 
-视频转码管理类，用于视频转码。在调用AVTranscoder的方法前，需要先通过createAVTranscoder()构建一个AVTranscoder实例。
+视频转码管理类，用于视频转码。在调用AVTranscoder的方法前，需要先通过[createAVTranscoder()](#mediacreateavtranscoder12)构建一个AVTranscoder实例。
 
 视频转码demo可参考：[视频转码开发指导](../../media/media/using-avtranscoder-for-transcodering.md)
 
@@ -4992,7 +4998,7 @@ prepare(config: AVTranscoderConfig): Promise\<void>
 
 | 参数名 | 类型                                   | 必填 | 说明                       |
 | ------ | -------------------------------------- | ---- | -------------------------- |
-| config | [AVTranscoderConfig](#avtranscoderconfig12) | 是   | 配置视频转码的相关参数。 |
+| config | [AVTranscoderConfig](#avtranscoderconfig12) | 是   | 配置视频转码的相关参数。 <!--RP1--><!--RP1End-->|
 
 **返回值：**
 
@@ -5023,8 +5029,6 @@ let avTranscoderConfig: media.AVTranscoderConfig = {
   fileFormat : media.ContainerFormatType.CFT_MPEG_4,
   videoBitrate : 3000000,
   videoCodec : media.CodecMimeType.VIDEO_AVC,
-  videoFrameWidth : 1280,
-  videoFrameHeight : 720,
 }
 
 avTranscoder.prepare(avTranscoderConfig).then(() => {
@@ -7977,8 +7981,11 @@ let mediaSource : media.MediaSource = media.createMediaSourceWithUrl("http://xxx
 import { common } from '@kit.AbilityKit';
 import { resourceManager } from '@kit.LocalizationKit';
 
-let context = getContext(this) as common.UIAbilityContext;
-let mgr = context.resourceManager;
+private context: Context | undefined;
+constructor(context: Context) {
+  this.context = context; // this.getUIContext().getHostContext();
+}
+let mgr = this.context.resourceManager;
 let fileDescriptor = await mgr.getRawFd("xxx.m3u8");
 
 let fd:string = fileDescriptor.fd.toString();
@@ -7993,13 +8000,13 @@ let mimeType : media.AVMimeTypes = media.AVMimeTypes.APPLICATION_M3U8;
 mediaSource.setMimeType(mimeType);
 
 ```
-## media.createMediaSourceWithStreamData<sup>18+</sup>
+## media.createMediaSourceWithStreamData<sup>19+</sup>
 
 createMediaSourceWithStreamData(streams: Array\<MediaStream>): MediaSource
 
 创建流媒体多码率媒体来源实例方法，当前仅支持HTTP-FLV协议格式多码率。
 
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Media.Core
 
@@ -8007,22 +8014,13 @@ createMediaSourceWithStreamData(streams: Array\<MediaStream>): MediaSource
 
 | 参数名  | 类型                                 | 只读 | 可选 | 说明                                                  |
 | ------- | ------------------------------------ | --- | ---- | ----------------------------------------------------- |
-| streams | Array<[MediaStream](#mediastream18)> | 否 | 否   | 可设置MediaStream数组，支持的流媒体格式：HTTP-FLV。 |
+| streams | Array<[MediaStream](#mediastream19)> | 否 | 否   | 可设置MediaStream数组，支持的流媒体格式：HTTP-FLV。 |
 
 **返回值：**
 
 | 类型                          | 说明                |
 | ----------------------------- | ------------------- |
 | [MediaSource](#mediasource12) | 返回MediaSource，用于媒体资源设置。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[媒体错误码](errorcode-media.md)
-
-| 错误码ID | 错误信息                                                     |
-| -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
-| 5400101  | No memory.                                                   |
 
 **示例1：**
 
@@ -8034,7 +8032,7 @@ streams.push({url: "http:/xxx/1080p.flv", width: 1280, height: 720, bitrate: 200
 let mediaSource : media.MediaSource = media.createMediaSourceWithStreamData(streams);
 ```
 
-## MediaStream<sup>18+</sup>
+## MediaStream<sup>19+</sup>
 
 媒体流数据信息。
 
@@ -8254,7 +8252,7 @@ mediaSource.setMediaResourceLoaderDelegate(mediaSourceLoader);
 let playStrategy : media.PlaybackStrategy = {
   preferredBufferDuration: 20,
 };
-let player = await media.createAVPlayer();
+let player = media.createAVPlayer();
 player.setMediaSource(mediaSource, playStrategy);
 ```
 
@@ -8300,10 +8298,13 @@ respondData(uuid: number, offset: number, buffer: ArrayBuffer): number
 **示例：**
 
 ```ts
+import HashMap from '@ohos.util.HashMap';
 let requests: HashMap<number, media.MediaSourceLoadingRequest> = new HashMap();
 let uuid = 1;
 
 let request = requests.get(uuid);
+let offset = 0; // 当前媒体数据相对于资源起始位置的偏移量
+let buf = new ArrayBuffer(0); // 由应用定义，推送给播放器的数据
 let num = request.respondData(uuid, offset, buf);
 ```
 
@@ -8328,6 +8329,7 @@ respondHeader(uuid: number, header?: Record<string, string>, redirectUrl?: strin
 **示例：**
 
 ```ts
+import HashMap from '@ohos.util.HashMap';
 let requests: HashMap<number, media.MediaSourceLoadingRequest> = new HashMap();
 let uuid = 1;
 
@@ -8365,6 +8367,7 @@ finishLoading(uuid: number, state: LoadingRequestError): void
 **示例：**
 
 ```ts
+import HashMap from '@ohos.util.HashMap';
 let requests: HashMap<number, media.MediaSourceLoadingRequest> = new HashMap();
 let uuid = 1;
 

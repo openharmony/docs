@@ -3688,7 +3688,7 @@ sendControlCommand(command: AVCastControlCommand): Promise\<void>
 | -------- | ---------------------------------------- |
 | 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Parameter verification failed. |
 | 6600101  | Session service exception.You are advised to:1.Scheduled retry.2.Destroy the current session or session controller and re-create it. |
-| 6600105  | Invalid session command. |
+| 6600105  | Invalid session command.Stop sending the command or event,sending commands supported by the controlled end. |
 | 6600109  | The remote connection is not established. |
 
 **示例：**
@@ -3728,7 +3728,7 @@ sendControlCommand(command: AVCastControlCommand, callback: AsyncCallback\<void>
 | -------- | ------------------------------- |
 | 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Parameter verification failed. |
 | 6600101  | Session service exception.You are advised to:1.Scheduled retry.2.Destroy the current session or session controller and re-create it. |
-| 6600105  | Invalid session command. |
+| 6600105  | Invalid session command.Stop sending the command or event,sending commands supported by the controlled end. |
 | 6600109  | The remote connection is not established. |
 
 **示例：**
@@ -5583,6 +5583,8 @@ let keyRequestCallback: avSession.KeyRequestCallback = async(assetId: string, re
 
 枚举，设备所支持的解码格式。
 
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.AVSession.AVCast
 
 | 名称                        | 值   | 说明           |
@@ -5595,6 +5597,8 @@ let keyRequestCallback: avSession.KeyRequestCallback = async(assetId: string, re
 ## ResolutionLevel<sup>19+</sup>
 
 枚举，设备所支持的分辨率。
+
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.AVCast
 
@@ -6679,9 +6683,9 @@ sendControlCommand(command: AVControlCommand): Promise\<void>
 | 6600101  | Session service exception.You are advised to:1.Scheduled retry.2.Destroy the current session or session controller and re-create it. |
 | 6600102  | The session does not exist. |
 | 6600103  | The session controller does not exist. |
-| 6600105  | Invalid session command. |
+| 6600105  | Invalid session command.Stop sending the command or event,sending commands supported by the controlled end. |
 | 6600106  | The session is not activated. |
-| 6600107  | Too many commands or events. |
+| 6600107  | Too many commands or events.Controls the frequency of sending self-query and control commands. |
 
 **示例：**
 
@@ -6725,9 +6729,9 @@ sendControlCommand(command: AVControlCommand, callback: AsyncCallback\<void>): v
 | 6600101  | Session service exception.You are advised to:1.Scheduled retry.2.Destroy the current session or session controller and re-create it. |
 | 6600102  | The session does not exist.     |
 | 6600103  | The session controller does not exist.   |
-| 6600105  | Invalid session command.           |
+| 6600105  | Invalid session command.Stop sending the command or event,sending commands supported by the controlled end. |
 | 6600106  | The session is not activated.                |
-| 6600107  | Too many commands or events.      |
+| 6600107  | Too many commands or events.Controls the frequency of sending self-query and control commands. |
 
 **示例：**
 
@@ -6780,9 +6784,9 @@ sendCommonCommand(command: string, args: {[key: string]: Object}): Promise\<void
 | 6600101  | Session service exception.You are advised to:1.Scheduled retry.2.Destroy the current session or session controller and re-create it. |
 | 6600102  | The session does not exist. |
 | 6600103  | The session controller does not exist. |
-| 6600105  | Invalid session command. |
+| 6600105  | Invalid session command.Stop sending the command or event,sending commands supported by the controlled end. |
 | 6600106  | The session is not activated. |
-| 6600107  | Too many commands or events. |
+| 6600107  | Too many commands or events.Controls the frequency of sending self-query and control commands. |
 
 **示例：**
 
@@ -6856,9 +6860,9 @@ sendCommonCommand(command: string, args: {[key: string]: Object}, callback: Asyn
 | 6600101  | Session service exception.You are advised to:1.Scheduled retry.2.Destroy the current session or session controller and re-create it. |
 | 6600102  | The session does not exist.     |
 | 6600103  | The session controller does not exist.   |
-| 6600105  | Invalid session command.           |
+| 6600105  | Invalid session command.Stop sending the command or event,sending commands supported by the controlled end. |
 | 6600106  | The session is not activated.                |
-| 6600107  | Too many commands or events.      |
+| 6600107  | Too many commands or events.Controls the frequency of sending self-query and control commands. |
 
 **示例：**
 
@@ -6929,8 +6933,8 @@ getExtras(): Promise\<{[key: string]: Object}>
 | 6600101  | Session service exception.You are advised to:1.Scheduled retry.2.Destroy the current session or session controller and re-create it. |
 | 6600102  | The session does not exist. |
 | 6600103  | The session controller does not exist. |
-| 6600105  | Invalid session command. |
-| 6600107  | Too many commands or events. |
+| 6600105  | Invalid session command.Stop sending the command or event,sending commands supported by the controlled end. |
+| 6600107  | Too many commands or events.Controls the frequency of sending self-query and control commands. |
 
 **示例：**
 
@@ -6998,8 +7002,8 @@ getExtras(callback: AsyncCallback\<{[key: string]: Object}>): void
 | 6600101  | Session service exception.You are advised to:1.Scheduled retry.2.Destroy the current session or session controller and re-create it. |
 | 6600102  | The session does not exist. |
 | 6600103  | The session controller does not exist. |
-| 6600105  | Invalid session command. |
-| 6600107  | Too many commands or events. |
+| 6600105  | Invalid session command.Stop sending the command or event,sending commands supported by the controlled end. |
+| 6600107  |Too many commands or events.Controls the frequency of sending self-query and control commands. |
 
 **示例：**
 
@@ -7074,7 +7078,7 @@ getExtrasWithEvent(extraEvent: string): Promise\<ExtraInfo>
 | 6600101  | Session service exception.You are advised to:1.Scheduled retry.2.Destroy the current session or session controller and re-create it. |
 | 6600102  | The session does not exist. |
 | 6600103  | The session controller does not exist. |
-| 6600105  | Invalid session command. |
+| 6600105  | Invalid session command.Stop sending the command or event,sending commands supported by the controlled end. |
 
 **示例：**
 
@@ -8527,7 +8531,7 @@ type AVControlCommandType = 'play' | 'pause' | 'stop' | 'playNext' | 'playPrevio
 
 constructor(context: Context)
 
-创建AVCastPickerHelper对象，获取context参考[getContext](../apis-arkui/js-apis-getContext.md)。
+创建AVCastPickerHelper对象，获取context参考[getContext](../apis-arkui/js-apis-arkui-UIContext.md#gethostcontext12)。
 
 **原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
 

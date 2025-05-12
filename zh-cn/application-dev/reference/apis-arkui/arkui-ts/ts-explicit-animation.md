@@ -6,7 +6,7 @@
 >
 >  从API version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 >
->  本模块功能依赖UI的执行上下文，不可在UI上下文不明确的地方使用，参见[UIContext](../js-apis-arkui-UIContext.md#uicontext)说明。
+>  本模块功能依赖UI的执行上下文，不可在[UI上下文不明确](../../../ui/arkts-global-interface.md)的地方使用，参见[UIContext](../js-apis-arkui-UIContext.md#uicontext)说明。
 >
 >**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 >
@@ -83,7 +83,7 @@ animateTo(value: AnimateParam, event: () => void): void
 
 > **说明：**
 > 
-> 直接使用animateTo可能导致实例不明确的问题，建议使用[getUIContext](../js-apis-arkui-UIContext.md#uicontext)获取UIContext实例，并使用[animateTo](../js-apis-arkui-UIContext.md#animateto)调用绑定实例的animateTo。
+> 直接使用animateTo可能导致[UI上下文不明确](../../../ui/arkts-global-interface.md)的问题，建议使用[getUIContext](../js-apis-arkui-UIContext.md#uicontext)获取UIContext实例，并使用[animateTo](../js-apis-arkui-UIContext.md#animateto)调用绑定实例的animateTo。
 
 该示例通过在onAppear方法中创建组件出现时的动画效果。
 
@@ -92,10 +92,10 @@ animateTo(value: AnimateParam, event: () => void): void
 @Entry
 @Component
 struct AnimateToExample {
-  @State widthSize: number = 250
-  @State heightSize: number = 100
-  @State rotateAngle: number = 0
-  private flag: boolean = true
+  @State widthSize: number = 250;
+  @State heightSize: number = 100;
+  @State rotateAngle: number = 0;
+  private flag: boolean = true;
 
   build() {
     Column() {
@@ -112,20 +112,20 @@ struct AnimateToExample {
               iterations: 3,
               playMode: PlayMode.Normal,
               onFinish: () => {
-                console.info('play end')
+                console.info('play end');
               }
             }, () => {
-              this.widthSize = 150
-              this.heightSize = 60
+              this.widthSize = 150;
+              this.heightSize = 60;
             })
           } else {
             // 建议使用this.getUIContext()?.animateTo()
             this.getUIContext()?.animateTo({}, () => {
-              this.widthSize = 250
-              this.heightSize = 100
+              this.widthSize = 250;
+              this.heightSize = 100;
             })
           }
-          this.flag = !this.flag
+          this.flag = !this.flag;
         })
       Button('stop rotating')
         .margin(50)
@@ -145,14 +145,14 @@ struct AnimateToExample {
               expected: 60,
             }
           }, () => {
-            this.rotateAngle = 90
+            this.rotateAngle = 90;
           })
         })
         .onClick(() => {
           // 建议使用this.getUIContext()?.animateTo()
           this.getUIContext()?.animateTo({ duration: 0 }, () => {
             // this.rotateAngle之前为90，在duration为0的动画中修改属性，可以停止该属性之前的动画，按新设置的属性显示
-            this.rotateAngle = 0
+            this.rotateAngle = 0;
           })
         })
     }.width('100%').margin({ top: 5 })

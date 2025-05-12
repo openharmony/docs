@@ -71,4 +71,4 @@ uint32_t OH_Huks_KeyMaterial25519::pubKeySize
 uint32_t OH_Huks_KeyMaterial25519::reserved
 ```
 **描述**
-保留。
+预留字段，建议开发者赋值为0。

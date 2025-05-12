@@ -1,6 +1,5 @@
 # \@Observed装饰器和\@ObjectLink装饰器：嵌套类对象属性变化
 
-
 上文所述的装饰器（包括[\@State](./arkts-state.md)、[\@Prop](./arkts-prop.md)、[\@Link](./arkts-link.md)、[\@Provide和\@Consume](./arkts-provide-and-consume.md)装饰器）仅能观察到第一层的变化，但是在实际应用开发中，应用会根据开发需要，封装自己的数据模型。对于多层嵌套的情况，比如二维数组，或者数组项class，或者class的属性是class，他们的第二层的属性变化是无法观察到的。这就引出了\@Observed/\@ObjectLink装饰器。
 
 \@Observed/\@ObjectLink配套使用是用于嵌套场景的观察，为了观察嵌套对象属性的变化，需要开发者最好对装饰器的基本观察能力有一定的了解，再来对比阅读该文档。建议提前阅读：[\@State](./arkts-state.md)的基本用法。最佳实践请参考[状态管理最佳实践](https://developer.huawei.com/consumer/cn/doc/best-practices/bpta-status-management)。
@@ -32,7 +31,7 @@
 | \@ObjectLink变量装饰器 | 说明                                       |
 | ----------------- | ---------------------------------------- |
 | 装饰器参数             | 无。                                       |
-| 允许装饰的变量类型         | API version 18之前，必须为被\@Observed装饰的class实例。<br/>API version 18及以后，\@ObjectLink也可以被[makeV1Observed](../../reference/apis-arkui/js-apis-StateManagement.md#makev1observed18)的返回值初始化。<br/>\@ObjectLink不支持简单类型，如果开发者需要使用简单类型，可以使用[\@Prop](arkts-prop.md)。<br/>支持继承Date、[Array](#二维数组)的class实例，API11及以上支持继承[Map](#继承map类)、[Set](#继承set类)的class实例。示例见[观察变化](#观察变化)。<br/>API11及以上支持\@Observed装饰类和undefined或null组成的联合类型，比如ClassA \| ClassB, ClassA \| undefined 或者 ClassA \| null, 示例见[@ObjectLink支持联合类型](#objectlink支持联合类型)。<br/>\@ObjectLink的属性可以被改变的，但不允许整体赋值，即\@ObjectLink装饰的变量是只读的。 |
+| 允许装饰的变量类型         | API version 19之前，必须为被\@Observed装饰的class实例。<br/>API version 19及以后，\@ObjectLink也可以被[makeV1Observed](../../reference/apis-arkui/js-apis-StateManagement.md#makev1observed19)的返回值初始化。<br/>\@ObjectLink不支持简单类型，如果开发者需要使用简单类型，可以使用[\@Prop](arkts-prop.md)。<br/>支持继承Date、[Array](#二维数组)的class实例，API11及以上支持继承[Map](#继承map类)、[Set](#继承set类)的class实例。示例见[观察变化](#观察变化)。<br/>API11及以上支持\@Observed装饰类和undefined或null组成的联合类型，比如ClassA \| ClassB, ClassA \| undefined 或者 ClassA \| null, 示例见[@ObjectLink支持联合类型](#objectlink支持联合类型)。<br/>\@ObjectLink的属性可以被改变的，但不允许整体赋值，即\@ObjectLink装饰的变量是只读的。 |
 | 被装饰变量的初始值         | 不允许。                                     |
 
 \@ObjectLink装饰的数据为可读示例。
@@ -203,8 +202,8 @@ struct Parent {
 
 3. \@ObjectLink装饰的类型必须是复杂类型，否则会有编译期报错。
 
-4. API version 18前，\@ObjectLink装饰的变量类型必须是显式地由@Observed装饰的类。如果未指定类型，或不是\@Observed装饰的class，编译期会报错。
-API version 18及以后，\@ObjectLink也可以被[makeV1Observed](../../reference/apis-arkui/js-apis-StateManagement.md#makev1observed18)的返回值初始化，否则会有运行时告警日志。
+4. API version 19前，\@ObjectLink装饰的变量类型必须是显式地由@Observed装饰的类。如果未指定类型，或不是\@Observed装饰的class，编译期会报错。
+API version 19及以后，\@ObjectLink也可以被[makeV1Observed](../../reference/apis-arkui/js-apis-StateManagement.md#makev1observed19)的返回值初始化，否则会有运行时告警日志。
 
   ```ts
   @Observed
@@ -689,7 +688,7 @@ struct IndexPage {
 }
 ```
 
-API version 18及以后，\@ObjectLink也可以被[makeV1Observed](../../reference/apis-arkui/js-apis-StateManagement.md#makev1observed18)的返回值初始化。所以开发者如果不想额外声明继承Array的类，也可以使用makeV1Observed来达到同样的效果。
+API version 19及以后，\@ObjectLink也可以被[makeV1Observed](../../reference/apis-arkui/js-apis-StateManagement.md#makev1observed19)的返回值初始化。所以开发者如果不想额外声明继承Array的类，也可以使用makeV1Observed来达到同样的效果。
 
 完整例子如下。
 

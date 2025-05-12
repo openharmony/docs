@@ -58,9 +58,9 @@ class SourceObject {
     isVis: boolean
 
     constructor(name: string, age: number, isVis: boolean) {
-        this.name = name
-        this.age = age
-        this.isVis = isVis
+        this.name = name;
+        this.age = age;
+        this.isVis = isVis;
     }
 }
 
@@ -83,9 +83,9 @@ class SourceObject {
     isVis: boolean
 
     constructor(name: string, age: number, isVis: boolean) {
-        this.name = name
-        this.age = age
-        this.isVis = isVis
+        this.name = name;
+        this.age = age;
+        this.isVis = isVis;
     }
 }
 
@@ -272,13 +272,13 @@ setSessionId(sessionId?: string): Promise&lt;void&gt;
 g_object.setSessionId(distributedDataObject.genSessionId()).then (()=>{
     console.info("join session.");
     }).catch((error: BusinessError)=>{
-        console.info("error:" + error.code + error.message);
+        console.error("error:" + error.code + error.message);
 });
 // 退出分布式组网
 g_object.setSessionId().then (()=>{
     console.info("leave all session.");
     }).catch((error: BusinessError)=>{
-        console.info("error:" + error.code + error.message);
+        console.error("error:" + error.code + error.message);
 });
 ```
 

@@ -60,6 +60,22 @@
 
 **取值：** "usual.event.BUNDLE_RESOURCES_CHANGED"
 
+
+### COMMON_EVENT_DEFAULT_APPLICATION_CHANGED<sup>19+</sup>
+
+表示文件默认打开应用发生变更的公共事件。
+
+在文件默认打开应用发生变更时，会发送此公共事件。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Notification.CommonEvent
+
+**订阅者所需权限：** ohos.permission.CHANGE_DEFAULT_APPLICATION
+
+**取值：** "usual.event.DEFAULT_APPLICATION_CHANGED"
+
+
 ## Background Tasks Kit 
 
 ### COMMON_EVENT_DEVICE_IDLE_EXEMPTION_LIST_UPDATED<sup>10+<sup>

@@ -57,7 +57,7 @@ app.json5配置文件包含以下标签。
 | 属性名称 | 含义 | 数据类型 | 是否可缺省 |
 | -------- | -------- | -------- | -------- |
 | bundleName | 标识应用的Bundle名称，用于标识应用的唯一性。命名规则如下&nbsp;：<br/>-&nbsp;必须为以点号（.）分隔的字符串，且至少包含三段，每段中仅允许使用英文字母、数字、下划线（_）。<br/>-&nbsp;首段以英文字母开头，非首段以数字或英文字母开头，每一段以数字或者英文字母结尾。<br/>-&nbsp;不允许多个点号（.）连续出现。<br/>-&nbsp;字符串最小长度为7字节，最大长度128字节。<br/>-&nbsp;推荐采用反域名形式命名（如“com.example.demo”，建议第一级为域名后缀com，第二级为厂商/个人名，第三级为应用名，也可以多级）。<br/>对于随系统源码编译的应用，建议命名为“com.ohos.demo”形式，其中的ohos标识系统应用。 | 字符串 | 该标签不可缺省。 |
-| bundleType| 标识应用的Bundle类型，用于区分应用或者原子化服务。支持的取值如下：<br/>-&nbsp;app：当前Bundle为应用。<br/>-&nbsp;atomicService：当前Bundle为原子化服务。<br/>-&nbsp;shared：当前Bundle为共享库应用，预留字段。<!--Del--><br/>-&nbsp;appService：当前Bundle为系统级共享库应用，仅供系统应用使用。<!--DelEnd--><br/>-&nbsp;appPlugin：当前Bundle为应用的插件包。 | 字符串| 该标签可缺省，缺省值为app。 |
+| bundleType| 标识应用的Bundle类型，用于区分应用或者原子化服务。支持的取值如下：<br/>-&nbsp;app：当前Bundle为应用。<br/>-&nbsp;atomicService：当前Bundle为原子化服务。<br/>-&nbsp;shared：当前Bundle为共享库应用，预留字段。<!--Del--><br/>-&nbsp;appService：当前Bundle为系统级共享库应用，仅供系统应用使用。<!--DelEnd--><br/>-&nbsp;appPlugin：当前Bundle为应用的插件包。从API version 19开始，支持该字段。 | 字符串| 该标签可缺省，缺省值为app。 |
 | debug | 标识应用是否可调试。<br/>-&nbsp;true：可调试，一般用于开发阶段。<br/>-&nbsp;false：不可调试，一般用于发布阶段。 | 布尔值 | 由DevEco Studio编译构建时生成。该标签可缺省，缺省值为false。 |
 | [icon](#icon标签) | 标识[应用的图标](../application-models/application-component-configuration-stage.md)，取值为图标资源文件的索引。 | 字符串 | 该标签不可缺省。 |
 | label | 标识[应用的名称](../application-models/application-component-configuration-stage.md)，取值为字符串资源的索引，字符串长度不超过63字节。 | 字符串 | 该标签不可缺省。 |
@@ -84,11 +84,11 @@ app.json5配置文件包含以下标签。
 | [appEnvironments](#appenvironments标签) | 标识当前模块配置的应用环境变量。 | 对象数组 | 该标签可缺省，缺省值为空。 |
 | maxChildProcess | 标识当前应用自身可创建的子进程的最大个数，取值范围为0到512，0表示不限制，当应用有多个模块时，以entry模块的配置为准。 | 数值 | 该标签可缺省，缺省时使用系统配置的默认值。 |
 | [multiAppMode](#multiappmode标签) | 标识当前应用配置的多开模式。仅bundleType为app的应用的entry或feature模块配置有效，存在多个模块时，以entry模块的配置为准。 | 对象 | 该标签可缺省，缺省值为空。 |
-| hwasanEnabled | 标识应用程序是否开启HWAsan检测。HWAsan(HardWare-assisted AddressSanitizer)是利用Top-Byte-Ignore特性实现的增强版Asan，与Asan相比HWAsan的内存开销更低，检测到的内存错误范围更大。<br/>-&nbsp;true：当前工程开启HWAsan检测。<br/>-&nbsp;false：当前工程不开启HWAsan检测。 | 布尔值 | 该标签可缺省，缺省值为false。 |
-| ubsanEnabled | 标识应用程序是否开启UBsan检测。<br/>UBsan(Undefined Behavior Sanitizer)是一个用于运行时检测程序中未定义行为的工具，旨在帮助开发人员发现代码中潜在的错误和漏洞。<br/>-&nbsp;true：当前工程开启UBsan检测。<br/>-&nbsp;false：当前工程不开启UBsan检测。 | 布尔值 | 该标签可缺省，缺省值为false。 |
+| hwasanEnabled | 标识应用程序是否开启HWAsan检测。HWAsan(HardWare-assisted AddressSanitizer)是利用Top-Byte-Ignore特性实现的增强版Asan，与Asan相比HWAsan的内存开销更低，检测到的内存错误范围更大。<br/>-&nbsp;true：当前工程开启HWAsan检测。<br/>-&nbsp;false：当前工程不开启HWAsan检测。<br/>**说明：** <br/>从API version 14开始，支持该字段。 | 布尔值 | 该标签可缺省，缺省值为false。 |
+| ubsanEnabled | 标识应用程序是否开启UBsan检测。<br/>UBsan(Undefined Behavior Sanitizer)是一个用于运行时检测程序中未定义行为的工具，旨在帮助开发人员发现代码中潜在的错误和漏洞。<br/>-&nbsp;true：当前工程开启UBsan检测。<br/>-&nbsp;false：当前工程不开启UBsan检测。<br/>**说明：** <br/>从API version 14开始，支持该字段。 | 布尔值 | 该标签可缺省，缺省值为false。 |
 | cloudFileSyncEnabled | 标识当前应用是否启用端云文件同步能力。 <br/>-&nbsp;true：当前应用启用端云文件同步能力。<br/>-&nbsp;false：当前应用不启用端云文件同步能力。 | 布尔值 | 该标签可缺省，缺省值为false。  |
 | [configuration](#configuration标签) | 标识当前应用字体大小跟随系统配置的能力。<br/>该标签是一个profile文件资源，用于指定描述应用字体大小跟随系统变更的配置文件。| 字符串 | 该标签可缺省，缺省时configuration使用不跟随系统默认设定。 |
-| assetAccessGroups | 配置应用的Group ID，它和Developer ID一起组成群组信息。<br/>打包HAP时，DevEco使用开发者证书对群组信息签名，其中群组信息由Developer ID（由应用市场分配）+ Group ID（开发者配置）组成。| 字符串数组 | 该标签可缺省，缺省值为空。 |
+| assetAccessGroups | 配置应用的Group ID，它和Developer ID一起组成群组信息。<br/>打包HAP时，DevEco使用开发者证书对群组信息签名，其中群组信息由Developer ID（由应用市场分配）+ Group ID（开发者配置）组成。<br/>**说明：** <br/>从API version 18开始，支持该字段。| 字符串数组 | 该标签可缺省，缺省值为空。 |
 
 ## icon标签
 

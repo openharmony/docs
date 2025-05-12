@@ -9,7 +9,7 @@
 
 **相关模块：** [USB Serial DDK](_serial_ddk.md)
 
-**所在头文件：** [usb_serial_ddk_types.h](usb__serial__ddk__types_8h.md)
+**所在头文件：** [usb_serial_types.h](usb__serial__ddk__types_8h.md)
 
 
 ## 汇总

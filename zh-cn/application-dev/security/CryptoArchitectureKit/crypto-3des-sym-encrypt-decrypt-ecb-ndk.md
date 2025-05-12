@@ -54,6 +54,12 @@ target_link_libraries(entry PUBLIC libohcrypto.so)
 
 调用[OH_CryptoSymKeyGenerator_Destroy](../../reference/apis-crypto-architecture-kit/_crypto_sym_key_api.md#oh_cryptosymkeygenerator_destroy)、[OH_CryptoSymCipher_Destroy](../../reference/apis-crypto-architecture-kit/_crypto_sym_cipher_api.md#oh_cryptosymcipher_destroy)、[OH_CryptoSymKey_Destroy](../../reference/apis-crypto-architecture-kit/_crypto_sym_key_api.md#oh_cryptosymkey_destroy)、[OH_Crypto_FreeDataBlob](../../reference/apis-crypto-architecture-kit/_crypto_common_api.md#oh_crypto_freedatablob)释放申请的内存，销毁对象。
 
+## 开发示例
+
+当前示例以ECB分组模式为例，不需要设置加解密参数。
+
+如果使用的分组模式为CBC、CTR、OFB、CFB，需设置加解密参数IV，请参考[设置加解密参数IV](#设置加解密参数iv)，并注意修改加密、解密过程中生成Cipher实例和初始化Cipher实例时的参数。
+
 ```c++
 #include "CryptoArchitectureKit/crypto_common.h"
 #include "CryptoArchitectureKit/crypto_sym_cipher.h"
@@ -86,6 +92,7 @@ static OH_Crypto_ErrCode doTest3DesEcb()
     if (ret != CRYPTO_SUCCESS) {
         goto end;
     }
+    // 如果是CBC、CTR、OFB、CFB分段模式，此处需要修改为对应模式并添加加解密参数IV。
     ret = OH_CryptoSymCipher_Init(encCtx, CRYPTO_ENCRYPT_MODE, keyCtx, nullptr);
     if (ret != CRYPTO_SUCCESS) {
         goto end;
@@ -100,6 +107,7 @@ static OH_Crypto_ErrCode doTest3DesEcb()
     if (ret != CRYPTO_SUCCESS) {
         goto end;
     }
+    // 如果是CBC、CTR、OFB、CFB分段模式，此处需要修改为对应模式并添加加解密参数IV。
     ret = OH_CryptoSymCipher_Init(decCtx, CRYPTO_DECRYPT_MODE, keyCtx, nullptr);
     if (ret != CRYPTO_SUCCESS) {
         goto end;
@@ -118,4 +126,37 @@ end:
     OH_Crypto_FreeDataBlob(&decData);
     return ret;
 }
+```
+
+### 设置加解密参数IV
+
+下述示例为CBC分组模式，需要设置加解密参数IV。
+
+如果分组模式为CBC、CTR、OFB、CFB，需要参考如下设置IV。ECB不需要设置加解密参数。
+
+```c++
+    OH_CryptoSymCipherParams *params = nullptr;
+    uint8_t iv[8] = {1, 2, 4, 12, 3, 4, 2, 3}; // 示例代码iv值，开发者可使用安全随机数生成。
+    Crypto_DataBlob ivBlob = {.data = iv, .len = sizeof(iv)};
+
+    ret = OH_CryptoSymCipherParams_Create(&params);
+    if (ret != CRYPTO_SUCCESS) {
+        goto end;
+    }
+    // 设置参数。
+    ret = OH_CryptoSymCipherParams_SetParam(params, CRYPTO_IV_DATABLOB, &ivBlob); // CBC模式只需要设置iv。
+    if (ret != CRYPTO_SUCCESS) {
+        goto end;
+    }
+    
+    // 加密。
+    ret = OH_CryptoSymCipher_Create("AES128|CBC|PKCS7", &encCtx);
+    if (ret != CRYPTO_SUCCESS) {
+        goto end;
+    }
+    ret = OH_CryptoSymCipher_Init(encCtx, CRYPTO_ENCRYPT_MODE, keyCtx, params);
+    if (ret != CRYPTO_SUCCESS) {
+        goto end;
+    }
+    // 本段代码只展示CBC、CTR、OFB、CFB分段模式的不同，其他流程请参考开发示例。
 ```

@@ -43,7 +43,7 @@ on(type: SensorId.COLOR, callback: Callback&lt;ColorResponse&gt;, options?: Opti
 | -------- | ------------------------------------------------------------ |
 | 202      | Permission check failed. A non-system application uses the system API. |
 | 401      | Parameter error.Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed. |
-| 14500101 | Service exception.                                           |
+| 14500101 | Service exception.Possible causes:1. Sensor hdf service exception;2. Sensor service ipc exception;3.Sensor data channel exception. |
 
 **示例**：
 
@@ -91,7 +91,7 @@ on(type: SensorId.SAR, callback: Callback&lt;SarResponse&gt;, options?: Options)
 | -------- | ------------------------------------------------------------ |
 | 202      | Permission check failed. A non-system application uses the system API. |
 | 401      | Parameter error.Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed. |
-| 14500101 | Service exception.                                           |
+| 14500101 | Service exception.Possible causes:1. Sensor hdf service exception;2. Sensor service ipc exception;3.Sensor data channel exception. |
 
 **示例**：
 
