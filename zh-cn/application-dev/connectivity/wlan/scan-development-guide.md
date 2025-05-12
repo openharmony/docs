@@ -40,6 +40,14 @@ Wi-Fi扫描是指设备（如手机、电脑、路由器等）搜索周围可用
     // Register event
     wifiManager.on("wifiScanStateChange", recvWifiScanStateChangeFunc);
 
+    let isWifiActive = wifiManager.isWifiActive();
+    if (!isWifiActive) {
+      console.info("wifi not enable"); // 请先手动打开WiFi
+      return;
+    }
+    // 发起扫描, 从 API version 9开始支持，从API version 10开始废弃。替代接口仅向系统应用开放。
+    wifiManager.scan(); 
+
     let scanInfoList = wifiManager.getScanInfoList();
 
     let len = scanInfoList.length;

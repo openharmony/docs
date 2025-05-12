@@ -44,28 +44,28 @@ Wi-Fi STA模式（Station Mode，站点模式）是无线设备作为客户端�
     let wifiState = "";
       switch (result) {
       case 0:
-      btStateMessage += 'DISABLEING';
+      wifiState += 'DISABLEING';
       break;
       case 1:
-      btStateMessage += 'DISABLED';
+      wifiState += 'DISABLED';
       break;
       case 2:
-      btStateMessage += 'ENABLING';
+      wifiState += 'ENABLING';
       break;
       case 3:
-      btStateMessage += 'ENABLED';
+      wifiState += 'ENABLED';
       break;
       default:
-      btStateMessage += 'UNKNOWN STATUS';
+      wifiState += 'UNKNOWN STATUS';
       break;
     }
   }
-    //监听wifi当前状态
+    // 监听wifi当前状态
     wifiManager.on("wifiStateChange", recvPowerNotifyFunc);
-    //判断wifi是否打开
+    // 判断wifi是否打开
     let isWifiActive = wifiManager.isWifiActive();
     if (!isWifiActive) {
-      console.info("wifi not enable"); //请先手动打开WiFi
+      console.info("wifi not enable"); // 请先手动打开WiFi
       return;
     }
 
@@ -76,13 +76,12 @@ Wi-Fi STA模式（Station Mode，站点模式）是无线设备作为客户端�
 ### 建立Wi-Fi连接
 1. import需要的WI-FI模块。
 2. 开启设备的WI-FI。
-3. 需要SystemCapability.Communication.WiFi.P2P系统能力。
+3. 需要SystemCapability.Communication.WiFi.STA系统能力。
 4. 示例代码：
 
 ```ts
   import { wifiManager } from '@kit.ConnectivityKit';
   try {
-      //
       let recvWifiConnectionChangeFunc = (result:number) => {
       console.info("Receive wifi connection change event: " + result);
     }
@@ -93,22 +92,22 @@ Wi-Fi STA模式（Station Mode，站点模式）是无线设备作为客户端�
       preSharedKey : "****",
       securityType : 0
 	}
-    //添加候选网络配置
+       // 添加候选网络配置
 	wifiManager.addCandidateConfig(config).then(result => {
-      //连接指定网络
+      // 连接指定网络
       wifiManager.connectToCandidateConfig(result);
-      //更新当前WiFi连接状态
+      // 更新当前WiFi连接状态
       wifiManager.on("wifiConnectionChange", recvWifiConnectionChangeFunc);
     });
 
     if (!wifiManager.isConnected()) {
         console.info("wifi not conneted");
     }
-    //获取连接信息
+    // 获取连接信息
     wifiManager.getLinkedInfo().then(data => {
       console.info("get wifi linked info: " + JSON.stringify(data));
     })
-    //查询信号强度
+    // 查询信号强度
     let level = wifiManager.getSignalLevel(rssi,band);
     console.info("level:" + JSON.stringify(level));
 
@@ -116,5 +115,6 @@ Wi-Fi STA模式（Station Mode，站点模式）是无线设备作为客户端�
     wifiManager.off("wifiConnectionChange", recvWifiConnectionChangeFunc);
   }
 ```
+
 5. WiFi连接状态值，详情请参考[ConnState](../reference/apis-connectivity-kit/js-apis-wifiManager.md)。
 6. 错误码请参见[WIFI错误码](../../reference/apis-connectivity-kit/errorcode-wifi.md)。
