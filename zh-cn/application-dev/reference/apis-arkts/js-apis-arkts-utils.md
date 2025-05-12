@@ -224,7 +224,7 @@ lockAsync\<T>(callback: AsyncLockCallback\<T>): Promise\<T>
 
 | 名称     | 类型                                    | 必填 | 说明                   |
 | -------- | --------------------------------------- | ---- | ---------------------- |
-| callback | [AsyncLockCallback](#asynclockcallback) | 是   | 获取锁后要调用的函数。 |
+| callback | [AsyncLockCallback\<T>](#asynclockcallback) | 是   | 获取锁后要调用的函数。 |
 
 **返回值：**
 
@@ -264,7 +264,7 @@ lockAsync\<T>(callback: AsyncLockCallback\<T>, mode: AsyncLockMode): Promise\<T>
 
 | 名称     | 类型                                    | 必填 | 说明                   |
 | -------- | --------------------------------------- | ---- | ---------------------- |
-| callback | [AsyncLockCallback](#asynclockcallback) | 是   | 获取锁后要调用的函数。 |
+| callback | [AsyncLockCallback\<T>](#asynclockcallback) | 是   | 获取锁后要调用的函数。 |
 | mode     | [AsyncLockMode](#asynclockmode)         | 是   | 锁的操作模式。         |
 
 **返回值：**
@@ -305,7 +305,7 @@ lockAsync\<T, U>(callback: AsyncLockCallback\<T>, mode: AsyncLockMode, options: 
 
 | 名称     | 类型                                      | 必填 | 说明                   |
 | -------- | ----------------------------------------- | ---- | ---------------------- |
-| callback | [AsyncLockCallback](#asynclockcallback)   | 是   | 获取锁后要调用的函数。 |
+| callback | [AsyncLockCallback\<T>](#asynclockcallback)   | 是   | 获取锁后要调用的函数。 |
 | mode     | [AsyncLockMode](#asynclockmode)           | 是   | 锁的操作模式。         |
 | options  | [AsyncLockOptions\<U>](#asynclockoptions) | 是   | 锁的操作选项。         |
 
@@ -507,7 +507,7 @@ type Transformer = (this: ISendable, key: string, value: ISendable | undefined |
 | ------ | ------ | ---- | --------------- |
 | this   | [ISendable](#isendable) | 是 | 在解析的键值对所属的对象。|
 | key  | string | 是 | 属性名。|
-| value  | [ISendable](#isendable) | 是 | 在解析的键值对的值。|
+| value  | [ISendable](#isendable) \| undefined \| null| 是 | 在解析的键值对的值。|
 
 **返回值：**
 
@@ -690,11 +690,11 @@ isSendable(value: Object | null | undefined): boolean
 **示例：**
 
 ```ts
-import { ArkTSUtils } from '@kit.ArkTS'
+import { ArkTSUtils } from '@kit.ArkTS';
 
 @Sendable
 function sendableFunc() {
-  console.info("sendableFunc")
+  console.info("sendableFunc");
 }
 
 if (ArkTSUtils.isSendable(sendableFunc)) {
