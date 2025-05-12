@@ -1855,7 +1855,7 @@ import { dlpPermission } from '@kit.DataProtectionKit';
 import { fileIo } from '@kit.CoreFileKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function(plainFilePath, dlpFilePath) {
+async function(plainFilePath: string, dlpFilePath: string) {
   let plaintextFd = fileIo.openSync(plainFilePath, fileIo.OpenMode.READ_ONLY).fd;
   let dlpFd = fileIo.openSync(dlpFilePath, fileIo.OpenMode.READ_WRITE | fileIo.OpenMode.CREATE).fd;
   let dlpProperty: dlpPermission.DLPProperty = {
@@ -1935,7 +1935,7 @@ import { dlpPermission } from '@kit.DataProtectionKit';
 import { fileIo } from '@kit.CoreFileKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function(plainFilePath, dlpFilePath) {
+async function(plainFilePath: string, dlpFilePath: string) {
   let plaintextFd = fileIo.openSync(plainFilePath, fileIo.OpenMode.READ_WRITE | fileIo.OpenMode.CREATE).fd;
   let dlpFd = fileIo.openSync(dlpFilePath, fileIo.OpenMode.READ_ONLY).fd;
   try {
@@ -1994,10 +1994,10 @@ import { dlpPermission } from '@kit.DataProtectionKit';
 import { fileIo } from '@kit.CoreFileKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function(plainFilePath, dlpFilePath) {
+async function(dlpFilePath: string) {
   let dlpFd = fileIo.openSync(dlpFilePath, fileIo.OpenMode.READ_ONLY).fd;
   try {
-    dlpPermission.queryDlpPolicy(dlpFd, plaintextFd).then((policy: string) => {
+    dlpPermission.queryDlpPolicy(dlpFd).then((policy: string) => {
       console.info('DLP policy:' + policy);
       fileIo.closeSync(dlpFd);
     });
