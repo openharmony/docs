@@ -5662,7 +5662,7 @@ setFocusMode(afMode: FocusMode): void
 
 设置对焦模式。
 
-进行设置之前，需要先通过使用方法[isFocusModeSupported](#isfocusmodesupported11)检查设备是否支持指定的焦距模式。
+进行设置之前，需要先检查设备是否支持指定的焦距模式，可使用方法[isFocusModeSupported](#isfocusmodesupported11)。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -7036,7 +7036,7 @@ function getExposureMode(captureSession: camera.CaptureSession): camera.Exposure
 
 setExposureMode(aeMode: ExposureMode): void
 
-设置曝光模式。进行设置之前，需要先通过使用方法[isExposureModeSupported](#isexposuremodesupporteddeprecated)检查设备是否支持指定的曝光模式。
+设置曝光模式。进行设置之前，需要先检查设备是否支持指定的曝光模式，可使用方法[isExposureModeSupported](#isexposuremodesupporteddeprecated)。
 
 > **说明：**
 >从 API version 10开始支持，从API version 11开始废弃。建议使用[AutoExposure.setExposureMode](#setexposuremode11)替代。
@@ -7349,7 +7349,7 @@ setFocusMode(afMode: FocusMode): void
 
 设置对焦模式。
 
-进行设置之前，需要先通过使用方法[isFocusModeSupported](#isfocusmodesupporteddeprecated)检查设备是否支持指定的焦距模式。
+进行设置之前，需要先检查设备是否支持指定的焦距模式，可使用方法[isFocusModeSupported](#isfocusmodesupporteddeprecated)。
 
 > **说明：**
 >从 API version 10开始支持，从API version 11开始废弃。建议使用[Focus.setFocusMode](#setfocusmode11)替代。
