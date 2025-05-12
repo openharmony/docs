@@ -821,7 +821,7 @@ horizontalScrollBarAccess(horizontalScrollBar: boolean)
 
 > **说明：**
 >
-> - 通过@State变量控制横向滚动条的隐藏/显示后，需要调用controller.refresh()生效。
+> - 通过@State变量控制横向滚动条的隐藏/显示后，需要调用[controller.refresh()](js-apis-webview.md#refresh)生效。
 > - 通过@State变量频繁动态改变时，建议切换开关变量和Web组件一一对应。
 
 **系统能力：** SystemCapability.Web.Webview.Core
@@ -2262,8 +2262,6 @@ nestedScroll(value: NestedScrollOptions | NestedScrollOptionsExt)
 > **说明：**
 >
 > - 可以设置上下左右四个方向，或者设置向前、向后两个方向的嵌套滚动模式，实现与父组件的滚动联动。
-> - value为NestedScrollOptionsExt（上下左右四个方向）类型时，scrollUp、scrollDown、scrollLeft、scrollRight默认滚动选项为[NestedScrollMode.SELF_FIRST](../apis-arkui/arkui-ts/ts-appendix-enums.md#nestedscrollmode10)。
-> - value为NestedScrollOptions（向前、向后两个方向）类型时，scrollForward、scrollBackward默认滚动选项为`NestedScrollMode.SELF_FIRST`。
 > - 支持嵌套滚动的容器：[Grid](../apis-arkui/arkui-ts/ts-container-grid.md)、[List](../apis-arkui/arkui-ts/ts-container-list.md)、[Scroll](../apis-arkui/arkui-ts/ts-container-scroll.md)、[Swiper](../apis-arkui/arkui-ts/ts-container-swiper.md)、[Tabs](../apis-arkui/arkui-ts/ts-container-tabs.md)、[WaterFlow](../apis-arkui/arkui-ts/ts-container-waterflow.md)、[Refresh](../apis-arkui/arkui-ts/ts-container-refresh.md)、[bindSheet](../apis-arkui/arkui-ts/ts-universal-attributes-sheet-transition.md#bindsheet)。
 > - 支持嵌套滚动的输入事件：使用手势、鼠标、触控板。
 > - 嵌套滚动场景下，由于Web滚动到边缘时会优先触发过滚动的过界回弹效果，建议设置[overScrollMode](#overscrollmode11)为`OverScrollMode.NEVER`，避免影响此场景的用户体验。
@@ -2274,7 +2272,7 @@ nestedScroll(value: NestedScrollOptions | NestedScrollOptionsExt)
 
 | 参数名   | 类型                                     | 必填   | 说明             |
 | ----- | ---------------------------------------- | ---- | ---------------- |
-| value | [NestedScrollOptions](../apis-arkui/arkui-ts/ts-container-scrollable-common.md#nestedscrolloptions10对象说明) \| [NestedScrollOptionsExt](#nestedscrolloptionsext14对象说明)<sup>14+</sup> | 是    | 可滚动组件滚动时的嵌套滚动选项。 |
+| value | [NestedScrollOptions](../apis-arkui/arkui-ts/ts-container-scrollable-common.md#nestedscrolloptions10对象说明) \| [NestedScrollOptionsExt](#nestedscrolloptionsext14对象说明)<sup>14+</sup> | 是    | 可滚动组件滚动时的嵌套滚动选项。<br> value为NestedScrollOptions（向前、向后两个方向）类型时，scrollForward、scrollBackward默认滚动选项为`NestedScrollMode.SELF_FIRST`。 <br> value为NestedScrollOptionsExt（上下左右四个方向）类型时，scrollUp、scrollDown、scrollLeft、scrollRight默认滚动选项为[NestedScrollMode.SELF_FIRST](../apis-arkui/arkui-ts/ts-appendix-enums.md#nestedscrollmode10)。|
 
 **示例：**
 
@@ -2346,13 +2344,13 @@ nestedScroll(value: NestedScrollOptions | NestedScrollOptionsExt)
     </style>
   </head>
   <body>
-    <div class="blue" align="center" >滚动1</div>
-    <div class="green" align="center">滚动2</div>
-    <div class="blue" align="center">滚动3</div>
-    <div class="green" align="center">滚动4</div>
-    <div class="blue" align="center">滚动5</div>
-    <div class="green" align="center">滚动6</div>
-    <div class="blue" align="center">滚动7</div>
+    <div class="blue" align="center" >webArea</div>
+    <div class="green" align="center">webArea</div>
+    <div class="blue" align="center">webArea</div>
+    <div class="green" align="center">webArea</div>
+    <div class="blue" align="center">webArea</div>
+    <div class="green" align="center">webArea</div>
+    <div class="blue" align="center">webArea</div>
   </body>
   </html>
   ```
@@ -5237,7 +5235,7 @@ onContextMenuHide(callback: OnContextMenuHideCallback)
 
 | 参数名    | 类型   | 必填   | 说明                  |
 | ------ | ------ | ---- | --------------------- |
-| callback  | [OnContextMenuHideCallback](#oncontextmenuhidecallback11) | 是 | 菜单相关参数。     |
+| callback  | [OnContextMenuHideCallback](#oncontextmenuhidecallback11) | 是 | 菜单相关回调。     |
 
 **示例：**
 
@@ -8260,6 +8258,8 @@ setGestureEventResult(result: boolean, stopPropagation: boolean): void
 
 ## ContextMenuInputFieldType<sup>9+</sup>枚举说明
 
+输入框类型。
+
 **系统能力：** SystemCapability.Web.Webview.Core
 
 | 名称        | 值 | 说明                          |
@@ -8634,6 +8634,8 @@ onRenderExited接口返回的渲染进程退出的具体原因。
 
 ## FileSelectorMode<sup>9+</sup>枚举说明
 
+文件选择器的模式。
+
 **系统能力：** SystemCapability.Web.Webview.Core
 
 | 名称                   | 值 | 说明         |
@@ -8659,6 +8661,8 @@ onRenderExited接口返回的渲染进程退出的具体原因。
 | Unknown       | 7 | 未知内容。                    |
 
  ## OverScrollMode<sup>11+</sup>枚举说明
+
+设置Web的过滚动模式为关闭或开启。
 
  **系统能力：** SystemCapability.Web.Webview.Core
 
