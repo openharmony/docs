@@ -560,7 +560,7 @@ setOnScrollIndex(callback: OnWaterFlowScrollIndexCallback | undefined): void
 | callback  | [OnWaterFlowScrollIndexCallback](#onwaterflowscrollindexcallback18)&nbsp;\|&nbsp;undefined | 是   | onScrollIndex事件的回调函数。 |
 
 ## OnWaterFlowScrollIndexCallback<sup>18+</sup>
-type OnWaterFlowScrollIndexCallback = (fist: number, last: number) => void
+type OnWaterFlowScrollIndexCallback = (first: number, last: number) => void
 
 WaterFlow组件可见区域item变化事件的回调类型。
 

@@ -34,7 +34,7 @@ import { deviceInfo } from '@kit.BasicServicesKit';
 | softwareModel | string | 是 | 否 | 内部软件子型号。<br/>示例：<!--RP5-->TAS-AL00<!--RP5End--> |
 | hardwareModel | string | 是 | 否 | 硬件版本号。<br/>示例：<!--RP6-->TASA00CVN1<!--RP6End--> |
 | hardwareProfile<sup>(deprecated) </sup> | string | 是 | 否 | 硬件Profile。<br/>**说明**：<br/>从API version 6 开始支持，从API version 9 开始废弃。<br/>示例：default |
-| serial | string | 是 | 否 | 设备序列号。<br/>**说明**：可作为设备唯一识别码。<br/>**需要权限**：ohos.permission.sec.ACCESS_UDID(该权限只允许系统应用及企业定制应用申请) <br/>示例：序列号随设备差异 |
+| serial | string | 是 | 否 | 设备序列号SN(Serial Number)。<br/>**说明**：可作为设备唯一识别码。<br/>**需要权限**：ohos.permission.sec.ACCESS_UDID(该权限只允许系统应用及企业定制应用申请) <br/>示例：序列号随设备差异 |
 | bootloaderVersion | string | 是 | 否 | Bootloader版本号。<br/>示例：bootloader |
 | abiList | string | 是 | 否 | 应用二进制接口（Abi）。<br/>示例：arm64-v8a |
 | securityPatchTag | string | 是 | 否 | 安全补丁级别。<br/>示例：<!--RP7-->2021/01/01<!--RP7End--> |
@@ -62,6 +62,7 @@ import { deviceInfo } from '@kit.BasicServicesKit';
 | distributionOSReleaseType<sup>10+</sup> | string | 是 | 否 | 发行版系统类型<!--Del-->，由发行方定义<!--DelEnd-->。<br/>示例：Release |
 | ODID<sup>12+</sup> | string | 是 | 否 |开发者匿名设备标识符。<br/>**ODID值会在以下场景重新生成**：<br/>手机恢复出厂设置。<br/>同一设备上同一个开发者(developerId相同)的应用全部卸载后重新安装时。<br/>**ODID生成规则**：<br/>根据签名信息里developerId解析出的groupId生成，developerId规则为groupId.developerId，若无groupId则取整个developerId作为groupId。<br/>同一设备上运行的同一个开发者(developerId相同)的应用，ODID相同。<br/>同一个设备上不同开发者(developerId不同)的应用，ODID不同。<br/>不同设备上同一个开发者(developerId相同)的应用，ODID不同。<br/>不同设备上不同开发者(developerId不同)的应用，ODID不同。<br/>**说明**：数据长度为37字节。<br/>示例：1234a567-XXXX-XXXX-XXXX-XXXXXXXXXXXX |
 | diskSN<sup>15+</sup> | string | 是 | 否 | 硬盘序列号。<br/> **说明** ：该字段只能在2in1上设备进行查询，其他设备查询结果为空。<br/> **需要权限**：ohos.permission.ACCESS_DISK_PHY_INFO <br/> 示例：2502EM400567 |
+| performanceClass<sup>19+</sup> | [PerformanceClassLevel](#performanceclasslevel19) | 是 | 否 | 描述设备能力等级。 |
 
 **示例**
 
@@ -214,4 +215,20 @@ import { deviceInfo } from '@kit.BasicServicesKit';
     // 输出结果：the value of the deviceInfo diskSN is :2502EM400567
     console.info('the value of the deviceInfo diskSN is :' + diskSN);
 
+    let performanceClass = deviceInfo.performanceClass;
+    // 输出结果：the value of the deviceInfo performanceClass is :0
+    console.info('the value of the deviceInfo performanceClass is :' + performanceClass);
+
 ```
+
+## PerformanceClassLevel<sup>19+</sup>
+
+表示设备能力定级的枚举。
+
+**系统能力**：SystemCapability.Startup.SystemInfo
+
+| 名称                  | 值  | 说明           |
+| ---------------------| ---- | -------------- |
+| CLASS_LEVEL_HIGH     | 0    | 表示设备能力定级为高。     |
+| CLASS_LEVEL_MIDIUM   | 1    | 表示设备能力定级为中。   |
+| CLASS_LEVEL_LOW      | 2    | 表示设备能力定级为低。   |

@@ -267,9 +267,9 @@ struct OffscreenSnapshotExample {
                 return;
               }
               this.pixmap = pixmap
-              // save pixmap to file
+              // 保存pixmap到文件中
               // ....
-              // get component size and location
+              // 获取组件大小和位置
               let info = this.getUIContext().getComponentUtils().getRectangleById("builder")
               console.log(info.size.width + ' ' + info.size.height + ' ' + info.localOffset.x + ' ' + info.localOffset.y + ' ' + info.windowOffset.x + ' ' + info.windowOffset.y)
             }, 320, true, {scale : 2, waitUntilRenderFinished : true})
@@ -374,9 +374,9 @@ struct OffscreenSnapshotExample {
           componentSnapshot.createFromBuilder(()=>{this.RandomBuilder()}, 320, true, {scale : 2, waitUntilRenderFinished : true})
             .then((pixmap: image.PixelMap) => {
               this.pixmap = pixmap
-              // save pixmap to file
+              // 保存pixmap到文件中
               // ....
-              // get component size and location
+              // 获取组件大小和位置
               let info = this.getUIContext().getComponentUtils().getRectangleById("builder")
               console.log(info.size.width + ' ' + info.size.height + ' ' + info.localOffset.x + ' ' + info.localOffset.y + ' ' + info.windowOffset.x + ' ' + info.windowOffset.y)
             }).catch((err:Error) => {

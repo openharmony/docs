@@ -20,6 +20,8 @@ Version:1.0.0 <- 版本号
 VersionCode:1000000 <- 版本编码
 Pid:579 <- 进程号
 Uid:0 <- 用户ID
+Process Memory(kB): 1897(Rss) <- 进程占用内存
+Device Memory(kB): Total 1935820, Free 482136, Available 1204216  <- 整机内存信息
 Reason:TypeError <- 原因
 Error message:Cannot read property c of undefined <- 异常信息
 Cannot get SourceMap info, dump raw stack: <- 应用安装包为release包安装时不包含sourcemap文件，JS栈通过sourcemap行列号解析会失败
@@ -96,6 +98,8 @@ JS Crash故障日志中，StackTrace 字段存放的是 JS Crash 异常的调用
     Foreground:Yes
     Pid:31255
     Uid:20020145
+    Process Memory(kB): 1897(Rss)
+    Device Memory(kB): Total 1935820, Free 482136, Available 1204216
     Reason:Error
     Error name:Error
     Error message:JSERROR
@@ -119,6 +123,8 @@ JS Crash故障日志中，StackTrace 字段存放的是 JS Crash 异常的调用
     Foreground:Yes
     Pid:39185
     Uid:20020145
+    Process Memory(kB): 1897(Rss)
+    Device Memory(kB): Total 1935820, Free 482136, Available 1204216
     Reason:Error
     Error name:Error
     Error message:JSERROR
@@ -140,6 +146,8 @@ JS Crash故障日志中，StackTrace 字段存放的是 JS Crash 异常的调用
     Foreground:Yes
     Pid:6042
     Uid:20020145
+    Process Memory(kB): 1897(Rss)
+    Device Memory(kB): Total 1935820, Free 482136, Available 1204216
     Reason:Error
     Error name:Error
     Error message:JSERROR
@@ -164,6 +172,8 @@ JS Crash故障日志中，StackTrace 字段存放的是 JS Crash 异常的调用
     Foreground:No
     Pid:14325
     Uid:20020145
+    Process Memory(kB): 1897(Rss)
+    Device Memory(kB): Total 1935820, Free 482136, Available 1204216
     Reason:ReferenceError
     Error name:ReferenceError
     Error message:Cannot find module 'com.xxx.xxx/entry/EntryAbility' , which is application Entry Point
@@ -232,6 +242,8 @@ Error message:Cannot read property xxx of undefined
     Foreground:No
     Pid:2780
     Uid:20020018
+    Process Memory(kB): 1897(Rss)
+    Device Memory(kB): Total 1935820, Free 482136, Available 1204216
     Reason:TypeError
     Error name:TypeError
     Error message:Cannot read property needRenderTranslate of undefined

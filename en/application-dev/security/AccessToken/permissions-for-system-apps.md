@@ -936,6 +936,18 @@ Allows an application to control the SecurityGuard model switch.
 
 **Valid since**: 10
 
+## ohos.permission.UNLOCK_DEVELOPER_MODE
+
+Allows an application to unlock the developer mode.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 18
+
 ## ohos.permission.CAPTURE_VOICE_DOWNLINK_AUDIO
 
 Allows an application to capture the downlink voice audio.
@@ -4665,13 +4677,13 @@ Allows a system application to start the components provided by Tips.
 
 Allows an application to install and uninstall fonts.
 
-**Permission level**：system_basic
+**Permission level**: system_basic
 
-**Authorization mode**：system_grant
+**Authorization mode**: system_grant
 
-**Enable via ACL**：true
+**Enable via ACL**: true
 
-**Valid since**：19
+**Valid since**: 19
 
 ## ohos.permission.ACCESSIBILITY_EXTENSION_ABILITY
 

@@ -4,7 +4,7 @@
 
 >  **说明：**
 >
->  从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>  从API version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 
 ## 接口
@@ -48,10 +48,10 @@ PinchGesture(value?: { fingers?: number, distance?: number })
 @Entry
 @Component
 struct PinchGestureExample {
-  @State scaleValue: number = 1
-  @State pinchValue: number = 1
-  @State pinchX: number = 0
-  @State pinchY: number = 0
+  @State scaleValue: number = 1;
+  @State pinchValue: number = 1;
+  @State pinchX: number = 0;
+  @State pinchY: number = 0;
 
   build() {
     Column() {

@@ -45,11 +45,11 @@ import { display } from '@kit.ArkUI';
 | PORTRAIT_INVERTED | 2 | 表示设备当前以反向竖屏方式显示。|
 | LANDSCAPE_INVERTED | 3 | 表示设备当前以反向横屏方式显示。|
 
-## DisplaySourceMode<sup>18+</sup>
+## DisplaySourceMode<sup>19+</sup>
 
 屏幕显示内容的显示模式枚举。
 
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Window.SessionManager
 
@@ -584,7 +584,7 @@ console.info('Succeeded in obtaining fold status. Data: ' + JSON.stringify(data)
 ## display.getFoldDisplayMode<sup>10+</sup>
 getFoldDisplayMode(): FoldDisplayMode
 
-获取可折叠设备的显示模式。
+获取可折叠设备的显示模式，不适用于2in1设备。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -906,7 +906,7 @@ ret = display.isCaptured();
 
 on(type: 'foldDisplayModeChange', callback: Callback&lt;FoldDisplayMode&gt;): void
 
-开启折叠设备屏幕显示模式变化的监听。
+开启折叠设备屏幕显示模式变化的监听，不适用于2in1设备。
 
 本接口监听设备屏幕显示模式的变化，如果要监听设备物理折叠状态的变化，需要使用[display.on('foldStatusChange')](#displayonfoldstatuschange10)接口。
 
@@ -951,7 +951,7 @@ display.on('foldDisplayModeChange', callback);
 
 off(type: 'foldDisplayModeChange', callback?: Callback&lt;FoldDisplayMode&gt;): void
 
-关闭折叠设备屏幕显示模式变化的监听。
+关闭折叠设备屏幕显示模式变化的监听，不适用于2in1设备。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1354,9 +1354,9 @@ display.makeUnique(screenId).then(() => {
 | availableWidth<sup>12+</sup> | number | 是 | 否 | 2in1设备上屏幕的可用区域宽度，单位为px，该参数为大于0的整数。<br/>**系统能力：** SystemCapability.WindowManager.WindowManager.Core<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                                    |
 | availableHeight<sup>12+</sup> | number | 是 | 否 | 2in1设备上屏幕的可用区域高度，单位为px，该参数为大于0的整数。<br/>**系统能力：** SystemCapability.WindowManager.WindowManager.Core<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                                    |
 | screenShape<sup>18+</sup> | [ScreenShape](#screenshape18) | 是 | 是 | 显示设备的屏幕形状，默认值为RECTANGLE。<br>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。 
-| sourceMode<sup>18+</sup> | [DisplaySourceMode](#displaysourcemode18) | 是 | 是 | 屏幕显示内容的显示模式枚举。<br/>**系统能力：** SystemCapability.Window.SessionManager <br>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。                                                                                    |
-| x<sup>18+</sup> | number | 是 | 是 | 屏幕左上角相对于原点的x轴坐标，原点为主屏左上角，单位为px，该参数为整数。<br/>**系统能力：** SystemCapability.Window.SessionManager<br>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。                                                                                    |
-| y<sup>18+</sup> | number | 是 | 是 | 屏幕左上角相对于原点的y轴坐标，原点为主屏左上角，单位为px，该参数为整数。<br/>**系统能力：** SystemCapability.Window.SessionManager<br>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。                                                                                    |
+| sourceMode<sup>19+</sup> | [DisplaySourceMode](#displaysourcemode19) | 是 | 是 | 屏幕显示内容的显示模式枚举。<br/>**系统能力：** SystemCapability.Window.SessionManager <br>**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。                                                                                    |
+| x<sup>19+</sup> | number | 是 | 是 | 屏幕左上角相对于原点的x轴坐标，原点为主屏左上角，单位为px，该参数为整数。<br/>**系统能力：** SystemCapability.Window.SessionManager<br>**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。                                                                                    |
+| y<sup>19+</sup> | number | 是 | 是 | 屏幕左上角相对于原点的y轴坐标，原点为主屏左上角，单位为px，该参数为整数。<br/>**系统能力：** SystemCapability.Window.SessionManager<br>**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。                                                                                    |
 
 
 ### getCutoutInfo<sup>9+</sup>

@@ -24,7 +24,7 @@
 3. 设置应用界面数字。
    ```ts
    try {
-     i18n.System.setUsingLocalDigit(true); // 打开本地化数字开关
+     i18n.System.setUsingLocalDigit(true); // 使用本地数字
    } catch (error) {
      let err: BusinessError = error as BusinessError;
      console.error(`call System.setUsingLocalDigit failed, error code: ${err.code}, message: ${err.message}.`);
@@ -38,7 +38,7 @@
 4. 设置格式化的24小时制。
    ```ts
    try {
-     i18n.System.set24HourClock(true); // true表示打开24小时制开关，false表示打开12小时制开关
+     i18n.System.set24HourClock(true); // 设置系统时制为24小时制
    } catch (error) {
      let err: BusinessError = error as BusinessError;
      console.error(`call System.set24HourClock failed, error code: ${err.code}, message: ${err.message}.`);

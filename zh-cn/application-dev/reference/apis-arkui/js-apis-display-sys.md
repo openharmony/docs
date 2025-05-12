@@ -154,7 +154,7 @@ try {
 ## display.setFoldDisplayMode<sup>10+</sup>
 setFoldDisplayMode(mode: FoldDisplayMode): void
 
-更改可折叠设备的显示模式。
+更改可折叠设备的显示模式，不适用于2in1设备。
 
 **系统接口：** 此接口为系统接口。
 
@@ -192,7 +192,7 @@ try {
 ## display.setFoldDisplayMode<sup>19+</sup>
 setFoldDisplayMode(mode: FoldDisplayMode, reason: string): void
 
-更改可折叠设备的显示模式，并指明更改原因。
+更改可折叠设备的显示模式，并指明更改原因，不适用于2in1设备。
 
 **系统接口：** 此接口为系统接口。
 

@@ -4973,7 +4973,7 @@ type OnAVRecorderStateChangeHandler = (state: AVRecorderState, reason: StateChan
 
 ## AVTranscoder<sup>12+</sup>
 
-视频转码管理类，用于视频转码。在调用AVTranscoder的方法前，需要先通过createAVTranscoder()构建一个AVTranscoder实例。
+视频转码管理类，用于视频转码。在调用AVTranscoder的方法前，需要先通过[createAVTranscoder()](#mediacreateavtranscoder12)构建一个AVTranscoder实例。
 
 视频转码demo可参考：[视频转码开发指导](../../media/media/using-avtranscoder-for-transcodering.md)
 
@@ -4998,7 +4998,7 @@ prepare(config: AVTranscoderConfig): Promise\<void>
 
 | 参数名 | 类型                                   | 必填 | 说明                       |
 | ------ | -------------------------------------- | ---- | -------------------------- |
-| config | [AVTranscoderConfig](#avtranscoderconfig12) | 是   | 配置视频转码的相关参数。 |
+| config | [AVTranscoderConfig](#avtranscoderconfig12) | 是   | 配置视频转码的相关参数。 <!--RP1--><!--RP1End-->|
 
 **返回值：**
 
@@ -5029,8 +5029,6 @@ let avTranscoderConfig: media.AVTranscoderConfig = {
   fileFormat : media.ContainerFormatType.CFT_MPEG_4,
   videoBitrate : 3000000,
   videoCodec : media.CodecMimeType.VIDEO_AVC,
-  videoFrameWidth : 1280,
-  videoFrameHeight : 720,
 }
 
 avTranscoder.prepare(avTranscoderConfig).then(() => {
@@ -8002,13 +8000,13 @@ let mimeType : media.AVMimeTypes = media.AVMimeTypes.APPLICATION_M3U8;
 mediaSource.setMimeType(mimeType);
 
 ```
-## media.createMediaSourceWithStreamData<sup>18+</sup>
+## media.createMediaSourceWithStreamData<sup>19+</sup>
 
 createMediaSourceWithStreamData(streams: Array\<MediaStream>): MediaSource
 
 创建流媒体多码率媒体来源实例方法，当前仅支持HTTP-FLV协议格式多码率。
 
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Media.Core
 
@@ -8016,22 +8014,13 @@ createMediaSourceWithStreamData(streams: Array\<MediaStream>): MediaSource
 
 | 参数名  | 类型                                 | 只读 | 可选 | 说明                                                  |
 | ------- | ------------------------------------ | --- | ---- | ----------------------------------------------------- |
-| streams | Array<[MediaStream](#mediastream18)> | 否 | 否   | 可设置MediaStream数组，支持的流媒体格式：HTTP-FLV。 |
+| streams | Array<[MediaStream](#mediastream19)> | 否 | 否   | 可设置MediaStream数组，支持的流媒体格式：HTTP-FLV。 |
 
 **返回值：**
 
 | 类型                          | 说明                |
 | ----------------------------- | ------------------- |
 | [MediaSource](#mediasource12) | 返回MediaSource，用于媒体资源设置。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[媒体错误码](errorcode-media.md)
-
-| 错误码ID | 错误信息                                                     |
-| -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
-| 5400101  | No memory.                                                   |
 
 **示例1：**
 
@@ -8043,7 +8032,7 @@ streams.push({url: "http:/xxx/1080p.flv", width: 1280, height: 720, bitrate: 200
 let mediaSource : media.MediaSource = media.createMediaSourceWithStreamData(streams);
 ```
 
-## MediaStream<sup>18+</sup>
+## MediaStream<sup>19+</sup>
 
 媒体流数据信息。
 

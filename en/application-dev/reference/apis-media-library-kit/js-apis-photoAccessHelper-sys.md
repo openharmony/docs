@@ -4795,64 +4795,6 @@ struct Index {
 }
 ```
 
-### setDisplayName<sup>18+</sup>
-
-setDisplayName(displayName: string): void
-
-Sets the file name (including the file name extension) of a media asset.
-
-**System API**: This is a system API.
-
-**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
-
-**Parameters**
-
-| Name       | Type     | Mandatory  | Description                                |
-| ---------- | ------- | ---- | ---------------------------------- |
-| displayName | string | Yes  | File name of the media asset (including the file name extension).<br>The name must meet the following requirements:<br>- The file name extension must be included.<br>- The file name (excluding the file name extension) cannot exceed 255 characters.<br>- The file name cannot contain invalid characters, such as \ / : * ?" < > \| |
-
-**Error codes**
-
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [File Management Error Codes](../apis-core-file-kit/errorcode-filemanagement.md).
-
-| ID| Error Message|
-| -------- | ---------------------------------------- |
-| 202        |  Called by non-system application.         |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
-| 14000011       | Internal system error.         |
-
-**Example**
-
-```ts
-import { dataSharePredicates } from '@kit.ArkData';
-import { photoAccessHelper } from '@kit.MediaLibraryKit';
-import { common } from '@kit.AbilityKit';
-
-// Obtain the context from the component and ensure that the return value of this.getUiContext().getHostContext() is UIAbilityContext.
-let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
-
-async function example() {
-  console.info('setDisplayNameDemo');
-  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
-  let fetchOption: photoAccessHelper.FetchOptions = {
-    fetchColumns: [],
-    predicates: predicates
-  };
-  try {
-    let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOption);
-    let asset = await fetchResult.getFirstObject();
-    let assetChangeRequest: photoAccessHelper.MediaAssetChangeRequest = new photoAccessHelper.MediaAssetChangeRequest(asset);
-    let newDisplayName: string = 'newDisplayName.jpg';
-    assetChangeRequest.setDisplayName(newDisplayName);
-    await phAccessHelper.applyChanges(assetChangeRequest);
-    console.info('apply setDisplayName successfully');
-  } catch (err) {
-    console.error(`apply setDisplayName failed with error: ${err.code}, ${err.message}`);
-  }
-}
-```
-
 ## MediaAssetsChangeRequest<sup>11+</sup>
 
 Represents a request for changing multiple assets.

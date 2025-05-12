@@ -41,8 +41,8 @@ RichEditor(this.options)
 @Entry
 @Component
 struct create_rich_editor {
-  controller: RichEditorController = new RichEditorController()
-  options: RichEditorOptions = { controller: this.controller }
+  controller: RichEditorController = new RichEditorController();
+  options: RichEditorOptions = { controller: this.controller };
 
   build() {
     Column() {
@@ -148,7 +148,7 @@ SystemMenu() {
           MenuItem({
             startIcon: this.theme.cutIcon,
             content: "剪切",
-            labelInfo: "Ctrl+X",
+            labelInfo: "Ctrl+X"
           })
           MenuItem({
             startIcon: this.theme.copyIcon,
