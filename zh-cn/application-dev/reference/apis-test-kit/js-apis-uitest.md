@@ -1724,7 +1724,7 @@ ArkTS1.2: scrollSearch(on: On, vertical?: boolean, offset?: number): Promise\<Co
 |------------------------| ---------- | ---- |-----------------------------------|
 | on                     | [On](#on9) | 是   | 目标控件的属性要求。                        |
 | vertical |    boolean | 否 | 默认为true，表示查找方向是纵向。false表示查找方向为横向。 |
-| offset   | number| 否 | 滑动起点/终点到组件边框的偏移， 默认80，单位：px，取值大于等于0的整数。    |
+| offset   | number| 否 | 滑动起点/终点到组件边框的偏移，默认80，单位：px，取值大于等于0的整数。    |
 
 **返回值：**
 
