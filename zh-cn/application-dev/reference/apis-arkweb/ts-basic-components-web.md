@@ -8591,6 +8591,8 @@ invoke(origin: string, allow: boolean, retain: boolean): void
 
 ## MessageLevel枚举说明
 
+ConsoleMessage的信息级别。
+
 **系统能力：** SystemCapability.Web.Webview.Core
 
 | 名称    | 值 | 说明    |
