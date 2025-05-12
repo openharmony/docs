@@ -248,7 +248,7 @@ I/O通道异常，实际读/写操作失败。
 
 **错误信息**
 
-serial service exception.
+Serial port management exception.
 
 **错误描述**
 
@@ -266,7 +266,7 @@ serial service exception.
 
 **错误信息**
 
-no access right to serial device, call requestSerialRight first.
+Access denied. Call requestSerialRight to request user authorization first.
 
 **错误描述**
 
@@ -284,7 +284,7 @@ no access right to serial device, call requestSerialRight first.
 
 **错误信息**
 
-portId not exist.
+PortId does not exist.
 
 **错误描述**
 
@@ -302,11 +302,11 @@ portId not exist.
 
 **错误信息**
 
-device is using by other application.
+The serial port device is occupied.
 
 **错误描述**
 
-设备正在被其他应用程序使用。
+串口设备已被占用。
 
 **可能原因**
 
@@ -320,11 +320,11 @@ device is using by other application.
 
 **错误信息**
 
-device is not open, call open first.
+The serial port device is not opened. Call the open API first.
 
 **错误描述**
 
-设备未打开，请先调用Open接口打开设备。
+串口设备未打开，请先调用Open接口打开设备。
 
 **可能原因**
 
@@ -338,11 +338,11 @@ device is not open, call open first.
 
 **错误信息**
 
-transfer timeout.
+Data transfer timed out.
 
 **错误描述**
 
-传输超时。
+数据传输超时。
 
 **可能原因**
 
