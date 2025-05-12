@@ -19,6 +19,8 @@ Web组件打印html页面时可通过W3C标准协议接口和应用接口两种�
 
 - print.html页面代码。
 
+  示例一：
+
   ```html
   <!DOCTYPE html>
   <html>
@@ -68,6 +70,43 @@ Web组件打印html页面时可通过W3C标准协议接口和应用接口两种�
           <p> content content content </p>
       </div>
   </body>
+  ```
+
+  示例二（iframe嵌套页面的方式）：
+
+
+  ```html
+  <!DOCTYPE html>
+  <html lang="en">
+  <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>iframe嵌套页面打印</title>
+  </head>
+  <body>
+      <button id="printIframe">打印iframe嵌套页面</button>
+
+      <script>
+          function setPrint() {
+              const closePrint = () => {
+                  document.body.removeChild(this);
+              };
+              this.contentWindow.onbeforeunload = closePrint;
+              this.contentWindow.onafterprint = closePrint;
+              this.contentWindow.print();
+          }
+
+          document.getElementById("printIframe").addEventListener("click", () => {
+              const hideFrame = document.createElement("iframe");
+              hideFrame.onload = setPrint;
+              hideFrame.style.display = "none"; // 隐藏 iframe
+              hideFrame.src = "example.pdf";
+              document.body.appendChild(hideFrame);
+          });
+
+      </script>
+  </body>
+  </html>
   ```
 
 - 应用侧代码。
