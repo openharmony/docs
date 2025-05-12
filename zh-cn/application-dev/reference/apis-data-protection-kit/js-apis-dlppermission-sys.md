@@ -1808,6 +1808,7 @@ generateDLPFileForEnterprise(plaintextFd: number, dlpFd: number, property: DLPPr
 
 获取DLPFile管理对象。使用Promise异步回调。
 >**说明：**
+
 > 使用该接口可以将明文文件加密生成权限受控文件，仅拥有完全控制权限的用户可以打开。
 
 **系统接口：** 此接口为系统接口。
@@ -1844,7 +1845,6 @@ generateDLPFileForEnterprise(plaintextFd: number, dlpFd: number, property: DLPPr
 | 19100003 | Credential task time out. |
 | 19100004 | Credential service error. |
 | 19100005 | Credential authentication server error. |
-| 19100008 | The file is not a DLP file. |
 | 19100009 | Failed to operate the DLP file. |
 | 19100011 | The system ability works abnormally. |
 
@@ -1890,6 +1890,7 @@ decryptDlpFile(dlpFd: number, plaintextFd: number): Promise&lt;void&gt;
 
 将DLP文件解密生成明文文件。使用Promise异步回调。
 >**说明：**
+
 > 仅拥有完全控制权限的用户可以解密DLP文件。
 
 **系统接口：** 此接口为系统接口。
@@ -1913,7 +1914,7 @@ decryptDlpFile(dlpFd: number, plaintextFd: number): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[DLP服务错误码](errorcode-dlp.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[DLP服务错误码](errorcode-dlp.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
@@ -1924,7 +1925,6 @@ decryptDlpFile(dlpFd: number, plaintextFd: number): Promise&lt;void&gt;
 | 19100003 | Credential task time out. |
 | 19100004 | Credential service error. |
 | 19100005 | Credential authentication server error. |
-| 19100008 | The file is not a DLP file. |
 | 19100009 | Failed to operate the DLP file. |
 | 19100011 | The system ability works abnormally. |
 
@@ -1956,7 +1956,7 @@ async function(plainFilePath, dlpFilePath) {
 
 queryDlpPolicy(dlpFd: number): Promise&lt;string&gt;
 
-从DLP文件中解析文件头，获取DLP明文策略。使用Promise异步回调。
+在DLP文件中解析文件头，获取DLP明文策略。使用Promise异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -1978,19 +1978,13 @@ queryDlpPolicy(dlpFd: number): Promise&lt;string&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[DLP服务错误码](errorcode-dlp.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[DLP服务错误码](errorcode-dlp.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 201 | Permission denied. |
 | 202 | Non-system applications use system APIs. |
 | 19100001 | Invalid parameter value. |
-| 19100002 | Credential service busy due to too many tasks or duplicate tasks. |
-| 19100003 | Credential task time out. |
-| 19100004 | Credential service error. |
-| 19100005 | Credential authentication server error. |
-| 19100008 | The file is not a DLP file. |
-| 19100009 | Failed to operate the DLP file. |
 | 19100011 | The system ability works abnormally. |
 
 **示例：**
@@ -2055,7 +2049,7 @@ DLP沙箱身份。
 
 ## ActionType<sup>20+</sup>
 
-表示文件设定的权限时间到期后执行的动作，默认为NOT_OPEN。
+表示在文件设定的权限时间到期后所执行的动作，默认为NOT_OPEN。
 
 **系统接口：** 此接口为系统接口。
 
@@ -2091,7 +2085,7 @@ DLP沙箱身份。
 
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| enterprise | string | 否 | 否 | 表示企业定制策略的json字符串。长度不超过4MB。 |
+| enterprise | string | 否 | 否 | 表示企业定制策略的json字符串。长度不超过4M。 |
 
 ## DLPProperty
 
