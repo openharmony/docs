@@ -18385,7 +18385,7 @@ int32_t OH_ArkUI_DragEvent_RequestDragEndPending(ArkUI_DragEvent* event, int32_t
 
 请求延迟执行拖拽结束。在系统通知应用drop时，调用该方法，可以明确告知系统，需要延迟一段时间才能告知拖拽处理结果，系统会推迟结束整个拖拽的结束，等待应用通过 OH_ArkUI_NotifyDragResult 接口返回拖拽处理结果后，再执行后续流程。这通常使用在不想在主线程处理拖拽数据的情况下，以免长时间阻塞主线程，同时又可确保，在整个拖拽流程结束时，拖起方可以拿到准确的拖拽处理结果。但需要注意的时，系统不会无限等待应用，最大超时时间为2s，在超时后，如果仍然无法收到 OH_ArkUI_NotifyDragResult 通知，则会强制结束拖拽流程，并通知拖起方落入失败。
 
-**起始版本：** 18
+**起始版本：** 19
 
 **参数:**
 
@@ -18412,7 +18412,7 @@ int32_t OH_ArkUI_NotifyDragResult(int32_t requestIdentify, ArkUI_DragResult resu
 
 通知拖拽结果。
 
-**起始版本：** 18
+**起始版本：** 19
 
 **参数:**
 
@@ -18438,7 +18438,7 @@ int32_t OH_ArkUI_NotifyDragEndPendingDone(int32_t requestIdentify)
 
 通知拖拽延迟执行结束。
 
-**起始版本：** 18
+**起始版本：** 19
 
 **参数:**
 
