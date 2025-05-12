@@ -1808,7 +1808,7 @@ generateDLPFileForEnterprise(plaintextFd: number, dlpFd: number, property: DLPPr
 
 获取DLPFile管理对象。使用Promise异步回调。
 >**说明：**
-
+>
 > 使用该接口可以将明文文件加密生成权限受控文件，仅拥有完全控制权限的用户可以打开。
 
 **系统接口：** 此接口为系统接口。
@@ -1890,7 +1890,7 @@ decryptDlpFile(dlpFd: number, plaintextFd: number): Promise&lt;void&gt;
 
 将DLP文件解密生成明文文件。使用Promise异步回调。
 >**说明：**
-
+>
 > 仅拥有完全控制权限的用户可以解密DLP文件。
 
 **系统接口：** 此接口为系统接口。
@@ -2085,7 +2085,7 @@ DLP沙箱身份。
 
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| enterprise | string | 否 | 否 | 表示企业定制策略的json字符串。长度不超过4M。 |
+| enterprise | string | 否 | 否 | 表示企业定制策略的json字符串。长度不超过4M（单位：兆）。 |
 
 ## DLPProperty
 
