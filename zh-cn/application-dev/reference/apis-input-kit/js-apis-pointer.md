@@ -16,7 +16,7 @@ import { pointer } from '@kit.InputKit';
 
 setPointerVisible(visible: boolean, callback: AsyncCallback&lt;void&gt;): void
 
-设置鼠标指针显示或者隐藏，使用Callback异步回调，若为应用设置则以应用为准，仅对当前应用生效；若为系统设置，则全局生效。
+设置鼠标指针显示或者隐藏，使用Callback异步回调。
 
 **系统能力**：SystemCapability.MultimodalInput.Input.Pointer
 
@@ -56,7 +56,7 @@ try {
 
 setPointerVisible(visible: boolean): Promise&lt;void&gt;
 
-设置鼠标指针显示或者隐藏，使用Promise异步方式返回结果。
+设置鼠标指针显示或者隐藏，使用Promise异步回调。
 
 **系统能力**：SystemCapability.MultimodalInput.Input.Pointer
 
@@ -168,7 +168,7 @@ try {
 
 isPointerVisible(): Promise&lt;boolean&gt;
 
-检查鼠标指针是否显示，使用Callback异步回调，以系统参数为准，若系统没有设置过则返回应用本身的鼠标光标状态。
+检查鼠标指针是否显示，使用Callback异步回调。
 
 **系统能力**：SystemCapability.MultimodalInput.Input.Pointer
 
@@ -219,7 +219,7 @@ try {
 
 getPointerStyle(windowId: number, callback: AsyncCallback&lt;PointerStyle&gt;): void
 
-获取鼠标样式类型，使用AsyncCallback异步方式返回结果。
+获取鼠标样式类型，使用AsyncCallback异步回调。
 
 **系统能力**：SystemCapability.MultimodalInput.Input.Pointer
 
@@ -268,7 +268,7 @@ window.getLastWindow(this.getUIContext().getHostContext(), (error: BusinessError
 
 getPointerStyle(windowId: number): Promise&lt;PointerStyle&gt;
 
-获取鼠标样式类型，使用Promise异步方式返回结果。
+获取鼠标样式类型，使用Promise异步回调。
 
 **系统能力**：SystemCapability.MultimodalInput.Input.Pointer
 
@@ -364,7 +364,7 @@ try {
 
 setPointerStyle(windowId: number, pointerStyle: PointerStyle, callback: AsyncCallback&lt;void&gt;): void
 
-设置鼠标样式类型，使用AsyncCallback异步方式返回结果。
+设置鼠标样式类型，使用AsyncCallback异步回调。
 
 **系统能力**：SystemCapability.MultimodalInput.Input.Pointer
 
@@ -413,7 +413,7 @@ window.getLastWindow(this.getUIContext().getHostContext(), (error: BusinessError
 
 setPointerStyle(windowId: number, pointerStyle: PointerStyle): Promise&lt;void&gt;
 
-设置鼠标样式类型，使用Promise异步方式返回结果。
+设置鼠标样式类型，使用Promise异步回调。
 
 **系统能力**：SystemCapability.MultimodalInput.Input.Pointer
 
