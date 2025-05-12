@@ -281,6 +281,7 @@ getLocalDeviceNetworkId(): string;
 **示例：**
 
   ```ts
+  import { distributedDeviceManager } from '@kit.DistributedServiceKit';
   import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
@@ -321,6 +322,7 @@ getLocalDeviceName(): string;
 **示例：**
 
   ```ts
+  import { distributedDeviceManager } from '@kit.DistributedServiceKit';
   import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
@@ -361,6 +363,7 @@ getLocalDeviceType(): number;
 **示例：**
 
   ```ts
+  import { distributedDeviceManager } from '@kit.DistributedServiceKit';
   import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
@@ -401,6 +404,7 @@ getLocalDeviceId(): string;
 **示例：**
 
   ```ts
+  import { distributedDeviceManager } from '@kit.DistributedServiceKit';
   import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
@@ -448,6 +452,7 @@ getDeviceName(networkId: string): string;
 **示例：**
 
   ```ts
+  import { distributedDeviceManager } from '@kit.DistributedServiceKit';
   import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
@@ -497,6 +502,7 @@ getDeviceType(networkId: string): number;
 **示例：**
 
   ```ts
+  import { distributedDeviceManager } from '@kit.DistributedServiceKit';
   import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
@@ -542,6 +548,7 @@ startDiscovering(discoverParam: {[key:&nbsp;string]:&nbsp;Object;} , filterOptio
 **示例：**
 
   ```ts
+  import { distributedDeviceManager } from '@kit.DistributedServiceKit';
   import { BusinessError } from '@kit.BasicServicesKit';
 
   interface DiscoverParam {
@@ -593,6 +600,7 @@ stopDiscovering(): void;
 **示例：**
 
   ```ts
+  import { distributedDeviceManager } from '@kit.DistributedServiceKit';
   import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
@@ -636,6 +644,7 @@ bindTarget(deviceId: string, bindParam: {[key:&nbsp;string]:&nbsp;Object;} , cal
 **示例：**
 
   ```ts
+  import { distributedDeviceManager } from '@kit.DistributedServiceKit';
   import { BusinessError } from '@kit.BasicServicesKit';
 
   class Data {
@@ -696,6 +705,7 @@ unbindTarget(deviceId: string): void;
 **示例：**
 
   ```ts
+  import { distributedDeviceManager } from '@kit.DistributedServiceKit';
   import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
@@ -947,6 +957,7 @@ on(type: 'deviceNameChange', callback: Callback&lt;{ deviceName: string; }&gt;):
 **示例：**
 
   ```ts
+  import { distributedDeviceManager } from '@kit.DistributedServiceKit';
   import { BusinessError } from '@kit.BasicServicesKit';
 
   class Data {
@@ -993,6 +1004,7 @@ off(type: 'deviceNameChange', callback?: Callback&lt;{ deviceName: string; }&gt;
 **示例：**
 
   ```ts
+  import { distributedDeviceManager } from '@kit.DistributedServiceKit';
   import { BusinessError } from '@kit.BasicServicesKit';
 
   class Data {
@@ -1039,6 +1051,7 @@ on(type: 'discoverFailure', callback: Callback&lt;{ reason: number; }&gt;): void
 **示例：**
 
   ```ts
+  import { distributedDeviceManager } from '@kit.DistributedServiceKit';
   import { BusinessError } from '@kit.BasicServicesKit';
 
   class Data {
@@ -1085,6 +1098,7 @@ off(type: 'discoverFailure', callback?: Callback&lt;{ reason: number; }&gt;): vo
 **示例：**
 
   ```ts
+  import { distributedDeviceManager } from '@kit.DistributedServiceKit';
   import { BusinessError } from '@kit.BasicServicesKit';
 
   class Data {
@@ -1131,6 +1145,7 @@ on(type: 'serviceDie', callback?: Callback&lt;{}&gt;): void;
 **示例：**
 
   ```ts
+  import { distributedDeviceManager } from '@kit.DistributedServiceKit';
   import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
@@ -1173,6 +1188,7 @@ off(type: 'serviceDie', callback?: Callback&lt;{}&gt;): void;
 **示例：**
 
   ```ts
+  import { distributedDeviceManager } from '@kit.DistributedServiceKit';
   import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
