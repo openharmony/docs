@@ -555,7 +555,7 @@ FFRT任务中使用标准库的互斥锁可能发生死锁，需要更换为FFRT
 
 ### Using FFRT C API
 
-NDK（Native Development Kit）是HarmonyOS SDK提供的Native API的集合，方便开发者使用C或C++语言实现应用的关键功能。
+NDK（Native Development Kit）是系统提供的Native API的集合，方便开发者使用C或C++语言实现应用的关键功能。
 
 FFRT C API已集成在NDK中，在DevEco IDE中可以直接使用对应的接口。
 
