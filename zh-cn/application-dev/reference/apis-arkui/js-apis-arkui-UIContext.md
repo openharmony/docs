@@ -2724,7 +2724,7 @@ type Context = common.Context
 
 getRectangleById(id: string): componentUtils.ComponentInfo
 
-获取组件大小、位置、平移缩放旋转及仿射矩阵属性信息。
+获取组件大小、位置、平移、缩放、旋转及仿射矩阵属性信息。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -2744,7 +2744,7 @@ getRectangleById(id: string): componentUtils.ComponentInfo
 
 **错误码：** 
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)错误码。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID  | 错误信息                |
 | ------ | ------------------- |
@@ -7375,7 +7375,7 @@ struct Index {
 
 
 ## FocusController<sup>12+</sup>
-以下API需先使用UIContext中的[getFocusController()](js-apis-arkui-UIContext.md#getFocusController12)方法获取UIContext实例，再通过此实例调用对应方法。
+以下API需先使用UIContext中的[getFocusController()](js-apis-arkui-UIContext.md#getFocusController12)方法获取UIContext实例，再通过该实例调用对应方法。
 
 ### clearFocus<sup>12+</sup>
 
@@ -7438,7 +7438,7 @@ struct ClearFocusExample {
 
 requestFocus(key: string): void
 
-通过组件的id将焦点转移到组件树对应的实体节点。当前帧生效。
+通过组件的id将焦点转移到组件树对应的实体节点，当前帧生效。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
