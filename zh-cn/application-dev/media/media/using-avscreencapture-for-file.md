@@ -160,8 +160,8 @@ void OnDisplaySelected(struct OH_AVScreenCapture *capture, uint64_t displayId, v
 }
 
 struct OH_AVScreenCapture *capture;
-// 开始录屏时调用StartScreencapture。
-static napi_value StartScreencapture(napi_env env, napi_callback_info info) {
+// 开始录屏时调用StartScreenCapture。
+static napi_value StartScreenCapture(napi_env env, napi_callback_info info) {
     OH_AVScreenCaptureConfig config;
     OH_AudioCaptureInfo micCapInfo = {
         .audioSampleRate = 48000, 
@@ -237,7 +237,7 @@ static napi_value StartScreencapture(napi_env env, napi_callback_info info) {
     // 开始录屏。
     int32_t retStart = OH_AVScreenCapture_StartScreenRecording(capture);
 
-    // 结束录屏见StopScreencapture。
+    // 结束录屏见StopScreenCapture。
     
     // 返回调用结果，示例仅返回随意值。
     napi_value sum;
@@ -246,8 +246,8 @@ static napi_value StartScreencapture(napi_env env, napi_callback_info info) {
     return sum;
 }
 
-// 结束录屏时调用StopScreencapture。
-static napi_value StopScreencapture(napi_env env, napi_callback_info info) {
+// 结束录屏时调用StopScreenCapture。
+static napi_value StopScreenCapture(napi_env env, napi_callback_info info) {
     if (capture != nullptr) {
         // 结束录屏。
         int32_t retStop = OH_AVScreenCapture_StopScreenRecording(capture);
@@ -266,8 +266,8 @@ static napi_value StopScreencapture(napi_env env, napi_callback_info info) {
 EXTERN_C_START
 static napi_value Init(napi_env env, napi_value exports) {
     napi_property_descriptor desc[] = {
-        {"startScreencapture", nullptr, StartScreencapture, nullptr, nullptr, nullptr, napi_default, nullptr},
-        {"stopScreencapture", nullptr, StopScreencapture, nullptr, nullptr, nullptr, napi_default, nullptr}};
+        {"startScreenCapture", nullptr, StartScreenCapture, nullptr, nullptr, nullptr, napi_default, nullptr},
+        {"stopScreenCapture", nullptr, StopScreenCapture, nullptr, nullptr, nullptr, napi_default, nullptr}};
     napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);
     return exports;
 }
