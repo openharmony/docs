@@ -66,7 +66,6 @@ long UsbFnMtpFileSlice::offset
 
 管道。
 
-
 ### transactionId
 
 ```

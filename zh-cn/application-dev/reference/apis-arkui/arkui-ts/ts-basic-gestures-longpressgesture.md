@@ -56,7 +56,7 @@ LongPressGesture(value?: { fingers?: number, repeat?: boolean, duration?: number
 @Entry
 @Component
 struct LongPressGestureExample {
-  @State count: number = 0
+  @State count: number = 0;
 
   build() {
     Column() {

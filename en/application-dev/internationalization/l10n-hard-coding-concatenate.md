@@ -12,12 +12,12 @@ Different from obtaining data from external systems or generating data during op
 
 1. Avoid using hard coding. Extract the strings to be translated into resource files, separate them from the code, and use dedicated APIs for loading. For details, see [Multilingual Resource Provisioning](./l10n-multilingual-resources.md).
 
-2. Do not directly concatenate strings. If variables (for example, **Video** and **Browser** in **Open HUAWEI Video** and **Open HUAWEI Browser**) are present, use placeholders as the substitute of variables to make the syntax complete.
+2. Do not directly concatenate strings. If variables (for example, **Video** and **Browser** in **Open Video** and **Open Browser**) are present, use placeholders as the substitute of variables to make the syntax complete.
    Example of a resource placeholder:
 
    ```ts
    {
      "name": "string1",
-     "value": "Open the %s app."
+     "value": "Open %s"
    }
    ```

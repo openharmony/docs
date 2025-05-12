@@ -91,9 +91,7 @@ IPC/RPC的主要工作是跨进程建立对象通信的连接（客户端进程�
     import { Want, common } from '@kit.AbilityKit';
     import { rpc } from '@kit.IPCKit';
     import { hilog } from '@kit.PerformanceAnalysisKit';
-    import { distributedDeviceManager } from '@kit.DistributedServiceKit';
 
-    let dmInstance: distributedDeviceManager.DeviceManager | undefined;
     let proxy: rpc.IRemoteObject | undefined;
 
     let want: Want = {
@@ -171,9 +169,11 @@ IPC/RPC的主要工作是跨进程建立对象通信的连接（客户端进程�
   ```
 
   Stage模型使用common.UIAbilityContext的[connectServiceExtensionAbility](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextconnectserviceextensionability)接口连接Ability。
+  在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需要在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../application-models/uiability-usage.md#获取uiability的上下文信息)。
 
   <!--code_no_check-->
   ```ts
+
     let context: common.UIAbilityContext = this.getUIContext().getHostContext(); // UIAbilityContext
     // 建立连接后返回的Id需要保存下来，在解绑服务时需要作为参数传入
     let connectId = context.connectServiceExtensionAbility(want,connect);
@@ -262,11 +262,12 @@ IPC/RPC的主要工作是跨进程建立对象通信的连接（客户端进程�
    ```
 
    Stage模型使用common.UIAbilityContext提供的[disconnectServiceExtensionAbility](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextdisconnectserviceextensionability-1)接口断开连接，此处的connectId是在连接服务时保存的。
+   在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需要在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../application-models/uiability-usage.md#获取uiability的上下文信息)。
 
   <!--code_no_check-->
   ```ts
     let context: common.UIAbilityContext = this.getUIContext().getHostContext(); // UIAbilityContext
-
+    
     // 断开连接，使用连接服务成功时保存下来的connectId断开连接
     context.disconnectServiceExtensionAbility(connectId);
    ```

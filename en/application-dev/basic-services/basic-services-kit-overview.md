@@ -21,7 +21,7 @@ Basic Services Kit is typically used in the following scenarios:
 
 ## Capability Scope
 
-This kit provides the following capabilities:
+Depending on different use cases, this kit provides the following capabilities:
 
 - Data file processing
   - [Pasteboard](../reference/apis-basic-services-kit/js-apis-pasteboard.md): provides the copy and paste support. You can use the provided APIs to operate pasteboard content of the plain text, HTML, URI, pixel map, and other types.

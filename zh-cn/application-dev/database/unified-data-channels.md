@@ -99,7 +99,7 @@ UDMF针对多对多跨应用数据共享的不同业务场景提供了标准化�
      console.error(`Insert data throws an exception. code is ${error.code},message is ${error.message} `);
    }
    ```
-3. 更新上一步骤插入的统一数据对象。
+3. 更新上一步插入的统一数据对象。
 
    ```ts
    let plainTextUpdate : uniformDataStruct.PlainText = {

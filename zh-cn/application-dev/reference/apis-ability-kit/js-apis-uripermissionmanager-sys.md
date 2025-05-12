@@ -72,8 +72,12 @@ grantUriPermission(uri: string, flag: wantConstant.Flags, targetBundleName: stri
     }
   });
   let uri = fileUri.getUriFromPath(path);
-  uriPermissionManager.grantUriPermission(uri, wantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION, targetBundleName, (result) => {
-    console.log("result.code = " + result.code);
+  uriPermissionManager.grantUriPermission(uri, wantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION, targetBundleName, (error) => {
+    if (error && error.code !== 0) {
+      console.error("grantUriPermission failed, error.code = " + error.code);
+      return;
+    }
+    console.info("grantUriPermission success");
   });
   ```
 
@@ -283,8 +287,12 @@ revokeUriPermission(uri: string, targetBundleName: string, callback: AsyncCallba
   let targetBundleName = 'com.example.test_case2';
   let uri = "file://com.example.test_case1/data/storage/el2/base/haps/entry_test/files/newDir";
 
-  uriPermissionManager.revokeUriPermission(uri, targetBundleName, (result) => {
-    console.log("result.code = " + result.code);
+  uriPermissionManager.revokeUriPermission(uri, targetBundleName, (error) => {
+    if (error && error.code !== 0) {
+      console.error("revokeUriPermission failed, error.code = " + error.code);
+      return;
+    }
+    console.info("revokeUriPermission success");
   });
   ```
 

@@ -32,7 +32,7 @@ This topic compares TaskPool and Worker based on their implementation characteri
 
 ## Use Case Comparison
 
-Both TaskPool and Worker support multithreaded concurrency. However, TaskPool worker threads are bound to the system scheduling priority and support load balancing (automatic scaling), making it more efficient than Worker, which requires manual creation and may incur delays. In addition, Worker does not support scheduling priority setting. Therefore, TaskPool is recommended for most scenarios.
+Both TaskPool and Worker support multithreaded concurrency. However, TaskPool worker threads are bound to the system scheduling priority and support load balancing (automatic scaling), making it more efficient than Worker, which requires manual creation and may incur delays. Therefore, TaskPool is recommended for most scenarios.
 
 TaskPool is oriented to independent tasks, which are executed within threads. You do not need to care about the thread lifecycle, because long-running tasks (over 3 minutes and not classified as continuous tasks) are automatically reclaimed by the system. On the contrary, Worker is oriented to threads, supports long-running operations, and requires active lifecycle management.
 

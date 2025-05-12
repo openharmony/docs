@@ -5,8 +5,8 @@ HCE provides card emulation that does not depend on a secure element. It allows 
 
 > **NOTE**
 >
-> - The initial APIs of this module are supported since API version 6. Newly added APIs will be marked with a superscript to indicate their earliest API version.
-> - This topic describes only the system APIs provided by the module. For details about its public APIs, see [@ohos.nfc.cardEmulation (Standard NFC Card Emulation)](js-apis-cardEmulation.md).
+> The initial APIs of this module are supported since API version 6. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> This topic describes only the system APIs provided by the module. For details about its public APIs, see [@ohos.nfc.cardEmulation (Standard NFC Card Emulation)](js-apis-cardEmulation.md).
 
 
 ## Modules to Import

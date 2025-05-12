@@ -22,7 +22,7 @@ During the evolution of the state management framework, state management V1 and 
 | \@Observed              | \@ObservedV2              | Indicates that this object is an observable object. However, they have different capabilities.<br>\@Observed is used to observe the top-level properties and it takes effect only when it is used together with \@ObjectLink.<br>\@ObservedV2 does not have the observation capability. It only indicates that this class is observable. To observe the class properties, use together with \@Trace. |
 | \@Track                 | \@Trace                   | \@Track is used for accurate observation. If it is not used, class properties cannot be accurately observed.<br>\@Trace decorated properties can be accurately traced and observed.|
 | \@Component             | \@ComponentV2             | \@Component is the custom component decorator used with the state variables of V1.<br>@ComponentV2 is the custom component decorator used with the state variables of V2.|
-|\@State                 | No external initialization: @Local<br>External initialization once: \@Param and \@Once| Similar to \@Local, \@State decorated variables can work as the data source which can be directly migrated without external initialization. If the external initialization is required, use \@Param and \@Once. For details, see [@State -> @Local](#state-local).|
+|\@State                 | No external initialization: @Local<br>External initialization once: \@Param and \@Once| Similar to \@Local, \@State decorated variables can work as the data source which can be directly migrated without external initialization. If the external initialization is required, use \@Param and \@Once. For details, see [@State->@Local](#state-local).|
 | \@Prop                  | \@Param                   | Similar to \@Param, \@Prop is used to decorate custom component variables. When the input parameter is of the complex type, \@Prop is used to deep copy and \@Param is used to import the parameter.|
 | \@Link                  | \@Param\@Event    | \@Link implements a two-way synchronization encapsulated by the framework of V1. Developers using V2 can implement the two-way synchronization through @Param and @Event.|
 | \@ObjectLink            | \@Param                   | Compatible. \@ObjectLink needs to be initialized by the instance of the @Observed decorated class, but \@Param does not have this constraint.|
@@ -2212,28 +2212,49 @@ In V1, **PersistentStorage** provides the capability of persisting UI data. In V
 
 For PersistenceV2:
 - The change of the \@Trace decorated property of the \@ObservedV2 object associated with PersistenceV2 triggers the automatic persistency of the entire associated object.
-- You can also call the [PersistenceV2.save](./arkts-new-persistencev2.md#save-persisting-stored-data-manually) and [PersistenceV2.Connect](./arkts-new-persistencev2.md#connect-creating-or-obtaining-stored-data) APIs to manually trigger persistent writing and reading.
+- You can also call the [PersistenceV2.save](./arkts-new-persistencev2.md#save-persisting-stored-data-manually) and [PersistenceV2.globalConnect](./arkts-new-persistencev2.md#globalconnect-creating-or-obtaining-stored-data) APIs to manually trigger persistent writing and reading.
 
 V1:
 
-```
-PersistentStorage.persistProp('aProp', 47);
+```ts
+class data {
+  name: string = 'ZhangSan';
+  id: number = 0;
+}
+
+PersistentStorage.persistProp('numProp', 47);
+PersistentStorage.persistProp('dataProp', new data());
 
 @Entry
 @Component
 struct Index {
-  @StorageLink('aProp') aProp: number = 48;
+  @StorageLink('numProp') numProp: number = 48;
+  @StorageLink('dataProp') dataProp: data = new data();
 
   build() {
-    Row() {
     Column() {
       // The current result is saved when the application exits. After the restart, the last saved result is displayed.
-        Text(`${this.aProp}`)
-          .onClick(() => {
-            this.aProp += 1;
-          })
-      }
+      Text(`numProp: ${this.numProp}`)
+        .onClick(() => {
+          this.numProp += 1;
+        })
+        .fontSize(30)
+
+      // The current result is saved when the application exits. After the restart, the last saved result is displayed.
+      Text(`dataProp.name: ${this.dataProp.name}`)
+        .onClick(() => {
+          this.dataProp.name += 'a';
+        })
+        .fontSize(30)
+      // The current result is saved when the application exits. After the restart, the last saved result is displayed.
+      Text(`dataProp.id: ${this.dataProp.id}`)
+        .onClick(() => {
+          this.dataProp.id += 1;
+        })
+        .fontSize(30)
+
     }
+    .width('100%')
   }
 }
 ```
@@ -2243,51 +2264,94 @@ V2:
 The following case shows:
 - The persistent data of **PersistentStorage** is migrated to PersistenceV2. In V2, the data marked by @Trace can be automatically persisted. For non-@Trace data, you need to manually call the **save** API to persist the data.
 - In the following example, the **move** function and the components to display are placed in the same ETS. You can define your own **move()** and place it in a proper position for unified migration.
-    - Click **aProp** and the UI is re-rendered.
-    - Click **bProp** but the UI is not re-rendered.
-    - Click **save storage** to flush the **PersistentStorage** link data to disks.
-    - Exit and restart the application. The values of **aProp** and **bProp** displayed in the **Text** component are the values changed last time.
-```
-import { PersistenceV2 } from '@kit.ArkUI';
-// Data center
-@ObservedV2
-class Storage {
-  @Trace aProp: number = 0;
-  bProp: number = 10;
-}
+```ts
+// Migrate to GlobalConnect.
+import { PersistenceV2, Type } from '@kit.ArkUI';
 
 // Callback used to receive serialization failure.
 PersistenceV2.notifyOnError((key: string, reason: string, msg: string) => {
   console.error(`error key: ${key}, reason: ${reason}, message: ${msg}`);
 });
 
+class Data {
+  name: string = 'ZhangSan';
+  id: number = 0;
+}
+
+@ObservedV2
+class V2Data {
+  @Trace name: string = '';
+  @Trace Id: number = 1;
+}
+
+@ObservedV2
+export class Sample {
+  // Complex objects need to be decorated by @Type to ensure successful serialization.
+  @Type(V2Data)
+  @Trace num: number = 1;
+  @Trace V2: V2Data = new V2Data();
+}
+
+// Auxiliary data used to determine whether data migration is complete
+@ObservedV2
+class StorageState {
+  @Trace isCompleteMoving: boolean = false;
+}
+
+function move() {
+  let movingState = PersistenceV2.globalConnect({type: StorageState, defaultCreator: () => new StorageState()})!;
+  if (!movingState.isCompleteMoving) {
+    PersistentStorage.persistProp('numProp', 47);
+    PersistentStorage.persistProp('dataProp', new Data());
+    let num = AppStorage.get<number>('numProp')!;
+    let V1Data = AppStorage.get<Data>('dataProp')!;
+    PersistentStorage.deleteProp('numProp');
+    PersistentStorage.deleteProp('dataProp');
+
+    // Create the corresponding data in V2.
+    let migrate = PersistenceV2.globalConnect({type: Sample, key: 'connect2', defaultCreator: () => new Sample()})!;  // You can use the default constructor.
+    // For assigned value decorated by @Trace, it is automatically saved. For non-@Trace objects, you can also call save() to save the data, for example, PersistenceV2.save('connect2').
+    migrate.num = num;
+    migrate.V2.name = V1Data.name;
+    migrate.V2.Id = V1Data.id;
+
+    // Set the migration flag to true.
+    movingState.isCompleteMoving = true;
+  }
+}
+
+move();
+
 @Entry
 @ComponentV2
 struct Page1 {
-  // Create a KV pair whose key is Sample in PersistenceV2 (if the key exists, the data in PersistenceV2 is returned) and associate it with prop.
-  @Local storage: Storage = PersistenceV2.connect(Storage, () => new Storage())!;
+  @Local refresh: number = 0;
+  // Use key:connect2 to store data.
+  @Local p: Sample = PersistenceV2.globalConnect({type: Sample, key:'connect2', defaultCreator:() => new Sample()})!;
 
   build() {
-    Column() {
-      Text(`@Trace aProp: ${this.storage.aProp}`)
+    Column({space: 5}) {
+      // The current result is saved when the application exits. After the restart, the last saved result is displayed.
+      Text(`numProp: ${this.p.num}`)
+        .onClick(() => {
+          this.p.num += 1;
+        })
         .fontSize(30)
-        .onClick(() => {
-          this.storage.aProp++;
-        })
 
-      Text(`bProp:: ${this.storage.bProp}`)
+      // The current result is saved when the application exits. After the restart, the last saved result is displayed.
+      Text(`dataProp.name: ${this.p.V2.name}`)
+        .onClick(() => {
+          this.p.V2.name += 'a';
+        })
         .fontSize(30)
+      // The current result is saved when the application exits. After the restart, the last saved result is displayed.
+      Text(`dataProp.id: ${this.p.V2.Id}`)
         .onClick(() => {
-          // The page is not re-rendered, but the value of bProp is changed.
-          this.storage.bProp++;
+          this.p.V2.Id += 1;
         })
-
-      Button('save storage')
-        .onClick(() => {
-          // Different from V1, PersistenceV2 does not depend on the capability of observing state variables. You can perform persistence proactively.
-          PersistenceV2.save(Storage);
-        })
+        .fontSize(30)
     }
+    .width('100%')
   }
 }
 ```

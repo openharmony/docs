@@ -11,8 +11,6 @@ The **OhosImageSourceInfo** struct defines the image source information, which i
 
 **Related module**: [Image](image.md)
 
-**Header file**: [image_source_mdk.h](image__source__mdk_8h.md)
-
 
 ## Summary
 

@@ -42,8 +42,10 @@
         - [\@Track装饰器：class对象属性级更新](state-management/arkts-track.md)
         - [自定义组件冻结功能](state-management/arkts-custom-components-freeze.md)
       - [MVVM模式](state-management/arkts-mvvm.md)
+      <!--Del-->
       - [状态管理优秀实践](state-management/arkts-state-management-best-practices.md)
       - [状态管理合理使用开发指导](state-management/properly-use-state-management-to-develope.md)
+      <!--DelEnd-->
     - 状态管理（V2）<!--arkts-state-management-v2-->
       - V2所属装饰器<!--arkts-v2-decorators-->
         - [\@ObservedV2装饰器和\@Trace装饰器：类属性变化观测](state-management/arkts-new-observedV2-and-trace.md)
@@ -180,15 +182,19 @@
       - [属性修改器 (AttributeModifier)](arkts-user-defined-extension-attributeModifier.md)
       - [属性更新器 (AttributeUpdater)](arkts-user-defined-extension-attributeUpdater.md)
   - [使用镜像能力](arkts-mirroring-display.md)
-  - [支持适老化](arkui-support-for-aging-adaptation.md)
+  - 无障碍与适老化<!--arkts-support-accessibility-friendliness-->
+    - [支持无障碍](arkts-universal-attributes-accessibility.md)
+    - [支持适老化](arkui-support-for-aging-adaptation.md)
   - 主题设置<!--arkts-theme-->
     - [应用深浅色适配](ui-dark-light-color-adaptation.md)
     - [设置应用内主题换肤](theme_skinning.md)
   - [使用UI上下文接口操作界面（UIContext）](arkts-global-interface.md)
-  - 跨进程拉起页面<!--arkts-ui-cross-process-->
+  - 嵌入式组件<!--arkts-ui-cross-process-->
     - [全屏启动原子化服务 (FullScreenLaunchComponent)](arkts-FullScreenComponent.md)
+    - [同应用进程嵌入式组件 (EmbeddedComponent)](arkts-embedded-components.md)
     <!--Del-->
     - [跨进程应用能力扩展（UIExtension，仅对系统应用开放）](arkts-ui-extension-components.md)
+    - [跨线程嵌入式组件 (IsolatedComponent，仅对系统应用开放)](arkts-isolated-components.md)
     <!--DelEnd-->
   - 使用NDK接口构建UI<!--arkts-use-ndk-->
     - [NDK接口概述](ndk-build-ui-overview.md)
@@ -197,7 +203,9 @@
       - [监听组件事件](ndk-listen-to-component-events.md)
       - [绑定手势事件](ndk-bind-gesture-events.md)
     - [使用动画](ndk-use-animation.md)
-    - [使用列表](ndk-loading-long-list.md)
+    - 构建布局<!--arkts-build-layout-ndk-->
+      - [使用列表](ndk-loading-long-list.md)
+      - [使用瀑布流](ndk-waterflow.md)
     - [构建弹窗](ndk-build-pop-up-window.md)
     - [构建自定义组件](ndk-build-custom-components.md)
     - [嵌入ArkTS组件](ndk-embed-arkts-components.md)

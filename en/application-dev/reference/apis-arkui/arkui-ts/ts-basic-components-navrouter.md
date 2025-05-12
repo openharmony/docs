@@ -48,7 +48,7 @@ Provides route information so that clicking the **NavRouter** component redirect
 
 ## Attributes
 
-In addition to the [universal attributes](ts-universal-attributes-size.md), the following attributes are supported.
+In addition to the [universal attributes](ts-component-general-attributes.md), the following attributes are supported.
 
 ### mode<sup>10+</sup>
 
@@ -64,7 +64,7 @@ Sets the route mode used for redirecting the user from the **NavRouter** compone
 
 | Name                          | Type                                    | Mandatory                                  | Description                                      |
 | ----------------------------- | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
-| mode                  | [NavRouteMode](#navroutemode)                                  | Yes                                | Route mode used for redirection.<br>Default value: **NavRouteMode.PUSH_WITH_RECREATE**|
+| mode                  | [NavRouteMode](#navroutemode10)                                  | Yes                                | Route mode used for redirection.<br>Default value: **NavRouteMode.PUSH_WITH_RECREATE**|
 
 ## RouteInfo<sup>10+</sup>
 
@@ -77,7 +77,7 @@ Sets the route mode used for redirecting the user from the **NavRouter** compone
 | name             | string            | Yes  | Name of the navigation destination page to be redirected to.|
 | param             | unknown            | No  | Parameter transferred during redirection.|
 
-## NavRouteMode
+## NavRouteMode<sup>10+</sup>
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 

@@ -20,6 +20,12 @@ API的详细介绍请参见[ohos.file.statvfs](../reference/apis-core-file-kit/j
 
 **表2** 应用空间统计
 
+> **注意：**
+>
+> 表格中统计路径列涉及的目录均指应用的沙箱路径，查看路径前需要先进入对应的应用沙箱空间。进入沙箱空间需要执行以下命令：  
+> 1. hdc shell。
+> 2. nsenter -t {pid} -m sh。
+
 | BundleStats属性 | 含义 | 统计路径 | 
 | -------- | -------- | -------- |
 | appSize | 应用安装文件大小（单位为Byte） | 应用安装文件保存在以下目录：<br/>/data/storage/el1/bundle | 

@@ -32,6 +32,10 @@ With TaskPool, you can encapsulate tasks in the host thread and submit the tasks
 
 - [AppStorage](../quick-start/arkts-appstorage.md) cannot be used in TaskPool worker threads.
 
+- TaskPool allows you to package tasks in the host thread and submit them to the task queue. While it can theoretically handle an unlimited number of tasks, the actual task execution is influenced by the task priority and the availability of system resources. Once the Worker threads reach their maximum capacity, the efficiency of task execution might be compromised.
+
+- TaskPool does not allow you to specify the thread where a task runs. Instead, tasks are assigned to run in available threads. If you want to specify the thread for running a task, using [Worker](./worker-introduction.md) is a better approach.
+
 ## \@Concurrent Decorator
 
 To pass function verification, concurrent functions executed in a [TaskPool](../reference/apis-arkts/js-apis-taskpool.md) must be decorated using \@Concurrent.
@@ -48,7 +52,7 @@ To pass function verification, concurrent functions executed in a [TaskPool](../
 | Use scenario| Used only in projects of the stage model and only in .ets files.|
 | Decorated function types| Used for async functions or regular functions. It cannot be used for generators, arrow functions, or class methods. It does not support class member functions or anonymous functions.|
 | Variable types in decorated functions| Local variables, parameters, and variables imported via **import** are allowed. Closure variables are prohibited.|
-| Return value types in decorated functions| Supported types are listed in [Inter-Thread Communication](interthread-communication-overview.md). |
+| Return value types in decorated functions| Supported types are listed in [Inter-Thread Communication](interthread-communication-overview.md).|
 
 > **NOTE**
 >
@@ -122,22 +126,22 @@ import { taskpool } from '@kit.ArkTS';
 
 @Concurrent
 function testPromise(args1: number, args2: number): Promise<number> {
-  return new Promise<number>((testFuncA, testFuncB)=>{
-    testFuncA(args1 + args2);
+  return new Promise<number>((resolve, reject)=>{
+    resolve(args1 + args2);
   });
 }
 
 @Concurrent
 async function testPromise1(args1: number, args2: number): Promise<number> {
-  return new Promise<number>((testFuncA, testFuncB)=>{
-    testFuncA(args1 + args2);
+  return new Promise<number>((resolve, reject)=>{
+    resolve(args1 + args2);
   });
 }
 
 @Concurrent
 async function testPromise2(args1: number, args2: number): Promise<number> {
-  return await new Promise<number>((testFuncA, testFuncB)=>{
-    testFuncA(args1 + args2);
+  return await new Promise<number>((resolve, reject)=>{
+    resolve(args1 + args2);
   });
 }
 

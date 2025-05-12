@@ -57,7 +57,7 @@ responseRegion(value: Array&lt;Rectangle&gt; | Rectangle)
 @Entry
 @Component
 struct TouchTargetExample {
-  @State text: string = ""
+  @State text: string = "";
 
   build() {
     Column({ space: 20 }) {

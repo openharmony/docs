@@ -9,27 +9,28 @@ The BufferHandle struct describes the buffer handle, which is used to transfer a
 
 **Related module**: [NativeWindow](_native_window.md)
 
+**Header file**: [buffer_handle.h](buffer__handle_8h.md)
 
 ## Summary
 
 
 ### Member Variables
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| int32_t [fd](#fd) | File descriptor of the buffer. The value **-1** means that the buffer is not supported. |
-| int32_t [width](#width) | Width of the buffer memory, in pixels. |
-| int32_t [stride](#stride) | Stride of the buffer memory, in bytes. |
-| int32_t [height](#height) | Height of the buffer memory, in pixels. |
-| int32_t [size](#size) | Size of the buffer memory, in bytes. |
-| int32_t [format](#format) | Format of the buffer memory. For details about available options, see [OH_NativeBuffer_Format](_o_h___native_buffer.md#oh_nativebuffer_format-1). |
-| uint64_t [usage](#usage) | Usage of the buffer memory, represented as bit flags. For details about available options, see [OH_NativeBuffer_Usage](_o_h___native_buffer.md#oh_nativebuffer_usage-1). |
-| void \* [virAddr](#viraddr) | Virtual address of the buffer memory. |
-| int32_t [key](#key) | Shared memory key of the buffer memory. |
-| uint64_t [phyAddr](#phyaddr) | Physical address of the buffer memory. |
-| uint32_t [reserveFds](#reservefds) | Number of file descriptors for extra data. |
-| uint32_t [reserveInts](#reserveints) | Number of integer values for extra data. |
-| int32_t [reserve](#reserve) [0] | Extra data. |
+| int32_t [fd](#fd) | File descriptor of the buffer. The value **-1** means that the buffer is not supported. | 
+| int32_t [width](#width) | Width of the buffer memory, in pixels. | 
+| int32_t [stride](#stride) | Stride of the buffer memory, in bytes. | 
+| int32_t [height](#height) | Height of the buffer memory, in pixels. | 
+| int32_t [size](#size) | Size of the buffer memory, in bytes. | 
+| int32_t [format](#format) | Format of the buffer memory. For details about available options, see [OH_NativeBuffer_Format](_o_h___native_buffer.md#oh_nativebuffer_format-1). | 
+| uint64_t [usage](#usage) | Usage of the buffer memory, represented as bit flags. For details about available options, see [OH_NativeBuffer_Usage](_o_h___native_buffer.md#oh_nativebuffer_usage-1). | 
+| void \* [virAddr](#viraddr) | Virtual address of the buffer memory. | 
+| int32_t [key](#key) | Shared memory key of the buffer memory. | 
+| uint64_t [phyAddr](#phyaddr) | Physical address of the buffer memory. | 
+| uint32_t [reserveFds](#reservefds) | Number of file descriptors for extra data. | 
+| uint32_t [reserveInts](#reserveints) | Number of integer values for extra data. | 
+| int32_t [reserve](#reserve) [0] | Extra data. | 
 
 
 ## Member Variable Description

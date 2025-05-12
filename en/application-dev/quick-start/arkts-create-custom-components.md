@@ -40,6 +40,8 @@ struct HelloComponent {
 
 Multiple **HelloComponent** instances can be created in **build()** of other custom components. In this way, **HelloComponent** is reused by those custom components.
 
+
+
 ```ts
 @Entry
 @Component
@@ -65,7 +67,7 @@ To fully understand the preceding example, a knowledge of the following concepts
 
 - [Rules for Custom Component Parameters](#rules-for-custom-component-parameters)
 
-- [The build Function](#build-function)
+- [The build Function](#the-build-function)
 
 - [Universal Style of a Custom Component](#universal-style-of-a-custom-component)
 
@@ -74,7 +76,7 @@ To fully understand the preceding example, a knowledge of the following concepts
 
 ### struct
 
-The definition of a custom component must start with the \@Component struct followed by the component name, and then component body enclosed by curly brackets {....}. No inheritance is allowed. You can omit the **new** operator when instantiating a struct.
+The definition of a custom component must start with the \@Component struct followed by the component name, and then component body enclosed by curly brackets. No inheritance is allowed. You can omit the **new** operator when instantiating a struct.
 
   > **NOTE**
   >
@@ -109,7 +111,7 @@ The \@Component decorator can decorate only the structs declared by the **struct
   }
   ```
 
-### build Function
+### build()
 
 The **build** function is used to define the declarative UI description of a custom component. Every custom component must define a **build** function.
 
@@ -129,7 +131,7 @@ A custom component decorated with \@Entry is used as the default entry component
   >
   > This decorator can be used in ArkTS widgets since API version 9.
   >
-  > Since API version 10, the \@Entry decorator accepts an optional parameter of type [LocalStorage](arkts-localstorage.md) or type [EntryOptions](#entryOptions).
+  > Since API version 10, the \@Entry decorator accepts an optional parameter of type [LocalStorage](arkts-localstorage.md) or type [EntryOptions](#entryoptions10).
   >
   > This decorator can be used in atomic services since API version 11.
 
@@ -164,7 +166,7 @@ A custom component decorated with \@Entry is used as the default entry component
 
 ### \@Reusable
 
-Custom components decorated by \@Reusable can be reused.
+Custom components decorated by \@Reusable can be reused. For details, see [\@Reusable Decorator: Reusing Components](./arkts-reusable.md#use-scenario).
 
   > **NOTE**
   >
@@ -265,7 +267,7 @@ struct Son {
 
 Whatever declared in **build()** are called UI descriptions. UI descriptions must comply with the following rules:
 
-- For an \@Entry decorated custom component, exactly one root component is required under the **build()** function. This root component must be a container component. **ForEach** is not allowed at the top level.
+- For an \@Entry decorated custom component, exactly one root component is required under **build()**. This root component must be a container component. **ForEach** is not allowed at the top level.
   For an \@Component decorated custom component, exactly one root component is required under **build()**. This root component is not necessarily a container component. **ForEach** is not allowed at the top level.
 
   ```ts
@@ -313,7 +315,7 @@ Whatever declared in **build()** are called UI descriptions. UI descriptions mus
   build() {
     // Avoid: creating a local scope.
     {
-      ...
+      // ...
     }
   }
   ```
@@ -394,7 +396,7 @@ Whatever declared in **build()** are called UI descriptions. UI descriptions mus
   }
   ```
 
-- Directly changing a state variable is not allowed. The following example should be avoided: For details, see [State Variables Modification in build() Is Forbidden](./arkts-state.md#changing-state-variables-in-build-is-forbidden).
+- Directly changing a state variable is not allowed. The following example should be avoided. For details, see [Changing State Variables in build() Is Forbidden](./arkts-state.md#changing-state-variables-in-build-is-forbidden).
 
   ```ts
   @Component
@@ -443,12 +445,12 @@ Whatever declared in **build()** are called UI descriptions. UI descriptions mus
     @State arr : Array<...> = [ ... ];
     ForEach(this.arr.sort().filter(...), 
       item => { 
-      ...
+      // ...
     })
     // Prefer: Call filter before sort() to return a new array. In this way, sort() does not change this.arr.
     ForEach(this.arr.filter(...).sort(), 
       item => { 
-      ...
+      // ...
     })
     ```
 
@@ -482,5 +484,3 @@ struct MyComponent {
 > **NOTE**
 >
 > When ArkUI sets styles for custom components, an invisible container component is set for **ChildComponent**. These styles are set on the container component instead of the **Button** component of **ChildComponent**. As seen from the rendering result, the red background color is not directly applied to the button. Instead, it is applied to the container component that is invisible to users where the button is located.
-
-<!--no_check-->
