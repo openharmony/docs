@@ -314,7 +314,7 @@ The position to seek to is out of the range of the media asset or the specified 
 
 **可能原因**
 
-进度条的位置不在音视频资源的进度范围内或不知道当前进度条模式。
+进度条的位置不在音频/视频资源的进度范围内或不知道当前进度条模式。
 
 **处理步骤**
 
@@ -332,7 +332,7 @@ The specified playback mode is not supported.
 
 **可能原因**
 
-进度条的位置不在音视频资源的进度范围内或不知道当前进度条模式。
+设备不支持当前播放模式。
 
 **处理步骤**
 
@@ -390,7 +390,7 @@ The parameter is invalid, for example, the url is illegal to play.
 
 **处理步骤**
 
-对接口入参，按照API要求进行校验避免异常。
+对接口入参，按照API要求进行校验,避免异常。
 
 ## 6611107 内存分配失败
 
