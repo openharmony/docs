@@ -1,11 +1,8 @@
 # Encryption and Decryption with an AES Symmetric Key (CCM Mode) (ArkTS)
 
-
 For details about the algorithm specifications, see [AES](crypto-sym-encrypt-decrypt-spec.md#aes).
 
-
 **Encryption**
-
 
 1. Call [cryptoFramework.createSymKeyGenerator](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreatesymkeygenerator) and [SymKeyGenerator.generateSymKey](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#generatesymkey-1) to generate a 128-bit AES symmetric key (**SymKey**).
    
@@ -30,7 +27,6 @@ For details about the algorithm specifications, see [AES](crypto-sym-encrypt-dec
 
     In CCM mode, **authTag** must be of 12 bytes. It is used as the authentication information during decryption. In the example, **authTag** is of 12 bytes.
 
-
 **Decryption**
 
 1. Call [cryptoFramework.createCipher](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreatecipher) with the string parameter **'AES128|CCM'** to create a **Cipher** instance for decryption. The key type is AES128, and the block cipher mode is CCM.
@@ -38,7 +34,6 @@ For details about the algorithm specifications, see [AES](crypto-sym-encrypt-dec
 2. Call [Cipher.init](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#init-1) to initialize the **Cipher** instance. In the **Cipher.init** API, set **opMode** to **CryptoMode.DECRYPT_MODE** (decryption), **key** to **SymKey** (the key for decryption), and **params** to **CcmParamsSpec** corresponding to the CCM mode.
 
 3. Call [Cipher.doFinal](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#dofinal-1) to obtain the decrypted data.
-
 
 - Example (using asynchronous APIs):
 
@@ -170,6 +165,4 @@ For details about the algorithm specifications, see [AES](crypto-sym-encrypt-dec
       }
     }
   ```
-
-
 
