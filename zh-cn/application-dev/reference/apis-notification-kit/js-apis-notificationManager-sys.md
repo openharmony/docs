@@ -3806,7 +3806,7 @@ try{
     async (checkInfo)=>{
       return { code: 1, message: "INVALID_PARAMETERS"};
   },);
-} catch (err: BusinessError) {
+} catch (err) {
   console.error(`notificationManager.on failed, code is ${err.code}, message is ${err.message}`);
 }
 ```
