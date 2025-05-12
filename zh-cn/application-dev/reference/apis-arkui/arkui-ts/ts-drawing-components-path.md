@@ -25,7 +25,7 @@ Path(value?: { width?: number | string; height?: number | string; commands?: str
 
 | 参数名                                             | 类型         | 必填 | 说明                   |
 | ------ | ---------------- | ---- | ------------------------------------------------------------ |
-| value  | { width?: number \| string; height?: number \| string; [commands](ts-drawing-components-path.md#commands)?: string } | 否   | width：路径所在矩形的宽度，取值范围≥0。<br/>值为异常值或缺省时按照自身内容需要的宽度处理。<br/>默认单位：vp<br/>height：路径所在矩形的高度，取值范围≥0。<br/>值为异常值或缺省时按照自身内容需要的高度处理。<br/>默认单位：vp<br/> commands：路径绘制的命令字符串。默认值：''<br/>异常值按照默认值处理。|
+| value  | { width?: number \| string; height?: number \| string; [commands](ts-drawing-components-path.md#commands)?: string } | 否   | width：路径所在矩形的宽度，取值范围≥0。<br/>值为异常值或缺省时按照自身内容需要的宽度处理。<br/>默认单位：vp<br/>height：路径所在矩形的高度，取值范围≥0。<br/>值为异常值或缺省时按照自身内容需要的高度处理。<br/>默认单位：vp<br/> commands：路径绘制的命令字符串。默认值：空字符串<br/>异常值按照默认值处理。|
 
 ## 属性
 
@@ -47,7 +47,7 @@ commands(value: string)
 
 | 参数名 | 类型   | 必填 | 说明                          |
 | ------ | ------ | ---- | ----------------------------- |
-| value  | string | 是   | 线条绘制的路径。<br/>默认值：''<br/>默认单位：px |
+| value  | string | 是   | 线条绘制的路径。<br/>默认值：空字符串<br/>默认单位：px |
 
 ### fill
 
