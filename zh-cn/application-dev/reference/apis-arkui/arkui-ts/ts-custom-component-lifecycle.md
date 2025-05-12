@@ -216,6 +216,11 @@ aboutToReuse?(params: { [key: string]: unknown }): void
 
 当一个可复用的自定义组件从复用缓存中重新加入到节点树时，触发aboutToReuse生命周期回调，并将组件的构造参数传递给aboutToReuse。
 
+> **说明：**
+>
+> * 避免对@Link/@ObjectLink/@Prop等自动更新的状态变量，在aboutToReuse中重复更新。最佳实践请参考[组件复用最佳实践-优化状态管理，精准控制组件刷新范围使用](https://developer.huawei.com/consumer/cn/doc/best-practices/bpta-component-reuse#section4470171391314)。
+> * 在滑动场景中，使用组件复用通常需要用该回调函数去更新组件的状态变量，因此在该回调函数中应避免耗时操作，否则会导致丢帧卡顿。最佳实践请参考[主线程耗时操作优化指导-组件复用回调](https://developer.huawei.com/consumer/cn/doc/best-practices/bpta-time-optimization-of-the-main-thread#section20815336174316)。
+
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full

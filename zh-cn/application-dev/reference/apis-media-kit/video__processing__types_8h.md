@@ -47,9 +47,9 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [VideoDetailEnhancer_QualityLevel](_video_processing.md#videodetailenhancer_qualitylevel-1) {<br/>VIDEO_DETAIL_ENHANCER_QUALITY_LEVEL_NONE,<br/>VIDEO_DETAIL_ENHANCER_QUALITY_LEVEL_LOW,<br/>VIDEO_DETAIL_ENHANCER_QUALITY_LEVEL_MEDIUM,<br/>VIDEO_DETAIL_ENHANCER_QUALITY_LEVEL_HIGH } | 用于细节增强的质量等级。 | 
+| [VideoDetailEnhancer_QualityLevel](_video_processing.md#videodetailenhancer_qualitylevel-1) {<br/>VIDEO_DETAIL_ENHANCER_QUALITY_LEVEL_NONE,<br/>VIDEO_DETAIL_ENHANCER_QUALITY_LEVEL_LOW,<br/>VIDEO_DETAIL_ENHANCER_QUALITY_LEVEL_MEDIUM,<br/>VIDEO_DETAIL_ENHANCER_QUALITY_LEVEL_HIGH<br/>} | 用于细节增强的质量等级。 | 
 | [VideoProcessing_ErrorCode](_video_processing.md#videoprocessing_errorcode-1) {<br/>VIDEO_PROCESSING_SUCCESS,<br/>VIDEO_PROCESSING_ERROR_INVALID_PARAMETER = 401,<br/>VIDEO_PROCESSING_ERROR_UNKNOWN = 29210001,<br/>VIDEO_PROCESSING_ERROR_INITIALIZE_FAILED,<br/>VIDEO_PROCESSING_ERROR_CREATE_FAILED,<br/>VIDEO_PROCESSING_ERROR_PROCESS_FAILED,<br/>VIDEO_PROCESSING_ERROR_UNSUPPORTED_PROCESSING,<br/>VIDEO_PROCESSING_ERROR_OPERATION_NOT_PERMITTED,<br/>VIDEO_PROCESSING_ERROR_NO_MEMORY,<br/>VIDEO_PROCESSING_ERROR_INVALID_INSTANCE,<br/>VIDEO_PROCESSING_ERROR_INVALID_VALUE<br/>} | 视频处理错误码。 | 
-| [VideoProcessing_State](_video_processing.md#videoprocessing_state-1) {<br/>VIDEO_PROCESSING_STATE_RUNNING,<br/>VIDEO_PROCESSING_STATE_STOPPED } | 视频处理状态。 | 
+| [VideoProcessing_State](_video_processing.md#videoprocessing_state-1) {<br/>VIDEO_PROCESSING_STATE_RUNNING,<br/>VIDEO_PROCESSING_STATE_STOPPED<br/>} | 视频处理状态。 | 
 
 
 ### 变量

@@ -60,12 +60,12 @@ onHoverMove(event: Callback&lt;HoverEvent&gt;): T
 
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | --------------- | ---------- | ----- | ----- | -------------------- |
-| x<sup>15+</sup> |number|否|是|手写笔位置相对于当前组件左上角的x轴坐标。<br> **原子化服务API：**  从API version 15开始，该接口支持在原子化服务中使用。|
-| y<sup>15+</sup> |number|否|是|手写笔位置相对于当前组件左上角的y轴坐标。<br> **原子化服务API：**  从API version 15开始，该接口支持在原子化服务中使用。|
-| windowX<sup>15+</sup> |number|否|是|手写笔位置相对于应用窗口左上角的x轴坐标。<br> **原子化服务API：**  从API version 15开始，该接口支持在原子化服务中使用。|
-| windowY<sup>15+</sup> |number|否|是|手写笔位置相对于应用窗口左上角的y轴坐标。<br> **原子化服务API：**  从API version 15开始，该接口支持在原子化服务中使用。|
-| displayX<sup>15+</sup> |number|否|是|手写笔位置相对于应用屏幕左上角的x轴坐标。<br> **原子化服务API：**  从API version 15开始，该接口支持在原子化服务中使用。|
-| displayY<sup>15+</sup> |number|否|是|手写笔位置相对于应用屏幕左上角的y轴坐标。<br> **原子化服务API：**  从API version 15开始，该接口支持在原子化服务中使用。|
+| x<sup>15+</sup> |number|否|是|手写笔位置相对于当前组件左上角的x轴坐标。<br>单位：vp<br> **原子化服务API：**  从API version 15开始，该接口支持在原子化服务中使用。|
+| y<sup>15+</sup> |number|否|是|手写笔位置相对于当前组件左上角的y轴坐标。<br>单位：vp<br> **原子化服务API：**  从API version 15开始，该接口支持在原子化服务中使用。|
+| windowX<sup>15+</sup> |number|否|是|手写笔位置相对于应用窗口左上角的x轴坐标。<br>单位：vp<br> **原子化服务API：**  从API version 15开始，该接口支持在原子化服务中使用。|
+| windowY<sup>15+</sup> |number|否|是|手写笔位置相对于应用窗口左上角的y轴坐标。<br>单位：vp<br> **原子化服务API：**  从API version 15开始，该接口支持在原子化服务中使用。|
+| displayX<sup>15+</sup> |number|否|是|手写笔位置相对于应用屏幕左上角的x轴坐标。<br>单位：vp<br> **原子化服务API：**  从API version 15开始，该接口支持在原子化服务中使用。|
+| displayY<sup>15+</sup> |number|否|是|手写笔位置相对于应用屏幕左上角的y轴坐标。<br>单位：vp<br> **原子化服务API：**  从API version 15开始，该接口支持在原子化服务中使用。|
 | stopPropagation | () => void |否|否| 阻塞事件冒泡。 <br> **原子化服务API：**  从API version 10开始，该接口支持在原子化服务中使用。|
 
 ## 示例
@@ -120,7 +120,7 @@ struct HoverEventExample {
 
 ### 示例2（使用onHoverMove）
 
-该实例设置了按钮的 `onHoverMove()` 事件。当手写笔悬浮在按钮时，UI界面会显示当前手写笔悬浮状的位置。
+该示例设置了按钮的 `onHoverMove()` 事件。当手写笔悬浮在按钮时，UI界面会显示当前手写笔悬浮状的位置。
 
 ```ts
 // xxx.ets

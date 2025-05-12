@@ -18,29 +18,29 @@ DevEco Studio内置ArkUI Inspector工具，开发者可以使用ArkUI Inspector�
 @Entry
 @Component
 struct ArkUIInspectorExample {
- @State children: Number[] = Array.from(Array(900), (_, k) => k);
+  @State children: Number[] = Array.from(Array(900), (_: undefined, k: number) => k);
 
- build() {
-  Scroll() {
-   Grid() {
-    ForEach(this.children, (item: Number) => {
-     GridItem() {
-      Stack() {
-       Stack() {
-        Stack() {
-         Text(item.toString()).border({ width: 2, color: Color.Green })
-        }
-       }
+  build() {
+    Scroll() {
+      Grid() {
+        ForEach(this.children, (item: Number) => {
+          GridItem() {
+            Stack() {
+              Stack() {
+                Stack() {
+                  Text(item.toString()).border({ width: 2, color: Color.Green })
+                }
+              }
+            }
+          }
+        }, (item: Number) => item.toString())
       }
-     }
-    }, (item: Number) => item.toString())
-   }
-   .columnsTemplate('1fr 1fr 1fr 1fr')
-   .columnsGap(0)
-   .rowsGap(0)
-   .size({ width: "100%", height: "100%" })
+      .columnsTemplate('1fr 1fr 1fr 1fr')
+      .columnsGap(0)
+      .rowsGap(0)
+      .size({ width: "100%", height: "100%" })
+    }
   }
- }
 }
 ```
 
@@ -74,23 +74,23 @@ struct ArkUIInspectorExample {
 @Entry
 @Component
 struct ArkUIInspectorExample {
- @State children: Number[] = Array.from(Array(900), (_, k) => k);
+  @State children: Number[] = Array.from(Array(900), (_: undefined, k: number) => k);
 
- build() {
-  Scroll() {
-   Grid() {
-    ForEach(this.children, (item: Number) => {
-     GridItem() {
-      Text(item.toString()).border({ width: 2, color: Color.Green })
-     }
-    }, (item: Number) => item.toString())
-   }
-   .columnsTemplate('1fr 1fr 1fr 1fr')
-   .columnsGap(0)
-   .rowsGap(0)
-   .size({ width: "100%", height: "100%" })
+  build() {
+    Scroll() {
+      Grid() {
+        ForEach(this.children, (item: Number) => {
+          GridItem() {
+            Text(item.toString()).border({ width: 2, color: Color.Green })
+          }
+        }, (item: Number) => item.toString())
+      }
+      .columnsTemplate('1fr 1fr 1fr 1fr')
+      .columnsGap(0)
+      .rowsGap(0)
+      .size({ width: "100%", height: "100%" })
+    }
   }
- }
 }
 ```
 

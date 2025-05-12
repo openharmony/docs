@@ -48,10 +48,11 @@
    ```
 
 3. 创建[文件选择器DocumentViewPicker](../reference/apis-core-file-kit/js-apis-file-picker.md#documentviewpicker)实例。调用[select()](../reference/apis-core-file-kit/js-apis-file-picker.md#select-3)接口拉起FilePicker应用界面进行文件选择。
-   
+
    ```ts
    let uris: Array<string> = [];
-   let context = getContext(this) as common.Context; // 请确保 getContext(this) 返回结果为 UIAbilityContext
+   // 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+   let context = this.getUIContext().getHostContext() as common.UIAbilityContext; 
    // 创建文件选择器实例
    const documentViewPicker = new picker.DocumentViewPicker(context);
    documentViewPicker.select(documentSelectOptions).then((documentSelectResult: Array<string>) => {
@@ -111,11 +112,11 @@
    ```
 
 3. 创建[音频选择器AudioViewPicker](../reference/apis-core-file-kit/js-apis-file-picker.md#audioviewpicker)实例。调用[select()](../reference/apis-core-file-kit/js-apis-file-picker.md#select-5)接口拉起FilePicker应用界面进行文件选择。
-   
+
    ```ts
    let uris: string = '';
-   // 请确保 getContext(this) 返回结果为 UIAbilityContext
-   let context = getContext(this) as common.Context; 
+   // 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+   let context = this.getUIContext().getHostContext() as common.UIAbilityContext; 
    const audioViewPicker = new picker.AudioViewPicker(context);
    audioViewPicker.select(audioSelectOptions).then((audioSelectResult: Array<string>) => {
      //文件选择成功后，返回被选中音频的URI结果集。

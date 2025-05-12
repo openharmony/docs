@@ -51,7 +51,7 @@ import { OpenLinkOptions } from '@kit.AbilityKit';
             .height('5%')
             .margin({ bottom: '12vp' })
             .onClick(() => {
-              let context = getContext(this) as common.UIAbilityContext;
+              let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
               let link: string = 'https://www.example.com';
               let openLinkOptions: OpenLinkOptions = {
                 appLinkingOnly: true,

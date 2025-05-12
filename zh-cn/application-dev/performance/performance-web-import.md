@@ -1279,7 +1279,8 @@ Web({ src: 'https://www.example.com/a.html', controller: this.controller })
   .onControllerAttached(async () => {
     // 读取配置，进行预编译。
     for (const config of this.configs) {
-      let content = await getContext().resourceManager.getRawFileContentSync(config.localPath);
+      let content = await (this.getUIContext()
+            .getHostContext() as Context).resourceManager.getRawFileContentSync(config.localPath);
 
       try {
         this.controller.precompileJavaScript(config.url, content, config.options)
@@ -1651,7 +1652,8 @@ Web({ src: 'https://www.example.com/a.html', controller: this.controller })
       const resourceMapArr: Array<webview.OfflineResourceMap> = [];
       // 读取配置，从rawfile目录中读取文件内容。
       for (const config of this.configs) {
-        const buf: Uint8Array = await getContext().resourceManager.getRawFileContentSync(config.localPath);
+        const buf: Uint8Array = await (this.getUIContext()
+            .getHostContext() as Context).resourceManager.getRawFileContentSync(config.localPath);
         resourceMapArr.push({
           urlList: config.urlList,
           resource: buf,
@@ -1889,7 +1891,7 @@ document.querySelectorAll('img').forEach(img => {observer.observe(img)});
 Button('进入网页')
   .onClick(() => {
     hilog.info(0x0001, "WebPerformance", "UnInitializedWeb");
-    router.pushUrl({ url: 'pages/WebBrowser' });
+    this.getUIContext().getRouter().pushUrl({ url: 'pages/WebBrowser' });
   })
 ```
 Web页使用Web组件加载指定网页。
@@ -1931,7 +1933,7 @@ struct WebComponent {
       Button('进入网页')
         .onClick(() => {
           hilog.info(0x0001, "WebPerformance", "InitializedWeb");
-          router.pushUrl({ url: 'pages/WebBrowser' });
+          this.getUIContext().getRouter().pushUrl({ url: 'pages/WebBrowser' });
         })
     }
   }

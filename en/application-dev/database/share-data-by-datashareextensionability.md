@@ -17,6 +17,7 @@ There are two roles in **DataShare**:
 - Data consumer: accesses the data provided by the provider using [createDataShareHelper()](../reference/apis-arkdata/js-apis-data-dataShare-sys.md#datasharecreatedatasharehelper).
 
 **Figure 1** Data sharing mechanism 
+
 ![dataShare](figures/dataShare.jpg)
 
 - The **DataShareExtensionAbility** module, as the data provider, implements services related to data sharing between applications.
@@ -143,7 +144,7 @@ Before implementing a **DataShare** service, you need to create a **DataShareExt
    | -------- | -------- | -------- |
    | name | Ability name, corresponding to the **ExtensionAbility** class name derived from **Ability**.| Yes|
    | type | Ability type. The value **dataShare** indicates that the development is based on the **datashare** template.| Yes|
-   | uri | Unique identifier for the data consumer to access the data provider.<br> You can add suffix parameters to set the target access object. The suffix parameters must be added to the end of the URI and start with a question mark (?).<br> - Currently, only the **user** parameter is supported.<br> - The value of **user** must be an integer. It indicates the user ID of the data provider. If It is not specified, the user ID of the data consumer is used. For details about the definition of **user** and how to obtain it, see [user](../reference/apis-basic-services-kit/js-apis-osAccount.md#getactivatedosaccountlocalids9).<br> - Currently, the data consumer in cross-user access must have the ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS permission.| Yes|
+   | uri | Unique identifier for the data consumer to access the data provider.| Yes|
    | exported | Whether it is visible to other applications. Data sharing is allowed only when the value is **true**.| Yes|
    | readPermission | Permission required for accessing data. If this parameter is not set, read permission verification is not performed by default.<br>**NOTE**: The permission constraints for **DataShareExtensionAbility** are different from that for silent access. It is important to understand the difference and prevent confusion. For details, see [Silent Access via DatamgrService](share-data-by-silent-access.md).| No|
    | writePermission | Permission required for modifying data. If this parameter is not set, write permission verification is not performed by default.<br>**NOTE**: The permission constraints for **DataShareExtensionAbility** are different from that for silent access. It is important to understand the difference and prevent confusion. For details, see [Silent Access via DatamgrService](share-data-by-silent-access.md).| No|
@@ -218,7 +219,7 @@ Before implementing a **DataShare** service, you need to create a **DataShareExt
    import { BusinessError } from '@kit.BasicServicesKit';
    ```
 
-2. Define the URI string for communicating with the data provider.
+2. Define the URI string for communicating with the data provider.<br> The URI is the identifier of the context data provider in set in the configuration file. It can be added with suffix parameters to set the access target. The suffix parameters must start with a question mark (?).<br> - Currently, only the **user** parameter is supported.<br> - The value of **user** must be an integer. It indicates the user ID of the data provider. If It is not specified, the user ID of the data consumer is used. For details about the definition of **user** and how to obtain it, see [user](../reference/apis-basic-services-kit/js-apis-osAccount.md#getactivatedosaccountlocalids9).<br> - Currently, the data consumer in cross-user access must have the ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS permission. Currently, cross-user access supports the add, delete, modify, and query operations, and does not support subscription notification.
    
    ```ts
    // Different from the URI defined in the module.json5 file, the URI passed in the parameter has an extra slash (/), because there is a DeviceID parameter between the second and the third slash (/).

@@ -48,8 +48,8 @@ To enable your application to support the VPN functionality, you need to create 
 
 Next, you need to configure, start, and stop the VPN in the created **VpnExtensionAbility**.
 
-- Create a VPN tunnel. The TCP tunnel is used as an example. For details, see **TcpConnect()** in [vpn_client](https://gitee.com/openharmony/applications_app_samples/blob/master/code/BasicFeature/Connectivity/VPN/entry/src/main/cpp/vpn_client.cpp) demo project.
-- Use [VpnConnection.protect](../reference/apis-network-kit/js-apis-net-vpnExtension.md#protect) to enable protection for the TCP tunnel.
+- Establish a VPN tunnel. The following uses the UDP tunnel as an example. For details, see the **UdpConnect()** API in the [napi_init](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/NetWork_Kit/NetWorkKit_NetManager/VPNControl_Case/entry/src/main/cpp/napi_init.cpp) demo project.
+- Use [VpnConnection.protect](../reference/apis-network-kit/js-apis-net-vpnExtension.md#protect) to enable protection for the UDP tunnel.
 - Construct VPN Config parameters. For details, see [VPN Config Parameters](#description-of-vpn-config-parameters).
 - Use [VpnConnection.create](../reference/apis-network-kit/js-apis-net-vpnExtension.md#create) to establish a VPN connection.
 - Process data of the virtual network interface card (vNIC), such as reading or writing data.
@@ -63,7 +63,6 @@ To start a connection from the VPN application, you need to call **startVpnExten
 import { common, Want } from '@kit.AbilityKit';
 import { vpnExtension } from '@kit.NetworkKit';
 
-let context = getContext(this) as common.VpnExtensionContext;
 let want: Want = {
   deviceId: "",
   bundleName: "com.example.myvpndemo",
@@ -107,7 +106,6 @@ The sample code is as follows:
 import { common, Want } from '@kit.AbilityKit';
 import { vpnExtension } from '@kit.NetworkKit';
 
-let context = getContext(this) as common.VpnExtensionContext;
 let want: Want = {
   deviceId: "",
   bundleName: "com.example.myvpndemo",
@@ -241,4 +239,4 @@ function vpnCreate(){
 
 ## VPN Demo
 
-The OpenHarmony project provides a sample application named [VPN](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Connectivity/VPN), which showcases how to implement the VPN service.
+The OpenHarmony project provides a sample application named [VPN](https://gitee.com/openharmony/applications_app_samples/tree/master/code/DocsSample/NetWork_Kit/NetWorkKit_NetManager/VPNControl_Case), which showcases how to implement the VPN service.

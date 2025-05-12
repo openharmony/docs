@@ -72,36 +72,36 @@ struct ChildItem {
 
 当不同数组项按照键值生成规则生成的键值相同时，框架的行为是未定义的。例如，在以下代码中，ForEach渲染相同的数据项`two`时，只创建了一个`ChildItem`组件，而没有创建多个具有相同键值的组件。
 
- ```ts
- @Entry
- @Component
- struct Parent {
-   @State simpleList: Array<string> = ['one', 'two', 'two', 'three'];
- 
-   build() {
-     Row() {
-       Column() {
-         ForEach(this.simpleList, (item: string) => {
-           ChildItem({ item: item })
-         }, (item: string) => item)
-       }
-       .width('100%')
-       .height('100%')
-     }
-     .height('100%')
-     .backgroundColor(0xF1F3F5)
-   }
- }
- 
- @Component
- struct ChildItem {
-   @Prop item: string;
- 
-   build() {
-     Text(this.item)
-       .fontSize(50)
-   }
- }
+```ts
+@Entry
+@Component
+struct Parent {
+  @State simpleList: Array<string> = ['one', 'two', 'two', 'three'];
+
+  build() {
+    Row() {
+      Column() {
+        ForEach(this.simpleList, (item: string) => {
+          ChildItem({ item: item })
+        }, (item: string) => item)
+      }
+      .width('100%')
+      .height('100%')
+    }
+    .height('100%')
+    .backgroundColor(0xF1F3F5)
+  }
+}
+
+@Component
+struct ChildItem {
+  @Prop item: string;
+
+  build() {
+    Text(this.item)
+      .fontSize(50)
+  }
+}
  ```
 
 运行效果如下图所示。
@@ -264,7 +264,7 @@ struct ArticleListView {
     new Article('004', '第4篇文章', '文章简介内容'),
     new Article('005', '第5篇文章', '文章简介内容'),
     new Article('006', '第6篇文章', '文章简介内容')
-  ]
+  ];
 
   loadMoreArticles() {
     this.articleList.push(new Article('007', '加载的新文章', '文章简介内容'));
@@ -602,7 +602,7 @@ struct Parent {
       }
       .onClick(() => {
         this.simpleList.splice(1, 0, 'new item');
-        console.log(`[onClick]: simpleList is ${JSON.stringify(this.simpleList)}`);
+        console.info(`[onClick]: simpleList is [${this.simpleList.join(', ')}]`);
       })
 
       ForEach(this.simpleList, (item: string) => {
@@ -621,7 +621,7 @@ struct ChildItem {
   @Prop item: string;
 
   aboutToAppear() {
-    console.log(`[aboutToAppear]: item is ${this.item}`);
+    console.info(`[aboutToAppear]: item is ${this.item}`);
   }
 
   build() {

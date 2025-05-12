@@ -4,7 +4,7 @@
 
 > **说明：**
 >
-> 本模块首批接口从API version 18开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> 本模块首批接口从API version 19开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 ## 导入模块
 
@@ -390,7 +390,7 @@ read(portId: number, buffer: Uint8Array, timeout?: number): Promise&lt;number&gt
 |---------|------------|----|------------------|
 | portId  | number     | 是  | 端口号。      |
 | buffer  | Uint8Array | 是  | 读取数据的缓冲区。 |
-| timeout | number     | 否  | 读取的超时时间（以毫秒为单位）。 |
+| timeout | number     | 否  | 超时时间（单位：ms），可选参数，默认为0不超时，用户按需选择。 |
 
 **返回值：**
 
@@ -409,7 +409,7 @@ read(portId: number, buffer: Uint8Array, timeout?: number): Promise&lt;number&gt
 | 31400003 | Device does not exist. |
 | 31400005 | The serial port device is not opened. Call the open API first. |
 | 31400006 | Data transfer timed out. |
-| 31400007 | I/O exception. |
+| 31400007 | I/O exception. Possible causes: 1. The transfer was canceled. 2. The device offered more data than allowed. |
 
 **示例：**
 
@@ -470,7 +470,7 @@ readSync(portId: number, buffer: Uint8Array, timeout?: number): number;
 |---------|------------|----|------------------|
 | portId  | number     | 是  | 端口号。|
 | buffer  | Uint8Array | 是  | 读取数据的缓冲区。 |
-| timeout | number     | 否  | 读取的超时时间（以毫秒为单位）。 |
+| timeout | number     | 否  | 超时时间（单位：ms），可选参数，默认为0不超时，用户按需选择。 |
 
 **返回值：**
 
@@ -489,7 +489,7 @@ readSync(portId: number, buffer: Uint8Array, timeout?: number): number;
 | 31400003 | Device does not exist. |
 | 31400005 | The serial port device is not opened. Call the open API first. |
 | 31400006 | Data transfer timed out. |
-| 31400007 | I/O exception. |
+| 31400007 | I/O exception. Possible causes: 1. The transfer was canceled. 2. The device offered more data than allowed. |
 
 **示例：**
 
@@ -551,7 +551,7 @@ write(portId: number, buffer: Uint8Array, timeout?: number): Promise&lt;number&g
 |---------|------------|----|------------------|
 | portId  | number     | 是  | 端口号。      |
 | buffer  | Uint8Array | 是  | 写入数据的缓冲区。 |
-| timeout | number     | 否  | 写入的超时时间（以毫秒为单位）。 |
+| timeout | number     | 否  | 超时时间（单位：ms），可选参数，默认为0不超时，用户按需选择。 |
 
 **返回值：**
 
@@ -570,7 +570,7 @@ write(portId: number, buffer: Uint8Array, timeout?: number): Promise&lt;number&g
 | 31400003 | Device does not exist. |
 | 31400005 | The serial port device is not opened. Call the open API first. |
 | 31400006 | Data transfer timed out. |
-| 31400007 | I/O exception. |
+| 31400007 | I/O exception. Possible causes: 1. The transfer was canceled. 2. The device offered more data than allowed. |
 
 **示例：**
 
@@ -631,7 +631,7 @@ writeSync(portId: number, buffer: Uint8Array, timeout?: number): number;
 |---------|------------|----|------------------|
 | portId  | number     | 是  | 端口号。     |
 | buffer  | Uint8Array | 是  | 写入目标缓冲区。 |
-| timeout | number     | 否  | 写入的超时时间（以毫秒为单位）。|
+| timeout | number     | 否  | 超时时间（单位：ms），可选参数，默认为0不超时，用户按需选择。|
 
 **返回值：**
 
@@ -650,7 +650,7 @@ writeSync(portId: number, buffer: Uint8Array, timeout?: number): number;
 | 31400003 | Device does not exist. |
 | 31400005 | The serial port device is not opened. Call the open API first. |
 | 31400006 | Data transfer timed out. |
-| 31400007 | I/O exception. |
+| 31400007 | I/O exception. Possible causes: 1. The transfer was canceled. 2. The device offered more data than allowed. |
 
 **示例：**
 
@@ -930,5 +930,4 @@ try {
 | 名称     | 值     | 说明    |
 |-----------|-----------|-----------|
 | STOPBIT_1 | 0 | 报文的有效停止位宽为1比特 |
-| STOPBIT_1P5 | 1 | 报文的有效停止位宽为1.5比特 |
-| STOPBIT_2 | 2 | 报文的有效停止位宽为2比特 |
+| STOPBIT_2 | 1 | 报文的有效停止位宽为2比特 |

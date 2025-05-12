@@ -687,15 +687,15 @@ Failed to install the HAP because an enterprise normal/MDM bundle cannot be inst
 1. 检查安装设备是否为企业设备。
 2. 检查设备参数const.bms.allowenterprisebundle是否为true。
 
-## 17700051 应用自升级时调用方的分发类型不是企业mdm
+## 17700051 应用自升级时调用方的签名证书profile文件中的类型不是企业mdm
 **错误信息**<br/>
 Failed to install the HAP because the distribution type of the caller application is not enterprise_mdm.
 
 **错误描述**<br/>
-企业mdm应用自升级时，调用方的分发类型不是企业mdm。
+企业mdm应用自升级时，调用方[签名证书profile文件](https://developer.huawei.com/consumer/cn/doc/app/agc-help-add-releaseprofile-0000001914714796)中的类型不是企业mdm。
 
 **可能原因**<br/>
-调用方的分发类型不是企业mdm。
+调用方签名证书profile文件中的类型不是企业mdm。
 
 **处理步骤**<br/>
 检查应用的签名文件是否正确配置。
@@ -995,18 +995,18 @@ The specified bundleName of want is not the same with caller.
 **处理步骤**<br/>
 修改want指定的bundleName与调用方相同。
 
-## 17700076 签名文件中的分发类型被限制，不允许安装到当前设备中，导致安装失败
+## 17700076 签名证书profile文件中的类型被限制，不允许安装到当前设备中，导致安装失败
 **错误信息**<br/>
 Failed to install the HAP or HSP because the app distribution type is not allowed.
 
 **错误描述**<br/>
-签名文件中的分发类型不允许安装的限制，导致安装失败。
+签名证书profile文件中的类型被限制，不允许安装到当前设备中。
 
 **可能原因**<br/>
-该签名的分发类型被限制，禁止安装到当前设备中。
+该[签名证书profile文件](https://developer.huawei.com/consumer/cn/doc/app/agc-help-add-releaseprofile-0000001914714796)中的类型被限制，禁止安装到当前设备中。
 
 **处理步骤**<br/>
-更换签名文件的分发类型。
+更换签名证书profile文件中的类型。
 
 <!--Del-->
 ## 17700077 安装应用失败，但安装对应的预置应用成功

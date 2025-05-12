@@ -89,7 +89,7 @@
      fileFormat: media.ContainerFormatType.CFT_MPEG_4A, // 封装格式，当前支持MP4，M4A，MP3，WAV。
    };
    
-   const context: Context = getContext(this); // 参考应用文件访问与管理。
+   const context: Context = this.getUIContext().getHostContext()!; // 参考应用文件访问与管理。
    let filePath: string = context.filesDir + '/example.mp3';
    let audioFile: fs.File = fs.openSync(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
    let fileFd: number = this.audioFile.fd; // 获取文件fd。
@@ -158,7 +158,7 @@ import { media } from '@kit.MediaKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { fileIo as fs } from '@kit.CoreFileKit';
 
-export class AudioRecorderDemo {
+export class AudioRecorderDemo extends CustomComponent {
   private avRecorder: media.AVRecorder | undefined = undefined;
   private avProfile: media.AVRecorderProfile = {
     audioBitrate: 100000, // 音频比特率。
@@ -177,7 +177,7 @@ export class AudioRecorderDemo {
   
   // 创建文件以及设置avConfig.url。
   async createAndSetFd(): Promise<void> {
-      const context: Context = getContext(this);
+      const context: Context = this.getUIContext().getHostContext()!; // 非空断言，Context类型且非空
       const path: string = context.filesDir + '/example.mp3'; // 文件沙箱路径，文件后缀名应与封装格式对应。
       const audioFile: fs.File = fs.openSync(path, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
       this.avConfig.url = 'fd://' + audioFile.fd; // 更新url。

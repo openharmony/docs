@@ -535,7 +535,7 @@ HarmonyAppProvision配置文件示例如下所示，修改"bundle-info" &gt; "ap
 
 **授权方式**：系统授权（system_grant）
 
-**起始版本**：18
+**起始版本**：19
 
 ### ohos.permission.CUSTOM_SANDBOX
 

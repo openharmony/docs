@@ -1338,7 +1338,7 @@ let value: preferences.ValueType = dataPreferences.getSync('startup', 'default')
 
 ### getAll
 
-getAll(callback: AsyncCallback&lt;Object&gt;): void;
+getAll(callback: AsyncCallback&lt;Object&gt;): void
 
 Obtains all KV pairs from this **Preferences** instance. This API uses an asynchronous callback to return the result.
 

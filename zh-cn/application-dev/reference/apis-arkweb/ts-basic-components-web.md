@@ -275,9 +275,9 @@ Web组件指定共享渲染进程。
 | ---------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | src        | string \| [Resource](../apis-arkui/arkui-ts/ts-types.md#resource)   | 是    | 网页资源地址。如果访问本地资源文件，请使用$rawfile或者resource协议。如果加载应用包外沙箱路径的本地资源文件(文件支持html和txt类型)，请使用file://沙箱文件路径。<br>src不能通过状态变量（例如：@State）动态更改地址，如需更改，请通过[loadUrl()](js-apis-webview.md#loadurl)重新加载。 |
 | controller | [WebController](#webcontroller) \| [WebviewController<sup>9+</sup>](#webviewcontroller9)  | 是    | 控制器。从API Version 9开始，WebController不再维护，建议使用WebviewController替代。 |
-| renderMode<sup>12+</sup> | [RenderMode](#rendermode12枚举说明)| 否   | 表示当前Web组件的渲染方式，RenderMode.ASYNC_RENDER表示Web组件自渲染，RenderMode.SYNC_RENDER表示支持Web组件统一渲染能力，默认值RenderMode.ASYNC_RENDER, 该模式不支持动态调整。 |
-| incognitoMode<sup>11+</sup> | boolean | 否 | 表示当前创建的webview是否是隐私模式。true表示创建隐私模式的webview, false表示创建正常模式的webview。<br> 默认值：false |
-| sharedRenderProcessToken<sup>12+</sup> | string | 否 | 表示当前Web组件指定共享渲染进程的token, 多渲染进程模式下，相同token的Web组件会优先尝试复用与token相绑定的渲染进程。token与渲染进程的绑定发生在渲染进程的初始化阶段。当渲染进程没有关联的Web组件时，其与token绑定关系将被移除。<br> 默认值： ""  |
+| renderMode<sup>12+</sup> | [RenderMode](#rendermode12枚举说明)| 否   | 表示当前Web组件的渲染方式，RenderMode.ASYNC_RENDER表示Web组件自渲染，RenderMode.SYNC_RENDER表示支持Web组件统一渲染能力，默认值RenderMode.ASYNC_RENDER，该模式不支持动态调整。 |
+| incognitoMode<sup>11+</sup> | boolean | 否 | 表示当前创建的webview是否是隐私模式。true表示创建隐私模式的webview，false表示创建正常模式的webview。<br> 默认值：false。 |
+| sharedRenderProcessToken<sup>12+</sup> | string | 否 | 表示当前Web组件指定共享渲染进程的token，多渲染进程模式下，相同token的Web组件会优先尝试复用与token相绑定的渲染进程。token与渲染进程的绑定发生在渲染进程的初始化阶段。当渲染进程没有关联的Web组件时，其与token绑定关系将被移除。<br> 默认值： ""。  |
 
 ## WebviewController<sup>9+</sup>
 
@@ -299,7 +299,7 @@ type WebviewController = WebviewController
 
 domStorageAccess(domStorageAccess: boolean)
 
-设置是否开启文档对象模型存储接口（DOM Storage API）权限，默认未开启。
+设置是否开启文档对象模型存储接口（DOM Storage API）权限。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -307,7 +307,7 @@ domStorageAccess(domStorageAccess: boolean)
 
 | 参数名              | 类型    | 必填   | 说明                                 |
 | ---------------- | ------- | ---- | ------------------------------------ |
-| domStorageAccess | boolean | 是    | 设置是否开启文档对象模型存储接口（DOM Storage API）权限。<br>true表示开启，false表示未开启。<br>默认值：false。 |
+| domStorageAccess | boolean | 是    | 设置是否开启文档对象模型存储接口（DOM Storage API）权限。<br>true表示开启文档对象模型存储接口权限，false表示不开启文档对象模型存储接口权限。<br>默认值：false。 |
 
 **示例：**
 
@@ -335,15 +335,13 @@ fileAccess(fileAccess: boolean)
 
 设置是否开启应用中文件系统的访问。[$rawfile(filepath/filename)](../../quick-start/resource-categories-and-access.md)中rawfile路径的文件不受该属性影响而限制访问。
 
-从API version 12开始，fileAccess默认不启用。同时，当fileAccess为false的时候，仅只读资源目录/data/storage/el1/bundle/entry/resources/resfile里面的file协议资源依然可以访问，不受fileAccess管控。
-
 **系统能力：** SystemCapability.Web.Webview.Core
 
 **参数：**
 
 | 参数名        | 类型    | 必填   | 说明                   |
 | ---------- | ------- | ---- | ---------------------- |
-| fileAccess | boolean | 是    | API version 11及以前：默认为true，启动应用中文件系统的访问。API version 12及以后：默认为false，不启用应用中文件系统的访问。 |
+| fileAccess | boolean | 是    | 设置是否开启应用中文件系统的访问。<br>true表示启动应用中文件系统的访问。false表示不启用应用中文件系统的访问。<br>API version 11及以前：默认值：true。<br>API version 12及以后：默认值：false，同时，当fileAccess为false的时候，仅只读资源目录`/data/storage/el1/bundle/entry/resources/resfile`里面的file协议资源依然可以访问，不受fileAccess管控。 |
 
 **示例：**
 
@@ -369,7 +367,7 @@ fileAccess(fileAccess: boolean)
 
 imageAccess(imageAccess: boolean)
 
-设置是否允许自动加载图片资源，默认允许。
+设置是否允许自动加载图片资源。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -478,7 +476,7 @@ javaScriptProxy(javaScriptProxy: JavaScriptProxy)
 
 javaScriptAccess(javaScriptAccess: boolean)
 
-设置是否允许执行JavaScript脚本，默认允许执行。
+设置是否允许执行JavaScript脚本。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -511,7 +509,7 @@ javaScriptAccess(javaScriptAccess: boolean)
 
 overScrollMode(mode: OverScrollMode)
 
-设置Web过滚动模式，默认关闭。当过滚动模式开启时，当用户在Web根页面上滑动到边缘时，Web会通过弹性动画弹回界面，根页面上的内部页面不会触发回弹。
+设置Web过滚动模式。当过滚动模式开启时，当用户在Web根页面上滑动到边缘时，Web会通过弹性动画弹回界面，根页面上的内部页面不会触发回弹。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -519,7 +517,7 @@ overScrollMode(mode: OverScrollMode)
 
 | 参数名  | 类型                                    | 必填   | 说明               |
 | ---- | --------------------------------------- | ---- | ------------------ |
-| mode | [OverScrollMode](#overscrollmode11枚举说明) | 是    | 设置Web的过滚动模式为关闭或开启。默认值：OverScrollMode.NEVER。 |
+| mode | [OverScrollMode](#overscrollmode11枚举说明) | 是    | 设置Web的过滚动模式为关闭或开启。<br>默认值：`OverScrollMode.NEVER`，表示关闭过滚动模式。 |
 
 **示例：**
 
@@ -545,7 +543,7 @@ overScrollMode(mode: OverScrollMode)
 
 mixedMode(mixedMode: MixedMode)
 
-设置是否允许加载超文本传输协议（HTTP）和超文本传输安全协议（HTTPS）混合内容，默认不允许加载HTTP和HTTPS混合内容。
+设置是否允许加载超文本传输协议（HTTP）和超文本传输安全协议（HTTPS）混合内容。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -553,7 +551,7 @@ mixedMode(mixedMode: MixedMode)
 
 | 参数名       | 类型                        | 必填   | 说明      |
 | --------- | --------------------------- | ---- | --------- |
-| mixedMode | [MixedMode](#mixedmode枚举说明) | 是    | 要设置的混合内容。默认值：MixedMode.None，表示不允许安全来源（secure origin）加载不安全来源（insecure origin）的内容。 |
+| mixedMode | [MixedMode](#mixedmode枚举说明) | 是    | 要设置的混合内容。<br>默认值：`MixedMode.None`，表示不允许安全来源（secure origin）加载不安全来源（insecure origin）的内容。 |
 
 **示例：**
 
@@ -579,7 +577,7 @@ mixedMode(mixedMode: MixedMode)
 
 onlineImageAccess(onlineImageAccess: boolean)
 
-设置是否允许从网络加载图片资源（通过HTTP和HTTPS访问的资源），默认允许访问。
+设置是否允许从网络加载图片资源（通过HTTP和HTTPS访问的资源）。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -613,7 +611,7 @@ onlineImageAccess(onlineImageAccess: boolean)
 
 zoomAccess(zoomAccess: boolean)
 
-设置是否支持手势进行缩放，默认允许执行缩放。
+设置是否支持手势进行缩放。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -647,7 +645,7 @@ zoomAccess(zoomAccess: boolean)
 
 overviewModeAccess(overviewModeAccess: boolean)
 
-设置是否使用概览模式加载网页，默认使用该方式。当前仅支持移动设备。
+设置是否使用概览模式加载网页。当前仅支持移动设备。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -681,7 +679,7 @@ overviewModeAccess(overviewModeAccess: boolean)
 
 databaseAccess(databaseAccess: boolean)
 
-设置是否开启数据库存储API权限，默认不开启。
+设置是否开启数据库存储API权限。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -715,7 +713,7 @@ databaseAccess(databaseAccess: boolean)
 
 geolocationAccess(geolocationAccess: boolean)
 
-设置是否开启获取地理位置权限，默认开启。具体使用方式参考[管理位置权限](../../web/web-geolocation-permission.md)。
+设置是否开启获取地理位置权限。具体使用方式参考[管理位置权限](../../web/web-geolocation-permission.md)。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -749,7 +747,7 @@ geolocationAccess(geolocationAccess: boolean)
 
 mediaPlayGestureAccess(access: boolean)
 
-设置有声视频播放是否需要用户手动点击，静音视频播放不受该接口管控，默认需要。
+设置有声视频播放是否需要用户手动点击，静音视频播放不受该接口管控。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -784,7 +782,7 @@ mediaPlayGestureAccess(access: boolean)
 
 multiWindowAccess(multiWindow: boolean)
 
-设置是否开启多窗口权限，默认不开启。
+设置是否开启多窗口权限。
 使能多窗口权限时，需要实现onWindowNew事件，示例代码参考[onWindowNew事件](#onwindownew9)。
 
 **系统能力：** SystemCapability.Web.Webview.Core
@@ -819,7 +817,7 @@ multiWindowAccess(multiWindow: boolean)
 
 horizontalScrollBarAccess(horizontalScrollBar: boolean)
 
-设置是否显示横向滚动条，包括系统默认滚动条和用户自定义滚动条。默认显示。
+设置是否显示横向滚动条，包括系统默认滚动条和用户自定义滚动条。
 
 > **说明：**
 >
@@ -901,7 +899,7 @@ horizontalScrollBarAccess(horizontalScrollBar: boolean)
 
 verticalScrollBarAccess(verticalScrollBar: boolean)
 
-设置是否显示纵向滚动条，包括系统默认滚动条和用户自定义滚动条。默认显示。
+设置是否显示纵向滚动条，包括系统默认滚动条和用户自定义滚动条。
 
 > **说明：**
 >
@@ -1003,7 +1001,7 @@ cacheMode(cacheMode: CacheMode)
 
 | 参数名       | 类型                        | 必填   | 说明      |
 | --------- | --------------------------- | ---- | --------- |
-| cacheMode | [CacheMode](#cachemode枚举说明) | 是    | 要设置的缓存模式。默认值：CacheMode.Default。 |
+| cacheMode | [CacheMode](#cachemode枚举说明) | 是    | 要设置的缓存模式。<br>默认值：`CacheMode.Default`。 |
 
 **示例：**
 
@@ -1038,7 +1036,7 @@ copyOptions(value: CopyOptions)
 
 | 参数名       | 类型                        | 必填   | 说明      |
 | --------- | --------------------------- | ---- | --------- |
-| value | [CopyOptions](../apis-arkui/arkui-ts/ts-appendix-enums.md#copyoptions9) | 是    | 要设置的剪贴板复制范围选项。默认值：CopyOptions.LocalDevice。 |
+| value | [CopyOptions](../apis-arkui/arkui-ts/ts-appendix-enums.md#copyoptions9) | 是    | 要设置的剪贴板复制范围选项。<br>默认值：`CopyOptions.LocalDevice`。 |
 
 **示例：**
 
@@ -1063,7 +1061,7 @@ struct WebComponent {
 
 textZoomAtio(textZoomAtio: number)
 
-设置页面的文本缩放百分比，默认为100。
+设置页面的文本缩放百分比。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -1073,7 +1071,7 @@ textZoomAtio(textZoomAtio: number)
 
 | 参数名          | 类型   | 必填  | 说明                             |
 | ------------ | ------ | ---- | -------------------------------- |
-| textZoomAtio | number | 是   | 要设置的页面的文本缩放百分比。取值为正整数。默认值：100。 |
+| textZoomAtio | number | 是   | 要设置的页面的文本缩放百分比。<br>取值范围为正整数。<br>默认值：100。 |
 
 **示例：**
 
@@ -1097,7 +1095,7 @@ textZoomAtio(textZoomAtio: number)
 
 textZoomRatio(textZoomRatio: number)
 
-设置页面的文本缩放百分比，默认为100。
+设置页面的文本缩放百分比。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -1105,7 +1103,7 @@ textZoomRatio(textZoomRatio: number)
 
 | 参数名           | 类型   | 必填   | 说明                             |
 | ------------- | ------ | ---- | -------------------------------- |
-| textZoomRatio | number | 是    | 要设置的页面的文本缩放百分比。<br>取值为整数，范围为(0, 2147483647]。默认值：100。 |
+| textZoomRatio | number | 是    | 要设置的页面的文本缩放百分比。<br>取值为整数，范围为(0, 2147483647]。<br>默认值：100。 |
 
 **示例：**
 
@@ -1132,7 +1130,7 @@ textZoomRatio(textZoomRatio: number)
 
 initialScale(percent: number)
 
-设置整体页面的缩放百分比，默认为100。
+设置整体页面的缩放百分比。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -1140,7 +1138,7 @@ initialScale(percent: number)
 
 | 参数名     | 类型   | 必填   | 说明                          |
 | ------- | ------ | ---- | ----------------------------- |
-| percent | number | 是    | 要设置的整体页面的缩放百分比。<br>默认值：100。取值范围：(0, 1000]。 |
+| percent | number | 是    | 要设置的整体页面的缩放百分比。<br>取值范围：(0, 1000]。<br>默认值：100。 |
 
 **示例：**
 
@@ -1249,7 +1247,7 @@ defaultFixedFontSize(size: number)
 
 | 参数名  | 类型   | 必填   | 说明                                     |
 | ---- | ------ | ---- | ---------------------------------------- |
-| size | number | 是    | 设置网页的默认等宽字体大小，单位px。输入值的范围为-2^31到2^31-1，实际渲染时超过72的值按照72进行渲染，低于1的值按照1进行渲染。默认值：13。 |
+| size | number | 是    | 设置网页的默认等宽字体大小，单位px。<br>输入值的范围为-2^31到2^31-1，实际渲染时超过72的值按照72进行渲染，低于1的值按照1进行渲染。<br>默认值：13。 |
 
 **示例：**
 
@@ -1284,7 +1282,7 @@ defaultFontSize(size: number)
 
 | 参数名  | 类型   | 必填   | 说明                                     |
 | ---- | ------ | ---- | ---------------------------------------- |
-| size | number | 是    | 设置网页的默认字体大小，单位px。输入值的范围为-2^31到2^31-1，实际渲染时超过72的值按照72进行渲染，低于1的值按照1进行渲染。默认值：16。 |
+| size | number | 是    | 设置网页的默认字体大小，单位px。<br>输入值的范围为-2^31到2^31-1，实际渲染时超过72的值按照72进行渲染，低于1的值按照1进行渲染。<br>默认值：16。 |
 
 **示例：**
 
@@ -1319,7 +1317,7 @@ minFontSize(size: number)
 
 | 参数名  | 类型   | 必填   | 说明                                     |
 | ---- | ------ | ---- | ---------------------------------------- |
-| size | number | 是    | 设置网页字体大小最小值，单位px。输入值的范围为-2^31到2^31-1，实际渲染时超过72的值按照72进行渲染，低于1的值按照1进行渲染。默认值：8。 |
+| size | number | 是    | 设置网页字体大小最小值，单位px。<br>输入值的范围为-2^31到2^31-1，实际渲染时超过72的值按照72进行渲染，低于1的值按照1进行渲染。<br>默认值：8。 |
 
 **示例：**
 
@@ -1354,7 +1352,7 @@ minLogicalFontSize(size: number)
 
 | 参数名  | 类型   | 必填   | 说明                                     |
 | ---- | ------ | ---- | ---------------------------------------- |
-| size | number | 是    | 设置网页逻辑字体大小最小值，单位px。输入值的范围为-2^31到2^31-1，实际渲染时超过72的值按照72进行渲染，低于1的值按照1进行渲染。默认值：8。 |
+| size | number | 是    | 设置网页逻辑字体大小最小值，单位px。<br>输入值的范围为-2^31到2^31-1，实际渲染时超过72的值按照72进行渲染，低于1的值按照1进行渲染。<br>默认值：8。 |
 
 **示例：**
 
@@ -1387,9 +1385,9 @@ webFixedFont(family: string)
 
 **参数：**
 
-| 参数名    | 类型   | 必填   | 说明                |
-| ------ | ------ | ---- | ------------------- |
-| family | string | 是    | 设置网页的fixed font字体库。默认值：monospace。 |
+| 参数名    | 类型   | 必填   | 说明                     |
+| ------ | ------ | ---- | ------------------------ |
+| family | string | 是    | 设置网页的fixed font字体库。<br>默认值：monospace。 |
 
 **示例：**
 
@@ -1416,7 +1414,7 @@ webFixedFont(family: string)
 
 webSansSerifFont(family: string)
 
-设置网页的sans serif font字体库。
+设置网页的sans-serif font字体库。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -1424,7 +1422,7 @@ webSansSerifFont(family: string)
 
 | 参数名    | 类型   | 必填   | 说明                     |
 | ------ | ------ | ---- | ------------------------ |
-| family | string | 是    | 设置网页的sans serif font字体库。默认值：sans-serif。 |
+| family | string | 是    | 设置网页的sans-serif font字体库。<br>默认值：sans-serif。 |
 
 **示例：**
 
@@ -1457,9 +1455,9 @@ webSerifFont(family: string)
 
 **参数：**
 
-| 参数名    | 类型   | 必填   | 说明                |
-| ------ | ------ | ---- | ------------------- |
-| family | string | 是    | 设置网页的serif font字体库。默认值：serif。 |
+| 参数名    | 类型   | 必填   | 说明                     |
+| ------ | ------ | ---- | ------------------------ |
+| family | string | 是    | 设置网页的serif font字体库。<br>默认值：serif。 |
 
 **示例：**
 
@@ -1494,7 +1492,7 @@ webStandardFont(family: string)
 
 | 参数名    | 类型   | 必填   | 说明                   |
 | ------ | ------ | ---- | ---------------------- |
-| family | string | 是    | 设置网页的standard font字体库。默认值：sans serif。 |
+| family | string | 是    | 设置网页的standard font字体库。<br>默认值：sans-serif。 |
 
 **示例：**
 
@@ -1527,9 +1525,9 @@ webFantasyFont(family: string)
 
 **参数：**
 
-| 参数名    | 类型   | 必填   | 说明                  |
-| ------ | ------ | ---- | --------------------- |
-| family | string | 是    | 设置网页的fantasy font字体库。默认值：fantasy。 |
+| 参数名    | 类型   | 必填   | 说明                     |
+| ------ | ------ | ---- | ------------------------ |
+| family | string | 是    | 设置网页的fantasy font字体库。<br>默认值：fantasy。 |
 
 **示例：**
 
@@ -1561,9 +1559,9 @@ webCursiveFont(family: string)
 
 **参数：**
 
-| 参数名    | 类型   | 必填   | 说明                  |
-| ------ | ------ | ---- | --------------------- |
-| family | string | 是    | 设置网页的cursive font字体库。默认值：cursive。 |
+| 参数名    | 类型   | 必填   | 说明                     |
+| ------ | ------ | ---- | ------------------------ |
+| family | string | 是    | 设置网页的cursive font字体库。<br>默认值：cursive。 |
 
 **示例：**
 
@@ -1590,15 +1588,15 @@ webCursiveFont(family: string)
 
 darkMode(mode: WebDarkMode)
 
-设置Web深色模式，默认关闭。当深色模式开启时，Web将启用媒体查询prefers-color-scheme中网页所定义的深色样式，若网页未定义深色样式，则保持原状。如需开启强制深色模式，建议配合[forceDarkAccess](#forcedarkaccess9)使用。
+设置Web深色模式。当深色模式开启时，Web将启用媒体查询prefers-color-scheme中网页所定义的深色样式，若网页未定义深色样式，则保持原状。如需开启强制深色模式，建议配合[forceDarkAccess](#forcedarkaccess9)使用。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
 **参数：**
 
-| 参数名  | 类型                             | 必填   | 说明                   |
-| ---- | -------------------------------- | ---- | ---------------------- |
-| mode | [WebDarkMode](#webdarkmode9枚举说明) | 是    | 设置Web的深色模式为关闭、开启或跟随系统。默认值：WebDarkMode.Off。 |
+| 参数名  | 类型                             | 必填   | 说明                     |
+| ---- | -------------------------------- | ---- | ------------------------ |
+| mode | [WebDarkMode](#webdarkmode9枚举说明) | 是    | 设置Web的深色模式为关闭、开启或跟随系统。<br>默认值：`WebDarkMode.Off`。 |
 
 **示例：**
 
@@ -1625,7 +1623,7 @@ darkMode(mode: WebDarkMode)
 
 forceDarkAccess(access: boolean)
 
-设置网页是否开启强制深色模式。默认关闭。该属性仅在[darkMode](#darkmode9)开启深色模式时生效。
+设置网页是否开启强制深色模式。该属性仅在[darkMode](#darkmode9)开启深色模式时生效。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -1686,7 +1684,7 @@ wideViewModeAccess(wideViewModeAccess: boolean)
 
 pinchSmooth(isEnabled: boolean)
 
-设置网页是否开启捏合流畅模式，默认不开启。
+设置网页是否开启捏合流畅模式。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -1728,9 +1726,9 @@ allowWindowOpenMethod(flag: boolean)
 
 该属性在[multiWindowAccess](#multiwindowaccess9)开启时打开新窗口，关闭时打开本地窗口。
 
-该属性的默认值与系统属性persist.web.allowWindowOpenMethod.enabled 保持一致，如果未设置系统属性则默认值为false。
+该属性的默认值与系统属性`persist.web.allowWindowOpenMethod.enabled`保持一致，如果未设置系统属性则默认值为false。
 
-检查系统配置项persist.web.allowWindowOpenMethod.enabled 是否开启。
+检查系统配置项`persist.web.allowWindowOpenMethod.enabled`是否开启。
 
 通过`hdc shell param get persist.web.allowWindowOpenMethod.enabled` 查看，若配置项为0或不存在，
 可通过命令`hdc shell param set persist.web.allowWindowOpenMethod.enabled 1` 开启配置。
@@ -1741,7 +1739,7 @@ allowWindowOpenMethod(flag: boolean)
 
 | 参数名  | 类型    | 必填    | 说明                      |
 | ---- | ------- | ---- | ------------------------- |
-| flag | boolean | 是    | 网页是否可以通过JavaScript自动打开窗口。<br>true表示网页可以通过JavaScript自动打开窗口，false表示网页不可以通过JavaScript自动打开窗口。<br>默认值与系统参数关联，当系统参数persist.web.allowWindowOpenMethod.enabled为true时，默认值为true，否则为false。 |
+| flag | boolean | 是    | 网页是否可以通过JavaScript自动打开窗口。<br>true表示网页可以通过JavaScript自动打开窗口，false表示网页不可以通过JavaScript自动打开窗口。<br>默认值与系统参数关联，当系统参数`persist.web.allowWindowOpenMethod.enabled`为true时，默认值为true，如果未设置系统参数则默认值为false。 |
 
 **示例：**
 
@@ -1822,7 +1820,7 @@ mediaOptions(options: WebMediaOptions)
 
 | 参数名     | 类型                                  | 必填   | 说明                                     |
 | ------- | ------------------------------------- | ---- | ---------------------------------------- |
-| options | [WebMediaOptions](#webmediaoptions10) | 是    | 设置Web的媒体策略。其中，resumeInterval的默认值为0表示不自动续播。默认值：{resumeInterval: 0, audioExclusive: true}。 |
+| options | [WebMediaOptions](#webmediaoptions10) | 是    | 设置Web的媒体策略。<br>默认值：`{resumeInterval: 0, audioExclusive: true}`。 |
 
 **示例：**
 
@@ -2192,12 +2190,12 @@ layoutMode(mode: WebLayoutMode)
 
 > **说明：**
 >
-> 目前只支持两种Web布局模式，分别为Web布局跟随系统（WebLayoutMode.NONE）和Web组件高度基于前端页面高度的自适应网页布局（WebLayoutMode.FIT_CONTENT）。
+> 目前只支持两种Web布局模式，分别为Web布局跟随系统（`WebLayoutMode.NONE`）和Web组件高度基于前端页面高度的自适应网页布局（`WebLayoutMode.FIT_CONTENT`）。
 >
 > Web组件高度基于前端页面自适应布局有如下限制：
-> - 如果Web组件宽或长度超过7680px，请在Web组件创建的时候指定RenderMode.SYNC_RENDER模式，否则会整个白屏。
+> - 如果Web组件宽或长度超过7680px，请在Web组件创建的时候指定`RenderMode.SYNC_RENDER`模式，否则会整个白屏。
 > - Web组件创建后不支持动态切换layoutMode模式
-> - Web组件宽高规格：指定RenderMode.SYNC_RENDER模式时，分别不超过50万px；指定RenderMode.ASYNC_RENDER模式时，分别不超过7680px。
+> - Web组件宽高规格：指定`RenderMode.SYNC_RENDER`模式时，分别不超过50万px；指定`RenderMode.ASYNC_RENDER`模式时，分别不超过7680px。
 > - 频繁更改页面宽高会触发Web组件重新布局，影响体验。
 > - 不支持瀑布流网页（下拉到底部加载更多）。
 > - 仅支持高度自适应，不支持宽度自适应。
@@ -2209,11 +2207,11 @@ layoutMode(mode: WebLayoutMode)
 
 | 参数名  | 类型                                  | 必填   | 说明                  |
 | ---- | ------------------------------------- | ---- | --------------------- |
-| mode | [WebLayoutMode](#weblayoutmode11枚举说明) | 是    | 设置web布局模式，跟随系统或自适应布局。默认值：WebLayoutMode.NONE。 |
+| mode | [WebLayoutMode](#weblayoutmode11枚举说明) | 是    | 设置web布局模式，跟随系统或自适应布局。<br>默认值：`WebLayoutMode.NONE。` |
 
 **示例：**
 
-  1、指明layoutMode为WebLayoutMode.FIT_CONTENT模式，为避免默认渲染模式下(RenderMode.ASYNC_RENDER)视口高度超过7680px导致页面渲染出错，需要显式指明渲染模式(RenderMode.SYNC_RENDER)。
+  1、指明layoutMode为`WebLayoutMode.FIT_CONTENT`模式，为避免默认渲染模式下(`RenderMode.ASYNC_RENDER`)视口高度超过7680px导致页面渲染出错，需要显式指明渲染模式(`RenderMode.SYNC_RENDER`)。
   ```ts
   // xxx.ets
   import { webview } from '@kit.ArkWeb';
@@ -2233,7 +2231,7 @@ layoutMode(mode: WebLayoutMode)
   }
   ```
 
-  2、指明layoutMode为WebLayoutMode.FIT_CONTENT模式，为避免嵌套滚动场景下，Web滚动到边缘时会优先触发过滚动的过界回弹效果影响用户体验，建议指定overScrollMode为OverScrollMode.NEVER。
+  2、指明layoutMode为`WebLayoutMode.FIT_CONTENT`模式，为避免嵌套滚动场景下，Web滚动到边缘时会优先触发过滚动的过界回弹效果影响用户体验，建议指定[overScrollMode](#overscrollmode11)为`OverScrollMode.NEVER`。
   ```ts
   // xxx.ets
   import { webview } from '@kit.ArkWeb';
@@ -2265,10 +2263,10 @@ nestedScroll(value: NestedScrollOptions | NestedScrollOptionsExt)
 >
 > - 可以设置上下左右四个方向，或者设置向前、向后两个方向的嵌套滚动模式，实现与父组件的滚动联动。
 > - value为NestedScrollOptionsExt（上下左右四个方向）类型时，scrollUp、scrollDown、scrollLeft、scrollRight默认滚动选项为[NestedScrollMode.SELF_FIRST](../apis-arkui/arkui-ts/ts-appendix-enums.md#nestedscrollmode10)。
-> - value为NestedScrollOptions（向前、向后两个方向）类型时，scrollForward、scrollBackward默认滚动选项为NestedScrollMode.SELF_FIRST。
+> - value为NestedScrollOptions（向前、向后两个方向）类型时，scrollForward、scrollBackward默认滚动选项为`NestedScrollMode.SELF_FIRST`。
 > - 支持嵌套滚动的容器：[Grid](../apis-arkui/arkui-ts/ts-container-grid.md)、[List](../apis-arkui/arkui-ts/ts-container-list.md)、[Scroll](../apis-arkui/arkui-ts/ts-container-scroll.md)、[Swiper](../apis-arkui/arkui-ts/ts-container-swiper.md)、[Tabs](../apis-arkui/arkui-ts/ts-container-tabs.md)、[WaterFlow](../apis-arkui/arkui-ts/ts-container-waterflow.md)、[Refresh](../apis-arkui/arkui-ts/ts-container-refresh.md)、[bindSheet](../apis-arkui/arkui-ts/ts-universal-attributes-sheet-transition.md#bindsheet)。
 > - 支持嵌套滚动的输入事件：使用手势、鼠标、触控板。
-> - 嵌套滚动场景下，由于Web滚动到边缘时会优先触发过滚动的过界回弹效果，建议设置overScrollMode为OverScrollMode.NEVER，避免影响此场景的用户体验。
+> - 嵌套滚动场景下，由于Web滚动到边缘时会优先触发过滚动的过界回弹效果，建议设置[overScrollMode](#overscrollmode11)为`OverScrollMode.NEVER`，避免影响此场景的用户体验。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -2363,7 +2361,7 @@ nestedScroll(value: NestedScrollOptions | NestedScrollOptionsExt)
 
 enableNativeEmbedMode(mode: boolean)
 
-设置是否开启同层渲染功能，默认不开启。
+设置是否开启同层渲染功能。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -2396,7 +2394,7 @@ enableNativeEmbedMode(mode: boolean)
 forceDisplayScrollBar(enabled: boolean)
 
 
-设置滚动条是否常驻。默认不常驻，在常驻状态下，当页面大小超过一页时，滚动条出现且不消失。
+设置滚动条是否常驻。在常驻状态下，当页面大小超过一页时，滚动条出现且不消失。
 
 全量展开模式下不支持滚动条常驻，即layoutMode为WebLayoutMode.FIT_CONTENT模式时，参数enabled为false。
 
@@ -2458,7 +2456,7 @@ registerNativeEmbedRule(tag: string, type: string)
 
 注册使用同层渲染的HTML标签名和类型。标签名仅支持使用object和embed。标签类型只能使用ASCII可显示字符。
 
-若指定类型与w3c定义的object或embed标准类型重合，ArkWeb内核将其识别为非同层标签。
+若指定类型与W3C定义的object或embed标准类型重合，ArkWeb内核将其识别为非同层标签。
 
 本接口同样受enableNativeEmbedMode接口控制，在未使能同层渲染时本接口无效。在不使用本接口的情况下，ArkWeb内核默认将"native/"前缀类型的embed标签识别为同层标签。
 
@@ -2469,7 +2467,7 @@ registerNativeEmbedRule(tag: string, type: string)
 | 参数名  | 类型   | 必填   | 说明             |
 |------|--------| ---- |------------------|
 | tag  | string | 是    | 标签名。             |
-| type | string | 是   | 标签类型,内核使用前缀匹配此参数。 |
+| type | string | 是   | 标签类型，内核使用前缀匹配此参数。 |
 
 **示例：**
 
@@ -2553,7 +2551,7 @@ metaViewport(enabled: boolean)
 > - 设置true支持meta标签viewport属性，将解析viewport属性，并根据viewport属性布局。
 > - 如果设置为异常值将无效。
 > - 如果设备为2in1，不支持viewport属性。设置为true或者false均不会解析viewport属性，进行默认布局。
-> - 如果设备为Tablet，设置为true或false均会解析meta标签viewport-fit属性。当viewport-fit=cover时，可通过CSS属性获取安全区域大小。
+> - 如果设备为Tablet，设置为true或false均会解析meta标签viewport-fit属性。当`viewport-fit=cover`时，可通过CSS属性获取安全区域大小。
 > - 当前通过User-Agent中是否含有"Mobile"字段来判断是否开启前端HTML页面中meta标签的viewport属性。当User-Agent中不含有"Mobile"字段时，meta标签中viewport属性默认关闭，此时可通过显性设置metaViewport属性为true来覆盖关闭状态。
 
 **系统能力：** SystemCapability.Web.Webview.Core
@@ -2641,7 +2639,7 @@ enableNativeMediaPlayer(config: NativeMediaPlayerConfig)
 
 | 参数名  | 类型   | 必填   | 说明 |
 | ---- | ------ | ---- | ---------------------|
-| config | [NativeMediaPlayerConfig](#nativemediaplayerconfig12) | 是    | enable: 是否开启该功能。<br/> shouldOverlay: 该功能开启后， 应用接管网页视频的播放器画面是否覆盖网页内容。默认值：{enable: false, shouldOverlay: false}。|
+| config | [NativeMediaPlayerConfig](#nativemediaplayerconfig12) | 是    | enable: 是否开启该功能。<br/> shouldOverlay: 该功能开启后， 应用接管网页视频的播放器画面是否覆盖网页内容。<br>默认值：`{enable: false, shouldOverlay: false}`。|
 
   **示例：**
 
@@ -2782,7 +2780,7 @@ Web组件自定义软件键盘避让模式。
 
 | 参数名              | 类型                              | 必填   | 说明          |
 | ------------------- | ------------------------------   | ------ | ------------- |
-| mode | [WebKeyboardAvoidMode](#webkeyboardavoidmode12) | 是     | Web软键盘避让模式。<br>默认是WebKeyboardAvoidMode.RESIZE_CONTENT避让行为。<br>嵌套滚动场景下不推荐使用web软键盘避让，包括RESIZE_VISUAL与RESIZE_CONTENT。|
+| mode | [WebKeyboardAvoidMode](#webkeyboardavoidmode12) | 是     | Web软键盘避让模式。<br>嵌套滚动场景下不推荐使用web软键盘避让，包括RESIZE_VISUAL与RESIZE_CONTENT。<br>默认值：WebKeyboardAvoidMode.RESIZE_CONTENT避让行为。|
 
 **示例：**
 
@@ -2928,7 +2926,7 @@ struct WebComponent {
 
 enableHapticFeedback(enabled: boolean)
 
-设置Web组件长按文本选择是否开启振动，默认开启。 需配置"ohos.permission.VIBRATE"。
+设置Web组件长按文本选择是否开启振动。 需配置"ohos.permission.VIBRATE"。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -3092,7 +3090,7 @@ struct WebComponent {
 
 blurOnKeyboardHideMode(mode: BlurOnKeyboardHideMode)
 
-设置当软键盘收起时Web元素失焦模式。枚举类型的默认值为SILENT，当用户手动收起软键盘时焦点仍在文本框。可更改为BLUR，当用户手动收起软键盘时，焦点会从文本框转移到Web的body上，文本框失焦。
+设置当软键盘收起时Web元素失焦模式。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -3100,7 +3098,7 @@ blurOnKeyboardHideMode(mode: BlurOnKeyboardHideMode)
 
 | 参数名  | 类型                                    | 必填   | 说明               |
 | ---- | --------------------------------------- | ---- | ------------------ |
-| mode | [BlurOnKeyboardHideMode](#bluronkeyboardhidemode14枚举说明) | 是    | 设置设置当软键盘收起时Web元素失焦关闭或开启。默认值：BlurOnKeyboardHideMode.SILENT。 |
+| mode | [BlurOnKeyboardHideMode](#bluronkeyboardhidemode14枚举说明) | 是    | 设置当软键盘收起时Web元素失焦关闭或开启。默认值：`BlurOnKeyboardHideMode.SILENT`。 |
 
 **示例：**
 
@@ -3147,7 +3145,7 @@ blurOnKeyboardHideMode(mode: BlurOnKeyboardHideMode)
 
 enableFollowSystemFontWeight(follow: boolean)
 
-设置Web组件是否开启字重跟随系统设置变化，默认不开启。
+设置Web组件是否开启字重跟随系统设置变化。
 
 > **说明：**
 >
@@ -3159,7 +3157,7 @@ enableFollowSystemFontWeight(follow: boolean)
 
 | 参数名       | 类型                             | 必填 | 说明                                |
 | ------------ | ------------------------------- | ---- | ----------------------------------- |
-| follow | boolean | 是    | 设置Web组件是否开启字重跟随系统设置变化，默认值：false。设置为true时，字重跟随系统设置中的字体粗细变化，系统设置改变时字重跟随变化。设置为false时，字重不再跟随系统设置中的字体粗细变化，系统设置改变时维持当前字重不变。 |
+| follow | boolean | 是    | 设置Web组件是否开启字重跟随系统设置变化。<br>true表示字重跟随系统设置中的字体粗细变化，系统设置改变时字重跟随变化。false表示字重不再跟随系统设置中的字体粗细变化，系统设置改变时维持当前字重不变。<br>默认值：false。 |
 
 **示例：**
 
@@ -3184,11 +3182,11 @@ enableFollowSystemFontWeight(follow: boolean)
 
 optimizeParserBudget(optimizeParserBudget: boolean)
 
-设置是否开启分段解析HTML优化，默认不开启。
+设置是否开启分段解析HTML优化。
 
 ArkWeb内核在解析HTML文档结构时采取分段解析策略，旨在避免过多占用主线程资源，并使网页具有渐进式加载能力。ArkWeb内核默认使用解析时间作为分段点，当单次解析时间超过阈值时，会中断解析，随后进行布局和渲染操作。
 
-开启优化后，ArkWeb内核将不仅检查解析时间是否超出限制，还会额外判断解析的Token（HTML文档的最小解析单位，例如&lt;div&gt;、attr="xxx"等）数量是否超过内核规定的阈值，并下调此阈值。当页面的FCP(First Contentful Paint 首次内容绘制）触发时会恢复成默认的中断判断逻辑。这将使得网页在FCP到来之前的解析操作更频繁，从而提高首帧内容被提前解析完成并进入渲染阶段的可能性，同时有效缩减首帧渲染的工作量，最终实现FCP时间提前。
+开启优化后，ArkWeb内核将不仅检查解析时间是否超出限制，还会额外判断解析的Token（HTML文档的最小解析单位，例如`<div>`、`attr="xxx"`等）数量是否超过内核规定的阈值，并下调此阈值。当页面的FCP(First Contentful Paint 首次内容绘制）触发时会恢复成默认的中断判断逻辑。这将使得网页在FCP到来之前的解析操作更频繁，从而提高首帧内容被提前解析完成并进入渲染阶段的可能性，同时有效缩减首帧渲染的工作量，最终实现FCP时间提前。
 
 由于页面的FCP触发时会恢复成默认分段解析逻辑，因此分段解析HTML优化仅对每个Web组件加载的首个页面生效。
 
@@ -3198,7 +3196,7 @@ ArkWeb内核在解析HTML文档结构时采取分段解析策略，旨在避免�
 
 | 参数名        | 类型    | 必填   | 说明                   |
 | ---------- | ------- | ---- | ---------------------- |
-| optimizeParserBudget | boolean | 是    | 设置为true时将使用解析个数代替解析时间作为HTML分段解析的分段点，并减少每段解析的个数上限。设置为false时则使用解析时间作为HTML分段解析的分段点。默认值：false。 |
+| optimizeParserBudget | boolean | 是    | 设置开启分段解析HTML优化。<br>true表示使用解析个数代替解析时间作为HTML分段解析的分段点，并减少每段解析的个数上限。false表示使用解析时间作为HTML分段解析的分段点。<br>默认值：false。 |
 
 
 **示例：**
@@ -3224,7 +3222,7 @@ ArkWeb内核在解析HTML文档结构时采取分段解析策略，旨在避免�
 
 enableWebAVSession(enabled: boolean)
 
-设置是否支持应用对接到播控中心。默认支持应用对接到播控中心。
+设置是否支持应用对接到播控中心。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -3232,7 +3230,7 @@ enableWebAVSession(enabled: boolean)
 
 | 参数名  | 类型 | 必填 | 说明           |
 | ------- | -------- | ---- | ------------------ |
-| enabled | boolean  | 是   | 设置是否支持应用对接到播控中心。默认值：true。 |
+| enabled | boolean  | 是   | 设置是否支持应用对接到播控中心。<br>true表示支持应用对接到播控中心，false表示不支持应用对接到播控中心。<br>默认值：true。 |
 
 **示例：**
 
@@ -3283,7 +3281,7 @@ nativeEmbedOptions(options?: EmbedOptions)
 
 | 参数名       | 类型                             | 必填 | 说明                                |
 | ------------ | ------------------------------- | ---- | ----------------------------------- |
-| options | [EmbedOptions](#embedoptions16) | 否    | 同层渲染相关配置，默认值：{supportDefaultIntrinsicSize: false}。 |
+| options | [EmbedOptions](#embedoptions16) | 否    | 同层渲染相关配置，默认值：`{supportDefaultIntrinsicSize: false}`。 |
 
 **示例：**
 
@@ -3669,7 +3667,7 @@ onConsole(callback: Callback\<OnConsoleEvent, boolean\>)
 
 | 参数名     | 类型                              | 必填   | 说明      |
 | ------- | --------------------------------- | ---- | --------- |
-| callback | Callback\<[OnConsoleEvent](#onconsoleevent12), boolean\> | 是    | 网页收到JavaScript控制台消息时触发。<br>返回值boolean。当返回true时，该条消息将不会再打印至控制台，反之仍会打印至控制台。 |
+| callback | Callback\<[OnConsoleEvent](#onconsoleevent12), boolean\> | 是    | 网页收到JavaScript控制台消息时触发。<br>返回值boolean。当返回true时，该条消息将不会再打印至控制台，返回false时仍会打印至控制台。 |
 
 **示例：**
 
@@ -3764,7 +3762,7 @@ onDownloadStart(callback: Callback\<OnDownloadStartEvent\>)
 
 onErrorReceive(callback: Callback\<OnErrorReceiveEvent\>)
 
-网页加载遇到错误时触发该回调。主资源与子资源出错都会回调该接口，可以通过request.isMainFrame来判断是否是主资源报错。出于性能考虑，建议此回调中尽量执行简单逻辑。在无网络的情况下，触发此回调。
+网页加载遇到错误时触发该回调。主资源与子资源出错都会回调该接口，可以通过`request.isMainFrame`来判断是否是主资源报错。出于性能考虑，建议此回调中尽量执行简单逻辑。在无网络的情况下，触发此回调。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -4166,7 +4164,7 @@ onRenderProcessNotResponding(callback: OnRenderProcessNotRespondingCallback)
 
 onRenderProcessResponding(callback: OnRenderProcessRespondingCallback)
 
-渲染进程由无响应状态变回正常运行状态时触发该回调函数,该回调表明该网页并非真正卡死。
+渲染进程由无响应状态变回正常运行状态时触发该回调函数，该回调表明该网页并非真正卡死。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -4210,7 +4208,7 @@ onShowFileSelector(callback: Callback\<OnShowFileSelectorEvent, boolean\>)
 
 | 参数名          | 类型                                     | 必填   | 说明              |
 | ------------ | ---------------------------------------- | ---- | ----------------- |
-| callback       | Callback\<[OnShowFileSelectorEvent](#onshowfileselectorevent12), boolean\> | 是    | 用于通知Web组件文件选择的结果。<br>返回值boolean。当返回值为true时，用户可以调用系统提供的弹窗能力。当回调返回false时，函数中绘制的自定义弹窗无效。 |
+| callback       | Callback\<[OnShowFileSelectorEvent](#onshowfileselectorevent12), boolean\> | 是    | 用于通知Web组件文件选择的结果。<br>返回值boolean。当返回值为true时，用户可以调用系统提供的弹窗能力。当返回值为false时，函数中绘制的自定义弹窗无效。 |
 
 **示例：**
 
@@ -4299,9 +4297,8 @@ onShowFileSelector(callback: Callback\<OnShowFileSelectorEvent, boolean\>)
    import { BusinessError } from '@kit.BasicServicesKit';
    import { common } from '@kit.AbilityKit';
 
-   let mContext = getContext(this) as common.Context;
-
-   async function openCamera(callback: Callback<string>) {
+   async function openCamera(callback: Callback<string>, uiContext: UIContext) {
+    let mContext = uiContext.getHostContext() as common.Context;
      try {
        let pickerProfile: cameraPicker.PickerProfile = {
          cameraPosition: camera.CameraPosition.CAMERA_POSITION_BACK
@@ -4318,7 +4315,7 @@ onShowFileSelector(callback: Callback\<OnShowFileSelectorEvent, boolean\>)
    @Entry
    @Component
    struct WebComponent {
-     controller: webview.WebviewController = new webview.WebviewController()
+     controller: webview.WebviewController = new webview.WebviewController();
 
      build() {
        Column() {
@@ -4333,7 +4330,7 @@ onShowFileSelector(callback: Callback\<OnShowFileSelectorEvent, boolean\>)
                  console.log('Mime types are ' + event.fileSelector.getMimeTypes());
                  event.result.handleFileList([result]);
                }
-             })
+             }, this.getUIContext())
              return true;
            })
        }
@@ -4432,7 +4429,7 @@ onScaleChange(callback: Callback\<OnScaleChangeEvent\>)
 
 onUrlLoadIntercept(callback: (event?: { data:string | WebResourceRequest }) => boolean)
 
-当Web组件加载url之前触发该回调，用于判断是否阻止此次访问。默认允许加载。
+当Web组件加载url之前触发该回调，用于判断是否阻止此次访问。
 从API version 10开始不再维护，建议使用[onLoadIntercept<sup>10+</sup>](#onloadintercept10)代替。
 
 **系统能力：** SystemCapability.Web.Webview.Core
@@ -4441,7 +4438,7 @@ onUrlLoadIntercept(callback: (event?: { data:string | WebResourceRequest }) => b
 
 | 参数名    | 类型   | 必填   | 说明                  |
 | ------ | ------ | ---- | --------------------- |
-| callback | (event?: { data:string \| [WebResourceRequest](#webresourcerequest) }) => boolean | 是 | url的相关信息。返回值：boolean，true表示阻止此次加载，否则允许此次加载。 |
+| callback | (event?: { data:string \| [WebResourceRequest](#webresourcerequest) }) => boolean | 是 | url的相关信息。<br>返回值：boolean，true表示阻止此次加载，false表示允许此次加载。 |
 
 **示例：**
 
@@ -4556,7 +4553,7 @@ onHttpAuthRequest(callback: Callback\<OnHttpAuthRequestEvent, boolean\>)
 
 | 参数名    | 类型   | 必填   | 说明                  |
 | ------ | ------ | ---- | --------------------- |
-| callback | Callback\<[OnHttpAuthRequestEvent](#onhttpauthrequestevent12), boolean\> | 是 | 当浏览器需要用户的凭据时触发。<br>返回值boolean。返回false表示此次认证失败，否则成功。   |
+| callback | Callback\<[OnHttpAuthRequestEvent](#onhttpauthrequestevent12), boolean\> | 是 | 当浏览器需要用户的凭据时触发。<br>返回值boolean。返回ture表示http auth认证成功，返回false表示http auth认证失败。   |
 
 **示例：**
 
@@ -4996,12 +4993,13 @@ onPermissionRequest(callback: Callback\<OnPermissionRequestEvent\>)
   @Component
   struct WebComponent {
     controller: webview.WebviewController = new webview.WebviewController();
+    uiContext: UIContext = this.getUIContext();
 
     aboutToAppear() {
       // 配置Web开启调试模式
       webview.WebviewController.setWebDebuggingAccess(true);
       let atManager = abilityAccessCtrl.createAtManager();
-      atManager.requestPermissionsFromUser(getContext(this), ['ohos.permission.CAMERA', 'ohos.permission.MICROPHONE'])
+      atManager.requestPermissionsFromUser(this.uiContext.getHostContext(), ['ohos.permission.CAMERA', 'ohos.permission.MICROPHONE'])
         .then((data) => {
           console.info('data:' + JSON.stringify(data));
           console.info('data permissions:' + data.permissions);
@@ -5016,7 +5014,7 @@ onPermissionRequest(callback: Callback\<OnPermissionRequestEvent\>)
         Web({ src: $rawfile('index.html'), controller: this.controller })
           .onPermissionRequest((event) => {
             if (event) {
-              AlertDialog.show({
+              this.uiContext.showAlertDialog({
                 title: 'title',
                 message: 'text',
                 primaryButton: {
@@ -5089,7 +5087,7 @@ onContextMenuShow(callback: Callback\<OnContextMenuShowEvent, boolean\>)
 
 | 参数名    | 类型   | 必填   | 说明                  |
 | ------ | ------ | ---- | --------------------- |
-| callback  | Callback\<[OnContextMenuShowEvent](#oncontextmenushowevent12), boolean\> | 是 | 调用时触发的回调，以允许自定义显示上下文菜单。<br>返回值boolean。自定义菜单返回true，触发的自定义菜单无效返回false。     |
+| callback  | Callback\<[OnContextMenuShowEvent](#oncontextmenushowevent12), boolean\> | 是 | 调用时触发的回调，以允许自定义显示上下文菜单。<br>返回值boolean。返回true表示触发自定义菜单，返回false表示触发的自定义菜单无效。     |
 
 **示例：**
 
@@ -5503,8 +5501,8 @@ onFullScreenExit(callback: () => void)
 onWindowNew(callback: Callback\<OnWindowNewEvent\>)
 
 使能multiWindowAccess情况下，通知用户新建窗口请求。
-若不调用event.handler.setWebController接口，会造成render进程阻塞。
-如果没有创建新窗口，调用event.handler.setWebController接口时设置成null，通知Web没有创建新窗口。
+若不调用`event.handler.setWebController`接口，会造成render进程阻塞。
+如果没有创建新窗口，调用`event.handler.setWebController`接口时设置成null，通知Web没有创建新窗口。
 
 应用应谨慎的显示新窗口：不要简单的覆盖在原web组件上，防止误导用户正在查看哪个网站，如果应用显示主页的URL，请确保也以相似的方式显示新窗口的URL。否则请考虑完全禁止创建新窗口。
 
@@ -5764,7 +5762,7 @@ onInterceptKeyEvent(callback: (event: KeyEvent) => boolean)
 
 | 参数名    | 类型   | 必填   | 说明                  |
 | ------ | ------ | ---- | --------------------- |
-| callback | (event:[KeyEvent](../apis-arkui/arkui-ts/ts-universal-events-key.md#keyevent对象说明)) => boolean | 是 | 触发的KeyEvent事件。返回值：回调函数通过返回boolean类型值来决定是否继续将该KeyEvent传入Webview内核。 |
+| callback | (event:[KeyEvent](../apis-arkui/arkui-ts/ts-universal-events-key.md#keyevent对象说明)) => boolean | 是 | 触发的KeyEvent事件。<br>返回值为boolean类型，true表示将该KeyEvent传入Webview内核，false表示不将该KeyEvent传入Webview内核。 |
 
 **示例：**
 
@@ -6027,7 +6025,7 @@ onLargestContentfulPaint(callback: [OnLargestContentfulPaintCallback](#onlargest
 
 onLoadIntercept(callback: Callback\<OnLoadInterceptEvent, boolean\>)
 
-当Web组件加载url之前触发该回调，用于判断是否阻止此次访问。默认允许加载。
+当Web组件加载url之前触发该回调，用于判断是否阻止此次访问。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -6035,7 +6033,7 @@ onLoadIntercept(callback: Callback\<OnLoadInterceptEvent, boolean\>)
 
 | 参数名    | 类型   | 必填   | 说明                  |
 | ------ | ------ | ---- | --------------------- |
-| callback | Callback\<[OnLoadInterceptEvent](#onloadinterceptevent12), boolean\> | 是 | 截获资源加载时触发的回调。<br>返回值boolean。返回true表示阻止此次加载，否则允许此次加载。 |
+| callback | Callback\<[OnLoadInterceptEvent](#onloadinterceptevent12), boolean\> | 是 | 截获资源加载时触发的回调。<br>返回值为boolean类型。返回true表示阻止此次加载，false表示允许此次加载。<br>默认值：true。 |
 
 **示例：**
 
@@ -7030,7 +7028,7 @@ onInterceptKeyboardAttach(callback: WebKeyboardCallback)
 
 onNativeEmbedVisibilityChange(callback: OnNativeEmbedVisibilityChangeCallback)
 
-网页中同层标签（如Embed标签或Object标签）在视口内的可见性发生变化时会触发该回调。同层标签默认不可见，如果首次进入页面可见则会上报，不可见则不会上报，当同层标签大小由非0值变为0 *0时，不会上报不可见，由0 *0变为非0值时会上报可见。同层标签全部不可见才算不可见，部分可见或全部可见算作可见。
+网页中同层标签（如Embed标签或Object标签）在视口内的可见性发生变化时会触发该回调。同层标签默认不可见，如果首次进入页面可见则会上报，不可见则不会上报，当同层标签大小由非0值变为0 *0时，不会上报不可见，由0 *0变为非0值时会上报可见。同层标签全部不可见才算不可见，部分可见或全部可见算作可见。不支持由于CSS样式变化导致的同层标签可见状态变化上报，例如display、opacity和visibility等。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -7744,7 +7742,7 @@ setResponseData(data: string \| number \| Resource \| ArrayBuffer): void
 
 | 参数名  | 类型                                     | 必填   | 说明                                     |
 | ---- | ---------------------------------------- | ---- | ---------------------------------------- |
-| data | string \| number \| [Resource](../apis-arkui/arkui-ts/ts-types.md)<sup>10+</sup> \| ArrayBuffer<sup>11+</sup> | 是    | 要设置的资源响应数据。string表示HTML格式的字符串。number表示文件句柄, 此句柄由系统的Web组件负责关闭。 Resource表示应用rawfile目录下文件资源。 ArrayBuffer表示资源的原始二进制数据。 |
+| data | string \| number \| [Resource](../apis-arkui/arkui-ts/ts-types.md)<sup>10+</sup> \| ArrayBuffer<sup>11+</sup> | 是    | 要设置的资源响应数据。string表示HTML格式的字符串。number表示文件句柄，此句柄由系统的Web组件负责关闭。Resource表示应用rawfile目录下文件资源。ArrayBuffer表示资源的原始二进制数据。 |
 
 ### setResponseEncoding<sup>9+</sup>
 
@@ -8589,7 +8587,7 @@ invoke(origin: string, allow: boolean, retain: boolean): void
 | ------ | ------- | ---- | ---------------------------------------- |
 | origin | string  | 是   | 指定源的字符串索引。                               |
 | allow  | boolean | 是   | 设置的地理位置权限状态。<br>true表示开启地理位置权限，false表示不开启地理位置权限。                             |
-| retain | boolean | 是   | 是否允许将地理位置权限状态保存到系统中。可通过[GeolocationPermissions<sup>9+</sup>](js-apis-webview.md#geolocationpermissions)接口管理保存到系统的地理位置权限。<br>true表示允许，false表示不允许。 |
+| retain | boolean | 是   | 是否允许将地理位置权限状态保存到系统中。可通过[GeolocationPermissions<sup>9+</sup>](js-apis-webview.md#geolocationpermissions)接口管理保存到系统的地理位置权限。<br>true表示允许将地理位置权限状态保存到系统中，false表示不允许将地理位置权限状态保存到系统中。 |
 
 ## MessageLevel枚举说明
 
@@ -8732,7 +8730,7 @@ Web媒体策略的配置。
 | 名称             | 类型      | 必填   | 说明                                       |
 | -------------- | ------- | ---- | ---------------------------------------- |
 | resumeInterval | number  | 否    | 被暂停的Web音频能够自动续播的有效期，单位：秒。有效期范围0~60秒，如若超过60秒，按照60s处理，由于近似值原因，该有效期可能存在一秒内的误差。 |
-| audioExclusive | boolean | 否    | 应用内多个Web实例的音频是否独占。<br>true表示独占，false表示不独占。                       |
+| audioExclusive | boolean | 否    | 应用内多个Web实例的音频是否独占。<br>true表示应用内多个Web实例的音频独占，false表示应用内多个Web实例的音频不独占。                       |
 
 ## ScreenCaptureConfig<sup>10+</sup>
 
@@ -8947,7 +8945,7 @@ accessBackward(): boolean
 
 | 类型      | 说明                    |
 | ------- | --------------------- |
-| boolean | 可以后退返回true,否则返回false。 |
+| boolean | 可以后退返回true，否则返回false。 |
 
 **示例：**
 
@@ -8985,7 +8983,7 @@ accessForward(): boolean
 
 | 类型      | 说明                    |
 | ------- | --------------------- |
-| boolean | 可以前进返回true,否则返回false。 |
+| boolean | 返回true表示当前页面可以前进，返回false表示当前页面不可以前进。 |
 
 **示例：**
 
@@ -9213,7 +9211,7 @@ baseUrl为空时，通过”data“协议加载指定的一段字符串。
 | data       | string | 是   | 按照”Base64“或者”URL"编码后的一段字符串。              |
 | mimeType   | string | 是   | 媒体类型（MIME）。                              |
 | encoding   | string | 是   | 编码类型，具体为“Base64"或者”URL编码。                |
-| baseUrl    | string | 否   | 指定的一个URL路径（“http”/“https”/"data"协议），并由Web组件赋值给window.origin。 |
+| baseUrl    | string | 否   | 指定的一个URL路径（“http”/“https”/"data"协议），并由Web组件赋值给`window.origin`。 |
 | historyUrl | string | 否   | 历史记录URL。非空时，可被历史记录管理，实现前后后退功能。当baseUrl为空时，此属性无效。 |
 
 **示例：**
@@ -9258,9 +9256,9 @@ loadUrl(options: { url: string | Resource, headers?: Array\<Header\> })
 **参数：**
 
 | 参数名     | 类型                       | 必填  | 说明           |
-| ------- | -------------------------- | ---- | -------------- |
-| url     | string \| Resource                     | 是  | 需要加载的 URL。     |
-| headers | Array\<[Header](#header)\> | 否    | URL的附加HTTP请求头。默认值：[]。 |
+| -------- | -------------------------- | ---- | -------------- |
+| url      | string \| Resource                     | 是  | 需要加载的 URL。     |
+| headers  | Array\<[Header](#header)\> | 否    | URL的附加HTTP请求头。<br>默认值：[]。 |
 
 **示例：**
 
@@ -9815,7 +9813,7 @@ type OnSslErrorEventCallback = (sslErrorEvent: SslErrorEvent) => void
 | height            | number                              | 否    | 同层标签的高，单位为px。          |
 | url               | string                              | 否    | 同层标签的url信息。            |
 | tag<sup>12+</sup> | string              | 否    | 标签名，统一为大写字符。              |
-| params<sup>12+</sup>            | Map<string, string> | 否    | object标签包含的param标签键值对列表，该map本质为Object类型，请使用Object提供的方法操作该对象。  |
+| params<sup>12+</sup>            | Map<string, string> | 否    | object标签包含的param标签键值对列表，该map本质为Object类型，请使用Object提供的方法操作该对象，即embed.info?.param?.["name"]。  |
 | position<sup>12+</sup>          | Position            | 否    | 同层标签在屏幕坐标系中相对于Web组件的位置信息，此处区别于标准Position，单位为px。 |
 
 ## NativeEmbedDataInfo<sup>11+</sup>
@@ -9964,8 +9962,8 @@ onOverrideUrlLoading的回调。
 
 | 名称 | 类型 | 必填 | 说明 |
 |------|------|------|------|
-|  enable  | boolean | 是 | 是否开启该功能。<br/> `true` : 开启  <br/> `false` : 关闭(默认值) |
-|  shouldOverlay | boolean | 是 | 开启该功能后， 应用接管网页视频的播放器画面是否覆盖网页内容。<br/> `true` : 是，改变视频图层的高度，使其覆盖网页内容 <br/> `false` : 否(默认值), 不覆盖，跟原视频图层高度一样，嵌入在网页中。 |
+|  enable  | boolean | 是 | 是否开启应用接管网页媒体播放功能。<br/> true表示开启应用接管网页媒体播放功能，false表示关闭应用接管网页媒体播放功能。<br/> 默认值：false。 |
+|  shouldOverlay | boolean | 是 | 开启应用接管网页媒体播放功能后，应用接管网页视频的播放器画面是否覆盖网页内容。<br/> true表示改变视频图层的高度，使其覆盖网页内容。false表示不覆盖网页内容，跟原视频图层高度一样，嵌入在网页中。<br>默认值：false。 |
 
 ## RenderProcessNotRespondingReason<sup>12+</sup>
 
@@ -10558,8 +10556,17 @@ type OnNativeEmbedVisibilityChangeCallback = (nativeEmbedVisibilityInfo: NativeE
 | ---------- | -----------------------------------------------------| ------ | ---------------- |
 | onAppear   | Callback\<void\>   | 否     | 自定义选择菜单弹出时回调。     |
 | onDisappear | Callback\<void\>  | 否     | 自定义选择菜单关闭时回调。     |
-| preview    | [CustomBuilder](../apis-arkui/arkui-ts/ts-types.md#custombuilder8)          | 否     | 自定义选择菜单的预览内容样式, 未配置时无预览内容。|
-| menuType   | [MenuType](../apis-arkui/arkui-ts/ts-text-common.md#menutype13枚举说明)      | 否     | 自定义选择菜单类型。<br>默认值：MenuType.SELECTION_MENU     |
+| preview    | [CustomBuilder](../apis-arkui/arkui-ts/ts-types.md#custombuilder8)          | 否     | 自定义选择菜单的预览内容样式，未配置时无预览内容。|
+| menuType   | [MenuType](../apis-arkui/arkui-ts/ts-text-common.md#menutype13枚举说明)      | 否     | 自定义选择菜单类型。<br>默认值：`MenuType.SELECTION_MENU`     |
+| previewMenuOptions<sup>20+</sup> | [PreviewMenuOptions](#previewmenuoptions20) | 否     | 自定义选择预览菜单选项。 |
+
+## PreviewMenuOptions<sup>20+</sup>
+预览菜单选项。
+**系统能力：** SystemCapability.Web.Webview.Core
+
+| 名称           | 类型                                             | 必填    | 说明             |
+| ---------- | -----------------------------------------------------| ------ | ---------------- |
+| hapticFeedbackMode   | [HapticFeedbackMode](../apis-arkui/arkui-ts/ts-universal-attributes-menu.md#hapticfeedbackmode18)   | 否     | 菜单弹出时振动效果。需配置"ohos.permission.VIBRATE"权限<br/>默认值：HapticFeedbackMode.DISABLED，菜单弹出时不振动。     |
 
 ## BlurOnKeyboardHideMode<sup>14+</sup>枚举说明
 
@@ -10571,8 +10578,8 @@ type OnNativeEmbedVisibilityChangeCallback = (nativeEmbedVisibilityInfo: NativeE
 
 | 名称     | 值 | 说明          |
 | ------ | -- | ----------- |
-| SILENT  | 0 | 软键盘收起时web组件失焦功能关闭。 |
-| BLUR | 1 | 软键盘收起时web组件失焦功能开启。 |
+| SILENT  | 0 | 软键盘收起时web组件失焦功能关闭，当用户手动收起软键盘时焦点仍在文本框。 |
+| BLUR | 1 | 软键盘收起时web组件失焦功能开启，当用户手动收起软键盘时，焦点会从文本框转移到Web的body上，文本框失焦。 |
 
 ## EmbedOptions<sup>16+</sup>
 

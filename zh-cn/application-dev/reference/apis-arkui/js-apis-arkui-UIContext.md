@@ -1266,7 +1266,7 @@ getFilteredInspectorTree(filters?: Array\<string\>): string
 
 | 参数名  | 类型            | 必填 | 说明                                                         |
 | ------- | --------------- | ---- | ------------------------------------------------------------ |
-| filters | Array\<string\> | 否   | 需要获取的组件属性的过滤列表。目前仅支持过滤字段：<br/>"id"：组件唯一标识。<br/>"src"：资源来源。 <br/>"content"：元素、组件或对象所包含的信息或数据。<br/>"editable"：是否可编辑。<br/>"scrollable"：是否可滚动。<br/>"selectable"：是否可选择。<br/>"focusable"：是否可聚焦。<br/>"focused"：是否已聚焦。<br/>其余字段仅供测试场景使用。 |
+| filters | Array\<string\> | 否   | 需要获取的组件属性的过滤列表。目前仅支持过滤字段：<br/>"id"：组件唯一标识。<br/>"src"：资源来源。 <br/>"content"：元素、组件或对象所包含的信息或数据。<br/>"editable"：是否可编辑。<br/>"scrollable"：是否可滚动。<br/>"selectable"：是否可选择。<br/>"focusable"：是否可聚焦。<br/>"focused"：是否已聚焦。<br/>从API version 20开始，支持该过滤字段：<br/>"isLayoutInspector"：是否显示自定义组件的属性。<br/>其余字段仅供测试场景使用。 |
 
 **返回值：** 
 
@@ -1287,6 +1287,69 @@ getFilteredInspectorTree(filters?: Array\<string\>): string
 <!--code_no_check-->
 ```ts
 uiContext.getFilteredInspectorTree(['id', 'src', 'content']);
+```
+
+<!--code_no_check-->
+```ts
+// xxx.ets
+import { UIContext } from '@kit.ArkUI';
+@Entry
+@Component
+struct ComponentPage {
+  loopConsole(inspectorStr: string, i: string) {
+    console.log(`InsTree ${i}| type: ${JSON.parse(inspectorStr).$type}, ID: ${JSON.parse(inspectorStr).$ID}`)
+    if (JSON.parse(inspectorStr).$children) {
+      i += '-'
+      for (let index = 0; index < JSON.parse(inspectorStr).$children.length; index++) {
+        this.loopConsole(JSON.stringify(JSON.parse(inspectorStr).$children[index]), i)
+      }
+    }
+  }
+
+  build() {
+    Column() {
+      Button('content').onClick(() => {
+        const uiContext: UIContext = this.getUIContext();
+        let inspectorStr = uiContext.getFilteredInspectorTree(['content']);
+        console.log(`InsTree : ${inspectorStr}`)
+        inspectorStr = JSON.stringify(JSON.parse(inspectorStr))
+        this.loopConsole(inspectorStr, '-')
+      })
+      Button('isLayoutInspector').onClick(() => {
+        const uiContext: UIContext = this.getUIContext();
+        let inspectorStr = uiContext.getFilteredInspectorTree(['isLayoutInspector']);
+        console.log(`InsTree : ${inspectorStr}`)
+        inspectorStr = JSON.stringify(JSON.parse(inspectorStr).content)
+        this.loopConsole(inspectorStr, '-')
+      })
+    }
+    .width('100%')
+    .height('100%')
+  }
+}
+```
+
+当传入"content"过滤字段时，返回的JSON字符串结构如下：
+
+<!--code_no_check-->
+```ts
+InsTree : {"$type":"root","width":"720.000000","height":"1280.000000","$resolution":"1.500000","$children":[{"$type":"Column","$ID":15,"type":"build-in","$rect":"[0.00, 72.00],[720.00,1208.00]","$debugLine":"","$attrs":{},"$children":[{"$type":"Button","$ID":16,"type":"build-in","$rect":"[293.00, 72.00],[427.00,132.00]","$debugLine":"","$attrs":{}},{"$type":"Button","$ID":18,"type":"build-in","$rect":"[237.00, 132.00],[484.00,192.00]","$debugLine":"","$attrs":{}}]}]}\
+InsTree -| type: root, ID: undefined
+InsTree --| type: Column, ID: 15
+InsTree ---| type: Button, ID: 16
+InsTree ---| type: Button, ID: 18
+```
+
+从API version 20开始，当传入"isLayoutInspector"过滤字段时，返回的JSON字符串结构新增外层结构"type"与"content"，其中"content"包含未增加该字段时的原有JSON字符串结构；同时，返回值结构中增添自定义组件。返回的JSON字符串结构如下：
+
+<!--code_no_check-->
+```ts
+InsTree : {"type":"root","content":{"$type":"root","width":"720.000000","height":"1280.000000","$resolution":"1.500000","$children":[{"$type":"JsView","$ID":13,"type":"custom","state":{"observedPropertiesInfo":[],"viewInfo":{"componentName":"ComponentPage","id":14,"isV2":false,"isViewActive_":true}},"$rect":"[0.00, 72.00],[720.00,1208.00]","$debugLine":"{\"$line\":\"(0:0)\"}","viewTag":"ComponentPage","$attrs":{"viewKey":"13"},"$children":[{"$type":"Column","$ID":15, "type":"build-in","$rect":"[0.00, 72.00],[720.00,1208.00]","$debugLine":"","$attrs":{ ...
+InsTree -| type: root, ID: undefined
+InsTree --| type: JsView, ID: 13
+InsTree ---| type: Column, ID: 15
+InsTree ----| type: Button, ID: 16
+InsTree ----| type: Button, ID: 18
 ```
 
 ### getFilteredInspectorTreeById<sup>12+</sup>
@@ -1427,6 +1490,10 @@ vp2px(value : number) : number
 
 将vp单位的数值转换为以px为单位的数值。
 
+转换公式为：px值 = vp值 × 像素密度
+
+像素密度：当前窗口生效的像素密度值，即屏幕物理像素密度[VirtualScreenConfig.density](js-apis-display.md#virtualscreenconfig16)。
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -1455,6 +1522,10 @@ uiContext.vp2px(200);
 px2vp(value : number) : number
 
 将px单位的数值转换为以vp为单位的数值。
+
+转换公式为：vp值 = px值 ÷ 像素密度
+
+像素密度：当前窗口生效的像素密度值，即屏幕物理像素密度[VirtualScreenConfig.density](js-apis-display.md#virtualscreenconfig16)。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1485,6 +1556,12 @@ fp2px(value : number) : number
 
 将fp单位的数值转换为以px为单位的数值。
 
+转换公式为：px值 = fp值 × 像素密度 × 字体缩放比例
+
+像素密度：当前窗口生效的像素密度值，即屏幕物理像素密度[VirtualScreenConfig.density](js-apis-display.md#virtualscreenconfig16)。
+
+字体缩放比例：系统设置的字体缩放系数，对应 [Configuration.fontScale](arkui-ts/ts-types.md#configuration)。
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -1513,6 +1590,12 @@ uiContext.fp2px(200);
 px2fp(value : number) : number
 
 将px单位的数值转换为以fp为单位的数值。
+
+转换公式为：fp值 = px值 ÷ 像素密度 ÷ 字体缩放比例
+
+像素密度：当前窗口生效的像素密度值，通常就是屏幕物理像素密度[VirtualScreenConfig.density](js-apis-display.md#virtualscreenconfig16)。
+
+字体缩放比例：系统设置的字体缩放系数，对应 [Configuration.fontScale](arkui-ts/ts-types.md#configuration)。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1543,6 +1626,8 @@ lpx2px(value : number) : number
 
 将lpx单位的数值转换为以px为单位的数值。
 
+转换公式为：px值 = lpx值 × 实际屏幕宽度与逻辑宽度（通过[designWidth](../../quick-start/module-configuration-file.md#pages标签)配置）的比值
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -1571,6 +1656,8 @@ uiContext.lpx2px(200);
 px2lpx(value : number) : number
 
 将px单位的数值转换为以lpx为单位的数值。
+
+转换公式为：px值 = lpx值 ÷ 实际屏幕宽度与逻辑宽度（通过[designWidth](../../quick-start/module-configuration-file.md#pages标签)配置）的比值
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -3717,7 +3804,7 @@ off(type: 'navDestinationSwitch', observerOptions: observer.NavDestinationSwitch
 
 on(type: 'willClick', callback: GestureEventListenerCallback): void
 
-监听点击事件指令下发情况。暂不支持屏幕朗读触控模式。
+监听点击事件指令下发情况。从API version 20开始支持屏幕朗读触控模式。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -3746,7 +3833,7 @@ observer.on('willClick', callback);
 
 off(type: 'willClick', callback?: GestureEventListenerCallback): void
 
-取消监听点击事件指令下发情况。暂不支持屏幕朗读触控模式。
+取消监听点击事件指令下发情况。从API version 20开始支持屏幕朗读触控模式。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -3775,7 +3862,7 @@ observer.off('willClick', callback);
 
 on(type: 'didClick', callback: GestureEventListenerCallback): void
 
-监听点击事件指令下发情况。暂不支持屏幕朗读触控模式。
+监听点击事件指令下发情况。从API version 20开始支持屏幕朗读触控模式。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -3804,7 +3891,7 @@ observer.on('didClick', callback);
 
 off(type: 'didClick', callback?: GestureEventListenerCallback): void
 
-取消监听点击事件指令下发情况。暂不支持屏幕朗读触控模式。
+取消监听点击事件指令下发情况。从API version 20开始，支持屏幕朗读触控模式。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -3833,7 +3920,7 @@ observer.off('didClick', callback);
 
 on(type: 'willClick', callback: ClickEventListenerCallback): void
 
-监听点击事件指令下发情况。暂不支持屏幕朗读触控模式。
+监听点击事件指令下发情况。从API version 20开始支持屏幕朗读触控模式。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -3862,7 +3949,7 @@ observer.on('willClick', callback);
 
 off(type: 'willClick', callback?: ClickEventListenerCallback): void
 
-取消监听点击事件指令下发情况。暂不支持屏幕朗读触控模式。
+取消监听点击事件指令下发情况。从API version 20开始，支持屏幕朗读触控模式。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -3891,7 +3978,7 @@ observer.off('willClick', callback);
 
 on(type: 'didClick', callback: ClickEventListenerCallback): void
 
-监听点击事件指令下发情况。暂不支持屏幕朗读触控模式。
+监听点击事件指令下发情况。从API version 20开始支持屏幕朗读触控模式。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -3920,7 +4007,7 @@ observer.on('didClick', callback);
 
 off(type: 'didClick', callback?: ClickEventListenerCallback): void
 
-取消监听点击事件指令下发情况。暂不支持屏幕朗读触控模式。
+取消监听点击事件指令下发情况。从API version 20开始支持屏幕朗读触控模式。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -8307,6 +8394,49 @@ struct NormalEts {
     }
 }
 ```
+### enableDropDisallowedBadge<sup>20+</sup>
+
+enableDropDisallowedBadge(enable: boolean): void
+
+当组件的类型与配置的[allowDrop](../apis-arkui/arkui-ts/ts-universal-attributes-drag-drop.md#allowdrop)无交集时可显示禁用角标。当目标进行拖拽时，通过该方法检查是否显示拖拽禁止角标。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型    | 必填 | 说明                                                         |
+| ------ | ------- | ---- | ------------------------------------------------------------ |
+| enable | boolean | 是   | 当组件的类型与配置的[allowDrop](../apis-arkui/arkui-ts/ts-universal-attributes-drag-drop.md#allowdrop)无交集时可显示禁用角标，当目标进行拖拽时，通过enableDropDisallowedBadge方法检查是否显示拖拽禁止角标。true表示显示拖拽禁止角标，false表示不显示拖拽禁止角标。默认值为false。 |
+
+**示例：**
+
+该示例通过enableDropDisallowedBadge接口实现了对目标进行拖拽时显示拖拽禁止角标的功能。
+
+```ts
+import { UIAbility } from '@kit.AbilityKit';
+import { window, UIContext } from '@kit.ArkUI';
+
+ export default class EntryAbility extends UIAbility {
+   onWindowStageCreate(windowStage: window.WindowStage): void {
+       windowStage.loadContent('pages/Index', (err, data) => {
+         if (err.code) {
+         return;
+       }
+       windowStage.getMainWindow((err, data) => {
+         if (err.code) {
+           return;
+         }
+         let windowClass: window.Window = data;
+         let uiContext: UIContext = windowClass.getUIContext();
+         uiContext.getDragController().enableDropDisallowedBadge(true);
+     });
+   });
+ }
+}
+```
+![UIContext](figures/UIContext.png)
 
 ## OverlayManager<sup>12+</sup>
 
@@ -9503,6 +9633,8 @@ struct Index {
 ## ComponentSnapshot<sup>12+</sup>
 
 以下API需先使用UIContext中的[getComponentSnapshot()](js-apis-arkui-UIContext.md#getcomponentsnapshot12)方法获取ComponentSnapshot对象，再通过此实例调用对应方法。
+
+缩放、平移、旋转等图形变换属性只对被截图组件的子组件生效；对目标组件本身应用图形变换属性不生效，显示的是还是图形变换前的效果。
 
 ### get<sup>12+</sup>
 

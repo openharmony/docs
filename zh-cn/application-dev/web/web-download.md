@@ -246,6 +246,10 @@ struct WebComponent {
   // 用于记录失败的下载任务。
   failedData: Uint8Array = new Uint8Array();
 
+  aboutToAppear(): void {
+    downloadUtil.init(this.getUIContext());
+  }
+
   build() {
     Column() {
       Button('setDownloadDelegate')
@@ -323,9 +327,13 @@ import fileStream from '@ohos.file.fs';
 
 const helper = new util.Base64Helper();
 
-export const filePath = getContext().filesDir;
+export let filePath : string;
 export const fileName = 'demoFile.txt';
 export namespace  downloadUtil {
+  
+  export function init(context: UIContext): void {
+    filePath = context.getHostContext()!.filesDir;
+  }
 
   export function uint8ArrayToStr(uint8Array: Uint8Array): string {
     return helper.encodeToStringSync(uint8Array);

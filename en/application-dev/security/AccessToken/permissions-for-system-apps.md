@@ -936,6 +936,18 @@ Allows an application to control the SecurityGuard model switch.
 
 **Valid since**: 10
 
+## ohos.permission.UNLOCK_DEVELOPER_MODE
+
+Allows an application to unlock the developer mode.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 18
+
 ## ohos.permission.CAPTURE_VOICE_DOWNLINK_AUDIO
 
 Allows an application to capture the downlink voice audio.
@@ -2666,7 +2678,7 @@ Allows a system application to uninstall other applications.
 
 **Enable via ACL**: true
 
-**Valid since**: 18
+**Valid since**: 19
 
 ## ohos.permission.ACCESS_ADVANCED_SECURITY_MODE
 
@@ -4559,7 +4571,7 @@ Allows an application to call the APIs for installing plugins.
 
 **Enable via ACL**: true
 
-**Valid since**: 18
+**Valid since**: 19
 
 ## ohos.permission.UNINSTALL_PLUGIN_BUNDLE
 
@@ -4571,7 +4583,7 @@ Allows an application to call the APIs for uninstalling plugins.
 
 **Enable via ACL**: true
 
-**Valid since**: 18
+**Valid since**: 19
 
 ## ohos.permission.GET_EDM_CONFIG
 

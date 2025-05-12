@@ -31,6 +31,7 @@
 ```ts
 import { media } from '@kit.MediaKit';
 import { image } from '@kit.ImageKit';
+import { common } from '@kit.AbilityKit';
 
 const TAG = 'MetadataDemo';
 @Entry
@@ -77,7 +78,8 @@ struct Index {
     // 创建AVImageGenerator对象。
     let avImageGenerator: media.AVImageGenerator = await media.createAVImageGenerator();
     // 设置fdSrc。
-    avImageGenerator.fdSrc = await getContext(this).resourceManager.getRawFd('demo.mp4');
+    let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+    avImageGenerator.fdSrc = await context.resourceManager.getRawFd('demo.mp4');
 
     // 初始化入参。
     let timeUs = 0;

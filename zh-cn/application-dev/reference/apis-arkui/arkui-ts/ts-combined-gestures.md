@@ -46,12 +46,12 @@ GestureGroup(mode: GestureMode, ...gesture: GestureType[])
 @Entry
 @Component
 struct GestureGroupExample {
-  @State count: number = 0
-  @State offsetX: number = 0
-  @State offsetY: number = 0
-  @State positionX: number = 0
-  @State positionY: number = 0
-  @State borderStyles: BorderStyle = BorderStyle.Solid
+  @State count: number = 0;
+  @State offsetX: number = 0;
+  @State offsetY: number = 0;
+  @State positionX: number = 0;
+  @State positionY: number = 0;
+  @State borderStyles: BorderStyle = BorderStyle.Solid;
 
   build() {
     Column() {
