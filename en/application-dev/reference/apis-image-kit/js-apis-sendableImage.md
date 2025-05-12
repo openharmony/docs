@@ -25,7 +25,7 @@ Creates a **PixelMap** object with the default BGRA_8888 format and specified pi
 | Name | Type                                            | Mandatory| Description                                                            |
 | ------- | ------------------------------------------------ | ---- | ---------------------------------------------------------------- |
 | colors  | ArrayBuffer                                      | Yes  | Color array in BGRA_8888 format.                                       |
-| options | [InitializationOptions](js-apis-image.md#initializationoptions8) | Yes  | Pixel properties, including the alpha type, size, scale mode, pixel format, and editable.|
+| options | [image.InitializationOptions](js-apis-image.md#initializationoptions8) | Yes  | Pixel properties, including the alpha type, size, scale mode, pixel format, and editable.|
 
 **Return value**
 
@@ -159,7 +159,7 @@ Creates a **PixelMap** object from a surface ID.
 | Name                | Type                | Mandatory| Description                                    |
 | ---------------------- | -------------       | ---- | ---------------------------------------- |
 | surfaceId              | string              | Yes  | Surface ID, which is obtained from [XComponent](../apis-arkui/arkui-ts/ts-basic-components-xcomponent.md).|
-| region                 | [Region](../apis-image-kit/js-apis-image.md#region8)  | Yes  | Size of the image after cropping.                        |
+| region                 | [image.Region](../apis-image-kit/js-apis-image.md#region8)  | Yes  | Size of the image after cropping.                        |
 
 **Return value**
 | Type                            | Description                 |
@@ -205,7 +205,7 @@ Creates a **PixelMap** object with the specified pixel properties. This API retu
 | Name | Type                                            | Mandatory| Description                                                            |
 | ------- | ------------------------------------------------ | ---- | ---------------------------------------------------------------- |
 | colors  | ArrayBuffer                                      | Yes  | Color array in BGRA_8888 format.                                       |
-| options | [InitializationOptions](js-apis-image.md#initializationoptions8) | Yes  | Pixel properties, including the alpha type, size, scale mode, pixel format, and editable.|
+| options | [image.InitializationOptions](js-apis-image.md#initializationoptions8) | Yes  | Pixel properties, including the alpha type, size, scale mode, pixel format, and editable.|
 
 **Return value**
 | Type                            | Description                 |
@@ -428,7 +428,7 @@ Reads the pixels in an area. This API uses a promise to return the result.
 
 | Name| Type                          | Mandatory| Description                    |
 | ------ | ------------------------------ | ---- | ------------------------ |
-| area   | [PositionArea](js-apis-image.md#positionarea7) | Yes  | Area from which the pixels will be read.|
+| area   | [image.PositionArea](js-apis-image.md#positionarea7) | Yes  | Area from which the pixels will be read.|
 
 **Return value**
 
@@ -473,7 +473,7 @@ Reads the pixels in an area. This API returns the result synchronously.
 
 | Name| Type                          | Mandatory| Description                    |
 | ------ | ------------------------------ | ---- | ------------------------ |
-| area   | [PositionArea](js-apis-image.md#positionarea7) | Yes  | Area from which the pixels will be read.|
+| area   | [image.PositionArea](js-apis-image.md#positionarea7) | Yes  | Area from which the pixels will be read.|
 
 **Error codes**
 
@@ -517,7 +517,7 @@ Writes the pixels to an area. This API uses a promise to return the result.
 
 | Name| Type                          | Mandatory| Description                |
 | ------ | ------------------------------ | ---- | -------------------- |
-| area   | [PositionArea](js-apis-image.md#positionarea7) | Yes  | Area to which the pixels will be written.|
+| area   | [image.PositionArea](js-apis-image.md#positionarea7) | Yes  | Area to which the pixels will be written.|
 
 **Return value**
 
@@ -566,7 +566,7 @@ Writes the pixels to an area. This API returns the result synchronously.
 
 | Name| Type                          | Mandatory| Description                |
 | ------ | ------------------------------ | ---- | -------------------- |
-| area   | [PositionArea](js-apis-image.md#positionarea7) | Yes  | Area to which the pixels will be written.|
+| area   | [image.PositionArea](js-apis-image.md#positionarea7) | Yes  | Area to which the pixels will be written.|
 
 **Error codes**
 
@@ -1748,7 +1748,8 @@ Creates an **ImageSource** instance based on a given URI.
 **Example**
 
 ```ts
-const context: Context = getContext(this);
+// Obtain the context from the component and ensure that the return value of this.getUIContext().getHostContext() is UIAbilityContext.
+let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 const path: string = context.cacheDir + "/test.jpg";
 const sendableImageSourceApi: sendableImage.ImageSource = sendableImage.createImageSource(path);
 ```
@@ -1780,7 +1781,8 @@ Creates an **ImageSource** instance based on a given file descriptor.
 ```ts
 import { fileIo as fs } from '@kit.CoreFileKit';
 
-const context: Context = getContext(this);
+// Obtain the context from the component and ensure that the return value of this.getUIContext().getHostContext() is UIAbilityContext.
+let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 const path: string = context.cacheDir + "/test.jpg";
 let file = fs.openSync(path, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
 const sendableImageSourceApi: sendableImage.ImageSource = sendableImage.createImageSource(file.fd);
@@ -1894,7 +1896,8 @@ Creates a **PixelMap** object based on image decoding parameters. This API uses 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-const context: Context = getContext(this);
+// Obtain the context from the component and ensure that the return value of this.getUIContext().getHostContext() is UIAbilityContext.
+let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 const path: string = context.cacheDir + "/test.jpg";
 const sendableImageSourceApi: sendableImage.ImageSource = sendableImage.createImageSource(path);
 sendableImageSourceApi.createPixelMap().then((pixelMap: sendableImage.PixelMap) => {
@@ -1925,7 +1928,8 @@ The thread that runs **release** is insecure.
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-const context: Context = getContext(this);
+// Obtain the context from the component and ensure that the return value of this.getUIContext().getHostContext() is UIAbilityContext.
+let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 const path: string = context.cacheDir + "/test.jpg";
 const sendableImageSourceApi: sendableImage.ImageSource = sendableImage.createImageSource(path);
 sendableImageSourceApi.release().then(() => {
@@ -1938,6 +1942,7 @@ sendableImageSourceApi.release().then(() => {
 ## Image
 
 Provides APIs for basic image operations, including obtaining image information and reading and writing image data. An **Image** instance is returned when [readNextImage](#readnextimage) and [readLatestImage](#readlatestimage) are called.
+
 This class inherits from [lang.ISendable](../../arkts-utils/arkts-sendable.md#isendable).
 
 ### Attributes

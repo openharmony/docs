@@ -47,8 +47,7 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 ```ts
 import { image } from '@kit.ImageKit';
 
-async function CreatePicture() {
-  const context = getContext();
+async function CreatePicture(context: Context) {
   const resourceMgr = context.resourceManager;
   const rawFile = await resourceMgr.getRawFileContent("test.jpg");
   let ops: image.SourceOptions = {
@@ -127,8 +126,7 @@ class MySequence implements rpc.Parcelable {
   }
 }
 
-async function Marshalling_UnMarshalling() {
-  const context = getContext();
+async function Marshalling_UnMarshalling(context: Context) {
   const resourceMgr = context.resourceManager;
   const rawFile = await resourceMgr.getRawFileContent("test.jpg");
   let ops: image.SourceOptions = {
@@ -249,7 +247,7 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
-| 62980096 | Operation failed. Possible cause: 1.Image upload exception. 2. Decoding process exception. 3. Insufficient memory.|
+| 62980096 | Operation failed.Possible cause: 1.Image upload exception. 2. Decoding process exception. 3. Insufficient memory.|
 | 62980097 | IPC error. Possible cause: 1.IPC communication failed. 2. Image upload exception. 3. Decode process exception. 4. Insufficient memory.|
 | 62980115 | Invalid input parameter.|
 | 62980105 | Failed to get the data.|
@@ -970,8 +968,7 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 ```ts
 import { image } from '@kit.ImageKit';
 
-async function SetAuxiliaryPicture() {
-  const context = getContext();
+async function SetAuxiliaryPicture(context: Context) {
   const resourceMgr = context.resourceManager;
   const rawFile = await resourceMgr.getRawFileContent("hdr.jpg"); // Support for HDR images is required.
   let ops: image.SourceOptions = {
@@ -1073,8 +1070,7 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 import { BusinessError } from '@kit.BasicServicesKit';
 import { image } from '@kit.ImageKit';
 
-async function SetPictureObjMetadata() {
-  const exifContext = getContext();
+async function SetPictureObjMetadata(context: Context) {
   const exifResourceMgr = exifContext.resourceManager;
   const exifRawFile = await exifResourceMgr.getRawFileContent("exif.jpg"); // The image contains EXIF metadata.
   let exifOps: image.SourceOptions = {
@@ -2731,7 +2727,7 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async Demo() {
+async function Demo(pixelMap: image.PixelMap) {
   if (pixelMap != undefined) {
     try {
       let clonedPixelMap = pixelMap.cloneSync();
@@ -3449,8 +3445,10 @@ import image from '@ohos.multimedia.image';
 import resourceManager from '@ohos.resourceManager';
 import { BusinessError } from '@kit.BasicServicesKit';
 
+// Obtain the context from the component and ensure that the return value of this.getUIContext().getHostContext() is UIAbilityContext.
+let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 // 'hdr.jpg' is only an example. Replace it with the actual one in use. Otherwise, the imageSource instance fails to be created, and subsequent operations cannot be performed.
-let img = getContext().resourceManager.getMediaContentSync($r('app.media.hdr'));
+let img = context.resourceManager.getMediaContentSync($r('app.media.hdr'));
 let imageSource = image.createImageSource(img.buffer.slice(0));
 let decodingOptions: image.DecodingOptions = {
   desiredDynamicRange: image.DecodingDynamicRange.AUTO
@@ -3506,8 +3504,10 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 import { BusinessError } from '@kit.BasicServicesKit';
 import image from '@ohos.multimedia.image';
 
+// Obtain the context from the component and ensure that the return value of this.getUIContext().getHostContext() is UIAbilityContext.
+let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 // Replace 'app.media.test' with a local HDR image.
-let img = getContext().resourceManager.getMediaContentSync($r('app.media.test'));
+let img = context.resourceManager.getMediaContentSync($r('app.media.test'));
 let imageSource = image.createImageSource(img.buffer.slice(0));
 let decodingOptions: image.DecodingOptions = {
   desiredDynamicRange: image.DecodingDynamicRange.AUTO
@@ -3636,7 +3636,7 @@ struct Demo {
   @State pixelMap: PixelMap | undefined = undefined;
   // Main thread method.
   private loadImageFromThread(): void {
-    const resourceMgr = getContext(this).resourceManager;
+    const resourceMgr = this.getUIContext().getHostContext()?.resourceManager;
     // 'example.jpg' is only an example. Replace it with the actual one in use. Otherwise, the imageSource instance fails to be created, and subsequent operations cannot be performed.
     resourceMgr.getRawFd('example.jpg').then(rawFileDescriptor => {
       taskpool.execute(loadPixelMap, rawFileDescriptor).then(pixelMap => {
@@ -3763,7 +3763,7 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 | ------- | --------------------------------------------|
 | 62980115 | Invalid image parameter.              |
 | 62980097 | IPC error. Possible cause: 1.IPC communication failed. 2. Image upload exception. 3. Decode process exception. 4. Insufficient memory.              |
-| 62980096 | Operation failed. Possible cause: 1.Image upload exception. 2. Decoding process exception. 3. Insufficient memory.         |
+| 62980096 | Operation failed.Possible cause: 1.Image upload exception. 2. Decoding process exception. 3. Insufficient memory.         |
 
 **Example**
 
@@ -4020,7 +4020,8 @@ Creates an **ImageSource** instance based on a given URI.
 **Example**
 
 ```ts
-const context: Context = getContext(this);
+// Obtain the context from the component and ensure that the return value of this.getUIContext().getHostContext() is UIAbilityContext.
+let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 // 'test.jpg' is only an example. Replace it with the actual one in use. Otherwise, the imageSource instance fails to be created, and subsequent operations cannot be performed.
 const path: string = context.filesDir + "/test.jpg";
 const imageSourceApi: image.ImageSource = image.createImageSource(path);
@@ -4055,7 +4056,8 @@ Creates an **ImageSource** instance based on a given URI.
 
 ```ts
 let sourceOptions: image.SourceOptions = { sourceDensity: 120 };
-const context: Context = getContext(this);
+// Obtain the context from the component and ensure that the return value of this.getUIContext().getHostContext() is UIAbilityContext.
+let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 // 'test.png' is only an example. Replace it with the actual one in use. Otherwise, the imageSource instance fails to be created, and subsequent operations cannot be performed.
 const path: string = context.filesDir + "/test.png";
 let imageSourceApi: image.ImageSource = image.createImageSource(path, sourceOptions);
@@ -4088,7 +4090,8 @@ Creates an **ImageSource** instance based on a given file descriptor.
 ```ts
 import { fileIo as fs } from '@kit.CoreFileKit';
 
-const context: Context = getContext(this);
+// Obtain the context from the component and ensure that the return value of this.getUIContext().getHostContext() is UIAbilityContext.
+let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 // 'test.jpg' is only an example. Replace it with the actual one in use. Otherwise, the imageSource instance fails to be created, and subsequent operations cannot be performed.
 let filePath: string = context.filesDir + "/test.jpg";
 let file = fs.openSync(filePath, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
@@ -4126,7 +4129,8 @@ Creates an **ImageSource** instance based on a given file descriptor.
 import { fileIo as fs } from '@kit.CoreFileKit';
 
 let sourceOptions: image.SourceOptions = { sourceDensity: 120 };
-const context: Context = getContext();
+// Obtain the context from the component and ensure that the return value of this.getUIContext().getHostContext() is UIAbilityContext.
+let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 // 'test.jpg' is only an example. Replace it with the actual one in use. Otherwise, the imageSource instance fails to be created, and subsequent operations cannot be performed.
 const filePath: string = context.filesDir + "/test.jpg";
 let file = fs.openSync(filePath, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
@@ -4226,7 +4230,8 @@ Creates an **ImageSource** instance based on the raw file descriptor of an image
 ```ts
 import { resourceManager } from '@kit.LocalizationKit';
 
-const context: Context = getContext(this);
+// Obtain the context from the component and ensure that the return value of this.getUIContext().getHostContext() is UIAbilityContext.
+let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 // Obtain a resource manager.
 const resourceMgr: resourceManager.ResourceManager = context.resourceManager;
 // 'test.jpg' is only an example. Replace it with the actual one in use. Otherwise, the imageSource instance fails to be created, and subsequent operations cannot be performed.
@@ -4268,7 +4273,8 @@ The **ImageSource** instance created in incremental mode supports the following 
 **Example**
 
 ```ts
-const context: Context = getContext(this);
+// Obtain the context from the component and ensure that the return value of this.getUIContext().getHostContext() is UIAbilityContext.
+let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 let imageArray = context.resourceManager.getMediaContentSync($r('app.media.startIcon')); // Obtain the image resource.
 // 'app.media.startIcon' is only an example. Replace it with the actual one in use. Otherwise, the imageArray instance fails to be created, and subsequent operations cannot be performed.
 let splitBuff1 = imageArray.slice(0, imageArray.byteLength / 2);  // Image slice.
@@ -4313,7 +4319,8 @@ The capabilities supported by the **ImageSource** instance created by this API a
 **Example**
 
 ```ts
-const context: Context = getContext(this);
+// Obtain the context from the component and ensure that the return value of this.getUIContext().getHostContext() is UIAbilityContext.
+let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 let imageArray = context.resourceManager.getMediaContentSync($r('app.media.startIcon')) // Obtain the image resource.
 // 'app.media.startIcon' is only an example. Replace it with the actual one in use. Otherwise, the imageArray instance fails to be created, and subsequent operations cannot be performed.
 let splitBuff1 = imageArray.slice(0, imageArray.byteLength / 2);  // Image slice.
@@ -4362,7 +4369,7 @@ Obtains information about an image with the specified index. This API uses an as
 
 | Name  | Type                                  | Mandatory| Description                                    |
 | -------- | -------------------------------------- | ---- | ---------------------------------------- |
-| index    | number                                 | Yes  | Index of the image source. The default value is **0**, indicating the first image. If this parameter is set to N, the (N-1)th image is used. For single-frame images, the value is always **0**. For multi-frame images such as animations, the value ranges from 0 to (Number of frames - 1).                  |
+| index    | number                                 | Yes  | Index of the image source. The default value is **0**, indicating the first image. If this parameter is set to N, the (N-1)th image is used. For single-frame images, the value is always **0**. For multi-frame images such as animations, the value ranges from 0 to (Number of frames – 1).                  |
 | callback | AsyncCallback<[ImageInfo](#imageinfo)> | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is the image information obtained; otherwise, **err** is an error object.|
 
 **Example**
@@ -4427,7 +4434,7 @@ Obtains information about an image with the specified index. This API uses a pro
 
 | Name| Type  | Mandatory| Description                                 |
 | ----- | ------ | ---- | ------------------------------------- |
-| index | number | No  | Index of the image source. The default value is **0**, indicating the first image. If this parameter is set to N, the (N-1)th image is used. For single-frame images, the value is always **0**. For multi-frame images such as animations, the value ranges from 0 to (Number of frames - 1).|
+| index | number | No  | Index of the image source. The default value is **0**, indicating the first image. If this parameter is set to N, the (N-1)th image is used. For single-frame images, the value is always **0**. For multi-frame images such as animations, the value ranges from 0 to (Number of frames – 1).|
 
 **Return value**
 
@@ -4460,7 +4467,7 @@ Obtains information about an image with the specified index. This API returns th
 
 | Name| Type  | Mandatory| Description                                 |
 | ----- | ------ | ---- | ------------------------------------- |
-| index | number | No  | Index of the image source. The default value is **0**, indicating the first image. If this parameter is set to N, the (N-1)th image is used. For single-frame images, the value is always **0**. For multi-frame images such as animations, the value ranges from 0 to (Number of frames - 1).|
+| index | number | No  | Index of the image source. The default value is **0**, indicating the first image. If this parameter is set to N, the (N-1)th image is used. For single-frame images, the value is always **0**. For multi-frame images such as animations, the value ranges from 0 to (Number of frames – 1).|
 
 **Return value**
 
@@ -4473,7 +4480,8 @@ Obtains information about an image with the specified index. This API returns th
 ```ts
 import { image } from '@kit.ImageKit';
 
-const context: Context = getContext();
+// Obtain the context from the component and ensure that the return value of this.getUIContext().getHostContext() is UIAbilityContext.
+let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 // 'test.jpg' is only an example. Replace it with the actual one in use. Otherwise, the imageSource instance fails to be created, and subsequent operations cannot be performed.
 let filePath: string = context.filesDir + "/test.jpg";
 let imageSource = image.createImageSource(filePath);
@@ -4515,7 +4523,7 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 | ID| Error Message|
 | ------- | --------------------------------------------|
 | 401  | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types;3.Parameter verification failed;              |
-| 62980096 | Operation failed. Possible cause: 1.Image upload exception. 2. Decoding process exception. 3. Insufficient memory.             |
+| 62980096 | Operation failed.Possible cause: 1.Image upload exception. 2. Decoding process exception. 3. Insufficient memory.             |
 | 62980103 | The image data is not supported.         |
 | 62980110 | The image source data is incorrect.      |
 | 62980111 | The image source data is incomplete. |
@@ -4675,7 +4683,7 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 | ID| Error Message|
 | ------- | --------------------------------------------|
 | 401  | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types;3.Parameter verification failed;     |
-| 62980096| Operation failed. Possible cause: 1.Image upload exception. 2. Decoding process exception. 3. Insufficient memory.             |
+| 62980096| Operation failed.Possible cause: 1.Image upload exception. 2. Decoding process exception. 3. Insufficient memory.             |
 | 62980110| The image source data is incorrect.            |
 | 62980113| Unknown image format.            |
 | 62980116| Failed to decode the image.            |
@@ -5138,7 +5146,8 @@ Creates a **PixelMap** object based on decoding options. This API returns the re
 ```ts
 import { image } from '@kit.ImageKit';
 
-const context: Context = getContext();
+// Obtain the context from the component and ensure that the return value of this.getUIContext().getHostContext() is UIAbilityContext.
+let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 // 'test.jpg' is only an example. Replace it with the actual one in use. Otherwise, the imageSource instance fails to be created, and subsequent operations cannot be performed.
 let filePath: string = context.filesDir + "/test.jpg";
 let imageSource = image.createImageSource(filePath);
@@ -5309,7 +5318,7 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
-| 62980096 | Operation failed. Possible cause: 1.Image upload exception. 2. Decoding process exception. 3. Insufficient memory.            |
+| 62980096 | Operation failed.Possible cause: 1.Image upload exception. 2. Decoding process exception. 3. Insufficient memory.            |
 | 62980099 | The shared memory data is abnormal.  |
 | 62980101 | The image data is abnormal.         |
 | 62980103 | The image data is not supported.        |
@@ -5390,7 +5399,8 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 ```ts
 import image from '@ohos.multimedia.image';
 
-const context: Context = getContext(this);
+// Obtain the context from the component and ensure that the return value of this.getUIContext().getHostContext() is UIAbilityContext.
+let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 // 'test.jpg' is only an example. Replace it with the actual one in use. Otherwise, the imageSource instance fails to be created, and subsequent operations cannot be performed.
 let filePath: string = context.filesDir + "/test.jpg";
 let imageSource = image.createImageSource(filePath);
@@ -5403,7 +5413,7 @@ let decodingOptions: image.DecodingOptions = {
   cropAndScaleStrategy: image.CropAndScaleStrategy.CROP_FIRST,
   index: 0
 };
-let pixelmap = await imageSource.createPixelMapUsingAllocator(decodingOptions, image.AllocatorType.AUTO);
+let pixelmap = imageSource.createPixelMapUsingAllocator(decodingOptions, image.AllocatorType.AUTO);
 if (pixelmap != undefined) {
   console.info('Succeeded in creating pixelMap object.');
 } else {
@@ -5452,7 +5462,8 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 ```ts
 import image from '@ohos.multimedia.image';
 
-const context: Context = getContext(this);
+// Obtain the context from the component and ensure that the return value of this.getUIContext().getHostContext() is UIAbilityContext.
+let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 // 'test.jpg' is only an example. Replace it with the actual one in use. Otherwise, the imageSource instance fails to be created, and subsequent operations cannot be performed.
 let filePath: string = context.filesDir + "/test.jpg";
 let imageSource = image.createImageSource(filePath);
@@ -5493,7 +5504,7 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
-| 62980096| Operation failed. Possible cause: 1.Image upload exception. 2. Decoding process exception. 3. Insufficient memory.              |
+| 62980096| Operation failed.Possible cause: 1.Image upload exception. 2. Decoding process exception. 3. Insufficient memory.              |
 | 62980110| The image source data is incorrect.             |
 | 62980111| The image source data is incomplete.            |
 | 62980112 | The image format does not match. |
@@ -5539,7 +5550,7 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
-| 62980096 | Operation failed. Possible cause: 1.Image upload exception. 2. Decoding process exception. 3. Insufficient memory.             |
+| 62980096 | Operation failed.Possible cause: 1.Image upload exception. 2. Decoding process exception. 3. Insufficient memory.             |
 | 62980110 | The image source data is incorrect.      |
 | 62980111 | The image source data is incomplete. |
 | 62980112 | The image format does not match.        |
@@ -5583,7 +5594,7 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
-| 62980096| Operation failed. Possible cause: 1.Image upload exception. 2. Decoding process exception. 3. Insufficient memory.             |
+| 62980096| Operation failed.Possible cause: 1.Image upload exception. 2. Decoding process exception. 3. Insufficient memory.             |
 | 62980110| The image source data is incorrect. |
 | 62980111| The image source data is incomplete. |
 | 62980112| The image format does not match. |
@@ -5628,7 +5639,7 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
-| 62980096 | Operation failed. Possible cause: 1.Image upload exception. 2. Decoding process exception. 3. Insufficient memory.             |
+| 62980096 | Operation failed.Possible cause: 1.Image upload exception. 2. Decoding process exception. 3. Insufficient memory.             |
 | 62980110 | The image source data is incorrect.      |
 | 62980111 | The image source data is incomplete. |
 | 62980112 | The image format does not match.        |
@@ -5671,7 +5682,7 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
-| 62980096 | Operation failed. Possible cause: 1.Image upload exception. 2. Decoding process exception. 3. Insufficient memory.      |
+| 62980096 | Operation failed.Possible cause: 1.Image upload exception. 2. Decoding process exception. 3. Insufficient memory.      |
 | 62980101 | The image data is abnormal. |
 | 62980137 | Invalid media operation.        |
 | 62980149 | Invalid MIME type for the image source.      |
@@ -5803,7 +5814,7 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 | ID| Error Message|
 | ------- | --------------------------------------------|
 | 401 | If the parameter is invalid. |
-| 62980096| Operation failed. Possible cause: 1.Image upload exception. 2. Decoding process exception. 3. Insufficient memory.              |
+| 62980096| Operation failed.Possible cause: 1.Image upload exception. 2. Decoding process exception. 3. Insufficient memory.              |
 | 62980101 | The image data is abnormal. |
 | 62980106 | The image is too large. |
 | 62980113 | Unknown image format. |
@@ -5823,7 +5834,8 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-const context: Context = getContext();
+// Obtain the context from the component and ensure that the return value of this.getUIContext().getHostContext() is UIAbilityContext.
+let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 // 'test.jpg' is only an example. Replace it with the actual one in use. Otherwise, the imageSource instance fails to be created, and subsequent operations cannot be performed.
 let filePath: string = context.filesDir + "/test.jpg";
 const imageSourceApi: image.ImageSource = image.createImageSource(filePath);
@@ -5871,7 +5883,7 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 | ID| Error Message|
 | ------- | --------------------------------------------|
 | 401 | If the parameter is invalid. |
-| 62980096| Operation failed. Possible cause: 1.Image upload exception. 2. Decoding process exception. 3. Insufficient memory.              |
+| 62980096| Operation failed.Possible cause: 1.Image upload exception. 2. Decoding process exception. 3. Insufficient memory.              |
 | 62980101 | The image data is abnormal. |
 | 62980106 | The image is too large. |
 | 62980113 | Unknown image format. |
@@ -5937,8 +5949,7 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 import { BusinessError } from '@kit.BasicServicesKit';
 import { image } from '@kit.ImageKit';
 
-async function Packing() {
-  const context = getContext();
+async function Packing(context: Context) {
   const resourceMgr = context.resourceManager;
   const rawFile = await resourceMgr.getRawFileContent("test.jpg");
   let ops: image.SourceOptions = {
@@ -6002,13 +6013,14 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 import { BusinessError } from '@ohos.base';
 import image from "@ohos.multimedia.image";
 
-const context = getContext();
+// Obtain the context from the component and ensure that the return value of this.getUIContext().getHostContext() is UIAbilityContext.
+let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 const resourceMgr = context.resourceManager;
 // 'moving_test.gif' is only an example. Replace it with the actual one in use. Otherwise, the imageSource instance fails to be created, and subsequent operations cannot be performed.
-const fileData = await resourceMgr.getRawFileContent('moving_test.gif');
+const fileData = resourceMgr.getRawFileContent('moving_test.gif');
 const color = fileData.buffer;
 let imageSource = image.createImageSource(color);
-let pixelMapList = await imageSource.createPixelMapList();
+let pixelMapList = imageSource.createPixelMapList();
 let ops: image.PackingOptionsForSequence = {
   frameCount: 3, // Set the number of frames in GIF encoding to 3.
   delayTimeList: [10, 10, 10], // Set the delay time of three frames in GIF encoding to 100 ms, 100 ms, and 100 ms, respectively.
@@ -6051,7 +6063,8 @@ Compresses or re-encodes an image. This API uses an asynchronous callback to ret
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-const context: Context = getContext();
+// Obtain the context from the component and ensure that the return value of this.getUIContext().getHostContext() is UIAbilityContext.
+let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 // 'test.jpg' is only an example. Replace it with the actual one in use. Otherwise, the imageSource instance fails to be created, and subsequent operations cannot be performed.
 let filePath: string = context.filesDir + "/test.jpg";
 const imageSourceApi: image.ImageSource = image.createImageSource(filePath);
@@ -6098,7 +6111,8 @@ Compress or re-encode an image. This API uses a promise to return the result.
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-const context: Context = getContext();
+// Obtain the context from the component and ensure that the return value of this.getUIContext().getHostContext() is UIAbilityContext.
+let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 // 'test.jpg' is only an example. Replace it with the actual one in use. Otherwise, the imageSource instance fails to be created, and subsequent operations cannot be performed.
 let filePath: string = context.filesDir + "/test.jpg";
 const imageSourceApi: image.ImageSource = image.createImageSource(filePath);
@@ -6292,7 +6306,7 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
-| 62980096| Operation failed. Possible cause: 1.Image upload exception. 2. Decoding process exception. 3. Insufficient memory.              |
+| 62980096| Operation failed.Possible cause: 1.Image upload exception. 2. Decoding process exception. 3. Insufficient memory.              |
 | 62980101 | The image data is abnormal. |
 | 62980106 | The image is too large. |
 | 62980113 | Unknown image format. |
@@ -6308,7 +6322,8 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 import { BusinessError } from '@kit.BasicServicesKit';
 import { fileIo as fs } from '@kit.CoreFileKit';
 
-const context: Context = getContext(this);
+// Obtain the context from the component and ensure that the return value of this.getUIContext().getHostContext() is UIAbilityContext.
+let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 // 'test.png' is only an example. Replace it with the actual one in use. Otherwise, the imageSource instance fails to be created, and subsequent operations cannot be performed.
 const path: string = context.filesDir + "/test.png";
 const imageSourceApi: image.ImageSource = image.createImageSource(path);
@@ -6353,7 +6368,7 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
-| 62980096| Operation failed. Possible cause: 1.Image upload exception. 2. Decoding process exception. 3. Insufficient memory.              |
+| 62980096| Operation failed.Possible cause: 1.Image upload exception. 2. Decoding process exception. 3. Insufficient memory.              |
 | 62980101 | The image data is abnormal. |
 | 62980106 | The image is too large. |
 | 62980113 | Unknown image format. |
@@ -6369,7 +6384,8 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 import { BusinessError } from '@kit.BasicServicesKit';
 import { fileIo as fs } from '@kit.CoreFileKit';
 
-const context: Context = getContext(this);
+// Obtain the context from the component and ensure that the return value of this.getUIContext().getHostContext() is UIAbilityContext.
+let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 // 'test.png' is only an example. Replace it with the actual one in use. Otherwise, the imageSource instance fails to be created, and subsequent operations cannot be performed.
 const path: string = context.filesDir + "/test.png";
 const imageSourceApi: image.ImageSource = image.createImageSource(path);
@@ -6410,7 +6426,7 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
-| 62980096| Operation failed. Possible cause: 1.Image upload exception. 2. Decoding process exception. 3. Insufficient memory.              |
+| 62980096| Operation failed.Possible cause: 1.Image upload exception. 2. Decoding process exception. 3. Insufficient memory.              |
 | 62980101 | The image data is abnormal. |
 | 62980106 | The image is too large. |
 | 62980113 | Unknown image format. |
@@ -6428,7 +6444,8 @@ import { fileIo as fs } from '@kit.CoreFileKit';
 
 const color: ArrayBuffer = new ArrayBuffer(96); // 96 is the size of the pixel buffer to create. The value is calculated as follows: height * width *4.
 let opts: image.InitializationOptions = { editable: true, pixelFormat: image.PixelMapFormat.RGBA_8888, size: { height: 4, width: 6 } }
-const context: Context = getContext(this);
+// Obtain the context from the component and ensure that the return value of this.getUIContext().getHostContext() is UIAbilityContext.
+let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 const path: string = context.filesDir + "/pixel_map.jpg";
 image.createPixelMap(color, opts).then((pixelmap: image.PixelMap) => {
   let packOpts: image.PackingOption = { format: "image/jpeg", quality: 98 }
@@ -6475,7 +6492,7 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
-| 62980096| Operation failed. Possible cause: 1.Image upload exception. 2. Decoding process exception. 3. Insufficient memory.              |
+| 62980096| Operation failed.Possible cause: 1.Image upload exception. 2. Decoding process exception. 3. Insufficient memory.              |
 | 62980101 | The image data is abnormal. |
 | 62980106 | The image is too large. |
 | 62980113 | Unknown image format. |
@@ -6493,7 +6510,8 @@ import { fileIo as fs } from '@kit.CoreFileKit';
 
 const color: ArrayBuffer = new ArrayBuffer(96); // 96 is the size of the pixel buffer to create. The value is calculated as follows: height * width *4.
 let opts: image.InitializationOptions = { editable: true, pixelFormat: image.PixelMapFormat.RGBA_8888, size: { height: 4, width: 6 } }
-const context: Context = getContext(this);
+// Obtain the context from the component and ensure that the return value of this.getUIContext().getHostContext() is UIAbilityContext.
+let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 const path: string = context.filesDir + "/pixel_map.jpg";
 image.createPixelMap(color, opts).then((pixelmap: image.PixelMap) => {
   let packOpts: image.PackingOption = { format: "image/jpeg", quality: 98 }
@@ -6546,8 +6564,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 import { image } from '@kit.ImageKit';
 import { fileIo as fs } from '@kit.CoreFileKit';
 
-async function PackToFile() {
-  const context = getContext();
+async function PackToFile(context: Context) {
   const resourceMgr = context.resourceManager;
   const rawFile = await resourceMgr.getRawFileContent("test.jpg");
   let ops: image.SourceOptions = {
@@ -6560,7 +6577,6 @@ async function PackToFile() {
   let funcName = "PackToFile";
   const imagePackerApi: image.ImagePacker = image.createImagePacker();
   if (imagePackerApi != null) {
-    const context: Context = getContext();
     const filePath: string = context.filesDir + "/test.jpg";
     let file = fs.openSync(filePath, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
     let packOpts: image.PackingOption = {
@@ -6598,7 +6614,7 @@ Encodes multiple PixelMaps into a GIF file. This API uses a promise to return th
 
 | Type          | Description                     |
 | -------------- | ------------------------- |
-| Promise\<void> | Promise that returns no value.|
+| Promise\<void> | that returns no value.|
 
 **Error codes**
 
@@ -6617,7 +6633,8 @@ import { BusinessError } from '@ohos.base';
 import fs from '@ohos.file.fs';
 import image from "@ohos.multimedia.image";
 
-const context = getContext();
+// Obtain the context from the component and ensure that the return value of this.getUIContext().getHostContext() is UIAbilityContext.
+let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 const resourceMgr = context.resourceManager;
 // 'moving_test.gif' is only an example. Replace it with the actual one in use. Otherwise, the imageSource instance fails to be created, and subsequent operations cannot be performed.
 const fileData = await resourceMgr.getRawFileContent('moving_test.gif');
@@ -6676,9 +6693,8 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 ```ts
 import { image } from '@kit.ImageKit';
 
-async function CreateAuxiliaryPicture() {
+async function CreateAuxiliaryPicture(context: Context) {
   let funcName = "CreateAuxiliaryPicture";
-  const context = getContext();
   const resourceMgr = context.resourceManager;
   const rawFile = await resourceMgr.getRawFileContent("hdr.jpg"); // Support for HDR images is required.
   let auxBuffer: ArrayBuffer = rawFile.buffer as ArrayBuffer;
@@ -6740,8 +6756,7 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 ```ts
 import { image } from '@kit.ImageKit';
 
-async function WritePixelsFromBuffer() {
-  const context = getContext();
+async function WritePixelsFromBuffer(context: Context) {
   const resourceMgr = context.resourceManager;
   const rawFile = await resourceMgr.getRawFileContent("hdr.jpg"); // Support for HDR images is required.
   let ops: image.SourceOptions = {
@@ -6790,8 +6805,7 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 import { BusinessError } from '@kit.BasicServicesKit';
 import { image } from '@kit.ImageKit';
 
-async function ReadPixelsToBuffer() {
-  const context = getContext();
+async function ReadPixelsToBuffer(context: Context) {
   const resourceMgr = context.resourceManager;
   const rawFile = await resourceMgr.getRawFileContent("hdr.jpg"); // Support for HDR images is required.
   let ops: image.SourceOptions = {
@@ -6878,8 +6892,7 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 import { BusinessError } from '@kit.BasicServicesKit';
 import { image } from '@kit.ImageKit';
 
-async function SetAuxPictureObjMetadata() {
-  const exifContext = getContext();
+async function SetAuxPictureObjMetadata(exifContext: Context) {
   const exifResourceMgr = exifContext.resourceManager;
   const exifRawFile = await exifResourceMgr.getRawFileContent("exif.jpg");// The image contains EXIF metadata.
   let exifOps: image.SourceOptions = {
@@ -7103,8 +7116,7 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 import { BusinessError } from '@kit.BasicServicesKit';
 import { image } from '@kit.ImageKit';
 
-async function GetProperties() {
-  const context = getContext();
+async function GetProperties(context: Context) {
   const resourceMgr = context.resourceManager;
   const rawFile = await resourceMgr.getRawFileContent("exif.jpg"); // The image contains EXIF metadata.
   let ops: image.SourceOptions = {
@@ -7162,8 +7174,7 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 import { BusinessError } from '@kit.BasicServicesKit';
 import { image } from '@kit.ImageKit';
 
-async function SetProperties() {
-  const context = getContext();
+async function SetProperties(context: Context) {
   const resourceMgr = context.resourceManager;
   const rawFile = await resourceMgr.getRawFileContent("exif.jpg"); // The image contains EXIF metadata.
   let ops: image.SourceOptions = {
@@ -7210,8 +7221,7 @@ Obtains all properties and values from the image's metadata. This API uses a pro
 import { BusinessError } from '@kit.BasicServicesKit';
 import { image } from '@kit.ImageKit';
 
-async function GetAllProperties() {
-  const context = getContext();
+async function GetAllProperties(context: Context) {
   const resourceMgr = context.resourceManager;
   const rawFile = await resourceMgr.getRawFileContent("exif.jpg"); // The image contains EXIF metadata.
   let ops: image.SourceOptions = {
@@ -7265,8 +7275,7 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 import { BusinessError } from '@kit.BasicServicesKit';
 import { image } from '@kit.ImageKit';
 
-async function clone() {
-  const context = getContext();
+async function clone(context: Context) {
   const resourceMgr = context.resourceManager;
   const rawFile = await resourceMgr.getRawFileContent("exif.jpg"); // The image contains EXIF metadata.
   let ops: image.SourceOptions = {
@@ -8321,7 +8330,7 @@ Describes the image decoding options.
 | desiredSize        | [Size](#size)                      | No  | Yes  | Expected output size. The value must be a positive integer and defaults to the original image size. If the output size is different from the original size, the output is stretched or scaled to the specified size.<br>**Atomic service API**: This API can be used in atomic services since API version 11.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 12.  |
 | desiredRegion      | [Region](#region8)                 | No  | Yes  | Rectangle specified by **Region** in the decoded image. When the original image is large and only a specific part of the image is required, you can set this parameter to improve performance. The default value is the original image size.<br>**Atomic service API**: This API can be used in atomic services since API version 11.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 12.      |
 | desiredPixelFormat | [PixelMapFormat](#pixelmapformat7) | No  | Yes  | Pixel format for decoding. The default value is **RGBA_8888**. Only RGBA_8888, BGRA_8888, and RGB_565 are supported. RGB_565 is not supported for images with alpha channels, such as PNG, GIF, ICO, and WEBP.<br>**Atomic service API**: This API can be used in atomic services since API version 11.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 12.|
-| index              | number                             | No  | Yes  | Index of the image to decode. The default value is **0**, indicating the first image. If this parameter is set to N, the (N-1)th image is used. For single-frame images, the value is always **0**. For multi-frame images such as animations, the value ranges from 0 to (Number of frames - 1).<br>**Atomic service API**: This API can be used in atomic services since API version 11.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 12.  |
+| index              | number                             | No  | Yes  | Index of the image to decode. The default value is **0**, indicating the first image. If this parameter is set to N, the (N-1)th image is used. For single-frame images, the value is always **0**. For multi-frame images such as animations, the value ranges from 0 to (Number of frames – 1).<br>**Atomic service API**: This API can be used in atomic services since API version 11.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 12.  |
 | fitDensity<sup>9+</sup> | number                        | No  | Yes  | Pixel density, in ppi. The default value is **0**.<br>**Atomic service API**: This API can be used in atomic services since API version 11.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 12.  |
 | desiredColorSpace<sup>11+</sup> | [colorSpaceManager.ColorSpaceManager](../apis-arkgraphics2d/js-apis-colorSpaceManager.md#colorspacemanager) | No  | Yes  | Target color space. The default value is **UNKNOWN**.|
 | desiredDynamicRange<sup>12+</sup> | [DecodingDynamicRange](#decodingdynamicrange12) | No  | Yes  | Desired dynamic range. The default value is **SDR**.<br>This property cannot be set for an image source created using [CreateIncrementalSource](#imagecreateincrementalsource9). By default, the image source is decoded as SDR content.<br>If the platform does not support HDR, the setting is invalid and the content is decoded as SDR content by default.|
