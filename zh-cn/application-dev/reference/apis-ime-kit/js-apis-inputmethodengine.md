@@ -4701,6 +4701,19 @@ try {
 }
 ```
 
+### CapitalizeMode<sup>20+</sup>
+
+大小写模式类型枚举
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+| 名称 | 值 | 描述 |
+| -------- | -- | -------- |
+| NONE <sup>20+</sup> | 0 | 大小写模式，不区分大小写 |
+| SENTENCES <sup>20+</sup> | 1 | 大小写模式，句子开头首字母大写|
+| WORDS <sup>20+</sup> | 2 |大小写模式，每个单词首字母大写|
+| CHARACTERS <sup>20+</sup> | 3 | 大小写模式，每个字母都大写 |
+
 ### EditorAttribute
 
 编辑框属性值。
@@ -4716,6 +4729,7 @@ try {
 | immersiveMode<sup>15+</sup> | number | 是   | 是   | 输入法沉浸模式。 |
 | windowId<sup>18+</sup> | number | 是 | 是 | 编辑框设置所属窗口ID。 |
 | displayId<sup>18+</sup> | number | 是   | 是   | 编辑框设置窗口对应的屏幕ID。如果没有设置windowId，取当前焦点窗口屏幕ID。|
+| capitalizeMode<sup>20+</sup> | [CapitalizeMode](#capitalizemode20) | 是 | 是 | 编辑框设置大小写模式，如果没有设置默认为无大小写。|
 
 ## KeyEvent
 
