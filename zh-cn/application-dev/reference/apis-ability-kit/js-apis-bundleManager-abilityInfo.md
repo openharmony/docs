@@ -7,7 +7,7 @@ Ability信息，三方应用可以通过[bundleManager.getBundleInfoForSelf](js-
 
 ## AbilityInfo
 
- **系统能力:** SystemCapability.BundleManager.BundleFramework.Core
+ **系统能力：** SystemCapability.BundleManager.BundleFramework.Core
 
 | 名称                  | 类型                                                     | 只读 | 可选 | 说明                                      |
 | --------------------- | -------------------------------------------------------- | ---- | ---- | ------------------------------------------ |
@@ -46,7 +46,7 @@ Ability信息，三方应用可以通过[bundleManager.getBundleInfoForSelf](js-
 
  <br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
- **系统能力:** SystemCapability.BundleManager.BundleFramework.Core
+ **系统能力：** SystemCapability.BundleManager.BundleFramework.Core
 
 | 名称               | 类型    | 只读 | 可选 | 说明                               |
 | -------------------| ------- | ---- | ---- | ---------------------------------- |

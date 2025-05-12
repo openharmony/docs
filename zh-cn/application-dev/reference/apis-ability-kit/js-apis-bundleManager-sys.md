@@ -104,7 +104,7 @@ Ability组件信息标志，指示需要获取的Ability组件信息的内容。
 
 标识配置文件类型。
 
- **系统能力:** SystemCapability.BundleManager.BundleFramework.Core
+ **系统能力：** SystemCapability.BundleManager.BundleFramework.Core
 
  **系统接口：** 此接口为系统接口。
 
@@ -116,20 +116,19 @@ Ability组件信息标志，指示需要获取的Ability组件信息的内容。
 
 标识应用[分发类型](../../security/app-provision-structure.md)。
 
- **系统能力:** SystemCapability.BundleManager.BundleFramework.Core
+ **系统能力：** SystemCapability.BundleManager.BundleFramework.Core
 
  **系统接口：** 此接口为系统接口。
 
 | 名称              | 值   | 说明            |
 | ----------------- | ---- | --------------- |
-| NONE              | 0    | 其他。           |
 | APP_GALLERY       | 1    | 应用市场分发的应用。    |
 | ENTERPRISE        | 2    | 企业应用，可以安装到个人设备上。    |
 | ENTERPRISE_NORMAL | 3    | 普通企业应用，只能通过企业MDM应用安装在企业设备上。无需设备管理特权。    |
 | ENTERPRISE_MDM    | 4    | 企业MDM应用，只能安装在企业设备上。需要设备管理特权，比如远程锁定，安装普通企业应用等。    |
 | OS_INTEGRATION    | 5    | 系统预置应用。    |
 | CROWDTESTING      | 6    | 众包测试应用。    |
-| INTERNALTESTING   | 7    | 应用市场内测的应用。    |
+| NONE              | 7    | 其他。           |
 
 ## ApplicationInfoFlag<sup>12+</sup>
 标识应用和用户之间的各种状态类型。
