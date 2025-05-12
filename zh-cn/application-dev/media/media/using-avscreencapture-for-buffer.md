@@ -578,7 +578,7 @@ static napi_value Screencapture(napi_env env, napi_callback_info info) {
     // 可选 设置录屏时的最大帧率 需在启动后调用。
     // OH_AVScreenCapture_SetMaxVideoFrameRate(capture, 20);
 
-    sleep(10); // 录制10s。
+    sleep(2); // 录制2s。
     // 结束录屏。
     OH_AVScreenCapture_StopScreenCapture(capture);
     // 释放ScreenCapture。
