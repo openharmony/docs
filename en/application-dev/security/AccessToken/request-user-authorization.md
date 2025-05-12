@@ -43,7 +43,9 @@ The following example steps you through on how to request the location permissio
 
 **Figure 1** Requesting the location permissions
 
+<!--RP4-->
 ![en_image_location](figures/en_image_location.png)
+<!--RP4End-->
 
 1. Request the ohos.permission.LOCATION and ohos.permission.APPROXIMATELY_LOCATION permissions. For details, see [Declaring Permissions](declare-permissions.md).
 
@@ -177,7 +179,7 @@ The following example steps you through on how to request the location permissio
       @Component
       struct Index {
         aboutToAppear() {
-          const context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext;
+          const context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
           reqPermissionsFromUser(permissions, context);
         }
       

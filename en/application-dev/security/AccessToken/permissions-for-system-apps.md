@@ -3598,7 +3598,7 @@ Allows a system application or system ability to receive fusion service messages
 
 ## ohos.permission.RECEIVE_BMS_BROKER_MESSAGES
 
-Allows a system application or system ability to receive bms broker service messages.
+Allows a system application or system service to receive BMS broker messages.
 
 **Permission level**: system_basic
 
@@ -4625,7 +4625,7 @@ Allows an application to send notifications to the specified users in the system
 
 ## ohos.permission.ACCESS_CALENDARDATA_FOR_BROKER
 
-Allows a system server to access calendar data.
+Allows a system service broker to access calendar data.
 
 **Permission level**: system_core
 
