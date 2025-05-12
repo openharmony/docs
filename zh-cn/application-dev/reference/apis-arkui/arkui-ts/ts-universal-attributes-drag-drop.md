@@ -1,10 +1,10 @@
 # 拖拽控制
 
-设置组件是否可以响应拖拽事件。
+组件提供了一些属性和接口，可用于配置组件对拖拽事件的响应行为，或影响系统对拖拽事件的处理方式，包括是否允许被拖拽，自定义拖拽跟手图的外观等。
 
 > **说明：**
 > 
-> 从API Version 10开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+> 从API version 10开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 ArkUI框架对以下组件实现了默认的拖拽能力，支持对数据的拖出或拖入响应。开发者也可以通过实现通用拖拽事件来自定义拖拽响应。
 
@@ -127,9 +127,9 @@ dragPreviewOptions(value: DragPreviewOptions, options?: DragInteractionOptions)
 
 | 名称 | 类型 | 必填 | 描述 |
 | -------- | -------- | -------- | -------- |
-| isMultiSelectionEnabled | boolean | 否 | 表示拖拽过程中背板图是否支持多选聚拢效果。true表示支持多选聚拢效果，false表示不支持多选聚拢效果。该参数只在[Grid](ts-container-grid.md)和[List](ts-container-list.md)组件中的[GridItem](ts-container-griditem.md)组件和[ListItem](ts-container-listitem.md)组件生效。<br/>当一个item组件设置为多选拖拽时，该组件的子组件不可拖拽。聚拢组件预览图设置的优先级为[dragPreview](#dragpreview11)中的string，dragPreview中的PixelMap，组件自截图，不支持dragPreview中的Builder形式。<br/>不支持组件绑定[bindContextMenu](ts-universal-attributes-menu.md#bindcontextmenu12)中参数存在isShown的模式。<br/>默认值：false<br/> |
-| defaultAnimationBeforeLifting | boolean | 否 | 表示是否启用长按浮起阶段组件自身的默认点按效果（缩小）。true表示启用默认点按效果，false表示不启用默认点按效果。<br/>默认值：false <br/> |
-| isLiftingDisabled<sup>15+</sup> | boolean | 否 | 表示长按拖拽时，是否禁用浮起效果。true表示禁用浮起效果，false表示不禁用浮起效果。<br/>如果设置为true，当组件支持拖拽并同时设置[bindContextMenu](ts-universal-attributes-menu.md#bindcontextmenu8)时，仅弹出配置的自定义菜单预览。 <br/>默认值：false |
+| isMultiSelectionEnabled | boolean | 否 | 表示拖拽过程中背板图是否支持多选聚拢效果。true表示支持多选聚拢效果，false表示不支持多选聚拢效果。该参数只在[Grid](ts-container-grid.md)和[List](ts-container-list.md)组件中的[GridItem](ts-container-griditem.md)组件和[ListItem](ts-container-listitem.md)组件生效。<br/>当一个item组件设置为多选拖拽时，该组件的子组件不可拖拽。聚拢组件预览图设置的优先级为[dragPreview](#dragpreview11)中的string，dragPreview中的PixelMap，组件自截图，不支持dragPreview中的Builder形式。<br/>不支持组件绑定[bindContextMenu](ts-universal-attributes-menu.md#bindcontextmenu12)中参数存在isShown的模式。<br/>默认值：false<br/>**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。 |
+| defaultAnimationBeforeLifting | boolean | 否 | 表示是否启用长按浮起阶段组件自身的默认点按效果（缩小）。true表示启用默认点按效果，false表示不启用默认点按效果。<br/>默认值：false <br/>**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。 |
+| isLiftingDisabled<sup>15+</sup> | boolean | 否 | 表示长按拖拽时，是否禁用浮起效果。true表示禁用浮起效果，false表示不禁用浮起效果。<br/>如果设置为true，当组件支持拖拽并同时设置[bindContextMenu](ts-universal-attributes-menu.md#bindcontextmenu8)时，仅弹出配置的自定义菜单预览。 <br/>默认值：false**原子化服务API**：从API version 15开始，该接口支持在原子化服务中使用。 |
 
 ## 示例
 ### 示例1（允许拖拽和落入）
@@ -437,7 +437,7 @@ struct Example {
 
 ```ts
 // xxx.ets
-import { ImageModifier } from '@kit.ArkUI'
+import { ImageModifier } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -499,8 +499,8 @@ struct ImageDrag {
   @State targetImage1: string | PixelMap | null = null;
   @State targetImage2: string | PixelMap | null = null;
   @State targetImage3: string | PixelMap | null = null;
-  context = getContext(this) as common.UIAbilityContext;
-  filesDir = this.context.filesDir;
+  context: Context|undefined = this.getUIContext().getHostContext();
+  filesDir = this.context?.filesDir;
 
   public async createPixelMap(pixelMap: unifiedDataChannel.SystemDefinedPixelMap): Promise<image.PixelMap | null> {
     let mWidth: number = (pixelMap.details?.width ?? -1) as number;
@@ -553,7 +553,7 @@ struct ImageDrag {
         // PixelMap拖出
         Column() {
           Text('PixelMap').fontSize(14)
-          Image(this.context.resourceManager.getDrawableDescriptor($r('app.media.example').id).getPixelMap())
+          Image(this.context?.resourceManager.getDrawableDescriptor($r('app.media.example').id).getPixelMap())
             .objectFit(ImageFit.Contain).draggable(true)
             .onDragStart(() => {})
             .width(100).height(100)
@@ -633,7 +633,7 @@ struct ImageDrag {
               // 落盘到本地
               const imagePackerApi = image.createImagePacker();
               let packOpts : image.PackingOption = { format: "image/jpeg", quality:98 };
-              const path : string = this.context.cacheDir + "/pixel_map.jpg";
+              const path : string = this.context?.cacheDir + "/pixel_map.jpg";
               let file = fileIo.openSync(path, fileIo.OpenMode.CREATE | fileIo.OpenMode.READ_WRITE);
               imagePackerApi.packToFile(this.targetImage3, file.fd, packOpts).then(() => {
                 // 直接打包进文件

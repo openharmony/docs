@@ -11,7 +11,8 @@
 ## 导入模块
 
 ```ts
-import { AlbumPickerComponent, AlbumPickerOptions, AlbumInfo, photoAccessHelper, EmptyAreaClickCallback } from '@kit.MediaLibraryKit';
+import { AlbumPickerComponent, AlbumPickerOptions, AlbumInfo, photoAccessHelper, PickerColorMode } from '@kit.MediaLibraryKit';
+import { EmptyAreaClickCallback } from '@ohos.file.AlbumPickerComponent';
 ```
 
 ## 属性
@@ -26,7 +27,7 @@ AlbumPickerComponent({
   onEmptyAreaClick?: EmptyAreaClickCallback
 })
 
-应用可以在布局中嵌入AlbumPickerComponent组件，通过此组件，应用无需申请权限，即可访问公共目录中的的相册列表。
+应用可以在布局中嵌入AlbumPickerComponent组件，通过此组件，应用无需申请权限，即可访问公共目录中的相册列表。
 
 **装饰器类型**：@Component
 
@@ -110,7 +111,7 @@ struct PickerDemo {
       AlbumPickerComponent({
         albumPickerOptions: this.albumPickerOptions,
         onAlbumClick:(albumInfo: AlbumInfo): boolean => this.onAlbumClick(albumInfo),
-        onEmptyAreaClick(): this.emptyAreaClickCallback,
+        onEmptyAreaClick: this.emptyAreaClickCallback,
       }).height('100%').width('100%')
     }
   }

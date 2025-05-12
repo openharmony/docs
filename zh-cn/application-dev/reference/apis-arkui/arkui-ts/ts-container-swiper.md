@@ -14,7 +14,7 @@
 
 >  **说明：** 
 >
->  - 子组件类型：系统组件和自定义组件，支持渲染控制类型（[if/else](../../../quick-start/arkts-rendering-control-ifelse.md)、[ForEach](../../../quick-start/arkts-rendering-control-foreach.md)、[LazyForEach](../../../quick-start/arkts-rendering-control-lazyforeach.md)和[Repeat](../../../quick-start/arkts-new-rendering-control-repeat.md)）。不建议子组件中混用懒加载组件（包括LazyForEach、Repeat）和非懒加载组件，或者子组件中使用多个懒加载组件，否则可能导致懒加载组件预加载能力失效等问题。不建议在组件动画过程中对数据源进行操作，否则会导致布局出现异常。
+>  - 子组件类型：系统组件和自定义组件，支持渲染控制类型（[if/else](../../../ui/state-management/arkts-rendering-control-ifelse.md)、[ForEach](../../../ui/state-management/arkts-rendering-control-foreach.md)、[LazyForEach](../../../ui/state-management/arkts-rendering-control-lazyforeach.md)和[Repeat](../../../ui/state-management/arkts-new-rendering-control-repeat.md)）。不建议子组件中混用懒加载组件（包括LazyForEach、Repeat）和非懒加载组件，或者子组件中使用多个懒加载组件，否则可能导致懒加载组件预加载能力失效等问题。不建议在组件动画过程中对数据源进行操作，否则会导致布局出现异常。
 >
 >  - Swiper子组件的[visibility](ts-universal-attributes-visibility.md#visibility)属性设置为Visibility.None，且Swiper的displayCount属性设置为'auto'时，对应子组件在视窗内不占位，但不影响导航点个数；visibility属性设置为Visibility.None或者Visibility.Hidden时，对应子组件不显示，但依然会在视窗内占位。
 >
@@ -53,7 +53,7 @@ index(value: number)
 
 设置当前在容器中显示的子组件的索引值。设置小于0或大于等于子组件数量时，按照默认值0处理。
 
-从API version 10开始，该属性支持[$$](../../../quick-start/arkts-two-way-sync.md)双向绑定变量。
+从API version 10开始，该属性支持[$$](../../../ui/state-management/arkts-two-way-sync.md)双向绑定变量。
 
 **卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
 
@@ -158,7 +158,7 @@ loop(value: boolean)
 
 | 参数名 | 类型    | 必填 | 说明                            |
 | ------ | ------- | ---- | ------------------------------- |
-| value  | boolean | 是   | 是否开启循环。<br/>默认值：true |
+| value  | boolean | 是   | 是否开启循环。true为开启循环，false为不开启循环。<br/>默认值：true |
 
 ### duration
 
@@ -400,7 +400,7 @@ displayArrow(value: ArrowStyle | boolean, isHoverShow?: boolean)
 
 nextMargin(value: Length, ignoreBlank?:boolean)
 
-设置后边距，用于露出后一项的一小部分。仅当Swiper子组件的布局方式为拉伸时生效，主要包括两种场景：1、displayMode属性设置为SwiperDisplayMode.STRETCH；2、displayCount属性设置为number类型。
+设置后边距，用于露出后一项的一小部分，使用效果可以参考[示例1设置导航点交互及翻页动效](#示例1设置导航点交互及翻页动效)。仅当Swiper子组件的布局方式为拉伸时生效，主要包括两种场景：1、displayMode属性设置为SwiperDisplayMode.STRETCH；2、displayCount属性设置为number类型。
 
 当主轴方向为横向布局时，nextMargin/prevMargin中任意一个大于子组件测算的宽度，nextMargin和prevMargin均不显示。
 
@@ -421,7 +421,7 @@ nextMargin(value: Length, ignoreBlank?:boolean)
 
 prevMargin(value: Length, ignoreBlank?:boolean)
 
-设置前边距，用于露出前一项的一小部分。仅当Swiper子组件的布局方式为拉伸时生效，主要包括两种场景：1、displayMode属性设置为SwiperDisplayMode.STRETCH；2、displayCount属性设置为number类型。
+设置前边距，用于露出前一项的一小部分，使用效果可以参考[示例1设置导航点交互及翻页动效](#示例1设置导航点交互及翻页动效)。仅当Swiper子组件的布局方式为拉伸时生效，主要包括两种场景：1、displayMode属性设置为SwiperDisplayMode.STRETCH；2、displayCount属性设置为number类型。
 
 当主轴方向为横向布局时，nextMargin/prevMargin中任意一个大于子组件测算的宽度，nextMargin和prevMargin均不显示。
 
@@ -472,7 +472,7 @@ indicatorInteractive(value: boolean)
 
 | 参数名 | 类型                                                        | 必填 | 说明                                                         |
 | ------ | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | boolean | 是   | 导航点是否可交互。<br/>默认值：true |
+| value  | boolean | 是   | 导航点是否可交互。true为导航点可交互，false为导航点不可交互。<br/>默认值：true |
 
 ### pageFlipMode<sup>15+</sup>
 
@@ -500,12 +500,12 @@ pageFlipMode(mode: Optional\<PageFlipMode>)
 
 | 名称          | 类型                                       | 必填 | 说明                                                 |
 | ------------- | ------------------------------------------ | ---- | ---------------------------------------------------- |
-| left          | [Length](ts-types.md#length)               | 否   | 设置导航点左侧相对于Swiper的位置。<br/>未设置left和right时，进行自适应大小布局，按照指示器本身大小和Swiper的大小在主轴方向上进行居中对齐<br/>设置为0时：按照0位置布局计算<br/>优先级：高于right属性<br/>取值范围：[0,Swiper宽度-导航点区域宽度]，超出该范围时，取最近的的边界值。                 |
+| left          | [Length](ts-types.md#length)               | 否   | 设置导航点左侧相对于Swiper的位置。<br/>未设置left和right时，进行自适应大小布局，按照指示器本身大小和Swiper的大小在主轴方向上进行居中对齐<br/>设置为0时：按照0位置布局计算<br/>优先级：高于right属性<br/>取值范围：[0,Swiper宽度-导航点区域宽度]，超出该范围时，取最近的边界值。                 |
 | top           | [Length](ts-types.md#length)               | 否   | 设置导航点顶部相对于Swiper的位置。<br/>未设置top和bottom时，进行自适应大小布局，按照指示器本身大小和Swiper的大小，在交叉轴方向上，位于底部，效果与设置bottom=0一致<br/>设置为0时：按照0位置布局计算<br/>优先级：高于bottom属性<br/>取值范围：[0,Swiper高度-导航点区域高度]，超出该范围时，取最近的边界值。                 |
 | right         | [Length](ts-types.md#length)               | 否   | 设置导航点右侧相对于Swiper的位置。<br/>未设置left和right时，进行自适应大小布局，按照指示器本身大小和Swiper的大小在主轴方向上进行居中对齐<br/>设置为0时：按照0位置布局计算<br/>优先级：低于left属性<br/>取值范围：[0,Swiper宽度-导航点区域宽度]，超出该范围时，取最近的边界值。                 |
 | bottom        | [Length](ts-types.md#length)               | 否   | 设置导航点底部相对于Swiper的位置。<br/>未设置top和bottom时，进行自适应大小布局，按照指示器本身大小和Swiper的大小，在交叉轴方向上，位于底部，效果与设置bottom=0一致<br/>设置为0时：按照0位置布局计算<br/>优先级：低于top属性<br/>取值范围：[0,Swiper高度-导航点区域高度]，超出该范围时，取最近的边界值。                 |
 | size          | [Length](ts-types.md#length)               | 否   | 设置导航点的直径，不支持设置百分比。<br/>默认值：6vp |
-| mask          | boolean                                    | 否   | 设置是否显示导航点蒙层样式。                         |
+| mask          | boolean                                    | 否   | 设置是否显示导航点蒙层样式。<br/>设置为true时显示导航点蒙层样式，为false时不显示。                         |
 | color         | [ResourceColor](ts-types.md#resourcecolor) | 否   | 设置导航点的颜色。                                   |
 | selectedColor | [ResourceColor](ts-types.md#resourcecolor) | 否   | 设置选中的导航点的颜色。                             |
 
@@ -597,7 +597,7 @@ changeIndex(index: number, useAnimation?: boolean)
 
 | 参数名      | 类型       | 必填  | 说明     |
 | -------- | ---------- | ---- | -------- |
-| index| number | 是    | 指定页面在Swiper中的索引值。<br/>**说明：** <br/>设置的值小于0或大于最大页面索引时，取0。 |
+| index| number | 是    | 指定页面在Swiper中的索引值。 |
 | useAnimation| boolean | 否    | 设置翻至指定页面时是否有动效，true表示有动效，false表示没有动效。<br/>默认值：false。 |
 
 ### changeIndex<sup>15+</sup>
@@ -616,7 +616,7 @@ changeIndex(index: number, animationMode?: SwiperAnimationMode | boolean)
 
 | 参数名      | 类型       | 必填  | 说明     |
 | -------- | ---------- | ---- | -------- |
-| index| number | 是    | 指定页面在Swiper中的索引值。<br/>**说明：** <br/>设置的值小于0或大于最大页面索引时，取0。 |
+| index| number | 是    | 指定页面在Swiper中的索引值。 |
 | animationMode| [SwiperAnimationMode](#swiperanimationmode15枚举说明)&nbsp;\|&nbsp;boolean | 否    | 设置翻页至指定页面时的动效模式。<br/>默认值：SwiperAnimationMode.NO_ANIMATION<br/> **说明：** <br/>当传入true时有动效，等同于SwiperAnimationMode.DEFAULT_ANIMATION；当传入false时无动效，等同于SwiperAnimationMode.NO_ANIMATION。 |
 
 ### finishAnimation
@@ -655,7 +655,7 @@ Swiper组件翻页至指定页面的动效模式。
 
 ## Indicator<sup>10+</sup>
 
-设置导航点距离Swiper组件距离。由于导航点有默认交互区域，交互区域高度为32vp, 所以无法让显示部分完全贴底。
+设置导航点距离Swiper组件距离。由于导航点有默认交互区域，交互区域高度为32vp，所以无法让显示部分完全贴底。
 
 **卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
 
@@ -679,7 +679,7 @@ left(value: Length): T
 
 | 参数名 | 类型                         | 必填 | 说明                                                         |
 | ------ | ---------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [Length](ts-types.md#length) | 是   | 设置导航点左侧相对于Swiper的位置。<br/>未设置left和right时，进行自适应大小布局，按照指示器本身大小和Swiper的大小在主轴方向上进行居中对齐。<br/>设置为0时：按照0位置布局计算。<br/>优先级：高于right属性。<br/>取值范围：[0,Swiper宽度-导航点区域宽度]，超出该范围时，取最近的的边界值。 |
+| value  | [Length](ts-types.md#length) | 是   | 设置导航点左侧相对于Swiper的位置。<br/>未设置left和right时，进行自适应大小布局，按照指示器本身大小和Swiper的大小在主轴方向上进行居中对齐。<br/>设置为0时：按照0位置布局计算。<br/>优先级：高于right属性。<br/>取值范围：[0,Swiper宽度-导航点区域宽度]，超出该范围时，取最近的边界值。 |
 
 ### top
 
@@ -927,7 +927,7 @@ mask(value: boolean): DotIndicator
 
 | 参数名 | 类型    | 必填 | 说明                                                         |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
-| value  | boolean | 是   | 设置是否显示Swiper组件圆点导航指示器的蒙版样式。<br/>默认值：false |
+| value  | boolean | 是   | 设置是否显示Swiper组件圆点导航指示器的蒙版样式。true为显示Swiper组件圆点导航指示器的蒙版样式，false为不显示。<br/>默认值：false |
 
 **返回值：** 
 
@@ -988,8 +988,6 @@ selectedColor(value: ResourceColor): DotIndicator
 maxDisplayCount(maxDisplayCount: number): DotIndicator
 
 圆点导航点指示器样式下，导航点显示个数最大值。
-
-单独导航点组件在没有和Swiper绑定使用时，该属性不生效。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1159,8 +1157,8 @@ DigitIndicator的构造函数。
 
 | 名称              | 类型                                     | 必填  | 说明                                     |
 | ---------------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| showBackground   | boolean                                  | 否    | 设置箭头底板是否显示。<br/>默认值：false                |
-| isSidebarMiddle  | boolean                                  | 否    | 设置箭头显示位置。<br/>默认值：false <br/>默认显示在导航点指示器两侧。 |
+| showBackground   | boolean                                  | 否    | 设置箭头底板是否显示。为true时箭头底板显示，为false时箭头底板不显示。<br/>默认值：false                |
+| isSidebarMiddle  | boolean                                  | 否    | 设置箭头显示位置。为true时箭头居中显示在swiper组件两侧，为false时显示在导航点指示器两侧。<br/>默认值：false <br/>默认显示在导航点指示器两侧。 |
 | backgroundSize   | [Length](ts-types.md#length)             | 否    | 设置底板大小。<br/>在导航点两侧显示：<br/>默认值：24vp<br/>在组件两侧显示：<br/>默认值：32vp<br/>不支持设置百分比。 |
 | backgroundColor  | [ResourceColor](ts-types.md#resourcecolor) | 否    | 设置底板颜色。<br/>在导航点两侧显示：<br/>默认值：'\#00000000'<br/>在组件两侧显示：<br/>默认值：'\#19182431' |
 | arrowSize        | [Length](ts-types.md#length)             | 否    | 设置箭头大小。<br/>在导航点两侧显示时：<br/>默认值：18vp<br/>在组件两侧显示时：<br/>默认值：24vp<br/>**说明：**<br/>showBackground为true时，arrowSize为backgroundSize的3/4。<br/>不支持设置百分比。 |
@@ -1461,18 +1459,18 @@ Swiper滑动时触发的回调，参数可参考[SwiperContentTransitionProxy](#
 ```ts
 // xxx.ets
 class MyDataSource implements IDataSource {
-  private list: number[] = []
+  private list: number[] = [];
 
   constructor(list: number[]) {
-    this.list = list
+    this.list = list;
   }
 
   totalCount(): number {
-    return this.list.length
+    return this.list.length;
   }
 
   getData(index: number): number {
-    return this.list[index]
+    return this.list[index];
   }
 
   registerDataChangeListener(listener: DataChangeListener): void {
@@ -1485,15 +1483,15 @@ class MyDataSource implements IDataSource {
 @Entry
 @Component
 struct SwiperExample {
-  private swiperController: SwiperController = new SwiperController()
-  private data: MyDataSource = new MyDataSource([])
+  private swiperController: SwiperController = new SwiperController();
+  private data: MyDataSource = new MyDataSource([]);
 
   aboutToAppear(): void {
-    let list: number[] = []
+    let list: number[] = [];
     for (let i = 1; i <= 10; i++) {
       list.push(i);
     }
-    this.data = new MyDataSource(list)
+    this.data = new MyDataSource(list);
   }
 
   build() {
@@ -1515,7 +1513,9 @@ struct SwiperExample {
       .loop(true)
       .indicatorInteractive(true)
       .duration(1000)
-      .itemSpace(0)
+      .itemSpace(5)
+      .prevMargin(35)
+      .nextMargin(35)
       .indicator( // 设置圆点导航点样式
         new DotIndicator()
           .itemWidth(15)
@@ -1534,46 +1534,46 @@ struct SwiperExample {
       }, false)
       .curve(Curve.Linear)
       .onChange((index: number) => {
-        console.info(index.toString())
+        console.info(index.toString());
       })
       .onGestureSwipe((index: number, extraInfo: SwiperAnimationEvent) => {
-        console.info("index: " + index)
-        console.info("current offset: " + extraInfo.currentOffset)
+        console.info("index: " + index);
+        console.info("current offset: " + extraInfo.currentOffset);
       })
       .onAnimationStart((index: number, targetIndex: number, extraInfo: SwiperAnimationEvent) => {
-        console.info("index: " + index)
-        console.info("targetIndex: " + targetIndex)
-        console.info("current offset: " + extraInfo.currentOffset)
-        console.info("target offset: " + extraInfo.targetOffset)
-        console.info("velocity: " + extraInfo.velocity)
+        console.info("index: " + index);
+        console.info("targetIndex: " + targetIndex);
+        console.info("current offset: " + extraInfo.currentOffset);
+        console.info("target offset: " + extraInfo.targetOffset);
+        console.info("velocity: " + extraInfo.velocity);
       })
       .onAnimationEnd((index: number, extraInfo: SwiperAnimationEvent) => {
-        console.info("index: " + index)
-        console.info("current offset: " + extraInfo.currentOffset)
+        console.info("index: " + index);
+        console.info("current offset: " + extraInfo.currentOffset);
       })
 
       Row({ space: 12 }) {
-        Button('showNext')
-          .onClick(() => {
-            this.swiperController.showNext()
-          })
         Button('showPrevious')
           .onClick(() => {
-            this.swiperController.showPrevious()
+            this.swiperController.showPrevious();
+          })
+        Button('showNext')
+          .onClick(() => {
+            this.swiperController.showNext();
           })
       }.margin(5)
       Row({ space: 5 }) {
         Button('FAST 0')
           .onClick(() => {
-            this.swiperController.changeIndex(0, SwiperAnimationMode.FAST_ANIMATION)
+            this.swiperController.changeIndex(0, SwiperAnimationMode.FAST_ANIMATION);
           })
         Button('FAST 3')
           .onClick(() => {
-            this.swiperController.changeIndex(3, SwiperAnimationMode.FAST_ANIMATION)
+            this.swiperController.changeIndex(3, SwiperAnimationMode.FAST_ANIMATION);
           })
         Button('FAST ' + 9)
           .onClick(() => {
-            this.swiperController.changeIndex(9, SwiperAnimationMode.FAST_ANIMATION)
+            this.swiperController.changeIndex(9, SwiperAnimationMode.FAST_ANIMATION);
           })
       }.margin(5)
     }.width('100%')
@@ -1591,18 +1591,18 @@ struct SwiperExample {
 ```ts
 // xxx.ets
 class MyDataSource implements IDataSource {
-  private list: number[] = []
+  private list: number[] = [];
 
   constructor(list: number[]) {
-    this.list = list
+    this.list = list;
   }
 
   totalCount(): number {
-    return this.list.length
+    return this.list.length;
   }
 
   getData(index: number): number {
-    return this.list[index]
+    return this.list[index];
   }
 
   registerDataChangeListener(listener: DataChangeListener): void {
@@ -1615,15 +1615,15 @@ class MyDataSource implements IDataSource {
 @Entry
 @Component
 struct SwiperExample {
-  private swiperController: SwiperController = new SwiperController()
-  private data: MyDataSource = new MyDataSource([])
+  private swiperController: SwiperController = new SwiperController();
+  private data: MyDataSource = new MyDataSource([]);
 
   aboutToAppear(): void {
-    let list: number[] = []
+    let list: number[] = [];
     for (let i = 1; i <= 10; i++) {
       list.push(i);
     }
-    this.data = new MyDataSource(list)
+    this.data = new MyDataSource(list);
   }
 
   build() {
@@ -1656,11 +1656,11 @@ struct SwiperExample {
       Row({ space: 12 }) {
         Button('showNext')
           .onClick(() => {
-            this.swiperController.showNext()
+            this.swiperController.showNext();
           })
         Button('showPrevious')
           .onClick(() => {
-            this.swiperController.showPrevious()
+            this.swiperController.showPrevious();
           })
       }.margin(5)
     }.width('100%')
@@ -1677,18 +1677,18 @@ struct SwiperExample {
 ```ts
 // xxx.ets
 class MyDataSource implements IDataSource {
-  private list: number[] = []
+  private list: number[] = [];
 
   constructor(list: number[]) {
-    this.list = list
+    this.list = list;
   }
 
   totalCount(): number {
-    return this.list.length
+    return this.list.length;
   }
 
   getData(index: number): number {
-    return this.list[index]
+    return this.list[index];
   }
 
   registerDataChangeListener(listener: DataChangeListener): void {
@@ -1701,15 +1701,15 @@ class MyDataSource implements IDataSource {
 @Entry
 @Component
 struct SwiperExample {
-  private swiperController: SwiperController = new SwiperController()
-  private data: MyDataSource = new MyDataSource([])
+  private swiperController: SwiperController = new SwiperController();
+  private data: MyDataSource = new MyDataSource([]);
 
   aboutToAppear(): void {
-    let list: number[] = []
+    let list: number[] = [];
     for (let i = 1; i <= 10; i++) {
       list.push(i);
     }
-    this.data = new MyDataSource(list)
+    this.data = new MyDataSource(list);
   }
 
   build() {
@@ -1742,11 +1742,11 @@ struct SwiperExample {
       Row({ space: 12 }) {
         Button('showNext')
           .onClick(() => {
-            this.swiperController.showNext()
+            this.swiperController.showNext();
           })
         Button('showPrevious')
           .onClick(() => {
-            this.swiperController.showPrevious()
+            this.swiperController.showPrevious();
           })
       }.margin(5)
     }.width('100%')
@@ -1760,26 +1760,67 @@ struct SwiperExample {
 
 该示例通过customContentTransition接口，实现了自定义Swiper页面按组翻页动画效果。
 
+<!--code_no_check-->
+
+```ts
+// EntryAbility.ets
+import { Configuration, UIAbility } from '@kit.AbilityKit';
+import { i18n } from '@kit.LocalizationKit';
+import { CommonUtil } from '../common/CommonUtil';
+
+export default class EntryAbility extends UIAbility {
+  onConfigurationUpdate(newConfig: Configuration): void {
+    // 监听系统配置变化
+    if (newConfig.language) {
+      CommonUtil.setIsRTL(i18n.isRTL(newConfig.language));
+    }
+  }
+}
+```
+
+<!--code_no_check-->
+
+```ts
+// CommonUtil.ets
+import { i18n, intl } from '@kit.LocalizationKit';
+
+export class CommonUtil {
+  private static isRTL: boolean = i18n.isRTL((new intl.Locale()).language);
+
+  public static setIsRTL(isRTL: boolean): void {
+    CommonUtil.isRTL = isRTL;
+  }
+
+  public static getIsRTL(): boolean {
+    return CommonUtil.isRTL;
+  }
+}
+```
+
+<!--code_no_check-->
+
 ```ts
 // xxx.ets
+import { CommonUtil } from '../common/CommonUtil';
+
 @Entry
 @Component
 struct SwiperCustomAnimationExample {
-  private DISPLAY_COUNT: number = 2
-  private MIN_SCALE: number = 0.75
+  private DISPLAY_COUNT: number = 2;
+  private MIN_SCALE: number = 0.75;
 
-  @State backgroundColors: Color[] = [Color.Green, Color.Blue, Color.Yellow, Color.Pink, Color.Gray, Color.Orange]
-  @State opacityList: number[] = []
-  @State scaleList: number[] = []
-  @State translateList: number[] = []
-  @State zIndexList: number[] = []
+  @State backgroundColors: Color[] = [Color.Green, Color.Blue, Color.Yellow, Color.Pink, Color.Gray, Color.Orange];
+  @State opacityList: number[] = [];
+  @State scaleList: number[] = [];
+  @State translateList: number[] = [];
+  @State zIndexList: number[] = [];
 
   aboutToAppear(): void {
     for (let i = 0; i < this.backgroundColors.length; i++) {
-      this.opacityList.push(1.0)
-      this.scaleList.push(1.0)
-      this.translateList.push(0.0)
-      this.zIndexList.push(0)
+      this.opacityList.push(1.0);
+      this.scaleList.push(1.0);
+      this.translateList.push(0.0);
+      this.zIndexList.push(0);
     }
   }
 
@@ -1804,30 +1845,53 @@ struct SwiperCustomAnimationExample {
         timeout: 1000,
         // 对视窗内所有页面逐帧回调transition，在回调中修改opacity、scale、translate、zIndex等属性值，实现自定义动画
         transition: (proxy: SwiperContentTransitionProxy) => {
-          if (proxy.position <= proxy.index % this.DISPLAY_COUNT || proxy.position >= this.DISPLAY_COUNT + proxy.index % this.DISPLAY_COUNT) {
-            // 同组页面往左滑或往右完全滑出视窗外时，重置属性值
-            this.opacityList[proxy.index] = 1.0
-            this.scaleList[proxy.index] = 1.0
-            this.translateList[proxy.index] = 0.0
-            this.zIndexList[proxy.index] = 0
-          } else {
-            // 同组页面往右滑且未滑出视窗外时，对同组中左右两个页面，逐帧根据position修改属性值，实现两个页面往Swiper中间靠拢并透明缩放的自定义切换动画
-            if (proxy.index % this.DISPLAY_COUNT === 0) {
-              this.opacityList[proxy.index] = 1 - proxy.position / this.DISPLAY_COUNT
-              this.scaleList[proxy.index] = this.MIN_SCALE + (1 - this.MIN_SCALE) * (1 - proxy.position / this.DISPLAY_COUNT)
-              this.translateList[proxy.index] = - proxy.position * proxy.mainAxisLength + (1 - this.scaleList[proxy.index]) * proxy.mainAxisLength / 2.0
+          if (!CommonUtil.getIsRTL()) {
+            if (proxy.position <= proxy.index % this.DISPLAY_COUNT || proxy.position >= this.DISPLAY_COUNT + proxy.index % this.DISPLAY_COUNT) {
+              // 同组页面往左滑或往右完全滑出视窗外时，重置属性值
+              this.opacityList[proxy.index] = 1.0;
+              this.scaleList[proxy.index] = 1.0;
+              this.translateList[proxy.index] = 0.0;
+              this.zIndexList[proxy.index] = 0;
             } else {
-              this.opacityList[proxy.index] = 1 - (proxy.position - 1) / this.DISPLAY_COUNT
-              this.scaleList[proxy.index] = this.MIN_SCALE + (1 - this.MIN_SCALE) * (1 - (proxy.position - 1) / this.DISPLAY_COUNT)
-              this.translateList[proxy.index] = - (proxy.position - 1) * proxy.mainAxisLength - (1 - this.scaleList[proxy.index]) * proxy.mainAxisLength / 2.0
+              // 同组页面往右滑且未滑出视窗外时，对同组中左右两个页面，逐帧根据position修改属性值，实现两个页面往Swiper中间靠拢并透明缩放的自定义切换动画
+              if (proxy.index % this.DISPLAY_COUNT === 0) {
+                this.opacityList[proxy.index] = 1 - proxy.position / this.DISPLAY_COUNT;
+                this.scaleList[proxy.index] = this.MIN_SCALE + (1 - this.MIN_SCALE) * (1 - proxy.position / this.DISPLAY_COUNT);
+                this.translateList[proxy.index] = -proxy.position * proxy.mainAxisLength + (1 - this.scaleList[proxy.index]) * proxy.mainAxisLength / 2.0;
+              } else {
+                this.opacityList[proxy.index] = 1 - (proxy.position - 1) / this.DISPLAY_COUNT;
+                this.scaleList[proxy.index] = this.MIN_SCALE + (1 - this.MIN_SCALE) * (1 - (proxy.position - 1) / this.DISPLAY_COUNT);
+                this.translateList[proxy.index] = -(proxy.position - 1) * proxy.mainAxisLength - (1 - this.scaleList[proxy.index]) * proxy.mainAxisLength / 2.0;
+              }
+              this.zIndexList[proxy.index] = -1;
             }
-            this.zIndexList[proxy.index] = -1
+          } else {
+            // 适配镜像
+            if (proxy.position >= -proxy.index % this.DISPLAY_COUNT || proxy.position <= -this.DISPLAY_COUNT - proxy.index % this.DISPLAY_COUNT) {
+              // 同组页面往右滑或往左完全滑出视窗外时，重置属性值
+              this.opacityList[proxy.index] = 1.0;
+              this.scaleList[proxy.index] = 1.0;
+              this.translateList[proxy.index] = 0.0;
+              this.zIndexList[proxy.index] = 0;
+            } else {
+              // 同组页面往左滑且未滑出视窗外时，对同组中左右两个页面，逐帧根据position修改属性值，实现两个页面往Swiper中间靠拢并透明缩放的自定义切换动画
+              if (proxy.index % this.DISPLAY_COUNT === 0) {
+                this.opacityList[proxy.index] = 1 + proxy.position / this.DISPLAY_COUNT;
+                this.scaleList[proxy.index] = this.MIN_SCALE + (1 - this.MIN_SCALE) * (1 + proxy.position / this.DISPLAY_COUNT);
+                this.translateList[proxy.index] = -proxy.position * proxy.mainAxisLength - (1 - this.scaleList[proxy.index]) * proxy.mainAxisLength / 2.0;
+              } else {
+                this.opacityList[proxy.index] = 1 + (proxy.position + 1) / this.DISPLAY_COUNT;
+                this.scaleList[proxy.index] = this.MIN_SCALE + (1 - this.MIN_SCALE) * (1 + (proxy.position + 1) / this.DISPLAY_COUNT);
+                this.translateList[proxy.index] = -(proxy.position + 1) * proxy.mainAxisLength + (1 - this.scaleList[proxy.index]) * proxy.mainAxisLength / 2.0;
+              }
+              this.zIndexList[proxy.index] = -1;
+            }
           }
         }
       })
       .onContentDidScroll((selectedIndex: number, index: number, position: number, mainAxisLength: number) => {
         // 监听Swiper页面滑动事件，在该回调中可以实现自定义导航点切换动画等
-        console.info("onContentDidScroll selectedIndex: " + selectedIndex + ", index: " + index + ", position: " + position + ", mainAxisLength: " + mainAxisLength)
+        console.info("onContentDidScroll selectedIndex: " + selectedIndex + ", index: " + index + ", position: " + position + ", mainAxisLength: " + mainAxisLength);
       })
     }.width('100%')
   }
@@ -1841,18 +1905,18 @@ struct SwiperCustomAnimationExample {
 
 ```ts
 class MyDataSource implements IDataSource {
-  private list: number[] = []
+  private list: number[] = [];
 
   constructor(list: number[]) {
-    this.list = list
+    this.list = list;
   }
 
   totalCount(): number {
-    return this.list.length
+    return this.list.length;
   }
 
   getData(index: number): number {
-    return this.list[index]
+    return this.list[index];
   }
 
   registerDataChangeListener(listener: DataChangeListener): void {
@@ -1865,15 +1929,15 @@ class MyDataSource implements IDataSource {
 @Entry
 @Component
 struct Index {
-  private swiperController: SwiperController = new SwiperController()
-  private data: MyDataSource = new MyDataSource([])
+  private swiperController: SwiperController = new SwiperController();
+  private data: MyDataSource = new MyDataSource([]);
 
   aboutToAppear(): void {
-    let list: number[] = []
+    let list: number[] = [];
     for (let i = 1; i <= 15; i++) {
       list.push(i);
     }
-    this.data = new MyDataSource(list)
+    this.data = new MyDataSource(list);
   }
 
   build() {
@@ -1916,11 +1980,11 @@ struct Index {
       Row({ space: 12 }) {
         Button('showNext')
           .onClick(() => {
-            this.swiperController.showNext()
+            this.swiperController.showNext();
           })
         Button('showPrevious')
           .onClick(() => {
-            this.swiperController.showPrevious()
+            this.swiperController.showPrevious();
           })
       }.margin(5)
     }.width('100%')
@@ -1938,18 +2002,18 @@ struct Index {
 ```ts
 // xxx.ets
 class MyDataSource implements IDataSource {
-  private list: number[] = []
+  private list: number[] = [];
 
   constructor(list: number[]) {
-    this.list = list
+    this.list = list;
   }
 
   totalCount(): number {
-    return this.list.length
+    return this.list.length;
   }
 
   getData(index: number): number {
-    return this.list[index]
+    return this.list[index];
   }
 
   registerDataChangeListener(listener: DataChangeListener): void {
@@ -1962,16 +2026,16 @@ class MyDataSource implements IDataSource {
 @Entry
 @Component
 struct SwiperExample {
-  private swiperController: SwiperController = new SwiperController()
-  private data: MyDataSource = new MyDataSource([])
-  private currentIndex: number = 4
+  private swiperController: SwiperController = new SwiperController();
+  private data: MyDataSource = new MyDataSource([]);
+  private currentIndex: number = 4;
 
   aboutToAppear(): void {
-    let list: number[] = []
+    let list: number[] = [];
     for (let i = 1; i <= 10; i++) {
       list.push(i);
     }
-    this.data = new MyDataSource(list)
+    this.data = new MyDataSource(list);
   }
 
   build() {
@@ -1989,7 +2053,7 @@ struct SwiperExample {
       .index(this.currentIndex)
       .loop(false)
       .onChange((index: number) => {
-        this.currentIndex = index
+        this.currentIndex = index;
       })
       .onContentWillScroll((result: SwiperContentWillScrollResult) => {
         if (result.comingIndex > this.currentIndex) {
@@ -2001,11 +2065,11 @@ struct SwiperExample {
       Row({ space: 12 }) {
         Button('showNext')
           .onClick(() => {
-            this.swiperController.showNext()
+            this.swiperController.showNext();
           })
         Button('showPrevious')
           .onClick(() => {
-            this.swiperController.showPrevious()
+            this.swiperController.showPrevious();
           })
       }.margin(5)
     }.width('100%')

@@ -297,3 +297,23 @@ Ability_NativeChildProcess_ErrCode OH_Ability_StartNativeChildProcess(
 **返回**：
 
 执行成功返回NCP_NO_ERROR，失败返回错误码，详见[Ability_NativeChildProcess_ErrCode](#ability_nativechildprocess_errcode)。
+
+### OH_Ability_GetCurrentChildProcessArgs
+
+```
+NativeChildProcess_Args* OH_Ability_GetCurrentChildProcessArgs();
+```
+
+**描述**：
+
+通过[OH_Ability_StartNativeChildProcess](#oh_ability_startnativechildprocess)启动子进程后，子进程能够在任意so和任意子线程中获取启动参数[NativeChildProcess_Args](#nativechildprocess_args)。
+
+> **说明：**
+>
+> 当前仅支持2in1、tablet设备。
+
+**起始版本**：17
+
+**返回**：
+
+执行成功返回指向[NativeChildProcess_Args](#nativechildprocess_args)对象的指针，失败返回nullptr。

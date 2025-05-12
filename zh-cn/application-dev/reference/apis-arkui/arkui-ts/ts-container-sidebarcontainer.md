@@ -13,7 +13,7 @@
 
 >  **说明：**
 >
->  - 子组件类型：系统组件和自定义组件，不支持渲染控制类型（[if/else](../../../quick-start/arkts-rendering-control-ifelse.md)、[ForEach](../../../quick-start/arkts-rendering-control-foreach.md)和[LazyForEach](../../../quick-start/arkts-rendering-control-lazyforeach.md)）。
+>  - 子组件类型：系统组件和自定义组件，不支持渲染控制类型（[if/else](../../../ui/state-management/arkts-rendering-control-ifelse.md)、[ForEach](../../../ui/state-management/arkts-rendering-control-foreach.md)和[LazyForEach](../../../ui/state-management/arkts-rendering-control-lazyforeach.md)）。
 >  - 子组件个数：必须且仅包含2个子组件。
 >  - 子组件个数异常时：3个或以上子组件，显示第一个和第二个。1个子组件，显示侧边栏，内容区为空白。
 
@@ -44,7 +44,7 @@ SideBarContainer( type?: SideBarContainerType )
 
 | 名称 | 说明 |
 | -------- | -------- |
-| Embed | 侧边栏嵌入到组件内，和内容区并列显示。<br/>组件尺寸小于minContentWidth + minSideBarWidth,并且未设置showSideBar时，侧边栏自动隐藏。<br/>未设置minSideBarWidth或者minContentWidth采用未设置接口的默认值进行计算。<br/> 组件在自动隐藏后，如果通过点击控制按钮唤出侧边栏，则侧边栏悬浮在内容区上显示。|
+| Embed | 侧边栏嵌入到组件内，和内容区并列显示。<br/>组件尺寸小于minContentWidth + minSideBarWidth，并且未设置showSideBar时，侧边栏自动隐藏。<br/>未设置minSideBarWidth或者minContentWidth采用未设置接口的默认值进行计算。<br/> 组件在自动隐藏后，如果通过点击控制按钮唤出侧边栏，则侧边栏悬浮在内容区上显示。|
 | Overlay | 侧边栏浮在内容区上面。 |
 | AUTO<sup>10+</sup> | 组件尺寸大于等于minSideBarWidth+minContentWidth时，采用Embed模式显示。<br/>组件尺寸小于minSideBarWidth+minContentWidth时，采用Overlay模式显示。<br/>未设置minSideBarWidth或minContentWidth时，会使用未设置接口的默认值进行计算，若计算的值小于600vp，则使用600vp做为模式切换的断点值。|
 
@@ -58,7 +58,7 @@ showSideBar(value: boolean)
 
 设置是否显示侧边栏。
 
-从API version 10开始，该属性支持[$$](../../../quick-start/arkts-two-way-sync.md)双向绑定变量。
+从API version 10开始，该属性支持[$$](../../../ui/state-management/arkts-two-way-sync.md)双向绑定变量。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -376,10 +376,10 @@ onChange(callback: (value: boolean) =&gt; void)
 @Entry
 @Component
 struct SideBarContainerExample {
-  normalIcon: Resource = $r("app.media.icon")
-  selectedIcon: Resource = $r("app.media.icon")
-  @State arr: number[] = [1, 2, 3]
-  @State current: number = 1
+  normalIcon: Resource = $r("app.media.icon");
+  selectedIcon: Resource = $r("app.media.icon");
+  @State arr: number[] = [1, 2, 3];
+  @State current: number = 1;
 
   build() {
     SideBarContainer(SideBarContainerType.Embed) {
@@ -393,7 +393,7 @@ struct SideBarContainerExample {
               .fontFamily('source-sans-pro,cursive,sans-serif')
           }
           .onClick(() => {
-            this.current = item
+            this.current = item;
           })
         }, (item: string) => item)
       }.width('100%')
@@ -418,7 +418,7 @@ struct SideBarContainerExample {
     .maxSideBarWidth(300)
     .minContentWidth(0)
     .onChange((value: boolean) => {
-      console.info('status:' + value)
+      console.info('status:' + value);
     })
     .divider({ strokeWidth: '1vp', color: Color.Gray, startMargin: '4vp', endMargin: '4vp' })
   }

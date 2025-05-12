@@ -5,8 +5,8 @@
 ## 技术适用场景介绍
 应用开发的有些场景中，如果希望根据条件导入模块或者按需导入模块，可以使用动态导入代替[静态导入](../quick-start/introduction-to-arkts.md#静态导入)。下面是可能会需要动态导入的场景：
 
-* 当静态导入的模块很明显的降低了代码的加载速度且被使用的可能性很低，或者并不需要马上使用它。
-* 当静态导入的模块很明显的占用了大量的系统内存且被使用的可能性很低。
+* 当静态导入的模块明显降低了代码的加载速度且被使用的可能性低，或者并不需要马上使用它。
+* 当静态导入的模块明显占用了大量的系统内存且被使用的可能性低。
 * 当被导入的模块，在加载时并不存在，需要异步获取。
 * 当被导入的模块说明符，需要动态构建。静态导入只能使用静态说明符。
 * 当被导入的模块有副作用（这里的副作用，可以理解为模块中会直接运行的代码），这些副作用只有在触发了某些条件才被需要时。
@@ -116,6 +116,12 @@ import('harlibrary').then((ns:ESObject) => {
   import('myHar').then((ns:ESObject) => {
     console.info(ns.add(3, 5));
   });
+
+  // 可使用 await 处理动态导入 (必须在 async 函数内使用)
+  async function asyncDynamicImport() {
+    let ns:ESObject = await import('myHar');
+    console.info(ns.add(3, 5));
+  }
   ```
 
   ```json5
@@ -285,7 +291,7 @@ import('harlibrary').then((ns:ESObject) => {
 ### 动态import变量表达式
 
 DevEco Studio中模块间的依赖关系通过oh-package.json5中的dependencies进行配置。dependencies列表中所有模块默认都会进行安装（本地模块）或下载（远程模块），但是不会默认参与编译。HAP/HSP编译时会以入口文件（一般为Index.ets/ts）开始搜索依赖关系，搜索到的模块或文件才会加入编译。
-在编译期，静态import和常量动态import可以被打包工具rollup及其插件识别解析，加入依赖树中，参与到编译流程，最终生成方舟字节码。但是如果是变量动态import，该变量值可能需要进行运算或者外部传入才能得到，在编译态无法解析出其内容，也就无法加入编译。为了将这部分模块/文件加入编译，还需要额外增加一个runtimeOnly的buildOption配置，用于配置动态import的变量实际的模块名或者文件路径。
+在编译期，静态import和常量动态import可以被打包工具rollup及其插件识别解析，加入依赖树中，参与编译流程，最终生成方舟字节码。但是，如果是变量动态import，该变量值可能需要进行运算或外部传入才能得到，在编译态无法解析其内容，也就无法加入编译。为了将这部分模块/文件加入编译，还需要额外增加一个runtimeOnly的buildOption配置，用于配置动态import的变量实际的模块名或文件路径。
 
 **1. runtimeOnly字段schema配置格式**
 
@@ -303,7 +309,7 @@ import(filePath).then(……);
 
 对应的runtimeOnly配置：
 
-```typescript
+```json
 "buildOption": {
   "arkOptions": {
     "runtimeOnly": {
@@ -531,7 +537,7 @@ import(filePath).then(……);
 
 ![变量动态import HAR包形成循环依赖](figures/dynamicimport1.png)
 
-HAR之间依赖关系转移到HAP/HSP后：
+HAR之间的依赖关系转移至HAP/HSP后：
 
 ![变量动态import HAR包依赖转移到HAP](figures/dynamicimport2.png)
 

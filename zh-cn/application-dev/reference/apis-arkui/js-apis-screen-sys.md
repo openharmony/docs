@@ -892,7 +892,7 @@ console.info('Succeeded in getting the screen rotation lock status. isLocked:' +
 
 setScreenRotationLocked(isLocked: boolean): Promise&lt;void&gt;
 
-设置自动转屏开关是否锁定，使用Promise异步回调。
+设置自动转屏开关是否锁定，使用Promise异步回调，不适用于2in1设备。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 

@@ -23,7 +23,7 @@
 | struct [RangeValue](_range_value_v20.md)[blockCount](#blockcount) | 支持的块数量范围。 | 
 | struct [RangeValue](_range_value_v20.md)[blocksPerSecond](#blockspersecond) | 每秒可处理的块数量范围。 | 
 | struct [Rect](_rect_v20.md)[blockSize](#blocksize) | 支持的块大小。 | 
-| int[] [supportPixFmts](#supportpixfmts) | 支持的像素格式，详见**[PixeFormat](../display/_display_v10.md#pixelformat)**。 | 
+| int[] [supportPixFmts](#supportpixfmts) | 支持的像素格式，详见[PixeFormat](../display/_display_v10.md#pixelformat)。 | 
 | enum [BitRateMode](_codec_v20.md#bitratemode)[] [bitRatemode](#bitratemode) | 传输速率模式，有恒定的，有变化的等几种模式。详见[BitRateMode](_codec_v20.md#bitratemode)。 | 
 | struct [RangeValue](_range_value_v20.md)[frameRate](#bitratemode) | 帧率的范围。 | 
 | int[] [measuredFrameRate](#measuredframerate) | 实测的帧率。 | 

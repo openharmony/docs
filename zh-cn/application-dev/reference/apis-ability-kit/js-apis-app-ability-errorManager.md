@@ -57,13 +57,13 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let observer: errorManager.ErrorObserver = {
   onUnhandledException(errorMsg) {
-    console.log('onUnhandledException, errorMsg: ', errorMsg);
+    console.info('onUnhandledException, errorMsg: ', errorMsg);
   },
   onException(errorObj) {
-    console.log('onException, name: ', errorObj.name);
-    console.log('onException, message: ', errorObj.message);
+    console.info('onException, name: ', errorObj.name);
+    console.info('onException, message: ', errorObj.message);
     if (typeof(errorObj.stack) === 'string') {
-      console.log('onException, stack: ', errorObj.stack);
+      console.info('onException, stack: ', errorObj.stack);
     }
   }
 };
@@ -171,7 +171,7 @@ let observerId = 100;
 try {
   errorManager.off('error', observerId)
     .then((data) => {
-      console.log('----------- unregisterErrorObserver success ----------', data);
+      console.info('----------- unregisterErrorObserver success ----------', data);
     })
     .catch((err: BusinessError) => {
       console.error('----------- unregisterErrorObserver fail ----------', err);
@@ -216,7 +216,7 @@ import { errorManager } from '@kit.AbilityKit';
 
 let observer: errorManager.LoopObserver = {
   onLoopTimeOut(timeout: number) {
-    console.log('Duration timeout: ' + timeout);
+    console.info('Duration timeout: ' + timeout);
   }
 };
 
@@ -256,12 +256,12 @@ import { errorManager } from '@kit.AbilityKit';
 
 let observer: errorManager.UnhandledRejectionObserver = (reason: Error, promise: Promise<void>) => {
   if (promise === promise1) {
-    console.log("promise1 is rejected");
+    console.info("promise1 is rejected");
   }
-  console.log("reason.name: ", reason.name);
-  console.log("reason.message: ", reason.message);
+  console.info("reason.name: ", reason.name);
+  console.info("reason.message: ", reason.message);
   if (reason.stack) {
-    console.log("reason.stack: ", reason.stack);
+    console.info("reason.stack: ", reason.stack);
   }
 };
 
@@ -320,7 +320,7 @@ off(type: 'unhandledRejection', observer?: UnhandledRejectionObserver): void
 | 参数名                   | 类型                              | 必填 | 说明                                           |
 |-----------------------|---------------------------------|----|----------------------------------------------|
 | type                  | string                          | 是  | 填写'unhandledRejection'，表示注册被拒绝promise监听器。 |
-| observer              | [UnhandledRejectionObserver](#unhandledrejectionobserver12) | 否  | 注册了被拒绝promise监听器。                        |
+| observer              | [UnhandledRejectionObserver](#unhandledrejectionobserver12) | 否  | 注册了被拒绝promise监听器。建议使用该参数，缺省时默认清除所有通过on注册的相同env的observer，否则删除指定observer。                        |
 
 **错误码**：
 
@@ -341,12 +341,12 @@ import { errorManager } from '@kit.AbilityKit';
 
 let observer: errorManager.UnhandledRejectionObserver = (reason: Error, promise: Promise<void>) => {
   if (promise === promise1) {
-    console.log("promise1 is rejected");
+    console.info("promise1 is rejected");
   }
-  console.log("reason.name: ", reason.name);
-  console.log("reason.message: ", reason.message);
+  console.info("reason.name: ", reason.name);
+  console.info("reason.message: ", reason.message);
   if (reason.stack) {
-    console.log("reason.stack: ", reason.stack);
+    console.info("reason.stack: ", reason.stack);
   }
 };
 
@@ -364,12 +364,12 @@ import { errorManager } from '@kit.AbilityKit';
 
 let observer: errorManager.UnhandledRejectionObserver = (reason: Error, promise: Promise<void>) => {
   if (promise === promise1) {
-    console.log("promise1 is rejected");
+    console.info("promise1 is rejected");
   }
-  console.log("reason.name: ", reason.name);
-  console.log("reason.message: ", reason.message);
+  console.info("reason.name: ", reason.name);
+  console.info("reason.message: ", reason.message);
   if (reason.stack) {
-    console.log("reason.stack: ", reason.stack);
+    console.info("reason.stack: ", reason.stack);
   }
 };
 

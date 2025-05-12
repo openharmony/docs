@@ -248,8 +248,9 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
    ```c++
    // 调整轨道到指定时间点，后续从该时间点进行解封装。
    // 注意：
-   // 1. mpegts格式文件使用OH_AVDemuxer_SeekToTime功能时，跳转到的位置可能为非关键帧。可在跳转后调用OH_AVDemuxer_ReadSampleBuffer，通过获取到的OH_AVCodecBufferAttr判断当前帧是否为关键帧。若非关键帧影响应用侧显示等功能，可在跳转后循环读取，获取到后续第一帧关键帧后，再进行解码等处理。
+   // 1. mpegts、mpg 格式文件使用OH_AVDemuxer_SeekToTime功能时，跳转到的位置可能为非关键帧。可在跳转后调用OH_AVDemuxer_ReadSampleBuffer，通过获取到的OH_AVCodecBufferAttr判断当前帧是否为关键帧。若非关键帧影响应用侧显示等功能，可在跳转后循环读取，获取到后续第一帧关键帧后，再进行解码等处理。
    // 2. ogg格式文件使用OH_AVDemuxer_SeekToTime功能时，会跳转到传入时间millisecond所在时间间隔(秒)的起始处，可能会导致一定数量的帧误差。
+   // 3. demuxer的seek处理只针对解码行为一致的码流进行处理，如果seek后需要解码器重新配置参数，或者需要重新送入参数集的数据才可以正确解码的码流，seek后可能会出现花屏、解码卡死等问题。
    OH_AVDemuxer_SeekToTime(demuxer, 0, OH_AVSeekMode::SEEK_MODE_CLOSEST_SYNC);
    ```
 
@@ -270,45 +271,57 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
    | AVCODEC_BUFFER_FLAGS_CODEC_DATA | 含参数集信息的帧。 |
    | AVCODEC_BUFFER_FLAGS_DISCARD  | 可丢弃的帧。 |
 
+   OH_AVDemuxer_ReadSampleBuffer接口本身可能存在耗时久，取决于文件IO，建议以异步方式进行调用。
    ```c++
-   // 按照指定size创建buffer，用于保存用户解封装得到的数据。
-   // buffer大小设置建议大于待获取的码流大小，示例中buffer大小设置为单帧图像的大小。
-   OH_AVBuffer *buffer = OH_AVBuffer_Create(w * h * 3 >> 1);
-   if (buffer == nullptr) {
-      printf("build buffer failed");
-      return;
-   }
-   OH_AVCodecBufferAttr info;
-   bool videoIsEnd = false;
-   bool audioIsEnd = false;
-   int32_t ret;
-   while (!audioIsEnd || !videoIsEnd) {
-      // 在调用 OH_AVDemuxer_ReadSampleBuffer 接口获取数据前，需要先调用 OH_AVDemuxer_SelectTrackByID 选中需要获取数据的轨道。
-      // 获取音频sample。
-      if(!audioIsEnd) {
-         ret = OH_AVDemuxer_ReadSampleBuffer(demuxer, audioTrackIndex, buffer);
-         if (ret == AV_ERR_OK) {
-            // 可通过 buffer 获取并处理音频sample。
-            OH_AVBuffer_GetBufferAttr(buffer, &info);
-            printf("audio info.size: %d\n", info.size);
-            if (info.flags == OH_AVCodecBufferFlags::AVCODEC_BUFFER_FLAGS_EOS) {
-               audioIsEnd = true;
-            }
-         }
+   // 为每个线程定义处理函数。
+   void ReadTrackSamples(OH_AVFormatDemuxer *demuxer, int trackIndex, int buffer_size, 
+                         std::atomic<bool>& isEnd, std::atomic<bool>& threadFinished)
+   {
+      // 创建缓冲区。
+      OH_AVBuffer *buffer = OH_AVBuffer_Create(buffer_size);
+      if (buffer == nullptr) {
+         printf("Create buffer failed for track %d\n", trackIndex);
+         threadFinished.store(true);
+         return;
       }
-      if(!videoIsEnd) {
-         ret = OH_AVDemuxer_ReadSampleBuffer(demuxer, videoTrackIndex, buffer);
+      OH_AVCodecBufferAttr info;
+      int32_t ret;
+
+      while (!isEnd.load()) {
+         ret = OH_AVDemuxer_ReadSampleBuffer(demuxer, trackIndex, buffer);
          if (ret == AV_ERR_OK) {
-            // 可通过 buffer 获取并处理视频sample。
-            OH_AVBuffer_GetBufferAttr(buffer, &info);
-            printf("video info.size: %d\n", info.size);
-            if (info.flags == OH_AVCodecBufferFlags::AVCODEC_BUFFER_FLAGS_EOS) {
-               videoIsEnd = true;
-            }
+               OH_AVBuffer_GetBufferAttr(buffer, &info);
+               printf("Track %d sample size: %d\n", trackIndex, info.size);
+               // 检查EOS标志。
+               if (info.flags == OH_AVCodecBufferFlags::AVCODEC_BUFFER_FLAGS_EOS) {
+                  isEnd.store(true);
+               }
+               // 处理缓冲区数据（这里可以根据需要实现解码逻辑）。
+         } else {
+               printf("Read sample failed for track %d\n", trackIndex);
          }
+         // 销毁缓冲区。
+         OH_AVBuffer_Destroy(buffer);
+         buffer = nullptr;
       }
+      threadFinished.store(true);
    }
-   OH_AVBuffer_Destroy(buffer);
+
+   // 根据需求计算合适的缓冲区大小。
+   int audioBufferSize = 4096;  // 典型音频缓冲区大小。
+   int videoBufferSize = w * h * 3 >> 1;  // 原始视频缓冲区大小。
+
+   // 创建原子变量用于线程通信。
+   std::atomic<bool> audioIsEnd{false}, videoIsEnd{false}; // 表示流是否结束。
+   std::atomic<bool> audioThreadFinished{false}, videoThreadFinished{false}; // 表示线程是否暂停。
+
+   // 创建线程。
+   std::thread audioThread(ReadTrackSamples, demuxer, audioTrackIndex, audioBufferSize, 
+                           std::ref(audioIsEnd), std::ref(audioThreadFinished));
+   std::thread videoThread(ReadTrackSamples, demuxer, videoTrackIndex, videoBufferSize, 
+                           std::ref(videoIsEnd), std::ref(videoThreadFinished));
+   audioThread.join();
+   videoThread.join();
    ```
 
 10. 销毁解封装实例。

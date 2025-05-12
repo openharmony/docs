@@ -457,7 +457,7 @@ struct Index {
 ```
 
 ### Input Parameter of makeObserved Is the Return Value of JSON.parse
-JSON.parse returns an object which cannot be decorated by @Trace. You can use makeObserved to make it observable.
+**JSON.parse** returns an object which cannot be decorated by @Trace. You can use **makeObserved** to make it observable.
 
 ```ts
 import { JSON } from '@kit.ArkTS';

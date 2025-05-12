@@ -4,13 +4,13 @@ The **bluetoothManager** module provides Bluetooth management capabilities, incl
 
 > **NOTE**
 >
-> - The initial APIs of this module are supported since API version 11. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> The initial APIs of this module are supported since API version 11. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 >
-> - The APIs of this module can be used only in the stage model.
+> The APIs of this module can be used only in the stage model.
 >
-> - The APIs of this module can be called only by a [device administrator application](../../mdm/mdm-kit-guide.md#introduction) that is [enabled](js-apis-enterprise-adminManager-sys.md#adminmanagerenableadmin).
+> The APIs of this module can be called only by a [device administrator application](../../mdm/mdm-kit-guide.md#introduction) that is [enabled](js-apis-enterprise-adminManager-sys.md#adminmanagerenableadmin).
 > 
-> - This topic describes only the system APIs provided by the module. For details about its public APIs, see [@ohos.enterprise.bluetoothManager](js-apis-enterprise-bluetoothManager.md).
+> This topic describes only the system APIs provided by the module. For details about its public APIs, see [@ohos.enterprise.bluetoothManager](js-apis-enterprise-bluetoothManager.md).
 
 ## Modules to Import
 
@@ -22,7 +22,7 @@ import { bluetoothManager } from '@kit.MDMKit';
 
 isBluetoothDisabled(admin: Want): boolean
 
-Checks whether Bluetooth is disabled. This API returns the result synchronously.
+Queries whether Bluetooth is disabled.
 
 **Required permissions**: ohos.permission.ENTERPRISE_MANAGE_BLUETOOTH
 
@@ -32,9 +32,9 @@ Checks whether Bluetooth is disabled. This API returns the result synchronously.
 
 **Parameters**
 
-| Name  | Type                                 | Mandatory  | Description     |
-| ----- | ----------------------------------- | ---- | ------- |
-| admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes   | Device administrator application.|
+| Name| Type                                                   | Mandatory| Description                  |
+| ------ | ------------------------------------------------------- | ---- | ---------------------- |
+| admin  | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes  | EnterpriseAdminExtensionAbility.|
 
 **Return value**
 
@@ -76,7 +76,7 @@ try {
 
 setBluetoothDisabled(admin: Want, disabled: boolean): void
 
-Disables Bluetooth. This API returns the result synchronously.
+Sets the policy for disabling Bluetooth.
 
 **Required permissions**: ohos.permission.ENTERPRISE_MANAGE_BLUETOOTH
 
@@ -86,10 +86,10 @@ Disables Bluetooth. This API returns the result synchronously.
 
 **Parameters**
 
-| Name    | Type                               | Mandatory| Description                                     |
-| ---------- | ----------------------------------- | ---- | ----------------------------------------- |
-| admin      | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes  | Device administrator application.                           |
-| disabled   | boolean                             | Yes  | Whether to disable Bluetooth. The value **true** means to disable Bluetooth; **false** means the opposite.|
+| Name  | Type                                                   | Mandatory| Description                                     |
+| -------- | ------------------------------------------------------- | ---- | ----------------------------------------- |
+| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes  | EnterpriseAdminExtensionAbility.                   |
+| disabled | boolean                                                 | Yes  | Whether to disable Bluetooth. The value **true** means to disable Bluetooth; **false** means the opposite.|
 
 **Error codes**
 

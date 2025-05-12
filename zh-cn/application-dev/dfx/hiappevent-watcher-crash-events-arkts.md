@@ -41,7 +41,7 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
     };
     // 开发者可以设置崩溃事件的自定义参数
     hiAppEvent.setEventParam(params, hiAppEvent.domain.OS, hiAppEvent.event.APP_CRASH).then(() => {
-      hilog.info(0x0000, 'testTag', `HiAppEvent success to set svent param`);
+      hilog.info(0x0000, 'testTag', `HiAppEvent success to set event param`);
     }).catch((err: BusinessError) => {
       hilog.error(0x0000, 'testTag', `HiAppEvent code: ${err.code}, message: ${err.message}`);
     });
@@ -113,7 +113,7 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
 
 6. 若应用未捕获崩溃异常，则系统处理崩溃后应用退出，应用下次启动后HiAppEvent将崩溃事件上报给应用已注册的监听，完成回调。
 <br>若应用主动捕获崩溃异常，如下两种场景，HiAppEvent事件将会在应用退出前回调。
-<br>&emsp;&emsp;场景1：异常处理中未主动退出，应用发生崩溃后将不会退出。例如采用[errorManger.on](../reference/apis-ability-kit/js-apis-app-ability-errorManager.md#errormanageronerror)方法捕获JsError崩溃；应用主动注册NativeCrash崩溃信号处理函数未主动退出。<br>&emsp;&emsp;场景2：异常处理耗时太久，应用退出时机延后。
+<br>&emsp;&emsp;场景1：异常处理中未主动退出，应用发生崩溃后将不会退出。例如采用[errorManager.on](../reference/apis-ability-kit/js-apis-app-ability-errorManager.md#errormanageronerror)方法捕获JsError崩溃；应用主动注册NativeCrash崩溃信号处理函数未主动退出。<br>&emsp;&emsp;场景2：异常处理耗时太久，应用退出时机延后。
 <br>HiAppEvent上报事件完成回调后，可以在Log窗口看到对系统事件数据的处理日志：
 
    ```text

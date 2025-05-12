@@ -4491,7 +4491,7 @@ async function example() {
 | ------- | --------------------------- | ---- | ---- | ------------------------------------------------------------ |
 | type    | [NotifyType](#notifytype10) | 是   | 否   | ChangeData的通知类型。                                       |
 | uris    | Array&lt;string&gt;         | 是   | 否   | 相同[NotifyType](#notifytype10)的所有uri，可以是FileAsset或Album。 |
-| subUris | Array&lt;string&gt;         | 是   | 否   | 相册中变动文件的uri数组。                                    |
+| subUris | Array&lt;string&gt;         | 是   | 否   | 相册中变动文件的uri数组。可能为undefined，使用前需要检查是否为undefined。|
 
 ## NotifyType<sup>10+</sup>
 

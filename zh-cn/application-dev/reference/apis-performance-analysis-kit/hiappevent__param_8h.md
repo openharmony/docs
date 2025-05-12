@@ -24,7 +24,7 @@ OH_HiAppEvent_DestroyParamList(list);
 
 **起始版本：** 8
 
-**相关模块：**[HiAppEvent](_hi_app_event.md)
+**相关模块：** [HiAppEvent](_hi_app_event.md)
 
 
 ## 汇总

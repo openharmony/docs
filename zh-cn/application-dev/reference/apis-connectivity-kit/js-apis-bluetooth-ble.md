@@ -3,8 +3,8 @@
 ble模块提供了对蓝牙操作和管理的方法。
 
 > **说明：**
->
-> 本模块首批接口从API version 10开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> - 本模块首批接口从API version 10开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> - 接口中涉及的UUID服务，可以通过工具函数[util.generateRandomUUID](../apis-arkts/js-apis-util.md#utilgeneraterandomuuid9)生成。
 
 
 
@@ -142,6 +142,10 @@ try {
 startBLEScan(filters: Array&lt;ScanFilter&gt;, options?: ScanOptions): void
 
 发起BLE扫描流程。
+> **说明：**
+> - 该接口只能扫描BLE设备。
+> - 该接口只支持单路扫描，即应用同时只能调用一次，下一次调用前，需要先调用[ble.stopBLEScan](#blestopblescan)。
+> - 若需要使用多路扫描，可使用[BleScanner](#blescanner15)。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
@@ -195,7 +199,7 @@ try {
 ```
 
 
-## ble.stopBLEScan<a name="stopBLEScan"></a>
+## ble.stopBLEScan
 
 stopBLEScan(): void
 
@@ -3146,6 +3150,8 @@ try {
 setBLEMtuSize(mtu: number): void
 
 client协商远端蓝牙低功耗设备的最大传输单元(Maximum Transmission Unit, MTU)，调用[connect](#connect)接口连接成功后才能使用。
+> **说明：**
+> - 该接口通过[on('BLEMtuChange')](#onblemtuchange-1)，订阅client端MTU状态变化事件。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
@@ -3757,7 +3763,7 @@ startScan(filters: Array&lt;ScanFilter&gt;, options?: ScanOptions): Promise&lt;v
 |801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
 |2900003 | Bluetooth disabled.                 |
-|2900009 | Fails to start scan as it is out of hardware.                 |
+|2900009 | Fails to start scan as it is out of hardware resources.                 |
 |2900099 | Operation failed.                        |
 |2902050 | Failed to start scan as Ble scan is already started by the app.|
 
@@ -4240,17 +4246,15 @@ try {
 
 扫描的配置参数。
 
-**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
-
 **系统能力**：SystemCapability.Communication.Bluetooth.Core
 
 | 名称        | 类型                    | 可读   | 可写   | 说明                                     |
 | --------- | ----------------------- | ---- | ---- | -------------------------------------- |
-| interval  | number                  | 是    | 是    | 表示扫描结果上报延迟时间，默认值为0。                    |
-| dutyMode  | [ScanDuty](#scanduty)   | 是    | 是    | 表示扫描模式，默认值为SCAN_MODE_LOW_POWER。        |
-| matchMode | [MatchMode](#matchmode) | 是    | 是    | 表示硬件的过滤匹配模式，默认值为MATCH_MODE_AGGRESSIVE。 |
-| phyType<sup>12+</sup> | [PhyType](#phytype12) | 是    | 是    | 表示扫描中使用的PHY类型。 |
-| reportMode<sup>15+</sup> | [ScanReportMode](#scanreportmode15) | 是    | 是    | 表示扫描结果数据上报模式。 |
+| interval  | number                  | 是    | 是    | 表示扫描结果上报延迟时间，默认值为0。**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。                    |
+| dutyMode  | [ScanDuty](#scanduty)   | 是    | 是    | 表示扫描模式，默认值为SCAN_MODE_LOW_POWER。**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。        |
+| matchMode | [MatchMode](#matchmode) | 是    | 是    | 表示硬件的过滤匹配模式，默认值为MATCH_MODE_AGGRESSIVE。**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。 |
+| phyType<sup>12+</sup> | [PhyType](#phytype12) | 是    | 是    | 表示扫描中使用的PHY类型。**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。 |
+| reportMode<sup>15+</sup> | [ScanReportMode](#scanreportmode15) | 是    | 是    | 表示扫描结果数据上报模式。**原子化服务API**：从API version 15开始，该接口支持在原子化服务中使用。 |
 
 
 ## GattProperties<a name="GattProperties"></a>

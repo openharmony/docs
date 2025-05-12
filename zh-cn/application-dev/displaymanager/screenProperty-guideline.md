@@ -25,7 +25,7 @@
 | off(type: 'captureStatusChange', callback?: Callback\<boolean>): void | 关闭屏幕截屏、投屏、录屏状态变化的监听。                     |
 | on(type: 'availableAreaChange', callback: Callback\<Rect>): void | 开启当前设备屏幕的可用区域监听。当前设备屏幕有可用区域变化时，触发回调函数，返回可用区域。 |
 | off(type: 'availableAreaChange', callback?: Callback\<Rect>): void | 关闭当前设备屏幕可用区域变化的监听。                         |
-| isFoldable(): boolean                                        | 检查设备是否可折叠。                                         |
+| isFoldable(): boolean                                        | 检查设备是否可折叠，true表示设备可折叠，false表示设备不可折叠。                          |
 | on(type: 'foldStatusChange', callback: Callback\<FoldStatus>): void | 开启折叠设备折叠状态变化的监听。                             |
 | off(type: 'foldStatusChange', callback?: Callback\<FoldStatus>): void | 关闭折叠设备折叠状态变化的监听。                             |
 
@@ -58,7 +58,7 @@ displayClass = display.getDefaultDisplaySync();
    displayClass = display.getDefaultDisplaySync();
    
    // 获取屏幕Id
-   console.info(`The scree Id is ${displayClass.id}.`);
+   console.info(`The screen Id is ${displayClass.id}.`);
    // 获取屏幕刷新率
    console.info(`The screen is ${displayClass.refreshRate}.`);
    // 获取屏幕宽度
@@ -86,10 +86,10 @@ displayClass = display.getDefaultDisplaySync();
    });
    ```
 
-3. 此外，还可以通过display.isCaptured()判断当前设备是都正在截屏、投屏或录屏。
+3. 此外，还可以通过display.isCaptured()判断当前设备是否正在截屏、投屏或录屏。
 
    ```ts
-   console.info(`The sceeen is captured or not : ${display.isCaptured()}`);
+   console.info(`The screen is captured or not : ${display.isCaptured()}`);
    ```
 
 ## 监听屏幕状态变化

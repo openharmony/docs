@@ -710,7 +710,7 @@ getUniqueId(): number
 
 getNodeType(): string
 
-获取节点的类型。内置组件类型为组件名称，例如，按钮组件Button的类型为Button。而对于自定义组件，若其有渲染内容，则其类型为__Common__。
+获取节点的类型。系统组件类型为组件名称，例如，按钮组件Button的类型为Button。而对于自定义组件，若其有渲染内容，则其类型为__Common__。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 

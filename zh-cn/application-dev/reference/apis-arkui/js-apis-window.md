@@ -11,6 +11,8 @@
 >
 > 本模块首批接口从API version 6开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
+<!--RP12--><!--RP12End-->
+
 ## 导入模块
 
 ```ts
@@ -58,16 +60,16 @@ import { window } from '@kit.ArkUI';
 
 | 名称                             | 值   | 说明                                                         |
 | -------------------------------- | ---- | ------------------------------------------------------------ |
-| TYPE_SYSTEM                      | 0    | 表示系统默认区域。一般包括状态栏、导航栏，各设备系统定义可能不同。 |
-| TYPE_CUTOUT                      | 1    | 表示刘海屏区域。                                             |
-| TYPE_SYSTEM_GESTURE<sup>9+</sup> | 2    | 表示手势区域。                                               |
-| TYPE_KEYBOARD<sup>9+</sup>       | 3    | 表示软键盘区域。                                             |
-| TYPE_NAVIGATION_INDICATOR<sup>11+</sup> | 4    | 表示导航条区域。                                      |
+| TYPE_SYSTEM                      | 0    | 表示系统默认区域。<!--RP11-->包含状态栏和三键导航栏区域。<!--RP11End-->       |
+| TYPE_CUTOUT                      | 1    | 表示刘海屏区域。                                                              |
+| TYPE_SYSTEM_GESTURE<sup>9+</sup> | 2    | 表示手势区域。当前，各设备均无此类型避让区域。                                    |
+| TYPE_KEYBOARD<sup>9+</sup>       | 3    | 表示软键盘区域。                                                              |
+| TYPE_NAVIGATION_INDICATOR<sup>11+</sup> | 4    | 表示底部导航条区域。                                                    |
 
 
 ## SystemBarProperties
 
-状态栏、导航栏的属性。在设置窗口级状态栏、导航栏属性时使用。
+状态栏、三键导航栏的属性。在设置窗口级状态栏、三键导航栏属性时使用。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -76,11 +78,11 @@ import { window } from '@kit.ArkUI';
 | statusBarColor                         | string   |  否   | 状态栏背景颜色，为十六进制RGB或ARGB颜色，不区分大小写，例如`'#00FF00'`或`'#FF00FF00'`。默认值：`'#66000000'`。 <br> **系统能力：** SystemCapability.WindowManager.WindowManager.Core|
 | isStatusBarLightIcon<sup>7+</sup>      | boolean  |  否   | 状态栏图标是否为高亮状态。true表示高亮；false表示不高亮。默认值：false。 <br> **系统能力：** SystemCapability.WindowManager.WindowManager.Core|
 | statusBarContentColor<sup>8+</sup>     | string   |  否   | 状态栏文字颜色。当设置此属性后， `isStatusBarLightIcon`属性设置无效。默认值：`'#E5FFFFFF'`。 <br> **系统能力：** SystemCapability.WindowManager.WindowManager.Core|
-| navigationBarColor                     | string   |  否   | 导航栏背景颜色，为十六进制RGB或ARGB颜色，不区分大小写，例如`'#00FF00'`或`'#FF00FF00'`。默认值：`'#66000000'`。 <br> **系统能力：** SystemCapability.WindowManager.WindowManager.Core|
-| isNavigationBarLightIcon<sup>7+</sup>  | boolean  |  否   | 导航栏图标是否为高亮状态。true表示高亮；false表示不高亮。默认值：false。 <br> **系统能力：** SystemCapability.WindowManager.WindowManager.Core|
-| navigationBarContentColor<sup>8+</sup> | string   |  否   | 导航栏文字颜色。当设置此属性后， `isNavigationBarLightIcon`属性设置无效。默认值：`'#E5FFFFFF'`。 <br> **系统能力：** SystemCapability.WindowManager.WindowManager.Core|
+| navigationBarColor                     | string   |  否   | 三键导航栏背景颜色，为十六进制RGB或ARGB颜色，不区分大小写，例如`'#00FF00'`或`'#FF00FF00'`。默认值：`'#66000000'`。 <br><!--RP12--><!--RP12End--><br> **系统能力：** SystemCapability.WindowManager.WindowManager.Core|
+| isNavigationBarLightIcon<sup>7+</sup>  | boolean  |  否   | 三键导航栏图标是否为高亮状态。true表示高亮；false表示不高亮。默认值：false。 <br><!--RP12--><!--RP12End--><br> **系统能力：** SystemCapability.WindowManager.WindowManager.Core|
+| navigationBarContentColor<sup>8+</sup> | string   |  否   | 三键导航栏文字颜色。当设置此属性后， `isNavigationBarLightIcon`属性设置无效。默认值：`'#E5FFFFFF'`。 <br><!--RP12--><!--RP12End--><br> **系统能力：** SystemCapability.WindowManager.WindowManager.Core|
 | enableStatusBarAnimation<sup>12+</sup> | boolean   |  否   | 是否使能状态栏属性变化时动画效果。true表示变化时使能动画效果；false表示没有使能动画效果。默认值：false。 <br> **系统能力：** SystemCapability.Window.SessionManager|
-| enableNavigationBarAnimation<sup>12+</sup> | boolean   |  否   | 是否使能导航栏属性变化时动画效果。true表示变化时使能动画效果；false表示没有使能动画效果。默认值：false。 <br> **系统能力：** SystemCapability.Window.SessionManager|
+| enableNavigationBarAnimation<sup>12+</sup> | boolean   |  否   | 是否使能三键导航栏属性变化时动画效果。true表示变化时使能动画效果；false表示没有使能动画效果。默认值：false。 <br><!--RP12--><!--RP12End--><br> **系统能力：** SystemCapability.Window.SessionManager|
 
 ## SystemBarStyle<sup>12+</sup>
 
@@ -140,11 +142,11 @@ import { window } from '@kit.ArkUI';
 
 除此之外还需注意规避区域的如下约束，具体为：
 
-- 底部手势区域中非导航条区域支持点击、长按事件透传，不支持拖入。
+- 底部手势区域中非底部导航条区域支持点击、长按事件透传，不支持拖入。
 
 - 左右侧边手势区域支持点击、长按以及上下滑动事件透传，不支持拖入。
 
-- 导航条区域支持长按、点击、拖入事件响应，不支持事件向下透传。
+- 底部导航条区域支持长按、点击、拖入事件响应，不支持事件向下透传。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -227,7 +229,7 @@ import { window } from '@kit.ArkUI';
 | drawableRect<sup>11+</sup>            | [Rect](#rect7)             | 否   | 否   | 窗口内可绘制区域尺寸，其中左边界上边界是相对窗口计算。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                                                  |
 | type<sup>7+</sup>                     | [WindowType](#windowtype7) | 否   | 否   | 窗口类型。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                                                  |
 | isFullScreen                          | boolean                   | 否   | 否   | 是否全屏，默认为false。true表示全屏；false表示非全屏。<br> **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                                                                                                                  |
-| isLayoutFullScreen<sup>7+</sup>       | boolean                   | 否   | 否   | 窗口是否为沉浸式，默认为false。true表示沉浸式；false表示非沉浸式。<br> **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                                                                                                            |
+| isLayoutFullScreen<sup>7+</sup>       | boolean                   | 否   | 否   | 窗口是否为沉浸式且处于全屏模式（不在悬浮窗、分屏等场景下），默认为false。true表示沉浸式且处于全屏模式；false表示非沉浸式或非全屏模式。<br> **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                                                                                                            |
 | focusable<sup>7+</sup>                | boolean                   | 是   | 否   | 窗口是否可聚焦，默认为true。true表示可聚焦；false表示不可聚焦。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                |
 | touchable<sup>7+</sup>                | boolean                   | 是   | 否   | 窗口是否可触摸，默认为true。true表示可触摸；false表示不可触摸。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                 |
 | brightness                            | number                    | 否   | 否   | 屏幕亮度。该参数为浮点数，可设置的亮度范围为[0.0, 1.0]，其取1.0时表示最大亮度值。如果窗口没有设置亮度值，表示亮度跟随系统，此时获取到的亮度值为-1。<br> **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                      |
@@ -432,7 +434,7 @@ createWindow(config: Configuration, callback: AsyncCallback&lt;Window&gt;): void
 | ------- | -------------------------------- |
 | 201     | Permission verification failed. The application does not have the permission required to call the API. |
 | 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
+| 801     | Capability not supported. createWindow can not work correctly due to limited device capabilities. |
 | 1300001 | Repeated operation. |
 | 1300002 | This window state is abnormal. |
 | 1300004 | Unauthorized operation. |
@@ -504,7 +506,7 @@ createWindow(config: Configuration): Promise&lt;Window&gt;
 | ------- | -------------------------------- |
 | 201     | Permission verification failed. The application does not have the permission required to call the API. |
 | 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
+| 801     | Capability not supported. createWindow can not work correctly due to limited device capabilities. |
 | 1300001 | Repeated operation. |
 | 1300002 | This window state is abnormal. |
 | 1300004 | Unauthorized operation. |
@@ -975,7 +977,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let displayId = 0;
-  let promise = window.getAllWindowLayoutInfo(displayId)
+  let promise = window.getAllWindowLayoutInfo(displayId);
   promise.then((data) => {
     console.info('Succeeded in obtaining all window layout info. Data: ' + JSON.stringify(data));
   }).catch((err: BusinessError) => {
@@ -1404,7 +1406,7 @@ type SpecificSystemBar = 'status' \| 'navigation' \| 'navigationIndicator'
 | 类型       | 说明     |
 |------------|--------|
 | 'status'   | 状态栏。   |
-| 'navigation'   | 三键导航栏。   |
+| 'navigation'   | 三键导航栏。<br><!--RP12--><!--RP12End-->   |
 | 'navigationIndicator'   | 底部导航条。 |
 
 ## Window
@@ -1417,7 +1419,7 @@ type SpecificSystemBar = 'status' \| 'navigation' \| 'navigationIndicator'
 
 showWindow(callback: AsyncCallback&lt;void&gt;): void
 
-显示当前窗口，使用callback异步回调，仅支持系统窗口及应用子窗口，或将已显示的应用主窗口的层级提升至顶部。
+显示当前窗口，使用callback异步回调，仅支持系统窗口与应用子窗口，或将已显示的应用主窗口层级提升至顶部。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -1456,7 +1458,7 @@ windowClass.showWindow((err: BusinessError) => {
 
 showWindow(): Promise&lt;void&gt;
 
-显示当前窗口，使用Promise异步回调，仅支持系统窗口及应用子窗口，或将已显示的应用主窗口的层级提升至顶部。
+显示当前窗口，使用Promise异步回调，仅支持系统窗口与应用子窗口，或将已显示的应用主窗口层级提升至顶部。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -2311,8 +2313,8 @@ export default class EntryAbility extends UIAbility {
 setWindowLayoutFullScreen(isLayoutFullScreen: boolean): Promise&lt;void&gt;
 
 设置主窗口或子窗口的布局是否为沉浸式布局，使用Promise异步回调。<!--RP8-->从API version 14开始，该接口在2in1设备上调用不生效。<!--RP8End-->
-沉浸式布局生效时，布局不避让状态栏与导航栏，组件可能产生与其重叠的情况。
-非沉浸式布局生效时，布局避让状态栏与导航栏，组件不会与其重叠。
+沉浸式布局生效时，布局不避让状态栏与三键导航栏，组件可能产生与其重叠的情况。
+非沉浸式布局生效时，布局避让状态栏与三键导航栏，组件不会与其重叠。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -2322,7 +2324,7 @@ setWindowLayoutFullScreen(isLayoutFullScreen: boolean): Promise&lt;void&gt;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | ------------------ | ------- | -- | ------------------------------------------------------------------------------------------------ |
-| isLayoutFullScreen | boolean | 是 | 窗口的布局是否为沉浸式布局（该沉浸式布局状态栏、导航栏仍然显示）。true表示沉浸式布局；false表示非沉浸式布局。 |
+| isLayoutFullScreen | boolean | 是 | 窗口的布局是否为沉浸式布局（该沉浸式布局状态栏、三键导航栏仍然显示）。true表示沉浸式布局；false表示非沉浸式布局。 |
 
 **返回值：**
 
@@ -2587,7 +2589,7 @@ setWindowSystemBarEnable(names: Array<'status' | 'navigation'>): Promise&lt;void
 
 设置主窗口三键导航栏、状态栏、底部导航条的可见模式，状态栏与底部导航条通过status控制、三键导航栏通过navigation控制，使用Promise异步回调。从API version 12开始，<!--RP5-->该接口在2in1设备上调用不生效。<!--RP5End-->
 
-调用生效后返回并不表示三键导航栏、状态栏和底部导航条的显示或隐藏已完成。子窗口调用后不生效。
+调用生效后返回并不表示三键导航栏、状态栏和底部导航条的显示或隐藏已完成。子窗口调用后不生效。非全屏模式（悬浮窗、分屏等场景）下配置不生效。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -2657,7 +2659,7 @@ setSpecificSystemBarEnabled(name: SpecificSystemBar, enable: boolean, enableAnim
 
 设置主窗口三键导航栏、状态栏、底部导航条的显示和隐藏，使用Promise异步回调。从API version 12开始，<!--RP5-->该接口在2in1设备上调用不生效。<!--RP5End-->
 
-调用生效后返回并不表示三键导航栏、状态栏和底部导航条的显示或隐藏已完成。子窗口调用后不生效。
+调用生效后返回并不表示三键导航栏、状态栏和底部导航条的显示或隐藏已完成。子窗口调用后不生效。非全屏模式（悬浮窗、分屏等场景）下配置不生效。
 
 **系统能力：** SystemCapability.Window.SessionManager
 
@@ -3104,7 +3106,7 @@ export default class EntryAbility extends UIAbility {
 
 setUIContent(path: string, callback: AsyncCallback&lt;void&gt;): void
 
-根据当前工程中某个页面的路径为窗口加载具体页面内容，使用callback异步回调。
+根据当前工程中指定的某个页面路径为窗口加载具体页面内容，使用callback异步回调。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -3150,7 +3152,7 @@ try {
 
 setUIContent(path: string): Promise&lt;void&gt;
 
-根据当前工程中某个页面的路径为窗口加载具体页面内容，使用Promise异步回调。
+根据当前工程中指定的某个页面路径为窗口加载具体页面内容，使用Promise异步回调。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -3199,7 +3201,7 @@ try {
 
 loadContent(path: string, storage: LocalStorage, callback: AsyncCallback&lt;void&gt;): void
 
-根据当前工程中某个页面的路径为窗口加载具体页面内容，通过LocalStorage传递状态属性给加载的页面，使用callback异步回调。建议在UIAbility启动过程中使用该接口，多次调用该接口会先销毁旧的页面内容（即UIContent）再加载新的页面内容，请谨慎使用。
+根据当前工程中指定的页面路径为窗口加载具体页面内容，通过LocalStorage传递状态属性给加载的页面，使用callback异步回调。建议在UIAbility启动过程中使用该接口，重复调用将先销毁旧的页面内容（即UIContent）再加载新的页面内容，请谨慎使用。
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
@@ -3212,7 +3214,7 @@ loadContent(path: string, storage: LocalStorage, callback: AsyncCallback&lt;void
 | 参数名   | 类型                                            | 必填 | 说明                                                         |
 | -------- | ----------------------------------------------- | ---- | ------------------------------------------------------------ |
 | path     | string                                          | 是   | 要加载到窗口中的页面内容的路径，该路径需添加到工程的main_pages.json文件中。 |
-| storage  | [LocalStorage](../../quick-start/arkts-localstorage.md) | 是   | 页面级UI状态存储单元，这里用于为加载到窗口的页面内容传递状态属性。 |
+| storage  | [LocalStorage](../../ui/state-management/arkts-localstorage.md) | 是   | 页面级UI状态存储单元，这里用于为加载到窗口的页面内容传递状态属性。 |
 | callback | AsyncCallback&lt;void&gt;                       | 是   | 回调函数。                                                   |
 
 **错误码：**
@@ -3246,7 +3248,7 @@ windowClass.loadContent('pages/page2', storage, (err: BusinessError) => {
 
 loadContent(path: string, storage: LocalStorage): Promise&lt;void&gt;
 
-根据当前工程中某个页面的路径为窗口加载具体页面内容，通过LocalStorage传递状态属性给加载的页面，使用Promise异步回调。建议在UIAbility启动过程中使用该接口，多次调用该接口会先销毁旧的页面内容（即UIContent）再加载新的页面内容，请谨慎使用。
+根据当前工程中指定的页面路径为窗口加载具体页面内容，通过LocalStorage传递状态属性给加载的页面，使用Promise异步回调。建议在UIAbility启动过程中使用该接口，重复调用将先销毁旧的页面内容（即UIContent）再加载新的页面内容，请谨慎使用。
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
@@ -3259,7 +3261,7 @@ loadContent(path: string, storage: LocalStorage): Promise&lt;void&gt;
 | 参数名  | 类型                                            | 必填 | 说明                                                         |
 | ------- | ----------------------------------------------- | ---- | ------------------------------------------------------------ |
 | path    | string                                          | 是   | 要加载到窗口中的页面内容的路径，该路径需添加到工程的main_pages.json文件中。 |
-| storage | [LocalStorage](../../quick-start/arkts-localstorage.md) | 是   | 页面级UI状态存储单元，这里用于为加载到窗口的页面内容传递状态属性。 |
+| storage | [LocalStorage](../../ui/state-management/arkts-localstorage.md) | 是   | 页面级UI状态存储单元，这里用于为加载到窗口的页面内容传递状态属性。 |
 
 **返回值：**
 
@@ -3296,7 +3298,7 @@ promise.then(() => {
 
 loadContentByName(name: string, storage: LocalStorage, callback: AsyncCallback&lt;void&gt;): void
 
-为当前窗口加载[命名路由](../../ui/arkts-routing.md#命名路由)页面，通过LocalStorage传递状态属性给加载的页面，使用callback异步回调。建议在UIAbility启动过程中使用该接口，多次调用该接口会先销毁旧的页面内容（即UIContent）再加载新的页面内容，请谨慎使用。
+根据指定路由页面名称为当前窗口加载[命名路由](../../ui/arkts-routing.md#命名路由)页面，通过LocalStorage传递状态属性至加载页面，使用callback异步回调。建议在UIAbility启动过程中使用该接口，重复调用该接口将先销毁旧的页面内容（即UIContent）再加载新的页面内容，请谨慎使用。
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
@@ -3309,7 +3311,7 @@ loadContentByName(name: string, storage: LocalStorage, callback: AsyncCallback&l
 | 参数名   | 类型                                                    | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | name     | string                                                  | 是   | 命名路由页面的名称。                                             |
-| storage  | [LocalStorage](../../quick-start/arkts-localstorage.md) | 是   | 页面级UI状态存储单元，这里用于为加载到窗口的页面内容传递状态属性。 |
+| storage  | [LocalStorage](../../ui/state-management/arkts-localstorage.md) | 是   | 页面级UI状态存储单元，这里用于为加载到窗口的页面内容传递状态属性。 |
 | callback | AsyncCallback&lt;void&gt;                               | 是   | 回调函数。                                                   |
 
 **错误码：**
@@ -3370,7 +3372,7 @@ export struct Index {
 
 loadContentByName(name: string, callback: AsyncCallback&lt;void&gt;): void
 
-为当前窗口加载[命名路由](../../ui/arkts-routing.md#命名路由)页面内容，使用callback异步回调。建议在UIAbility启动过程中使用该接口，多次调用该接口会先销毁旧的页面内容（即UIContent）再加载新的页面内容，请谨慎使用。
+根据指定路由页面名称为当前窗口加载[命名路由](../../ui/arkts-routing.md#命名路由)页面，使用callback异步回调。建议在UIAbility启动过程中使用该接口，重复调用该接口将先销毁旧的页面内容（即UIContent）再加载新的页面内容，请谨慎使用。
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
@@ -3440,7 +3442,7 @@ export struct Index {
 
 loadContentByName(name: string, storage?: LocalStorage): Promise&lt;void&gt;
 
-为当前窗口加载[命名路由](../../ui/arkts-routing.md#命名路由)页面，通过LocalStorage传递状态属性给加载的页面，使用Promise异步回调。建议在UIAbility启动过程中使用该接口，多次调用该接口会先销毁旧的页面内容（即UIContent）再加载新的页面内容，请谨慎使用。
+根据指定路由页面名称为当前窗口加载[命名路由](../../ui/arkts-routing.md#命名路由)页面，通过LocalStorage传递状态属性至加载页面，使用Promise异步回调。建议在UIAbility启动过程中使用该接口，重复调用该接口将先销毁旧的页面内容（即UIContent）再加载新的页面内容，请谨慎使用。
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
@@ -3453,7 +3455,7 @@ loadContentByName(name: string, storage?: LocalStorage): Promise&lt;void&gt;
 | 参数名  | 类型                                                    | 必填 | 说明                                                         |
 | ------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | name    | string                                                  | 是   | 命名路由页面的名称。                                             |
-| storage | [LocalStorage](../../quick-start/arkts-localstorage.md) | 否   | 页面级UI状态存储单元，这里用于为加载到窗口的页面内容传递状态属性。 |
+| storage | [LocalStorage](../../ui/state-management/arkts-localstorage.md) | 否   | 页面级UI状态存储单元，这里用于为加载到窗口的页面内容传递状态属性。 |
 
 **返回值：**
 
@@ -3716,7 +3718,7 @@ try {
 
 on(type: 'keyboardHeightChange', callback: Callback&lt;number&gt;): void
 
-开启固定态软键盘高度变化的监听，当软键盘由本窗口唤出并存在重叠区域时通知键盘高度变化。从API version 10开始，改变软键盘为固定态或者悬浮态方法详细介绍请参见[输入法服务](../apis-ime-kit/js-apis-inputmethodengine.md#changeflag10)。
+开启固定态软键盘高度变化的监听。当软键盘从本窗口唤出且与窗口有重叠区域时，通知键盘高度变化。从API version 10开始，有关将软键盘设置为固定态或悬浮态的方法，请参见[输入法服务](../apis-ime-kit/js-apis-inputmethodengine.md#changeflag10)。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -3727,7 +3729,7 @@ on(type: 'keyboardHeightChange', callback: Callback&lt;number&gt;): void
 | 参数名   | 类型                | 必填 | 说明                                        |
 | -------- | ------------------- | ---- |-------------------------------------------|
 | type     | string              | 是   | 监听事件，固定为'keyboardHeightChange'，即键盘高度变化事件。 |
-| callback | Callback&lt;number&gt; | 是   | 回调函数。返回当前的键盘高度，返回值为整数，单位为px。     |
+| callback | Callback&lt;number&gt; | 是   | 回调函数。返回当前的键盘高度。返回值为整数，单位为px。     |
 
 **错误码：**
 
@@ -3755,7 +3757,7 @@ try {
 
 off(type: 'keyboardHeightChange', callback?: Callback&lt;number&gt;): void
 
-关闭固定态软键盘高度变化的监听。从API version 10开始，改变软键盘为固定态或者悬浮态方法详细介绍请参见[输入法服务](../apis-ime-kit/js-apis-inputmethodengine.md#changeflag10)。
+关闭固定态软键盘高度变化的监听，使应用程序不再接收键盘高度变化的通知。从API version 10开始，有关将软键盘设置为固定态或悬浮态的方法，请参见[输入法服务](../apis-ime-kit/js-apis-inputmethodengine.md#changeflag10)。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -3766,7 +3768,7 @@ off(type: 'keyboardHeightChange', callback?: Callback&lt;number&gt;): void
 | 参数名   | 类型                   | 必填 | 说明                                                         |
 | -------- | ---------------------- | ---- | ------------------------------------------------------------ |
 | type     | string                 | 是   | 监听事件，固定为'keyboardHeightChange'，即键盘高度变化事件。 |
-| callback | Callback&lt;number&gt; | 否   | 回调函数。返回当前的键盘高度，返回值为整数，单位为px。若传入参数，则关闭该监听。如果未传入参数，则关闭所有固定态软键盘高度变化的监听。                               |
+| callback | Callback&lt;number&gt; | 否   | 回调函数。返回当前的键盘高度，返回值为整数，单位为px。若传入参数，则关闭该监听；未传入参数，则关闭所有固定态软键盘高度变化的监听。                               |
 
 **错误码：**
 
@@ -5450,7 +5452,7 @@ export default class EntryAbility extends UIAbility {
 
 setWindowFocusable(isFocusable: boolean, callback: AsyncCallback&lt;void&gt;): void
 
-设置使用点击或其他方式使该窗口获焦的场景时，该窗口是否支持窗口焦点从点击前的获焦窗口切换到该窗口，使用callback异步回调。
+设置窗口是否具有获得焦点的能力，使用callback异步回调。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -5460,7 +5462,7 @@ setWindowFocusable(isFocusable: boolean, callback: AsyncCallback&lt;void&gt;): v
 
 | 参数名 | 类型 | 必填 | 说明 |
 | ----------- | ------------------------- | -- | ------------------------------------------------------- |
-| isFocusable | boolean                   | 是 | 点击时是否支持切换焦点窗口。true表示支持；false表示不支持。 |
+| isFocusable | boolean                   | 是 | 窗口是否可获焦。true表示支持；false表示不支持。 |
 | callback    | AsyncCallback&lt;void&gt; | 是 | 回调函数。                                               |
 
 **错误码：**
@@ -5497,7 +5499,7 @@ try {
 
 setWindowFocusable(isFocusable: boolean): Promise&lt;void&gt;
 
-设置使用点击或其他方式使该窗口获焦的场景时，该窗口是否支持窗口焦点从点击前的获焦窗口切换到该窗口，使用Promise异步回调。
+设置窗口是否具有获得焦点的能力，使用Promise异步回调。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -5507,7 +5509,7 @@ setWindowFocusable(isFocusable: boolean): Promise&lt;void&gt;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | ----------- | ------- | -- | -------------------------------------------------------- |
-| isFocusable | boolean | 是 | 点击时是否支持切换焦点窗口。true表示支持；false表示不支持。  |
+| isFocusable | boolean | 是 | 窗口是否可获焦。true表示支持；false表示不支持。  |
 
 **返回值：**
 
@@ -6692,6 +6694,8 @@ setWindowMask(windowMask: Array&lt;Array&lt;number&gt;&gt;): Promise&lt;void&gt;
 设置异形窗口的掩码，使用Promise异步回调。异形窗口为非常规形状的窗口，掩码用于描述异形窗口的形状。此接口仅限子窗和全局悬浮窗可用。
 当异形窗口大小发生变化时，实际的显示内容为掩码大小和窗口大小的交集部分。
 
+该接口只在多个线程操作同一个窗口时可能返回错误码1300002。窗口被销毁场景下错误码返回401。
+
 <!--RP6-->此接口仅可在2in1设备下使用。<!--RP6End-->
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
@@ -7142,7 +7146,7 @@ windowClass.setUIContent('pages/WindowPage').then(() => {
 
 setDecorButtonStyle(dectorStyle: DecorButtonStyle): void
 
-设置装饰栏按钮样式，仅对主窗和使能窗口标题的子窗生效。如果使用Stage模型，该接口需要在[loadContent()](#loadcontent9)或[setUIContent()](#setuicontent9)调用生效后使用。
+设置装饰栏按钮样式，仅对主窗和子窗生效。如果使用Stage模型，该接口需要在[loadContent()](#loadcontent9)或[setUIContent()](#setuicontent9)调用生效后使用。
 
 <!--RP6-->此接口仅可在2in1设备下使用。<!--RP6End-->
 
@@ -7200,7 +7204,7 @@ export default class EntryAbility extends UIAbility {
 
 getDecorButtonStyle(): DecorButtonStyle
 
-获取装饰栏按钮样式，仅对主窗和使能窗口标题的子窗生效。
+获取装饰栏按钮样式，仅对主窗和子窗生效。
 
 <!--RP6-->此接口仅可在2in1设备下使用。<!--RP6End-->
 
@@ -8366,6 +8370,142 @@ try {
 }
 ```
 
+### setFollowParentMultiScreenPolicy<sup>17+<sup>
+
+setFollowParentMultiScreenPolicy(enabled: boolean): Promise&lt;void&gt;
+
+设置子窗口在其父窗口处于拖拽移动或拖拽缩放过程时，该子窗口是否支持跨多个屏幕同时显示。使用Promise异步回调。
+
+通过监听父窗口大小位置变化，对子窗口调用[moveWindowTo()](#movewindowto9)等接口实现子窗口跟随父窗口布局时，此时子窗口默认不支持跨多个屏幕同时显示。
+
+对子窗口调用此接口后可以使能子窗口在跟随父窗口布局过程中跨多个屏幕同时显示。
+
+<!--RP6-->此接口仅可在2in1设备下使用。<!--RP6End-->
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**原子化服务API：** 从API version 17开始，该接口支持在原子化服务中使用。
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| ----------- | ------- | -- | -------------------------------------------------------- |
+| enabled | boolean | 是 | 设置子窗口在其父窗口处于拖拽移动或拖拽缩放过程时，该子窗口是否支持跨多个屏幕同时显示。true表示支持；false表示不支持。  |
+
+**返回值：**
+
+| 类型 | 说明 |
+| ---------------------- | ------------------------------------------------------------------------------------ |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[窗口错误码](errorcode-window.md)。
+
+| 错误码ID | 错误信息                                                                                                     |
+| -------- | ------------------------------------------------------------------------------------------------------------ |
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 801      | Capability not supported.Function setFollowParentMultiScreenPolicy can not work correctly due to limited device capabilities.|
+| 1300002  | This window state is abnormal.                                                                               |
+| 1300003  | This window manager service works abnormally.                                                                |
+| 1300004  | Unauthorized operation.                                                                                |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+  let windowClass: window.Window = window.findWindow("subWindow");
+  let enabled: boolean = true;
+  let promise = windowClass?.setFollowParentMultiScreenPolicy(enabled);
+  promise.then(() => {
+    console.info('Succeeded in setting the sub window supports multi-screen simultaneous display')
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to set the sub window supports multi-screen simultaneous display. Cause code: ${err.code}, message: ${err.message}`);
+  });
+} catch (exception) {
+  console.error(`Failed to set the sub window supports multi-screen simultaneous display. Cause code: ${exception.code}, message: ${exception.message}`);
+}
+```
+
+### setFollowParentWindowLayoutEnabled<sup>17+</sup>
+
+setFollowParentWindowLayoutEnabled(enabled: boolean): Promise&lt;void&gt;
+
+设置子窗或模态窗口（即WindowType为TYPE_DIALOG的窗口）的布局信息（position和size）是否跟随主窗，使用Promise异步回调。
+
+1、只支持主窗的一级子窗或模态窗口使用该接口。
+
+2、当子窗或模态窗口调用该接口后，立即使其布局信息与主窗完全一致并保持，除非传入false再次调用该接口，否则效果将持续。
+
+3、当子窗或模态窗口调用该接口后，再调用moveTo、resize等修改布局信息的接口将不生效。
+
+4、当子窗或模态窗口不再使用该功能后，不保证子窗或模态窗口的布局信息（position和size）为确定的值，需要应用重新进行设置。
+
+**模型约束：** 此接口仅可在Stage模型下使用。
+
+**原子化服务API：** 从API version 17开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**参数：**
+
+| 参数名 | 类型  | 必填  | 说明  |
+| --- | --- | --- | --- |
+| enabled | boolean | 是   | 设置是否启用跟随主窗布局。true表示启用，false表示不启用。|
+
+**返回值：**
+
+| 类型  | 说明  |
+| --- | --- |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[窗口错误码](errorcode-window.md)。
+
+| 错误码ID | 错误信息 |
+| --- | --- |
+| 401 | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 801 | Capability not supported. Failed to call the API due to limited device capabilities. |
+| 1300002 | This window state is abnormal. |
+| 1300003 | This window manager service works abnormally. |
+| 1300004 | Unauthorized operation. |
+
+**示例：**
+```ts
+// EntryAbility.ets
+import { window } from '@kit.ArkUI';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { UIAbility } from '@kit.AbilityKit';
+
+export default class EntryAbility extends UIAbility {
+  onWindowStageCreate(windowStage: window.WindowStage): void {
+    windowStage.loadContent('pages/Index', (loadError) => {
+      if (loadError.code) {
+        console.error(`Failed to load the content. Cause code: ${loadError.code}, message: ${loadError.message}`);
+        return;
+      }
+      console.info("Succeeded in loading the content.");
+      windowStage.createSubWindow("subWindow").then((subWindow: window.Window) => {
+        if (subWindow == null) {
+          console.error("Failed to create the subWindow. Cause: The data is empty");
+          return;
+        }
+        subWindow.setFollowParentWindowLayoutEnabled(true).then(() => {
+          console.info("after set follow parent window layout")
+        }).catch((error: BusinessError) => {
+          console.error(`setFollowParentWindowLayoutEnabled failed. ${error.code} ${error.message}`);
+        })
+      }).catch((error: BusinessError) => {
+        console.error(`createSubWindow failed. ${error.code} ${error.message}`);
+      })
+    });
+  }
+}
+```
+
 ### setWindowSystemBarProperties<sup>(deprecated)</sup>
 
 setWindowSystemBarProperties(systemBarProperties: SystemBarProperties, callback: AsyncCallback&lt;void&gt;): void
@@ -8449,7 +8589,7 @@ setWindowSystemBarEnable(names: Array<'status' | 'navigation'>, callback: AsyncC
 
 设置主窗口三键导航栏、状态栏、底部导航条的可见模式，状态栏与底部导航条通过status控制、三键导航栏通过navigation控制，使用callback异步回调。从API version 12开始，<!--RP5-->该接口在2in1设备上调用不生效。<!--RP5End-->
 
-调用生效后返回并不表示三键导航栏、状态栏和底部导航条的显示或隐藏已完成。子窗口调用后不生效。
+调用生效后返回并不表示三键导航栏、状态栏和底部导航条的显示或隐藏已完成。子窗口调用后不生效。非全屏模式（悬浮窗、分屏等场景）下配置不生效。
 
 > **说明：**
 >
@@ -9249,7 +9389,7 @@ setSystemBarEnable(names: Array<'status' | 'navigation'>, callback: AsyncCallbac
 
 设置主窗口三键导航栏、状态栏、底部导航条的可见模式，状态栏与底部导航条通过status控制、三键导航栏通过navigation控制，使用callback异步回调。从API version 12开始，<!--RP5-->该接口在2in1设备上调用不生效。<!--RP5End-->
 
-调用生效后返回并不表示三键导航栏、状态栏和底部导航条的显示或隐藏已完成。子窗口调用后不生效。
+调用生效后返回并不表示三键导航栏、状态栏和底部导航条的显示或隐藏已完成。子窗口调用后不生效。非全屏模式（悬浮窗、分屏等场景）下配置不生效。
 
 > **说明：**
 >
@@ -9305,7 +9445,7 @@ setSystemBarEnable(names: Array<'status' | 'navigation'>): Promise&lt;void&gt;
 
 设置主窗口三键导航栏、状态栏、底部导航条的可见模式，状态栏与底部导航条通过status控制、三键导航栏通过navigation控制，使用Promise异步回调。从API version 12开始，<!--RP5-->该接口在2in1设备上调用不生效。<!--RP5End-->
 
-调用生效后返回并不表示三键导航栏、状态栏和底部导航条的显示或隐藏已完成。子窗口调用后不生效。
+调用生效后返回并不表示三键导航栏、状态栏和底部导航条的显示或隐藏已完成。子窗口调用后不生效。非全屏模式（悬浮窗、分屏等场景）下配置不生效。
 
 > **说明：**
 >
@@ -9364,7 +9504,7 @@ setSystemBarProperties(systemBarProperties: SystemBarProperties, callback: Async
 
 设置主窗口三键导航栏、状态栏的属性，使用callback异步回调，<!--RP5-->该接口在2in1设备上调用不生效。<!--RP5End-->
 
-子窗口调用后不生效。
+子窗口调用后不生效。非全屏模式（悬浮窗、分屏等场景）下配置不生效。
 
 > **说明：**
 >
@@ -10976,7 +11116,7 @@ export default class EntryAbility extends UIAbility {
 
 loadContent(path: string, storage: LocalStorage, callback: AsyncCallback&lt;void&gt;): void
 
-为当前WindowStage的主窗口加载具体页面内容，通过LocalStorage传递状态属性给加载的页面，使用callback异步回调。建议在UIAbility启动过程中使用该接口，多次调用该接口会先销毁旧的页面内容（即UIContent）再加载新的页面内容，请谨慎使用。
+根据当前工程中指定的页面路径为WindowStage的主窗口加载具体页面内容，通过LocalStorage传递状态属性给加载的页面，使用callback异步回调。建议在UIAbility启动过程中调用该接口，重复调用将首先销毁旧的页面内容（即UIContent）再加载新页面内容，请谨慎使用。
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
@@ -10989,7 +11129,7 @@ loadContent(path: string, storage: LocalStorage, callback: AsyncCallback&lt;void
 | 参数名   | 类型                                            | 必填 | 说明                                                         |
 | -------- | ----------------------------------------------- | ---- | ------------------------------------------------------------ |
 | path     | string                                          | 是   | 要加载到窗口中的页面内容的路径，该路径需添加到工程的main_pages.json文件中。  |
-| storage  | [LocalStorage](../../quick-start/arkts-localstorage.md) | 是   | 页面级UI状态存储单元，这里用于为加载到窗口的页面内容传递状态属性。 |
+| storage  | [LocalStorage](../../ui/state-management/arkts-localstorage.md) | 是   | 页面级UI状态存储单元，这里用于为加载到窗口的页面内容传递状态属性。 |
 | callback | AsyncCallback&lt;void&gt;                       | 是   | 回调函数。                                                   |
 
 **错误码：**
@@ -11037,7 +11177,7 @@ export default class EntryAbility extends UIAbility {
 
 loadContent(path: string, storage?: LocalStorage): Promise&lt;void&gt;
 
-为当前WindowStage的主窗口加载具体页面内容，通过LocalStorage传递状态属性给加载的页面，使用Promise异步回调。建议在UIAbility启动过程中使用该接口，多次调用该接口会先销毁旧的页面内容（即UIContent）再加载新的页面内容，请谨慎使用。
+根据当前工程中指定的页面路径为WindowStage的主窗口加载具体页面内容，通过LocalStorage传递状态属性给加载的页面，使用Promise异步回调。建议在UIAbility启动过程中调用该接口，重复调用将首先销毁旧的页面内容（即UIContent）再加载新页面内容，请谨慎使用。
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
@@ -11050,7 +11190,7 @@ loadContent(path: string, storage?: LocalStorage): Promise&lt;void&gt;
 | 参数名  | 类型                                            | 必填 | 说明                                                         |
 | ------- | ----------------------------------------------- | ---- | ------------------------------------------------------------ |
 | path    | string                                          | 是   | 要加载到窗口中的页面内容的路径，该路径需添加到工程的main_pages.json文件中。 |
-| storage | [LocalStorage](../../quick-start/arkts-localstorage.md) | 否   | 页面级UI状态存储单元，这里用于为加载到窗口的页面内容传递状态属性。 |
+| storage | [LocalStorage](../../ui/state-management/arkts-localstorage.md) | 否   | 页面级UI状态存储单元，这里用于为加载到窗口的页面内容传递状态属性。 |
 
 **返回值：**
 
@@ -11102,7 +11242,7 @@ export default class EntryAbility extends UIAbility {
 
 loadContent(path: string, callback: AsyncCallback&lt;void&gt;): void
 
-为当前WindowStage的主窗口加载具体页面内容，使用callback异步回调。建议在UIAbility启动过程中使用该接口，多次调用该接口会先销毁旧的页面内容（即UIContent）再加载新的页面内容，请谨慎使用。
+根据当前工程中指定的页面路径为WindowStage的主窗口加载具体页面内容，使用callback异步回调。建议在UIAbility启动过程中调用该接口，重复调用将首先销毁旧的页面内容（即UIContent）再加载新页面内容，请谨慎使用。
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
@@ -11159,7 +11299,7 @@ export default class EntryAbility extends UIAbility {
 
 loadContentByName(name: string, storage: LocalStorage, callback: AsyncCallback&lt;void&gt;): void
 
-为当前WindowStage加载[命名路由](../../ui/arkts-routing.md#命名路由)页面，通过LocalStorage传递状态属性给加载的页面，使用callback异步回调。建议在UIAbility启动过程中使用该接口，多次调用该接口会先销毁旧的页面内容（即UIContent）再加载新的页面内容，请谨慎使用。
+根据指定路由页面名称为当前WindowStage加载[命名路由](../../ui/arkts-routing.md#命名路由)页面，通过LocalStorage传递状态属性至加载页面，使用callback异步回调。建议在UIAbility启动过程中使用该接口，重复调用该接口将先销毁旧的页面内容（即UIContent）再加载新的页面内容，请谨慎使用。
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
@@ -11172,7 +11312,7 @@ loadContentByName(name: string, storage: LocalStorage, callback: AsyncCallback&l
 | 参数名   | 类型                                                    | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | name     | string                                                  | 是   | 命名路由页面的名称。                                             |
-| storage  | [LocalStorage](../../quick-start/arkts-localstorage.md) | 是   | 页面级UI状态存储单元，这里用于为加载到窗口的页面内容传递状态属性。 |
+| storage  | [LocalStorage](../../ui/state-management/arkts-localstorage.md) | 是   | 页面级UI状态存储单元，这里用于为加载到窗口的页面内容传递状态属性。 |
 | callback | AsyncCallback&lt;void&gt;                               | 是   | 回调函数。                                                   |
 
 **错误码：**
@@ -11243,7 +11383,7 @@ export struct Index {
 
 loadContentByName(name: string, callback: AsyncCallback&lt;void&gt;): void
 
-为当前WindowStage加载[命名路由](../../ui/arkts-routing.md#命名路由)页面，使用callback异步回调。建议在UIAbility启动过程中使用该接口，多次调用该接口会先销毁旧的页面内容（即UIContent）再加载新的页面内容，请谨慎使用。
+根据指定路由页面名称为当前WindowStage加载[命名路由](../../ui/arkts-routing.md#命名路由)页面，使用callback异步回调。建议在UIAbility启动过程中使用该接口，重复调用该接口将先销毁旧的页面内容（即UIContent）再加载新的页面内容，请谨慎使用。
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
@@ -11323,7 +11463,7 @@ export struct Index {
 
 loadContentByName(name: string, storage?: LocalStorage): Promise&lt;void&gt;;
 
-为当前WindowStage加载[命名路由](../../ui/arkts-routing.md#命名路由)页面，通过LocalStorage传递状态属性给加载的页面，使用promise异步回调。建议在UIAbility启动过程中使用该接口，多次调用该接口会先销毁旧的页面内容（即UIContent）再加载新的页面内容，请谨慎使用。
+根据指定路由页面名称为当前WindowStage加载[命名路由](../../ui/arkts-routing.md#命名路由)页面，通过LocalStorage传递状态属性至加载页面，使用promise异步回调。建议在UIAbility启动过程中使用该接口，重复调用该接口将先销毁旧的页面内容（即UIContent）再加载新的页面内容，请谨慎使用。
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
@@ -11854,15 +11994,11 @@ export default class EntryAbility extends UIAbility {
 
 setWindowRectAutoSave(enabled: boolean): Promise&lt;void&gt;
 
-设置主窗的尺寸记忆是否启用，使用Promise异步回调，仅对2in1设备生效。
+设置是否启用最后关闭的主窗尺寸的记忆功能，使用Promise异步回调，仅对2in1设备生效。
 
-主窗口调用该接口时，设置主窗口的尺寸记忆是否启用。启用主窗口尺寸记忆功能后，在同一个UIAbility下，记忆最后关闭的窗口的尺寸和模式。
+启用记忆功能后，在同一个UIAbility下，记忆最后关闭的主窗口的尺寸；此主窗口再次启动时，以记忆的尺寸按照规则进行打开。
 
-窗口再次启动时，以记忆的尺寸和模式按照规则进行打开。
-
-层叠规则:
-1、当前实例是自由窗口时，打开下一实例窗口层叠时，大小要跟随。
-2、当前实例是最大化或全屏窗口时，打开下一个实例窗口层叠时，保持最大化。
+层叠规则: 1、当前实例是自由窗口时，打开下一实例窗口层叠时，大小要跟随。2、当前实例是最大化或全屏窗口时，打开下一个实例窗口层叠时，保持最大化。
 
 记忆规则：
 |上一次窗口状态|记忆规则|
@@ -11883,7 +12019,7 @@ setWindowRectAutoSave(enabled: boolean): Promise&lt;void&gt;
 
 | 参数名    | 类型    | 必填 | 说明                                          |
 | --------- | ------- | ---- | --------------------------------------------- |
-| enabled | boolean | 是   | 设置主窗口的尺寸记忆是否启用，true为启用，false为不启用。 |
+| enabled | boolean | 是   | 设置是否启用主窗尺寸的记忆功能，true为启用，false为不启用。 |
 
 
 **返回值：**
@@ -11916,6 +12052,81 @@ export default class EntryAbility extends UIAbility {
     console.info('onWindowStageCreate');
     try {
       let promise = windowStage.setWindowRectAutoSave(true);
+      promise.then(() => {
+        console.info('Succeeded in setting window rect auto-save');
+      }).catch((err: BusinessError) => {
+        console.error(`Failed to set window rect auto-save. Cause code: ${err.code}, message: ${err.message}`);
+      });
+    } catch (exception) {
+      console.error(`Failed to set window rect auto-save. Cause code: ${exception.code}, message: ${exception.message}`);
+    }
+  }
+}
+```
+
+### setWindowRectAutoSave<sup>17+</sup>
+
+setWindowRectAutoSave(enabled: boolean, isSaveBySpecifiedFlag: boolean): Promise&lt;void&gt;
+
+设置是否启用主窗的尺寸记忆功能，使用Promise异步回调，仅对2in1设备生效。
+
+在同一个UIAbility下, 可记忆最后关闭的主窗口尺寸，也可针对每个主窗口尺寸单独进行记忆。只有在UIAbility启动模式为specified，且isSaveBySpecifiedFlag设置为true时，才能针对每个主窗口尺寸进行单独记忆。
+
+启用记忆功能后，记忆主窗口关闭时的尺寸；对应主窗口再次启动时，以记忆的尺寸按照规则进行打开。
+
+记忆规则：
+|上一次窗口状态|记忆规则|
+|-------------|-------|
+|自由窗口|保留自由窗口的大小/位置，超出工作区回弹。|
+|二分屏窗口|保留二分屏之前自由窗口的大小/位置。|
+|最大化窗口|保留最大化。|
+|沉浸式窗口|保留沉浸式之前自由窗口的大小/位置。|
+|最小化窗口|保留最小化之前自由窗口的大小/位置。|
+
+**模型约束：** 此接口仅可在Stage模型下使用。
+
+**原子化服务API：** 从API version 17开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**参数：**
+
+| 参数名    | 类型    | 必填 | 说明                                          |
+| --------- | ------- | ---- | --------------------------------------------- |
+| enabled | boolean | 是   | 设置是否启用主窗的尺寸记忆功能，true为启用，false为不启用。 |
+| isSaveBySpecifiedFlag | boolean | 是   | 设置specified模式下是否启用对窗口进行单独记忆，true为启用，false为不启用。 |
+
+
+**返回值：**
+
+| 类型 | 说明 |
+| ------------------- | ------------------------ |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[窗口错误码](errorcode-window.md)。
+
+| 错误码ID | 错误信息                       |
+| -------- | ------------------------------ |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 801      | Capability not supported. Function setWindowRectAutoSave can not work correctly due to limited device capabilities. |
+| 1300002  | This window state is abnormal. |
+| 1300003  | This window manager service works abnormally. |
+
+**示例：**
+
+```ts
+// EntryAbility.ets
+import { UIAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+export default class EntryAbility extends UIAbility {
+  // ...
+  onWindowStageCreate(windowStage: window.WindowStage): void {
+    console.info('onWindowStageCreate');
+    try {
+      let promise = windowStage.setWindowRectAutoSave(true, true);
       promise.then(() => {
         console.info('Succeeded in setting window rect auto-save');
       }).catch((err: BusinessError) => {

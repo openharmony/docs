@@ -1106,7 +1106,9 @@ CommonEvent_ErrCode OH_CommonEvent_SetPublisherPermission(CommonEvent_SubscribeI
 
 **返回：**
 
-返回COMMONEVENT_ERR_OK表示成功；返回COMMONEVENT_ERR_INVALID_PARAMETER表示info为空指针。
+返回COMMONEVENT_ERR_OK表示成功。
+
+返回COMMONEVENT_ERR_INVALID_PARAMETER表示info为空指针。
 
 ### OH_CommonEvent_SetPublisherBundleName
 
@@ -1129,7 +1131,9 @@ CommonEvent_ErrCode OH_CommonEvent_SetPublisherBundleName(CommonEvent_SubscribeI
 
 **返回：**
 
-返回COMMONEVENT_ERR_OK表示成功；返回COMMONEVENT_ERR_INVALID_PARAMETER表示info为空指针。
+返回COMMONEVENT_ERR_OK表示成功。
+
+返回COMMONEVENT_ERR_INVALID_PARAMETER表示info为空指针。
 
 ### OH_CommonEvent_DestroySubscribeInfo
 
@@ -1210,7 +1214,17 @@ CommonEvent_ErrCode OH_CommonEvent_Subscribe(const CommonEvent_Subscriber* subsc
 
 **返回：**
 
-返回COMMONEVENT_ERR_OK表示成功；返回COMMONEVENT_ERR_INVALID_PARAMETER表示参数subscriber为空；返回COMMONEVENT_ERR_SENDING_REQUEST_FAILED表示IPC发送失败；返回COMMONEVENT_ERR_INIT_UNDONE表示公共事件服务未初始化；返回COMMONEVENT_ERR_SUBSCRIBER_NUM_EXCEEDED表示当前进程订阅者超过200个；返回COMMONEVENT_ERR_ALLOC_MEMORY_FAILED表示系统分配内存失败。
+返回COMMONEVENT_ERR_OK表示成功。
+
+返回COMMONEVENT_ERR_INVALID_PARAMETER表示参数subscriber为空。
+
+返回COMMONEVENT_ERR_SENDING_REQUEST_FAILED表示IPC发送失败。
+
+返回COMMONEVENT_ERR_INIT_UNDONE表示公共事件服务未初始化。
+
+返回COMMONEVENT_ERR_SUBSCRIBER_NUM_EXCEEDED表示当前进程订阅者超过200个。
+
+返回COMMONEVENT_ERR_ALLOC_MEMORY_FAILED表示系统分配内存失败。
 
 ### OH_CommonEvent_UnSubscribe
 
@@ -1232,7 +1246,13 @@ CommonEvent_ErrCode OH_CommonEvent_UnSubscribe(const CommonEvent_Subscriber* sub
 
 **返回：**
 
-返回COMMONEVENT_ERR_OK表示成功；返回COMMONEVENT_ERR_INVALID_PARAMETER表示参数subscriber为空；返回COMMONEVENT_ERR_SENDING_REQUEST_FAILED表示IPC发送失败；返回COMMONEVENT_ERR_INIT_UNDONE表示公共事件服务未初始化。
+返回COMMONEVENT_ERR_OK表示成功。
+
+返回COMMONEVENT_ERR_INVALID_PARAMETER表示参数subscriber为空。
+
+返回COMMONEVENT_ERR_SENDING_REQUEST_FAILED表示IPC发送失败。
+
+返回COMMONEVENT_ERR_INIT_UNDONE表示公共事件服务未初始化。
 
 ### OH_CommonEvent_GetEventFromRcvData
 
@@ -1365,7 +1385,9 @@ bool OH_CommonEvent_HasKeyInParameters(const CommonEvent_Parameters* para, const
 
 **返回：**
 
-返回true表示存在该键值对信息，返回false表示不存在。
+返回true表示存在该键值对信息。
+
+返回false表示不存在该键值对信息。
 
 ### OH_CommonEvent_GetIntFromParameters
 

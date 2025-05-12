@@ -1539,7 +1539,7 @@ try {
 
 moveMissionsToBackground(missionIds: Array&lt;number&gt;, callback: AsyncCallback&lt;Array&lt;number&gt;&gt;): void
 
-将指定任务批量切到后台，以回调函数的方式返回, 返回的结果任务ID按被隐藏时的任务层级排序。
+将指定任务批量切到后台，以回调函数的方式返回，返回的结果任务ID按被隐藏时的任务层级排序。
 
 **需要权限**：ohos.permission.MANAGE_MISSIONS
 
@@ -1603,7 +1603,7 @@ try {
 
 moveMissionsToBackground(missionIds : Array&lt;number&gt;): Promise&lt;Array&lt;number&gt;&gt;
 
-将指定任务批量切到后台，以promise的方式返回, 返回的结果按被隐藏时的任务层级排序。
+将指定任务批量切到后台，以promise的方式返回，返回的结果按被隐藏时的任务层级排序。
 
 **需要权限**：ohos.permission.MANAGE_MISSIONS
 

@@ -1,10 +1,10 @@
 # 拖拽事件
 
-拖拽事件指组件被长按后拖拽时触发的事件。
+拖拽事件是指在用户界面中，当用户拖动某个对象（如文件、控件或元素）时触发的一系列事件。这些事件允许开发者自定义拖拽行为，实现诸如拖放、调整位置等功能。
 
 >  **说明：**
 >
->  从API Version 8开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>  从API version 8开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 >
 > 应用本身预置的资源文件（即应用在安装前的HAP包中已经存在的资源文件）仅支持本地应用内拖拽。
 
@@ -48,7 +48,7 @@ onDragStart(event: (event: DragEvent, extraParams?: string) => CustomBuilder | D
 
 | 类型                                                         | 说明                     |
 | ------------------------------------------------------------ | ------------------------ |
-| [CustomBuilder](ts-types.md#custombuilder8)&nbsp;\|&nbsp;[DragItemInfo](#dragiteminfo说明) | 拽过程中显示的组件信息。<br/>**说明：** 不支持全局builder。 |
+| [CustomBuilder](ts-types.md#custombuilder8)&nbsp;\|&nbsp;[DragItemInfo](#dragiteminfo说明) | 拖拽过程中显示的组件信息。<br/>**说明：** 不支持全局builder。 |
 
 ## onDragEnter
 
@@ -102,7 +102,7 @@ onDragLeave(event: (event: DragEvent, extraParams?: string) => void)
 
 onDrop(event: (event: DragEvent, extraParams?: string) => void)
 
-绑定此事件的组件可作为拖放目标。当在本组件范围内停止拖放行为时，将触发回调。如果开发者未在onDrop中主动调用event.setResult()来设置拖拽接收的结果，对于系统支持的默认可拖入组件，处理结果将依据系统实际处理的数据。对于其他组件，系统将默认视为数据接收成功。
+绑定此事件的组件可作为释放目标。当在本组件范围内停止拖放行为时，将触发回调。如果开发者未在onDrop中主动调用event.setResult()来设置拖拽接收的结果，对于系统支持的默认可拖入组件，处理结果将依据系统实际处理的数据。对于其他组件，系统将默认视为数据接收成功。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -185,8 +185,8 @@ onPreDrag(event: (preDragStatus: PreDragStatus) => void)
 
 | 名称       | 类型 | 只读 | 可选 | 说明                                                         |
 | ---------- | ---- | ---- | ---- | ------------------------------------------------------------ |
-| onlyForLifting | boolean | 否    | 是    | 自定义配置的预览图是否仅用于浮起。<br /> **说明：** <br/>默认值为false。设置为true时，如果发起长按拖拽，浮起时的跟手图为自定义配置的预览图，拖拽时的跟手图不使用[dragPreview](ts-universal-attributes-drag-drop.md#dragpreview11)属性，优先使用开发者在[onDragStart](ts-universal-events-drag-drop.md#ondragstart)中返回的背板图，如果[onDragStart](ts-universal-events-drag-drop.md#ondragstart)中没有返回背板图则使用组件自截图。|
-| delayCreating  | boolean | 否    | 是    | 组件预览builder是否在设置时加载。<br/>默认值为false。|
+| onlyForLifting | boolean | 否    | 是    | 自定义配置的预览图是否仅用于浮起。<br /> **说明：** <br/>默认值为false。true表示自定义预览图仅用于浮起，false表示可用于浮起和拖拽。设置为true时，如果发起长按拖拽，浮起时的跟手图为自定义配置的预览图，拖拽时的跟手图不使用[dragPreview](ts-universal-attributes-drag-drop.md#dragpreview11)属性，优先使用开发者在[onDragStart](ts-universal-events-drag-drop.md#ondragstart)中返回的背板图，如果[onDragStart](ts-universal-events-drag-drop.md#ondragstart)中没有返回背板图则使用组件自截图。|
+| delayCreating  | boolean | 否    | 是    | 组件预览builder是否在设置时加载。<br/>默认值为false。true表示组件预览builder在设置时加载，false表示组件预览builder不在设置时加载。|
 
 ## extraParams说明
 
@@ -211,7 +211,7 @@ onPreDrag(event: (preDragStatus: PreDragStatus) => void)
 
 | 名称     | 类型  | 描述             |
 | ------ | ------ | ---------------- |
-| useCustomDropAnimation<sup>10+</sup> | boolean | 当拖拽结束时，是否使能并使用系统默认落位动效。<br/>应用可将该值设定为true来禁用系统默认落位动效，并实现自己的自定义落位动效。<br/>当不配置或设置为false时，系统默认落位动效生效，当松手位置的控件可接收拖拽的数据时，落位为缩小消失动效，若不可接收数据，则为放大消失动效。<br/>当未禁用系统默认落位动效情况下，应用不应再实现自定义动效，以避免动效上的冲突。|
+| useCustomDropAnimation<sup>10+</sup> | boolean | 当拖拽结束时，是否禁用系统默认落位动效。<br/>应用可将该值设定为true来禁用系统默认落位动效，并实现自己的自定义落位动效。<br/>当不配置或设置为false时，系统默认落位动效生效，当松手位置的控件可接收拖拽的数据时，落位为缩小消失动效，若不可接收数据，则为放大消失动效。<br/>当未禁用系统默认落位动效情况下，应用不应再实现自定义动效，以避免动效上的冲突。|
 |dragBehavior<sup>10+</sup> | [DragBehavior](#dragbehavior10) | 切换复制和剪贴模式的角标显示状态。 |
 
 ### 方法
@@ -233,10 +233,10 @@ onPreDrag(event: (preDragStatus: PreDragStatus) => void)
 | getWindowY()<sup>10+</sup> | number | 当前拖拽点相对于窗口左上角的y轴坐标，单位为vp。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | getDisplayX()<sup>10+</sup> | number | 当前拖拽点相对于屏幕左上角的x轴坐标，单位为vp。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | getDisplayY()<sup>10+</sup> | number | 当前拖拽点相对于屏幕左上角的y轴坐标，单位为vp。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| getModifierKeyState<sup>12+</sup> | (Array&lt;string&gt;) => bool | 获取功能键按压状态。报错信息请参考以下错误码。支持功能键 'Ctrl'\|'Alt'\|'Shift'\|'Fn'，设备外接带Fn键的键盘不支持Fn键查询。 <br/>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。|
+| getModifierKeyState<sup>12+</sup> | (Array&lt;string&gt;) => bool | 获取功能键按压状态。报错信息请参考以下错误码。支持功能键 'Ctrl'\|'Alt'\|'Shift'。 <br/>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。|
 | startDataLoading(options: [DataSyncOptions](#datasyncoptions15))<sup>15+</sup> | string | 异步获取拖拽数据，并通知开发者当前数据同步进度，仅支持在onDrop阶段使用。数据传输过程中可使用[cancelDataLoading](../js-apis-arkui-UIContext.md#canceldataloading15)接口取消。<br/>**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。 |
-| getX()<sup>(deprecated)</sup> | number | 当前拖拽点相对于窗口左上角的x轴坐标，单位为vp。<br>从API Version 10开始不再维护，建议使用getWindowX()代替。 |
-| getY()<sup>(deprecated)</sup> | number | 当前拖拽点相对于窗口左上角的y轴坐标，单位为vp。<br>从API Version 10开始不再维护，建议使用getWindowY()代替。 |
+| getX()<sup>(deprecated)</sup> | number | 当前拖拽点相对于窗口左上角的x轴坐标，单位为vp。<br>从API version 10开始不再维护，建议使用getWindowX()代替。 |
+| getY()<sup>(deprecated)</sup> | number | 当前拖拽点相对于窗口左上角的y轴坐标，单位为vp。<br>从API version 10开始不再维护，建议使用getWindowY()代替。 |
 
 
 **错误码：**
@@ -266,7 +266,7 @@ onPreDrag(event: (preDragStatus: PreDragStatus) => void)
 
 ## DragBehavior<sup>10+</sup>
 
-当设置[DragResult](#dragresult10枚举说明)为DROP_ENABLED后，可设置DragBehavior为复制（copy）或剪切（move）。DragBehavior用来向开发者描述数据的处理方式是复制（copy）还是剪切（move），但无法最终决定对数据的实际处理方式。DragBehavior会通过onDragEnd带回给数据拖出方，发起拖拽的一方可通过DragBehavior来区分做出的是复制还是剪切数据的不同行为。
+当设置[DragResult](#dragresult10枚举说明)为DROP_ENABLED后，可设置DragBehavior为复制（COPY）或剪切（MOVE）。DragBehavior用来向开发者描述数据的处理方式是复制（COPY）还是剪切（MOVE），但无法最终决定对数据的实际处理方式。DragBehavior会通过onDragEnd带回给数据拖出方，发起拖拽的一方可通过DragBehavior来区分做出的是复制还是剪切数据的不同行为。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -297,7 +297,7 @@ onPreDrag(event: (preDragStatus: PreDragStatus) => void)
 
 type DataSyncOptions = GetDataParams
 
-作为startDataLoading的入参对象
+作为startDataLoading的入参对象。
 
 **原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
@@ -316,7 +316,6 @@ type DataSyncOptions = GetDataParams
 ```ts
 // xxx.ets
 import { unifiedDataChannel, uniformTypeDescriptor } from '@kit.ArkData';
-import { promptAction } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
@@ -395,9 +394,9 @@ struct Index {
           .onDragEnd((event) => {
             // onDragEnd里取到的result值在接收方onDrop设置
             if (event.getResult() === DragResult.DRAG_SUCCESSFUL) {
-              promptAction.showToast({ duration: 100, message: 'Drag Success' });
+              this.getUIContext().getPromptAction().showToast({ duration: 100, message: 'Drag Success' });
             } else if (event.getResult() === DragResult.DRAG_FAILED) {
-              promptAction.showToast({ duration: 100, message: 'Drag failed' });
+              this.getUIContext().getPromptAction().showToast({ duration: 100, message: 'Drag failed' });
             }
           })
         Text('test drag event')
@@ -497,6 +496,8 @@ struct Index {
             this.textContent = plainText.textContent;
           })
         })
+        .width(this.imageWidth)
+        .height(this.imageHeight)
       }.width('45%')
       .height('100%')
       .margin({ left: '5%' })
@@ -513,14 +514,15 @@ struct Index {
 
 ```ts
 import { unifiedDataChannel, uniformTypeDescriptor } from '@kit.ArkData';
-import { fileUri, fileIo as fs } from '@kit.CoreFileKit'
-import { common } from '@kit.AbilityKit'
+import { fileUri, fileIo as fs } from '@kit.CoreFileKit';
+import { common } from '@kit.AbilityKit';
 
 @Entry
 @Component
 struct ImageExample {
   @State uri: string = "";
   @State blockArr: string[] = [];
+  uiContext = this.getUIContext();
   udKey: string = '';
 
   build() {
@@ -534,18 +536,20 @@ struct ImageExample {
           .border({ width: 1 })
           .draggable(true)
           .onDragStart((event:DragEvent) => {
-            const context: Context = getContext(this);
-            let data = context.resourceManager.getMediaContentSync($r('app.media.startIcon').id, 120);
-            const arrayBuffer: ArrayBuffer = data.buffer.slice(data.byteOffset, data.byteLength + data.byteOffset);
-            let filePath = context.filesDir + '/test.png';
-            let file = fs.openSync(filePath, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
-            fs.writeSync(file.fd, arrayBuffer);
-            //获取图片的uri
-            let uri = fileUri.getUriFromPath(filePath);
-            let image: unifiedDataChannel.Image = new unifiedDataChannel.Image();
-            image.imageUri = uri;
-            let dragData: unifiedDataChannel.UnifiedData = new unifiedDataChannel.UnifiedData(image);
-            (event as DragEvent).setData(dragData);
+            const context: Context|undefined = this.uiContext.getHostContext();
+            if(context) {
+              let data = context.resourceManager.getMediaContentSync($r('app.media.startIcon').id, 120);
+              const arrayBuffer: ArrayBuffer = data.buffer.slice(data.byteOffset, data.byteLength + data.byteOffset);
+              let filePath = context.filesDir + '/test.png';
+              let file = fs.openSync(filePath, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
+              fs.writeSync(file.fd, arrayBuffer);
+              //获取图片的uri
+              let uri = fileUri.getUriFromPath(filePath);
+              let image: unifiedDataChannel.Image = new unifiedDataChannel.Image();
+              image.imageUri = uri;
+              let dragData: unifiedDataChannel.UnifiedData = new unifiedDataChannel.UnifiedData(image);
+              (event as DragEvent).setData(dragData);
+            }
           })
       }
       .margin({ bottom: 20 })
@@ -570,7 +574,7 @@ struct ImageExample {
           .width('100%')
           .onDrop((event?: DragEvent, extraParams?: string) => {
             console.log("enter onDrop")
-            let context = getContext(this) as common.UIAbilityContext;
+            let context = this.uiContext.getHostContext() as common.UIAbilityContext;
             let pathDir: string = context.distributedFilesDir;
             let destUri = fileUri.getUriFromPath(pathDir);
             let progressListener: unifiedDataChannel.DataProgressListener = (progress: unifiedDataChannel.ProgressInfo, dragData: UnifiedData|null) => {

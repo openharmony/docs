@@ -334,31 +334,8 @@
    }
    ```
 
-## 验证方法
-
-1. 在应用中通过接口拉起输入法切换列表弹窗。
-
-  ```ts
-  import { inputMethod } from '@kit.IMEKit';
-  import { BusinessError } from '@kit.BasicServicesKit';
-   
-  let inputMethodSetting = inputMethod.getSetting();
-  try {
-    inputMethodSetting.showOptionalInputMethods((err: BusinessError, data: boolean) => {
-      if (err) {
-        console.error(`Failed to showOptionalInputMethods: ${JSON.stringify(err)}`);
-        return;
-      }
-      console.log('Succeeded in showing optionalInputMethods.');
-    });
-  } catch (err) {
-    console.error(`Failed to showOptionalInputMethods: ${JSON.stringify(err)}`);
-  }
-  ```
-
-2. 在弹窗上显示的输入法应用列表中，选择并点击demo应用，将demo应用切换为当前输入法。
-
-3. 点击任意编辑框，即可拉起输入法demo。
+<!--RP1-->
+<!--RP1End-->
 
 ## 约束与限制
 

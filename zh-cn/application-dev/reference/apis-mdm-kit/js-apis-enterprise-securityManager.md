@@ -8,7 +8,7 @@
 >
 > 本模块接口仅可在Stage模型下使用。
 >
-> 本模块接口仅对[设备管理应用](../../mdm/mdm-kit-guide.md#功能介绍)开放，需将设备管理应用激活后调用，实现相应功能。
+> 本模块接口仅对设备管理应用开放，且调用接口前需激活设备管理应用，具体请参考[MDM Kit开发指南](../../mdm/mdm-kit-guide.md)。
 
 ## 导入模块
 
@@ -60,7 +60,7 @@ let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
-let aliasStr = "certName"
+let aliasStr = "certName";
 securityManager.uninstallUserCertificate(wantTemp, aliasStr).then(() => {
   console.info(`Succeeded in uninstalling user certificate.`);
 }).catch((err: BusinessError) => {
@@ -124,8 +124,8 @@ getContext().resourceManager.getRawFileContent("test.cer").then((value) => {
     console.error(`Failed to install user certificate. Code: ${err.code}, message: ${err.message}`);
   })
 }).catch((err: BusinessError) => {
-  console.error(`Failed to get row file content. message: ${err.message}`);
-  return
+  console.error(`Failed to get raw file content. message: ${err.message}`);
+  return;
 });
 ```
 
@@ -201,7 +201,7 @@ setPasswordPolicy(admin: Want, policy: PasswordPolicy): void
 
 以下错误码的详细介绍请参见[企业设备管理错误码](errorcode-enterpriseDeviceManager.md)和[通用错误码](../errorcode-universal.md)。
 
-| 错误码ID | 错误信息                                                                       |          
+| 错误码ID | 错误信息                                                                       |
 | ------- | ---------------------------------------------------------------------------- |
 | 9200001 | The application is not an administrator application of the device.                        |
 | 9200002 | The administrator application does not have permission to manage the device. |
@@ -256,7 +256,7 @@ getPasswordPolicy(admin: Want): PasswordPolicy
 
 以下错误码的详细介绍请参见[企业设备管理错误码](errorcode-enterpriseDeviceManager.md)和[通用错误码](../errorcode-universal.md)。
 
-| 错误码ID | 错误信息                                                                       |          
+| 错误码ID | 错误信息                                                                       |
 | ------- | ---------------------------------------------------------------------------- |
 | 9200001 | The application is not an administrator application of the device.                        |
 | 9200002 | The administrator application does not have permission to manage the device. |
@@ -302,7 +302,7 @@ setAppClipboardPolicy(admin: Want, tokenId: number, policy: ClipboardPolicy): vo
 
 以下错误码的详细介绍请参见[企业设备管理错误码](errorcode-enterpriseDeviceManager.md)和[通用错误码](../errorcode-universal.md)。
 
-| 错误码ID | 错误信息                                                                       |          
+| 错误码ID | 错误信息                                                                       |
 | ------- | ---------------------------------------------------------------------------- |
 | 9200001 | The application is not an administrator application of the device.                        |
 | 9200002 | The administrator application does not have permission to manage the device. |
@@ -353,7 +353,7 @@ getAppClipboardPolicy(admin: Want, tokenId?: number): string
 
 以下错误码的详细介绍请参见[企业设备管理错误码](errorcode-enterpriseDeviceManager.md)和[通用错误码](../errorcode-universal.md)。
 
-| 错误码ID | 错误信息                                                                       |          
+| 错误码ID | 错误信息                                                                       |
 | ------- | ---------------------------------------------------------------------------- |
 | 9200001 | The application is not an administrator application of the device.                        |
 | 9200002 | The administrator application does not have permission to manage the device. |
@@ -400,7 +400,7 @@ setWatermarkImage(admin: Want, bundleName: string, source: string | image.PixelM
 
 以下错误码的详细介绍请参见[企业设备管理错误码](errorcode-enterpriseDeviceManager.md)和[通用错误码](../errorcode-universal.md)。
 
-| 错误码ID | 错误信息                                                                       |          
+| 错误码ID | 错误信息                                                                       |
 | ------- | ---------------------------------------------------------------------------- |
 | 9200001 | The application is not an administrator application of the device.                        |
 | 9200002 | The administrator application does not have permission to manage the device. |
@@ -448,7 +448,7 @@ cancelWatermarkImage(admin: Want, bundleName: string, accountId: number): void
 
 以下错误码的详细介绍请参见[企业设备管理错误码](errorcode-enterpriseDeviceManager.md)和[通用错误码](../errorcode-universal.md)。
 
-| 错误码ID | 错误信息                                                                       |          
+| 错误码ID | 错误信息                                                                       |
 | ------- | ---------------------------------------------------------------------------- |
 | 9200001 | The application is not an administrator application of the device.                        |
 | 9200002 | The administrator application does not have permission to manage the device. |

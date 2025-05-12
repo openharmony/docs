@@ -238,10 +238,10 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ---- | --------------------- |
 | 201 | Permission denied. |
 | 202 | Not System App. |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed. | 
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed. |
 | 9800001 | Memory operation failed. |
 | 9800002 | Parcel operation failed. |
-| 9800003 | Internal transaction failed. | 
+| 9800003 | Internal transaction failed. |
 | 9800004 | System service operation failed. |
 | 9800005 | Continuous task verification failed. |
 | 9800006 | Notification verification failed for a continuous task. |
@@ -332,7 +332,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ---- | --------------------- |
 | 201 | Permission denied. |
 | 202 | Not System App. |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed. | 
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed. |
 | 9800001 | Memory operation failed. |
 | 9800002 | Parcel operation failed. |
 | 9800003 | Internal transaction failed. |

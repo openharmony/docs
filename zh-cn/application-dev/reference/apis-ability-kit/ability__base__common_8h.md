@@ -29,4 +29,4 @@
 
 | 名称                                                         | 描述                   |
 | ------------------------------------------------------------ | ---------------------- |
-| [AbilityBase_ErrorCode](_ability_base.md#AbilityBase_ErrorCode) {<br>    ABILITY_BASE_ERROR_CODE_NO_ERROR = 0,<br>    ABILITY_BASE_ERROR_CODE_PARAM_INVALID = 401,<br/>}| 定义AbilityBase相关错误码。 |
+| [AbilityBase_ErrorCode](_ability_base.md#abilitybase_errorcode) {<br>    ABILITY_BASE_ERROR_CODE_NO_ERROR = 0,<br>    ABILITY_BASE_ERROR_CODE_PARAM_INVALID = 401,<br/>}| 定义AbilityBase相关错误码。 |

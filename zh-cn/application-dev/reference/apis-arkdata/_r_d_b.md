@@ -60,6 +60,7 @@
 
 | 名称 | 描述 |
 | -------- | -------- |
+| typedef enum [Rdb_Tokenizer](#rdb_tokenizer) [Rdb_Tokenizer](#rdb_tokenizer) | 描述数据库的分词器类型。 |
 | typedef struct [OH_Rdb_ConfigV2](#oh_rdb_configv2) [OH_Rdb_ConfigV2](#oh_rdb_configv2) | 管理关系数据库配置，与[OH_Rdb_Config](_o_h___rdb___config.md)的区别是该结构体成员变量不对外暴露，使用一系列方法配置该结构体的属性。 | 
 | typedef enum [Rdb_DBType](#rdb_dbtype) [Rdb_DBType](#rdb_dbtype) | 描述数据库的内核类型。 | 
 | [OH_ColumnType](#oh_columntype) | 数据库字段类型。 | 
@@ -96,6 +97,7 @@
 
 | 名称 | 描述 |
 | -------- | -------- |
+| [Rdb_Tokenizer](#rdb_tokenizer-1) { RDB_NONE_TOKENIZER = 1, RDB_ICU_TOKENIZER = 2 } | 描述数据库的分词器类型。 |
 | [Rdb_DBType](#rdb_dbtype-1) { RDB_SQLITE = 1, RDB_CAYLEY = 2, DBTYPE_BUTT = 64 } | 描述数据库的内核类型。 | 
 | [OH_ColumnType](#oh_columntype-1) {<br/>TYPE_NULL = 0, TYPE_INT64, TYPE_REAL, TYPE_TEXT,<br/>TYPE_BLOB, TYPE_ASSET, TYPE_ASSETS<br/>} | 数据库字段类型。 |
 | [OH_OrderType](#oh_ordertype-1) { ASC = 0, DESC = 1 } | 排序方式。 |
@@ -114,6 +116,7 @@
 
 | 名称 | 描述 |
 | -------- | -------- |
+| int [OH_Rdb_SetTokenizer](#oh_rdb_settokenizer) ([OH_Rdb_ConfigV2](#oh_rdb_configv2) \*config, [Rdb_Tokenizer](#rdb_tokenizer) tokenizer) | 给指定的数据库文件配置设置分词器类型。 |
 | [OH_Rdb_ConfigV2](#oh_rdb_configv2) \* [OH_Rdb_CreateConfig](#oh_rdb_createconfig) () | 创建一个[OH_Rdb_ConfigV2](#oh_rdb_configv2)实例，并返回指向该实例的指针。 | 
 | int [OH_Rdb_DestroyConfig](#oh_rdb_destroyconfig) ([OH_Rdb_ConfigV2](#oh_rdb_configv2) \*config) | 销毁由[OH_Rdb_CreateConfig](#oh_rdb_createconfig)创建的[OH_Rdb_ConfigV2](#oh_rdb_configv2)对象。 | 
 | int [OH_Rdb_SetDatabaseDir](#oh_rdb_setdatabasedir) ([OH_Rdb_ConfigV2](#oh_rdb_configv2) \*config, const char \*databaseDir) | 给指定的数据库文件配置[OH_Rdb_ConfigV2](#oh_rdb_configv2)，设置数据库文件路径。 | 
@@ -157,7 +160,7 @@
 | [OH_Rdb_Subscribe](#oh_rdb_subscribe) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, [Rdb_SubscribeType](#rdb_subscribetype) type, const [Rdb_DataObserver](_rdb___data_observer.md) \*observer) | 为数据库注册观察者。当分布式数据库中的数据发生更改时，将调用回调。 | 
 | [OH_Rdb_Unsubscribe](#oh_rdb_unsubscribe) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, [Rdb_SubscribeType](#rdb_subscribetype) type, const [Rdb_DataObserver](_rdb___data_observer.md) \*observer) | 从数据库中删除指定类型的指定观察者。 | 
 | [OH_Rdb_GetTableDetails](#oh_rdb_gettabledetails) ([Rdb_ProgressDetails](_rdb___progress_details.md) \*progress, int32_t version) | 从端云同步任务的统计信息中获取数据库表的统计信息。 | 
-| [OH_Rdb_CloudSync](#oh_rdb_cloudsync) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, [Rdb_SyncMode](#rdb_syncmode) mode, const char \*tables, int count, const [Rdb_ProgressObserver](_rdb___progress_observer.md) \*observer) | 进行端云同步。 | 
+| [OH_Rdb_CloudSync](#oh_rdb_cloudsync) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, [Rdb_SyncMode](#rdb_syncmode) mode, const char \*tables[], uint32_t count, const [Rdb_ProgressObserver](_rdb___progress_observer.md) \*observer) | 进行端云同步。 | 
 | [OH_Rdb_SubscribeAutoSyncProgress](#oh_rdb_subscribeautosyncprogress) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, const [Rdb_ProgressObserver](_rdb___progress_observer.md) \*observer) | 订阅RDB存储的自动同步进度当收到自动同步进度的通知时，将调用回调。 | 
 | [OH_Rdb_UnsubscribeAutoSyncProgress](#oh_rdb_unsubscribeautosyncprogress) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, const [Rdb_ProgressObserver](_rdb___progress_observer.md) \*observer) | 取消订阅RDB存储的自动同步进程。 | 
 | int [OH_Rdb_LockRow](#oh_rdb_lockrow) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, [OH_Predicates](_o_h___predicates.md) \*predicates) | 根据指定的条件锁定数据库中的数据，锁定数据不执行端云同步。 | 
@@ -310,6 +313,18 @@
 
 ## 类型定义说明
 
+
+### Rdb_Tokenizer
+
+```
+typedef enum Rdb_Tokenizer Rdb_Tokenizer
+```
+
+**描述**
+
+描述数据库的分词器类型。
+
+**起始版本：** 17
 
 ### OH_Rdb_ConfigV2
 
@@ -743,6 +758,22 @@ typedef struct Rdb_TableDetails Rdb_TableDetails
 
 ## 枚举类型说明
 
+### Rdb_Tokenizer
+
+```
+enum Rdb_Tokenizer
+```
+
+**描述**
+
+描述数据库的分词器类型。
+
+**起始版本：** 17
+
+| 枚举值 | 描述 |
+| -------- | -------- |
+| RDB_NONE_TOKENIZER | 表示不使用分词器。 |
+| RDB_ICU_TOKENIZER | 表示使用原生ICU分词器。 |
 
 ### Rdb_DBType
 
@@ -1028,6 +1059,35 @@ enum Rdb_SyncMode
 
 ## 函数说明
 
+
+### OH_Rdb_SetTokenizer()
+
+```
+int OH_Rdb_SetTokenizer (OH_Rdb_ConfigV2 *config, Rdb_Tokenizer tokenizer )
+```
+
+**描述**
+
+给指定的数据库文件配置设置分词器类型。
+
+**起始版本：** 17
+
+**参数：**
+
+| 名称 | 描述 |
+| -------- | -------- |
+| config | 表示指向此RDB存储相关的数据库配置的指针。 |
+| tokenizer | 表示数据库的分词器类型。 |
+
+**返回：**
+
+返回接口操作执行的状态码。
+
+RDB_OK 表示成功。
+
+RDB_E_INVALID_ARGS 表示无效参数。
+
+RDB_E_NOT_SUPPORTED 表示不支持当前操作。
 
 ### OH_Rdb_CreateOrOpen()
 
@@ -1541,7 +1601,7 @@ int OH_Rdb_CloseStore (OH_Rdb_Store *store)
 ### OH_Rdb_CloudSync()
 
 ```
-int OH_Rdb_CloudSync (OH_Rdb_Store *store, Rdb_SyncMode mode, const char *tables, int count, const Rdb_ProgressObserver *observer )
+int OH_Rdb_CloudSync (OH_Rdb_Store *store, Rdb_SyncMode mode, const char *tables[], uint32_t count, const Rdb_ProgressObserver *observer )
 ```
 
 **描述**

@@ -32,7 +32,7 @@ AVSource模块提供用于构造媒体资源对象功能的函数。
 | 名称 | 描述 | 
 | -------- | -------- |
 | [OH_AVSource](#oh_avsource) \* [OH_AVSource_CreateWithDataSource](#oh_avsource_createwithdatasource) ([OH_AVDataSource](_o_h___a_v_data_source.md) \*dataSource) | 为用户自定义数据源的资源对象创建OH_AVSource实例，可以通过调用OH_AVSource_Destroy接口释放实例。  |
-| [OH_AVSource](#oh_avsource) \* [OH_AVSource_CreateWithURI](#oh_avsource_createwithuri) (char \*uri) | 为统一资源标识符对应的的资源对象创建OH_AVSource实例。  | 
+| [OH_AVSource](#oh_avsource) \* [OH_AVSource_CreateWithURI](#oh_avsource_createwithuri) (char \*uri) | 为统一资源标识符对应的资源对象创建OH_AVSource实例。  | 
 | [OH_AVSource](#oh_avsource) \* [OH_AVSource_CreateWithFD](#oh_avsource_createwithfd) (int32_t fd, int64_t offset, int64_t size) | 为文件描述符对应的资源对象创建OH_AVSource实例。  | 
 | [OH_AVErrCode](_core.md#oh_averrcode) [OH_AVSource_Destroy](#oh_avsource_destroy) ([OH_AVSource](#oh_avsource) \*source) | 销毁OH_AVSource实例并清理内部资源。  | 
 | [OH_AVFormat](_core.md#oh_avformat) \* [OH_AVSource_GetSourceFormat](#oh_avsource_getsourceformat) ([OH_AVSource](#oh_avsource) \*source) | 获取媒体资源文件的基础信息。  | 

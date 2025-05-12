@@ -137,7 +137,7 @@ edgeEffect(edgeEffect: EdgeEffect, options?: EdgeEffectOptions)
 
 enableScrollInteraction(value: boolean)
 
-设置是否支持滚动手势，当设置为false时，无法通过手指或者鼠标滚动，但不影响控制器的滚动接口。
+设置是否支持滚动手势。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -147,7 +147,7 @@ enableScrollInteraction(value: boolean)
 
 | 参数名 | 类型    | 必填 | 说明                                |
 | ------ | ------- | ---- | ----------------------------------- |
-| value  | boolean | 是   | 是否支持滚动手势。<br/>默认值：true |
+| value  | boolean | 是   | 是否支持滚动手势。设置为true时可以通过手指或者鼠标滚动，设置为false时无法通过手指或者鼠标滚动，但不影响控制器[Scroller](ts-container-scroll.md#scroller)的滚动接口。<br/>默认值：true |
 
 ### nestedScroll<sup>10+</sup>
 
@@ -238,8 +238,8 @@ initialOffset(value: OffsetOptions)
 | ---------- | --------------------|-------------------- | -------- |
 | snapAlign  | [ScrollSnapAlign](ts-container-list.md#scrollsnapalign10枚举说明)   | 是 | 设置Scroll组件限位滚动时的对齐方式。<br/>**说明：** <br/>1.该属性默认值为ScrollSnapAlign.NONE。 |
 | snapPagination | [Dimension](ts-types.md#dimension10)&nbsp;\|&nbsp;Array\<Dimension\> | 否 | 设置Scroll组件限位滚动时的分页点。<br/>**说明：** <br/>1.当属性为Dimension时，Dimension表示每页的大小，系统按照该大小进行分页。<br/>2.当属性为Array\<Dimension\>时，每个Dimension表示分页点，系统按照分页点进行分页。每个Dimension的范围为[0,可滑动距离]。<br/>3.当该属性不填或者Dimension为小于等于0的输入时，按异常值，无限位滚动处理。当该属性值为Array\<Dimension\>数组时，数组中的数值必须为单调递增。<br/>4.当输入为百分比时，实际的大小为Scroll组件的视口与百分比数值之积。 |
-| enableSnapToStart | boolean   | 否 | 在Scroll组件限位滚动模式下，该属性设置为false后，允许Scroll在开头和第一页间自由滑动。<br/>**说明：** <br/>1.该属性值默认为true。<br/>2.该属性仅当snapPagination属性为Array\<Dimension\>时生效，不支持Dimension。 |
-| enableSnapToEnd | boolean   | 否 | 在Scroll组件限位滚动模式下，该属性设置为false后，允许Scroll在最后一页和末尾间自由滑动。<br/>**说明：** <br/>1.该属性值默认为true。<br/>2.该属性仅当snapPagination属性为Array\<Dimension\>时生效，不支持Dimension。 |
+| enableSnapToStart | boolean   | 否 | 在Scroll组件限位滚动模式下，该属性设置为true后，不允许Scroll在开头和第一页间自由滑动，该属性设置为false后，允许Scroll在开头和第一页间自由滑动。<br/>**说明：** <br/>1.该属性值默认为true。<br/>2.该属性仅当snapPagination属性为Array\<Dimension\>时生效，不支持Dimension。 |
+| enableSnapToEnd | boolean   | 否 | 在Scroll组件限位滚动模式下，该属性设置为true后，不允许Scroll在最后一页和末尾间自由滑动，该属性设置为false后，允许Scroll在最后一页和末尾间自由滑动。<br/>**说明：** <br/>1.该属性值默认为true。<br/>2.该属性仅当snapPagination属性为Array\<Dimension\>时生效，不支持Dimension。 |
 
 ## 事件
 
@@ -478,7 +478,7 @@ Scroll滚动前触发的回调。
 ### 导入对象
 
 ```
-scroller: Scroller = new Scroller()
+scroller: Scroller = new Scroller();
 ```
 
 ### constructor
@@ -573,7 +573,7 @@ scrollPage(value:   ScrollPageOptions)
 
 scrollPage(value: { next: boolean, direction?: Axis })
 
-滚动到下一页或者上一页。从API version 9开始, 该接口不再维护，推荐使用[scrollPage<sup>9+</sup>](#scrollpage9)。
+滚动到下一页或者上一页。从API version 9开始，该接口不再维护，推荐使用[scrollPage<sup>9+</sup>](#scrollpage9)。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -604,7 +604,7 @@ scrollToIndex(value: number, smooth?: boolean, align?: ScrollAlign, options?: Sc
 
 滑动到指定Index，支持设置滑动额外偏移量。
 
-开启smooth动效时，会对经过的所有item进行加载和布局计算，当大量加载item时会导致性能问题。
+开启smooth动效时，会对经过的所有item进行加载和布局计算，当大量加载item时会导致性能问题，建议先调用scrollToIndex不带动画跳转到目标附近位置，再调用scrollToIndex带动画滚动到目标位置。
 
 
 >  **说明：**
@@ -771,7 +771,7 @@ getItemIndex(x: number, y: number): number
 | ----- | ------ | ------ | ----------------- |
 | duration | number | 否 | 设置滚动时长。<br/>默认值：1000<br/>**说明：** <br/>设置为小于0的值时，按默认值显示。 |
 | curve | [Curve](ts-appendix-enums.md#curve) \| [ICurve](../js-apis-curve.md#icurve9) | 否 | 设置滚动曲线。<br/>默认值：Curve.Ease |
-| canOverScroll | boolean | 否 | 设置滚动是否可越界。<br/>默认值：false<br/>**说明：** <br/> 仅在设置为true，且组件的edgeEffect设置为[EdgeEffect.Spring](ts-appendix-enums.md#edgeeffect)时，滚动能够越界，并在越界时启动回弹动画。 |
+| canOverScroll | boolean | 否 | 设置滚动是否可越界。<br/>默认值：false<br/>**说明：** <br/> 仅在设置为true，且组件的edgeEffect设置为[EdgeEffect.Spring](ts-appendix-enums.md#edgeeffect)时，滚动能够越界，并在越界时启动回弹动画，设置为false时不可越界。 |
 
 ## ScrollAlign<sup>10+</sup>枚举说明
 
@@ -786,7 +786,7 @@ getItemIndex(x: number, y: number): number
 | START   | 首部对齐。指定item首部与List首部对齐。  |
 | CENTER | 居中对齐。指定item主轴方向居中对齐于List。        |
 | END  | 尾部对齐。指定item尾部与List尾部对齐。 |
-| AUTO  | 自动对齐。<br/>若指定item完全处于显示区，不做调整。否则依照滑动距离最短的原则，将指定item首部对齐或尾部对齐于List,使指定item完全处于显示区。|
+| AUTO  | 自动对齐。<br/>若指定item完全处于显示区，不做调整。否则依照滑动距离最短的原则，将指定item首部对齐或尾部对齐于List，使指定item完全处于显示区。|
 
 ## ScrollToIndexOptions<sup>12+</sup>对象说明
 
@@ -844,13 +844,13 @@ getItemIndex(x: number, y: number): number
 
 ```ts
 // xxx.ets
-import { curves } from '@kit.ArkUI'
+import { curves } from '@kit.ArkUI';
 
 @Entry
 @Component
 struct ScrollExample {
-  scroller: Scroller = new Scroller()
-  private arr: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+  scroller: Scroller = new Scroller();
+  private arr: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
 
   build() {
     Stack({ alignContent: Alignment.TopStart }) {
@@ -875,58 +875,58 @@ struct ScrollExample {
       .friction(0.6)
       .edgeEffect(EdgeEffect.None)
       .onWillScroll((xOffset: number, yOffset: number, scrollState: ScrollState) => {
-        console.info(xOffset + ' ' + yOffset)
+        console.info(xOffset + ' ' + yOffset);
       })
       .onScrollEdge((side: Edge) => {
-        console.info('To the edge')
+        console.info('To the edge');
       })
       .onScrollStop(() => {
-        console.info('Scroll Stop')
+        console.info('Scroll Stop');
       })
 
       Button('scroll 150')
         .height('5%')
         .onClick(() => { // 点击后下滑指定距离150.0vp
-          this.scroller.scrollBy(0, 150)
+          this.scroller.scrollBy(0, 150);
         })
         .margin({ top: 10, left: 20 })
       Button('scroll 100')
         .height('5%')
         .onClick(() => { // 点击后滑动到指定位置，即下滑100.0vp的距离
           const yOffset: number = this.scroller.currentOffset().yOffset;
-          this.scroller.scrollTo({ xOffset: 0, yOffset: yOffset + 100 })
+          this.scroller.scrollTo({ xOffset: 0, yOffset: yOffset + 100 });
         })
         .margin({ top: 60, left: 20 })
       Button('scroll 100')
         .height('5%')
         .onClick(() => { // 点击后滑动到指定位置，即下滑100.0vp的距离，滑动过程配置有动画
-          let curve = curves.interpolatingSpring(10, 1, 228, 30) //创建一个阶梯曲线
+          let curve = curves.interpolatingSpring(10, 1, 228, 30); //创建一个阶梯曲线
           const yOffset: number = this.scroller.currentOffset().yOffset;
-          this.scroller.scrollTo({ xOffset: 0, yOffset: yOffset + 100, animation: { duration: 1000, curve: curve } })
+          this.scroller.scrollTo({ xOffset: 0, yOffset: yOffset + 100, animation: { duration: 1000, curve: curve } });
         })
         .margin({ top: 110, left: 20 })
       Button('back top')
         .height('5%')
         .onClick(() => { // 点击后回到顶部
-          this.scroller.scrollEdge(Edge.Top)
+          this.scroller.scrollEdge(Edge.Top);
         })
         .margin({ top: 160, left: 20 })
       Button('next page')
         .height('5%')
         .onClick(() => { // 点击后滑到下一页
-          this.scroller.scrollPage({ next: true ,animation: true })
+          this.scroller.scrollPage({ next: true ,animation: true });
         })
         .margin({ top: 210, left: 20 })
       Button('fling -3000')
         .height('5%')
         .onClick(() => { // 点击后触发初始速度为-3000vp/s的惯性滚动
-          this.scroller.fling(-3000)
+          this.scroller.fling(-3000);
         })
         .margin({ top: 260, left: 20 })
       Button('scroll to bottom 700')
         .height('5%')
         .onClick(() => { // 点击后滑到下边缘，速度值是700vp/s
-          this.scroller.scrollEdge(Edge.Bottom, { velocity: 700 })
+          this.scroller.scrollEdge(Edge.Bottom, { velocity: 700 });
         })
         .margin({ top: 310, left: 20 })
     }.width('100%').height('100%').backgroundColor(0xDCDCDC)
@@ -939,15 +939,15 @@ struct ScrollExample {
 ### 示例2（嵌套滚动实现方式一）
 该示例使用onScrollFrameBegin事件实现了内层List组件和外层Scroll组件的嵌套滚动。
 ```ts
-import { LengthMetrics } from '@kit.ArkUI'
+import { LengthMetrics } from '@kit.ArkUI';
 
 @Entry
 @Component
 struct NestedScroll {
   @State listPosition: number = 0; // 0代表滚动到List顶部，1代表中间值，2代表滚动到List底部。
-  private arr: number[] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-  private scrollerForScroll: Scroller = new Scroller()
-  private scrollerForList: Scroller = new Scroller()
+  private arr: number[] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+  private scrollerForScroll: Scroller = new Scroller();
+  private scrollerForList: Scroller = new Scroller();
 
   build() {
     Flex() {
@@ -960,7 +960,7 @@ struct NestedScroll {
             .fontSize(16)
             .textAlign(TextAlign.Center)
             .onClick(() => {
-              this.scrollerForList.scrollToIndex(5, false, ScrollAlign.START, { extraOffset: LengthMetrics.vp(5) })
+              this.scrollerForList.scrollToIndex(5, false, ScrollAlign.START, { extraOffset: LengthMetrics.vp(5) });
             })
 
           List({ space: 20, scroller: this.scrollerForList }) {
@@ -981,17 +981,17 @@ struct NestedScroll {
           .edgeEffect(EdgeEffect.None)
           .friction(0.6)
           .onReachStart(() => {
-            this.listPosition = 0
+            this.listPosition = 0;
           })
           .onReachEnd(() => {
-            this.listPosition = 2
+            this.listPosition = 2;
           })
           .onScrollFrameBegin((offset: number) => {
             if ((this.listPosition == 0 && offset <= 0) || (this.listPosition == 2 && offset >= 0)) {
-              this.scrollerForScroll.scrollBy(0, offset)
-              return { offsetRemain: 0 }
+              this.scrollerForScroll.scrollBy(0, offset);
+              return { offsetRemain: 0 };
             }
-            this.listPosition = 1
+            this.listPosition = 1;
             return { offsetRemain: offset };
           })
 
@@ -1017,7 +1017,7 @@ struct NestedScroll {
 @Entry
 @Component
 struct StickyNestedScroll {
-  @State arr: number[] = []
+  @State arr: number[] = [];
 
   @Styles
   listCard() {
@@ -1069,7 +1069,7 @@ struct StickyNestedScroll {
 
   aboutToAppear() {
     for (let i = 0; i < 30; i++) {
-      this.arr.push(i)
+      this.arr.push(i);
     }
   }
 }
@@ -1082,13 +1082,13 @@ struct StickyNestedScroll {
 @Component
 struct NestedScroll {
   private headerHeight: number = 0;
-  private arr: number[] = []
-  private scrollerForParent: Scroller = new Scroller()
-  private scrollerForChild: Scroller = new Scroller()
+  private arr: number[] = [];
+  private scrollerForParent: Scroller = new Scroller();
+  private scrollerForChild: Scroller = new Scroller();
 
   aboutToAppear(): void {
     for (let i = 0; i < 10; i++) {
-      this.arr.push(i)
+      this.arr.push(i);
     }
   }
 
@@ -1102,10 +1102,10 @@ struct NestedScroll {
           .fontSize(16)
           .textAlign(TextAlign.Center)
           .onClick(() => {
-            this.scrollerForChild.scrollToIndex(5)
+            this.scrollerForChild.scrollToIndex(5);
           })
           .onSizeChange((oldValue: SizeOptions, newValue: SizeOptions) => {
-            this.headerHeight = newValue.height! as number
+            this.headerHeight = newValue.height! as number;
           })
         List({ space: 20, scroller: this.scrollerForChild }) {
           ForEach(this.arr, (item: number) => {
@@ -1142,22 +1142,22 @@ struct NestedScroll {
       let newOffset = currOffset + offset;
       if (offset > 0) {
         if (this.scrollerForChild.isAtEnd()) {
-          return { offsetRemain: offset }
+          return { offsetRemain: offset };
         }
         if (newOffset > this.headerHeight) {
-          retOffset = this.headerHeight - currOffset
+          retOffset = this.headerHeight - currOffset;
         }
-        this.scrollerForChild.scrollBy(0, offset - retOffset)
+        this.scrollerForChild.scrollBy(0, offset - retOffset);
       } else {
         if (this.scrollerForChild.currentOffset().yOffset <= 0) {
-          return { offsetRemain: offset }
+          return { offsetRemain: offset };
         }
         if (newOffset < this.headerHeight) {
-          retOffset = this.headerHeight - currOffset
+          retOffset = this.headerHeight - currOffset;
         }
-        this.scrollerForChild.scrollBy(0, offset - retOffset)
+        this.scrollerForChild.scrollBy(0, offset - retOffset);
       }
-      return { offsetRemain: retOffset }
+      return { offsetRemain: retOffset };
     })
     .width("100%")
     .height("100%")
@@ -1173,7 +1173,7 @@ struct NestedScroll {
 @Component
 struct Index {
   scroller: Scroller = new Scroller;
-  private arr: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
+  private arr: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];
   build() {
     Scroll(this.scroller) {
       Column() {
@@ -1207,19 +1207,19 @@ struct Index {
 @Entry
 @Component
 struct ListExample {
-  private arr: number[] = []
-  private scroller: ListScroller = new ListScroller()
-  @State listSpace: number = 10
-  @State listChildrenSize: ChildrenMainSize = new ChildrenMainSize(100)
-  @State listIndex: number = -1
-  @State mess:string = "null"
-  @State itemBackgroundColorArr: boolean[] = [false]
+  private arr: number[] = [];
+  private scroller: ListScroller = new ListScroller();
+  @State listSpace: number = 10;
+  @State listChildrenSize: ChildrenMainSize = new ChildrenMainSize(100);
+  @State listIndex: number = -1;
+  @State mess:string = "null";
+  @State itemBackgroundColorArr: boolean[] = [false];
   aboutToAppear(){
     // 初始化数据源。
     for (let i = 0; i < 10; i++) {
-      this.arr.push(i)
+      this.arr.push(i);
     }
-    this.listChildrenSize.splice(0, 5, [100, 100, 100, 100, 100])
+    this.listChildrenSize.splice(0, 5, [100, 100, 100, 100, 100]);
   }
   build() {
     Column() {
@@ -1245,7 +1245,7 @@ struct ListExample {
         PanGesture()
           .onActionUpdate((event: GestureEvent) => {
             if (event.fingerList[0] != undefined && event.fingerList[0].localX != undefined && event.fingerList[0].localY != undefined) {
-              this.listIndex = this.scroller.getItemIndex(event.fingerList[0].localX, event.fingerList[0].localY)
+              this.listIndex = this.scroller.getItemIndex(event.fingerList[0].localX, event.fingerList[0].localY);
               this.itemBackgroundColorArr[this.listIndex] = true;
             }
           })
@@ -1274,12 +1274,12 @@ struct ListExample {
 
 ```ts
 // xxx.ets
-import { LengthMetrics } from '@kit.ArkUI'
+import { LengthMetrics } from '@kit.ArkUI';
 @Entry
 @Component
 struct ScrollExample {
-  scroller: Scroller = new Scroller()
-  private arr: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+  scroller: Scroller = new Scroller();
+  private arr: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
 
   build() {
     Stack({ alignContent: Alignment.TopStart }) {

@@ -4,7 +4,7 @@
 
 >  **说明：**
 >
->  该组件从API Version 8开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>  该组件从API version 8开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 
 ## 子组件
@@ -38,7 +38,7 @@ DatePicker(options?: DatePickerOptions)
 | -------- | ---- | ---- | ------------------------------------------------------------ |
 | start    | Date | 否   | 指定选择器的起始日期。<br/>默认值：Date('1970-1-1')          |
 | end      | Date | 否   | 指定选择器的结束日期。<br/>默认值：Date('2100-12-31')        |
-| selected | Date | 否   | 设置选中项的日期。<br/>默认值：当前系统日期<br />从API version 10开始，该参数支持[$$](../../../quick-start/arkts-two-way-sync.md)双向绑定变量。 |
+| selected | Date | 否   | 设置选中项的日期。<br/>默认值：当前系统日期<br />从API version 10开始，该参数支持[$$](../../../ui/state-management/arkts-two-way-sync.md)双向绑定变量。 |
 
 **异常情形说明:**
 
@@ -197,15 +197,15 @@ onDateChange(callback: Callback\<Date>)
 @Entry
 @Component
 struct DatePickerExample {
-  @State isLunar: boolean = false
-  private selectedDate: Date = new Date('2021-08-08')
+  @State isLunar: boolean = false;
+  private selectedDate: Date = new Date('2021-08-08');
 
   build() {
     Column() {
       Button('切换公历农历')
         .margin({ top: 30, bottom: 30 })
         .onClick(() => {
-          this.isLunar = !this.isLunar
+          this.isLunar = !this.isLunar;
         })
       DatePicker({
         start: new Date('1970-1-1'),
@@ -217,8 +217,8 @@ struct DatePickerExample {
         .selectedTextStyle({color: '#ff0000FF', font: {size: '26fp', weight: FontWeight.Regular, family: "HarmonyOS Sans", style: FontStyle.Normal}})
         .lunar(this.isLunar)
         .onDateChange((value: Date) => {
-          this.selectedDate = value
-          console.info('select current date is: ' + value.toString())
+          this.selectedDate = value;
+          console.info('select current date is: ' + value.toString());
         })
 
     }.width('100%')

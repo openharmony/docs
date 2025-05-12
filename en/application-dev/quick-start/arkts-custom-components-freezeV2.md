@@ -6,7 +6,9 @@ Before reading this topic, you are advised to read [\@ComponentV2](./arkts-new-c
 
 > **NOTE**
 >
-> @ComponentV2 decorated custom component freezing is supported since API version 12.
+> Freezing of @ComponentV2 decorated custom component is supported since API version 12.
+>
+> Mixed use of custom component freezing is supported since API version 18.
 >
 > Different from freezing the @Component decorated components, custom components decorated by @ComponentV2 do not support freezing the cached list items in the **LazyForEach** scenario.
 
@@ -170,7 +172,7 @@ In the preceding example:
 
 ### Navigation
 
-- You can freeze an invisible page so that it does not trigger UI re-rendering. When the user returns to this page, a re-render is triggered through an @Monitor decorated callback.
+- When the navigation destination page is invisible, its child custom components are set to the inactive state and will not be re-rendered. When return to this page, its child custom components are restored to the active state and the @Monitor callback is triggered to re-render the page.
 
 ```ts
 @Entry
@@ -346,9 +348,295 @@ In the preceding example:
 
 ![navigation-freeze.gif](figures/navigation-freeze.gif)
 
+### Repeat virtualScroll
+
+> **NOTE**
+>
+> Repeat virtualScroll supports custom component freezing since API version 18.
+
+Freeze the custom components in the Repeat virtualScroll cache pool to avoid unnecessary component re-renders. You are advised to read [Child Component Rendering Logic](./arkts-new-rendering-control-repeat.md#child-component-rendering-logic-1) of virtualScroll in advance.
+
+```ts
+@Entry
+@ComponentV2
+struct RepeatVirtualScrollFreeze {
+  @Local simpleList: Array<string> = [];
+  @Local bgColor: Color = Color.Pink;
+
+  aboutToAppear(): void {
+    for (let i = 0; i < 7; i++) {
+      this.simpleList.push(`item${i}`);
+    }
+  }
+
+  build() {
+    Column() {
+      Row() {
+        Button(`Reduce length to 5`)
+          .onClick(() => {
+            this.simpleList = this.simpleList.slice(0, 5);
+          })
+        Button(`Change bgColor`)
+          .onClick(() => {
+            this.bgColor = this.bgColor == Color.Pink ? Color.Blue : Color.Pink;
+          })
+      }
+
+      List() {
+        Repeat(this.simpleList)
+          .each((obj: RepeatItem<string>) => {
+          })
+          .key((item: string, index: number) => item)
+          .virtualScroll({ totalCount: this.simpleList.length })
+          .templateId(() => `a`)
+          .template(`a`, (ri) => {
+            ChildComponent({
+              message: ri.item,
+              bgColor: this.bgColor
+            })
+          }, { cachedCount: 2 })
+      }
+      .cachedCount(0)
+      .height(500)
+    }
+    .height(`100%`)
+  }
+}
+
+// Enable component freezing.
+@ComponentV2({ freezeWhenInactive: true })
+struct ChildComponent {
+  @Param @Require message: string = ``;
+  @Param @Require bgColor: Color = Color.Pink;
+  @Monitor(`bgColor`)
+  onBgColorChange(monitor: IMonitor) {
+    // When the bgColor changes, the components in the cache pool are not re-rendered and no log is printed.
+    console.log(`repeat---bgColor change from ${monitor.value()?.before} to ${monitor.value()?.now}`);
+  }
+
+  build() {
+    Text(`[a]: ${this.message}`)
+      .fontSize(50)
+      .backgroundColor(this.bgColor)
+  }
+}
+```
+
+In the preceding example:
+
+After you click **Reduce length to 5**, the two removed components enter the **Repeat** cache pool. Then, click **Change bgColor** to change the value of **bgColor** to trigger node re-rendering.
+
+If **freezeWhenInactive** is set to **true**, only the **onBgColorChange** method decorated by @Monitor in the remaining nodes is triggered. In the example, the five nodes are re-rendered and five logs are printed. The nodes in the cache pool are not re-rendered.
+
+![freeze_repeat_L2.gif](figures/freeze_repeat_L2.gif)
+
+```ts
+// Disable component freezing.
+@ComponentV2({ freezeWhenInactive: false })
+struct ChildComponent {
+  @Param @Require message: string = ``;
+  @Param @Require bgColor: Color = Color.Pink;
+  @Monitor(`bgColor`)
+  onBgColorChange(monitor: IMonitor) {
+    // When the bgColor changes, components in the cache pool are re-rendered and logs are printed.
+    console.log(`repeat---bgColor change from ${monitor.value()?.before} to ${monitor.value()?.now}`);
+  }
+
+  build() {
+    Text(`[a]: ${this.message}`)
+      .fontSize(50)
+      .backgroundColor(this.bgColor)
+  }
+}
+```
+
+**freezeWhenInactive** is set to **false** to disable component freezing. If **freezeWhenInactive** is not specified, component freezing is disabled by default. The **onBgColorChange** method decorated by @Monitor in the remaining nodes and cache pool nodes is triggered, that is, seven nodes are re-rendered and seven logs are printed.
+
+![freeze_repeat_L2_unfreeze.gif](figures/freeze_repeat_L2_unfreeze.gif)
+
+### Mixed Use of Component Freezing
+
+In the scenario where mixed use of component freezing is supported, the freezing behavior varies according to the API version. Set the component freezing flag for the parent component. In API version 17 or earlier, when the parent component is unfrozen, all nodes of its child components are unfrozen. Since API version 18, when the parent component is unfrozen, only the on-screen nodes of the child component are unfrozen. For details, see [Mixing the Use of Components](./arkts-custom-components-freeze.md#mixing-the-use-of-components).
+
+#### Mixing Use of Navigation and TabContent
+
+```ts
+@ComponentV2
+struct ChildOfParamComponent {
+  @Require @Param child_val: number;
+
+  @Monitor('child_val') onChange(m: IMonitor) {
+    console.log(`Appmonitor ChildOfParamComponent: changed ${m.dirty[0]}: ${m.value()?.before} -> ${m.value()?.now}`);
+  }
+
+  build() {
+    Column() {
+      Text(`Child Param: ${this.child_val}`);
+    }
+  }
+}
+
+@ComponentV2
+struct ParamComponent {
+  @Require @Param val: number;
+
+  @Monitor('val') onChange(m: IMonitor) {
+    console.log(`Appmonitor ParamComponent: changed ${m.dirty[0]}: ${m.value()?.before} -> ${m.value()?.now}`);
+  }
+
+  build() {
+    Column() {
+      Text(`val: ${this.val}`);
+      ChildOfParamComponent({child_val: this.val});
+    }
+  }
+}
+
+@ComponentV2
+struct DelayComponent {
+  @Require @Param delayVal1: number;
+
+  @Monitor('delayVal1') onChange(m: IMonitor) {
+    console.log(`Appmonitor DelayComponent: changed ${m.dirty[0]}: ${m.value()?.before} -> ${m.value()?.now}`);
+  }
+
+  build() {
+    Column() {
+      Text(`Delay Param: ${this.delayVal1}`);
+    }
+  }
+}
+ 
+@ComponentV2 ({freezeWhenInactive: true})
+struct TabsComponent {
+  private controller: TabsController = new TabsController();
+  @Local tabState: number = 47;
+
+  @Monitor('tabState') onChange(m: IMonitor) {
+    console.log(`Appmonitor TabsComponent: changed ${m.dirty[0]}: ${m.value()?.before} -> ${m.value()?.now}`);
+  }
+
+  build() {
+    Column({space: 10}) {
+      Button(`Incr state ${this.tabState}`)
+        .fontSize(25)
+        .onClick(() => {
+          console.log('Button increment state value');
+          this.tabState = this.tabState + 1;
+        })
+
+      Tabs({ barPosition: BarPosition.Start, index: 0, controller: this.controller}) {
+        TabContent() {
+          ParamComponent({val: this.tabState});
+        }.tabBar('Update')
+        TabContent() {
+          DelayComponent({delayVal1: this.tabState});
+        }.tabBar('DelayUpdate')
+      }
+      .vertical(false)
+      .scrollable(true)
+      .barMode(BarMode.Fixed)
+      .barWidth(400).barHeight(150).animationDuration(400)
+      .width('100%')
+      .height(200)
+      .backgroundColor(0xF5F5F5)
+    }
+  }
+}
+
+@Entry
+@Component
+struct MyNavigationTestStack {
+  @Provide('pageInfo') pageInfo: NavPathStack = new NavPathStack();
+
+  @Builder
+  PageMap(name: string) {
+    if (name === 'pageOne') {
+      pageOneStack()
+    } else if (name === 'pageTwo') {
+      pageTwoStack()
+    }
+  }
+
+  build() {
+    Column() {
+      Navigation(this.pageInfo) {
+        Column() {
+          Button('Next Page', { stateEffect: true, type: ButtonType.Capsule })
+            .width('80%')
+            .height(40)
+            .margin(20)
+            .onClick(() => {
+              this.pageInfo.pushPath({ name: 'pageOne' }); // Push the navigation destination page specified by name to the navigation stack.
+            })
+        }
+      }.title('NavIndex')
+      .navDestination(this.PageMap)
+      .mode(NavigationMode.Stack)
+    }
+  }
+}
+
+@Component
+struct pageOneStack {
+  @Consume('pageInfo') pageInfo: NavPathStack;
+
+  build() {
+    NavDestination() {
+      Column() {
+        TabsComponent();
+
+        Button('Next Page', { stateEffect: true, type: ButtonType.Capsule })
+          .width('80%')
+          .height(40)
+          .margin(20)
+          .onClick(() => {
+            this.pageInfo.pushPathByName('pageTwo', null);
+          })
+      }.width('100%').height('100%')
+    }.title('pageOne')
+    .onBackPressed(() => {
+      this.pageInfo.pop();
+      return true;
+    })
+  }
+}
+
+@Component
+struct pageTwoStack {
+  @Consume('pageInfo') pageInfo: NavPathStack;
+
+  build() {
+    NavDestination() {
+      Column() {
+        Button('Back Page', { stateEffect: true, type: ButtonType.Capsule })
+          .width('80%')
+          .height(40)
+          .margin(20)
+          .onClick(() => {
+            this.pageInfo.pop();
+          })
+      }.width('100%').height('100%')
+    }.title('pageTwo')
+    .onBackPressed(() => {
+      this.pageInfo.pop();
+      return true;
+    })
+  }
+}
+```
+
+For API version 17 or earlier:
+
+Click **Next page** to enter the next page and then return to the previous page. All labels of **Tabcontent** are unfrozen.
+
+For API version 18 or later:
+
+Click **Next page** to enter the next page and then return to the previous page. Only the nodes with the corresponding labels are unfrozen.
+
 ## Constraints
 
-As shown in the following example, the custom node [BuilderNode](../reference/apis-arkui/js-apis-arkui-builderNode.md) is used in **FreezeBuildNode**. **BuilderNode **can dynamically mount components using commands and component freezing strongly depends on the parent-child relationship to determine whether it is enabled. In this case, if the parent component is frozen and **BuilderNode** is enabled at the middle level of the component tree, the child component of the **BuilderNode** cannot be frozen.
+As shown in the following example, the custom node [BuilderNode](../reference/apis-arkui/js-apis-arkui-builderNode.md) is used in **FreezeBuildNode**. **BuilderNode** can dynamically mount components using commands and component freezing strongly depends on the parent-child relationship to determine whether it is enabled. In this case, if the parent component is frozen and **BuilderNode** is enabled at the middle level of the component tree, the child component of the **BuilderNode** cannot be frozen.
 
 ```
 import { BuilderNode, FrameNode, NodeController, UIContext } from '@kit.ArkUI';
@@ -479,3 +767,5 @@ struct FreezeBuildNode {
 Click **Button("change")** to change the value of **message**. The **onMessageUpdated** method registered in @Watch of the **TabContent** component that is being displayed is triggered, and that under the **BuilderNode** node of **TabContent** that is not displayed is also triggered.
 
 ![builderNode.gif](figures/builderNode.gif)
+
+<!--no_check-->

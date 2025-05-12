@@ -4,7 +4,7 @@
 
 >  **说明：**
 >
->  该组件从API Version 8开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>  该组件从API version 8开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 ## 子组件
 
@@ -42,9 +42,9 @@ Select(options: Array\<SelectOption>)
 
 selected(value: number | Resource)
 
-设置下拉菜单初始选项的索引，第一项的索引为0。当不设置selected属性或设置异常值时，默认选择值为-1，菜单项不选中；当设置为undefined、null时，选中第一项。
+设置下拉菜单初始选项的索引，第一项的索引为0。当不设置selected属性或设置为异常值时，默认选中值为-1，菜单项不选中；当设置为undefined、null时，选中第一项。
 
-从API version 10开始，该属性支持[$$](../../../quick-start/arkts-two-way-sync.md)双向绑定变量。
+从API version 10开始，该属性支持[$$](../../../ui/state-management/arkts-two-way-sync.md)双向绑定变量。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -60,9 +60,9 @@ selected(value: number | Resource)
 
 value(value: ResourceStr)
 
-设置下拉按钮本身的文本内容。当菜单选中时默认会替换为菜单项文本内容。
+设置下拉按钮的文本内容。选中菜单项后，按钮文本将自动更新为选中的菜单项文本。
 
-从API version 10开始，该参数支持[$$](../../../quick-start/arkts-two-way-sync.md)双向绑定变量。
+从API version 10开始，该参数支持[$$](../../../ui/state-management/arkts-two-way-sync.md)双向绑定变量。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -88,7 +88,7 @@ controlSize(value: ControlSize)
 
 | 参数名 | 类型                                          | 必填 | 说明                                             |
 | ------ | --------------------------------------------- | ---- | ------------------------------------------------ |
-| value  | [ControlSize](ts-basic-components-button.md#controlsize11枚举说明)<sup>11+</sup> | 是   | Select组件的尺寸。<br/>默认值:ControlSize.NORMAL |
+| value  | [ControlSize](ts-basic-components-button.md#controlsize11枚举说明)<sup>11+</sup> | 是   | Select组件的尺寸。<br/>默认值：ControlSize.NORMAL |
 
 controlSize、width、height接口作用优先级：
 
@@ -112,7 +112,7 @@ menuItemContentModifier(modifier: ContentModifier\<MenuItemConfiguration>)
 
 | 参数名 | 类型                                          | 必填 | 说明                                             |
 | ------ | --------------------------------------------- | ---- | ------------------------------------------------ |
-| modifier  | [ContentModifier\<MenuItemConfiguration>](#menuitemconfiguration12对象说明) | 是   | 在Select组件上，定制下拉菜单项内容区的方法。<br/>modifier: 内容修改器，开发者需要自定义class实现ContentModifier接口。 |
+| modifier  | [ContentModifier\<MenuItemConfiguration>](#menuitemconfiguration12对象说明) | 是   | 在Select组件上，定制下拉菜单项内容区的方法。<br/>modifier：内容修改器，开发者需要自定义class实现ContentModifier接口。 |
 
 ### divider<sup>12+</sup>
 
@@ -410,9 +410,9 @@ menuBackgroundBlurStyle(value: BlurStyle)
 | value  | [ResourceStr](ts-types.md#resourcestr) | 是   | 下拉菜单项的文本内容。<br/>**说明**：当文本字符的长度超过菜单项文本区域的宽度时，文本将会被截断。 |
 | icon  | [ResourceStr](ts-types.md#resourcestr) | 否   | 下拉菜单项的图片内容。<br/>**说明**：string格式可用于加载网络图片和本地图片。 |
 | symbolIcon<sup>12+</sup>  | [SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md) | 否   | 下拉选项Symbol图片内容。|
-| selected  | boolean | 是   | 下拉菜单项是否被选中。<br/>默认值：false |
+| selected  | boolean | 是   | 下拉菜单项是否被选中。值为true表示选中，值为false表示未选中。<br/>默认值：false |
 | index  | number | 是   | 下拉菜单项的索引，索引值从0开始。 |
-| triggerSelect  | (index: number, value: string) :void | 是   | 下拉菜单选中某一项的回调函数。<br/>index: 选中菜单项的索引。<br/>value: 选中菜单项的文本。<br/>说明: index会赋值给事件[onSelect](#onselect)回调中的索引参数； value会返回给Select组件显示，同时会赋值给事件[onSelect](#onselect)回调中的文本参数。 |
+| triggerSelect  | (index: number, value: string) :void | 是   | 下拉菜单选中某一项的回调函数。<br/>index：选中菜单项的索引。<br/>value：选中菜单项的文本。<br/>说明：index会赋值给事件[onSelect](#onselect)回调中的索引参数； value会返回给Select组件显示，同时会赋值给事件[onSelect](#onselect)回调中的文本参数。 |
 
 ## 事件
 
@@ -485,7 +485,7 @@ struct SelectExample {
 
 ```ts
 // xxx.ets
-import { SymbolGlyphModifier } from '@kit.ArkUI'
+import { SymbolGlyphModifier } from '@kit.ArkUI';
 
 @Entry
 @Component

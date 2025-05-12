@@ -353,7 +353,7 @@ DAC模块适配包含以下四个步骤：
         ![](../public_sys-resources/icon-note.gif) **说明：**<br>
          DacDevice成员DacMethod的定义和成员说明见[接口说明](#接口说明)。
     
-    - Init函数开发参考
+    - Init函数开发参考。
     
         入参：
     
@@ -482,7 +482,7 @@ DAC模块适配包含以下四个步骤：
         }
         ```
     
-    - Release函数开发参考
+    - Release函数开发参考。
         
         入参：
         

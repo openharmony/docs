@@ -4,7 +4,7 @@
 
 >  **说明：**
 >
->  从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>  从API version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 ## onClick<sup>12+</sup>
 
@@ -32,7 +32,7 @@ onClick(event: Callback\<ClickEvent>, distanceThreshold: number): T
 | 参数名 | 类型                              | 必填 | 说明                 |
 | ------ | --------------------------------- | ---- | -------------------- |
 | event  | [ClickEvent](#clickevent对象说明) | 是   | 获得[ClickEvent](#clickevent对象说明)对象。 |
-| distanceThreshold  | number | 是   | 点击事件移动阈值。当设置的值小于等于0时，会被转化为默认值。<br/>默认值：2^31-1<br/>**说明：**<br/>当手指的移动距离超出开发者预设的移动阈值时，点击识别失败。如果初始化为默认阈值时，手指移动超过组件热区范围，点击识别失败。 |
+| distanceThreshold  | number | 是   | 点击事件移动阈值。当设置的值小于等于0时，会被转化为默认值。<br/>默认值：2^31-1<br/>单位：vp<br/>**说明：**<br/>当手指的移动距离超出开发者预设的移动阈值时，点击识别失败。如果初始化为默认阈值时，手指移动超过组件热区范围，点击识别失败。 |
 
 ## onClick
 
@@ -66,7 +66,7 @@ onClick(event: (event: ClickEvent) => void): T
 
 ## ClickEvent对象说明
 
-继承于[BaseEvent](ts-gesture-customize-judge.md#baseevent对象说明)。
+继承于[BaseEvent](ts-gesture-customize-judge.md#baseevent对象说明8)。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -79,8 +79,8 @@ onClick(event: (event: ClickEvent) => void): T
 | windowY<sup>10+</sup> | number                             | 点击位置相对于应用窗口左上角的Y坐标。<br/>单位：vp<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | displayX<sup>10+</sup> | number                            | 点击位置相对于应用屏幕左上角的X坐标。<br/>单位：vp<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | displayY<sup>10+</sup> | number                            | 点击位置相对于应用屏幕左上角的Y坐标。<br/>单位：vp<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| screenX<sup>(deprecated)</sup> | number                    | 点击位置相对于应用窗口左上角的X坐标。<br>从API Version 10开始不再维护，建议使用windowX代替。 |
-| screenY<sup>(deprecated)</sup> | number                    | 点击位置相对于应用窗口左上角的Y坐标。<br>从API Version 10开始不再维护，建议使用windowY代替。 |
+| screenX<sup>(deprecated)</sup> | number                    | 点击位置相对于应用窗口左上角的X坐标。<br>从API version 10开始不再维护，建议使用windowX代替。 |
+| screenY<sup>(deprecated)</sup> | number                    | 点击位置相对于应用窗口左上角的Y坐标。<br>从API version 10开始不再维护，建议使用windowY代替。 |
 | preventDefault<sup>12+</sup>      | () => void | 阻止默认事件。<br/> **说明：**&nbsp;该接口仅支持部分组件使用，当前支持组件：RichEditor、Hyperlink。暂不支持异步调用和提供Modifier接口。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 | hand<sup>15+</sup> | [InteractionHand](./ts-gesture-settings.md#interactionhand枚举说明15) | 表示事件是由左手点击还是右手点击触发。<br />**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。 |
 | targetDisplayId<sup>15+</sup> | number | 事件发生的屏幕ID。<br />**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。 |

@@ -18,7 +18,7 @@ FFRT条件变量属性结构。
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| long [storage](#storage) | FFRT条件变量属性所占空间  | 
+| long [storage](#storage) | FFRT条件变量属性所占空间。  | 
 
 
 ## 结构体成员变量说明
@@ -30,4 +30,4 @@ FFRT条件变量属性结构。
 long ffrt_condattr_t::storage
 ```
 **描述**
-FFRT条件变量属性所占空间
+FFRT条件变量属性所占空间。

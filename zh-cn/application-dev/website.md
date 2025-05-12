@@ -44,78 +44,6 @@
       - [从TypeScript到ArkTS的适配规则](quick-start/typescript-to-arkts-migration-guide.md)
       - [适配指导案例](quick-start/arkts-more-cases.md)
     - [ArkTS高性能编程实践](quick-start/arkts-high-performance-programming.md)
-    - UI范式基本语法<!--arkts-ui-paradigm-basic-syntax-->
-      - [基本语法概述](quick-start/arkts-basic-syntax-overview.md)
-      - [声明式UI描述](quick-start/arkts-declarative-ui-description.md)
-      - 自定义组件<!--arkts-custom-components-->
-        - [创建自定义组件](quick-start/arkts-create-custom-components.md)
-        - [页面和自定义组件生命周期](quick-start/arkts-page-custom-components-lifecycle.md)
-        - [自定义组件的自定义布局](quick-start/arkts-page-custom-components-layout.md)
-        - [自定义组件成员属性访问限定符使用限制](quick-start/arkts-custom-components-access-restrictions.md)
-      - [\@Builder装饰器：自定义构建函数](quick-start/arkts-builder.md)
-      - [\@LocalBuilder装饰器：维持组件父子关系](quick-start/arkts-localBuilder.md)
-      - [\@BuilderParam装饰器：引用\@Builder函数](quick-start/arkts-builderparam.md)
-      - [wrapBuilder：封装全局@Builder](quick-start/arkts-wrapBuilder.md)
-      - [\@Styles装饰器：定义组件重用样式](quick-start/arkts-style.md)
-      - [\@Extend装饰器：定义扩展组件样式](quick-start/arkts-extend.md)
-      - [stateStyles：多态样式](quick-start/arkts-statestyles.md)
-      - [@AnimatableExtend装饰器：定义可动画属性](quick-start/arkts-animatable-extend.md)
-      - [@Require装饰器：校验构造传参](quick-start/arkts-require.md)
-      - [@Reusable装饰器：组件复用](quick-start/arkts-reusable.md)
-    - 状态管理<!--arkts-state-management-->
-      - [状态管理概述](quick-start/arkts-state-management-overview.md)
-      - 状态管理（V1）<!--arkts-state-management-v1-->
-        - 管理组件拥有的状态<!--arkts-component-state-management-->
-          - [\@State装饰器：组件内状态](quick-start/arkts-state.md)
-          - [\@Prop装饰器：父子单向同步](quick-start/arkts-prop.md)
-          - [\@Link装饰器：父子双向同步](quick-start/arkts-link.md)
-          - [\@Provide装饰器和\@Consume装饰器：与后代组件双向同步](quick-start/arkts-provide-and-consume.md)
-          - [\@Observed装饰器和\@ObjectLink装饰器：嵌套类对象属性变化](quick-start/arkts-observed-and-objectlink.md)
-        - 管理应用拥有的状态<!--arkts-application-state-management-->
-          - [管理应用拥有的状态概述](quick-start/arkts-application-state-management-overview.md)
-          - [LocalStorage：页面级UI状态存储](quick-start/arkts-localstorage.md)
-          - [AppStorage：应用全局的UI状态存储](quick-start/arkts-appstorage.md)
-          - [PersistentStorage：持久化存储UI状态](quick-start/arkts-persiststorage.md)
-          - [Environment：设备环境查询](quick-start/arkts-environment.md)
-        - 其他状态管理<!--arkts-other-state-mgmt-functions-->
-          - [其他状态管理概述](quick-start/arkts-other-state-mgmt-functions-overview.md)
-          - [\@Watch装饰器：状态变量更改通知](quick-start/arkts-watch.md)
-          - [$$语法：内置组件双向同步](quick-start/arkts-two-way-sync.md)
-          - [\@Track装饰器：class对象属性级更新](quick-start/arkts-track.md)
-          - [自定义组件冻结功能](quick-start/arkts-custom-components-freeze.md)
-        - [MVVM模式](quick-start/arkts-mvvm.md)
-        - [状态管理优秀实践](quick-start/arkts-state-management-best-practices.md)
-        - [状态管理合理使用开发指导](quick-start/properly-use-state-management-to-develope.md)
-      - 状态管理（V2）<!--arkts-state-management-v2-->
-        - V2所属装饰器<!--arkts-v2-decorators-->
-          - [\@ObservedV2装饰器和\@Trace装饰器：类属性变化观测](quick-start/arkts-new-observedV2-and-trace.md)
-          - [\@ComponentV2装饰器：自定义组件](quick-start/arkts-new-componentV2.md)
-          - [\@Local装饰器：组件内部状态](quick-start/arkts-new-local.md)
-          - [\@Param装饰器：组件外部输入](quick-start/arkts-new-param.md)
-          - [\@Once装饰器：初始化同步一次](quick-start/arkts-new-once.md)
-          - [\@Event装饰器：组件输出](quick-start/arkts-new-event.md)
-          - [\@Provider和\@Consumer装饰器：跨组件层级双向同步](quick-start/arkts-new-Provider-and-Consumer.md)
-          - [\@Monitor装饰器：状态变量修改监听](quick-start/arkts-new-monitor.md)
-          - [\@Computed装饰器：计算属性](quick-start/arkts-new-Computed.md)
-          - [\@Type装饰器: 标记类属性的类型](quick-start/arkts-new-type.md)
-        - 其他状态管理<!--arkts-new-other-state-mgmt-->
-          - [AppStorageV2: 应用全局UI状态存储](quick-start/arkts-new-appstoragev2.md)
-          - [PersistenceV2: 持久化存储UI状态](quick-start/arkts-new-persistencev2.md)
-          - [!!语法：双向绑定](quick-start/arkts-new-binding.md)
-          - [自定义组件冻结功能](quick-start/arkts-custom-components-freezeV2.md)
-          - [Repeat：可复用的循环渲染](quick-start/arkts-new-rendering-control-repeat.md)
-          - [getTarget接口：获取状态管理框架代理前的原始对象](quick-start/arkts-new-getTarget.md)
-          - [makeObserved接口：将非观察数据变为可观察数据](quick-start/arkts-new-makeObserved.md)
-        - [MVVM模式（状态管理V2）](quick-start/arkts-mvvm-V2.md)
-      - V1V2混用和迁移指导<!--v1v2-migration-->
-        - [自定义组件混用场景指导](quick-start/arkts-custom-component-mixed-scenarios.md)
-        - [V1->V2迁移指导](quick-start/arkts-v1-v2-migration.md)
-    - 渲染控制<!--arkts-rendering-control-->
-      - [渲染控制概述](quick-start/arkts-rendering-control-overview.md)
-      - [if/else：条件渲染](quick-start/arkts-rendering-control-ifelse.md)
-      - [ForEach：循环渲染](quick-start/arkts-rendering-control-foreach.md)
-      - [LazyForEach：数据懒加载](quick-start/arkts-rendering-control-lazyforeach.md)
-      - [ContentSlot：混合开发](quick-start/arkts-rendering-control-contentslot.md)
 - 开发<!--application-develop-->
   - 应用框架<!--app-framework-->
     - Ability Kit（程序框架服务）<!--ability-kit-->
@@ -277,7 +205,8 @@
         - [Uniform Type Descriptor(UTD)预置类型列表](database/uniform-data-type-list.md)
       - 应用数据持久化<!--app-data-persistence-->
         - [应用数据持久化概述](database/app-data-persistence-overview.md)
-        - [通过用户首选项实现数据持久化](database/data-persistence-by-preferences.md)
+        - [通过用户首选项实现数据持久化 (ArkTS)](database/data-persistence-by-preferences.md)
+        - [通过用户首选项实现数据持久化 (C/C++)](database/preferences-guidelines.md)
         - [通过键值型数据库实现数据持久化](database/data-persistence-by-kv-store.md)
         - [通过关系型数据库实现数据持久化](database/data-persistence-by-rdb-store.md)
       - 同应用跨设备数据同步（分布式）<!--distributed-data-sync-->
@@ -305,7 +234,6 @@
         - [应用数据向量化](database/aip-data-intelligence-embedding.md)
       - [RelationalStore开发指导 (C/C++)](database/native-relational-store-guidelines.md)
       - [UDMF开发指导 (C/C++)](database/native-unified-data-management-framework-guidelines.md)
-      - [通过用户首选项实现数据持久化 (C/C++)](database/preferences-guidelines.md)
     - ArkTS（方舟编程语言）<!--arkts-->
       - [ArkTS简介](arkts-utils/arkts-overview.md)
       - ArkTS基础类库<!--arkts-utils-->
@@ -316,6 +244,7 @@
           - [XML解析](arkts-utils/xml-parsing.md)
           - [XML转换](arkts-utils/xml-conversion.md)
         - [Buffer介绍](arkts-utils/buffer.md)
+        - [JSON扩展库](arkts-utils/arkts-json.md)
         - ArkTS容器类库<!--containers-->
           - [容器类库概述](arkts-utils/container-overview.md)
           - [线性容器](arkts-utils/linear-container.md)
@@ -371,6 +300,8 @@
             - [ArkUI数据更新场景](arkts-utils/makeobserved-sendable.md)
             - [C++线程间数据共享场景](arkts-utils/native-interthread-shared.md)
             - [ArkUI瀑布流渲染场景](arkts-utils/taskpool-waterflow.md)
+            - [ArkTS多线程间操作Native对象场景](arkts-utils/napi-coerce-to-native-binding-object.md)
+            - [Worker常驻线程通过TaskPool进行多任务并发处理](arkts-utils/worker-and-taskpool.md)
       - [ArkTS跨语言交互](arkts-utils/arkts-cross-language-interaction.md)
       - ArkTS运行时<!--arkts-runtime-->
         - [ArkTS运行时概述](arkts-utils/arkts-runtime-overview.md)
@@ -403,6 +334,80 @@
       - [ArkUI简介](ui/arkui-overview.md)
       - UI开发 (ArkTS声明式开发范式)<!--arkts-ui-development-->
         - [UI开发（ArkTS声明式开发范式）概述](ui/arkts-ui-development-overview.md)
+        - 学习UI范式基本语法<!--arkts-ui-paradigm-basic-syntax-->
+          - [基本语法概述](ui/state-management/arkts-basic-syntax-overview.md)
+          - [声明式UI描述](ui/state-management/arkts-declarative-ui-description.md)
+          - 自定义组件<!--arkts-custom-components-->
+            - [创建自定义组件](ui/state-management/arkts-create-custom-components.md)
+            - [页面和自定义组件生命周期](ui/state-management/arkts-page-custom-components-lifecycle.md)
+            - [自定义组件的自定义布局](ui/state-management/arkts-page-custom-components-layout.md)
+            - [自定义组件成员属性访问限定符使用限制](ui/state-management/arkts-custom-components-access-restrictions.md)
+          - [\@Builder装饰器：自定义构建函数](ui/state-management/arkts-builder.md)
+          - [\@LocalBuilder装饰器：维持组件关系](ui/state-management/arkts-localBuilder.md)
+          - [\@BuilderParam装饰器：引用\@Builder函数](ui/state-management/arkts-builderparam.md)
+          - [wrapBuilder：封装全局@Builder](ui/state-management/arkts-wrapBuilder.md)
+          - [\@Styles装饰器：定义组件重用样式](ui/state-management/arkts-style.md)
+          - [\@Extend装饰器：定义扩展组件样式](ui/state-management/arkts-extend.md)
+          - [stateStyles：多态样式](ui/state-management/arkts-statestyles.md)
+          - [@AnimatableExtend装饰器：定义可动画属性](ui/state-management/arkts-animatable-extend.md)
+          - [@Require装饰器：校验构造传参](ui/state-management/arkts-require.md)
+          - [@Reusable装饰器：组件复用](ui/state-management/arkts-reusable.md)
+        - 学习UI范式状态管理<!--arkts-state-management-->
+          - [状态管理概述](ui/state-management/arkts-state-management-overview.md)
+          - 状态管理（V1）<!--arkts-state-management-v1-->
+            - 管理组件拥有的状态<!--arkts-component-state-management-->
+              - [\@State装饰器：组件内状态](ui/state-management/arkts-state.md)
+              - [\@Prop装饰器：父子单向同步](ui/state-management/arkts-prop.md)
+              - [\@Link装饰器：父子双向同步](ui/state-management/arkts-link.md)
+              - [\@Provide装饰器和\@Consume装饰器：与后代组件双向同步](ui/state-management/arkts-provide-and-consume.md)
+              - [\@Observed装饰器和\@ObjectLink装饰器：嵌套类对象属性变化](ui/state-management/arkts-observed-and-objectlink.md)
+            - 管理应用拥有的状态<!--arkts-application-state-management-->
+              - [管理应用拥有的状态概述](ui/state-management/arkts-application-state-management-overview.md)
+              - [LocalStorage：页面级UI状态存储](ui/state-management/arkts-localstorage.md)
+              - [AppStorage：应用全局的UI状态存储](ui/state-management/arkts-appstorage.md)
+              - [PersistentStorage：持久化存储UI状态](ui/state-management/arkts-persiststorage.md)
+              - [Environment：设备环境查询](ui/state-management/arkts-environment.md)
+            - 其他状态管理<!--arkts-other-state-mgmt-functions-->
+              - [其他状态管理概述](ui/state-management/arkts-other-state-mgmt-functions-overview.md)
+              - [\@Watch装饰器：状态变量更改通知](ui/state-management/arkts-watch.md)
+              - [$$语法：内置组件双向同步](ui/state-management/arkts-two-way-sync.md)
+              - [\@Track装饰器：class对象属性级更新](ui/state-management/arkts-track.md)
+              - [自定义组件冻结功能](ui/state-management/arkts-custom-components-freeze.md)
+            - [MVVM模式](ui/state-management/arkts-mvvm.md)
+            <!--Del-->
+            - [状态管理优秀实践](ui/state-management/arkts-state-management-best-practices.md)
+            - [状态管理合理使用开发指导](ui/state-management/properly-use-state-management-to-develope.md)
+            <!--DelEnd-->
+          - 状态管理（V2）<!--arkts-state-management-v2-->
+            - V2所属装饰器<!--arkts-v2-decorators-->
+              - [\@ObservedV2装饰器和\@Trace装饰器：类属性变化观测](ui/state-management/arkts-new-observedV2-and-trace.md)
+              - [\@ComponentV2装饰器：自定义组件](ui/state-management/arkts-new-componentV2.md)
+              - [\@Local装饰器：组件内部状态](ui/state-management/arkts-new-local.md)
+              - [\@Param装饰器：组件外部输入](ui/state-management/arkts-new-param.md)
+              - [\@Once装饰器：初始化同步一次](ui/state-management/arkts-new-once.md)
+              - [\@Event装饰器：组件输出](ui/state-management/arkts-new-event.md)
+              - [\@Provider和\@Consumer装饰器：跨组件层级双向同步](ui/state-management/arkts-new-Provider-and-Consumer.md)
+              - [\@Monitor装饰器：状态变量修改监听](ui/state-management/arkts-new-monitor.md)
+              - [\@Computed装饰器：计算属性](ui/state-management/arkts-new-Computed.md)
+              - [\@Type装饰器: 标记类属性的类型](ui/state-management/arkts-new-type.md)
+            - 其他状态管理<!--arkts-new-other-state-mgmt-->
+              - [AppStorageV2: 应用全局UI状态存储](ui/state-management/arkts-new-appstoragev2.md)
+              - [PersistenceV2: 持久化存储UI状态](ui/state-management/arkts-new-persistencev2.md)
+              - [!!语法：双向绑定](ui/state-management/arkts-new-binding.md)
+              - [自定义组件冻结功能](ui/state-management/arkts-custom-components-freezeV2.md)
+              - [Repeat：可复用的循环渲染](ui/state-management/arkts-new-rendering-control-repeat.md)
+              - [getTarget接口：获取状态管理框架代理前的原始对象](ui/state-management/arkts-new-getTarget.md)
+              - [makeObserved接口：将非观察数据变为可观察数据](ui/state-management/arkts-new-makeObserved.md)
+            - [MVVM模式（状态管理V2）](ui/state-management/arkts-mvvm-V2.md)
+          - V1V2混用和迁移指导<!--v1v2-migration-->
+            - [自定义组件混用场景指导](ui/state-management/arkts-custom-component-mixed-scenarios.md)
+            - [V1->V2迁移指导](ui/state-management/arkts-v1-v2-migration.md)
+        - 学习UI范式渲染控制<!--arkts-rendering-control-->
+          - [渲染控制概述](ui/state-management/arkts-rendering-control-overview.md)
+          - [if/else：条件渲染](ui/state-management/arkts-rendering-control-ifelse.md)
+          - [ForEach：循环渲染](ui/state-management/arkts-rendering-control-foreach.md)
+          - [LazyForEach：数据懒加载](ui/state-management/arkts-rendering-control-lazyforeach.md)
+          - [ContentSlot：混合开发](ui/state-management/arkts-rendering-control-contentslot.md)
         - 开发布局<!--arkts-layout-development-->
           - [布局概述](ui/arkts-layout-development-overview.md)
           - 构建布局<!--arkts-build-layout-->
@@ -468,7 +473,7 @@
             - [出现/消失转场](ui/arkts-enter-exit-transition.md)
             - [模态转场](ui/arkts-modal-transition.md)
             - [共享元素转场 (一镜到底)](ui/arkts-shared-element-transition.md)
-            - [旋转屏动画](ui/arkts-rotation-transition-animation.md)
+            - [旋转屏动画](ui/arkts-rotation-transition-animation.md)    
             - [页面转场动画 (不推荐)](ui/arkts-page-transition-animation.md)
           - [粒子动画](ui/arkts-particle-animation.md)
           - [组件动画](ui/arkts-component-animation.md)
@@ -509,16 +514,20 @@
             - [属性修改器 (AttributeModifier)](ui/arkts-user-defined-extension-attributeModifier.md)
             - [属性更新器 (AttributeUpdater)](ui/arkts-user-defined-extension-attributeUpdater.md)
         - [使用镜像能力](ui/arkts-mirroring-display.md)
-        - [支持适老化](ui/arkui-support-for-aging-adaptation.md)
+        - 无障碍与适老化<!--arkts-support-accessibility-friendliness-->
+          - [支持无障碍](ui/arkts-universal-attributes-accessibility.md)
+          - [支持适老化](ui/arkui-support-for-aging-adaptation.md)
         - 主题设置<!--arkts-theme-->
           - [应用深浅色适配](ui/ui-dark-light-color-adaptation.md)
           - [设置应用内主题换肤](ui/theme_skinning.md)
         - [使用UI上下文接口操作界面（UIContext）](ui/arkts-global-interface.md)
-        - 跨进程拉起页面<!--arkts-ui-cross-process-->
+        - 嵌入式组件<!--arkts-ui-cross-process-->
           - [全屏启动原子化服务 (FullScreenLaunchComponent)](ui/arkts-FullScreenComponent.md)
-        <!--Del-->
-        - [跨进程应用能力扩展（UIExtension，仅对系统应用开放）](ui/arkts-ui-extension-components.md)
-        <!--DelEnd-->
+          - [同应用进程嵌入式组件 (EmbeddedComponent)](ui/arkts-embedded-components.md)
+          <!--Del-->
+          - [跨进程应用能力扩展（UIExtension，仅对系统应用开放）](ui/arkts-ui-extension-components.md)
+          - [跨线程嵌入式组件 (IsolatedComponent，仅对系统应用开放)](ui/arkts-isolated-components.md)
+          <!--DelEnd-->
         - 使用NDK接口构建UI<!--arkts-use-ndk-->
           - [NDK接口概述](ui/ndk-build-ui-overview.md)
           - [接入ArkTS页面](ui/ndk-access-the-arkts-page.md)
@@ -526,7 +535,9 @@
             - [监听组件事件](ui/ndk-listen-to-component-events.md)
             - [绑定手势事件](ui/ndk-bind-gesture-events.md)
           - [使用动画](ui/ndk-use-animation.md)
-          - [使用懒加载开发长列表界面](ui/ndk-loading-long-list.md)
+          - 构建布局<!--arkts-build-layout-ndk-->
+            - [使用列表](ui/ndk-loading-long-list.md)
+            - [使用瀑布流](ui/ndk-waterflow.md)
           - [构建弹窗](ui/ndk-build-pop-up-window.md)
           - [构建自定义组件](ui/ndk-build-custom-components.md)
           - [嵌入ArkTS组件](ui/ndk-embed-arkts-components.md)
@@ -628,12 +639,12 @@
       - 设置基本属性和事件<!--web-set-attributes-events-->
         - [User-Agent开发指导](web/web-default-userAgent.md)
         - [管理Cookie及数据存储](web/web-cookie-and-data-storage-mgmt.md)
-        - [设置深色模式](web/web-set-dark-mode.md)
+        - [Web深色模式适配](web/web-set-dark-mode.md)
         - [在新窗口中打开页面](web/web-open-in-new-window.md)
         - [管理位置权限](web/web-geolocation-permission.md)
         - [使用隐私模式](web/web-incognito-mode.md)
         - [使用运动和方向传感器监测设备状态](web/web-sensor.md)
-      - Web渲染和布局<!--web-render-layout--->
+      - Web渲染和布局<!--web-render-layout-->
         - [Web渲染模式](web/web-render-mode.md)
         - [使用Web组件大小自适应页面内容布局](web/web-fit-content.md)
         - [优化跳转至新Web组件过程中的页面闪烁现象](web/web-router-flash-optimization.md)
@@ -648,6 +659,8 @@
         - [Web页面显示内容滚动](web/web-content-scrolling.md)
         - [Web组件对接软键盘](web/web-docking-softkeyboard.md)
         - [Web组件焦点管理](web/web-focus.md)
+        - [Web组件手势事件](web/web-gesture.md)
+        - [Web组件缩放功能](web/web-scale-zoom.md)
       - 管理Web组件的网络安全与隐私<!--web-manage-cyber-security-privacy-->
         - [解决Web组件本地资源跨域问题](web/web-cross-origin.md)
         - [使用智能防跟踪功能](web/web-intelligent-tracking-prevention.md)
@@ -678,9 +691,9 @@
         - [使用crashpad收集Web组件崩溃信息](web/web-crashpad.md)
     - Background Tasks Kit（后台任务开发服务）<!--background-task-kit-->
       <!--Del-->
-      - 后台任务管理
-      <!--DelEnd-->
-        - [后台任务总体概述](task-management/background-task-overview.md)
+      - 后台任务管理 <!--background-task-management--><!--DelEnd-->
+
+        - [Background Tasks Kit简介](task-management/background-task-overview.md)
         - [短时任务(ArkTS)](task-management/transient-task.md)
         - [短时任务(C/C++)](task-management/native-transient-task.md)
         - [长时任务(ArkTS)](task-management/continuous-task.md)
@@ -690,7 +703,7 @@
         - [能效资源申请(ArkTS)（仅对系统特权应用开放）](task-management/efficiency-resource-request.md)
         <!--DelEnd-->
       <!--Del-->
-      - 设备使用信息统计（仅对系统应用开放）<!--device-usage-statistics-->
+      - 设备使用信息统计(ArkTS)（仅对系统应用开放）<!--device-usage-statistics-->
         - [设备使用信息统计概述](device-usage-statistics/device-usage-statistics-overview.md)
         - [设备使用信息统计开发指导](device-usage-statistics/device-usage-statistics-use-guide.md)
       <!--DelEnd-->
@@ -763,7 +776,7 @@
               <!--DelEnd-->
               - [刷新本地图片和网络图片](form/arkts-ui-widget-image-update.md)
               - [根据卡片状态刷新不同内容](form/arkts-ui-widget-update-by-status.md)
-          <!--Del-->
+          <!--Del--> 
           - [卡片使用方开发指导（仅对系统应用开放）](form/widget-host-development-guide.md)
           <!--DelEnd-->
         - [开发基于JS UI的卡片](form/js-ui-widget-development.md)
@@ -778,14 +791,14 @@
       - [输入法应用沉浸模式](inputmethod/inputmethod-immersive-mode-guide.md)
     - IPC Kit（进程间通信服务）<!--ipc-kit-->
       - [IPC Kit简介](ipc/ipc-rpc-overview.md)
-      - [IPC与RPC通信开发指导](ipc/ipc-rpc-development-guideline.md)
+      - [IPC与RPC通信开发指导(ArkTS)](ipc/ipc-rpc-development-guideline.md)
+      - [IPC与RPC通信开发指导(C/C++)](ipc/ipc-capi-development-guideline.md)
       - [远端状态订阅开发实例](ipc/subscribe-remote-state.md)
-      - [IPC通信开发指导（C/C++）](ipc/ipc-capi-development-guideline.md)
     - Localization Kit（本地化开发服务）<!--localization-kit-->
       - [Localization Kit简介](internationalization/i18n-l10n.md)
       - 应用国际化<!--i18n-->
           - [国际化界面设计](internationalization/i18n-ui-design.md)
-          - [区域标识与文化习惯划分](internationalization/i18n-locale-culture.md)
+          - [区域ID与文化习惯划分](internationalization/i18n-locale-culture.md)
           - 设置语言与用户偏好<!--i18n-language-user-preferences-->
               - [设置系统语言与区域](internationalization/i18n-system-language-region.md)
               - [设置应用偏好语言](internationalization/i18n-preferred-language.md)
@@ -1066,10 +1079,12 @@
         - [Connectivity Kit简介](connectivity/connectivity-kit-intro.md)
         - 蓝牙<!--bluetooth-->
           - [蓝牙服务开发概述](connectivity/bluetooth/bluetooth-overview.md)
-          - [蓝牙设置](connectivity/bluetooth/br-development-guide.md)
-          - [广播与扫描](connectivity/bluetooth/ble-development-guide.md)
-          - [通用属性协议](connectivity/bluetooth/gatt-development-guide.md)
-          - [串行通信](connectivity/bluetooth/spp-development-guide.md)
+          - 传统蓝牙<!--bluetooth-br-->
+            - [蓝牙设置](connectivity/bluetooth/br-development-guide.md)
+            - [传输数据](connectivity/bluetooth/spp-development-guide.md)
+          - 低功耗蓝牙<!--bluetooth-ble-->
+            - [查找设备](connectivity/bluetooth/ble-development-guide.md)
+            - [连接和传输数据](connectivity/bluetooth/gatt-development-guide.md)
         - NFC<!--nfc-->
           - [NFC标签读写开发指南](connectivity/nfc/nfc-tag-access-guide.md)
           - [HCE卡模拟开发指南](connectivity/nfc/nfc-hce-guide.md)
@@ -1078,8 +1093,8 @@
           - [WLAN服务开发概述](connectivity/wlan/wlan-overview.md)
           - [P2P模式开发指南](connectivity/wlan/p2p-development-guide.md)
       - Distributed Service Kit（分布式管理服务）<!--distributed-service-kit-->
-          - [Distributed Service Kit简介](distributedservice/distributedservice-kit-intro.md)
-          - [分布式设备管理开发指南](distributedservice/devicemanager-guidelines.md)
+        - [Distributed Service Kit简介](distributedservice/distributedservice-kit-intro.md)
+        - [分布式设备管理开发指南](distributedservice/devicemanager-guidelines.md)
       - Network Kit（网络服务）<!--network-kit-->
         - [Network Kit简介](network/net-mgmt-overview.md)
         - Network Kit数据传输能力<!--network-kit-data-transmission-->
@@ -1095,15 +1110,14 @@
             - [VPN应用开发指南](network/net-vpnExtension.md)
             - [网络防火墙](network/net-netfirewall.md)
           <!--Del-->
-            - [网络防火墙（仅对系统应用开放）](network/net-netfirewall.md)
             - [网络共享（仅对系统应用开放）](network/net-sharing.md)
-            - [以太网连接管理（仅对系统应用开放）](network/net-ethernet.md)
+            - [以太网连接管理（仅对系统应用开放）](network/net-ethernet.md)   
             - [VPN管理（仅对系统应用开放）](network/net-vpn.md)
-          <!--DelEnd-->
-      - Telephony Kit（蜂窝通信服务）<!--telephony-kit-->
-        - [Telephony Kit简介](telephony/telephony-overview.md)
-        - [拨打电话](telephony/telephony-call.md)
-        - [短信服务](telephony/telephony-sms.md)
+            <!--DelEnd-->
+        - Telephony Kit（蜂窝通信服务）<!--telephony-kit-->
+          - [Telephony Kit简介](telephony/telephony-overview.md)
+          - [拨打电话](telephony/telephony-call.md)
+          - [短信服务](telephony/telephony-sms.md)
     - 基础功能<!--system-basicfun-->
       - Basic Services Kit（基础服务）<!--basic-services-kit-->
         - [Basic Services Kit简介](basic-services/basic-services-kit-overview.md)
@@ -1139,7 +1153,7 @@
         - USB服务<!--usb-->
           - [USB服务开发概述](basic-services/usb/usb-overview.md)
           - [USB服务开发指导](basic-services/usb/usb-guidelines.md)
-          - [常见问题](basic-services/usb/../faqs/faqs-usb.md)
+          - [常见问题](basic-services/usb/faqs-usb.md)
         <!--Del-->
         - 升级服务<!--update-->
           - [示例服务器开发概述](basic-services/update/sample-server-overview.md)
@@ -1170,13 +1184,11 @@
       - Input Kit（多模输入服务）<!--input-kit-->
         - [Input Kit简介](device/input/input-overview.md)
         - [输入设备开发指导](device/input/inputdevice-guidelines.md)
-        - [鼠标光标开发指导](device/input/pointerstyle-guidelines.md)
-        <!--Del-->
+        - [鼠标光标开发指导](device/input/pointerstyle-guidelines.md)<!--Del-->
         - [输入监听开发指导](device/input/inputmonitor-guidelines.md)
         - [事件注入开发指导](device/input/inputeventclient-guidelines.md)
         - [组合按键开发指导](device/input/inputconsumer-guidelines.md)
-        - [快捷键开发指导](device/input/shortkey-guidelines.md)
-        <!--DelEnd-->
+        - [快捷键开发指导](device/input/shortkey-guidelines.md)<!--DelEnd-->
         - [事件监听开发指导（C/C++）](device/input/monitor-guidelines.md)
         - [事件拦截开发指导（C/C++）](device/input/interceptor-guidelines.md)
       - MDM Kit（企业设备管理服务）<!--mdm-kit-->
@@ -1236,9 +1248,9 @@
                 - [主线程超时事件介绍](dfx/hiappevent-watcher-mainthreadjank-events.md)
                 - [订阅主线程超时事件（ArkTS）](dfx/hiappevent-watcher-mainthreadjank-events-arkts.md)
                 - [订阅主线程超时事件（C/C++）](dfx/hiappevent-watcher-mainthreadjank-events-ndk.md)
-        <!--Del-->
+          <!--Del-->
           - [事件上报](dfx/hiappevent-event-reporting.md)
-        <!--DelEnd-->
+          <!--DelEnd-->
         - HiTraceMeter使用指导<!--hitracemeter-->
           - [使用HiTraceMeter跟踪性能（ArkTS/JS）](dfx/hitracemeter-guidelines-arkts.md)
           - [使用HiTraceMeter跟踪性能（C/C++）](dfx/hitracemeter-guidelines-ndk.md)
@@ -1266,10 +1278,10 @@
           - [hidumper](dfx/hidumper.md)
           - [hitrace](dfx/hitrace.md)
           - [hiperf](dfx/hiperf.md)
-        <!--Del-->
+          <!--Del-->
           - [hisysevent](dfx/hisysevent.md)
           - [uinput](dfx/uinput.md)
-        <!--DelEnd-->
+          <!--DelEnd-->
       - Test Kit（应用测试服务）<!--test-kit-->
         - [自动化测试框架使用指导](application-test/arkxtest-guidelines.md)
         - [SmartPerf性能工具使用指导](application-test/smartperf-guidelines.md)
@@ -1284,10 +1296,8 @@
         - [cem工具](tools/cem-tool.md)
         - [anm工具](tools/anm-tool.md)
         - [edm工具](tools/edm-tool.md)
-        - [restool工具](tools/restool.md)
-        <!--Del-->
-        - [LLDB工具](tools/lldb-tool.md)
-        <!--DelEnd-->
+        - [restool工具](tools/restool.md)<!--Del-->
+        - [LLDB工具](tools/lldb-tool.md)<!--DelEnd-->
         - [param工具](tools/param-tool.md)
         - [power-shell工具](tools/power-shell.md)
         - [OpenHarmony SDK升级助手](tools/openharmony_sdk_upgrade_assistant.md)
@@ -1337,7 +1347,7 @@
       - 音频通话<!--audio-call-->
         - [音频通话开发概述](media/audio/audio-call-overview.md)
         - [开发音频通话功能](media/audio/audio-call-development.md)
-      - 不再推荐使用<!--not-recommended-->
+      - 不再推荐使用<!--not-recommended--> 
         - [从OpenSL ES切换OHAudio(C/C++)](media/audio/replace-opensles-by-ohaudio.md)
         - [使用OpenSL ES开发音频播放功能(C/C++)](media/audio/using-opensl-es-for-playback.md)
         - [使用OpenSL ES开发音频录制功能(C/C++)](media/audio/using-opensl-es-for-recording.md)
@@ -1375,52 +1385,46 @@
         - [使用通话设备切换组件](media/avsession/using-switch-call-devices.md)
     - Camera Kit（相机服务）<!--camera-kit-->
       - [Camera Kit简介](media/camera/camera-overview.md)
-      - [开发准备](media/camera/camera-preparation.md)
-      - 相机开发指导(ArkTS)<!--camera-dev-arkts-->
+      - [申请相机开发的权限](media/camera/camera-preparation.md)
+      - 开发相机应用(ArkTS)<!--camera-dev-arkts-->
+        - [通过系统相机拍照和录像(CameraPicker)](media/camera/camera-picker.md)
         - [相机管理(ArkTS)](media/camera/camera-device-management.md)
         - [设备输入(ArkTS)](media/camera/camera-device-input.md)
         - [会话管理(ArkTS)](media/camera/camera-session-management.md)
         - [预览(ArkTS)](media/camera/camera-preview.md)
+        - [双路预览(ArkTS)](media/camera/camera-dual-channel-preview.md)
         - [拍照(ArkTS)](media/camera/camera-shooting.md)
+        - [拍照实践(ArkTS)](media/camera/camera-shooting-case.md)
         - [录像(ArkTS)](media/camera/camera-recording.md)
+        - [录像实践(ArkTS)](media/camera/camera-recording-case.md)
         - [元数据(ArkTS)](media/camera/camera-metadata.md)
         - [手电筒使用(ArkTS)](media/camera/camera-torch-use.md)
         - [适配不同折叠状态的摄像头变更(ArkTS)](media/camera/camera-foldable-display.md)
-        <!--Del-->
-        - [高性能拍照(仅对系统应用开放)(ArkTS)](media/camera/camera-deferred-photo.md)
-        <!--DelEnd-->
         - [分段式拍照(ArkTS)](media/camera/camera-deferred-capture.md)
-        - [动态照片(ArkTS)](media/camera/camera-moving-photo.md)
+        - [分段式拍照实践(ArkTS)](media/camera/camera-deferred-capture-case.md)
+        - [动态照片拍摄(ArkTS)](media/camera/camera-moving-photo.md)
         - [相机基础动效(ArkTS)](media/camera/camera-animation.md)
         - [在Worker线程中使用相机(ArkTS)](media/camera/camera-worker.md)
+        - [相机启动恢复实践(ArkTS)](media/camera/camera-background-recovery.md)
         <!--Del-->
+        - [高性能拍照(仅对系统应用开放)(ArkTS)](media/camera/camera-deferred-photo.md)
+        - [高性能拍照实践(仅对系统应用开放)(ArkTS)](media/camera/camera-deferred-photo-case.md)
         - [深度信息(仅对系统应用开放)(ArkTS)](media/camera/camera-depth-data.md)
+        - [性能提升实践(仅对系统应用开放)(ArkTS)](media/camera/camera-performance-improvement.md)
         <!--DelEnd-->
-      - 相机最佳实践(ArkTS)<!--camera-best-practices-arkts-->
-        - [通过系统相机拍照和录像(ArkTS)](media/camera/camera-picker.md)
-        - [拍照实现方案(ArkTS)](media/camera/camera-shooting-case.md)
-        - [录像实现方案(ArkTS)](media/camera/camera-recording-case.md)
-        - [双路预览(ArkTS)](media/camera/camera-dual-channel-preview.md)
-        - [分段式拍照实现方案(ArkTS)](media/camera/camera-deferred-capture-case.md)
-        - [相机启动恢复实现方案(ArkTS)](media/camera/camera-background-recovery.md)
-        <!--Del-->
-        - [性能提升方案(仅对系统应用开放)(ArkTS)](media/camera/camera-performance-improvement.md)
-        - [高性能拍照实现方案(仅对系统应用开放)(ArkTS)](media/camera/camera-deferred-photo-case.md)
-        <!--DelEnd-->
-      - 相机开发指导(C/C++)<!--camera-dev-native-->
+      - 开发相机应用(C/C++)<!--camera-dev-native-->
         - [相机管理(C/C++)](media/camera/native-camera-device-management.md)
         - [设备输入(C/C++)](media/camera/native-camera-device-input.md)
         - [会话管理(C/C++)](media/camera/native-camera-session-management.md)
         - [预览(C/C++)](media/camera/native-camera-preview.md)
         - [预览流二次处理(C/C++)](media/camera/native-camera-preview-imageReceiver.md)
         - [拍照(C/C++)](media/camera/native-camera-shooting.md)
+        - [拍照实践(C/C++)](media/camera/native-camera-shooting-case.md)
         - [分段式拍照(C/C++)](media/camera/native-camera-deferred-capture.md)
         - [录像(C/C++)](media/camera/native-camera-recording.md)
+        - [录像实践(C/C++)](media/camera/native-camera-recording-case.md)
         - [元数据(C/C++)](media/camera/native-camera-metadata.md)
         - [手电筒使用(C/C++)](media/camera/native-camera-torch-use.md)
-      - 相机最佳实践(C/C++)<!--camera-best-practices-native-->
-        - [拍照实现方案(C/C++)](media/camera/native-camera-shooting-case.md)
-        - [录像实现方案(C/C++)](media/camera/native-camera-recording-case.md)
     - DRM Kit（数字版权保护服务）<!--drm-kit-->
       - [DRM Kit 简介](media/drm/drm-overview.md)
       - 数字版权保护开发指导(ArkTS)<!--drm-arkts-dev-->
@@ -1444,7 +1448,7 @@
           - [使用PixelMap完成位图操作](media/image/image-pixelmap-operation.md)
           - [编辑图片EXIF信息](media/image/image-tool.md)
         - 图片接收<!--image-receiving-arkts-->
-          - [使用ImageReceiver接收图片](media/image/image-receiver.md)
+          - [使用ImageReceiver完成图片接收](media/image/image-receiver.md)
       - 图片开发指导(C/C++)<!--image-native-->
         - 图片解码<!--image-decoding-c-->
           - [使用Image_NativeModule完成图片解码](media/image/image-source-c.md)
@@ -1469,7 +1473,9 @@
           - [图片接收](media/image/image-receiver-native.md)
     - Media Kit（媒体服务）<!--media-kit-->
       - [Media Kit简介](media/media/media-kit-intro.md)
+      <!--Del-->
       - [Media Kit开发速览](media/media/media-kit-quick-overview.md)
+      <!--DelEnd-->
       - 媒体开发指导(ArkTS)<!--media-kit-dev--arkts-->
         - 播放<!--media-playback-arkts-->
           - [使用AVPlayer播放音频(ArkTS)](media/media/using-avplayer-for-playback.md)
@@ -1487,6 +1493,8 @@
           - [使用AVImageGenerator提取视频指定时间图像(ArkTS)](media/media/avimagegenerator.md)
         - 视频转码<!--media-transcoder-arkts-->
           - [使用AVTranscoder实现视频转码(ArkTS)](media/media/using-avtranscoder-for-transcodering.md)
+          - [创建异步线程执行AVTranscoder视频转码(ArkTS)](media/media/avtranscoder-practice.md)
+          - [转码常见问题](media/media/avtranscoder-faq.md)
       - 媒体开发指导(C/C++)<!--media-kit-dev--c-->
         - 播放<!--media-playback-c-->
           - [使用AVPlayer播放音频(C/C++)](media/media/using-ndk-avplayer-for-playback.md)
@@ -1559,7 +1567,7 @@
           - [复杂文本绘制与显示（C/C++）](graphics/complex-text-c.md)
       - [NativeBuffer开发指导 (C/C++)](graphics/native-buffer-guidelines.md)
       - [NativeImage开发指导 (C/C++)](graphics/native-image-guidelines.md)
-      - [NativeVSync开发指导 (C/C++)](graphics/native-vsync-guidelines.md)
+      - [NativeVsync开发指导 (C/C++)](graphics/native-vsync-guidelines.md)
       - [NativeWindow开发指导 (C/C++)](graphics/native-window-guidelines.md)
       - [图形开发术语](graphics/graphic-term.md)
     - ArkGraphics 3D（方舟3D图形）<!--arkgraphics-3d-->
@@ -1573,13 +1581,13 @@
       <!--Del-->
       - [重置OAID信息（仅对系统应用开放）](ads-service/oaid/oaid-service-sys.md)
       <!--DelEnd-->
-
     - Calendar Kit（日历服务）<!--calendar-kit-->
       - [Calendar Kit简介](calendarmanager/calendarmanager-overview.md)
       - [日历账户管理](calendarmanager/calendarmanager-calendar-developer.md)
       - [日程管理](calendarmanager/calendarmanager-event-developer.md)
     - Contacts Kit（联系人服务）<!--contacts-kit-->
       - [Contacts Kit开发概述](contacts/contacts-intro.md)
+    <!--Del-->
     - Location Kit（位置服务）<!--location-kit-->
       - [Location Kit简介](device/location/location-kit-intro.md)
       - [申请位置权限开发指导(ArkTS)](device/location/location-permission-guidelines.md)
@@ -1589,6 +1597,7 @@
       - [基于设备自身定位的地理围栏开发指导(ArkTS)](device/location/geofence-guidelines.md)
       - [基于FenceExtensionAbility的云侧地理围栏开发指导](device/location/fenceExtensionAbility.md)
       - [相关实例](device/location/app-samples.md)
+    <!--DelEnd-->
     - Notification Kit（用户通知服务）<!--notification-kit-->
       - [Notification Kit简介](notification/notification-overview.md)
       - [请求通知授权](notification/notification-enable.md)
@@ -1698,37 +1707,37 @@
         - [JSVM-API支持的数据类型和接口](napi/jsvm-data-types-interfaces.md)
         - [使用JSVM-API实现JS与C/C++语言交互开发流程](napi/use-jsvm-process.md)
         - JSVM-API开发规范<!--jsvm-development-standards-->
-            - [JSVM-API使用规范](napi/jsvm-guidelines.md)
-            - [JSVM-API常见问题](napi/jsvm-frequently-questions.md)
+          - [JSVM-API使用规范](napi/jsvm-guidelines.md)
+          - [JSVM-API常见问题](napi/jsvm-frequently-questions.md)
         - JSVM-API使用指导<!--jsvm-use-->
-            - [使用JSVM-API接口进行任务队列相关开发](napi/use-jsvm-execute_tasks.md)
-            - [使用JSVM-API接口进行虚拟机快照相关开发](napi/use-jsvm-create-snapshot.md)
-            - [使用JSVM-API接口进行WebAssembly模块相关开发](napi/use-jsvm-about-wasm.md)
-            - [使用JSVM-API接口进行函数创建和调用](napi/use-jsvm-function-call.md)
-            - [使用JSVM-API接口进行JSON操作](napi/use-jsvm-about-JSON.md)
-            - [使用JSVM-API接口进行array相关开发](napi/use-jsvm-about-array.md)
-            - [使用JSVM-API接口进行ArrayBuffer相关开发](napi/use-jsvm-about-arraybuffer.md)
-            - [使用JSVM-API接口操作bigint类型值](napi/use-jsvm-about-bigint.md)
-            - [使用JSVM进行class相关开发](napi/use-jsvm-about-class.md)
-            - [使用JSVM-API接口进行Date相关开发](napi/use-jsvm-about-date.md)
-            - [使用JSVM-API接口进行object相关开发](napi/use-jsvm-about-object.md)
-            - [使用JSVM-API接口进行primitive类相关开发](napi/use-jsvm-about-primitive.md)
-            - [使用JSVM-API接口处理异步操作](napi/use-jsvm-about-promise.md)
-            - [使用Node-API接口设置JavaScript对象的属性](napi/use-jsvm-about-property.md)
-            - [使用JSVM-API接口创建和获取string值](napi/use-jsvm-about-string.md)
-            - [使用JSVM-API接口获取JSVM API的版本号](napi/use-jsvm-about-version.md)
-            - [使用JSVM-API接口进行错误处理开发](napi/use-jsvm-error.md)
-            - [使用JSVM-API接口进行JavaScript代码调试调优](napi/use-jsvm-heapstatistics-debugger-cpuprofiler-heapsnapshot.md)
-            - [使用JSVM-API接口进行生命周期相关开发](napi/use-jsvm-life-cycle.md)
-            - [使用JSVM-API进行内存管理](napi/use-jsvm-memory-management.md)
-            - [使用JSVM-API判断给定的两个JS value是否严格相等](napi/use-jsvm-strict-equals.md)
-            - [使用JSVM-API接口创建基本数据类型](napi/use-jsvm-basic-data-types.md)
+          - [使用JSVM-API接口进行任务队列相关开发](napi/use-jsvm-execute_tasks.md)
+          - [使用JSVM-API接口进行虚拟机快照相关开发](napi/use-jsvm-create-snapshot.md)
+          - [使用JSVM-API接口进行WebAssembly模块相关开发](napi/use-jsvm-about-wasm.md)
+          - [使用JSVM-API接口进行函数创建和调用](napi/use-jsvm-function-call.md)
+          - [使用JSVM-API接口进行JSON操作](napi/use-jsvm-about-JSON.md)
+          - [使用JSVM-API接口进行array相关开发](napi/use-jsvm-about-array.md)
+          - [使用JSVM-API接口进行ArrayBuffer相关开发](napi/use-jsvm-about-arraybuffer.md)
+          - [使用JSVM-API接口操作bigint类型值](napi/use-jsvm-about-bigint.md)
+          - [使用JSVM进行class相关开发](napi/use-jsvm-about-class.md)
+          - [使用JSVM-API接口进行Date相关开发](napi/use-jsvm-about-date.md)
+          - [使用JSVM-API接口进行object相关开发](napi/use-jsvm-about-object.md)
+          - [使用JSVM-API接口进行primitive类相关开发](napi/use-jsvm-about-primitive.md)
+          - [使用JSVM-API接口处理异步操作](napi/use-jsvm-about-promise.md)
+          - [使用Node-API接口设置JavaScript对象的属性](napi/use-jsvm-about-property.md)
+          - [使用JSVM-API接口创建和获取string值](napi/use-jsvm-about-string.md)
+          - [使用JSVM-API接口获取JSVM API的版本号](napi/use-jsvm-about-version.md)
+          - [使用JSVM-API接口进行错误处理开发](napi/use-jsvm-error.md)
+          - [使用JSVM-API接口进行JavaScript代码调试调优](napi/use-jsvm-heapstatistics-debugger-cpuprofiler-heapsnapshot.md)
+          - [使用JSVM-API接口进行生命周期相关开发](napi/use-jsvm-life-cycle.md)
+          - [使用JSVM-API进行内存管理](napi/use-jsvm-memory-management.md)
+          - [使用JSVM-API判断给定的两个JS value是否严格相等](napi/use-jsvm-strict-equals.md)
+          - [使用JSVM-API接口创建基本数据类型](napi/use-jsvm-basic-data-types.md)
         - JSVM-API典型使用场景指导<!--jsvm-scenarios-->
-            - [JSVM-API调试&定位](napi/jsvm-debugger-cpuprofiler-heapsnapshot.md)
-            - JSVM-API调优&高性能使用示例<!--jsvm-usage-examples-->
-              - [使用JSVM-API接口创建多个引擎执行JS代码并销毁](napi/use-jsvm-runtime-task.md)
-              - [使用 code cache 加速编译](napi/use-jsvm-about-code-cache.md)
-              - [JSVM 通用调优实践](napi/jsvm-optimizations.md)
+          - [JSVM-API调试&定位](napi/jsvm-debugger-cpuprofiler-heapsnapshot.md)
+          - JSVM-API调优&高性能使用示例<!--jsvm-usage-examples-->
+            - [使用JSVM-API接口创建多个引擎执行JS代码并销毁](napi/use-jsvm-runtime-task.md)
+            - [使用 code cache 加速编译](napi/use-jsvm-about-code-cache.md)
+            - [JSVM 通用调优实践](napi/jsvm-optimizations.md)
       - OpenMP支持<!--openmp-->
         - [OpenMP简介](napi/openmp-overview.md)
         - [OpenMP应用构建和运行指南](napi/openmp-guideline.md)
@@ -1738,6 +1747,9 @@
         - [QOS开发指导](napi/qos-guidelines.md)
       - 内存管理<!--memory-management-->
         - [Purgeable memory开发指导](napi/purgeable-memory-guidelines.md)
+      - 设备管理<!--device-management-->
+        - [USB DDK开发指导](napi/usb-ddk-guidelines.md)
+        - [HID DDK开发指导](napi/hid-ddk-guidelines.md)
       - 包管理<!--bundle-management-->
         - [NativeBundle开发指导](napi/native-bundle-guidelines.md)
     - 调试和性能分析<!--debugging-profiling-->
@@ -2261,7 +2273,7 @@
           - [postCardAction](reference/apis-arkui/js-apis-postCardAction.md)
           <!--Del-->
           - [@ohos.arkui.drawableDescriptor (DrawableDescriptor)(系统接口)](reference/apis-arkui/js-apis-arkui-drawableDescriptor-sys.md)
-          - [@ohos.arkui.performanceMonitor (性能监测)(系统接口)](reference/apis-arkui/js-apis-arkui-performancemonitor-sys.md)
+          - [@ohos.arkui.performanceMonitor (性能监测)(系统接口)](reference/apis-arkui/js-apis-arkui-performancemonitor-sys.md)  
           - [@ohos.arkui.uiExtension (uiExtension)(系统接口)](reference/apis-arkui/js-apis-arkui-uiExtension-sys.md)
           - [@ohos.deviceStatus.dragInteraction (拖拽)(系统接口)](reference/apis-arkui/js-apis-devicestatus-draginteraction-sys.md)
           - [@ohos.pluginComponent (PluginComponentManager)(系统接口)](reference/apis-arkui/js-apis-plugincomponent-sys.md)
@@ -2324,6 +2336,7 @@
             - [自定义事件分发](reference/apis-arkui/arkui-ts/ts-universal-attributes-on-child-touch-test.md)
             - [自定义事件拦截](reference/apis-arkui/arkui-ts/ts-universal-attributes-on-touch-intercept.md)
             - [焦点轴事件](reference/apis-arkui/arkui-ts/ts-universal-events-focus_axis.md)
+            - [轴事件](reference/apis-arkui/arkui-ts/ts-universal-events-axis.md)
           - [通用属性](reference/apis-arkui/arkui-ts/ts-component-general-attributes.md)
             - [尺寸设置](reference/apis-arkui/arkui-ts/ts-universal-attributes-size.md)
             - [位置设置](reference/apis-arkui/arkui-ts/ts-universal-attributes-location.md)
@@ -2400,7 +2413,7 @@
           - [Stack](reference/apis-arkui/arkui-ts/ts-container-stack.md)
           - [RelativeContainer](reference/apis-arkui/arkui-ts/ts-container-relativecontainer.md)
           - [FolderStack](reference/apis-arkui/arkui-ts/ts-container-folderstack.md)
-          <!--Del-->
+           <!--Del-->
           - [Flex (系统接口)](reference/apis-arkui/arkui-ts/ts-container-flex-sys.md)
           - [Column (系统接口)](reference/apis-arkui/arkui-ts/ts-container-column-sys.md)
           - [Row (系统接口)](reference/apis-arkui/arkui-ts/ts-container-row-sys.md)
@@ -2535,7 +2548,7 @@
         - 渲染绘制<!--rendering-drawing-->
           - [XComponent](reference/apis-arkui/arkui-ts/ts-basic-components-xcomponent.md)
           - [Component3D](reference/apis-arkui/arkui-ts/ts-basic-components-component3d.md)
-          - [EmbeddedComponent](reference/apis-arkui/arkui-ts/ts-container-embedded-component.md)
+          - [EmbeddedComponent](reference/apis-arkui/arkui-ts/ts-container-embedded-component.md) 
         - 标题栏与工具栏<!--bars-and-toolbars-->
           - [ComposeTitleBar](reference/apis-arkui/arkui-ts/ohos-arkui-advanced-ComposeTitleBar.md)
           - [EditableTitleBar](reference/apis-arkui/arkui-ts/ohos-arkui-advanced-EditableTitleBar.md)
@@ -2561,7 +2574,7 @@
           - [显式动画立即下发 (animateToImmediately)](reference/apis-arkui/arkui-ts/ts-explicit-animatetoimmediately.md)
           <!--Del-->
           - [组件内隐式共享元素转场 (geometryTransition)(系统接口)](reference/apis-arkui/arkui-ts/ts-transition-animation-geometrytransition-sys.md)
-          <!--DelEnd-->
+          <!--DelEnd-->  
         - 弹窗<!--dialog-boxes-->
           - [警告弹窗 (AlertDialog)](reference/apis-arkui/arkui-ts/ts-methods-alert-dialog-box.md)
           - [列表选择弹窗 (ActionSheet)](reference/apis-arkui/arkui-ts/ts-methods-action-sheet.md)
@@ -2585,7 +2598,7 @@
           - [SaveButton (系统接口)](reference/apis-arkui/arkui-ts/ts-security-components-savebutton-sys.md)
           <!--DelEnd-->
         - 主题<!--themes-->
-          - [WithTheme](reference/apis-arkui/arkui-ts/ts-container-with-theme.md)
+          - [WithTheme](reference/apis-arkui/arkui-ts/ts-container-with-theme.md) 
         - 原子化服务<!--atomic-services-->
           - [AtomicServiceNavigation](reference/apis-arkui/arkui-ts/ohos-atomicservice-AtomicServiceNavigation.md)
           - [AtomicServiceTabs](reference/apis-arkui/arkui-ts/ohos-atomicservice-AtomicServiceTabs.md)
@@ -2823,72 +2836,71 @@
           - [Native Accessibility](reference/apis-arkui/arkui_native_interface_accessibility.md)
           - [Native XComponent](reference/apis-arkui/_o_h___native_x_component.md)
           - [ArkUI_EventModule](reference/apis-arkui/_ark_u_i___event_module.md)
-          - [WindowManager_NativeModule](reference/apis-arkui/_window_manager___native_module.md)
+          - [WindowManager](reference/apis-arkui/_window_manager___native_module.md)
           - [OH_DisplayManager](reference/apis-arkui/_o_h___display_manager.md)
-        - 头文件和结构体<!--arkui-headerfile-struct-->
-          - 头文件<!--arkui-headerfile-->
-            - [drag_and_drop.h](reference/apis-arkui/drag__and__drop_8h.md)
-            - [drawable_descriptor.h](reference/apis-arkui/drawable__descriptor_8h.md)
-            - [native_animate.h](reference/apis-arkui/native__animate_8h.md)
-            - [native_dialog.h](reference/apis-arkui/native__dialog_8h.md)
-            - [native_gesture.h](reference/apis-arkui/native__gesture_8h.md)
-            - [native_interface.h](reference/apis-arkui/native__interface_8h.md)
-            - [native_interface_accessibility.h](reference/apis-arkui/native__interface__accessibility_8h.md)
-            - [native_interface_focus.h](reference/apis-arkui/native__interface__focus_8h.md)
-            - [native_interface_xcomponent.h](reference/apis-arkui/native__interface__xcomponent_8h.md)
-            - [native_key_event.h](reference/apis-arkui/native__key_event_8h.md)
-            - [native_node.h](reference/apis-arkui/native__node_8h.md)
-            - [native_node_napi.h](reference/apis-arkui/native__node__napi_8h.md)
-            - [native_type.h](reference/apis-arkui/native__type_8h.md)
-            - [native_xcomponent_key_event.h](reference/apis-arkui/native__xcomponent__key__event_8h.md)
-            - [styled_string.h](reference/apis-arkui/styled__string_8h.md)
-            - [ui_input_event.h](reference/apis-arkui/ui__input__event_8h.md)
-            - [oh_window.h](reference/apis-arkui/oh__window_8h.md)
-            - [oh_window_comm.h](reference/apis-arkui/oh__window__comm_8h.md)
-            - [oh_window_event_filter.h](reference/apis-arkui/oh__window__event__filter_8h.md)
-            - [oh_display_capture.h](reference/apis-arkui/oh__display__capture_8h.md)
-            - [oh_display_info.h](reference/apis-arkui/oh__display__info_8h.md)
-            - [oh_display_manager.h](reference/apis-arkui/oh__display__manager_8h.md)
-          - 结构体<!--arkui-struct-->
-            - [ArkUI_AnimateCompleteCallback](reference/apis-arkui/_ark_u_i___animate_complete_callback.md)
-            - [ArkUI_AttributeItem](reference/apis-arkui/_ark_u_i___attribute_item.md)
-            - [ArkUI_ColorStop](reference/apis-arkui/_ark_u_i___color_stop.md)
-            - [ArkUI_ContextCallback](reference/apis-arkui/_ark_u_i___context_callback.md)
-            - [ArkUI_ExpectedFrameRateRange](reference/apis-arkui/_ark_u_i___expected_frame_rate_range.md)
-            - [ArkUI_IntOffset](reference/apis-arkui/_ark_u_i___int_offset.md)
-            - [ArkUI_IntSize](reference/apis-arkui/_ark_u_i___int_size.md)
-            - [ArkUI_Margin](reference/apis-arkui/_ark_u_i___margin.md)
-            - [ArkUI_NativeAnimateAPI_1](reference/apis-arkui/_ark_u_i___native_animate_a_p_i__1.md)
-            - [ArkUI_NativeDialogAPI_1](reference/apis-arkui/_ark_u_i___native_dialog_a_p_i__1.md)
-            - [ArkUI_NativeDialogAPI_2](reference/apis-arkui/_ark_u_i___native_dialog_a_p_i__2.md)
-            - [ArkUI_NativeGestureAPI_1](reference/apis-arkui/_ark_u_i___native_gesture_a_p_i__1.md)
-            - [ArkUI_NativeNodeAPI_1](reference/apis-arkui/_ark_u_i___native_node_a_p_i__1.md)
-            - [ArkUI_NodeComponentEvent](reference/apis-arkui/_ark_u_i___node_component_event.md)
-            - [ArkUI_NumberValue](reference/apis-arkui/union_ark_u_i___number_value.md)
-            - [ArkUI_Rect](reference/apis-arkui/_ark_u_i___rect.md)
-            - [ArkUI_RotationOptions](reference/apis-arkui/_ark_u_i___rotation_options.md)
-            - [ArkUI_ScaleOptions](reference/apis-arkui/_ark_u_i___scale_options.md)
-            - [ArkUI_StringAsyncEvent](reference/apis-arkui/_ark_u_i___string_async_event.md)
-            - [ArkUI_TextChangeEvent](reference/apis-arkui/_ark_u_i___text_change_event.md)
-            - [ARKUI_TextPickerCascadeRangeContent](reference/apis-arkui/_a_r_k_u_i___text_picker_cascade_range_content.md)
-            - [ARKUI_TextPickerRangeContent](reference/apis-arkui/_a_r_k_u_i___text_picker_range_content.md)
-            - [ArkUI_TranslationOptions](reference/apis-arkui/_ark_u_i___translation_options.md)
-            - [OH_NativeXComponent_Callback](reference/apis-arkui/_o_h___native_x_component___callback.md)
-            - [OH_NativeXComponent_ExpectedRateRange](reference/apis-arkui/_o_h___native_x_component___expected_rate_range.md)
-            - [OH_NativeXComponent_MouseEvent](reference/apis-arkui/_o_h___native_x_component___mouse_event.md)
-            - [OH_NativeXComponent_MouseEvent_Callback](reference/apis-arkui/_o_h___native_x_component___mouse_event___callback.md)
-            - [OH_NativeXComponent_TouchEvent](reference/apis-arkui/_o_h___native_x_component___touch_event.md)
-            - [OH_NativeXComponent_TouchPoint](reference/apis-arkui/_o_h___native_x_component___touch_point.md)
-            - [NativeDisplayManager_CutoutInfo](reference/apis-arkui/_native_display_manager___cutout_info.md)
-            - [NativeDisplayManager_DisplayColorSpace](reference/apis-arkui/_native_display_manager___display_color_space.md)
-            - [NativeDisplayManager_DisplayHdrFormat](reference/apis-arkui/_native_display_manager___display_hdr_format.md)
-            - [NativeDisplayManager_DisplayInfo](reference/apis-arkui/_native_display_manager___display_info.md)
-            - [NativeDisplayManager_DisplaysInfo](reference/apis-arkui/_native_display_manager___displays_info.md)
-            - [NativeDisplayManager_Rect](reference/apis-arkui/_native_display_manager___rect.md)
-            - [NativeDisplayManager_WaterfallDisplayAreaRects](reference/apis-arkui/ive_display_manager___waterfall_display_area_rects.md)
-            - [WindowManager_AvoidArea](reference/apis-arkui/_window_manager___avoid_area.md)
-            - [WindowManager_Rect](reference/apis-arkui/_window_manager___rect.md)
-            - [WindowManager_WindowProperties](reference/apis-arkui/_window_manager___window_properties.md)
+        - 头文件<!--arkui-headerfile-->
+          - [drag_and_drop.h](reference/apis-arkui/drag__and__drop_8h.md)
+          - [drawable_descriptor.h](reference/apis-arkui/drawable__descriptor_8h.md)
+          - [native_animate.h](reference/apis-arkui/native__animate_8h.md)
+          - [native_dialog.h](reference/apis-arkui/native__dialog_8h.md)
+          - [native_gesture.h](reference/apis-arkui/native__gesture_8h.md)
+          - [native_interface.h](reference/apis-arkui/native__interface_8h.md)
+          - [native_interface_accessibility.h](reference/apis-arkui/native__interface__accessibility_8h.md)
+          - [native_interface_focus.h](reference/apis-arkui/native__interface__focus_8h.md)
+          - [native_interface_xcomponent.h](reference/apis-arkui/native__interface__xcomponent_8h.md)
+          - [native_key_event.h](reference/apis-arkui/native__key_event_8h.md)
+          - [native_node.h](reference/apis-arkui/native__node_8h.md)
+          - [native_node_napi.h](reference/apis-arkui/native__node__napi_8h.md)
+          - [native_type.h](reference/apis-arkui/native__type_8h.md)
+          - [native_xcomponent_key_event.h](reference/apis-arkui/native__xcomponent__key__event_8h.md)
+          - [styled_string.h](reference/apis-arkui/styled__string_8h.md)
+          - [ui_input_event.h](reference/apis-arkui/ui__input__event_8h.md)
+          - [oh_window.h](reference/apis-arkui/oh__window_8h.md)
+          - [oh_window_comm.h](reference/apis-arkui/oh__window__comm_8h.md)
+          - [oh_window_event_filter.h](reference/apis-arkui/oh__window__event__filter_8h.md)
+          - [oh_display_capture.h](reference/apis-arkui/oh__display__capture_8h.md)
+          - [oh_display_info.h](reference/apis-arkui/oh__display__info_8h.md)
+          - [oh_display_manager.h](reference/apis-arkui/oh__display__manager_8h.md)
+        - 结构体<!--arkui-struct-->
+          - [ArkUI_AnimateCompleteCallback](reference/apis-arkui/_ark_u_i___animate_complete_callback.md)
+          - [ArkUI_AttributeItem](reference/apis-arkui/_ark_u_i___attribute_item.md)
+          - [ArkUI_ColorStop](reference/apis-arkui/_ark_u_i___color_stop.md)
+          - [ArkUI_ContextCallback](reference/apis-arkui/_ark_u_i___context_callback.md)
+          - [ArkUI_ExpectedFrameRateRange](reference/apis-arkui/_ark_u_i___expected_frame_rate_range.md)
+          - [ArkUI_IntOffset](reference/apis-arkui/_ark_u_i___int_offset.md)
+          - [ArkUI_IntSize](reference/apis-arkui/_ark_u_i___int_size.md)
+          - [ArkUI_Margin](reference/apis-arkui/_ark_u_i___margin.md)
+          - [ArkUI_NativeAnimateAPI_1](reference/apis-arkui/_ark_u_i___native_animate_a_p_i__1.md)
+          - [ArkUI_NativeDialogAPI_1](reference/apis-arkui/_ark_u_i___native_dialog_a_p_i__1.md)
+          - [ArkUI_NativeDialogAPI_2](reference/apis-arkui/_ark_u_i___native_dialog_a_p_i__2.md)
+          - [ArkUI_NativeGestureAPI_1](reference/apis-arkui/_ark_u_i___native_gesture_a_p_i__1.md)
+          - [ArkUI_NativeNodeAPI_1](reference/apis-arkui/_ark_u_i___native_node_a_p_i__1.md)
+          - [ArkUI_NodeComponentEvent](reference/apis-arkui/_ark_u_i___node_component_event.md)
+          - [ArkUI_NumberValue](reference/apis-arkui/union_ark_u_i___number_value.md)
+          - [ArkUI_Rect](reference/apis-arkui/_ark_u_i___rect.md)
+          - [ArkUI_RotationOptions](reference/apis-arkui/_ark_u_i___rotation_options.md)
+          - [ArkUI_ScaleOptions](reference/apis-arkui/_ark_u_i___scale_options.md)
+          - [ArkUI_StringAsyncEvent](reference/apis-arkui/_ark_u_i___string_async_event.md)
+          - [ArkUI_TextChangeEvent](reference/apis-arkui/_ark_u_i___text_change_event.md)
+          - [ARKUI_TextPickerCascadeRangeContent](reference/apis-arkui/_a_r_k_u_i___text_picker_cascade_range_content.md)
+          - [ARKUI_TextPickerRangeContent](reference/apis-arkui/_a_r_k_u_i___text_picker_range_content.md)
+          - [ArkUI_TranslationOptions](reference/apis-arkui/_ark_u_i___translation_options.md)
+          - [OH_NativeXComponent_Callback](reference/apis-arkui/_o_h___native_x_component___callback.md)
+          - [OH_NativeXComponent_ExpectedRateRange](reference/apis-arkui/_o_h___native_x_component___expected_rate_range.md)
+          - [OH_NativeXComponent_MouseEvent](reference/apis-arkui/_o_h___native_x_component___mouse_event.md)
+          - [OH_NativeXComponent_MouseEvent_Callback](reference/apis-arkui/_o_h___native_x_component___mouse_event___callback.md)
+          - [OH_NativeXComponent_TouchEvent](reference/apis-arkui/_o_h___native_x_component___touch_event.md)
+          - [OH_NativeXComponent_TouchPoint](reference/apis-arkui/_o_h___native_x_component___touch_point.md)
+          - [NativeDisplayManager_CutoutInfo](reference/apis-arkui/_native_display_manager___cutout_info.md)
+          - [NativeDisplayManager_DisplayColorSpace](reference/apis-arkui/_native_display_manager___display_color_space.md)
+          - [NativeDisplayManager_DisplayHdrFormat](reference/apis-arkui/_native_display_manager___display_hdr_format.md)
+          - [NativeDisplayManager_DisplayInfo](reference/apis-arkui/_native_display_manager___display_info.md)
+          - [NativeDisplayManager_DisplaysInfo](reference/apis-arkui/_native_display_manager___displays_info.md)
+          - [NativeDisplayManager_Rect](reference/apis-arkui/_native_display_manager___rect.md)
+          - [NativeDisplayManager_WaterfallDisplayAreaRects](reference/apis-arkui/ive_display_manager___waterfall_display_area_rects.md)
+          - [WindowManager_AvoidArea](reference/apis-arkui/_window_manager___avoid_area.md)
+          - [WindowManager_Rect](reference/apis-arkui/_window_manager___rect.md)
+          - [WindowManager_WindowProperties](reference/apis-arkui/_window_manager___window_properties.md)
       - 错误码<!--arkui-arkts-errcode-->
         - UI界面<!--arkui-ui-arkts-errcode-->
           - [动画错误码](reference/apis-arkui/errorcode-animator.md)
@@ -2901,6 +2913,10 @@
           - [系统资源错误码](reference/apis-arkui/errorcode-system-resource.md)
           - [半模态错误码](reference/apis-arkui/errorcode-bindSheet.md)
           - [滚动类组件错误码](reference/apis-arkui/errorcode-scroll.md)
+          - [UI上下文错误码](reference/apis-arkui/errorcode-uicontext.md)
+          <!--Del-->
+          - [UIExtension错误码](reference/apis-arkui/errorcode-uiextension.md)
+          <!--DelEnd-->
         - 图形图像<!--arkui-graphics-images-arkts-errcode-->
           - [屏幕错误码](reference/apis-arkui/errorcode-display.md)
           - [窗口错误码](reference/apis-arkui/errorcode-window.md)
@@ -2913,30 +2929,30 @@
       - C API<!--arkweb-c-->
         - 模块<!--arkweb-module-->
           - [Web](reference/apis-arkweb/_web.md)
-          - 头文件<!--arkweb-headerfile-->
-            - [arkweb_error_code.h](reference/apis-arkweb/arkweb__error__code_8h.md)
-            - [arkweb_interface.h](reference/apis-arkweb/arkweb__interface_8h.md)
-            - [arkweb_net_error_list.h](reference/apis-arkweb/arkweb__net__error__list_8h.md)
-            - [arkweb_scheme_handler.h](reference/apis-arkweb/arkweb__scheme__handler_8h.md)
-            - [arkweb_type.h](reference/apis-arkweb/arkweb__type_8h.md)
-            - [native_interface_arkweb.h](reference/apis-arkweb/native__interface__arkweb_8h.md)
-          - 结构体<!--arkweb-struct-->
-            - [ArkWeb_AnyNativeAPI](reference/apis-arkweb/_ark_web___any_native_a_p_i.md)
-            - [ArkWeb_ComponentAPI](reference/apis-arkweb/_ark_web___component_a_p_i.md)
-            - [ArkWeb_ControllerAPI](reference/apis-arkweb/_ark_web___controller_a_p_i.md)
-            - [ArkWeb_CookieManagerAPI](reference/apis-arkweb/_ark_web___cookie_manager_a_p_i.md)
-            - [ArkWeb_JavaScriptBridgeData](reference/apis-arkweb/_ark_web___java_script_bridge_data.md)
-            - [ArkWeb_JavaScriptObject](reference/apis-arkweb/_ark_web___java_script_object.md)
-            - [ArkWeb_ProxyMethod](reference/apis-arkweb/_ark_web___proxy_method.md)
-            - [ArkWeb_ProxyObject](reference/apis-arkweb/_ark_web___proxy_object.md)
-            - [ArkWeb_WebMessageAPI](reference/apis-arkweb/_ark_web___web_message_a_p_i.md)
-            - [ArkWeb_WebMessagePortAPI](reference/apis-arkweb/_ark_web___web_message_port_a_p_i.md)
+        - 头文件<!--arkweb-headerfile-->
+          - [arkweb_error_code.h](reference/apis-arkweb/arkweb__error__code_8h.md)
+          - [arkweb_interface.h](reference/apis-arkweb/arkweb__interface_8h.md)
+          - [arkweb_net_error_list.h](reference/apis-arkweb/arkweb__net__error__list_8h.md)
+          - [arkweb_scheme_handler.h](reference/apis-arkweb/arkweb__scheme__handler_8h.md)
+          - [arkweb_type.h](reference/apis-arkweb/arkweb__type_8h.md)
+          - [native_interface_arkweb.h](reference/apis-arkweb/native__interface__arkweb_8h.md)
+        - 结构体<!--arkweb-struct-->
+          - [ArkWeb_AnyNativeAPI](reference/apis-arkweb/_ark_web___any_native_a_p_i.md)
+          - [ArkWeb_ComponentAPI](reference/apis-arkweb/_ark_web___component_a_p_i.md)
+          - [ArkWeb_ControllerAPI](reference/apis-arkweb/_ark_web___controller_a_p_i.md)
+          - [ArkWeb_CookieManagerAPI](reference/apis-arkweb/_ark_web___cookie_manager_a_p_i.md)
+          - [ArkWeb_JavaScriptBridgeData](reference/apis-arkweb/_ark_web___java_script_bridge_data.md)
+          - [ArkWeb_JavaScriptObject](reference/apis-arkweb/_ark_web___java_script_object.md)
+          - [ArkWeb_ProxyMethod](reference/apis-arkweb/_ark_web___proxy_method.md)
+          - [ArkWeb_ProxyObject](reference/apis-arkweb/_ark_web___proxy_object.md)
+          - [ArkWeb_WebMessageAPI](reference/apis-arkweb/_ark_web___web_message_a_p_i.md)
+          - [ArkWeb_WebMessagePortAPI](reference/apis-arkweb/_ark_web___web_message_port_a_p_i.md)
       - 错误码<!--arkweb-arkts-errcode-->
         - [Webview错误码](reference/apis-arkweb/errorcode-webview.md)
     - Background Tasks Kit（后台任务开发服务）<!--background-tasks-api-->
       - ArkTS API<!--background-tasks-arkts-->
         - [@ohos.reminderAgentManager (后台代理提醒)](reference/apis-backgroundtasks-kit/js-apis-reminderAgentManager.md)
-        - [@ohos.resourceschedule.backgroundTaskManager (后台任务管理)](reference/apis-backgroundtasks-kit/js-apis-resourceschedule-backgroundTaskManager.md)
+        - [@ohos.resourceschedule.backgroundTaskManager (后台任务管理)](reference/apis-backgroundtasks-kit/js-apis-resourceschedule-backgroundTaskManager.md) 
         - [@ohos.resourceschedule.workScheduler (延迟任务调度)](reference/apis-backgroundtasks-kit/js-apis-resourceschedule-workScheduler.md)
         - [@ohos.WorkSchedulerExtensionAbility (延迟任务调度回调)](reference/apis-backgroundtasks-kit/js-apis-WorkSchedulerExtensionAbility.md)
         - [@ohos.resourceschedule.backgroundProcessManager (后台子进程管控)](reference/apis-backgroundtasks-kit/js-apis-backgroundProcessManager.md)
@@ -2944,7 +2960,7 @@
         - [@ohos.reminderAgentManager (后台代理提醒)(系统接口)](reference/apis-backgroundtasks-kit/js-apis-reminderAgentManager-sys.md)
         - [@ohos.resourceschedule.backgroundTaskManager (后台任务管理)(系统接口)](reference/apis-backgroundtasks-kit/js-apis-resourceschedule-backgroundTaskManager-sys.md)
         - [@ohos.resourceschedule.deviceStandby (设备待机模块)(系统接口)](reference/apis-backgroundtasks-kit/js-apis-resourceschedule-deviceStandby-sys.md)
-        - [@ohos.resourceschedule.usageStatistics (设备使用信息统计)(系统接口)](reference/apis-backgroundtasks-kit/js-apis-resourceschedule-deviceUsageStatistics-sys.md)
+        - [@ohos.resourceschedule.usageStatistics (设备使用信息统计)(系统接口)](reference/apis-backgroundtasks-kit/js-apis-resourceschedule-deviceUsageStatistics-sys.md) 
         <!--DelEnd-->
         - application<!--background-tasks-arkts-application-->
           - [WorkSchedulerExtensionContext](reference/apis-backgroundtasks-kit/js-apis-inner-application-WorkSchedulerExtensionContext.md)
@@ -2962,11 +2978,13 @@
       - C API<!--background-tasks-c-->
         - 模块<!--background-tasks-module-->
           - [TransientTask](reference/apis-backgroundtasks-kit/_transient_task.md)
+          - [BackgroundProcessManager](reference/apis-backgroundtasks-kit/_background_process_manager.md)
         - 头文件<!--background-tasks-headerfile-->
           - [transient_task_api.h](reference/apis-backgroundtasks-kit/transient__task__api_8h.md)
           - [transient_task_type.h](reference/apis-backgroundtasks-kit/transient__task__type_8h.md)
         - 结构体<!--background-tasks-struct-->
           - [TransientTask_DelaySuspendInfo](reference/apis-backgroundtasks-kit/_transient_task___delay_suspend_info.md)
+          - [background_process_manager.h](reference/apis-backgroundtasks-kit/background__process__manager_8h.md)
       - 错误码<!--background-tasks-arkts-errcode-->
         - [backgroundTaskManager错误码](reference/apis-backgroundtasks-kit/errorcode-backgroundTaskMgr.md)
         - [DeviceUsageStatistics错误码](reference/apis-backgroundtasks-kit/errorcode-DeviceUsageStatistics.md)
@@ -3042,7 +3060,7 @@
           - [FormExtensionContext](reference/apis-form-kit/js-apis-inner-application-formExtensionContext.md)
           <!--Del-->
           - [FormExtensionContext(系统接口)](reference/apis-form-kit/js-apis-inner-application-formExtensionContext-sys.md)
-          <!--DelEnd-->
+         <!--DelEnd-->
       - 已停止维护的接口<!--form-arkts-dep-->
         - [@ohos.application.formBindingData (卡片数据绑定类)](reference/apis-form-kit/js-apis-application-formBindingData.md)
         - [@ohos.application.formError (FormError)](reference/apis-form-kit/js-apis-application-formError.md)
@@ -3063,6 +3081,7 @@
         - [@ohos.InputMethodSubtype (输入法子类型)](reference/apis-ime-kit/js-apis-inputmethod-subtype.md)
         <!--Del-->
         - [@ohos.inputMethod (输入法框架)(系统接口)](reference/apis-ime-kit/js-apis-inputmethod-sys.md)
+        - [@ohos.inputMethodEngine (输入法服务)(系统接口)](reference/apis-ime-kit/js-apis-inputmethodengine-sys.md)
         <!--DelEnd-->
         - [@ohos.inputMethod (输入法框架)](reference/apis-ime-kit/js-apis-inputmethod.md)
         - [@ohos.inputMethodEngine (输入法服务)](reference/apis-ime-kit/js-apis-inputmethodengine.md)
@@ -3092,15 +3111,14 @@
           - [OHIPCSkeleton](reference/apis-ipc-kit/_o_h_i_p_c_skeleton.md)
           - [OHIPCErrorCode](reference/apis-ipc-kit/_o_h_i_p_c_error_code.md)
           - [IPCKit](reference/apis-ipc-kit/_i_p_c_kit.md)
-        - 头文件和结构体<!--ipc-headerfile-struct-->
-          - 头文件<!--ipc-headerfile-->
-              - [ipc_cparcel.h](reference/apis-ipc-kit/ipc__cparcel_8h.md)
-              - [ipc_cremote_object.h](reference/apis-ipc-kit/ipc__cremote__object_8h.md)
-              - [ipc_cskeleton.h](reference/apis-ipc-kit/ipc__cskeleton_8h.md)
-              - [ipc_error_code.h](reference/apis-ipc-kit/ipc__error__code_8h.md)
-              - [ipc_kit.h](reference/apis-ipc-kit/ipc__kit_8h.md)
-          - 结构体<!--ipc-struct-->
-              - [OH_IPC_MessageOption](reference/apis-ipc-kit/_o_h___i_p_c___message_option.md)
+        - 头文件<!--ipc-headerfile-->
+          - [ipc_cparcel.h](reference/apis-ipc-kit/ipc__cparcel_8h.md)
+          - [ipc_cremote_object.h](reference/apis-ipc-kit/ipc__cremote__object_8h.md)
+          - [ipc_cskeleton.h](reference/apis-ipc-kit/ipc__cskeleton_8h.md)
+          - [ipc_error_code.h](reference/apis-ipc-kit/ipc__error__code_8h.md)
+          - [ipc_kit.h](reference/apis-ipc-kit/ipc__kit_8h.md)
+        - 结构体<!--ipc-struct-->
+          - [OH_IPC_MessageOption](reference/apis-ipc-kit/_o_h___i_p_c___message_option.md)
       - 错误码<!--ipc-arkts-errcode-->
         - [RPC错误码](reference/apis-ipc-kit/errorcode-rpc.md)
     - Localization Kit（本地化开发服务）<!--localization-api-->
@@ -3113,7 +3131,7 @@
         - [@ohos.i18n (国际化-I18n)(系统接口)](reference/apis-localization-kit/js-apis-i18n-sys.md)
         <!--DelEnd-->
         - global<!--localization-global-arkts-->
-          - [RawFileDescriptor](reference/apis-localization-kit/js-apis-rawFileDescriptor.md)
+          - [RawFileDescriptor](reference/apis-localization-kit/js-apis-rawFileDescriptor.md) 
           - [Resource](reference/apis-localization-kit/js-apis-resource.md)
           - [SendableResource](reference/apis-localization-kit/js-apis-sendableResource.md)
       - C API<!--localization-c-->
@@ -3312,7 +3330,7 @@
           - [@ohos.wifi (WLAN)(待停用)(系统接口)](reference/apis-connectivity-kit/js-apis-wifi-sys.md)
           <!--DelEnd-->
       - Distributed Service Kit（分布式管理服务）<!--distributed-service-api-->
-        - ArkTS API<!--distributed-service-arkts-->
+        - ArkTS API<!--distributed-service-arkts--> 
           - [@ohos.distributedDeviceManager (设备管理)](reference/apis-distributedservice-kit/js-apis-distributedDeviceManager.md)
           <!--Del-->
           - [@ohos.distributedHardware.hardwareManager (分布式硬件管理)(系统接口)](reference/apis-distributedservice-kit/js-apis-distributedHardwareManager-sys.md)
@@ -3399,7 +3417,6 @@
           - [流量管理错误码](reference/apis-network-kit/errorcode-net-statistics.md)
           - [VPN错误码](reference/apis-network-kit/errorcode-net-vpn.md)
           - [NetworkSecurity错误码](reference/apis-network-kit/errorcode-net-networkSecurity.md)
-
       - Telephony Kit（蜂窝通信服务）<!--telephony-api-->
         - ArkTS API<!--telephony-arkts-->
           - [@ohos.telephony.call (拨打电话)](reference/apis-telephony-kit/js-apis-call.md)
@@ -3408,7 +3425,7 @@
           - [@ohos.telephony.radio (网络搜索)](reference/apis-telephony-kit/js-apis-radio.md)
           - [@ohos.telephony.sim (SIM卡管理)](reference/apis-telephony-kit/js-apis-sim.md)
           - [@ohos.telephony.sms (短信服务)](reference/apis-telephony-kit/js-apis-sms.md)
-          <!--Del-->
+            <!--Del-->
           - [@ohos.telephony.call (拨打电话)（系统接口）](reference/apis-telephony-kit/js-apis-call-sys.md)
           - [@ohos.telephony.data (蜂窝数据)（系统接口）](reference/apis-telephony-kit/js-apis-telephony-data-sys.md)
           - [@ohos.telephony.observer (observer)（系统接口）](reference/apis-telephony-kit/js-apis-observer-sys.md)
@@ -3416,7 +3433,7 @@
           - [@ohos.telephony.sim (SIM卡管理)（系统接口）](reference/apis-telephony-kit/js-apis-sim-sys.md)
           - [@ohos.telephony.sms (短信服务)（系统接口）](reference/apis-telephony-kit/js-apis-sms-sys.md)
           - [@ohos.telephony.vcard (VCard模块)（系统接口）](reference/apis-telephony-kit/js-apis-vcard-sys.md)
-          <!--DelEnd-->
+            <!--DelEnd-->
         - C API<!--telephony-c-->
           - 模块<!--telephony-module-->
             - [Telephony Data](reference/apis-telephony-kit/ndk-apis-telephony-data.md)
@@ -3465,7 +3482,6 @@
             - [@ohos.pasteboard (剪贴板)](reference/apis-basic-services-kit/js-apis-pasteboard.md)
             - [@ohos.print (打印)](reference/apis-basic-services-kit/js-apis-print.md)
             - [@ohos.request (上传下载)](reference/apis-basic-services-kit/js-apis-request.md)
-
             - [@ohos.zlib (Zip模块)](reference/apis-basic-services-kit/js-apis-zlib.md)
             <!--Del-->
             - [@ohos.app.ability.PrintExtensionAbility (打印扩展能力)(系统接口)](reference/apis-basic-services-kit/js-apis-app-ability-PrintExtensionAbility-sys.md)
@@ -3528,7 +3544,6 @@
           - 模块<!--basic-services-module-->
             - [CommonEvent](reference/apis-basic-services-kit/capi-common-event.md)
             - [DeviceInfo](reference/apis-basic-services-kit/_device_info.md)
-            - [InitSync](reference/apis-basic-services-kit/_init_sync.md)
             - [OsAccount](reference/apis-basic-services-kit/_os_account.md)
             - [OH_BatteryInfo](reference/apis-basic-services-kit/oh__batteryinfo.md)
             - [OH_Scan](reference/apis-basic-services-kit/c-apis-scan.md)
@@ -3537,7 +3552,6 @@
             - [TimeService](reference/apis-basic-services-kit/_time_service.md)
           - 头文件<!--basic-services-headerfile-->
             - [deviceinfo.h](reference/apis-basic-services-kit/deviceinfo_8h.md)
-            - [init_sync.h](reference/apis-basic-services-kit/init__sync_8h.md)
             - [ohbattery_info.h](reference/apis-basic-services-kit/ohbattery__info_8h.md)
             - [oh_commonevent.h](reference/apis-basic-services-kit/oh_commonevent_8h.md)
             - [oh_commonevnt_support.h](reference/apis-basic-services-kit/oh_commonevent_support_8h.md)
@@ -3546,6 +3560,7 @@
             - [os_account.h](reference/apis-basic-services-kit/os__account_8h.md)
             - [os_account_common.h](reference/apis-basic-services-kit/os__account__common_8h.md)
             - [ohprint.h](reference/apis-basic-services-kit/ohprint_8h.md)
+            - [ohscan.h](reference/apis-basic-services-kit/c-apis-scan.md)
             - [time_service.h](reference/apis-basic-services-kit/time__service_8h.md)
           - 结构体<!--basic-services-struct-->
             - [Print_Margin](reference/apis-basic-services-kit/_print___margin.md)
@@ -3583,26 +3598,25 @@
         - C API<!--function-flow-runtime-c-->
           - 模块<!--function-flow-runtime-module-->
             - [FFRT](reference/apis-ffrt-kit/_f_f_r_t.md)
-          - 头文件和结构体<!--function-flow-runtime-headerfile-struct-->
-            - 头文件<!--function-flow-runtime-headerfile-->
-              - [condition_variable.h](reference/apis-ffrt-kit/condition__variable_8h.md)
-              - [loop.h](reference/apis-ffrt-kit/loop_8h.md)
-              - [mutex.h](reference/apis-ffrt-kit/mutex_8h.md)
-              - [queue.h](reference/apis-ffrt-kit/queue_8h.md)
-              - [sleep.h](reference/apis-ffrt-kit/sleep_8h.md)
-              - [task.h](reference/apis-ffrt-kit/task_8h.md)
-              - [timer.h](reference/apis-ffrt-kit/timer_8h.md)
-              - [type_def.h](reference/apis-ffrt-kit/type__def_8h.md)
-            - 结构体<!--function-flow-runtime-struct-->
-              - [ffrt_cond_t](reference/apis-ffrt-kit/ffrt__cond__t.md)
-              - [ffrt_condattr_t](reference/apis-ffrt-kit/ffrt__condattr__t.md)
-              - [ffrt_dependence_t](reference/apis-ffrt-kit/ffrt__dependence__t.md)
-              - [ffrt_deps_t](reference/apis-ffrt-kit/ffrt__deps__t.md)
-              - [ffrt_function_header_t](reference/apis-ffrt-kit/ffrt__function__header__t.md)
-              - [ffrt_mutex_t](reference/apis-ffrt-kit/ffrt__mutex__t.md)
-              - [ffrt_mutexattr_t](reference/apis-ffrt-kit/ffrt__mutexattr__t.md)
-              - [ffrt_queue_attr_t](reference/apis-ffrt-kit/ffrt__queue__attr__t.md)
-              - [ffrt_task_attr_t](reference/apis-ffrt-kit/ffrt__task__attr__t.md)
+          - 头文件<!--function-flow-runtime-headerfile-->
+            - [condition_variable.h](reference/apis-ffrt-kit/condition__variable_8h.md)
+            - [loop.h](reference/apis-ffrt-kit/loop_8h.md)
+            - [mutex.h](reference/apis-ffrt-kit/mutex_8h.md)
+            - [queue.h](reference/apis-ffrt-kit/queue_8h.md)
+            - [sleep.h](reference/apis-ffrt-kit/sleep_8h.md)
+            - [task.h](reference/apis-ffrt-kit/task_8h.md)
+            - [timer.h](reference/apis-ffrt-kit/timer_8h.md)
+            - [type_def.h](reference/apis-ffrt-kit/type__def_8h.md)
+          - 结构体<!--function-flow-runtime-struct-->
+            - [ffrt_cond_t](reference/apis-ffrt-kit/ffrt__cond__t.md)
+            - [ffrt_condattr_t](reference/apis-ffrt-kit/ffrt__condattr__t.md)
+            - [ffrt_dependence_t](reference/apis-ffrt-kit/ffrt__dependence__t.md)
+            - [ffrt_deps_t](reference/apis-ffrt-kit/ffrt__deps__t.md)
+            - [ffrt_function_header_t](reference/apis-ffrt-kit/ffrt__function__header__t.md)
+            - [ffrt_mutex_t](reference/apis-ffrt-kit/ffrt__mutex__t.md)
+            - [ffrt_mutexattr_t](reference/apis-ffrt-kit/ffrt__mutexattr__t.md)
+            - [ffrt_queue_attr_t](reference/apis-ffrt-kit/ffrt__queue__attr__t.md)
+            - [ffrt_task_attr_t](reference/apis-ffrt-kit/ffrt__task__attr__t.md)
       - Input Kit（多模输入服务）<!--input-api-->
         - ArkTS API<!--input-arkts-->
           - [@ohos.multimodalInput.inputDevice (输入设备)](reference/apis-input-kit/js-apis-inputdevice.md)
@@ -3630,14 +3644,13 @@
         - C API<!--input-c-->
           - 模块<!--input-module-->
             - [Input](reference/apis-input-kit/input.md)
-          - 头文件和结构体<!--input-headerfile-struct-->
-            - 头文件<!--input-headerfile-->
-              - [oh_axis_type.h](reference/apis-input-kit/oh__axis__type_8h.md)
-              - [oh_input_manager.h](reference/apis-input-kit/oh__input__manager_8h.md)
-              - [oh_key_code.h](reference/apis-input-kit/oh__key__code_8h.md)
-            - 结构体<!--input-struct-->
-              - [Input_DeviceListener](reference/apis-input-kit/_input___device_listener.md)
-              - [Input_InterceptorEventCallback](reference/apis-input-kit/_input___interceptor_event_callback.md)
+          - 头文件<!--input-headerfile-->
+            - [oh_axis_type.h](reference/apis-input-kit/oh__axis__type_8h.md)
+            - [oh_input_manager.h](reference/apis-input-kit/oh__input__manager_8h.md)
+            - [oh_key_code.h](reference/apis-input-kit/oh__key__code_8h.md)
+          - 结构体<!--input-struct-->
+            - [Input_DeviceListener](reference/apis-input-kit/_input___device_listener.md)
+            - [Input_InterceptorEventCallback](reference/apis-input-kit/_input___interceptor_event_callback.md)
         - 错误码<!--input-arkts-errcode-->
           - [键鼠穿越管理错误码](reference/apis-input-kit/errorcode-multimodalinput.md)
           - [全局快捷键管理错误码](reference/apis-input-kit/errorcode-inputconsumer.md)
@@ -3755,7 +3768,6 @@
           - [Sensor错误码](reference/apis-sensor-service-kit/errorcode-sensor.md)
           - [Vibrator错误码](reference/apis-sensor-service-kit/errorcode-vibrator.md)
     - 调测调优<!--system-debug-optimize-api-->
-
       - Performance Analysis Kit（性能分析服务）<!--performance-analysis-api-->
         - ArkTS API<!--performance-analysis-arkts-->
           - [@ohos.faultLogger (故障日志获取)](reference/apis-performance-analysis-kit/js-apis-faultLogger.md)
@@ -3802,8 +3814,8 @@
         - 错误码<!--performance-analysis-errcode-->
           - [Faultlogger错误码](reference/apis-performance-analysis-kit/errorcode-faultlogger.md)
           - [应用事件打点错误码](reference/apis-performance-analysis-kit/errorcode-hiappevent.md)
-          - [Hidebug错误码](reference/apis-performance-analysis-kit/errorcode-hiviewdfx-hidebug.md)
-          - [Hidebug CpuUsage错误码](reference/apis-performance-analysis-kit/errorcode-hiviewdfx-hidebug-cpuusage.md)
+          - [HiDebug错误码](reference/apis-performance-analysis-kit/errorcode-hiviewdfx-hidebug.md)
+          - [HiDebug CpuUsage错误码](reference/apis-performance-analysis-kit/errorcode-hiviewdfx-hidebug-cpuusage.md)
           - [HiCollie错误码](reference/apis-performance-analysis-kit/errorcode-hiviewdfx-hicollie.md)
           <!--Del-->
           - [系统事件错误码](reference/apis-performance-analysis-kit/errorcode-hisysevent-sys.md)
@@ -3811,17 +3823,17 @@
           <!--DelEnd-->
       - Test Kit（应用测试服务）<!--test-api-->
         - ArkTS API<!--test-arkts-->
-           - [@ohos.app.ability.abilityDelegatorRegistry (AbilityDelegatorRegistry)](reference/apis-test-kit/js-apis-app-ability-abilityDelegatorRegistry.md)
-           - [@ohos.application.testRunner (TestRunner)](reference/apis-test-kit/js-apis-application-testRunner.md)
-           - [@ohos.UiTest](reference/apis-test-kit/js-apis-uitest.md)
-           - 接口依赖的元素及定义<!--test-api-interface-depend-->
-              - [abilityDelegator](reference/apis-test-kit/js-apis-inner-application-abilityDelegator.md)
-              - [abilityDelegatorArgs](reference/apis-test-kit/js-apis-inner-application-abilityDelegatorArgs.md)
-              - [shellCmdResult](reference/apis-test-kit/js-apis-inner-application-shellCmdResult.md)
-           - 已停止维护的接口<!--test-arkts-dep-->
-              - [@ohos.application.abilityDelegatorRegistry (AbilityDelegatorRegistry)](reference/apis-test-kit/js-apis-application-abilityDelegatorRegistry.md)
+          - [@ohos.app.ability.abilityDelegatorRegistry (AbilityDelegatorRegistry)](reference/apis-test-kit/js-apis-app-ability-abilityDelegatorRegistry.md)
+          - [@ohos.application.testRunner (TestRunner)](reference/apis-test-kit/js-apis-application-testRunner.md)
+          - [@ohos.UiTest](reference/apis-test-kit/js-apis-uitest.md)
+          - 接口依赖的元素及定义<!--test-api-interface-depend-->
+            - [abilityDelegator](reference/apis-test-kit/js-apis-inner-application-abilityDelegator.md)
+            - [abilityDelegatorArgs](reference/apis-test-kit/js-apis-inner-application-abilityDelegatorArgs.md)
+            - [shellCmdResult](reference/apis-test-kit/js-apis-inner-application-shellCmdResult.md)
+          - 已停止维护的接口<!--test-arkts-dep-->
+            - [@ohos.application.abilityDelegatorRegistry (AbilityDelegatorRegistry)](reference/apis-test-kit/js-apis-application-abilityDelegatorRegistry.md)
         - 错误码<!--test-arkts-errcode-->
-           - [uitest错误码](reference/apis-test-kit/errorcode-uitest.md)
+          - [uitest错误码](reference/apis-test-kit/errorcode-uitest.md)
   - 媒体<!--media-reference-->
     - Audio Kit（音频服务）<!--audio-api-->
       - ArkTS API<!--audio-arkts-->
@@ -4119,6 +4131,9 @@
         - [@ohos.file.PhotoPickerComponent (PhotoPicker组件)](reference/apis-media-library-kit/ohos-file-PhotoPickerComponent.md)
         - [@ohos.file.RecentPhotoComponent (最近图片组件)](reference/apis-media-library-kit/ohos-file-RecentPhotoComponent.md)
         - [@ohos.multimedia.movingphotoview (动态照片)](reference/apis-media-library-kit/ohos-multimedia-movingphotoview.md)
+        <!--Del-->
+        - [@ohos.multimedia.movingphotoview (动态照片)(系统接口)](reference/apis-media-library-kit/ohos-multimedia-movingphotoview-sys.md)
+        <!--DelEnd-->
       - C API<!--media-library-c-->
         - 模块<!--media-library-module-->
           - [MediaAssetManager](reference/apis-media-library-kit/_media_asset_manager.md)
@@ -4134,7 +4149,7 @@
           - [MediaLibrary_RequestOptions](reference/apis-media-library-kit/_media_library___request_options.md)
   - 图形<!--graphics-api-->
     - ArkGraphics 2D（方舟2D图形服务）<!--arkgraphics-api-->
-      - ArkTS API<!--arkgraphics-arkts-->
+      - ArkTS API<!--arkgraphics-arkts--> 
         - [@ohos.effectKit (图像效果)](reference/apis-arkgraphics2d/js-apis-effectKit.md)
         - [@ohos.graphics.colorSpaceManager (色彩管理)](reference/apis-arkgraphics2d/js-apis-colorSpaceManager.md)
         - [@ohos.graphics.sendableColorSpaceManager (可共享的色彩管理)](reference/apis-arkgraphics2d/js-apis-sendableColorSpaceManager.md)
@@ -4225,7 +4240,7 @@
           - [OH_Drawing_Point2D](reference/apis-arkgraphics2d/_o_h___drawing___point2_d.md)
           - [OH_Drawing_Point3D](reference/apis-arkgraphics2d/_o_h___drawing___point3_d.md)
           - [OH_Drawing_RectStyle_Info](reference/apis-arkgraphics2d/_o_h___drawing___rect_style___info.md)
-          - [OH_Drawing_RunBuffer](reference/apis-arkgraphics2d/_o_h___drawing___run_buffer.md)
+          - [OH_Drawing_RunBuffer](reference/apis-arkgraphics2d/_o_h___drawing___run_buffer.md) 
           - [OH_Drawing_String](reference/apis-arkgraphics2d/_o_h___drawing___string.md)
           - [OH_Drawing_StrutStyle](reference/apis-arkgraphics2d/_o_h___drawing___strut_style.md)
           - [OH_Filter](reference/apis-arkgraphics2d/_o_h___filter.md)
@@ -4267,11 +4282,11 @@
         - [@ohos.identifier.oaid (广告标识服务)(系统接口)](reference/apis-ads-kit/js-apis-oaid-sys.md)
         - 接口依赖的元素及定义<!--ads-api-interface-depend-->
           - advertising<!--ads-advertising-->
-            - [Advertisement](reference/apis-ads-kit/js-apis-inner-advertising-advertisement.md)
+            - [advertisement (广告内容)](reference/apis-ads-kit/js-apis-inner-advertising-advertisement.md)
       - ArkTS组件<!--ads-comp-->
         - [@ohos.advertising.AdComponent (非全屏广告展示组件)](reference/apis-ads-kit/js-apis-adcomponent.md)
         - [@ohos.advertising.AutoAdComponent (轮播广告展示组件)](reference/apis-ads-kit/js-apis-autoadcomponent.md)
-      - 错误码ads<!--ads-arkts-errcode-->
+      - 错误码<!--ads-arkts-errcode-->
         - [广告服务框架错误码](reference/apis-ads-kit/errorcode-ads.md)
         - [广告标识服务错误码](reference/apis-ads-kit/errorcode-oaid.md)
     <!--DelEnd-->
@@ -4380,7 +4395,6 @@
           - [OH_NN_QuantParam](reference/apis-neural-network-runtime-kit/_o_h___n_n___quant_param.md)
           - [OH_NN_Tensor](reference/apis-neural-network-runtime-kit/_o_h___n_n___tensor.md)
           - [OH_NN_UInt32Array](reference/apis-neural-network-runtime-kit/_o_h___n_n___u_int32_array.md)
-
   - 公共基础能力<!--common-basic-api-->
     - ArkTS API<!--common-basic-arkts-->
       - [Console (控制台)](reference/common/js-apis-logs.md)

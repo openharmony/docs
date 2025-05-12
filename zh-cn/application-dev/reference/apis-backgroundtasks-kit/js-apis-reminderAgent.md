@@ -6,7 +6,7 @@
 
 > **说明：**
 >
-> 从API Version 9 开始，该接口不再维护，推荐使用新接口[@ohos.reminderAgentManager (后台代理提醒)](js-apis-reminderAgentManager.md)
+> 从API Version 9 开始，该接口不再维护，推荐使用新接口[@ohos.reminderAgentManager （后台代理提醒）](js-apis-reminderAgentManager.md)
 >
 > 本模块首批接口从API version 7开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
@@ -62,9 +62,9 @@ publishReminder(reminderReq: ReminderRequest): Promise\<number>
 > **说明：**
 > 从 API version 7开始支持，从API version 9开始废弃。建议使用[reminderAgentManager.publishReminder](js-apis-reminderAgentManager.md#reminderagentmanagerpublishreminder-1)替代。
 
-**需要权限**： ohos.permission.PUBLISH_AGENT_REMINDER
+**需要权限**：ohos.permission.PUBLISH_AGENT_REMINDER
 
-**系统能力**： SystemCapability.Notification.ReminderAgent
+**系统能力**：SystemCapability.Notification.ReminderAgent
 
 **参数**：
   | 参数名 | 类型 | 必填 | 说明 |

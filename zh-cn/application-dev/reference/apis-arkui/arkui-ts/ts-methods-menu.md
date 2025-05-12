@@ -4,7 +4,7 @@
 
 >  **说明：**
 >
-> 从API Version 8开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+> 从API version 8开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 >
 > 从API version 12开始，可以通过使用[UIContext](../js-apis-arkui-UIContext.md#uicontext)中的[getContextMenuController](../js-apis-arkui-UIContext.md#contextmenucontroller12)来明确UI的执行上下文。
 

@@ -44,7 +44,7 @@ Web组件可以通过W3C标准协议接口拉起摄像头和麦克风，通过[o
 
 通过在JavaScript中调用W3C标准协议接口navigator.mediaDevices.getUserMedia()，该接口用于拉起摄像头和麦克风。constraints参数是一个包含了video和audio两个成员的MediaStreamConstraints对象，用于说明请求的媒体类型。
 
-在下面的示例中，点击前端页面中的开起摄像头按钮再点击onConfirm，打开摄像头和麦克风。
+在下面的示例中，点击前端页面中的开启摄像头按钮再点击onConfirm，打开摄像头和麦克风。
 
 - 应用侧代码。
 

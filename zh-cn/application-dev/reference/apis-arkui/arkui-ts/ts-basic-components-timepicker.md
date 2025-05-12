@@ -4,7 +4,7 @@
 
 >  **说明：**
 >
->  该组件从API Version 8开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>  该组件从API version 8开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 
 ## 子组件
@@ -34,7 +34,7 @@ TimePicker(options?: TimePickerOptions)
 
 | 名称                 | 类型                                            | 必填 | 说明                                                         |
 | -------------------- | ----------------------------------------------- | ---- | ------------------------------------------------------------ |
-| selected             | Date                                            | 否   | 设置选中项的时间。<br/>默认值：当前系统时间<br />从API version 10开始，该参数支持[$$](../../../quick-start/arkts-two-way-sync.md)双向绑定变量。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| selected             | Date                                            | 否   | 设置选中项的时间。<br/>默认值：当前系统时间<br />从API version 10开始，该参数支持[$$](../../../ui/state-management/arkts-two-way-sync.md)双向绑定变量。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | format<sup>11+</sup> | [TimePickerFormat](#timepickerformat11枚举说明) | 否   | 指定需要显示的TimePicker的格式。<br/>默认值：TimePickerFormat.HOUR_MINUTE <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 
 ## TimePickerFormat<sup>11+</sup>枚举说明
@@ -214,15 +214,15 @@ onChange(callback:&nbsp;(value:&nbsp;TimePickerResult )&nbsp;=&gt;&nbsp;void)
 @Entry
 @Component
 struct TimePickerExample {
-  @State isMilitaryTime: boolean = false
-  private selectedTime: Date = new Date('2022-07-22T08:00:00')
+  @State isMilitaryTime: boolean = false;
+  private selectedTime: Date = new Date('2022-07-22T08:00:00');
 
   build() {
     Column() {
       Button('切换12小时制/24小时制')
         .margin(30)
         .onClick(() => {
-          this.isMilitaryTime = !this.isMilitaryTime
+          this.isMilitaryTime = !this.isMilitaryTime;
         })
       TimePicker({
         selected: this.selectedTime,
@@ -230,8 +230,8 @@ struct TimePickerExample {
         .useMilitaryTime(this.isMilitaryTime)
         .onChange((value: TimePickerResult) => {
           if(value.hour >= 0) {
-            this.selectedTime.setHours(value.hour, value.minute)
-            console.info('select current date is: ' + JSON.stringify(value))
+            this.selectedTime.setHours(value.hour, value.minute);
+            console.info('select current date is: ' + JSON.stringify(value));
           }
         })
         .disappearTextStyle({color: Color.Red, font: {size: 15, weight: FontWeight.Lighter}})

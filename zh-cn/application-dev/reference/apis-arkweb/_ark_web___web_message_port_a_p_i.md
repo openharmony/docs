@@ -63,7 +63,7 @@ ArkWeb_ErrorCode(* ArkWeb_WebMessagePortAPI::postMessage) (const ArkWeb_WebMessa
 
 **返回：**
 
-返回值错误码。 [ARKWEB_SUCCESS](_web.md) 执行成功。 [ARKWEB_INVALID_PARAM](_web.md) 参数无效。 [ARKWEB_INIT_ERROR](_web.md) 初始化失败，没有找到与webTag绑定的Web组件。
+返回值错误码。 [ARKWEB_SUCCESS](_web.md#arkweb_errorcode-1) 执行成功。 [ARKWEB_INVALID_PARAM](_web.md#arkweb_errorcode-1) 参数无效。 [ARKWEB_INIT_ERROR](_web.md#arkweb_errorcode-1) 初始化失败，没有找到与webTag绑定的Web组件。
 
 
 ### setMessageEventHandler

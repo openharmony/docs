@@ -281,8 +281,8 @@ onGestureRecognizerJudgeBegin(callback: GestureRecognizerJudgeBeginCallback, exp
 
 给组件绑定自定义手势识别器判定回调。
 
-新增exposeInnerGesture参数作为是否将回调暴露给ArkUI原生组合组件的内置组件的标识，当该标识置为true时，将回调暴露给ArkUI原生组合组件的内置组件。<br>
-对于不需要将回调暴露给ArkUI原生组合组件内置组件的场景，建议采用原有[onGestureRecognizerJudgeBegin](#ongesturerecognizerjudgebegin)接口。若要求将回调暴露给ArkUI原生组合组件的内置组件，建议使用该接口并将exposeInnerGesture设置为true。
+新增exposeInnerGesture参数作为是否将回调暴露给ArkUI系统组合组件的内置组件的标识，当该标识置为true时，将回调暴露给ArkUI系统组合组件的内置组件。<br>
+对于不需要将回调暴露给ArkUI系统组合组件内置组件的场景，建议采用原有[onGestureRecognizerJudgeBegin](#ongesturerecognizerjudgebegin)接口。若要求将回调暴露给ArkUI系统组合组件的内置组件，建议使用该接口并将exposeInnerGesture设置为true。
 
 **原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
 
@@ -350,12 +350,12 @@ type GestureRecognizerJudgeBeginCallback = (event: BaseGestureEvent, current: Ge
 @Entry
 @Component
 struct FatherControlChild {
-  scroller: Scroller = new Scroller()
+  scroller: Scroller = new Scroller();
   scroller2: Scroller = new Scroller()
-  private arr: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
-  private childRecognizer: GestureRecognizer = new GestureRecognizer()
-  private currentRecognizer: GestureRecognizer = new GestureRecognizer()
-  private lastOffset: number = 0
+  private arr: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+  private childRecognizer: GestureRecognizer = new GestureRecognizer();
+  private currentRecognizer: GestureRecognizer = new GestureRecognizer();
+  private lastOffset: number = 0;
 
   build() {
     Stack({ alignContent: Alignment.TopStart }) {
@@ -512,11 +512,11 @@ struct FatherControlChild {
 @Entry
 @Component
 struct Index {
-  @State currentIndex: number = 0
-  @State selectedIndex: number = 0
-  @State fontColor: string = '#182431'
-  @State selectedFontColor: string = '#007DFF'
-  innerSelectedIndex: number = 0 // 记录内层Tabs的索引
+  @State currentIndex: number = 0;
+  @State selectedIndex: number = 0;
+  @State fontColor: string = '#182431';
+  @State selectedFontColor: string = '#007DFF';
+  innerSelectedIndex: number = 0; // 记录内层Tabs的索引
   controller?: TabsController = new TabsController();
   @Builder
   tabBuilder(index: number, name: string) {

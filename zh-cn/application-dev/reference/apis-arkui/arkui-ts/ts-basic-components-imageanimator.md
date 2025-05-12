@@ -171,7 +171,7 @@ iterations(value: number)
 
 monitorInvisibleArea(monitorInvisibleArea: boolean)
 
-设置组件是否通过系统[onVisibleAreaChange](./ts-universal-component-visible-area-change-event.md#onvisibleareachange)的可见性判定判断组件的暂停和播放。
+设置组件是否通过系统[onVisibleAreaChange](./ts-universal-component-visible-area-change-event.md#onvisibleareachange)的可见性判定，控制组件的暂停和播放。
 
 **原子化服务API：** 从API version 17开始，该接口支持在原子化服务中使用。
 
@@ -181,7 +181,7 @@ monitorInvisibleArea(monitorInvisibleArea: boolean)
 
 | 参数名 | 类型   | 必填 | 说明                                                   |
 | ------ | ------ | ---- | ------------------------------------------------------ |
-| monitorInvisibleArea  | boolean | 是 | 当设置为true时，组件将基于系统的[onVisibleAreaChange](./ts-universal-component-visible-area-change-event.md#onvisibleareachange)可见性判定，控制组件的暂停与播放。<br/> 当组件的运行状态为[AnimationStatus](ts-appendix-enums.md#animationstatus)的Running时，若判定组件不可见，则自动执行暂停操作；若判定为可见，则自动恢复播放。<br/>默认值：false <br/> **说明：**当该属性由true动态修改为false时，组件将依据当前的[AnimationStatus](ts-appendix-enums.md#animationstatus)状态进行处理。<br/> 例如，若当前状态为Running且因[onVisibleAreaChange](./ts-universal-component-visible-area-change-event.md#onvisibleareachange)的不可见回调暂停，则在属性由true改为false后，组件会从上次暂停的位置重新开始播放。<br/>由该属性导致的不可见暂停和可见暂停操作不会改变用户设置的[state](./ts-basic-components-imageanimator.md#state)值。|
+| monitorInvisibleArea  | boolean | 是 | 当设置为true时，组件将基于系统的[onVisibleAreaChange](./ts-universal-component-visible-area-change-event.md#onvisibleareachange)可见性判定，控制组件的暂停与播放。<br/> 当组件的运行状态为[AnimationStatus](ts-appendix-enums.md#animationstatus)的Running时，若判定组件不可见，则自动执行暂停操作；若判定为可见，则自动恢复播放。<br/>默认值：false <br/> **说明：** <br/>当该属性由true动态修改为false时，组件将依据当前的[AnimationStatus](ts-appendix-enums.md#animationstatus)状态进行处理。<br/> 例如，若当前状态为Running且因[onVisibleAreaChange](./ts-universal-component-visible-area-change-event.md#onvisibleareachange)的不可见回调暂停，则在属性由true改为false后，组件会从上次暂停的位置重新开始播放。<br/>由该属性导致的不可见暂停和可见暂停操作不会改变用户设置的[state](./ts-basic-components-imageanimator.md#state)值。|
 
 ## ImageFrameInfo对象说明
 
@@ -272,9 +272,9 @@ onFinish(event:&nbsp;()&nbsp;=&gt;&nbsp;void)
 @Entry
 @Component
 struct ImageAnimatorExample {
-  @State state: AnimationStatus = AnimationStatus.Initial
-  @State reverse: boolean = false
-  @State iterations: number = 1
+  @State state: AnimationStatus = AnimationStatus.Initial;
+  @State reverse: boolean = false;
+  @State iterations: number = 1;
 
   build() {
     Column({ space: 10 }) {
@@ -347,19 +347,19 @@ struct ImageAnimatorExample {
 
 ```ts
 // xxx.ets
-import { image } from '@kit.ImageKit'
+import { image } from '@kit.ImageKit';
 
 @Entry
 @Component
 struct ImageAnimatorExample {
-  imagePixelMap: Array<PixelMap> = []
-  @State state: AnimationStatus = AnimationStatus.Initial
-  @State reverse: boolean = false
-  @State iterations: number = 1
-  @State images:Array<ImageFrameInfo> = []
+  imagePixelMap: Array<PixelMap> = [];
+  @State state: AnimationStatus = AnimationStatus.Initial;
+  @State reverse: boolean = false;
+  @State iterations: number = 1;
+  @State images:Array<ImageFrameInfo> = [];
   async aboutToAppear() {
-    this.imagePixelMap.push(await this.getPixmapFromMedia($r('app.media.icon')))
-    this.images.push({src:this.imagePixelMap[0]})
+    this.imagePixelMap.push(await this.getPixmapFromMedia($r('app.media.icon')));
+    this.images.push({src:this.imagePixelMap[0]});
   }
   build() {
     Column({ space: 10 }) {
@@ -370,41 +370,41 @@ struct ImageAnimatorExample {
         .fillMode(FillMode.None).iterations(this.iterations).width(340).height(240)
         .margin({ top: 100 })
         .onStart(() => {
-          console.info('Start')
+          console.info('Start');
         })
         .onPause(() => {
-          console.info('Pause')
+          console.info('Pause');
         })
         .onRepeat(() => {
-          console.info('Repeat')
+          console.info('Repeat');
         })
         .onCancel(() => {
-          console.info('Cancel')
+          console.info('Cancel');
         })
         .onFinish(() => {
-          console.info('Finish')
-          this.state = AnimationStatus.Stopped
+          console.info('Finish');
+          this.state = AnimationStatus.Stopped;
         })
       Row() {
         Button('start').width(100).padding(5).onClick(() => {
-          this.state = AnimationStatus.Running
+          this.state = AnimationStatus.Running;
         }).margin(5)
         Button('pause').width(100).padding(5).onClick(() => {
-          this.state = AnimationStatus.Paused     // 显示当前帧图片
+          this.state = AnimationStatus.Paused;    // 显示当前帧图片
         }).margin(5)
         Button('stop').width(100).padding(5).onClick(() => {
-          this.state = AnimationStatus.Stopped    // 显示动画的起始帧图片
+          this.state = AnimationStatus.Stopped;   // 显示动画的起始帧图片
         }).margin(5)
       }
       Row() {
         Button('reverse').width(100).padding(5).onClick(() => {
-          this.reverse = !this.reverse
+          this.reverse = !this.reverse;
         }).margin(5)
         Button('once').width(100).padding(5).onClick(() => {
-          this.iterations = 1
+          this.iterations = 1;
         }).margin(5)
         Button('infinite').width(100).padding(5).onClick(() => {
-          this.iterations = -1 // 无限循环播放
+          this.iterations = -1; // 无限循环播放
         }).margin(5)
       }
     }.width('100%').height('100%')
@@ -416,12 +416,12 @@ struct ImageAnimatorExample {
       moduleName: resource.moduleName,
       id: resource.id
     })
-    let imageSource = image.createImageSource(unit8Array.buffer.slice(0, unit8Array.buffer.byteLength))
+    let imageSource = image.createImageSource(unit8Array.buffer.slice(0, unit8Array.buffer.byteLength));
     let createPixelMap: image.PixelMap = await imageSource.createPixelMap({
       desiredPixelFormat: image.PixelMapFormat.RGBA_8888
-    })
-    await imageSource.release()
-    return createPixelMap
+    });
+    await imageSource.release();
+    return createPixelMap;
   }
 }
 ```

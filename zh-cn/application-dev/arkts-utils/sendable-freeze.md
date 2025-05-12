@@ -13,7 +13,7 @@ Sendable对象支持冻结操作，冻结后的对象变成只读对象，不能
    }
    ```
 
-2. 通过调用freeze方法冻结对象，并将对象发送给子线程。
+2. 调用freeze方法冻结对象，然后将对象发送到子线程。
 
    ```ts
    // Index.ets
@@ -39,10 +39,10 @@ Sendable对象支持冻结操作，冻结后的对象变成只读对象，不能
            .fontSize(50)
            .fontWeight(FontWeight.Bold)
            .onClick(() => {
-             let gConifg = new GlobalConfig();
-             gConifg.init();
+             let gConfig = new GlobalConfig();
+             gConfig.init();
              const workerInstance = new worker.ThreadWorker('entry/ets/workers/Worker.ets', { name: "Worker1" });
-             workerInstance.postMessage(gConifg);
+             workerInstance.postMessage(gConfig);
            })
        }
        .height('100%')

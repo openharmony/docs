@@ -11,6 +11,8 @@
 
 **相关模块：**[VideoProcessing](_video_processing.md)
 
+**所在头文件：**[video_processing_types.h](video__processing__types_8h.md)
+
 
 ## 汇总
 

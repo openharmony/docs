@@ -15,6 +15,12 @@ PersistentStorage retains the selected AppStorage attributes on the device. The 
 
 PersistentStorage creates a two-way synchronization with attributes in AppStorage. A frequently used API function is to access AppStorage through PersistentStorage. Additional API functions include managing persisted attributes. The business logic always obtains or sets attributes through AppStorage.
 
+The data storage path of PersistentStorage is at the module level. That is, the data copy is stored in the persistent file of the corresponding module when the module calls PersistentStorage. If multiple modules use the same key, the data is copied from and stored in the module that uses PersistentStorage first.
+
+The storage path of PersistentStorage, determined when the first ability of the application is started, is the module to which the ability belongs. If an ability calls PersistentStorage and can be started by different modules, the number of data copies is the same as the number of startup modes of the ability.
+
+PersistentStorage is coupled with AppStorage in terms of functions, and errors may occur when using data in different modules. Therefore, you are advised to use the **globalConnect** API of PersistenceV2 to replace the **persistProp** API of PersistentStorage. For details about how to migrate data from PersistentStorage to PersistenceV2, see [PersistentStorage->PersistenceV2](arkts-v1-v2-migration.md#persistentstorage-persistencev2). For details about PersistenceV2, see [PersistenceV2: Persisting Application State](arkts-new-persistencev2.md).
+
 ## Constraints
 
 PersistentStorage accepts the following types and values:

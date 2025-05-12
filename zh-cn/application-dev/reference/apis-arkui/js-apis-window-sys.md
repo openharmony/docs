@@ -1767,7 +1767,9 @@ try {
 ### setSnapshotSkip<sup>9+</sup>
 setSnapshotSkip(isSkip: boolean): void
 
-截屏录屏是否忽略当前窗口。此接口一般用于禁止截屏/录屏的场景。
+截屏录屏或投屏是否忽略当前窗口。此接口一般用于禁止截屏/录屏/投屏的场景。
+
+若要实现窗口始终在前台忽略截屏/录屏或投屏，在窗口从后台回到前台时，需要通过[on('windowEvent')](js-apis-window.md#onwindowevent10)监听窗口生命周期变化，在后台状态时设置为false，而在前台状态时设置为true。
 
 **系统接口：** 此接口为系统接口。
 

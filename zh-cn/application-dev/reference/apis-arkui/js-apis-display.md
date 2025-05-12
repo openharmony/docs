@@ -555,7 +555,7 @@ console.info('Succeeded in obtaining fold status. Data: ' + JSON.stringify(data)
 ## display.getFoldDisplayMode<sup>10+</sup>
 getFoldDisplayMode(): FoldDisplayMode
 
-获取可折叠设备的显示模式。
+获取可折叠设备的显示模式，不适用于2in1设备。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -787,7 +787,7 @@ on(type: 'captureStatusChange', callback: Callback&lt;boolean&gt;): void
 | 参数名   | 类型                                       | 必填 | 说明                                                    |
 | -------- |-------------------------------------------| ---- | ------------------------------------------------------- |
 | type     | string                                   | 是 | 监听事件，固定为'captureStatusChange'表示设备截屏、投屏或者录屏状态发生变化。|
-| callback | Callback&lt;boolean&gt; | 是 | 回调函数。表示设备截屏、投屏、录屏状态发生变化。true表示设备开始截屏、投屏或者录屏，false表示结束截屏、投屏、录屏。|
+| callback | Callback&lt;boolean&gt; | 是 | 回调函数。表示设备截屏、投屏或录屏时状态发生变化。true表示设备开始投屏或者录屏，false表示结束投屏或者录屏；截屏仅返回一次true。|
 
 **错误码：**
 
@@ -824,7 +824,7 @@ off(type: 'captureStatusChange', callback?: Callback&lt;boolean&gt;): void
 | 参数名   | 类型                                       | 必填 | 说明                                                    |
 | -------- |-------------------------------------------| ---- | ------------------------------------------------------- |
 | type     | string                                   | 是 | 监听事件，固定为'captureStatusChange'表示设备截屏、投屏、录屏状态发生变化。|
-| callback | Callback&lt;boolean&gt; | 否 | 需要取消注册的回调函数。表示设备截屏、投屏、录屏状态发生变化。true表示设备开始截屏、投屏或者录屏，false表示结束截屏、投屏、录屏。若无此参数，则取消注册截屏、投屏、录屏状态变化监听的所有回调函数。|
+| callback | Callback&lt;boolean&gt; | 否 | 需要取消注册的回调函数。表示设备截屏、投屏或录屏状态发生变化。true表示设备开始投屏或者录屏，false表示结束投屏或者录屏；截屏仅返回一次true。若无此参数，则取消注册截屏、投屏、录屏状态变化监听的所有回调函数。|
 
 **错误码：**
 
@@ -877,7 +877,7 @@ ret = display.isCaptured();
 
 on(type: 'foldDisplayModeChange', callback: Callback&lt;FoldDisplayMode&gt;): void
 
-开启折叠设备屏幕显示模式变化的监听。
+开启折叠设备屏幕显示模式变化的监听，不适用于2in1设备。
 
 本接口监听设备屏幕显示模式的变化，如果要监听设备物理折叠状态的变化，需要使用[display.on('foldStatusChange')](#displayonfoldstatuschange10)接口。
 
@@ -922,7 +922,7 @@ display.on('foldDisplayModeChange', callback);
 
 off(type: 'foldDisplayModeChange', callback?: Callback&lt;FoldDisplayMode&gt;): void
 
-关闭折叠设备屏幕显示模式变化的监听。
+关闭折叠设备屏幕显示模式变化的监听，不适用于2in1设备。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 

@@ -4,7 +4,7 @@
 
 >  **说明：**
 >
->  从 API Version 8 开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>  从 API version 8 开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 
 
@@ -1118,8 +1118,8 @@ fillText(text: string, x: number, y: number, maxWidth?: number): void
 | 参数名       | 类型     | 必填   | 说明              |
 | -------- | ------ | ----  | --------------- |
 | text     | string | 是    | 需要绘制的文本内容。 |
-| x        | number | 是    | 需要绘制的文本的左下角x坐标。<br>默认单位：vp。 |
-| y        | number | 是    | 需要绘制的文本的左下角y坐标。<br>默认单位：vp。 |
+| x        | number | 是    | 文本绘制起点的x轴坐标。默认单位：vp。 |
+| y        | number | 是    | 文本绘制起点的y轴坐标。默认单位：vp。 |
 | maxWidth | number | 否    | 指定文本允许的最大宽度。<br>默认单位：vp。<br>默认值：不限制宽度。 |
 
  **示例：**
@@ -1173,8 +1173,8 @@ strokeText(text: string, x: number, y: number, maxWidth?: number): void
 | 参数名       | 类型     | 必填   | 说明       |
 | -------- | ------ | ---- | --------------- |
 | text     | string | 是  | 需要绘制的文本内容。 |
-| x        | number | 是  | 需要绘制的文本的左下角x坐标。<br>默认单位：vp。 |
-| y        | number | 是  | 需要绘制的文本的左下角y坐标。<br>默认单位：vp。 |
+| x        | number | 是    | 文本绘制起点的x轴坐标。默认单位：vp。 |
+| y        | number | 是    | 文本绘制起点的y轴坐标。默认单位：vp。 |
 | maxWidth | number | 否  | 需要绘制的文本的最大宽度。<br>默认单位：vp。<br>默认值：不限制宽度。 |
 
  **示例：**

@@ -96,7 +96,7 @@ target_link_libraries(entry PUBLIC libhilog_ndk.z.so libpixelmap.so)
           OH_PixelmapImageInfo_Release(imageInfo);
           OH_LOG_INFO(LOG_APP, "ImagePixelmapNativeCTest pixelmapTest GetImageInfo success, width: %{public}d, height: %{public}d, rowStride: %{public}d, pixelFormat: %{public}d, alphaType: %{public}d.", width, height, rowStride, pixelFormat, alphaType);
 
-          // 设置透明比率来让Pixelap达到对应的透明效果。
+          // 设置透明比率来让Pixelmap达到对应的透明效果。
           errCode = OH_PixelmapNative_Opacity(pixelmap, 0.5);
           if (errCode != IMAGE_SUCCESS) {
               OH_LOG_ERROR(LOG_APP, "ImagePixelmapNativeCTest pixelmapTest OH_PixelmapNative_Opacity failed, errCode: %{public}d.", errCode);

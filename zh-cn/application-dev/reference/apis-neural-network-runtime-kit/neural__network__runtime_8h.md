@@ -11,11 +11,11 @@ Neural Network Runtime模块接口定义，AI推理框架使用Neural Network Ru
 
 **库：** libneural_network_runtime.so
 
-**系统能力：**\@Syscap SystemCapability.Ai.NeuralNetworkRuntime
+**系统能力：** SystemCapability.Ai.NeuralNetworkRuntime
 
 **起始版本：** 9
 
-**相关模块：**[NeuralNeworkRuntime](_neural_network_runtime.md)
+**相关模块：**[NeuralNetworkRuntime](_neural_network_runtime.md)
 
 
 ## 汇总

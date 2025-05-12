@@ -1,6 +1,6 @@
 # @ohos.data.distributedDataObject (分布式数据对象)
 
-本模块提供管理基本数据对象的相关能力，包括创建、查询、删除、修改、订阅等；同时支持相同应用多设备间的分布式数据对象协同能力。
+本模块提供管理基本数据对象的相关能力，包括创建、查询、删除、修改、订阅等；同时支持相同应用多设备间的分布式数据对象协同能力。分布式数据对象处理数据时，不会解析用户数据的内容，存储路径安全性较低，不建议传输个人敏感数据和隐私数据。
 
 > **说明：**
 > 
@@ -58,9 +58,9 @@ class SourceObject {
     isVis: boolean
 
     constructor(name: string, age: number, isVis: boolean) {
-        this.name = name
-        this.age = age
-        this.isVis = isVis
+        this.name = name;
+        this.age = age;
+        this.isVis = isVis;
     }
 }
 
@@ -83,9 +83,9 @@ class SourceObject {
     isVis: boolean
 
     constructor(name: string, age: number, isVis: boolean) {
-        this.name = name
-        this.age = age
-        this.isVis = isVis
+        this.name = name;
+        this.age = age;
+        this.isVis = isVis;
     }
 }
 
@@ -275,13 +275,13 @@ setSessionId(sessionId?: string): Promise&lt;void&gt;
 g_object.setSessionId(distributedDataObject.genSessionId()).then (()=>{
     console.info("join session.");
     }).catch((error: BusinessError)=>{
-        console.info("error:" + error.code + error.message);
+        console.error("error:" + error.code + error.message);
 });
 // 退出分布式组网
 g_object.setSessionId().then (()=>{
     console.info("leave all session.");
     }).catch((error: BusinessError)=>{
-        console.info("error:" + error.code + error.message);
+        console.error("error:" + error.code + error.message);
 });
 ```
 

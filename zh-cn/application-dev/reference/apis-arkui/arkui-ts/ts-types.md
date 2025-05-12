@@ -218,7 +218,7 @@
 | ----------------------------------- | ------------------------------------------------------------ |
 | [Color](ts-appendix-enums.md#color) | 颜色枚举值。                                                 |
 | number                              | HEX格式颜色，支持rgb或者argb。示例：0xffffff，0xffff0000。number无法识别传入位数，格式选择依据值的大小，例如0x00ffffff作rgb格式解析 |
-| string                              | rgb或者argb格式颜色。示例：'#ffffff', '#ff000000', 'rgb(255, 100, 255)', 'rgba(255, 100, 255, 0.5)'。 |
+| string                              | rgb或者argb格式颜色。示例：'#ffffff'，'#ff000000'，'rgb(255, 100, 255)'，'rgba(255, 100, 255, 0.5)'。 |
 | [Resource](#resource)               | 使用引入资源的方式，引入系统资源或者应用资源中的颜色。       |
 
 ## LengthConstrain
@@ -349,7 +349,7 @@
 
 | 名称          | 类型       | 必填   | 描述                                       |
 | ----------- | -------- | ---- | ---------------------------------------- |
-| constructor | number[] | 是    | 创建具有4\*5矩阵的颜色过滤器, 入参为[m\*n]位于m行和n列中矩阵值, 矩阵是行优先的。 |
+| constructor | number[] | 是    | 创建具有4\*5矩阵的颜色过滤器，入参为[m\*n]位于m行和n列中矩阵值，矩阵是行优先的。 |
 
 
 ## CustomBuilder<sup>8+</sup>
@@ -358,7 +358,7 @@
 
 | 名称            | 类型定义                   | 描述                                       |
 | ------------- | ---------------------- | ---------------------------------------- |
-| CustomBuilder | ()&nbsp;=&gt;&nbsp;any \| void | 生成用户自定义组件，在使用时结合@Builder使用。具体用法见[@Builder](../../../quick-start/arkts-builder.md#builder)。 |
+| CustomBuilder | ()&nbsp;=&gt;&nbsp;any \| void | 生成用户自定义组件，在使用时结合@Builder使用。具体用法见[@Builder](../../../ui/state-management/arkts-builder.md#builder)。 |
 
 ## MarkStyle<sup>10+</sup>对象说明
 
@@ -751,7 +751,7 @@ clearPreviewText(): void
 
 | 名称    | 参数类型                                                    | 必填 | 描述                                                         |
 | ------- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| type  | [TextDecorationType](ts-appendix-enums.md#textdecorationtype) | 是   | 设置文本装饰线样式。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| type  | [TextDecorationType](ts-appendix-enums.md#textdecorationtype) | 是   | 设置文本装饰线类型。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | color  | &nbsp;[ResourceColor](#resourcecolor) | 否   | 设置文本装饰线颜色。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | style | [TextDecorationStyle](ts-appendix-enums.md#textdecorationstyle12) | 否   | 设置文本装饰线样式。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 
@@ -856,12 +856,12 @@ setTextSelection选中文字时的配置。
 
 | 名称      | 类型   | 只读 | 说明 |
 | --------- | ------ | ---- |---------- |
-| MATCH_PARENT | LayoutPolicy | 是 | 适应父组件布局。 |
+| matchParent | LayoutPolicy | 是 | 适应父组件布局。 |
 
 >  **说明：**
 >
 >  - 当线性布局组件的父容器设定了长度，组件将以父容器的尺寸为基准，自动调整以适应父组件的布局。若父容器未设定长度，线性布局组件则会等待所有子组件完成布局后，再进行自身调整以适应父组件布局。
 > 
->  - 若同一父组件下有多个设置MATCH_PARENT的子组件，则多个子组件均会被设置为父组件大小，也即会产生溢出现象。
+>  - 若同一父组件下有多个设置matchParent的子组件，则多个子组件均会被设置为父组件大小，也即会产生溢出现象。
 > 
->  - MATCH_PARENT会强制将自身大小设置成父组件大小，因此其设置的其他约束大小的属性将会失效。
+>  - matchParent会强制将自身大小设置成父组件大小，因此其设置的其他约束大小的属性将会失效。

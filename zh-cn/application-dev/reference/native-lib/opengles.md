@@ -37,7 +37,7 @@ libEGL.so
 
 ## 相关参考
 
-针对OpenGL ES的使用和相关开发，需要同步了解NDK的开发过程，以及XComponent组件等的使用，具体可参考:
+针对OpenGL ES的使用和相关开发，需要同步了解NDK的开发过程，以及XComponent组件等的使用。具体可参考:
 
 - [NDK开发参考](../../napi/ndk-development-overview.md)
 
@@ -50,7 +50,7 @@ libEGL.so
 ## OpenGL ES扩展接口
 
 - OpenGL ES扩展接口的官方参考文档：[OpenGL ES扩展接口](https://registry.khronos.org/OpenGL/index_es.php)
-- 开发者可以调用`glGetString`查询芯片厂商支持的扩展接口，调用之前务必初始化上下文,具体示例如下：
+- 开发者可以调用`glGetString`查询芯片厂商支持的扩展接口，调用之前务必初始化上下文。具体示例如下：
 
 ```c++
 EGLDisplay display;
@@ -811,6 +811,8 @@ EGLBoolean eglSwapBuffers(EGLDisplay dpy, // EGL显示连接
 ```
 
 eglSwapBuffers函数用于交换前后缓冲区的内容，并将渲染结果显示在屏幕上。
+
+<!--RP1--><!--RP1End-->
 
 ## 相关实例
 

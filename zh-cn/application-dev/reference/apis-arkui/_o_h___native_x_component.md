@@ -79,7 +79,7 @@
 | [OH_NativeXComponent_GetKeyEventCode](#oh_nativexcomponent_getkeyeventcode)&nbsp;([OH_NativeXComponent_KeyEvent](#oh_nativexcomponent_keyevent)&nbsp;\*keyEvent,&nbsp;[OH_NativeXComponent_KeyCode](#oh_nativexcomponent_keycode)&nbsp;\*code) | 获取传入按键事件的按键码。                          |
 | [OH_NativeXComponent_GetKeyEventSourceType](#oh_nativexcomponent_getkeyeventsourcetype)&nbsp;([OH_NativeXComponent_KeyEvent](#oh_nativexcomponent_keyevent)&nbsp;\*keyEvent,&nbsp;[OH_NativeXComponent_EventSourceType](#oh_nativexcomponent_eventsourcetype)&nbsp;\*sourceType) | 获取传入按键事件的事件源类型。                        |
 | [OH_NativeXComponent_GetKeyEventDeviceId](#oh_nativexcomponent_getkeyeventdeviceid)&nbsp;([OH_NativeXComponent_KeyEvent](#oh_nativexcomponent_keyevent)&nbsp;\*keyEvent,&nbsp;int64_t&nbsp;\*deviceId) | 获取传入按键事件的设备id。                         |
-| [OH_NativeXComponent_GetKeyEventTimeStamp](#oh_nativexcomponent_getkeyeventtimestamp)&nbsp;([OH_NativeXComponent_KeyEvent](#oh_nativexcomponent_keyevent)&nbsp;\*keyEvent,&nbsp;int64_t&nbsp;\*timeStamp) | 获取传入按键事件的时间戳。                          |
+| [OH_NativeXComponent_GetKeyEventTimestamp](#oh_nativexcomponent_getkeyeventtimestamp)&nbsp;([OH_NativeXComponent_KeyEvent](#oh_nativexcomponent_keyevent)&nbsp;\*keyEvent,&nbsp;int64_t&nbsp;\*timeStamp) | 获取传入按键事件的时间戳。                          |
 | [OH_NativeXComponent_SetExpectedFrameRateRange](#oh_nativexcomponent_setexpectedframeraterange) ([OH_NativeXComponent](#oh_nativexcomponent) \*component, [OH_NativeXComponent_ExpectedRateRange](_o_h___native_x_component___expected_rate_range.md) \*range) | 设置期望帧率范围。                                           |
 | [OH_NativeXComponent_RegisterOnFrameCallback](#oh_nativexcomponent_registeronframecallback) ([OH_NativeXComponent](#oh_nativexcomponent) \*component, void(\*callback)([OH_NativeXComponent](#oh_nativexcomponent) \*component, uint64_t timestamp, uint64_t targetTimestamp)) | 为此OH_NativeXComponent实例注册显示更新回调，并使能每帧回调此函数。 |
 | [OH_NativeXComponent_UnregisterOnFrameCallback](#oh_nativexcomponent_unregisteronframecallback) ([OH_NativeXComponent](#oh_nativexcomponent) \*component) | 为此OH_NativeXComponent实例取消注册回调函数，并关闭每帧回调此函数。 |
@@ -897,10 +897,10 @@ int32_t OH_NativeXComponent_GetKeyEventSourceType (OH_NativeXComponent_KeyEvent 
 10
 
 
-### OH_NativeXComponent_GetKeyEventTimeStamp()
+### OH_NativeXComponent_GetKeyEventTimestamp()
 
 ```
-int32_t OH_NativeXComponent_GetKeyEventTimeStamp (OH_NativeXComponent_KeyEvent * keyEvent, int64_t * timeStamp )
+int32_t OH_NativeXComponent_GetKeyEventTimestamp (OH_NativeXComponent_KeyEvent * keyEvent, int64_t * timeStamp )
 ```
 
 **描述:**

@@ -158,7 +158,7 @@ struct KeyboardAvoidExample {
 >
 >布局视口指网页本身的宽度。
 
-（1）在应用代码中设置ArkWeb的软键盘避让模式。
+在应用代码中设置ArkWeb的软键盘避让模式。
 
 ```ts
 // Index.ets
@@ -172,7 +172,7 @@ struct KeyboardAvoidExample {
     Column() {
       Row().height("50%").width("100%").backgroundColor(Color.Gray)
       Web({ src: $rawfile("index.html"),controller: this.controller})
-        .keyboardAvoidMode(WebKeyboardAvoidMode.OVERLAYS_CONTENT) //此时ArkWeb组件不会调整任何视口的大小大小
+        .keyboardAvoidMode(WebKeyboardAvoidMode.OVERLAYS_CONTENT) //此时ArkWeb组件不会调整任何视口的大小。
       Text("I can see the bottom of the page").width("100%").textAlign(TextAlign.Center).backgroundColor(Color.Pink).layoutWeight(1)
     }.width('100%').height("100%")
   }
@@ -188,7 +188,7 @@ struct KeyboardAvoidExample {
 
 | 交叉场景         | 规格                                       |
 | ------------ | ---------------------------------------- |
-| 同层渲染         | 同层Web：软键盘避让行为与普通场景行为一致  同层原生组件：由ArkUI负责软键盘避让模式。 |
+| 同层渲染         | 同层Web：软键盘避让行为与普通场景行为一致  同层系统组件：由ArkUI负责软键盘避让模式。 |
 | 离屏创建组件       | 默认使用与非离屏创建一致的软键盘避让模式 在上树前设置其他避让模式可需生效。   |
 | customDialog | customDialog自身避让。                        |
 | 折叠屏          | 软键盘避让行为与普通场景行为一致 软件键盘需跟随屏幕开合状态进展开合变化。    |
@@ -214,7 +214,7 @@ struct KeyboardAvoidExample {
   @Component
   struct WebComponent {
     controller: webview.WebviewController = new webview.WebviewController();
-    webKeyboardController: WebKeyboardController = new WebKeyboardController()
+    webKeyboardController: WebKeyboardController = new WebKeyboardController();
     inputAttributeMap: Map<string, number> = new Map([
         ['UNSPECIFIED', inputMethodEngine.ENTER_KEY_TYPE_UNSPECIFIED],
         ['GO', inputMethodEngine.ENTER_KEY_TYPE_GO],
@@ -276,18 +276,18 @@ struct KeyboardAvoidExample {
           }
 
           // 保存WebKeyboardController，使用自定义键盘时候，需要使用该handler控制输入、删除、软键盘关闭等行为
-          this.webKeyboardController = KeyboardCallbackInfo.controller
-          let attributes: Record<string, string> = KeyboardCallbackInfo.attributes
+          this.webKeyboardController = KeyboardCallbackInfo.controller;
+          let attributes: Record<string, string> = KeyboardCallbackInfo.attributes;
           // 遍历attributes
-          let attributeKeys = Object.keys(attributes)
+          let attributeKeys = Object.keys(attributes);
           for (let i = 0; i < attributeKeys.length; i++) {
-            console.log('WebCustomKeyboard key = ' + attributeKeys[i] + ', value = ' + attributes[attributeKeys[i]])
+            console.log('WebCustomKeyboard key = ' + attributeKeys[i] + ', value = ' + attributes[attributeKeys[i]]);
           }
 
           if (attributes) {
             if (attributes['data-keyboard'] == 'customKeyboard') {
               // 根据html可编辑元素的属性，判断使用不同的软键盘，例如这里如果属性包含有data-keyboard，且值为customKeyboard，则使用自定义键盘
-              console.log('WebCustomKeyboard use custom keyboard')
+              console.log('WebCustomKeyboard use custom keyboard');
               option.useSystemKeyboard = false;
               // 设置自定义键盘builder
               option.customKeyboard = () => {
@@ -299,9 +299,9 @@ struct KeyboardAvoidExample {
             if (attributes['keyboard-return'] != undefined) {
               // 根据html可编辑元素的属性，判断使用不同的软键盘，例如这里如果属性包含有keyboard-return，使用系统键盘，并且指定系统软键盘enterKey类型
               option.useSystemKeyboard = true;
-              let enterKeyType: number | undefined = this.inputAttributeMap.get(attributes['keyboard-return'])
+              let enterKeyType: number | undefined = this.inputAttributeMap.get(attributes['keyboard-return']);
               if (enterKeyType != undefined) {
-                option.enterKeyType = enterKeyType
+                option.enterKeyType = enterKeyType;
               }
               return option;
             }

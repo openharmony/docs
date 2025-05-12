@@ -1,8 +1,8 @@
 # @ohos.util.stream (数据流基类stream)
 
-本模块提供基本流类型的处理能力。可以将数据分块读取或写入，而不是一次将整个数据加载到内存当中。
+本模块提供基本流类型的处理能力，支持数据分块读取或写入，避免一次性加载整个数据到内存。
 
-包括可写流（[Writable](#writable)）、可读流（[Readable](#readable)）、双工流（[Duplex](#duplex)）、转换流（[Transform](#transform)）这几种流。
+包括可写流（[Writable](#writable)）、可读流（[Readable](#readable)）、双工流（[Duplex](#duplex)）和转换流（[Transform](#transform)）。
 
 > **说明：**
 >
@@ -27,12 +27,12 @@ import { stream  } from '@kit.ArkTS';
 | 名称    | 类型      | 只读 | 可选  | 说明        |
 | ------- | -------- | ------ | ------ | ----------- |
 | writableObjectMode  | boolean   | 是   | 否 | 指定可写流是否以对象模式工作。true表示流被配置为对象模式，false表示流处于非对象模式。当前版本只支持原始数据（字符串和Uint8Array），返回值为false。 |
-| writableHighWatermark | number | 是 | 否  | 定义缓冲区数据量水位线大小。当前不支持开发者自定义修改设置水位线大小。调用[write()](#write)写入后，若缓冲区数据量达到该值，[write()](#write)会返回false。默认为16 * 1024，单位为字节。|
+| writableHighWatermark | number | 是 | 否  | 定义可写流缓冲区数据量的水位线大小。当前版本不支持开发者自定义修改水位线大小。调用[write()](#write)写入数据后，若缓冲区数据量达到该值，[write()](#write)会返回false。默认值为16 * 1024字节。|
 | writable | boolean | 是 | 否  | 表示可写流是否处于可写状态。true表示流当前是可写的，false表示流当前不再接受写入操作。|
 | writableLength | number | 是 | 否  | 表示可写流缓冲区中待写入的字节数。|
-| writableCorked | number | 是  | 否 | 表示可写流cork状态计数。值大于0时，可写流处于强制写入缓冲区状态，值为0时解除。使用[cork()](#cork)计数加一，使用[uncork()](#uncork)计数减一，使用[end()](#end)计数清零。|
+| writableCorked | number | 是  | 否 | 表示可写流cork状态计数。值大于0时，可写流处于强制写入缓冲区状态；值为0时，该状态解除。使用[cork()](#cork)方法时计数加一，使用[uncork()](#uncork)方法时计数减一，使用[end()](#end)方法时计数清零。|
 | writableEnded | boolean | 是  | 否 | 表示当前可写流的[end()](#end)是否被调用，该状态不代表数据已经全部写入。true表示[end()](#end)已被调用，false表示[end()](#end)未被调用。 |
-| writableFinished | boolean | 是  | 否 | 表示当前可写流是否处于写入完成状态。true表示当前流处于写入完成状态，false表示当前流写入操作可能还在进行中。 |
+| writableFinished | boolean | 是  | 否 | 表示当前可写流是否处于写入完成状态。true表示当前流已处于写入完成状态，false表示当前流的写入操作可能还在进行中。 |
 
 ### constructor
 
@@ -64,7 +64,7 @@ write(chunk?: string | Uint8Array, encoding?: string, callback?: Function): bool
 
 | 参数名 | 类型   | 必填 | 说明                       |
 | ------ | ------ | ---- | -------------------------- |
-| chunk  | string \| Uint8Array | 否 | 需要写入的数据。当前版本不支持输入null、undefined和空字符串。 |
+| chunk  | string \| Uint8Array | 否 | 需要写入的数据。当前版本不支持null、undefined和空字符串。 |
 | encoding  | string | 否   | 字符编码类型。默认值是'utf8'，当前版本支持'utf8'、'gb18030'、'gbk'以及'gb2312'。|
 | callback  | Function | 否   | 回调函数。默认不调用。 |
 
@@ -181,7 +181,7 @@ setDefaultEncoding(encoding?: string): boolean
 
 | 类型 | 说明 |
 | -------- | -------- |
-| boolean | 返回是否设置成功。true表示设置成功，false表示设置失败。 |
+| boolean | 返回是否设置成功。true表示成功，false表示失败。 |
 
 **错误码：**
 
@@ -213,7 +213,7 @@ console.info("Writable is result", result); // Writable is result true
 
 cork(): boolean
 
-将写入的数据强制写入缓冲区暂存，用来优化连续写入操作的性能。使用后属性writableCorked的值会加一。建议和[uncork()](#uncork)成对使用。
+使后续写入的数据强制写入缓冲区，优化连续写入操作的性能。使用后属性writableCorked的值会加一。建议和[uncork()](#uncork)成对使用。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -223,7 +223,7 @@ cork(): boolean
 
 | 类型 | 说明 |
 | -------- | -------- |
-| boolean | 返回设置cork状态是否成功。true表示设置成功，false表示设置失败。 |
+| boolean | 返回设置cork状态是否成功。true表示成功，false表示失败。 |
 
 **示例：**
 
@@ -247,7 +247,7 @@ console.info("Writable cork result", result); // Writable cork result true
 
 uncork(): boolean
 
-解除cork状态，解除后将缓冲区中的数据全部刷新，并将其写入目标位置。使用后属性writableCorked的值会减一，如果该值降为0，则解除cork状态，否则流依然处于cork状态。建议和[cork()](#cork)成对使用。
+解除cork状态，解除后刷新缓冲区数据并写入目标位置。使用后属性writableCorked的值会减一，如果该值降为0，则解除cork状态，否则流依然处于cork状态。建议和[cork()](#cork)成对使用。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -334,7 +334,7 @@ writable.write('hello', 'utf8', () => {
 
 off(event: string, callback?: Callback<emitter.EventData>): void
 
-取消通过[on](#on)注册的事件处理函数。
+移除通过[on](#on)注册的事件处理函数。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -386,7 +386,7 @@ setTimeout(() => {
 
 doInitialize(callback: Function): void
 
-使用者实现这个函数，这个函数在可写流初始化阶段被调用，无需用户调用。使用callback异步回调。
+用户实现这个函数。该函数在可写流初始化阶段被调用，无需用户调用。使用callback异步回调。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -427,7 +427,7 @@ new MyWritable();
 
 doWrite(chunk: string | Uint8Array, encoding: string, callback: Function): void
 
-提供一个数据写出接口供使用者实现，该接口函数会在数据被成功写出时自动调用，无需用户手动触发。使用callback异步回调。
+提供一个数据写出接口供开发者实现，该接口函数会在数据被成功写出时自动调用，无需手动触发。使用callback异步回调。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -543,11 +543,11 @@ Readable构造函数的选项信息。
 | ------- | -------- | ------ | ------ | ----------- |
 | readableObjectMode  | boolean   | 是   | 否 | 用于指定可读流是否以对象模式工作。true表示流被配置为对象模式，false表示流处于非对象模式。当前版本只支持原始数据（字符串和Uint8Array），返回值为false。|
 | readable | boolean | 是 | 否  | 表示可读流是否处于可读状态。true表示流处于可读状态，false表示流中没有更多数据可供读取。 |
-| readableHighWatermark | number | 是 | 否  | 定义缓冲区可以存放的最大数据量。默认值为16 * 1024，单位为字节。|
-| readableFlowing | boolean \| null | 是 | 否  | 表示当前可读流的状态。可读流在任何时间点都处于两种状态之一。true表示流处于流动模式，false表示流处于非流动模式。默认值是true。|
+| readableHighWatermark | number | 是 | 否  | 定义缓冲区的最大数据量。默认值为16 * 1024字节。|
+| readableFlowing | boolean \| null | 是 | 否  | 表示当前可读流的状态。true表示流处于流动模式，false表示流处于非流动模式。默认值是true。|
 | readableLength | number | 是 | 否  | 表示缓冲区的当前字节数。|
 | readableEncoding | string \| null | 是 | 否  | 被解码成字符串时所使用的字符编码。默认值是'utf8'，当前版本支持'utf8'、'gb18030'、'gbk'以及'gb2312'。|
-| readableEnded | boolean | 是  | 否 | 表示当前可读流是否已经结束。true表示流已经没有更多数据可读，并且已经结束，false表示流尚未结束，依然有数据可读或等待读取。 |
+| readableEnded | boolean | 是  | 否 | 表示当前可读流是否已经结束。true表示流已经没有更多数据可读且已结束，false表示流尚未结束，仍有数据可读或等待读取。 |
 
 ### constructor
 
@@ -652,7 +652,7 @@ console.info('Readable data is', dataChunk); // Readable data is test
 
 resume(): Readable
 
-将流的读取模式从暂停切换到流动模式，可用接口isPaused判断是否切换到流动模式。
+将流的读取模式从暂停切换到流动模式，可用接口isPaused判断是否已切换。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -685,7 +685,7 @@ console.info("Readable test resume", !readableStream.isPaused()); // 切换流�
 
 pause(): Readable
 
-将流的读取模式从流动切换到暂停模式，可用接口isPaused判断是否切换到暂停模式。
+将流的读取模式从流动切换到暂停模式，可用接口isPaused判断是否已切换。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -766,7 +766,7 @@ console.info("Readable result", result); // Readable result true
 
 isPaused(): boolean
 
-检查流是否处于暂停模式，调用[pause()](#pause)后为true，调用[resume()](#resume)为false。
+检查流是否处于暂停模式，调用[pause()](#pause)后，返回值为true；调用[resume()](#resume)后，返回值为false。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -970,7 +970,7 @@ readable.on('error', () => {
 
 off(event: string, callback?: Callback<emitter.EventData>): void
 
-取消通过[on](#on)注册的事件处理函数。
+移除通过[on](#on)注册的事件处理函数。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1072,7 +1072,7 @@ doRead(size: number): void
 
 | 参数名    | 类型     | 必填     | 说明 |
 | -------- | -------- | -------- | -------- |
-| size | number | 是 | 读取数据的字节数。 |
+| size | number | 是 | 读取数据的字节数。 取值范围：0 <= size <= Number.MAX_VALUE。|
 
 **错误码：**
 
@@ -1163,12 +1163,12 @@ Duplex类继承[Readable](#readable)，支持Readable中所有的方法。
 | 名称    | 类型      | 只读 | 可选  | 说明        |
 | ------- | -------- | ------ | ------ | ----------- |
 | writableObjectMode  | boolean   | 是   | 否 | 用于指定双工流的写模式是否以对象模式工作。true表示流的写模式被配置为对象模式，false表示流的写模式处于非对象模式。当前版本只支持原始数据（字符串和Uint8Array），返回值为false。 |
-| writableHighWatermark | number | 是 | 否  | 定义双工流的写模式下缓冲区数据量水位线大小。当前不支持开发者自定义修改设置水位线大小。调用[write()](#write-1)写入后，若缓冲区数据量达到该值，[write()](#write-1)会返回false。默认值为16 * 1024，单位为字节。|
+| writableHighWatermark | number | 是 | 否  | 定义双工流的写模式下缓冲区数据量的水位线大小。当前版本不支持开发者自定义修改设置水位线大小。调用[write()](#write-1)写入后，若缓冲区数据量达到该值，[write()](#write-1)会返回false。默认值为16 * 1024字节。|
 | writable | boolean | 是 | 否  | 表示双工流是否处于可写状态。true表示当前流是可写的，false表示流当前不再接受写入操作。|
 | writableLength | number | 是 | 否  | 表示双工流缓冲区中待写入的字节数。|
-| writableCorked | number | 是  | 否 | 表示双工流cork状态计数。值大于0时，双工流处于强制写入缓冲区状态，值为0时解除。使用[cork()](#cork-1)计数加一，使用[uncork()](#uncork-1)计数减一，使用[end()](#end-1)计数清零。|
+| writableCorked | number | 是  | 否 | 表示双工流cork状态计数。值大于0时，双工流处于强制写入缓冲区状态，值为0时，该状态解除。使用[cork()](#cork-1)方法时计数加一，使用[uncork()](#uncork-1)方法时计数减一，使用[end()](#end-1)方法时计数清零。|
 | writableEnded | boolean | 是  | 否 | 表示当前双工流的[end()](#end-1)是否被调用，该状态不代表数据已经全部写入。true表示[end()](#end-1)已被调用，false表示[end()](#end-1)未被调用。|
-| writableFinished | boolean | 是  | 否 | 表示当前双工流是否处于写入完成状态。true表示当前流处于写入完成状态，false表示当前流写入操作可能还在进行中。|
+| writableFinished | boolean | 是  | 否 | 表示当前双工流是否处于写入完成状态。true表示当前流已处于写入完成状态，false表示当前流的写入操作可能还在进行中。|
 
 ### constructor
 
@@ -1200,7 +1200,7 @@ write(chunk?: string | Uint8Array, encoding?: string, callback?: Function): bool
 
 | 参数名 | 类型   | 必填 | 说明                       |
 | ------ | ------ | ---- | -------------------------- |
-| chunk  | string \| Uint8Array | 否 | 需要写入的数据。当前版本不支持输入null、undefined和空字符串。 |
+| chunk  | string \| Uint8Array | 否 | 需要写入的数据。当前版本不支持null、undefined和空字符串。 |
 | encoding  | string | 否   | 字符编码类型。默认值是'utf8'，当前版本支持'utf8'、'gb18030'、'gbk'以及'gb2312'。|
 | callback  | Function | 否   | 回调函数。默认不调用。 |
 
@@ -1303,7 +1303,7 @@ duplexStream.end('test', 'utf8', () => {
 
 setDefaultEncoding(encoding?: string): boolean
 
-设置双工流的默认字符编码，以便在读取数据时正确解析字符。
+设置双工流的默认字符编码，确保在读取数据时正确解析字符。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1541,7 +1541,7 @@ let transform = new stream.Transform();
 
 doTransform(chunk: string, encoding: string, callback: Function): void
 
-对输入的数据块进行转换或处理操作，并通过回调函数通知处理完成。
+对输入的数据块进行转换或处理，并通过回调函数通知操作完成。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 

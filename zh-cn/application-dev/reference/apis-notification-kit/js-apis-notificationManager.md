@@ -1789,7 +1789,7 @@ type NotificationPictureContent = _NotificationPictureContent
 | --- | --- |
 | [_NotificationPictureContent](js-apis-inner-notification-notificationContent.md#notificationpicturecontent) | 附有图片的通知。 |
 
-## NotificationSystemLiveViewContent
+## NotificationSystemLiveViewContent<sup>11+</sup>
 
 type NotificationSystemLiveViewContent = _NotificationSystemLiveViewContent
 
@@ -1813,7 +1813,7 @@ type NotificationRequest = _NotificationRequest
 | --- | --- |
 | [_NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest) | 通知请求。 |
 
-## DistributedOptions<sup>8+</sup>
+## DistributedOptions
 
 type DistributedOptions = _DistributedOptions
 

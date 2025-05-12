@@ -36,7 +36,7 @@ getType(options?: {<br>
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| success | Function | 否 | 接口调用成功的回调函数，返回值为[NetworkResponse](#networkresponse3) |
+| success | Function | 否 | 接口调用成功的回调函数，返回值为[NetworkResponse](#networkresponse3)。 |
 | fail | Function | 否 | 接口调用失败的回调函数。 |
 | complete | Function | 否 | 接口调用结束的回调函数。 |
 
@@ -76,7 +76,7 @@ subscribe(options?:{<br>
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| success | Function | 否 | 网络发生变化的回调函数，返回值为[NetworkResponse](#networkresponse3) |
+| success | Function | 否 | 网络发生变化的回调函数。返回值为[NetworkResponse](#networkresponse3)。 |
 | fail | Function | 否 | 接口调用失败的回调函数。 |
 
 fail返回值：

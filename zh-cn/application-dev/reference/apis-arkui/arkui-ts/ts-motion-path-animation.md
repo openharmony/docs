@@ -4,7 +4,7 @@
 
 >  **说明：**
 >
-> 从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+> 从API version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 ## motionPath
 motionPath(value: MotionPathOptions)
@@ -38,7 +38,7 @@ motionPath(value: MotionPathOptions)
 @Entry
 @Component
 struct MotionPathExample {
-  @State toggle: boolean = true
+  @State toggle: boolean = true;
 
   build() {
     Column() {

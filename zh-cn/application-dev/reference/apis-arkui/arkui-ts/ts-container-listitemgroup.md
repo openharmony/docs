@@ -4,11 +4,11 @@
 
 > **说明：**
 >
-> - 该组件从API Version 9开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+> - 该组件从API version 9开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 > - 该组件的父组件只能是[List](ts-container-list.md)。
-> - ListItemGroup组件不支持设置[通用属性aspectRatio](ts-universal-attributes-layout-constraints.md)。
-> - 当ListItemGroup的父组件List的listDirection属性为Axis.Vertical时，设置[通用属性height](ts-universal-attributes-size.md)属性不生效。ListItemGroup的高度为header高度、footer高度和所有ListItem布局后总高度之和。
-> - 当父组件List的listDirection属性为Axis.Horizontal时，设置[通用属性width](ts-universal-attributes-size.md)属性不生效。ListItemGroup的宽度为header宽度、footer宽度和所有ListItem布局后总宽度之和。
+> - ListItemGroup组件不支持设置[通用属性aspectRatio](ts-universal-attributes-layout-constraints.md#aspectratio)。
+> - 当ListItemGroup的父组件List的listDirection属性为Axis.Vertical时，设置[通用属性height](ts-universal-attributes-size.md#height)属性不生效。ListItemGroup的高度为header高度、footer高度和所有ListItem布局后总高度之和。
+> - 当父组件List的listDirection属性为Axis.Horizontal时，设置[通用属性width](ts-universal-attributes-size.md#width)属性不生效。ListItemGroup的宽度为header宽度、footer宽度和所有ListItem布局后总宽度之和。
 > - 当前ListItemGroup内部的ListItem组件不支持编辑、拖拽功能，即ListItem组件的editable属性不生效。
 > - ListItemGroup使用direction属性设置布局方向不生效，ListItemGroup组件布局方向跟随父容器List组件的布局方向。
 
@@ -42,11 +42,11 @@ ListItemGroup组件参数。
 | 名称              | 类型                                            | 必填 | 说明                                                     |
 | ------------------- | --------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | header              | [CustomBuilder](ts-types.md#custombuilder8) &nbsp;   | 否   | 设置ListItemGroup头部组件。<br/>**说明：**<br/>可以放单个子组件或不放子组件。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。               |
-| headerComponent<sup>13+</sup>              | [ComponentContent](../js-apis-arkui-ComponentContent.md)       | 否   | 使用ComponentContent类型参数设置ListItemGroup头部组件。<br/>**说明：**<br/>可以放单个子组件或不放子组件。 该参数的优先级高于参数header。即同时设置header和headerComponent时，以headerComponent设置的值为准。<br/>同一个headerComponent不推荐同时给不同的ListItemGroup使用,否则会导致显示问题。<br/>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。              |
+| headerComponent<sup>13+</sup>              | [ComponentContent](../js-apis-arkui-ComponentContent.md)       | 否   | 使用ComponentContent类型参数设置ListItemGroup头部组件。<br/>**说明：**<br/>可以放单个子组件或不放子组件。 该参数的优先级高于参数header。即同时设置header和headerComponent时，以headerComponent设置的值为准。<br/>同一个headerComponent不推荐同时给不同的ListItemGroup使用，否则会导致显示问题。<br/>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。              |
 | footer              | [CustomBuilder](ts-types.md#custombuilder8) &nbsp;     | 否   | 设置ListItemGroup尾部组件。<br/>**说明：**<br/>可以放单个子组件或不放子组件。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。               |
-| footerComponent<sup>13+</sup>              | [ComponentContent](../js-apis-arkui-ComponentContent.md)       | 否   | 使用ComponentContent类型参数设置ListItemGroup尾部组件。<br/>**说明：**<br/>可以放单个子组件或不放子组件。该参数的优先级高于参数footer。 即同时设置footer和footerComponent时，以footerComponent设置的值为准。<br/>同一个footerComponent不推荐同时给不同的ListItemGroup使用,否则会导致显示问题。<br/>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。                           |
+| footerComponent<sup>13+</sup>              | [ComponentContent](../js-apis-arkui-ComponentContent.md)       | 否   | 使用ComponentContent类型参数设置ListItemGroup尾部组件。<br/>**说明：**<br/>可以放单个子组件或不放子组件。该参数的优先级高于参数footer。 即同时设置footer和footerComponent时，以footerComponent设置的值为准。<br/>同一个footerComponent不推荐同时给不同的ListItemGroup使用，否则会导致显示问题。<br/>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。                           |
 | space               | number&nbsp;\|&nbsp;string                          | 否   | 列表项间距。只作用于ListItem与ListItem之间，不作用于header与ListItem、footer与ListItem之间。<br/>默认值：0<br/>单位：vp <br/>**说明：**<br/>设置为负数或者大于等于List内容区长度时，按默认值显示。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。  |
-| style<sup>10+</sup> | [ListItemGroupStyle](#listitemgroupstyle10枚举说明) | 否   | 设置List组件卡片样式。<br/>默认值: ListItemGroupStyle.NONE<br/>设置为ListItemGroupStyle.NONE时无样式。<br/>设置为ListItemGroupStyle.CARD时，建议配合[ListItem](ts-container-listitem.md)的ListItemStyle.CARD同时使用，显示默认卡片样式。 <br/>卡片样式下，ListItemGroup默认规格：左右外边距12vp，上下左右内边距4vp。<br/>卡片样式下, 为卡片内的列表选项提供了默认的focus、hover、press、selected和disable样式。<br/>**说明：**<br/>当前卡片模式下，使用默认Axis.Vertical排列方向，如果listDirection属性设置为Axis.Horizontal，会导致显示混乱;List属性alignListItem默认为ListItemAlign.Center，居中对齐显示。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| style<sup>10+</sup> | [ListItemGroupStyle](#listitemgroupstyle10枚举说明) | 否   | 设置List组件卡片样式。<br/>默认值：ListItemGroupStyle.NONE<br/>设置为ListItemGroupStyle.NONE时无样式。<br/>设置为ListItemGroupStyle.CARD时，建议配合[ListItem](ts-container-listitem.md)的ListItemStyle.CARD同时使用，显示默认卡片样式。 <br/>卡片样式下，ListItemGroup默认规格：左右外边距12vp，上下左右内边距4vp。<br/>卡片样式下，为卡片内的列表选项提供了默认的focus、hover、press、selected和disable样式。<br/>**说明：**<br/>当前卡片模式下，使用默认Axis.Vertical排列方向，如果listDirection属性设置为Axis.Horizontal，会导致显示混乱;List属性alignListItem默认为ListItemAlign.Center，居中对齐显示。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 
 ## 属性
 
@@ -133,23 +133,23 @@ struct ListItemGroupExample {
       title: '星期四',
       projects: ['美术', '音乐', '体育']
     }
-  ]
+  ];
 
   @Builder
   itemHead(text: string) {
     Text(text)
       .fontSize(20)
       .backgroundColor(0xAABBCC)
-      .width("100%")
+      .width('100%')
       .padding(10)
   }
 
   @Builder
   itemFoot(num: number) {
-    Text('共' + num + "节课")
+    Text('共' + num + '节课')
       .fontSize(16)
       .backgroundColor(0xAABBCC)
-      .width("100%")
+      .width('100%')
       .padding(5)
   }
 
@@ -161,7 +161,7 @@ struct ListItemGroupExample {
             ForEach(item.projects, (project: string) => {
               ListItem() {
                 Text(project)
-                  .width("100%")
+                  .width('100%')
                   .height(100)
                   .fontSize(20)
                   .textAlign(TextAlign.Center)
@@ -213,18 +213,18 @@ struct ListItemGroupExample2 {
       style: ListItemGroupStyle.NONE,
       itemStyles: [ListItemStyle.CARD, ListItemStyle.CARD, ListItemStyle.NONE]
     }
-  ]
+  ];
 
   build() {
     Column() {
-      List({ space: "4vp", initialIndex: 0 }) {
+      List({ space: '4vp', initialIndex: 0 }) {
         ForEach(this.arr, (item: ArrObject, index?: number) => {
           ListItemGroup({ style: item.style }) {
             ForEach(item.itemStyles, (itemStyle: number, itemIndex?: number) => {
               ListItem({ style: itemStyle }) {
                 if (index != undefined && itemIndex != undefined) {
-                  Text("第" + (index + 1) + "个Group中第" + (itemIndex + 1) + "个item")
-                    .width("100%")
+                  Text('第' + (index + 1) + '个Group中第' + (itemIndex + 1) + '个item')
+                    .width('100%')
                     .textAlign(TextAlign.Center)
                 }
               }
@@ -280,7 +280,7 @@ function itemHead(params: HeadBuilderParams) {
   Text(params.text)
     .fontSize(20)
     .height('48vp')
-    .width("100%")
+    .width('100%')
     .padding(10)
     .backgroundColor($r('sys.color.background_tertiary'))
 }
@@ -290,22 +290,22 @@ function itemFoot(params: FootBuilderParams) {
   Text('共' + params.num + '节课')
     .fontSize(20)
     .height('48vp')
-    .width("100%")
+    .width('100%')
     .padding(10)
     .backgroundColor($r('sys.color.background_tertiary'))
 }
 
 @Component
 struct MyItemGroup {
-  item: TimeTable = { title: "", projects: [] }
-  header?: ComponentContent<HeadBuilderParams> = undefined
-  footer?: ComponentContent<FootBuilderParams> = undefined
-  headerParam = new HeadBuilderParams(this.item.title)
-  footerParam = new FootBuilderParams(this.item.projects.length)
+  item: TimeTable = { title: '', projects: [] };
+  header?: ComponentContent<HeadBuilderParams> = undefined;
+  footer?: ComponentContent<FootBuilderParams> = undefined;
+  headerParam = new HeadBuilderParams(this.item.title);
+  footerParam = new FootBuilderParams(this.item.projects.length);
 
   aboutToAppear(): void {
-    this.header = new ComponentContent(this.getUIContext(), wrapBuilder(itemHead), this.headerParam)
-    this.footer = new ComponentContent(this.getUIContext(), wrapBuilder(itemFoot), this.footerParam)
+    this.header = new ComponentContent(this.getUIContext(), wrapBuilder(itemHead), this.headerParam);
+    this.footer = new ComponentContent(this.getUIContext(), wrapBuilder(itemFoot), this.footerParam);
   }
   GetHeader() {
     this.header?.update(new HeadBuilderParams(this.item.title));
@@ -325,7 +325,7 @@ struct MyItemGroup {
       ForEach(this.item.projects, (project: string) => {
         ListItem() {
           Text(project)
-            .width("100%")
+            .width('100%')
             .height(100)
             .fontSize(20)
             .textAlign(TextAlign.Center)
@@ -356,15 +356,15 @@ struct ListItemGroupExample {
       title: '星期四',
       projects: ['美术', '音乐']
     }
-  ]
+  ];
 
   build() {
     Column() {
-      Button("update").width(100).height(50).onClick(() => {
+      Button('update').width(100).height(50).onClick(() => {
         this.timeTable[0] = {
           title: '更新后的星期一',
           projects: ['语文', '物理', '历史', '美术']
-        }
+        };
       })
       List({ space: 20 }) {
         ForEach(this.timeTable, (item: TimeTable) => {

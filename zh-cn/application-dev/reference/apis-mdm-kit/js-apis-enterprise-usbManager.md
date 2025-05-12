@@ -8,7 +8,7 @@
 >
 > 本模块接口仅可在Stage模型下使用。
 >
-> 本模块接口仅对[设备管理应用](../../mdm/mdm-kit-guide.md#功能介绍)开放，需将设备管理应用激活后调用，实现相应功能。
+> 本模块接口仅对设备管理应用开放，且调用接口前需激活设备管理应用，具体请参考[MDM Kit开发指南](../../mdm/mdm-kit-guide.md)。
 >
 > 全局通用限制类策略由restrictions统一提供，若要全局禁用USB，请参考[@ohos.enterprise.restrictions（限制类策略）](js-apis-enterprise-restrictions.md)。
 
@@ -232,7 +232,7 @@ try {
   usbManager.setUsbStorageDeviceAccessPolicy(wantTemp, policy);
   console.info(`Succeeded in setting USB storage device access policy.`);
 } catch (err) {
-  console.error(`Failed to setting USB storage device access policy. Code: ${err.code}, message: ${err.message}`);
+  console.error(`Failed to set USB storage device access policy. Code: ${err.code}, message: ${err.message}`);
 }
 ```
 
@@ -283,7 +283,7 @@ try {
   let result: usbManager.UsbPolicy = usbManager.getUsbStorageDeviceAccessPolicy(wantTemp);
   console.info(`Succeeded in getting USB storage device access policy. Result: ${JSON.stringify(result)}`);
 } catch (err) {
-  console.error(`Failed togetting USB storage device access policy. Code: ${err.code}, message: ${err.message}`);
+  console.error(`Failed to get USB storage device access policy. Code: ${err.code}, message: ${err.message}`);
 }
 ```
 

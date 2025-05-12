@@ -47,13 +47,12 @@ sendData(data: Record\<string, Object>): void
 ```ts
 import { UIExtensionContentSession } from '@kit.AbilityKit';
 
-let storage = LocalStorage.getShared();
-
-@Entry(storage)
+@Entry()
 @Component
 struct Index {
+  private storage: LocalStorage | undefined = this.getUIContext().getSharedLocalStorage();
   private session: UIExtensionContentSession | undefined =
-    storage.get<UIExtensionContentSession>('session');
+    this.storage?.get<UIExtensionContentSession>('session');
 
   build() {
     RelativeContainer() {
@@ -108,20 +107,19 @@ setReceiveDataCallback(callback: (data: Record\<string, Object>) => void): void
 ```ts
 import { UIExtensionContentSession } from '@kit.AbilityKit';
 
-let storage = LocalStorage.getShared();
-
-@Entry(storage)
+@Entry()
 @Component
 struct Index {
+  storage: LocalStorage | undefined = this.getUIContext().getSharedLocalStorage();
   private session: UIExtensionContentSession | undefined =
-    storage.get<UIExtensionContentSession>('session');
+    this.storage?.get<UIExtensionContentSession>('session');
 
   build() {
     RelativeContainer() {
       Button('SendData')
         .onClick(() => {
           this.session?.setReceiveDataCallback((data: Record<string, Object>) => {
-            console.info(`Successed in setReceiveDataCallback, data: ${JSON.stringify(data)}`);
+            console.info(`Succeeded in setReceiveDataCallback, data: ${JSON.stringify(data)}`);
           });
         })
     }
@@ -163,20 +161,19 @@ setReceiveDataForResultCallback(callback: (data: Record<string, Object>) => Reco
 ```ts
 import { UIExtensionContentSession } from '@kit.AbilityKit';
 
-let storage = LocalStorage.getShared();
-
-@Entry(storage)
+@Entry()
 @Component
 struct Index {
+  storage: LocalStorage | undefined = this.getUIContext().getSharedLocalStorage();
   private session: UIExtensionContentSession | undefined =
-    storage.get<UIExtensionContentSession>('session');
+    this.storage?.get<UIExtensionContentSession>('session');
 
   build() {
     RelativeContainer() {
       Button('SetReceiveDataForResultCallback')
         .onClick(() => {
           this.session?.setReceiveDataForResultCallback((data: Record<string, Object>) => {
-            console.info(`Successed in setReceiveDataCallback, data: ${JSON.stringify(data)}`);
+            console.info(`Succeeded in setReceiveDataCallback, data: ${JSON.stringify(data)}`);
             return data;
           });
         })
@@ -250,7 +247,7 @@ export default class UIExtAbility extends UIExtensionAbility {
         console.error(`Failed to startAbility, code: ${err.code}, msg: ${err.message}`);
         return;
       }
-      console.info(`Successed in startAbility`);
+      console.info(`Succeeded in startAbility`);
     })
   }
 
@@ -324,7 +321,7 @@ export default class UIExtAbility extends UIExtensionAbility {
         console.error(`Failed to startAbility, code: ${err.code}, msg: ${err.message}`);
         return;
       }
-      console.info(`Successed in startAbility`);
+      console.info(`Succeeded in startAbility`);
     })
   }
 
@@ -402,7 +399,7 @@ export default class UIExtAbility extends UIExtensionAbility {
 
     session.startAbility(want, starOptions)
       .then(() => {
-        console.info(`Successed in startAbility`);
+        console.info(`Succeeded in startAbility`);
       })
       .catch((err: BusinessError) => {
         console.error(`Failed to startAbility, code: ${err.code}, msg: ${err.message}`);
@@ -419,10 +416,10 @@ startAbilityForResult(want: Want, callback: AsyncCallback&lt;AbilityResult&gt;):
 
 启动一个Ability，在Ability终止后返回结果给调用方。使用callback异步回调。
 
-Ability的终止方式包括以下几种情况:
+Ability的终止方式包括以下几种情况：
  - 正常情况下可通过调用[terminateSelfWithResult](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateselfwithresult)接口使之终止并且返回结果给调用方。
- - 异常情况下比如杀死Ability会返回异常信息给调用方, 异常信息中resultCode为-1。
- - 如果被启动的Ability模式是单实例模式, 不同应用多次调用该接口启动这个Ability，当这个Ability调用[terminateSelfWithResult](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateselfwithresult)接口使之终止时，只将正常结果返回给最后一个调用方, 其它调用方返回异常信息, 异常信息中resultCode为-1。
+ - 异常情况下比如杀死Ability会返回异常信息给调用方，异常信息中resultCode为-1。
+ - 如果被启动的Ability模式是单实例模式，不同应用多次调用该接口启动这个Ability，当这个Ability调用[terminateSelfWithResult](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateselfwithresult)接口使之终止时，只将正常结果返回给最后一个调用方，其他调用方返回异常信息，异常信息中resultCode为-1。
 
 > **说明：**
 >
@@ -481,7 +478,7 @@ export default class UIExtAbility extends UIExtensionAbility {
         console.error(`Failed to startAbilityForResult, code: ${err.code}, msg: ${err.message}`);
         return;
       }
-      console.info(`Successed in startAbilityForResult, data: ${JSON.stringify(data)}`);
+      console.info(`Succeeded in startAbilityForResult, data: ${JSON.stringify(data)}`);
     })
   }
 
@@ -495,10 +492,10 @@ startAbilityForResult(want: Want, options: StartOptions, callback: AsyncCallback
 
 启动一个Ability，在Ability终止后返回结果给调用方。使用callback异步回调。
 
-Ability的终止方式包括以下几种情况:
+Ability的终止方式包括以下几种情况：
  - 正常情况下可通过调用[terminateSelfWithResult](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateselfwithresult)接口使之终止并且返回结果给调用方。
  - 异常情况下比如杀死Ability会返回异常信息给调用方，异常信息中resultCode为-1。
- - 如果被启动的Ability模式是单实例模式, 不同应用多次调用该接口启动这个Ability，当这个Ability调用[terminateSelfWithResult](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateselfwithresult)接口使之终止时，只将正常结果返回给最后一个调用方，其它调用方返回异常信息, 异常信息中resultCode为-1。
+ - 如果被启动的Ability模式是单实例模式，不同应用多次调用该接口启动这个Ability，当这个Ability调用[terminateSelfWithResult](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateselfwithresult)接口使之终止时，只将正常结果返回给最后一个调用方，其他调用方返回异常信息，异常信息中resultCode为-1。
 
 > **说明：**
 >
@@ -560,7 +557,7 @@ export default class UIExtAbility extends UIExtensionAbility {
         console.error(`Failed to startAbilityForResult, code: ${err.code}, msg: ${err.message}`);
         return;
       }
-      console.info(`Successed in startAbilityForResult, data: ${JSON.stringify(data)}`);
+      console.info(`Succeeded in startAbilityForResult, data: ${JSON.stringify(data)}`);
     })
   }
 
@@ -574,10 +571,10 @@ startAbilityForResult(want: Want, options?: StartOptions): Promise&lt;AbilityRes
 
 启动一个Ability，在Ability终止后返回结果给调用方。使用Promise异步回调。
 
-Ability的终止方式包括以下几种情况:
+Ability的终止方式包括以下几种情况：
  - 正常情况下可通过调用[terminateSelfWithResult](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateselfwithresult)接口使之终止并且返回结果给调用方。
- - 异常情况下比如杀死Ability会返回异常信息给调用方, 异常信息中resultCode为-1。
- - 如果被启动的Ability模式是单实例模式, 不同应用多次调用该接口启动这个Ability，当这个Ability调用[terminateSelfWithResult](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateselfwithresult)接口使之终止时，只将正常结果返回给最后一个调用方, 其它调用方返回异常信息, 异常信息中resultCode为-1。
+ - 异常情况下比如杀死Ability会返回异常信息给调用方，异常信息中resultCode为-1。
+ - 如果被启动的Ability模式是单实例模式，不同应用多次调用该接口启动这个Ability，当这个Ability调用[terminateSelfWithResult](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateselfwithresult)接口使之终止时，只将正常结果返回给最后一个调用方，其他调用方返回异常信息，异常信息中resultCode为-1。
 
 > **说明：**
 >
@@ -644,7 +641,7 @@ export default class UIExtAbility extends UIExtensionAbility {
 
     session.startAbilityForResult(want, starOptions)
       .then((data: common.AbilityResult) => {
-        console.info(`Successed in startAbilityForResult, data: ${JSON.stringify(data)}`);
+        console.info(`Succeeded in startAbilityForResult, data: ${JSON.stringify(data)}`);
       })
       .catch((err: BusinessError) => {
         console.error(`Failed to startAbilityForResult, code: ${err.code}, msg: ${err.message}`);
@@ -773,7 +770,7 @@ export default class UIExtAbility extends UIExtensionAbility {
         console.error(`Failed to startAbilityAsCaller, code: ${err.code}, msg: ${err.message}`);
         return;
       }
-      console.info(`Successed in startAbilityAsCaller`);
+      console.info(`Succeeded in startAbilityAsCaller`);
     })
   }
 
@@ -847,7 +844,7 @@ export default class UIExtAbility extends UIExtensionAbility {
         console.error(`Failed to startAbilityAsCaller, code: ${err.code}, msg: ${err.message}`);
         return;
       }
-      console.info(`Successed in startAbilityAsCaller`);
+      console.info(`Succeeded in startAbilityAsCaller`);
     })
   }
 
@@ -925,7 +922,7 @@ export default class UIExtAbility extends UIExtensionAbility {
 
     session.startAbilityAsCaller(localWant, startOptions)
       .then(() => {
-        console.info(`Successed in startAbilityAsCaller`);
+        console.info(`Succeeded in startAbilityAsCaller`);
       })
       .catch((err: BusinessError) => {
         console.error(`Failed to startAbilityAsCaller, code: ${err.code}, msg: ${err.message}`);

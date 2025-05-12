@@ -1,4 +1,4 @@
-# 拍照实现方案(ArkTS)
+# 拍照实践(ArkTS)
 
 在开发相机应用时，需要先参考开发准备[申请相关权限](camera-preparation.md)。
 

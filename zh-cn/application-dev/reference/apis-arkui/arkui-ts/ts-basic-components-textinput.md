@@ -4,7 +4,7 @@
 
 >  **说明：**
 >
->  该组件从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>  该组件从API version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 
 ## 子组件
@@ -35,7 +35,7 @@ TextInput(value?: TextInputOptions)
 | 名称 | 类型  | 必填   | 说明 |
 | ---- | ----- | ---- | ---- |
 | placeholder             | [ResourceStr](ts-types.md#resourcestr)   | 否    | 设置无输入时的提示文本。                             |
-| text                    | [ResourceStr](ts-types.md#resourcestr)   | 否    | 设置输入框当前的文本内容。</br>建议通过onChange事件将状态变量与文本实时绑定，</br>避免组件刷新时TextInput中的文本内容异常。<br />从API version 10开始，该参数支持[$$](../../../quick-start/arkts-two-way-sync.md)双向绑定变量。 |
+| text                    | [ResourceStr](ts-types.md#resourcestr)   | 否    | 设置输入框当前的文本内容。</br>建议通过onChange事件将状态变量与文本实时绑定，</br>避免组件刷新时TextInput中的文本内容异常。<br />从API version 10开始，该参数支持[$$](../../../ui/state-management/arkts-two-way-sync.md)双向绑定变量。 |
 | controller<sup>8+</sup> | [TextInputController](#textinputcontroller8) | 否    | 设置TextInput控制器。                          |
 
 ## 属性
@@ -365,7 +365,7 @@ caretPosition(value: number)
 
 | 参数名 | 类型   | 必填 | 说明         |
 | ------ | ------ | ---- | ------------ |
-| value  | number | 是   | 光标的位置。 |
+| value  | number | 是   | 光标的位置。<br/>第一个字符前的位置是0。 |
 
 ### showUnit<sup>10+</sup>
 
@@ -405,7 +405,9 @@ showError(value?: ResourceStr | undefined)
 
 showUnderline(value: boolean)
 
-设置是否开启下划线。下划线默认颜色为'#33182431'，默认粗细为1px，文本框尺寸48vp，下划线只支持InputType.Normal类型。
+设置是否开启下划线。
+
+下划线默认颜色为'#33182431'，默认粗细为1px，文本框尺寸48vp，下划线只支持InputType.Normal类型。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -453,13 +455,13 @@ enableKeyboardOnFocus(value: boolean)
 
 | 参数名 | 类型    | 必填 | 说明                                                        |
 | ------ | ------- | ---- | ----------------------------------------------------------- |
-| value  | boolean | 是   | 通过点击以外的方式获焦时，是否主动拉起软键盘。<br/>默认值：true |
+| value  | boolean | 是   | 通过点击以外的方式获焦时，是否主动拉起软键盘。<br/>true表示主动拉起软键盘，false表示不主动拉起。<br/>默认值：true |
 
 ### selectionMenuHidden<sup>10+</sup>
 
 selectionMenuHidden(value: boolean)
 
-设置是否不弹出系统文本选择菜单。
+设置是否隐藏系统文本选择菜单。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -469,7 +471,7 @@ selectionMenuHidden(value: boolean)
 
 | 参数名 | 类型    | 必填 | 说明                                                         |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
-| value  | boolean | 是   | 是否不弹出系统文本选择菜单。<br />设置为true时，单击输入框光标、长按输入框、双击输入框、三击输入框或者右键输入框，不弹出系统文本选择菜单。<br />设置为false时，弹出系统文本选择菜单。<br />默认值：false |
+| value  | boolean | 是   | 是否隐藏系统文本选择菜单。<br />设置为true时，单击输入框光标、长按输入框、双击输入框、三击输入框或者右键输入框，隐藏系统文本选择菜单。<br />设置为false时，显示系统文本选择菜单。<br />默认值：false |
 
 ### barState<sup>10+</sup>
 
@@ -596,7 +598,7 @@ selectAll(value: boolean)
 
 | 参数名 | 类型    | 必填 | 说明                              |
 | ------ | ------- | ---- | --------------------------------- |
-| value  | boolean | 是   | 是否全选文本。<br />默认值：false |
+| value  | boolean | 是   | 是否全选文本。<br/>true表示会全选文本，false表示不会全选文本。<br />默认值：false |
 
 ### showCounter<sup>11+</sup>
 
@@ -699,7 +701,7 @@ letterSpacing(value: number | string | Resource)
 
 | 参数名 | 类型                       | 必填 | 说明           |
 | ------ | -------------------------- | ---- | -------------- |
-| value  | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 是   | 文本字符间距。<br/>单位：fp |
+| value  | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 是   | 文本字符间距。<br/>单位：[fp](ts-pixel-units.md#像素单位) |
 
 ### fontFeature<sup>12+</sup>
 
@@ -758,7 +760,7 @@ textOverflow(value: TextOverflow)
 
 设置文本超长时的显示方式。仅在内联模式的编辑态、非编辑态下支持。
 
-文本截断是按字截断。例如，英文以单词为最小单位进行截断，若需要以字母为单位进行截断，wordBreak属性可设置为WordBreak.BREAK_ALL。
+文本截断是按字进行。例如，英文以单词为最小单位进行截断，若需要以字母为单位进行截断，可将wordBreak属性设置为WordBreak.BREAK_ALL。
 
 当overflow设置TextOverflow.None与TextOverflow.Clip效果一样。
 
@@ -809,7 +811,7 @@ minFontSize(value: number | string | Resource)
 
 | 参数名 | 类型                                                         | 必填 | 说明               |
 | ------ | ------------------------------------------------------------ | ---- | ------------------ |
-| value  | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 是   | 文本最小显示字号。<br/>单位：fp |
+| value  | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 是   | 文本最小显示字号。<br/>单位：[fp](ts-pixel-units.md#像素单位) |
 
 ### maxFontSize<sup>12+</sup>
 
@@ -829,7 +831,7 @@ maxFontSize(value: number | string | Resource)
 
 | 参数名 | 类型                                                         | 必填 | 说明               |
 | ------ | ------------------------------------------------------------ | ---- | ------------------ |
-| value  | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 是   | 文本最大显示字号。<br/>单位：fp |
+| value  | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 是   | 文本最大显示字号。<br/>单位：[fp](ts-pixel-units.md#像素单位) |
 
 ### heightAdaptivePolicy<sup>12+</sup>
 
@@ -877,7 +879,7 @@ showPassword(visible: boolean)
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| visible  | boolean | 是  | 是否显示密码。<br/>默认值：false |
+| visible  | boolean | 是  | 是否显示密码。<br/>true表示会显示密码，false表示不会显示密码。<br/>默认值：false |
 
 ### lineBreakStrategy<sup>12+</sup>
 
@@ -893,7 +895,7 @@ lineBreakStrategy(strategy: LineBreakStrategy)
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| strategy | [LineBreakStrategy](ts-appendix-enums.md#linebreakstrategy12) | 是   | 文本的折行规则。 <br />默认值：LineBreakStrategy.GREEDY <br/>**说明：**<br/> 非Inline模式该属性不生效 |
+| strategy | [LineBreakStrategy](ts-appendix-enums.md#linebreakstrategy12) | 是   | 文本的折行规则。 <br />默认值：LineBreakStrategy.GREEDY <br/>**说明：**<br/>仅设置内联模式时该属性生效。 |
 
 ### editMenuOptions<sup>12+</sup>
 
@@ -927,7 +929,7 @@ enablePreviewText(enable: boolean)
 
 | 参数名 | 类型    | 必填 | 说明                               |
 | ------ | ------- | ---- | ---------------------------------- |
-| enable | boolean | 是   | 是否开启输入预上屏。<br/>默认值：true |
+| enable | boolean | 是   | 是否开启输入预上屏。<br/>true表示开启输入预上屏，false表示不开启输入预上屏。<br/>默认值：true |
 
 ### enableHapticFeedback<sup>13+</sup>
 
@@ -943,11 +945,11 @@ enableHapticFeedback(isEnabled: boolean)
 
 | 参数名 | 类型    | 必填 | 说明                               |
 | ------ | ------- | ---- | ---------------------------------- |
-| isEnabled | boolean | 是   | 是否开启触控反馈。<br/>默认值：true |
+| isEnabled | boolean | 是   | 是否开启触控反馈。<br/>true表示开启触控反馈，false表示不开启触控反馈。<br/>默认值：true |
 
 >  **说明：**
 >
->  开启触控反馈时，需要在工程的module.json5中配置requestPermissions字段开启振动权限，配置如下：
+>  开启触控反馈时，需要在工程的module.json5中配置requestPermissions字段以开启振动权限，配置如下：
 > ```json
 > "requestPermissions": [
 >  {
@@ -986,7 +988,7 @@ stopBackPress(isStopped: Optional\<boolean>)
 
 | 参数名 | 类型                                                | 必填 | 说明                                      |
 | ------ | --------------------------------------------------- | ---- | ----------------------------------------- |
-| isStopped  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<boolean> | 是   | 是否消费返回键。 <br />默认值：true |
+| isStopped  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<boolean> | 是   | 是否阻止返回键。<br/>true表示阻止返回键向其它组件或应用侧传递，false表示不阻止。<br />默认值：true |
 
 ## InputType枚举说明
 
@@ -1200,7 +1202,7 @@ onPaste(callback:&nbsp;(value:&nbsp;string, event:&nbsp;PasteEvent)&nbsp;=&gt;&n
 
 onTextSelectionChange(callback: (selectionStart: number, selectionEnd: number) => void)
 
-文本选择的位置发生变化或编辑状态下光标位置发生变化时，触发该回调。
+文本选择的位置或编辑状态下光标位置发生变化时，触发该回调。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -1337,8 +1339,8 @@ TextInput组件的控制器继承自[TextContentControllerBase](ts-types.md#text
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 ### 导入对象
-```
-controller: TextInputController = new TextInputController()
+```ts
+controller: TextInputController = new TextInputController();
 ```
 
 ### constructor<sup>8+</sup>
@@ -1390,7 +1392,7 @@ setTextSelection(selectionStart:&nbsp;number, selectionEnd:&nbsp;number, options
 >
 >  如果selectionMenuHidden被赋值为true或设备为2in1时，即使options被赋值为MenuPolicy.SHOW，调用setTextSelection也不弹出菜单。
 >
->  如果选中的文本含有emoji表情时，表情的起始位置包含在设置的文本选中区域内就会被选中。
+>  如果emoji表情被选中区域截断时，表情的起始位置包含在设置的文本选中区域内就会被选中。
 
 ### stopEditing<sup>10+</sup>
 
@@ -1454,10 +1456,10 @@ keepEditableState(): void
 @Entry
 @Component
 struct TextInputExample {
-  @State text: string = ''
-  @State positionInfo: CaretOffset = { index: 0, x: 0, y: 0 }
-  @State passwordState: boolean = false
-  controller: TextInputController = new TextInputController()
+  @State text: string = '';
+  @State positionInfo: CaretOffset = { index: 0, x: 0, y: 0 };
+  @State passwordState: boolean = false;
+  controller: TextInputController = new TextInputController();
 
   build() {
     Column() {
@@ -1471,22 +1473,22 @@ struct TextInputExample {
         .fontSize(14)
         .fontColor(Color.Black)
         .inputFilter('[a-z]', (e) => {
-          console.log(JSON.stringify(e))
+          console.log(JSON.stringify(e));
         })
         .onChange((value: string) => {
-          this.text = value
+          this.text = value;
         })
       Text(this.text)
       Button('Set caretPosition 1')
         .margin(15)
         .onClick(() => {
           // 将光标移动至第一个字符后
-          this.controller.caretPosition(1)
+          this.controller.caretPosition(1);
         })
       Button('Get CaretOffset')
         .margin(15)
         .onClick(() => {
-          this.positionInfo = this.controller.getCaretOffset()
+          this.positionInfo = this.controller.getCaretOffset();
         })
       // 密码输入框
       TextInput({ placeholder: 'input your password...' })
@@ -1499,8 +1501,8 @@ struct TextInputExample {
         .showPassword(this.passwordState)
         .onSecurityStateChange(((isShowPassword: boolean) => {
           // 更新密码显示状态
-          console.info('isShowPassword', isShowPassword)
-          this.passwordState = isShowPassword
+          console.info('isShowPassword', isShowPassword);
+          this.passwordState = isShowPassword;
         }))
       // 邮箱地址自动填充类型
       TextInput({ placeholder: 'input your email...' })
@@ -1588,7 +1590,7 @@ struct TextInputExample {
         .width(350)
         .showError(this.textError)
         .onChange((value: string) => {
-          this.text = value
+          this.text = value;
         })
         .onSubmit((enterKey: EnterKeyType, event: SubmitEvent) => {
           // 用户名不正确会清空输入框和用户名并提示错误文本
@@ -2251,7 +2253,7 @@ struct TextInputExample {
 @Entry
 @Component
 struct TextInputExample {
-  @State text: string = 'TextInput editMenuOptions'
+  @State text: string = 'TextInput editMenuOptions';
   onCreateMenu = (menuItems: Array<TextMenuItem>) => {
     let item1: TextMenuItem = {
       content: 'custom1',
@@ -2284,7 +2286,7 @@ struct TextInputExample {
   }
   @State editMenuOptions: EditMenuOptions = {
     onCreateMenu: this.onCreateMenu, onMenuItemClick: this.onMenuItemClick
-  }
+  };
 
   build() {
     Column() {
@@ -2410,3 +2412,43 @@ struct TextInputExample {
 ```
 
 ![TextInputEditChange](figures/TextInputEditChange.png)
+
+### 示例16（设置选中指定区域的文本内容）
+
+该示例通过setTextSelection方法展示如何设置选中指定区域的文本内容以及菜单的显隐策略。
+
+```ts
+// xxx.ets
+
+@Entry
+@Component
+struct TextInputExample {
+  controller: TextInputController = new TextInputController();
+  @State startIndex: number = 0;
+  @State endIndex: number = 0;
+
+  build() {
+    Column({ space: 3 }) {
+      Text('Selection start:' + this.startIndex + ' end:' + this.endIndex)
+      TextInput({ text: 'Hello World', controller: this.controller })
+        .width('95%')
+        .height(40)
+        .defaultFocus(true)
+        .enableKeyboardOnFocus(true)
+        .onTextSelectionChange((selectionStart: number, selectionEnd: number) => {
+          this.startIndex = selectionStart;
+          this.endIndex = selectionEnd;
+        })
+
+      Button('setTextSelection [0,3], set menuPolicy is MenuPolicy.SHOW')
+        .onClick(() => {
+          this.controller.setTextSelection(0, 3, { menuPolicy: MenuPolicy.SHOW });
+        })
+    }
+    .width('100%')
+    .height('100%')
+  }
+}
+```
+
+![textInputSetTextSelection](figures/textInputSetTextSelection.gif)

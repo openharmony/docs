@@ -4,7 +4,7 @@
 
 >  **说明：**
 >
->  该组件从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>  该组件从API version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 
 ## 子组件
@@ -26,7 +26,7 @@ Rating(options?: { rating: number, indicator?: boolean })
 
 | 参数名    | 类型    | 必填 | 说明                                                         |
 | --------- | ------- | ---- | ------------------------------------------------------------ |
-| rating    | number  | 是   | 设置并接收评分值。<br/>默认值：0<br/>取值范围： [0, stars]<br/>小于0取0，大于stars取最大值stars。<br />从API version 10开始，该参数支持[$$](../../../quick-start/arkts-two-way-sync.md)双向绑定变量。 |
+| rating    | number  | 是   | 设置并接收评分值。<br/>默认值：0<br/>取值范围： [0, stars]<br/>小于0取0，大于stars取最大值stars。<br />从API version 10开始，该参数支持[$$](../../../ui/state-management/arkts-two-way-sync.md)双向绑定变量。 |
 | indicator | boolean | 否   | 设置评分组件作为指示器使用，不可改变评分。<br/>默认值：false, 可进行评分<br/>**说明：** <br/>indicator=true时，默认组件高度height=12.0vp，组件width=height * stars。 <br/>indicator=false时，默认组件高度height=28.0vp，组件width=height * stars。 |
 
 ## 属性
@@ -109,7 +109,7 @@ contentModifier(modifier: ContentModifier\<RatingConfiguration>)
 
 | 参数名 | 类型                                          | 必填 | 说明                                             |
 | ------ | --------------------------------------------- | ---- | ------------------------------------------------ |
-| modifier  | [ContentModifier\<RatingConfiguration>](#ratingconfiguration12对象说明) | 是   | 在Rating组件上，定制内容区的方法。<br/>modifier: 内容修改器，开发者需要自定义class实现ContentModifier接口。 |
+| modifier  | [ContentModifier\<RatingConfiguration>](#ratingconfiguration12对象说明) | 是   | 在Rating组件上，定制内容区的方法。<br/>modifier：内容修改器，开发者需要自定义class实现ContentModifier接口。 |
 
 
 ## 事件
@@ -151,7 +151,7 @@ onChange(callback:(value:&nbsp;number)&nbsp;=&gt;&nbsp;void)
 
 | 名称  | 类型    |    只读    |    可选      |  说明              |
 | ------ | ------ | ------ |-------------------------------- |-------------------------------- |
-| rating | number | 否 | 否 | 设置并接收评分值。<br/>默认值：0<br/>取值范围： [0, stars]<br/>小于0取0，大于[stars](#stars)取最大值stars。<br />该参数支持[$$](../../../quick-start/arkts-two-way-sync.md)双向绑定变量。 |
+| rating | number | 否 | 否 | 设置并接收评分值。<br/>默认值：0<br/>取值范围： [0, stars]<br/>小于0取0，大于[stars](#stars)取最大值stars。<br />该参数支持[$$](../../../ui/state-management/arkts-two-way-sync.md)双向绑定变量。 |
 | indicator | boolean | 否 | 否 | 评分条是否作为一个指示器。值为true时，表示作为一个指示器，值为false时，表示不作为一个指示器。<br/>默认值：false |
 | stars | number | 否 | 否 |评分条的星级总数。<br/>默认值：5 |
 | stepSize | number | 否 | 否 |评分条的评分步长。<br/>默认值：0.5 |

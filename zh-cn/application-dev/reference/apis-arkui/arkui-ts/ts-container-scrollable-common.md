@@ -93,7 +93,7 @@ nestedScroll(value: NestedScrollOptions): T
 
 enableScrollInteraction(value: boolean): T
 
-设置是否支持滚动手势，当设置为false时，无法通过手指或者鼠标滚动，但不影响控制器的滚动接口。
+设置是否支持滚动手势。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -103,7 +103,7 @@ enableScrollInteraction(value: boolean): T
 
 | 参数名 | 类型    | 必填 | 说明                                |
 | ------ | ------- | ---- | ----------------------------------- |
-| value  | boolean | 是   | 是否支持滚动手势。<br/>默认值：true |
+| value  | boolean | 是   | 是否支持滚动手势。设置为true时可以通过手指或者鼠标滚动，设置为false时无法通过手指或者鼠标滚动，但不影响控制器[Scroller](ts-container-scroll.md#scroller)的滚动接口。<br/>默认值：true |
 
 ### friction<sup>11+</sup>
 
@@ -119,7 +119,7 @@ friction(value: number | Resource): T
 
 | 参数名 | 类型                                                 | 必填 | 说明                                                      |
 | ------ | ---------------------------------------------------- | ---- | --------------------------------------------------------- |
-| value  | number&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 是   | 摩擦系数。<br/>默认值：非可穿戴设备为0.6，可穿戴设备为0.9。<br/>从API version 11开始，非可穿戴设备默认值为0.7。<br/>从API version 12开始，非可穿戴设备默认值为0.75。 <br/>取值范围：(0, +∞)，设置为小于等于0的值时，按默认值处理。|
+| value  | number&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 是   | 摩擦系数。<br/>默认值：非wearable设备为0.6，wearable设备为0.9。<br/>从API version 11开始，非wearable设备默认值为0.7。<br/>从API version 12开始，非wearable设备默认值为0.75。 <br/>取值范围：(0, +∞)，设置为小于等于0的值时，按默认值处理。|
 
 ### flingSpeedLimit<sup>11+</sup>
 
@@ -151,7 +151,7 @@ fadingEdge(enabled: Optional&lt;boolean&gt;, options?: FadingEdgeOptions): T
 
 | 参数名  | 类型                                              | 必填 | 说明                                                         |
 | ------- | ------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| enabled | Optional&lt;boolean&gt;                           | 是   | fadingEdge生效时，会覆盖原组件的.overlay()属性。<br/>fadingEdge生效时，建议不在该组件上设置background相关属性，会影响渐隐的显示效果。<br/>fadingEdge生效时，组件会裁剪到边界，设置组件的clip属性为false不生效。<br/>默认值：false，不开启边缘渐隐效果。 |
+| enabled | Optional&lt;boolean&gt;                           | 是   | fadingEdge生效时，会覆盖原组件的.overlay()属性。<br/>fadingEdge生效时，建议不在该组件上设置background相关属性，会影响渐隐的显示效果。<br/>fadingEdge生效时，组件会裁剪到边界，设置组件的clip属性为false不生效。<br/>设置为true时开启边缘渐隐效果，设置为false时不开启边缘渐隐效果。<br/>默认值：false |
 | options | [FadingEdgeOptions](#fadingedgeoptions14对象说明) | 否   | 边缘渐隐参数对象。可以通过该对象定义边缘渐隐效果属性，比如设置渐隐长度。 |
 
 ### clipContent<sup>14+</sup>
@@ -186,7 +186,7 @@ backToTop(backToTop: boolean)
 
 | 参数名 | 类型    | 必填 | 说明                                           |
 | ------ | ------- | ---- | ---------------------------------------------- |
-| backToTop  | boolean | 是   | 设置滚动组件是否支持点击状态栏回到顶部。<br/>默认值: false |
+| backToTop  | boolean | 是   | 设置滚动组件是否支持点击状态栏回到顶部。设置为true支持点击状态栏回到顶部，设置为false不支持点击状态栏回到顶部。<br/>默认值：false |
 
 
 
@@ -340,7 +340,7 @@ onScroll(event: (scrollOffset: number, scrollState: ScrollState) => void): T
 
 | 参数名   | 类型  | 必填 | 描述              |
 | ----- | ------| ------- | ----------------- |
-| alwaysEnabled | boolean | 是 | 组件内容大小小于组件自身时，设置是否开启滑动效果。|
+| alwaysEnabled | boolean | 是 | 组件内容大小小于组件自身时，设置是否开启滑动效果。设置为true开启滑动效果，设置为false关闭滑动效果。|
 
 ## FadingEdgeOptions<sup>14+</sup>对象说明
 

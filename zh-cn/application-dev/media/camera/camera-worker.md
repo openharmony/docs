@@ -8,7 +8,7 @@
 
 1. 创建worker线程文件，配置worker。
 
-   DevEco Studio支持一键生成Worker，在对应的{moduleName}目录下任意位置，点击鼠标右键 > New > Worker，即可自动生成Worker的模板文件及配置信息，无需再手动在build-profile.json5中进行相关配置 。
+   DevEco Studio支持一键生成Worker，在对应的{moduleName}目录下任意位置，点击鼠标右键 > New > Worker，即可自动生成Worker的模板文件及配置信息，无需再手动在build-profile.json5中进行相关配置。
 
    CameraWorker.ets实现参考：
 
@@ -234,10 +234,10 @@
 
 ## trace对比
 
-不使用worker：
+不使用Worker：
 
 ![camera-in-ui-thread](figures/camera-in-ui-thread.png)
 
-使用woker：
+使用Worker：
 
 ![camera-in-worker-thread](figures/camera-in-worker-thread.png)

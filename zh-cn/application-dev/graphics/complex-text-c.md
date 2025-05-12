@@ -297,7 +297,7 @@ OH_Drawing_DestroyTypography(typography);
 OH_Drawing_TypographyStyle *typoStyle = OH_Drawing_CreateTypographyStyle();
 // 设置文本对齐方式为居中
 OH_Drawing_SetTypographyTextAlign(typoStyle, TEXT_ALIGN_CENTER);
-// 设文本内容
+// 设置文本内容
 const char *text = "1/2 1/3 1/4\n";
 
 // 设置文字颜色、大小、字重，不设置TextStyle无法绘制出文本
@@ -440,7 +440,7 @@ OH_Drawing_DestroyTypography(typography);
 
 **文本阴影**为文本提供了深度感，使得文本在背景上更具立体感。通常用于提升文本的视觉吸引力或增强可读性，尤其是在色彩对比度较低的场景下。
 
-其中，TesxtShadow有三个属性，分别为阴影颜色color、阴影基于当前文本的偏移位置point、阴影半径blurRadius。
+其中，TextShadow有三个属性，分别为阴影颜色color、阴影基于当前文本的偏移位置point、阴影半径blurRadius。
 
 使用阴影效果需要在文本样式中设置对应的阴影效果数组，从而在文本绘制时生效。
 
@@ -527,7 +527,7 @@ OH_Drawing_DestroyTypography(typography);
 
 占位符绘制用于处理文本中占位符符号的渲染。
 
-占位符也是用来实现图文混排的关键，是指在实际图像或内容注册之前，用来预先提供货替代某个位置的视觉元素。
+占位符也是用来实现图文混排的关键，是指在实际图像或内容注册之前，用来预先提供或替代某个位置的视觉元素。
 
 
 | 接口定义 | 描述 | 

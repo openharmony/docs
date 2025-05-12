@@ -19,7 +19,7 @@ import { calendarManager } from '@kit.CalendarKit'
 
 ## calendarManager.getCalendarManager
 
-getCalendarManager(context : Context): CalendarManager
+getCalendarManager(context: Context): CalendarManager
 
 Obtains a **CalendarManager** object based on the context.
 
@@ -587,7 +587,7 @@ Creates a single event. If the input parameter **Event** is not set to the event
 
 | Type          | Description                                                                         |
 | -------------- |-----------------------------------------------------------------------------|
-| Promise&lt;number&gt; | Promise used to return the event ID. The event ID is the unique identifier of the event and is the auto-increment primary key of the database. If the value is less than **0**, the event creation fails; if the value is greater than **0**, the event creation succeeds.|
+| Promise&lt;number&gt; | Promise used to return the event ID. The event ID is the unique identifier of an event and is the auto-increment primary key of the database. If the event creation fails, no value is returned; if the value is less than **0**, the event creation is canceled; if the value is greater than **0**, the event creation is successful. The return value cannot be **0**|
 
 **Example**
 
@@ -1180,8 +1180,6 @@ getEvents(callback: AsyncCallback\<Event[]>): void
 
 Obtains all events in the current calendar. This API uses an asynchronous callback to return the result.
 
-If there is only one input parameter, the filter criteria, corresponding to the type **EventFilter**, must be set as the parameter.
-
 **System capability**: SystemCapability.Applications.CalendarData
 
 **Parameters**
@@ -1283,7 +1281,6 @@ calendarMgr?.getCalendar(async (err: BusinessError, data:calendarManager.Calenda
 getEvents(eventFilter?: EventFilter, eventKey?: (keyof Event)[]): Promise\<Event[]>
 
 Obtains all events in a calendar that match the filter criteria. This API uses a promise to return the result.
-
 If there is only one input parameter, the filter criteria, corresponding to the type **EventFilter**, must be set as the parameter.
 
 **System capability**: SystemCapability.Applications.CalendarData
