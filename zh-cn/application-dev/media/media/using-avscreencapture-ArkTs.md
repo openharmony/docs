@@ -34,6 +34,7 @@
 
     ```javascript
     import media from '@ohos.multimedia.media';
+    import fs from '@ohos.file.fs';
     ```
 
 2. 创建AVScreenCaptureRecorder类型的成员变量screenCapture。
@@ -172,7 +173,7 @@
 
 ```javascript
 import media from '@ohos.multimedia.media';
-import { common } from '@kit.AbilityKit';
+import fs from '@ohos.file.fs';
 
 export class AVScreenCaptureDemo {
   private screenCapture?: media.AVScreenCaptureRecorder;
