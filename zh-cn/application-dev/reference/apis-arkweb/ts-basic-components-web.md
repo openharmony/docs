@@ -2736,7 +2736,7 @@ onAdsBlocked(callback: OnAdsBlockedCallback)
 
 | 参数名    | 类型   | 必填   | 说明                  |
 | ------ | ------ | ---- | --------------------- |
-| callback       | [OnAdsBlockedCallback](#onadsblockedcallback12) | 是 | onAdsBlocked的回调。 |
+| callback       | [OnAdsBlockedCallback](#onadsblockedcallback12) | 是 | 广告过滤的回调。 |
 
 **示例：**
 
