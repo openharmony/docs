@@ -35,7 +35,7 @@ target_link_libraries(entry PUBLIC libohcrypto.so)
 
 **销毁对象**
 
-调用[OH_CryptoSymKeyGenerator_Destroy](../../reference/apis-crypto-architecture-kit/_crypto_sym_key_api.md#oh_cryptosymkeygenerator_destroy)、[OH_CryptoSymCipher_Destroy](../../reference/apis-crypto-architecture-kit/_crypto_sym_cipher_api.md#oh_cryptosymcipher_destroy)、[OH_CryptoSymKey_Destroy](../../reference/apis-crypto-architecture-kit/_crypto_sym_key_api.md#oh_cryptosymkey_destroy)、[OH_Crypto_FreeDataBlob](../../reference/apis-crypto-architecture-kit/_crypto_common_api.md#oh_crypto_freedatablob)释放申请的内存，释放对象。。
+调用[OH_CryptoSymKeyGenerator_Destroy](../../reference/apis-crypto-architecture-kit/_crypto_sym_key_api.md#oh_cryptosymkeygenerator_destroy)、[OH_CryptoSymCipher_Destroy](../../reference/apis-crypto-architecture-kit/_crypto_sym_cipher_api.md#oh_cryptosymcipher_destroy)、[OH_CryptoSymKey_Destroy](../../reference/apis-crypto-architecture-kit/_crypto_sym_key_api.md#oh_cryptosymkey_destroy)、[OH_Crypto_FreeDataBlob](../../reference/apis-crypto-architecture-kit/_crypto_common_api.md#oh_crypto_freedatablob)释放申请的内存，释放对象。
 
 ```c++
 #include "CryptoArchitectureKit/crypto_common.h"

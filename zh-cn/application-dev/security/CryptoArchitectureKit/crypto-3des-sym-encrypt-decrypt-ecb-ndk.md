@@ -11,13 +11,13 @@ target_link_libraries(entry PUBLIC libohcrypto.so)
 
 **创建对象**
 
-调用[OH_CryptoSymKeyGenerator_Create](../../reference/apis-crypto-architecture-kit/_crypto_sym_key_api.md#oh_cryptosymkeygenerator_create)、[OH_CryptoSymKeyGenerator_Generate](../../reference/apis-crypto-architecture-kit/_crypto_sym_key_api.md#oh_cryptosymkeygenerator_generate)，生成密钥算法为3DES、密钥长度为 192 位的对称密钥（OH_CryptoSymKey）。
+调用[OH_CryptoSymKeyGenerator_Create](../../reference/apis-crypto-architecture-kit/_crypto_sym_key_api.md#oh_cryptosymkeygenerator_create)、[OH_CryptoSymKeyGenerator_Generate](../../reference/apis-crypto-architecture-kit/_crypto_sym_key_api.md#oh_cryptosymkeygenerator_generate)，生成密钥算法为3DES、密钥长度为192位的对称密钥（OH_CryptoSymKey）。
    
    如何生成3DES对称密钥，开发者可参考下文示例，并结合[对称密钥生成和转换规格：3DES](crypto-sym-key-generation-conversion-spec.md#3des)和[指定二进制数据转换对称密钥](crypto-convert-binary-data-to-sym-key-ndk.md)理解，参考文档与当前示例可能存在入参差异，请注意区分。
 
 **加密**
 
-1. 调用[OH_CryptoSymCipher_Create](../../reference/apis-crypto-architecture-kit/_crypto_sym_cipher_api.md#oh_cryptosymcipher_create)，指定字符串参数'3DES192|ECB|PKCS7'，创建对称密钥类型为3DES192、模式为ECB、填充模式为PKCS7的Cipher实例，用于完成加密操作。
+1. 调用[OH_CryptoSymCipher_Create](../../reference/apis-crypto-architecture-kit/_crypto_sym_cipher_api.md#oh_cryptosymcipher_create)，指定字符串参数'3DES192|ECB|PKCS7'，创建对称密钥类型为3DES192、分组模式为ECB、填充模式为PKCS7的Cipher实例，用于完成加密操作。
 
 2. 调用[OH_CryptoSymCipher_Init](../../reference/apis-crypto-architecture-kit/_crypto_sym_cipher_api.md#oh_cryptosymcipher_init)，设置模式为加密（CRYPTO_ENCRYPT_MODE），指定加密密钥（OH_CryptoSymKey），初始化加密Cipher实例。
    
@@ -25,8 +25,8 @@ target_link_libraries(entry PUBLIC libohcrypto.so)
 
 3. 调用[OH_CryptoSymCipher_Update](../../reference/apis-crypto-architecture-kit/_crypto_sym_cipher_api.md#oh_cryptosymcipher_update)，更新数据。
    
-   - 当数据量小于1KB时，可以在init完成后直接调用final。
-   - 当数据量大于1KB时，可以多次调用update，即分段加密。
+   - 当数据量较小时，可以在init完成后直接调用final。
+   - 当数据量较大时，可以多次调用update，即分段加密。
 
 4. 调用[OH_CryptoSymCipher_Final](../../reference/apis-crypto-architecture-kit/_crypto_sym_cipher_api.md#oh_cryptosymcipher_final)，获取加密后的数据。
    
@@ -41,8 +41,8 @@ target_link_libraries(entry PUBLIC libohcrypto.so)
 
 3. 调用[OH_CryptoSymCipher_Update](../../reference/apis-crypto-architecture-kit/_crypto_sym_cipher_api.md#oh_cryptosymcipher_update)，更新数据。
    
-   - 当数据量小于1KB时，可以在init完成后直接调用final。
-   - 当数据量大于1KB时，可以多次调用update，即分段解密。
+   - 当数据量较小时，可以在init完成后直接调用final。
+   - 当数据量较大时，可以多次调用update，即分段解密。
    - 用户可以根据数据量大小自行决定操作方式。例如，当数据量超过20时，使用 update。
 
 4. 调用[OH_CryptoSymCipher_Final](../../reference/apis-crypto-architecture-kit/_crypto_sym_cipher_api.md#oh_cryptosymcipher_final)，获取解密数据。
@@ -58,7 +58,7 @@ target_link_libraries(entry PUBLIC libohcrypto.so)
 
 当前示例以ECB分组模式为例，不需要设置加解密参数。
 
-如果使用CBC、CTR、OFB、CFB分组模式，需设置加解密参数IV。请参考[设置加解密参数IV](#设置加解密参数iv)，并注意在生成和初始化Cipher实例时修改相关参数。
+如果使用CBC、CTR、OFB、CFB分组模式，需设置加解密参数IV。请参考[设置加解密参数IV](#设置加解密参数iv)，无论加密还是解密，在生成和初始化Cipher实例时均需修改相关参数。
 
 ```c++
 #include "CryptoArchitectureKit/crypto_common.h"
