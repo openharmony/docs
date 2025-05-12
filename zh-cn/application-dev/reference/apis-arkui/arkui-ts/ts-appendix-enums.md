@@ -836,7 +836,7 @@
 
 ## Nullable\<T><sup>11+</sup>
 
-type Nullable\<T> = T | undefined;
+type Nullable\<T> = T | undefined
 
 开发者在使用该类型时候，该类型的对象可以是自定义类型，也可以是undefined。
 

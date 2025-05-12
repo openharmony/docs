@@ -19,7 +19,7 @@ USB Serial DDK是为开发者提供的USB Serial DDK设备驱动程序开发套�
 | 名称 | 描述 | 
 | -------- | -------- |
 | [usb_serial_ddk_api.h](usb__serial__ddk__api_8h.md) | 声明用于主机侧访问串口设备的USB Serial DDK接口。<br/>引用文件：&lt;serial/usb_serial_ddk_api.h&gt;<br/>库： libusb_serial.z.so | 
-| [usb_serial_ddk_types.h](usb__serial__ddk__types_8h.md) | 提供USB Serial DDK中的枚举变量、结构体定义与宏定义。<br/>引用文件：&lt;serial/usb_serial_ddk_types.h&gt;<br/>库： libusb_serial.z.so | 
+| [usb_serial_types.h](usb__serial__ddk__types_8h.md) | 提供USB Serial DDK中的枚举变量、结构体定义与宏定义。<br/>引用文件：&lt;serial/usb_serial_types.h&gt;<br/>库： libusb_serial.z.so | 
 
 
 ### 结构体

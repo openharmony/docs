@@ -37,7 +37,7 @@
      }
    }
    // 设置像素属性
-   let opts: image.InitializationOptions = { editable: true, pixelFormat: image.PixelMapFormat.RGBA_8888, size: { height: height, width: width }}
+   let opts: image.InitializationOptions = { editable: true, pixelFormat: image.PixelMapFormat.RGBA_8888, size: { height: height, width: width }};
    // 创建PixelMap
    let pixelMap : image.PixelMap = image.createPixelMapSync(color, opts);
    ```

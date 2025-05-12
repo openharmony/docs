@@ -5,10 +5,7 @@ Node-API中的napi_load_module_with_info接口的功能是进行模块的加载�
 ## 函数说明
 
 ```cpp
-napi_status napi_load_module_with_info(napi_env env,
-                                       const char* path,
-                                       const char* module_info,
-                                       napi_value* result);
+napi_status napi_load_module_with_info(napi_env env, const char* path, const char* module_info, napi_value* result);
 ```
 
 | 参数            | 说明          |
@@ -84,43 +81,43 @@ export {value, test};
     >开启useNormalizedOHMUrl后（即将工程目录中与entry同级别的应用级build-profile.json5文件中strictMode属性的useNormalizedOHMUrl字段配置为true），加载模块内文件路径时：1. bundleName不会影响最终加载逻辑，会智能通过module名索引进程内对应的hap，例如：工程的bundleName为com.example.application，实际入参时填写为 com.example.application1，模块也能正常加载。2. 路径需要以packageName开头，packageName指的是模块的oh-package.json5中配置的name字段。
 
 
-    ```cpp
-    static napi_value loadModule(napi_env env, napi_callback_info info) {
-        napi_value result;
-        // 1. 使用napi_load_module_with_info加载Test文件中的模块
-        napi_status status = napi_load_module_with_info(env, "entry/src/main/ets/Test", "com.example.application/entry", &result);
-        if (status != napi_ok) {
-           return nullptr;
-        }
-
-        napi_value testFn;
-        // 2. 使用napi_get_named_property获取test函数
-        napi_get_named_property(env, result, "test", &testFn);
-        // 3. 使用napi_call_function调用函数test
-        napi_call_function(env, result, testFn, 0, nullptr, nullptr);
-
-        napi_value value;
-        napi_value key;
-        std::string keyStr = "value";
-        napi_create_string_utf8(env, keyStr.c_str(), keyStr.size(), &key);
-        // 4. 使用napi_get_property获取变量value
-        napi_get_property(env, result, key, &value);
-        return result;
+~~~c++
+static napi_value loadModule(napi_env env, napi_callback_info info) {
+    napi_value result;
+    // 1. 使用napi_load_module_with_info加载Test文件中的模块
+    napi_status status = napi_load_module_with_info(env, "entry/src/main/ets/Test", "com.example.application/entry", &result);
+    if (status != napi_ok) {
+       return nullptr;
     }
-    ```
+
+    napi_value testFn;
+    // 2. 使用napi_get_named_property获取test函数
+    napi_get_named_property(env, result, "test", &testFn);
+    // 3. 使用napi_call_function调用函数test
+    napi_call_function(env, result, testFn, 0, nullptr, nullptr);
+
+    napi_value value;
+    napi_value key;
+    std::string keyStr = "value";
+    napi_create_string_utf8(env, keyStr.c_str(), keyStr.size(), &key);
+    // 4. 使用napi_get_property获取变量value
+    napi_get_property(env, result, key, &value);
+    return result;
+}
+~~~
 
 - **加载源码HAR模块**
 
 HAR包Index.ets文件如下：
 
-    ```javascript
-    //library Index.ets
-    let value = 123;
-    function test() {
-        console.log("Hello OpenHarmony");
-    }
-    export {value, test};
-    ```
+```javascript
+//library Index.ets
+let value = 123;
+function test() {
+    console.log("Hello OpenHarmony");
+}
+export {value, test};
+```
 
 1. 在oh-package.json5文件中配置dependencies项：
 

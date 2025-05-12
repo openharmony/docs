@@ -22,7 +22,7 @@ XComponent(options: XComponentOptions)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**参数:**
+**参数：**
 
 | 参数名  | 类型                                | 必填 | 说明                           |
 | ------- | --------------------------------------- | ---- | ------------------------------ |
@@ -40,7 +40,7 @@ XComponent(value: {id: string, type: XComponentType, libraryname?: string, contr
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**参数:** 
+**参数：** 
 
 | 参数名      | 类型                                      | 必填 | 说明                                                         |
 | ----------- | --------------------------------------------- | ---- | ------------------------------------------------------------ |
@@ -59,7 +59,7 @@ XComponent(value: {id: string, type: string, libraryname?: string, controller?: 
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**参数:** 
+**参数：** 
 
 | 参数名      | 类型                                      | 必填 | 说明                                                         |
 | ----------- | --------------------------------------------- | ---- | ------------------------------------------------------------ |
@@ -160,7 +160,7 @@ onLoad(callback: OnNativeLoadCallback )
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**参数:**
+**参数：**
 
 | 参数名   | 类型   | 必填   | 说明                                       |
 | ----- | ------ | ---- | ---------------------------------------- |
@@ -168,7 +168,7 @@ onLoad(callback: OnNativeLoadCallback )
 
 > **说明：**
 > 
-> 使用自定义组件节点创建XComponent组件时，因为onLoad回调触发时机早于[onSurfaceCreated](#onsurfacecreated12),所以在onLoad回调中调用[getXComponentSurfaceId](#getxcomponentsurfaceid9)获取surfaceId会失败，建议在[onSurfaceCreated](#onsurfacecreated12)回调中获取。
+> 使用自定义组件节点创建XComponent组件时，因为onLoad回调触发时机早于[onSurfaceCreated](#onsurfacecreated12)，所以在onLoad回调中调用[getXComponentSurfaceId](#getxcomponentsurfaceid9)获取surfaceId会失败，建议在[onSurfaceCreated](#onsurfacecreated12)回调中获取。
 
 ### onDestroy
 
@@ -180,7 +180,7 @@ onDestroy(event: VoidCallback )
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**参数:**
+**参数：**
 
 | 参数名   | 类型   | 必填   | 说明                                       |
 | ----- | ------ | ---- | ---------------------------------------- |
@@ -196,7 +196,7 @@ XComponent持有的Surface创建后回调事件。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**参数:**
+**参数：**
 
 | 参数名   | 类型   | 必填   | 说明                                       |
 | ----- | ------ | ---- | ---------------------------------------- |
@@ -236,7 +236,7 @@ getXComponentSurfaceId(): string
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**返回值:**
+**返回值：**
 
 | 类型     | 描述                      |
 | ------ | ----------------------- |
@@ -253,7 +253,7 @@ setXComponentSurfaceSize(value: {surfaceWidth: number, surfaceHeight: number}): 
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**参数:**
+**参数：**
 
 | 参数名           | 类型   | 必填   | 说明                      |
 | ------------- | ------ | ---- | ----------------------- |
@@ -271,7 +271,7 @@ getXComponentContext(): Object
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**返回值:**
+**返回值：**
 
 | 类型   | 描述                                                         |
 | ------ | ------------------------------------------------------------ |
@@ -287,7 +287,7 @@ setXComponentSurfaceRect(rect: SurfaceRect): void
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**参数:**
+**参数：**
 
 | 参数名 | 类型                             | 必填 | 说明                              |
 | ------ | ------------------------------------ | ---- | --------------------------------- |
@@ -311,7 +311,7 @@ getXComponentSurfaceRect(): SurfaceRect
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**返回值:**
+**返回值：**
 
 | 类型                                 | 描述                                  |
 | ------------------------------------ | ------------------------------------- |
@@ -327,7 +327,7 @@ onSurfaceCreated(surfaceId: string): void
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**参数:**
+**参数：**
 
 | 参数名    | 类型 | 必填 | 说明                                              |
 | --------- | -------- | ---- | ------------------------------------------------- |
@@ -347,7 +347,7 @@ onSurfaceChanged(surfaceId: string, rect: SurfaceRect): void
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**参数:**
+**参数：**
 
 | 参数名    | 类型                              | 必填 | 说明                                                    |
 | --------- | ------------------------------------- | ---- | ------------------------------------------------------- |
@@ -368,7 +368,7 @@ onSurfaceDestroyed(surfaceId: string): void
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**参数:**
+**参数：**
 
 | 参数名    | 类型 | 必填 | 说明                                              |
 | --------- | -------- | ---- | ------------------------------------------------- |
@@ -440,7 +440,7 @@ setXComponentSurfaceRotation(rotationOptions: SurfaceRotationOptions): void
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**参数:**
+**参数：**
 
 | 参数名 | 类型                             | 必填 | 说明                              |
 | ------ | ------------------------------------ | ---- | --------------------------------- |
@@ -466,7 +466,7 @@ getXComponentSurfaceRotation(): Required\<SurfaceRotationOptions>
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**返回值:**
+**返回值：**
 
 | 类型                                 | 描述                                  |
 | ------------------------------------ | ------------------------------------- |

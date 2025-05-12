@@ -65,12 +65,11 @@ for (int i = 0; i < 1000000; i++) {
 #### 使用案例1：保存 napi_value
 
 通过 napi_define_class 创建一个 constructor 并保存下来，后续可以通过保存的 constructor 调用 napi_new_instance 来创建实例。但是，如果 constructor 是以 napi_value 的形式保存下来，一旦超过了 native 方法的 scope，这个 constructor 就会被析构，后续再使用就会造成野指针。推荐写法如下：
-* 1、开发者可以改用 napi_ref 的形式把 constructor 保存下来;
+* 1、开发者可以改用 napi_ref 的形式把 constructor 保存下来；
 * 2、由开发者自己管理 constructor 对象的生命周期，不受 native 方法的 scope 限制。
 ```cpp
 // 1、开发者可以改用 napi_ref 的形式把 constructor 保存下来
-static napi_value TestDefineClass(napi_env env,
-                                  napi_callback_info info) {
+static napi_value TestDefineClass(napi_env env, napi_callback_info info) {
   napi_status status;
   napi_value result, return_value;
 
@@ -86,14 +85,7 @@ static napi_value TestDefineClass(napi_env env,
 
   NODE_API_CALL(env, napi_create_object(env, &return_value));
 
-  status = napi_define_class(NULL,
-                             "TrackedFunction",
-                             NAPI_AUTO_LENGTH,
-                             TestDefineClass,
-                             NULL,
-                             1,
-                             &property_descriptor,
-                             &result);
+  status = napi_define_class(NULL, "TrackedFunction", NAPI_AUTO_LENGTH, TestDefineClass, NULL, 1, &property_descriptor,&result);
   SaveConstructor(env, result);
   ...
 }
@@ -229,7 +221,7 @@ static napi_value addPromise(napi_env env, napi_callback_info info) {
 
 ```js
 import hilog from '@ohos.hilog';
-import testNapi from 'libentry.so'
+import testNapi from 'libentry.so';
 
 @Entry
 @Component
@@ -253,7 +245,7 @@ struct TestAdd {
 
 ### 指定异步任务调度优先级
 
-Function Flow 编程模型（[Function Flow Runtime，FFRT](https://gitee.com/openharmony/resourceschedule_ffrt/blob/master/docs/user_guide.md)）是一种基于任务和数据驱动的并发编程模型，允许开发者通过任务及其依赖关系描述的方式进行应用开发。方舟 ArkTS 运行时提供了扩展 qos 信息的接口，支持传入 qos，并调用 FFRT，根据系统资源使用情况降低功耗、提升性能。 
+Function Flow 编程模型（[Function Flow Runtime，FFRT](https://gitee.com/openharmony/resourceschedule_ffrt/blob/master/docs/ffrt-development-guideline.md)）是一种基于任务和数据驱动的并发编程模型，允许开发者通过任务及其依赖关系描述的方式进行应用开发。方舟 ArkTS 运行时提供了扩展 qos 信息的接口，支持传入 qos，并调用 FFRT，根据系统资源使用情况降低功耗、提升性能。 
 
 * 接口示例：napi_status napi_queue_async_work_with_qos(napi_env env, napi_async_work work, napi_qos_t qos)（） 
   * [in] env:调用API的环境；
@@ -305,7 +297,7 @@ static napi_value Test(napi_env env, napi_callback_info info) {
 #### ArkTS 侧传入回调函数
 ```JS
 struct Index {
-  @State message: string = 'Hello World'
+  @State message: string = 'Hello World';
 
   build() {
     Row() {

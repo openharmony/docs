@@ -38,18 +38,18 @@ The following table lists the APIs used for KV data persistence. Most of the API
 
    Stage model:
 
-     
+
    ```js
    // Import the module.
    import { distributedKVStore } from '@kit.ArkData';
-   
+
    // Stage model
    import { window } from '@kit.ArkUI';
    import { UIAbility } from '@kit.AbilityKit';
    import { BusinessError } from '@kit.BasicServicesKit';
-   
+
    let kvManager: distributedKVStore.KVManager | undefined = undefined;
-   
+
    export default class EntryAbility extends UIAbility {
      onCreate() {
        let context = this.context;
@@ -62,30 +62,30 @@ The following table lists the APIs used for KV data persistence. Most of the API
          kvManager = distributedKVStore.createKVManager(kvManagerConfig);
          console.info('Succeeded in creating KVManager.');
          // Create and obtain the database.
+         if (kvManager !== undefined) {
+           kvManager = kvManager as distributedKVStore.KVManager;
+          // Perform subsequent operations.
+          //...
+         }
        } catch (e) {
          let error = e as BusinessError;
          console.error(`Failed to create KVManager. Code:${error.code},message:${error.message}`);
        }
      }
    }
-   if (kvManager !== undefined) {
-      kvManager = kvManager as distributedKVStore.KVManager;
-     // Perform subsequent operations.
-     //...
-   }
    ```
 
    FA model:
 
-     
+
    ```js
    // Import the module.
    import { distributedKVStore } from '@kit.ArkData';
-   
+
    // FA model
    import { featureAbility } from '@kit.AbilityKit';
    import { BusinessError } from '@kit.BasicServicesKit';
-   
+
    let kvManager: distributedKVStore.KVManager | undefined = undefined;
    let context = featureAbility.getContext(); // Obtain the context.
    const kvManagerConfig: distributedKVStore.KVManagerConfig = {
@@ -109,7 +109,7 @@ The following table lists the APIs used for KV data persistence. Most of the API
    ```
 
 2. Create and obtain a KV store. <br>Example:
-     
+
    ```js
    let kvStore: distributedKVStore.SingleKVStore | undefined = undefined;
    try {
@@ -131,21 +131,22 @@ The following table lists the APIs used for KV data persistence. Most of the API
        console.info('Succeeded in getting KVStore.');
        kvStore = store;
        // Before performing related data operations, obtain a KV store instance.
+       if (kvStore !== undefined) {
+         kvStore = kvStore as distributedKVStore.SingleKVStore;
+           // Perform subsequent operations.
+           //...
+       }
      });
    } catch (e) {
      let error = e as BusinessError;
      console.error(`An unexpected error occurred. Code:${error.code},message:${error.message}`);
    }
-   if (kvStore !== undefined) {
-     kvStore = kvStore as distributedKVStore.SingleKVStore;
-       // Perform subsequent operations.
-       //...
-   }
    ```
 
 3. Use **put()** to add data to the KV store. <br>Example:
-     
+
    ```js
+   kvStore = kvStore as distributedKVStore.SingleKVStore;
    const KEY_TEST_STRING_ELEMENT = 'key_test_string';
    const VALUE_TEST_STRING_ELEMENT = 'value_test_string';
    try {
@@ -167,9 +168,10 @@ The following table lists the APIs used for KV data persistence. Most of the API
    > The **put()** method adds a KV pair if the specified key does not exists and changes the value if the the specified key already exists.
 
 4. Use **get()** to obtain the value of a key. <br>Example:
-     
+
    ```js
    try {
+     kvStore = kvStore as distributedKVStore.SingleKVStore;
      kvStore.put(KEY_TEST_STRING_ELEMENT, VALUE_TEST_STRING_ELEMENT, (err) => {
        if (err !== undefined) {
          console.error(`Failed to put data. Code:${err.code},message:${err.message}`);
@@ -192,9 +194,10 @@ The following table lists the APIs used for KV data persistence. Most of the API
    ```
 
 5. Use **delete()** to delete the data of the specified key. <br>Example:
-     
+
    ```js
    try {
+     kvStore = kvStore as distributedKVStore.SingleKVStore;
      kvStore.put(KEY_TEST_STRING_ELEMENT, VALUE_TEST_STRING_ELEMENT, (err) => {
        if (err !== undefined) {
          console.error(`Failed to put data. Code:${err.code},message:${err.message}`);
@@ -217,9 +220,11 @@ The following table lists the APIs used for KV data persistence. Most of the API
    ```
 
 6. Close the distributed KV store of the given **storeId**. <br>Example:
-     
+
     ```js
     try {
+      // appId is the bundle name of the application.
+      kvManager = kvManager as distributedKVStore.KVManager;
       kvStore = undefined;
       kvManager.closeKVStore('appId', 'storeId', (err: BusinessError)=> {
         if (err) {
@@ -235,16 +240,18 @@ The following table lists the APIs used for KV data persistence. Most of the API
     ```
 
 7. Delete the distributed KV store of the given **storeId**. <br>Example:
-     
+
     ```js
     try {
+      // appId is the bundle name of the application.
+      kvManager = kvManager as distributedKVStore.KVManager;
       kvStore = undefined;
       kvManager.deleteKVStore('appId', 'storeId', (err: BusinessError)=> {
         if (err) {
-          console.error(`Failed to close KVStore.code is ${err.code},message is ${err.message}`);
+          console.error(`Failed to delete KVStore.code is ${err.code},message is ${err.message}`);
           return;
         }
-        console.info('Succeeded in closing KVStore');
+        console.info('Succeeded in deleting KVStore');
       });
     } catch (e) {
       let error = e as BusinessError;

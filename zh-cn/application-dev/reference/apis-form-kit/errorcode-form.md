@@ -4,24 +4,6 @@
 >
 > 以下仅介绍本模块特有错误码，通用错误码请参考[通用错误码说明文档](../errorcode-universal.md)。
 
-## 16500001 内部错误
-
-**错误信息**
-
-Internal error.
-
-**错误描述**
-
-Malloc等内核通用错误。
-
-**可能原因**
-
-当前内存不足。
-
-**处理步骤**
-
-内存不足，需要分析整个进程的内存占用情况，是否有内存泄露的情况。
-
 ## 16500050 进程间通信失败
 
 **错误信息**
@@ -149,33 +131,15 @@ The form cannot be operated by the current application.
 1. 检查传入卡片ID所有权。
 2. 升级权限为SystemApp。
 
-## 16501004 指定的ability未安装
+## 16501006 卡片渲染服务连接失败
 
 **错误信息**
 
-The ability is not installed.
+FormRenderService is stopped. Connect to the service again.
 
 **错误描述**
 
-当指定的ability未安装时，系统会报此错误码。
-
-**可能原因**
-
-指定的ability未安装。
-
-**处理步骤**
-
-检查传入的abilityName与bundleName是否有效。
-
-## 16501005 连接卡片渲染服务失败
-
-**错误信息**
-
-Failed to connect to FormRenderService.
-
-**错误描述**
-
-连接卡片渲染服务失败时，系统会报此错误码。
+无法连接卡片渲染服务时，系统会报此错误码。
 
 **可能原因**
 
@@ -184,6 +148,24 @@ Failed to connect to FormRenderService.
 **处理步骤**
 
 服务繁忙，请稍后重试。
+
+## 16501007 卡片不可信
+
+**错误信息**
+
+Form is not trust.
+
+**错误描述**
+
+卡片不受信任。
+
+**可能原因**
+
+卡片代码存在死循环、内存泄漏等问题导致系统异常。
+
+**处理步骤**
+
+检查卡片代码的死循环、内存泄漏等问题。
 
 ## 16501008 等待卡片加桌超时
 

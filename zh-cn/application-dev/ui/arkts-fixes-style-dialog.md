@@ -94,7 +94,7 @@ try {
 
 ### 生命周期
 
-弹窗提供了生命周期函数用于通知用户该弹窗的生命周期。
+弹窗提供了生命周期函数，用于通知用户该弹窗的生命周期。
 生命周期的触发顺序可看各组件API参考。
 
 | 名称            |类型| 说明                       |
@@ -108,7 +108,7 @@ try {
 
 日历选择器弹窗提供日历视图，包含年、月和星期信息，通过[CalendarPickerDialog](../reference/apis-arkui/arkui-ts/ts-methods-calendarpicker-dialog.md)接口实现。开发者可调用show函数，定义并弹出日历选择器弹窗。
 
-日历选择器弹窗的弹出依赖UI的执行上下文，不可在UI上下文不明确的地方使用，具体约束参见[UIContext](../reference/apis-arkui/js-apis-arkui-UIContext.md#uicontext)说明。
+日历选择器弹窗的弹出依赖UI的执行上下文，不可在[UI上下文不明确](./arkts-global-interface.md)的地方使用，具体约束参见[UIContext](../reference/apis-arkui/js-apis-arkui-UIContext.md#uicontext)说明。
 
 通过配置 acceptButtonStyle、cancelButtonStyle可以实现自定义按钮样式。
 
@@ -117,7 +117,7 @@ try {
 @Entry
 @Component
 struct CalendarPickerDialogExample {
-  private selectedDate: Date = new Date('2024-04-23')
+  private selectedDate: Date = new Date('2024-04-23');
 
   build() {
     Column() {
@@ -141,7 +141,7 @@ struct CalendarPickerDialogExample {
             },
             onAccept: (date: Date)=>{
               // 当弹出框再次弹出时显示选中的是上一次确定的日期
-              this.selectedDate = date
+              this.selectedDate = date;
             }
           })
         })
@@ -178,10 +178,10 @@ struct DatePickerDialogExample {
             lunarSwitch: true,
             showTime: true,
             onDateAccept: (value: Date) => {
-              this.selectTime = value
-              console.info("DatePickerDialog:onAccept()" + JSON.stringify(value))
+              this.selectTime = value;
+              console.info("DatePickerDialog:onAccept()" + JSON.stringify(value));
             },
-          })
+          });
         })
     }.width('100%').margin({ top: 5 })
   }
@@ -268,7 +268,7 @@ struct TimePickerDialogExample {
               backgroundColor: '#f7f7f7',
               borderRadius: 10
             }
-          })
+          });
         })
     }.width('100%').margin({ top: 5 })
   }
@@ -306,7 +306,7 @@ struct TextPickerDialogExample {
       children: [{ text: '哈尔滨市', children: [{ text: '道里区' }, { text: '道外区' }, { text: '南岗区' }] },
         { text: '牡丹江市', children: [{ text: '东安区' }, { text: '西安区' }, { text: '爱民区' }] }]
     }
-  ]
+  ];
   private select : number  = 0;
   build() {
     Column() {
@@ -319,7 +319,7 @@ struct TextPickerDialogExample {
             onAccept: (value: TextPickerResult) => {
               this.select = value.index as number
             }
-          })
+          });
         })
     }.width('100%').margin({ top: 5 })
   }
@@ -364,7 +364,7 @@ struct showActionSheetExample {
             confirm: {
               value: 'Confirm button',
               action: () => {
-                console.info('Get Alert Dialog handled')
+                console.info('Get Alert Dialog handled');
               }
             },
             alignment: DialogAlignment.Center,
@@ -382,11 +382,11 @@ struct showActionSheetExample {
               {
                 title: 'pears',
                 action: () => {
-                  console.log('pears')
+                  console.log('pears');
                 }
               }
             ]
-          })
+          });
         })
     }.width('100%').margin({ top: 5 })
   }
@@ -432,7 +432,7 @@ struct showAlertDialogExample {
               buttons: [{
                 value: 'cancel',
                 action: () => {
-                  console.info('Callback when the first button is clicked')
+                  console.info('Callback when the first button is clicked');
                 }
               },
                 {
@@ -441,11 +441,11 @@ struct showAlertDialogExample {
                   style: DialogButtonStyle.HIGHLIGHT,
                   value: 'ok',
                   action: () => {
-                    console.info('Callback when the second button is clicked')
+                    console.info('Callback when the second button is clicked');
                   }
                 }],
             }
-          )
+          );
         })
     }.width('100%').margin({ top: 5 })
   }

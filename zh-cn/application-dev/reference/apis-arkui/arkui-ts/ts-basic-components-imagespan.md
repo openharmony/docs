@@ -331,7 +331,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 @Entry
 @Component
 struct SpanExample {
-  @State imageAlt: PixelMap | undefined = undefined
+  @State imageAlt: PixelMap | undefined = undefined;
 
   httpRequest() {
     // 直接加载网络地址，请填写一个具体的网络图片地址

@@ -52,7 +52,7 @@ applyGesture(event: UIGestureEvent): void
 ```ts
 // xxx.ets
 class MyButtonModifier implements GestureModifier {
-  supportDoubleTap: boolean = true
+  supportDoubleTap: boolean = true;
 
   applyGesture(event: UIGestureEvent): void {
     if (this.supportDoubleTap) {
