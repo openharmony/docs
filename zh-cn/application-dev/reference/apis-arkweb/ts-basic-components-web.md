@@ -405,8 +405,8 @@ javaScriptProxy(javaScriptProxy: JavaScriptProxy)
 > **说明：**
 >
 > javaScriptProxy接口需要和deleteJavaScriptRegister接口配合使用，防止内存泄漏。
-> javaScriptProxy对象的所有参数不支持更新。
-> 注册对象时，同步与异步方法列表请至少选择一项不为空，可同时注册两类方法。
+> javaScriptProxy所有参数不支持更新。
+> 注册对象时，同步与异步列表请至少选择一项不为空，可同时注册两类方法。
 > 此接口只支持注册一个对象，若需要注册多个对象请使用[registerJavaScriptProxy<sup>9+</sup>](js-apis-webview.md#registerjavascriptproxy)。
 
 **系统能力：** SystemCapability.Web.Webview.Core
