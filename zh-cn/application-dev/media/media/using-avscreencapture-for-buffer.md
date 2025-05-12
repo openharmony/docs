@@ -495,8 +495,8 @@ void OnDisplaySelected(struct OH_AVScreenCapture *capture, uint64_t displayId, v
 }
 
 struct OH_AVScreenCapture *capture;
-// 开始录屏时调用StartScreencapture。
-static napi_value StartScreencapture(napi_env env, napi_callback_info info) {
+// 开始录屏时调用StartScreenCapture。
+static napi_value StartScreenCapture(napi_env env, napi_callback_info info) {
     // 从js端获取窗口id number[]。
     std::vector<int> windowIdsExclude = {};
     size_t argc = 1;
@@ -579,7 +579,7 @@ static napi_value StartScreencapture(napi_env env, napi_callback_info info) {
     // 可选 设置录屏时的最大帧率 需在启动后调用。
     // OH_AVScreenCapture_SetMaxVideoFrameRate(capture, 20);
 
-    // 结束录屏见StopScreencapture。
+    // 结束录屏见StopScreenCapture。
     
     // 返回调用结果，示例仅返回随意值。
     napi_value sum;
@@ -588,8 +588,8 @@ static napi_value StartScreencapture(napi_env env, napi_callback_info info) {
     return sum;
 }
 
-// 停止录屏时调用StopScreencapture。
-static napi_value StopScreencapture(napi_env env, napi_callback_info info) {
+// 停止录屏时调用StopScreenCapture。
+static napi_value StopScreenCapture(napi_env env, napi_callback_info info) {
     if (IsCaptureStreamRunning && capture != nullptr) {
         // 停止录屏。
         OH_AVScreenCapture_StopScreenCapture(capture);
@@ -613,8 +613,8 @@ static napi_value StopScreencapture(napi_env env, napi_callback_info info) {
 EXTERN_C_START
 static napi_value Init(napi_env env, napi_value exports) {
     napi_property_descriptor desc[] = {
-        {"startScreencapture", nullptr, StartScreencapture, nullptr, nullptr, nullptr, napi_default, nullptr},
-        {"stopScreencapture", nullptr, StopScreencapture, nullptr, nullptr, nullptr, napi_default, nullptr}};
+        {"startScreenCapture", nullptr, StartScreenCapture, nullptr, nullptr, nullptr, napi_default, nullptr},
+        {"stopScreenCapture", nullptr, StopScreenCapture, nullptr, nullptr, nullptr, napi_default, nullptr}};
     napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);
     return exports;
 }
