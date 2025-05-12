@@ -21,36 +21,11 @@ Modify the **"bundle-info"** &gt; **"apl"** field in the file.
 ```
 
 > **NOTE**
->
 > Modifying the HarmonyAppProvision configuration file applies to the applications in the debug phase, but not to the applications released to the app market. For a commercial application, apply for a release certificate and profile in the app market.
 
 <!--RP1End-->
 
 ## Restricted Permissions
-
-### ohos.permission.kernel.ALLOW_USER_JITFORT_INTERFACE
-
-Allows an application to call the JITFort API to update contents within memory marked as MAP_FORT.
-
-<!--RP12--><!--RP12End-->
-
-**Permission level**: system_basic
-
-**Authorization mode**: system_grant
-
-**Valid since**: 16
-
-### ohos.permission.kernel.DISABLE_GOTPLT_RO_PROTECTION
-
-Allows an application to disable the read-only protection on the .got.plt.
-
-<!--RP22--><!--RP22End-->
-
-**Permission level**: system_basic
-
-**Authorization mode**: system_grant
-
-**Valid since**: 17
 
 ### ohos.permission.SYSTEM_FLOAT_WINDOW
 
@@ -513,6 +488,30 @@ This permission is required for the applications that need to use private networ
 **Authorization mode**: system_grant
 
 **Valid since**: 16
+
+### ohos.permission.kernel.ALLOW_USE_JITFORT_INTERFACE
+
+Allows an application to call the JITFort API to update the content in MAP_FORT.
+
+<!--RP12--><!--RP12End-->
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Valid since**: 16
+
+### ohos.permission.kernel.DISABLE_GOTPLT_RO_PROTECTION
+
+Allows an application to disable the read-only protection on .got.plt.
+
+<!--RP22--><!--RP22End-->
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Valid since**: 17
 
 ### ohos.permission.USE_FRAUD_APP_PICKER
 
