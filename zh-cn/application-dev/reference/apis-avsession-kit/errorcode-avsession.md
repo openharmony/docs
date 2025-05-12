@@ -390,7 +390,7 @@ The parameter is invalid, for example, the url is illegal to play.
 
 **处理步骤**
 
-对接口入参，按照API要求进行校验,避免异常。
+对接口入参，按照API要求进行校验，避免异常。
 
 ## 6611107 内存分配失败
 
