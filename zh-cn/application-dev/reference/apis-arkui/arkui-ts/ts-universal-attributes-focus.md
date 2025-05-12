@@ -258,7 +258,7 @@ tabStop(isTabStop: boolean) :T
 @Entry
 @Component
 struct FocusableExample {
-  @State inputValue: string = ''
+  @State inputValue: string = '';
 
   build() {
     Scroll() {
@@ -413,8 +413,8 @@ struct FocusableExample {
 @Entry
 @Component
 struct RequestFocusExample {
-  @State idList: string[] = ['A', 'B', 'C', 'D', 'E', 'F', 'LastPageId']
-  @State selectId: string = 'LastPageId'
+  @State idList: string[] = ['A', 'B', 'C', 'D', 'E', 'F', 'LastPageId'];
+  @State selectId: string = 'LastPageId';
 
   build() {
     Column({ space:20 }){
@@ -492,7 +492,7 @@ struct RequestFocusExample {
 该示例通过配置focusBox修改组件的焦点框样式。
 
 ```ts
-import { ColorMetrics, LengthMetrics } from '@kit.ArkUI'
+import { ColorMetrics, LengthMetrics } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -529,7 +529,7 @@ struct RequestFocusExample {
 @Entry
 @Component
 struct FocusableExample {
-  @State inputValue: string = ''
+  @State inputValue: string = '';
 
   build() {
     Scroll() {
@@ -652,7 +652,7 @@ struct FocusableExample {
 该示例通过配置tabstop实现使用tab走焦停留在组件上。
 
 ```ts
-import { ColorMetrics, LengthMetrics } from '@kit.ArkUI'
+import { ColorMetrics, LengthMetrics } from '@kit.ArkUI';
 
 @Entry
 @Component
