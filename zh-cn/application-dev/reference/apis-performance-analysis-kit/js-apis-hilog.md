@@ -279,6 +279,7 @@ hilog.info(0x0001, "testTag", 'this is an info level log, id: %{public}d', 5);
 | ------------ | ---- | ---- |
 |      d/i      | 支持打印number和bigint类型。 | 123 |
 |   s     | 支持打印string undefined bool 和null类型。 | "123" |
+| o/O | 支持打印object、undefined和null类型。<br>从API version 20开始，支持该能力。 | obj |
 
 **示例：**
 ```js
@@ -289,6 +290,7 @@ let testObj: Record<string, string | number> = {
 let isBol = true;
 let bigNum = BigInt(1234567890123456789);
 hilog.info(0x0001, "jsHilogTest", "print object: %{public}s", JSON.stringify(testObj));
+hilog.info(0x0001, "jsHilogTest", "print object: %{public}o", testObj);
 hilog.info(0x0001, "jsHilogTest", "private flag: %{private}s %s, print null: %{public}s", "hello", "world", null);
 hilog.info(0x0001, "jsHilogTest", "print undefined: %{public}s", undefined);
 hilog.info(0x0001, "jsHilogTest", "print number: %{public}d %{public}i", 123, 456);
@@ -298,6 +300,7 @@ hilog.info(0x0001, "jsHilogTest", "print boolean: %{public}s", isBol);
 
 **打印结果：**
 ```
+08-09 13:26:29.094  2266  2266 I A00001/jsHilogTest: print object: {"name":"Jack","age":22}
 08-09 13:26:29.094  2266  2266 I A00001/jsHilogTest: print object: {"name":"Jack","age":22}
 08-09 13:26:29.094  2266  2266 I A00001/jsHilogTest: private flag: <private> <private>, print null: null
 08-09 13:26:29.094  2266  2266 I A00001/jsHilogTest: print undefined: undefined
