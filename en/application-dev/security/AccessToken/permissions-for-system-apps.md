@@ -4539,18 +4539,6 @@ Allows an application to call the APIs for uninstalling plugins.
 
 **Valid since**: 18
 
-## ohos.permission.CUSTOMIZE_SAVE_BUTTON
-
-Allows an application to customize the icon and text of SaveButton.
-
-**Permission level**：system_basic
-
-**Authorization mode**：system_grant
-
-**Enable via ACL**：true
-
-**Valid since**：20
-
 ## ohos.permission.GET_EDM_CONFIG
 
 Allows a system application to obtain custom enterprise device management(EDM) configuration files.

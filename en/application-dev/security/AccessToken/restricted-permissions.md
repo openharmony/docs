@@ -542,3 +542,17 @@ Allows an application to set the sandbox type to dynamic sandbox.
 **Authorization mode**: system_grant
 
 **Valid since**: 18
+
+### ohos.permission.CUSTOMIZE_SAVE_BUTTON
+
+Allows an application to customize the icon and text of SaveButton.
+
+<!--RP40--><!--RP40End-->
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Supported devices**: Phone | PC/2in1 | Tablet
+
+**Valid since**: 20

@@ -4549,18 +4549,6 @@
 
 **起始版本**：18
 
-## ohos.permission.CUSTOMIZE_SAVE_BUTTON
-
-允许应用自定义保存控件的图标和文本。
-
-**权限级别**：system_basic
-
-**授权方式**：系统授权（system_grant）
-
-**ACL使能**：true
-
-**起始版本**：20
-
 ## ohos.permission.GET_EDM_CONFIG
 
 允许系统应用查看行业定制配置文件。
