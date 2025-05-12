@@ -1125,9 +1125,7 @@ Enumerates the data channel types supported by the UDMF. It is used to identify 
 |----------|-----------|---------|
 | DATA_HUB | 'DataHub' | Public data channel.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | DRAG<sup>14+</sup> | 'Drag' | Channel in which data can be dragged and dropped.<br>**Model restriction**: This API can be used only in the stage model.|
-| SYSTEM_SHARE<sup>20+</sup> | 'SystemShare' | System sharing data channel.<br>**Model restriction**: This API can be used only in the stage model.|
-| PICKER<sup>20+</sup> | 'Picker' | Picker data channel.<br>**Model restriction**: This API can be used only in the stage model.|
-| MENU<sup>20+</sup> | 'Menu' | Menu data channel.<br>**Model restriction**: This API can be used only in the stage model.|
+
 ## Options
 
 type Options = { intention?: Intention; key?: string; }
