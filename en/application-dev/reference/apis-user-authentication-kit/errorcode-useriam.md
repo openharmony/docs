@@ -193,9 +193,8 @@ The authentication token has expired. The interval between the time when the Aut
 **Solution**
 
 Initiate authentication again and issue a valid token.
-<!--DelEnd-->
 
-## 12700001 The FaceAuth Service is Unavailable
+## 12700001 FaceAuth Service Unavailable
 
 **Error Message**
 
@@ -211,3 +210,4 @@ The service is unavailable.
 **Solution**
 
 Call the API again later or restart the device.
+<!--DelEnd-->

@@ -4,7 +4,7 @@
 
 > **说明：**
 >
-> 从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+> 从API version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 ## onAttach<sup>12+</sup>
 
@@ -22,6 +22,12 @@ onAttach(callback: Callback\<void>): T
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+**参数：**
+
+| 参数名 | 类型  | 必填 | 说明                       |
+| ------ | ------ | ---- | -------------------------- |
+| callback  | [Callback](./ts-types.md#callback12)\<void>   | 是   | onAttach事件的回调函数，表示组件已经挂载至组件树。|
+
 **返回值：**
 
 | 类型 | 说明 |
@@ -38,6 +44,12 @@ onDetach(callback: Callback\<void>): T
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型  | 必填 | 说明                       |
+| ------ | ------ | ---- | -------------------------- |
+| callback  | [Callback](./ts-types.md#callback12)\<void> | 是   | onDetach事件的回调函数，表示组件已经从组件树卸载。|
 
 **返回值：**
 
@@ -93,14 +105,14 @@ onDisAppear(event: () => void): T
 
 ```ts
 // xxx.ets
-import { promptAction } from '@kit.ArkUI'
+import { promptAction } from '@kit.ArkUI';
 
 @Entry
 @Component
 struct AppearExample {
-  @State isShow: boolean = true
-  @State changeAppear: string = '点我卸载挂载组件'
-  private myText: string = 'Text for onAppear'
+  @State isShow: boolean = true;
+  @State changeAppear: string = '点我卸载挂载组件';
+  private myText: string = 'Text for onAppear';
 
   build() {
     Column() {

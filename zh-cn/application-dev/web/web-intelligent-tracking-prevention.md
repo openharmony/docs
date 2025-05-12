@@ -1,9 +1,9 @@
 # 使用智能防跟踪功能
 
 
-Web组件支持智能防跟踪功能，即跟踪型网站作为三方插入别的网页时，其发送的网络请求禁止携带cookie。
+Web组件支持智能防跟踪功能，即当跟踪型网站作为第三方插入到其他网页时，其发送的网络请求将禁止携带cookie。
 
-- 通过调用[enableIntelligentTrackingPrevention](../reference/apis-arkweb/js-apis-webview.md#enableintelligenttrackingprevention12)接口使能或者关闭相应Web组件的智能防跟踪功能，默认情况下该功能未启用。
+- 通过调用[enableIntelligentTrackingPrevention](../reference/apis-arkweb/js-apis-webview.md#enableintelligenttrackingprevention12)接口启用或关闭Web组件的智能防跟踪功能。默认情况下，该功能未启用。
 
   ```ts
   // xxx.ets
@@ -32,7 +32,7 @@ Web组件支持智能防跟踪功能，即跟踪型网站作为三方插入别�
   }
   ```
 
-- 通过调用[isIntelligentTrackingPreventionEnabled](../reference/apis-arkweb/js-apis-webview.md#isintelligenttrackingpreventionenabled12)接口判断当前Web组件是否开启了智能防跟踪功能。
+- 调用[isIntelligentTrackingPreventionEnabled](../reference/apis-arkweb/js-apis-webview.md#isintelligenttrackingpreventionenabled12)接口，判断Web组件是否开启了智能防跟踪功能。
 
   ```ts
   // xxx.ets
@@ -61,7 +61,7 @@ Web组件支持智能防跟踪功能，即跟踪型网站作为三方插入别�
   }
   ```
 
-- 通过调用[onIntelligentTrackingPreventionResult](../reference/apis-arkweb/ts-basic-components-web.md#onintelligenttrackingpreventionresult12)接口，以回调的方式异步获取拦截的跟踪型网站的域名和访问的网站域名信息。
+- 通过[onIntelligentTrackingPreventionResult](../reference/apis-arkweb/ts-basic-components-web.md#onintelligenttrackingpreventionresult12)接口将被拦截的跟踪型域名及其触发网站的域名回调给应用。
 
   ```ts
   // xxx.ets
@@ -94,9 +94,9 @@ Web组件支持智能防跟踪功能，即跟踪型网站作为三方插入别�
   }
   ```
 
-同时，智能防跟踪功能提供了一组接口，用于设置需要绕过智能防跟踪功能的域名列表。这些接口设置的域名列表是整个应用生效，而非某个Web组件。
+智能防跟踪功能提供了一组接口，用于设置绕过该功能的域名列表。这些接口设置的域名列表适用于整个应用，而非特定的Web组件。
 
-- 通过调用[addIntelligentTrackingPreventionBypassingList](../reference/apis-arkweb/js-apis-webview.md#addintelligenttrackingpreventionbypassinglist12)接口设置需要绕过智能防跟踪功能的域名列表。
+- 调用[addIntelligentTrackingPreventionBypassingList](../reference/apis-arkweb/js-apis-webview.md#addintelligenttrackingpreventionbypassinglist12)接口设置绕过域名列表。
 
   ```ts
   // xxx.ets
@@ -125,7 +125,7 @@ Web组件支持智能防跟踪功能，即跟踪型网站作为三方插入别�
   }
   ```
 
-- 通过调用[removeIntelligentTrackingPreventionBypassingList](../reference/apis-arkweb/js-apis-webview.md#removeintelligenttrackingpreventionbypassinglist12)接口移除通过[addIntelligentTrackingPreventionBypassingList](../reference/apis-arkweb/js-apis-webview.md#addintelligenttrackingpreventionbypassinglist12)接口设置的部分域名列表。
+- 调用[removeIntelligentTrackingPreventionBypassingList](../reference/apis-arkweb/js-apis-webview.md#removeintelligenttrackingpreventionbypassinglist12)接口删除部分绕过域名列表。
 
   ```ts
   // xxx.ets
@@ -154,7 +154,7 @@ Web组件支持智能防跟踪功能，即跟踪型网站作为三方插入别�
   }
   ```
 
-- 通过调用[clearIntelligentTrackingPreventionBypassingList](../reference/apis-arkweb/js-apis-webview.md#clearintelligenttrackingpreventionbypassinglist12)接口清除通过[addIntelligentTrackingPreventionBypassingList](../reference/apis-arkweb/js-apis-webview.md#addintelligenttrackingpreventionbypassinglist12)接口设置的所有域名。
+- 调用[clearIntelligentTrackingPreventionBypassingList](../reference/apis-arkweb/js-apis-webview.md#clearintelligenttrackingpreventionbypassinglist12)接口清除所有绕过域名列表。
 
   ```ts
   // xxx.ets

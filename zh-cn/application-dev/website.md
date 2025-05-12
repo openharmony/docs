@@ -529,16 +529,20 @@
             - [属性修改器 (AttributeModifier)](ui/arkts-user-defined-extension-attributeModifier.md)
             - [属性更新器 (AttributeUpdater)](ui/arkts-user-defined-extension-attributeUpdater.md)
         - [使用镜像能力](ui/arkts-mirroring-display.md)
-        - [支持适老化](ui/arkui-support-for-aging-adaptation.md)
+        - 无障碍与适老化<!--arkts-support-accessibility-friendliness-->
+          - [支持无障碍](ui/arkts-universal-attributes-accessibility.md)
+          - [支持适老化](ui/arkui-support-for-aging-adaptation.md)
         - 主题设置<!--arkts-theme-->
           - [应用深浅色适配](ui/ui-dark-light-color-adaptation.md)
           - [设置应用内主题换肤](ui/theme_skinning.md)
         - [使用UI上下文接口操作界面（UIContext）](ui/arkts-global-interface.md)
-        - 跨进程拉起页面<!--arkts-ui-cross-process-->
+        - 嵌入式组件<!--arkts-ui-cross-process-->
           - [全屏启动原子化服务 (FullScreenLaunchComponent)](ui/arkts-FullScreenComponent.md)
-        <!--Del-->
-        - [跨进程应用能力扩展（UIExtension，仅对系统应用开放）](ui/arkts-ui-extension-components.md)
-        <!--DelEnd-->
+          - [同应用进程嵌入式组件 (EmbeddedComponent)](ui/arkts-embedded-components.md)
+          <!--Del-->
+          - [跨进程应用能力扩展（UIExtension，仅对系统应用开放）](ui/arkts-ui-extension-components.md)
+          - [跨线程嵌入式组件 (IsolatedComponent，仅对系统应用开放)](ui/arkts-isolated-components.md)
+          <!--DelEnd-->
         - 使用NDK接口构建UI<!--arkts-use-ndk-->
           - [NDK接口概述](ui/ndk-build-ui-overview.md)
           - [接入ArkTS页面](ui/ndk-access-the-arkts-page.md)
@@ -547,7 +551,9 @@
             - [绑定手势事件](ui/ndk-bind-gesture-events.md)
             - [拖拽事件](ui/ndk-drag-event.md)
           - [使用动画](ui/ndk-use-animation.md)
-          - [使用列表](ui/ndk-loading-long-list.md)
+          - 构建布局<!--arkts-build-layout-ndk-->
+            - [使用列表](ui/ndk-loading-long-list.md)
+            - [使用瀑布流](ui/ndk-waterflow.md)
           - [构建弹窗](ui/ndk-build-pop-up-window.md)
           - [构建自定义组件](ui/ndk-build-custom-components.md)
           - [嵌入ArkTS组件](ui/ndk-embed-arkts-components.md)
@@ -1790,6 +1796,7 @@
             - [使用JSVM-API接口操作bigint类型值](napi/use-jsvm-about-bigint.md)
             - [使用JSVM进行class相关开发](napi/use-jsvm-about-class.md)
             - [使用JSVM-API接口进行Date相关开发](napi/use-jsvm-about-date.md)
+            - [使用JSVM-API接口进行debug操作](napi/use-jsvm-about-debug-option.md)
             - [使用JSVM-API接口进行object相关开发](napi/use-jsvm-about-object.md)
             - [使用JSVM-API接口进行primitive类相关开发](napi/use-jsvm-about-primitive.md)
             - [使用JSVM-API接口处理异步操作](napi/use-jsvm-about-promise.md)
@@ -2241,7 +2248,6 @@
         <!--Del-->
         - [@ohos.data.cloudData (端云服务)(系统接口)](reference/apis-arkdata/js-apis-data-cloudData-sys.md)
         - [@ohos.data.cloudExtension (端云共享Extension)(系统接口)](reference/apis-arkdata/js-apis-data-cloudExtension-sys.md)
-        - [@ohos.data.collaborationEditObject (协作数据模型)(系统接口)](reference/apis-arkdata/js-apis-data-collaborationEditObject-sys.md)
         - [@ohos.data.dataShare (数据共享)(系统接口)](reference/apis-arkdata/js-apis-data-dataShare-sys.md)
         - [@ohos.data.dataSharePredicates (数据共享谓词)(系统接口)](reference/apis-arkdata/js-apis-data-dataSharePredicates-sys.md)
         - [@ohos.data.dataShareResultSet (数据共享结果集)(系统接口)](reference/apis-arkdata/js-apis-data-DataShareResultSet-sys.md)
@@ -2312,7 +2318,6 @@
         - [用户首选项错误码](reference/apis-arkdata/errorcode-preferences.md)
         - [统一数据管理框架错误码](reference/apis-arkdata/errorcode-udmf.md)
         - [智慧数据平台错误码](reference/apis-arkdata/errorcode-intelligence.md)
-        - [协作数据模型错误码](reference/apis-arkdata/errorcode-collaboration-edit-object.md)
     - ArkTS（方舟编程语言）<!--arkts-api-->
       - ArkTS API<!--arkts-arkts-->
         - [@arkts.collections (ArkTS容器集)](reference/apis-arkts/js-apis-arkts-collections.md)
@@ -2635,7 +2640,6 @@
           - [ExceptionPrompt](reference/apis-arkui/arkui-ts/ohos-arkui-advanced-ExceptionPrompt.md)
           - [Gauge](reference/apis-arkui/arkui-ts/ts-basic-components-gauge.md)
           - [LoadingProgress](reference/apis-arkui/arkui-ts/ts-basic-components-loadingprogress.md)
-          - [LinearIndicator](reference/apis-arkui/arkui-ts/ts-basic-components-linearindicator.md)
           - [Marquee](reference/apis-arkui/arkui-ts/ts-basic-components-marquee.md)
           - [PatternLock](reference/apis-arkui/arkui-ts/ts-basic-components-patternlock.md)
           - [Progress](reference/apis-arkui/arkui-ts/ts-basic-components-progress.md)
@@ -3751,6 +3755,7 @@
             - [loop.h](reference/apis-ffrt-kit/loop_8h.md)
             - [mutex.h](reference/apis-ffrt-kit/mutex_8h.md)
             - [queue.h](reference/apis-ffrt-kit/queue_8h.md)
+            - [shared_mutex.h](reference/apis-ffrt-kit/queue_8h.md)
             - [sleep.h](reference/apis-ffrt-kit/sleep_8h.md)
             - [task.h](reference/apis-ffrt-kit/task_8h.md)
             - [timer.h](reference/apis-ffrt-kit/timer_8h.md)
@@ -3764,6 +3769,8 @@
             - [ffrt_mutex_t](reference/apis-ffrt-kit/ffrt__mutex__t.md)
             - [ffrt_mutexattr_t](reference/apis-ffrt-kit/ffrt__mutexattr__t.md)
             - [ffrt_queue_attr_t](reference/apis-ffrt-kit/ffrt__queue__attr__t.md)
+            - [ffrt_rwlock_t](reference/apis-ffrt-kit/ffrt__rwlock__t.md)
+            - [ffrt_rwlockattr_t](reference/apis-ffrt-kit/ffrt__rwlockattr__t.md)
             - [ffrt_task_attr_t](reference/apis-ffrt-kit/ffrt__task__attr__t.md)
       - Input Kit（多模输入服务）<!--input-api-->
         - ArkTS API<!--input-arkts-->

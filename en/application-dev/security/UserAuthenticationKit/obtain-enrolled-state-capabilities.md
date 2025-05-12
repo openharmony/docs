@@ -1,8 +1,6 @@
-# Obtaining Enrolled Credential Information
+# Obtaining Enrolled Credential Status
 
-
-The caller can obtain information about the credentials enrolled by the user to detect the change of the credentials (face, fingerprint, and password).
-
+Use **getEnrolledState()** to obtain the change in the credentials (face, fingerprint, and password) enrolled by a user.
 
 ## Available APIs
 
@@ -11,7 +9,6 @@ For details about the parameters, return values, and error codes, see [getEnroll
 | API| Description| 
 | -------- | -------- |
 | getEnrolledState(authType : UserAuthType): EnrolledState | Obtains the status of the enrolled credentials based on the specified authentication type.| 
-
 
 ## How to Develop
 

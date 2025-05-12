@@ -4,12 +4,12 @@
 
 >  **说明：**
 >
->  从API Version 8开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>  从API version 8开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 
 ## 接口
 
-SwipeGesture(value?: { fingers?: number, direction?: SwipeDirection, speed?: number })
+SwipeGesture(value?: { fingers?: number, direction?: SwipeDirection, speed?: number, isFingerCountLimited?: boolean })
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -20,7 +20,7 @@ SwipeGesture(value?: { fingers?: number, direction?: SwipeDirection, speed?: num
 | fingers | number | 否 | 触发滑动的最少手指数，默认为1，最小为1指，最大为10指。<br/>默认值：1 |
 | direction | [SwipeDirection](#swipedirection枚举说明) | 否 | 触发滑动手势的滑动方向。<br/>默认值：SwipeDirection.All |
 | speed | number | 否 | 识别滑动的最小速度。<br/>默认值：100VP/s <br/>**说明：** <br/>当滑动速度的值小于等于0时，会被转化为默认值。 |
-| isFingerCountLimited<sup>15+</sup> | boolean | 否 | 是否检查触摸屏幕的手指数量。如果触摸手指的数量不等于设置的触发滑动的最少手指数（即上述fingers参数），手势识别将失败。<br>默认值：false。|
+| isFingerCountLimited<sup>15+</sup> | boolean | 否 | 是否检查触摸屏幕的手指数量。如果触摸手指的数量不等于设置的触发滑动的最少手指数（即上述fingers参数），手势识别将失败。<br>true：检查触摸屏幕的手指数量。<br>false：不检查触摸屏幕的手指数量。<br>默认值：false|
 
 ## SwipeDirection枚举说明
 
@@ -56,8 +56,8 @@ SwipeGesture(value?: { fingers?: number, direction?: SwipeDirection, speed?: num
 @Entry
 @Component
 struct SwipeGestureExample {
-  @State rotateAngle: number = 0
-  @State speed: number = 1
+  @State rotateAngle: number = 0;
+  @State speed: number = 1;
 
   build() {
     Column() {

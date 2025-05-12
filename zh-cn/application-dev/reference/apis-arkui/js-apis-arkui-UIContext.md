@@ -8398,7 +8398,7 @@ struct NormalEts {
 
 enableDropDisallowedBadge(enable: boolean): void
 
-当组件的类型与配置的[allowDrop](../apis-arkui/arkui-ts/ts-universal-attributes-drag-drop.md#allowdrop)无交集时可显示禁用角标。当目标进行拖拽时，通过该方法检查是否显示拖拽禁止角标。
+当组件的类型与配置的[allowDrop](../apis-arkui/arkui-ts/ts-universal-attributes-drag-drop.md#allowdrop)无交集时可显示禁用角标。当目标进行拖拽时，通过该方法检查是否显示拖拽禁止角标。该接口暂不支持[UIExtension](../apis-arkui/js-apis-arkui-uiExtension.md)。
 
 **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 

@@ -1,6 +1,6 @@
 # @ohos.effectKit (图像效果)
 
-图像效果提供处理图像的一些基础能力，包括对当前图像的亮度调节、模糊化、灰度调节、智能取色等。
+图像效果模块提供了处理图像的基础能力，包括亮度调节、模糊化、灰度调节和智能取色等。effectKit用于离线处理图像（如pixelmap、png、jpeg）以获得视觉效果，而uiEffect则实时接入渲染服务，针对屏幕帧缓存进行处理以获得动态视觉效果。
 
 该模块提供以下图像效果相关的常用功能：
 
@@ -323,7 +323,7 @@ image.createPixelMap(color, opts).then((pixelMap) => {
 
 getMainColor(): Promise\<Color>
 
-读取图像主色的颜色值，结果写入[Color](#color)里，使用Promise异步回调。
+读取图像主色的颜色值，结果写入[Color](#color)里，使用Promise异步回调。该接口通过图像缩放算法，根据周围像素的加权计算，将原图缩小到1个像素以得到主色。
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
@@ -371,7 +371,7 @@ image.createPixelMap(color, opts).then((pixelMap) => {
 
 getMainColorSync(): Color
 
-读取图像主色的颜色值，结果写入[Color](#color)里，使用同步方式返回。
+读取图像主色的颜色值，结果写入[Color](#color)里，使用同步方式返回。该接口通过图像缩放算法，根据周围像素的加权计算，将原图缩小到1个像素以得到主色。
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
@@ -418,7 +418,7 @@ image.createPixelMap(color, opts).then((pixelMap) => {
 
 getLargestProportionColor(): Color
 
-读取图像占比最多的颜色值，结果写入[Color](#color)里，使用同步方式返回。
+读取图像中占比最多的颜色值，结果写入[Color](#color)里，使用同步方式返回。该接口使用中位切分算法划分颜色空间，获取占比最多的颜色空间的平均颜色。
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
