@@ -1220,7 +1220,7 @@ accessBackward(): boolean
 
 | 类型    | 说明                             |
 | ------- | -------------------------------- |
-| boolean | 可以后退返回true,否则返回false。 |
+| boolean | 当前页面可以后退返回true,否则返回false。 |
 
 **错误码：**
 
