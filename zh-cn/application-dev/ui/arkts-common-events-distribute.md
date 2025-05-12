@@ -2,9 +2,9 @@
 
 ## 概述
 
-事件分发是指ArkUI收到用户操作生成的触控事件，通过触摸测试，将触控事件分发至各个组件形成事件的过程。
+事件分发是指ArkUI收到用户操作生成的触控事件后，通过触摸测试，将触控事件分发至各个组件形成事件的过程。
 
-触控事件按照输入设备类型可以划分为finger（手指在屏幕滑动）、mouse（鼠标操作）、touchpad（触控板操作）、pen（手写笔在屏幕滑动）、joystick（手柄操作）等；按照事件类型可以划分为按下、移动、滚动等；系统会根据触控事件的坐标、类型等信息，结合UI布局，将事件发送给对应UI组件。多个事件可以组合触发手势或其他功能（长按、点击、拖拽）。
+触控事件按照输入设备类型可以划分为finger（手指在屏幕滑动）、mouse（鼠标操作）、touchpad（触控板操作）、pen（手写笔在屏幕滑动）、joystick（手柄操作）等；按照事件类型可以划分为按下、移动、滚动等；系统会根据触控事件的坐标、类型等信息，结合UI布局，将事件发送给对应UI组件。多个事件可以组合触发手势或其他功能，如长按、点击、拖拽。
 
 ## 触摸测试
 
@@ -34,15 +34,15 @@
 
 ### 触摸测试控制
 
-在组件上绑定[触摸测试控制](../reference/apis-arkui/arkui-ts/ts-universal-attributes-hit-test-behavior.md)时，可能会影响到兄弟节点以及父子节点的触摸测试。子组件对父组件的触摸测试影响程度，取决于最后一个未被阻塞触摸测试的子组件状态。
+在组件上绑定[触摸测试控制](../reference/apis-arkui/arkui-ts/ts-universal-attributes-hit-test-behavior.md)时，可能影响兄弟节点和父子节点的触摸测试。子组件对父组件的触摸测试影响程度取决于最后一个未被阻塞触摸测试的子组件状态。
 
 开发者可以通过配置触摸测试控制，来实现阻塞组件自身或其他组件的触摸测试。
 
-- HitTestMode.Default：默认不配hitTestBehavior属性的效果，自身如果命中会阻塞兄弟组件，但是不阻塞子组件。
+- HitTestMode.Default：默认不配hitTestBehavior属性，自身如果命中会阻塞兄弟组件，但是不阻塞子组件。
 
   ![hitTestModeDefault](figures/hitTestModeDefault.png)
 
-- HitTestMode.None：自身不接收事件，但不会阻塞兄弟组件/子组件继续做触摸测试。
+- HitTestMode.None：自身不接收事件，但不会阻塞兄弟组件或子组件继续做触摸测试。
 
   ![hitTestModeNone](figures/hitTestModeNone.png)
 
@@ -60,7 +60,7 @@
 
 ### 禁用控制
 
-设置了[禁用控制](../reference/apis-arkui/arkui-ts/ts-universal-attributes-enable.md)的组件，组件自身和其子组件不会发起触摸测试过程，会直接返回组件的父组件继续触摸测试。
+设置了[禁用控制](../reference/apis-arkui/arkui-ts/ts-universal-attributes-enable.md)的组件及其子组件不会发起触摸测试过程，而是直接返回组件的父组件继续触摸测试。
 
 ### 触摸热区设置
 
