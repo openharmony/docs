@@ -11,7 +11,9 @@ If the user rejects to grant the permission when an application calls [requestPe
 
 **Figure 1** Requesting user authorization for the second time
 
+<!--RP2-->
 ![en_image_location](figures/en_image_location_second.png)
+<!--RP2End-->
 
 The following code shows how to request the ohos.permission.APPROXIMATELY_LOCATION permission in this way.
 
@@ -20,7 +22,7 @@ import { abilityAccessCtrl, Context, common } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager();
-let context: Context = getContext(this) as common.UIAbilityContext;
+let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 atManager.requestPermissionOnSetting(context, ['ohos.permission.APPROXIMATELY_LOCATION']).then((data: Array<abilityAccessCtrl.GrantStatus>) => {
   console.info('data:' + JSON.stringify(data));
 }).catch((err: BusinessError) => {

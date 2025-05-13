@@ -25,7 +25,6 @@ Read [Camera](../../reference/apis-camera-kit/js-apis-camera.md) for the API ref
    ```ts
    import { camera } from '@kit.CameraKit';
    import { BusinessError } from '@kit.BasicServicesKit';
-   import { common } from '@kit.AbilityKit';
    import { photoAccessHelper } from '@kit.MediaLibraryKit';
    ```
 
@@ -35,7 +34,7 @@ Read [Camera](../../reference/apis-camera-kit/js-apis-camera.md) for the API ref
 
    ```ts
    function getPhotoOutput(cameraManager: camera.CameraManager, 
-                           cameraOutputCapability: camera.CameraOutputCapability): camera.PhotoOutput | undefined {
+     cameraOutputCapability: camera.CameraOutputCapability): camera.PhotoOutput | undefined {
      let photoProfilesArray: Array<camera.Profile> = cameraOutputCapability.photoProfiles;
      if (!photoProfilesArray) {
        console.error("createOutput photoProfilesArray == null || undefined");
@@ -45,7 +44,7 @@ Read [Camera](../../reference/apis-camera-kit/js-apis-camera.md) for the API ref
        photoOutput = cameraManager.createPhotoOutput(photoProfilesArray[0]);
      } catch (error) {
        let err = error as BusinessError;
-       console.error(`Failed to createPhotoOutput. error: ${JSON.stringify(err)}`);
+       console.error(`Failed to createPhotoOutput. error: ${err}`);
      }
      return photoOutput;
    }
@@ -58,27 +57,28 @@ Read [Camera](../../reference/apis-camera-kit/js-apis-camera.md) for the API ref
    > If the **photoAssetAvailable** callback has been registered and the **photoAvailable** callback is registered after the session starts, the stream will be restarted. In this case, only the **photoAssetAvailable** callback takes effect. Therefore, you are not advised to register both **photoAvailable** and **photoAssetAvailable**.
 
    ```ts
-   function photoAssetAvailableCallback(err: BusinessError, photoAsset: photoAccessHelper.PhotoAsset): void {
-     if (err) {
-       console.error(`photoAssetAvailable error: ${JSON.stringify(err)}.`);
-       return;
-     }
-     console.info('photoOutPutCallBack photoAssetAvailable');
-     // You can call media library APIs through photoAsset to customize image processing.
-     // Processing method 1: Call the media library API to save the image in the first phase. After the image in the second phase is ready, the media library proactively replaces the image flushed.
-     mediaLibSavePhoto(photoAsset);
-     // Processing method 2: Call the media library API to request an image and register the buffer callback to receive the first-phase or second-phase image.
-     mediaLibRequestBuffer(photoAsset);
+   function getPhotoAccessHelper(context: Context): photoAccessHelper.PhotoAccessHelper {
+     let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
+     return phAccessHelper;
    }
 
-   function onPhotoOutputPhotoAssetAvailable(photoOutput: camera.PhotoOutput): void {
-     photoOutput.on('photoAssetAvailable', photoAssetAvailableCallback);
+   function onPhotoOutputPhotoAssetAvailable(photoOutput: camera.PhotoOutput, context: Context): void {
+     photoOutput.on('photoAssetAvailable', (err: BusinessError, photoAsset: photoAccessHelper.PhotoAsset) => {
+       if (err) {
+         console.error(`photoAssetAvailable error: ${err}.`);
+         return;
+       }
+       console.info('photoOutPutCallBack photoAssetAvailable');
+       // You can call media library APIs through photoAsset to customize image processing.
+       // Processing method 1: Call the media library API to save the image in the first phase. After the image in the second phase is ready, the media library proactively replaces the image flushed.
+       mediaLibSavePhoto(photoAsset, getPhotoAccessHelper(context));
+       // Processing method 2: Call the media library API to request an image and register the buffer callback to receive the first-phase or second-phase image.
+       mediaLibRequestBuffer(photoAsset, context);
+     });
    }
 
-   let context = getContext(this);
-   let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
-
-   async function mediaLibSavePhoto(photoAsset: photoAccessHelper.PhotoAsset): Promise<void> {
+   async function mediaLibSavePhoto(photoAsset: photoAccessHelper.PhotoAsset,
+     phAccessHelper: photoAccessHelper.PhotoAccessHelper): Promise<void> {
      try {
        let assetChangeRequest: photoAccessHelper.MediaAssetChangeRequest = new photoAccessHelper.MediaAssetChangeRequest(photoAsset);
        assetChangeRequest.saveCameraPhoto();
@@ -100,7 +100,7 @@ Read [Camera](../../reference/apis-camera-kit/js-apis-camera.md) for the API ref
      }
    }
 
-   async function mediaLibRequestBuffer(photoAsset: photoAccessHelper.PhotoAsset) {
+   async function mediaLibRequestBuffer(photoAsset: photoAccessHelper.PhotoAsset, context: Context) {
      let requestOptions: photoAccessHelper.RequestOptions = {
        // Configure the image return mode based on service requirements.
        // FAST_MODE: callback for receiving the first-phase image
