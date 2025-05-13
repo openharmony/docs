@@ -1235,6 +1235,92 @@ struct RepeatVirtualScrollOnMove {
 
 ![Repeat-Drag-Sort](figures/ForEach-Drag-Sort.gif)
 
+### 动画
+从API version 20开始，当父容器为滚动容器组件时，可视区域内Repeat子组件的插入、删除、交换操作均支持animateTo动画。
+
+**示例代码**
+```ts
+@Entry
+@ComponentV2
+struct AnimateToDemo {
+  @Local simpleList: Array<number> = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+
+  build() {
+    Row() {
+      Column() {
+        Button('update index 1').onClick(() => {
+          animateTo({ duration: 1000 }, () => {
+            this.simpleList[1] = this.simpleList[1] + 0.5;
+          });
+        }).margin({ top: 10 })
+
+        Button('exchange index 2 3').onClick(() => {
+          animateTo({ duration: 1000 }, () => {
+            let temp = this.simpleList[2];
+            this.simpleList[2] = this.simpleList[3];
+            this.simpleList[3] = temp;
+          });
+        }).margin({ top: 10 })
+
+        Button('delete index 2').onClick(() => {
+          animateTo({ duration: 1000 }, () => {
+            this.simpleList.splice(2, 1);
+          });
+        }).margin({ top: 10 })
+
+        Button('add index 2 with value 1.5').onClick(() => {
+          animateTo({ duration: 1000 }, () => {
+            this.simpleList.splice(2, 0, 1.5);
+          });
+        }).margin({ top: 10 })
+
+        Column() {
+          List() {
+            Repeat<number>(this.simpleList)
+              .each((obj: RepeatItem<number>) => {
+                ListItem() {
+                  Text(obj.item.toString())
+                    .fontSize(30)
+                    .margin({ top: 20, left: 20 })
+                }
+                // 设置平移转场效果，组件出现或消失的位置在x=300处
+                .transition(TransitionEffect.translate({ x: 300 }))
+              })
+              .key((item: number) => item.toString())
+              .virtualScroll({ totalCount: this.simpleList.length, reusable: true })
+              .templateId(() => 'a')
+              .template('a', (ri) => {
+                ListItem() {
+                  Text(ri.item.toString())
+                    .fontSize(30)
+                    .margin({ top: 20, left: 20 })
+                }
+                // 设置平移转场效果，组件出现或消失的位置在x=300处
+                .transition(TransitionEffect.translate({ x: 300 }))
+              })
+          }
+          // Repeat动画一般需配合滚动容器组件cachedCount属性的show参数(设置true时显示预加载的子组件)一起使用；
+          // 当show参数设置为false、插入数组项时，可视区域内Repeat子组件离开屏幕时无动画，效果如下图(show参数设置为false、插入数组项时的动画效果)所示
+          .cachedCount(1, true)
+        }
+      }
+      .justifyContent(FlexAlign.Center)
+      .width('100%')
+      .height('50%')
+    }
+    .height('100%')
+  }
+}
+```
+
+运行效果：
+
+![Repeat-Support-animateTo](figures/repeat_animateTo.gif)
+
+show参数设置为false、插入数组项时的动画效果：
+
+![Repeat-No-Disappearing-Animation](figures/repeat_animateTo_exception.gif)
+
 ### 通过`.key()`函数控制列表节点刷新范围
 
 从API version 18开始，开发者自定义`.key()`函数时，Repeat子节点会根据key的变化来判断节点是否需要更新。修改数组后，1）如果key发生改变，则页面立即刷新，数据更新为修改后的值；2）key没有改变，页面不会立即刷新。
