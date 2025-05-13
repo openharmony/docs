@@ -15,7 +15,7 @@ Read [Camera](../../reference/apis-camera-kit/js-apis-camera.md) for the API ref
 > **NOTE**
 >
 > - Before enabling the capability of taking moving photos, you must enable [deferred photo delivery](camera-deferred-capture.md).
-> - The permission **ohos.permission.MICROPHONE** is required for taking moving photos. For details about how to apply for and verify the permission, see [Camera Development Preparations](camera-preparation.md). Otherwise, there is no sound when a photo is being taken.
+> - The permission **ohos.permission.MICROPHONE** is required for taking moving photos. For details about how to apply for and verify the permission, see [Requesting Camera Development Permissions](camera-preparation.md). Otherwise, there is no sound when a photo is being taken.
 
 1. Import dependencies. Specifically, import the camera, image, and mediaLibrary modules.
 
