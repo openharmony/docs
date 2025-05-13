@@ -543,7 +543,7 @@ int32_t (*setBackgroundBlurStyleOptions)(ArkUI_NativeDialogHandle handle, const 
 
 设置自定义弹窗的背景模糊效果。
 
-**起始版本：** 18
+**起始版本：** 19
 
 **参数:**
 
@@ -570,7 +570,7 @@ int32_t (*setBackgroundEffect)(ArkUI_NativeDialogHandle handle, const ArkUI_Attr
 
 设置自定义弹窗的背景效果参数。
 
-**起始版本：** 18
+**起始版本：** 19
 
 **参数:**
 

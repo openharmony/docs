@@ -2096,7 +2096,7 @@ enum ArkUI_BlurStyleActivePolicy
 
 定义背景模糊激活策略。
 
-**起始版本：** 18
+**起始版本：** 19
 
 | 枚举值 | 描述 |
 | -------- | -------- |
@@ -9160,7 +9160,7 @@ int32_t OH_ArkUI_CustomDialog_SetBackgroundBlurStyleOptions(ArkUI_CustomDialogOp
 
 设置弹窗的背景模糊效果。
 
-**起始版本：** 18
+**起始版本：** 19
 
 **参数:**
 
@@ -9183,7 +9183,7 @@ int32_t OH_ArkUI_CustomDialog_SetBackgroundEffect(ArkUI_CustomDialogOptions* opt
 
 设置弹窗的背景效果参数。
 
-**起始版本：** 18
+**起始版本：** 19
 
 **参数:**
 
