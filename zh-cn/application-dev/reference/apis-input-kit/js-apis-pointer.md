@@ -130,7 +130,7 @@ try {
 
 isPointerVisible(callback: AsyncCallback&lt;boolean&gt;): void
 
-检查鼠标指针是否显示，使用Callback异步回调。
+获取鼠标指针显示状态，使用callback异步回调。
 
 **系统能力**：SystemCapability.MultimodalInput.Input.Pointer
 
@@ -168,7 +168,7 @@ try {
 
 isPointerVisible(): Promise&lt;boolean&gt;
 
-检查鼠标指针是否显示，使用Callback异步回调。
+获取鼠标指针显示状态，使用callback异步回调。
 
 **系统能力**：SystemCapability.MultimodalInput.Input.Pointer
 
@@ -219,7 +219,7 @@ try {
 
 getPointerStyle(windowId: number, callback: AsyncCallback&lt;PointerStyle&gt;): void
 
-获取鼠标样式类型，使用AsyncCallback异步回调。
+获取鼠标样式类型，使用Callback异步回调。
 
 **系统能力**：SystemCapability.MultimodalInput.Input.Pointer
 
@@ -364,7 +364,7 @@ try {
 
 setPointerStyle(windowId: number, pointerStyle: PointerStyle, callback: AsyncCallback&lt;void&gt;): void
 
-设置鼠标样式类型，使用AsyncCallback异步回调。
+设置鼠标样式类型，使用Callback异步回调。
 
 **系统能力**：SystemCapability.MultimodalInput.Input.Pointer
 

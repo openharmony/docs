@@ -93,7 +93,7 @@ getDeviceInfo(deviceId: number, callback: AsyncCallback&lt;InputDeviceData&gt;):
 | 参数名     | 类型                                                     | 必填 | 说明                                    |
 | -------- | -------------------------------------------------------- | ---- | --------------------------------------- |
 | deviceId | number                                                   | 是   | 输入设备id。                  |
-| callback | AsyncCallback&lt;[InputDeviceData](#inputdevicedata)&gt; | 是   | 回调函数。返回输入设备信息，包括输入设备id、名称、支持的输入能力、物理地址、版本信息及产品信息。如果传入的输入设备编号无效，则返回描述信息中的输入设备名称等信息为空。 |
+| callback | AsyncCallback&lt;[InputDeviceData](#inputdevicedata)&gt; | 是   | 回调函数。返回输入设备信息，包括输入设备id、名称、支持的输入能力、物理地址、版本信息及产品信息。 |
 
 **错误码**：
 
@@ -138,7 +138,7 @@ getDeviceInfo(deviceId: number): Promise&lt;InputDeviceData&gt;
 
 | 参数                                               | 说明                            |
 | -------------------------------------------------- | ------------------------------- |
-| Promise&lt;[InputDeviceData](#inputdevicedata)&gt; | Promise对象，返回输入设备信息。如果传入的输入设备编号无效，则返回描述信息中的输入设备名称等信息为空。 |
+| Promise&lt;[InputDeviceData](#inputdevicedata)&gt; | Promise对象，返回输入设备信息。 |
 
 **错误码**：
 
@@ -173,7 +173,7 @@ getDeviceInfoSync(deviceId: number): InputDeviceData
 
 | 参数名     | 类型   | 必填 | 说明                   |
 | -------- | ------ | ---- | ---------------------- |
-| deviceId | number | 是   | 输入设备id。若传入的输入设备id无效，则返回空。 |
+| deviceId | number | 是   | 输入设备id。 |
 
 **返回值**：
 
