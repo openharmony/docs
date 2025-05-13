@@ -890,6 +890,7 @@
 | ArkUI_SnapshotOptions* [OH_ArkUI_CreateSnapshotOptions](#oh_arkui_createsnapshotoptions)();| 创建一个截图选项，当返回值不再使用时必须通过`OH_ArkUI_SnapshotOptions_Dispose`释放。|
 | void [OH_ArkUI_DestroySnapshotOptions](#oh_arkui_destroysnapshotoptions)(ArkUI_SnapshotOptions* snapshotOptions);| 销毁截图选项指针。|
 | int32_t [OH_ArkUI_SnapshotOptions_SetScale](#oh_arkui_snapshotoptions_setscale)(ArkUI_SnapshotOptions* snapshotOptions, float scale);| 配置截图选项中的缩放属性。|
+| int32_t [OH_ArkUI_EnableDropDisallowedBadge](#oh_arkui_enabledropdisallowedbadge) ([ArkUI_ContextHandle](#arkui_contexthandle-12) uiContext, bool enabled) | 设置是否可以显示禁用角标。<br />**起始版本：** 20  | 
 
 
 ## 宏定义说明
@@ -18841,3 +18842,22 @@ int32_t OH_ArkUI_AccessibilityValue_GetRangeCurrent(ArkUI_AccessibilityValue* va
 **返回：**
 
 范围组件的无障碍当前值。
+### OH_ArkUI_EnableDropDisallowedBadge()
+
+```
+int32_t OH_ArkUI_EnableDropDisallowedBadge(ArkUI_ContextHandle uiContext, bool enabled)
+```
+**描述：**
+
+设置是否可以显示禁用角标。 
+
+**起始版本：** 20
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| uiContext | UI实例对象指针。  | 
+| enabled | 是否可以显示禁用角标。  | 
+
+**返回：**
+
+[ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md#arkui_errorcode) 成功。 [ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md#arkui_errorcode) 函数参数异常。
