@@ -444,6 +444,18 @@ EllipsisMode.START和EllipsisMode.MIDDLE仅在单行超长文本生效。
 | axis      | string                                               | 是  |  否   | 可变字体属性键值对中的关键字标识的字符串。       |
 | value     | number                                               | 是  |  否   | 可变字体属性键值对的值。                        |
 
+## TextBadgeType<sup>20+</sup>
+
+文本上下标枚举。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+| 名称   | 值 | 说明      |
+| ------ | - | --------- |
+| TEXT_BADGE_NONE | 0 | 不使能上下标。 |
+| TEXT_SUPERSCRIPT | 1 | 使能上标。 |
+| TEXT_SUBSCRIPT | 2 | 使能下标。 |
+
 ## TextStyle
 
 文本样式。
@@ -472,6 +484,7 @@ EllipsisMode.START和EllipsisMode.MIDDLE仅在单行超长文本生效。
 | fontVariations| Array\<[FontVariation](#fontvariation)>              | 是 | 是 | 可变字体属性数组。|
 | textShadows   | Array\<[TextShadow](#textshadow)>                    | 是 | 是 | 文本阴影数组。|
 | backgroundRect| [RectStyle](#rectstyle)                              | 是 | 是 | 文本矩形框样式。|
+| textBadgeType<sup>20+</sup>   | [TextBadgeType](#textbadgetype20) | 是   | 是   | 设置文本排版时是否使能上标或下标。TEXT_SUPERSCRIPT表示使能上标，TEXT_SUBSCRIPT表示使能下标，默认值为TEXT_BADGE_NONE表示不使能。|
 
 ## StrutStyle
 
