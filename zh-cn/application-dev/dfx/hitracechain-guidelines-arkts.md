@@ -23,7 +23,7 @@ HiTraceChain是基于云计算分布式跟踪调用链思想，在端侧业务�
 
 以构造单次[应用事件打点](../reference/apis-performance-analysis-kit/js-apis-hiviewdfx-hiappevent.md)的业务说明分布式调用链的使用方法。
 
-1. 新建一个ets应用工程，编辑工程中的“entry > src > main > ets  > pages > index.ets” 文件，添加一个按钮，完整示例代码如下：
+1. 新建一个ets应用工程，编辑工程中的“entry > src > main > ets  > pages > index.ets”文件，添加一个按钮，完整示例代码如下：
 
     ```ts
     import { BusinessError } from '@kit.BasicServicesKit';
@@ -32,7 +32,7 @@ HiTraceChain是基于云计算分布式跟踪调用链思想，在端侧业务�
     @Entry
     @Component
     struct Index {
-      @State message: string = 'Start writing an app event'
+      @State message: string = 'Start writing an app event';
 
       build() {
         Row() {
@@ -46,7 +46,7 @@ HiTraceChain是基于云计算分布式跟踪调用链思想，在端侧业务�
               .onClick(() => {
                 try {
                   // 业务开始前，开启分布式跟踪。
-                  let traceId = hiTraceChain.begin("Write a new app event", hiTraceChain.HiTraceFlag.INCLUDE_ASYNC)
+                  let traceId = hiTraceChain.begin("Write a new app event", hiTraceChain.HiTraceFlag.INCLUDE_ASYNC);
                   // 在按钮点击函数中进行事件打点，以记录按钮点击事件
                   let eventParams: Record<string, number> = { 'click_time': 100 }
                   let eventInfo: hiAppEvent.AppEventInfo = {
@@ -57,17 +57,17 @@ HiTraceChain是基于云计算分布式跟踪调用链思想，在端侧业务�
                     // 事件类型定义
                     eventType: hiAppEvent.EventType.BEHAVIOR,
                     // 事件参数定义
-                    params: eventParams,
+                    params: eventParams
                   }
                   hiAppEvent.write(eventInfo).then(() => {
-                    hilog.info(0x0000, 'testTag', `Succeed to write an app event`)
+                    hilog.info(0x0000, 'testTag', `Succeeded in writing an app event`);
                     // 业务结束，关闭分布式跟踪。
                     hiTraceChain.end(traceId)
                   }).catch((err: BusinessError) => {
-                    hilog.error(0x0000, 'testTag', `HiAppEvent err.code: ${err.code}, err.message: ${err.message}`)
+                    hilog.error(0x0000, 'testTag', `HiAppEvent err.code: ${err.code}, err.message: ${err.message}`);
                   })
                 } catch (err) {
-                  console.error(`error message is ${(err as BusinessError).message}`)
+                  console.error(`error message is ${(err as BusinessError).message}`);
                 }
               })
           }
