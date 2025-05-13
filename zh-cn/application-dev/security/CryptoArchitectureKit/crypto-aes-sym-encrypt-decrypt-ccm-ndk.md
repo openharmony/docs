@@ -41,7 +41,7 @@ target_link_libraries(entry PUBLIC libohcrypto.so)
 
 **解密**
 
-1. 调用[OH_CryptoSymCipher_Create](../../reference/apis-crypto-architecture-kit/_crypto_sym_cipher_api.md#oh_cryptosymcipher_create)，指定参数 'AES128|CCM'，创建对称密钥类型为 AES128、分组模式为 CCM 的 Cipher 实例，用于解密操作。
+1. 调用[OH_CryptoSymCipher_Create](../../reference/apis-crypto-architecture-kit/_crypto_sym_cipher_api.md#oh_cryptosymcipher_create)，指定参数 'AES128|CCM'，创建对称密钥类型为AES128、分组模式为CCM的Cipher实例，用于解密操作。
 
 2. 解密时需使用[OH_CryptoSymCipherParams_SetParam](../../reference/apis-crypto-architecture-kit/_crypto_sym_cipher_api.md#oh_cryptosymcipherparams_setparam)设置authTag，作为初始化的认证信息。
 
