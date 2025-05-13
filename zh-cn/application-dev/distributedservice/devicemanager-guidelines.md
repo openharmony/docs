@@ -147,7 +147,7 @@ startDiscovering(discoverParam: {[key:&nbsp;string]:&nbsp;Object;} , filterOptio
      'availableStatus': 0
    };
    try {
-    let dmInstance = distributedDeviceManager.createDeviceManager('ohos.samples.jsHelloWorld');
+     let dmInstance = distributedDeviceManager.createDeviceManager('ohos.samples.jsHelloWorld');
      dmInstance.startDiscovering(discoverParam, filterOptions);
    } catch (err) {
      let e: BusinessError = err as BusinessError;
