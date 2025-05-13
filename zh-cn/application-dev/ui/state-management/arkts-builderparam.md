@@ -312,6 +312,144 @@ struct ParentPage {
 }
 ```
 
+### 使用\@BuilderParam隔离多组件对\@Builder跳转逻辑的调用
+
+当@Builder封装的系统组件包含跳转逻辑时，所有调用该@Builder的自定义组件将具备该跳转功能。对于需要禁用跳转的特定组件，可使用@BuilderParam来隔离跳转逻辑。
+
+> **说明：**
+>
+> 当前示例代码中使用了Navigation组件导航，具体实现逻辑可以查询[Navigation](../arkts-navigation-navigation.md)指南。
+
+```ts
+import { HelloWorldPageBuilder } from './helloworld';
+
+class navigationParams {
+  pathStack: NavPathStack = new NavPathStack();
+  boo: boolean = true;
+}
+
+@Builder
+function navigationAction(params: navigationParams) {
+  Column() {
+    Navigation(params.pathStack) {
+      Button('router to page', { stateEffect: true, type: ButtonType.Capsule })
+        .width('80%')
+        .height(40)
+        .margin(20)
+        .onClick(() => {
+          // 通过修改@BuilderParam参数决定是否跳转。
+          if (params.boo) {
+            params.pathStack.pushPath({ name: "HelloWorldPage" });
+          } else {
+            console.info('@BuilderParam setting does not jump');
+          }
+        })
+    }
+    .navDestination(HelloWorldPageBuilder)
+    .hideTitleBar(true)
+    .height('100%')
+    .width('100%')
+  }
+  .height('25%')
+  .width('100%')
+}
+
+@Entry
+@Component
+struct ParentPage {
+  @State info: navigationParams = new navigationParams();
+
+  build() {
+    Column() {
+      Text('ParentPage')
+      navigationAction({ pathStack: this.info.pathStack, boo: true })
+      ChildPageOne()
+      ChildPage_BuilderParam({ eventBuilder: navigationAction })
+    }
+    .height('100%')
+    .width('100%')
+  }
+}
+
+@Component
+struct ChildPageOne {
+  @State info: navigationParams = new navigationParams();
+
+  build() {
+    Column() {
+      Text('ChildPage')
+      navigationAction({ pathStack: this.info.pathStack, boo: true })
+    }
+  }
+}
+
+@Component
+struct ChildPage_BuilderParam {
+  @State info: navigationParams = new navigationParams();
+
+  @BuilderParam eventBuilder: (param: navigationParams) => void = navigationAction;
+
+  build() {
+    Column() {
+      Text('ChildPage_BuilderParam')
+      // 对传递过来的全局@Builder进行参数修改，可以实现禁用点击跳转的功能。
+      this.eventBuilder({ pathStack: this.info.pathStack, boo: false })
+    }
+  }
+}
+```
+
+```ts
+// helloworld.ets
+@Builder
+export function HelloWorldPageBuilder() {
+  HelloWorldPage()
+}
+
+@Component
+struct HelloWorldPage {
+  @State message: string = 'Hello World';
+  @State pathStack: NavPathStack = new NavPathStack();
+
+  build() {
+    NavDestination() {
+      Column() {
+        Text(this.message)
+          .fontSize(20)
+          .fontWeight(FontWeight.Bold)
+      }
+    }
+    .height('100%')
+    .width('100%')
+  }
+}
+```
+
+```ts
+// router_map.json
+{
+  "routerMap": [
+    {
+      "name": "HelloWorldPage",
+      "buildFunction": "HelloWorldPageBuilder",
+      "pageSourceFile": "src/main/ets/pages/helloworld.ets"
+    }
+  ]
+}
+```
+
+```ts
+// module.json5
+{
+  "module": {
+    "routerMap": "$profile:router_map",
+    ......
+  }
+}   
+```
+
+![builderparam-demo7](figures/builderparam-demo7.gif)
+
 ### 使用全局和局部\@Builder初始化\@BuilderParam
 
 在自定义组件中，使用\@BuilderParam装饰的变量接收父组件通过\@Builder传递的内容进行初始化，由于父组件的\@Builder可以使用箭头函数改变当前的this指向，因此使用\@BuilderParam装饰的变量会展示不同的内容。
@@ -510,7 +648,6 @@ struct ParentPage {
 ```
 
 使用箭头函数将`@Builder`传递到自定义组件`ChildPage`中，这样`this`指向会停留在父组件`ParentPage`里。因此，在父组件中改变`label`的值时，`ChildPage`会感知到并重新渲染UI。
-把@Builder改为@LocalBuilder也能实现动态渲染UI。
 
 【正例】
 
