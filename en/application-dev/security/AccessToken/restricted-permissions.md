@@ -573,6 +573,6 @@ Allows an application to customize the icon and text of SaveButton.
 
 **Authorization mode**: system_grant
 
-**Enable via ACL**: true
+**Supported devices**: Phone | PC/2in1 | Tablet
 
 **Valid since**: 20
