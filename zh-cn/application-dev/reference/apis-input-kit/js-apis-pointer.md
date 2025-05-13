@@ -168,7 +168,7 @@ try {
 
 isPointerVisible(): Promise&lt;boolean&gt;
 
-获取鼠标指针显示状态，使用callback异步回调。
+获取鼠标指针显示状态，使用Promise异步回调。
 
 **系统能力**：SystemCapability.MultimodalInput.Input.Pointer
 
