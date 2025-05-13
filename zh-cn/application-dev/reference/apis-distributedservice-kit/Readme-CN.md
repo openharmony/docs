@@ -5,6 +5,7 @@
   - [@ohos.distributedDeviceManager (设备管理)](js-apis-distributedDeviceManager.md)
   - [@ohos.abilityConnectionManager (应用多端协同管理)](js-apis-distributed-abilityConnectionManager.md)
   - [@ohos.application.DistributedExtensionAbility (协同Extension)](js-apis-distributedExtensionAbility.md)
+  - [@ohos.distributedsched.linkEnhance (协同Extension)](js-apis-link-enhance.md)
   
   <!--Del-->
   
@@ -25,4 +26,5 @@
   - [键鼠穿越管理错误码](errorcode-devicestatus.md)
   
   <!--DelEnd-->
+  - [连接增强错误码](errorcode_linkEnhance.md)
 
