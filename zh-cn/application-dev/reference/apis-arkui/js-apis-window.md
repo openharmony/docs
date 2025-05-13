@@ -1628,7 +1628,7 @@ moveWindowTo(x: number, y: number): Promise&lt;void&gt;
 
 <!--RP4-->
 全屏模式下，本接口仅在2in1设备上生效。<!--RP4End-->
-在2in1设备上窗口相对于屏幕移动，其他设备上窗口相对于父窗口移动，如需相对于屏幕移动，建议使用接口[moveWindowToGlobal()](#movewindowtoglobal15)。
+使用此接口，在2in1设备上窗口相对于屏幕移动，在其他设备上窗口相对于父窗口移动。若需要在非2in1设备上相对于屏幕进行移动，建议使用接口[moveWindowToGlobal()](#movewindowtoglobal15)。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
