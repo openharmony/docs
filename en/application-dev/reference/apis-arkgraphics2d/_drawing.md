@@ -12542,7 +12542,7 @@ void OH_Drawing_SetTextStyleDecoration (OH_Drawing_TextStyle* , int  )
 
 **Description**
 
-Sets the decoration for a text style. Only one decoration can be set. To add multiple decorations, use [OH_Drawing_AddTextStyleDecoration](#oh_drawing_addtextstyledecoration).
+Sets the decoration for a text style. Only one decoration can be set.
 
 **System capability**: SystemCapability.Graphic.Graphic2D.NativeDrawing
 
