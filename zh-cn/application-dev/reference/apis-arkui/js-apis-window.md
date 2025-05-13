@@ -447,56 +447,26 @@ type WindowAnimationCurveParam = Array&lt;number&gt;
 
 **系统能力：** SystemCapability.Window.SessionManager
 
->**说明：**
->
->下表中的索引x表示WindowAnimationCurveParam中的第x项。
->
+当曲线类型为LINEAR，动画曲线参数选填，且不生效。
 
-**INTERPOLATION_SPRING曲线：**
+当曲线类型为INTERPOLATION_SPRING时，动画曲线参数需设置为长度为4的数组：[velocity,mass,stiffness,damping]。
 
-| 索引 | 类型   | 必填 | 说明                                                         |
-| ---- | ------ | ---- | ------------------------------------------------------------ |
-| 0    | number | 是   | 对应**velocity**，初始速度。<br/>外部因素对弹性动效产生的影响参数，目的是保证对象从之前的运动状态平滑地过渡到弹性动效。该速度是归一化速度，其值等于动画开始时的实际速度除以动画属性改变值。 |
-| 1    | number | 是   | 对应**mass**，质量。<br/>弹性系统的受力对象，会对弹性系统产生惯性影响。质量越大，震荡的幅度越大，恢复到平衡位置的速度越慢。<br/>取值范围：(0, +∞)<br/>**说明：**<br/>设置的值小于等于0时，按1处理。 |
-| 2    | number | 是   | 对应**stiffness**，刚度。<br/>表示物体抵抗施加的力而形变的程度。刚度越大，抵抗变形的能力越强，恢复到平衡位置的速度越快。<br/>取值范围：(0, +∞)<br/>**说明：**<br/>设置的值小于等于0时，按1处理。 |
-| 3    | number | 是   | 对应**damping**，阻尼。<br/>用于描述系统在受到扰动后震荡及衰减的情形。阻尼越大，弹性运动的震荡次数越少、震荡幅度越小。<br/>取值范围：(0, +∞)<br/>**说明：**<br/>设置的值小于等于0时，按1处理。 |
+- velocity：表示初始速度，类型为number，必填。
 
-## WindowAnimationProperty<sup>20+</sup>
+  用于描述外部因素对弹性动效产生的影响参数，目的是保证对象从之前的运动状态平滑地过渡到弹性动效。该速度是归一化速度，其值等于动画开始时的实际速度除以动画属性改变值。
 
-窗口动画作用的属性。
+- mass：表示质量，类型为number。必填，取值范围为(0, +∞)，当取值小于等于0时，按1处理。
 
-**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+  用于描述弹性系统的受力对象，会对弹性系统产生惯性影响。质量越大，震荡的幅度越大，恢复到平衡位置的速度越慢。
 
-**系统能力：** SystemCapability.Window.SessionManager
+- stiffness：表示刚度，类型为number。必填，取值范围为(0, +∞)，当取值小于等于0时，按1处理。
 
-| 名称 | 类型           | 必填 | 说明                                                         |
-| ---- | -------------- | ---- | ------------------------------------------------------------ |
-| rect | [Rect](#rect7) | 否   | 本次动画终点的位置和大小，单位为px。<br/>**说明：**<br/>仅在自由悬浮窗口模式（即窗口模式为window.WindowStatusType.FLOATING）下生效。<br/>在2in1设备上窗口相对于当前屏幕原点移动，其他设备上窗口相对于父窗口移动。 |
+  用于描述物体抵抗施加的力而形变的程度。刚度越大，抵抗变形的能力越强，恢复到平衡位置的速度越快。
 
-## WindowTransitionType<sup>20+</sup>
+- damping：表示刚度，类型为number。必填，取值范围为(0, +∞)，当取值小于等于0时，按1处理。
 
-窗口转场动画类型枚举。
+  用于描述系统在受到扰动后震荡及衰减的情形。阻尼越大，弹性运动的震荡次数越少、震荡幅度越小。
 
-**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
-
-**系统能力：**  SystemCapability.Window.SessionManager
-
-| 名称    | 值   | 说明                       |
-| ------- | ---- | -------------------------- |
-| DESTROY | 0    | 表示窗口销毁时的转场动画。 |
-
-## TransitionAnimation<sup>20+</sup>
-
-窗口转场动画配置。
-
-**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.Window.SessionManager
-
-| 名称    | 类型                                              | 必填 | 说明                                                         |
-| ------- | ------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| config  | [WindowAnimationConfig](#windowanimationconfig20) | 是   | 本次转场动画配置。                                           |
-| opacity | number                                            | 否   | 不透明度。转场动画作用的窗口属性。当动画类型为WindowTransitionType.DESTROY时，代表动画终点的不透明度。 |
 
 ## WindowInfo<sup>18+</sup>
 
@@ -2987,120 +2957,6 @@ export default class EntryAbility extends UIAbility {
       }
     });
   }
-}
-```
-
-### setWindowTransitionAnimation<sup>20+</sup>
-
-setWindowTransitionAnimation(transitionType: WindowTransitionType, animation: TransitionAnimation):  Promise&lt;void&gt;
-
-给特定场景下的窗口增加转场动画。
-
-当前只支持在应用主窗下使用。
-
-当前只支持在2in1设备上使用。
-
-**模型约束：** 此接口仅可在Stage模型下使用。
-
-**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.Window.SessionManager
-
-**参数：**
-
-| 参数名         | 类型                                            | 必填 | 说明                                   |
-| -------------- | ----------------------------------------------- | ---- | -------------------------------------- |
-| transitionType | [WindowTransitionType](#windowtransitiontype20) | 是   | 本次转场动画场景。当前只支持销毁场景。 |
-| animation      | [TransitionAnimation](#transitionanimation20)   | 是   | 本次转场动画配置。                     |
-
-**返回值：**
-
-| 类型                | 说明                      |
-| ------------------- | ------------------------- |
-| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[窗口错误码](errorcode-window.md)。
-
-| 错误码ID | 错误信息                                                     |
-| -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 801      | Capability not supported. Failed to call the API due to limited device capabilities. |
-| 1300002  | This window state is abnormal.                               |
-| 1300003  | This window manager service works abnormally.                |
-| 1300004  | Unauthorized operation.                                      |
-
-**示例：**
-
-```typescript
-try {
-  const animationConfig: window.WindowAnimationConfig = {
-    duration: 1000,
-    curve: window.WindowAnimationCurve.LINEAR,
-  };
-  const transitionAnimation: window.TransitionAnimation = {
-    opacity: 0.5,
-    config: animationConfig
-  };
-  let promise = windowClass.setWindowTransitionAnimation(window.WindowTransitionType.DESTROY, transitionAnimation);
-  promise.then((data) => {
-    console.info('Succeeded in setting window transition animation. Cause:' + JSON.stringify(data));
-  }).catch((err: BusinessError) => {
-    console.error(`Failed to set window transition animation. Cause code: ${err.code}, message: ${err.message}`);
-  });
-} catch (exception) {
-  console.error(`Failed to obtain the window status of window. Cause code: ${exception.code}, message: ${exception.message}`);
-}
-```
-
-### getWindowTransitionAnimation<sup>20+</sup>
-
-getWindowTransitionAnimation(transitionType: WindowTransitionType): TransitionAnimation | undefined
-
-获取特定场景下的窗口转场动画配置。
-
-当前只支持在应用主窗下使用。
-
-当前只支持在2in1设备上使用。
-
-**模型约束：** 此接口仅可在Stage模型下使用。
-
-**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.Window.SessionManager
-
-**参数：**
-
-| 参数名         | 类型                                            | 必填 | 说明                                   |
-| -------------- | ----------------------------------------------- | ---- | -------------------------------------- |
-| transitionType | [WindowTransitionType](#windowtransitiontype20) | 是   | 本次转场动画场景。当前只支持销毁场景。 |
-
-**返回值：**
-
-| 类型                                          | 说明                       |
-| --------------------------------------------- | -------------------------- |
-| [TransitionAnimation](#transitionanimation20) \| undefined | 对应场景下的转场动画配置。 当未使用过[setWindowTransitionAnimation](#setwindowtransitionanimation20)接口时，返回undefined。|
-
-**错误码：**
-
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[窗口错误码](errorcode-window.md)。
-
-| 错误码ID | 错误信息                                                     |
-| -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 801      | Capability not supported. Failed to call the API due to limited device capabilities. |
-| 1300002  | This window state is abnormal.                               |
-| 1300003  | This window manager service works abnormally.                |
-| 1300004  | Unauthorized operation.                                      |
-
-**示例：**
-
-```typescript
-try {
-  let transitionAnimationResult = windowClass.getWindowTransitionAnimation(window.WindowTransitionType.DESTROY);
-} catch (exception) {
-  console.error(`Failed to obtain the window transition animation. Cause code: ${exception.code}, message: ${exception.message}`);
 }
 ```
 
