@@ -577,7 +577,7 @@ struct ratingExample {
           }).margin({top : 5})
       }
       .width('100%')
-      .height('100%')git push 
+      .height('100%') 
       .justifyContent(FlexAlign.Center)
     }
     .height('100%')
