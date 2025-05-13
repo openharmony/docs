@@ -467,6 +467,27 @@ maintainVisibleContentPosition(enabled: boolean)
 > - maintainVisibleContentPosition属性设置为true后，在显示区域上方插入或删除数据，会触发onDidScroll、onScrollIndex事件。
 > - maintainVisibleContentPosition属性设置为true后，在多列场景下，一次插入或删除整行数据，可以保持可见内容位置不变，如果不是插入或删除整行数据，可见内容位置还是会发生变化。
 
+### stackFromEnd<sup>19+</sup>
+
+stackFromEnd(enabled: boolean)
+
+设置List组件是否从末尾开始布局。
+
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型    | 必填 | 说明                                                         |
+| ------ | ------- | ---- | ------------------------------------------------------------ |
+| enabled  | boolean | 是   | 设置List组件是否从末尾开始布局。<br/>默认值：false，List从顶部开始布局。 true：List组件从末尾开始布局。|
+
+> **说明：** 
+> - stackFromEnd属性设置为true后，当List内容小于List组件高度时，内容底部对齐。
+> - stackFromEnd属性设置为true后，显示区域内有ListItem变高，或有插入ListItem，内容上方的ListItem往上移动。
+> - stackFromEnd属性设置为true后，initialIndex参数默认值为总item个数-1。
+
 ## ListItemAlign<sup>9+</sup>枚举说明
 
 设置子组件在List交叉轴方向的对齐方式。
@@ -1042,6 +1063,98 @@ type OnScrollVisibleContentChangeCallback = (start: VisibleListContentInfo, end:
 | IN_LIST_ITEM_AREA |  1  | ListItemGroup内部ListItem区域。 |
 | IN_HEADER_AREA |  2  | ListItemGroup内部header区域。 |
 | IN_FOOTER_AREA |  3  | ListItemGroup内部footer区域。 |
+
+## UIListEvent<sup>19+</sup>
+frameNode中[getEvent('List')](../js-apis-arkui-frameNode.md#geteventlist19)方法的返回值，可用于给List节点设置滚动事件。
+
+UIListEvent继承于[UIScrollableCommonEvent](./ts-container-scrollable-common.md#uiscrollablecommonevent19)。
+
+### setOnWillScroll<sup>19+</sup>
+
+setOnWillScroll(callback:  OnWillScrollCallback | undefined): void
+
+设置[onWillScroll](./ts-container-scrollable-common.md#onwillscroll12)事件的回调。
+
+方法入参为undefined时，会重置事件回调。
+
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                       |
+| ------ | ------ | ---- | -------------------------- |
+| callback  | [OnWillScrollCallback](./ts-container-scrollable-common.md#onwillscrollcallback12)&nbsp;\|&nbsp;undefined | 是   | onWillScroll事件的回调函数。 |
+
+### setOnDidScroll<sup>19+</sup>
+
+setOnDidScroll(callback: OnScrollCallback | undefined): void
+
+设置[onDidScroll](./ts-container-scrollable-common.md#ondidscroll12)事件的回调。
+
+方法入参为undefined时，会重置事件回调。
+
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                       |
+| ------ | ------ | ---- | -------------------------- |
+| callback  | [OnScrollCallback](./ts-container-scrollable-common.md#onscrollcallback12)&nbsp;\|&nbsp;undefined | 是   | onDidScroll事件的回调函数。 |
+
+### setOnScrollIndex<sup>19+</sup>
+
+setOnScrollIndex(callback: OnListScrollIndexCallback | undefined): void
+
+设置[onScrollIndex](#onscrollindex)事件的回调。
+
+方法入参为undefined时，会重置事件回调。
+
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                       |
+| ------ | ------ | ---- | -------------------------- |
+| callback  | [OnListScrollIndexCallback](#onlistscrollindexcallback19)&nbsp;\|&nbsp;undefined | 是   | onScrollIndex事件的回调函数。 |
+
+### setOnScrollVisibleContentChange<sup>19+</sup>
+
+setOnScrollVisibleContentChange(callback: OnScrollVisibleContentChangeCallback | undefined): void
+
+设置[onScrollVisibleContentChange](#onscrollvisiblecontentchange12)事件的回调。
+
+方法入参为undefined时，会重置事件回调。
+
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                       |
+| ------ | ------ | ---- | -------------------------- |
+| callback  |  [OnScrollVisibleContentChangeCallback](./ts-container-list.md#onscrollvisiblecontentchangecallback12)&nbsp;\|&nbsp;undefined | 是   | onScrollVisibleContentChange事件的回调函数。 |
+
+## OnListScrollIndexCallback<sup>19+</sup>
+type OnListScrollIndexCallback = (start: number, end: number, center: number) => void
+
+List组件可见区域item变化事件的回调类型。
+
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 参数名               | 类型   | 必填 | 说明                                   |
+| -------------------- | ------ | ---- | -------------------------------------- |
+| start   | number | 是   | List显示区域内第一个子组件的索引值。     |
+| end     | number | 是   | List显示区域内最后一个子组件的索引值。 |
+| center  | number | 是   | List显示区域内中间位置子组件的索引值。 |
 
 ## 示例
 
