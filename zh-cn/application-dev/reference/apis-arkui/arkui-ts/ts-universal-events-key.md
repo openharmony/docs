@@ -239,3 +239,70 @@ struct PreImeEventExample {
   }
 }
 ```
+
+### 示例4（使用stopPropagation阻止冒泡）
+
+该示例使用stopPropagation阻止事件冒泡。即，通过在Button的onKeyEvent回调中加入event.stopPropagation()方法，达到“仅Button响应键盘事件，Column不响应”的效果。
+
+>**说明：**
+>
+> 1. onKeyEvent事件默认是冒泡的。  
+> 2. 事件冒泡：在一个树形结构中，当子节点处理完一个事件后，再将该事件交给它的父节点处理。  
+> 3. 可以在[onKeyEvent<sup>15+</sup>](#onkeyevent15)中，通过返回true消费按键事件阻止冒泡，效果等同于stopPropagation。
+
+```ts
+@Entry
+@Component
+struct KeyEventExample {
+  @State buttonText: string = '';
+  @State buttonType: string = '';
+  @State columnText: string = '';
+  @State columnType: string = '';
+
+  build() {
+    Column() {
+      Button('onKeyEvent')
+        .defaultFocus(true)
+        .width(140).height(70)
+        .onKeyEvent((event?: KeyEvent) => {
+          // 通过stopPropagation阻止事件冒泡
+          if(event){
+            if(event.stopPropagation){
+              event.stopPropagation();
+            }
+            if (event.type === KeyType.Down) {
+              this.buttonType = 'Down';
+            }
+            if (event.type === KeyType.Up) {
+              this.buttonType = 'Up';
+            }
+            this.buttonText = 'Button: \n' +
+              'KeyType:' + this.buttonType + '\n' +
+              'KeyCode:' + event.keyCode + '\n' +
+              'KeyText:' + event.keyText;
+          }
+        })
+
+      Divider()
+      Text(this.buttonText).fontColor(Color.Green)
+
+      Divider()
+      Text(this.columnText).fontColor(Color.Red)
+    }.width('100%').height('100%').justifyContent(FlexAlign.Center)
+    .onKeyEvent((event?: KeyEvent) => { // 给父组件Column设置onKeyEvent事件
+      if(event){
+        if (event.type === KeyType.Down) {
+          this.columnType = 'Down';
+        }
+        if (event.type === KeyType.Up) {
+          this.columnType = 'Up';
+        }
+        this.columnText = 'Column: \n' +
+          'KeyType:' + this.buttonType + '\n' +
+          'KeyCode:' + event.keyCode + '\n' +
+          'KeyText:' + event.keyText;
+      }
+    })
+  }
+}
+```
