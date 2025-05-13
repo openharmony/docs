@@ -1,8 +1,8 @@
 # @ohos.resourceManager (资源管理)
 
-本模块提供资源获取能力。根据设备当前的[Configuration](#configuration)配置，获取最匹配的应用资源或系统资源。具体匹配规则参考[资源匹配](../../quick-start/resource-categories-and-access.md#资源匹配)。
+本模块提供资源获取能力。根据当前的[Configuration](#configuration)配置，获取最匹配的应用资源或系统资源。具体匹配规则参考[资源匹配](../../quick-start/resource-categories-and-access.md#资源匹配)。
 
-设备Configuration配置包括语言、区域、横竖屏、Mcc（移动国家码）和Mnc（移动网络码）、Device capability（设备类型）、Density（分辨率）。
+Configuration配置包括语言、区域、横竖屏、Mcc（移动国家码）和Mnc（移动网络码）、Device capability（设备类型）、Density（分辨率）。
 
 > **说明：**
 >
@@ -16,8 +16,8 @@ import { resourceManager } from '@kit.LocalizationKit';
 
 ## 使用说明
 
-从API version 9开始，Stage模型支持通过Context获取资源管理resourceManager对象，无需再导入包。
-FA模型仍需要先导入包，再调用[getResourceManager](#resourcemanagergetresourcemanager)接口获取资源管理对象。 
+从API version 9开始，Stage模型支持通过Context获取资源管理resourceManager对象，无需再导入模块。
+FA模型仍需要先导入模块，再调用[getResourceManager](#resourcemanagergetresourcemanager)接口获取资源管理对象。 
 Stage模型下Context的引用方法请参考[Stage模型的Context详细介绍](../../application-models/application-context-stage.md)。
 
 ```ts
@@ -174,7 +174,7 @@ getResourceManager(bundleName: string): Promise&lt;ResourceManager&gt;
 
 getSystemResourceManager(): ResourceManager
 
-获取系统资源管理对象，返回系统资源的ResourceManager对象。
+获取系统资源管理ResourceManager对象。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -319,7 +319,7 @@ type RawFileDescriptor = _RawFileDescriptor
 
 | 类型    | 说明   |
 | ------  | ---- | 
-|[_RawFileDescriptor](js-apis-rawFileDescriptor.md#rawfiledescriptor-1)|表示rawfile文件所在HAP的descriptor信息。|
+|[_RawFileDescriptor](js-apis-rawFileDescriptor.md#rawfiledescriptor-1)|表示rawfile文件所在HAP的文件描述符（fd）。|
 
 ## Resource<sup>9+</sup>
 
@@ -384,6 +384,7 @@ getStringSync(resId: number): string
 
 **示例：**
   ```json
+  // 资源文件路径: src/main/resources/base/element/string.json
   {
     "string": [
       {
@@ -444,6 +445,7 @@ getStringSync(resId: number, ...args: Array<string | number>): string
 
 **示例：**
   ```json
+  // 资源文件路径: src/main/resources/base/element/string.json
   {
     "string": [
       {
@@ -504,6 +506,7 @@ getStringSync(resource: Resource): string
 
 **示例：**
   ```json
+  // 资源文件路径: src/main/resources/base/element/string.json
   {
     "string": [
       {
@@ -572,6 +575,7 @@ getStringSync(resource: Resource, ...args: Array<string | number>): string
 
 **示例：**
   ```json
+  // 资源文件路径: src/main/resources/base/element/string.json
   {
     "string": [
       {
@@ -636,6 +640,7 @@ getStringByNameSync(resName: string): string
 
 **示例：**
   ```json
+  // 资源文件路径: src/main/resources/base/element/string.json
   {
     "string": [
       {
@@ -696,6 +701,7 @@ getStringByNameSync(resName: string, ...args: Array<string | number>): string
 
 **示例：**
   ```json
+  // 资源文件路径: src/main/resources/base/element/string.json
   {
     "string": [
       {
@@ -749,6 +755,7 @@ getStringValue(resId: number, callback: _AsyncCallback&lt;string&gt;): void
 
 **示例Stage：** 
   ```json
+  // 资源文件路径: src/main/resources/base/element/string.json
   {
     "string": [
       {
@@ -806,6 +813,7 @@ getStringValue(resId: number): Promise&lt;string&gt;
 
 **示例：**
   ```json
+  // 资源文件路径: src/main/resources/base/element/string.json
   {
     "string": [
       {
@@ -858,6 +866,7 @@ getStringValue(resource: Resource, callback: _AsyncCallback&lt;string&gt;): void
 
 **示例：**
   ```json
+  // 资源文件路径: src/main/resources/base/element/string.json
   {
     "string": [
       {
@@ -971,6 +980,7 @@ getStringByName(resName: string, callback: _AsyncCallback&lt;string&gt;): void
 
 **示例：**
   ```json
+  // 资源文件路径: src/main/resources/base/element/string.json
   {
     "string": [
       {
@@ -1028,6 +1038,7 @@ getStringByName(resName: string): Promise&lt;string&gt;
 
 **示例：**
   ```json
+  // 资源文件路径: src/main/resources/base/element/string.json
   {
     "string": [
       {
@@ -1083,6 +1094,7 @@ getStringArrayValueSync(resId: number): Array&lt;string&gt;
 
 **示例：**
   ```json
+  // 资源文件路径: src/main/resources/base/element/strarray.json
   {
     "strarray": [
       {
@@ -1147,6 +1159,7 @@ getStringArrayValueSync(resource: Resource): Array&lt;string&gt;
 
 **示例：**
   ```json
+  // 资源文件路径: src/main/resources/base/element/strarray.json
   {
     "strarray": [
       {
@@ -1215,6 +1228,7 @@ getStringArrayByNameSync(resName: string): Array&lt;string&gt;
 
 **示例：**
   ```json
+  // 资源文件路径: src/main/resources/base/element/strarray.json
   {
     "strarray": [
       {
@@ -1272,6 +1286,7 @@ getStringArrayValue(resId: number, callback: _AsyncCallback&lt;Array&lt;string&g
 
 **示例：**
   ```json
+  // 资源文件路径: src/main/resources/base/element/strarray.json
   {
     "strarray": [
       {
@@ -1334,6 +1349,7 @@ getStringArrayValue(resId: number): Promise&lt;Array&lt;string&gt;&gt;
 
 **示例：**
   ```json
+  // 资源文件路径: src/main/resources/base/element/strarray.json
   {
     "strarray": [
       {
@@ -1392,6 +1408,7 @@ getStringArrayValue(resource: Resource, callback: _AsyncCallback&lt;Array&lt;str
 
 **示例：**
   ```json
+  // 资源文件路径: src/main/resources/base/element/strarray.json
   {
     "strarray": [
       {
@@ -1461,6 +1478,7 @@ getStringArrayValue(resource: Resource): Promise&lt;Array&lt;string&gt;&gt;
 
 **示例：**
   ```json
+  // 资源文件路径: src/main/resources/base/element/strarray.json
   {
     "strarray": [
       {
@@ -1523,6 +1541,7 @@ getStringArrayByName(resName: string, callback: _AsyncCallback&lt;Array&lt;strin
 
 **示例：**
   ```json
+  // 资源文件路径: src/main/resources/base/element/strarray.json
   {
     "strarray": [
       {
@@ -1585,6 +1604,7 @@ getStringArrayByName(resName: string): Promise&lt;Array&lt;string&gt;&gt;
 
 **示例：**
   ```json
+  // 资源文件路径: src/main/resources/base/element/strarray.json
   {
     "strarray": [
       {
@@ -1652,6 +1672,7 @@ getIntPluralStringValueSync(resId: number, num: number, ...args: Array<string | 
 
 **示例：**
   ```json
+  // 资源文件路径: src/main/resources/base/element/plural.json
   {
     "plural": [
       {
@@ -1729,6 +1750,7 @@ getIntPluralStringValueSync(resource: Resource, num: number, ...args: Array<stri
 
 **示例：**
   ```json
+  // 资源文件路径: src/main/resources/base/element/plural.json
   {
     "plural": [
       {
@@ -1811,6 +1833,7 @@ getIntPluralStringByNameSync(resName: string, num: number, ...args: Array<string
 
 **示例：**
   ```json
+  // 资源文件路径: src/main/resources/base/element/plural.json
   {
     "plural": [
       {
@@ -1886,6 +1909,7 @@ getDoublePluralStringValueSync(resId: number, num: number, ...args: Array<string
 
 **示例：**
   ```json
+  // 资源文件路径: src/main/resources/base/element/plural.json
   {
     "plural": [
       {
@@ -1963,6 +1987,7 @@ getDoublePluralStringValueSync(resource: Resource, num: number, ...args: Array<s
 
 **示例：**
   ```json
+  // 资源文件路径: src/main/resources/base/element/plural.json
   {
     "plural": [
       {
@@ -2045,6 +2070,7 @@ getDoublePluralStringByNameSync(resName: string, num: number, ...args: Array<str
 
 **示例：**
   ```json
+  // 资源文件路径: src/main/resources/base/element/plural.json
   {
     "plural": [
       {
@@ -3864,6 +3890,7 @@ getBoolean(resId: number): boolean
 
 **示例：**
   ```json
+  // 资源文件路径: src/main/resources/base/element/boolean.json
   {
     "boolean": [
       {
@@ -3923,6 +3950,7 @@ getBoolean(resource: Resource): boolean
 
 **示例：**
   ```json
+  // 资源文件路径: src/main/resources/base/element/boolean.json
   {
     "boolean": [
       {
@@ -3987,6 +4015,7 @@ getBooleanByName(resName: string): boolean
 
 **示例：**
   ```json
+  // 资源文件路径: src/main/resources/base/element/boolean.json
   {
     "boolean": [
       {
@@ -4045,6 +4074,7 @@ getNumber(resId: number): number
 
 **示例：**
   ```json
+  // 资源文件路径: src/main/resources/base/element/integer.json
   {
     "integer": [
       {
@@ -4056,6 +4086,7 @@ getNumber(resId: number): number
   ```
 
   ```json
+  // 资源文件路径: src/main/resources/base/element/float.json
   {
     "float": [
       {
@@ -4133,6 +4164,7 @@ getNumber(resource: Resource): number
 
 **示例：**
   ```json
+  // 资源文件路径: src/main/resources/base/element/integer.json
   {
     "integer": [
       {
@@ -4144,6 +4176,7 @@ getNumber(resource: Resource): number
   ```
 
   ```json
+  // 资源文件路径: src/main/resources/base/element/float.json
   {
     "float": [
       {
@@ -4229,6 +4262,7 @@ getNumberByName(resName: string): number
 
 **示例：**
   ```json
+  // 资源文件路径: src/main/resources/base/element/integer.json
   {
     "integer": [
       {
@@ -4240,6 +4274,7 @@ getNumberByName(resName: string): number
   ```
 
   ```json
+  // 资源文件路径: src/main/resources/base/element/float.json
   {
     "float": [
       {
@@ -4311,6 +4346,7 @@ getColorSync(resId: number) : number
 
 **示例：**
   ```json
+  // 资源文件路径: src/main/resources/base/element/color.json
   {
     "color": [
       {
@@ -4371,6 +4407,7 @@ getColorSync(resource: Resource): number
 
 **示例：**
   ```json
+  // 资源文件路径: src/main/resources/base/element/color.json
   {
     "color": [
       {
@@ -4435,6 +4472,7 @@ getColorByNameSync(resName: string) : number
 
 **示例：**
   ```json
+  // 资源文件路径: src/main/resources/base/element/color.json
   {
     "color": [
       {
@@ -4488,6 +4526,7 @@ getColor(resId: number, callback: _AsyncCallback&lt;number&gt;): void
 
 **示例Stage：**
   ```json
+  // 资源文件路径: src/main/resources/base/element/color.json
   {
     "color": [
       {
@@ -4545,6 +4584,7 @@ getColor(resId: number): Promise&lt;number&gt;
 
 **示例：**
   ```json
+  // 资源文件路径: src/main/resources/base/element/color.json
   {
     "color": [
       {
@@ -4599,6 +4639,7 @@ getColor(resource: Resource, callback: _AsyncCallback&lt;number&gt;): void
 
 **示例：**
   ```json
+  // 资源文件路径: src/main/resources/base/element/color.json
   {
     "color": [
       {
@@ -4664,6 +4705,7 @@ getColor(resource: Resource): Promise&lt;number&gt;
 
 **示例：**
   ```json
+  // 资源文件路径: src/main/resources/base/element/color.json
   {
     "color": [
       {
@@ -4722,6 +4764,7 @@ getColorByName(resName: string, callback: _AsyncCallback&lt;number&gt;): void
 
 **示例：**
   ```json
+  // 资源文件路径: src/main/resources/base/element/color.json
   {
     "color": [
       {
@@ -4779,6 +4822,7 @@ getColorByName(resName: string): Promise&lt;number&gt;
 
 **示例：**
   ```json
+  // 资源文件路径: src/main/resources/base/element/color.json
   {
     "color": [
       {
@@ -5088,11 +5132,11 @@ getRawFileList(path: string): Promise&lt;Array\<string\>&gt;
 
 getRawFdSync(path: string): RawFileDescriptor
 
-获取resources/rawfile目录下rawfile文件所在HAP的descriptor信息。
+获取resources/rawfile目录下rawfile文件所在HAP的文件描述符（fd）。
 
 > **说明**
 >
-> FileDescriptor使用完毕后需调用[closeRawFdSync](#closerawfdsync10)或[closeRawFd](#closerawfd9)关闭fd，避免资源泄露。
+> 文件描述符（fd）使用完毕后需调用[closeRawFdSync](#closerawfdsync10)或[closeRawFd](#closerawfd9)关闭fd，避免资源泄露。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -5108,7 +5152,7 @@ getRawFdSync(path: string): RawFileDescriptor
 
 | 类型                        | 说明          |
 | ------------------------- | ----------- |
-| [RawFileDescriptor](#rawfiledescriptor9) | rawfile文件所在HAP的descriptor信息。 |
+| [RawFileDescriptor](#rawfiledescriptor9) | rawfile文件所在HAP的文件描述符（fd）。 |
 
 **错误码：**
 
@@ -5136,11 +5180,11 @@ getRawFdSync(path: string): RawFileDescriptor
 
 getRawFd(path: string, callback: _AsyncCallback&lt;RawFileDescriptor&gt;): void
 
-获取resources/rawfile目录下对应rawfile文件所在HAP的descriptor信息。
+获取resources/rawfile目录下对应rawfile文件所在HAP的文件描述符（fd）。
 
 > **说明**
 >
-> FileDescriptor使用完毕后需调用[closeRawFdSync](#closerawfdsync10)或[closeRawFd](#closerawfd9)关闭fd，避免资源泄露。
+> 文件描述符（fd）使用完毕后需调用[closeRawFdSync](#closerawfdsync10)或[closeRawFd](#closerawfd9)关闭fd，避免资源泄露。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -5151,7 +5195,7 @@ getRawFd(path: string, callback: _AsyncCallback&lt;RawFileDescriptor&gt;): void
 | 参数名      | 类型                                       | 必填   | 说明                               |
 | -------- | ---------------------------------------- | ---- | -------------------------------- |
 | path     | string                                   | 是    | rawfile文件路径。                      |
-| callback | [_AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;[RawFileDescriptor](#rawfiledescriptor9)&gt; | 是    | 回调函数，返回获取的rawfile文件所在HAP的descriptor信息。 |
+| callback | [_AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;[RawFileDescriptor](#rawfiledescriptor9)&gt; | 是    | 回调函数，返回的rawfile文件所在HAP的文件描述符（fd）。 |
 
 **错误码：**
 
@@ -5188,11 +5232,11 @@ getRawFd(path: string, callback: _AsyncCallback&lt;RawFileDescriptor&gt;): void
 
 getRawFd(path: string): Promise&lt;RawFileDescriptor&gt;
 
-获取resources/rawfile目录下rawfile文件所在HAP的descriptor信息。
+获取resources/rawfile目录下rawfile文件所在HAP的文件描述符（fd）。
 
 > **说明**
 >
-> FileDescriptor使用完毕后需调用[closeRawFdSync](#closerawfdsync10)或[closeRawFd](#closerawfd9)关闭fd，避免资源泄露。
+> 文件描述符（fd）使用完毕后需调用[closeRawFdSync](#closerawfdsync10)或[closeRawFd](#closerawfd9)关闭fd，避免资源泄露。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -5208,7 +5252,7 @@ getRawFd(path: string): Promise&lt;RawFileDescriptor&gt;
 
 | 类型                                       | 说明                  |
 | ---------------------------------------- | ------------------- |
-| Promise&lt;[RawFileDescriptor](#rawfiledescriptor9)&gt; | Promise对象，返回rawfile文件所在HAP的descriptor信息。 |
+| Promise&lt;[RawFileDescriptor](#rawfiledescriptor9)&gt; | Promise对象，返回rawfile文件所在HAP的文件描述符（fd）。 |
 
 **错误码：**
 
@@ -5243,7 +5287,7 @@ getRawFd(path: string): Promise&lt;RawFileDescriptor&gt;
 
 closeRawFdSync(path: string): void
 
-用户关闭resources/rawfile目录下rawfile文件所在HAP的descriptor信息。
+关闭resources/rawfile目录下rawfile文件所在HAP的文件描述符（fd）。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -5281,7 +5325,7 @@ closeRawFdSync(path: string): void
 
 closeRawFd(path: string, callback: _AsyncCallback&lt;void&gt;): void
 
-用户关闭resources/rawfile目录下rawfile文件所在HAP的descriptor信息，使用callback异步回调。
+关闭resources/rawfile目录下rawfile文件所在HAP的文件描述符（fd），使用callback异步回调。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -5292,7 +5336,7 @@ closeRawFd(path: string, callback: _AsyncCallback&lt;void&gt;): void
 | 参数名      | 类型                        | 必填   | 说明          |
 | -------- | ------------------------- | ---- | ----------- |
 | path     | string                    | 是    | rawfile文件路径。 |
-| callback | [_AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;void&gt; | 是    | 回调函数。当关闭rawfile所在HAP的descriptor成功，err为undefined，否则为错误对象。|
+| callback | [_AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;void&gt; | 是    | 回调函数。当关闭rawfile所在HAP的文件描述符（fd）成功，err为undefined，否则为错误对象。|
 
 **错误码：**
 
@@ -5324,7 +5368,7 @@ closeRawFd(path: string, callback: _AsyncCallback&lt;void&gt;): void
 
 closeRawFd(path: string): Promise&lt;void&gt;
 
-用户关闭resources/rawfile目录下rawfile文件所在HAP的descriptor信息，使用Promise异步回调。
+关闭resources/rawfile目录下rawfile文件所在HAP的文件描述符（fd），使用Promise异步回调。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -5694,7 +5738,7 @@ getLocales(includeSystem?: boolean): Array\<string>
 
 getSymbol(resId: number): number
 
-获取指定资源ID对应的Symbol字符[Unicode码](https://home.unicode.org/)，使用同步方式返回。
+获取指定资源ID对应的[Symbol字符](https://developer.huawei.com/consumer/cn/design/harmonyos-symbol)Unicode码，使用同步方式返回。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -5710,7 +5754,7 @@ getSymbol(resId: number): number
 
 | 类型     | 说明          |
 | ------ | ----------- |
-| number | 资源ID值对应的Symbol字符[Unicode码](https://home.unicode.org/)（十进制）。 |
+| number | 资源ID值对应的Symbol字符Unicode码（十进制）。 |
 
 **错误码：**
 
@@ -5741,7 +5785,7 @@ getSymbol(resId: number): number
 ### getSymbol<sup>11+</sup>
 getSymbol(resource: Resource): number
 
-获取指定resource对象对应的Symbol字符[Unicode码](https://home.unicode.org/)，使用同步方式返回。
+获取指定resource对象对应的[Symbol字符](https://developer.huawei.com/consumer/cn/design/harmonyos-symbol)Unicode码，使用同步方式返回。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -5759,7 +5803,7 @@ getSymbol(resource: Resource): number
 
 | 类型     | 说明          |
 | ------ | ----------- |
-| number | resource对象对应的Symbol字符[Unicode码](https://home.unicode.org/)（十进制）。 |
+| number | resource对象对应的Symbol字符Unicode码（十进制）。 |
 
 **错误码：**
 
@@ -5797,7 +5841,7 @@ getSymbol(resource: Resource): number
 
 getSymbolByName(resName: string): number
 
-获取指定资源名称对应的Symbol字符[Unicode码](https://home.unicode.org/)，使用同步方式返回。
+获取指定资源名称对应的[Symbol字符](https://developer.huawei.com/consumer/cn/design/harmonyos-symbol)Unicode码，使用同步方式返回。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -5813,7 +5857,7 @@ getSymbolByName(resName: string): number
 
 | 类型     | 说明         |
 | ------ | ---------- |
-| number | 资源名称对应的Symbol字符[Unicode码](https://home.unicode.org/)（十进制）。 |
+| number | 资源名称对应的Symbol字符Unicode码（十进制）。 |
 
 **错误码：**
 
@@ -6018,7 +6062,7 @@ updateOverrideConfiguration(configuration: Configuration): void
 
 release()
 
-用户释放创建的resourceManager, 此接口暂不支持。
+释放创建的resourceManager, 此接口暂不支持。
 
 > **说明**
 >
@@ -6361,6 +6405,7 @@ getPluralStringValueSync(resId: number, num: number): string
 
 **示例：**
   ```json
+  // 资源文件路径: src/main/resources/base/element/plural.json
   {
     "plural": [
       {
@@ -6439,6 +6484,7 @@ getPluralStringValueSync(resource: Resource, num: number): string
 
 **示例：**
   ```json
+  // 资源文件路径: src/main/resources/base/element/plural.json
   {
     "plural": [
       {
@@ -6521,6 +6567,7 @@ getPluralStringByNameSync(resName: string, num: number): string
 
 **示例：**
   ```json
+  // 资源文件路径: src/main/resources/base/element/plural.json
   {
     "plural": [
       {
@@ -6592,6 +6639,7 @@ getPluralStringValue(resId: number, num: number, callback: _AsyncCallback&lt;str
 
 **示例：**
   ```json
+  // 资源文件路径: src/main/resources/base/element/plural.json
   {
     "plural": [
       {
@@ -6668,6 +6716,7 @@ getPluralStringValue(resId: number, num: number): Promise&lt;string&gt;
 
 **示例：**
   ```json
+  // 资源文件路径: src/main/resources/base/element/plural.json
   {
     "plural": [
       {
@@ -6740,6 +6789,7 @@ getPluralStringValue(resource: Resource, num: number, callback: _AsyncCallback&l
 
 **示例：**
   ```json
+  // 资源文件路径: src/main/resources/base/element/plural.json
   {
     "plural": [
       {
@@ -6824,6 +6874,7 @@ getPluralStringValue(resource: Resource, num: number): Promise&lt;string&gt;
 
 **示例：**
   ```json
+  // 资源文件路径: src/main/resources/base/element/plural.json
   {
     "plural": [
       {
@@ -6900,6 +6951,7 @@ getPluralStringByName(resName: string, num: number, callback: _AsyncCallback&lt;
 
 **示例：**
   ```json
+  // 资源文件路径: src/main/resources/base/element/plural.json
   {
     "plural": [
       {
@@ -6975,6 +7027,7 @@ getPluralStringByName(resName: string, num: number): Promise&lt;string&gt;
 
 **示例：**
   ```json
+  // 资源文件路径: src/main/resources/base/element/plural.json
   {
     "plural": [
       {
@@ -7166,7 +7219,7 @@ getRawFile(path: string): Promise&lt;Uint8Array&gt;
 
 getRawFileDescriptor(path: string, callback: AsyncCallback&lt;RawFileDescriptor&gt;): void
 
-获取resources/rawfile目录下对应rawfile文件的descriptor，使用callback异步回调。
+获取resources/rawfile目录下对应rawfile文件的文件描述符（fd），使用callback异步回调。
 
 > **说明**
 >
@@ -7179,7 +7232,7 @@ getRawFileDescriptor(path: string, callback: AsyncCallback&lt;RawFileDescriptor&
 | 参数名      | 类型                                       | 必填   | 说明                               |
 | -------- | ---------------------------------------- | ---- | -------------------------------- |
 | path     | string                                   | 是    | rawfile文件路径。                      |
-| callback | [AsyncCallback](#asynccallbackdeprecated)&lt;[RawFileDescriptor](#rawfiledescriptor9)&gt; | 是    | 回调函数，返回rawfile文件的descriptor。 |
+| callback | [AsyncCallback](#asynccallbackdeprecated)&lt;[RawFileDescriptor](#rawfiledescriptor9)&gt; | 是    | 回调函数，返回rawfile文件的文件描述符（fd）。 |
 
 **示例：**
   ```ts
@@ -7202,7 +7255,7 @@ getRawFileDescriptor(path: string, callback: AsyncCallback&lt;RawFileDescriptor&
 
 getRawFileDescriptor(path: string): Promise&lt;RawFileDescriptor&gt;
 
-获取resources/rawfile目录下对应rawfile文件的descriptor，使用Promise异步回调。
+获取resources/rawfile目录下对应rawfile文件的文件描述符（fd），使用Promise异步回调。
 
 > **说明**
 >
@@ -7220,7 +7273,7 @@ getRawFileDescriptor(path: string): Promise&lt;RawFileDescriptor&gt;
 
 | 类型                                       | 说明                  |
 | ---------------------------------------- | ------------------- |
-| Promise&lt;[RawFileDescriptor](#rawfiledescriptor9)&gt; | Promise对象，返回rawfile文件的descriptor。 |
+| Promise&lt;[RawFileDescriptor](#rawfiledescriptor9)&gt; | Promise对象，返回rawfile文件的文件描述符（fd）。 |
 
 **示例：**
   ```ts
@@ -7241,7 +7294,7 @@ getRawFileDescriptor(path: string): Promise&lt;RawFileDescriptor&gt;
 
 closeRawFileDescriptor(path: string, callback: AsyncCallback&lt;void&gt;): void
 
-用户关闭resources/rawfile目录下rawfile文件的descriptor，使用callback异步回调。
+关闭resources/rawfile目录下rawfile文件的文件描述符（fd），使用callback异步回调。
 
 > **说明**
 >
@@ -7256,7 +7309,7 @@ closeRawFileDescriptor(path: string, callback: AsyncCallback&lt;void&gt;): void
 | 参数名      | 类型                        | 必填   | 说明          |
 | -------- | ------------------------- | ---- | ----------- |
 | path     | string                    | 是    | rawfile文件路径。 |
-| callback | [AsyncCallback](#asynccallbackdeprecated)&lt;void&gt; | 是    | 回调函数。当关闭rawfile所在HAP的descriptor成功，err为undefined，否则为错误对象。|
+| callback | [AsyncCallback](#asynccallbackdeprecated)&lt;void&gt; | 是    | 回调函数。当关闭rawfile文件的文件描述符（fd）成功，err为undefined，否则为错误对象。|
 
 **示例：**
   ```ts
@@ -7275,7 +7328,7 @@ closeRawFileDescriptor(path: string, callback: AsyncCallback&lt;void&gt;): void
 
 closeRawFileDescriptor(path: string): Promise&lt;void&gt;
 
-用户关闭resources/rawfile目录下rawfile文件的descriptor，使用Promise异步回调。
+关闭resources/rawfile目录下rawfile文件的文件描述符（fd），使用Promise异步回调。
 
 > **说明**
 >
@@ -7330,6 +7383,7 @@ closeRawFileDescriptor(path: string): Promise&lt;void&gt;
 - 示例代码中用到的'app.string.test'文件内容如下：
 
     ```json
+    // 资源文件路径: src/main/resources/base/element/string.json
     {
       "string": [
         {
@@ -7341,6 +7395,7 @@ closeRawFileDescriptor(path: string): Promise&lt;void&gt;
     ```
 
     ```json
+    // 资源文件路径: src/main/resources/base/element/string.json
     {
       "string": [
         {
@@ -7354,6 +7409,7 @@ closeRawFileDescriptor(path: string): Promise&lt;void&gt;
 - 示例代码中用到的'app.strarray.test'文件内容如下：
 
     ```json
+    // 资源文件路径: src/main/resources/base/element/strarray.json
     {
       "strarray": [
         {
@@ -7370,6 +7426,7 @@ closeRawFileDescriptor(path: string): Promise&lt;void&gt;
 
 - 示例代码中用到的'app.plural.test'文件内容如下：
     ```json
+    // 资源文件路径: src/main/resources/base/element/plural.json
     {
       "plural": [
         {
@@ -7392,6 +7449,7 @@ closeRawFileDescriptor(path: string): Promise&lt;void&gt;
 - 示例代码中用到的'app.plural.format_test'文件内容如下：
 
     ```json
+    // 资源文件路径: src/main/resources/base/element/plural.json
     {
       "plural": [
         {
@@ -7413,6 +7471,7 @@ closeRawFileDescriptor(path: string): Promise&lt;void&gt;
 
 - 示例代码中用到的'app.boolean.boolean_test'文件内容如下：
     ```json
+    // 资源文件路径: src/main/resources/base/element/boolean.json
     {
       "boolean": [
         {
@@ -7425,6 +7484,7 @@ closeRawFileDescriptor(path: string): Promise&lt;void&gt;
 
 - 示例代码中用到的"integer_test"和"float_test"文件内容如下：
     ```json
+    // 资源文件路径: src/main/resources/base/element/integer.json
     {
       "integer": [
         {
@@ -7436,6 +7496,7 @@ closeRawFileDescriptor(path: string): Promise&lt;void&gt;
     ```
 
     ```json
+    // 资源文件路径: src/main/resources/base/element/float.json
     {
       "float": [
         {
@@ -7447,6 +7508,7 @@ closeRawFileDescriptor(path: string): Promise&lt;void&gt;
     ```
 - 示例代码中用到的'app.color.test'文件内容如下：
     ```json
+    // 资源文件路径: src/main/resources/base/element/color.json
     {
       "color": [
         {
