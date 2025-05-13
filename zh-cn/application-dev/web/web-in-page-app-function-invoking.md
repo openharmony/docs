@@ -10,7 +10,7 @@
 在下面的示例中，将test()方法注册在前端页面中， 该函数可以在前端页面触发运行。
 
 
-- [javaScriptProxy()](../reference/apis-arkweb/ts-basic-components-web.md#javascriptproxy)接口使用示例如下。
+- ### [javaScriptProxy()](../reference/apis-arkweb/ts-basic-components-web.md#javascriptproxy)接口使用示例如下。
 
   ```ts
   // xxx.ets
