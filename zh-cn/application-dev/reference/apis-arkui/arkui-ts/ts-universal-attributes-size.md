@@ -394,3 +394,51 @@ struct SafeAreaPaddingExample {
 ```
 
 ![safeAreaPaddingExample](figures/safeAreaPaddingExample.png)
+
+### 示例4（设置布局策略）
+
+对容器大小设置布局策略。
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct LayoutPolicyExample {
+  build() {
+    Column() {
+      Column() {
+        // matchParent生效时，当前组件会与其父组件内容区大小（180vp * 180vp）相等且不受自身constraintSize（150vp * 150vp）约束，因此当前组件大小为180vp * 180vp
+        Text("matchParent")
+        Flex()
+          .backgroundColor('rgb(0, 74, 175)')
+          .width(LayoutPolicy.matchParent)
+          .height(LayoutPolicy.matchParent)
+          .constraintSize({ maxWidth: 150, maxHeight: 150 })
+
+        // wrapContent生效时，当前组件会与其子组件大小（300vp * 300vp）相等，但不能超过父组件内容大小（180vp * 180vp）且会受自身constraintSize（250vp * 250vp）约束，因此当前组件大小为180vp * 180vp
+        Text("wrapContent")
+        Row() {
+          Flex().width(300).height(300)
+        }
+        .backgroundColor('rgb(39, 135, 217)')
+        .width(LayoutPolicy.wrapContent)
+        .height(LayoutPolicy.wrapContent)
+        .constraintSize({ maxWidth: 250, maxHeight: 250 })
+
+        // fixAtIdealSize生效时，当前组件会与其子组件大小（300vp * 300vp）相等，可以超过父组件内容大小（180vp * 180vp）但会受自身constraintSize（250vp * 250vp）约束，因此当前组件大小为250vp * 250vp
+        Text("fixAtIdealSize")
+
+        Row() {
+          Flex().width(300).height(300)
+        }
+        .backgroundColor('rgb(240, 250, 255)')
+        .width(LayoutPolicy.fixAtIdealSize)
+        .height(LayoutPolicy.fixAtIdealSize)
+        .constraintSize({ maxWidth: 250, maxHeight: 250 })
+      }.width(200).height(200).padding(10)
+    }.width("100%").height("100%")
+  }
+}
+```
+
+![layoutPolicyExample](figures/layoutPolicy_demo.jpg)
