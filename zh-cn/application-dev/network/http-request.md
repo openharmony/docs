@@ -32,7 +32,7 @@ HTTP数据请求功能主要由http模块提供。
 | on\('dataSendProgress'\)<sup>11+</sup>        | 订阅HTTP网络请求数据发送进度事件。  |
 | off\('dataSendProgress'\)<sup>11+</sup>       | 取消订阅HTTP网络请求数据发送进度事件。 |
 
-## 发起HTTP请求
+## 发起HTTP一般数据请求
 
 1. 从@kit.NetworkKit中导入http命名空间。
 2. 调用createHttp()方法，创建一个HttpRequest对象。
@@ -114,7 +114,7 @@ httpRequest.request(
 );
 ```
 
-## 发起HTTP流式请求
+## 发起HTTP流式传输请求
 
 1. 从@kit.NetworkKit中导入http命名空间。
 2. 调用createHttp()方法，创建一个HttpRequest对象。
