@@ -1126,7 +1126,7 @@
         - Upload and Download<!--upload-download-->
           - [Uploading and Downloading Application Files](basic-services/request/app-file-upload-download.md)
         - Compression and Decompression<!--compress-->
-          - [Compressing and Decompressing Files](basic-services/compress/deflate-and-inflate.md)  
+          - [Compressing and Decompressing Files](basic-services/compress/deflate-and-inflate.md)
       - Function Flow Runtime Kit<!--ffrt-kit-->
         - [Introduction to Function Flow Runtime Kit](ffrt/ffrt-overview.md)
         - [Function Flow Runtime Development](ffrt/ffrt-development-guideline.md)
@@ -1467,13 +1467,34 @@
         - [Requesting Frame Rates for Custom Content](graphics/displaysync-xcomponent.md)
         - [Native DisplaySoloist Development (C/C++)](graphics/displaysoloist-native-guidelines.md)
       - [Overdraw Debugging](graphics/overdraw-dfx-guidelines.md)
-      - [Using Drawing to Draw and Display Graphics](graphics/drawing-js-guidelines.md)
+      - Graphics Drawing and Display<!--graphic-drawing-and-display-->
+        - [Overview of Graphics Drawing and Display](graphics/graphic-drawing-overview.md)
+        - Canvas Acquisition and Display of Drawing Results<!--canvas-get-result-draw-->
+          - [Obtaining a Canvas and Displaying Drawing Results (ArkTS)](graphics/canvas-get-result-draw-arkts.md)
+          - [Obtaining a Canvas and Displaying Drawing Results (C/C++)](graphics/canvas-get-result-draw-c.md)
+        - Canvas Operations and State Processing<!--canvas-operation-state-->
+          - [Canvas Operations and State Processing (ArkTS)](graphics/canvas-operation-state-arkts.md)
+          - [Canvas Operations and State Processing (C/C++)](graphics/canvas-operation-state-c.md)
+        - Drawing Effects<!--drawing-effect-->
+          - [Overview of Drawing Effects](graphics/drawing-effect-overview.md)
+          - [Basic Drawing Effects (ArkTS)](graphics/basic-drawing-effect-arkts.md)
+          - [Complex Drawing Effects (ArkTS)](graphics/complex-drawing-effect-arkts.md)
+          - [Basic Drawing Effects (C/C++)](graphics/basic-drawing-effect-c.md)
+          - [Complex Drawing Effects (C/C++)](graphics/complex-drawing-effect-c.md)
+        - Primitive Drawing<!--primitive-drawing-->
+          - [Overview of Primitive Drawing](graphics/primitive-drawing-overview.md)
+          - [Drawing Geometric Shapes (ArkTS)](graphics/geometric-shape-drawing-arkts.md)
+          - [Drawing Images](graphics/pixelmap-drawing-arkts.md)
+          - [Drawing TextBlobs (ArkTS)](graphics/textblock-drawing-arkts.md)
+          - [Drawing Geometric Shapes (C/C++)](graphics/geometric-shape-drawing-c.md)
+          - [Drawing Images (C/C++)](graphics/pixelmap-drawing-c.md)
+          - [Drawing TextBlobs (C/C++)](graphics/textblock-drawing-c.md)
       - [Using the Text Module for Text Display](graphics/text-js-guidelines.md)
-      - [Using Drawing to Draw and Display Graphics (C/C++)](graphics/drawing-guidelines.md)
       - [Native Buffer Development (C/C++)](graphics/native-buffer-guidelines.md)
       - [Native Image Development (C/C++)](graphics/native-image-guidelines.md)
       - [Native Vsync Development (C/C++)](graphics/native-vsync-guidelines.md)
       - [Native Window Development (C/C++)](graphics/native-window-guidelines.md)
+      - [Graphic Development Terms](graphics/graphic-term.md)
     - ArkGraphics 3D<!--arkgraphics-3d-->
       - [Introduction to ArkGraphics 3D](graphics3d/arkgraphics3D-overview.md)
       - [Building and Managing ArkGraphics 3D Scenes](graphics3d/arkgraphics3D-scene.md)
@@ -1498,6 +1519,7 @@
       - [Obtaining Device Location Information](device/location/location-guidelines.md)
       - [Geocoding and Reverse Geocoding](device/location/geocode-guidelines.md)
       - [Geofencing](device/location/geofence-guidelines.md)
+      - [Samples](device/location/app-samples.md)
     - Notification Kit<!--notification-kit-->
       - [Introduction to Notification Kit](notification/notification-overview.md)
       - [Requesting Notification Authorization](notification/notification-enable.md)
@@ -2893,9 +2915,9 @@
         - [@ohos.i18n (Internationalization) (System API)](reference/apis-localization-kit/js-apis-i18n-sys.md)
         <!--DelEnd-->
         - global<!--localization-global-arkts-->
-          - [RawFileDescriptor](reference/apis-localization-kit/rawFileDescriptor.md) 
-          - [Resource](reference/apis-localization-kit/resource.md)
-          - [SendableResource](reference/apis-localization-kit/sendableResource.md)
+          - [RawFileDescriptor](reference/apis-localization-kit/js-apis-rawFileDescriptor.md) 
+          - [Resource](reference/apis-localization-kit/js-apis-resource.md)
+          - [SendableResource](reference/apis-localization-kit/js-apis-sendableResource.md)
       - C APIs<!--localization-c-->
         - Modules<!--localization-module-->
           - [Rawfile](reference/apis-localization-kit/rawfile.md)
@@ -2909,6 +2931,7 @@
         - Structs<!--localization-struct-->
           - [RawFileDescriptor](reference/apis-localization-kit/_raw_file_descriptor.md)
           - [RawFileDescriptor64](reference/apis-localization-kit/_raw_file_descriptor64.md)
+          - [ResourceManager_Configuration](reference/apis-localization-kit/_resource_manager___configuration.md)
       - Error Codes<!--localization-arkts-errcode-->
         - [I18n Error Codes](reference/apis-localization-kit/errorcode-i18n.md)
         - [Resource Manager Error Codes](reference/apis-localization-kit/errorcode-resource-manager.md)
@@ -3956,7 +3979,9 @@
           - [drawing_types.h](reference/apis-arkgraphics2d/drawing__types_8h.md)
           - [effect_filter.h](reference/apis-arkgraphics2d/effect__filter_8h.md)
           - [effect_types.h](reference/apis-arkgraphics2d/effect__types_8h.md)
+          - [buffer_handle.h](reference/apis-arkgraphics2d/buffer__handle_8h.md)
           - [external_window.h](reference/apis-arkgraphics2d/external__window_8h.md)
+          - [buffer_common.h](reference/apis-arkgraphics2d/buffer__common_8h.md)
           - [native_buffer.h](reference/apis-arkgraphics2d/native__buffer_8h.md)
           - [native_display_soloist.h](reference/apis-arkgraphics2d/native__display__soloist_8h.md)
           - [native_image.h](reference/apis-arkgraphics2d/native__image_8h.md)
@@ -3984,7 +4009,6 @@
           - [OH_Drawing_RectStyle_Info](reference/apis-arkgraphics2d/_o_h___drawing___rect_style___info.md)
           - [OH_Drawing_RunBuffer](reference/apis-arkgraphics2d/_o_h___drawing___run_buffer.md)
           - [OH_Drawing_StrutStyle](reference/apis-arkgraphics2d/_o_h___drawing___strut_style.md)
-          - [OH_Filter](reference/apis-arkgraphics2d/_o_h___filter.md)
           - [OH_Filter_ColorMatrix](reference/apis-arkgraphics2d/_o_h___filter___color_matrix.md)
           - [OH_NativeBuffer_ColorXY](reference/apis-arkgraphics2d/_o_h___native_buffer___color_x_y.md)
           - [OH_NativeBuffer_Config](reference/apis-arkgraphics2d/_o_h___native_buffer___config.md)
@@ -3994,6 +4018,7 @@
           - [OH_NativeBuffer_Smpte2086](reference/apis-arkgraphics2d/_o_h___native_buffer___smpte2086.md)
           - [OH_NativeBuffer_StaticMetadata](reference/apis-arkgraphics2d/_o_h___native_buffer___static_metadata.md)
           - [OH_OnFrameAvailableListener](reference/apis-arkgraphics2d/_o_h___on_frame_available_listener.md)
+          - [BufferHandle](reference/apis-arkgraphics2d/_buffer_handle.md)
           - [OHExtDataHandle](reference/apis-arkgraphics2d/_o_h_ext_data_handle.md)
           - [OHHDRMetaData](reference/apis-arkgraphics2d/_o_h_h_d_r_meta_data.md)
           - [Region](reference/apis-arkgraphics2d/_region.md)
