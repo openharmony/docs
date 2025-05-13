@@ -44,9 +44,9 @@ import { DistributedExtensionAbility } from '@kit.DistributedServiceKit';
 
 export default class DistributedExtension extends DistributedExtensionAbility {
   onCreate(want: Want) {
-    console.info(`DistributedExterntion Create ok`);
-    console.info(`DistributedExterntion on Create want: ${JSON.stringify(want)}`);
-    console.info(`DistributedExterntion Create end`);
+    console.info(`DistributedExtension Create ok`);
+    console.info(`DistributedExtension on Create want: ${JSON.stringify(want)}`);
+    console.info(`DistributedExtension Create end`);
   }
 }
 ```
@@ -81,11 +81,11 @@ export default class DistributedExtension extends DistributedExtensionAbility {
   onCollaborate(wantParam: Record<string, Object>) {
     console.info(t`DisributedExterntion onCollabRequest Accept to the result of Ability collaborate`);
     let sessionId = -1;
-    const collabrationValues = wantParam["CollabrationValues"] as abilityConnectionManager.CollabrationValues;
-    if (collabrationValues == undefined) {
+    const collaborationValues = wantParam["CollaborationValues"] as abilityConnectionManager.CollaborationValues;
+    if (collaborationValues == undefined) {
       return sessionId;
     }
-    console.info(`onCollab, collabrationValues: ${JSON.stringify(collabrationValues)}`);
+    console.info(`onCollab, collaborationValues: ${JSON.stringify(collaborationValues)}`);
     return AbilityConstant.CollaborateResult.ACCEPT;
   }
 }
@@ -106,7 +106,7 @@ import { DistributedExtensionAbility } from '@kit.DistributedServiceKit';
 
 export default class DistributedExtension extends DistributedExtensionAbility {
   onDestroy() {
-    console.info('DistributedExterntion onDestroy ok');
+    console.info('DistributedExtension onDestroy ok');
   }
 }
 ```
