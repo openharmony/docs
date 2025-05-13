@@ -755,7 +755,7 @@ import { image } from '@kit.ImageKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { window } from '@kit.ArkUI';
 
-// app_icon为示例资源，请开发者自行配置资源文件。
+// app_icon为示例资源，请开发者根据实际需求配置资源文件。
 const svgFileData = this.getUIContext()?.getHostContext()?.resourceManager.getMediaContent($r("app.media.app_icon")).then((svgFileData) => {
   const svgBuffer: ArrayBuffer = svgFileData.buffer.slice(0);
   let svgImagesource: image.ImageSource = image.createImageSource(svgBuffer);

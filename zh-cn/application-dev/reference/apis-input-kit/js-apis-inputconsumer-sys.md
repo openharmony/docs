@@ -107,7 +107,7 @@ try {
 
 setShieldStatus(shieldMode: ShieldMode, isShield: boolean): void
 
-设置屏蔽按键拦截状态。
+设置屏蔽按键的拦截状态。
 
 **需要权限**: ohos.permission.INPUT_CONTROL_DISPATCHING
 
@@ -117,7 +117,7 @@ setShieldStatus(shieldMode: ShieldMode, isShield: boolean): void
 
 | 参数名         | 类型                         | 必填   | 说明                                       |
 | ---------- | -------------------------- | ---- | ---------------------------------------- |
-| shieldMode       | [ShieldMode](#shieldMode<sup>11+</sup>)                     | 是    | 屏蔽类型，目前仅支持'FACTORY_MODE'。                       |
+| shieldMode       | [ShieldMode](#shieldMode11)                     | 是    | 屏蔽类型，目前仅支持取值为'FACTORY_MODE'，表示屏蔽所有快捷键。                       |
 | isShield | boolean  | 是    | 屏蔽类型生效状态，true代表屏蔽类型生效，flase代表不生效。              |
 
 **示例：** 
@@ -146,7 +146,7 @@ getShieldStatus(shieldMode: ShieldMode): boolean
 
 | 参数名         | 类型                         | 必填   | 说明                                       |
 | ---------- | -------------------------- | ---- | ---------------------------------------- |
-| shieldMode       | [ShieldMode](#shieldMode<sup>11+</sup>)                    | 是    | 屏蔽类型，目前仅支持'FACTORY_MODE'。                       |
+| shieldMode       | [ShieldMode](#shieldMode11)                    | 是    | 屏蔽类型，目前仅支持取值为'FACTORY_MODE'，表示屏蔽所有快捷键。                       |
 
 **返回值：** 
 
@@ -186,6 +186,8 @@ try {
 
 **系统能力：** SystemCapability.MultimodalInput.Input.InputConsumer
 
-| 名称                        | 类型  | 可读 | 可写 | 说明           |
-| ------------------------------ | ----------- | ---------------- | ---------------- | ---------------- |
-| FACTORY_MODE | number | 是 | 否 | 值为0，屏蔽类型为屏蔽所有快捷键。 |
+| 名称                        | 值 | 说明           |
+| ------------------------------ | ----------- | ---------------- |
+| UNSET_MODE | -1 | 值为-1，屏蔽类型为不屏蔽快捷键。 |
+| FACTORY_MODE | 0 | 值为0，屏蔽类型为屏蔽所有快捷键。 |
+| OOBE_MODE | 1 | 值为1，屏蔽类型为。 |
