@@ -64,7 +64,7 @@ ohos.permission.DISTRIBUTED_DATASYNC：分布式数据同步权限
      }
    }
    ```
-2. 导入common和abilityAccessCtrl模块，用于获取权限申请的能力。
+2. 导入abilityAccessCtrl模块，用于获取权限申请的能力。
 
    ```ts
    import { abilityAccessCtrl } from '@kit.AbilityKit';
