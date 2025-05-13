@@ -36,7 +36,7 @@
 
 ## 实现原理
 
-设备A应用集成**DistributedExtension**，当设备A侧分布式软总线收到应用的消息时，通过DistributedExterntion拉起设备A侧应用后台服务，设备A侧应用后台服务将设备B侧应用消息发送到应用服务。
+设备A应用集成**DistributedExtension**，当设备A侧分布式软总线收到应用的消息时，通过DistributedExtension拉起设备A侧应用后台服务，设备A侧应用后台服务将设备B侧应用消息发送到应用服务。
 
 ![实现原理](figures/distributedextension.png)
 
@@ -54,7 +54,7 @@
 ### 搭建环境
 
 1. 在PC上安装[DevEco Studio](https://gitee.com/link?target=https%3A%2F%2Fdeveloper.huawei.com%2Fconsumer%2Fcn%2Fdownload%2Fdeveco-studio)，要求版本在4.1及以上。
-2. 将public-SDK更新到API 18或以上，更新SDK的具体操作可参见[更新指南](../tools/openharmony_sdk_upgrade_assistant.md)。
+2. 将public-SDK更新到API 20或以上，更新SDK的具体操作可参见[更新指南](../tools/openharmony_sdk_upgrade_assistant.md)。
 3. 打开设备A和设备B的蓝牙，互相识别，实现组网。
 
 ### 检验环境是否搭建成功
@@ -122,25 +122,25 @@ hidumper -s 4700 -a "buscenter -l remote_device_info"
    
    export default class DistributedExtension extends DistributedExtensionAbility {
      onCreate(want: Want) {
-       console.info(`DistributedExterntion Create ok`);
-       console.info(`DistributedExterntion on Create want: ${JSON.stringify(want)}`);
-       console.info(`DistributedExterntion on Create end`);
+       console.info(`DistributedExtension Create ok`);
+       console.info(`DistributedExtension on Create want: ${JSON.stringify(want)}`);
+       console.info(`DistributedExtension on Create end`);
      }
    
      onCollaborate(wantParam: Record<string, Object>) {
-       console.info(`DistributedExterntion onCollabRequest Accept to the result of Ability collaborate`);
+       console.info(`DistributedExtension onCollabRequest Accept to the result of Ability collaborate`);
        let sessionId = -1;
-       const collabrationValues = wantParam["CollabrationValues"] as abilityConnectionManager.CollabrationValues;
-       if (collabrationValues == undefined) {
+       const collaborationValues = wantParam["CollaborationValues"] as abilityConnectionManager.CollaborationValues;
+       if (collaborationValues == undefined) {
          return sessionId;
        }
    
-       console.info(`onCollab, collabrationValues: ${JSON.stringify(collabrationValues)}`);
+       console.info(`onCollab, collaborationValues: ${JSON.stringify(collaborationValues)}`);
        return AbilityConstant.CollaborateResult.ACCEPT;
      }
    
      onDestroy() {
-       console.info(`DistributedExterntion onDestroy ok`);
+       console.info(`DistributedExtension onDestroy ok`);
      }
    }
    ```
