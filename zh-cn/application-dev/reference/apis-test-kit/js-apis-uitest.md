@@ -127,7 +127,7 @@ import { UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPatter
 | bundleName           | string  | 是   | 否   | 窗口归属应用的包名。<br />**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | title                | string  | 是   | 否   | 窗口的标题信息。<br />**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | focused              | boolean | 是   | 否   | 窗口是否处于获焦状态，true：获焦状态，false：未获焦状态。<br />**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| actived(deprecated)  | boolean | 是   | 否   | 窗口是否正与用户进行交互，true：交互状态，false：未交互状态。<br>从API version 11开始废弃，建议使用active替代。
+| actived(deprecated)  | boolean | 是   | 否   | 窗口是否正与用户进行交互，true：交互状态，false：未交互状态。<br>从API version 11开始，名称变更为active。
 | active<sup>11+</sup> | boolean | 是   | 否   | 窗口是否正与用户进行交互，true：交互状态，false：未交互状态。<br />**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                     |
 
 ## UiDirection<sup>10+</sup>
@@ -409,7 +409,7 @@ clickable(b?: boolean): On
 
 | 参数名 | 类型    | 必填 | 说明                                                         |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
-| b      | boolean | 否   | 指定控件可点击状态。true：可点击。false：不可点击。默认为true。 |
+| b      | boolean | 否   | 指定控件可点击状态。true：可点击。false：不可点击。默认为false。 |
 
 **返回值：**
 
@@ -632,7 +632,7 @@ checked(b?: boolean): On
 
 | 参数名 | 类型    | 必填 | 说明                                                         |
 | ------ | ------- | ---- |----------------------------------------|
-| b      | boolean | 否   | 指定控件被勾选状态。true：被勾选。false：未被勾选。默认为true。 |
+| b      | boolean | 否   | 指定控件被勾选状态，true：被勾选。false：未被勾选。默认为true。 |
 
 **返回值：**
 
@@ -669,7 +669,7 @@ checkable(b?: boolean): On
 
 | 参数名 | 类型    | 必填 | 说明                                                         |
 | ------ | ------- | ---- |-----------------------------------------|
-| b      | boolean | 否   | 指定控件能否被勾选状态。true：能被勾选。false：不能被勾选。默认为true。 |
+| b      | boolean | 否   | 指定控件能否被勾选状态，true：能被勾选。false：不能被勾选。默认为false。 |
 
 **返回值：**
 
