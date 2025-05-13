@@ -34,8 +34,9 @@ Wi-Fi STA模式（Station Mode，站点模式）是无线设备作为客户端�
 ### 判断Wi-Fi状态
 1. import需要的WI-FI模块。
 2. 需要SystemCapability.Communication.WiFi.STA系统能力。
-3. 开启设备的WI-FI。
-4. 示例代码：
+3. 需要申请权限ohos.permission.GET_WIFI_INFO。
+4. 开启设备的WI-FI。
+5. 示例代码：
 
 ```ts
   import { wifiManager } from '@kit.ConnectivityKit';
@@ -77,10 +78,12 @@ Wi-Fi STA模式（Station Mode，站点模式）是无线设备作为客户端�
 1. import需要的WI-FI模块。
 2. 开启设备的WI-FI。
 3. 需要SystemCapability.Communication.WiFi.STA系统能力。
-4. 示例代码：
+4. 需要申请权限ohos.permission.GET_WIFI_INFO，ohos.permission.SET_WIFI_INFO。
+5. 示例代码：
 
 ```ts
   import { wifiManager } from '@kit.ConnectivityKit';
+
   try {
       let recvWifiConnectionChangeFunc = (result:number) => {
       console.info("Receive wifi connection change event: " + result);
@@ -91,13 +94,14 @@ Wi-Fi STA模式（Station Mode，站点模式）是无线设备作为客户端�
       bssid : "****",
       preSharedKey : "****",
       securityType : 0
-	}
-       // 添加候选网络配置
-	wifiManager.addCandidateConfig(config).then(result => {
+	  }
+
+      // 更新当前WiFi连接状态
+    wifiManager.on("wifiConnectionChange", recvWifiConnectionChangeFunc);
+      // 添加候选网络配置
+	  wifiManager.addCandidateConfig(config).then(result => {
       // 连接指定网络
       wifiManager.connectToCandidateConfig(result);
-      // 更新当前WiFi连接状态
-      wifiManager.on("wifiConnectionChange", recvWifiConnectionChangeFunc);
     });
 
     if (!wifiManager.isConnected()) {
