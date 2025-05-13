@@ -39,7 +39,7 @@ import { distributedDeviceManager } from '@kit.DistributedServiceKit';
 
 ### replyUiAction
 
-replyUiAction(action: number, actionResult: string): void;
+replyUiAction(action: number, actionResult: string): void
 
 回复用户UI操作行为。此接口只能被devicemanager的PIN码hap使用。
 
@@ -93,7 +93,7 @@ replyUiAction(action: number, actionResult: string): void;
 
 ### on('replyResult')
 
-on(type: 'replyResult', callback: Callback&lt;{ param: string;}&gt;): void;
+on(type: 'replyResult', callback: Callback&lt;{ param: string;}&gt;): void
 
 回复UI操作结果回调。
 
@@ -150,7 +150,7 @@ on(type: 'replyResult', callback: Callback&lt;{ param: string;}&gt;): void;
 
 ### off('replyResult')
 
-off(type: 'replyResult', callback?: Callback&lt;{ param: string;}&gt;): void;
+off(type: 'replyResult', callback?: Callback&lt;{ param: string;}&gt;): void
 
 取消回复UI操作结果回调。
 
@@ -194,7 +194,7 @@ off(type: 'replyResult', callback?: Callback&lt;{ param: string;}&gt;): void;
 
 ### setHeartbeatPolicy<sup>15+</sup>
 
-setHeartbeatPolicy(policy: StrategyForHeartbeat, delayTime: number): void;
+setHeartbeatPolicy(policy: StrategyForHeartbeat, delayTime: number): void
 
 设置心跳广播策略。
 
