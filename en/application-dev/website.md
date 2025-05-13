@@ -614,7 +614,7 @@
       - [ArkWeb Process](web/web_component_process.md)
       - [Lifecycle of Web Components](web/web-event-sequence.md)
       - Setting Basic Attributes and Events<!--web-set-attributes-events-->
-        - [Setting UserAgent](web/web-default-userAgent.md)
+        - [Developing UserAgent](web/web-default-userAgent.md)
         - [Managing Cookies and Data Storage](web/web-cookie-and-data-storage-mgmt.md)
         - [Setting the Dark Mode](web/web-set-dark-mode.md)
         - [Opening Pages in a New Window](web/web-open-in-new-window.md)
@@ -935,7 +935,7 @@
             - [Generating an MD Using SHA-256 (ArkTS)](security/CryptoArchitectureKit/crypto-generate-message-digest.md)
             - [Generating an MD Using SHA-256 (C/C++)](security/CryptoArchitectureKit/crypto-generate-message-digest-ndk.md)
             - [Generating an MD Using MD5 (ArkTS)](security/CryptoArchitectureKit/crypto-generate-message-digest-md5.md)
-            - [Generating an MD Using MD5 (C/C++)](security/CryptoArchitectureKit/crypto-generate-message-digest-md5-ndk.md) 
+            - [Generating an MD Using MD5 (C/C++)](security/CryptoArchitectureKit/crypto-generate-message-digest-md5-ndk.md)
         - [MAC Operation](security/CryptoArchitectureKit/crypto-compute-mac.md)
         - [Random Number Generation](security/CryptoArchitectureKit/crypto-generate-random-number.md)
         - Key Derivation<!--crypto-key-derivation-->
@@ -1490,13 +1490,35 @@
         - [Requesting Frame Rates for Custom Content](graphics/displaysync-xcomponent.md)
         - [Native DisplaySoloist Development (C/C++)](graphics/displaysoloist-native-guidelines.md)
       - [Overdraw Debugging](graphics/overdraw-dfx-guidelines.md)
-      - [Using Drawing to Draw and Display Graphics](graphics/drawing-js-guidelines.md)
+      - Graphics Drawing and Display<!--graphic-drawing-and-display-->
+        - [Overview of Graphics Drawing and Display](graphics/graphic-drawing-overview.md)
+        - Canvas Acquisition and Display of Drawing Results<!--canvas-get-result-draw-->
+          - [Obtaining a Canvas and Displaying Drawing Results (ArkTS)](graphics/canvas-get-result-draw-arkts.md)
+          - [Obtaining a Canvas and Displaying Drawing Results (C/C++)](graphics/canvas-get-result-draw-c.md)
+        - Canvas Operations and State Processing<!--canvas-operation-state-->
+          - [Canvas Operations and State Processing (ArkTS)](graphics/canvas-operation-state-arkts.md)
+          - [Canvas Operations and State Processing (C/C++)](graphics/canvas-operation-state-c.md)
+        - Drawing Effects<!--drawing-effect-->
+          - [Overview of Drawing Effects](graphics/drawing-effect-overview.md)
+          - [Basic Drawing Effects (ArkTS)](graphics/basic-drawing-effect-arkts.md)
+          - [Complex Drawing Effects (ArkTS)](graphics/complex-drawing-effect-arkts.md)
+          - [Basic Drawing Effects (C/C++)](graphics/basic-drawing-effect-c.md)
+          - [Complex Drawing Effects (C/C++)](graphics/complex-drawing-effect-c.md)
+        - Primitive Drawing<!--primitive-drawing-->
+          - [Overview of Primitive Drawing](graphics/primitive-drawing-overview.md)
+          - [Drawing Geometric Shapes (ArkTS)](graphics/geometric-shape-drawing-arkts.md)
+          - [Drawing Images](graphics/pixelmap-drawing-arkts.md)
+          - [Drawing TextBlobs (ArkTS)](graphics/textblock-drawing-arkts.md)
+          - [Drawing Geometric Shapes (C/C++)](graphics/geometric-shape-drawing-c.md)
+          - [Drawing Images (C/C++)](graphics/pixelmap-drawing-c.md)
+          - [Drawing TextBlobs (C/C++)](graphics/textblock-drawing-c.md)
       - [Using the Text Module for Text Display](graphics/text-js-guidelines.md)
-      - [Using Drawing to Draw and Display Graphics (C/C++)](graphics/drawing-guidelines.md)
+      - [Using Theme Fonts (C/C++)](graphics/theme-font-c.md)
       - [Native Buffer Development (C/C++)](graphics/native-buffer-guidelines.md)
       - [Native Image Development (C/C++)](graphics/native-image-guidelines.md)
       - [Native Vsync Development (C/C++)](graphics/native-vsync-guidelines.md)
       - [Native Window Development (C/C++)](graphics/native-window-guidelines.md)
+      - [Graphic Development Terms](graphics/graphic-term.md)
     - ArkGraphics 3D<!--arkgraphics-3d-->
       - [Introduction to ArkGraphics 3D](graphics3d/arkgraphics3D-overview.md)
       - [Building and Managing ArkGraphics 3D Scenes](graphics3d/arkgraphics3D-scene.md)
@@ -1600,7 +1622,7 @@
           - [Running or Stopping an Event Loop in an Asynchronous Thread Using Node-API Extensions](napi/use-napi-event-loop.md)
           - [Loading a Module Using Node-API](napi/use-napi-load-module-with-info.md)
           - [Passing a Task with the Specified Priority to an ArkTS Thread from an Asynchronous Thread Using Node-API](napi/use-call-threadsafe-function-with-priority.md)
-          - [Calling an ArkTS Method with Return Value of a promise Using Node-API](napi/use-napi-method-promise.md)
+          - [Calling an ArkTS Method with Return Value of a Promise Using Node-API](napi/use-napi-method-promise.md)
         - [Node-API FAQs](napi/use-napi-faqs.md)
       - Using JSVM-API<!--jsvm-->
         - [JSVM-API Overview](napi/jsvm-introduction.md)
@@ -1647,6 +1669,9 @@
         - [QoS Development](napi/qos-guidelines.md)
       - Memory Management<!--memory-management-->
         - [Purgeable Memory Development](napi/purgeable-memory-guidelines.md)
+      - Device Management<!--device-management-->
+        - [USB DDK Development](napi/usb-ddk-guidelines.md)
+        - [HID DDK Development](napi/hid-ddk-guidelines.md)
       - Bundle Management<!--bundle-management-->
         - [Native Bundle Development](napi/native-bundle-guidelines.md)
     - Debugging and Profiling<!--debugging-profiling-->
@@ -2929,9 +2954,9 @@
         - [@ohos.i18n (Internationalization) (System API)](reference/apis-localization-kit/js-apis-i18n-sys.md)
         <!--DelEnd-->
         - global<!--localization-global-arkts-->
-          - [RawFileDescriptor](reference/apis-localization-kit/rawFileDescriptor.md)
-          - [Resource](reference/apis-localization-kit/resource.md)
-          - [SendableResource](reference/apis-localization-kit/sendableResource.md)
+          - [RawFileDescriptor](reference/apis-localization-kit/js-apis-rawFileDescriptor.md)
+          - [Resource](reference/apis-localization-kit/js-apis-resource.md)
+          - [SendableResource](reference/apis-localization-kit/js-apis-sendableResource.md)
       - C APIs<!--localization-c-->
         - Modules<!--localization-module-->
           - [Rawfile](reference/apis-localization-kit/rawfile.md)
@@ -2945,6 +2970,7 @@
         - Structs<!--localization-struct-->
           - [RawFileDescriptor](reference/apis-localization-kit/_raw_file_descriptor.md)
           - [RawFileDescriptor64](reference/apis-localization-kit/_raw_file_descriptor64.md)
+          - [ResourceManager_Configuration](reference/apis-localization-kit/_resource_manager___configuration.md)
       - Error Codes<!--localization-arkts-errcode-->
         - [I18n Error Codes](reference/apis-localization-kit/errorcode-i18n.md)
         - [Resource Manager Error Codes](reference/apis-localization-kit/errorcode-resource-manager.md)
@@ -3001,7 +3027,7 @@
           <!--Del-->
           - [@ohos.dlpPermission (DLP) (System API)](reference/apis-data-protection-kit/js-apis-dlppermission-sys.md)
           <!--DelEnd-->
-        - C API<!--data-protection-c-->
+        - C APIs<!--data-protection-c-->
           - Modules<!--data-protection-module-->
             - [DlpPermissionApi](reference/apis-data-protection-kit/_dlp_permission_api.md)
           - Header Files<!--data-protection-headerfile-->
@@ -4004,7 +4030,9 @@
           - [drawing_types.h](reference/apis-arkgraphics2d/drawing__types_8h.md)
           - [effect_filter.h](reference/apis-arkgraphics2d/effect__filter_8h.md)
           - [effect_types.h](reference/apis-arkgraphics2d/effect__types_8h.md)
+          - [buffer_handle.h](reference/apis-arkgraphics2d/buffer__handle_8h.md)
           - [external_window.h](reference/apis-arkgraphics2d/external__window_8h.md)
+          - [buffer_common.h](reference/apis-arkgraphics2d/buffer__common_8h.md)
           - [native_buffer.h](reference/apis-arkgraphics2d/native__buffer_8h.md)
           - [native_display_soloist.h](reference/apis-arkgraphics2d/native__display__soloist_8h.md)
           - [native_image.h](reference/apis-arkgraphics2d/native__image_8h.md)
@@ -4033,7 +4061,6 @@
           - [OH_Drawing_RunBuffer](reference/apis-arkgraphics2d/_o_h___drawing___run_buffer.md)
           - [OH_Drawing_String](reference/apis-arkgraphics2d/_o_h___drawing___string.md)
           - [OH_Drawing_StrutStyle](reference/apis-arkgraphics2d/_o_h___drawing___strut_style.md)
-          - [OH_Filter](reference/apis-arkgraphics2d/_o_h___filter.md)
           - [OH_Filter_ColorMatrix](reference/apis-arkgraphics2d/_o_h___filter___color_matrix.md)
           - [OH_NativeBuffer_ColorXY](reference/apis-arkgraphics2d/_o_h___native_buffer___color_x_y.md)
           - [OH_NativeBuffer_Config](reference/apis-arkgraphics2d/_o_h___native_buffer___config.md)
@@ -4043,6 +4070,7 @@
           - [OH_NativeBuffer_Smpte2086](reference/apis-arkgraphics2d/_o_h___native_buffer___smpte2086.md)
           - [OH_NativeBuffer_StaticMetadata](reference/apis-arkgraphics2d/_o_h___native_buffer___static_metadata.md)
           - [OH_OnFrameAvailableListener](reference/apis-arkgraphics2d/_o_h___on_frame_available_listener.md)
+          - [BufferHandle](reference/apis-arkgraphics2d/_buffer_handle.md)
           - [OHExtDataHandle](reference/apis-arkgraphics2d/_o_h_ext_data_handle.md)
           - [OHHDRMetaData](reference/apis-arkgraphics2d/_o_h_h_d_r_meta_data.md)
           - [Region](reference/apis-arkgraphics2d/_region.md)
