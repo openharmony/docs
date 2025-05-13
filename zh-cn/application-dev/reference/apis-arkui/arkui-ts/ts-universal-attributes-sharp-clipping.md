@@ -188,7 +188,7 @@ maskShape(shape: Optional\<CircleShape | EllipseShape | PathShape | RectShape>)
 
 ## ProgressMask<sup>10+</sup>
 
-ProgressMask设置遮罩的进度、最大值和遮罩颜色。
+ProgressMask设置遮罩的进度、最大值和颜色。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
