@@ -62,6 +62,7 @@ You can refer to the corresponding development guide and samples based on your d
 | [AVPlayerOnInfoType](#avplayeroninfotype-1) {<br>AV_INFO_TYPE_SEEKDONE = 0, <br>AV_INFO_TYPE_SPEEDDONE = 1, <br>AV_INFO_TYPE_BITRATEDONE = 2, <br>AV_INFO_TYPE_EOS = 3,<br>AV_INFO_TYPE_STATE_CHANGE = 4, <br>AV_INFO_TYPE_POSITION_UPDATE = 5, <br>AV_INFO_TYPE_MESSAGE = 6, <br>AV_INFO_TYPE_VOLUME_CHANGE = 7,<br>AV_INFO_TYPE_RESOLUTION_CHANGE = 8, <br>AV_INFO_TYPE_BUFFERING_UPDATE = 9, <br>AV_INFO_TYPE_BITRATE_COLLECT = 10, <br>AV_INFO_TYPE_INTERRUPT_EVENT = 11,<br>AV_INFO_TYPE_DURATION_UPDATE = 12, <br>AV_INFO_TYPE_IS_LIVE_STREAM = 13, <br>AV_INFO_TYPE_TRACKCHANGE = 14, <br>AV_INFO_TYPE_TRACK_INFO_UPDATE = 15,<br>AV_INFO_TYPE_SUBTITLE_UPDATE = 16, AV_INFO_TYPE_AUDIO_OUTPUT_DEVICE_CHANGE = 17<br>} | Enumerates the types of messages received by the AVPlayer.|
 | [AVPlayerBufferingType](#avplayerbufferingtype-1) { <br>AVPLAYER_BUFFERING_START = 1, <br>AVPLAYER_BUFFERING_END, <br>AVPLAYER_BUFFERING_PERCENT, <br>AVPLAYER_BUFFERING_CACHED_DURATION <br>} | Enumerates the types of buffer messages of the AVPlayer. |
 
+
 ### Functions
 
 | Name| Description|
