@@ -118,6 +118,7 @@ closeToast(toastId: number): void
 | -------- | ------------------------------------------------------------ |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed. |
 | 100001   | Internal error.                                              |
+| 103401   | Cannot find the toast.                                       |
 
 **示例：**
 
