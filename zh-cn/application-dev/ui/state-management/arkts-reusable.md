@@ -466,7 +466,7 @@ class FriendMoment {
 export struct OneMoment {
   @Prop moment: FriendMoment;
 
-  // 复用id相同的同才能触发复用
+  // 复用id相同的组件才能触发复用
   aboutToReuse(params: ESObject): void {
     console.log("=====aboutToReuse====OneMoment==复用了==" + this.moment.text);
   }
