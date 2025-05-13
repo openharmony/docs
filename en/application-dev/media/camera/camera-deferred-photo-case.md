@@ -1,6 +1,6 @@
-# High-Performance Photo Capture Sample (for System Applications Only) (ArkTS)
+# Practices for High-Performance Photo Capture (for System Applications Only) (ArkTS)
 
-Before developing a camera application, request permissions by following the instructions provided in [Camera Development Preparations](camera-preparation.md).
+Before developing a camera application, request permissions by following the instructions provided in [Requesting Camera Development Permissions](camera-preparation.md).
 
 This topic provides sample code that covers the complete high-performance photo capture process to help you understand the complete API calling sequence.
 
@@ -240,12 +240,12 @@ async function deferredPhotoCase(baseContext: common.BaseContext, surfaceId: str
       return;
     }
     console.info('photoOutPutCallBack deferredPhotoProxyAvailable');
-    // Obtain the pixel map of a thumbnail.
+    // Obtain the PixelMap of a thumbnail.
     proxyObj.getThumbnail().then((thumbnail: image.PixelMap) => {
       AppStorage.setOrCreate('proxyThumbnail', thumbnail); 
     });
     // Call the media library API to flush the thumbnail.
-    saveDeferredPhoto(proxyObj).then(() => {
+    saveDeferredPhoto(proxyObj, context).then(() => {
       // Release the thumbnail proxy class object after the flushing is complete.
       proxyObj.release();
     });

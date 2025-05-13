@@ -1,6 +1,6 @@
 # @ohos.multimedia.camera (Camera Management)
 
-The camera module provides a set of camera service APIs for you to easily develop a camera application. The application can access and operate the camera hardware to implement basic operations, such as preview, taking photos, and recording videos. It can also perform more operations, for example, controlling the flash and exposure time, and focusing or adjusting the focus.
+The Camera module provides a set of easy-to-use camera service APIs. With these APIs, you can create camera applications that access and control camera hardware to achieve basic functions like previewing, taking photos, and recording videos. In addition, you can combine these APIs to perform advanced operations, such as controlling the flash, exposure time, and focus.
 
 > **NOTE**
 >
@@ -71,7 +71,7 @@ Defines the camera device information.
 | cameraPosition                  | [CameraPosition](#cameraposition)   | Yes  | No | Camera position.   |
 | cameraType                      | [CameraType](#cameratype)           | Yes  | No | Camera type.   |
 | connectionType                  | [ConnectionType](#connectiontype)   | Yes  | No | Camera connection type.|
-| cameraOrientation<sup>12+</sup> | number                              | Yes  | No | Installation angle of the lens, which does not change as the screen rotates. The value ranges from 0° to 360°.|
+| cameraOrientation<sup>12+</sup> | number                              | Yes  | No | Camera installation angle, which does not change as the screen rotates. The value ranges from 0° to 360°, measured in degrees.|
 | hostDeviceName<sup>15+</sup>    | string                              | Yes  | No | Remote device name.|
 | hostDeviceType<sup>15+</sup>    | [HostDeviceType](#hostdevicetype15) | Yes  | No | Remote device type.|
 
@@ -155,7 +155,7 @@ Enumerates the folding statuses available for a fordable device.
 
 ## CameraStatusInfo
 
-Defines the camera status information.
+Describes the camera status information.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
@@ -184,7 +184,7 @@ Defines the camera profile.
 | Name     | Type                         | Read-only| Optional| Description        |
 | -------- | ----------------------------- |---- | ---- | ------------- |
 | format   | [CameraFormat](#cameraformat) | Yes |  No | Output format.     |
-| size     | [Size](#size)                 | Yes |  No | Resolution.<br>The width and height of the camera resolution is set, not the actual width and height of an output image. |
+| size     | [Size](#size)                 | Yes |  No | Resolution.<br>The size setting corresponds to the camera's resolution width and height, rather than the actual dimensions of the output image. |
 
 ## FrameRateRange
 
@@ -393,7 +393,7 @@ function getSupportedOutputCapability(camera: camera.CameraDevice, cameraManager
 
 isCameraMuted(): boolean
 
-Checks whether the camera device is muted.
+Checks whether this camera is muted.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
@@ -476,8 +476,8 @@ Creates a **CameraInput** instance with the specified camera position and type. 
 
 | Name    | Type                                       | Mandatory| Description                               |
 | -------- | ------------------------------------------- | ---- | --------------------------------- |
-| position | [CameraPosition](#cameraposition)           | Yes  | Camera position. You can call [getSupportedCameras](#getsupportedcameras) to obtain a **CameraDevice** instance, which contains the camera position information. |
-| type     | [CameraType](#cameratype)                   | Yes  | Camera type. You can call [getSupportedCameras](#getsupportedcameras) to obtain a **CameraDevice** instance, which contains the camera type information.|
+| position | [CameraPosition](#cameraposition)           | Yes  | Camera position. You need to obtain the supported camera object by calling [getSupportedCameras](#getsupportedcameras) and then obtain the device position information based on the returned camera object. |
+| type     | [CameraType](#cameratype)                   | Yes  | Camera type. You need to obtain the supported camera object by calling [getSupportedCameras](#getsupportedcameras) and then obtain the camera type based on the returned camera object.|
 
 **Return value**
 
@@ -1251,7 +1251,7 @@ Enumerates the flashlight modes.
 | ---------------------------- | ---- | ------------- |
 | OFF    | 0    | The flashlight is off.     |
 | ON  | 1    | The flashlight is on.|
-| AUTO      | 2    | The flashlight mode is auto.|
+| AUTO      | 2    | The system automatically adjusts the flashlight brightness according to the environment.|
 
 ## TorchStatusInfo<sup>11+</sup>
 
@@ -1261,8 +1261,8 @@ Defines the flashlight status information.
 
 | Name             | Type      | Read-only| Optional| Description       |
 | ---------------- | ---------- | ---- | ---- | ----------- |
-| isTorchAvailable | boolean    | Yes  | No  | Whether the flashlight is available.|
-| isTorchActive    | boolean    | Yes  | No  | Whether the flashlight is activated.   |
+| isTorchAvailable | boolean    | Yes  | No  | Whether the flashlight is available. The value **true** means that the flashlight is available, and **false** means the opposite.|
+| isTorchActive    | boolean    | Yes  | No  | Whether the flashlight is activated. The value **true** means that the flashlight is activated, and **false** means the opposite.  |
 | torchLevel       | number     | Yes  | No  | Flashlight level. The value range is [0, 1]. A larger value indicates a greater luminance.   |
 
 ## Size
@@ -1295,7 +1295,7 @@ Enumerates the camera output formats.
 
 | Name                    | Value       | Description        |
 | ----------------------- | --------- | ------------ |
-| CAMERA_FORMAT_RGBA_8888 | 3         | RGBA_888 image.       |
+| CAMERA_FORMAT_RGBA_8888 | 3         | RGBA_8888 image.       |
 | CAMERA_FORMAT_YUV_420_SP| 1003      | YUV_420_SP image.     |
 | CAMERA_FORMAT_JPEG      | 2000      | JPEG image.           |
 | CAMERA_FORMAT_YCBCR_P010<sup>11+</sup> |   2001    | YCBCR_P010 image.     |
@@ -1331,7 +1331,7 @@ Opens this camera device. This API uses an asynchronous callback to return the r
 
 | Name    | Type                 | Mandatory| Description                 |
 | -------- | -------------------- | ---- | ------------------- |
-| callback | AsyncCallback\<void\> | Yes  | Callback used to return the result. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
+| callback | AsyncCallback\<void\> | Yes  | Callback used to return the result. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned. For example, if the aspect ratio of the preview stream is different from that of the video output stream, error code 7400201 is returned.|
 
 **Error codes**
 
@@ -3440,8 +3440,8 @@ Describes the information about the automatic camera switch status.
 
 | Name      | Type     | Read-only| Optional| Description                     |
 | ---------- |---------| ---- | ---- |-------------------------|
-| isDeviceSwitched  | boolean | No  | No  | Whether the camera is automatically switched.            |
-| isDeviceCapabilityChanged | boolean  | No  | No  | Whether the camera capability is changed after the camera is automatically switched.|
+| isDeviceSwitched  | boolean | No  | No  | Whether the camera is automatically switched. The value **true** means that the camera is automatically switched, and **false** means the opposite.      |
+| isDeviceCapabilityChanged | boolean  | No  | No  | Whether the camera capability is changed after the camera is automatically switched. The value **true** means that the camera capability is changed, and **false** means the opposite.|
 
 ## VideoOutput
 
@@ -4375,7 +4375,7 @@ Enumerates the video stabilization modes.
 | LOW       | 1    | The basic video stabilization algorithm is used.  |
 | MIDDLE    | 2    | A video stabilization algorithm with a stabilization effect better than that of the **LOW** type is used.  |
 | HIGH      | 3    | A video stabilization algorithm with a stabilization effect better than that of the **MIDDLE** type is used.  |
-| AUTO      | 4    | Automatic video stabilization is used.  |
+| AUTO      | 4    | The system automatically selects a video stabilization algorithm.  |
 
 ## Session<sup>11+</sup>
 
@@ -4426,7 +4426,7 @@ Commits the configuration for this session. This API uses an asynchronous callba
 
 | Name    | Type                  | Mandatory| Description                 |
 | -------- | -------------------- | ---- | -------------------- |
-| callback | AsyncCallback\<void\> | Yes  | Callback used to return the result. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned. For example, if the aspect ratio of the preview stream is different from that of the video output stream, error code 7400201 is returned.|
+| callback | AsyncCallback\<void\> | Yes  | Callback used to return the result. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
 
 **Error codes**
 
@@ -5188,6 +5188,7 @@ For details about the error codes, see [Camera Error Codes](errorcode-camera.md)
 
 | ID        | Error Message       |
 | --------------- | --------------- |
+| 7400102                | Operation not allowed.                                 |
 | 7400103                |  Session not config.                                   |
 
 **Example**
@@ -5309,7 +5310,7 @@ For details about the error codes, see [Camera Error Codes](errorcode-camera.md)
 
 | ID        | Error Message       |
 | --------------- | --------------- |
-| 7400103                |  Session not config, only throw in session usage.               |
+| 7400103                |  Session not config.   |
 
 **Example**
 
@@ -5908,7 +5909,7 @@ function setSmoothZoom(sessionExtendsZoom: camera.Zoom, targetZoomRatio: number,
     let err = error as BusinessError;
     console.error(`The setSmoothZoom call failed. error code: ${err.code}`);
   }
-}
+  }
 ```
 
 ## ZoomQuery<sup>12+</sup>
@@ -6850,7 +6851,7 @@ Checks whether an exposure mode is supported.
 
 | Type       | Description                         |
 | ---------- | ----------------------------- |
-| boolean    | Check result. The value **true** means that the exposure mode is supported, and **false** means the opposite. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
+| boolean    | Check result. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
 
 **Error codes**
 
@@ -7893,7 +7894,7 @@ import { colorSpaceManager } from '@kit.ArkGraphics2D';
 function getSupportedColorSpaces(session: camera.PhotoSession): Array<colorSpaceManager.ColorSpace> {
   let colorSpaces: Array<colorSpaceManager.ColorSpace> = [];
   try {
-    colorSpaces = session.getSupportedColorSpaces();
+  colorSpaces = session.getSupportedColorSpaces();
   } catch (error) {
     let err = error as BusinessError;
     console.error(`The getSupportedColorSpaces call failed. error code: ${err.code}`);
@@ -7917,7 +7918,7 @@ P3 and HDR Imaging
 
 An application can deliver different color space parameters to declare its support for P3 and HDR.
 
-If an application does not proactively set the color space, SDR is used by default in photo capture scenarios.
+If an application does not proactively set the color space, HDR is used by default in photo capture and video capture scenarios.
 
 In photo mode, P3 can be directly supported by setting the HDR effect.
 
@@ -7928,14 +7929,14 @@ For details about how to enable the HDR effect and set the color space in differ
 | SDR/HRD Photo Capture        | CameraFormat             | ColorSpace       |
 |--------------------|--------------------------|------------------|
 | SDR                | CAMERA_FORMAT_YUV_420_SP | BT709_LIMIT      |
-| HDR_VIVID          | CAMERA_FORMAT_YCRCB_P010 | BT2020_HLG_LIMIT |
+| HDR_VIVID(Default) | CAMERA_FORMAT_YCRCB_P010 | BT2020_HLG_LIMIT |
 
 **Photo Mode**
 
 | SDR/HRD Photo Capture       | ColorSpace |
 |--------------------|------------|
-| SDR(Default)       | SRGB       |
-| HDR                | DISPLAY_P3 |
+| SDR          | SRGB       |
+| HDR(Default) | DISPLAY_P3 |
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
@@ -8037,7 +8038,7 @@ Checks whether the device supports automatic camera switch.
 
 For details about the error codes, see [Camera Error Codes](errorcode-camera.md).
 
-| ID        | Error Message                                             |
+| ID        | Error Message       |
 | --------------- |---------------------------------------------------|
 | 7400103         | Session not config, only throw in session usage.  |
 
@@ -8049,7 +8050,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 function isAutoDeviceSwitchSupported(session: camera.PhotoSession): boolean {
   let isSupported = false;
   try {
-    isSupported = session.isAutoDeviceSwitchSupported();
+  isSupported = session.isAutoDeviceSwitchSupported();
   } catch (error) {
     let err = error as BusinessError;
     console.error(`The isAutoDeviceSwitchSupported call failed, error code: ${err.code}`);
@@ -8082,7 +8083,7 @@ Enables or disables automatic camera switch. You can use [isAutoDeviceSwitchSupp
 
 | Name        | Type | Mandatory| Description |
 | ----------- |---------------------- |---| -------------------------- |
-| enabled | boolean  | Yes| Whether to enable automatic camera switch.  |
+| enabled | boolean  | Yes| Whether to enable automatic camera switch. The value **true** means to enable automatic camera switch, and **false** means the opposite.  |
 
 **Error codes**
 
