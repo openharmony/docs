@@ -233,11 +233,11 @@ filter控制器无效调用，比如调用时序不对。
 
 **可能原因**
 
-必须在animateBackgroungFilter之前使用setBackgroundFilter。
+setBackgroundFilter在animateBackgroungFilter之后使用。
 
 **处理步骤**
 
-检查使用时的步骤时序。
+检查使用时的步骤时序，保证在animateBackgroungFilter之前使用setBackgroundFilter。
 
 ## 1300018 API调用超时
 
