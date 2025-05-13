@@ -9698,7 +9698,7 @@ static configCookieSync(url: string, value: string, incognito?: boolean): void
 >
 > 若通过configCookieSync进行两次或多次设置cookie，则每次设置的cookie之间会通过"; "进行分隔。
 >
-> arkweb每30s周期落盘，可以使用接口[saveCookieAsync](#savecookieasync)进行强制落盘。
+> cookie每30s周期性保存到磁盘中，也可以使用接口[saveCookieAsync](#savecookieasync)进行强制落盘。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
