@@ -782,12 +782,12 @@
   ```
 ## 验证通道是否建立成功
 
- 1.打开web调试
+1. 打开web调试。
 
- 开启web调试请参考[使用DevTools工具调试前端页面](../web/web-debugging-with-devtools.md)
+   开启web调试请参考[使用DevTools工具调试前端页面](web-debugging-with-devtools.md)。
 
- 2.举例说明通道是否建立成功
+2. 举例说明通道是否建立成功。
 
- 使用[复杂类型使用方法](复杂类型使用方法)中应用侧和前端页面之间传递Array作为示例，调试结果如下图所示
+   使用[复杂类型使用方法](#复杂类型使用方法)中应用侧和前端页面之间传递Array作为示例，调试结果如下图所示：
 
-![输入图片说明](figures/webtoolstest.png)
+   ![DevTools工具验证成功示例](figures/webtoolstest.png)
