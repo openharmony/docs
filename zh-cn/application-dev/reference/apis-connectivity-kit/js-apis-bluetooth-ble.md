@@ -352,7 +352,7 @@ try {
 ```
 
 
-## ble.startAdvertising<sup>11+</sup><a name="startAdvertising"></a>
+## ble.startAdvertising<sup>11+</sup>
 
 startAdvertising(advertisingParams: AdvertisingParams, callback: AsyncCallback&lt;number&gt;): void
 
@@ -444,7 +444,7 @@ try {
 ```
 
 
-## ble.startAdvertising<sup>11+</sup><a name="startAdvertising"></a>
+## ble.startAdvertising<sup>11+</sup>
 
 startAdvertising(advertisingParams: AdvertisingParams): Promise&lt;number&gt;
 
@@ -537,7 +537,7 @@ try {
 ```
 
 
-## ble.enableAdvertising<sup>11+</sup><a name="enableAdvertising"></a>
+## ble.enableAdvertising<sup>11+</sup>
 
 enableAdvertising(advertisingEnableParams: AdvertisingEnableParams, callback: AsyncCallback&lt;void&gt;): void
 
@@ -641,7 +641,7 @@ try {
 ```
 
 
-## ble.enableAdvertising<sup>11+</sup><a name="enableAdvertising"></a>
+## ble.enableAdvertising<sup>11+</sup>
 
 enableAdvertising(advertisingEnableParams: AdvertisingEnableParams): Promise&lt;void&gt;
 
@@ -749,7 +749,7 @@ try {
 ```
 
 
-## ble.disableAdvertising<sup>11+</sup><a name="disableAdvertising"></a>
+## ble.disableAdvertising<sup>11+</sup>
 
 disableAdvertising(advertisingDisableParams: AdvertisingDisableParams, callback: AsyncCallback&lt;void&gt;): void
 
@@ -850,7 +850,7 @@ try {
 ```
 
 
-## ble.disableAdvertising<sup>11+</sup><a name="disableAdvertising"></a>
+## ble.disableAdvertising<sup>11+</sup>
 
 disableAdvertising(advertisingDisableParams: AdvertisingDisableParams): Promise&lt;void&gt;
 
@@ -954,7 +954,7 @@ try {
 }
 ```
 
-## ble.stopAdvertising<sup>11+</sup><a name="stopAdvertising"></a>
+## ble.stopAdvertising<sup>11+</sup>
 
 stopAdvertising(advertisingId: number, callback: AsyncCallback&lt;void&gt;): void
 
@@ -1052,7 +1052,7 @@ try {
 ```
 
 
-## ble.stopAdvertising<sup>11+</sup><a name="stopAdvertising"></a>
+## ble.stopAdvertising<sup>11+</sup>
 
 stopAdvertising(advertisingId: number): Promise&lt;void&gt;
 
