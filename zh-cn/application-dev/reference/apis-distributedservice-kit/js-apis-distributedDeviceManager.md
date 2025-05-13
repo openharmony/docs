@@ -156,13 +156,12 @@ getAvailableDeviceListSync(): Array&lt;DeviceBasicInfo&gt;;
 
 **示例：**
 
-示例中`dmInstance`的初始化请参见[创建一个设备管理实例](#distributeddevicemanagercreatedevicemanager)。
-
   ```ts
   import { distributedDeviceManager } from '@kit.DistributedServiceKit';
   import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
+    let dmInstance = distributedDeviceManager.createDeviceManager('ohos.samples.jsHelloWorld');
     let deviceInfoList: Array<distributedDeviceManager.DeviceBasicInfo> = dmInstance.getAvailableDeviceListSync();
   } catch (err) {
     let e: BusinessError = err as BusinessError;
@@ -197,13 +196,12 @@ getAvailableDeviceList(callback:AsyncCallback&lt;Array&lt;DeviceBasicInfo&gt;&gt
 
 **示例：**
 
-示例中`dmInstance`的初始化请参见[创建一个设备管理实例](#distributeddevicemanagercreatedevicemanager)。
-
   ```ts
   import { distributedDeviceManager } from '@kit.DistributedServiceKit';
   import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
+    let dmInstance = distributedDeviceManager.createDeviceManager('ohos.samples.jsHelloWorld');
     dmInstance.getAvailableDeviceList((err: BusinessError, data: Array<distributedDeviceManager.DeviceBasicInfo>) => {
       if (err) {
         console.error('getAvailableDeviceList errCode:' + err.code + ',errMessage:' + err.message);
@@ -244,12 +242,10 @@ getAvailableDeviceList(): Promise&lt;Array&lt;DeviceBasicInfo&gt;&gt;;
 
 **示例：**
 
-示例中`dmInstance`的初始化请参见[创建一个设备管理实例](#distributeddevicemanagercreatedevicemanager)。
-
   ```ts
   import { distributedDeviceManager } from '@kit.DistributedServiceKit';
   import { BusinessError } from '@kit.BasicServicesKit';
-
+  let dmInstance = distributedDeviceManager.createDeviceManager('ohos.samples.jsHelloWorld');
   dmInstance.getAvailableDeviceList().then((data: Array<distributedDeviceManager.DeviceBasicInfo>) => {
     console.log('get available device info: ' + JSON.stringify(data));
     }).catch((err: BusinessError) => {
@@ -284,12 +280,12 @@ getLocalDeviceNetworkId(): string;
 
 **示例：**
 
-示例中`dmInstance`的初始化请参见[创建一个设备管理实例](#distributeddevicemanagercreatedevicemanager)。
-
   ```ts
+  import { distributedDeviceManager } from '@kit.DistributedServiceKit';
   import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
+    let dmInstance = distributedDeviceManager.createDeviceManager('ohos.samples.jsHelloWorld');
     let deviceNetworkId: string = dmInstance.getLocalDeviceNetworkId();
     console.log('local device networkId: ' + JSON.stringify(deviceNetworkId));
   } catch (err) {
@@ -325,12 +321,12 @@ getLocalDeviceName(): string;
 
 **示例：**
 
-示例中`dmInstance`的初始化请参见[创建一个设备管理实例](#distributeddevicemanagercreatedevicemanager)。
-
   ```ts
+  import { distributedDeviceManager } from '@kit.DistributedServiceKit';
   import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
+    let dmInstance = distributedDeviceManager.createDeviceManager('ohos.samples.jsHelloWorld');
     let deviceName: string = dmInstance.getLocalDeviceName();
     console.log('local device name: ' + JSON.stringify(deviceName));
   } catch (err) {
@@ -366,12 +362,12 @@ getLocalDeviceType(): number;
 
 **示例：**
 
-示例中`dmInstance`的初始化请参见[创建一个设备管理实例](#distributeddevicemanagercreatedevicemanager)。
-
   ```ts
+  import { distributedDeviceManager } from '@kit.DistributedServiceKit';
   import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
+    let dmInstance = distributedDeviceManager.createDeviceManager('ohos.samples.jsHelloWorld');
     let deviceType: number = dmInstance.getLocalDeviceType();
     console.log('local device type: ' + JSON.stringify(deviceType));
   } catch (err) {
@@ -407,12 +403,12 @@ getLocalDeviceId(): string;
 
 **示例：**
 
-示例中`dmInstance`的初始化请参见[创建一个设备管理实例](#distributeddevicemanagercreatedevicemanager)。
-
   ```ts
+  import { distributedDeviceManager } from '@kit.DistributedServiceKit';
   import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
+    let dmInstance = distributedDeviceManager.createDeviceManager('ohos.samples.jsHelloWorld');
     let deviceId: string = dmInstance.getLocalDeviceId();
     console.log('local device id: ' + JSON.stringify(deviceId));
   } catch (err) {
@@ -455,14 +451,14 @@ getDeviceName(networkId: string): string;
 
 **示例：**
 
-示例中`dmInstance`的初始化请参见[创建一个设备管理实例](#distributeddevicemanagercreatedevicemanager)。
-
   ```ts
+  import { distributedDeviceManager } from '@kit.DistributedServiceKit';
   import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     // 设备网络标识，可以从可信设备列表中获取
     let networkId = 'xxxxxxx';
+    let dmInstance = distributedDeviceManager.createDeviceManager('ohos.samples.jsHelloWorld');
     let deviceName: string = dmInstance.getDeviceName(networkId);
     console.log('device name: ' + JSON.stringify(deviceName)); 
   } catch (err) {
@@ -505,14 +501,14 @@ getDeviceType(networkId: string): number;
 
 **示例：**
 
-示例中`dmInstance`的初始化请参见[创建一个设备管理实例](#distributeddevicemanagercreatedevicemanager)。
-
   ```ts
+  import { distributedDeviceManager } from '@kit.DistributedServiceKit';
   import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     // 设备网络标识，可以从可信设备列表中获取
     let networkId = 'xxxxxxx';
+    let dmInstance = distributedDeviceManager.createDeviceManager('ohos.samples.jsHelloWorld');
     let deviceType: number = dmInstance.getDeviceType(networkId);
     console.log('device type: ' + JSON.stringify(deviceType)); 
   } catch (err) {
@@ -551,9 +547,8 @@ startDiscovering(discoverParam: {[key:&nbsp;string]:&nbsp;Object;} , filterOptio
 
 **示例：**
 
-示例中`dmInstance`的初始化请参见[创建一个设备管理实例](#distributeddevicemanagercreatedevicemanager)。
-
   ```ts
+  import { distributedDeviceManager } from '@kit.DistributedServiceKit';
   import { BusinessError } from '@kit.BasicServicesKit';
 
   interface DiscoverParam {
@@ -575,6 +570,7 @@ startDiscovering(discoverParam: {[key:&nbsp;string]:&nbsp;Object;} , filterOptio
   };
 
   try {
+    let dmInstance = distributedDeviceManager.createDeviceManager('ohos.samples.jsHelloWorld');
     dmInstance.startDiscovering(discoverParam, filterOptions); // 当有设备发现时，通过discoverSuccess回调通知给应用程序
   } catch (err) {
     let e: BusinessError = err as BusinessError;
@@ -603,12 +599,12 @@ stopDiscovering(): void;
 
 **示例：**
 
-示例中`dmInstance`的初始化请参见[创建一个设备管理实例](#distributeddevicemanagercreatedevicemanager)。
-
   ```ts
+  import { distributedDeviceManager } from '@kit.DistributedServiceKit';
   import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
+    let dmInstance = distributedDeviceManager.createDeviceManager('ohos.samples.jsHelloWorld');
     dmInstance.stopDiscovering();
   } catch (err) {
     let e: BusinessError = err as BusinessError;
@@ -647,9 +643,8 @@ bindTarget(deviceId: string, bindParam: {[key:&nbsp;string]:&nbsp;Object;} , cal
 
 **示例：**
 
-示例中`dmInstance`的初始化请参见[创建一个设备管理实例](#distributeddevicemanagercreatedevicemanager)。
-
   ```ts
+  import { distributedDeviceManager } from '@kit.DistributedServiceKit';
   import { BusinessError } from '@kit.BasicServicesKit';
 
   class Data {
@@ -667,6 +662,7 @@ bindTarget(deviceId: string, bindParam: {[key:&nbsp;string]:&nbsp;Object;} , cal
   };
 
   try {
+    let dmInstance = distributedDeviceManager.createDeviceManager('ohos.samples.jsHelloWorld');
     dmInstance.bindTarget(deviceId, bindParam, (err: BusinessError, data: Data) => {
       if (err) {
         console.error('bindTarget errCode:' + err.code + ',errMessage:' + err.message);
@@ -708,13 +704,13 @@ unbindTarget(deviceId: string): void;
 
 **示例：**
 
-示例中`dmInstance`的初始化请参见[创建一个设备管理实例](#distributeddevicemanagercreatedevicemanager)。
-
   ```ts
+  import { distributedDeviceManager } from '@kit.DistributedServiceKit';
   import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     let deviceId = 'XXXXXXXX';
+    let dmInstance = distributedDeviceManager.createDeviceManager('ohos.samples.jsHelloWorld');
     dmInstance.unbindTarget(deviceId);
   } catch (err) {
     let e: BusinessError = err as BusinessError;
@@ -750,8 +746,6 @@ on(type: 'deviceStateChange', callback: Callback&lt;{ action: DeviceStateChange;
 
 **示例：**
 
-示例中`dmInstance`的初始化请参见[创建一个设备管理实例](#distributeddevicemanagercreatedevicemanager)。
-
   ```ts
   import { distributedDeviceManager } from '@kit.DistributedServiceKit';
   import { BusinessError } from '@kit.BasicServicesKit';
@@ -767,6 +761,7 @@ on(type: 'deviceStateChange', callback: Callback&lt;{ action: DeviceStateChange;
   }
 
   try {
+    let dmInstance = distributedDeviceManager.createDeviceManager('ohos.samples.jsHelloWorld');
     dmInstance.on('deviceStateChange', (data: Data) => {
       console.info('deviceStateChange on:' + JSON.stringify(data));
     });
@@ -791,7 +786,7 @@ off(type: 'deviceStateChange', callback?: Callback&lt;{ action: DeviceStateChang
   | 参数名       | 类型                                     | 必填   | 说明                          |
   | -------- | ---------------------------------------- | ---- | --------------------------- |
   | type     | string                                   | 是    | 根据应用程序的包名取消注册设备状态回调，固定为deviceStateChange。        |
-  | callback | Callback&lt;{&nbsp;action:&nbsp;[deviceStateChange](#devicestatechange);&nbsp;device:&nbsp;[DeviceBasicInfo](#devicebasicinfo);&nbsp;}&gt; | 否    | 指示要取消注册的设备状态回调，返回设备状态和设备信息。 |
+  | callback | Callback&lt;{&nbsp;action:&nbsp;[DeviceStateChange](#devicestatechange);&nbsp;device:&nbsp;[DeviceBasicInfo](#devicebasicinfo);&nbsp;}&gt; | 否    | 指示要取消注册的设备状态回调，返回设备状态和设备信息。 |
 
 **错误码：**
 
@@ -803,8 +798,6 @@ off(type: 'deviceStateChange', callback?: Callback&lt;{ action: DeviceStateChang
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed; 4. The size of specified type is greater than 255.  |
 
 **示例：**
-
-示例中`dmInstance`的初始化请参见[创建一个设备管理实例](#distributeddevicemanagercreatedevicemanager)。
 
   ```ts
   import { distributedDeviceManager } from '@kit.DistributedServiceKit';
@@ -821,6 +814,7 @@ off(type: 'deviceStateChange', callback?: Callback&lt;{ action: DeviceStateChang
   }
 
   try {
+    let dmInstance = distributedDeviceManager.createDeviceManager('ohos.samples.jsHelloWorld');
     dmInstance.off('deviceStateChange', (data: Data) => {
       console.info('deviceStateChange' + JSON.stringify(data));
     });
@@ -858,8 +852,6 @@ on(type: 'discoverSuccess', callback: Callback&lt;{ device: DeviceBasicInfo; }&g
 
 **示例：**
 
-示例中`dmInstance`的初始化请参见[创建一个设备管理实例](#distributeddevicemanagercreatedevicemanager)。
-
   ```ts
   import { distributedDeviceManager } from '@kit.DistributedServiceKit';
   import { BusinessError } from '@kit.BasicServicesKit';
@@ -874,6 +866,7 @@ on(type: 'discoverSuccess', callback: Callback&lt;{ device: DeviceBasicInfo; }&g
   }
   
   try {
+    let dmInstance = distributedDeviceManager.createDeviceManager('ohos.samples.jsHelloWorld');
     dmInstance.on('discoverSuccess', (data: Data) => {
       console.info('discoverSuccess:' + JSON.stringify(data));
     });
@@ -925,6 +918,7 @@ off(type: 'discoverSuccess', callback?: Callback&lt;{ device: DeviceBasicInfo; }
   }
 
   try {
+    let dmInstance = distributedDeviceManager.createDeviceManager('ohos.samples.jsHelloWorld');
     dmInstance.off('discoverSuccess', (data: Data) => {
       console.info('discoverSuccess' + JSON.stringify(data));
     });
@@ -962,9 +956,8 @@ on(type: 'deviceNameChange', callback: Callback&lt;{ deviceName: string; }&gt;):
 
 **示例：**
 
-示例中`dmInstance`的初始化请参见[创建一个设备管理实例](#distributeddevicemanagercreatedevicemanager)。
-
   ```ts
+  import { distributedDeviceManager } from '@kit.DistributedServiceKit';
   import { BusinessError } from '@kit.BasicServicesKit';
 
   class Data {
@@ -972,6 +965,7 @@ on(type: 'deviceNameChange', callback: Callback&lt;{ deviceName: string; }&gt;):
   }
 
   try {
+    let dmInstance = distributedDeviceManager.createDeviceManager('ohos.samples.jsHelloWorld');
     dmInstance.on('deviceNameChange', (data: Data) => {
       console.info('deviceNameChange on:' + JSON.stringify(data));
     });
@@ -1009,9 +1003,8 @@ off(type: 'deviceNameChange', callback?: Callback&lt;{ deviceName: string; }&gt;
 
 **示例：**
 
-示例中`dmInstance`的初始化请参见[创建一个设备管理实例](#distributeddevicemanagercreatedevicemanager)。
-
   ```ts
+  import { distributedDeviceManager } from '@kit.DistributedServiceKit';
   import { BusinessError } from '@kit.BasicServicesKit';
 
   class Data {
@@ -1019,6 +1012,7 @@ off(type: 'deviceNameChange', callback?: Callback&lt;{ deviceName: string; }&gt;
   }
 
   try {
+    let dmInstance = distributedDeviceManager.createDeviceManager('ohos.samples.jsHelloWorld');
     dmInstance.off('deviceNameChange', (data: Data) => {
       console.info('deviceNameChange' + JSON.stringify(data));
     });
@@ -1056,9 +1050,8 @@ on(type: 'discoverFailure', callback: Callback&lt;{ reason: number; }&gt;): void
 
 **示例：**
 
-示例中`dmInstance`的初始化请参见[创建一个设备管理实例](#distributeddevicemanagercreatedevicemanager)。
-
   ```ts
+  import { distributedDeviceManager } from '@kit.DistributedServiceKit';
   import { BusinessError } from '@kit.BasicServicesKit';
 
   class Data {
@@ -1066,6 +1059,7 @@ on(type: 'discoverFailure', callback: Callback&lt;{ reason: number; }&gt;): void
   }
 
   try {
+    let dmInstance = distributedDeviceManager.createDeviceManager('ohos.samples.jsHelloWorld');
     dmInstance.on('discoverFailure', (data: Data) => {
       console.info('discoverFailure on:' + JSON.stringify(data));
     });
@@ -1103,9 +1097,8 @@ off(type: 'discoverFailure', callback?: Callback&lt;{ reason: number; }&gt;): vo
 
 **示例：**
 
-示例中`dmInstance`的初始化请参见[创建一个设备管理实例](#distributeddevicemanagercreatedevicemanager)。
-
   ```ts
+  import { distributedDeviceManager } from '@kit.DistributedServiceKit';
   import { BusinessError } from '@kit.BasicServicesKit';
 
   class Data {
@@ -1113,6 +1106,7 @@ off(type: 'discoverFailure', callback?: Callback&lt;{ reason: number; }&gt;): vo
   }
 
   try {
+    let dmInstance = distributedDeviceManager.createDeviceManager('ohos.samples.jsHelloWorld');
     dmInstance.off('discoverFailure', (data: Data) => {
       console.info('discoverFailure' + JSON.stringify(data));
     });
@@ -1150,12 +1144,12 @@ on(type: 'serviceDie', callback?: Callback&lt;{}&gt;): void;
 
 **示例：**
 
-示例中`dmInstance`的初始化请参见[创建一个设备管理实例](#distributeddevicemanagercreatedevicemanager)。
-
   ```ts
+  import { distributedDeviceManager } from '@kit.DistributedServiceKit';
   import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
+    let dmInstance = distributedDeviceManager.createDeviceManager('ohos.samples.jsHelloWorld');
     dmInstance.on('serviceDie', () => {
       console.info('serviceDie on');
     });
@@ -1193,12 +1187,12 @@ off(type: 'serviceDie', callback?: Callback&lt;{}&gt;): void;
 
 **示例：**
 
-示例中`dmInstance`的初始化请参见[创建一个设备管理实例](#distributeddevicemanagercreatedevicemanager)。
-
   ```ts
+  import { distributedDeviceManager } from '@kit.DistributedServiceKit';
   import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
+    let dmInstance = distributedDeviceManager.createDeviceManager('ohos.samples.jsHelloWorld');
     dmInstance.off('serviceDie', () => {
       console.info('serviceDie off');
     });
