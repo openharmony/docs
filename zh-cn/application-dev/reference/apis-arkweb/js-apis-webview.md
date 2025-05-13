@@ -297,9 +297,9 @@ struct WebComponent {
           }
         })
         Button('SendToH5 setNumber').margin({
-        top: 10,
-        right: 800,
-      })
+          top: 10,
+          right: 800,
+        })
         .onClick(() => {
           // 使用本侧端口发送消息给HTML5
           try {
