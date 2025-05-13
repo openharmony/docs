@@ -1,6 +1,6 @@
 # 按键事件
 
-按键事件指组件与键盘、遥控器等按键设备交互时触发的事件，适用于所有可获焦组件，例如Button。对于Text，Image等默认不可获焦的组件，可以设置focusable属性为true后使用按键事件。
+按键事件是指组件与键盘、遥控器等按键设备交互时触发的事件，适用于所有可获焦组件，例如Button。对于默认不可获焦的组件，如Text，Image等，可以将focusable属性设置为true后使用按键事件。
 按键事件触发的流程和具体时机参考[按键事件数据流](../../../ui/arkts-common-events-device-input-event.md#按键事件数据流)。
 
 >  **说明：**
@@ -132,7 +132,7 @@ onKeyEventDispatch(event: Callback\<KeyEvent, boolean>): T
 
 ### 示例1（触发onKeyEvent回调）
 
-该示例通过按钮设置了按键事件，按钮获焦时按下按键可触发onKeyEvent回调，按键事件触发的流程和具体时机参考[按键事件数据流](../../../ui/arkts-common-events-device-input-event.md#按键事件数据流)。
+该示例通过按钮设置了按键事件。按钮获焦时，按下按键可触发onKeyEvent回调。按键事件触发的流程和具体时机参考[按键事件数据流](../../../ui/arkts-common-events-device-input-event.md#按键事件数据流)。
 
 ```ts
 // xxx.ets
@@ -166,7 +166,7 @@ struct KeyEventExample {
 
 ### 示例2（获取uniCode码值）
 
-该示例通过key事件获取到所按按键的unicode码值。
+该示例通过key事件获取按键的unicode码值。
 
 ```ts
 // xxx.ets
@@ -208,7 +208,7 @@ struct KeyEventExample {
 
 ### 示例3（触发onKeyPreIme回调）
 
-该示例使用onKeyPreIme屏蔽在输入框中使用方向左键。
+该示例使用onKeyPreIme屏蔽输入框中的方向左键。
 
 ```ts
 import { KeyCode } from '@kit.InputKit';
