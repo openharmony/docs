@@ -218,53 +218,6 @@ RichEditor(this.options)
 
 ![alt text](figures/richeditor_image_placeholder.gif)
 
-### 设置最大行数
-通过[maxLines](../reference/apis-arkui/arkui-ts/ts-basic-components-richeditor.md#maxlines18)设置富文本可显示的最大行数。
-
-```ts
-RichEditor(this.options)
-  .onReady(() => {
-    this.controller.addTextSpan('组件设置了最大行数\n超出内容将会以滚动显示\n超出1行\n超出2行\n超出3行\n超出4行', {
-      style: {
-        fontColor: Color.Black,
-        fontSize: 15
-      }
-    })
-  })
-  .maxLines(2)
-```
-
-![max lines](figures/RichEditor_maxLines.gif)
-
-### 设置最大长度
-通过[maxLength](../reference/apis-arkui/arkui-ts/ts-basic-components-richeditor.md#maxlength18)设置富文本的最大输入字符数。
-
-```ts
-RichEditor(this.options)
-  .placeholder('组件设置了最大字符数：7')
-  .onReady(() => {})
-  .maxLength(7)
-```
-
-![max Length](figures/RichEditor_maxLength.gif)
-
-### 默认选中菜单
-富文本中的文字被选中时会弹出包含剪切、复制、翻译、分享的菜单。
-
-```ts
-RichEditor(this.options)
-  .onReady(() => {
-    this.controller.addTextSpan('这是一段文本,用来展示选中菜单', {
-      style: {
-        fontColor: Color.Black,
-        fontSize: 15
-      }
-    })
-  })
-```
-
-![RichEditor_select_menu](figures/RichEditor_select_menu.jpg)
-
 更多属性使用请参考[RichEditor属性](../reference/apis-arkui/arkui-ts/ts-basic-components-richeditor.md#属性)。
 
 ## 添加事件
