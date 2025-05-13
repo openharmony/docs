@@ -4708,3 +4708,17 @@
 **ACL使能**：true
 
 **起始版本**：17
+
+## ohos.permission.REQUEST_DISABLE_NOTIFICATION
+
+允许应用运行的后台上传下载任务不在通知栏显示。
+
+**权限级别**：system_basic
+
+**授权方式**：系统授权（system_grant）
+
+**ACL使能**：true
+
+**支持设备**：General
+
+**起始版本**：20

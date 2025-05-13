@@ -4708,3 +4708,17 @@ Allows an application to access the sandbox directory of other applications.
 **Enable via ACL**: true
 
 **Valid since**: 17
+
+## ohos.permission.REQUEST_DISABLE_NOTIFICATION
+
+Allows an application to run background request tasks without triggering notifications in the notification bar.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Supported devices**: General
+
+**Valid since**: 20
