@@ -5057,7 +5057,7 @@ IP多媒体系统调用模式。
 
 |      名称       | 类型                                     | 必填 | 说明           |
 | --------------- | ---------------------------------------- | ---- | -------------- |
-| accountNumber   | string                                   | 是   | 帐号号码。       |
+| accountNumber   | string                                   | 是   | 账号号码。       |
 | speakerphoneOn  | boolean                                  | 是   | 扬声器接通电话。 |
 | accountId       | number                                   | 是   | 帐户Id。         |
 | videoState      | [VideoStateType](#videostatetype7)       | 是   | 视频状态类型。   |
