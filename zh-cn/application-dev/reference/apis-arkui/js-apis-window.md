@@ -434,7 +434,7 @@ import { window } from '@kit.ArkUI';
 | 名称     | 类型                                                      | 必填 | 说明                                                         |
 | -------- | --------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | curve    | [WindowAnimationCurve](#windowanimationcurve20)           | 是   | 动画曲线类型。                                               |
-| duration | number                                                    | 否   | 动画播放的时长，单位毫秒。<br/>默认值：0，最大值：3000。<br/>根据动画曲线类型决定是否必填。 |
+| duration | number                                                    | 否   | 动画播放的时长，单位毫秒（ms）。<br/>默认值：0，最大值：3000。<br/>根据动画曲线类型决定是否必填。 |
 | param    | [WindowAnimationCurveParam](#windowanimationcurveparam20) | 否   | 动画曲线参数，根据动画曲线类型决定是否必填。                 |
 
 ## WindowAnimationCurveParam<sup>20+</sup>
