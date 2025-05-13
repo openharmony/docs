@@ -65,7 +65,7 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
 
 | 接口名                                                                                | 描述                                         |
 | -------------------------------------------------------------------------------------| -------------------------------------------- |
-| setEventConfig(name: string, config: Record<string, ParamType>): Promise\<void>       | 设置主线程采样栈参数接口。 **现阶段仅提供MAIN_THREAD_JANK事件参数自定义，因此name为MAIN_THREAD_JANK。** |
+| setEventConfig(name: string, config: Record<string, ParamType>): Promise\<void>       | 设置主线程采样栈参数接口。 **name为MAIN_THREAD_JANK。** |
 
 ### 参数设置说明
 
