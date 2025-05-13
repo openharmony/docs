@@ -326,3 +326,68 @@ struct Index {
 ```
 
 ![zh-cn_image_0000001174582862](figures/normal-symbol.png)
+
+### 示例3（设置Menu子菜单展开符号）
+
+该示例通过配置subMenuExpandSymbol实现对Menu子菜单展开符号配置颜色。
+
+```ts
+import { SymbolGlyphModifier } from '@kit.ArkUI';
+
+@Entry
+@Component
+struct Index {
+  @State startIconModifier: SymbolGlyphModifier = new SymbolGlyphModifier($r('sys.symbol.ohos_star'))
+  @State endIconModifier: SymbolGlyphModifier = new SymbolGlyphModifier($r('sys.symbol.ohos_mic'))
+  @State expandSymbolModifier: SymbolGlyphModifier =
+    new SymbolGlyphModifier($r('sys.symbol.chevron_down')).fontColor([Color.Red])
+
+  @Builder
+  SubMenu() {
+    Menu() {
+      MenuItem({
+        symbolStartIcon: this.startIconModifier,
+        content: "图标"
+      })
+      MenuItem({
+        symbolStartIcon: this.startIconModifier,
+        content: "列表"
+      })
+    }.backgroundColor(Color.Grey)
+  }
+
+  @Builder
+  MyMenu() {
+    Menu() {
+      MenuItem({
+        symbolStartIcon: this.startIconModifier,
+        symbolEndIcon: this.endIconModifier,
+        content: "新建文件夹",
+        builder: (): void => this.SubMenu(),
+      })
+      MenuItem({
+        symbolStartIcon: this.startIconModifier,
+        content: "排序方式",
+        builder: (): void => this.SubMenu(),
+      })
+        .borderRadius('300.00vp')
+      MenuItem({
+        symbolStartIcon: this.startIconModifier,
+        content: "查看方式",
+        builder: (): void => this.SubMenu(),
+      })
+    }
+    .subMenuExpandingMode(SubMenuExpandingMode.EMBEDDED_EXPAND)
+    .backgroundColor(Color.Grey)
+    .subMenuExpandSymbol(this.expandSymbolModifier)
+  }
+
+  build() {
+    Button('click to show menu')
+      .position({ top: 40, left: 40 })
+      .bindMenu(this.MyMenu)
+  }
+}
+```
+
+![image](figures/menu-arrow.gif)
