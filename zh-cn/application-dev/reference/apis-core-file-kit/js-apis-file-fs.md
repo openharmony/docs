@@ -3853,6 +3853,8 @@ createStream(path: string, mode: string): Promise&lt;Stream&gt;
 
 基于文件路径创建文件流，使用promise异步回调。需要配合[Stream](#stream)中的close()函数关闭文件流。
 
+**原子化服务API**：从API version 20开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
 **参数：**
@@ -3892,6 +3894,8 @@ createStream(path: string, mode: string, callback: AsyncCallback&lt;Stream&gt;):
 
 基于文件路径创建文件流，使用callback异步回调。需要配合[Stream](#stream)中的close()函数关闭文件流。
 
+**原子化服务API**：从API version 20开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
 **参数：**
@@ -3927,6 +3931,8 @@ createStreamSync(path: string, mode: string): Stream
 
 以同步方法基于文件路径创建文件流。需要配合[Stream](#stream)中的close()函数关闭文件流。
 
+**原子化服务API**：从API version 20开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
 **参数：**
@@ -3961,6 +3967,8 @@ createStreamSync(path: string, mode: string): Stream
 fdopenStream(fd: number, mode: string): Promise&lt;Stream&gt;
 
 基于文件描述符打开文件流，使用promise异步回调。需要配合[Stream](#stream)中的close()函数关闭文件流。
+
+**原子化服务API**：从API version 20开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -4007,6 +4015,8 @@ fdopenStream(fd: number, mode: string, callback: AsyncCallback&lt;Stream&gt;): v
 
 基于文件描述符打开文件流，使用callback异步回调。需要配合[Stream](#stream)中的close()函数关闭文件流。
 
+**原子化服务API**：从API version 20开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
 **参数：**
@@ -4048,6 +4058,8 @@ fdopenStream(fd: number, mode: string, callback: AsyncCallback&lt;Stream&gt;): v
 fdopenStreamSync(fd: number, mode: string): Stream
 
 以同步方法基于文件描述符打开文件流。需要配合[Stream](#stream)中的close()函数关闭文件流。
+
+**原子化服务API**：从API version 20开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -4907,6 +4919,8 @@ close(): Promise&lt;void&gt;
 
 关闭文件流，使用promise异步回调。
 
+**原子化服务API**：从API version 20开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
 **返回值：**
@@ -4937,6 +4951,8 @@ close(): Promise&lt;void&gt;
 close(callback: AsyncCallback&lt;void&gt;): void
 
 异步关闭文件流，使用callback异步回调。
+
+**原子化服务API**：从API version 20开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -4971,6 +4987,8 @@ closeSync(): void
 
 同步关闭文件流。
 
+**原子化服务API**：从API version 20开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
 **错误码：**
@@ -4990,6 +5008,8 @@ closeSync(): void
 flush(): Promise&lt;void&gt;
 
 刷新文件流，使用promise异步回调。
+
+**原子化服务API**：从API version 20开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -5022,6 +5042,8 @@ flush(): Promise&lt;void&gt;
 flush(callback: AsyncCallback&lt;void&gt;): void
 
 异步刷新文件流，使用callback异步回调。
+
+**原子化服务API**：从API version 20开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -5057,6 +5079,8 @@ flushSync(): void
 
 同步刷新文件流。
 
+**原子化服务API**：从API version 20开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
 **错误码：**
@@ -5077,6 +5101,8 @@ flushSync(): void
 write(buffer: ArrayBuffer | string, options?: WriteOptions): Promise&lt;number&gt;
 
 将数据写入流文件，使用promise异步回调。
+
+**原子化服务API**：从API version 20开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -5123,6 +5149,8 @@ write(buffer: ArrayBuffer | string, options?: WriteOptions, callback: AsyncCallb
 
 将数据写入流文件，使用callback异步回调。
 
+**原子化服务API**：从API version 20开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
 **参数：**
@@ -5167,6 +5195,8 @@ writeSync(buffer: ArrayBuffer | string, options?: WriteOptions): number
 
 以同步方法将数据写入流文件。
 
+**原子化服务API**：从API version 20开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
 **参数：**
@@ -5206,6 +5236,8 @@ writeSync(buffer: ArrayBuffer | string, options?: WriteOptions): number
 read(buffer: ArrayBuffer, options?: ReadOptions): Promise&lt;number&gt;
 
 从流文件读取数据，使用promise异步回调。
+
+**原子化服务API**：从API version 20开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -5255,6 +5287,8 @@ read(buffer: ArrayBuffer, options?: ReadOptions, callback: AsyncCallback&lt;numb
 
 从流文件读取数据，使用callback异步回调。
 
+**原子化服务API**：从API version 20开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
 **参数：**
@@ -5299,6 +5333,8 @@ read(buffer: ArrayBuffer, options?: ReadOptions, callback: AsyncCallback&lt;numb
 readSync(buffer: ArrayBuffer, options?: ReadOptions): number
 
 以同步方法从流文件读取数据。
+
+**原子化服务API**：从API version 20开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
