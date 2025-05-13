@@ -48,7 +48,7 @@ The following table describes the attributes of **AssetMap** used for querying a
   | --------------------- | ------------------------------------------------------------ | -------- | ------------------------------------------------ |
   | ALIAS                 | Type: Uint8Array<br>Length: 1-256 bytes                           | Yes    | Asset alias, which uniquely identifies an asset.      |
   | AUTH_CHALLENGE        | Type: Uint8Array<br>Length: 32 bytes                              | Yes    | Challenge for the user authentication.                             |
-  | AUTH_TOKEN            | Type: Uint8Array<br>Length: 1-1024 bytes                             | Yes    | Authorization token obtained after the user authentication is successful.                        |
+  | AUTH_TOKEN            | Type: Uint8Array<br>Length: 148 bytes                             | Yes    | Authorization token obtained after the user authentication is successful.                        |
   | RETURN_TYPE           | Type: number                          | Yes    | Type of the asset query result to return.                   |
   | ACCESSIBILITY         | Type: number<br>Value range: see [Accessibility](../../reference/apis-asset-store-kit/js-apis-asset.md#accessibility)| No    | Access control based on the lock screen status.                                    |
   | REQUIRE_PASSWORD_SET  | Type: boolean                                                  | No    | Whether the asset is accessible only when a lock screen password is set.    |
