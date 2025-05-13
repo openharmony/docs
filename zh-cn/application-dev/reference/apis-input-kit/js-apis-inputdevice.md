@@ -260,7 +260,7 @@ off(type: "change", listener?: Callback&lt;DeviceListener&gt;): void
 
 | 参数名       | 类型                                       | 必填   | 说明          |
 | -------- | ---------------------------------------- | ---- | ----------- |
-| type     | string                                   | 是    | 输入设备的事件【鼠标、键盘、触摸屏等】类型。  |
+| type     | string                                   | 是    | 输入设备的事件类型，固定值为'change'。  |
 | listener | Callback&lt;[DeviceListener](#devicelistener9)&gt; | 否    | 取消监听的回调函数，缺省时取消所有输入设备热插拔事件的监听。 |
 
 **错误码**：
@@ -784,7 +784,7 @@ getIntervalSinceLastInput(): Promise&lt;number&gt;
 | 名称        | 类型   | 可读   | 可写   | 说明      |
 | --------- | ------ | ---- | ---- | ------- |
 | id                   | number                                 | 是 | 否 | 输入设备的唯一标识，同一个物理设备反复插拔，设备id会发生变化。 |
-| name                 | string                                 | 是 | 否 | 输入设备的名字。                                             |
+| name                 | string                                 | 是 | 否 | 输入设备的名称。                                             |
 | sources              | Array&lt;[SourceType](#sourcetype9)&gt; | 是 | 否 | 输入设备支持的输入能力。一个输入设备可以同时具备多种输入能力，如有的键盘上附带触摸板，则此设备有键盘和触摸板两种输入能力。 |
 | axisRanges           | Array&lt;[AxisRange](#axisrange)&gt;  | 是 | 否 | 输入设备的轴信息。                                           |
 | bus<sup>9+</sup>     | number                                 | 是 | 否 | 输入设备的总线类型。                                         |
