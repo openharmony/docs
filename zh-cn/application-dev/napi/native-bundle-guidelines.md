@@ -35,12 +35,15 @@
 2. 打开src/main/cpp/napi_init.cpp文件，添加头文件。
 
     ```c++
+    //NDK接口依赖头文件
     #include "bundle/native_interface_bundle.h"
+    //free()函数依赖的基础库
+    #include <cstdlib>
     ```
 
 **3. 修改源文件**
 
-1. 打开src/main/cpp/napi_init.cpp文件，文件Init会对当前方法进行初始化映射，这里定义对外接口为getCurrentApplicationInfo。
+1. 打开src/main/cpp/napi_init.cpp文件，文件Init会对当前方法进行初始化映射，这里定义对外的接口。
 
     ```c++
     EXTERN_C_START
@@ -128,11 +131,11 @@
         napi_value bundleName;
         napi_create_string_utf8(env, elementName.bundleName, NAPI_AUTO_LENGTH, &bundleName);
         napi_set_named_property(env, result, "bundleName", bundleName);
-        // Native接口获取的指纹信息转为js对象里的moduleName属性
+        // Native接口获取的模块名称转为js对象里的moduleName属性
         napi_value moduleName;
         napi_create_string_utf8(env, elementName.moduleName, NAPI_AUTO_LENGTH, &moduleName);
         napi_set_named_property(env, result, "moduleName", moduleName);
-        // Native接口获取的指纹信息转为js对象里的abilityName属性
+        // Native接口获取的ability名称转为js对象里的abilityName属性
         napi_value abilityName;
         napi_create_string_utf8(env, elementName.abilityName, NAPI_AUTO_LENGTH, &abilityName);
         napi_set_named_property(env, result, "abilityName", abilityName);
@@ -158,7 +161,7 @@
 
 **4. 接口暴露**
 
-在src/main/cpp/types/libentry/Index.d.ts文件中，申明暴露接口。
+在src/main/cpp/types/libentry/Index.d.ts文件中，声明暴露接口。
 
 ```js
 export const add: (a: number, b: number) => number;
@@ -174,7 +177,7 @@ export const getCompatibleDeviceType: () => string;     // 新增暴露方法 ge
 1. 打开src\main\ets\pages\index.ets, 导入"libentry.so"。
 
 
-2. 调用Native接口getCurrentApplicationInfo即可获取应用信息。示例如下：
+2. 调用Native接口打印出获取的信息内容。示例如下：
 
     ```js
     import { hilog } from '@kit.PerformanceAnalysisKit';
