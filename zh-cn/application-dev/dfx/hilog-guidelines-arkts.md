@@ -46,6 +46,7 @@ HiLog中定义了DEBUG、INFO、WARN、ERROR、FATAL五种日志级别，并提�
   | -------- | -------- | -------- |
   | d/i | 支持打印number和bigint类型。 | 123 |
   | s | 支持打印string、undefined、boolean和null类型。 | "123" |
+  | o/O | 支持打印object、undefined和null类型。<br>从API version 20开始，支持该能力。 | obj |
 
   格式字符串中可以设置多个参数，例如格式字符串为“%s World”，“%s”为参数类型为string的变参标识，具体取值在args中定义。<!--Del-->
 
@@ -97,6 +98,16 @@ HiLog中定义了DEBUG、INFO、WARN、ERROR、FATAL五种日志级别，并提�
            .onClick(() => {
              hilog.isLoggable(0xFF00, "testTag", hilog.LogLevel.INFO);
              hilog.info(0xFF00, "testTag", "%{public}s World %{public}d", "hello", 3);
+             class Person {
+                constructor(name: string, age: number) {
+                  this.name = name;
+                  this.age = age;
+                }
+                name: string;
+                age:  number;
+             }
+             let peter: Person = new Person("peter", 15);
+             hilog.info(0xFF00, "testTag", "peter is %{public}o", peter);
              // 设置应用日志最低打印级别，设置完成后，低于Warn级别的日志将无法打印
              hilog.setMinLogLevel(hilog.LogLevel.WARN);
              hilog.info(0x0000, 'testTag', 'this is an info level log');
@@ -117,6 +128,12 @@ HiLog中定义了DEBUG、INFO、WARN、ERROR、FATAL五种日志级别，并提�
    ```
    其中变参"%{public}s"为公共的字符串，"%{public}d"为公共的整型数。
 
+   如果要输出对象，格式字符串为：
+   ```txt
+   'peter is %{public}o'
+   ```
+   其中变参"%{public}o"为公共的对象
+
 4. 在真机上运行该工程，单击应用/服务界面上的“Next”按钮。
 
 5. 在DevEco Studio的底部，切换到“Log”窗口，设置日志的过滤条件。
@@ -125,6 +142,7 @@ HiLog中定义了DEBUG、INFO、WARN、ERROR、FATAL五种日志级别，并提�
    打印日志结果为:
    ```txt
    01-02 08:18:24.947   30988-30988   A0ff00/testTag                  com.example.hilogemo  I     hello World 3
+   01-02 08:18:24.947   30988-30988   A0ff00/testTag                  com.example.hilogemo  I     peter is {"name":"peter","age":15}
    01-02 08:18:24.947   30988-30988   A00000/testTag                  com.example.hilogemo  E     this is an error level log
    ```
 
