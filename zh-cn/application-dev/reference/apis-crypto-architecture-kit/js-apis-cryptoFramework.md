@@ -233,7 +233,7 @@ API version 10-11 系统能力为 SystemCapability.Security.CryptoFramework；�
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Signature
 
-API version 10-11 系统能力为 SystemCapability.Security.CryptoFramework；从 API version 12 开始为 SystemCapability.Security.CryptoFramework.Signature
+API version 10-11 系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为 SystemCapability.Security.CryptoFramework.Signature。
 
 | 名称         | 值   | 说明             |
 | ------------ | ---- | ---------------- |
