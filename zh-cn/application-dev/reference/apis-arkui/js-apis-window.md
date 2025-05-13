@@ -407,8 +407,8 @@ import { window } from '@kit.ArkUI';
 | ------ | ------ | ---- | ------------------------------------------ |
 | beginRect | [Rect](#rect7)  | 是 | 动画开始前软键盘的位置和大小。 |
 | endRect | [Rect](#rect7)  | 是 | 动画结束后软键盘的位置和大小。 |
-| animated | boolean  | 否 | 当前显示/隐藏是否有动画。 |
-| config | [WindowAnimationConfig](#windowanimationconfig20)  | 否 | 动画信息。 |
+| animated<sup>20+</sup> | boolean  | 否 | 当前显示/隐藏是否有动画，true表示有动画，false表示没有动画。 |
+| config<sup>20+</sup> | [WindowAnimationConfig](#windowanimationconfig20)  | 否 | 动画信息。 |
 
 ## WindowAnimationCurve<sup>20+</sup>
 
@@ -420,12 +420,12 @@ import { window } from '@kit.ArkUI';
 
 | 名称                | 值   | 说明                                                         |
 | ------------------- | ---- | ------------------------------------------------------------ |
-| LINEAR              | 0    | 表示动画从头到尾的速度都是相同的。<br />使用该曲线类型时[WindowAnimationConfig](#windowanimationconfig20)中duration必填。<br />使用该曲线类型时[WindowAnimationConfig](#windowanimationconfig20)中param选填，且不生效。 |
-| INTERPOLATION_SPRING | 1    | 表示插值器弹簧曲线，一条从0到1的动画曲线，实际动画值根据曲线进行插值计算。动画时间由曲线参数决定，不受[WindowAnimationConfig](#windowanimationconfig20)中的duration参数控制。<br />使用该曲线类型时[WindowAnimationConfig](#windowanimationconfig20)中duration选填且不生效。 |
+| LINEAR              | 0    | 表示动画从头到尾的速度都是相同的。<br/>使用该曲线类型时[WindowAnimationConfig](#windowanimationconfig20)中duration必填。<br/>使用该曲线类型时[WindowAnimationConfig](#windowanimationconfig20)中param选填，且不生效。 |
+| INTERPOLATION_SPRING | 1    | 表示插值器弹簧曲线，一条从0到1的动画曲线，实际动画值根据曲线进行插值计算。动画时间由曲线参数决定，不受[WindowAnimationConfig](#windowanimationconfig20)中的duration参数控制。<br/>使用该曲线类型时[WindowAnimationConfig](#windowanimationconfig20)中duration选填且不生效。 |
 
 ## WindowAnimationConfig<sup>20+</sup>
 
-窗口动画配置。
+窗口动画配置信息。
 
 **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
@@ -434,7 +434,7 @@ import { window } from '@kit.ArkUI';
 | 名称     | 类型                                                      | 必填 | 说明                                                         |
 | -------- | --------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | curve    | [WindowAnimationCurve](#windowanimationcurve20)           | 是   | 动画曲线类型。                                               |
-| duration | number                                                    | 否   | 动画播放的时长，单位毫秒。<br />默认值：0，最大值：3000。<br />根据动画曲线类型决定是否必填。 |
+| duration | number                                                    | 否   | 动画播放的时长，单位毫秒。<br/>默认值：0，最大值：3000。<br/>根据动画曲线类型决定是否必填。 |
 | param    | [WindowAnimationCurveParam](#windowanimationcurveparam20) | 否   | 动画曲线参数，根据动画曲线类型决定是否必填。                 |
 
 ## WindowAnimationCurveParam<sup>20+</sup>
@@ -456,10 +456,10 @@ type WindowAnimationCurveParam = Array&lt;number&gt;
 
 | 索引 | 类型   | 必填 | 说明                                                         |
 | ---- | ------ | ---- | ------------------------------------------------------------ |
-| 0    | number | 是   | 对应**velocity**，初始速度。<br />外部因素对弹性动效产生的影响参数，目的是保证对象从之前的运动状态平滑地过渡到弹性动效。该速度是归一化速度，其值等于动画开始时的实际速度除以动画属性改变值。 |
-| 1    | number | 是   | 对应**mass**，质量。<br />弹性系统的受力对象，会对弹性系统产生惯性影响。质量越大，震荡的幅度越大，恢复到平衡位置的速度越慢。<br />取值范围：(0, +∞)<br />**说明：**<br />设置的值小于等于0时，按1处理。 |
-| 2    | number | 是   | 对应**stiffness**，刚度。<br />表示物体抵抗施加的力而形变的程度。刚度越大，抵抗变形的能力越强，恢复到平衡位置的速度越快。<br />取值范围：(0, +∞)<br />**说明：**<br />设置的值小于等于0时，按1处理。 |
-| 3    | number | 是   | 对应**damping**，阻尼。<br />用于描述系统在受到扰动后震荡及衰减的情形。阻尼越大，弹性运动的震荡次数越少、震荡幅度越小。<br />取值范围：(0, +∞)<br />**说明：**<br />设置的值小于等于0时，按1处理。 |
+| 0    | number | 是   | 对应**velocity**，初始速度。<br/>外部因素对弹性动效产生的影响参数，目的是保证对象从之前的运动状态平滑地过渡到弹性动效。该速度是归一化速度，其值等于动画开始时的实际速度除以动画属性改变值。 |
+| 1    | number | 是   | 对应**mass**，质量。<br/>弹性系统的受力对象，会对弹性系统产生惯性影响。质量越大，震荡的幅度越大，恢复到平衡位置的速度越慢。<br/>取值范围：(0, +∞)<br/>**说明：**<br/>设置的值小于等于0时，按1处理。 |
+| 2    | number | 是   | 对应**stiffness**，刚度。<br/>表示物体抵抗施加的力而形变的程度。刚度越大，抵抗变形的能力越强，恢复到平衡位置的速度越快。<br/>取值范围：(0, +∞)<br/>**说明：**<br/>设置的值小于等于0时，按1处理。 |
+| 3    | number | 是   | 对应**damping**，阻尼。<br/>用于描述系统在受到扰动后震荡及衰减的情形。阻尼越大，弹性运动的震荡次数越少、震荡幅度越小。<br/>取值范围：(0, +∞)<br/>**说明：**<br/>设置的值小于等于0时，按1处理。 |
 
 ## WindowAnimationProperty<sup>20+</sup>
 
@@ -471,7 +471,7 @@ type WindowAnimationCurveParam = Array&lt;number&gt;
 
 | 名称 | 类型           | 必填 | 说明                                                         |
 | ---- | -------------- | ---- | ------------------------------------------------------------ |
-| rect | [Rect](#rect7) | 否   | 本次动画的终点位置和大小，单位为px。<br/>**说明：**<br/>仅在自由悬浮窗口模式（即窗口模式为window.WindowStatusType.FLOATING）下生效。<br/>在2in1设备上窗口相对于当前屏幕原点移动，其他设备上窗口相对于父窗口移动。 |
+| rect | [Rect](#rect7) | 否   | 本次动画终点的位置和大小，单位为px。<br/>**说明：**<br/>仅在自由悬浮窗口模式（即窗口模式为window.WindowStatusType.FLOATING）下生效。<br/>在2in1设备上窗口相对于当前屏幕原点移动，其他设备上窗口相对于父窗口移动。 |
 
 ## WindowTransitionType<sup>20+</sup>
 
@@ -3056,7 +3056,7 @@ try {
 
 ### getWindowTransitionAnimation<sup>20+</sup>
 
-getWindowTransitionAnimation(transitionType: WindowTransitionType): TransitionAnimation | undefined;
+getWindowTransitionAnimation(transitionType: WindowTransitionType): TransitionAnimation | undefined
 
 获取特定场景下的窗口转场动画配置。
 
@@ -4308,7 +4308,7 @@ try {
 
 on(type: 'keyboardWillShow', callback: Callback&lt;KeyboardInfo&gt;): void
 
-开启固定态软键盘显示动画开始前的监听。此监听在固定态软键盘显示动画开始前或软键盘由悬浮态/固定态互相切换时触发。
+开启固定态软键盘显示动画开始前的监听。此监听在固定态软键盘显示动画开始前或软键盘由悬浮态切换为固定态时触发。
 
 改变软键盘为固定态或者悬浮态方法详细介绍请参见[输入法服务](../apis-ime-kit/js-apis-inputmethodengine.md#changeflag10)。
 
@@ -4394,7 +4394,7 @@ try {
 
 on(type: 'keyboardWillHide', callback: Callback&lt;KeyboardInfo&gt;): void
 
-开启固定态软键盘隐藏动画开始前的监听。此监听在固定态软键盘隐藏动画开始前触发。
+开启固定态软键盘隐藏动画开始前的监听。此监听在固定态软键盘隐藏动画开始前触发或软键盘由固定态切换为悬浮态时触发。
 
 改变软键盘为固定态或者悬浮态方法详细介绍请参见[输入法服务](../apis-ime-kit/js-apis-inputmethodengine.md#changeflag10)。
 
