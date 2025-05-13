@@ -29,6 +29,9 @@
 | struct&nbsp;&nbsp;[HiDebug_SystemMemInfo](_hi_debug___system_mem_info.md) | 系统内存信息结构类型定义。|
 | struct&nbsp;&nbsp;[HiDebug_NativeMemInfo](_hi_debug___native_mem_info.md) | 应用程序进程本机内存信息结构类型定义。| 
 | struct&nbsp;&nbsp;[HiDebug_MemoryLimit](_hi_debug___memory_limit.md) | 应用程序进程内存限制结构类型定义。|
+| struct&nbsp;&nbsp;[HiDebug_JsStackFrame](_hi_debug__jsstackframe.md) | js栈信息。|
+| struct&nbsp;&nbsp;[HiDebug_NativeStackFrame](_hi_debug__nativestackframe.md) | native栈信息。|
+| struct&nbsp;&nbsp;[HiDebug_StackFrame](_hi_debug__hidebugstackframe.md) | 根据pc解析后的栈信息。|
 
 ### 宏定义
 
@@ -78,16 +81,19 @@
 | typedef struct [HiDebug_SystemMemInfo](_hi_debug___system_mem_info.md) [HiDebug_SystemMemInfo](#hidebug_systemmeminfo) | 系统内存信息结构类型定义。  | 
 | typedef struct [HiDebug_NativeMemInfo](_hi_debug___native_mem_info.md) [HiDebug_NativeMemInfo](#hidebug_nativememinfo) | 应用程序进程本机内存信息结构类型定义。  | 
 | typedef struct [HiDebug_MemoryLimit](_hi_debug___memory_limit.md) [HiDebug_MemoryLimit](#hidebug_memorylimit) | 应用程序进程内存限制结构类型定义。  | 
-| typedef enum [HiDebug_TraceFlag](#hidebug_traceflag) [HiDebug_TraceFlag](#hidebug_traceflag) | 采集trace线程的类型。  | 
-
+| typedef enum [HiDebug_TraceFlag](#hidebug_traceflag) [HiDebug_TraceFlag](#hidebug_traceflag) | 采集trace线程的类型。  |
+| typedef struct [HiDebug_JsStackFrame](_hi_debug__jsstackframe.md) [HiDebug_JsStackFrame](#hidebug_jsstackframe)  | js栈信息。                      |
+| typedef struct [HiDebug_NativeStackFrame](_hi_debug__nativestackframe.md) [HiDebug_NativeStackFrame](#hidebug_nativestackframe)  | native栈信息。               |
+| typedef struct [HiDebug_StackFrame](_hi_debug__hidebugstackframe.md) [HiDebug_StackFrame](#hidebug_stackframe)  | 根据pc解析后的栈信息。               |
+| typedef struct HiDebug_Backtrace_Object__* [HiDebug_Backtrace_Object](#hidebug_backtrace_object)    | 用于栈回溯及栈解析的对象定义。                   |
 
 ### 枚举
 
-| 名称 | 描述 | 
-| -------- | -------- |
-| [HiDebug_ErrorCode](#hidebug_errorcode) {<br/>HIDEBUG_SUCCESS = 0, HIDEBUG_INVALID_ARGUMENT = 401, HIDEBUG_TRACE_CAPTURED_ALREADY = 11400102, HIDEBUG_NO_PERMISSION = 11400103,<br/>HIDEBUG_TRACE_ABNORMAL = 11400104, HIDEBUG_NO_TRACE_RUNNING = 11400105<br/>} | 错误码定义。  | 
-| [HiDebug_TraceFlag](#hidebug_traceflag) { HIDEBUG_TRACE_FLAG_MAIN_THREAD = 1, HIDEBUG_TRACE_FLAG_ALL_THREADS = 2 } | 采集trace线程的类型。  | 
-
+| 名称                                                                                                                                                                                                                                                                               | 描述 | 
+|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------| -------- |
+| [HiDebug_ErrorCode](#hidebug_errorcode) {<br/>HIDEBUG_SUCCESS = 0, <br/>HIDEBUG_INVALID_ARGUMENT = 401, <br/>HIDEBUG_TRACE_CAPTURED_ALREADY = 11400102, <br/>HIDEBUG_NO_PERMISSION = 11400103, <br/>HIDEBUG_TRACE_ABNORMAL = 11400104, <br/>HIDEBUG_NO_TRACE_RUNNING = 11400105<br/>} | 错误码定义。  | 
+| [HiDebug_TraceFlag](#hidebug_traceflag) {<br/>HIDEBUG_TRACE_FLAG_MAIN_THREAD = 1, <br/>HIDEBUG_TRACE_FLAG_ALL_THREADS = 2 <br/>}                                                                                                                                                              | 采集trace线程的类型。  |
+| [HiDebug_StackFrameType](#hidebug_stackframetype) {<br/>HIDEBUG_STACK_FRAME_TYPE_JS = 1, <br/>HIDEBUG_STACK_FRAME_TYPE_NATIVE = 2 <br/>}                                                                                                                                                      | 栈帧类型。  | 
 
 ### 函数
 
@@ -103,7 +109,11 @@
 | [HiDebug_ErrorCode](#hidebug_errorcode) [OH_HiDebug_StartAppTraceCapture](#oh_hidebug_startapptracecapture) ([HiDebug_TraceFlag](#hidebug_traceflag) flag, uint64_t tags, uint32_t limitSize, char \*fileName, uint32_t length) | 启动应用trace采集。  | 
 | [HiDebug_ErrorCode](#hidebug_errorcode) [OH_HiDebug_StopAppTraceCapture](#oh_hidebug_stopapptracecapture) () | 停止采集应用程序trace。  | 
 | [HiDebug_ErrorCode](#hidebug_errorcode) [OH_HiDebug_GetGraphicsMemory](#oh_hidebug_getgraphicsmemory) (uint32_t \*value) | 获取应用GPU显存大小。  | 
-
+| typedef void (*[OH_HiDebug_SymbolicAddressCallback](#oh_hidebug_symbolicaddresscallback) (void* pc, void* arg, const HiDebug_StackFrame* frame)   | 用于将pc解析结果传会给调用者的回调函数。       |
+| int [OH_HiDebug_BacktraceFromFp](#oh_hidebug_backtracefromfp) (BacktraceObject object, void \*startFp, void \*\*pcArray, int size) | 获取从给定的栈帧指针开始的回溯帧。 |
+| [HiDebug_ErrorCode](#hidebug_errorcode) [OH_HiDebug_SymbolicAddress](#oh_hidebug_symbolicaddress) (BacktraceObject object, void \*pc, void \*arg, OH_HiDebug_SymbolicAddressCallback callback) | 通过给定的程序计数器（PC）获取详细的符号信息。 |
+| [HiDebug_Backtrace_Object](#hidebug_backtrace_object) [OH_HiDebug_CreateBacktraceObject](#oh_hidebug_createbacktraceobject) (void)  | 创建一个用于栈回溯及栈解析的对象。 |
+| void [OH_HiDebug_DestroyBacktraceObject](#oh_hidebug_destroybacktraceobject) (BacktraceObject object) | 销毁创建的用于栈回溯及栈解析对象。 |
 
 ## 宏定义说明
 
@@ -466,7 +476,7 @@ SA标签。
 ### HiDebug_ErrorCode
 
 ```
-typedef enum HiDebug_ErrorCodeHiDebug_ErrorCode
+typedef enum HiDebug_ErrorCode HiDebug_ErrorCode
 ```
 **描述**
 错误码的定义。
@@ -477,7 +487,7 @@ typedef enum HiDebug_ErrorCodeHiDebug_ErrorCode
 ### HiDebug_MemoryLimit
 
 ```
-typedef struct HiDebug_MemoryLimitHiDebug_MemoryLimit
+typedef struct HiDebug_MemoryLimit HiDebug_MemoryLimit
 ```
 **描述**
 应用程序进程内存限制的结构类型定义。
@@ -488,7 +498,7 @@ typedef struct HiDebug_MemoryLimitHiDebug_MemoryLimit
 ### HiDebug_NativeMemInfo
 
 ```
-typedef struct HiDebug_NativeMemInfoHiDebug_NativeMemInfo
+typedef struct HiDebug_NativeMemInfo HiDebug_NativeMemInfo
 ```
 **描述**
 应用程序进程本机内存信息的结构类型定义。
@@ -499,7 +509,7 @@ typedef struct HiDebug_NativeMemInfoHiDebug_NativeMemInfo
 ### HiDebug_SystemMemInfo
 
 ```
-typedef struct HiDebug_SystemMemInfoHiDebug_SystemMemInfo
+typedef struct HiDebug_SystemMemInfo HiDebug_SystemMemInfo
 ```
 **描述**
 系统内存信息的结构类型定义。
@@ -510,7 +520,7 @@ typedef struct HiDebug_SystemMemInfoHiDebug_SystemMemInfo
 ### HiDebug_ThreadCpuUsage
 
 ```
-typedef struct HiDebug_ThreadCpuUsageHiDebug_ThreadCpuUsage
+typedef struct HiDebug_ThreadCpuUsage HiDebug_ThreadCpuUsage
 ```
 **描述**
 应用程序所有线程的CPU使用率结构体的定义。
@@ -532,13 +542,54 @@ HiDebug_ThreadCpuUsage指针的定义。
 ### HiDebug_TraceFlag
 
 ```
-typedef enum HiDebug_TraceFlagHiDebug_TraceFlag
+typedef enum HiDebug_TraceFlag HiDebug_TraceFlag
 ```
 **描述**
 采集trace线程类型的定义。
 
 **起始版本：** 12
 
+### HiDebug_Backtrace_Object
+
+```
+typedef struct HiDebug_Backtrace_Object__* HiDebug_Backtrace_Object
+```
+**描述**
+用于栈回溯及栈解析的对象定义。
+
+**起始版本：** 20
+
+### HiDebug_JsStackFrame
+
+```
+typedef struct HiDebug_JsStackFrame HiDebug_JsStackFrame
+```
+**描述**
+js栈信息。
+
+**起始版本：** 20
+
+
+### HiDebug_NativeStackFrame
+
+```
+typedef struct HiDebug_NativeStackFrame HiDebug_NativeStackFrame
+```
+**描述**
+native栈信息。
+
+**起始版本：** 20
+
+
+### HiDebug_StackFrame
+
+```
+typedef struct HiDebug_StackFrame HiDebug_StackFrame
+```
+**描述**
+根据pc解析后的栈信息。
+
+**起始版本：** 20
 
 ## 枚举类型说明
 
@@ -560,8 +611,8 @@ enum HiDebug_ErrorCode
 | HIDEBUG_TRACE_CAPTURED_ALREADY  | 重复采集。&nbsp;&nbsp; | 
 | HIDEBUG_NO_PERMISSION  | 没有写文件的权限。&nbsp;&nbsp; | 
 | HIDEBUG_TRACE_ABNORMAL  | 系统内部错误。&nbsp;&nbsp; | 
-| HIDEBUG_NO_TRACE_RUNNING  | 当前没有trace正在运行。&nbsp;&nbsp; | 
-
+| HIDEBUG_NO_TRACE_RUNNING  | 当前没有trace正在运行。&nbsp;&nbsp; |
+| HIDEBUG_INVALID_SYMBOLIC_PC_ADDRESS  | 无效pc地址。&nbsp;&nbsp; |
 
 ### HiDebug_TraceFlag
 
@@ -578,6 +629,21 @@ enum HiDebug_TraceFlag
 | HIDEBUG_TRACE_FLAG_MAIN_THREAD  | 只采集当前应用主线程。&nbsp;&nbsp; | 
 | HIDEBUG_TRACE_FLAG_ALL_THREADS  | 采集当前应用下所有线程。&nbsp;&nbsp; | 
 
+
+### HiDebug_StackFrameType
+
+```
+enum HiDebug_StackFrameType
+```
+**描述**
+栈帧类型。
+
+**起始版本：** 20
+
+| 枚举值 | 描述                      | 
+| -------- |-------------------------|
+| HIDEBUG_STACK_FRAME_TYPE_JS  | js类型栈帧。&nbsp;&nbsp;     | 
+| HIDEBUG_STACK_FRAME_TYPE_NATIVE  | native类型栈帧。&nbsp;&nbsp; | 
 
 ## 函数说明
 
@@ -770,3 +836,98 @@ HiDebug_ErrorCode OH_HiDebug_StopAppTraceCapture ()
 11400104 - 内部错误。
 
 11400105 - 无trace运行。
+
+### OH_HiDebug_BacktraceFromFp()
+
+```
+int OH_HiDebug_BacktraceFromFp(HiDebug_Backtrace_Object object, void* startFp, void** pcArray, int size);
+```
+**描述**
+获取从给定的帧指针开始的回溯帧，并且该函数是信号安全的。
+
+**起始版本：** 20
+
+**参数:**
+
+| 名称 | 描述                                                                                     | 
+| -------- |----------------------------------------------------------------------------------------|
+| object | 使用[OH_HiDebug_CreateBacktraceObject](#oh_hiDebug_createbacktraceobject)接口获取到的用来栈回溯的对象。 | 
+| startFp | 用来栈回溯的起始栈帧地址。                                                                          | 
+| pcArray | 用来保存栈回溯得到的pc地址的数组。                                                                     | 
+| size | 用来保存栈回溯得到的pc地址的数组大小。                                                                   | 
+
+**返回：**
+
+成功回溯到的栈帧数量，如果返回结果为0，原因可能是栈回溯失败。
+
+### OH_HiDebug_SymbolicAddress()
+
+```
+HiDebug_ErrorCode OH_HiDebug_SymbolicAddress(HiDebug_Backtrace_Object object, void* pc, void* arg, OH_HiDebug_SymbolicAddressCallback callback)
+```
+**描述**
+通过给定的pc地址获取详细的符号信息，该函数非信号安全，由于该接口比较消耗性能，不建议频繁调用。
+
+**起始版本：** 20
+
+**参数:**
+
+| 名称 | 描述                                                                                           | 
+| -------- |----------------------------------------------------------------------------------------------|
+| object | 使用[OH_HiDebug_CreateBacktraceObject](#oh_hiDebug_createbacktraceobject)接口获取到的用来栈回溯的对象。       | 
+| pc | 使用[OH_HiDebug_BacktraceFromFp](#oh_hidebug_backtraceFromFp) 接口获取到的pc地址。                      | 
+| arg | 保留的自定义参数，系统内部会将该参数传递给回调函数[OH_HiDebug_SymbolicAddressCallback](#oh_hidebug_symbolicaddresscallback)。 | 
+| callback | 用于返回解析后栈信息的回调函数。                                                                             | 
+
+**返回：**
+
+0 - 成功。
+
+11400200 - 传入的pc值无效。
+
+### OH_HiDebug_SymbolicAddressCallback
+
+```
+typedef void (*OH_HiDebug_SymbolicAddressCallback)(void* pc, void* arg, const HiDebug_StackFrame* frame);
+```
+**描述**
+若[OH_HiDebug_SymbolicAddress](#oh_hidebug_symbolicaddress)接口调用成功，将通过该函数将解析结果返回。
+
+**起始版本：** 20
+
+**参数:**
+
+| 名称 | 描述                                                                                                 | 
+| -------- |----------------------------------------------------------------------------------------------------|
+| pc | [OH_HiDebug_SymbolicAddress](#oh_hidebug_symbolicaddress)接口传入的需要解析的pc地址。                           | 
+| arg | [OH_HiDebug_SymbolicAddress](#oh_hidebug_symbolicaddress)接口传入的arg值。                                | 
+| frame | 根据[OH_HiDebug_SymbolicAddress](#oh_hidebug_symbolicaddress)接口传入pc地址解析后的得到栈信息指针，该指针指向内容仅在该函数作用域内有效。 |
+
+### OH_HiDebug_CreateBacktraceObject()
+
+```
+HiDebug_Backtrace_Object OH_HiDebug_CreateBacktraceObject(void)
+```
+**描述**
+创建一个用于栈回溯及栈解析的对象。
+
+**起始版本：** 20
+
+**返回：**
+指向所创建对象的指针，当设备不支持回栈时，该接口将返回nullptr。
+
+### OH_HiDebug_DestroyBacktraceObject()
+
+```
+void OH_HiDebug_DestroyBacktraceObject(HiDebug_Backtrace_Object object)
+```
+**描述**
+销毁[OH_HiDebug_CreateBacktraceObject](#oh_hiDebug_createbacktraceobject)创建的对象。
+
+**起始版本：** 20
+
+**参数:**
+
+| 名称 | 描述                                                                             | 
+| -------- |--------------------------------------------------------------------------------|
+| object | 使用[OH_HiDebug_CreateBacktraceObject](#oh_hiDebug_createbacktraceobject)接口获取到的用来栈回溯的对象。 |
