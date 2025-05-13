@@ -1708,7 +1708,7 @@ typedef struct ArkUI_TextPickerRangeContentArray ArkUI_TextPickerRangeContentArr
 
 定义文本选择器的数据选择列表。
 
-**起始版本：** 18
+**起始版本：** 19
 
 ### ArkUI_TextCascadePickerRangeContentArray
 
@@ -1719,7 +1719,7 @@ typedef struct ArkUI_TextCascadePickerRangeContentArray ArkUI_TextCascadePickerR
 
 定义多列联动数据选择器的多列联动数据选择列表。
 
-**起始版本：** 18
+**起始版本：** 19
 
 ### ArkUI_SnapshotOptions
 
@@ -8435,7 +8435,7 @@ int32_t OH_ArkUI_CustomDialog_OpenDialog(ArkUI_CustomDialogOptions* options, voi
 
 弹出自定义弹窗。
 
-**起始版本：** 18
+**起始版本：** 19
 
 **参数:**
 
@@ -8457,7 +8457,7 @@ int32_t OH_ArkUI_CustomDialog_UpdateDialog(ArkUI_CustomDialogOptions* options, v
 
 更新自定义弹窗。
 
-**起始版本：** 18
+**起始版本：** 19
 
 **参数:**
 
@@ -8479,7 +8479,7 @@ int32_t OH_ArkUI_CustomDialog_CloseDialog(int32_t dialogId)
 
 关闭自定义弹窗。
 
-**起始版本：** 18
+**起始版本：** 19
 
 **参数:**
 
@@ -8500,7 +8500,7 @@ ArkUI_CustomDialogOptions* OH_ArkUI_CustomDialog_CreateOptions(ArkUI_NodeHandle 
 
 创建自定义弹窗options。
 
-**起始版本：** 18
+**起始版本：** 19
 
 **参数:**
 
@@ -8521,7 +8521,7 @@ void OH_ArkUI_CustomDialog_DisposeOptions(ArkUI_CustomDialogOptions* options)
 
 销毁自定义弹窗options。
 
-**起始版本：** 18
+**起始版本：** 19
 
 **参数:**
 
@@ -8539,7 +8539,7 @@ int32_t OH_ArkUI_CustomDialog_SetLevelMode(ArkUI_CustomDialogOptions* options, A
 
 设置弹窗的显示层级。
 
-**起始版本：** 18
+**起始版本：** 19
 
 **参数:**
 
@@ -8565,7 +8565,7 @@ int32_t OH_ArkUI_CustomDialog_SetLevelUniqueId(ArkUI_CustomDialogOptions* option
 
 设置弹窗显示层级页面下的节点id。
 
-**起始版本：** 18
+**起始版本：** 19
 
 **参数:**
 
@@ -8591,7 +8591,7 @@ int32_t OH_ArkUI_CustomDialog_SetImmersiveMode(ArkUI_CustomDialogOptions* option
 
 设置嵌入式弹窗蒙层的显示区域。
 
-**起始版本：** 18
+**起始版本：** 19
 
 **参数:**
 
@@ -8617,7 +8617,7 @@ int32_t OH_ArkUI_CustomDialog_SetBackgroundColor(ArkUI_CustomDialogOptions* opti
 
 设置弹窗的背景颜色。
 
-**起始版本：** 18
+**起始版本：** 19
 
 **参数:**
 
@@ -8640,7 +8640,7 @@ int32_t OH_ArkUI_CustomDialog_SetCornerRadius(
 
 设置弹窗的圆角半径。
 
-**起始版本：** 18
+**起始版本：** 19
 
 **参数:**
 
@@ -8666,7 +8666,7 @@ int32_t OH_ArkUI_CustomDialog_SetBorderWidth(
 
 设置弹窗的边框宽度。
 
-**起始版本：** 18
+**起始版本：** 19
 
 **参数:**
 
@@ -8693,7 +8693,7 @@ int32_t OH_ArkUI_CustomDialog_SetBorderColor(
 
 设置弹窗的边框颜色。
 
-**起始版本：** 18
+**起始版本：** 19
 
 **参数:**
 
@@ -8719,7 +8719,7 @@ int32_t OH_ArkUI_CustomDialog_SetBorderStyle(
 
 设置弹窗的边框样式。
 
-**起始版本：** 18
+**起始版本：** 19
 
 **参数:**
 
@@ -8744,7 +8744,7 @@ int32_t OH_ArkUI_CustomDialog_SetWidth(ArkUI_CustomDialogOptions* options, float
 
 设置弹窗的背板宽度。
 
-**起始版本：** 18
+**起始版本：** 19
 
 **参数:**
 
@@ -8767,7 +8767,7 @@ int32_t OH_ArkUI_CustomDialog_SetHeight(ArkUI_CustomDialogOptions* options, floa
 
 设置弹窗的背板高度。
 
-**起始版本：** 18
+**起始版本：** 19
 
 **参数:**
 
@@ -8790,7 +8790,7 @@ int32_t OH_ArkUI_CustomDialog_SetShadow(ArkUI_CustomDialogOptions* options, ArkU
 
 设置弹窗的背板阴影
 
-**起始版本：** 18
+**起始版本：** 19
 
 **参数:**
 
@@ -8813,7 +8813,7 @@ int32_t OH_ArkUI_CustomDialog_SetCustomShadow(
 
 设置弹窗的自定义阴影。
 
-**起始版本：** 18
+**起始版本：** 19
 
 **参数:**
 
@@ -8835,7 +8835,7 @@ int32_t OH_ArkUI_CustomDialog_SetBackgroundBlurStyle(ArkUI_CustomDialogOptions* 
 
 设置弹窗的背板模糊材质。
 
-**起始版本：** 18
+**起始版本：** 19
 
 **参数:**
 
@@ -8858,7 +8858,7 @@ int32_t OH_ArkUI_CustomDialog_SetAlignment(
 
 设置弹窗的对齐模式。
 
-**起始版本：** 18
+**起始版本：** 19
 
 **参数:**
 
@@ -8882,7 +8882,7 @@ int32_t OH_ArkUI_CustomDialog_SetModalMode(ArkUI_CustomDialogOptions* options, b
 
 设置自定义弹窗是否开启模态样式的弹窗。
 
-**起始版本：** 18
+**起始版本：** 19
 
 **参数:**
 
@@ -8904,7 +8904,7 @@ int32_t OH_ArkUI_CustomDialog_SetAutoCancel(ArkUI_CustomDialogOptions* options, 
 
 设置自定义弹窗是否允许点击遮罩层退出。
 
-**起始版本：** 18
+**起始版本：** 19
 
 **参数:**
 
@@ -8926,7 +8926,7 @@ int32_t OH_ArkUI_CustomDialog_SetSubwindowMode(ArkUI_CustomDialogOptions* option
 
 设置弹窗是否在子窗口显示此弹窗。
 
-**起始版本：** 18
+**起始版本：** 19
 
 **参数:**
 
@@ -8949,7 +8949,7 @@ int32_t OH_ArkUI_CustomDialog_SetMask(
 
 设置自定义弹窗遮罩属性。
 
-**起始版本：** 18
+**起始版本：** 19
 
 **参数:**
 
@@ -8973,7 +8973,7 @@ int32_t OH_ArkUI_CustomDialog_SetKeyboardAvoidMode(
 
 设置弹窗避让键盘的模式。
 
-**起始版本：** 18
+**起始版本：** 19
 
 **参数:**
 
@@ -8995,7 +8995,7 @@ int32_t OH_ArkUI_CustomDialog_SetHoverModeEnabled(ArkUI_CustomDialogOptions* opt
 
 设置弹窗是否响应悬停态。
 
-**起始版本：** 18
+**起始版本：** 19
 
 **参数:**
 
@@ -9018,7 +9018,7 @@ int32_t OH_ArkUI_CustomDialog_SetHoverModeArea(
 
 设置悬停态下弹窗默认展示区域。
 
-**起始版本：** 18
+**起始版本：** 19
 
 **参数:**
 
@@ -9041,7 +9041,7 @@ int32_t OH_ArkUI_CustomDialog_RegisterOnWillDismissCallback(
 
 注册系统关闭自定义弹窗的监听事件。
 
-**起始版本：** 18
+**起始版本：** 19
 
 **参数:**
 
@@ -9065,7 +9065,7 @@ int32_t OH_ArkUI_CustomDialog_RegisterOnWillAppearCallback(
 
 注册自定义弹窗显示动效前的监听事件。
 
-**起始版本：** 18
+**起始版本：** 19
 
 **参数:**
 
@@ -9089,7 +9089,7 @@ int32_t OH_ArkUI_CustomDialog_RegisterOnDidAppearCallback(
 
 注册自定义弹窗弹出时的监听事件。
 
-**起始版本：** 18
+**起始版本：** 19
 
 **参数:**
 
@@ -9113,7 +9113,7 @@ int32_t OH_ArkUI_CustomDialog_RegisterOnWillDisappearCallback(
 
 注册自定义弹窗退出动效前的监听事件。
 
-**起始版本：** 18
+**起始版本：** 19
 
 **参数:**
 
@@ -9137,7 +9137,7 @@ int32_t OH_ArkUI_CustomDialog_RegisterOnDidDisappearCallback(
 
 注册自定义弹窗消失时的监听事件。
 
-**起始版本：** 18
+**起始版本：** 19
 
 **参数:**
 
@@ -18463,7 +18463,7 @@ ArkUI_TextPickerRangeContentArray* OH_ArkUI_TextPickerRangeContentArray_Create(i
 
 创建TextPickerRangeContent数组的对象。
 
-**起始版本：** 18
+**起始版本：** 19
 
 **参数:**
 
@@ -18484,7 +18484,7 @@ void OH_ArkUI_TextPickerRangeArray_SetIconAtIndex(ArkUI_TextPickerRangeContentAr
 
  指定TextPickerRangeContent数组指定位置的icon数据。
 
-**起始版本：** 18
+**起始版本：** 19
 
 **参数:**
 
@@ -18504,7 +18504,7 @@ void OH_ArkUI_TextPickerRangeContentArray_SetTextAtIndex(ArkUI_TextPickerRangeCo
 
  指定TextPickerRangeContent数组指定位置的text数据。
 
-**起始版本：** 18
+**起始版本：** 19
 
 **参数:**
 
@@ -18524,7 +18524,7 @@ void OH_ArkUI_TextPickerRangeContentArray_Destroy(ArkUI_TextPickerRangeContentAr
 
  删除TextPickerRangeContent数组对象。
 
-**起始版本：** 18
+**起始版本：** 19
 
 **参数:**
 
@@ -18542,7 +18542,7 @@ ArkUI_TextCascadePickerRangeContentArray* OH_ArkUI_TextCascadePickerRangeContent
 
 创建TextCascadePickerRangeContent数组对象。
 
-**起始版本：** 18
+**起始版本：** 19
 
 **参数:**
 
@@ -18563,7 +18563,7 @@ void OH_ArkUI_TextCascadePickerRangeContentArray_SetTextAtIndex(ArkUI_TextCascad
 
  指定TextCascadePickerRangeContent数组指定位置的text数据。
 
-**起始版本：** 18
+**起始版本：** 19
 
 **参数:**
 
@@ -18583,7 +18583,7 @@ void OH_ArkUI_TextCascadePickerRangeContentArray_setChildAtIndex(ArkUI_TextCasca
 
  指定TextCascadePickerRangeContent数组指定位置的child数据。
 
-**起始版本：** 18
+**起始版本：** 19
 
 **参数:**
 
@@ -18603,7 +18603,7 @@ void OH_ArkUI_TextCascadePickerRangeContentArray_Destroy(ArkUI_TextCascadePicker
 
  删除TextCascadePickerRangeContent数组对象。
 
-**起始版本：** 18
+**起始版本：** 19
 
 **参数:**
 
