@@ -1227,3 +1227,15 @@ type Nullable\<T> = T | undefined
 
 >  **说明：**
 > 在PIXEL_ROUND_AFTER_MEASURE模式下，组件会在测量时进行一次取整，也即最终大小与PIXEL_ROUND_ON_LAYOUT_FINISH会有1px的区别。
+
+## EventQueryType<sup>19+</sup>
+
+要查询的交互事件类型。
+
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称 | 值 | 说明 |
+| -------- | -------- | -------- |
+| ON_CLICK  | 0 | 点击事件。 |
