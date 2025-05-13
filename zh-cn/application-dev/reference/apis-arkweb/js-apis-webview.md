@@ -1775,7 +1775,12 @@ struct Index {
 
 runJavaScript(script: string, callback : AsyncCallback\<string>): void
 
-异步执行JavaScript脚本，并通过回调方式返回脚本执行的结果。runJavaScript需要在[loadUrl](#loadurl)完成后，比如[onPageEnd](ts-basic-components-web.md#onpageend)中调用。
+在当前显示页面的上下文中异步执行JavaScript脚本，脚本执行的结果将通过异步回调方式返回。此方法必须在用户界面（UI）线程上使用 ，并且回调也将在用户界面（UI）线程上调用。
+
+> **说明：**
+>
+> - 跨导航操作（如loadUrl）时，JavaScript状态 将不再保留，例如，调用loadUrl前定义的全局变量和函数在加载的页面中将不存在。
+> - 建议应用程序 使用registerJavaScriptProxy来确保JavaScript状态能够在页面导航间保持。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -1860,7 +1865,12 @@ struct WebComponent {
 
 runJavaScript(script: string): Promise\<string>
 
-异步执行JavaScript脚本，并通过Promise方式返回脚本执行的结果。runJavaScript需要在loadUrl完成后，比如onPageEnd中调用。
+在当前显示页面的上下文中异步执行JavaScript脚本，脚本执行的结果将通过Promise方式返回。此方法必须在用户界面（UI）线程上使用 ，并且回调也将在用户界面（UI）线程上调用。
+
+> **说明：**
+>
+> - 跨导航操作（如loadUrl）时，JavaScript状态 将不再保留，例如，调用loadUrl前定义的全局变量和函数在加载的页面中将不存在。
+> - 建议应用程序 使用registerJavaScriptProxy来确保JavaScript状态能够在页面导航间保持。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
