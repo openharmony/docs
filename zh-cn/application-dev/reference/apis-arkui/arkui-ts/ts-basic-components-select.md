@@ -755,7 +755,7 @@ menuOutline(outline: MenuOutlineOptions)
 
 textModifier(modifier: Optional\<[TextModifier](ts-universal-attributes-attribute-modifier.md)>)
 
-定制Select按钮文本的样式，允许在按钮样式上实现个性化设计。
+定制Select按钮文本样式的方法，在应用了textModifier之后，Select按钮的文本样式将完全由开发者自定义。
 
 **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
@@ -765,13 +765,13 @@ textModifier(modifier: Optional\<[TextModifier](ts-universal-attributes-attribut
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| modifier  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[TextModifier](ts-universal-attributes-attribute-modifier.md)> | 是   | Select中text个性化设置。<br/>开发者可以根据需要管理和维护文本的样式进行设置。 |
+| modifier  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[TextModifier](ts-universal-attributes-attribute-modifier.md)> | 是   | 在Select组件上，定制按钮文本样式的方法。 |
 
 ### arrowModifier<sup>20+</sup>
 
 arrowModifier(modifier: Optional\<[SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md)>)
 
-定制Select图标的样式，允许在按钮图标样式上实现个性化设计。
+定制Select按钮下拉箭头图标样式的方法，在应用arrowModifier之后，Select按钮下拉箭头的图标样式将完全由开发者自定义。
 
 **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
@@ -781,15 +781,15 @@ arrowModifier(modifier: Optional\<[SymbolGlyphModifier](ts-universal-attributes-
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| modifier  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md)> | 是   | Select中图标个性化设置。<br/>开发者可以根据需要管理和维护图标的样式进行设置。 |
+| modifier  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md)> | 是   | 在Select组件上，定制Select按钮下拉箭头图标样式的方法。 |
 
 ### optionTextModifier<sup>20+</sup>
 
 optionTextModifier(modifier: Optional\<[TextModifier](ts-universal-attributes-attribute-modifier.md)>)
 
-定制下拉菜单项的文本样式，允许在下拉菜单项的文本样式实现个性化设计。
+定制Select下拉菜单未选中项文本样式的方法，在应用optionTextModifier之后，下拉菜单未选中项的文本样式将完全由开发者自定义。
 
-如果同时设置了自定义属性与既有modifer的Font属性重合，优先使用optionFont设置选中项样式。
+如果[optionFont](#optionfont)与optionTextModifier的Font属性同时设置，则优先使用[optionFont](#optionfont)设置下拉菜单未选中项的文本样式；[optionFont](#optionfont)中缺省的属性将设置为对应的默认值。
 
 **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
@@ -799,15 +799,15 @@ optionTextModifier(modifier: Optional\<[TextModifier](ts-universal-attributes-at
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| modifier  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[TextModifier](ts-universal-attributes-attribute-modifier.md)> | 是   | 设置下拉菜单项的文本样式。<br/>开发者可以根据需要管理和维护文本的样式进行设置。 |
+| modifier  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[TextModifier](ts-universal-attributes-attribute-modifier.md)> | 是   | 在Select组件上，定制Select下拉菜单未选中项样式的方法。|
 
 ### selectedOptionTextModifier<sup>20+</sup>
 
 selectedOptionTextModifier(modifier: Optional\<[TextModifier](ts-universal-attributes-attribute-modifier.md)>)
 
-定制下拉菜单项选中项的文本样式，允许在下拉菜单项选中项的文本样式实现个性化设计。
+定制Select下拉菜单选中项文本样式的方法，在应用selectedOptionTextModifier之后，下拉菜单选中项的文本样式将完全由开发者自定义。
 
-如果同时设置了自定义属性与既有modifier的Font属性重合，优先使用selectedOptionFont进行选中项样式设置；若未设置选中项样式，则优先使用optionFont设置选中项样式。
+如果[selectedOptionFont](#selectedoptionfont)与selectedOptionTextModifier的Font属性同时设置，则优先使用[selectedOptionFont](#selectedoptionfont)设置下拉菜单选中项的文本样式；若未设置[selectedOptionFont](#selectedoptionfont)，则优先使用[optionFont](#optionfont)设置下拉菜单选中项的文本样式。其中[selectedOptionFont](#selectedoptionfont)或者[optionFont](#optionfont)缺省的属性将设置为对应的默认值。
 
 **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
