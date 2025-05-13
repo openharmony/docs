@@ -147,29 +147,6 @@ struct ParentPage {
 }
 ```
 
-Since API version 16, use \@Require to decorate the \@State, \@Prop, or \@Provide decorated state variables. These state variables can be directly used in components without local initial values and no compilation error is reported.
-
-```ts
-@Entry
-@Component
-struct Index {
-  message: string = 'Hello World';
-  build() {
-    Column() {
-      Child({ message: this.message })
-    }
-  }
-}
-@Component
-struct Child {
-  @Require @State message: string;
-  build() {
-    Column() {
-      Text(this.message) // Compilation succeeds since API version 16.
-    }
-  }
-}
-```
 
 ## Incorrect Usage
 
