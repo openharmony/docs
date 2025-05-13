@@ -17,12 +17,57 @@ UiTest提供模拟UI操作的能力，供开发者在测试场景使用，主要
 > - 本模块接口在<!--RP1-->[自动化测试脚本](../../application-test/arkxtest-guidelines.md)<!--RP1End-->中使用。
 > - 本模块接口不支持并发调用。
 > - 本模块接口适用于手机、平板、2in1、智能穿戴设备。
-
+> - ArkTS1.2中，本模块接口调用前需调用loadAndSetupUiTest接口初始化测试环境。
 
 ## 导入模块
 
+ArkTS1.1: 
 ```ts
 import { UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern, DisplayRotation, ResizeDirection, WindowMode, PointerMatrix, UiDirection, MouseButton, UIElementInfo, UIEventObserver } from '@kit.TestKit';
+```
+
+ArkTS1.2: 
+```ts
+import { UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern, DisplayRotation, ResizeDirection, WindowMode, PointerMatrix, UiDirection, MouseButton, UIElementInfo, UIEventObserver, loadAndSetupUiTest } from '@kit.TestKit';
+```
+
+## loadAndSetupUiTest<sup>20+</sup>
+
+loadAndSetupUiTest(): void
+
+初始化测试环境，ArkTS1.2测试启动前必须调用一次。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Test.UiTest
+
+**ArkTS版本**：该接口仅适用于ArkTS1.2。
+
+**错误码：**
+
+以下错误码的详细介绍请参见[uitest测试框架错误码](errorcode-uitest.md)。
+
+| 错误码ID | 错误信息                               |
+| -------- | ---------------------------------------- |
+| 17000001 | Initialization failed. |
+
+**示例：**
+
+```ts
+import { loadAndSetupUiTest } from '@kit.TestKit';
+
+export default function demo() {
+  describe('uitestDemo', (): void => {
+    beforeAll(async () : Promise<void> => {
+      try {
+        loadAndSetupUiTest();
+        console.info("uitestDemo loadup over!!!!!")
+      } catch(error: Error) {
+        console.error(`uitestDemo, start abilityFailed: ${JSON.stringify(error)}`);
+      }
+    })
+  }
+}
 ```
 
 ## MatchPattern
@@ -67,9 +112,9 @@ import { UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPatter
 **系统能力**：SystemCapability.Test.UiTest
 
 | 名称 | 类型   | 可读 | 可写 | 说明             |
-| ---- | ------ | ---- | ---- | ---------------- |
-| x    | number | 是   | 否   | 坐标点的横坐标。 |
-| y    | number | 是   | 否   | 坐标点的纵坐标。 |
+| ---- | ------ | ---- | ---- |-----------|
+| x    | number | 是   | 否   | 坐标点的横坐标，取值大于0。 |
+| y    | number | 是   | 否   | 坐标点的纵坐标，取值大于0。  |
 
 ## Rect<sup>9+</sup>
 
@@ -81,10 +126,10 @@ import { UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPatter
 
 | 名称   | 类型   | 可读 | 可写 | 说明                      |
 | ------ | ------ | ---- | ---- | ------------------------- |
-| left   | number | 是   | 否   | 控件边框的左上角的X坐标。 |
-| top    | number | 是   | 否   | 控件边框的左上角的Y坐标。 |
-| right  | number | 是   | 否   | 控件边框的右下角的X坐标。 |
-| bottom | number | 是   | 否   | 控件边框的右下角的Y坐标。 |
+| left   | number | 是   | 否   | 控件边框的左上角的X坐标，取值大于0。 |
+| top    | number | 是   | 否   | 控件边框的左上角的Y坐标，取值大于0。 |
+| right  | number | 是   | 否   | 控件边框的右下角的X坐标，取值大于0。 |
+| bottom | number | 是   | 否   | 控件边框的右下角的Y坐标，取值大于0。 |
 
 ## WindowMode<sup>9+</sup>
 
@@ -126,9 +171,9 @@ import { UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPatter
 | -------------------- | ------- | ---- | ---- | ------------------------------------------------------------ |
 | bundleName           | string  | 是   | 否   | 窗口归属应用的包名。<br />**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | title                | string  | 是   | 否   | 窗口的标题信息。<br />**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| focused              | boolean | 是   | 否   | 窗口是否处于获焦状态。<br />**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| actived(deprecated)  | boolean | 是   | 否   | 窗口是否正与用户进行交互。<br>从API11开始，名称变更为active。 |
-| active<sup>11+</sup> | boolean | 是   | 否   | 窗口是否正与用户进行交互。<br />**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| focused              | boolean | 是   | 否   | 窗口是否处于获焦状态，true：获焦状态，false：未获焦状态。<br />**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| actived(deprecated)  | boolean | 是   | 否   | 窗口是否正与用户进行交互，true：交互状态，false：未交互状态。<br>从API version 11开始废弃，建议使用active替代。
+| active<sup>11+</sup> | boolean | 是   | 否   | 窗口是否正与用户进行交互，true：交互状态，false：未交互状态。<br />**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                     |
 
 ## UiDirection<sup>10+</sup>
 
@@ -183,8 +228,8 @@ UI事件的相关信息。
 **系统能力**：SystemCapability.Test.UiTest
 
 | 名称       | 类型   | 可读 | 可写 | 说明                                                       |
-| ---------- | ------ |----|----|----------------------------------------------------------|
-| stay | boolean | 否  | 是  | 触摸板多指滑动结束是否停留1s后再抬起，默认为false（不停留1s）。                     |
+| ---------- | ------ |----|----|--------------------------------------------------------|
+| stay | boolean | 否  | 是  | 触摸板多指滑动结束是否停留1s后再抬起，默认为false（不停留1s），true：停留，false：不停留。 |
 | speed       | number | 否  | 是  | 滑动速率，取值范围为200-40000，默认值为2000，不在范围内设为默认值为2000，单位：px/s。 |
 
 ## On<sup>9+</sup>
@@ -309,7 +354,7 @@ id(id: string, pattern?: MatchPattern): On
 
 ```ts
 import { MatchPattern, On, ON } from '@kit.TestKit';
-let on:On = ON.id('id', MatchPattern.REG_EXP_ICASE) // 忽略大小写匹配控件的id属性值
+let on:On = ON.id('id', MatchPattern.REG_EXP_ICASE); // 忽略大小写匹配控件的id属性值
 ```
 
 ### type<sup>9+</sup>
@@ -409,7 +454,7 @@ clickable(b?: boolean): On
 
 | 参数名 | 类型    | 必填 | 说明                                                         |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
-| b      | boolean | 否   | 指定控件可点击状态，true：可点击，false：不可点击。默认为true。 |
+| b      | boolean | 否   | 指定控件可点击状态。true：可点击。false：不可点击。默认为true。 |
 
 **返回值：**
 
@@ -446,7 +491,7 @@ longClickable(b?: boolean): On
 
 | 参数名 | 类型    | 必填 | 说明                                                         |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
-| b      | boolean | 否   | 指定控件可长按点击状态，true：可长按点击，false：不可长按点击。默认为true。 |
+| b      | boolean | 否   | 指定控件可长按点击状态。true：可长按点击。false：不可长按点击。默认为true。 |
 
 **返回值：**
 
@@ -484,7 +529,7 @@ scrollable(b?: boolean): On
 
 | 参数名 | 类型    | 必填 | 说明                                                        |
 | ------ | ------- | ---- | ----------------------------------------------------------- |
-| b      | boolean | 否   | 控件可滑动状态，true：可滑动，false：不可滑动。默认为true。 |
+| b      | boolean | 否   | 控件可滑动状态。true：可滑动。false：不可滑动。默认为true。 |
 
 **返回值：**
 
@@ -521,7 +566,7 @@ enabled(b?: boolean): On
 
 | 参数名 | 类型    | 必填 | 说明                                                      |
 | ------ | ------- | ---- | --------------------------------------------------------- |
-| b      | boolean | 否   | 指定控件使能状态，true：使能，false：未使能。默认为true。 |
+| b      | boolean | 否   | 指定控件使能状态。true：使能。false：未使能。默认为true。 |
 
 **返回值：**
 
@@ -558,7 +603,7 @@ focused(b?: boolean): On
 
 | 参数名 | 类型    | 必填 | 说明                                                  |
 | ------ | ------- | ---- | ----------------------------------------------------- |
-| b      | boolean | 否   | 控件获焦状态，true：获焦，false：未获焦。默认为true。 |
+| b      | boolean | 否   | 控件获焦状态。true：获焦。false：未获焦。默认为true。 |
 
 **返回值：**
 
@@ -595,7 +640,7 @@ selected(b?: boolean): On
 
 | 参数名 | 类型    | 必填 | 说明                                                         |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
-| b      | boolean | 否   | 指定控件被选中状态，true：被选中，false：未被选中。默认为true。 |
+| b      | boolean | 否   | 指定控件被选中状态。true：被选中。false：未被选中。默认为true。 |
 
 **返回值：**
 
@@ -631,8 +676,8 @@ checked(b?: boolean): On
 **参数：**
 
 | 参数名 | 类型    | 必填 | 说明                                                         |
-| ------ | ------- | ---- | ------------------------------------------------------------ |
-| b      | boolean | 否   | 指定控件被勾选状态，true：被勾选，false：未被勾选。默认为false。 |
+| ------ | ------- | ---- |----------------------------------------|
+| b      | boolean | 否   | 指定控件被勾选状态。true：被勾选。false：未被勾选。默认为true。 |
 
 **返回值：**
 
@@ -668,8 +713,8 @@ checkable(b?: boolean): On
 **参数：**
 
 | 参数名 | 类型    | 必填 | 说明                                                         |
-| ------ | ------- | ---- | ------------------------------------------------------------ |
-| b      | boolean | 否   | 指定控件能否被勾选状态，true：能被勾选，false：不能被勾选。默认为false。 |
+| ------ | ------- | ---- |-----------------------------------------|
+| b      | boolean | 否   | 指定控件能否被勾选状态。true：能被勾选。false：不能被勾选。默认为true。 |
 
 **返回值：**
 
@@ -767,7 +812,7 @@ isAfter(on: On): On
 import { On, ON } from '@kit.TestKit';
 
 // 使用静态构造器ON创建On对象，指定目标控件位于给出的特征属性控件之后。
-let on:On = ON.type('Text').isAfter(ON.text('123'))  // 查找 text为123之后的第一个Text组件
+let on:On = ON.type('Text').isAfter(ON.text('123'));  // 查找 text为123之后的第一个Text组件
 ```
 
 ### within<sup>10+</sup>
@@ -810,7 +855,7 @@ let on:On = ON.text('java').within(ON.type('Scroll'));  // 查找Scroller里面�
 
 ### inWindow<sup>10+</sup>
 
-inWindow(bundleName: string): On;
+inWindow(bundleName: string): On
 
 指定目标控件位于给出的应用窗口内，返回On对象自身。
 
@@ -952,8 +997,10 @@ click(): Promise\<void>
 import { Driver, ON, Component } from '@kit.TestKit';
 async function demo() {
   let driver:Driver = Driver.create();
-  let button: Component = await driver.findComponent(ON.type('Button'));
-  await button.click();
+  let button: Component|null = await driver.findComponent(ON.type('Button'));
+  if (button) {
+    await button.click();
+  }
 }
 ```
 
@@ -982,8 +1029,10 @@ doubleClick(): Promise\<void>
 import {Component, Driver, ON } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
-  let button: Component = await driver.findComponent(ON.type('Button'));
-  await button.doubleClick();
+  let button: Component|null = await driver.findComponent(ON.type('Button'));
+  if (button) {
+    await button.doubleClick();
+  }
 }
 ```
 
@@ -1012,8 +1061,10 @@ longClick(): Promise\<void>
 import { Component, Driver, ON } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
-  let button: Component = await driver.findComponent(ON.type('Button'));
-  await button.longClick();
+  let button: Component|null = await driver.findComponent(ON.type('Button'));
+  if (button) {
+    await button.longClick();
+  }
 }
 ```
 
@@ -1048,8 +1099,10 @@ getId(): Promise\<string>
 import { Component, Driver, ON } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
-  let button: Component = await driver.findComponent(ON.type('Button'));
-  let id = await button.getId();
+  let button: Component|null = await driver.findComponent(ON.type('Button'));
+  if (button) {
+    let id = await button.getId();
+  }
 }
 ```
 
@@ -1084,8 +1137,10 @@ getText(): Promise\<string>
 import { Component, Driver, ON } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
-  let button: Component = await driver.findComponent(ON.type('Button'));
-  let text = await button.getText();
+  let button: Component|null = await driver.findComponent(ON.type('Button'));
+  if (button) {
+    let text = await button.getText();
+  }
 }
 ```
 
@@ -1120,8 +1175,10 @@ getType(): Promise\<string>
 import { Component, Driver, ON } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
-  let button: Component = await driver.findComponent(ON.type('Button'));
-  let type = await button.getType();
+  let button: Component|null = await driver.findComponent(ON.type('Button'));
+  if (button) {
+    let type = await button.getType();
+  }
 }
 ```
 
@@ -1156,8 +1213,10 @@ getBounds(): Promise\<Rect>
 import { Component, Driver, ON } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
-  let button: Component = await driver.findComponent(ON.type('Button'));
-  let rect = await button.getBounds();
+  let button: Component|null = await driver.findComponent(ON.type('Button'));
+  if (button) {
+    let rect = await button.getBounds();
+  }
 }
 ```
 
@@ -1192,8 +1251,10 @@ getBoundsCenter(): Promise\<Point>
 import { Component, Driver, ON } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
-  let button: Component = await driver.findComponent(ON.type('Button'));
-  let point = await button.getBoundsCenter();
+  let button: Component|null = await driver.findComponent(ON.type('Button'));
+  if (button) {
+    let point = await button.getBoundsCenter();
+  }
 }
 ```
 
@@ -1228,8 +1289,8 @@ isClickable(): Promise\<boolean>
 import { Component, Driver, ON } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
-  let button: Component = await driver.findComponent(ON.type('Button'));
-  if(await button.isClickable()) {
+  let button: Component|null = await driver.findComponent(ON.type('Button'));
+  if (button && await button.isClickable()) {
     console.info('This button can be Clicked');
   } else {
     console.info('This button can not be Clicked');
@@ -1268,8 +1329,8 @@ isLongClickable(): Promise\<boolean>
 import { Component, Driver, ON } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
-  let button: Component = await driver.findComponent(ON.type('Button'));
-  if(await button.isLongClickable()) {
+  let button: Component|null = await driver.findComponent(ON.type('Button'));
+  if (button && await button.isLongClickable()) {
     console.info('This button can longClick');
   } else {
     console.info('This button can not longClick');
@@ -1308,8 +1369,8 @@ isChecked(): Promise\<boolean>
 import { Component, Driver, ON } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
-  let checkBox: Component = await driver.findComponent(ON.type('Checkbox'));
-  if(await checkBox.isChecked()) {
+  let checkBox: Component|null = await driver.findComponent(ON.type('Checkbox'));
+  if (checkBox && await checkBox.isChecked()) {
     console.info('This checkBox is checked');
   } else {
     console.info('This checkBox is not checked');
@@ -1348,8 +1409,8 @@ isCheckable(): Promise\<boolean>
 import { Component, Driver, ON } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
-  let checkBox: Component = await driver.findComponent(ON.type('Checkbox'));
-  if(await checkBox.isCheckable()) {
+  let checkBox: Component|null = await driver.findComponent(ON.type('Checkbox'));
+  if (checkBox && await checkBox.isCheckable()) {
     console.info('This checkBox is checkable');
   } else {
     console.info('This checkBox is not checkable');
@@ -1388,8 +1449,8 @@ isScrollable(): Promise\<boolean>
 import { Component, Driver, ON } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
-  let scrollBar: Component = await driver.findComponent(ON.scrollable(true));
-  if(await scrollBar.isScrollable()) {
+  let scrollBar: Component|null = await driver.findComponent(ON.scrollable(true));
+  if (scrollBar && await scrollBar.isScrollable()) {
     console.info('This scrollBar can be operated');
   } else {
     console.info('This scrollBar can not be operated');
@@ -1429,8 +1490,8 @@ isEnabled(): Promise\<boolean>
 import { Component, Driver, ON } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
-  let button: Component = await driver.findComponent(ON.type('Button'));
-  if(await button.isEnabled()) {
+  let button: Component|null = await driver.findComponent(ON.type('Button'));
+  if (button && await button.isEnabled()) {
     console.info('This button can be operated');
   } else {
     console.info('This button can not be operated');
@@ -1469,8 +1530,8 @@ isFocused(): Promise\<boolean>
 import { Component, Driver, ON } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
-  let button: Component = await driver.findComponent(ON.type('Button'));
-  if(await button.isFocused()) {
+  let button: Component|null = await driver.findComponent(ON.type('Button'));
+  if (button && await button.isFocused()) {
     console.info('This button is focused');
   } else {
     console.info('This button is not focused');
@@ -1509,8 +1570,8 @@ isSelected(): Promise\<boolean>
 import { Component, Driver, ON } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
-  let button: Component = await driver.findComponent(ON.type('Button'));
-  if(await button.isSelected()) {
+  let button: Component|null = await driver.findComponent(ON.type('Button'));
+  if (button && await button.isSelected()) {
     console.info('This button is selected');
   } else {
     console.info('This button is not selected');
@@ -1536,7 +1597,7 @@ inputText(text: string): Promise\<void>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[uitest测试框架错误码](errorcode-uitest.md)。
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
@@ -1550,8 +1611,10 @@ inputText(text: string): Promise\<void>
 import { Component, Driver, ON } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
-  let text: Component = await driver.findComponent(ON.text('hello world'));
-  await text.inputText('123');
+  let text: Component|null = await driver.findComponent(ON.text('hello world'));
+  if (text) {
+    await text.inputText('123');
+  }
 }
 ```
 
@@ -1559,7 +1622,7 @@ async function demo() {
 
 clearText(): Promise\<void>
 
-清除控件的文本信息(适用于文本框控件)。
+清除控件的文本信息（适用于文本框控件）。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -1579,14 +1642,18 @@ clearText(): Promise\<void>
 import { Component, Driver, ON } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
-  let text: Component = await driver.findComponent(ON.text('hello world'));
-  await text.clearText();
+  let text: Component|null = await driver.findComponent(ON.text('hello world'));
+  if (text) {
+    await text.clearText();
+  }
 }
 ```
 
 ### scrollSearch<sup>9+</sup>
 
-scrollSearch(on: On): Promise\<Component>
+ArkTS1.1: scrollSearch(on: On): Promise\<Component>
+
+ArkTS1.2: scrollSearch(on: On): Promise\<Component|null>
 
 在控件上滑动查找目标控件（适用支持滑动的控件），使用Promise异步回调。
 
@@ -1602,13 +1669,19 @@ scrollSearch(on: On): Promise\<Component>
 
 **返回值：**
 
+ArkTS1.1: 
 | 类型                               | 说明                                  |
 | ---------------------------------- | ------------------------------------- |
 | Promise\<[Component](#component9)> | 以Promise形式返回找到的目标控件对象。 |
 
+ArkTS1.2: 
+| 类型                               | 说明                                  |
+| ---------------------------------- | ------------------------------------- |
+| Promise\<[Component](#component9)\|null> | Promise对象，返回找到的目标控件对象。在未找到目标对象时以Promise形式返回null。 |
+
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[uitest测试框架错误码](errorcode-uitest.md)。
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
@@ -1623,14 +1696,21 @@ import { Component, Driver, ON } from '@kit.TestKit';
 
 async function demo() {
   let driver: Driver = Driver.create();
-  let scrollBar: Component = await driver.findComponent(ON.type('Scroll'));
-  let button = await scrollBar.scrollSearch(ON.text('next page'));
+  let scrollBar: Component|null = await driver.findComponent(ON.type('Scroll'));
+  if (scrollBar) {
+    let button = await scrollBar.scrollSearch(ON.text('next page'));
+    if (button) {
+      await button.click();
+    }
+  }
 }
 ```
 
 ### scrollSearch<sup>18+</sup>
 
-scrollSearch(on: On, vertical?: boolean, offset?: number): Promise\<Component>
+ArkTS1.1: scrollSearch(on: On, vertical?: boolean, offset?: number): Promise\<Component>
+
+ArkTS1.2: scrollSearch(on: On, vertical?: boolean, offset?: number): Promise\<Component|null>
 
 在控件上滑动查找目标控件（适用支持滑动的控件），使用Promise异步回调。
 
@@ -1644,13 +1724,19 @@ scrollSearch(on: On, vertical?: boolean, offset?: number): Promise\<Component>
 |------------------------| ---------- | ---- |-----------------------------------|
 | on                     | [On](#on9) | 是   | 目标控件的属性要求。                        |
 | vertical |    boolean | 否 | 默认为true，表示查找方向是纵向。false表示查找方向为横向。 |
-| offset   | number| 否 | 滑动起点/终点到组件边框的偏移, 默认80，单位：px。    |
+| offset   | number| 否 | 滑动起点/终点到组件边框的偏移，默认80，单位：px，取值大于等于0的整数。    |
 
 **返回值：**
 
+ArkTS1.1: 
 | 类型                               | 说明                                  |
 | ---------------------------------- | ------------------------------------- |
 | Promise\<[Component](#component9)> | 以Promise形式返回找到的目标控件对象。 |
+
+ArkTS1.2: 
+| 类型                               | 说明                                  |
+| ---------------------------------- | ------------------------------------- |
+| Promise\<[Component](#component9)\|null> | Promise对象，返回找到的目标控件对象。在未找到目标对象时以Promise形式返回null。 |
 
 **错误码：**
 
@@ -1668,8 +1754,13 @@ scrollSearch(on: On, vertical?: boolean, offset?: number): Promise\<Component>
 import { Component, Driver, ON } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
-  let scrollBar: Component = await driver.findComponent(ON.type('Scroll'));
-  let button = await scrollBar.scrollSearch(ON.text('next page'));
+  let scrollBar: Component|null = await driver.findComponent(ON.type('Scroll'));
+  if (scrollBar) {
+    let button = await scrollBar.scrollSearch(ON.text('next page'));
+    if (button) {
+      await button.click();
+    }
+  }
 }
 ```
 
@@ -1677,7 +1768,7 @@ async function demo() {
 
 scrollToTop(speed?: number): Promise\<void>
 
-在控件上滑动到顶部(适用支持滑动的控件)。
+在控件上滑动到顶部（适用支持滑动的控件）。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -1691,7 +1782,7 @@ scrollToTop(speed?: number): Promise\<void>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[uitest测试框架错误码](errorcode-uitest.md)。
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
@@ -1705,8 +1796,10 @@ scrollToTop(speed?: number): Promise\<void>
 import { Component, Driver, ON } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
-  let scrollBar: Component = await driver.findComponent(ON.type('Scroll'));
-  await scrollBar.scrollToTop();
+  let scrollBar: Component|null = await driver.findComponent(ON.type('Scroll'));
+  if (scrollBar) {
+    await scrollBar.scrollToTop();
+  }
 }
 ```
 
@@ -1714,7 +1807,7 @@ async function demo() {
 
 scrollToBottom(speed?: number): Promise\<void>
 
-在控件上滑动到底部(适用支持滑动的控件)。
+在控件上滑动到底部（适用支持滑动的控件）。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -1728,7 +1821,7 @@ scrollToBottom(speed?: number): Promise\<void>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[uitest测试框架错误码](errorcode-uitest.md)。
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
@@ -1742,7 +1835,7 @@ scrollToBottom(speed?: number): Promise\<void>
 import { Component, Driver, ON } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
-  let scrollBar: Component = await driver.findComponent(ON.type('Scroll'));
+  let scrollBar: Component|null = await driver.findComponent(ON.type('Scroll'));
   await scrollBar.scrollToBottom();
 }
 ```
@@ -1769,7 +1862,7 @@ dragTo(target: Component): Promise\<void>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[uitest测试框架错误码](errorcode-uitest.md)。
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
@@ -1783,9 +1876,11 @@ dragTo(target: Component): Promise\<void>
 import { Component, Driver, ON } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
-  let button: Component = await driver.findComponent(ON.type('Button'));
-  let text: Component = await driver.findComponent(ON.text('hello world'));
-  await button.dragTo(text);
+  let button: Component|null = await driver.findComponent(ON.type('Button'));
+  let text: Component|null = await driver.findComponent(ON.text('hello world'));
+  if (button && text) {
+    await button.dragTo(text);
+  }
 }
 ```
 
@@ -1807,7 +1902,7 @@ pinchOut(scale: number): Promise\<void>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[uitest测试框架错误码](errorcode-uitest.md)。
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
@@ -1821,8 +1916,10 @@ pinchOut(scale: number): Promise\<void>
 import { Component, Driver, ON } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
-  let image: Component = await driver.findComponent(ON.type('Image'));
-  await image.pinchOut(1.5);
+  let image: Component|null = await driver.findComponent(ON.type('Image'));
+  if (image) {
+    await image.pinchOut(1.5);
+  }
 }
 ```
 
@@ -1844,7 +1941,7 @@ pinchIn(scale: number): Promise\<void>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[uitest测试框架错误码](errorcode-uitest.md)。
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
@@ -1858,8 +1955,10 @@ pinchIn(scale: number): Promise\<void>
 import { Component, Driver, ON } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
-  let image: Component = await driver.findComponent(ON.type('Image'));
-  await image.pinchIn(0.5);
+  let image: Component|null = await driver.findComponent(ON.type('Image'));
+  if (image) {
+    await image.pinchIn(0.5);
+  }
 }
 ```
 
@@ -1881,7 +1980,7 @@ getDescription(): Promise\<string>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[uitest测试框架错误码](errorcode-uitest.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -1894,8 +1993,10 @@ getDescription(): Promise\<string>
 import { Component, Driver, ON } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
-  let button: Component = await driver.findComponent(ON.type('Button'));
-  let description = await button.getDescription();
+  let button: Component|null = await driver.findComponent(ON.type('Button'));
+  if (button) {
+    let description = await button.getDescription();
+  }
 }
 ```
 ### getHint<sup>18+</sup>
@@ -1912,7 +2013,7 @@ getHint(): Promise\<string>
 
 | 类型             | 说明                   |
 | ---------------- |----------------------|
-| Promise\<string> | 以Promise形式返回控件的提示文本。 |
+| Promise\<string> | Promise对象，返回控件的提示文本。 |
 
 **错误码：**
 
@@ -1929,8 +2030,10 @@ getHint(): Promise\<string>
 import { Component, Driver, ON } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
-  let button: Component = await driver.findComponent(ON.type('TextInput'));
-  let hints = await button.getHint();
+  let button: Component|null = await driver.findComponent(ON.type('TextInput'));
+  if (button) {
+    let hints = await button.getHint();
+  }
 }
 ```
 
@@ -1990,7 +2093,7 @@ Driver对象在给定的时间内延时。
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[uitest测试框架错误码](errorcode-uitest.md)。
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
@@ -2009,7 +2112,9 @@ async function demo() {
 
 ### findComponent<sup>9+</sup>
 
-findComponent(on: On): Promise\<Component>
+ArkTS1.1: findComponent(on: On): Promise\<Component>
+
+ArkTS1.2: findComponent(on: On): Promise\<Component\|null>
 
 在Driver对象中，根据给出的目标控件属性要求查找目标控件。
 
@@ -2025,13 +2130,19 @@ findComponent(on: On): Promise\<Component>
 
 **返回值：**
 
-| 类型                               | 说明                              |
+ArkTS1.1: 
+| 类型                               | 说明                                  |
 | ---------------------------------- | --------------------------------- |
 | Promise\<[Component](#component9)> | 以Promise形式返回找到的控件对象。 |
 
+ArkTS1.2: 
+| 类型                               | 说明                                  |
+| ---------------------------------- | ------------------------------------- |
+| Promise\<[Component](#component9)\|null> | Promise对象，返回找到的目标控件对象。在未找到目标对象时以Promise形式返回null。 |
+
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[uitest测试框架错误码](errorcode-uitest.md)。
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
@@ -2044,13 +2155,18 @@ findComponent(on: On): Promise\<Component>
 import { Component, Driver, ON } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
-  let button: Component = await driver.findComponent(ON.text('next page'));
+  let button: Component|null = await driver.findComponent(ON.text('next page'));
+  if (button) {
+    await button.click();
+  }
 }
 ```
 
 ### findComponents<sup>9+</sup>
 
-findComponents(on: On): Promise\<Array\<Component>>
+ArkTS1.1: findComponents(on: On): Promise\<Array\<Component>>
+
+ArkTS1.2: findComponents(on: On): Promise\<Array\<Component>\|null>
 
 在Driver对象中，根据给出的目标控件属性要求查找出所有匹配控件，以列表保存。
 
@@ -2066,13 +2182,19 @@ findComponents(on: On): Promise\<Array\<Component>>
 
 **返回值：**
 
-| 类型                                       | 说明                                    |
+ArkTS1.1: 
+| 类型                               | 说明                                  |
 | ------------------------------------------ | --------------------------------------- |
 | Promise\<Array\<[Component](#component9)>> | 以Promise形式返回找到的控件对象的列表。 |
 
+ArkTS1.2: 
+| 类型                               | 说明                                  |
+| ---------------------------------- | ------------------------------------- |
+| Promise\<Array\<[Component](#component9)>\|null\> |  Promise对象，返回找到的控件对象的列表。在未找到目标对象时以Promise形式返回null。 |
+
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[uitest测试框架错误码](errorcode-uitest.md)。
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
@@ -2085,13 +2207,18 @@ findComponents(on: On): Promise\<Array\<Component>>
 import { Component, Driver, ON } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
-  let buttonList: Array<Component> = await driver.findComponents(ON.text('next page'));
+  let buttonList: Array<Component>|null = await driver.findComponents(ON.text('next page'));
+  if (buttonList) {
+    await buttonList[0].click();
+  }
 }
 ```
 
 ### findWindow<sup>9+</sup>
 
-findWindow(filter: WindowFilter): Promise\<UiWindow>
+ArkTS1.1: findWindow(filter: WindowFilter): Promise\<UiWindow>
+
+ArkTS1.2: findWindow(filter: WindowFilter): Promise\<UiWindow|null>
 
 通过指定窗口的属性来查找目标窗口。
 
@@ -2107,13 +2234,20 @@ findWindow(filter: WindowFilter): Promise\<UiWindow>
 
 **返回值：**
 
-| 类型                             | 说明                                  |
+ArkTS1.1: 
+| 类型                               | 说明                                  |
 | -------------------------------- | ------------------------------------- |
 | Promise\<[UiWindow](#uiwindow9)> | 以Promise形式返回找到的目标窗口对象。 |
 
+ArkTS1.2: 
+| 类型                               | 说明                                  |
+| ---------------------------------- | ------------------------------------- |
+| Promise\<[UiWindow](#uiwindow9)\|null> | Promise对象，返回找到的目标窗口对象，在未找到目标窗口对象时以Promise形式返回null。 |
+
+
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[uitest测试框架错误码](errorcode-uitest.md)。
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
@@ -2126,13 +2260,18 @@ findWindow(filter: WindowFilter): Promise\<UiWindow>
 import { Driver, UiWindow } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
-  let window: UiWindow = await driver.findWindow({actived: true});
+  let window: UiWindow|null = await driver.findWindow({actived: true});
+  if (window) {
+    let name: string = window.getBundleName();
+  }
 }
 ```
 
 ### waitForComponent<sup>9+</sup>
 
-waitForComponent(on: On, time: number): Promise\<Component>
+ArkTS1.1: waitForComponent(on: On, time: number): Promise\<Component>
+
+ArkTS1.2: waitForComponent(on: On, time: number): Promise\<Component|null>
 
 在Driver对象中，在用户给定的时间内，持续查找满足控件属性要求的目标控件。
 
@@ -2149,13 +2288,19 @@ waitForComponent(on: On, time: number): Promise\<Component>
 
 **返回值：**
 
-| 类型                              | 说明                              |
+ArkTS1.1: 
+| 类型                               | 说明                                  |
 | --------------------------------- | --------------------------------- |
 | Promise\<[Component](#component9)> | 以Promise形式返回找到的控件对象。 |
 
+ArkTS1.2: 
+| 类型                               | 说明                                  |
+| ---------------------------------- | ------------------------------------- |
+| Promise\<[Component](#component9)\|null> | Promise对象，返回找到的控件对象，在未找到目标对象时以Promise形式返回null。 |
+
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[uitest测试框架错误码](errorcode-uitest.md)。
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
@@ -2168,7 +2313,10 @@ waitForComponent(on: On, time: number): Promise\<Component>
 import { Component, Driver, ON } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
-  let button: Component = await driver.waitForComponent(ON.text('next page'),500);
+  let button: Component|null = await driver.waitForComponent(ON.text('next page'),500);
+  if (button) {
+    let buttonId: string = button.id();
+  }
 }
 ```
 
@@ -2190,7 +2338,7 @@ assertComponentExist(on: On): Promise\<void>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[uitest测试框架错误码](errorcode-uitest.md)。
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
@@ -2250,11 +2398,11 @@ Driver对象采取如下操作：传入key值实现模拟点击对应按键的�
 
 | 参数名  | 类型   | 必填 | 说明          |
 | ------- | ------ | ---- | ------------- |
-| keyCode | number | 是   | 指定的key值。 |
+| keyCode | number | 是   | 指定的key值，取值大于等于0的整数。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[uitest测试框架错误码](errorcode-uitest.md)。
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
@@ -2285,13 +2433,13 @@ Driver对象通过给定的key值，找到对应组合键并点击。例如，Ke
 
 | 参数名 | 类型   | 必填 | 说明                           |
 | ------ | ------ | ---- | ------------------------------ |
-| key0   | number | 是   | 指定的第一个key值。            |
-| key1   | number | 是   | 指定的第二个key值。            |
-| key2   | number | 否   | 指定的第三个key值。默认值为0。 |
+| key0   | number | 是   | 指定的第一个key值，取值大于等于0。            |
+| key1   | number | 是   | 指定的第二个key值，取值大于等于0。            |
+| key2   | number | 否   | 指定的第三个key值。默认值为0，取值大于等于0。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[uitest测试框架错误码](errorcode-uitest.md)。
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
@@ -2328,7 +2476,7 @@ Driver对象采取如下操作：在目标坐标点单击。
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[uitest测试框架错误码](errorcode-uitest.md)。
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
@@ -2364,7 +2512,7 @@ Driver对象采取如下操作：在目标坐标点双击。
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[uitest测试框架错误码](errorcode-uitest.md)。
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
@@ -2400,7 +2548,7 @@ Driver对象采取如下操作：在目标坐标点长按。
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[uitest测试框架错误码](errorcode-uitest.md)。
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
@@ -2439,7 +2587,7 @@ Driver对象采取如下操作：从起始坐标点滑向目的坐标点。
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[uitest测试框架错误码](errorcode-uitest.md)。
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
@@ -2452,7 +2600,7 @@ Driver对象采取如下操作：从起始坐标点滑向目的坐标点。
 import { Driver } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
-  await driver.swipe(100,100,200,200,600);
+  await driver.swipe(100, 100, 200, 200, 600);
 }
 ```
 
@@ -2482,7 +2630,7 @@ Driver对象采取如下操作：从起始坐标点拖拽至目的坐标点。
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[uitest测试框架错误码](errorcode-uitest.md)。
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
@@ -2495,7 +2643,7 @@ Driver对象采取如下操作：从起始坐标点拖拽至目的坐标点。
 import { Driver } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
-  await driver.drag(100,100,200,200,600);
+  await driver.drag(100, 100, 200, 200, 600);
 }
 ```
 
@@ -2523,7 +2671,7 @@ Driver对象采取如下操作：捕获当前屏幕，并保存为PNG格式的�
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[uitest测试框架错误码](errorcode-uitest.md)。
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
@@ -2562,7 +2710,7 @@ setDisplayRotation(rotation: DisplayRotation): Promise\<void>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[uitest测试框架错误码](errorcode-uitest.md)。
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
@@ -2631,11 +2779,11 @@ setDisplayRotationEnabled(enabled: boolean): Promise\<void>
 
 | 参数名  | 类型    | 必填 | 说明                                                    |
 | ------- | ------- | ---- | ------------------------------------------------------- |
-| enabled | boolean | 是   | 能否旋转屏幕的标识，true：可以旋转，false：不可以旋转。 |
+| enabled | boolean | 是   | 能否旋转屏幕的标识。true：可以旋转。false：不可以旋转。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[uitest测试框架错误码](errorcode-uitest.md)。
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
@@ -2802,11 +2950,11 @@ waitForIdle(idleTime: number, timeout: number): Promise\<boolean>
 
 | 类型              | 说明                                                |
 | ----------------- | --------------------------------------------------- |
-| Promise\<boolean> | 以Promise的形式返回当前界面的所有控件是否已经空闲。 |
+| Promise\<boolean> | 以Promise的形式返回当前界面的所有控件是否已经空闲，true：已经空闲，false：不空闲。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[uitest测试框架错误码](errorcode-uitest.md)。
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
@@ -2844,7 +2992,7 @@ fling(from: Point, to: Point, stepLen: number, speed: number): Promise\<void>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[uitest测试框架错误码](errorcode-uitest.md)。
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
@@ -2857,7 +3005,7 @@ fling(from: Point, to: Point, stepLen: number, speed: number): Promise\<void>
 import { Driver } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
-  await driver.fling({x: 500, y: 480},{x: 450, y: 480},5,600);
+  await driver.fling({x: 500, y: 480},{x: 450, y: 480}, 5, 600);
 }
 ```
 
@@ -2882,11 +3030,11 @@ injectMultiPointerAction(pointers: PointerMatrix, speed?: number): Promise\<bool
 
 | 类型              | 说明                                  |
 | ----------------- | ------------------------------------- |
-| Promise\<boolean> | 以Promise的形式返回操作是否成功完成。 |
+| Promise\<boolean> | 以Promise的形式返回操作是否成功完成，true：完成，false：未完成。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[uitest测试框架错误码](errorcode-uitest.md)。
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
@@ -2899,17 +3047,17 @@ injectMultiPointerAction(pointers: PointerMatrix, speed?: number): Promise\<bool
 import { Driver, PointerMatrix } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
-  let pointers: PointerMatrix = PointerMatrix.create(2,5);
-  pointers.setPoint(0,0,{x:250,y:480});
-  pointers.setPoint(0,1,{x:250,y:440});
-  pointers.setPoint(0,2,{x:250,y:400});
-  pointers.setPoint(0,3,{x:250,y:360});
-  pointers.setPoint(0,4,{x:250,y:320});
-  pointers.setPoint(1,0,{x:250,y:480});
-  pointers.setPoint(1,1,{x:250,y:440});
-  pointers.setPoint(1,2,{x:250,y:400});
-  pointers.setPoint(1,3,{x:250,y:360});
-  pointers.setPoint(1,4,{x:250,y:320});
+  let pointers: PointerMatrix = PointerMatrix.create(2, 5);
+  pointers.setPoint(0, 0, {x:250, y:480});
+  pointers.setPoint(0, 1, {x:250, y:440});
+  pointers.setPoint(0, 2, {x:250, y:400});
+  pointers.setPoint(0, 3, {x:250, y:360});
+  pointers.setPoint(0, 4, {x:250, y:320});
+  pointers.setPoint(1, 0, {x:250, y:480});
+  pointers.setPoint(1, 1, {x:250, y:440});
+  pointers.setPoint(1, 2, {x:250, y:400});
+  pointers.setPoint(1, 3, {x:250, y:360});
+  pointers.setPoint(1, 4, {x:250, y:320});
   await driver.injectMultiPointerAction(pointers);
 }
 ```
@@ -2933,7 +3081,7 @@ fling(direction: UiDirection, speed: number): Promise\<void>;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[uitest测试框架错误码](errorcode-uitest.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -2975,7 +3123,7 @@ screenCapture(savePath: string, rect?: Rect): Promise\<boolean>;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[uitest测试框架错误码](errorcode-uitest.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -3008,12 +3156,12 @@ mouseClick(p: Point, btnId: MouseButton, key1?: number, key2?: number): Promise\
 | ------ | ----------------------------- | ---- | ------------------------------ |
 | p      | [Point](#point9)              | 是   | 鼠标点击的坐标。               |
 | btnId  | [MouseButton](#mousebutton10) | 是   | 按下的鼠标按钮。               |
-| key1   | number                        | 否   | 指定的第一个key值。默认值为0。 |
-| key2   | number                        | 否   | 指定的第二个key值。默认值为0。 |
+| key1   | number                        | 否   | 指定的第一个key值。默认值为0，取值大于等于0。 |
+| key2   | number                        | 否   | 指定的第二个key值。默认值为0，取值大于等于0。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[uitest测试框架错误码](errorcode-uitest.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -3045,14 +3193,14 @@ mouseScroll(p: Point, down: boolean, d: number, key1?: number, key2?: number): P
 | 参数名 | 类型             | 必填 | 说明                                                        |
 | ------ | ---------------- | ---- | ----------------------------------------------------------- |
 | p      | [Point](#point9) | 是   | 鼠标点击的坐标。                                            |
-| down   | boolean          | 是   | 滚轮滑动方向是否向下，true表示向下滑动，false表示向上滚动。 |
-| d      | number           | 是   | 鼠标滚轮滚动的格数，每格对应目标点位移120px。         |
-| key1   | number           | 否   | 指定的第一个key值。默认值为0。                              |
-| key2   | number           | 否   | 指定的第二个key值。默认值为0。                              |
+| down   | boolean          | 是   | 滚轮滑动方向是否向下。true表示向下滑动。false表示向上滚动。 |
+| d      | number           | 是   | 鼠标滚轮滚动的格数，每格对应目标点位移120px，取值大于等于0。         |
+| key1   | number           | 否   | 指定的第一个key值。默认值为0，取值大于等于0。                              |
+| key2   | number           | 否   | 指定的第二个key值。默认值为0，取值大于等于0。                              |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[uitest测试框架错误码](errorcode-uitest.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -3065,7 +3213,7 @@ mouseScroll(p: Point, down: boolean, d: number, key1?: number, key2?: number): P
 import { Driver } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
-  await driver.mouseScroll({x:360, y:640}, true, 30, 2072)
+  await driver.mouseScroll({x:360, y:640}, true, 30, 2072);
 }
 ```
 
@@ -3087,7 +3235,7 @@ mouseMoveTo(p: Point): Promise\<void>;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[uitest测试框架错误码](errorcode-uitest.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -3100,7 +3248,7 @@ mouseMoveTo(p: Point): Promise\<void>;
 import { Driver } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
-  await driver.mouseMoveTo({x:100, y:100})
+  await driver.mouseMoveTo({x:100, y:100});
 }
 ```
 
@@ -3134,7 +3282,7 @@ createUIEventObserver(): UIEventObserver;
 import { Driver, UIEventObserver } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
-  let observer: UIEventObserver = await driver.createUIEventObserver()
+  let observer: UIEventObserver = await driver.createUIEventObserver();
 }
 ```
 
@@ -3153,15 +3301,15 @@ mouseScroll(p: Point, down: boolean, d: number, key1?: number, key2?: number, sp
 | 参数名 | 类型             | 必填 | 说明                                                         |
 | ------ | ---------------- | ---- | ------------------------------------------------------------ |
 | p      | [Point](#point9) | 是   | 鼠标点击的坐标。                                             |
-| down   | boolean          | 是   | 滚轮滑动方向是否向下，true表示向下滑动，false表示向上滚动。  |
-| d      | number           | 是   | 鼠标滚轮滚动的格数，每格对应目标点位移120px。          |
-| key1   | number           | 否   | 指定的第一个key值。默认值为0。                               |
-| key2   | number           | 否   | 指定的第二个key值。默认值为0。                               |
+| down   | boolean          | 是   | 滚轮滑动方向是否向下。true表示向下滑动。false表示向上滚动。  |
+| d      | number           | 是   | 鼠标滚轮滚动的格数，每格对应目标点位移120px，取值大于等于0的整数。          |
+| key1   | number           | 否   | 指定的第一个key值。默认值为0，取值大于等于0的整数。                               |
+| key2   | number           | 否   | 指定的第二个key值。默认值为0，取值大于等于0的整数。                               |
 | speed  | number           | 否   | 鼠标滚轮滚动的速度，范围：1-500，不在范围内设为默认值为20，单位：格/秒。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[uitest测试框架错误码](errorcode-uitest.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -3174,7 +3322,7 @@ mouseScroll(p: Point, down: boolean, d: number, key1?: number, key2?: number, sp
 import { Driver } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
-  await driver.mouseScroll({x:360, y:640}, true, 30, 2072,20)
+  await driver.mouseScroll({x:360, y:640}, true, 30, 2072, 20);
 }
 ```
 
@@ -3194,12 +3342,12 @@ mouseDoubleClick(p: Point, btnId: MouseButton, key1?: number, key2?: number): Pr
 | ------ | ----------------------------- | ---- | ------------------------------ |
 | p      | [Point](#point9)              | 是   | 鼠标双击的坐标。               |
 | btnId  | [MouseButton](#mousebutton10) | 是   | 按下的鼠标按钮。               |
-| key1   | number                        | 否   | 指定的第一个key值。默认值为0。 |
-| key2   | number                        | 否   | 指定的第二个key值。默认值为0。 |
+| key1   | number                        | 否   | 指定的第一个key值。默认值为0，取值大于等于0。 |
+| key2   | number                        | 否   | 指定的第二个key值。默认值为0，取值大于等于0。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[uitest测试框架错误码](errorcode-uitest.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -3232,12 +3380,12 @@ mouseLongClick(p: Point, btnId: MouseButton, key1?: number, key2?: number): Prom
 | ------ | ----------------------------- | ---- | ------------------------------ |
 | p      | [Point](#point9)              | 是   | 鼠标长按的坐标。               |
 | btnId  | [MouseButton](#mousebutton10) | 是   | 按下的鼠标按钮。               |
-| key1   | number                        | 否   | 指定的第一个key值。默认值为0。 |
-| key2   | number                        | 否   | 指定的第二个key值。默认值为0。 |
+| key1   | number                        | 否   | 指定的第一个key值。默认值为0，取值大于等于0。 |
+| key2   | number                        | 否   | 指定的第二个key值。默认值为0，取值大于等于0。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[uitest测试框架错误码](errorcode-uitest.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -3274,7 +3422,7 @@ mouseMoveWithTrack(from: Point, to: Point, speed?: number): Promise\<void>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[uitest测试框架错误码](errorcode-uitest.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -3287,7 +3435,7 @@ mouseMoveWithTrack(from: Point, to: Point, speed?: number): Promise\<void>
 import { Driver } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
-  await driver.mouseMoveWithTrack({x:100, y:100},{x:200, y:200},600);
+  await driver.mouseMoveWithTrack({x:100, y:100}, {x:200, y:200}, 600);
 }
 ```
 
@@ -3315,7 +3463,7 @@ mouseDrag(from: Point, to: Point, speed?: number): Promise\<void>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[uitest测试框架错误码](errorcode-uitest.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -3328,7 +3476,7 @@ mouseDrag(from: Point, to: Point, speed?: number): Promise\<void>
 import { Driver } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
-  await driver.mouseDrag({x:100, y:100},{x:200, y:200},600);
+  await driver.mouseDrag({x:100, y:100},{x:200, y:200}, 600);
 }
 ```
 
@@ -3351,7 +3499,7 @@ inputText(p: Point, text: string): Promise\<void>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[uitest测试框架错误码](errorcode-uitest.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -3363,10 +3511,12 @@ inputText(p: Point, text: string): Promise\<void>
 ```ts
 import { Component, Driver, ON } from '@kit.TestKit';
 async function demo() {
-  let driver:Driver = Driver.create();
-  let text: Component = await driver.findComponent(ON.type('TextInput'));
-  let point = await text.getBoundsCenter();
-  await driver.inputText(point, '123');
+  let driver: Driver = Driver.create();
+  let text: Component|null = await driver.findComponent(ON.type('TextInput'));
+  if (text) {
+    let point = await text.getBoundsCenter();
+    await driver.inputText(point, '123');
+  }
 }
 ```
 
@@ -3627,7 +3777,7 @@ injectPenPointerAction(pointers: PointerMatrix, speed?: number, pressure?: numbe
 import { Driver, PointerMatrix } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
-  let pointer = PointerMatrix.create(1,8);
+  let pointer = PointerMatrix.create(1, 8);
   for (let step = 0; step < 8; step++) {
     pointer.setPoint(0, step, {x: 500, y: 1100 - 100 *step});
   }
@@ -3653,8 +3803,8 @@ static create(fingers: number, steps: number): PointerMatrix
 
 | 参数名  | 类型   | 必填 | 说明                                       |
 | ------- | ------ | ---- | ------------------------------------------ |
-| fingers | number | 是   | 多指操作中注入的手指数，取值范围：[1,10]。 |
-| steps   | number | 是   | 每根手指操作的步骤数，取值范围：[1,1000]。 |
+| fingers | number | 是   | 多指操作中注入的手指数，取值范围：[1, 10]。 |
+| steps   | number | 是   | 每根手指操作的步骤数，取值范围：[1, 1000]。 |
 
 **返回值：**
 
@@ -3675,7 +3825,7 @@ static create(fingers: number, steps: number): PointerMatrix
 ```ts
 import { PointerMatrix } from '@kit.TestKit';
 async function demo() {
-  let pointerMatrix: PointerMatrix = PointerMatrix.create(2,3);
+  let pointerMatrix: PointerMatrix = PointerMatrix.create(2, 3);
 }
 ```
 
@@ -3710,17 +3860,17 @@ setPoint(finger: number, step: number, point: Point): void
 ```ts
 import { PointerMatrix } from '@kit.TestKit';
 async function demo() {
-  let pointers: PointerMatrix = PointerMatrix.create(2,5);
-  pointers.setPoint(0,0,{x:250,y:480});
-  pointers.setPoint(0,1,{x:250,y:440});
-  pointers.setPoint(0,2,{x:250,y:400});
-  pointers.setPoint(0,3,{x:250,y:360});
-  pointers.setPoint(0,4,{x:250,y:320});
-  pointers.setPoint(1,0,{x:250,y:480});
-  pointers.setPoint(1,1,{x:250,y:440});
-  pointers.setPoint(1,2,{x:250,y:400});
-  pointers.setPoint(1,3,{x:250,y:360});
-  pointers.setPoint(1,4,{x:250,y:320});
+  let pointers: PointerMatrix = PointerMatrix.create(2, 5);
+  pointers.setPoint(0, 0, {x:250, y:480});
+  pointers.setPoint(0, 1, {x:250, y:440});
+  pointers.setPoint(0, 2, {x:250, y:400});
+  pointers.setPoint(0, 3, {x:250, y:360});
+  pointers.setPoint(0, 4, {x:250, y:320});
+  pointers.setPoint(1, 0, {x:250, y:480});
+  pointers.setPoint(1, 1, {x:250, y:440});
+  pointers.setPoint(1, 2, {x:250, y:400});
+  pointers.setPoint(1, 3, {x:250, y:360});
+  pointers.setPoint(1, 4, {x:250, y:320});
 }
 ```
 
@@ -3761,8 +3911,10 @@ import { Driver, UiWindow } from '@kit.TestKit';
 
 async function demo() {
   let driver: Driver = Driver.create();
-  let window: UiWindow = await driver.findWindow({actived: true});
-  let name: string = await window.getBundleName();
+  let window: UiWindow|null = await driver.findWindow({actived: true});
+  if (window) {
+    let name: string = await window.getBundleName();
+  }
 }
 ```
 
@@ -3797,8 +3949,10 @@ getBounds(): Promise\<Rect>
 import { Driver, UiWindow } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
-  let window: UiWindow = await driver.findWindow({actived: true});
-  let rect = await window.getBounds();
+  let window: UiWindow|null = await driver.findWindow({actived: true});
+  if (window) {
+    let rect = await window.getBounds();
+  }
 }
 ```
 
@@ -3833,8 +3987,10 @@ getTitle(): Promise\<string>
 import { Driver, UiWindow } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
-  let window: UiWindow = await driver.findWindow({actived: true});
-  let rect = await window.getTitle();
+  let window: UiWindow|null = await driver.findWindow({actived: true});
+  if (window) {
+    let rect = await window.getTitle();
+  }
 }
 ```
 
@@ -3869,8 +4025,10 @@ getWindowMode(): Promise\<WindowMode>
 import { Driver, UiWindow } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
-  let window: UiWindow = await driver.findWindow({actived: true});
-  let mode = await window.getWindowMode();
+  let window: UiWindow|null = await driver.findWindow({actived: true});
+  if (window) {
+    let mode = await window.getWindowMode();
+  }
 }
 ```
 
@@ -3905,8 +4063,10 @@ isFocused(): Promise\<boolean>
 import { Driver, UiWindow } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
-  let window: UiWindow = await driver.findWindow({actived: true});
-  let focused = await window.isFocused();
+  let window: UiWindow|null = await driver.findWindow({actived: true});
+  if (window) {
+    let focused = await window.isFocused();
+  }
 }
 ```
 
@@ -3941,8 +4101,10 @@ isActived(): Promise\<boolean>
 import { Driver, UiWindow } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
-  let window: UiWindow = await driver.findWindow({actived: true});
-  let focused = await window.isActived();
+  let window: UiWindow|null = await driver.findWindow({actived: true});
+  if (window) {
+    let focused = await window.isActived();
+  }
 }
 ```
 
@@ -3955,6 +4117,12 @@ focus(): Promise\<void>
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Test.UiTest
+
+**返回值：**
+
+| 类型             | 说明              |
+|----------------|-----------------|
+| Promise\<void> | Promise对象，返回无结果的Promise对象。 |
 
 **错误码：**
 
@@ -3971,8 +4139,10 @@ focus(): Promise\<void>
 import { Driver, UiWindow } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
-  let window: UiWindow = await driver.findWindow({actived: true});
-  await window.focus();
+  let window: UiWindow|null = await driver.findWindow({actived: true});
+  if (window) {
+    await window.focus();
+  }
 }
 ```
 
@@ -3993,9 +4163,15 @@ moveTo(x: number, y: number): Promise\<void>
 | x      | number | 是   | 以number的形式传入目标点的横坐标信息，取值大于等于0。 |
 | y      | number | 是   | 以number的形式传入目标点的纵坐标信息，取值大于等于0。 |
 
+**返回值：**
+
+| 类型             | 说明              |
+|----------------|-----------------|
+| Promise\<void> | Promise对象，返回无结果的Promise对象。 |
+
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[uitest测试框架错误码](errorcode-uitest.md)。
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
@@ -4010,8 +4186,10 @@ moveTo(x: number, y: number): Promise\<void>
 import { Driver, UiWindow } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
-  let window: UiWindow = await driver.findWindow({actived: true});
-  await window.moveTo(100, 100);
+  let window: UiWindow|null = await driver.findWindow({actived: true});
+  if (window) {
+    await window.moveTo(100, 100);  
+  }
 }
 ```
 
@@ -4029,13 +4207,19 @@ resize(wide: number, height: number, direction: ResizeDirection): Promise\<void>
 
 | 参数名    | 类型                                 | 必填 | 说明                                                         |
 | --------- | ------------------------------------ | ---- | ------------------------------------------------------------ |
-| wide      | number                               | 是   | 以number的形式传入调整后窗口的宽度。                         |
-| height    | number                               | 是   | 以number的形式传入调整后窗口的高度。                         |
+| wide      | number                               | 是   | 以number的形式传入调整后窗口的宽度，取值大于等于0。                         |
+| height    | number                               | 是   | 以number的形式传入调整后窗口的高度，取值大于等于0。                         |
 | direction | [ResizeDirection](#resizedirection9) | 是   | 以[ResizeDirection](#resizedirection9)的形式传入窗口调整的方向。 |
+
+**返回值：**
+
+| 类型             | 说明              |
+|----------------|-----------------|
+| Promise\<void> | Promise对象，返回无结果的Promise对象。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[uitest测试框架错误码](errorcode-uitest.md)。
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
@@ -4050,8 +4234,10 @@ resize(wide: number, height: number, direction: ResizeDirection): Promise\<void>
 import { Driver, ResizeDirection, UiWindow } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
-  let window: UiWindow = await driver.findWindow({actived: true});
-  await window.resize(100, 100, ResizeDirection.LEFT);
+  let window: UiWindow|null = await driver.findWindow({actived: true});
+  if (window) {
+    await window.resize(100, 100, ResizeDirection.LEFT);
+  }
 }
 ```
 
@@ -4064,6 +4250,12 @@ split(): Promise\<void>
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Test.UiTest
+
+**返回值：**
+
+| 类型             | 说明              |
+|----------------|-----------------|
+| Promise\<void> | Promise对象，返回无结果的Promise对象。 |
 
 **错误码：**
 
@@ -4081,8 +4273,10 @@ split(): Promise\<void>
 import { Driver, UiWindow } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
-  let window: UiWindow = await driver.findWindow({actived: true});
-  await window.split();
+  let window: UiWindow|null = await driver.findWindow({actived: true});
+  if (window) {
+    await window.split();
+  }
 }
 ```
 
@@ -4095,6 +4289,12 @@ maximize(): Promise\<void>
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Test.UiTest
+
+**返回值：**
+
+| 类型             | 说明              |
+|----------------|-----------------|
+| Promise\<void> | Promise对象，返回无结果的Promise对象。 |
 
 **错误码：**
 
@@ -4112,8 +4312,10 @@ maximize(): Promise\<void>
 import { Driver, UiWindow } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
-  let window: UiWindow = await driver.findWindow({actived: true});
-  await window.maximize();
+  let window: UiWindow|null = await driver.findWindow({actived: true});
+  if (window) {
+    await window.maximize();
+  }
 }
 ```
 
@@ -4126,6 +4328,12 @@ minimize(): Promise\<void>
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Test.UiTest
+
+**返回值：**
+
+| 类型             | 说明              |
+|----------------|-----------------|
+| Promise\<void> | Promise对象，返回无结果的Promise对象。 |
 
 **错误码：**
 
@@ -4143,8 +4351,10 @@ minimize(): Promise\<void>
 import { Driver, UiWindow } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
-  let window: UiWindow = await driver.findWindow({actived: true});
-  await window.minimize();
+  let window: UiWindow|null = await driver.findWindow({actived: true});
+  if (window) {
+    await window.minimize();
+  }
 }
 ```
 
@@ -4174,8 +4384,10 @@ resume(): Promise\<void>
 import { Driver, UiWindow } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
-  let window: UiWindow = await driver.findWindow({actived: true});
-  await window.resume();
+  let window: UiWindow|null = await driver.findWindow({actived: true});
+  if (window) {
+    await window.resume();
+  }
 }
 ```
 
@@ -4205,8 +4417,10 @@ close(): Promise\<void>
 import { Driver, UiWindow } from '@kit.TestKit';
 async function demo() {
   let driver:Driver = Driver.create();
-  let window: UiWindow = await driver.findWindow({actived: true});
-  await window.close();
+  let window: UiWindow|null = await driver.findWindow({actived: true});
+  if (window) {
+    await window.close();
+  }
 }
 ```
 
@@ -4241,8 +4455,10 @@ isActive(): Promise\<boolean>
 import { Driver, UiWindow } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
-  let window: UiWindow = await driver.findWindow({active: true});
-  let focused = await window.isActive();
+  let window: UiWindow|null = await driver.findWindow({active: true});
+  if (window) {
+    let focused = await window.isActive();
+  }
 }
 ```
 
@@ -4281,13 +4497,13 @@ once(type: 'toastShow', callback: Callback\<UIElementInfo>): void;
 import { Driver, UIElementInfo, UIEventObserver } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
-  let observer:  UIEventObserver = await driver.createUIEventObserver()
+  let observer:  UIEventObserver = await driver.createUIEventObserver();
   let  callback = (UIElementInfo: UIElementInfo)=>{
-    console.info(UIElementInfo.bundleName)
-    console.info(UIElementInfo.text)
-    console.info(UIElementInfo.type)
+    console.info(UIElementInfo.bundleName);
+    console.info(UIElementInfo.text);
+    console.info(UIElementInfo.type);
   }
-  observer.once('toastShow', callback)
+  observer.once('toastShow', callback);
 }
 ```
 
@@ -4305,8 +4521,8 @@ once(type: 'dialogShow', callback: Callback\<UIElementInfo>): void;
 
 | 参数名   | 类型                                         | 必填 | 说明                               |
 | -------- | -------------------------------------------- | ---- | ---------------------------------- |
-| type     | string                                       | 是   | 订阅的事件类型，取值为'dialogShow' |
-| callback | Callback\<[UIElementInfo](#uielementinfo10)> | 是   | 事件发生时执行的回调函数           |
+| type     | string                                       | 是   | 订阅的事件类型，取值为'dialogShow'。 |
+| callback | Callback\<[UIElementInfo](#uielementinfo10)> | 是   | 事件发生时执行的回调函数。           |
 
 **错误码：**
 
@@ -4322,13 +4538,13 @@ once(type: 'dialogShow', callback: Callback\<UIElementInfo>): void;
 import { Driver, UIElementInfo, UIEventObserver } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
-  let observer: UIEventObserver = await driver.createUIEventObserver()
+  let observer: UIEventObserver = await driver.createUIEventObserver();
   let  callback = (UIElementInfo: UIElementInfo)=>{
-    console.info(UIElementInfo.bundleName)
-    console.info(UIElementInfo.text)
-    console.info(UIElementInfo.type)
+    console.info(UIElementInfo.bundleName);
+    console.info(UIElementInfo.text);
+    console.info(UIElementInfo.type);
   }
-  observer.once('dialogShow', callback)
+  observer.once('dialogShow', callback);
 }
 ```
 
@@ -4479,7 +4695,7 @@ clickable(b?: boolean): By
 
 | 参数名 | 类型    | 必填 | 说明                                                         |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
-| b      | boolean | 否   | 指定控件可点击状态，true：可点击，false：不可点击。默认为true。 |
+| b      | boolean | 否   | 指定控件可点击状态。true：可点击。false：不可点击。默认为true。 |
 
 **返回值：**
 
@@ -4509,7 +4725,7 @@ scrollable(b?: boolean): By
 
 | 参数名 | 类型    | 必填 | 说明                                                        |
 | ------ | ------- | ---- | ----------------------------------------------------------- |
-| b      | boolean | 否   | 控件可滑动状态，true：可滑动，false：不可滑动。默认为true。 |
+| b      | boolean | 否   | 控件可滑动状态。true：可滑动。false：不可滑动。默认为true。 |
 
 **返回值：**
 
@@ -4538,7 +4754,7 @@ enabled(b?: boolean): By
 
 | 参数名 | 类型    | 必填 | 说明                                                      |
 | ------ | ------- | ---- | --------------------------------------------------------- |
-| b      | boolean | 否   | 指定控件使能状态，true：使能，false：未使能。默认为true。 |
+| b      | boolean | 否   | 指定控件使能状态。true：使能。false：未使能。默认为true。 |
 
 **返回值：**
 
@@ -4567,7 +4783,7 @@ focused(b?: boolean): By
 
 | 参数名 | 类型    | 必填 | 说明                                                  |
 | ------ | ------- | ---- | ----------------------------------------------------- |
-| b      | boolean | 否   | 控件获焦状态，true：获焦，false：未获焦。默认为true。 |
+| b      | boolean | 否   | 控件获焦状态。true：获焦。false：未获焦。默认为true。 |
 
 **返回值：**
 
@@ -4596,7 +4812,7 @@ selected(b?: boolean): By
 
 | 参数名 | 类型    | 必填 | 说明                                                         |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
-| b      | boolean | 否   | 指定控件被选中状态，true：被选中，false：未被选中。默认为true。 |
+| b      | boolean | 否   | 指定控件被选中状态。true：被选中。false：未被选中。默认为true。 |
 
 **返回值：**
 
@@ -4874,7 +5090,7 @@ import { UiDriver, BY, UiComponent } from '@kit.TestKit';
 async function demo() {
   let driver: UiDriver = UiDriver.create();
   let button: UiComponent = await driver.findComponent(BY.type('Button'));
-  if(await button.isClickable()) {
+  if (await button.isClickable()) {
     console.info('This button can be Clicked');
   } else {
     console.info('This button can not be Clicked');
@@ -4905,7 +5121,7 @@ import { UiDriver, BY, UiComponent } from '@kit.TestKit';
 async function demo() {
   let driver: UiDriver = UiDriver.create();
   let scrollBar: UiComponent = await driver.findComponent(BY.scrollable(true));
-  if(await scrollBar.isScrollable()) {
+  if (await scrollBar.isScrollable()) {
     console.info('This scrollBar can be operated');
   } else {
     console.info('This scrollBar can not be operated');
@@ -4937,7 +5153,7 @@ import { UiDriver, BY, UiComponent } from '@kit.TestKit';
 async function demo() {
   let driver: UiDriver = UiDriver.create();
   let button: UiComponent = await driver.findComponent(BY.type('Button'));
-  if(await button.isEnabled()) {
+  if (await button.isEnabled()) {
     console.info('This button can be operated');
   } else {
     console.info('This button can not be operated');
@@ -4969,7 +5185,7 @@ import { UiDriver, BY, UiComponent } from '@kit.TestKit';
 async function demo() {
   let driver: UiDriver = UiDriver.create();
   let button: UiComponent = await driver.findComponent(BY.type('Button'));
-  if(await button.isFocused()) {
+  if (await button.isFocused()) {
     console.info('This button is focused');
   } else {
     console.info('This button is not focused');
@@ -5000,7 +5216,7 @@ import { UiDriver, BY, UiComponent } from '@kit.TestKit';
 async function demo() {
   let driver: UiDriver = UiDriver.create();
   let button: UiComponent = await driver.findComponent(BY.type('Button'));
-  if(await button.isSelected()) {
+  if (await button.isSelected()) {
     console.info('This button is selected');
   } else {
     console.info('This button is not selected');
@@ -5012,7 +5228,7 @@ async function demo() {
 
 inputText(text: string): Promise\<void>
 
-向控件中输入文本(适用于文本框控件)。
+向控件中输入文本（适用于文本框控件）。
 
 从API version 9开始不再维护，建议使用[inputText<sup>9+</sup>](#inputtext9)。
 
@@ -5039,7 +5255,7 @@ async function demo() {
 
 scrollSearch(by: By): Promise\<UiComponent>
 
-在控件上滑动查找目标控件(适用于List等支持滑动的控件)。
+在控件上滑动查找目标控件（适用于List等支持滑动的控件）。
 
 从API version 9开始不再维护，建议使用[scrollSearch<sup>9+</sup>](#scrollsearch9)。
 
@@ -5296,7 +5512,7 @@ UiDriver对象采取如下操作：在目标坐标点单击。
 import { UiDriver } from '@kit.TestKit';
 async function demo() {
   let driver: UiDriver = UiDriver.create();
-  await driver.click(100,100);
+  await driver.click(100, 100);
 }
 ```
 
@@ -5323,7 +5539,7 @@ UiDriver对象采取如下操作：在目标坐标点双击。
 import { UiDriver } from '@kit.TestKit';
 async function demo() {
   let driver: UiDriver = UiDriver.create();
-  await driver.doubleClick(100,100);
+  await driver.doubleClick(100, 100);
 }
 ```
 
@@ -5350,7 +5566,7 @@ UiDriver对象采取如下操作：在目标坐标点长按下鼠标左键。
 import { UiDriver } from '@kit.TestKit';
 async function demo() {
   let driver: UiDriver = UiDriver.create();
-  await driver.longClick(100,100);
+  await driver.longClick(100, 100);
 }
 ```
 
@@ -5379,7 +5595,7 @@ UiDriver对象采取如下操作：从给出的起始坐标点滑向给出的目
 import { UiDriver } from '@kit.TestKit';
 async function demo() {
   let driver: UiDriver = UiDriver.create();
-  await driver.swipe(100,100,200,200);
+  await driver.swipe(100, 100, 200, 200);
 }
 ```
 
