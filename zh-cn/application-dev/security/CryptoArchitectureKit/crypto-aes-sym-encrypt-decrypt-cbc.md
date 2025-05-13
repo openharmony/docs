@@ -145,7 +145,7 @@
         console.error('decrypt failed');
       }
     } catch (error) {
-       console.error(`AES CBC “${error}“, error code: ${error.code}`);
+      console.error(`AES CBC "${error}", error code: ${error.code}`);
     }
   }
   ```
