@@ -589,9 +589,9 @@ update(index: number, childSize: number): void
 | ------- | -------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
 
-## UIScrollableCommonEvent<sup>18+</sup>
+## UIScrollableCommonEvent<sup>19+</sup>
 用于设置滚动事件回调。
-### setOnReachStart<sup>18+</sup>
+### setOnReachStart<sup>19+</sup>
 
 setOnReachStart(callback: Callback\<void> | undefined): void
 
@@ -599,7 +599,7 @@ setOnReachStart(callback: Callback\<void> | undefined): void
 
 方法入参为undefined的时候，重置对应的事件回调。
 
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -609,7 +609,7 @@ setOnReachStart(callback: Callback\<void> | undefined): void
 | ------ | ------ | ---- | -------------------------- |
 | callback  | [Callback](./ts-types.md#callback12)\<void> &nbsp;\|&nbsp;undefined | 是   | onReachStart事件的回调函数。 |
 
-### setOnReachEnd<sup>18+</sup>
+### setOnReachEnd<sup>19+</sup>
 
 setOnReachEnd(callback: Callback\<void> | undefined): void
 
@@ -617,7 +617,7 @@ setOnReachEnd(callback: Callback\<void> | undefined): void
 
 方法入参为undefined时，会重置事件回调。
 
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -628,7 +628,7 @@ setOnReachEnd(callback: Callback\<void> | undefined): void
 | callback  | [Callback](./ts-types.md#callback12)\<void> &nbsp;\|&nbsp;undefined | 是   | onReachEnd事件的回调函数。 |
 
 
-### setOnScrollStart<sup>18+</sup>
+### setOnScrollStart<sup>19+</sup>
 
 setOnScrollStart(callback: Callback\<void> | undefined): void
 
@@ -636,7 +636,7 @@ setOnScrollStart(callback: Callback\<void> | undefined): void
 
 方法入参为undefined时，会重置事件回调。
 
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -647,7 +647,7 @@ setOnScrollStart(callback: Callback\<void> | undefined): void
 | callback  | [Callback](./ts-types.md#callback12)\<void> &nbsp;\|&nbsp; undefined | 是   | onScrollStart事件的回调函数。|
 
 
-### setOnScrollStop<sup>18+</sup>
+### setOnScrollStop<sup>19+</sup>
 
 setOnScrollStop(callback: Callback\<void> | undefined): void
 
@@ -655,7 +655,7 @@ setOnScrollStop(callback: Callback\<void> | undefined): void
 
 方法入参为undefined时，会重置事件回调。
 
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -665,7 +665,7 @@ setOnScrollStop(callback: Callback\<void> | undefined): void
 | ------ | ------ | ---- | -------------------------- |
 | callback  | [Callback](./ts-types.md#callback12)\<void> &nbsp;\|&nbsp;undefined | 是   | onScrollStop事件的回调函数。 |
 
-### setOnScrollFrameBegin<sup>18+</sup>
+### setOnScrollFrameBegin<sup>19+</sup>
 
 setOnScrollFrameBegin(callback: OnScrollFrameBeginCallback | undefined): void
 
@@ -673,7 +673,7 @@ setOnScrollFrameBegin(callback: OnScrollFrameBeginCallback | undefined): void
 
 方法入参为undefined时，会重置事件回调。
 
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
