@@ -9231,6 +9231,71 @@ struct ActivateExample {
 }
 ```
 
+### isActive<sup>20+</sup>
+
+isActive(): boolean
+
+返回UI实例的获焦状态。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：**
+
+| 类型          | 说明       |
+| ------------  | --------- |
+|  boolean  | 返回UI实例的获焦状态。true表示UI实例获取焦点，false表示UI实例失去焦点。 |
+
+**示例：**
+
+```ts
+@Entry
+@Component
+struct ClearFocusExample {
+  @State inputValue: string = ''
+  @State btColor: Color = Color.Blue
+
+  build() {
+    Column({ space: 20 }) {
+      Column({ space: 5 }) {
+        Button('button1')
+          .width(200)
+          .height(70)
+          .fontColor(Color.White)
+          .focusOnTouch(true)
+          .backgroundColor(Color.Blue)
+          .onClick(()=> {
+            console.log("button1 onClick")
+            this.getUIContext().getFocusController().activate(true)
+            console.log("focus status " + this.getUIContext().getFocusController().isActive())
+          })
+        Button('button2')
+          .width(200)
+          .height(70)
+          .fontColor(Color.White)
+          .focusOnTouch(true)
+          .backgroundColor(this.btColor)
+          .defaultFocus(true)
+          .onClick(()=> {
+            console.log("button2 onClick")
+            this.getUIContext().getFocusController().activate(false)
+            console.log("focus status " + this.getUIContext().getFocusController().isActive())
+          })
+          .onFocus(() => {
+            this.btColor = Color.Red
+          })
+          .onBlur(() => {
+            this.btColor = Color.Blue
+          })
+      }
+    }
+    .width('100%')
+    .height('100%')
+  }
+}
+```
+
 ### setAutoFocusTransfer<sup>14+</sup>
 
 setAutoFocusTransfer(isAutoFocusTransfer: boolean): void;
