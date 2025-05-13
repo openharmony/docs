@@ -3980,7 +3980,7 @@ onProgressChange(callback: Callback\<OnProgressChangeEvent\>)
 
 onTitleReceive(callback: Callback\<OnTitleReceiveEvent\>)
 
-网页document标题更改时触发该回调，当H5未设置<title\>元素时会返回对应的URL。
+通知应用程序页面document标题已更改，如果加载的页面未设置<title\>元素 指定的标题，ArkWeb将基于URL生成标题并返回给应用程序。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
