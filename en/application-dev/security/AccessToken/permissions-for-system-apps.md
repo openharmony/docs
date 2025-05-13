@@ -4697,6 +4697,34 @@ Allows an application to call the accessibility service extension APIs to query 
 
 **Valid since**: 20
 
+## ohos.permission.READ_SOUND_RECORD_IN_FILE_MANAGER
+
+Allows an application to read recording files from the file manager directory.
+
+**Permission level**: system_core
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Supported devices**: Phone | PC/2in1 | Tablet
+
+**Valid since**: 20
+
+## ohos.permission.WRITE_SOUND_RECORD_IN_FILE_MANAGER
+
+Allows an application to write recording files to the file manager directory.
+
+**Permission level**: system_core
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Supported devices**: Phone | PC/2in1 | Tablet
+
+**Valid since**: 20
+
 ## ohos.permission.SANDBOX_ACCESS_MANAGER
 
 Allows an application to access the sandbox directory of other applications.
