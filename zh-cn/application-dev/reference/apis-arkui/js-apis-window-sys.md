@@ -60,7 +60,7 @@ import { window } from '@kit.ArkUI';
 
 | 名称 | 类型 | 必填 | 说明                       |
 | ---------- | --------- | ---- | -------------- |
-| zIndex<sup>20+</sup>       | number | 否 | 当前系统窗口的层级，仅在windowType为TYPE_DYNAMIC时生效。<br>**系统能力：** SystemCapability.Window.SessionManager |
+| zIndex<sup>20+</sup>       | number | 否 | 当前系统窗口的层级，仅在[WindowType](#windowtype7)为TYPE_DYNAMIC时生效。<br>**系统能力：** SystemCapability.Window.SessionManager |
 
 ## WindowMode<sup>7+</sup>
 
