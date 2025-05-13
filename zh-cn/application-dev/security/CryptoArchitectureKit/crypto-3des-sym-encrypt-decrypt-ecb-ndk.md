@@ -23,7 +23,7 @@ target_link_libraries(entry PUBLIC libohcrypto.so)
    
    ECB模式无加密参数，params直接传入null。
 
-3. 调用[OH_CryptoSymCipher_Update](../../reference/apis-crypto-architecture-kit/_crypto_sym_cipher_api.md#oh_cryptosymcipher_update)，更新数据。
+3. 调用[OH_CryptoSymCipher_Update](../../reference/apis-crypto-architecture-kit/_crypto_sym_cipher_api.md#oh_cryptosymcipher_update)，更新数据（明文）。
    
    - 当数据量较小时，可以在init完成后直接调用final。
    - 当数据量较大时，可以多次调用update，即分段加密。
@@ -39,7 +39,7 @@ target_link_libraries(entry PUBLIC libohcrypto.so)
 
 2. 调用[OH_CryptoSymCipher_Init](../../reference/apis-crypto-architecture-kit/_crypto_sym_cipher_api.md#oh_cryptosymcipher_init)，设置模式为解密（CRYPTO_DECRYPT_MODE），指定解密密钥（OH_CryptoSymKey），初始化解密Cipher实例。ECB模式无加密参数，传入null。
 
-3. 调用[OH_CryptoSymCipher_Update](../../reference/apis-crypto-architecture-kit/_crypto_sym_cipher_api.md#oh_cryptosymcipher_update)，更新数据。
+3. 调用[OH_CryptoSymCipher_Update](../../reference/apis-crypto-architecture-kit/_crypto_sym_cipher_api.md#oh_cryptosymcipher_update)，更新数据（密文）。
    
    - 当数据量较小时，可以在init完成后直接调用final。
    - 当数据量较大时，可以多次调用update，即分段解密。
