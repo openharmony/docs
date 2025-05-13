@@ -144,6 +144,7 @@ isShown为true，弹出菜单。isShown为false，隐藏菜单。弹出菜单项
 | hapticFeedbackMode<sup>18+</sup> | [HapticFeedbackMode](#hapticfeedbackmode18) | 否 | 菜单弹出时振动效果。<br/>默认值：HapticFeedbackMode.DISABLED, 菜单弹出时不振动。<br />**说明：**<br />只有一级菜单可配置弹出时振动效果。<br />**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。 |
 | outlineWidth<sup>18+</sup> | [Dimension](ts-types.md#dimension10)&nbsp;\|&nbsp;[EdgeOutlineWidths](ts-universal-attributes-outline.md#edgeoutlinewidths对象说明) | 否 | 设置菜单边框外描边宽度。<br />**说明：**<br />不支持百分比，若需要外描边效果width为必填项。<br />**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。 |
 | outlineColor<sup>18+</sup> | [ResourceColor](ts-types.md#resourcecolor)&nbsp;\|&nbsp;[EdgeColors](ts-universal-attributes-outline.md#edgecolors对象说明) | 否 | 设置菜单边框外描边颜色。<br />**说明：**<br />默认值：#19ffffff<br />**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。 |
+| mask<sup>20+</sup> | boolean&nbsp;\|&nbsp;[MenuMaskType](#menumasktype20类型说明) | 否 | 设置菜单是否有蒙层及蒙层样式。如果设置为false，则没有蒙层；如果设置为true，则有蒙层；如果设置为MenuMaskType，则自定义蒙层的样式。<br/>默认值：使用bindContextMenu且配置预览图弹出菜单时默认值为true，其它情况默认值为false。<br />**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
 
 ## MenuPreviewMode<sup>11+</sup>
 
@@ -211,6 +212,19 @@ type BorderRadiusType\<T>= [Length](ts-types.md#length) | [BorderRadiuses](ts-ty
 | [Length](ts-types.md#length)                |    长度类型，用于描述尺寸单位           |
 | [BorderRadiuses](ts-types.md#borderradiuses9)        | 圆角类型，用于描述组件边框圆角半径 |
 | [LocalizedBorderRadiuses](ts-types.md#localizedborderradiuses12) | 圆角类型，用于描述组件边框圆角半径 |
+
+## MenuMaskType<sup>20+</sup>类型说明
+
+设置蒙层样式。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称      | 类型                                       | 必填 | 说明                                                         |
+| --------- | ------------------------------------------ | ---- | ------------------------------------------------------------ |
+| color | [ResourceColor](ts-types.md#resourcecolor) | 否   | 设置蒙层颜色。<br/>默认值：0x33182431                                       |
+| backgroundBlurStyle | [BlurStyle](ts-universal-attributes-background.md#blurstyle9) | 否   | 设置蒙层模糊材质。<br/>默认值：BlurStyle.BACKGROUND_THIN                                       |
 
 ## 示例
 
