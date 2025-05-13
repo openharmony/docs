@@ -29,7 +29,7 @@
 
 **解密**
 
-1. 调用[cryptoFramework.createCipher](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreatecipher)，指定字符串参数'3DES192|ECB|PKCS7'，创建对称密钥类型为 3DES192、分组模式为 ECB、填充模式为 PKCS7 的 Cipher 实例，用于完成解密操作。
+1. 调用[cryptoFramework.createCipher](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreatecipher)，指定字符串参数'3DES192|ECB|PKCS7'，创建对称密钥类型为3DES192、分组模式为ECB、填充模式为PKCS7的Cipher实例，用于完成解密操作。
 
 2. 调用[Cipher.init](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#init-1)，设置模式为解密（CryptoMode.DECRYPT_MODE），并指定解密密钥（SymKey）初始化解密Cipher实例。ECB模式无加密参数，调用时直接传入null。
 
@@ -51,7 +51,7 @@
 
   // 加密消息。
   async function encryptMessagePromise(symKey: cryptoFramework.SymKey, plainText: cryptoFramework.DataBlob) {
-    // 如果使用CBC、CTR、OFB或CFB分段模式，需将此处修改为对应模式，并添加IV作为加解密参数。
+    // 如果使用CBC、CTR、OFB或CFB分组模式，需将此处修改为对应模式，并添加IV作为加解密参数。
     let cipher = cryptoFramework.createCipher('3DES192|ECB|PKCS7');
     await cipher.init(cryptoFramework.CryptoMode.ENCRYPT_MODE, symKey, null);
     let encryptData = await cipher.doFinal(plainText);
@@ -59,7 +59,7 @@
   }
   // 解密消息。
   async function decryptMessagePromise(symKey: cryptoFramework.SymKey, cipherText: cryptoFramework.DataBlob) {
-    // 如果使用CBC、CTR、OFB或CFB分段模式，需将此处修改为对应模式，并添加加解密参数IV。
+    // 如果使用CBC、CTR、OFB或CFB分组模式，需将此处修改为对应模式，并添加加解密参数IV。
     let decoder = cryptoFramework.createCipher('3DES192|ECB|PKCS7');
     await decoder.init(cryptoFramework.CryptoMode.DECRYPT_MODE, symKey, null);
     let decryptData = await decoder.doFinal(cipherText);
@@ -96,7 +96,7 @@
 
   // 加密消息。
   function encryptMessage(symKey: cryptoFramework.SymKey, plainText: cryptoFramework.DataBlob) {
-    // 如果使用CBC、CTR、OFB或CFB分段模式，需将此处修改为对应模式，并添加加解密参数IV。
+    // 如果使用CBC、CTR、OFB或CFB分组模式，需将此处修改为对应模式，并添加加解密参数IV。
     let cipher = cryptoFramework.createCipher('3DES192|ECB|PKCS7');
     cipher.initSync(cryptoFramework.CryptoMode.ENCRYPT_MODE, symKey, null);
     let encryptData = cipher.doFinalSync(plainText);
@@ -104,7 +104,7 @@
   }
   // 解密消息。
   function decryptMessage(symKey: cryptoFramework.SymKey, cipherText: cryptoFramework.DataBlob) {
-    // 对于CBC、CTR、OFB、CFB分段模式，需要将此处修改为对应模式，并添加加解密参数IV。
+    // 对于CBC、CTR、OFB、CFB分组模式，需要将此处修改为对应模式，并添加加解密参数IV。
     let decoder = cryptoFramework.createCipher('3DES192|ECB|PKCS7');
     decoder.initSync(cryptoFramework.CryptoMode.DECRYPT_MODE, symKey, null);
     let decryptData = decoder.doFinalSync(cipherText);
