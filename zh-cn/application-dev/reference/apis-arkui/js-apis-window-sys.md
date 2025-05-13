@@ -3318,11 +3318,11 @@ export default class EntryAbility extends UIAbility {
 };
 ```
 
-## setImageForRecent<sup>20+</sup>
+### setImageForRecent<sup>20+</sup>
 
 setImageForRecent(imgResourceId: number, value: ImageFit): Promise&lt;void&gt;
 
-多任务显示静态图
+设置应用在多任务中显示的图片，使用Promise异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -3336,8 +3336,8 @@ setImageForRecent(imgResourceId: number, value: ImageFit): Promise&lt;void&gt;
 
 | 参数名      | 类型    | 必填 | 说明                                                         |
 | ----------- | ------- | ---- | ------------------------------------------------------------ |
-| imgResourceId | number | 是   | 静态图的资源id |
-| value | ImageFit | 是 | 静态图的伸缩方式 |
+| imgResourceId | number | 是   | 静态图的资源id，获取方式：$r("imagePath").id，imagePath为图片所在路径，如$r("app.media.cat").id |
+| value | ImageFit | 是 | 静态图的填充方式：https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-appendix-enums.md#imagefit |
 
 **返回值：**
 
