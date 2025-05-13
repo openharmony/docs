@@ -199,7 +199,7 @@ You can refer to the corresponding development guide and samples based on your d
 | [Camera_ErrorCode](#camera_errorcode) [OH_CameraManager_UnregisterCallback](#oh_cameramanager_unregistercallback) ([Camera_Manager](#camera_manager) \*cameraManager, [CameraManager_Callbacks](_camera_manager___callbacks.md) \*callback) | Unregisters the callback used to listen for camera status changes.| 
 | [Camera_ErrorCode](#camera_errorcode) [OH_CameraManager_RegisterTorchStatusCallback](#oh_cameramanager_registertorchstatuscallback) ([Camera_Manager](#camera_manager) \*cameraManager, [OH_CameraManager_TorchStatusCallback](#oh_cameramanager_torchstatuscallback) torchStatusCallback) | Registers a callback to listen for flashlight status changes.| 
 | [Camera_ErrorCode](#camera_errorcode) [OH_CameraManager_UnregisterTorchStatusCallback](#oh_cameramanager_unregistertorchstatuscallback) ([Camera_Manager](#camera_manager) \*cameraManager, [OH_CameraManager_TorchStatusCallback](#oh_cameramanager_torchstatuscallback) torchStatusCallback) | Unregisters the callback used to listen for flashlight status changes.| 
-| [Camera_ErrorCode](#camera_errorcode) [OH_CameraManager_GetSupportedCameras](#oh_cameramanager_getsupportedcameras) ([Camera_Manager](#camera_manager) \*cameraManager, [Camera_Device](_camera___device.md) \*\*cameras, uint32_t \*size) | Obtains supported cameras.| 
+| [Camera_ErrorCode](#camera_errorcode) [OH_CameraManager_GetSupportedCameras](#oh_cameramanager_getsupportedcameras) ([Camera_Manager](#camera_manager) \*cameraManager, [Camera_Device](_camera___device.md) \*\*cameras, uint32_t \*size) | Obtains the supported cameras.| 
 | [Camera_ErrorCode](#camera_errorcode) [OH_CameraManager_DeleteSupportedCameras](#oh_cameramanager_deletesupportedcameras) ([Camera_Manager](#camera_manager) \*cameraManager, [Camera_Device](_camera___device.md) \*cameras, uint32_t size) | Deletes supported cameras.| 
 | [Camera_ErrorCode](#camera_errorcode) [OH_CameraManager_GetSupportedCameraOutputCapability](#oh_cameramanager_getsupportedcameraoutputcapability) ([Camera_Manager](#camera_manager) \*cameraManager, const [Camera_Device](_camera___device.md) \*camera, [Camera_OutputCapability](_camera___output_capability.md) \*\*cameraOutputCapability) | Obtains the output capability supported by a camera.| 
 | [Camera_ErrorCode](#camera_errorcode) [OH_CameraManager_GetSupportedCameraOutputCapabilityWithSceneMode](#oh_cameramanager_getsupportedcameraoutputcapabilitywithscenemode) ([Camera_Manager](#camera_manager) \*cameraManager, const [Camera_Device](_camera___device.md) \*camera, [Camera_SceneMode](#camera_scenemode) sceneMode, [Camera_OutputCapability](_camera___output_capability.md) \*\*cameraOutputCapability) | Obtains the output capability supported by a camera in the specified mode.| 
@@ -312,6 +312,7 @@ You can refer to the corresponding development guide and samples based on your d
 | [Camera_ErrorCode](#camera_errorcode) [OH_PhotoOutput_DeleteProfile](#oh_photooutput_deleteprofile) ([Camera_Profile](_camera___profile.md) \*profile) | Deletes the profile of this **PhotoOutput** instance.| 
 | [Camera_ErrorCode](#camera_errorcode) [OH_PhotoOutput_IsMovingPhotoSupported](#oh_photooutput_ismovingphotosupported) ([Camera_PhotoOutput](#camera_photooutput) \*photoOutput, bool \*isSupported) | Checks whether moving photos are supported.| 
 | [Camera_ErrorCode](#camera_errorcode) [OH_PhotoOutput_EnableMovingPhoto](#oh_photooutput_enablemovingphoto) ([Camera_PhotoOutput](#camera_photooutput) \*photoOutput, bool enabled) | Enables moving photos.| 
+| [Camera_ErrorCode](#camera_errorcode) [OH_PhotoOutput_GetPhotoRotation](#oh_photooutput_getphotorotation) ([Camera_PhotoOutput](#camera_photooutput) \*photoOutput, int devicedegree, [Camera_ImageRotation](#camera_imagerotation) \*imageRotation) | Obtains the photo rotation angle.| 
 | [Camera_ErrorCode](#camera_errorcode) [OH_PreviewOutput_RegisterCallback](#oh_previewoutput_registercallback) ([Camera_PreviewOutput](#camera_previewoutput) \*previewOutput, [PreviewOutput_Callbacks](_preview_output___callbacks.md) \*callback) | Registers a callback to listen for preview output events.| 
 | [Camera_ErrorCode](#camera_errorcode) [OH_PreviewOutput_UnregisterCallback](#oh_previewoutput_unregistercallback) ([Camera_PreviewOutput](#camera_previewoutput) \*previewOutput, [PreviewOutput_Callbacks](_preview_output___callbacks.md) \*callback) | Unregisters the callback used to listen for preview output events.| 
 | [Camera_ErrorCode](#camera_errorcode) [OH_PreviewOutput_Start](#oh_previewoutput_start) ([Camera_PreviewOutput](#camera_previewoutput) \*previewOutput) | Starts preview output.| 
@@ -323,6 +324,8 @@ You can refer to the corresponding development guide and samples based on your d
 | [Camera_ErrorCode](#camera_errorcode) [OH_PreviewOutput_DeleteFrameRates](#oh_previewoutput_deleteframerates) ([Camera_PreviewOutput](#camera_previewoutput) \*previewOutput, [Camera_FrameRateRange](_camera___frame_rate_range.md) \*frameRateRange) | Deletes the frame rate list.| 
 | [Camera_ErrorCode](#camera_errorcode) [OH_PreviewOutput_SetFrameRate](#oh_previewoutput_setframerate) ([Camera_PreviewOutput](#camera_previewoutput) \*previewOutput, int32_t minFps, int32_t maxFps) | Sets the frame rates for a **PreviewOutput** instance.| 
 | [Camera_ErrorCode](#camera_errorcode) [OH_PreviewOutput_GetActiveFrameRate](#oh_previewoutput_getactiveframerate) ([Camera_PreviewOutput](#camera_previewoutput) \*previewOutput, [Camera_FrameRateRange](_camera___frame_rate_range.md) \*frameRateRange) | Obtains the active frame rates of a **PreviewOutput** instance.| 
+| [Camera_ErrorCode](#camera_errorcode) [OH_PreviewOutput_GetPreviewRotation](#oh_previewoutput_getpreviewrotation) ([Camera_PreviewOutput](#camera_previewoutput) \*previewOutput, int displayRotation, [Camera_ImageRotation](#camera_imagerotation) \*imageRotation) | Obtains the preview rotation angle.| 
+| [Camera_ErrorCode](#camera_errorcode) [OH_PreviewOutput_SetPreviewRotation](#oh_previewoutput_setpreviewrotation) ([Camera_PreviewOutput](#camera_previewoutput) \*previewOutput, [Camera_ImageRotation](#camera_imagerotation) \*previewRotation, bool isDisplayLocked) | Sets the preview rotation angle.| 
 | [Camera_ErrorCode](#camera_errorcode) [OH_VideoOutput_RegisterCallback](#oh_videooutput_registercallback) ([Camera_VideoOutput](#camera_videooutput) \*videoOutput, [VideoOutput_Callbacks](_video_output___callbacks.md) \*callback) | Registers a callback to listen for video output events.| 
 | [Camera_ErrorCode](#camera_errorcode) [OH_VideoOutput_UnregisterCallback](#oh_videooutput_unregistercallback) ([Camera_VideoOutput](#camera_videooutput) \*videoOutput, [VideoOutput_Callbacks](_video_output___callbacks.md) \*callback) | Unregisters the callback used to listen for video output events.| 
 | [Camera_ErrorCode](#camera_errorcode) [OH_VideoOutput_Start](#oh_videooutput_start) ([Camera_VideoOutput](#camera_videooutput) \*videoOutput) | Starts video output.| 
@@ -335,7 +338,6 @@ You can refer to the corresponding development guide and samples based on your d
 | [Camera_ErrorCode](#camera_errorcode) [OH_VideoOutput_SetFrameRate](#oh_videooutput_setframerate) ([Camera_VideoOutput](#camera_videooutput) \*videoOutput, int32_t minFps, int32_t maxFps) | Sets the frame rates for a **VideoOutput** instance.| 
 | [Camera_ErrorCode](#camera_errorcode) [OH_VideoOutput_GetActiveFrameRate](#oh_videooutput_getactiveframerate) ([Camera_VideoOutput](#camera_videooutput) \*videoOutput, [Camera_FrameRateRange](_camera___frame_rate_range.md) \*frameRateRange) | Obtains the active frame rates of a **VideoOutput** instance.| 
 | [Camera_ErrorCode](#camera_errorcode) [OH_VideoOutput_GetVideoRotation](#oh_videooutput_getvideorotation) ([Camera_VideoOutput](#camera_videooutput) \*videoOutput, int deviceDegree, [Camera_ImageRotation](#camera_imagerotation) \*imageRotation) | Obtains the rotation angle of a video output.| 
-
 
 ## Type Description
 
@@ -1772,7 +1774,7 @@ Enumerates the metadata object types.
 
 | Value| Description| 
 | -------- | -------- |
-| FACE_DETECTION | Face detection.| 
+| FACE_DETECTION | Face detection. | 
 
 
 ### Camera_Position
@@ -2139,7 +2141,7 @@ Opens a camera in secure mode.
 | Name| Description| 
 | -------- | -------- |
 | cameraInput | Pointer to the target [Camera_Input](#camera_input) instance.| 
-| secureSeqId | Pointer to the sequence ID of the camera.| 
+| secureSeqId | Pointer to the sequence number of the secure mode camera.| 
 
 **Returns**
 
@@ -2745,7 +2747,7 @@ Camera_ErrorCode OH_CameraManager_GetSupportedCameras(Camera_Manager* cameraMana
 
 **Description**
 
-Obtains supported cameras.
+Obtains the supported cameras.
 
 **Since**: 11
 
@@ -5153,6 +5155,37 @@ Returns one of the codes defined in [Camera_ErrorCode](#camera_errorcode-1):
 - **CAMERA_SERVICE_FATAL_ERROR**: A fatal error occurs in the camera service.
 
 
+### OH_PhotoOutput_GetPhotoRotation()
+
+```
+Camera_ErrorCode OH_PhotoOutput_GetPhotoRotation(Camera_PhotoOutput* photoOutput, int devicedegree, Camera_ImageRotation* imageRotation)
+```
+
+**Description**
+
+Obtains the photo rotation angle.
+
+**Since**: 12
+
+**Parameters**
+
+| Name| Description| 
+| -------- | -------- |
+| photoOutput | Pointer to a [Camera_PhotoOutput] instance.| 
+| devicedegree | Rotation angle of the device.| 
+| imageRotation | Pointer to the preview rotation angle, which is specified by [Camera_ImageRotation](#camera_imagerotation-1).| 
+
+**Returns**
+
+Returns one of the codes defined in [Camera_ErrorCode](#camera_errorcode-1):
+
+- **CAMERA_OK**: The operation is successful.
+
+- **CAMERA_INVALID_ARGUMENT**: A parameter is missing or the parameter type is incorrect.
+
+- **CAMERA_SERVICE_FATAL_ERROR**: A fatal error occurs in the camera service.
+
+
 ### OH_PhotoOutput_IsMirrorSupported()
 
 ```
@@ -5200,7 +5233,7 @@ Enables mirror photography.
 | Name         | Description                                                     | 
 |-------------|---------------------------------------------------------|
 | photoOutput | Pointer to the target [Camera_PhotoOutput](#camera_photooutput) instance, for which mirror photography will be enabled or disabled.| 
-| enabled     | Whether to enable or disable mirror photography. The value **true** means to enable mirror photography, and **false** means to disable mirror photography.       | 
+| enabled     | Whether to enable or mirror photography. The value **true** means to enable mirror photography, and **false** means to disable mirror photography.       | 
 
 **Returns**
 
@@ -5840,6 +5873,37 @@ Returns one of the codes defined in [Camera_ErrorCode](#camera_errorcode-1):
 - **CAMERA_SERVICE_FATAL_ERROR**: A fatal error occurs in the camera service.
 
 
+### OH_PreviewOutput_GetPreviewRotation()
+
+```
+Camera_ErrorCode OH_PreviewOutput_GetPreviewRotation(Camera_PreviewOutput *previewOutput, int displayRotation, Camera_ImageRotation* imageRotation)
+```
+
+**Description**
+
+Obtains the preview rotation angle.
+
+**Since**: 12
+
+**Parameters**
+
+| Name| Description| 
+| -------- | -------- |
+| previewOutput | Pointer to a [Camera_PreviewOutput](#camera_previewoutput) instance.| 
+| displayRotation | Current display rotation angle.| 
+| imageRotation | Pointer to the preview rotation angle, which is specified by [Camera_ImageRotation](#camera_imagerotation-1).| 
+
+**Returns**
+
+Returns one of the codes defined in [Camera_ErrorCode](#camera_errorcode-1):
+
+- **CAMERA_OK**: The operation is successful.
+
+- **CAMERA_INVALID_ARGUMENT**: A parameter is missing or the parameter type is incorrect.
+
+- **CAMERA_SERVICE_FATAL_ERROR**: A fatal error occurs in the camera service.
+
+
 ### OH_PreviewOutput_GetSupportedFrameRates()
 
 ```
@@ -5955,6 +6019,37 @@ Returns one of the codes defined in [Camera_ErrorCode](#camera_errorcode-1):
 - **CAMERA_OK**: The operation is successful.
 
 - **CAMERA_INVALID_ARGUMENT**: A parameter is missing or the parameter type is incorrect.
+
+
+### OH_PreviewOutput_SetPreviewRotation()
+
+```
+Camera_ErrorCode OH_PreviewOutput_SetPreviewRotation(Camera_PreviewOutput* previewOutput, Camera_ImageRotation* previewRotation, bool isDisplayLocked)
+```
+
+**Description**
+
+Sets the preview rotation angle.
+
+**Since**: 12
+
+**Parameters**
+
+| Name| Description| 
+| -------- | -------- |
+| previewOutput | Pointer to a [Camera_PreviewOutput](#camera_previewoutput) instance.| 
+| previewRotation | Pointer to the preview rotation angle, which is specified by [Camera_ImageRotation](#camera_imagerotation-1).| 
+| isDisplayLocked | Whether the display is locked. The value **TRUE** means that the display is locked.| 
+
+**Returns**
+
+Returns one of the codes defined in [Camera_ErrorCode](#camera_errorcode-1):
+
+- **CAMERA_OK**: The operation is successful.
+
+- **CAMERA_INVALID_ARGUMENT**: A parameter is missing or the parameter type is incorrect.
+
+- **CAMERA_SERVICE_FATAL_ERROR**: A fatal error occurs in the camera service.
 
 
 ### OH_PreviewOutput_Start()
@@ -6210,6 +6305,34 @@ Obtains the rotation angle of a video output.
 | videoOutput | Pointer to the [Camera_VideoOutput](#camera_videooutput) instance.| 
 | deviceDegree | Clockwise rotation angle of the device relative to the natural direction (the charging port faces downward).| 
 | imageRotation | Pointer to the rotation angle of the video output.| 
+
+**Returns**
+
+Returns one of the codes defined in [Camera_ErrorCode](#camera_errorcode-1):
+
+- **CAMERA_OK**: The operation is successful.
+- **CAMERA_INVALID_ARGUMENT**: A parameter is missing or the parameter type is incorrect.
+- **CAMERA_SERVICE_FATAL_ERROR**: A fatal error occurs in the camera service.
+
+
+### OH_VideoOutput_IsMirrorSupported()
+
+```
+Camera_ErrorCode OH_VideoOutput_IsMirrorSupported(Camera_VideoOutput* videoOutput, bool* isSupported)
+```
+
+**Description**
+
+Checks whether a video output supports mirror mode.
+
+**Since**: 15
+
+**Parameters**
+
+| Name| Description| 
+| -------- | -------- |
+| videoOutput | Pointer to the [Camera_VideoOutput](#camera_videooutput) instance.| 
+| isSupported | Pointer to the check result. The value **true** means that mirror mode is supported, and **false** means the opposite.| 
 
 **Returns**
 
