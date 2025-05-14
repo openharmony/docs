@@ -22,3 +22,4 @@ For details about how to use and manage microphones, see [Microphone Management]
 
 - If continuous recording or background recording is required, the application must request a continuous task to prevent it from being suspended. For details, see [Continuous Task](../../task-management/continuous-task.md).
 - The application must start recording when it runs in the foreground. It can switch to the background after the recording is started. Recording cannot be started in the background.
+- To record audio, the application must use an appropriate recording stream type. For details, see [Selecting the Appropriate Audio Stream Types](using-right-streamusage-and-sourcetype.md).
