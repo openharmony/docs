@@ -117,7 +117,7 @@ setShieldStatus(shieldMode: ShieldMode, isShield: boolean): void
 
 | 参数名         | 类型                         | 必填   | 说明                                       |
 | ---------- | -------------------------- | ---- | ---------------------------------------- |
-| shieldMode       | [ShieldMode](#shieldMode11)                     | 是    | 快捷键屏蔽类型，目前仅支持取值为'FACTORY_MODE'，表示屏蔽所有快捷键。                       |
+| shieldMode       | [ShieldMode](js-apis-inputconsumer-sys.md#shieldmode11)                     | 是    | 快捷键屏蔽类型，目前仅支持取值为'FACTORY_MODE'，表示屏蔽所有快捷键。                       |
 | isShield | boolean  | 是    | 屏蔽类型生效状态，true代表屏蔽类型生效，flase代表不生效。              |
 
 **示例：** 
@@ -146,7 +146,7 @@ getShieldStatus(shieldMode: ShieldMode): boolean
 
 | 参数名         | 类型                         | 必填   | 说明                                       |
 | ---------- | -------------------------- | ---- | ---------------------------------------- |
-| shieldMode       | [ShieldMode](#shieldMode11)                    | 是    | 快捷键屏蔽类型，目前仅支持取值为'FACTORY_MODE'，表示屏蔽所有快捷键。                       |
+| shieldMode       | [ShieldMode](js-apis-inputconsumer-sys.md#shieldmode11)                    | 是    | 快捷键屏蔽类型，目前仅支持取值为'FACTORY_MODE'，表示屏蔽所有快捷键。                       |
 
 **返回值：** 
 
