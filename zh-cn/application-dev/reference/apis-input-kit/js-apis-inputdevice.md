@@ -194,10 +194,10 @@ getDeviceInfoSync(deviceId: number): InputDeviceData
 ```js
 // 获取输入设备id为1的设备信息。
 try {
-  let deviceData: inputDevice.InputDeviceData = inputDevice.getDeviceInfoSync(1)
-  console.log(`Device info: ${JSON.stringify(deviceData)}`)
+  let deviceData: inputDevice.InputDeviceData = inputDevice.getDeviceInfoSync(1);
+  console.log(`Device info: ${JSON.stringify(deviceData)}`);
 } catch (error) {
-  console.error(`Failed to get device info, error: ${JSON.stringify(error, [`code`, `message`])}`)
+  console.error(`Failed to get device info, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
