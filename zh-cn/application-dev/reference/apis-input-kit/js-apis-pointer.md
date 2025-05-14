@@ -41,13 +41,13 @@ setPointerVisible(visible: boolean, callback: AsyncCallback&lt;void&gt;): void
 try {
   pointer.setPointerVisible(true, (error: Error) => {
     if (error) {
-      console.log(`Set pointer visible failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+      console.error(`Set pointer visible failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
       return;
     }
     console.log(`Set pointer visible success`);
   });
 } catch (error) {
-  console.log(`Set pointer visible failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Set pointer visible failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -87,7 +87,7 @@ try {
     console.log(`Set pointer visible success`);
   });
 } catch (error) {
-  console.log(`Set pointer visible failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Set pointer visible failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -120,7 +120,7 @@ try {
   pointer.setPointerVisibleSync(false);
   console.log(`Set pointer visible success`);
 } catch (error) {
-  console.log(`Set pointer visible failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Set pointer visible failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -152,13 +152,13 @@ isPointerVisible(callback: AsyncCallback&lt;boolean&gt;): void
 try {
   pointer.isPointerVisible((error: Error, visible: boolean) => {
     if (error) {
-      console.log(`Get pointer visible failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+      console.error(`Get pointer visible failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
       return;
     }
     console.log(`Get pointer visible success, visible: ${JSON.stringify(visible)}`);
   });
 } catch (error) {
-  console.log(`Get pointer visible failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Get pointer visible failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -184,7 +184,7 @@ try {
     console.log(`Get pointer visible success, visible: ${JSON.stringify(visible)}`);
   });
 } catch (error) {
-  console.log(`Get pointer visible failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Get pointer visible failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -209,7 +209,7 @@ try {
   let visible: boolean = pointer.isPointerVisibleSync();
   console.log(`Get pointer visible success, visible: ${JSON.stringify(visible)}`);
 } catch (error) {
-  console.log(`Get pointer visible failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Get pointer visible failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -258,7 +258,7 @@ window.getLastWindow(context, (error: BusinessError, win: window.Window) => {
       console.log(`Get pointer style success, style: ${JSON.stringify(style)}`);
     });
   } catch (error) {
-    console.log(`Get pointer style failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+    console.error(`Get pointer style failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
   }
 });
 ```
@@ -313,7 +313,7 @@ window.getLastWindow(context, (error: BusinessError, win: window.Window) => {
       console.log(`Get pointer style success, style: ${JSON.stringify(style)}`);
     });
   } catch (error) {
-    console.log(`Get pointer style failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+    console.error(`Get pointer style failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
   }
 });
 ```
@@ -356,7 +356,7 @@ try {
   let style: pointer.PointerStyle = pointer.getPointerStyleSync(windowId);
   console.log(`Get pointer style success, style: ${JSON.stringify(style)}`);
 } catch (error) {
-  console.log(`Get pointer style failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Get pointer style failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -405,7 +405,7 @@ window.getLastWindow(getContext(), (error: BusinessError, win: window.Window) =>
       console.log(`Set pointer style success`);
     });
   } catch (error) {
-    console.log(`Set pointer style failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+    console.error(`Set pointer style failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
   }
 });
 ```
@@ -459,7 +459,7 @@ window.getLastWindow(getContext(), (error: BusinessError, win: window.Window) =>
       console.log(`Set pointer style success`);
     });
   } catch (error) {
-    console.log(`Set pointer style failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+    console.error(`Set pointer style failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
   }
 });
 ```
@@ -506,7 +506,7 @@ window.getLastWindow(getContext(), (error: BusinessError, win: window.Window) =>
     pointer.setPointerStyleSync(windowId, pointer.PointerStyle.CROSS);
     console.log(`Set pointer style success`);
   } catch (error) {
-    console.log(`getPointerSize failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+    console.error(`getPointerSize failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
   }
 });
 ```
@@ -625,6 +625,7 @@ import { image } from '@kit.ImageKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { window } from '@kit.ArkUI';
 
+// app_icon为示例资源，请开发者根据实际需求配置资源文件。
 getContext().resourceManager.getMediaContent($r("app.media.app_icon")).then((svgFileData) => {
   const svgBuffer: ArrayBuffer = svgFileData.buffer.slice(0);
   let svgImagesource: image.ImageSource = image.createImageSource(svgBuffer);
@@ -637,7 +638,7 @@ getContext().resourceManager.getMediaContent($r("app.media.app_icon")).then((svg
             console.log(`setCustomCursor success`);
           });
         } catch (error) {
-          console.log(`setCustomCursor failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+          console.error(`setCustomCursor failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
         }
       });
   });
@@ -703,6 +704,7 @@ import { image } from '@kit.ImageKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { window } from '@kit.ArkUI';
 
+// app_icon为示例资源，请开发者根据实际需求配置资源文件。
 getContext().resourceManager.getMediaContent($r("app.media.app_icon")).then((svgFileData) => {
   const svgBuffer: ArrayBuffer = svgFileData.buffer.slice(0);
   let svgImagesource: image.ImageSource = image.createImageSource(svgBuffer);
@@ -715,7 +717,7 @@ getContext().resourceManager.getMediaContent($r("app.media.app_icon")).then((svg
             console.log(`setCustomCursor success`);
           });
         } catch (error) {
-          console.log(`setCustomCursor failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+          console.error(`setCustomCursor failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
         }
       });
   });
@@ -754,6 +756,7 @@ import { image } from '@kit.ImageKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { window } from '@kit.ArkUI';
 
+// app_icon为示例资源，请开发者根据实际需求配置资源文件。
 const svgFileData = getContext().resourceManager.getMediaContent($r("app.media.app_icon")).then((svgFileData) => {
   const svgBuffer: ArrayBuffer = svgFileData.buffer.slice(0);
   let svgImagesource: image.ImageSource = image.createImageSource(svgBuffer);
@@ -765,7 +768,7 @@ const svgFileData = getContext().resourceManager.getMediaContent($r("app.media.a
           pointer.setCustomCursorSync(windowId, pixelMap, 25, 25);
           console.log(`setCustomCursorSync success`);
         } catch (error) {
-          console.log(`setCustomCursorSync failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+          console.error(`setCustomCursorSync failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
         }
     });
   });
