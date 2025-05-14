@@ -28,7 +28,7 @@ If the audio-haptic player needs to trigger vibration, check whether the applica
    let id = 0;
 
    audioHapticManagerInstance.registerSource(audioUri, hapticUri).then((value: number) => {
-     console.info(`Promise returned to indicate that the source id of the registerd source ${value}.`);
+     console.info(`Promise returned to indicate that the source id of the registered source ${value}.`);
      id = value;
    }).catch ((err: BusinessError) => {
      console.error(`Failed to register source ${err}`);
@@ -96,6 +96,6 @@ If the audio-haptic player needs to trigger vibration, check whether the applica
    audioHapticManagerInstance.unregisterSource(id).then(() => {
      console.info(`Promise returned to indicate that unregister source successfully`);
    }).catch ((err: BusinessError) => {
-     console.error(`Failed to unregistere source ${err}`);
+     console.error(`Failed to unregister source ${err}`);
    });
    ```
