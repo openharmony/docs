@@ -10,7 +10,7 @@
 在下面的示例中，将test()方法注册在前端页面中， 该函数可以在前端页面触发运行。
 
 
-- ### [javaScriptProxy()](../reference/apis-arkweb/ts-basic-components-web.md#javascriptproxy)接口使用示例如下。
+- [javaScriptProxy()](../reference/apis-arkweb/ts-basic-components-web.md#javascriptproxy)接口使用示例如下。
 
   ```ts
   // xxx.ets
@@ -65,7 +65,7 @@
   ```
 
 
-- ### 应用侧使用[registerJavaScriptProxy()](../reference/apis-arkweb/js-apis-webview.md#registerjavascriptproxy)接口注册。
+- 应用侧使用[registerJavaScriptProxy()](../reference/apis-arkweb/js-apis-webview.md#registerjavascriptproxy)接口注册示例如下。
 
   ```ts
   // xxx.ets
@@ -214,7 +214,7 @@
   </html>
   ```
 ## 复杂类型使用方法
-- ### 应用侧和前端页面之间传递Array。
+- 应用侧和前端页面之间传递Array。
   ```ts
   // xxx.ets
   import { webview } from '@kit.ArkWeb';
@@ -286,7 +286,7 @@
   </body>
   </html>
   ```
-- ### 应用侧和前端页面之间传递基础类型，非Function等复杂类型。
+- 应用侧和前端页面之间传递基础类型，非Function等复杂类型。
   ```ts
   // xxx.ets
   import { webview } from '@kit.ArkWeb';
