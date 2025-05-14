@@ -67,7 +67,7 @@
 ```html
 <!-- index.hml -->
 <div class="container">
-  <list class="todo-wraper">
+  <list class="todo-wrapper">
     <list-item for="{{todolist}}" class="todo-item">
       <text class="todo-title">{{$item.title}}</text>
       <text class="todo-title">{{$item.date}}</text>
@@ -104,7 +104,7 @@ export default {
   width: 454px;
   height: 454px;
 }
-.todo-wraper {
+.todo-wrapper {
   width: 454px;
   height: 300px;
 }
