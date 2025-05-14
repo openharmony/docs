@@ -52,6 +52,7 @@ setPolicySync(admin: Want, appId: string, policyName: string, policyValue: strin
 
 ```ts
 import { Want } from '@kit.AbilityKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -74,7 +75,7 @@ try {
 
 getPoliciesSync(admin: Want, appId: string): string
 
-指定管理员应用获取指定浏览器的策略。
+获取指定浏览器设置的策略。
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
@@ -105,6 +106,7 @@ getPoliciesSync(admin: Want, appId: string): string
 
 ```ts
 import { Want } from '@kit.AbilityKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -155,6 +157,7 @@ setManagedBrowserPolicy(admin: Want, bundleName: string, policyName: string, pol
 
 ```ts
 import { Want } from '@kit.AbilityKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -207,6 +210,7 @@ getManagedBrowserPolicy(admin: Want, bundleName: string): ArrayBuffer
 ```ts
 import { Want } from '@kit.AbilityKit';
 import { util } from '@kit.ArkTS';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
