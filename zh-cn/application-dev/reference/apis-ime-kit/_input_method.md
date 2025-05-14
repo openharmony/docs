@@ -129,6 +129,10 @@ InputMethod模块提供方法来使用输入法和开发输入法。
 | [InputMethod_ErrorCode](#inputmethod_errorcode) [OH_TextConfig_GetTextAvoidInfo](#oh_textconfig_gettextavoidinfo) ([InputMethod_TextConfig](#inputmethod_textconfig) \*config, [InputMethod_TextAvoidInfo](#inputmethod_textavoidinfo) \*\*avoidInfo) | 获取[InputMethod_TextConfig](#inputmethod_textconfig)实例的避让信息。 | 
 | [InputMethod_ErrorCode](#inputmethod_errorcode) [OH_TextConfig_GetSelection](#oh_textconfig_getselection) ([InputMethod_TextConfig](#inputmethod_textconfig) \*config, int32_t \*start, int32_t \*end) | 获取[InputMethod_TextConfig](#inputmethod_textconfig)实例的选区范围信息。 | 
 | [InputMethod_ErrorCode](#inputmethod_errorcode) [OH_TextConfig_GetWindowId](#oh_textconfig_getwindowid) ([InputMethod_TextConfig](#inputmethod_textconfig) \*config, int32_t \*windowId) | 获取[InputMethod_TextConfig](#inputmethod_textconfig)实例所属窗口的窗口id。 | 
+| [InputMethod_ErrorCode](_input_method.md#inputmethod_errorcode) [OH_TextConfig_SetPlaceholder](_input_method.md#oh_textconfig_setplaceholder) ([InputMethod_TextConfig](_input_method.md#inputmethod_textconfig) \*config, const char16_t \*placeholder, size_t length) | 设置[InputMethod_TextConfig](_input_method.md#inputmethod_textconfig)实例的占位符文本信息。 | 
+| [InputMethod_ErrorCode](_input_method.md#inputmethod_errorcode) [OH_TextConfig_SetAbilityName](_input_method.md#oh_textconfig_setabilityname) ([InputMethod_TextConfig](_input_method.md#inputmethod_textconfig) \*config, const char16_t \*abilityName, size_t length) | 设置[InputMethod_TextConfig](_input_method.md#inputmethod_textconfig)实例的abilityName信息。 | 
+| [InputMethod_ErrorCode](_input_method.md#inputmethod_errorcode) [OH_TextConfig_GetPlaceholder](_input_method.md#oh_textconfig_getplaceholder) ([InputMethod_TextConfig](_input_method.md#inputmethod_textconfig) \*config, char16_t \*placeholder,size_t \*length) | 获取[InputMethod_TextConfig](_input_method.md#inputmethod_textconfig)实例占位文本信息。 | 
+| [InputMethod_ErrorCode](_input_method.md#inputmethod_errorcode) [OH_TextConfig_GetAbilityName](_input_method.md#oh_textconfig_getabilityname) ([InputMethod_TextConfig](_input_method.md#inputmethod_textconfig) \*config, char16_t \*abilityName,size_t \*length) | 获取[InputMethod_TextConfig](_input_method.md#inputmethod_textconfig)实例所属窗口的窗口id。 | 
 | [InputMethod_TextEditorProxy](#inputmethod_texteditorproxy) \* [OH_TextEditorProxy_Create](#oh_texteditorproxy_create) () | 创建一个新的[InputMethod_TextEditorProxy](#inputmethod_texteditorproxy)实例。 | 
 | void [OH_TextEditorProxy_Destroy](#oh_texteditorproxy_destroy) ([InputMethod_TextEditorProxy](#inputmethod_texteditorproxy) \*proxy) | 销毁一个[InputMethod_TextEditorProxy](#inputmethod_texteditorproxy)实例。 | 
 | [InputMethod_ErrorCode](#inputmethod_errorcode) [OH_TextEditorProxy_SetGetTextConfigFunc](#oh_texteditorproxy_setgettextconfigfunc) ([InputMethod_TextEditorProxy](#inputmethod_texteditorproxy) \*proxy, [OH_TextEditorProxy_GetTextConfigFunc](#oh_texteditorproxy_gettextconfigfunc) getTextConfigFunc) | 将函数[OH_TextEditorProxy_GetTextConfigFunc](#oh_texteditorproxy_gettextconfigfunc)设置到[InputMethod_TextEditorProxy](#inputmethod_texteditorproxy)中。 | 
@@ -3287,6 +3291,131 @@ InputMethod_ErrorCode OH_TextEditorProxy_SetSetPreviewTextFunc (InputMethod_Text
 返回一个特定的错误码。
 
 IME_ERR_OK - 表示成功。
+
+IME_ERR_NULL_POINTER - 非预期的空指针。
+
+具体错误码可以参考 [InputMethod_ErrorCode](#inputmethod_errorcode)。
+
+### OH_TextConfig_SetPlaceholder()
+
+```
+InputMethod_ErrorCode OH_TextConfig_SetPlaceholder (InputMethod_TextConfig * config, const char16_t *placeholder,
+    size_t length )
+```
+
+**描述**
+
+设置[InputMethod_TextConfig](#inputmethod_textconfig)实例的占位符文本信息。
+
+**起始版本：** 20
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| config | 指向即将被设置值的[InputMethod_TextConfig](#inputmethod_textconfig)实例的指针。| 
+| placeholder | 指向UTF-16编码的双字节指针；若传空指针，则会将占位文本信息设置为空字符串。| 
+| length | placeholder指针指向内存所包含的元素个数，包含最后的字符串结尾符，计数单位为双字节。 <br>1. 如果长度为0，占位文本信息会被设置为空字符串。<br>2. UTF-16编码的最大长度为255个字符（如果最后一位是字符串结尾符，不包含在计数中），超过255个字符数将会被截断。| 
+
+**返回：**
+
+返回一个特定的错误码。
+
+IME_ERR_OK - 表示成功。
+
+IME_ERR_NULL_POINTER - 非预期的空指针。
+
+具体错误码可以参考 [InputMethod_ErrorCode](#inputmethod_errorcode)。
+
+### OH_TextConfig_SetAbilityName()
+
+```
+InputMethod_ErrorCode OH_TextConfig_SetAbilityName (InputMethod_TextConfig * config, const char16_t *abilityName, size_t length )
+```
+
+**描述**
+
+设置[InputMethod_TextConfig](#inputmethod_textconfig)实例的所属窗口的窗口id。
+
+**起始版本：** 20
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| config | 指向即将被设置值的[InputMethod_TextConfig](#inputmethod_textconfig)实例的指针。 | 
+| abilityName | 指向UTF-16编码的双字节指针；若传空指针，则会将abilityName设置为空字符串。| 
+| length |  abilityName指针指向内存所包含的元素个数，包含最后的字符串结尾符，计数单位为双字节。<br>1. 如果长度为0，abilityName会被设置为空字符串。<br>2. UTF-16编码的最大长度为127个字符（如果最后一位是字符串结尾符，不包含在计数中），超过127个字符数将会被截断。| 
+
+**返回：**
+
+返回一个特定的错误码。
+
+IME_ERR_OK - 表示成功。
+
+IME_ERR_NULL_POINTER - 非预期的空指针。
+
+具体错误码可以参考 [InputMethod_ErrorCode](#inputmethod_errorcode)。
+
+### OH_TextConfig_GetPlaceholder()
+
+```
+InputMethod_ErrorCode OH_TextConfig_GetPlaceholder (InputMethod_TextConfig * config, char16_t *placeholder, size_t *length )
+```
+
+**描述**
+
+获取[InputMethod_TextConfig](#inputmethod_textconfig)实例所属窗口的窗口id。
+
+**起始版本：** 20
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| config | 指向即将被获取值的[InputMethod_TextConfig](#inputmethod_textconfig)实例的指针。 | 
+| placeholder | 用于存放占位文本信息，该指针内存由调用者维护。| 
+| length | 占位文本信息长度，计数单位为双字节，长度包含字符串结尾符。<br>1. 作为入参，代表placeholder指向的内存可用长度。作为出参，代表实际的占位文本长度。<br>2. 如果placeholder为空指针，且length指向有效内存，则length会被填充实际的占位文本长度。接口会返错。<br>3. 如果placeholder和length都指向有效内存，但length传入的长度小于实际的占位文本长度，则length会被填充实际的占位文本长度。接口会返错。| 
+
+**返回：**
+
+返回一个特定的错误码。
+
+IME_ERR_OK - 表示成功。
+
+IME_ERR_PARAMCHECK - 参数检查失败。
+
+IME_ERR_NULL_POINTER - 非预期的空指针。
+
+具体错误码可以参考 [InputMethod_ErrorCode](#inputmethod_errorcode)。
+
+### OH_TextConfig_GetAbilityName()
+
+```
+InputMethod_ErrorCode OH_TextConfig_GetAbilityName (InputMethod_TextConfig * config, char16_t *abilityName, size_t *length )
+```
+
+**描述**
+
+获取[InputMethod_TextConfig](#inputmethod_textconfig)实例所属窗口的窗口id。
+
+**起始版本：** 20
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| config | 指向即将被获取值的[InputMethod_TextConfig](#inputmethod_textconfig)实例的指针。 | 
+| abilityName | 用于存放占位文本信息，该指针内存由调用者维护。| 
+| length | abilityName长度，计数单位为双字节，长度包含字符串结尾符。<br>1.  作为入参，代表abilityName指向的内存可用长度。作为出参，代表实际的abilityName长度。<br>2. 如果abilityName为空指针，且length指向有效内存，则length会被填充实际的abilityName长度。接口会返错。<br>3.  如果abilityName和length都指向有效内存，但length传入的长度小于实际的abilityName长度，则length会被填充实际的占位文本长度。接口会返错。| 
+
+**返回：**
+
+返回一个特定的错误码。
+
+IME_ERR_OK - 表示成功。
+
+IME_ERR_PARAMCHECK - 参数检查失败。
 
 IME_ERR_NULL_POINTER - 非预期的空指针。
 
