@@ -9,6 +9,8 @@ The **OH_AudioDeviceDescriptorArray** struct describes an array of audio device 
 
 **Related module**: [OHAudio](_o_h_audio.md)
 
+**Header file**: [native_audio_device_base.h](native__audio__device__base_8h.md)
+
 
 ## Summary
 
