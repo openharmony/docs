@@ -243,7 +243,7 @@ openssl dgst -sha256 -binary www.example.com.pubkey.der | openssl base64
 
 ### JSON配置文件示例
 
-预置应用级证书的配置例子如下：
+预置应用级证书的配置例子如下（具体配置路径可参考[网络连接安全配置](https://developer.huawei.com/consumer/cn/doc/best-practices/bpta-network-ca-security#section5454123841911)）：
 
 ```json
 {
