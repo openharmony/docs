@@ -25,6 +25,8 @@
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 | 名称 | 描述 |
 | -------- | -------- |
 | [TapGesture](ts-basic-gestures-tapgesture.md) | 点击手势，支持单次点击、多次点击识别。 |
@@ -39,6 +41,8 @@
 ## GestureMask枚举说明
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称 | 描述 |
 | -------- | -------- |
@@ -61,6 +65,8 @@
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 | 名称 | 类型 | 描述 |
 | -------- | -------- | -------- |
 | repeat | boolean | 是否为重复触发事件，用于LongPressGesture手势触发场景。<br>true：表示为重复触发事件。<br>false：表示非重复触发事件。 |
@@ -80,6 +86,8 @@
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 | 名称 | 描述 |
 | -------- | -------- |
 | Unknown | 未知设备。 |
@@ -87,6 +95,8 @@
 | TouchScreen | 触摸屏。 |
 
 ## FingerInfo对象说明<sup>8+</sup>
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称 | 类型 | 描述 |
 | -------- | -------- | -------- |
@@ -100,6 +110,8 @@
 | hand<sup>15+</sup> | [InteractionHand](#interactionhand枚举说明15) | 表示事件是由左手点击还是右手点击触发。<br/>**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。 |
 
 ## SourceTool枚举说明<sup>9+</sup>
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称 | 描述 |
 | -------- | -------- |
