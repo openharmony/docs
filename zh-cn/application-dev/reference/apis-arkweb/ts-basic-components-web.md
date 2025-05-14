@@ -3344,6 +3344,7 @@ onAlert(callback: Callback\<OnAlertEvent, boolean\>)
   @Component
   struct WebComponent {
     controller: webview.WebviewController = new webview.WebviewController();
+    uiContext: UIContext = this.getUIContext();
 
     build() {
       Column() {
@@ -3352,7 +3353,7 @@ onAlert(callback: Callback\<OnAlertEvent, boolean\>)
             if (event) {
               console.log("event.url:" + event.url);
               console.log("event.message:" + event.message);
-              AlertDialog.show({
+              this.uiContext.showAlertDialog({
                 title: 'onAlert',
                 message: 'text',
                 primaryButton: {
@@ -3423,6 +3424,7 @@ onBeforeUnload(callback: Callback\<OnBeforeUnloadEvent, boolean\>)
   @Component
   struct WebComponent {
     controller: webview.WebviewController = new webview.WebviewController();
+    uiContext: UIContext = this.getUIContext();
 
     build() {
       Column() {
@@ -3431,7 +3433,7 @@ onBeforeUnload(callback: Callback\<OnBeforeUnloadEvent, boolean\>)
             if (event) {
               console.log("event.url:" + event.url);
               console.log("event.message:" + event.message);
-              AlertDialog.show({
+              this.uiContext.showAlertDialog({
                 title: 'onBeforeUnload',
                 message: 'text',
                 primaryButton: {
@@ -3502,6 +3504,7 @@ onConfirm(callback: Callback\<OnConfirmEvent, boolean\>)
   @Component
   struct WebComponent {
     controller: webview.WebviewController = new webview.WebviewController();
+    uiContext: UIContext = this.getUIContext();
 
     build() {
       Column() {
@@ -3510,7 +3513,7 @@ onConfirm(callback: Callback\<OnConfirmEvent, boolean\>)
             if (event) {
               console.log("event.url:" + event.url);
               console.log("event.message:" + event.message);
-              AlertDialog.show({
+              this.uiContext.showAlertDialog({
                 title: 'onConfirm',
                 message: 'text',
                 primaryButton: {
@@ -3590,6 +3593,7 @@ onPrompt(callback: Callback\<OnPromptEvent, boolean\>)
   @Component
   struct WebComponent {
     controller: webview.WebviewController = new webview.WebviewController();
+    uiContext: UIContext = this.getUIContext();
 
     build() {
       Column() {
@@ -3599,7 +3603,7 @@ onPrompt(callback: Callback\<OnPromptEvent, boolean\>)
               console.log("url:" + event.url);
               console.log("message:" + event.message);
               console.log("value:" + event.value);
-              AlertDialog.show({
+              this.uiContext.showAlertDialog({
                 title: 'onPrompt',
                 message: 'text',
                 primaryButton: {
@@ -4561,6 +4565,7 @@ onHttpAuthRequest(callback: Callback\<OnHttpAuthRequestEvent, boolean\>)
   @Component
   struct WebComponent {
     controller: webview.WebviewController = new webview.WebviewController();
+    uiContext: UIContext = this.getUIContext();
     httpAuth: boolean = false;
 
     build() {
@@ -4568,7 +4573,7 @@ onHttpAuthRequest(callback: Callback\<OnHttpAuthRequestEvent, boolean\>)
         Web({ src: 'www.example.com', controller: this.controller })
           .onHttpAuthRequest((event) => {
             if (event) {
-              AlertDialog.show({
+              this.uiContext.showAlertDialog({
                 title: 'onHttpAuthRequest',
                 message: 'text',
                 primaryButton: {
@@ -4670,13 +4675,14 @@ onSslErrorEventReceive(callback: Callback\<OnSslErrorEventReceiveEvent\>)
   @Component
   struct WebComponent {
     controller: webview.WebviewController = new webview.WebviewController();
+    uiContext: UIContext = this.getUIContext();
 
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
           .onSslErrorEventReceive((event) => {
             LogCertInfo(event.certChainData);
-            AlertDialog.show({
+            this.uiContext.showAlertDialog({
               title: 'onSslErrorEventReceive',
               message: 'text',
               primaryButton: {
@@ -4725,6 +4731,7 @@ onSslErrorEvent(callback: OnSslErrorEventCallback)
   @Component
   struct WebComponent {
     controller: webview.WebviewController = new webview.WebviewController();
+    uiContext: UIContext = this.getUIContext();
 
     build() {
       Column() {
@@ -4736,7 +4743,7 @@ onSslErrorEvent(callback: OnSslErrorEventCallback)
             console.log("onSslErrorEvent referrer: " + event.referrer);
             console.log("onSslErrorEvent isFatalError: " + event.isFatalError);
             console.log("onSslErrorEvent isMainFrame: " + event.isMainFrame);
-            AlertDialog.show({
+            this.uiContext.showAlertDialog({
               title: 'onSslErrorEvent',
               message: 'text',
               primaryButton: {
@@ -4787,12 +4794,13 @@ onClientAuthenticationRequest(callback: Callback\<OnClientAuthenticationEvent\>)
   @Component
   struct WebComponent {
     controller: webview.WebviewController = new webview.WebviewController();
+    uiContext: UIContext = this.getUIContext();
 
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
           .onClientAuthenticationRequest((event) => {
-            AlertDialog.show({
+            this.uiContext.showAlertDialog({
               title: 'onClientAuthenticationRequest',
               message: 'text',
               primaryButton: {
@@ -4915,6 +4923,7 @@ onClientAuthenticationRequest(callback: Callback\<OnClientAuthenticationEvent\>)
        controller: webview.WebviewController = new webview.WebviewController();
        @State message: string = 'Hello World' // message主要是调试观察使用
        certManager = CertManagerService.getInstance();
+       uiContext: UIContext = this.getUIContext();
 
        build() {
          Row() {
@@ -4941,7 +4950,7 @@ onClientAuthenticationRequest(callback: Callback\<OnClientAuthenticationEvent\>)
                .onlineImageAccess(true)
 
                .onClientAuthenticationRequest((event) => {
-                 AlertDialog.show({
+                 this.uiContext.showAlertDialog({
                    title: 'ClientAuth',
                    message: 'Text',
                    confirm: {
@@ -5322,6 +5331,7 @@ onGeolocationShow(callback: Callback\<OnGeolocationShowEvent\>)
   @Component
   struct WebComponent {
     controller: webview.WebviewController = new webview.WebviewController();
+    uiContext: UIContext = this.getUIContext();
 
     build() {
       Column() {
@@ -5329,7 +5339,7 @@ onGeolocationShow(callback: Callback\<OnGeolocationShowEvent\>)
           .geolocationAccess(true)
           .onGeolocationShow((event) => {
             if (event) {
-              AlertDialog.show({
+              this.uiContext.showAlertDialog({
                 title: 'title',
                 message: 'text',
                 confirm: {
@@ -6065,6 +6075,12 @@ onRequestSelected(callback: () => void)
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
+**参数：**
+
+| 参数名    | 类型   | 必填   | 说明                  |
+| ------ | ------ | ---- | --------------------- |
+| callback | () => void | 是 | 当网页获得焦点时触发的回调。 |
+
 **示例：**
 
   ```ts
@@ -6110,13 +6126,14 @@ onScreenCaptureRequest(callback: Callback\<OnScreenCaptureRequestEvent\>)
   @Component
   struct WebComponent {
     controller: webview.WebviewController = new webview.WebviewController();
+    uiContext: UIContext = this.getUIContext();
 
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
           .onScreenCaptureRequest((event) => {
             if (event) {
-              AlertDialog.show({
+              this.uiContext.showAlertDialog({
                 title: 'title: ' + event.handler.getOrigin(),
                 message: 'text',
                 primaryButton: {
@@ -6189,6 +6206,12 @@ onControllerAttached(callback: () => void)
 组件生命周期详情可参考[Web组件的生命周期](../../web/web-event-sequence.md)。
 
 **系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名    | 类型   | 必填   | 说明                  |
+| ------ | ------ | ---- | --------------------- |
+| callback | () => void | 是 | 当ArkWeb控制器初始化成功时触发的回调。 |
 
 **示例：**
 
