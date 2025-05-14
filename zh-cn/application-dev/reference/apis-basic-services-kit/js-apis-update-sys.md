@@ -1165,7 +1165,7 @@ getUpgradePolicy(callback: AsyncCallback\<UpgradePolicy>): void
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-updater.getUpgradePolicy(err: BusinessError, policy: update.UpgradePolicy) => {
+updater.getUpgradePolicy((err: BusinessError, policy: update.UpgradePolicy) => {
   console.log(`policy downloadStrategy = ${policy?.downloadStrategy}`);
   console.log(`policy autoUpgradeStrategy = ${policy?.autoUpgradeStrategy}`);
 });
