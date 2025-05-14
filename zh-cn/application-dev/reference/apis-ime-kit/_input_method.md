@@ -903,8 +903,8 @@ enum InputMethod_TextInputType
 | IME_TEXT_INPUT_TYPE_SCREEN_LOCK_PASSWORD | 锁屏密码类型。 | 
 | IME_TEXT_INPUT_TYPE_USER_NAME | 用户名类型。 | 
 | IME_TEXT_INPUT_TYPE_NEW_PASSWORD | 新密码类型。 | 
-| IME_TEXT_INPUT_TYPE_NUMBER_DECIMAL | NUMBER DECIMAL. | 
-| IME_TEXT_INPUT_TYPE_ONE_TIME_CODE | 验证码类型 | 
+| IME_TEXT_INPUT_TYPE_NUMBER_DECIMAL | 带小数点的数字类型 | 
+| IME_TEXT_INPUT_TYPE_ONE_TIME_CODE | 验证码类型。 | 
 
 
 ## 函数说明
@@ -3408,7 +3408,7 @@ InputMethod_ErrorCode OH_TextConfig_GetAbilityName (InputMethod_TextConfig * con
 | -------- | -------- |
 | config | 指向即将被获取值的[InputMethod_TextConfig](#inputmethod_textconfig)实例的指针。 | 
 | abilityName | 用于存放占位文本信息，该指针内存由调用者维护。| 
-| length | abilityName长度，计数单位为双字节，长度包含字符串结尾符。<br>1.  作为入参，代表abilityName指向的内存可用长度。作为出参，代表实际的abilityName长度。<br>2. 如果abilityName为空指针，且length指向有效内存，则length会被填充实际的abilityName长度。接口会返错。<br>3.  如果abilityName和length都指向有效内存，但length传入的长度小于实际的abilityName长度，则length会被填充实际的占位文本长度。接口会返错。| 
+| length | abilityName长度，计数单位为双字节，长度包含字符串结尾符。<br>1. 作为入参，代表abilityName指向的内存可用长度。作为出参，代表实际的abilityName长度。<br>2. 如果abilityName为空指针，且length指向有效内存，则length会被填充实际的abilityName长度。接口会返错。<br>3. 如果abilityName和length都指向有效内存，但length传入的长度小于实际的abilityName长度，则length会被填充实际的占位文本长度。接口会返错。| 
 
 **返回：**
 
