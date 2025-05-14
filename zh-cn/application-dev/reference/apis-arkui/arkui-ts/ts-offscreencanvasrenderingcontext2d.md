@@ -66,9 +66,9 @@ OffscreenCanvasRenderingContext2D(width: number, height: number, settings?: Rend
 @Entry
 @Component
 struct FillStyleExample {
-  private settings: RenderingContextSettings = new RenderingContextSettings(true)
-  private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
-  private offCanvas: OffscreenCanvas = new OffscreenCanvas(600, 600)
+  private settings: RenderingContextSettings = new RenderingContextSettings(true);
+  private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
+  private offCanvas: OffscreenCanvas = new OffscreenCanvas(600, 600);
 
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
@@ -97,9 +97,9 @@ struct FillStyleExample {
 @Entry
 @Component
 struct FillStyleExample {
-  private settings: RenderingContextSettings = new RenderingContextSettings(true)
-  private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
-  private offCanvas: OffscreenCanvas = new OffscreenCanvas(600, 600)
+  private settings: RenderingContextSettings = new RenderingContextSettings(true);
+  private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
+  private offCanvas: OffscreenCanvas = new OffscreenCanvas(600, 600);
 
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
@@ -131,9 +131,9 @@ struct FillStyleExample {
 @Entry
 @Component
 struct LineWidthExample {
-  private settings: RenderingContextSettings = new RenderingContextSettings(true)
-  private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
-  private offCanvas: OffscreenCanvas = new OffscreenCanvas(600, 600)
+  private settings: RenderingContextSettings = new RenderingContextSettings(true);
+  private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
+  private offCanvas: OffscreenCanvas = new OffscreenCanvas(600, 600);
 
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
@@ -165,9 +165,9 @@ struct LineWidthExample {
 @Entry
 @Component
 struct StrokeStyleExample {
-  private settings: RenderingContextSettings = new RenderingContextSettings(true)
-  private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
-  private offCanvas: OffscreenCanvas = new OffscreenCanvas(600, 600)
+  private settings: RenderingContextSettings = new RenderingContextSettings(true);
+  private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
+  private offCanvas: OffscreenCanvas = new OffscreenCanvas(600, 600);
 
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
@@ -197,9 +197,9 @@ struct StrokeStyleExample {
 @Entry
 @Component
 struct StrokeStyleExample {
-  private settings: RenderingContextSettings = new RenderingContextSettings(true)
-  private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
-  private offCanvas: OffscreenCanvas = new OffscreenCanvas(600, 600)
+  private settings: RenderingContextSettings = new RenderingContextSettings(true);
+  private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
+  private offCanvas: OffscreenCanvas = new OffscreenCanvas(600, 600);
 
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
@@ -232,9 +232,9 @@ struct StrokeStyleExample {
 @Entry
 @Component
 struct LineCapExample {
-  private settings: RenderingContextSettings = new RenderingContextSettings(true)
-  private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
-  private offCanvas: OffscreenCanvas = new OffscreenCanvas(600, 600)
+  private settings: RenderingContextSettings = new RenderingContextSettings(true);
+  private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
+  private offCanvas: OffscreenCanvas = new OffscreenCanvas(600, 600);
 
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
@@ -270,9 +270,9 @@ struct LineCapExample {
 @Entry
 @Component
 struct LineJoinExample {
-  private settings: RenderingContextSettings = new RenderingContextSettings(true)
-  private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
-  private offCanvas: OffscreenCanvas = new OffscreenCanvas(600, 600)
+  private settings: RenderingContextSettings = new RenderingContextSettings(true);
+  private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
+  private offCanvas: OffscreenCanvas = new OffscreenCanvas(600, 600);
 
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
@@ -309,9 +309,9 @@ struct LineJoinExample {
 @Entry
 @Component
 struct MiterLimit {
-  private settings: RenderingContextSettings = new RenderingContextSettings(true)
-  private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
-  private offCanvas: OffscreenCanvas = new OffscreenCanvas(600, 600)
+  private settings: RenderingContextSettings = new RenderingContextSettings(true);
+  private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
+  private offCanvas: OffscreenCanvas = new OffscreenCanvas(600, 600);
   
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
@@ -368,9 +368,9 @@ onWindowStageCreate(windowStage: window.WindowStage): void {
 @Entry
 @Component
 struct Fonts {
-  private settings: RenderingContextSettings = new RenderingContextSettings(true)
-  private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
-  private offCanvas: OffscreenCanvas = new OffscreenCanvas(600, 600)
+  private settings: RenderingContextSettings = new RenderingContextSettings(true);
+  private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
+  private offCanvas: OffscreenCanvas = new OffscreenCanvas(600, 600);
 
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
@@ -406,9 +406,9 @@ struct Fonts {
 @Entry
 @Component
 struct CanvasExample {
-  private settings: RenderingContextSettings = new RenderingContextSettings(true)
-  private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
-  private offCanvas: OffscreenCanvas = new OffscreenCanvas(600, 600)
+  private settings: RenderingContextSettings = new RenderingContextSettings(true);
+  private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
+  private offCanvas: OffscreenCanvas = new OffscreenCanvas(600, 600);
   
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
@@ -455,9 +455,9 @@ struct CanvasExample {
 @Entry
 @Component
 struct TextBaseline {
-  private settings: RenderingContextSettings = new RenderingContextSettings(true)
-  private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
-  private offCanvas: OffscreenCanvas = new OffscreenCanvas(600, 600)
+  private settings: RenderingContextSettings = new RenderingContextSettings(true);
+  private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
+  private offCanvas: OffscreenCanvas = new OffscreenCanvas(600, 600);
   
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
@@ -504,9 +504,9 @@ struct TextBaseline {
 @Entry
 @Component
 struct GlobalAlpha {
-  private settings: RenderingContextSettings = new RenderingContextSettings(true)
-  private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
-  private offCanvas: OffscreenCanvas = new OffscreenCanvas(600, 600)
+  private settings: RenderingContextSettings = new RenderingContextSettings(true);
+  private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
+  private offCanvas: OffscreenCanvas = new OffscreenCanvas(600, 600);
   
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
@@ -541,9 +541,9 @@ struct GlobalAlpha {
 @Entry
 @Component
 struct LineDashOffset {
-  private settings: RenderingContextSettings = new RenderingContextSettings(true)
-  private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
-  private offCanvas: OffscreenCanvas = new OffscreenCanvas(600, 600)
+  private settings: RenderingContextSettings = new RenderingContextSettings(true);
+  private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
+  private offCanvas: OffscreenCanvas = new OffscreenCanvas(600, 600);
   
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
@@ -591,9 +591,9 @@ struct LineDashOffset {
 @Entry
 @Component
 struct GlobalCompositeOperation {
-  private settings: RenderingContextSettings = new RenderingContextSettings(true)
-  private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
-  private offCanvas: OffscreenCanvas = new OffscreenCanvas(600, 600)
+  private settings: RenderingContextSettings = new RenderingContextSettings(true);
+  private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
+  private offCanvas: OffscreenCanvas = new OffscreenCanvas(600, 600);
   
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
@@ -633,9 +633,9 @@ struct GlobalCompositeOperation {
 @Entry
 @Component
 struct ShadowBlur {
-  private settings: RenderingContextSettings = new RenderingContextSettings(true)
-  private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
-  private offCanvas: OffscreenCanvas = new OffscreenCanvas(600, 600)
+  private settings: RenderingContextSettings = new RenderingContextSettings(true);
+  private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
+  private offCanvas: OffscreenCanvas = new OffscreenCanvas(600, 600);
   
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
@@ -669,9 +669,9 @@ struct ShadowBlur {
 @Entry
 @Component
 struct ShadowColor {
-  private settings: RenderingContextSettings = new RenderingContextSettings(true)
-  private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
-  private offCanvas: OffscreenCanvas = new OffscreenCanvas(600, 600)
+  private settings: RenderingContextSettings = new RenderingContextSettings(true);
+  private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
+  private offCanvas: OffscreenCanvas = new OffscreenCanvas(600, 600);
   
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
@@ -705,9 +705,9 @@ struct ShadowColor {
 @Entry
 @Component
 struct ShadowOffsetX {
-  private settings: RenderingContextSettings = new RenderingContextSettings(true)
-  private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
-  private offCanvas: OffscreenCanvas = new OffscreenCanvas(600, 600)
+  private settings: RenderingContextSettings = new RenderingContextSettings(true);
+  private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
+  private offCanvas: OffscreenCanvas = new OffscreenCanvas(600, 600);
   
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
@@ -742,9 +742,9 @@ struct ShadowOffsetX {
 @Entry
 @Component
 struct ShadowOffsetY {
-  private settings: RenderingContextSettings = new RenderingContextSettings(true)
-  private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
-  private offCanvas: OffscreenCanvas = new OffscreenCanvas(600, 600)
+  private settings: RenderingContextSettings = new RenderingContextSettings(true);
+  private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
+  private offCanvas: OffscreenCanvas = new OffscreenCanvas(600, 600);
 
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
@@ -779,10 +779,10 @@ struct ShadowOffsetY {
 @Entry
 @Component
 struct ImageSmoothingEnabled {
-  private settings: RenderingContextSettings = new RenderingContextSettings(true)
-  private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
-  private img:ImageBitmap = new ImageBitmap("common/images/icon.jpg")
-  private offCanvas: OffscreenCanvas = new OffscreenCanvas(600, 600)
+  private settings: RenderingContextSettings = new RenderingContextSettings(true);
+  private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
+  private img:ImageBitmap = new ImageBitmap("common/images/icon.jpg");
+  private offCanvas: OffscreenCanvas = new OffscreenCanvas(600, 600);
   
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
@@ -817,7 +817,7 @@ struct ImageSmoothingEnabled {
     private settings: RenderingContextSettings = new RenderingContextSettings(true);
     private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.
 settings);
-    private offCanvas: OffscreenCanvas = new OffscreenCanvas(600, 600)
+    private offCanvas: OffscreenCanvas = new OffscreenCanvas(600, 600);
     private img:ImageBitmap = new ImageBitmap("common/images/example.jpg");
 
     build() {
@@ -856,7 +856,7 @@ justifyContent: FlexAlign.Center }) {
     private settings: RenderingContextSettings = new RenderingContextSettings(true);
     private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.
 settings);
-    private offCanvas: OffscreenCanvas = new OffscreenCanvas(600, 600)
+    private offCanvas: OffscreenCanvas = new OffscreenCanvas(600, 600);
 
     build() {
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, 
@@ -896,7 +896,7 @@ justifyContent: FlexAlign.Center }) {
   struct FilterDemoOff {
     private settings: RenderingContextSettings = new RenderingContextSettings(true);
     private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
-    private offCanvas: OffscreenCanvas = new OffscreenCanvas(600, 600)
+    private offCanvas: OffscreenCanvas = new OffscreenCanvas(600, 600);
     private img: ImageBitmap = new ImageBitmap("common/images/example.jpg");
 
     build() {
@@ -957,14 +957,14 @@ justifyContent: FlexAlign.Center }) {
 
 ```ts
   // xxx.ets
-  import { LengthMetrics, LengthUnit } from '@kit.ArkUI'
+  import { LengthMetrics, LengthUnit } from '@kit.ArkUI';
 
   @Entry
   @Component
   struct letterSpacingDemo {
-    private settings: RenderingContextSettings = new RenderingContextSettings(true)
-    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
-    private offCanvas: OffscreenCanvas = new OffscreenCanvas(600, 600)
+    private settings: RenderingContextSettings = new RenderingContextSettings(true);
+    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
+    private offCanvas: OffscreenCanvas = new OffscreenCanvas(600, 600);
 
     build() {
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
@@ -1022,9 +1022,9 @@ fillRect(x: number, y: number, w: number, h: number): void
   @Entry
   @Component
   struct FillRect {
-    private settings: RenderingContextSettings = new RenderingContextSettings(true)
-    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
-    private offCanvas: OffscreenCanvas = new OffscreenCanvas(600, 600)
+    private settings: RenderingContextSettings = new RenderingContextSettings(true);
+    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
+    private offCanvas: OffscreenCanvas = new OffscreenCanvas(600, 600);
     
     build() {
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
@@ -1076,9 +1076,9 @@ strokeRect(x: number, y: number, w: number, h: number): void
   @Entry
   @Component
   struct StrokeRect {
-    private settings: RenderingContextSettings = new RenderingContextSettings(true)
-    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
-    private offCanvas: OffscreenCanvas = new OffscreenCanvas(600, 600)
+    private settings: RenderingContextSettings = new RenderingContextSettings(true);
+    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
+    private offCanvas: OffscreenCanvas = new OffscreenCanvas(600, 600);
 
     build() {
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
@@ -1130,9 +1130,9 @@ clearRect(x: number, y: number, w: number, h: number): void
   @Entry
   @Component
   struct ClearRect {
-    private settings: RenderingContextSettings = new RenderingContextSettings(true)
-    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
-    private offCanvas: OffscreenCanvas = new OffscreenCanvas(600, 600)
+    private settings: RenderingContextSettings = new RenderingContextSettings(true);
+    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
+    private offCanvas: OffscreenCanvas = new OffscreenCanvas(600, 600);
 
     build() {
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
@@ -1186,9 +1186,9 @@ fillText(text: string, x: number, y: number, maxWidth?: number): void
   @Entry
   @Component
   struct FillText {
-    private settings: RenderingContextSettings = new RenderingContextSettings(true)
-    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
-    private offCanvas: OffscreenCanvas = new OffscreenCanvas(600, 600)
+    private settings: RenderingContextSettings = new RenderingContextSettings(true);
+    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
+    private offCanvas: OffscreenCanvas = new OffscreenCanvas(600, 600);
 
     build() {
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
@@ -1241,9 +1241,9 @@ strokeText(text: string, x: number, y: number, maxWidth?: number): void
   @Entry
   @Component
   struct StrokeText {
-    private settings: RenderingContextSettings = new RenderingContextSettings(true)
-    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
-    private offCanvas: OffscreenCanvas = new OffscreenCanvas(600, 600)
+    private settings: RenderingContextSettings = new RenderingContextSettings(true);
+    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
+    private offCanvas: OffscreenCanvas = new OffscreenCanvas(600, 600);
 
     build() {
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
@@ -1299,9 +1299,9 @@ measureText(text: string): TextMetrics
   @Entry
   @Component
   struct MeasureText {
-    private settings: RenderingContextSettings = new RenderingContextSettings(true)
-    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
-    private offCanvas: OffscreenCanvas = new OffscreenCanvas(600, 600)
+    private settings: RenderingContextSettings = new RenderingContextSettings(true);
+    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
+    private offCanvas: OffscreenCanvas = new OffscreenCanvas(600, 600);
 
     build() {
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
@@ -1346,9 +1346,9 @@ stroke(): void
   @Entry
   @Component
   struct Stroke {
-    private settings: RenderingContextSettings = new RenderingContextSettings(true)
-    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
-    private offCanvas: OffscreenCanvas = new OffscreenCanvas(600, 600)
+    private settings: RenderingContextSettings = new RenderingContextSettings(true);
+    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
+    private offCanvas: OffscreenCanvas = new OffscreenCanvas(600, 600);
 
     build() {
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
@@ -1399,10 +1399,10 @@ stroke(path: Path2D): void
   @Entry
   @Component
   struct Stroke {
-    private settings: RenderingContextSettings = new RenderingContextSettings(true)
-    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
-    private offCanvas: OffscreenCanvas = new OffscreenCanvas(600, 600)
-    private path2Da: Path2D = new Path2D()
+    private settings: RenderingContextSettings = new RenderingContextSettings(true);
+    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
+    private offCanvas: OffscreenCanvas = new OffscreenCanvas(600, 600);
+    private path2Da: Path2D = new Path2D();
 
     build() {
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
@@ -1450,9 +1450,9 @@ beginPath(): void
   @Entry
   @Component
   struct BeginPath {
-    private settings: RenderingContextSettings = new RenderingContextSettings(true)
-    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
-    private offCanvas: OffscreenCanvas = new OffscreenCanvas(600, 600)
+    private settings: RenderingContextSettings = new RenderingContextSettings(true);
+    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
+    private offCanvas: OffscreenCanvas = new OffscreenCanvas(600, 600);
 
     build() {
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
@@ -1507,9 +1507,9 @@ moveTo(x: number, y: number): void
   @Entry
   @Component
   struct MoveTo {
-    private settings: RenderingContextSettings = new RenderingContextSettings(true)
-    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
-    private offCanvas: OffscreenCanvas = new OffscreenCanvas(600, 600)
+    private settings: RenderingContextSettings = new RenderingContextSettings(true);
+    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
+    private offCanvas: OffscreenCanvas = new OffscreenCanvas(600, 600);
 
     build() {
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
@@ -1562,9 +1562,9 @@ lineTo(x: number, y: number): void
   @Entry
   @Component
   struct LineTo {
-    private settings: RenderingContextSettings = new RenderingContextSettings(true)
-    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
-    private offCanvas: OffscreenCanvas = new OffscreenCanvas(600, 600)
+    private settings: RenderingContextSettings = new RenderingContextSettings(true);
+    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
+    private offCanvas: OffscreenCanvas = new OffscreenCanvas(600, 600);
 
     build() {
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
@@ -1610,9 +1610,9 @@ closePath(): void
   @Entry
   @Component
   struct ClosePath {
-    private settings: RenderingContextSettings = new RenderingContextSettings(true)
-    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
-    private offCanvas: OffscreenCanvas = new OffscreenCanvas(600, 600)
+    private settings: RenderingContextSettings = new RenderingContextSettings(true);
+    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
+    private offCanvas: OffscreenCanvas = new OffscreenCanvas(600, 600);
 
     build() {
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
@@ -1673,10 +1673,10 @@ createPattern(image: ImageBitmap, repetition: string | null): CanvasPattern | nu
   @Entry
   @Component
   struct CreatePattern {
-    private settings: RenderingContextSettings = new RenderingContextSettings(true)
-    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
-    private img:ImageBitmap = new ImageBitmap("common/images/example.jpg")
-    private offCanvas: OffscreenCanvas = new OffscreenCanvas(600, 600)
+    private settings: RenderingContextSettings = new RenderingContextSettings(true);
+    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
+    private img:ImageBitmap = new ImageBitmap("common/images/example.jpg");
+    private offCanvas: OffscreenCanvas = new OffscreenCanvas(600, 600);
 
     build() {
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
@@ -1732,9 +1732,9 @@ bezierCurveTo(cp1x: number, cp1y: number, cp2x: number, cp2y: number, x: number,
   @Entry
   @Component
   struct BezierCurveTo {
-    private settings: RenderingContextSettings = new RenderingContextSettings(true)
-    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
-    private offCanvas: OffscreenCanvas = new OffscreenCanvas(600, 600)
+    private settings: RenderingContextSettings = new RenderingContextSettings(true);
+    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
+    private offCanvas: OffscreenCanvas = new OffscreenCanvas(600, 600);
 
     build() {
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
@@ -1789,9 +1789,9 @@ quadraticCurveTo(cpx: number, cpy: number, x: number, y: number): void
   @Entry
   @Component
   struct QuadraticCurveTo {
-    private settings: RenderingContextSettings = new RenderingContextSettings(true)
-    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
-    private offCanvas: OffscreenCanvas = new OffscreenCanvas(600, 600)
+    private settings: RenderingContextSettings = new RenderingContextSettings(true);
+    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
+    private offCanvas: OffscreenCanvas = new OffscreenCanvas(600, 600);
 
     build() {
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
@@ -1848,9 +1848,9 @@ arc(x: number, y: number, radius: number, startAngle: number, endAngle: number, 
   @Entry
   @Component
   struct Arc {
-    private settings: RenderingContextSettings = new RenderingContextSettings(true)
-    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
-    private offCanvas: OffscreenCanvas = new OffscreenCanvas(600, 600)
+    private settings: RenderingContextSettings = new RenderingContextSettings(true);
+    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
+    private offCanvas: OffscreenCanvas = new OffscreenCanvas(600, 600);
 
     build() {
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
@@ -1905,9 +1905,9 @@ arcTo(x1: number, y1: number, x2: number, y2: number, radius: number): void
   @Entry
   @Component
   struct ArcTo {
-    private settings: RenderingContextSettings = new RenderingContextSettings(true)
-    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
-    private offCanvas: OffscreenCanvas = new OffscreenCanvas(600, 600)
+    private settings: RenderingContextSettings = new RenderingContextSettings(true);
+    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
+    private offCanvas: OffscreenCanvas = new OffscreenCanvas(600, 600);
 
     build() {
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
@@ -1988,7 +1988,7 @@ ellipse(x: number, y: number, radiusX: number, radiusY: number, rotation: number
 | rotation         | number  | 是     | 椭圆的旋转角度。<br>单位为弧度。 |
 | startAngle       | number  | 是     | 椭圆绘制的起始点角度。<br>单位为弧度。 |
 | endAngle         | number  | 是     | 椭圆绘制的结束点角度。<br>单位为弧度。 |
-| counterclockwise | boolean | 否     | 是否以逆时针方向绘制椭圆。<br>true:逆时针方向绘制椭圆。<br>false:顺时针方向绘制椭圆。<br>默认值：false。 |
+| counterclockwise | boolean | 否     | 是否以逆时针方向绘制椭圆。<br>true：逆时针方向绘制椭圆。<br>false：顺时针方向绘制椭圆。<br>默认值：false。 |
 
  **示例：**
 
@@ -1997,9 +1997,9 @@ ellipse(x: number, y: number, radiusX: number, radiusY: number, rotation: number
   @Entry
   @Component
   struct CanvasExample {
-    private settings: RenderingContextSettings = new RenderingContextSettings(true)
-    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
-    private offCanvas: OffscreenCanvas = new OffscreenCanvas(600, 600)
+    private settings: RenderingContextSettings = new RenderingContextSettings(true);
+    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
+    private offCanvas: OffscreenCanvas = new OffscreenCanvas(600, 600);
     build() {
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
         Canvas(this.context)
@@ -2055,9 +2055,9 @@ rect(x: number, y: number, w: number, h: number): void
   @Entry
   @Component
   struct CanvasExample {
-    private settings: RenderingContextSettings = new RenderingContextSettings(true)
-    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
-    private offCanvas: OffscreenCanvas = new OffscreenCanvas(600, 600)
+    private settings: RenderingContextSettings = new RenderingContextSettings(true);
+    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
+    private offCanvas: OffscreenCanvas = new OffscreenCanvas(600, 600);
 
     build() {
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
@@ -2105,9 +2105,9 @@ fill(fillRule?: CanvasFillRule): void
   @Entry
   @Component
   struct Fill {
-    private settings: RenderingContextSettings = new RenderingContextSettings(true)
-    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
-    private offCanvas: OffscreenCanvas = new OffscreenCanvas(600, 600)
+    private settings: RenderingContextSettings = new RenderingContextSettings(true);
+    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
+    private offCanvas: OffscreenCanvas = new OffscreenCanvas(600, 600);
 
     build() {
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
@@ -2157,9 +2157,9 @@ fill(path: Path2D, fillRule?: CanvasFillRule): void
 @Entry
 @Component
 struct Fill {
-  private settings: RenderingContextSettings = new RenderingContextSettings(true)
-  private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
-  private offCanvas: OffscreenCanvas = new OffscreenCanvas(600, 600)
+  private settings: RenderingContextSettings = new RenderingContextSettings(true);
+  private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
+  private offCanvas: OffscreenCanvas = new OffscreenCanvas(600, 600);
 
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
@@ -2219,9 +2219,9 @@ clip(fillRule?: CanvasFillRule): void
   @Entry
   @Component
   struct Clip {
-    private settings: RenderingContextSettings = new RenderingContextSettings(true)
-    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
-    private offCanvas: OffscreenCanvas = new OffscreenCanvas(600, 600)
+    private settings: RenderingContextSettings = new RenderingContextSettings(true);
+    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
+    private offCanvas: OffscreenCanvas = new OffscreenCanvas(600, 600);
 
     build() {
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
@@ -2273,9 +2273,9 @@ clip(path: Path2D, fillRule?: CanvasFillRule): void
   @Entry
   @Component
   struct Clip {
-    private settings: RenderingContextSettings = new RenderingContextSettings(true)
-    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
-    private offCanvas: OffscreenCanvas = new OffscreenCanvas(600, 600)
+    private settings: RenderingContextSettings = new RenderingContextSettings(true);
+    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
+    private offCanvas: OffscreenCanvas = new OffscreenCanvas(600, 600);
 
     build() {
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
@@ -2326,9 +2326,9 @@ reset(): void
   @Entry
   @Component
   struct Reset {
-    private settings: RenderingContextSettings = new RenderingContextSettings(true)
-    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
-    private offCanvas: OffscreenCanvas = new OffscreenCanvas(600, 600)
+    private settings: RenderingContextSettings = new RenderingContextSettings(true);
+    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
+    private offCanvas: OffscreenCanvas = new OffscreenCanvas(600, 600);
 
     build() {
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
@@ -2371,9 +2371,9 @@ saveLayer(): void
   @Entry
   @Component
   struct saveLayer {
-    private settings: RenderingContextSettings = new RenderingContextSettings(true)
-    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
-    private offCanvas: OffscreenCanvas = new OffscreenCanvas(600, 600)
+    private settings: RenderingContextSettings = new RenderingContextSettings(true);
+    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
+    private offCanvas: OffscreenCanvas = new OffscreenCanvas(600, 600);
 
     build() {
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
@@ -2435,9 +2435,9 @@ resetTransform(): void
   @Entry
   @Component
   struct ResetTransform {
-    private settings: RenderingContextSettings = new RenderingContextSettings(true)
-    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
-    private offCanvas: OffscreenCanvas = new OffscreenCanvas(600, 600)
+    private settings: RenderingContextSettings = new RenderingContextSettings(true);
+    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
+    private offCanvas: OffscreenCanvas = new OffscreenCanvas(600, 600);
 
     build() {
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
@@ -2489,9 +2489,9 @@ rotate(angle: number): void
   @Entry
   @Component
   struct Rotate {
-    private settings: RenderingContextSettings = new RenderingContextSettings(true)
-    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
-    private offCanvas: OffscreenCanvas = new OffscreenCanvas(600, 600)
+    private settings: RenderingContextSettings = new RenderingContextSettings(true);
+    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
+    private offCanvas: OffscreenCanvas = new OffscreenCanvas(600, 600);
 
     build() {
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
@@ -2542,9 +2542,9 @@ scale(x: number, y: number): void
   @Entry
   @Component
   struct Scale {
-    private settings: RenderingContextSettings = new RenderingContextSettings(true)
-    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
-    private offCanvas: OffscreenCanvas = new OffscreenCanvas(600, 600)
+    private settings: RenderingContextSettings = new RenderingContextSettings(true);
+    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
+    private offCanvas: OffscreenCanvas = new OffscreenCanvas(600, 600);
 
     build() {
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
@@ -2608,9 +2608,9 @@ transform方法对应一个变换矩阵，想对一个图形进行变化的时�
   @Entry
   @Component
   struct Transform {
-    private settings: RenderingContextSettings = new RenderingContextSettings(true)
-    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
-    private offCanvas: OffscreenCanvas = new OffscreenCanvas(600, 600)
+    private settings: RenderingContextSettings = new RenderingContextSettings(true);
+    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
+    private offCanvas: OffscreenCanvas = new OffscreenCanvas(600, 600);
 
     build() {
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
@@ -2671,9 +2671,9 @@ setTransform方法使用的参数和transform()方法相同，但setTransform()�
   @Entry
   @Component
   struct SetTransform {
-    private settings: RenderingContextSettings = new RenderingContextSettings(true)
-    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
-    private offCanvas: OffscreenCanvas = new OffscreenCanvas(600, 600)
+    private settings: RenderingContextSettings = new RenderingContextSettings(true);
+    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
+    private offCanvas: OffscreenCanvas = new OffscreenCanvas(600, 600);
 
     build() {
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
@@ -2859,9 +2859,9 @@ translate(x: number, y: number): void
   @Entry
   @Component
   struct Translate {
-    private settings: RenderingContextSettings = new RenderingContextSettings(true)
-    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
-    private offCanvas: OffscreenCanvas = new OffscreenCanvas(600, 600)
+    private settings: RenderingContextSettings = new RenderingContextSettings(true);
+    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
+    private offCanvas: OffscreenCanvas = new OffscreenCanvas(600, 600);
 
     build() {
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
@@ -2958,10 +2958,10 @@ drawImage(image: ImageBitmap | PixelMap, sx: number, sy: number, sw: number, sh:
   @Entry
   @Component
   struct DrawImage {
-    private settings: RenderingContextSettings = new RenderingContextSettings(true)
-    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
-    private img:ImageBitmap = new ImageBitmap("common/images/example.jpg")
-    private offCanvas: OffscreenCanvas = new OffscreenCanvas(600, 600)
+    private settings: RenderingContextSettings = new RenderingContextSettings(true);
+    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
+    private img:ImageBitmap = new ImageBitmap("common/images/example.jpg");
+    private offCanvas: OffscreenCanvas = new OffscreenCanvas(600, 600);
     build() {
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
         Canvas(this.context)
@@ -3060,10 +3060,10 @@ getPixelMap(sx: number, sy: number, sw: number, sh: number): PixelMap
   @Entry
   @Component
   struct GetPixelMap {
-    private settings: RenderingContextSettings = new RenderingContextSettings(true)
-    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
-    private img: ImageBitmap = new ImageBitmap("common/images/example.jpg")
-    private offCanvas: OffscreenCanvas = new OffscreenCanvas(600, 600)
+    private settings: RenderingContextSettings = new RenderingContextSettings(true);
+    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
+    private img: ImageBitmap = new ImageBitmap("common/images/example.jpg");
+    private offCanvas: OffscreenCanvas = new OffscreenCanvas(600, 600);
 
     build() {
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
@@ -3140,10 +3140,10 @@ getImageData(sx: number, sy: number, sw: number, sh: number): ImageData
   @Entry
   @Component
   struct GetImageData {
-    private settings: RenderingContextSettings = new RenderingContextSettings(true)
-    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
-    private offCanvas: OffscreenCanvas = new OffscreenCanvas(600, 600)
-    private img:ImageBitmap = new ImageBitmap("/common/images/1234.png")
+    private settings: RenderingContextSettings = new RenderingContextSettings(true);
+    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
+    private offCanvas: OffscreenCanvas = new OffscreenCanvas(600, 600);
+    private img:ImageBitmap = new ImageBitmap("/common/images/1234.png");
 
     build() {
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
@@ -3218,9 +3218,9 @@ putImageData(imageData: ImageData, dx: number | string, dy: number | string, dir
   @Entry
   @Component
   struct PutImageData {
-    private settings: RenderingContextSettings = new RenderingContextSettings(true)
-    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
-    private offCanvas: OffscreenCanvas = new OffscreenCanvas(600, 600)
+    private settings: RenderingContextSettings = new RenderingContextSettings(true);
+    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
+    private offCanvas: OffscreenCanvas = new OffscreenCanvas(600, 600);
 
     build() {
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
@@ -3274,9 +3274,9 @@ setLineDash(segments: number[]): void
   @Entry
   @Component
   struct SetLineDash {
-    private settings: RenderingContextSettings = new RenderingContextSettings(true)
-    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
-    private offCanvas: OffscreenCanvas = new OffscreenCanvas(600, 600)
+    private settings: RenderingContextSettings = new RenderingContextSettings(true);
+    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
+    private offCanvas: OffscreenCanvas = new OffscreenCanvas(600, 600);
     
     build() {
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
@@ -3324,10 +3324,10 @@ getLineDash(): number[]
   @Entry
   @Component
   struct OffscreenCanvasGetLineDash {
-    @State message: string = 'Hello World'
-    private settings: RenderingContextSettings = new RenderingContextSettings(true)
-    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
-    private offCanvas: OffscreenCanvas = new OffscreenCanvas(600, 600)
+    @State message: string = 'Hello World';
+    private settings: RenderingContextSettings = new RenderingContextSettings(true);
+    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
+    private offCanvas: OffscreenCanvas = new OffscreenCanvas(600, 600);
     build() {
       Row() {
         Column() {
@@ -3396,10 +3396,10 @@ toDataURL(type?: string, quality?: any): string
   @Entry
   @Component
   struct ToDataURL {
-    private settings: RenderingContextSettings = new RenderingContextSettings(true)
-    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
-    private offCanvas: OffscreenCanvas = new OffscreenCanvas(100, 100)
-    @State dataURL: string = ""
+    private settings: RenderingContextSettings = new RenderingContextSettings(true);
+    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
+    private offCanvas: OffscreenCanvas = new OffscreenCanvas(100, 100);
+    @State dataURL: string = "";
 
     build() {
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
@@ -3448,9 +3448,9 @@ transferToImageBitmap(): ImageBitmap
   @Entry
   @Component
   struct PutImageData {
-    private settings: RenderingContextSettings = new RenderingContextSettings(true)
-    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
-    private offCanvas: OffscreenCanvas = new OffscreenCanvas(600, 600)
+    private settings: RenderingContextSettings = new RenderingContextSettings(true);
+    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
+    private offCanvas: OffscreenCanvas = new OffscreenCanvas(600, 600);
 
     build() {
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
@@ -3504,9 +3504,9 @@ restore(): void
   @Entry
   @Component
   struct CanvasExample {
-    private settings: RenderingContextSettings = new RenderingContextSettings(true)
-    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
-    private offCanvas: OffscreenCanvas = new OffscreenCanvas(600, 600)
+    private settings: RenderingContextSettings = new RenderingContextSettings(true);
+    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
+    private offCanvas: OffscreenCanvas = new OffscreenCanvas(600, 600);
     
     build() {
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
@@ -3552,9 +3552,9 @@ save(): void
   @Entry
   @Component
   struct CanvasExample {
-    private settings: RenderingContextSettings = new RenderingContextSettings(true)
-    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
-    private offCanvas: OffscreenCanvas = new OffscreenCanvas(600, 600)
+    private settings: RenderingContextSettings = new RenderingContextSettings(true);
+    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
+    private offCanvas: OffscreenCanvas = new OffscreenCanvas(600, 600);
     
     build() {
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
@@ -3615,9 +3615,9 @@ createLinearGradient(x0: number, y0: number, x1: number, y1: number): CanvasGrad
   @Entry
   @Component
   struct CreateLinearGradient {
-    private settings: RenderingContextSettings = new RenderingContextSettings(true)
-    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
-    private offCanvas: OffscreenCanvas = new OffscreenCanvas(600, 600)
+    private settings: RenderingContextSettings = new RenderingContextSettings(true);
+    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
+    private offCanvas: OffscreenCanvas = new OffscreenCanvas(600, 600);
     
     build() {
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
@@ -3682,9 +3682,9 @@ createRadialGradient(x0: number, y0: number, r0: number, x1: number, y1: number,
   @Entry
   @Component
   struct CreateRadialGradient {
-    private settings: RenderingContextSettings = new RenderingContextSettings(true)
-    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
-    private offCanvas: OffscreenCanvas = new OffscreenCanvas(600, 600)
+    private settings: RenderingContextSettings = new RenderingContextSettings(true);
+    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
+    private offCanvas: OffscreenCanvas = new OffscreenCanvas(600, 600);
     
     build() {
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
@@ -3743,9 +3743,9 @@ createConicGradient(startAngle: number, x: number, y: number): CanvasGradient
 @Entry
 @Component
 struct OffscreenCanvasConicGradientPage {
-  private settings: RenderingContextSettings = new RenderingContextSettings(true)
-  private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
-  private offCanvas: OffscreenCanvas = new OffscreenCanvas(600, 600)
+  private settings: RenderingContextSettings = new RenderingContextSettings(true);
+  private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
+  private offCanvas: OffscreenCanvas = new OffscreenCanvas(600, 600);
 
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
