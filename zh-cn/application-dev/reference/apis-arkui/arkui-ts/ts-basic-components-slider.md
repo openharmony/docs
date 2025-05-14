@@ -1090,11 +1090,6 @@ function textBuilder(params: NodeParams) {
 @Entry
 @Component
 struct SliderExample {
-
-  @State private preNodeIndex: number = 0;
-  @State private sufNodeIndex: number = 0;
-  private title: string = 'SliderTest';
-
   private pre: string = '低';
   private suf: string = '高';
   private uiContext: UIContext = this.getUIContext();
