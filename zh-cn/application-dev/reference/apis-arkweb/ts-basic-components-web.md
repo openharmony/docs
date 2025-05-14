@@ -1810,8 +1810,7 @@ mediaOptions(options: WebMediaOptions)
 >
 > - 同一Web实例中的多个音频均视为同一音频。
 > - 该媒体播放策略将同时管控有声视频。
-> - 属性参数更新后需重新播放音频方可生效。
-> - 建议为所有Web组件设置相同的audioExclusive值。
+> - 建议为所有Web组件设置相同的[audioExclusive](#webmediaoptions10)值。
 > - 音视频互相打断在应用内和应用间生效，续播只在应用间生效。
 
 **系统能力：** SystemCapability.Web.Webview.Core
@@ -1820,7 +1819,7 @@ mediaOptions(options: WebMediaOptions)
 
 | 参数名     | 类型                                  | 必填   | 说明                                     |
 | ------- | ------------------------------------- | ---- | ---------------------------------------- |
-| options | [WebMediaOptions](#webmediaoptions10) | 是    | 设置Web的媒体策略。<br>默认值：`{resumeInterval: 0, audioExclusive: true}`。 |
+| options | [WebMediaOptions](#webmediaoptions10) | 是    | 设置Web的媒体策略。<br>属性参数更新后需重新播放音频方可生效。<br>默认值：`{resumeInterval: 0, audioExclusive: true}` |
 
 **示例：**
 
@@ -8719,12 +8718,12 @@ onSslErrorEventReceive接口返回的SSL错误的具体原因。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
-| 名称                          | 值 | 说明            | 备注                         |
-| --------------------------- | --------------- | ------------- | -------------------------- |
-| MidiSysex                   | TYPE_MIDI_SYSEX | MIDI SYSEX资源。 | 目前仅支持权限事件上报，MIDI设备的使用还未支持。 |
-| VIDEO_CAPTURE<sup>10+</sup> | TYPE_VIDEO_CAPTURE | 视频捕获资源，例如相机。  |                            |
-| AUDIO_CAPTURE<sup>10+</sup> | TYPE_AUDIO_CAPTURE | 音频捕获资源，例如麦克风。 |                            |
-| SENSOR<sup>12+</sup>        | TYPE_SENSOR | 传感器资源，例如加速度传感器。 |                            |
+| 名称                          | 值 | 说明            |
+| --------------------------- | --------------- | ------------- |
+| MidiSysex                   | TYPE_MIDI_SYSEX | MIDI SYSEX资源。<br>目前仅支持权限事件上报，MIDI设备的使用还未支持。 |
+| VIDEO_CAPTURE<sup>10+</sup> | TYPE_VIDEO_CAPTURE | 视频捕获资源，例如相机。  |
+| AUDIO_CAPTURE<sup>10+</sup> | TYPE_AUDIO_CAPTURE | 音频捕获资源，例如麦克风。 |
+| SENSOR<sup>12+</sup>        | TYPE_SENSOR | 传感器资源，例如加速度传感器。 |
 
 ## WebDarkMode<sup>9+</sup>枚举说明
 
@@ -8737,6 +8736,8 @@ onSslErrorEventReceive接口返回的SSL错误的具体原因。
 | Auto | 2 | Web深色模式跟随系统。 |
 
 ## WebCaptureMode<sup>10+</sup>枚举说明
+
+Web屏幕捕获模式。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
