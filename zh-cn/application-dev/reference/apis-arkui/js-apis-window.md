@@ -421,7 +421,7 @@ import { window } from '@kit.ArkUI';
 | 名称                | 值   | 说明                                                         |
 | ------------------- | ---- | ------------------------------------------------------------ |
 | LINEAR              | 0    | 表示动画从头到尾的速度都是相同的。<br/>使用该曲线类型时[WindowAnimationConfig](#windowanimationconfig20)中duration必填。<br/>使用该曲线类型时[WindowAnimationConfig](#windowanimationconfig20)中param选填，且不生效。 |
-| INTERPOLATION_SPRING | 1    | 表示插值器弹簧曲线，一条从0到1的动画曲线，实际动画值根据曲线进行插值计算。动画时间由曲线参数决定，不受[WindowAnimationConfig](#windowanimationconfig20)中的duration参数控制。<br/>使用该曲线类型时[WindowAnimationConfig](#windowanimationconfig20)中duration选填，且不生效。 |
+| INTERPOLATION_SPRING | 1    | 表示插值器弹簧曲线，一条从0到1的动画曲线，实际动画值根据曲线进行插值计算。动画时间由曲线参数决定，不受[WindowAnimationConfig](#windowanimationconfig20)中的duration参数控制。<br/>使用该曲线类型时[WindowAnimationConfig](#windowanimationconfig20)中duration选填，且不生效。<br/>使用该曲线类型时[WindowAnimationConfig](#windowanimationconfig20)中param必填。 |
 
 ## WindowAnimationConfig<sup>20+</sup>
 
@@ -4191,37 +4191,16 @@ on(type: 'keyboardWillShow', callback: Callback&lt;KeyboardInfo&gt;): void
 **示例：**
 
 ```ts
-import window from '@ohos.window';
-import { JSON } from '@kit.ArkTS';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-@Entry
-@Component
-struct Index {
-  private registerKeyboardWillShowAnimationCallback = (keyboardInfo: window.KeyboardInfo) => {
-    console.log('Keyboard will show animation: ' + JSON.stringify(keyboardInfo));
-  }
-
-  build() {
-    Column() {
-      TextInput()
-    }
-  }
-
-  aboutToAppear(): void {
-    this.registerKeyboardWillShowAnimation()
-  }
-
-  private registerKeyboardWillShowAnimation() {
-    let context = getContext(this) as Context
-    window.getLastWindow(context).then((lastWindow) => {
-      try {
-        lastWindow.on("keyboardWillShow", this.registerKeyboardWillShowAnimationCallback);
-        console.log('Register keyboard will show animation success');
-      } catch ( exception) {
-        console.error('Failed to register callback.')
-      }
-    })
-  }
+const callback = (keyboardInfo: window.KeyboardInfo) => {
+  console.info('Keyboard will show animation. keyboardInfo: ' + JSON.stringify(keyboardInfo));
+}
+try {
+  windowClass.on('keyboardWillShow', callback);
+  console.info('Register keyboard will show animation success');
+} catch (exception) {
+  console.error(`Failed to register or unregister callback. Cause code: ${exception.code}, message: ${exception.message}`);
 }
 ```
 
@@ -4254,40 +4233,19 @@ off(type: 'keyboardWillShow', callback?: Callback&lt;KeyboardInfo&gt;): void
 **示例：**
 
 ```ts
-import window from '@ohos.window';
-import { JSON } from '@kit.ArkTS';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-@Entry
-@Component
-struct Index {
-  private registerKeyboardWillShowAnimationCallback = (keyboardInfo: window.KeyboardInfo) => {
-    console.log('ZJOHDev ====== keyboard will show animation: ' + JSON.stringify(keyboardInfo));
-  }
-
-  build() {
-    Column() {
-      TextInput()
-    }
-  }
-
-  aboutToAppear(): void {
-    this.unregisterKeyboardWillShowAnimation()
-  }
-
-  private unregisterKeyboardWillShowAnimation() {
-    let context = getContext(this) as Context
-    window.getLastWindow(context).then((lastWindow) => {
-      try {
-        lastWindow.on("keyboardWillShow", this.registerKeyboardWillShowAnimationCallback);
-        lastWindow.off('keyboardWillShow', this.registerKeyboardWillShowAnimationCallback);
-        // 如果通过on开启多个callback进行监听，同时关闭所有监听：
-        lastWindow.off('keyboardWillShow');
-        console.log('Unregister keyboard will show animation success');
-      } catch ( exception) {
-        console.error('Failed to register callback.')
-      }
-    })
-  }
+const callback = (keyboardInfo: window.KeyboardInfo) => {
+  console.info('Keyboard will show animation. keyboardInfo: ' + JSON.stringify(keyboardInfo));
+}
+try {
+  windowClass.on('keyboardWillShow', callback);
+  windowClass.off('keyboardWillShow', callback);
+  // 如果通过on开启多个callback进行监听，同时关闭所有监听：
+  windowClass.off('keyboardWillShow');
+  console.info('Unregister keyboard will show animation success');
+} catch (exception) {
+  console.error(`Failed to register or unregister callback. Cause code: ${exception.code}, message: ${exception.message}`);
 }
 ```
 
@@ -4322,37 +4280,16 @@ on(type: 'keyboardWillHide', callback: Callback&lt;KeyboardInfo&gt;): void
 **示例：**
 
 ```ts
-import window from '@ohos.window';
-import { JSON } from '@kit.ArkTS';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-@Entry
-@Component
-struct Index {
-  private registerKeyboardWillHideAnimationCallback = (keyboardInfo: window.KeyboardInfo) => {
-    console.log('Keyboard will hide animation: ' + JSON.stringify(keyboardInfo));
-  }
-
-  build() {
-    Column() {
-      TextInput()
-    }
-  }
-
-  aboutToAppear(): void {
-    this.registerkeyboardWillHideAnimation()
-  }
-
-  private registerkeyboardWillHideAnimation() {
-    let context = getContext(this) as Context
-    window.getLastWindow(context).then((lastWindow) => {
-      try {
-        lastWindow.on("keyboardWillHide", this.registerKeyboardWillHideAnimationCallback);
-        console.log('Register keyboard will hide animation success');
-      } catch ( exception) {
-        console.error('Failed to register callback.')
-      }
-    })
-  }
+const callback = (keyboardInfo: window.KeyboardInfo) => {
+  console.info('Keyboard will hide animation. keyboardInfo: ' + JSON.stringify(keyboardInfo));
+}
+try {
+  windowClass.on('keyboardWillHide', callback);
+  console.info('Register keyboard will hide animation success');
+} catch (exception) {
+  console.error(`Failed to register or unregister callback. Cause code: ${exception.code}, message: ${exception.message}`);
 }
 ```
 
@@ -4385,40 +4322,19 @@ off(type: 'keyboardWillHide', callback?: Callback&lt;KeyboardInfo&gt;): void
 **示例：**
 
 ```ts
-import window from '@ohos.window';
-import { JSON } from '@kit.ArkTS';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-@Entry
-@Component
-struct Index {
-  private registerKeyboardWillHideAnimationCallback = (keyboardInfo: window.KeyboardInfo) => {
-    console.log('Keyboard will hide animation: ' + JSON.stringify(keyboardInfo));
-  }
-
-  build() {
-    Column() {
-      TextInput()
-    }
-  }
-
-  aboutToAppear(): void {
-    this.unregisterKeyboardWillHideAnimation()
-  }
-
-  private unregisterKeyboardWillHideAnimation() {
-    let context = getContext(this) as Context
-    window.getLastWindow(context).then((lastWindow) => {
-      try {
-        lastWindow.on("keyboardWillHide", this.registerKeyboardWillHideAnimationCallback);
-        lastWindow.off('keyboardWillHide', this.registerKeyboardWillHideAnimationCallback);
-        // 如果通过on开启多个callback进行监听，同时关闭所有监听：
-        lastWindow.off('keyboardWillHide');
-        console.log('Unregister keyboard will hide animation success');
-      } catch ( exception) {
-        console.error('Failed to register callback.')
-      }
-    })
-  }
+const callback = (keyboardInfo: window.KeyboardInfo) => {
+  console.info('Keyboard will hide animation. keyboardInfo: ' + JSON.stringify(keyboardInfo));
+}
+try {
+  windowClass.on('keyboardWillHide', callback);
+  windowClass.off('keyboardWillHide', callback);
+  // 如果通过on开启多个callback进行监听，同时关闭所有监听：
+  windowClass.off('keyboardWillHide');
+  console.info('Unregister keyboard will show animation success');
+} catch (exception) {
+  console.error(`Failed to register or unregister callback. Cause code: ${exception.code}, message: ${exception.message}`);
 }
 ```
 
