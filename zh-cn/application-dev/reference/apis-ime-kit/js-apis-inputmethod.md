@@ -43,16 +43,16 @@ import { inputMethod } from '@kit.IMEKit';
 
 ## CapitalizeMode<sup>20+</sup>
 
-枚举,大小写模式类型
+枚举，大小写模式类型。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
 | 名称 | 值 | 描述 |
 | -------- | -- | -------- |
-| NONE | 0 | 大小写模式，不区分大小写 |
-| SENTENCES | 1 | 大小写模式，句子开头首字母大写|
-| WORDS | 2 |大小写模式，每个单词首字母大写|
-| CHARACTERS | 3 | 大小写模式，每个字母都大写 |
+| NONE | 0 | 大小写模式，不区分大小写。|
+| SENTENCES | 1 | 大小写模式，句子开头首字母大写。|
+| WORDS | 2 |大小写模式，每个单词首字母大写。|
+| CHARACTERS | 3 | 大小写模式，每个字母都大写。|
 
 ## inputMethod.getController<sup>9+</sup>
 
