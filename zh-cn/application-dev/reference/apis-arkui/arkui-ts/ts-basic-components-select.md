@@ -753,6 +753,74 @@ menuOutline(value: MenuOutlineOptions)
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | value  | [MenuOutlineOptions](#menuoutlineoptions18对象说明) | 是   | 下拉菜单框的外描边样式。 |
 
+### textModifier<sup>20+</sup>
+
+textModifier(modifier: Optional\<[TextModifier](ts-universal-attributes-attribute-modifier.md)>)
+
+定制Select按钮文本样式的方法，在应用了textModifier之后，Select按钮的文本样式将完全由开发者自定义。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名   | 类型                                                         | 必填 | 说明                                                         |
+| ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| modifier  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[TextModifier](ts-universal-attributes-attribute-modifier.md)> | 是   | 在Select组件上，定制按钮文本样式的方法。 |
+
+### arrowModifier<sup>20+</sup>
+
+arrowModifier(modifier: Optional\<[SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md)>)
+
+定制Select按钮下拉箭头图标样式的方法，在应用arrowModifier之后，Select按钮下拉箭头的图标样式将完全由开发者自定义。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名   | 类型                                                         | 必填 | 说明                                                         |
+| ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| modifier  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md)> | 是   | 在Select组件上，定制Select按钮下拉箭头图标样式的方法。 |
+
+### optionTextModifier<sup>20+</sup>
+
+optionTextModifier(modifier: Optional\<[TextModifier](ts-universal-attributes-attribute-modifier.md)>)
+
+定制Select下拉菜单未选中项文本样式的方法，在应用optionTextModifier之后，下拉菜单未选中项的文本样式将完全由开发者自定义。
+
+如果[optionFont](#optionfont)与optionTextModifier的Font属性同时设置，则优先使用[optionFont](#optionfont)设置下拉菜单未选中项的文本样式；[optionFont](#optionfont)中缺省的属性将设置为对应的默认值。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名   | 类型                                                         | 必填 | 说明                                                         |
+| ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| modifier  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[TextModifier](ts-universal-attributes-attribute-modifier.md)> | 是   | 在Select组件上，定制Select下拉菜单未选中项样式的方法。|
+
+### selectedOptionTextModifier<sup>20+</sup>
+
+selectedOptionTextModifier(modifier: Optional\<[TextModifier](ts-universal-attributes-attribute-modifier.md)>)
+
+定制Select下拉菜单选中项文本样式的方法，在应用selectedOptionTextModifier之后，下拉菜单选中项的文本样式将完全由开发者自定义。
+
+如果[selectedOptionFont](#selectedoptionfont)与selectedOptionTextModifier的Font属性同时设置，则优先使用[selectedOptionFont](#selectedoptionfont)设置下拉菜单选中项的文本样式；若未设置[selectedOptionFont](#selectedoptionfont)，则优先使用[optionFont](#optionfont)设置下拉菜单选中项的文本样式。其中[selectedOptionFont](#selectedoptionfont)或者[optionFont](#optionfont)缺省的属性将设置为对应的默认值。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名   | 类型                                                         | 必填 | 说明                                                         |
+| ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| modifier  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[TextModifier](ts-universal-attributes-attribute-modifier.md)> | 是   | 设置下拉菜单项选中项的文本样式。<br/>开发者可以根据需要管理和维护文本的样式进行设置。 |
+
 ## ArrowPosition<sup>10+</sup>枚举说明
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
@@ -871,7 +939,9 @@ type OnSelectCallback = (index: number, selectStr: string) => void
 | index  | number | 是   | 选中项的索引，索引值从0开始。 |
 | selectStr | string | 是   | 选中项的值。   |
 
-##  示例1（设置下拉菜单）
+##  示例
+
+###  示例1（设置下拉菜单）
 
 该示例通过配置SelectOptions实现下拉菜单。
 
@@ -919,7 +989,7 @@ struct SelectExample {
 
 
 
-##  示例2（设置symbol类型图标）
+###  示例2（设置symbol类型图标）
 该示例实现了一个下拉菜单中图片为Symbol的Select组件。
 
 ```ts
@@ -972,7 +1042,7 @@ struct SelectExample {
 
 ![](figures/SelectSymbol.png)
 
-##  示例3（自定义下拉菜单）
+###  示例3（自定义下拉菜单）
 该示例实现了一个自定义下拉菜选项的Select组件。自定义下拉菜单选项样式为“文本 + Symbol图片 + 空白间隔 + 文本 + 绘制三角形”，点击菜单选项后Select组件显示菜单选项的文本内容。
 
 ```ts
@@ -1044,7 +1114,7 @@ struct SelectExample {
 ```
 ![](figures/SelectBuilderSymbol.png)
 
-##  示例4（设置分割线样式）
+###  示例4（设置分割线样式）
 该示例通过配置divider的DividerOptions类型实现分割线样式的下拉菜单。
 
 ```ts
@@ -1092,7 +1162,7 @@ struct SelectExample {
 ```
 ![](figures/SelectCustomDivider.png)
 
-##  示例5（设置无分割线样式）
+###  示例5（设置无分割线样式）
 该示例通过配置divider为null实现无分割线样式的下拉菜单。
 
 ```ts
@@ -1134,3 +1204,138 @@ struct SelectExample {
 }
 ```
 ![](figures/SelectHideDivider.png)
+
+###  示例6（设置Select中文本和箭头样式）
+该示例通过textModifier和arrowModifier设置文本以及箭头样式。
+
+```ts
+import { TextModifier, SymbolGlyphModifier } from '@kit.ArkUI';
+
+@Entry
+@Component
+struct SelectExample {
+  @State text: string = "TTTTTTTTTT".repeat(3);
+  @State index: number = 2;
+  textModifier: TextModifier = new TextModifier();
+  symbolGlyphModifier: SymbolGlyphModifier = new SymbolGlyphModifier();
+
+  aboutToAppear(): void {
+    this.textModifier
+      .maxLines(2)
+      .fontSize(18)
+      .textAlign(TextAlign.Center)
+      .fontColor('#333333')
+      .fontWeight(FontWeight.Medium)
+      .textOverflow({overflow:TextOverflow.Clip})
+
+    this.symbolGlyphModifier
+      .fontSize(25)
+      .fontColor(['#999999'])
+  }
+
+  build() {
+    Column() {
+      Select([
+        { value: 'A very long option text that should be truncated nicely'.repeat(3), icon: $r("app.media.startIcon") },
+        { value: 'Option B', icon: $r("app.media.startIcon") },
+        { value: 'Option C', icon: $r("app.media.startIcon") },
+        { value: 'Option D', icon: $r("app.media.startIcon") }
+      ])
+        .selected(this.index)
+        .value(this.text)
+        .textModifier(this.textModifier)
+        .arrowModifier(this.symbolGlyphModifier)
+        .onSelect((index: number, text?: string) => {
+          console.info('Select:' + index);
+          this.index = index;
+          if (text) {
+            this.text = text;
+          }
+        })
+        .width('90%')
+        .margin({ top: 20,left:30 })
+        .borderRadius(12)
+        .width(200)
+        .padding(9)
+        .backgroundColor(Color.White)
+        .shadow({ radius: 10, color: '#888888', offsetX: 0, offsetY: 10 })
+    }
+    .alignItems(HorizontalAlign.Start)
+    .padding(10)
+    .backgroundColor('#F0F2F5')
+    .width('100%')
+    .height('100%')
+  }
+}
+
+```
+![](figures/SelectModifier.png)
+
+###  示例7（设置Select下拉菜单选中和非选中项文本样式）
+该示例通过optionTextModifier和selectedOptionTextModifier设置下拉菜单选中和非选中项文本样式。
+
+```ts
+import { TextModifier } from '@kit.ArkUI';
+
+@Entry
+@Component
+struct SelectExample {
+  @State text: string = "TTTTTTTTTT".repeat(3);
+  @State index: number = 2;
+  optiontextModifier: TextModifier = new TextModifier();
+  selectedOptiontextModifier: TextModifier = new TextModifier();
+  aboutToAppear(): void {
+    this.optiontextModifier
+      .maxLines(1)
+      .fontSize(16)
+      .textAlign(TextAlign.Start)
+      .fontColor('#666666')
+      .fontWeight(FontWeight.Normal)
+      .width(200)
+
+    this.selectedOptiontextModifier
+      .maxLines(1)
+      .fontSize(18)
+      .textAlign(TextAlign.Start)
+      .fontColor('#007BFF')
+      .fontWeight(FontWeight.Bold)
+      .width(200)
+  }
+
+  build() {
+    Column() {
+      Select([
+        { value: 'A very long option text that should be truncated nicely'.repeat(3), icon: $r("app.media.startIcon") },
+        { value: 'Option B', icon: $r("app.media.startIcon") },
+        { value: 'Option C', icon: $r("app.media.startIcon") },
+        { value: 'Option D', icon: $r("app.media.startIcon") }
+      ])
+        .selected(this.index)
+        .value(this.text)
+        .onSelect((index: number, text?: string) => {
+          console.info('Select:' + index);
+          this.index = index;
+          if (text) {
+            this.text = text;
+          }
+        })
+        .optionTextModifier(this.optiontextModifier)
+        .selectedOptionTextModifier(this.selectedOptiontextModifier)
+        .width('90%')
+        .margin({ top: 20,left:30 })
+        .borderRadius(12)
+        .width(200)
+        .padding(9)
+        .backgroundColor(Color.White)
+        .shadow({ radius: 10, color: '#888888', offsetX: 0, offsetY: 10 })
+    }
+    .alignItems(HorizontalAlign.Start)
+    .padding(10)
+    .backgroundColor('#F0F2F5')
+    .width('100%')
+    .height('100%')
+  }
+}
+
+```
+![](figures/SelectOptionModifier.png)
