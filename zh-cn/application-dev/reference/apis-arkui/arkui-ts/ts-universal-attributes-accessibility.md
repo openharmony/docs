@@ -517,7 +517,9 @@ accessibilityFocusDrawLevel(drawLevel: FocusDrawLevel)
 | -------- | ------- | ---- | ------------------------------------------------------------ |
 | drawLevel | [FocusDrawLevel](ts-appendix-enums.md#focusdrawlevel19) | 是   | 无障碍绘制能力，默认绘制聚焦节点本身。 |
 
-## 示例1（设置无障碍文本和无障碍说明）
+## 示例
+
+### 示例1（设置无障碍文本和无障碍说明）
 
 该示例主要演示accessibilityText无障碍文本和accessibilityDescription无障碍说明的播报内容。
 
@@ -559,7 +561,7 @@ struct Index {
 }
 ```
 
-## 示例2（设置无障碍组）
+### 示例2（设置无障碍组）
 
 该示例主要演示优先使用子组件的无障碍文本进行朗读。
 
@@ -589,7 +591,7 @@ struct Focus {
 }
 ```
 
-## 示例3（设置首焦点和组件的下一个焦点）
+### 示例3（设置首焦点和组件的下一个焦点）
 
 该示例主要演示accessibilityDefaultFocus屏幕朗读当前页默认首焦点和accessibilityNextFocusId走焦过程中组件的下一个焦点。
 
@@ -626,7 +628,7 @@ struct Index {
 }
 ```
 
-## 示例4（设置无障碍组件类型和文本提示信息）
+### 示例4（设置无障碍组件类型和文本提示信息）
 
 该示例主要演示accessibilityRole无障碍组件类型和accessibilityTextHint供无障碍辅助应用查询的组件的文本提示信息。
 
