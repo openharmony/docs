@@ -236,7 +236,7 @@ createAVTranscoder(): Promise\<AVTranscoder>
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let avTranscoder: media.AVTranscoder;
+let avTranscoder: media.AVTranscoder | undefined = undefined;
 media.createAVTranscoder().then((transcoder: media.AVTranscoder) => {
   if (transcoder != null) {
     avTranscoder = transcoder;

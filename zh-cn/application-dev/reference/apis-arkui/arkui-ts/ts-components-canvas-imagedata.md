@@ -4,7 +4,7 @@ ImageData对象可以存储canvas渲染的像素数据。
 
 >  **说明：**
 >
->  从 API Version 8 开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>  从 API version 8 开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 ## 接口
 
@@ -53,9 +53,9 @@ constructor(width: number, height: number, data?: Uint8ClampedArray, unit?: Leng
   @Entry
   @Component
   struct Translate {
-    private settings: RenderingContextSettings = new RenderingContextSettings(true)
-    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
-    private img: ImageBitmap = new ImageBitmap("common/images/1234.png")
+    private settings: RenderingContextSettings = new RenderingContextSettings(true);
+    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
+    private img: ImageBitmap = new ImageBitmap("common/images/1234.png");
 
     build() {
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
@@ -65,8 +65,8 @@ constructor(width: number, height: number, data?: Uint8ClampedArray, unit?: Leng
           .backgroundColor('#ffff00')
           .onReady(() => {
             this.context.drawImage(this.img, 0, 0, 130, 130)
-            let imagedata = this.context.getImageData(50, 50, 130, 130)
-            this.context.putImageData(imagedata, 150, 150)
+            let imageData = this.context.getImageData(50, 50, 130, 130)
+            this.context.putImageData(imageData, 150, 150)
           })
       }
       .width('100%')

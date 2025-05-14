@@ -125,7 +125,7 @@ ArkUI提供了WaterFlow容器组件，用于构建瀑布流布局。WaterFlow组
 
 ```ts
 // 通过状态变量设置列数，可以按需修改触发布局更新
-@State columns: number = 2
+@State columns: number = 2;
 
 @Reusable
 @Component

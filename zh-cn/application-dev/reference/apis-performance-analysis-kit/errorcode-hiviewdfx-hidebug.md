@@ -1,4 +1,4 @@
-# Hidebug错误码
+# HiDebug错误码
 
 > **说明：**
 >
@@ -15,11 +15,11 @@ ServiceId invalid. The system ability does not exist.
 
 **可能原因**
 
-当前serviceId未查询到对应的系统服务。
+serviceId参数无效，或对应的服务未启动。
 
 **处理步骤**
 
-传入正确的系统服务id。
+确保传入正确的系统服务serviceId。
 
 ## 11400102 重复采集
 
@@ -28,15 +28,15 @@ ServiceId invalid. The system ability does not exist.
 Capture trace already enabled.
 
 **错误描述**
-当前进程已经开启了capture trace采集，重复采集。
+进程已开启trace采集。
 
 **可能原因**
 
-上次开启的trace并未关闭。
+进程正在进行trace采集。
 
 **处理步骤**
 
-关闭上一次开启的trace。
+等待trace采集结束或调用OH_HiDebug_StopAppTraceCapture关闭正在运行的trace采集。
 
 ## 11400103 权限校验失败
 
@@ -49,11 +49,11 @@ No write permission on the file.
 
 **可能原因**
 
-当前目录可能不存在或者被误删。
+目录不存在或被误删。
 
 **处理步骤**
 
-重新运行采集接口，再次生成正确目录文件。
+重新运行采集接口，再次生成正确的目录文件。
 
 ## 11400104 内部异常
 
@@ -66,13 +66,13 @@ Abnormal trace status.
 
 **可能原因**
 
-可能由于系统内核崩溃、应用进程卡死等导致，难以定位，建议开发者重启应用或者重启系统。
+系统内核崩溃或应用进程卡死。
 
 **处理步骤**
 
-建议开发者重启应用或者重启系统。
+建议重启应用或系统。
 
-## 11400105 没有开启trace
+## 11400105 未开启trace采集
 
 **错误信息**
 
@@ -83,8 +83,8 @@ No capture trace running.
 
 **可能原因**
 
-没有开启trace采集。
+未开启trace采集。
 
 **处理步骤**
 
-先开启trace采集再停止。
+开启trace采集，然后停止。

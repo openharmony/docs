@@ -468,7 +468,7 @@ Obtains the keycodes supported by the input device. This API uses a promise to r
 
 | Parameters                               | Description                           |
 | ----------------------------------- | ------------------------------- |
-| Promise&lt;Array&lt;boolean&gt;&gt; | Promise used to return the result.|
+| Promise&lt;Array&lt;boolean&gt;&gt; | Promise used to return the result. The value **true** indicates that the keycodes are supported, and the value **false** indicates the opposite.|
 
 **Error codes**
 
@@ -653,6 +653,95 @@ try {
 }
 ```
 
+## inputDevice.isFunctionKeyEnabled<sup>15+</sup>
+
+isFunctionKeyEnabled(functionKey: FunctionKey): Promise&lt;boolean&gt;
+
+Checks whether the function key is enabled. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.MultimodalInput.Input.InputDevice
+
+**Parameters**
+
+| Name    | Type  | Mandatory| Description                                                        |
+| -------- | ------ | ---- | ------------------------------------------------------------ |
+| functionKey | [FunctionKey](#functionkey15) | Yes  | Type of the function key.|
+
+**Return value**
+
+| Parameters                  | Description                                                        |
+| ---------------------- | ------------------------------------------------------------ |
+| Promise&lt;boolean&gt; | Promise used to return the result. The value **true** indicates that the function key is enabled, and the value **false** indicates the opposite.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Input Device Error Codes](errorcode-inputdevice.md).
+
+| ID | Error Message            |
+| ---- | --------------------- |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+| 3900002      | There is currently no keyboard device connected. |
+
+**Example**
+
+```js
+import { inputDevice } from '@kit.InputKit';
+
+try {
+  inputDevice.isFunctionKeyEnabled(inputDevice.FunctionKey.CAPS_LOCK).then((state: boolean) => {
+    console.log(`capslock state: ${JSON.stringify(state)}`);
+  });
+} catch (error) {
+  console.log(`Failed to get capslock state, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```
+
+## inputDevice.setFunctionKeyEnabled<sup>15+</sup>
+
+setFunctionKeyEnabled(functionKey: FunctionKey, enabled: boolean): Promise&lt;void&gt;
+
+Sets the status of the function key . This API uses a promise to return the result.
+
+**Required permissions**: ohos.permission.INPUT_KEYBOARD_CONTROLLER
+
+**System capability**: SystemCapability.MultimodalInput.Input.InputDevice
+
+**Parameters**
+
+| Name  | Type   | Mandatory| Description                     |
+| -------- | ------- | ---- | ------------------------- |
+| functionKey | [FunctionKey](#functionkey15) | Yes  | Type of the function key.|
+| enabled  | boolean | Yes  | Status of the function key. The value **true** indicates that the function key is enabled, and the value **false** indicates the opposite.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Input Device Error Codes](errorcode-inputdevice.md).
+
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 201      | Permission denied.                                           |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+| 3900002      | There is currently no keyboard device connected. |
+| 3900003      | It is prohibited for non-input applications. |
+
+**Example**
+
+```js
+import { inputDevice } from '@kit.InputKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+  inputDevice.setFunctionKeyEnabled(inputDevice.FunctionKey.CAPS_LOCK, true).then(() => {
+    console.info(`Set capslock state success`);
+  }).catch((error: BusinessError) => {
+    console.info(`Set capslock state failed, error=${JSON.stringify(error)}`);
+  });
+} catch (error) {
+    console.info(`Set capslock enable error`);
+}
+```
+
 ## inputDevice.getIntervalSinceLastInput<sup>14+</sup>
 
 getIntervalSinceLastInput(): Promise&lt;number&gt;
@@ -665,13 +754,13 @@ Obtains the interval since the last system input event. This API uses a promise 
 
 | Parameters                                         | Description                           |
 | --------------------------------------------- | ------------------------------- |
-| Promise&lt;number&gt; | Promise used tothe interval since the last system input event, in μs.|
+| Promise&lt;number&gt; | Promise used to return the interval since the last system input event, in μs.|
 
 **Example**
 
 ```js
   inputDevice.getIntervalSinceLastInput().then((timeInterval: number) => {
-    console.log(`Interval since last input: ${JSON.stringify(number)}`);
+    console.log(`Interval since last input: ${JSON.stringify(timeInterval)}`);
   });
 ```
 
@@ -715,14 +804,14 @@ Defines the axis type of an input device.
 
 | Type     |Description     |
 | --------- | ------- |
-| 'touchmajor'  | **touchmajor** axis.|
-| 'touchminor'  | **touchminor** axis.|
-| 'toolminor'   | **toolminor** axis.|
-| 'toolmajor'   | **toolmajor** axis.|
-| 'orientation' | **orientation** axis.|
-|'pressure'    | **pressure** axis. |
-| 'x'          | X axis.        |
-| 'y'           | Y axis.        |
+| 'touchmajor'  | Major axis of the elliptical touching area.|
+| 'touchminor'  | Minor axis of the elliptical touching area.|
+| 'toolminor'   | Minor axis of the tool area.|
+| 'toolmajor'   | Major axis of the tool area.|
+| 'orientation' | Orientation axis.|
+|'pressure'    | Pressure axis. |
+| 'x'          | Horizontal axis.        |
+| 'y'           | Vertical axis.        |
 |'null'        |  None.            |
 
 ## AxisRange
@@ -785,3 +874,13 @@ Enumerates the keyboard types.
 | DIGITAL_KEYBOARD    | 3    | Keypad. |
 | HANDWRITING_PEN     | 4    | Stylus. |
 | REMOTE_CONTROL      | 5    | Remote control. |
+
+## FunctionKey<sup>15+</sup>
+
+Defines the type of a function key.
+
+**System capability**: SystemCapability.MultimodalInput.Input.InputDevice
+
+| Name                 | Value   | Description       |
+| ------------------- | ---- | --------- |
+| CAPS_LOCK                | 1    | CapsLock key. This key can be enabled or disabled only for the input keyboard extension.|

@@ -532,7 +532,7 @@ export const deleteNode = (id: string) => {
 
 ### Using with Navigation
 
-You can use the [customNavContentTransition](../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md#customnavcontenttransition11) (see [Example 3](../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md#example-3-setting-an-interactive-transition-animation)) capability of [Navigation](../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md) to implement shared element transition, during which, the component is migrated from the disappearing page to the appearing page.
+You can use the [customNavContentTransition](../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md#customnavcontenttransition11) (see [Example 3](../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md#example-3)) capability of [Navigation](../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md) to implement shared element transition, during which, the component is migrated from the disappearing page to the appearing page.
 
 The following is the procedure for implementing the expanding and collapsing of a thumbnail:
 

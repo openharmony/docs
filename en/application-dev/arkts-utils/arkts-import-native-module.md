@@ -68,7 +68,10 @@ export * from 'libentry.so'
 import { add } from './test1'
 add(2, 3);
 ```
-**Note**: Native modules do not support both export and import using namespaces simultaneously. 
+> **NOTE**
+> 
+> Native modules do not support both export and import using namespaces simultaneously.
+
 **Anti-example:**
 ```ts
 // test1.ets
@@ -105,7 +108,10 @@ import('./test1').then((ns:ESObject) => {
 })
 ```
 
-**Note**: Dynamic imports do not support exporting files using namespace exports. 
+> **NOTE**
+> 
+> Dynamic imports do not support exporting files using namespace exports.
+
 **Anti-example:**
 ```ts
 // test1.ets

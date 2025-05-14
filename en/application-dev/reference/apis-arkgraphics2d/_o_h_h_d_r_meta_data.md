@@ -11,6 +11,7 @@ The **OHHDRMetaData** struct describes the HDR metadata.
 
 **Related module**: [NativeWindow](_native_window.md)
 
+**Header file**: [external_window.h](external__window_8h.md)
 
 ## Summary
 

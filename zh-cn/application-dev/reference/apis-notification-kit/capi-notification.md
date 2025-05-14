@@ -3,7 +3,7 @@
 
 ## 概述
 
-描述Notification向应用提供通知服务的能力。
+Notification向应用提供通知服务的能力。
 
 **系统能力：** SystemCapability.Notification.Notification
 

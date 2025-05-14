@@ -11,7 +11,7 @@ ArkTS provides conditional rendering. It supports the use of the **if**, **else*
 
 - The **if**, **else**, and **else if** statements are supported.
 
-- The condition statements following the **if** or **else if** statement can use state variables or normal variables. (Value change of state variables can trigger UI rendering in real time, but value change of normal variables cannot.)
+- The conditional statements following the **if** or **else if** statement can use state variables or normal variables. (Value change of state variables can trigger UI rendering in real time, but value change of normal variables cannot.)
 
 - Conditional statements can be used within a container component to build different child components.
 
@@ -44,7 +44,7 @@ A condition can include Typescript expressions. As for any expression inside bui
 ```ts
 @Entry
 @Component
-struct ViewA {
+struct MyComponent {
   @State count: number = 0;
 
   build() {
@@ -194,7 +194,7 @@ The nesting of **if** statements makes no difference to the rule about the paren
 ```ts
 @Entry
 @Component
-struct CompA {
+struct MyComponent {
   @State toggle: boolean = false;
   @State toggleColor: boolean = false;
 

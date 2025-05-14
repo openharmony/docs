@@ -326,11 +326,11 @@ struct Index {
 
 | 名称 | 值 | 说明 |
 | -------- | -------- | -------- |
-| [PX](arkui-ts/ts-types.md#px10) | 0 | 长度类型，用于描述以px像素单位为单位的长度。 |
-| [VP](arkui-ts/ts-types.md#vp10) | 1 | 长度类型，用于描述以vp像素单位为单位的长度。 |
-| [FP](arkui-ts/ts-types.md#fp10) | 2 | 长度类型，用于描述以fp像素单位为单位的长度。 |
-| [PERCENT](arkui-ts/ts-types.md#percentage10) | 3 | 长度类型，用于描述以%像素单位为单位的长度。 |
-| [LPX](arkui-ts/ts-types.md#lpx10) | 4 | 长度类型，用于描述以lpx像素单位为单位的长度。 |
+| PX | 0 | 长度类型，用于描述以px像素单位为单位的长度。 |
+| VP | 1 | 长度类型，用于描述以vp像素单位为单位的长度。 |
+| FP | 2 | 长度类型，用于描述以fp像素单位为单位的长度。 |
+| PERCENT | 3 | 长度类型，用于描述以%像素单位为单位的长度。 |
+| LPX | 4 | 长度类型，用于描述以lpx像素单位为单位的长度。 |
 
 ## SizeT\<T><sup>12+</sup>
 
@@ -360,7 +360,7 @@ struct Index {
 
 ## LengthMetrics<sup>12+</sup>
 
-用于设置长度属性，当长度单位为[PERCENT](arkui-ts/ts-types.md#percentage10)时，值为1表示100%。
+用于设置长度属性，当长度单位为PERCENT时，值为1表示100%。
 
 ### 属性
 
@@ -460,7 +460,7 @@ static fp(value: number): LengthMetrics
 
 static percent(value: number): LengthMetrics
 
-用于生成单位为PERCENT的长度属性。
+用于生成单位为PERCENT的长度属性，值为1表示100%。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -470,7 +470,7 @@ static percent(value: number): LengthMetrics
 
 | 参数名 | 类型          | 必填 | 说明         |
 | ------ | ------------- | ---- | ------------ |
-| value   | number | 是   | 长度属性的值。<br/>取值范围：[0, 100] |
+| value   | number | 是   | 长度属性的值。<br/>取值范围：[0, 1] |
 
 **返回值：**
 

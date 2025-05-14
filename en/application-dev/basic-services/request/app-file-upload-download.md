@@ -173,7 +173,12 @@ try {
 // Way 2: Use request.agent.
 // pages/xxx.ets
 // Download the network resource file to the local application file directory, and read data from the file.
+import { common } from '@kit.AbilityKit';
+import fs from '@ohos.file.fs';
 import { BusinessError, request } from '@kit.BasicServicesKit';
+import { buffer } from '@kit.ArkTS';
+
+// Obtain the application file path.
 let context = getContext(this) as common.UIAbilityContext;
 let filesDir = context.filesDir;
 

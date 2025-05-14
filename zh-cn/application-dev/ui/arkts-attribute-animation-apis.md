@@ -21,7 +21,7 @@ animateTo(value: AnimateParam, event: () => void): void
 
 > **说明：**
 > 
-> 直接使用animateTo可能导致实例不明确的问题，建议使用[getUIContext](../reference/apis-arkui/js-apis-window.md#getuicontext10)获取[UIContext](../reference/apis-arkui/js-apis-arkui-UIContext.md#uicontext)实例，并使用[animateTo](../reference/apis-arkui/js-apis-arkui-UIContext.md#animateto)调用绑定实例的animateTo。
+> 直接使用animateTo可能导致[UI上下文不明确](./arkts-global-interface.md)的问题，建议使用[getUIContext](../reference/apis-arkui/js-apis-window.md#getuicontext10)获取[UIContext](../reference/apis-arkui/js-apis-arkui-UIContext.md#uicontext)实例，并使用[animateTo](../reference/apis-arkui/js-apis-arkui-UIContext.md#animateto)调用绑定实例的animateTo。
 
 ```ts
 import { curves } from '@kit.ArkUI';
@@ -182,12 +182,7 @@ struct KeyframeAnimateToDemo {
       .borderRadius(30)
       .onClick(() => {
         this.getUIContext()?.keyframeAnimateTo({
-          iterations: 1,
-          expectedFrameRateRange: {
-            min: 10,
-            max: 120,
-            expected: 60,
-          }
+          iterations: 1
         }, [
           {
             // 第一段关键帧动画时长为800ms，组件一顺时针旋转90度，组件二的透明度变从1变为0.6，组件二的translate从0位移到50
@@ -230,7 +225,7 @@ struct KeyframeAnimateToDemo {
 ![keyframeAnimateTo1](figures/keyframeAnimateTo1.gif)
 
 > **说明：**
-> - 在对组件的位置大小的变化做动画的时候，由于布局属性的改变会触发测量布局，性能开销大。[scale](../reference/apis-arkui/arkui-ts/ts-universal-attributes-transformation.md#scale)属性的改变不会触发测量布局，性能开销小。因此，在组件位置大小持续发生变化的场景，如跟手触发组件大小变化的场景，推荐适用scale。
+> - 在对组件的位置大小的变化做动画的时候，由于布局属性的改变会触发测量布局，性能开销大。[scale](../reference/apis-arkui/arkui-ts/ts-universal-attributes-transformation.md#scale)属性的改变不会触发测量布局，性能开销小。因此，在组件位置大小持续发生变化的场景，如跟手触发组件大小变化的场景，推荐使用scale。
 > 
 > - 属性动画应该作用于始终存在的组件，对于将要出现或者将要消失的组件的动画应该使用[转场动画](arkts-transition-overview.md)。
 > 

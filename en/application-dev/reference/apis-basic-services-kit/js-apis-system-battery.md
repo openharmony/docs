@@ -15,7 +15,7 @@ import {Battery, BatteryResponse } from '@kit.BasicServicesKit';
 ```
 
 
-## Battery.getStatus
+## Battery.getStatus<sup>(deprecated)</sup>
 
 getStatus(options?: GetStatusOptions): void;
 
@@ -27,7 +27,7 @@ Obtains the current charging state and battery level.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| options | [GetStatusOptions](#getstatusoptions) | No| Object that contains the API calling result. This parameter is optional and is left blank by default.|
+| options | [GetStatusOptions](#getstatusoptionsdeprecated) | No| Object that contains the API calling result. This parameter is optional and is left blank by default.|
 
 **Example**
 
@@ -42,7 +42,7 @@ Battery.getStatus({
 });
 ```
 
-## GetStatusOptions
+## GetStatusOptions<sup>(deprecated)</sup>
 
 Object that contains the API calling result.
 
@@ -50,11 +50,11 @@ Object that contains the API calling result.
 
 | Name  | Type                                               | Mandatory| Description                                                        |
 | -------- | --------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| success  | (data: [BatteryResponse](#batteryresponse)) => void | No  | Called when an API call is successful. **data** is a return value of the [BatteryResponse](#batteryresponse) type.|
+| success  | (data: [BatteryResponse](#batteryresponsedeprecated)) => void | No  | Called when an API call is successful. **data** is a return value of the [BatteryResponse](#batteryresponsedeprecated) type.|
 | fail     | (data: string, code: number) => void                | No  | Called when an API call has failed. **data** indicates the error information, and **code** indicates the error code.      |
 | complete | () => void                                          | No  | Called when an API call is complete.                                    |
 
-## BatteryResponse
+## BatteryResponse<sup>(deprecated)</sup>
 
 Defines a response that returns the charging status and remaining power of the device.
 

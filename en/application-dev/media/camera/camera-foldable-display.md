@@ -1,6 +1,6 @@
 # Adapting to Camera Changes in Different Folding States (ArkTS)
 
-Before developing a camera application, request permissions by following the instructions provided in [Camera Development Preparations](camera-preparation.md).
+Before developing a camera application, request permissions by following the instructions provided in [Requesting Camera Development Permissions](camera-preparation.md).
 
 Cameras that a foldable device can use vary according to its folding states. To deliver a smooth user experience during transitions between folded and unfolded states, an application can call [CameraManager.on('foldStatusChange')](../../reference/apis-camera-kit/js-apis-camera.md#onfoldstatuschange12) or [display.on('foldStatusChange')](../../reference/apis-arkui/js-apis-display.md#displayonfoldstatuschange10) to listen for folding state changes of the device, call [CameraManager.getSupportedCameras](../../reference/apis-camera-kit/js-apis-camera.md#getsupportedcameras) to obtain the available cameras in the current state, and make adaptations accordingly.
 

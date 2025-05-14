@@ -1,10 +1,10 @@
 # 拖拽控制
 
-设置组件是否可以响应拖拽事件。
+组件提供了一些属性和接口，可用于配置组件对拖拽事件的响应行为，或影响系统对拖拽事件的处理方式，包括是否允许被拖拽，自定义拖拽跟手图的外观等。
 
 > **说明：**
 > 
-> 从API Version 10开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+> 从API version 10开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 ArkUI框架对以下组件实现了默认的拖拽能力，支持对数据的拖出或拖入响应。开发者也可以通过实现通用拖拽事件来自定义拖拽响应。
 
@@ -437,7 +437,7 @@ struct Example {
 
 ```ts
 // xxx.ets
-import { ImageModifier } from '@kit.ArkUI'
+import { ImageModifier } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -499,8 +499,8 @@ struct ImageDrag {
   @State targetImage1: string | PixelMap | null = null;
   @State targetImage2: string | PixelMap | null = null;
   @State targetImage3: string | PixelMap | null = null;
-  context = getContext(this) as common.UIAbilityContext;
-  filesDir = this.context.filesDir;
+  context: Context|undefined = this.getUIContext().getHostContext();
+  filesDir = this.context?.filesDir;
 
   public async createPixelMap(pixelMap: unifiedDataChannel.SystemDefinedPixelMap): Promise<image.PixelMap | null> {
     let mWidth: number = (pixelMap.details?.width ?? -1) as number;
@@ -553,7 +553,7 @@ struct ImageDrag {
         // PixelMap拖出
         Column() {
           Text('PixelMap').fontSize(14)
-          Image(this.context.resourceManager.getDrawableDescriptor($r('app.media.example').id).getPixelMap())
+          Image(this.context?.resourceManager.getDrawableDescriptor($r('app.media.example').id).getPixelMap())
             .objectFit(ImageFit.Contain).draggable(true)
             .onDragStart(() => {})
             .width(100).height(100)
@@ -633,7 +633,7 @@ struct ImageDrag {
               // 落盘到本地
               const imagePackerApi = image.createImagePacker();
               let packOpts : image.PackingOption = { format: "image/jpeg", quality:98 };
-              const path : string = this.context.cacheDir + "/pixel_map.jpg";
+              const path : string = this.context?.cacheDir + "/pixel_map.jpg";
               let file = fileIo.openSync(path, fileIo.OpenMode.CREATE | fileIo.OpenMode.READ_WRITE);
               imagePackerApi.packToFile(this.targetImage3, file.fd, packOpts).then(() => {
                 // 直接打包进文件

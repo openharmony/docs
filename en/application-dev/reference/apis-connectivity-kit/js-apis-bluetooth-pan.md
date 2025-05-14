@@ -15,6 +15,19 @@ import { pan } from '@kit.ConnectivityKit';
 ```
 
 
+## BaseProfile
+
+type BaseProfile = baseProfile.BaseProfile
+
+Defines **BaseProfile** APIs.
+
+**System capability**: SystemCapability.Communication.Bluetooth.Core
+
+| Type                           | Description        |
+| ----------------------------- | ---------- |
+| [baseProfile.BaseProfile](js-apis-bluetooth-baseProfile.md#baseprofile) | **BaseProfile** API definition.|
+
+
 ## pan.createPanProfile
 
 createPanProfile(): PanProfile

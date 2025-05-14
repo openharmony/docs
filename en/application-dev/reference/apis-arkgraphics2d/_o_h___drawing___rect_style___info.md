@@ -9,6 +9,7 @@ The OH_Drawing_RectStyle_Info struct describes the style of a rectangle.
 
 **Related module**: [Drawing](_drawing.md)
 
+**Header file**: [drawing_types.h](drawing__types_8h.md)
 
 ## Summary
 

@@ -3,7 +3,7 @@
 - [Localization Kit简介](i18n-l10n.md)
 - 应用国际化<!--i18n-->
     - [国际化界面设计](i18n-ui-design.md)
-    - [区域标识与文化习惯划分](i18n-locale-culture.md)
+    - [区域ID与文化习惯划分](i18n-locale-culture.md)
     - 设置语言与用户偏好<!--i18n-language-user-preferences-->
         - [设置系统语言与区域](i18n-system-language-region.md)
         - [设置应用偏好语言](i18n-preferred-language.md)

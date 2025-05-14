@@ -1624,9 +1624,9 @@ skill信息。
 | ------------------------------------------------------------ | -------------- |
 | [_Skill.Skill](js-apis-bundleManager-skill.md#skill-1) |skill信息。 |
 
-## SkillUri<sup>12+</sup>
+## SkillUrl<sup>12+</sup>
 
-type SkillUri = _Skill.SkillUri
+type SkillUrl = _Skill.SkillUri
 
 SkillUri信息。
 

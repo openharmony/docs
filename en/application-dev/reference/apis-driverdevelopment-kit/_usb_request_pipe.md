@@ -13,6 +13,8 @@ Defines a USB request pipe.
 
 [USB DDK](_usb_ddk.md)
 
+**Header file**: [usb_ddk_types.h](usb__ddk__types_8h.md)
+
 
 ## Summary
 

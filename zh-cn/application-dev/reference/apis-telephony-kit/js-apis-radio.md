@@ -212,7 +212,7 @@ getNetworkState\(slotId?: number\): Promise\<NetworkState\>
 
 | 参数名 | 类型   | 必填 | 说明                                   |
 | ------ | ------ | ---- | -------------------------------------- |
-| slotId | number | 否   | 卡槽ID。<br/>- 0：卡槽1。<br/>- 1：卡槽2。 |
+| slotId | number | 否   | 卡槽ID。<br/>- 0：卡槽1。<br/>- 1：卡槽2。<br/> 未指定卡槽时，默认为卡槽1。 |
 
 **返回值：**
 

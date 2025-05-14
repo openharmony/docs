@@ -15,7 +15,7 @@ import settings from '@ohos.settings';
 
 ## domainName
 
-Describes the domain name.
+Provides the domain name.
 
 ### Attributes
 

@@ -10,7 +10,7 @@
 >
 > - 页面路由需要在页面渲染完成之后才能调用，在onInit和onReady生命周期中页面还处于渲染阶段，禁止调用页面路由方法。
 >
-> - 本模块功能依赖UI的执行上下文，不可在UI上下文不明确的地方使用，参见[UIContext](./js-apis-arkui-UIContext.md#uicontext)说明。
+> - 本模块功能依赖UI的执行上下文，不可在[UI上下文不明确](../../ui/arkts-global-interface.md)的地方使用，参见[UIContext](./js-apis-arkui-UIContext.md#uicontext)说明。
 >
 > - 从API version 10开始，可以通过使用[UIContext](./js-apis-arkui-UIContext.md#uicontext)中的[getRouter](./js-apis-arkui-UIContext.md#getrouter)方法获取当前UI上下文关联的[Router](./js-apis-arkui-UIContext.md#router)对象。
 >
@@ -64,20 +64,20 @@ pushUrl(options: RouterOptions): Promise&lt;void&gt;
 import { BusinessError } from '@kit.BasicServicesKit';
 
 class innerParams {
-  data3: number[]
+  data3: number[];
 
   constructor(tuple: number[]) {
-    this.data3 = tuple
+    this.data3 = tuple;
   }
 }
 
 class routerParams {
-  data1: string
-  data2: innerParams
+  data1: string;
+  data2: innerParams;
 
   constructor(str: string, tuple: number[]) {
-    this.data1 = str
-    this.data2 = new innerParams(tuple)
+    this.data1 = str;
+    this.data2 = new innerParams(tuple);
   }
 }
 
@@ -128,20 +128,20 @@ pushUrl(options: RouterOptions, callback: AsyncCallback&lt;void&gt;): void
 
 ```ts
 class innerParams {
-  data3: number[]
+  data3: number[];
 
   constructor(tuple: number[]) {
-    this.data3 = tuple
+    this.data3 = tuple;
   }
 }
 
 class routerParams {
-  data1: string
-  data2: innerParams
+  data1: string;
+  data2: innerParams;
 
   constructor(str: string, tuple: number[]) {
-    this.data1 = str
-    this.data2 = new innerParams(tuple)
+    this.data1 = str;
+    this.data2 = new innerParams(tuple);
   }
 }
 
@@ -199,20 +199,20 @@ pushUrl(options: RouterOptions, mode: RouterMode): Promise&lt;void&gt;
 import { BusinessError } from '@kit.BasicServicesKit';
 
 class innerParams {
-  data3: number[]
+  data3: number[];
 
   constructor(tuple: number[]) {
-    this.data3 = tuple
+    this.data3 = tuple;
   }
 }
 
 class routerParams {
-  data1: string
-  data2: innerParams
+  data1: string;
+  data2: innerParams;
 
   constructor(str: string, tuple: number[]) {
-    this.data1 = str
-    this.data2 = new innerParams(tuple)
+    this.data1 = str;
+    this.data2 = new innerParams(tuple);
   }
 }
 
@@ -264,20 +264,20 @@ pushUrl(options: RouterOptions, mode: RouterMode, callback: AsyncCallback&lt;voi
 
 ```ts
 class innerParams {
-  data3: number[]
+  data3: number[];
 
   constructor(tuple: number[]) {
-    this.data3 = tuple
+    this.data3 = tuple;
   }
 }
 
 class routerParams {
-  data1: string
-  data2: innerParams
+  data1: string;
+  data2: innerParams;
 
   constructor(str: string, tuple: number[]) {
-    this.data1 = str
-    this.data2 = new innerParams(tuple)
+    this.data1 = str;
+    this.data2 = new innerParams(tuple);
   }
 }
 
@@ -334,10 +334,10 @@ replaceUrl(options: RouterOptions): Promise&lt;void&gt;
 import { BusinessError } from '@kit.BasicServicesKit';
 
 class routerParams {
-  data1: string
+  data1: string;
 
   constructor(str: string) {
-    this.data1 = str
+    this.data1 = str;
   }
 }
 
@@ -387,10 +387,10 @@ replaceUrl(options: RouterOptions, callback: AsyncCallback&lt;void&gt;): void
 
 ```ts
 class routerParams {
-  data1: string
+  data1: string;
 
   constructor(str: string) {
-    this.data1 = str
+    this.data1 = str;
   }
 }
 
@@ -449,10 +449,10 @@ replaceUrl(options: RouterOptions, mode: RouterMode): Promise&lt;void&gt;
 import { BusinessError } from '@kit.BasicServicesKit';
 
 class routerParams {
-  data1:string
+  data1:string;
 
   constructor(str:string) {
-    this.data1 = str
+    this.data1 = str;
   }
 }
 
@@ -503,10 +503,10 @@ replaceUrl(options: RouterOptions, mode: RouterMode, callback: AsyncCallback&lt;
 
 ```ts
 class routerParams {
-  data1: string
+  data1: string;
 
   constructor(str: string) {
-    this.data1 = str
+    this.data1 = str;
   }
 }
 
@@ -564,20 +564,20 @@ pushNamedRoute(options: NamedRouterOptions): Promise&lt;void&gt;
 import { BusinessError } from '@kit.BasicServicesKit';
 
 class innerParams {
-  data3: number[]
+  data3: number[];
 
   constructor(tuple: number[]) {
-    this.data3 = tuple
+    this.data3 = tuple;
   }
 }
 
 class routerParams {
-  data1: string
-  data2: innerParams
+  data1: string;
+  data2: innerParams;
 
   constructor(str: string, tuple: number[]) {
-    this.data1 = str
-    this.data2 = new innerParams(tuple)
+    this.data1 = str;
+    this.data2 = new innerParams(tuple);
   }
 }
 
@@ -630,20 +630,20 @@ pushNamedRoute(options: NamedRouterOptions, callback: AsyncCallback&lt;void&gt;)
 
 ```ts
 class innerParams {
-  data3: number[]
+  data3: number[];
 
   constructor(tuple: number[]) {
-    this.data3 = tuple
+    this.data3 = tuple;
   }
 }
 
 class routerParams {
-  data1: string
-  data2: innerParams
+  data1: string;
+  data2: innerParams;
 
   constructor(str: string, tuple: number[]) {
-    this.data1 = str
-    this.data2 = new innerParams(tuple)
+    this.data1 = str;
+    this.data2 = new innerParams(tuple);
   }
 }
 
@@ -701,16 +701,16 @@ pushNamedRoute(options: NamedRouterOptions, mode: RouterMode): Promise&lt;void&g
 import { BusinessError } from '@kit.BasicServicesKit';
 
 class innerParams {
-  data3: number[]
+  data3: number[];
 
   constructor(tuple: number[]) {
-    this.data3 = tuple
+    this.data3 = tuple;
   }
 }
 
 class routerParams {
-  data1: string
-  data2: innerParams
+  data1: string;
+  data2: innerParams;
 
   constructor(str: string, tuple: number[]) {
     this.data1 = str
@@ -766,20 +766,20 @@ pushNamedRoute(options: NamedRouterOptions, mode: RouterMode, callback: AsyncCal
 
 ```ts
 class innerParams {
-  data3: number[]
+  data3: number[];
 
   constructor(tuple: number[]) {
-    this.data3 = tuple
+    this.data3 = tuple;
   }
 }
 
 class routerParams {
-  data1: string
-  data2: innerParams
+  data1: string;
+  data2: innerParams;
 
   constructor(str: string, tuple: number[]) {
-    this.data1 = str
-    this.data2 = new innerParams(tuple)
+    this.data1 = str;
+    this.data2 = new innerParams(tuple);
   }
 }
 
@@ -836,10 +836,10 @@ replaceNamedRoute(options: NamedRouterOptions): Promise&lt;void&gt;
 import { BusinessError } from '@kit.BasicServicesKit';
 
 class routerParams {
-  data1: string
+  data1: string;
 
   constructor(str: string) {
-    this.data1 = str
+    this.data1 = str;
   }
 }
 
@@ -889,10 +889,10 @@ replaceNamedRoute(options: NamedRouterOptions, callback: AsyncCallback&lt;void&g
 
 ```ts
 class routerParams {
-  data1: string
+  data1: string;
 
   constructor(str: string) {
-    this.data1 = str
+    this.data1 = str;
   }
 }
 
@@ -951,10 +951,10 @@ replaceNamedRoute(options: NamedRouterOptions, mode: RouterMode): Promise&lt;voi
 import { BusinessError } from '@kit.BasicServicesKit';
 
 class routerParams {
-  data1: string
+  data1: string;
 
   constructor(str: string) {
-    this.data1 = str
+    this.data1 = str;
   }
 }
 
@@ -1005,10 +1005,10 @@ replaceNamedRoute(options: NamedRouterOptions, mode: RouterMode, callback: Async
 
 ```ts
 class routerParams {
-  data1: string
+  data1: string;
 
   constructor(str: string) {
-    this.data1 = str
+    this.data1 = str;
   }
 }
 
@@ -1378,29 +1378,29 @@ export default {
 
 > **说明：**
 > 
-> 直接使用router可能导致实例不明确的问题，建议使用[getUIContext](js-apis-arkui-UIContext.md#uicontext)获取UIContext实例，并使用[getRouter](js-apis-arkui-UIContext.md#getrouter)获取绑定实例的router。
+> 直接使用router可能导致[UI上下文不明确](../../ui/arkts-global-interface.md)的问题，建议使用[getUIContext](js-apis-arkui-UIContext.md#uicontext)获取UIContext实例，并使用[getRouter](js-apis-arkui-UIContext.md#getrouter)获取绑定实例的router。
 
 ```ts
 // 通过router.pushUrl跳转至目标页携带params参数
 import { router } from '@kit.ArkUI';
-import { BusinessError } from '@kit.BasicServicesKit'
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // 定义传递参数的类
 class innerParams {
-  array: number[]
+  array: number[];
 
   constructor(tuple: number[]) {
-    this.array = tuple
+    this.array = tuple;
   }
 }
 
 class routerParams {
-  text: string
-  data: innerParams
+  text: string;
+  data: innerParams;
 
   constructor(str: string, tuple: number[]) {
-    this.text = str
-    this.data = new innerParams(tuple)
+    this.text = str;
+    this.data = new innerParams(tuple);
   }
 }
 
@@ -1449,31 +1449,31 @@ struct Index {
 import { router } from '@kit.ArkUI';
 
 class innerParams {
-  array: number[]
+  array: number[];
 
   constructor(tuple: number[]) {
-    this.array = tuple
+    this.array = tuple;
   }
 }
 
 class routerParams {
-  text: string
-  data: innerParams
+  text: string;
+  data: innerParams;
 
   constructor(str: string, tuple: number[]) {
-    this.text = str
-    this.data = new innerParams(tuple)
+    this.text = str;
+    this.data = new innerParams(tuple);
   }
 }
 
 @Entry
 @Component
 struct Second {
-  private content: string = "这是第二页"
+  private content: string = "这是第二页";
   // 建议使用this.getUIContext().getRouter().getParams()
-  @State text: string = (router.getParams() as routerParams).text
-  @State data: object = (router.getParams() as routerParams).data
-  @State secondData: string = ''
+  @State text: string = (this.getUIContext().getRouter().getParams() as routerParams).text;
+  @State data: object = (this.getUIContext().getRouter().getParams() as routerParams).data;
+  @State secondData: string = '';
 
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
@@ -1483,7 +1483,7 @@ struct Second {
       Text(this.text)
         .fontSize(30)
         .onClick(() => {
-          this.secondData = (this.data['array'][1]).toString()
+          this.secondData = (this.data['array'][1]).toString();
         })
         .margin({ top: 20 })
       Text(`第一页传来的数值:${this.secondData}`)
@@ -1518,20 +1518,20 @@ push(options: RouterOptions): void
 
 ```ts
 class innerParams {
-  data3: number[]
+  data3: number[];
 
   constructor(tuple: number[]) {
-    this.data3 = tuple
+    this.data3 = tuple;
   }
 }
 
 class routerParams {
-  data1: string
-  data2: innerParams
+  data1: string;
+  data2: innerParams;
 
   constructor(str: string, tuple: number[]) {
-    this.data1 = str
-    this.data2 = new innerParams(tuple)
+    this.data1 = str;
+    this.data2 = new innerParams(tuple);
   }
 }
 
@@ -1561,10 +1561,10 @@ replace(options: RouterOptions): void
 
 ```ts
 class routerParams {
-  data1: string
+  data1: string;
 
   constructor(str: string) {
-    this.data1 = str
+    this.data1 = str;
   }
 }
 

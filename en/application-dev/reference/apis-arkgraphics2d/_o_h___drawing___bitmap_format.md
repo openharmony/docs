@@ -9,6 +9,7 @@ The OH_Drawing_BitmapFormat struct describes the pixel format of a bitmap, inclu
 
 **Related module**: [Drawing](_drawing.md)
 
+**Header file**: [drawing_bitmap.h](drawing__bitmap_8h.md)
 
 ## Summary
 

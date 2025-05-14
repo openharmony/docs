@@ -32,7 +32,7 @@ The decorators including [\@State](./arkts-state.md), [\@Prop](./arkts-prop.md),
 | \@ObjectLink Decorator| Description                                      |
 | ----------------- | ---------------------------------------- |
 | Decorator parameters            | None.                                      |
-| Allowed variable types        | \@Observed decorated class instance. The type must be specified.<br>\@ObjectLink does not support simple types. To use simple types, you can use [\@Prop](arkts-prop.md).<br>Objects of classes that extend Date, [Array](#two-dimensional-array), [Map](#extended-map-class), and [Set](#extended-set-class) (the latter two are supported since API version 11). For an example, see [Observed Changes](#observed-changes).<br>(Applicable to API version 11 or later) Union type of @Observed decorated classes and **undefined** or **null**, for example, **ClassA \| ClassB**, **ClassA \| undefined**, or **ClassA \| null**. For details, see [Union Type @ObjectLink](#union-type-objectlink).<br>An \@ObjectLink decorated variable accepts changes to its properties, but assignment is not allowed. In other words, an \@ObjectLink decorated variable is read-only and cannot be changed.|
+| Allowed variable types        | (Application to API version 18 or earlier) \@Observed decorated class instance.<br>(Application to API version 18 or later) \@ObjectLink can also be initialized by the return value of [makeV1Observed](../reference/apis-arkui/js-apis-StateManagement.md#makev1observed18).<br>\@ObjectLink does not support simple types. To use simple types, you can use [\@Prop](arkts-prop.md).<br>Objects of classes that extend Date, [Array](#two-dimensional-array), [Map](#extended-map-class), and [Set](#extended-set-class) (the latter two are supported since API version 11). For an example, see [Observed Changes](#observed-changes).<br>(Applicable to API version 11 or later) Union type of @Observed decorated classes and **undefined** or **null**, for example, **ClassA \| ClassB**, **ClassA \| undefined**, or **ClassA \| null**. For details, see [Union Type @ObjectLink](#union-type-objectlink).<br>An @ObjectLink decorated variable accepts changes to its properties, but assignment is not allowed. In other words, an @ObjectLink decorated variable is read-only and cannot be changed.|
 | Initial value for the decorated variable        | Not allowed.                                    |
 
 Example of a read-only \@ObjectLink decorated variable:
@@ -201,7 +201,10 @@ For a class that extends **Set**, the value changes of the **Set** instance can 
 
 2. The \@ObjectLink decorator cannot be used in custom components decorated by \@Entry.
 
-3. The variable type decorated by \@ObjectLink must be an explicit class decorated by @Observed. If the type is not specified or the class is not decorated by \@Observed, an error is reported during compilation.
+3. \@ObjectLink decorated type must be the complex type. Otherwise, an error is reported during compilation.
+
+4. For API version 18 or earlier, the variable type decorated by \@ObjectLink must be the class explicitly decorated by @Observed. If no type is specified or the class is not decorated by \@Observed, an error is reported during compilation.
+For API version 18 and later, \@ObjectLink can also be initialized by the return value of [makeV1Observed](../reference/apis-arkui/js-apis-StateManagement.md#makev1observed18). Otherwise, an error is reported during runtime.
 
   ```ts
   @Observed
@@ -230,7 +233,7 @@ For a class that extends **Set**, the value changes of the **Set** instance can 
   @ObjectLink count: Info;
   ```
 
-4. Variables decorated by \@ObjectLink cannot be initialized locally. You can only pass in the initial value from the parent component through construction parameters. Otherwise, an error is reported during compilation.
+5. Variables decorated by \@ObjectLink cannot be initialized locally. You can only pass in the initial value from the parent component through construction parameters. Otherwise, an error is reported during compilation.
 
   ```ts
   @Observed
@@ -249,7 +252,7 @@ For a class that extends **Set**, the value changes of the **Set** instance can 
   @ObjectLink count: Info;
   ```
 
-5. The variables decorated by \@ObjectLink are read-only and cannot be assigned values. Otherwise, an error "Cannot set property when setter is undefined" is reported during runtime. If you need to replace all variables decorated by \@ObjectLink, you can replace them in the parent component.
+6. The variables decorated by \@ObjectLink are read-only and cannot be assigned values. Otherwise, an error "Cannot set property when setter is undefined" is reported during runtime. If you need to replace all variables decorated by \@ObjectLink, you can replace them in the parent component.
 
   [Incorrect Usage]
 
@@ -498,7 +501,7 @@ struct Index {
 
 ![Observed_ObjectLink_nested_object](figures/Observed_ObjectLink_nested_object.gif)
 
-In the preceding example, the **Text** component in the **Index** component is not re-rendered because the change belongs to the second layer and \@State cannot observe the change at the second layer. However, **Bag** is decorated by \@Observed, and the **name** property of **Bag** can be observed by \@ObjectLink. Therefore, no matter which button is clicked, the **Text** component in the **BookCard** component is re-rendered.
+In the preceding example, the **Text** component in the **Index** component is not re-rendered because the change belongs to the second layer and \@State cannot observe the change at the second layer. However, **Book** is decorated by \@Observed, and the **name** property of **Book** can be observed by \@ObjectLink. Therefore, no matter which button is clicked, the **Text** component in the **BookCard** component is re-rendered.
 
 ### Object Array
 
@@ -618,9 +621,6 @@ struct Parent {
 ```ts
 @Observed
 class ObservedArray<T> extends Array<T> {
-  constructor(args: T[]) {
-    super(...args);
-  }
 }
 ```
 
@@ -631,9 +631,6 @@ The following example shows how to use \@Observed to observe the changes of a tw
 ```ts
 @Observed
 class ObservedArray<T> extends Array<T> {
-  constructor(args: T[]) {
-    super(...args);
-  }
 }
 
 @Component
@@ -654,7 +651,7 @@ struct Item {
 @Entry
 @Component
 struct IndexPage {
-  @State arr: Array<ObservedArray<string>> = [new ObservedArray<string>(['apple']), new ObservedArray<string>(['banana']), new ObservedArray<string>(['orange'])];
+  @State arr: Array<ObservedArray<string>> = [new ObservedArray<string>('apple'), new ObservedArray<string>('banana'), new ObservedArray<string>('orange')];
 
   build() {
     Column() {
@@ -673,7 +670,7 @@ struct IndexPage {
       Button('push array item')
         .margin(10)
         .onClick(() => {
-          this.arr.push(new ObservedArray<string>(['pear']));
+          this.arr.push(new ObservedArray<string>('pear'));
         })
 
       Button('change two-dimensional array first item')
@@ -685,7 +682,71 @@ struct IndexPage {
       Button('change array first item')
         .margin(10)
         .onClick(() => {
-          this.arr[0] = new ObservedArray<string>(['watermelon']);
+          this.arr[0] = new ObservedArray<string>('watermelon');
+        })
+    }
+  }
+}
+```
+
+Since API version 18, \@ObjectLink can also be initialized by the return value of [makeV1Observed](../reference/apis-arkui/js-apis-StateManagement.md#makev1observed18). Therefore, if you do not want to declare the class that inherits from array, you can use **makeV1Observed** to achieve the same effect.
+
+A complete example is as follows:
+
+```ts
+import { UIUtils } from '@kit.ArkUI';
+
+@Component
+struct Item {
+  @ObjectLink itemArr: Array<string>;
+
+  build() {
+    Row() {
+      ForEach(this.itemArr, (item: string, index: number) => {
+        Text(`${index}: ${item}`)
+          .width(100)
+          .height(100)
+      }, (item: string) => item)
+    }
+  }
+}
+
+@Entry
+@Component
+struct IndexPage {
+  @State arr: Array<Array<string>> =
+    [UIUtils.makeV1Observed(['apple']), UIUtils.makeV1Observed(['banana']), UIUtils.makeV1Observed(['orange'])];
+
+  build() {
+    Column() {
+      ForEach(this.arr, (itemArr: Array<string>) => {
+        Item({ itemArr: itemArr })
+      })
+
+      Divider()
+
+      Button('push two-dimensional array item')
+        .margin(10)
+        .onClick(() => {
+          this.arr[0].push('strawberry');
+        })
+
+      Button('push array item')
+        .margin(10)
+        .onClick(() => {
+          this.arr.push(UIUtils.makeV1Observed(['pear']));
+        })
+
+      Button('change two-dimensional array first item')
+        .margin(10)
+        .onClick(() => {
+          this.arr[0][0] = 'APPLE';
+        })
+
+      Button('change array first item')
+        .margin(10)
+        .onClick(() => {
+          this.arr[0] = UIUtils.makeV1Observed(['watermelon']);
         })
     }
   }
@@ -1965,7 +2026,7 @@ The meaning of the log is as follows:
 
 - Log 4: After **clickEvent** in the **onClickType** method is executed, **Child** is marked as the node that needs to be updated by the parent component, and the latest value is not updated to **Child @ObjectLink @Watch('onChange02') per: Person**. Therefore, the value of **this.per.name** in log 4 is still **Bob**.
 
-- Log 5: The next VSYNC triggers **Child** re-rendering. **@ObjectLink @Watch('onChange02') per: Person** is re-rendered and its @Watch method is triggered. In this case, the new value of the **@ObjectLink @Watch('onChange02') per: Person** is **Jack**.
+- Log 5: The next VSync triggers **Child** re-rendering. **@ObjectLink @Watch('onChange02') per: Person** is re-rendered and its @Watch method is triggered. In this case, the new value of the **@ObjectLink @Watch('onChange02') per: Person** is **Jack**.
 
 The parent-child synchronization principle of \@Prop is the same as that of \@ObjectLink.
 
@@ -1985,7 +2046,7 @@ The **Text** component in **Parent** is not re-rendered because **this.info.pers
 
 ### Using the a.b(this.object) Format Fails to Trigger UI Re-render
 
-In the **build** method, when the variable decorated by @Observed and @ObjectLink is of the object type and is called using the **a.b(this.object)** format, the native object of **this.object** is passed in the b method. If the property of **this.object** is changed, the UI cannot be re-rendered. In the following example, the UI re-render is not triggered when **this.weather.temperature** in the component is changed by using a static method or using **this** to call the internal method of the component.
+In the **build** method, when the variable decorated by @Observed and @ObjectLink is of the object type and is called using the **a.b(this.object)** format, the original object of **this.object** is passed in the b method. If the property of **this.object** is changed, the UI cannot be re-rendered. In the following example, the UI re-render is not triggered when **this.weather.temperature** in the component is changed by using a static method or using **this** to call the internal method of the component.
 
 [Incorrect Usage]
 
@@ -2126,3 +2187,5 @@ struct Child {
   }
 }
 ```
+
+<!--no_check-->

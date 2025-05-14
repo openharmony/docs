@@ -44,7 +44,7 @@ WaterFlow(options?:  WaterFlowOptions)
 
 | 名称     | 类型                                        | 必填 | 说明                                     |
 | ---------- | ----------------------------------------------- | ------ | -------------------------------------------- |
-| footer |  [CustomBuilder](ts-types.md#custombuilder8) | 否   | 设置WaterFlow尾部组件。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| footer |  [CustomBuilder](ts-types.md#custombuilder8) | 否   | 设置WaterFlow尾部组件。<br/>**说明：** <br/>使用方法参见[示例1](#示例1使用基本瀑布流)。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | scroller | [Scroller](ts-container-scroll.md#scroller) | 否   | 可滚动组件的控制器，与可滚动组件绑定。<br/>**说明：** <br/>不允许和其他滚动类组件，如：[List](ts-container-list.md)、[Grid](ts-container-grid.md)、[Scroll](ts-container-scroll.md)和[WaterFlow](ts-container-waterflow.md)绑定同一个滚动控制对象。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | sections<sup>12+</sup> |  [WaterFlowSections](#waterflowsections12) | 否   | 设置FlowItem分组，实现同一个瀑布流组件内部各分组使用不同列数混合布局。<br/>**说明：** <br/>1. 使用分组混合布局时会忽略columnsTemplate和rowsTemplate属性。<br/>2. 使用分组混合布局时不支持单独设置footer，可以使用最后一个分组作为尾部组件。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。  |
 | layoutMode<sup>12+</sup> |[WaterFlowLayoutMode](#waterflowlayoutmode12枚举说明) | 否 | 设置WaterFlow的布局模式，根据使用场景选择更切合的模式。<br/>**说明：** <br/>默认值：[ALWAYS_TOP_DOWN](#waterflowlayoutmode12枚举说明)。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
@@ -221,7 +221,7 @@ type GetItemMainSizeByIndex = (index: number) => number
 | 名称 | 值 | 说明 |
 | ------ | ------ | -------------------- |
 | ALWAYS_TOP_DOWN | 0 | 默认的从上到下的布局模式。视窗内的FlowItem依赖视窗上方所有FlowItem的布局信息。因此跳转或切换列数时，需要计算出上方所有的FlowItem的布局信息。 |
-| SLIDING_WINDOW | 1 | 移动窗口式的布局模式。只考虑视窗内的布局信息，对视窗上方的FlowItem没有依赖关系，因此向后跳转或切换列数时只需要布局视窗内的FlowItem。有频繁切换列数的场景的应用建议使用该模式。 <br/>**说明：** <br/>1. 无动画跳转到较远的位置时，会以目标位置为基准，向前或向后布局FlowItem。这之后如果滑回跳转前的位置，内容的布局效果可能和之前不一致。 这个效果会导致跳转后回滑到顶部时，顶部节点可能不对齐。所以该布局模式下会在滑动到顶部后自动调整布局，保证顶部对齐。在有多个分组的情况下，会在滑动结束时调整在视窗内的分组。<br/> 2. 该模式不支持使用滚动条，就算设置了滚动条也无法显示。 <br/> 3. 不支持[scroller](#waterflowoptions对象说明)的[scrollTo](ts-container-scroll.md#scrollto)接口。 <br/> 4. [scroller](#waterflowoptions对象说明)的[currentOffset](ts-container-scroll.md#currentoffset)接口返回的总偏移量在触发跳转或数据更新后不准确，在回滑到顶部时会重新校准。 <br/> 5. 如果在同一帧内调用跳转（如无动画的[scrollToIndex](ts-container-scroll.md#scrolltoindex)、[scrollEdge](ts-container-scroll.md#scrolledge)）和输入偏移量（如滑动手势或滚动动画），两者都会生效。 <br/> 6. 调用无动画的[scrollToIndex](ts-container-scroll.md#scrolltoindex)进行跳转，如果跳转到较远位置（超过视窗内的FlowItem数量的位置）时，由于移动窗口模式对总偏移量没有估算，此时总偏移量没有变化，所以不会触发[onDidScroll](ts-container-scroll.md#ondidscroll12)事件。 |
+| SLIDING_WINDOW | 1 | 移动窗口式的布局模式。只考虑视窗内的布局信息，对视窗上方的FlowItem没有依赖关系，因此向后跳转或切换列数时只需要布局视窗内的FlowItem。建议优先使用该模式。 <br/>**说明：** <br/>1. 无动画跳转到较远的位置时，会以目标位置为基准，向前或向后布局FlowItem。这之后如果滑回跳转前的位置，内容的布局效果可能和之前不一致。 这个效果会导致跳转后回滑到顶部时，顶部节点可能不对齐。所以该布局模式下会在滑动到顶部后自动调整布局，保证顶部对齐。在有多个分组的情况下，会在滑动结束时调整在视窗内的分组。<br/> 2. 该模式不支持使用滚动条，就算设置了滚动条也无法显示。 <br/> 3. 不支持[scroller](#waterflowoptions对象说明)的[scrollTo](ts-container-scroll.md#scrollto)接口。 <br/> 4. [scroller](#waterflowoptions对象说明)的[currentOffset](ts-container-scroll.md#currentoffset)接口返回的总偏移量在触发跳转或数据更新后不准确，在回滑到顶部时会重新校准。 <br/> 5. 如果在同一帧内调用跳转（如无动画的[scrollToIndex](ts-container-scroll.md#scrolltoindex)、[scrollEdge](ts-container-scroll.md#scrolledge)）和输入偏移量（如滑动手势或滚动动画），两者都会生效。 <br/> 6. 调用无动画的[scrollToIndex](ts-container-scroll.md#scrolltoindex)进行跳转，如果跳转到较远位置（超过视窗内的FlowItem数量的位置）时，由于移动窗口模式对总偏移量没有估算，此时总偏移量没有变化，所以不会触发[onDidScroll](ts-container-scroll.md#ondidscroll12)事件。 |
 
 
 ## 属性
@@ -282,7 +282,7 @@ itemConstraintSize(value: ConstraintSizeOptions)
 
 | 参数名 | 类型                                                       | 必填 | 说明       |
 | ------ | ---------------------------------------------------------- | ---- | ---------- |
-| value  | [ConstraintSizeOptions](ts-types.md#constraintsizeoptions) | 是   | 约束尺寸。设置小于0的值，参数不生效。 <br/>**说明：**<br/>1.同时设置itemConstraintSize和FlowItem的[constraintSize](ts-universal-attributes-size.md#constraintsize)属性时，minWidth/minHeight会取其中的最大值，maxWidth/maxHeight会取其中的最小值，调整后的值作为FlowItem的constraintSize处理。2.只设置itemConstraintSize时，相当于对WaterFlow所有子组件设置了相同的constraintSize。3.itemConstraintSize通过以上两种方式转换成FlowItem的constraintSize后的生效规则与通用属性[constraintSize](./ts-universal-attributes-size.md#constraintsize)相同。|
+| value  | [ConstraintSizeOptions](ts-types.md#constraintsizeoptions) | 是   | 约束尺寸。设置小于0的值，参数不生效。 <br/>**说明：**<br/>1.同时设置itemConstraintSize和FlowItem的[constraintSize](ts-universal-attributes-size.md#constraintsize)属性时，minWidth/minHeight会取其中的最大值，maxWidth/maxHeight会取其中的最小值，调整后的值作为FlowItem的constraintSize处理。<br/>2.只设置itemConstraintSize时，相当于对WaterFlow所有子组件设置了相同的constraintSize。<br/>3.itemConstraintSize通过以上两种方式转换成FlowItem的constraintSize后的生效规则与通用属性[constraintSize](./ts-universal-attributes-size.md#constraintsize)相同。|
 
 ### columnsGap
 
@@ -642,6 +642,11 @@ export class WaterFlowDataSource implements IDataSource {
 // Index.ets
 import { WaterFlowDataSource } from './WaterFlowDataSource';
 
+enum FooterState {
+  Loading = 0,
+  End = 1
+}
+
 @Entry
 @Component
 struct WaterFlowDemo {
@@ -649,6 +654,7 @@ struct WaterFlowDemo {
   @State maxSize: number = 180;
   @State fontSize: number = 24;
   @State colors: number[] = [0xFFC0CB, 0xDA70D6, 0x6B8E23, 0x6A5ACD, 0x00FFFF, 0x00FF7F];
+  @State footerState: FooterState = FooterState.Loading;
   scroller: Scroller = new Scroller();
   dataSource: WaterFlowDataSource = new WaterFlowDataSource();
   private itemWidthArray: number[] = [];
@@ -674,20 +680,39 @@ struct WaterFlowDemo {
 
   @Builder
   itemFoot() {
+    // 不要直接用IfElse节点作为footer的根节点。
     Column() {
-      Text(`Footer`)
-        .fontSize(10)
-        .backgroundColor(Color.Red)
-        .width(50)
-        .height(50)
-        .align(Alignment.Center)
-        .margin({ top: 2 })
+      if (this.footerState == FooterState.Loading) {
+        Text(`加载中...`)
+          .fontSize(10)
+          .backgroundColor(Color.Red)
+          .width(50)
+          .height(50)
+          .align(Alignment.Center)
+          .margin({ top: 2 })
+      } else if (this.footerState == FooterState.End) {
+        Text(`到底啦...`)
+          .fontSize(10)
+          .backgroundColor(Color.Red)
+          .width(50)
+          .height(50)
+          .align(Alignment.Center)
+          .margin({ top: 2 })
+      } else {
+        Text(`Footer`)
+          .fontSize(10)
+          .backgroundColor(Color.Red)
+          .width(50)
+          .height(50)
+          .align(Alignment.Center)
+          .margin({ top: 2 })
+      }
     }
   }
 
   build() {
     Column({ space: 2 }) {
-      WaterFlow() {
+      WaterFlow({ footer: this.itemFoot() }) {
         LazyForEach(this.dataSource, (item: number) => {
           FlowItem() {
             Column() {
@@ -699,14 +724,6 @@ struct WaterFlowDemo {
                 .layoutWeight(1)
             }
           }
-          .onAppear(() => {
-            // 即将触底时提前增加数据
-            if (item + 20 == this.dataSource.totalCount()) {
-              for (let i = 0; i < 100; i++) {
-                this.dataSource.addLastItem();
-              }
-            }
-          })
           .width('100%')
           .height(this.itemHeightArray[item % 100])
           .backgroundColor(this.colors[item % 5])
@@ -718,6 +735,19 @@ struct WaterFlowDemo {
       .backgroundColor(0xFAEEE0)
       .width('100%')
       .height('100%')
+      // 触底加载数据
+      .onReachEnd(() => {
+        console.info("onReachEnd")
+        if (this.dataSource.totalCount() > 200) {
+          this.footerState = FooterState.End;
+          return;
+        }
+        setTimeout(() => {
+          for (let i = 0; i < 100; i++) {
+            this.dataSource.addLastItem();
+          }
+        }, 1000)
+      })
       .onReachStart(() => {
         console.info('waterFlow reach start');
       })
@@ -829,11 +859,13 @@ struct ReusableFlowItem {
   }
 
   build() {
-    Image('res/waterFlowTest(' + this.item % 5 + ').jpg')
-        .overlay('N' + this.item, { align: Alignment.Top })
-        .objectFit(ImageFit.Fill)
-        .width('100%')
-        .layoutWeight(1)
+    Column() {
+      Image('res/waterFlowTest(' + this.item % 5 + ').jpg')
+          .overlay('N' + this.item, { align: Alignment.Top })
+          .objectFit(ImageFit.Fill)
+          .width('100%')
+          .layoutWeight(1)
+    }
   }
 }
 
@@ -859,21 +891,21 @@ struct WaterFlowDemo {
     onGetItemMainSizeByIndex: (index: number) => {
       return this.itemHeightArray[index % 100];
     }
-  }
+  };
   twoColumnSection: SectionOptions = {
     itemsCount: 2,
     crossCount: 2,
     onGetItemMainSizeByIndex: (index: number) => {
       return 100;
     }
-  }
+  };
   lastSection: SectionOptions = {
     itemsCount: 20,
     crossCount: 2,
     onGetItemMainSizeByIndex: (index: number) => {
       return this.itemHeightArray[index % 100];
     }
-  }
+  };
 
   // 计算FlowItem高度
   getSize() {
@@ -925,7 +957,7 @@ struct WaterFlowDemo {
               onGetItemMainSizeByIndex: (index: number) => {
                 return this.itemHeightArray[index % 100];
               }
-            }
+            };
             let oldLength: number = this.sections.length();
             this.sections.splice(0, oldLength, [newSection]);
           })
@@ -933,44 +965,33 @@ struct WaterFlowDemo {
         Button('update')
           .height('5%')
           .onClick(() => {
-            // 在第二个分组增加4个FlowItem，注意保证LazyForEach中数据数量和所有分组itemsCount的和保持一致
-            let newSection: SectionOptions = {
-              itemsCount: 6,
-              crossCount: 3,
-              columnsGap: 5,
-              rowsGap: 10,
-              margin: this.sectionMargin,
-              onGetItemMainSizeByIndex: (index: number) => {
-                return this.itemHeightArray[index % 100];
-              }
-            }
+            // 在第一个分组中增加4个FlowItem，注意保证LazyForEach中数据数量和所有分组itemsCount的和保持一致
+            const sections: Array<SectionOptions> = this.sections.values();
+            let newSection: SectionOptions = sections[0];
             this.dataSource.addItem(this.oneColumnSection.itemsCount);
             this.dataSource.addItem(this.oneColumnSection.itemsCount + 1);
             this.dataSource.addItem(this.oneColumnSection.itemsCount + 2);
             this.dataSource.addItem(this.oneColumnSection.itemsCount + 3);
-            const result: boolean = this.sections.update(1, newSection);
+            newSection.itemsCount += 4;
+            const result: boolean = this.sections.update(0, newSection);
             console.info('update:' + result);
           })
           .margin({ top: 10, left: 20 })
         Button('delete')
           .height('5%')
           .onClick(() => {
-            // 先点击update再点击delete
-            let newSection: SectionOptions = {
-              itemsCount: 2,
-              crossCount: 2,
-              columnsGap: 5,
-              rowsGap: 10,
-              margin: this.sectionMargin,
-              onGetItemMainSizeByIndex: (index: number) => {
-                return this.itemHeightArray[index % 100];
-              }
+            // 在第一个分组中减少4个FlowItem，注意保证LazyForEach中数据数量和所有分组itemsCount的和保持一致
+            const sections: Array<SectionOptions> = this.sections.values();
+            let newSection: SectionOptions = sections[0];
+            if (newSection.itemsCount < 4) {
+              return;
             }
-            this.dataSource.deleteItem(this.oneColumnSection.itemsCount);
-            this.dataSource.deleteItem(this.oneColumnSection.itemsCount);
-            this.dataSource.deleteItem(this.oneColumnSection.itemsCount);
-            this.dataSource.deleteItem(this.oneColumnSection.itemsCount);
-            this.sections.update(1, newSection);
+            this.dataSource.deleteItem(this.oneColumnSection.itemsCount - 1);
+            this.dataSource.deleteItem(this.oneColumnSection.itemsCount - 2);
+            this.dataSource.deleteItem(this.oneColumnSection.itemsCount - 3);
+            this.dataSource.deleteItem(this.oneColumnSection.itemsCount - 4);
+            newSection.itemsCount -= 4;
+            this.sections.update(0, newSection);
           })
           .margin({ top: 10, left: 20 })
         Button('values')
@@ -991,8 +1012,8 @@ struct WaterFlowDemo {
             ReusableFlowItem({ item: item })
           }
           .width('100%')
-          // 以onGetItemMainSizeByIndex为准
-          // .height(this.itemHeightArray[item % 100])
+          // 同时设置onGetItemMainSizeByIndex和height属性时，主轴大小以onGetItemMainSizeByIndex返回结果为准
+          .height(this.itemHeightArray[item % 100])
           .backgroundColor(this.colors[item % 5])
         }, (item: string) => item)
       }
@@ -1063,10 +1084,10 @@ struct WaterFlowDemo {
   private itemWidthArray: number[] = [];
   private itemHeightArray: number[] = [];
   @State columns: number = 2;
-  @State waterflowScale: number = 1;
+  @State waterFlowScale: number = 1;
   @State imageScale: number = 1;
   @State waterFlowOpacity: number = 1;
-  @State waterflowSnapshot: image.PixelMap | undefined = undefined;
+  @State waterFlowSnapshot: image.PixelMap | undefined = undefined;
   private columnChanged: boolean = false;
   private oldColumn: number = this.columns;
   private pinchTime: number = 0;
@@ -1115,7 +1136,7 @@ struct WaterFlowDemo {
 
       Stack() {
         // 用于展示缩放前的WaterFlow截图
-        Image(this.waterflowSnapshot)
+        Image(this.waterFlowSnapshot)
           .width('100%')
           .height('100%')
           .scale({
@@ -1143,8 +1164,8 @@ struct WaterFlowDemo {
         .layoutWeight(1)
         .opacity(this.waterFlowOpacity)
         .scale({
-          x: this.waterflowScale,
-          y: this.waterflowScale,
+          x: this.waterFlowScale,
+          y: this.waterFlowScale,
           centerX: 0,
           centerY: 0
         })
@@ -1160,7 +1181,7 @@ struct WaterFlowDemo {
                   console.info('error:' + JSON.stringify(error));
                   return;
                 }
-                this.waterflowSnapshot = pixmap;
+                this.waterFlowSnapshot = pixmap;
               })
             })
             .onActionUpdate((event: GestureEvent) => {
@@ -1173,28 +1194,28 @@ struct WaterFlowDemo {
               }
               this.pinchTime = event.timestamp;
 
-              this.waterflowScale = event.scale;
+              this.waterFlowScale = event.scale;
               this.imageScale = event.scale;
               // 根据缩放比例设置WaterFlow透明度
-              this.waterFlowOpacity = (this.waterflowScale > 1) ? (this.waterflowScale - 1) : (1 - this.waterflowScale);
+              this.waterFlowOpacity = (this.waterFlowScale > 1) ? (this.waterFlowScale - 1) : (1 - this.waterFlowScale);
               this.waterFlowOpacity *= 3;
               if (!this.columnChanged) {
                 this.changeColumns(event.scale);
               }
               // 限制缩放比例避免出现空白
               if (this.columnChanged) {
-                this.waterflowScale = this.imageScale * this.columns / this.oldColumn;
+                this.waterFlowScale = this.imageScale * this.columns / this.oldColumn;
                 if (event.scale < 1) {
-                  this.waterflowScale = this.waterflowScale > 1 ? this.waterflowScale : 1;
+                  this.waterFlowScale = this.waterFlowScale > 1 ? this.waterFlowScale : 1;
                 } else {
-                  this.waterflowScale = this.waterflowScale < 1 ? this.waterflowScale : 1;
+                  this.waterFlowScale = this.waterFlowScale < 1 ? this.waterFlowScale : 1;
                 }
               }
             })
             .onActionEnd((event: GestureEvent) => {
               // 离手做动画归位
               animateTo({ duration: 300 }, () => {
-                this.waterflowScale = 1;
+                this.waterFlowScale = 1;
                 this.waterFlowOpacity = 1;
               })
               // 记录当前列数

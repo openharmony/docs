@@ -1,16 +1,16 @@
 # Using AVRecorder to Record Videos (ArkTS)
 
-The system provides the [AVRecorder](media-kit-intro.md#avrecorder) for you to develop the video recording service. The AVRecorder supports audio recording, audio encoding, video encoding, audio encapsulation, and video encapsulation. It is applicable to simple video recording scenarios and can be used to generate local video files directly.
+You can use the [AVRecorder](media-kit-intro.md#avrecorder) to develop the video recording service. The AVRecorder supports audio capture, audio encoding, video encoding, audio encapsulation, and video encapsulation. It is applicable to simple video recording scenarios and can be used to generate local video files directly.
 
-You will learn how to use the AVRecorder to complete the process of starting, pausing, resuming, and stopping recording.
+In this topic, you will learn how to use the AVRecorder to complete the process of starting, pausing, resuming, and stopping video recording.
 
-During application development, you can use the **state** attribute of the AVRecorder to obtain the AVRecorder state or call **on('stateChange')** to listen for state changes. Your code must meet the state machine requirements. For example, **pause()** is called only when the AVRecorder is in the **started** state, and **resume()** is called only when it is in the **paused** state.
+During application development, you can use the **state** property of the AVRecorder to obtain the AVRecorder state or call **on('stateChange')** to listen for state changes. Your code must meet the state machine requirements. For example, **pause()** is called only when the AVRecorder is in the **started** state, and **resume()** is called only when it is in the **paused** state.
 
 **Figure 1** Recording state transition
 
 ![Recording state change](figures/video-recording-status-change.png)
 
-For details about the state, see [AVRecorderState](../../reference/apis-media-kit/js-apis-media.md#avrecorderstate9).
+For details about the states, see [AVRecorderState](../../reference/apis-media-kit/js-apis-media.md#avrecorderstate9).
 
 
 ## Requesting Permissions
@@ -18,21 +18,21 @@ For details about the state, see [AVRecorderState](../../reference/apis-media-ki
 Before your development, configure the following permissions for your application.
 - To use the microphone, request the ohos.permission.MICROPHONE permission. For details about how to request user authorization, see [Requesting User Authorization](../../security/AccessToken/request-user-authorization.md).
 - To use the camera for photo capture, request the ohos.permission.CAMERA permission. For details about how to request user authorization, see [Requesting User Authorization](../../security/AccessToken/request-user-authorization.md).
-- To read images or videos from Gallery, you are advised to use the media library [Picker to access them](../medialibrary/photoAccessHelper-photoviewpicker.md).
-- To save images or videos to Gallery, use the [security component to save them](../medialibrary/photoAccessHelper-savebutton.md).
+- To read images or videos from Gallery, preferentially use the media library [Picker for access](../medialibrary/photoAccessHelper-photoviewpicker.md).
+- To save images or videos to Gallery, preferentially use the [security component for storage](../medialibrary/photoAccessHelper-savebutton.md).
 
 > **NOTE**
 >
-> When the application needs to clone, back up, or synchronize images and videos in users' public directory, request the ohos.permission.READ_IMAGEVIDEO and ohos.permission.WRITE_IMAGEVIDEO permissions for reading and writing audio files. For details, see <!--RP1-->[Requesting Restricted Permissions](../../security/AccessToken/declare-permissions-in-acl.md)<!--RP1End-->.
+> To clone, back up, or synchronize images and videos in users' public directory, request the ohos.permission.READ_IMAGEVIDEO and ohos.permission.WRITE_IMAGEVIDEO permissions for reading and writing audio files. For details, see <!--RP1-->[Requesting Restricted Permissions](../../security/AccessToken/declare-permissions-in-acl.md)<!--RP1End-->.
 
 
 ## How to Develop
 
 > **NOTE**
 >
-> The AVRecorder only processes video data. To complete video recording, it must work with the video data collection module, which transfers the captured video data to the AVRecorder for data processing through the surface. Currently, the commonly used data collection module is the camera module. For details, see [Camera Recording](../camera/camera-recording.md).
+> The AVRecorder only processes video data. To complete video recording, it must work with the video data collection module, which transfers the captured video data to the AVRecorder for data processing through the surface. Currently, the mainstream data collection module is the camera module. For details about the implementation, see [Camera Recording](../camera/camera-recording.md).
 >
-> For details about how to create and save a file, see [Application File Access and Management](../../file-management/app-file-access.md). By default, files are saved in the sandbox path of the application. To save them to Gallery, use the [security components](../medialibrary/photoAccessHelper-savebutton.md).
+> For details about how to create and save a file, see [Accessing Application Files](../../file-management/app-file-access.md). By default, files are saved in the sandbox path of the application. To save them to Gallery, use the [security components](../medialibrary/photoAccessHelper-savebutton.md).
 
 
 Read [AVRecorder](../../reference/apis-media-kit/js-apis-media.md#avrecorder9) for the API reference.
@@ -54,7 +54,7 @@ Read [AVRecorder](../../reference/apis-media-kit/js-apis-media.md#avrecorder9) f
 2. Set the events to listen for.
    | Event Type| Description|
    | -------- | -------- |
-   | stateChange | Mandatory; used to listen for changes of the **state** attribute of the AVRecorder.|
+   | stateChange | Mandatory; used to listen for changes of the **state** property of the AVRecorder.|
    | error | Mandatory; used to listen for AVRecorder errors.|
 
    ```ts
@@ -83,12 +83,12 @@ Read [AVRecorder](../../reference/apis-media-kit/js-apis-media.md#avrecorder9) f
    >
    > - The [recording specifications](media-kit-intro.md#supported-formats) in use must be those supported. The video bit rate, resolution, and frame rate are subject to the ranges supported by the hardware device.
    >
-   > - The recording output URL (URL in **avConfig** in the sample code) must be in the format of fd://xx (where xx indicates a file descriptor). You must call [ohos.file.fs of Core File Kit](../../reference/apis-core-file-kit/js-apis-file-fs.md) to implement access to the application file. For details, see [Application File Access and Management](../../file-management/app-file-access.md).
+   > - The recording output URL (URL in **avConfig** in the sample code) must be in the format of fd://xx (where xx indicates a file descriptor). You must call [ohos.file.fs of Core File Kit](../../reference/apis-core-file-kit/js-apis-file-fs.md) to implement access to the application file. For details, see [Accessing Application Files](../../file-management/app-file-access.md).
 
    ```ts
    import { media } from '@kit.MediaKit';
    import { BusinessError } from '@kit.BasicServicesKit';
-   import { fileIo as fs } form '@kit.CoreFileKit';
+   import { fileIo as fs } from '@kit.CoreFileKit';
 
    let avProfile: media.AVRecorderProfile = {
      fileFormat: media.ContainerFormatType.CFT_MPEG_4, // Video file container format. Only MP4 is supported.
@@ -99,7 +99,7 @@ Read [AVRecorder](../../reference/apis-media-kit/js-apis-media.md#avrecorder9) f
      videoFrameRate: 30 // Video frame rate.
    };
    
-   const context: Context = getContext(this); // Refer to Application File Access and Management.
+   const context: Context = getContext(this); // Refer to Accessing Application Files.
    let filePath: string = context.filesDir + '/example.mp4';
    let videoFile: fs.File = fs.openSync(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
    let fileFd = videoFile.fd; // Obtain the file FD.
@@ -119,7 +119,7 @@ Read [AVRecorder](../../reference/apis-media-kit/js-apis-media.md#avrecorder9) f
 
 4. Obtain the surface ID required for video recording.
 
-   Call **getInputSurface()**. The returned surface ID is transferred to the video data collection module (video input source), which is the camera module in the sample code.
+   Call **getInputSurface()**. The returned surface ID is transferred to the video data collection module, which is the camera module in the sample code.
 
    The video data collection module obtains the surface based on the surface ID and transmits video data to the AVRecorder through the surface. Then the AVRecorder processes the video data.
 
@@ -139,13 +139,13 @@ Read [AVRecorder](../../reference/apis-media-kit/js-apis-media.md#avrecorder9) f
 
 6. Start recording.
 
-   Start the input source to input video data, for example, by calling **camera.VideoOutput.start**. Then call **AVRecorder.start()** to switch the AVRecorder to the **started** state.
+   Start the input source to input video data, for example, by calling **camera.VideoOutput.start** of the camera module. Then call **AVRecorder.start()** to switch the AVRecorder to the **started** state.
 
-7. Call **pause()** to pause recording. The AVRecorder enters the **paused** state. In addition, pause data input in the video data collection module, for example, by calling **camera.VideoOutput.stop**.
+7. Call **pause()** to pause recording. The AVRecorder enters the **paused** state. In addition, pause data input, for example, by calling **camera.VideoOutput.stop** of the camera module.
 
 8. Call **resume()** to resume recording. The AVRecorder enters the **started** state again.
 
-9. Call **stop()** to stop recording. The AVRecorder enters the **stopped** state again. In addition, stop camera recording in the video data collection module.
+9. Call **stop()** to stop recording. The AVRecorder enters the **stopped** state again. In addition, stop camera recording.
 
 10. Call **reset()** to reset the resources. The AVRecorder enters the **idle** state. In this case, you can reconfigure the recording parameters.
 

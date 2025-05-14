@@ -26,7 +26,7 @@ Triggered when the component is clicked by a mouse button or the mouse pointer m
 
 ## MouseEvent
 
-Inherits from [BaseEvent](ts-gesture-customize-judge.md#baseevent).
+Inherits from [BaseEvent](ts-gesture-customize-judge.md#baseevent8).
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -34,16 +34,18 @@ Inherits from [BaseEvent](ts-gesture-customize-judge.md#baseevent).
 | ---------------------- | ---------------------------------------- | ---------------------------- |
 | x                      | number                                   | X coordinate of the mouse pointer relative to the upper left corner of the component being clicked.<br>**Atomic service API**: This API can be used in atomic services since API version 11.        |
 | y                      | number                                   | Y coordinate of the mouse pointer relative to the upper left corner of the component being clicked.<br>**Atomic service API**: This API can be used in atomic services since API version 11.        |
-| button                 | [MouseButton](ts-appendix-enums.md#mousebutton) | Mouse button.<br>**Atomic service API**: This API can be used in atomic services since API version 11.                       |
-| action                 | [MouseAction](ts-appendix-enums.md#mouseaction) | Mouse action.<br>**Atomic service API**: This API can be used in atomic services since API version 11.                       |
+| button                 | [MouseButton](ts-appendix-enums.md#mousebutton8) | Mouse button.<br>**Atomic service API**: This API can be used in atomic services since API version 11.                       |
+| action                 | [MouseAction](ts-appendix-enums.md#mouseaction8) | Mouse action.<br>**Atomic service API**: This API can be used in atomic services since API version 11.                       |
 | stopPropagation        | () => void                               | Stops the event from bubbling upwards or downwards.<br>**Atomic service API**: This API can be used in atomic services since API version 11.                     |
-| target    | [EventTarget](ts-universal-events-click.md#eventtarget8) | Display area of the component that triggers the event.<br>**Atomic service API**: This API can be used in atomic services since API version 11.              |
 | windowX<sup>10+</sup> | number                          | X coordinate of the mouse pointer relative to the upper left corner of the application window.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | windowY<sup>10+</sup> | number                          | Y coordinate of the mouse pointer relative to the upper left corner of the application window.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | displayX<sup>10+</sup> | number                         | X coordinate of the mouse pointer relative to the upper left corner of the application screen.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | displayY<sup>10+</sup> | number                         | Y coordinate of the mouse pointer relative to the upper left corner of the application screen.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | screenX<sup>(deprecated)</sup> | number                 | X coordinate of the mouse pointer relative to the upper left corner of the application window.<br>This API is deprecated since API version 10. You are advised to use **windowX** instead.|
 | screenY<sup>(deprecated)</sup> | number                 | Y coordinate of the mouse pointer relative to the upper left corner of the application window.<br>This API is deprecated since API version 10. You are advised to use **windowY** instead.|
+| rawDeltaX<sup>15+</sup> | number | X-axis offset relative to the previously reported mouse pointer position. This value may be less than the difference between the two reported X coordinates when the mouse pointer is near the screen edge.<br>**Atomic service API**: This API can be used in atomic services since API version 15.|
+| rawDeltaY<sup>15+</sup> | number | Y-axis offset relative to the previously reported mouse pointer position.<br>**Atomic service API**: This API can be used in atomic services since API version 15.|
+| pressedButtons<sup>15+</sup> | MouseButton[] | Array of all mouse buttons that are currently pressed.<br>**Atomic service API**: This API can be used in atomic services since API version 15.|
 
 ## Example
 
@@ -115,7 +117,11 @@ struct MouseEventExample {
             }
             this.mouseText = 'onMouse:\nButton = ' + this.mouseBtn +
             '\nAction = ' + this.action + '\nXY=(' + event.x + ',' + event.y + ')' +
-            '\nwindowXY=(' + event.windowX + ',' + event.windowY + ')';
+            '\nwindowXY=(' + event.windowX + ',' + event.windowY + ')' +
+            '\ntargetDisplayId = ' + event.targetDisplayId +
+            '\nrawDeltaX = ' + event.rawDeltaX +
+            '\nrawDeltaY = ' + event.rawDeltaY +
+            '\nlength = ' + event.pressedButtons?.length;
           }
         })
       Text(this.mouseText)
@@ -128,4 +134,4 @@ struct MouseEventExample {
 
 The figure below shows how the button looks like when clicked.
 
-![mouse1](figures/mouse1.png)
+![mouse](figures/mouse.gif)

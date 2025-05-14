@@ -72,6 +72,9 @@ Sets the visual effect of the compositing filter.
 
 
 ## Example
+
+This example demonstrates how to apply blur effects using **foregroundFilter**, **backgroundFilter**, and **compositingFilter**.
+
 ```ts
 // xxx.ets
 import { uiEffect } from '@kit.ArkGraphics2D';
@@ -79,8 +82,9 @@ import { uiEffect } from '@kit.ArkGraphics2D';
 @Entry
 @Component
 struct FilterEffectExample {
-
-  @State filterTest: uiEffect.Filter = uiEffect.createFilter()
+  @State filterTest1: uiEffect.Filter = uiEffect.createFilter().blur(10)
+  @State filterTest2: uiEffect.Filter = uiEffect.createFilter().blur(10)
+  @State filterTest3: uiEffect.Filter = uiEffect.createFilter().blur(10)
 
   build() {
     Column({ space: 15 }) {
@@ -91,7 +95,8 @@ struct FilterEffectExample {
         .height(100)
         .backgroundColor('#ADD8E6')
         .backgroundImage($r("app.media.app_icon"))
-     .foregroundFilter(this.filterTest.blur(10)) // Set the blur effect through foregroundFilter.
+        .backgroundImageSize({ width: 80, height: 80 })
+        .foregroundFilter(this.filterTest1) // Set the blur effect using foregroundFilter.
 
       Text('backgroundFilter').fontSize(20).width('75%').fontColor('#DCDCDC')
       Text('Background filter')
@@ -99,7 +104,8 @@ struct FilterEffectExample {
         .height(100)
         .backgroundColor('#ADD8E6')
         .backgroundImage($r("app.media.app_icon"))
-        .compositingFilter(this.filterTest.blur(10)) // Set the blur effect through backgroundFilter.
+        .backgroundImageSize({ width: 80, height: 80 })
+        .backgroundFilter(this.filterTest2) // Set the blur effect using backgroundFilter.
 
       Text('compositingFilter').fontSize(20).width('75%').fontColor('#DCDCDC')
       Text('Compositing filter')
@@ -107,7 +113,8 @@ struct FilterEffectExample {
         .height(100)
         .backgroundColor('#ADD8E6')
         .backgroundImage($r("app.media.app_icon"))
-        .compositingFilter(this.filterTest.blur(10)) // Set the blur effect through compositingFilter.
+        .backgroundImageSize({ width: 80, height: 80 })
+        .compositingFilter(this.filterTest3) // Set the blur effect using compositingFilter.
     }
     .height('100%')
     .width('100%')

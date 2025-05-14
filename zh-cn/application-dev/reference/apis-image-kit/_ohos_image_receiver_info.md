@@ -11,6 +11,8 @@
 
 **相关模块：** [Image](image.md)
 
+**所在头文件：**[image_receiver_mdk.h](image__receiver__mdk_8h.md)
+
 
 ## 汇总
 

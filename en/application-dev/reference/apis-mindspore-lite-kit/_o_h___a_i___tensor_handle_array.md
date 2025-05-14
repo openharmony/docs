@@ -5,14 +5,11 @@
 
 Defines the tensor array structure, which is used to store the tensor array pointer and tensor array length.
 
-**Since**
+**Since**: 9
 
-9
+**Related module**: [MindSpore](_mind_spore.md)
 
-**Related module**
-
-[MindSpore](_mind_spore.md)
-
+**Header file**: [model.h](model_8h.md)
 
 ## Summary
 

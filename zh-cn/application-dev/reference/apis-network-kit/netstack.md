@@ -422,7 +422,7 @@ int OH_WebSocketClient_AddHeader (struct WebSocket * client, struct WebSocket_He
 
 **返回：**
 
-返回值为0表示执行成功。返回错细信息可以查看[OH_WebSocket_ErrCode](#websocket_errcode)。
+返回值为0表示执行成功。返回错误信息可以查看[OH_WebSocket_ErrCode](#websocket_errcode)。
 
 
 
@@ -448,7 +448,7 @@ int OH_WebSocketClient_Close (struct WebSocket * client, struct WebSocket_CloseO
 
 **返回：**
 
-返回值为0表示执行成功。返回错细信息可以查看[OH_WebSocket_ErrCode](#websocket_errcode)。
+返回值为0表示执行成功。返回错误信息可以查看[OH_WebSocket_ErrCode](#websocket_errcode)。
 
 **Permission：**
 
@@ -477,7 +477,7 @@ int OH_WebSocketClient_Connect (struct WebSocket * client, const char * url, str
 
 **返回：**
 
-返回值为0表示执行成功。返回错细信息可以查看[OH_WebSocket_ErrCode](#websocket_errcode)。
+返回值为0表示执行成功。返回错误信息可以查看[OH_WebSocket_ErrCode](#websocket_errcode)。
 
 **Permission：**
 
@@ -531,7 +531,7 @@ int OH_WebSocketClient_Destroy (struct WebSocket * client)
 
 **返回：**
 
-返回值为0表示执行成功。返回错细信息可以查看[OH_WebSocket_ErrCode](#websocket_errcode)。
+返回值为0表示执行成功。返回错误信息可以查看[OH_WebSocket_ErrCode](#websocket_errcode)。
 
 **Permission：**
 
@@ -562,7 +562,7 @@ int OH_WebSocketClient_Send (struct WebSocket * client, char * data, size_t leng
 
 0 - 成功.
 
-返回值为0表示执行成功。返回错细信息可以查看[OH_WebSocket_ErrCode](#websocket_errcode)。
+返回值为0表示执行成功。返回错误信息可以查看[OH_WebSocket_ErrCode](#websocket_errcode)。
 
 **Permission：**
 

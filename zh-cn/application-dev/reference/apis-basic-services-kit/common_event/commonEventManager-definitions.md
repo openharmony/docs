@@ -230,7 +230,7 @@
 
 **系统能力：** SystemCapability.Notification.CommonEvent
 
-**订阅者需要的权限：** ohos.permission.RECEIVER_SPLIT_SCREEN
+**订阅者所需权限：** ohos.permission.RECEIVER_SPLIT_SCREEN
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -248,9 +248,7 @@
 
 **系统能力：** SystemCapability.Notification.CommonEvent
 
-**订阅方需要的权限：** ohos.permission.NOTIFICATION_CONTROLLER
-
-**系统能力：** SystemCapability.Notification.CommonEvent
+**订阅者所需权限：** ohos.permission.NOTIFICATION_CONTROLLER
 
 **取值：** "usual.event.SLOT_CHANGE"
 
@@ -324,10 +322,6 @@
 **取值：** "usual.event.hardware.usb.action.USB_DEVICE_DETACHED"
 
 
-
-
-
-
 ### COMMON_EVENT_TIME_CHANGED
 
 设置系统时间的公共事件的动作。
@@ -338,7 +332,7 @@
 
 **订阅者所需权限：** 无
 
-**取值** "usual.event.TIME_CHANGED"
+**取值：** "usual.event.TIME_CHANGED"
 
 
 ### COMMON_EVENT_TIME_TICK
@@ -351,7 +345,7 @@
 
 **订阅者所需权限：** 无
 
-**取值** "usual.event.TIME_TICK"
+**取值：** "usual.event.TIME_TICK"
 
 
 ### COMMON_EVENT_TIMEZONE_CHANGED
@@ -364,7 +358,7 @@
 
 **订阅者所需权限：** 无
 
-**取值** "usual.event.TIMEZONE_CHANGED"
+**取值：** "usual.event.TIMEZONE_CHANGED"
 
 
 
@@ -444,9 +438,9 @@
 
 与这个公共事件相关的接口：setOsAccountDistributedInfo、updateOsAccountDistributedInfo(已废弃)，这些为公共API，setOsAccountDistributedInfoByLocalId为系统API，具体参看[分布式账号接口文档](../js-apis-distributed-account.md)。
 
-**订阅者所需权限：** 无
-
 **系统能力：** SystemCapability.Notification.CommonEvent
+
+**订阅者所需权限：** 无
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -806,7 +800,7 @@ Wi-Fi状态变化。
 
 **系统能力：** SystemCapability.Notification.CommonEvent
 
-**订阅方需要的权限：** ohos.permission.LOCATION
+**订阅者所需权限：** ohos.permission.LOCATION
 
 **取值：** "usual.event.wifi.SCAN_FINISHED"
 
@@ -819,7 +813,7 @@ Wi-Fi状态变化。
 
 **系统能力：** SystemCapability.Notification.CommonEvent
 
-**订阅方需要的权限：** ohos.permission.LOCATION
+**订阅者所需权限：** ohos.permission.LOCATION
 
 **取值：** "usual.event.wifi.SCAN_STATE"
 
@@ -833,7 +827,7 @@ Wi-Fi状态变化。
 
 **系统能力：** SystemCapability.Notification.CommonEvent
 
-**订阅方需要的权限：** ohos.permission.GET_WIFI_INFO
+**订阅者所需权限：** ohos.permission.GET_WIFI_INFO
 
 **取值：** "usual.event.wifi.RSSI_VALUE"
 
@@ -848,7 +842,7 @@ Wi-Fi状态变化。
 
 **系统能力：** SystemCapability.Notification.CommonEvent
 
-**订阅方需要的权限：** 无
+**订阅者所需权限：** 无
 
 **取值：** "usual.event.wifi.CONN_STATE"
 
@@ -863,7 +857,7 @@ Wi-Fi状态变化。
 
 **系统能力：** SystemCapability.Notification.CommonEvent
 
-**订阅方需要的权限：** 无
+**订阅者所需权限：** 无
 
 **取值：** "usual.event.wifi.HOTSPOT_STATE"
 
@@ -876,7 +870,7 @@ Wi-Fi状态变化。
 
 **系统能力：** SystemCapability.Notification.CommonEvent
 
-**订阅方需要的权限：** ohos.permission.GET_WIFI_INFO
+**订阅者所需权限：** ohos.permission.GET_WIFI_INFO
 
 **取值：** "usual.event.wifi.WIFI_HS_STA_JOIN"
 
@@ -890,7 +884,7 @@ Wi-Fi状态变化。
 
 **系统能力：** SystemCapability.Notification.CommonEvent
 
-**订阅方需要的权限：** ohos.permission.GET_WIFI_INFO
+**订阅者所需权限：** ohos.permission.GET_WIFI_INFO
 
 **取值：** "usual.event.wifi.WIFI_HS_STA_LEAVE"
 
@@ -899,12 +893,12 @@ Wi-Fi状态变化。
 
 表示MPLink（增强Wi-Fi功能）状态已更改。
 
-当MPLink（增强Wi-Fi功能）状态发生变化，将会触发事件通知服务发布该系统公共事件。
+当MPLink（增强Wi-Fi功能）状态发生变化，将会触发事件通知服务发布该系统公共事件(暂不支持)。
 
 
 **系统能力：** SystemCapability.Notification.CommonEvent
 
-**订阅方需要的权限：** ohos.permission.MPLINK_CHANGE_STATE
+**订阅方需要的权限：** 无
 
 **取值：** "usual.event.wifi.mplink.STATE_CHANGE"
 
@@ -918,7 +912,7 @@ Wi-Fi状态变化。
 
 **系统能力：** SystemCapability.Notification.CommonEvent
 
-**订阅方需要的权限：** ohos.permission.GET_WIFI_INFO和ohos.permission.LOCATION
+**订阅者所需权限：** ohos.permission.GET_WIFI_INFO和ohos.permission.LOCATION
 
 **取值：** "usual.event.wifi.p2p.CONN_STATE_CHANGE"
 
@@ -933,7 +927,7 @@ Wi-Fi状态变化。
 
 **系统能力：** SystemCapability.Notification.CommonEvent
 
-**订阅方需要的权限：** ohos.permission.GET_WIFI_INFO
+**订阅者所需权限：** ohos.permission.GET_WIFI_INFO
 
 **取值：** "usual.event.wifi.p2p.STATE_CHANGE"
 
@@ -946,7 +940,7 @@ Wi-Fi状态变化。
 
 **系统能力：** SystemCapability.Notification.CommonEvent
 
-**订阅方需要的权限：** ohos.permission.GET_WIFI_INFO
+**订阅者所需权限：** ohos.permission.GET_WIFI_INFO
 
 **取值：** "usual.event.wifi.p2p.DEVICES_CHANGE"
 
@@ -959,7 +953,7 @@ Wi-Fi状态变化。
 
 **系统能力：** SystemCapability.Notification.CommonEvent
 
-**订阅方需要的权限：** ohos.permission.GET_WIFI_INFO
+**订阅者所需权限：** ohos.permission.GET_WIFI_INFO
 
 **取值：** "usual.event.wifi.p2p.PEER_DISCOVERY_STATE_CHANGE"
 
@@ -972,7 +966,7 @@ Wi-Fi状态变化。
 
 **系统能力：** SystemCapability.Notification.CommonEvent
 
-**订阅方需要的权限：** ohos.permission.GET_WIFI_INFO
+**订阅者所需权限：** ohos.permission.GET_WIFI_INFO
 
 **取值：** "usual.event.wifi.p2p.CURRENT_DEVICE_CHANGE"
 
@@ -985,7 +979,7 @@ Wi-Fi状态变化。
 
 **系统能力：** SystemCapability.Notification.CommonEvent
 
-**订阅方需要的权限：** ohos.permission.GET_WIFI_INFO
+**订阅者所需权限：** ohos.permission.GET_WIFI_INFO
 
 **取值：** "usual.event.wifi.p2p.GROUP_STATE_CHANGED"
 
@@ -1000,7 +994,7 @@ Wi-Fi状态变化。
 
 **系统能力：** SystemCapability.Notification.CommonEvent
 
-**订阅方需要的权限：** 无
+**订阅者所需权限：** 无
 
 **取值：** "usual.event.MANAGED_BROWSER_POLICY_CHANGED"
 
@@ -1127,8 +1121,6 @@ Wi-Fi状态变化。
 **订阅者所需权限：** 无
 
 **取值：** usual.event.SIGNAL_INFO_CHANGED
-
-**系统能力：** SystemCapability.Notification.CommonEvent
 
 
 
@@ -1435,7 +1427,7 @@ Store Kit面向应用发布如下系统公共事件。
 
 **订阅者所需权限：** 无
 
-**取值** usual.event.DATE_CHANGED
+**取值：** usual.event.DATE_CHANGED
 
 ### COMMON_EVENT_USB_ACCESSORY_ATTACHED
 

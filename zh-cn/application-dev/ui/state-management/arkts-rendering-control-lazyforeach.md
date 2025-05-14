@@ -57,10 +57,10 @@ class MyDataSource extends BasicDataSource {
 @Component
 struct MyComponent {
   private data: MyDataSource = new MyDataSource();
-   
+
   aboutToAppear() {
     for (let i = 0; i <= 20; i++) {
-      this.data.pushData(`Hello ${i}`)
+      this.data.pushData(`Hello ${i}`);
     }
   }
 
@@ -71,7 +71,7 @@ struct MyComponent {
           Row() {
             Text(item).fontSize(50)
               .onAppear(() => {
-                console.info("appear:" + item)
+                console.info(`appear: ${item}`);
               })
           }.margin({ left: 10, right: 10 })
         }
@@ -119,7 +119,7 @@ struct MyComponent {
 
   aboutToAppear() {
     for (let i = 0; i <= 20; i++) {
-      this.data.pushData(`Hello ${i}`)
+      this.data.pushData(`Hello ${i}`);
     }
   }
 
@@ -130,7 +130,7 @@ struct MyComponent {
           Row() {
             Text(item).fontSize(50)
               .onAppear(() => {
-                console.info("appear:" + item)
+                console.info(`appear: ${item}`);
               })
           }.margin({ left: 10, right: 10 })
         }
@@ -178,7 +178,7 @@ struct MyComponent {
 
   aboutToAppear() {
     for (let i = 0; i <= 20; i++) {
-      this.data.pushData(`Hello ${i}`)
+      this.data.pushData(`Hello ${i}`);
     }
   }
 
@@ -189,7 +189,7 @@ struct MyComponent {
           Row() {
             Text(item).fontSize(50)
               .onAppear(() => {
-                console.info("appear:" + item)
+                console.info(`appear: ${item}`);
               })
           }.margin({ left: 10, right: 10 })
         }
@@ -233,7 +233,7 @@ class MyDataSource extends BasicDataSource {
   public pushData(data: string): void {
     this.dataArray.push(data);
   }
-  
+
   public deleteData(index: number): void {
     this.dataArray.splice(index, 1);
     this.notifyDataDelete(index);
@@ -247,7 +247,7 @@ struct MyComponent {
 
   aboutToAppear() {
     for (let i = 0; i <= 20; i++) {
-      this.data.pushData(`Hello ${i}`)
+      this.data.pushData(`Hello ${i}`);
     }
   }
 
@@ -258,7 +258,7 @@ struct MyComponent {
           Row() {
             Text(item).fontSize(50)
               .onAppear(() => {
-                console.info("appear:" + item)
+                console.info(`appear: ${item}`);
               })
           }.margin({ left: 10, right: 10 })
         }
@@ -302,7 +302,7 @@ class MyDataSource extends BasicDataSource {
   public pushData(data: string): void {
     this.dataArray.push(data);
   }
-  
+
   public moveData(from: number, to: number): void {
     let temp: string = this.dataArray[from];
     this.dataArray[from] = this.dataArray[to];
@@ -319,7 +319,7 @@ struct MyComponent {
 
   aboutToAppear() {
     for (let i = 0; i <= 20; i++) {
-      this.data.pushData(`Hello ${i}`)
+      this.data.pushData(`Hello ${i}`);
     }
   }
 
@@ -330,15 +330,15 @@ struct MyComponent {
           Row() {
             Text(item).fontSize(50)
               .onAppear(() => {
-                console.info("appear:" + item)
+                console.info(`appear: ${item}`);
               })
           }.margin({ left: 10, right: 10 })
         }
         .onClick(() => {
           this.moved.push(this.data.getAllData().indexOf(item));
           if (this.moved.length === 2) {
-          	// 点击交换子组件
-          	this.data.moveData(this.moved[0], this.moved[1]);
+            // 点击交换子组件
+            this.data.moveData(this.moved[0], this.moved[1]);
             this.moved = [];
           }
         })
@@ -374,7 +374,7 @@ class MyDataSource extends BasicDataSource {
   public pushData(data: string): void {
     this.dataArray.push(data);
   }
-  
+
   public changeData(index: number, data: string): void {
     this.dataArray.splice(index, 1, data);
     this.notifyDataChange(index);
@@ -384,15 +384,13 @@ class MyDataSource extends BasicDataSource {
 @Entry
 @Component
 struct MyComponent {
-  private moved: number[] = [];
   private data: MyDataSource = new MyDataSource();
 
   aboutToAppear() {
     for (let i = 0; i <= 20; i++) {
-      this.data.pushData(`Hello ${i}`)
+      this.data.pushData(`Hello ${i}`);
     }
   }
-
 
   build() {
     List({ space: 3 }) {
@@ -401,7 +399,7 @@ struct MyComponent {
           Row() {
             Text(item).fontSize(50)
               .onAppear(() => {
-                console.info("appear:" + item)
+                console.info(`appear: ${item}`);
               })
           }.margin({ left: 10, right: 10 })
         }
@@ -440,27 +438,26 @@ class MyDataSource extends BasicDataSource {
   public pushData(data: string): void {
     this.dataArray.push(data);
   }
-    
+
   public reloadData(): void {
     this.notifyDataReload();
   }
-    
+
   public modifyAllData(): void {
     this.dataArray = this.dataArray.map((item: string) => {
-        return item + '0';
-    })
+      return item + '0';
+    });
   }
 }
 
 @Entry
 @Component
 struct MyComponent {
-  private moved: number[] = [];
   private data: MyDataSource = new MyDataSource();
 
   aboutToAppear() {
     for (let i = 0; i <= 20; i++) {
-      this.data.pushData(`Hello ${i}`)
+      this.data.pushData(`Hello ${i}`);
     }
   }
 
@@ -471,7 +468,7 @@ struct MyComponent {
           Row() {
             Text(item).fontSize(50)
               .onAppear(() => {
-                console.info("appear:" + item)
+                console.info(`appear: ${item}`);
               })
           }.margin({ left: 10, right: 10 })
         }
@@ -509,15 +506,15 @@ class MyDataSource extends BasicDataSource {
   }
 
   public operateData(): void {
-    console.info(JSON.stringify(this.dataArray));
+    console.info(`[${this.dataArray.join(', ')}]`);
     this.dataArray.splice(4, 0, this.dataArray[1]);
     this.dataArray.splice(1, 1);
     let temp = this.dataArray[4];
     this.dataArray[4] = this.dataArray[6];
-    this.dataArray[6] = temp
+    this.dataArray[6] = temp;
     this.dataArray.splice(8, 0, 'Hello 1', 'Hello 2');
     this.dataArray.splice(12, 2);
-    console.info(JSON.stringify(this.dataArray));
+    console.info(`[${this.dataArray.join(', ')}]`);
     this.notifyDatasetChange([
       { type: DataOperationType.MOVE, index: { from: 1, to: 3 } },
       { type: DataOperationType.EXCHANGE, index: { start: 4, end: 6 } },
@@ -537,7 +534,7 @@ struct MyComponent {
   private data: MyDataSource = new MyDataSource();
 
   aboutToAppear() {
-    this.data.init()
+    this.data.init();
   }
 
   build() {
@@ -557,7 +554,7 @@ struct MyComponent {
             Row() {
               Text(item).fontSize(35)
                 .onAppear(() => {
-                  console.info("appear:" + item)
+                  console.info(`appear: ${item}`);
                 })
             }.margin({ left: 10, right: 10 })
           }
@@ -593,7 +590,7 @@ class MyDataSource extends BasicDataSource {
 
   public operateData(): void {
     this.dataArray =
-      ['Hello x', 'Hello 1', 'Hello 2', 'Hello b', 'Hello c', 'Hello e', 'Hello d', 'Hello f', 'Hello g', 'Hello h']
+      ['Hello x', 'Hello 1', 'Hello 2', 'Hello b', 'Hello c', 'Hello e', 'Hello d', 'Hello f', 'Hello g', 'Hello h'];
     this.notifyDatasetChange([
       { type: DataOperationType.CHANGE, index: 0 },
       { type: DataOperationType.ADD, index: 1, count: 2 },
@@ -612,7 +609,7 @@ struct MyComponent {
   private data: MyDataSource = new MyDataSource();
 
   aboutToAppear() {
-    this.data.init()
+    this.data.init();
   }
 
   build() {
@@ -632,7 +629,7 @@ struct MyComponent {
             Row() {
               Text(item).fontSize(35)
                 .onAppear(() => {
-                  console.info("appear:" + item)
+                  console.info(`appear: ${item}`);
                 })
             }.margin({ left: 10, right: 10 })
           }
@@ -696,15 +693,15 @@ class MyDataSource extends BasicDataSource {
 @Observed
 class StringData {
   message: string;
+
   constructor(message: string) {
     this.message = message;
-  }  
+  }
 }
 
 @Entry
 @Component
 struct MyComponent {
-  private moved: number[] = [];
   private data: MyDataSource = new MyDataSource();
 
   aboutToAppear() {
@@ -717,7 +714,7 @@ struct MyComponent {
     List({ space: 3 }) {
       LazyForEach(this.data, (item: StringData, index: number) => {
         ListItem() {
-          ChildComponent({data: item})
+          ChildComponent({ data: item })
         }
         .onClick(() => {
           item.message += '0';
@@ -729,12 +726,13 @@ struct MyComponent {
 
 @Component
 struct ChildComponent {
-  @ObjectLink data: StringData
+  @ObjectLink data: StringData;
+
   build() {
     Row() {
       Text(this.data.message).fontSize(50)
         .onAppear(() => {
-          console.info("appear:" + this.data.message)
+          console.info(`appear: ${this.data.message}`);
         })
     }.margin({ left: 10, right: 10 })
   }
@@ -812,7 +810,7 @@ struct MyComponent {
 
   aboutToAppear() {
     for (let i = 0; i <= 20; i++) {
-      this.data.pushData(new StringData(new FirstLayer(new SecondLayer(new ThirdLayer('Hello' + i)))));
+      this.data.pushData(new StringData(new FirstLayer(new SecondLayer(new ThirdLayer(`Hello ${i}`)))));
     }
   }
 
@@ -828,7 +826,6 @@ struct MyComponent {
       }, (item: StringData, index: number) => index.toString())
     }.cachedCount(5)
   }
-}
 ```
 
 `@ObservedV2`与`@Trace`用于装饰类以及类中的属性，配合使用能深度观测被装饰的类和属性。示例中，展示了深度嵌套类结构下，通过`@ObservedV2`和`@Trace`实现对多层嵌套属性变化的观测和子组件刷新。当点击子组件`Text`修改被`@Trace`修饰的嵌套类最内层的类成员属性时，仅重新渲染依赖了该属性的组件。
@@ -871,7 +868,7 @@ struct MyComponent {
 
   aboutToAppear() {
     for (let i = 0; i <= 20; i++) {
-      this.data.pushData(new StringData('Hello' + i));
+      this.data.pushData(new StringData(`Hello ${i}`));
     }
   }
 
@@ -950,7 +947,7 @@ struct MyComponent {
 
   aboutToAppear() {
     for (let i = 0; i <= 20; i++) {
-      this.data.pushData(new StringData('Hello' + i));
+      this.data.pushData(new StringData(`Hello ${i}`));
     }
   }
 
@@ -1001,7 +998,7 @@ class MyDataSource extends BasicDataSource {
 
   public moveDataWithoutNotify(from: number, to: number): void {
     let tmp = this.dataArray.splice(from, 1);
-    this.dataArray.splice(to, 0, tmp[0])
+    this.dataArray.splice(to, 0, tmp[0]);
   }
 
   public pushData(data: string): void {
@@ -1017,7 +1014,7 @@ struct Parent {
 
   aboutToAppear(): void {
     for (let i = 0; i < 100; i++) {
-      this.data.pushData(i.toString())
+      this.data.pushData(i.toString());
     }
   }
 
@@ -1025,17 +1022,17 @@ struct Parent {
     Row() {
       List() {
         LazyForEach(this.data, (item: string) => {
-            ListItem() {
-              Text(item.toString())
-                .fontSize(16)
-                .textAlign(TextAlign.Center)
-                .size({height: 100, width: "100%"})
-            }.margin(10)
-            .borderRadius(10)
-            .backgroundColor("#FFFFFFFF")
-          }, (item: string) => item)
-          .onMove((from:number, to:number)=>{
-            this.data.moveDataWithoutNotify(from, to)
+          ListItem() {
+            Text(item.toString())
+              .fontSize(16)
+              .textAlign(TextAlign.Center)
+              .size({ height: 100, width: "100%" })
+          }.margin(10)
+          .borderRadius(10)
+          .backgroundColor("#FFFFFFFF")
+        }, (item: string) => item)
+          .onMove((from: number, to: number) => {
+            this.data.moveDataWithoutNotify(from, to);
           })
       }
       .width('100%')
@@ -1071,7 +1068,7 @@ class MyDataSource extends BasicDataSource {
     this.dataArray.push(data);
     this.notifyDataAdd(this.dataArray.length - 1);
   }
-  
+
   public deleteData(index: number): void {
     this.dataArray.splice(index, 1);
     this.notifyDataDelete(index);
@@ -1085,7 +1082,7 @@ struct MyComponent {
 
   aboutToAppear() {
     for (let i = 0; i <= 20; i++) {
-      this.data.pushData(`Hello ${i}`)
+      this.data.pushData(`Hello ${i}`);
     }
   }
 
@@ -1096,7 +1093,7 @@ struct MyComponent {
           Row() {
             Text(item).fontSize(50)
               .onAppear(() => {
-                console.info("appear:" + item)
+                console.info(`appear: ${item}`);
               })
           }.margin({ left: 10, right: 10 })
         }
@@ -1135,12 +1132,12 @@ class MyDataSource extends BasicDataSource {
     this.dataArray.push(data);
     this.notifyDataAdd(this.dataArray.length - 1);
   }
-  
+
   public deleteData(index: number): void {
     this.dataArray.splice(index, 1);
     this.notifyDataDelete(index);
   }
-    
+
   public reloadData(): void {
     this.notifyDataReload();
   }
@@ -1153,7 +1150,7 @@ struct MyComponent {
 
   aboutToAppear() {
     for (let i = 0; i <= 20; i++) {
-      this.data.pushData(`Hello ${i}`)
+      this.data.pushData(`Hello ${i}`);
     }
   }
 
@@ -1164,7 +1161,7 @@ struct MyComponent {
           Row() {
             Text(item).fontSize(50)
               .onAppear(() => {
-                console.info("appear:" + item)
+                console.info(`appear: ${item}`);
               })
           }.margin({ left: 10, right: 10 })
         }
@@ -1205,7 +1202,7 @@ class MyDataSource extends BasicDataSource {
     this.dataArray.push(data);
     this.notifyDataAdd(this.dataArray.length - 1);
   }
-    
+
   public reloadData(): void {
     this.notifyDataReload();
   }
@@ -1214,10 +1211,11 @@ class MyDataSource extends BasicDataSource {
 class StringData {
   message: string;
   imgSrc: Resource;
+
   constructor(message: string, imgSrc: Resource) {
-      this.message = message;
-      this.imgSrc = imgSrc;
-  }  
+    this.message = message;
+    this.imgSrc = imgSrc;
+  }
 }
 
 @Entry
@@ -1240,7 +1238,7 @@ struct MyComponent {
           Column() {
             Text(item.message).fontSize(50)
               .onAppear(() => {
-                console.info("appear:" + item.message)
+                console.info(`appear: ${item.message}`);
               })
             Image(item.imgSrc)
               .width(500)
@@ -1289,10 +1287,11 @@ class MyDataSource extends BasicDataSource {
 class StringData {
   message: string;
   imgSrc: Resource;
+
   constructor(message: string, imgSrc: Resource) {
-      this.message = message;
-      this.imgSrc = imgSrc;
-  }  
+    this.message = message;
+    this.imgSrc = imgSrc;
+  }
 }
 
 @Entry
@@ -1311,7 +1310,7 @@ struct MyComponent {
     List({ space: 3 }) {
       LazyForEach(this.data, (item: StringData, index: number) => {
         ListItem() {
-          ChildComponent({data: item})
+          ChildComponent({ data: item })
         }
         .onClick(() => {
           item.message += '0';
@@ -1324,12 +1323,13 @@ struct MyComponent {
 @Component
 struct ChildComponent {
   // 用状态变量来驱动UI刷新，而不是通过Lazyforeach的api来驱动UI刷新
-  @ObjectLink data: StringData
+  @ObjectLink data: StringData;
+
   build() {
     Column() {
       Text(this.data.message).fontSize(50)
         .onAppear(() => {
-          console.info("appear:" + this.data.message)
+          console.info(`appear: ${this.data.message}`);
         })
       Image(this.data.imgSrc)
         .width(500)
@@ -1367,17 +1367,19 @@ class MyDataSource extends BasicDataSource {
 @Observed
 class StringData {
   message: NestedString;
+
   constructor(message: NestedString) {
     this.message = message;
-  }  
+  }
 }
 
 @Observed
 class NestedString {
   message: string;
+
   constructor(message: string) {
     this.message = message;
-  }  
+  }
 }
 
 @Entry
@@ -1396,7 +1398,7 @@ struct MyComponent {
     List({ space: 3 }) {
       LazyForEach(this.data, (item: StringData, index: number) => {
         ListItem() {
-          ChildComponent({data: item})
+          ChildComponent({ data: item })
         }
         .onClick(() => {
           item.message.message += '0';
@@ -1408,12 +1410,13 @@ struct MyComponent {
 
 @Component
 struct ChildComponent {
-  @ObjectLink data: StringData
+  @ObjectLink data: StringData;
+
   build() {
     Row() {
       Text(this.data.message.message).fontSize(50)
         .onAppear(() => {
-          console.info("appear:" + this.data.message.message)
+          console.info(`appear: ${this.data.message.message}`);
         })
     }.margin({ left: 10, right: 10 })
   }
@@ -1450,17 +1453,19 @@ class MyDataSource extends BasicDataSource {
 @Observed
 class StringData {
   message: NestedString;
+
   constructor(message: NestedString) {
     this.message = message;
-  }  
+  }
 }
 
 @Observed
 class NestedString {
   message: string;
+
   constructor(message: string) {
     this.message = message;
-  }  
+  }
 }
 
 @Entry
@@ -1479,7 +1484,7 @@ struct MyComponent {
     List({ space: 3 }) {
       LazyForEach(this.data, (item: StringData, index: number) => {
         ListItem() {
-          ChildComponent({data: item})
+          ChildComponent({ data: item })
         }
         .onClick(() => {
           // @ObjectLink装饰的成员变量仅能监听到其子属性的变化，再深入嵌套的属性便无法观测到
@@ -1492,12 +1497,13 @@ struct MyComponent {
 
 @Component
 struct ChildComponent {
-  @ObjectLink data: StringData
+  @ObjectLink data: StringData;
+
   build() {
     Row() {
       Text(this.data.message.message).fontSize(50)
         .onAppear(() => {
-          console.info("appear:" + this.data.message.message)
+          console.info(`appear: ${this.data.message.message}`);
         })
     }.margin({ left: 10, right: 10 })
   }
@@ -1529,11 +1535,11 @@ class MyDataSource extends BasicDataSource {
     this.notifyDataAdd(this.dataArray.length - 1);
   }
 
-  operateData():void {
+  operateData(): void {
     const totalCount = this.dataArray.length;
-    const batch=5;
+    const batch = 5;
     for (let i = totalCount; i < totalCount + batch; i++) {
-      this.dataArray.push(`Hello ${i}`)
+      this.dataArray.push(`Hello ${i}`);
     }
     this.notifyDataReload();
   }
@@ -1547,7 +1553,7 @@ struct MyComponent {
 
   aboutToAppear() {
     for (let i = 0; i <= 10; i++) {
-      this.data.pushData(`Hello ${i}`)
+      this.data.pushData(`Hello ${i}`);
     }
   }
 
@@ -1561,7 +1567,7 @@ struct MyComponent {
               .height(80)
               .backgroundColor(Color.Gray)
               .onAppear(() => {
-                console.info("appear:" + item)
+                console.info(`appear: ${item}`);
               })
           }.margin({ left: 10, right: 10 })
         }
@@ -1569,7 +1575,7 @@ struct MyComponent {
     }.cachedCount(10)
     .onScrollIndex((start, end, center) => {
       if (end === this.data.totalCount() - 1) {
-        console.log('scroll to end')
+        console.info('scroll to end');
         this.data.operateData();
       }
     })
@@ -1601,14 +1607,14 @@ class MyDataSource extends BasicDataSource {
     this.notifyDataAdd(this.dataArray.length - 1);
   }
 
-  operateData():void {
+  operateData(): void {
     const totalCount = this.dataArray.length;
-    const batch=5;
+    const batch = 5;
     for (let i = totalCount; i < totalCount + batch; i++) {
-      this.dataArray.push(`Hello ${i}`)
+      this.dataArray.push(`Hello ${i}`);
     }
     // 替换 notifyDataReload
-    this.notifyDatasetChange([{type:DataOperationType.ADD, index: totalCount-1, count:batch}])
+    this.notifyDatasetChange([{ type: DataOperationType.ADD, index: totalCount - 1, count: batch }]);
   }
 }
 
@@ -1620,7 +1626,7 @@ struct MyComponent {
 
   aboutToAppear() {
     for (let i = 0; i <= 10; i++) {
-      this.data.pushData(`Hello ${i}`)
+      this.data.pushData(`Hello ${i}`);
     }
   }
 
@@ -1634,7 +1640,7 @@ struct MyComponent {
               .height(80)
               .backgroundColor(Color.Gray)
               .onAppear(() => {
-                console.info("appear:" + item)
+                console.info(`appear: ${item}`);
               })
           }.margin({ left: 10, right: 10 })
         }
@@ -1642,7 +1648,7 @@ struct MyComponent {
     }.cachedCount(10)
     .onScrollIndex((start, end, center) => {
       if (end === this.data.totalCount() - 1) {
-        console.log('scroll to end')
+        console.info('scroll to end');
         this.data.operateData();
       }
     })
@@ -1693,7 +1699,7 @@ struct MyComponent {
 
   aboutToAppear() {
     for (let i = 0; i <= 30; i++) {
-      this.data.pushData(new StringData('Hello' + i));
+      this.data.pushData(new StringData(`Hello${i}`));
     }
   }
 
@@ -1703,7 +1709,7 @@ struct MyComponent {
         ListItem() {
           ChildComponent({ data: item })
             .onAppear(() => {
-              console.log('onAppear: ' + item.message)
+              console.info(`onAppear: ${item.message}`);
             })
         }
       }, (item: StringData, index: number) => index.toString())
@@ -1717,17 +1723,17 @@ struct ChildComponent {
   @State data: StringData = new StringData('');
 
   aboutToAppear(): void {
-    console.log('aboutToAppear: ' + this.data.message);
+    console.info(`aboutToAppear: ${this.data.message}`);
   }
 
   aboutToRecycle(): void {
-    console.log('aboutToRecycle: ' + this.data.message);
+    console.info(`aboutToRecycle: ${this.data.message}`);
   }
 
   // 对复用的组件进行数据更新
   aboutToReuse(params: Record<string, ESObject>): void {
     this.data = params.data as StringData;
-    console.log('aboutToReuse: ' + this.data.message);
+    console.info(`aboutToReuse: ${this.data.message}`);
   }
 
   build() {
@@ -1855,8 +1861,8 @@ struct MyComponent {
     List() {
       LazyForEach(this.data, (item: string, index: number) => {
         ChildComponent({ message: item, index: index })
-          // 子组件未设置默认高度，首次渲染时所有数据项对应组件都被创建
-          // .height(60)
+        // 子组件未设置默认高度，首次渲染时所有数据项对应组件都被创建
+        // .height(60)
       }, (item: string, index: number) => item + index)
     }
     .cachedCount(2)
@@ -1869,7 +1875,7 @@ struct ChildComponent {
   index: number = -1;
 
   aboutToAppear(): void {
-    console.log(`about to appear ${this.index}`);
+    console.info(`about to appear ${this.index}`);
   }
 
   build() {
@@ -1932,7 +1938,7 @@ class BasicDataSource implements IDataSource {
   notifyDataReload(): void {
     this.listeners.forEach(listener => {
       listener.onDataReloaded();
-    })
+    });
   }
 
   // 通知LazyForEach组件需要在index对应索引处添加子组件
@@ -1940,7 +1946,7 @@ class BasicDataSource implements IDataSource {
     this.listeners.forEach(listener => {
       listener.onDataAdd(index);
       // 写法2：listener.onDatasetChange([{type: DataOperationType.ADD, index: index}]);
-    })
+    });
   }
 
   // 通知LazyForEach组件在index对应索引处数据有变化，需要重建该子组件
@@ -1948,7 +1954,7 @@ class BasicDataSource implements IDataSource {
     this.listeners.forEach(listener => {
       listener.onDataChange(index);
       // 写法2：listener.onDatasetChange([{type: DataOperationType.CHANGE, index: index}]);
-    })
+    });
   }
 
   // 通知LazyForEach组件需要在index对应索引处删除该子组件
@@ -1956,7 +1962,7 @@ class BasicDataSource implements IDataSource {
     this.listeners.forEach(listener => {
       listener.onDataDelete(index);
       // 写法2：listener.onDatasetChange([{type: DataOperationType.DELETE, index: index}]);
-    })
+    });
   }
 
   // 通知LazyForEach组件将from索引和to索引处的子组件进行交换
@@ -1965,13 +1971,13 @@ class BasicDataSource implements IDataSource {
       listener.onDataMove(from, to);
       // 写法2：listener.onDatasetChange(
       //         [{type: DataOperationType.EXCHANGE, index: {start: from, end: to}}]);
-    })
+    });
   }
 
   notifyDatasetChange(operations: DataOperation[]): void {
     this.listeners.forEach(listener => {
       listener.onDatasetChange(operations);
-    })
+    });
   }
 }
 ```
@@ -2009,37 +2015,37 @@ class BasicDataSource implements IDataSource {
   notifyDataReload(): void {
     this.listeners.forEach(listener => {
       listener.onDataReloaded();
-    })
+    });
   }
 
   notifyDataAdd(index: number): void {
     this.listeners.forEach(listener => {
       listener.onDataAdd(index);
-    })
+    });
   }
 
   notifyDataChange(index: number): void {
     this.listeners.forEach(listener => {
       listener.onDataChange(index);
-    })
+    });
   }
 
   notifyDataDelete(index: number): void {
     this.listeners.forEach(listener => {
       listener.onDataDelete(index);
-    })
+    });
   }
 
   notifyDataMove(from: number, to: number): void {
     this.listeners.forEach(listener => {
       listener.onDataMove(from, to);
-    })
+    });
   }
 
   notifyDatasetChange(operations: DataOperation[]): void {
     this.listeners.forEach(listener => {
       listener.onDatasetChange(operations);
-    })
+    });
   }
 }
 ```
