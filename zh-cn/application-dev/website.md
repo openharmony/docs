@@ -3803,14 +3803,22 @@
           <!--DelEnd-->
         - C API<!--input-c-->
           - 模块<!--input-module-->
-            - [Input](reference/apis-input-kit/input.md)
+            - [Input](reference/apis-input-kit/capi-input.md)
           - 头文件<!--input-headerfile-->
-            - [oh_axis_type.h](reference/apis-input-kit/oh__axis__type_8h.md)
-            - [oh_input_manager.h](reference/apis-input-kit/oh__input__manager_8h.md)
-            - [oh_key_code.h](reference/apis-input-kit/oh__key__code_8h.md)
+            - [oh_axis_type.h](reference/apis-input-kit/capi-oh-axis-type-h.md)
+            - [oh_input_manager.h](reference/apis-input-kit/capi-oh-input-manager-h.md)
+            - [oh_key_code.h](reference/apis-input-kit/capi-oh-key-code-h.md)
           - 结构体<!--input-struct-->
-            - [Input_DeviceListener](reference/apis-input-kit/_input___device_listener.md)
-            - [Input_InterceptorEventCallback](reference/apis-input-kit/_input___interceptor_event_callback.md)
+            - [Input_InterceptorEventCallback](reference/apis-input-kit/capi-input-interceptoreventcallback.md)
+            - [Input_DeviceListener](reference/apis-input-kit/capi-input-devicelistener.md)
+            - [Input_KeyState](reference/apis-input-kit/capi-input-keystate.md)
+            - [Input_KeyEvent](reference/apis-input-kit/capi-input-keyevent.md)
+            - [Input_MouseEvent](reference/apis-input-kit/capi-input-mouseevent.md)
+            - [Input_TouchEvent](reference/apis-input-kit/capi-input-touchevent.md)
+            - [Input_AxisEvent](reference/apis-input-kit/capi-input-axisevent.md)
+            - [Input_Hotkey](reference/apis-input-kit/capi-input-hotkey.md)
+            - [Input_DeviceInfo](reference/apis-input-kit/capi-input-deviceinfo.md)
+            - [Input_InterceptorOptions](reference/apis-input-kit/capi-input-interceptoroptions.md)
         - 错误码<!--input-arkts-errcode-->
           - [键鼠穿越管理错误码](reference/apis-input-kit/errorcode-multimodalinput.md)
           - [全局快捷键管理错误码](reference/apis-input-kit/errorcode-inputconsumer.md)
