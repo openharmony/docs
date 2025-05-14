@@ -8,14 +8,14 @@
    
    如何生成AES对称密钥，开发者可参考下文示例，并结合[对称密钥生成和转换规格：AES](crypto-sym-key-generation-conversion-spec.md#aes)和[随机生成对称密钥](crypto-generate-sym-key-randomly.md)理解，参考文档与当前示例可能存在入参差异，请在阅读时注意区分。
 
-2. 调用[cryptoFramework.createCipher](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreatecipher)，指定字符串参数'AES128|GCM|PKCS7'，创建SymKey类型为AES128、分组模式为GCM、填充模式为PKCS7的Cipher实例，用于完成加密操作。
+2. 调用[cryptoFramework.createCipher](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreatecipher)，指定字符串参数'AES128|GCM|PKCS7'，创建对称密钥类型为AES128、分组模式为GCM、填充模式为PKCS7的Cipher实例，用于完成加密操作。
 
 3. 调用[Cipher.init](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#init-1)，设置模式为加密（CryptoMode.ENCRYPT_MODE），指定加密密钥（SymKey）和GCM模式对应的加密参数（GcmParamsSpec），初始化加密Cipher实例。
 
 4. 将一次传入数据量设置为20字节，多次调用[Cipher.update](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#update-1)，更新数据（明文）。
    
    - 当前单次update长度没有限制，开发者可以根据数据量判断如何调用update。
-   - 建议开发者每次update后判断结果是否为null。如果结果不为null，取出其中的数据进行拼接，形成完整密文。不同规格可能会影响update的结果。
+   - 建议开发者对每次update的结果都判断是否为null，并在结果不为null时取出其中的数据进行拼接，形成完整的密文。因为在不同的规格下，update的结果可能会受到不同影响。
       
       1）例如ECB和CBC模式，始终以分组作为基本单位进行加密，并输出本次更新产生的加密分组结果。即当本次更新操作凑满一个分组时就输出密文，未凑满则本次更新输出null，将未加密的数据与下次输入的数据拼接后再凑分组输出。最后在doFinal时，将未加密的数据根据指定的填充模式进行填充，再输出剩余的加密结果。解密过程中的update操作同理。
 
@@ -32,7 +32,7 @@
 
 **解密**
 
-1. 调用[cryptoFramework.createCipher](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreatecipher)，指定字符串参数'AES128|GCM|PKCS7'，创建SymKey类型为AES128、分组模式为GCM、填充模式为PKCS7的Cipher实例，用于完成解密操作。
+1. 调用[cryptoFramework.createCipher](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreatecipher)，指定字符串参数'AES128|GCM|PKCS7'，创建对称密钥类型为AES128、分组模式为GCM、填充模式为PKCS7的Cipher实例，用于完成解密操作。
 
 2. 调用[Cipher.init](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#init-1)，设置模式为解密（CryptoMode.DECRYPT_MODE），指定解密密钥（SymKey）和GCM模式对应的解密参数（GcmParamsSpec），初始化解密Cipher实例。
 
@@ -75,12 +75,12 @@
   async function encryptMessageUpdateBySegment(symKey: cryptoFramework.SymKey, plainText: cryptoFramework.DataBlob) {
     let cipher = cryptoFramework.createCipher('AES128|GCM|PKCS7');
     await cipher.init(cryptoFramework.CryptoMode.ENCRYPT_MODE, symKey, gcmParams);
-    let updateLength = 20; // 假设以20字节为单位进行分段更新，实际并无要求。
+    let updateLength = 20; // 假设以20字节为单位进行分段update，实际并无要求。
     let cipherText = new Uint8Array();
     for (let i = 0; i < plainText.data.length; i += updateLength) {
       let updateMessage = plainText.data.subarray(i, i + updateLength);
       let updateMessageBlob: cryptoFramework.DataBlob = { data: updateMessage };
-      // 分段更新。
+      // 分段update。
       let updateOutput = await cipher.update(updateMessageBlob);
       // 把update的结果拼接起来，以获得密文。在某些情况下，还需要拼接doFinal的结果，这取决于分组模式。
       // 和填充模式，本例中GCM模式的doFinal结果只包含authTag而不含密文，所以不需要拼接）。
@@ -102,9 +102,9 @@
     for (let i = 0; i < cipherText.data.length; i += updateLength) {
       let updateMessage = cipherText.data.subarray(i, i + updateLength);
       let updateMessageBlob: cryptoFramework.DataBlob = { data: updateMessage };
-      // 分段更新。
+      // 分段update。
       let updateOutput = await decoder.update(updateMessageBlob);
-      // 把更新的结果拼接起来，得到明文。
+      // 把update的结果拼接起来，得到明文。
       let mergeText = new Uint8Array(decryptText.length + updateOutput.data.length);
       mergeText.set(decryptText);
       mergeText.set(updateOutput.data, decryptText.length);
@@ -175,14 +175,14 @@
   function encryptMessageUpdateBySegment(symKey: cryptoFramework.SymKey, plainText: cryptoFramework.DataBlob) {
     let cipher = cryptoFramework.createCipher('AES128|GCM|PKCS7');
     cipher.initSync(cryptoFramework.CryptoMode.ENCRYPT_MODE, symKey, gcmParams);
-    let updateLength = 20; // 假设以20字节为单位进行分段更新，实际并无要求。
+    let updateLength = 20; // 假设以20字节为单位进行分段update，实际并无要求。
     let cipherText = new Uint8Array();
     for (let i = 0; i < plainText.data.length; i += updateLength) {
       let updateMessage = plainText.data.subarray(i, i + updateLength);
       let updateMessageBlob: cryptoFramework.DataBlob = { data: updateMessage };
-      // 分段更新。
+      // 分段update。
       let updateOutput = cipher.updateSync(updateMessageBlob);
-      // 把更新的结果拼接起来，得到密文（有些情况下还需拼接doFinal的结果，这取决于分组模式。
+      // 把update的结果拼接起来，得到密文（有些情况下还需拼接doFinal的结果，这取决于分组模式。
       // 和填充模式，本例中GCM模式的doFinal结果只包含authTag而不含密文，所以不需要拼接）。
       let mergeText = new Uint8Array(cipherText.length + updateOutput.data.length);
       mergeText.set(cipherText);
@@ -202,9 +202,9 @@
     for (let i = 0; i < cipherText.data.length; i += updateLength) {
       let updateMessage = cipherText.data.subarray(i, i + updateLength);
       let updateMessageBlob: cryptoFramework.DataBlob = { data: updateMessage };
-      // 分段更新。
+      // 分段update。
       let updateOutput = decoder.updateSync(updateMessageBlob);
-      // 把更新的结果拼接起来，得到明文。
+      // 把update的结果拼接起来，得到明文。
       let mergeText = new Uint8Array(decryptText.length + updateOutput.data.length);
       mergeText.set(decryptText);
       mergeText.set(updateOutput.data, decryptText.length);
