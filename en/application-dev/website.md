@@ -1,4 +1,7 @@
 # Application Development
+<!--Del-->
+- [Application Development Overview](application-dev-guide.md)
+<!--DelEnd-->
 - Quick Start<!--application-getting-started-->
   <!--Del-->
   - Getting Started<!--quick-start-->
@@ -624,7 +627,7 @@
       - [ArkWeb Process](web/web_component_process.md)
       - [Lifecycle of Web Components](web/web-event-sequence.md)
       - Setting Basic Attributes and Events<!--web-set-attributes-events-->
-        - [Setting User-Agent](web/web-default-userAgent.md)
+        - [Developing UserAgent](web/web-default-userAgent.md)
         - [Managing Cookies and Data Storage](web/web-cookie-and-data-storage-mgmt.md)
         - [Setting the Dark Mode](web/web-set-dark-mode.md)
         - [Opening Pages in a New Window](web/web-open-in-new-window.md)
@@ -1090,7 +1093,7 @@
             - [Network Connection Management](network/net-connection-manager.md)
             - [NetConnection Development (C/C++)](network/native-netmanager-guidelines.md)
             - [Traffic Management](network/net-statistics.md)
-            - [VPN Application Development](network/net-vpnExtension.md)
+            - [VPN Extension Ability Development](network/net-vpnExtension.md)
             - [Network Firewall](network/net-netfirewall.md)
             <!--Del-->
             - [Network Sharing (for System Applications Only)](network/net-sharing.md)
@@ -1163,7 +1166,7 @@
           - [Concurrent Queue (C++)](ffrt/ffrt-concurrency-concurrent-queue-cpp.md)
           - [Task Graph (C++)](ffrt/ffrt-concurrency-graph-cpp.md)
         - [Function Flow Runtime Development](ffrt/ffrt-development-guideline.md)
-        - [Function Flow Runtime C API](ffrt/ffrt-api-guideline-c.md)
+        - [Function Flow Runtime C APIs](ffrt/ffrt-api-guideline-c.md)
       - Input Kit<!--input-kit-->
         - [Introduction to Input Kit](device/input/input-overview.md)
         - [Input Device Development](device/input/inputdevice-guidelines.md)
@@ -1295,8 +1298,8 @@
   - Media<!--media-->
     - Audio Kit<!--audio-kit-->
       - [Introduction to Audio Kit](media/audio/audio-kit-intro.md)
-      - [Selecting an Appropriate Audio Stream Type](media/audio/using-right-streamusage-and-sourcetype.md)
-      - [Introduction to Audio Focus and Audio Session](media/audio/audio-playback-concurrency.md)
+      - [Selecting the Appropriate Audio Stream Types](media/audio/using-right-streamusage-and-sourcetype.md)
+      - [Introduction to Audio Focus and Audio Sessions](media/audio/audio-playback-concurrency.md)
       - Audio Focus Management<!--audio-session-->
         - [Using AudioSession to Manage Audio Focus (ArkTS)](media/audio/audio-session-management.md)
         - [Using AudioSession to Manage Audio Focus (C/C++)](media/audio/using-ohaudio-for-session.md)
@@ -1315,7 +1318,7 @@
         - [Spatial Audio Management (for System Applications Only)](media/audio/audio-spatialization-management.md)
         <!--DelEnd-->
         - [Audio Playback Stream Management](media/audio/audio-playback-stream-management.md)
-        - [Managing Global Audio Output Devices](media/audio/audio-output-device-management.md)
+        - [Global Audio Output Device Management](media/audio/audio-output-device-management.md)
         <!--Del-->
         - [Distributed Audio Playback (for System Applications Only)](media/audio/distributed-audio-playback.md)
         <!--DelEnd-->
@@ -1325,7 +1328,7 @@
         - [Using OHAudio for Audio Recording (C/C++)](media/audio/using-ohaudio-for-recording.md)
         - [Microphone Management](media/audio/mic-management.md)
         - [Audio Recording Stream Management](media/audio/audio-recording-stream-management.md)
-        - [Managing Global Audio Input Devices](media/audio/audio-input-device-management.md)
+        - [Global Audio Input Device Management](media/audio/audio-input-device-management.md)
       - Audio Call<!--audio-call-->
         - [Audio Call Overview](media/audio/audio-call-overview.md)
         - [Developing Audio Call](media/audio/audio-call-development.md)
@@ -1367,52 +1370,46 @@
         - [Using the Call Device Switching Component](media/avsession/using-switch-call-devices.md)
     - Camera Kit<!--camera-kit-->
       - [Introduction to Camera Kit](media/camera/camera-overview.md)
-      - [Camera Development Preparations](media/camera/camera-preparation.md)
-      - Camera Development (ArkTS)<!--camera-dev-arkts-->
+      - [Requesting Camera Development Permissions](media/camera/camera-preparation.md)
+      - Developing Camera Applications (ArkTS)<!--camera-dev-arkts-->
+        - [Using the System Camera to Take Photos and Record Videos (CameraPicker)](media/camera/camera-picker.md)
         - [Camera Device Management (ArkTS)](media/camera/camera-device-management.md)
         - [Device Input Management (ArkTS)](media/camera/camera-device-input.md)
         - [Camera Session Management (ArkTS)](media/camera/camera-session-management.md)
         - [Preview (ArkTS)](media/camera/camera-preview.md)
+        - [Dual-Channel Preview (ArkTS)](media/camera/camera-dual-channel-preview.md)
         - [Photo Capture (ArkTS)](media/camera/camera-shooting.md)
+        - [Photo Capture Practices (ArkTS)](media/camera/camera-shooting-case.md)
         - [Video Recording (ArkTS)](media/camera/camera-recording.md)
+        - [Video Recording Practices (ArkTS)](media/camera/camera-recording-case.md)
         - [Camera Metadata (ArkTS)](media/camera/camera-metadata.md)
         - [Using the Flashlight (ArkTS)](media/camera/camera-torch-use.md)
         - [Adapting to Camera Changes in Different Folding States (ArkTS)](media/camera/camera-foldable-display.md)
-        <!--Del-->
-        - [High-Performance Photo Capture (for System Applications Only) (ArkTS)](media/camera/camera-deferred-photo.md)
-        <!--DelEnd-->
         - [Deferred Photo Delivery (ArkTS)](media/camera/camera-deferred-capture.md)
+        - [Deferred Photo Delivery Practices (ArkTS)](media/camera/camera-deferred-capture-case.md)
         - [Moving Photos (ArkTS)](media/camera/camera-moving-photo.md)
         - [Basic Camera Animation (ArkTS)](media/camera/camera-animation.md)
         - [Using the Camera in the Worker Thread (ArkTS)](media/camera/camera-worker.md)
+        - [Practices for Camera Recovery from the Background (ArkTS)](media/camera/camera-background-recovery.md)
         <!--Del-->
+        - [High-Performance Photo Capture (for System Applications Only) (ArkTS)](media/camera/camera-deferred-photo.md)
+        - [Practices for High-Performance Photo Capture (for System Applications Only) (ArkTS)](media/camera/camera-deferred-photo-case.md)
         - [Depth Data (for System Applications Only) (ArkTS)](media/camera/camera-depth-data.md)
+        - [Performance Optimization Practices (for System Applications Only) (ArkTS)](media/camera/camera-performance-improvement.md)
         <!--DelEnd-->
-      - Camera Best Practices (ArkTS)<!--camera-best-practices-arkts-->
-        - [Using the Camera Picker (ArkTS)](media/camera/camera-picker.md)
-        - [Photo Capture Sample (ArkTS)](media/camera/camera-shooting-case.md)
-        - [Video Recording Sample (ArkTS)](media/camera/camera-recording-case.md)
-        - [Dual-Channel Preview (ArkTS)](media/camera/camera-dual-channel-preview.md)
-        - [Deferred Photo Delivery Sample (ArkTS)](media/camera/camera-deferred-capture-case.md)
-        - [Sample for Camera Recovery from the Background (ArkTS)](media/camera/camera-background-recovery.md)
-        <!--Del-->
-        - [Using Performance Improvement Features (for System Applications Only) (ArkTS)](media/camera/camera-performance-improvement.md)
-        - [High-Performance Photo Capture Sample (for System Applications Only) (ArkTS)](media/camera/camera-deferred-photo-case.md)
-        <!--DelEnd-->
-      - Camera Development (C/C++)<!--camera-dev-native-->
+      - Developing Camera Applications (C/C++)<!--camera-dev-native-->
         - [Camera Device Management (C/C++)](media/camera/native-camera-device-management.md)
         - [Device Input Management (C/C++)](media/camera/native-camera-device-input.md)
         - [Camera Session Management (C/C++)](media/camera/native-camera-session-management.md)
         - [Preview (C/C++)](media/camera/native-camera-preview.md)
         - [Secondary Processing of Preview Streams (C/C++)](media/camera/native-camera-preview-imageReceiver.md)
         - [Photo Capture (C/C++)](media/camera/native-camera-shooting.md)
+        - [Photo Capture Practices (C/C++)](media/camera/native-camera-shooting-case.md)
         - [Deferred Photo Delivery (C/C++)](media/camera/native-camera-deferred-capture.md)
         - [Video Recording (C/C++)](media/camera/native-camera-recording.md)
+        - [Video Recording Practices (C/C++)](media/camera/native-camera-recording-case.md)
         - [Camera Metadata (C/C++)](media/camera/native-camera-metadata.md)
         - [Using the Flashlight (C/C++)](media/camera/native-camera-torch-use.md)
-      - Camera Best Practices (C/C++)<!--camera-best-practices-native-->
-        - [Camera Photographing Sample (C/C++)](media/camera/native-camera-shooting-case.md)
-        - [Photo Capture Sample (C/C++)](media/camera/native-camera-recording-case.md)
     - DRM Kit<!--drm-kit-->
       - [Introduction to DRM Kit](media/drm/drm-overview.md)
       - DRM Development (ArkTS)<!--drm-arkts-dev-->
@@ -1480,6 +1477,7 @@
         - Video Transcoding<!--media-transcoder-arkts-->
           - [Using AVTranscoder to Transcode Videos (ArkTS)](media/media/using-avtranscoder-for-transcodering.md)
           - [Creating an Asynchronous Thread for AVTranscoder Video Transcoding (ArkTS)](media/media/avtranscoder-practice.md)
+          - [FAQs About Transcoding](media/media/avtranscoder-faq.md)
       - Media Development (C/C++)<!--media-kit-dev--c-->
         - Playback<!--media-playback-c-->
           - [Using AVPlayer to Play Audio (C/C++)](media/media/using-ndk-avplayer-for-playback.md)
@@ -1641,7 +1639,7 @@
           - [Running or Stopping an Event Loop in an Asynchronous Thread Using Node-API Extensions](napi/use-napi-event-loop.md)
           - [Loading a Module Using Node-API](napi/use-napi-load-module-with-info.md)
           - [Passing a Task with the Specified Priority to an ArkTS Thread from an Asynchronous Thread Using Node-API](napi/use-call-threadsafe-function-with-priority.md)
-          - [Calling an ArkTS Method with Return Value of a promise Using Node-API](napi/use-napi-method-promise.md)
+          - [Calling an ArkTS Method with Return Value of a Promise Using Node-API](napi/use-napi-method-promise.md)
         - [Node-API FAQs](napi/use-napi-faqs.md)
       - Using JSVM-API<!--jsvm-->
         - [JSVM-API Overview](napi/jsvm-introduction.md)

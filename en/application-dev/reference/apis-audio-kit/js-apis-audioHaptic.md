@@ -337,7 +337,7 @@ Checks whether an audio-haptic type is muted.
 
 | Type               | Description                           |
 | ------------------- | ------------------------------- |
-| boolean             | Whether the audio-haptic type is muted.       |
+| boolean             | Check result. The value **true** means that the audio-haptic type is muted, and **false** means the opposite.|
 
 **Error codes**
 
@@ -359,15 +359,15 @@ let result: boolean = audioHapticPlayerInstance.isMuted(audioHapticType);
 
 start(): Promise&lt;void&gt;
 
-Starts playing the audio and haptic source. This API uses a promise to return the result.
+Starts playback. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Multimedia.AudioHaptic.Core
 
 **Return value**
 
-| Type               | Description                             |
-| ------------------- | -------------------------------- |
-| Promise&lt;void&gt; | Promise used to return the result.|
+| Type                 | Description                        |
+| --------------------- | --------------------------- |
+| Promise&lt;void&gt;   | Promise that returns no value.|
 
 **Error codes**
 
@@ -378,7 +378,6 @@ For details about the error codes, see [Media Error Codes](../apis-media-kit/err
 | 5400102 | Operate not permit. |
 | 5400103 | IO error. |
 | 5400105 | Service died. |
-
 
 **Example**
 
@@ -396,7 +395,7 @@ audioHapticPlayerInstance.start().then(() => {
 
 stop(): Promise&lt;void&gt;
 
-Stops playing the audio-haptic source. This API uses a promise to return the result.
+Stops playback. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Multimedia.AudioHaptic.Core
 
@@ -404,7 +403,7 @@ Stops playing the audio-haptic source. This API uses a promise to return the res
 
 | Type               | Description                             |
 | ------------------- | -------------------------------- |
-| Promise&lt;void&gt; | Promise used to return the result.|
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Error codes**
 
@@ -439,7 +438,7 @@ Releases this audio-haptic player. This API uses a promise to return the result.
 
 | Type               | Description                           |
 | ------------------- | ------------------------------- |
-| Promise&lt;void&gt; | Promise used to return the result.  |
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Error codes**
 
@@ -473,7 +472,7 @@ Subscribes to end of stream (EOS) event, which is triggered when the audio strea
 
 | Name  | Type                    | Mandatory| Description                                                                      |
 | -------- | ----------------------- | ---- | -------------------------------------------------------------------------- |
-| type     | string                  | Yes  | Event type. The value is fixed at **'endOfStream'**.|
+| type     | string                  | Yes  | Event type. The event **'endOfStream'** is triggered when the audio stream playback ends.|
 | callback | Callback&lt;void&gt;    | Yes  | Callback that returns no value.|
 
 **Example**
@@ -496,7 +495,7 @@ Unsubscribes from the EOS event. This API uses an asynchronous callback to retur
 
 | Name| Type  | Mandatory| Description                                             |
 | ----- | ----- | ---- | ------------------------------------------------ |
-| type   | string | Yes  | Event type. The value is fixed at **'endOfStream'**.|
+| type   | string | Yes  | Event type. The event **'endOfStream'** is triggered when the audio stream playback ends.|
 | callback | Callback&lt;void&gt;    | No  | Callback that returns no value.|
 
 **Example**
@@ -527,8 +526,8 @@ Subscribes to the audio interruption event, which is triggered when the audio fo
 
 | Name  | Type                    | Mandatory| Description                                                                      |
 | -------- | ----------------------- | ---- | -------------------------------------------------------------------------- |
-| type     | string                  | Yes  | Event type. The value is fixed at **'audioInterrupt'**.                    |
-| callback | Callback&lt;[audio.InterruptEvent](js-apis-audio.md#interruptevent9)&gt; | Yes  | Callback used to return the audio interruption event received by the application when playback is interrupted.|
+| type     | string                  | Yes  | Event type. The event **'audioInterrupt'** is triggered when the audio focus is changed.|
+| callback | Callback&lt;[audio.InterruptEvent](js-apis-audio.md#interruptevent9)&gt; | Yes  | Callback used to return the event information.|
 
 **Example**
 
@@ -597,8 +596,8 @@ Unsubscribes from the audio interruption event. This API uses an asynchronous ca
 
 | Name| Type  | Mandatory| Description                                             |
 | ----- | ----- | ---- | ------------------------------------------------- |
-| type   | string | Yes  | Event type. The value is fixed at **'audioInterrupt'**.|
-| callback | Callback&lt;[audio.InterruptEvent](js-apis-audio.md#interruptevent9)&gt; | No  | Callback used to return the audio interruption event when the subscription is canceled.|
+| type   | string | Yes  | Event type. The event **'audioInterrupt'** is triggered when the audio focus is changed.|
+| callback | Callback&lt;[audio.InterruptEvent](js-apis-audio.md#interruptevent9)&gt; | No  | Callback used to return the event information.|
 
 **Example**
 
