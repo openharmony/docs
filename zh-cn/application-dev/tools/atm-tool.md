@@ -117,6 +117,8 @@ atm dump [-h] [-t [-i <token-id>] [-b <bundle-name>] [-n <process-name>]] [-r [-
 
 | 参数                                          | 参数说明                                                 | 
 | ----------------------------------------------- | ---------------------------------------------------- | 
+| -d                                     | 必选参数，查询系统中所有的权限定义。                               | 
+| -d&nbsp;-p \<permission-name\>              | 可选参数，通过权限名，查询权限定义。                              | 
 | -h                                     | 帮助信息。                              | 
 | -t                                     | 必选参数，查询系统中所有应用进程信息。                             | 
 | -t&nbsp;-i \<token-id\>                     | 可选参数，通过应用进程的tokenid，查询该应用的基本信息以及对应的[权限信息](../reference/apis-ability-kit/js-apis-abilityAccessCtrl.md#grantstatus)。             | 
