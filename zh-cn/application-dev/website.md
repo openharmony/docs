@@ -430,6 +430,7 @@
             - [创建列表 (List)](ui/arkts-layout-development-create-list.md)
             - [创建弧形列表 (ArcList)](ui/arkts-layout-development-create-arclist.md)（圆形屏幕推荐使用）
             - [创建网格 (Grid/GridItem)](ui/arkts-layout-development-create-grid.md)
+            - [创建瀑布流 (WaterFlow)](ui/arkts-layout-development-create-waterflow.md)
             - [创建轮播 (Swiper)](ui/arkts-layout-development-create-looping.md)
             - [创建弧形轮播 (ArcSwiper)](ui/arkts-layout-development-arcswiper.md)（圆形屏幕推荐使用）
             - [选项卡 (Tabs)](ui/arkts-navigation-tabs.md)
@@ -558,6 +559,7 @@
           - [构建自定义组件](ui/ndk-build-custom-components.md)
           - [嵌入ArkTS组件](ui/ndk-embed-arkts-components.md)
           - [通过XComponent接入无障碍](ui/ndk-accessibility-xcomponent.md)
+          - [自定义绘制](ui/arkts-user-defined-draw.md)
       - UI开发 (兼容JS的类Web开发范式)<!--ui-js-dev-->
         - [UI开发 (兼容JS的类Web开发范式)概述](ui/ui-js-overview.md)
         - 框架说明<!--js-framework-overview-->
@@ -655,7 +657,7 @@
       - 设置基本属性和事件<!--web-set-attributes-events-->
         - [User-Agent开发指导](web/web-default-userAgent.md)
         - [管理Cookie及数据存储](web/web-cookie-and-data-storage-mgmt.md)
-        - [设置深色模式](web/web-set-dark-mode.md)
+        - [Web深色模式适配](web/web-set-dark-mode.md)
         - [在新窗口中打开页面](web/web-open-in-new-window.md)
         - [管理位置权限](web/web-geolocation-permission.md)
         - [使用隐私模式](web/web-incognito-mode.md)
@@ -675,6 +677,8 @@
         - [Web页面显示内容滚动](web/web-content-scrolling.md)
         - [Web组件对接软键盘](web/web-docking-softkeyboard.md)
         - [Web组件焦点管理](web/web-focus.md)
+        - [Web组件手势事件](web/web-gesture.md)
+        - [Web组件缩放功能](web/web-scale-zoom.md)
       - 管理Web组件的网络安全与隐私<!--web-manage-cyber-security-privacy-->
         - [解决Web组件本地资源跨域问题](web/web-cross-origin.md)
         - [使用智能防跟踪功能](web/web-intelligent-tracking-prevention.md)
@@ -689,7 +693,7 @@
         - [设置Web组件前进后退缓存](web/web-set-back-forward-cache.md)
         - [Web组件在不同窗口间迁移](web/web-component-migrate.md)
       - 管理网页文件上传与下载<!--web-manage-upload-download-->
-        - [上传文件](web/web-file-upload.md)
+        - [使用Web组件上传文件](web/web-file-upload.md)
         - [使用Web组件的下载能力](web/web-download.md)
       - 使用网页多媒体<!--web-use-multimedia-->
         - [使用WebRTC进行Web视频会议](web/web-rtc.md)
@@ -698,6 +702,7 @@
         - [使用Web组件打印前端页面](web/web-print.md)
         - [使用Web组件的PDF文档预览能力](web/web-pdf-preview.md)
         - [网页中安全区域计算和避让适配](web/web-safe-area-insets.md)
+        - [Web组件的菜单功能](web/web_menu.md)
       - [同层渲染](web/web-same-layer.md)
       - [使用离线Web组件](web/web-offline-mode.md)
       - Web调试维测<!--web-debugging-->
