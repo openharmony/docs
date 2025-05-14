@@ -1068,7 +1068,7 @@ createAssetWithShortTermPermission(photoCreationConfig: PhotoCreationConfig): Pr
 
 | 类型                                    | 说明              |
 | --------------------------------------- | ----------------- |
-| Promise&lt;string&gt; | Promise对象，返回给应用的媒体库文件uri。Uri已对应用授权，支持应用写入数据。如果生成uri异常，则返回批量创建错误码。<br>返回-3006表示不允许出现非法字符；返回-2004表示图片类型和后缀不符；返回-203表示文件操作异常。 |
+| Promise&lt;string&gt; | Promise对象，返回给应用的媒体库文件uri。uri已对应用授权，支持应用写入数据。如果生成uri异常，则返回批量创建错误码。<br>返回-3006表示不允许出现非法字符；返回-2004表示图片类型和后缀不符；返回-203表示文件操作异常。 |
 
 **错误码：**
 
@@ -3491,7 +3491,7 @@ static deleteAssets(context: Context, assets: Array&lt;PhotoAsset&gt;): Promise&
 
 | 类型                                    | 说明              |
 | --------------------------------------- | ----------------- |
-| Promise&lt;void&gt;| 返回void的Promise对象。 |
+| Promise&lt;void&gt;| Promise对象，返回void。 |
 
 **错误码：**
 
@@ -3549,7 +3549,7 @@ static deleteAssets(context: Context, uriList: Array&lt;string&gt;): Promise&lt;
 
 | 类型                                    | 说明              |
 | --------------------------------------- | ----------------- |
-| Promise&lt;void&gt;| 返回void的Promise对象。 |
+| Promise&lt;void&gt;| Promise对象，返回void。 |
 
 **错误码：**
 
