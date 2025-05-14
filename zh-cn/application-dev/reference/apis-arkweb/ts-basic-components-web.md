@@ -400,13 +400,13 @@ imageAccess(imageAccess: boolean)
 
 javaScriptProxy(javaScriptProxy: JavaScriptProxy)
 
-注入JavaScript对象到window对象中，并在window对象中调用该对象的方法。
+将javaScriptProxy中的ArkTS对象注册到Web组件中，该对象将使用JavaScriptProxy中指定的名称注册到网页的所有框架中，包括所有iframe，这使得JavaScript可以调用javaScriptProxy中ArkTS对象的方法。
 
 > **说明：**
 >
 > javaScriptProxy接口需要和deleteJavaScriptRegister接口配合使用，防止内存泄漏。
 > javaScriptProxy对象的所有参数不支持更新。
-> 注册对象时，同步与异步方法列表请至少选择一项不为空，可同时注册两类方法。
+> 注册javaScriptProxy对象时，同步与异步列表请至少选择一项不为空，可同时注册两类方法。
 > 此接口只支持注册一个对象，若需要注册多个对象请使用[registerJavaScriptProxy<sup>9+</sup>](js-apis-webview.md#registerjavascriptproxy)。
 
 **系统能力：** SystemCapability.Web.Webview.Core
@@ -2732,7 +2732,7 @@ onAdsBlocked(callback: OnAdsBlockedCallback)
 
 | 参数名    | 类型   | 必填   | 说明                  |
 | ------ | ------ | ---- | --------------------- |
-| callback       | [OnAdsBlockedCallback](#onadsblockedcallback12) | 是 | onAdsBlocked的回调。 |
+| callback       | [OnAdsBlockedCallback](#onadsblockedcallback12) | 是 | 广告过滤的回调。 |
 
 **示例：**
 
@@ -3315,7 +3315,7 @@ onAlert(callback: Callback\<OnAlertEvent, boolean\>)
 
 onBeforeUnload(callback: Callback\<OnBeforeUnloadEvent, boolean\>)
 
-刷新或关闭场景下，在即将离开当前页面时触发此回调。刷新或关闭当前页面应先通过点击等方式获取焦点，才会触发此回调。
+即将离开刷新或关闭当前页面时触发此回调。刷新或关闭当前页面应先通过点击等方式获取焦点，才会触发此回调
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -3323,7 +3323,7 @@ onBeforeUnload(callback: Callback\<OnBeforeUnloadEvent, boolean\>)
 
 | 参数名     | 类型                  | 必填   | 说明            |
 | ------- | --------------------- | ---- | --------------- |
-| callback     | Callback\<[OnBeforeUnloadEvent](#onbeforeunloadevent12), boolean\>                | 是    | 刷新或关闭场景下，在即将离开当前页面时触发。<br>返回值boolean。当回调返回true时，应用可以调用自定义弹窗能力（包括确认和取消），并且需要根据用户的确认或取消操作调用JsResult通知Web组件最终是否离开当前页面。当回调返回false时，函数中绘制的自定义弹窗无效。 |
+| callback     | Callback\<[OnBeforeUnloadEvent](#onbeforeunloadevent12), boolean\>                | 是    | 即将离开刷新或关闭当前页面时触发。<br>返回值boolean。当回调返回true时，应用可以调用自定义弹窗能力（包括确认和取消），并且需要根据用户的确认或取消操作调用JsResult通知Web组件最终是否离开当前页面。当回调返回false时，函数中绘制的自定义弹窗无效。 |
 
 **示例：**
 
@@ -3670,7 +3670,7 @@ onDownloadStart(callback: Callback\<OnDownloadStartEvent\>)
 
 onErrorReceive(callback: Callback\<OnErrorReceiveEvent\>)
 
-网页加载遇到错误时触发该回调。主资源与子资源出错都会回调该接口，可以通过`request.isMainFrame`来判断是否是主资源报错。出于性能考虑，建议此回调中尽量执行简单逻辑。在无网络的情况下，触发此回调。
+网页加载遇到错误时触发该回调。主资源与子资源出错都会回调该接口，可以通过[isMainFrame](#ismainframe)来判断是否是主资源报错。出于性能考虑，建议此回调中尽量执行简单逻辑。在无网络的情况下，触发此回调。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -3888,7 +3888,7 @@ onProgressChange(callback: Callback\<OnProgressChangeEvent\>)
 
 onTitleReceive(callback: Callback\<OnTitleReceiveEvent\>)
 
-网页document标题更改时触发该回调，当H5未设置<title\>元素时会返回对应的URL。
+通知应用程序页面document标题已更改，如果加载的页面未设置<title\>元素 指定的标题，ArkWeb将基于URL生成标题并返回给应用程序。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -4567,7 +4567,7 @@ onSslErrorEventReceive(callback: Callback\<OnSslErrorEventReceiveEvent\>)
 
 onSslErrorEvent(callback: OnSslErrorEventCallback)
 
-通知用户加载资源（主资源+子资源）时发生SSL错误，如果只想处理主资源的SSL错误，请用isMainFrame字段进行区分。
+通知用户加载资源（主资源+子资源）时发生SSL错误，如果只想处理主资源的SSL错误，请用[isMainFrame](ismainframe)字段进行区分。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -7150,7 +7150,7 @@ Web组件获取控制台信息对象。示例代码参考[onConsole事件](#onco
 
 constructor(message: string, sourceId: string, lineNumber: number, messageLevel: MessageLevel)
 
-ConsoleMessage的构造函数。
+[ConsoleMessage](#consolemessage)的构造函数。
 
 > **说明：**
 >
@@ -7170,7 +7170,7 @@ ConsoleMessage的构造函数。
 
 getLineNumber(): number
 
-获取ConsoleMessage的行数。
+获取[ConsoleMessage](#consolemessage)的行数。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -8434,6 +8434,8 @@ invoke(origin: string, allow: boolean, retain: boolean): void
 
 ## MessageLevel枚举说明
 
+ConsoleMessage的信息级别。
+
 **系统能力：** SystemCapability.Web.Webview.Core
 
 | 名称    | 值 | 说明    |
@@ -8475,9 +8477,9 @@ onRenderExited接口返回的渲染进程退出的具体原因。
 | 名称      | 值 | 说明                                   |
 | ------- | -- | ------------------------------------ |
 | Default<sup>9+</sup> | 0 | 优先使用未过期cache加载资源，无效或无cache时从网络获取。 |
-| None    | 1 | 优先使用cache(含过期)加载资源，无cache时从网络获取。     |
-| Online  | 2 | 强制从网络获取最新资源，不使用任何cache。               |
-| Only    | 3 | 仅使用本地cache加载资源。                        |
+| None    | 1 | 宽松模式：优先使用cache(含过期)加载资源，无cache时从网络获取。     |
+| Online  | 2 | 兼容模式：强制从网络获取最新资源，不使用任何cache。               |
+| Only    | 3 | 严格模式：仅使用本地cache加载资源。                        |
 
 ## FileSelectorMode<sup>9+</sup>枚举说明
 
@@ -10045,7 +10047,7 @@ type OnViewportFitChangedCallback = (viewportFit: ViewportFit) => void
 | -------------- | ---- | ---- | ---------------------------------------- |
 | url                | string | 是 | 文件下载的URL。                           |
 | userAgent          | string | 是 | 用于下载的用户代理。                          |
-| contentDisposition | string | 是 | 服务器返回的 Content-Disposition响应头，可能为空。 |
+| contentDisposition | string | 是 | 服务器返回的 Content-Disposition响应头，服务器可能返回空。 |
 | mimetype           | string | 是 | 服务器返回内容媒体类型（MIME）信息。                |
 | contentLength      | number | 是 | 服务器返回文件的长度。                         |
 
