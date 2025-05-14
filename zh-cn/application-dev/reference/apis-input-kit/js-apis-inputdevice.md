@@ -536,7 +536,7 @@ try {
 
 getKeyboardType(deviceId: number, callback: AsyncCallback&lt;KeyboardType&gt;): void
 
-获取输入设备的键盘类型，如全键盘、小键盘等，使用callback异步回调。
+获取输入设备的键盘类型，如全键盘、小键盘等，使用callback异步回调。输入设备的键盘类型以接口返回结果为准。
 
 **系统能力**：SystemCapability.MultimodalInput.Input.InputDevice
 
