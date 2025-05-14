@@ -568,6 +568,7 @@
           - [构建自定义组件](ui/ndk-build-custom-components.md)
           - [嵌入ArkTS组件](ui/ndk-embed-arkts-components.md)
           - [通过XComponent接入无障碍](ui/ndk-accessibility-xcomponent.md)
+          - [自定义绘制](ui/arkts-user-defined-draw.md)
       - UI开发 (兼容JS的类Web开发范式)<!--ui-js-dev-->
         - [UI开发 (兼容JS的类Web开发范式)概述](ui/ui-js-overview.md)
         - 框架说明<!--js-framework-overview-->
@@ -710,6 +711,7 @@
         - [使用Web组件打印前端页面](web/web-print.md)
         - [使用Web组件的PDF文档预览能力](web/web-pdf-preview.md)
         - [网页中安全区域计算和避让适配](web/web-safe-area-insets.md)
+        - [Web组件的菜单功能](web/web_menu.md)
       - [同层渲染](web/web-same-layer.md)
       - [使用离线Web组件](web/web-offline-mode.md)
       - Web调试维测<!--web-debugging-->
