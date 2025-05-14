@@ -103,7 +103,7 @@ AtomicServiceSearch中“搜索区”的可选属性。
 | enableKeyboardOnFocus    | boolean | 否 | Search获焦时，是否主动拉起软键盘。默认值：`true`。   |
 | hideSelectionMenu        | boolean | 否 | 是否不弹出系统文本选择菜单。<br />设置为true时，单击输入框光标、长按输入框、双击输入框、三击输入框或者右键输入框，不弹出系统文本选择菜单。设置为false时，弹出系统文本选择菜单。默认值：`false`。   |
 | type                     | [SearchType](ts-basic-components-search.md#searchtype11枚举说明) | 否 | 输入框类型。默认值：`SearchType.Normal`。   |
-| maxLength                | number | 否 | 设置文本的最大输入字符数。默认不设置最大输入字符数限制。到达文本最大字符限制，将无法继续输入字符。默认值：`-1`;   |
+| maxLength                | number | 否 | 设置文本的最大输入字符数。默认不设置最大输入字符数限制。到达文本最大字符限制，将无法继续输入字符。默认值：`-1`。  |
 | enterKeyType             | [EnterKeyType](ts-basic-components-textinput.md#enterkeytype枚举说明) | 否 | 输入法回车键类型。默认值：`EnterKeyType.Search`。   |
 | decoration               | [TextDecorationOptions](ts-types.md#textdecorationoptions12对象说明) | 否 |  文本装饰线对象。默认值：`{type: TextDecorationType.None, color: Color.Black, style: TextDecorationStyle.SOLID}`。   |
 | letterSpacing            | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 否 | 设置文本字符间距。正数拉开字符距离，负数则拉近字符距离。浮点数默认值为0.0，单位为物理像素px。若输入类型非number且无法解析为数字，则使用默认值。  |
@@ -273,7 +273,7 @@ struct Index {
         type: TextDecorationType.Underline,
         color: Color.Black,
         style: TextDecorationStyle.SOLID
-      }).margin({top:20, bottom: 20})
+      }).margin({ top: 20, bottom: 20 })
 
       AtomicServiceSearch({
         select: {
@@ -326,7 +326,7 @@ struct Index {
         type: TextDecorationType.Underline,
         color: Color.Black,
         style: TextDecorationStyle.SOLID
-      }).margin({top:20, bottom: 20})
+      }).margin({ top: 20, bottom: 20 })
       
       AtomicServiceSearch({
         operation: {
@@ -374,7 +374,7 @@ struct Index {
         type: TextDecorationType.Underline,
         color: Color.Black,
         style: TextDecorationStyle.SOLID
-      }).margin({top:20, bottom: 20})
+      }).margin({ top: 20, bottom: 20 })
 
       AtomicServiceSearch({
         select: {
@@ -457,7 +457,7 @@ struct Index {
         type: TextDecorationType.Underline,
         color: Color.Black,
         style: TextDecorationStyle.SOLID
-      }).margin({top:20, bottom: 20})
+      }).margin({ top: 20, bottom: 20 })
 
       Column({ space: 6 }) {
         Text('editing: ' + this.value).width('100%').height(25).borderRadius(15).padding({ left: 15 })
@@ -698,7 +698,7 @@ struct Index {
         type: TextDecorationType.Underline,
         color: Color.Black,
         style: TextDecorationStyle.SOLID
-      }).margin({top:20, bottom: 20})
+      }).margin({ top: 20, bottom: 20 })
 
       AtomicServiceSearch(
         {
@@ -754,7 +754,7 @@ struct Index {
         type: TextDecorationType.Underline,
         color: Color.Black,
         style: TextDecorationStyle.SOLID
-      }).margin({top:20, bottom: 20})
+      }).margin({ top: 20, bottom: 20 })
 
       AtomicServiceSearch({
         placeholder: '输入法回车键类型为搜索',
@@ -784,7 +784,7 @@ struct Index {
 该示例通过fontFeature属性实现了文本在不同文字特性下的展示效果。
 
 ```ts
-import { AtomicServiceSearch } from '@kit.ArkUI';
+​​​​import { AtomicServiceSearch } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -795,19 +795,33 @@ struct Index {
         type: TextDecorationType.Underline,
         color: Color.Black,
         style: TextDecorationStyle.SOLID
-      }).margin({top:20, bottom: 20})
+      }).margin({ top: 20, bottom: 20 })
 
       AtomicServiceSearch({
         value: 'This is ss01 on : 0123456789',
         search: {
-          fontFeature: "\"ss012\" on"
+          fontFeature: "\"ss01\" on"
         }
       });
-      
+
       AtomicServiceSearch({
         value: 'This is ss01 off : 0123456789',
         search: {
           fontFeature: "\"ss01\" off"
+        }
+      });
+
+      AtomicServiceSearch({
+        value: 'fiabc1234567DEFGHIJKLMN',
+        search: {
+          fontFeature: "\"frac\" on"
+        }
+      });
+
+      AtomicServiceSearch({
+        value: 'fiabc1234567DEFGHIJKLMN',
+        search: {
+          fontFeature: "\"frac\" off"
         }
       });
     }.padding({ left: 16, right: 16 })
@@ -819,7 +833,7 @@ struct Index {
 }
 ```
 
-![](figures/AtomicServiceSearchDemo08.png)
+![](figures/AtomicServiceSearchDemo08_frac.png)
 
 
 
@@ -838,7 +852,7 @@ struct Index {
         type: TextDecorationType.Underline,
         color: Color.Black,
         style: TextDecorationStyle.SOLID
-      }).margin({top:20, bottom: 20})
+      }).margin({ top: 20, bottom: 20 })
 
       AtomicServiceSearch({
         value: 'This is the text without the adaptive font',
@@ -915,7 +929,7 @@ struct Index {
         type: TextDecorationType.Underline,
         color: Color.Black,
         style: TextDecorationStyle.SOLID
-      }).margin({top:20, bottom: 20})
+      }).margin({ top: 20, bottom: 20 })
 
       AtomicServiceSearch({
         value:'Default input',
@@ -953,7 +967,7 @@ struct Index {
         type: TextDecorationType.Underline,
         color: Color.Black,
         style: TextDecorationStyle.SOLID
-      }).margin({top:20, bottom: 20})
+      }).margin({ top: 20, bottom: 20 })
 
       AtomicServiceSearch({
         value: 'Search textAlign sample',
@@ -994,7 +1008,7 @@ struct Index {
           type: TextDecorationType.Underline,
           color: Color.Black,
           style: TextDecorationStyle.SOLID
-        }).margin({top:20, bottom: 20})
+        }).margin({ top: 20, bottom: 20 })
         AtomicServiceSearch({
           placeholder: 'please enter...',
           search: {

@@ -71,6 +71,11 @@ static JSVM_PropertyDescriptor descriptor[] = {
 const char *srcCallNative = R"JS(getVM())JS";
 ```
 
+预计的输出结果：
+```
+JSVM OH_JSVM_GetVM: success
+```
+
 ### OH_JSVM_GetHeapStatistics
 
 返回一组虚拟机堆的统计数据。

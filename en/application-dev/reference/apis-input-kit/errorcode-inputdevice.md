@@ -32,7 +32,7 @@ There is currently no keyboard device connected.
 
 **Description**
 
-No keyboard is connected.
+This error code is reported if no connected keyboard is detected.
 
 **Possible Causes**
 
@@ -64,7 +64,7 @@ Use an input application to call this API.
 
 **Error Message**
 
-windowId is invalid.
+Invalid windowId. Possible causes: The window id does not belong to the current process.
 
 **Description**
 
@@ -72,8 +72,8 @@ This error code is reported if the window ID is invalid.
 
 **Possible Causes**
 
-The window ID does not belong to the current application.
+The window ID does not belong to the current process.
 
 **Procedure**
 
-Pass in the window ID of the current application. You can obtain the attributes of the current window by calling [getWindowProperties()](../apis-arkui/js-apis-window.md#getwindowproperties9). The window attributes contain the window ID.
+Pass in the window ID of the current process. You can obtain the attributes of the current window by calling [getWindowProperties()](../apis-arkui/js-apis-window.md#getwindowproperties9). The window attributes contain the window ID.

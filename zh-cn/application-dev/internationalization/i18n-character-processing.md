@@ -151,9 +151,9 @@ let normalizedText: string = normalizer.normalize('\u1E9B\u0323'); // normalized
 
 4. 获取可换行点的位置。
    ```ts
-   let currentPos: number = iterator.current(); // 获取iterator在当前所处理文本中的位置
+   let currentPos: number = iterator.current(); // 获取换行迭代器在当前所处理文本中的位置
    let firstPos: number = iterator.first(); // 设置为第一个可换行点，返回该可换行点的位置。第一个可换行点总是在文本的起始位置，firstPos = 0
-   let nextPos: number = iterator.next(index?: number); // 将iterator移动index数量个可换行点，index为正数代表向后移动，index为负数代表向前移动，默认值为1。nextPos为移动后在文本中的位置，如果超出文本的长度范围，返回-1
+   let nextPos: number = iterator.next(index?: number); // 将换行迭代器移动index数量个可换行点，index为正数代表向后移动，index为负数代表向前移动，默认值为1。nextPos为移动后在文本中的位置，如果超出文本的长度范围，返回-1
    let isBoundary: boolean = iterator.isBoundary(offset: number); // 判断offset位置是否是可换行点
    ```
 
@@ -169,10 +169,10 @@ let iterator: i18n.BreakIterator  = i18n.getLineInstance('en-GB');
 // 设置处理文本
 iterator.setLineBreakText('Apple is my favorite fruit.');
 
-// 将BreakIterator对象移动到文本起始位置
+// 将换行迭代器移动到文本起始位置
 let firstPos: number = iterator.first(); // firstPos = 0
 
-// 将BreakIterator对象向后移动2个可换行点
+// 将换行迭代器向后移动2个可换行点
 let nextPos: number = iterator.next(2); // nextPos = 9
 
 // 判断某个位置是否是可换行点

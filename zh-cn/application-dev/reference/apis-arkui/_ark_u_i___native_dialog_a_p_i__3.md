@@ -80,7 +80,7 @@ int32_t (*registerOnWillAppear)(ArkUI_NativeDialogHandle handle, void* userData,
 
 注册自定义弹窗显示之前的回调函数。
 
-**起始版本：** 18
+**起始版本：** 19
 
 **参数:**
 
@@ -109,7 +109,7 @@ int32_t (*registerOnDidAppear)(ArkUI_NativeDialogHandle handle, void* userData, 
 
 注册自定义弹窗显示之后的回调函数。
 
-**起始版本：** 18
+**起始版本：** 19
 
 **参数:**
 
@@ -138,7 +138,7 @@ int32_t (*registerOnWillDisappear)(ArkUI_NativeDialogHandle handle, void* userDa
 
 注册自定义弹窗关闭之前的回调函数。
 
-**起始版本：** 18
+**起始版本：** 19
 
 **参数:**
 
@@ -167,7 +167,7 @@ int32_t (*registerOnDidDisappear)(ArkUI_NativeDialogHandle handle, void* userDat
 
 注册自定义弹窗关闭之后的回调函数。
 
-**起始版本：** 18   
+**起始版本：** 19
 
 **参数:**
 
@@ -543,7 +543,7 @@ int32_t (*setBackgroundBlurStyleOptions)(ArkUI_NativeDialogHandle handle, const 
 
 设置自定义弹窗的背景模糊效果。
 
-**起始版本：** 18
+**起始版本：** 19
 
 **参数:**
 
@@ -570,7 +570,7 @@ int32_t (*setBackgroundEffect)(ArkUI_NativeDialogHandle handle, const ArkUI_Attr
 
 设置自定义弹窗的背景效果参数。
 
-**起始版本：** 18
+**起始版本：** 19
 
 **参数:**
 

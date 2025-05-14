@@ -36,7 +36,7 @@
 
 ## 实现原理
 
-设备A应用集成**DistributedExtension**，当设备A侧分布式软总线收到应用的消息时，通过DistributedExterntion拉起设备A侧应用后台服务，设备A侧应用后台服务将设备B侧应用消息发送到应用服务。
+设备A应用集成**DistributedExtension**，当设备A侧分布式软总线收到应用的消息时，通过DistributedExtension拉起设备A侧应用后台服务，设备A侧应用后台服务将设备B侧应用消息发送到应用服务。
 
 ![实现原理](figures/distributedextension.png)
 
@@ -54,7 +54,7 @@
 ### 搭建环境
 
 1. 在PC上安装[DevEco Studio](https://gitee.com/link?target=https%3A%2F%2Fdeveloper.huawei.com%2Fconsumer%2Fcn%2Fdownload%2Fdeveco-studio)，要求版本在4.1及以上。
-2. 将public-SDK更新到API 18或以上，更新SDK的具体操作可参见[更新指南](../tools/openharmony_sdk_upgrade_assistant.md)。
+2. 将public-SDK更新到API 20或以上，更新SDK的具体操作可参见[更新指南](../tools/openharmony_sdk_upgrade_assistant.md)。
 3. 打开设备A和设备B的蓝牙，互相识别，实现组网。
 
 ### 检验环境是否搭建成功
@@ -109,49 +109,38 @@ hidumper -s 4700 -a "buscenter -l remote_device_info"
 2. 导入开发所需模块。
    
    ```ts
-   import { AbilityConstant } from '@kit.AbilityKit';
-   import { connection } from '@kit.NetworkKit';
-   import { AsyncCallback,BusinessError } from '@kit.BasicServicesKit';
-   import { abilityAccessCtrl, bundleManager, Permissions } from '@kit.AbilityKit'
-   import {DistributedExtensionAbility} from '@kit.DistributedServiceKit';
+   import { AbilityConstant, Want } from '@kit.AbilityKit';
+   import { abilityConnectionManager, DistributedExtensionAbility } from '@kit.DistributedServiceKit';
    ```
 3. 开发者可以自定义 `MDSExtension.ets`文件，类中继承 `DistributedExtensionAbility`，通过重写其 `onCreate、onDestroy`和 `onCollaborate`方法，使其达到在分布式能力扩展的创建、销毁和连接回调的使用。
    
-   下面的示例展示了一个空实现的 `MDSExtension.ets`文件，根据对应Logger可观测其生命周期：
+   下面的示例展示了一个空实现的 `MDSExtension.ets`文件，根据对应日志可观测其生命周期：
    
    ```ts
-   import DistributedExtensionAbility from '@ohos.application.DistributedExtensionAbility';
-   import Logger from '../common/Logger'
-   import abilityConnectionManager from '@ohos.distributedsched.abilityConnectionManager';
-   import { AbilityConstant } from '@kit.AbilityKit';
-   import { connection } from '@kit.NetworkKit';
-   import { AsyncCallback,BusinessError } from '@kit.BasicServicesKit';
-   import { abilityAccessCtrl, bundleManager, Permissions } from '@kit.AbilityKit'
+   import { AbilityConstant, Want } from '@kit.AbilityKit';
+   import { abilityConnectionManager, DistributedExtensionAbility } from '@kit.DistributedServiceKit';   
    
-   
-   const TAG = `FileDistributedExtensionAbility`;
-   
-   export default class DistributedExtension extends  DistributedExtensionAbility {
-     onCreate (want) {
-       Logger.info(TAG, `DistributedExterntion Create ok`);
-       Logger.info(TAG, `DistributedExterntion on Create want ： ${JSON.stringify(want)}`);
-       Logger.info(TAG, `DistributedExterntion on Create end`);
+   export default class DistributedExtension extends DistributedExtensionAbility {
+     onCreate(want: Want) {
+       console.info(`DistributedExtension Create ok`);
+       console.info(`DistributedExtension on Create want: ${JSON.stringify(want)}`);
+       console.info(`DistributedExtension on Create end`);
      }
    
-     onCollaborate (wantParam: Record<string, Object>) {
-       Logger.info(TAG, `DistributedExterntionon onCollabRequest Accept to the result of Ability collaborate`);
+     onCollaborate(wantParam: Record<string, Object>) {
+       console.info(`DistributedExtension onCollabRequest Accept to the result of Ability collaborate`);
        let sessionId = -1;
-       const collabrationType = wantParam["CollaborationKeys.COLLABORATE_TYPE"] as abilityConnectionManager.CollabrationType;
-       if (collabrationType == undefined) {
+       const collaborationValues = wantParam["CollaborationValues"] as abilityConnectionManager.CollaborationValues;
+       if (collaborationValues == undefined) {
          return sessionId;
        }
    
-       Logger.info(TAG, `onCollab, peerInfo: ${JSON.stringify(collabrationType)}`);
+       console.info(`onCollab, collaborationValues: ${JSON.stringify(collaborationValues)}`);
        return AbilityConstant.CollaborateResult.ACCEPT;
      }
    
-     onDestroy () {
-       Logger.info(TAG, `DistributedExterntion onDestroy ok`);
+     onDestroy() {
+       console.info(`DistributedExtension onDestroy ok`);
      }
    }
    ```

@@ -57,6 +57,10 @@ style(indicatorStyle: DotIndicator | DigitIndicator)
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | indicatorStyle  | [DotIndicator](ts-container-swiper.md#dotindicator10)&nbsp;\|&nbsp;[DigitIndicator](ts-container-swiper.md#digitindicator10)&nbsp;| 是   | 可选导航点指示器样式。<br/> \- DotIndicator：圆点指示器样式。<br/> \- DigitIndicator：数字指示器样式。<br/>&nbsp;&nbsp;默认类型：DotIndicator。 |
 
+> **说明：**
+>
+> 当indicatorStyle的类型为DotIndicator时，[maxDisplayCount](ts-container-swiper.md#maxDisplayCount12)不生效。
+
 ### count
 
 count(totalCount: number)

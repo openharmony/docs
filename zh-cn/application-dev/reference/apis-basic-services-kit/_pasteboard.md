@@ -283,7 +283,7 @@ enum Pasteboard_FileConflictOptions
 
 **描述：**
 
-定义拷贝文件文件冲突时的选项。
+定义拷贝文件冲突时的选项。
 
 **起始版本：** 15
 
@@ -353,7 +353,7 @@ OH_Pasteboard* OH_Pasteboard_Create ()
 
 **返回：**
 
-执行成功则返回一个指向剪贴板[OH_Pasteboard](#oh_pasteboard)实例对象的指针，否则返回nulllptr。
+执行成功则返回一个指向剪贴板[OH_Pasteboard](#oh_pasteboard)实例对象的指针，否则返回nullptr。
 
 **参见：**
 
