@@ -31,6 +31,7 @@ target_link_libraries(entry PUBLIC libhilog_ndk.z.so libimage_packer.so)
       #include <string>
 
       #include <hilog/log.h>
+      #include <multimedia/image_framework/image/image_common.h>
       #include <multimedia/image_framework/image/image_packer_native.h>
       #include <multimedia/image_framework/image/pixelmap_native.h>
       #include <multimedia/image_framework/image/image_source_native.h>
@@ -39,6 +40,17 @@ target_link_libraries(entry PUBLIC libhilog_ndk.z.so libimage_packer.so)
       #undef LOG_TAG
       #define LOG_DOMAIN 0x3200
       #define LOG_TAG "MY_TAG"
+      
+      static std::set<std::string> g_encodeSupportedFormats;
+
+      Image_MimeType GetMimeTypeIfEncodable(const char *format)
+      {
+          auto it = g_encodeSupportedFormats.find(format);
+          if (it == g_encodeSupportedFormats.end()) {
+              return {"", 0};
+          }
+          return {const_cast<char *>(format), strlen(format)};
+      }
 
       Image_ErrorCode packToFileFromImageSourceTest(int fd)
       {
@@ -49,8 +61,21 @@ target_link_libraries(entry PUBLIC libhilog_ndk.z.so libimage_packer.so)
               OH_LOG_ERROR(LOG_APP, "ImagePackerNativeCTest CreatePacker OH_ImagePackerNative_Create failed, errCode: %{public}d.", errCode);
               return errCode;
           }
-
-          //创建ImageSource实例。
+		  // 获取编码能力范围。
+          Image_MimeType* mimeType = nullptr;
+          size_t length = 0;
+          errCode = OH_ImagePackerNative_GetSupportedFormats(&mimeType, &length);
+          if (errCode != IMAGE_SUCCESS) {
+              OH_LOG_ERROR(LOG_APP, "ImagePackerNativeCTest OH_ImagePackerNative_GetSupportedFormats failed, errCode: %{public}d.", errCode);
+              return errCode;
+          }
+          for (size_t count = 0; count < length; count++) {
+              OH_LOG_INFO(LOG_APP, "Encode supportedFormats:%{public}s", mimeType[count].data);
+              if (mimeType[count].data != nullptr) {
+                  g_encodeSupportedFormats.insert(std::string(mimeType[count].data));
+              }
+          }
+          // 创建ImageSource实例。
           OH_ImageSourceNative* imageSource = nullptr;
           errCode = OH_ImageSourceNative_CreateFromFd(fd, &imageSource);
           if (errCode != IMAGE_SUCCESS) {
@@ -58,13 +83,16 @@ target_link_libraries(entry PUBLIC libhilog_ndk.z.so libimage_packer.so)
               return errCode;
           }
 
-          //指定编码参数，将ImageSource直接编码进文件。
+          // 指定编码参数，将ImageSource直接编码进文件。
           OH_PackingOptions *option = nullptr;
           OH_PackingOptions_Create(&option);
-          char type[] = "image/jpeg";
-          Image_MimeType image_MimeType = {type, strlen(type)};
+          Image_MimeType image_MimeType = GetMimeTypeIfEncodable(MIME_TYPE_JPEG);
+          if (image_MimeType.data == nullptr || image_MimeType.size == 0) {
+              OH_LOG_ERROR(LOG_APP, "ImagePackerNativeCTest GetMimeTypeIfEncodable failed, format can't support encode.");
+              return IMAGE_BAD_PARAMETER;
+          }
           OH_PackingOptions_SetMimeType(option, &image_MimeType);
-          // 编码为hdr内容(需要资源本身为hdr，支持jpeg格式)。
+          // 编码为hdr内容（需要资源本身为hdr，支持jpeg格式）。
           OH_PackingOptions_SetDesiredDynamicRange(option, IMAGE_PACKER_DYNAMIC_RANGE_AUTO);
           errCode = OH_ImagePackerNative_PackToFileFromImageSource(testPacker, option, imageSource, fd);
           if (errCode != IMAGE_SUCCESS) {
@@ -72,14 +100,14 @@ target_link_libraries(entry PUBLIC libhilog_ndk.z.so libimage_packer.so)
               return errCode;
           }
 
-          //释放ImagePacker实例。
+          // 释放ImagePacker实例。
           errCode = OH_ImagePackerNative_Release(testPacker);
           if (errCode != IMAGE_SUCCESS)
           {
               OH_LOG_ERROR(LOG_APP, "ImagePackerNativeCTest ReleasePacker OH_ImagePackerNative_Release failed, errCode: %{public}d.", errCode);
               return errCode;
           }
-          //释放ImageSource实例。
+          // 释放ImageSource实例。
           errCode = OH_ImageSourceNative_Release(imageSource);
           if (errCode != IMAGE_SUCCESS)
           {
