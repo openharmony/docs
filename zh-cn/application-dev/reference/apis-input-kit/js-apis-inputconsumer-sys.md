@@ -107,7 +107,7 @@ try {
 
 setShieldStatus(shieldMode: ShieldMode, isShield: boolean): void
 
-设置屏蔽按键的拦截状态。
+设置快捷键屏蔽类型。
 
 **需要权限**: ohos.permission.INPUT_CONTROL_DISPATCHING
 
@@ -136,7 +136,7 @@ try {
 
 getShieldStatus(shieldMode: ShieldMode): boolean
 
-获取屏蔽按键拦截是否生效。
+获取快捷键屏蔽类型。
 
 **需要权限**: ohos.permission.INPUT_CONTROL_DISPATCHING
 
@@ -150,7 +150,7 @@ getShieldStatus(shieldMode: ShieldMode): boolean
 
 **返回值：** 
 
-| 参数         |  说明                                       |
+| 类型         |  说明                                       |
 | ---------- |  ---------------------------------------- |
 | boolean                    | 屏蔽类型生效状态，true代表屏蔽类型生效，flase代表不生效。                       |
 
@@ -188,6 +188,6 @@ try {
 
 | 名称                        | 值 | 说明           |
 | ------------------------------ | ----------- | ---------------- |
-| UNSET_MODE | -1 | 值为-1，屏蔽类型为不屏蔽快捷键。 |
-| FACTORY_MODE | 0 | 值为0，屏蔽类型为屏蔽所有快捷键。 |
-| OOBE_MODE | 1 | 值为1，屏蔽类型为OOBE阶段屏蔽快捷键，暂不支持该能力。 |
+| UNSET_MODE | -1 | 值为-1，表示不屏蔽快捷键。 |
+| FACTORY_MODE | 0 | 值为0，表示屏蔽所有快捷键。 |
+| OOBE_MODE | 1 | 值为1，表示OOBE阶段屏蔽所有快捷键，暂不支持该能力。 |

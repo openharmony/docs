@@ -787,7 +787,7 @@ getIntervalSinceLastInput(): Promise&lt;number&gt;
 | name                 | string                                 | 是 | 否 | 输入设备的名称。                                             |
 | sources              | Array&lt;[SourceType](#sourcetype9)&gt; | 是 | 否 | 输入设备支持的源类型。比如有的键盘上附带触摸板，则此设备有keyboard和touchpad两种输入源。 |
 | axisRanges           | Array&lt;[AxisRange](#axisrange)&gt;  | 是 | 否 | 输入设备的轴信息。                                           |
-| bus<sup>9+</sup>     | number                                 | 是 | 否 | 输入设备的总线类型。比如蓝牙、USB、I2C等。             |
+| bus<sup>9+</sup>     | number                                 | 是 | 否 | 输入设备的总线类型，该值以输入设备上报为准。             |
 | product<sup>9+</sup> | number                                 | 是 | 否 | 输入设备的产品信息。                                         |
 | vendor<sup>9+</sup>  | number                                 | 是 | 否 | 输入设备的厂商信息。                                         |
 | version<sup>9+</sup> | number                                 | 是 | 否 | 输入设备的版本信息。                                         |
