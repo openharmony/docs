@@ -55,6 +55,7 @@ addDisallowedRunningBundles(admin: Want, appIds: Array\<string>, callback: Async
 
 ```ts
 import { Want } from '@kit.AbilityKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -107,6 +108,7 @@ addDisallowedRunningBundles(admin: Want, appIds: Array\<string>, userId: number,
 
 ```ts
 import { Want } from '@kit.AbilityKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -165,6 +167,7 @@ addDisallowedRunningBundles(admin: Want, appIds: Array\<string>, userId?: number
 ```ts
 import { Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -214,6 +217,7 @@ removeDisallowedRunningBundles(admin: Want, appIds: Array\<string>, callback: As
 
 ```ts
 import { Want } from '@kit.AbilityKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -266,6 +270,7 @@ removeDisallowedRunningBundles(admin: Want, appIds: Array\<string>, userId: numb
 
 ```ts
 import { Want } from '@kit.AbilityKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -324,6 +329,7 @@ removeDisallowedRunningBundles(admin: Want, appIds: Array\<string>, userId?: num
 ```ts
 import { Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -372,6 +378,7 @@ getDisallowedRunningBundles(admin: Want, callback: AsyncCallback&lt;Array&lt;str
 
 ```ts
 import { Want } from '@kit.AbilityKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -422,6 +429,7 @@ getDisallowedRunningBundles(admin: Want, userId: number, callback: AsyncCallback
 
 ```ts
 import { Want } from '@kit.AbilityKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -478,6 +486,7 @@ getDisallowedRunningBundles(admin: Want, userId?: number): Promise&lt;Array&lt;s
 ```ts
 import { Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',

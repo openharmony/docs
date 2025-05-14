@@ -51,6 +51,7 @@ disallowOsAccountAddition(admin: Want, disallow: boolean, accountId?: number): v
 
 ```ts
 import { Want } from '@kit.AbilityKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -104,6 +105,7 @@ isOsAccountAdditionDisallowed(admin: Want, accountId?: number): boolean
 
 ```ts
 import { Want } from '@kit.AbilityKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -160,6 +162,7 @@ addOsAccountAsync(admin: Want, name: string, type: osAccount.OsAccountType): Pro
 ```ts
 import { Want } from '@kit.AbilityKit';
 import { BusinessError, osAccount } from '@kit.BasicServicesKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -171,3 +174,169 @@ accountManager.addOsAccountAsync(wantTemp, "TestAccountName", osAccount.OsAccoun
   console.error(`Failed to creating os account. Code: ${err.code}, message: ${err.message}`);
 });
 ```
+## accountManager.setDomainAccountPolicy<sup>19+</sup>
+
+setDomainAccountPolicy(admin: Want, domainAccountInfo: osAccount.DomainAccountInfo, policy: DomainAccountPolicy): void
+
+设置域账号策略，该接口仅在2in1设备上生效。
+
+**需要权限：** ohos.permission.ENTERPRISE_SET_ACCOUNT_POLICY
+
+**系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+**参数：**
+
+| 参数名            | 类型                                                         | 必填 | 说明                                                         |
+| ----------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| admin             | [Want](../apis-ability-kit/js-apis-app-ability-want.md)      | 是   | 企业设备管理扩展组件。                                       |
+| domainAccountInfo | [osAccount.DomainAccountInfo](../apis-basic-services-kit/js-apis-osAccount.md#domainaccountinfo8) | 是   | 域账号信息。<br />若传入的domainAccountInfo内部属性均为空，则会设置为全局域账号策略。全局策略对所有的域账号生效。<br />若传入的domainAccountInfo内部属性不为空，则为指定域账号设置策略。<br />指定域账号策略的优先级高于全局策略，若指定域账号已有域账号策略，则全局策略对其不生效。<br />**说明**：若为指定域账号设置策略，DomainAccountInfo的serverConfigId字段必填。 |
+| policy            | [DomainAccountPolicy](#domainaccountpolicy19)                | 是   | 域账号策略。<br />**说明**：设置域账号策略后须在设备侧修改域账号密码，若未修改密码，则DomainAccountPolicy中的passwordValidityPeriod、passwordExpirationNotification配置不生效。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[企业设备管理错误码](errorcode-enterpriseDeviceManager.md)和[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 9200001  | The application is not an administrator application of the device. |
+| 9200002  | The administrator application does not have permission to manage the device. |
+| 201      | Permission verification failed. The application does not have the permission required to call the API. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+
+**示例：**
+
+```ts
+import { Want } from '@kit.AbilityKit';
+import { BusinessError, osAccount } from '@kit.BasicServicesKit';
+
+let wantTemp: Want = {
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
+};
+let policy: accountManager.DomainAccountPolicy = {
+  authenticationValidityPeriod: 300,
+  passwordValidityPeriod: 420,
+  passwordExpirationNotification: 60,
+}
+// 设置全局域账号策略
+let accountInfo: osAccount.DomainAccountInfo = {
+  domain: '',
+  accountName: '',
+  serverConfigId: '',
+}
+try {
+  accountManager.setDomainAccountPolicy(wantTemp, accountInfo, policy);
+  console.info('Succeeded in setting global domainAccount policy.');
+} catch (err) {
+  console.error(`Failed to set domainAccount policy. Code: ${err.code}, message: ${err.message}`);
+}
+// 设置指定域账号策略
+let accountInfo2: osAccount.DomainAccountInfo = {
+  domain: '',
+  accountName: '',
+  serverConfigId: '',
+}
+let userId: number = 100;
+await osAccount.getAccountManager().getOsAccountDomainInfo(userId).then((domainAccountInfo: osAccount.DomainAccountInfo) => {
+  accountInfo2 = domainAccountInfo;
+}).catch((err: BusinessError) => {
+  console.error(`Failed to get account domain info. Code: ${err.code}, message: ${err.message}`);
+})
+try {
+  accountManager.setDomainAccountPolicy(wantTemp, accountInfo2, policy);
+  console.info('Succeeded in setting domain account policy.');
+} catch (err) {
+  console.error(`Failed to set domain account policy. Code: ${err.code}, message: ${err.message}`);
+}
+```
+
+
+
+## accountManager.getDomainAccountPolicy<sup>19+</sup>
+
+getDomainAccountPolicy(admin: Want, domainAccountInfo: osAccount.DomainAccountInfo): DomainAccountPolicy
+
+获取域账号策略，该接口仅在2in1设备上生效。
+
+**需要权限：** ohos.permission.ENTERPRISE_SET_ACCOUNT_POLICY
+
+**系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+**参数：**
+
+| 参数名            | 类型                                                         | 必填 | 说明                                                         |
+| ----------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| admin             | [Want](../apis-ability-kit/js-apis-app-ability-want.md)      | 是   | 企业设备管理扩展组件。                                       |
+| domainAccountInfo | [osAccount.DomainAccountInfo](../apis-basic-services-kit/js-apis-osAccount.md#domainaccountinfo8) | 是   | 域账号信息。<br />若传入的domainAccountInfo内部属性均为空，则查询全局域账号策略。<br />若传入的domainAccountInfo内部属性不为空，则查询指定域账号策略。<br />**说明**：若查询指定域账号策略，DomainAccountInfo的serverConfigId字段必填。 |
+
+**返回值：**
+
+| 类型                                                         | 说明                 |
+| ------------------------------------------------------------ | -------------------- |
+| [DomainAccountPolicy](#domainaccountpolicy19) | 域账号策略。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[企业设备管理错误码](errorcode-enterpriseDeviceManager.md)和[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 9200001  | The application is not an administrator application of the device. |
+| 9200002  | The administrator application does not have permission to manage the device. |
+| 201      | Permission verification failed. The application does not have the permission required to call the API. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+
+**示例：**
+
+```ts
+import { Want } from '@kit.AbilityKit';
+import { BusinessError, osAccount } from '@kit.BasicServicesKit';
+
+let wantTemp: Want = {
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
+};
+let domainAccountPolicy: accountManager.DomainAccountPolicy = {}
+// 查询全局域账号策略
+let accountInfo: osAccount.DomainAccountInfo = {
+  domain: '',
+  accountName: '',
+  serverConfigId: '',
+}
+try {
+  domainAccountPolicy = accountManager.getDomainAccountPolicy(wantTemp, accountInfo);
+  console.info('Succeeded in getting global domain account policy.');
+} catch (err) {
+  console.error(`Failed to get domain account policy. Code: ${err.code}, message: ${err.message}`);
+}
+// 查询指定域账号策略
+let accountInfo2: osAccount.DomainAccountInfo = {
+  domain: '',
+  accountName: '',
+  serverConfigId: '',
+}
+let userId: number = 100;
+await osAccount.getAccountManager().getOsAccountDomainInfo(userId).then((domainAccountInfo: osAccount.DomainAccountInfo) => {
+  accountInfo2 = domainAccountInfo;
+}).catch((err: BusinessError) => {
+  console.error(`Failed to get account domain info. Code: ${err.code}, message: ${err.message}`);
+})
+try {
+  domainAccountPolicy = accountManager.getDomainAccountPolicy(wantTemp, accountInfo2);
+  console.info('Succeeded in getting domain account policy.');
+} catch (err) {
+  console.error(`Failed to get domain account policy. Code: ${err.code}, message: ${err.message}`);
+}
+```
+
+## DomainAccountPolicy<sup>19+</sup>
+
+域账号策略。
+
+**系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+| 名称                           | 类型   | 必填 | 说明                                                         |
+| ------------------------------ | ------ | ---- | ------------------------------------------------------------ |
+| authenticationValidityPeriod   | number | 否   | 表示域账号认证Token的有效期（单位：s），取值范围是[-1,2147483647]。有效期起始时间为最后一次域账号的认证时间点，如登录、锁屏后解锁等。<br/>默认值为-1，表示Token永久有效。取值为0，表示Token立即失效。Token过期/失效后，用户进入系统时必须进行域账号认证，验证域账号和密码。 |
+| passwordValidityPeriod         | number | 否   | 表示域账号密码有效期（单位：s），取值范围是[-1,2147483647]，有效期起始时间为设备侧最后一次修改密码的时间点。<br/>默认值为-1，表示域账号密码永久有效。 |
+| passwordExpirationNotification | number | 否   | 表示域账号密码过期前提示时间（单位：s），取值范围是[0,2147483647]。<br/>默认值为0，表示域账号密码过期不提示。<br/>**说明**：passwordExpirationNotification需与passwordValidityPeriod配合使用，当系统时间大于或等于（设备侧最后一次修改域账号密码时间 + passwordValidityPeriod - passwordExpirationNotification）时，会发页面通知提示密码即将过期。 |
