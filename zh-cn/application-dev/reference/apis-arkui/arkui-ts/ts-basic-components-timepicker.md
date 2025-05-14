@@ -1,10 +1,10 @@
 # TimePicker
 
-时间选择组件，根据指定参数创建选择器，支持选择小时及分钟。
+时间选择组件支持根据指定参数创建选择器，可选择小时和分钟。
 
 >  **说明：**
 >
->  该组件从API Version 8开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>  该组件从API version 8开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 
 ## 子组件
@@ -16,7 +16,7 @@
 
 TimePicker(options?: TimePickerOptions)
 
-默认以24小时的时间区间创建滑动选择器。
+创建滑动选择器，默认使用24小时的时间区间。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -96,7 +96,7 @@ TimePicker(options?: TimePickerOptions)
 
 useMilitaryTime(value: boolean)
 
-设置展示时间是否为24小时制。当展示时间为12小时制时，上下午与小时无联动关系。
+设置展示时间是否为24小时制。如果展示时间为12小时制，上下午与小时无联动。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -192,7 +192,7 @@ textStyle(style: Optional\<PickerTextStyle>)
 
 selectedTextStyle(value: PickerTextStyle)
 
-设置选中项的文本颜色、字号、字体粗细。
+设置选中项的文本颜色、字号和字体粗细。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -224,7 +224,7 @@ selectedTextStyle(style: Optional\<PickerTextStyle>)
 
 loop(value: boolean)
 
-设置是否启用循环模式。
+设置循环模式的启用状态。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -256,7 +256,7 @@ loop(isLoop: Optional\<boolean>)
 
 dateTimeOptions(value: DateTimeOptions)
 
-设置时分秒是否显示前置0。
+设置时分秒是否显示前导0。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -296,7 +296,7 @@ enableHapticFeedback(enable: boolean)
 
 | 参数名 | 类型                                          | 必填  | 说明                                                                                  |
 | ------ | --------------------------------------------- |-----|-------------------------------------------------------------------------------------|
-| enable  | boolean | 是   | 是否支持触控反馈。<br/>默认值：true，true表示开启触控反馈，false表示不开启触控反馈。<br/>设置为true后是否生效，还取决于系统的硬件是否支持。 |
+| enable  | boolean | 是   | 是否支持触控反馈。<br/>默认值：true，表示开启触控反馈。<br/>设置为true后，其是否生效取决于系统的硬件支持情况。 |
 
 ### enableHapticFeedback<sup>18+</sup>
 
@@ -451,7 +451,7 @@ type OnTimePickerChangeCallback = (value: TimePickerResult) => void
 @Entry
 @Component
 struct TimePickerExample {
-  private selectedTime: Date = new Date('2022-07-22T08:00:00')
+  private selectedTime: Date = new Date('2022-07-22T08:00:00');
 
   build() {
     TimePicker({
@@ -462,8 +462,8 @@ struct TimePickerExample {
       .selectedTextStyle({ color: Color.Blue, font: { size: 30, weight: FontWeight.Bolder } })
       .onChange((value: TimePickerResult) => {
         if (value.hour >= 0) {
-          this.selectedTime.setHours(value.hour, value.minute)
-          console.info('select current date is: ' + JSON.stringify(value))
+          this.selectedTime.setHours(value.hour, value.minute);
+          console.info('select current date is: ' + JSON.stringify(value));
         }
       })
   }
@@ -481,15 +481,15 @@ struct TimePickerExample {
 @Entry
 @Component
 struct TimePickerExample {
-  @State isMilitaryTime: boolean = false
-  private selectedTime: Date = new Date('2022-07-22T08:00:00')
+  @State isMilitaryTime: boolean = false;
+  private selectedTime: Date = new Date('2022-07-22T08:00:00');
 
   build() {
     Column() {
       Button('切换12小时制/24小时制')
         .margin(30)
         .onClick(() => {
-          this.isMilitaryTime = !this.isMilitaryTime
+          this.isMilitaryTime = !this.isMilitaryTime;
         })
 
       TimePicker({
@@ -498,12 +498,12 @@ struct TimePickerExample {
         .useMilitaryTime(this.isMilitaryTime)
         .onChange((value: TimePickerResult) => {
           if (value.hour >= 0) {
-            this.selectedTime.setHours(value.hour, value.minute)
-            console.info('select current time is: ' + JSON.stringify(value))
+            this.selectedTime.setHours(value.hour, value.minute);
+            console.info('select current time is: ' + JSON.stringify(value));
           }
         })
         .onEnterSelectedArea((value: TimePickerResult) => {
-            console.info('item enter selected area, time is: ' + JSON.stringify(value))
+            console.info('item enter selected area, time is: ' + JSON.stringify(value));
         })
     }.width('100%')
   }
@@ -521,7 +521,7 @@ struct TimePickerExample {
 @Entry
 @Component
 struct TimePickerExample {
-  private selectedTime: Date = new Date('2022-07-22T08:00:00')
+  private selectedTime: Date = new Date('2022-07-22T08:00:00');
 
   build() {
     Column() {
@@ -532,8 +532,8 @@ struct TimePickerExample {
         .dateTimeOptions({ hour: "numeric", minute: "2-digit", second: "2-digit" })
         .onChange((value: TimePickerResult) => {
           if (value.hour >= 0) {
-            this.selectedTime.setHours(value.hour, value.minute)
-            console.info('select current date is: ' + JSON.stringify(value))
+            this.selectedTime.setHours(value.hour, value.minute);
+            console.info('select current date is: ' + JSON.stringify(value));
           }
         })
     }.width('100%')
@@ -552,8 +552,8 @@ struct TimePickerExample {
 @Entry
 @Component
 struct TimePickerExample {
-  @State isLoop: boolean = true
-  private selectedTime: Date = new Date('2022-07-22T12:00:00')
+  @State isLoop: boolean = true;
+  private selectedTime: Date = new Date('2022-07-22T12:00:00');
 
   build() {
     Column() {
@@ -563,8 +563,8 @@ struct TimePickerExample {
         .loop(this.isLoop)
         .onChange((value: TimePickerResult) => {
           if (value.hour >= 0) {
-            this.selectedTime.setHours(value.hour, value.minute)
-            console.info('select current date is: ' + JSON.stringify(value))
+            this.selectedTime.setHours(value.hour, value.minute);
+            console.info('select current date is: ' + JSON.stringify(value));
           }
         })
 
@@ -573,7 +573,7 @@ struct TimePickerExample {
 
         Toggle({ type: ToggleType.Switch, isOn: true })
           .onChange((isOn: boolean) => {
-            this.isLoop = isOn
+            this.isLoop = isOn;
           })
       }.position({ x: '60%', y: '40%' })
 
@@ -593,7 +593,7 @@ struct TimePickerExample {
 @Entry
 @Component
 struct TimePickerExample {
-  private selectedTime: Date = new Date('2022-07-22T08:50:00')
+  private selectedTime: Date = new Date('2022-07-22T08:50:00');
 
   build() {
     Column() {
@@ -605,8 +605,8 @@ struct TimePickerExample {
         .dateTimeOptions({ hour: "numeric", minute: "2-digit", second: "2-digit" })
         .onChange((value: TimePickerResult) => {
           if (value.hour >= 0) {
-            this.selectedTime.setHours(value.hour, value.minute)
-            console.info('select current date is: ' + JSON.stringify(value))
+            this.selectedTime.setHours(value.hour, value.minute);
+            console.info('select current date is: ' + JSON.stringify(value));
           }
         })
     }.width('100%')
@@ -624,7 +624,7 @@ struct TimePickerExample {
 @Entry
 @Component
 struct TimePickerExample {
-  private selectedTime: Date = new Date('2022-07-22T08:50:00')
+  private selectedTime: Date = new Date('2022-07-22T08:50:00');
 
   build() {
     Column() {
@@ -636,8 +636,8 @@ struct TimePickerExample {
         .dateTimeOptions({ hour: "numeric", minute: "2-digit", second: "2-digit" })
         .onChange((value: TimePickerResult) => {
           if (value.hour >= 0) {
-            this.selectedTime.setHours(value.hour, value.minute)
-            console.info('select current date is: ' + JSON.stringify(value))
+            this.selectedTime.setHours(value.hour, value.minute);
+            console.info('select current date is: ' + JSON.stringify(value));
           }
         })
     }.width('100%')
@@ -656,7 +656,7 @@ struct TimePickerExample {
 @Entry
 @Component
 struct TimePickerExample {
-  private selectedTime: Date = new Date('2022-07-22T08:00:00')
+  private selectedTime: Date = new Date('2022-07-22T08:00:00');
 
   build() {
     Column() {
@@ -667,8 +667,8 @@ struct TimePickerExample {
         .loop(true)
         .onChange((value: TimePickerResult) => {
           if (value.hour >= 0) {
-            this.selectedTime.setHours(value.hour, value.minute)
-            console.info('select current date is: ' + JSON.stringify(value))
+            this.selectedTime.setHours(value.hour, value.minute);
+            console.info('select current date is: ' + JSON.stringify(value));
           }
         })
     }.width('100%')

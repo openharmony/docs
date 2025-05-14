@@ -1,7 +1,7 @@
 # P2P模式开发指导
 
 ## 简介
-P2P模式，主要提供了wlan设备的一种点对点连接技术，它可以在两台 STA 之间直接建立 TCP/IP 链接，并不需要AP的参与。
+P2P模式，主要提供了wlan设备的一种点对点连接技术，它可以在两台STA之间直接建立TCP/IP连接，并不需要AP的参与。
 
 ## 场景介绍
 主要场景有：
@@ -11,7 +11,7 @@ P2P模式，主要提供了wlan设备的一种点对点连接技术，它可以�
 
 ## 接口说明
 
-完整的 JS API 说明以及实例代码请参考：[P2P 接口](../../reference/apis-connectivity-kit/js-apis-wifiManager.md)。
+完整的JS API说明以及示例代码请参考：[P2P接口](../../reference/apis-connectivity-kit/js-apis-wifiManager.md)。
 
 具体接口说明如下表。
 
@@ -43,8 +43,8 @@ P2P模式，主要提供了wlan设备的一种点对点连接技术，它可以�
 import { wifiManager } from '@kit.ConnectivityKit';
 
 // 创建群组，将当前设备当做GO使用时，需要该步骤
-// netId：-1表示创建临时组，下次和已连接过的设备连接，需要重新进行GO协商，以及wps秘钥协商;
-//        -2表示创建永久组，下次和已连接过的设备连接，不需要重新进行GO和wps秘钥协商;
+// netId：-1表示创建临时组，下次和已连接过的设备连接，需要重新进行GO协商，以及wps密钥协商;
+//        -2表示创建永久组，下次和已连接过的设备连接，不需要重新进行GO和wps密钥协商;
 
 let recvP2pPersistentGroupChangeFunc = () => {
 	console.info("p2p persistent group change receive event");
@@ -92,7 +92,7 @@ let recvP2pConnectionChangeFunc = (result:wifiManager.WifiP2pLinkedInfo) => {
 	console.info("p2p connection change receive event: " + JSON.stringify(result));
 	wifiManager.getP2pLinkedInfo((err, data) => {
 		if (err) {
-			console.error('failed to get getP2pLinkedInfo: ' + JSON.stringify(err));
+			console.error("failed to get P2pLinkedInfo: " + JSON.stringify(err));
 			return;
 		}
 		console.info("get getP2pLinkedInfo: " + JSON.stringify(data));
@@ -106,7 +106,7 @@ let recvP2pPeerDeviceChangeFunc = (result:wifiManager.WifiP2pDevice[]) => {
 	console.info("p2p peer device change receive event: " + JSON.stringify(result));
 	wifiManager.getP2pPeerDevices((err, data) => {
 		if (err) {
-			console.error('failed to get peer devices: ' + JSON.stringify(err));
+			console.error("failed to get peer devices: " + JSON.stringify(err));
 			return;
 		}
 		console.info("get peer devices: " + JSON.stringify(data));

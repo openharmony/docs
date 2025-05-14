@@ -29,8 +29,6 @@
 页面1：
 
 ```ts
-import { router } from '@kit.ArkUI';
-
 @ObservedV2
 export class Book {
   @Trace name: string = "100";
@@ -59,9 +57,9 @@ export struct Page1 {
         })
       Button('go to next page').fontSize(25)
         .onClick(() => {
-          router.pushUrl({ url: 'pages/Page2' });
+          this.getUIContext().getRouter().pushUrl({ url: 'pages/Page2' });
           setTimeout(() => {
-            this.bookTest = new Book("Jane Austen oPride and Prejudice");
+            this.bookTest = new Book("Jane Austen's Pride and Prejudice");
           }, 1000)
         })
     }
@@ -72,8 +70,6 @@ export struct Page1 {
 页面2：
 
 ```ts
-import { router } from '@kit.ArkUI';
-
 @Entry
 @ComponentV2
 struct Page2 {
@@ -82,7 +78,7 @@ struct Page2 {
       Text(`This is the page2`).fontSize(25)
       Button('Back')
         .onClick(() => {
-          router.back();
+          this.getUIContext().getRouter().back();
         })
     }
   }
@@ -94,7 +90,7 @@ struct Page2 {
 1.点击页面1中的Button “changeBookName”，bookTest变量的name属性改变，@Monitor中注册的方法onMessageChange会被调用。
 
 2.点击页面1中的Button “go to next page”，跳转到页面2，然后延迟1s更新状态变量“bookTest”。在更新“bookTest”的时候，已经跳转到页面2，页面1处于inactive状态，状态变量`@Local bookTest`将不响应更新，其@Monitor不会调用，状态变量关联的节点不会刷新。
-trace如下：
+Trace如下：
 
 ![Example Image](./figures/freeze1.png)
 
@@ -348,13 +344,13 @@ struct NavigationContentMsgStack {
 
 ![navigation-freeze.gif](figures/navigation-freeze.gif)
 
-### Repeat virtualScroll
+### Repeat
 
 > **说明：**
 >
-> Repeat virtualScroll从API version 18开始支持自定义组件冻结。
+> Repeat从API version 18开始支持自定义组件冻结。
 
-对Repeat virtualScroll缓存池中的自定义组件进行冻结，避免不必要的组件刷新。建议提前阅读[Repeat组件生成及复用virtualScroll规则](./arkts-new-rendering-control-repeat.md#子组件渲染逻辑-1)。
+对Repeat缓存池中的自定义组件进行冻结，避免不必要的组件刷新。建议提前阅读[Repeat节点更新/复用能力说明](./arkts-new-rendering-control-repeat.md#节点更新复用能力说明)。
 
 ```ts
 @Entry
@@ -509,7 +505,7 @@ export struct Child {
       Button('change BookName')
         .onClick(() => {
           setTimeout(() => {
-            this.bookTest = new Book('Jane Austen oPride and Prejudice');
+            this.bookTest = new Book("Jane Austen's Pride and Prejudice");
           }, 3000);
         })
     }

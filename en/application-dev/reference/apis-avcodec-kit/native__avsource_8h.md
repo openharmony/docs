@@ -3,7 +3,7 @@
 
 ## Overview
 
-The **native_avsource.h** file declares the native APIs used for audio and video demuxing.
+The **native_avsource.h** file declares the native APIs used for audio and video demultiplexing.
 
 **Library**: libnative_media_avsource.so
 

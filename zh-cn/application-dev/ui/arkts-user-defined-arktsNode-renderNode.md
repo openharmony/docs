@@ -476,9 +476,16 @@ import bridge from "libentry.so" // 该 so 由 Node-API 编写并生成
 import { DrawContext, FrameNode, NodeController, RenderNode } from '@kit.ArkUI'
 
 class MyRenderNode extends RenderNode {
+  uiContext: UIContext;
+
+  constructor(uiContext: UIContext) {
+    super();
+    this.uiContext = uiContext;
+  }
+
   draw(context: DrawContext) {
     // 需要将 context 中的宽度和高度从vp转换为px
-    bridge.nativeOnDraw(0, context, vp2px(context.size.height), vp2px(context.size.width));
+    bridge.nativeOnDraw(0, context, this.uiContext.vp2px(context.size.height), this.uiContext.vp2px(context.size.width));
   }
 }
 
@@ -490,7 +497,7 @@ class MyNodeController extends NodeController {
 
     const rootRenderNode = this.rootNode.getRenderNode();
     if (rootRenderNode !== null) {
-      const renderNode = new MyRenderNode();
+      const renderNode = new MyRenderNode(uiContext);
       renderNode.size = { width: 100, height: 100 }
       rootRenderNode.appendChild(renderNode);
     }

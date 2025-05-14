@@ -23,17 +23,12 @@ Context获取方式请参考：[获取UIAbility的上下文信息](../../applica
 import { camera } from '@kit.CameraKit';
 import { image } from '@kit.ImageKit';
 import { BusinessError } from '@kit.BasicServicesKit';
-import { common } from '@kit.AbilityKit';
-import { fileIo as fs } from '@kit.CoreFileKit';
-import { photoAccessHelper } from '@kit.MediaLibraryKit';
-
-let context = getContext(this);
 
 function setPhotoOutputCb(photoOutput: camera.PhotoOutput): void {
   //设置回调之后，调用photoOutput的capture方法，就会将拍照的buffer回传到回调中。
   photoOutput.on('photoAvailable', (errCode: BusinessError, photo: camera.Photo): void => {
     console.info('getPhoto start');
-    console.info(`err: ${JSON.stringify(errCode)}`);
+    console.info(`err: ${errCode}`);
     if (errCode || photo === undefined) {
       console.error('getPhoto failed');
       return;
@@ -61,9 +56,9 @@ function setPhotoOutputCb(photoOutput: camera.PhotoOutput): void {
   });
 }
 
-async function cameraShootingCase(baseContext: common.BaseContext, surfaceId: string): Promise<void> {
+async function cameraShootingCase(context: Context, surfaceId: string): Promise<void> {
   // 创建CameraManager对象。
-  let cameraManager: camera.CameraManager = camera.getCameraManager(baseContext);
+  let cameraManager: camera.CameraManager = camera.getCameraManager(context);
   if (!cameraManager) {
     console.error("camera.getCameraManager error");
     return;
@@ -306,7 +301,7 @@ async function cameraShootingCase(baseContext: common.BaseContext, surfaceId: st
     console.info('Callback invoked to indicate the photo capture request success.');
   });
 
-  // 需要在拍照结束之后调用以下关闭摄像头和释放会话流程，避免拍照未结束就将会话释放。
+  // 需要在拍照结束之后调用以下关闭相机和释放会话流程，避免拍照未结束就将会话释放。
   // 停止当前会话。
   await photoSession.stop();
 

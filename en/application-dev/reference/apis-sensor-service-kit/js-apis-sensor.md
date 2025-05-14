@@ -2889,7 +2889,7 @@ try {
 
 off(type: SensorId.SIGNIFICANT_MOTION, callback?: Callback&lt;SignificantMotionResponse&gt;): void
 
-Unsubscribes from valid motion sensor data.
+Unsubscribes from the significant motion sensor data.
 
 **System capability**: SystemCapability.Sensors.Sensor
 
@@ -4395,7 +4395,7 @@ Describes the rotation vector sensor data. It extends from [Response](#response)
 | x    | number | Yes  | Yes  | X-component of the rotation vector.|
 | y    | number | Yes  | Yes  | Y-component of the rotation vector.|
 | z    | number | Yes  | Yes  | Z-component of the rotation vector.|
-| w    | number | Yes  | Yes  | Scalar.           |
+| w    | number | Yes  | Yes  | Scalar, which describes the rotation status of the device relative to a reference direction, in radians           |
 
 
 ## GyroscopeResponse

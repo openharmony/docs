@@ -1,4 +1,7 @@
 # OpenHarmony应用开发文档
+<!--Del-->
+- [应用开发导读](application-dev-guide.md)
+<!--DelEnd-->
 - 入门<!--application-getting-started-->
   <!--Del-->
   - 快速入门<!--quick-start-->
@@ -250,6 +253,7 @@
           - [XML解析](arkts-utils/xml-parsing.md)
           - [XML转换](arkts-utils/xml-conversion.md)
         - [Buffer介绍](arkts-utils/buffer.md)
+        - [JSON扩展库](arkts-utils/arkts-json.md)
         - ArkTS容器类库<!--containers-->
           - [容器类库概述](arkts-utils/container-overview.md)
           - [线性容器](arkts-utils/linear-container.md)
@@ -309,6 +313,8 @@
             - [ArkUI瀑布流渲染场景](arkts-utils/taskpool-waterflow.md)
             - [获取最近访问列表场景](arkts-utils/sendablelrucache-recent-list.md)
             - [多线程取消TaskPool任务场景](arkts-utils/multi-thread-cancel-task.md)
+            - [ArkTS多线程间操作Native对象场景](arkts-utils/napi-coerce-to-native-binding-object.md)
+            - [Worker常驻线程通过TaskPool进行多任务并发处理](arkts-utils/worker-and-taskpool.md)
       - [ArkTS跨语言交互](arkts-utils/arkts-cross-language-interaction.md)
       - ArkTS运行时<!--arkts-runtime-->
         - [ArkTS运行时概述](arkts-utils/arkts-runtime-overview.md)
@@ -350,7 +356,7 @@
             - [自定义组件的自定义布局](ui/state-management/arkts-page-custom-components-layout.md)
             - [自定义组件成员属性访问限定符使用限制](ui/state-management/arkts-custom-components-access-restrictions.md)
           - [\@Builder装饰器：自定义构建函数](ui/state-management/arkts-builder.md)
-          - [\@LocalBuilder装饰器：维持组件父子关系](ui/state-management/arkts-localBuilder.md)
+          - [\@LocalBuilder装饰器：维持组件关系](ui/state-management/arkts-localBuilder.md)
           - [\@BuilderParam装饰器：引用\@Builder函数](ui/state-management/arkts-builderparam.md)
           - [wrapBuilder：封装全局@Builder](ui/state-management/arkts-wrapBuilder.md)
           - [\@Styles装饰器：定义组件重用样式](ui/state-management/arkts-style.md)
@@ -381,8 +387,10 @@
               - [\@Track装饰器：class对象属性级更新](ui/state-management/arkts-track.md)
               - [自定义组件冻结功能](ui/state-management/arkts-custom-components-freeze.md)
             - [MVVM模式](ui/state-management/arkts-mvvm.md)
+            <!--Del-->
             - [状态管理优秀实践](ui/state-management/arkts-state-management-best-practices.md)
             - [状态管理合理使用开发指导](ui/state-management/properly-use-state-management-to-develope.md)
+            <!--DelEnd-->
           - 状态管理（V2）<!--arkts-state-management-v2-->
             - V2所属装饰器<!--arkts-v2-decorators-->
               - [\@ObservedV2装饰器和\@Trace装饰器：类属性变化观测](ui/state-management/arkts-new-observedV2-and-trace.md)
@@ -531,16 +539,20 @@
             - [属性修改器 (AttributeModifier)](ui/arkts-user-defined-extension-attributeModifier.md)
             - [属性更新器 (AttributeUpdater)](ui/arkts-user-defined-extension-attributeUpdater.md)
         - [使用镜像能力](ui/arkts-mirroring-display.md)
-        - [支持适老化](ui/arkui-support-for-aging-adaptation.md)
+        - 无障碍与适老化<!--arkts-support-accessibility-friendliness-->
+          - [支持无障碍](ui/arkts-universal-attributes-accessibility.md)
+          - [支持适老化](ui/arkui-support-for-aging-adaptation.md)
         - 主题设置<!--arkts-theme-->
           - [应用深浅色适配](ui/ui-dark-light-color-adaptation.md)
           - [设置应用内主题换肤](ui/theme_skinning.md)
         - [使用UI上下文接口操作界面（UIContext）](ui/arkts-global-interface.md)
-        - 跨进程拉起页面<!--arkts-ui-cross-process-->
+        - 嵌入式组件<!--arkts-ui-cross-process-->
           - [全屏启动原子化服务 (FullScreenLaunchComponent)](ui/arkts-FullScreenComponent.md)
-        <!--Del-->
-        - [跨进程应用能力扩展（UIExtension，仅对系统应用开放）](ui/arkts-ui-extension-components.md)
-        <!--DelEnd-->
+          - [同应用进程嵌入式组件 (EmbeddedComponent)](ui/arkts-embedded-components.md)
+          <!--Del-->
+           - [跨进程应用能力扩展（UIExtension，仅对系统应用开放）](ui/arkts-ui-extension-components.md)
+           - [跨线程嵌入式组件 (IsolatedComponent，仅对系统应用开放)](ui/arkts-isolated-components.md)
+          <!--DelEnd-->
         - 使用NDK接口构建UI<!--arkts-use-ndk-->
           - [NDK接口概述](ui/ndk-build-ui-overview.md)
           - [接入ArkTS页面](ui/ndk-access-the-arkts-page.md)
@@ -549,7 +561,9 @@
             - [绑定手势事件](ui/ndk-bind-gesture-events.md)
             - [拖拽事件](ui/ndk-drag-event.md)
           - [使用动画](ui/ndk-use-animation.md)
-          - [使用懒加载开发长列表界面](ui/ndk-loading-long-list.md)
+          - 构建布局<!--arkts-build-layout-ndk-->
+            - [使用列表](ui/ndk-loading-long-list.md)
+            - [使用瀑布流](ui/ndk-waterflow.md)
           - [构建弹窗](ui/ndk-build-pop-up-window.md)
           - [构建自定义组件](ui/ndk-build-custom-components.md)
           - [嵌入ArkTS组件](ui/ndk-embed-arkts-components.md)
@@ -651,7 +665,7 @@
       - 设置基本属性和事件<!--web-set-attributes-events-->
         - [User-Agent开发指导](web/web-default-userAgent.md)
         - [管理Cookie及数据存储](web/web-cookie-and-data-storage-mgmt.md)
-        - [设置深色模式](web/web-set-dark-mode.md)
+        - [Web深色模式适配](web/web-set-dark-mode.md)
         - [在新窗口中打开页面](web/web-open-in-new-window.md)
         - [管理位置权限](web/web-geolocation-permission.md)
         - [使用隐私模式](web/web-incognito-mode.md)
@@ -671,6 +685,8 @@
         - [Web页面显示内容滚动](web/web-content-scrolling.md)
         - [Web组件对接软键盘](web/web-docking-softkeyboard.md)
         - [Web组件焦点管理](web/web-focus.md)
+        - [Web组件手势事件](web/web-gesture.md)
+        - [Web组件缩放功能](web/web-scale-zoom.md)
       - 管理Web组件的网络安全与隐私<!--web-manage-cyber-security-privacy-->
         - [解决Web组件本地资源跨域问题](web/web-cross-origin.md)
         - [使用智能防跟踪功能](web/web-intelligent-tracking-prevention.md)
@@ -702,7 +718,6 @@
     - Background Tasks Kit（后台任务开发服务）<!--background-task-kit-->
       <!--Del-->
       - 后台任务管理 <!--background-task-management--><!--DelEnd-->
-
         - [后台任务总体概述](task-management/background-task-overview.md)
         - [短时任务(ArkTS)](task-management/transient-task.md)
         - [短时任务(C/C++)](task-management/native-transient-task.md)
@@ -812,7 +827,7 @@
       - [Localization Kit简介](internationalization/i18n-l10n.md)
       - 应用国际化<!--i18n-->
           - [国际化界面设计](internationalization/i18n-ui-design.md)
-          - [区域标识与文化习惯划分](internationalization/i18n-locale-culture.md)
+          - [区域ID与文化习惯划分](internationalization/i18n-locale-culture.md)
           - 设置语言与用户偏好<!--i18n-language-user-preferences-->
               - [设置系统语言与区域](internationalization/i18n-system-language-region.md)
               - [设置应用偏好语言](internationalization/i18n-preferred-language.md)
@@ -1104,10 +1119,12 @@
         - [Connectivity Kit简介](connectivity/connectivity-kit-intro.md)
         - 蓝牙<!--bluetooth-->
           - [蓝牙服务开发概述](connectivity/bluetooth/bluetooth-overview.md)
-          - [蓝牙设置](connectivity/bluetooth/br-development-guide.md)
-          - [广播与扫描](connectivity/bluetooth/ble-development-guide.md)
-          - [通用属性协议](connectivity/bluetooth/gatt-development-guide.md)
-          - [串行通信](connectivity/bluetooth/spp-development-guide.md)
+          - 传统蓝牙<!--bluetooth-br-->
+            - [蓝牙设置](connectivity/bluetooth/br-development-guide.md)
+            - [传输数据](connectivity/bluetooth/spp-development-guide.md)
+          - 低功耗蓝牙<!--bluetooth-ble-->
+            - [查找设备](connectivity/bluetooth/ble-development-guide.md)
+            - [连接和传输数据](connectivity/bluetooth/gatt-development-guide.md)
         - NFC<!--nfc-->
           - [NFC标签读写开发指南](connectivity/nfc/nfc-tag-access-guide.md)
           - [HCE卡模拟开发指南](connectivity/nfc/nfc-hce-guide.md)
@@ -1554,6 +1571,7 @@
         - 视频转码<!--media-transcoder-arkts-->
           - [使用AVTranscoder实现视频转码(ArkTS)](media/media/using-avtranscoder-for-transcodering.md)
           - [创建异步线程执行AVTranscoder视频转码(ArkTS)](media/media/avtranscoder-practice.md)
+          - [转码常见问题](media/media/avtranscoder-faq.md)
       - 媒体开发指导(C/C++)<!--media-kit-dev--c-->
         - 播放<!--media-playback-c-->
           - [使用AVPlayer播放音频(C/C++)](media/media/using-ndk-avplayer-for-playback.md)
@@ -1652,6 +1670,7 @@
       - [日程管理](calendarmanager/calendarmanager-event-developer.md)
     - Contacts Kit（联系人服务）<!--contacts-kit-->
       - [Contacts Kit开发概述](contacts/contacts-intro.md)
+    <!--Del-->
     - Location Kit（位置服务）<!--location-kit-->
       - [Location Kit简介](device/location/location-kit-intro.md)
       - [申请位置权限开发指导(ArkTS)](device/location/location-permission-guidelines.md)
@@ -1661,6 +1680,7 @@
       - [基于设备自身定位的地理围栏开发指导(ArkTS)](device/location/geofence-guidelines.md)
       - [基于FenceExtensionAbility的云侧地理围栏开发指导](device/location/fenceExtensionAbility.md)
       - [相关实例](device/location/app-samples.md)
+    <!--DelEnd-->
     - Notification Kit（用户通知服务）<!--notification-kit-->
       - [Notification Kit简介](notification/notification-overview.md)
       - [请求通知授权](notification/notification-enable.md)
@@ -3903,6 +3923,7 @@
           - [@ohos.stationary (设备状态感知框架)](reference/apis-multimodalawareness-kit/js-apis-stationary.md)
           - [@ohos.multimodalAwareness.motion (动作感知能力)](reference/apis-multimodalawareness-kit/js-apis-awareness-motion.md)
           - [@js-apis-awareness-metadataBinding (回旋镖)](reference/apis-multimodalawareness-kit/js-apis-awareness-metadataBinding.md)
+          - [@ohos.multimodalAwareness.deviceStatus (设备状态感知)](reference/apis-multimodalawareness-kit/js-apis-awareness-deviceStatus.md)
           <!--Del-->
           - [@js-apis-awareness-metadataBinding (回旋镖)(系统接口)](reference/apis-multimodalawareness-kit/js-apis-awareness-metadataBinding-sys.md)
           <!--DelEnd-->
@@ -3983,8 +4004,8 @@
         - 错误码<!--performance-analysis-errcode-->
           - [Faultlogger错误码](reference/apis-performance-analysis-kit/errorcode-faultlogger.md)
           - [应用事件打点错误码](reference/apis-performance-analysis-kit/errorcode-hiappevent.md)
-          - [Hidebug错误码](reference/apis-performance-analysis-kit/errorcode-hiviewdfx-hidebug.md)
-          - [Hidebug CpuUsage错误码](reference/apis-performance-analysis-kit/errorcode-hiviewdfx-hidebug-cpuusage.md)
+          - [HiDebug错误码](reference/apis-performance-analysis-kit/errorcode-hiviewdfx-hidebug.md)
+          - [HiDebug CpuUsage错误码](reference/apis-performance-analysis-kit/errorcode-hiviewdfx-hidebug-cpuusage.md)
           - [HiCollie错误码](reference/apis-performance-analysis-kit/errorcode-hiviewdfx-hicollie.md)
           <!--Del-->
           - [系统事件错误码](reference/apis-performance-analysis-kit/errorcode-hisysevent-sys.md)

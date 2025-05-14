@@ -39,7 +39,7 @@ struct ClickError {
       .backgroundColor('#e6cfe6')
       .scale({ x: this.scaleValue, y: this.scaleValue })
       .onClick(() => {
-        animateTo({
+        this.getUIContext().animateTo({
           curve: Curve.EaseInOut,
           duration: 350,
           onFinish: () => {
@@ -95,7 +95,7 @@ struct ClickRight {
       .onClick(() => {
         // 下发动画时，计数加1
         this.cnt = this.cnt + 1;
-        animateTo({
+        this.getUIContext().animateTo({
           curve: Curve.EaseInOut,
           duration: 350,
           onFinish: () => {
@@ -140,6 +140,7 @@ struct ClickRight {
 @Entry
 @Component
 struct TabsError {
+  tabsWidth: number = 100;
   @State currentIndex: number = 0;
   @State animationDuration: number = 300;
   @State indicatorLeftMargin: number = 0;
@@ -342,7 +343,7 @@ private getCurrentIndicatorInfo(index: number, event: TabsAnimationEvent): Recor
 }
 private startAnimateTo(duration: number, leftMargin: number, width: number) {
   this.isStartAnimateTo = true;
-  animateTo({
+  this.getUIContext().animateTo({
     duration: duration, // 动画时长
     curve: Curve.Linear, // 动画曲线
     iterations: 1, // 播放次数

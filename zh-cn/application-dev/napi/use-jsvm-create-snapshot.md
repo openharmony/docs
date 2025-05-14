@@ -32,7 +32,7 @@ cpp部分代码
 #include <hilog/log.h>
 #include <fstream>
 
-#define LOG_DEMAIN 0x0202
+#define LOG_DOMAIN 0x0202
 #define LOG_TAG "TEST_TAG"
 
 static int g_aa = 0;

@@ -25,7 +25,7 @@
 | -------- | -------- |
 | [address](#address) | 映射后的缓冲区地址。 |
 | [size](#size) | 缓冲区大小。 |
-| [offset](#offset) | 所使用的的缓冲区的偏移量，默认为0，表示没有偏移，从address开始。 |
+| [offset](#offset) | 所使用的缓冲区的偏移量，默认为0，表示没有偏移，从address开始。 |
 | [bufferLength](#bufferlength) | 所使用的缓冲区的长度，默认等于size，表示使用全部的缓冲区。 |
 | [transferedLength](#transferedlength) | 实际传输的数据的长度。 |
 
@@ -66,7 +66,7 @@ uint32_t UsbDeviceMemMap::offset
 
 **描述:**
 
-所使用的的缓冲区的偏移量，默认为0，表示没有偏移，从address开始。
+所使用的缓冲区的偏移量，默认为0，表示没有偏移，从address开始。
 
 
 ### size

@@ -112,7 +112,7 @@ Node-API包含以下内存管理类型：
 
 **napi_handle_scope**
 
-napi_handle_scope数据类型是用来管理JavaScript对象的生命周期的。它允许JavaScript对象在一定范围内保持活动状态，以便在JavaScript代码中使用。在创建napi_handle_scope时，所有在该范围内创建的JavaScript对象都会保持活动状态，直到结束。这样可以做到JavaScript对象生命周期最小化，[避免发生内存泄漏问题](napi-guidelines.md#生命周期管理)。同时，napi_handle_scope也可参考[生命周期类问题注意事项](../dfx/cppcrash-guidelines.md#类型三生命周期类问题)。
+napi_handle_scope数据类型是用来管理JavaScript对象的生命周期的。它允许JavaScript对象在一定范围内保持活动状态，以便在JavaScript代码中使用。在创建napi_handle_scope时，所有在该范围内创建的JavaScript对象都会保持活动状态，直到结束。这样可以做到JavaScript对象生命周期最小化，[避免发生内存泄漏问题](napi-guidelines.md#生命周期管理)。同时，napi_handle_scope也可参考[生命周期类问题注意事项](../dfx/cppcrash-guidelines.md#案例4生命周期类问题)。
 
 **napi_escapable_handle_scope**
 
@@ -504,13 +504,6 @@ Node-API接口在Node.js提供的原生模块基础上扩展，目前支持部�
 | napi_add_async_cleanup_hook | 注册清理异步钩子函数。 |
 | napi_remove_async_cleanup_hook | 取消清理异步钩子函数。|
 
-### ArkTS基础运行时环境
-
-| 接口 | 功能说明 |
-| -------- | -------- |
-| napi_create_ark_runtime | 创建基础运行时环境。|
-| napi_destroy_ark_runtime | 销毁基础运行时环境。|
-
 ### 扩展能力
 
 [Node-API组件扩展的符号列表](../reference/native-lib/napi.md#node-api组件扩展的符号列表)
@@ -601,13 +594,26 @@ napi_status napi_coerce_to_native_binding_object(napi_env env,
                                                  void* hint);
 ```
 
+#### napi_create_ark_runtime
+
+```c
+napi_status napi_create_ark_runtime(napi_env *env);
+```
+[使用napi_create_ark_runtime、napi_destroy_ark_runtime接口创建ArkTS运行时环境](use-napi-ark-runtime.md)
+
+#### napi_destroy_ark_runtime
+
+```c
+napi_status napi_destroy_ark_runtime(napi_env *env);
+```
+
 #### napi_run_event_loop
 
 ```c
 napi_status napi_run_event_loop(napi_env env, napi_event_mode mode);
 ```
 
-[napi_run_event_loop与napi_stop_event_loop的使用指导](use-napi-event-loop.md)
+开发者只能在自己通过napi_create_ark_runtime创建的ArkTS运行环境中调用napi_run_event_loop与napi_stop_event_loop接口，使用方法可参考[使用扩展的Node-API接口在异步线程中运行和停止事件循环](use-napi-event-loop.md)。
 
 #### napi_stop_event_loop
 

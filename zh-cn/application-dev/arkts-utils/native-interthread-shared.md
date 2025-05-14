@@ -1,13 +1,13 @@
 # C++线程间数据共享场景
 
-当应用在C++层进行多线程的并发计算时，因为ArkTS的API需要在ArkTS的环境执行，为了避免在非UI主线程每次回调等待UI主线程ArkTS环境中执行的API调用结果，需要在这些C++线程上创建ArkTS执行环境和直接调用API，并且可能需要在C++线程之间对Sendable对象进行共享和操作。
+当应用在C++层进行多线程并发计算时，因为ArkTS的API需要在ArkTS环境中执行，为了避免在非UI主线程每次回调时等待UI主线程的API调用结果，需要在这些C++线程上创建ArkTS执行环境并直接调用API。此外，可能需要在C++线程之间共享和操作Sendable对象。
 
-为了支持此类场景，需要实现在C++线程上创建调用ArkTS的能力，其次还需要对Sendable对象进行多线程共享和操作。
+为了支持此类场景，C++线程需具备创建调用ArkTS的能力，并对Sendable对象进行多线程共享和操作。
 
 
 ## 在C++线程上调用ArkTS能力
 
-关于如何使用Node-API接口在C++线程创建ArkTS运行环境并调用，具体请见[使用Node-API接口创建ArkTS运行时环境](../napi/use-napi-ark-runtime.md)。
+关于如何使用Node-API接口在C++线程创建ArkTS运行环境并调用，开发者可以参考[使用Node-API接口创建ArkTS运行时环境](../napi/use-napi-ark-runtime.md)。
 
 核心代码片段如下所示：
 
@@ -24,7 +24,7 @@ export class SendableObjTest {
 ```
 
 
-Native实现加载ArkTS模块的能力。
+实现Native加载ArkTS模块的能力。
 
 ```cpp
 // napi_init.cpp
@@ -73,11 +73,11 @@ static void *CreateArkRuntimeFunc(void *arg)
 }
 ```
 
-主要分为四个步骤：创建执行环境、加载模块、查找并调用模块（也可以直接通过Node-API接口创建Sendable对象）的函数和最后销毁执行环境。其中第二步加载模块具体可见[使用Node-API接口进行模块加载](../napi/use-napi-load-module-with-info.md)，第三步查找并调用函数及更多Node-API接口能力可见[Node-API](../reference/native-lib/napi.md#node-api)。
+主要步骤包括：创建执行环境、加载模块、查找并调用模块函数（也可以直接通过Node-API接口创建Sendable对象），最后销毁执行环境。关于第二步加载模块的详细信息，请参见[使用Node-API接口进行模块加载](../napi/use-napi-load-module-with-info.md)。关于第三步查找并调用函数及更多Node-API接口能力，请参见[Node-API](../reference/native-lib/napi.md#node-api)。
 
 ## 在C++线程之间操作Sendable共享对象
 
-实现在C++调用ArkTS能力之后，需要通过序列化和反序列化跨线程传递。因为napi_value不是多线程安全的，所以不能直接在多线程之间直接共享napi_value变量。
+实现在C++调用ArkTS能力后，需要通过序列化和反序列化跨线程传递。napi_value不是多线程安全的，不能直接在多线程之间共享。
 
 下面代码例子说明了如何序列化和反序列化传递对象，注意因为Sendable共享对象是引用传递，所以序列化不会产生另外一份拷贝数据，而是直接传递对象引用到反序列化线程，所以在性能上相比非Sendable对象的序列化和反序列化更为高效。
 
@@ -93,7 +93,7 @@ export class SendableObjTest {
 }
 ```
 
-Native实现两个线程的序列化反序列化Sendable的逻辑。
+在Native中实现两个线程的序列化和反序列化Sendable的逻辑。
 
 ```cpp
 // napi_init.cpp
@@ -200,8 +200,8 @@ static napi_module demoModule = {
     .reserved = {0},
 };
 
-extern "C" __attribute__((constructor)) void RegisterEntryModule(void) { 
-    napi_module_register(&demoModule); 
+extern "C" __attribute__((constructor)) void RegisterEntryModule(void) {
+    napi_module_register(&demoModule);
 }
 ```
 
@@ -246,7 +246,7 @@ struct Index {
 
 整个过程主要包括的逻辑实现为：
 
-1. 在入口main函数所在的UI主线程创建ArkTS运行环境，并发起一个C++子线程创建Sendable对象保存到result中，然后将result引用的Sendable对象序列化到一个全局序列化数据serializationData中。
+1. 在入口main函数所在的UI主线程中创建ArkTS运行环境，并发起一个C++子线程创建Sendable对象，保存到result中，然后将result引用的Sendable对象序列化到全局序列化数据serializationData中。
 
 2. 当这些流程完成后，发起另外一个C++子线程，并在这个新的线程中创建ArkTS运行环境。然后再通过反序列化接口从serializationData中反序列化出UI主线程创建的Sendable对象，并保存到result中，从而实现了Sendable对象的跨C++线程传递。反序列化完成后，需要销毁反序列化数据避免内存泄露。这时UI主线程和子线程都同时持有这个Sendable共享对象，即可通过Node-API进行对象操作，比如读写或者传递到ArkTS层等。
 

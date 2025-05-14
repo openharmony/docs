@@ -118,7 +118,7 @@ import { UIExtensionContentSession } from '@kit.AbilityKit';
 @Component
 struct UIExtensionPage {
   @State message: string = 'Hello world';
-  storage: LocalStorage | undefined = LocalStorage.getShared();
+  storage: LocalStorage | undefined = this.getUIContext().getSharedLocalStorage();
   private session: UIExtensionContentSession | undefined = this.storage?.get<UIExtensionContentSession>('session');
 
   build() {
@@ -163,13 +163,12 @@ terminateSelf(callback: AsyncCallback&lt;void&gt;): void
 import { UIExtensionContentSession } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let storage = LocalStorage.getShared();
-
-@Entry(storage)
+@Entry()
 @Component
 struct Index {
+  storage: LocalStorage | undefined = this.getUIContext().getSharedLocalStorage();
   private session: UIExtensionContentSession | undefined =
-    storage.get<UIExtensionContentSession>('session');
+    this.storage?.get<UIExtensionContentSession>('session');
 
   build() {
     RelativeContainer() {
@@ -180,10 +179,10 @@ struct Index {
               console.error(`Failed to terminate self, code: ${err.code}, msg: ${err.message}`);
               return;
             }
-            console.info(`Successed in terminating self.`);
+            console.info(`Succeeded in terminating self.`);
           });
 
-          storage.clear();
+          this.storage?.clear();
         })
     }
     .height('100%')
@@ -212,13 +211,12 @@ terminateSelf(): Promise&lt;void&gt;
 import { UIExtensionContentSession } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let storage = LocalStorage.getShared();
-
-@Entry(storage)
+@Entry()
 @Component
 struct Index {
+  storage: LocalStorage | undefined = this.getUIContext().getSharedLocalStorage();
   private session: UIExtensionContentSession | undefined =
-    storage.get<UIExtensionContentSession>('session');
+    this.storage?.get<UIExtensionContentSession>('session');
 
   build() {
     RelativeContainer() {
@@ -226,13 +224,13 @@ struct Index {
         .onClick(() => {
           this.session?.terminateSelf()
             .then(() => {
-              console.info(`Successed in terminating self.`);
+              console.info(`Succeeded in terminating self.`);
             })
             .catch((err: BusinessError) => {
               console.error(`Failed to terminate self, code: ${err.code}, msg: ${err.message}`);
             });
 
-          storage.clear();
+          this.storage?.clear();
         })
     }
     .height('100%')
@@ -270,13 +268,12 @@ terminateSelfWithResult(parameter: AbilityResult, callback: AsyncCallback&lt;voi
 import { UIExtensionContentSession, common } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let storage = LocalStorage.getShared();
-
-@Entry(storage)
+@Entry()
 @Component
 struct Index {
+  storage: LocalStorage | undefined = this.getUIContext().getSharedLocalStorage();
   private session: UIExtensionContentSession | undefined =
-    storage.get<UIExtensionContentSession>('session');
+    this.storage?.get<UIExtensionContentSession>('session');
 
   build() {
     RelativeContainer() {
@@ -297,10 +294,10 @@ struct Index {
               console.error(`Failed to terminate self with result, code: ${err.code}, msg: ${err.message}`);
               return;
             }
-            console.info(`Successed in terminating self with result.`);
+            console.info(`Succeeded in terminating self with result.`);
           });
 
-          storage.clear();
+          this.storage?.clear();
         })
     }
     .height('100%')
@@ -343,13 +340,12 @@ terminateSelfWithResult(parameter: AbilityResult): Promise&lt;void&gt;
 import { UIExtensionContentSession, common } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let storage = LocalStorage.getShared();
-
-@Entry(storage)
+@Entry()
 @Component
 struct Index {
+  storage: LocalStorage | undefined = this.getUIContext().getSharedLocalStorage();
   private session: UIExtensionContentSession | undefined =
-    storage.get<UIExtensionContentSession>('session');
+    this.storage?.get<UIExtensionContentSession>('session');
 
   build() {
     RelativeContainer() {
@@ -367,13 +363,13 @@ struct Index {
 
           this.session?.terminateSelfWithResult(abilityResult)
             .then(() => {
-              console.info(`Successed in terminating self with result.`);
+              console.info(`Succeeded in terminating self with result.`);
             })
             .catch((err: BusinessError) => {
               console.error(`Failed to terminate self with result, code: ${err.code}, msg: ${err.message}`);
             });
 
-          storage.clear();
+          this.storage?.clear();
         })
     }
     .height('100%')
@@ -427,7 +423,7 @@ export default class UIExtAbility extends UIExtensionAbility {
     try {
       session.setWindowPrivacyMode(isPrivacyMode)
         .then(() => {
-          console.info(`Successed in setting window to privacy mode.`);
+          console.info(`Succeeded in setting window to privacy mode.`);
         })
         .catch((err: BusinessError) => {
           console.error(`Failed to set window to privacy mode, code: ${err.code}, msg: ${err.message}`);
@@ -486,7 +482,7 @@ export default class UIExtAbility extends UIExtensionAbility {
           console.error(`Failed to set window to privacy mode, code: ${err.code}, msg: ${err.message}`);
           return;
         }
-        console.info(`Successed in setting window to privacy mode.`);
+        console.info(`Succeeded in setting window to privacy mode.`);
       });
     } catch (e) {
       let code = (e as BusinessError).code;
@@ -553,7 +549,7 @@ export default class UIExtAbility extends UIExtensionAbility {
         console.error(`Failed to startAbilityByType, code: ${err.code}, msg: ${err.message}`);
         return;
       }
-      console.info(`Successed in startAbilityByType`);
+      console.info(`Succeeded in startAbilityByType`);
     });
   }
 
@@ -617,7 +613,7 @@ export default class UIExtAbility extends UIExtensionAbility {
 
     session.startAbilityByType('test', wantParams, abilityStartCallback)
       .then(() => {
-        console.info(`Successed in startAbilityByType`);
+        console.info(`Succeeded in startAbilityByType`);
       })
       .catch((err: BusinessError) => {
         console.error(`Failed to startAbilityByType, code: ${err.code}, msg: ${err.message}`);
@@ -657,13 +653,12 @@ getUIExtensionWindowProxy(): uiExtension.WindowProxy
 import { UIExtensionContentSession } from '@kit.AbilityKit';
 import uiExtension from '@ohos.arkui.uiExtension';
 
-let storage = LocalStorage.getShared();
-
-@Entry(storage)
+@Entry()
 @Component
 struct Extension {
+  storage: LocalStorage | undefined = this.getUIContext().getSharedLocalStorage();
   @State message: string = 'EmbeddedUIExtensionAbility Index';
-  private session: UIExtensionContentSession | undefined = storage.get<UIExtensionContentSession>('session');
+  private session: UIExtensionContentSession | undefined = this.storage?.get<UIExtensionContentSession>('session');
   private extensionWindow: uiExtension.WindowProxy | undefined = this.session?.getUIExtensionWindowProxy();
 
   aboutToAppear(): void {

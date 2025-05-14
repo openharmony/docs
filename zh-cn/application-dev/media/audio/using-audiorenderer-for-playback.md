@@ -77,6 +77,7 @@ AudioRenderer是音频渲染器，用于播放PCM（Pulse Code Modulation）音�
      import { audio } from '@kit.AudioKit';
      import { BusinessError } from '@kit.BasicServicesKit';
      import { fileIo as fs } from '@kit.CoreFileKit';
+     import { common } from '@kit.AbilityKit';
 
      class Options {
        offset?: number;
@@ -84,7 +85,9 @@ AudioRenderer是音频渲染器，用于播放PCM（Pulse Code Modulation）音�
      }
 
      let bufferSize: number = 0;
-     let path = getContext().cacheDir;
+     // 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext。
+     let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+     let path = context.cacheDir;
      // 确保该沙箱路径下存在该资源。
      let filePath = path + '/StarWars10s-2C-48000-4SW.wav';
      let file: fs.File = fs.openSync(filePath, fs.OpenMode.READ_ONLY);
@@ -125,6 +128,7 @@ AudioRenderer是音频渲染器，用于播放PCM（Pulse Code Modulation）音�
      ```ts
      import { BusinessError } from '@kit.BasicServicesKit';
      import { fileIo as fs } from '@kit.CoreFileKit';
+     import { common } from '@kit.AbilityKit';
 
      class Options {
        offset?: number;
@@ -132,7 +136,9 @@ AudioRenderer是音频渲染器，用于播放PCM（Pulse Code Modulation）音�
      }
 
      let bufferSize: number = 0;
-     let path = getContext().cacheDir;
+     // 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext。
+     let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+     let path = context.cacheDir;
      // 确保该沙箱路径下存在该资源。
      let filePath = path + '/StarWars10s-2C-48000-4SW.wav';
      let file: fs.File = fs.openSync(filePath, fs.OpenMode.READ_ONLY);
@@ -220,6 +226,7 @@ AudioRenderer支持枚举类型AudioSamplingRate中定义的所有采样率。
 import { audio } from '@kit.AudioKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { fileIo as fs } from '@kit.CoreFileKit';
+import { common } from '@kit.AbilityKit';
 
 const TAG = 'AudioRendererDemo';
 
@@ -244,7 +251,9 @@ let audioRendererOptions: audio.AudioRendererOptions = {
   streamInfo: audioStreamInfo,
   rendererInfo: audioRendererInfo
 };
-let path = getContext().cacheDir;
+// 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext。
+let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+let path = context.cacheDir;
 // 确保该沙箱路径下存在该资源。
 let filePath = path + '/StarWars10s-2C-48000-4SW.wav';
 let file: fs.File = fs.openSync(filePath, fs.OpenMode.READ_ONLY);

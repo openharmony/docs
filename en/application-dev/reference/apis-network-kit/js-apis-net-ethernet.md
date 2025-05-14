@@ -13,7 +13,7 @@ import { ethernet } from '@kit.NetworkKit';
 
 ## HttpProxy
 
-type HttpProxy = connection.HttpProxy;
+type HttpProxy = connection.HttpProxy
 
 Defines the network proxy configuration.
 
@@ -48,7 +48,7 @@ Obtains the names and MAC addresses of all Ethernet NICs. This API uses a promis
 | 2200002 | Operation failed. Cannot connect to service.       |
 | 2201005 | Device information does not exist.  |
 
-**Example**
+**Example:**
 
 ```ts
 import { ethernet } from '@kit.NetworkKit';

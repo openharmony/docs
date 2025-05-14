@@ -150,6 +150,42 @@ try {
 }
 ```
 
+## media.getScreenCaptureMonitor<sup>18+</sup>
+
+getScreenCaptureMonitor(): Promise\<ScreenCaptureMonitor>
+
+Obtains a **ScreenCaptureMonitor** instance. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Multimedia.Media.AVScreenCapture
+
+**System API**: This is a system API.
+
+**Return value**
+
+| Type                                     | Description                                                        |
+| ----------------------------------------- | ------------------------------------------------------------ |
+| Promise<[ScreenCaptureMonitor](#screencapturemonitor18)> | Promise used to return the result. The instance can be used to query and monitor the status of the system screen recorder.<br>If the operation is successful, a **ScreenCaptureMonitor** instance is returned; otherwise, **null** is returned.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Media Error Codes](errorcode-media.md).
+
+| ID| Error Message                     |
+| -------- | ----------------------------- |
+| 202  | Not System App. |
+| 5400101  | No memory. Return by promise. |
+
+**Example**
+
+```ts
+let screenCaptureMonitor: media.ScreenCaptureMonitor;
+try {
+  screenCaptureMonitor = await media.getScreenCaptureMonitor();
+} catch (err) {
+  console.error(`getScreenCaptureMonitor failed, error message:${err.message}`);
+}
+```
+
 ## PixelMapParams<sup>11+</sup>
 
 Defines the format parameters of the video thumbnail to be obtained.
@@ -175,7 +211,6 @@ Enumerates the color formats supported by the video thumbnail.
 | RGB_888        | 5    | RGB_888.                |
 
 ## AVMetadataExtractor<sup>11+</sup>
-
 Provides APIs to obtain metadata from media assets. Before calling any API of **AVMetadataExtractor**, you must use [createAVMetadataExtractor()](js-apis-media.md#mediacreateavmetadataextractor11) to create an **AVMetadataExtractor** instance.
 
 ### getTimeByFrameIndex<sup>12+</sup>
@@ -292,7 +327,7 @@ This API can be called after the [prepare()](js-apis-media.md#prepare9-3), [star
 
 | Type            | Description                            |
 | ---------------- | -------------------------------- |
-| Promise\<boolean> | Promise used to return the check result.|
+| Promise\<boolean> | Promise used to return the check result. The value **true** means that the device supports the hardware digital watermark, and **false** means the opposite.|
 
 **Example**
 
@@ -355,6 +390,16 @@ avRecorder.setWatermark(watermark, watermarkConfig).then(() => {
   console.error(`Failed to setWatermark and catch error is ${error.message}`);
 });
 ```
+
+## AVRecorderProfile<sup>9+</sup>
+
+Describes the audio and video recording profile.
+
+**System capability**: SystemCapability.Multimedia.Media.AVRecorder
+
+| Name            | Type                                        | Mandatory| Description                                                        |
+| ---------------- | -------------------------------------------- | ---- | ------------------------------------------------------------ |
+| enableStableQualityMode<sup>18+</sup>            | boolean                        | No  | Whether to enable stable quality mode for video recording. This parameter is optional for video recording. The default value is **false**. If this parameter is set to **true**, the system will use a video encoding strategy designed to maintain stable quality.<br>**System API**: This is a system API.|
 
 ## VideoRecorder<sup>9+</sup>
 
@@ -1200,3 +1245,97 @@ Describes the watermark configuration set for the AVRecorder. The start point is
 | --------- | ------ | ---- | ---------------- |
 | top       | number | Yes  | Pixel offset from the top edge of the image.|
 | left      | number | Yes  | Pixel offset from the left edge of the image.|
+
+## ScreenCaptureMonitor<sup>18+</sup>
+
+A class that provides APIs to query and monitor the system screen recorder status. Before calling any API, you must use [getScreenCaptureMonitor()](#mediagetscreencapturemonitor18) to obtain a [ScreenCaptureMonitor](#screencapturemonitor18) instance.
+
+### Properties
+
+**System capability**: SystemCapability.Multimedia.Media.AVScreenCapture
+
+**System API**: This is a system API.
+
+| Name              | Type                                  | Readable| Writable| Description            |
+| ------------------ | -------------------------------------- | ---- | ---- | ---------------- |
+| isSystemScreenRecorderWorking<sup>18+</sup> | bool | Yes  | No  | Whether the system screen recorder is working.|
+
+### on('systemScreenRecorder')<sup>18+</sup>
+
+on(type: 'systemScreenRecorder', callback: Callback\<ScreenCaptureEvent>): void
+
+Subscribes to state change events of the system screen recorder. From the ScreenCaptureEvent event reported, you can determine whether the system screen recorder is working.
+
+**System capability**: SystemCapability.Multimedia.Media.AVScreenCapture
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name  | Type         | Mandatory| Description                                                        |
+| -------- | ------------- | ---- | ------------------------------------------------------------ |
+| type     | string        | Yes  | Event type, which is **'systemScreenRecorder'** in this case.<br>This event is triggered when the state of the system screen recorder changes.|
+| callback | function | Yes  | Callback invoked when the event is triggered, where [ScreenCaptureEvent](#screencaptureevent18) indicates the new state.                                      |
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message                         |
+| -------- | --------------------------------- |
+| 202  | Not System App.    |
+
+**Example**
+
+```ts
+
+// This event is reported when the state of the system screen recorder changes.
+screenCaptureMonitor.on('systemScreenRecorder', (event: media.ScreenCaptureEvent) => { 
+  // Set the 'systemScreenRecorder' event callback.
+  console.info(`system ScreenRecorder event: ${event}`);
+})
+```
+
+### off('systemScreenRecorder')<sup>18+</sup>
+
+off(type: 'systemScreenRecorder', callback?: Callback\<ScreenCaptureEvent>): void
+
+Unsubscribes from state change events of the system screen recorder.
+
+**System capability**: SystemCapability.Multimedia.Media.AVScreenCapture
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name  | Type         | Mandatory| Description                                                        |
+| -------- | ------------- | ---- | ------------------------------------------------------------ |
+| type     | string        | Yes  | Event type, which is **'systemScreenRecorder'** in this case.<br>This event is triggered when the state of the system screen recorder changes.|
+| callback | function | No  | Callback invoked when the event is triggered, where [ScreenCaptureEvent](#screencaptureevent18) indicates the new state. If this parameter is not specified, the last subscription event is canceled.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message                         |
+| -------- | --------------------------------- |
+| 202  | Not System App.    |
+
+**Example**
+
+```ts
+screenCaptureMonitor.off('systemScreenRecorder');   
+```
+
+## ScreenCaptureEvent<sup>18+</sup>
+
+Enumerates the states available for the system screen recorder.
+
+**System capability**: SystemCapability.Multimedia.Media.AVScreenCapture
+
+**System API**: This is a system API.
+
+| Name                    | Value             | Description                                                        |
+| ------------------------ | --------------- | ------------------------------------------------------------ |
+| SCREENCAPTURE_STARTED       | 0   | The system screen recorder starts screen capture.                      |
+| SCREENCAPTURE_STOPPED        | 1    | The system screen recorder stops screen capture.|

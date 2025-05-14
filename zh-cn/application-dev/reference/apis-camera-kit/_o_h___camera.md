@@ -1695,9 +1695,9 @@ enum Camera_Connection
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| CAMERA_CONNECTION_BUILT_IN | 内置摄像头。 | 
-| CAMERA_CONNECTION_USB_PLUGIN | 使用USB连接的摄像头。 | 
-| CAMERA_CONNECTION_REMOTE | 远程摄像头。 | 
+| CAMERA_CONNECTION_BUILT_IN | 内置相机。 | 
+| CAMERA_CONNECTION_USB_PLUGIN | 使用USB连接的相机。 | 
+| CAMERA_CONNECTION_REMOTE | 远程相机。 | 
 
 
 ### Camera_ErrorCode
@@ -1880,7 +1880,7 @@ enum Camera_MetadataObjectType
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| FACE_DETECTION | 人脸检测。 | 
+| FACE_DETECTION | metadata对象类型，用于人脸检测。<br> 检测点应在0-1坐标系内，该坐标系左上角为(0，0)，右下角为(1，1)。<br> 此坐标系以设备充电口在右侧时的横向设备方向为基准。<br>例如应用的预览界面布局以设备充电口在下侧时的竖向方向为基准，<br>布局宽高为(w，h)， 返回点为(x，y)，则转换后的坐标点为(1-y，x)。 | 
 
 
 ### Camera_Position
@@ -2241,7 +2241,7 @@ Camera_ErrorCode OH_CameraInput_Open(Camera_Input* cameraInput)
 
 - CAMERA_CONFLICT_CAMERA：因冲突而无法使用相机。
 
-- CAMERA_DEVICE_DISABLED：由于安全原因禁用了摄像头。
+- CAMERA_DEVICE_DISABLED：由于安全原因禁用了相机。
 
 - CAMERA_SERVICE_FATAL_ERROR：如果相机服务出现致命错误。
 
@@ -2275,7 +2275,7 @@ Camera_ErrorCode OH_CameraInput_OpenConcurrentCameras(Camera_Input* cameraInput,
 
 - CAMERA_CONFLICT_CAMERA：如果不能使用相机会导致冲突。
 
-- CAMERA_DEVICE_DISABLED：如果由于安全原因禁用了摄像头。
+- CAMERA_DEVICE_DISABLED：如果由于安全原因禁用了相机。
 
 - CAMERA_SERVICE_FATAL_ERROR：如果相机服务出现致命错误。
 
@@ -2297,7 +2297,7 @@ Camera_ErrorCode OH_CameraInput_OpenSecureCamera(Camera_Input* cameraInput, uint
 | 名称 | 描述 | 
 | -------- | -------- |
 | cameraInput | 要打开的[Camera_Input](#camera_input)实例。 | 
-| secureSeqId | 表示安全摄像头的序列值。 | 
+| secureSeqId | 表示安全相机的序列值。 | 
 
 **返回：**
 
@@ -2309,7 +2309,7 @@ Camera_ErrorCode OH_CameraInput_OpenSecureCamera(Camera_Input* cameraInput, uint
 
 - CAMERA_CONFLICT_CAMERA：因冲突而无法使用相机。
 
-- CAMERA_DEVICE_DISABLED：由于安全原因禁用了摄像头。
+- CAMERA_DEVICE_DISABLED：由于安全原因禁用了相机。
 
 - CAMERA_SERVICE_FATAL_ERROR：如果相机服务出现致命错误。
 

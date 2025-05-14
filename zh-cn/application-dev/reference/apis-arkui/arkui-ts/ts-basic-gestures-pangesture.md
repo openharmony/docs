@@ -4,7 +4,7 @@
 
 >  **说明：**
 >
->  从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>  从API version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 
 ## 接口
@@ -93,10 +93,10 @@ PanGestureOptions(value?: { fingers?: number, direction?: PanDirection, distance
 @Entry
 @Component
 struct PanGestureExample {
-  @State offsetX: number = 0
-  @State offsetY: number = 0
-  @State positionX: number = 0
-  @State positionY: number = 0
+  @State offsetX: number = 0;
+  @State offsetY: number = 0;
+  @State positionX: number = 0;
+  @State positionY: number = 0;
   private panOption: PanGestureOptions = new PanGestureOptions({ direction: PanDirection.Left | PanDirection.Right })
 
   build() {

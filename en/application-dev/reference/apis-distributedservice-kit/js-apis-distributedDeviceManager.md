@@ -32,7 +32,7 @@ Creates a **DeviceManager** instance. The **DeviceManager** instance is the entr
 
 | Name    | Type                                                | Mandatory| Description                                                       |
 | ---------- | ---------------------------------------------------- | ---- | ----------------------------------------------------------- |
-| bundleName | string                                               | Yes  | Bundle name of the application.                                 |
+| bundleName | string                                               | Yes  | Bundle name of the application. The value is a string of 1 to 255 characters. |
 
 **Return value**
 
@@ -435,7 +435,7 @@ Obtains the device name based on the network ID of the specified device.
 
   | Name      | Type                                    | Mandatory  | Description       |
   | -------- | ---------------------------------------- | ---- | --------- |
-  | networkId| string                                   | Yes  | Network ID of the device.|
+  | networkId| string                                   | Yes  | Network ID of the device. The value is a string of 1 to 255 characters.|
 
 **Return value**
 
@@ -485,7 +485,7 @@ Obtains the device type based on the network ID of the specified device.
 
   | Name      | Type                                    | Mandatory  | Description       |
   | -------- | ---------------------------------------- | ---- | --------- |
-  | networkId| string                                   | Yes  | Network ID of the device.|
+  | networkId| string                                   | Yes  | Network ID of the device. The value is a string of 1 to 255 characters.|
 
 **Return value**
 
@@ -630,7 +630,7 @@ Binds a device.
 
   | Name    | Type                                               | Mandatory | Description        |
   | ---------- | --------------------------------------------------- | ----- | ------------ |
-  | deviceId   | string                                              | Yes   | Device ID.  |
+  | deviceId   | string                                              | Yes   | Device ID. The value is a string of 1 to 255 characters.  |
   | bindParam  | {[key:&nbsp;string]:&nbsp;Object;}                             | Yes   | Authentication parameters. You can determine the key-value pair to be passed in. By default, the following keys are carried:<br>**bindType**: binding type, which is mandatory.<br>The value **1** means PIN authentication.<br>**targetPkgName**: bundle name of the target to bind.<br>**appName**: application that attempts to bind the target.<br>**appOperation**: reason for the application to bind the target.<br>**customDescription**: detailed description of the operation.  |
   | callback   | AsyncCallback&lt;{deviceId:&nbsp;string;&nbsp;}&gt; | Yes   | Callback used to return the authentication result.|
 
@@ -694,7 +694,7 @@ Unbinds a device.
 
   | Name  | Type                     | Mandatory| Description      |
   | -------- | ------------------------- | ---- | ---------- |
-  | deviceId | string                    | Yes  | Device ID.|
+  | deviceId | string                    | Yes  | Device ID. The value is a string of 1 to 255 characters.|
 
 **Error codes**
 

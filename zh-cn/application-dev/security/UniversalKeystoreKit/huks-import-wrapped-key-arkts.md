@@ -29,9 +29,9 @@
 ```ts
 import { huks } from '@kit.UniversalKeystoreKit';
 
-let IV = '0000000000000000';
+let IV = '0000000000000000'; // 此处为样例代码，实际使用需采用随机值。
 let AAD = "abababababababab";
-let NONCE = "hahahahahaha";
+let NONCE = "hahahahahaha"; // 此处为样例代码，实际使用需采用随机值。
 let TAG_SIZE = 16;
 let FILED_LENGTH = 4;
 let importedAes192PlainKey = "The aes192 key to import";

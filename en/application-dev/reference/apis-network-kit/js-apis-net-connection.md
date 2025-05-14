@@ -5,6 +5,7 @@ The **connection** module provides basic network management capabilities. With t
 > **NOTE**
 >
 > The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+>
 > Unless otherwise specified, the APIs of this module do not support concurrent calls.
 
 ## Modules to Import
@@ -211,8 +212,7 @@ connection.setAppHttpProxy({
 
 **Preset certificate PIN:**
 
-A certificate PIN is the hash value calculated using the SHA256 algorithm for a certificate file.
-For the **server.pem** certificate, you can use the following openssl command to calculate its PIN:
+A certificate PIN is the hash value calculated using the SHA256 algorithm for a certificate file. For the **server.pem** certificate, you can use the following openssl command to calculate its PIN:
 
 ```shell
 cat server.pem \
@@ -233,8 +233,7 @@ Currently, certificate pinning has been enabled for the ohos.net.http and Image 
 
 **Preset JSON configuration file:**
 
-The mapping between preset certificates and network servers is configured in a JSON configuration file.
-The configuration file is stored in the **src/main/resources/base/profile/network_config.json** directory of the application.
+The mapping between preset certificates and network servers is configured in a JSON configuration file. The configuration file is stored in the **src/main/resources/base/profile/network_config.json** directory of the application.
 
 **JSON configuration file:**
 
@@ -385,9 +384,7 @@ The following is an example configuration for overall and host name–based HTTP
 
 getDefaultHttpProxy(callback: AsyncCallback\<HttpProxy>): void
 
-Obtains the default HTTP proxy configuration of the network.
-If the global proxy is set, the global HTTP proxy configuration is returned. If [setAppNet](#connectionsetappnet9) is used to bind the application to the network specified by [NetHandle](#nethandle), the HTTP proxy configuration of this network is returned. In other cases, the HTTP proxy configuration of the default network is returned.
-This API uses an asynchronous callback to return the result.
+Obtains the default HTTP proxy configuration of the network. If the global proxy is set, the global HTTP proxy configuration is returned. If [setAppNet](#connectionsetappnet9) is used to bind the application to the network specified by [NetHandle](#nethandle), the HTTP proxy configuration of this network is returned. In other cases, the HTTP proxy configuration of the default network is returned. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Communication.NetManager.Core
 
@@ -425,9 +422,7 @@ connection.getDefaultHttpProxy((error: BusinessError, data: connection.HttpProxy
 
 getDefaultHttpProxy(): Promise\<HttpProxy>
 
-Obtains the default HTTP proxy configuration of the network.
-If the global proxy is set, the global HTTP proxy configuration is returned. If [setAppNet](#connectionsetappnet9) is used to bind the application to the network specified by [NetHandle](#nethandle), the HTTP proxy configuration of this network is returned. In other cases, the HTTP proxy configuration of the default network is returned.
-This API uses a promise to return the result.
+Obtains the default HTTP proxy configuration of the network. If the global proxy is set, the global HTTP proxy configuration is returned. If [setAppNet](#connectionsetappnet9) is used to bind the application to the network specified by [NetHandle](#nethandle), the HTTP proxy configuration of this network is returned. In other cases, the HTTP proxy configuration of the default network is returned. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Communication.NetManager.Core
 
@@ -1590,6 +1585,8 @@ Adds custom DNS rules for the specified host of the current application. This AP
 
 **Required permissions**: ohos.permission.INTERNET
 
+**Atomic service API**: This API can be used in atomic services since API version 15.
+
 **System capability**: SystemCapability.Communication.NetManager.Core
 
 **Parameters**
@@ -1634,6 +1631,8 @@ addCustomDnsRule(host: string, ip: Array\<string\>): Promise\<void\>
 Adds custom DNS rules for the specified host of the current application. This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.INTERNET
+
+**Atomic service API**: This API can be used in atomic services since API version 15.
 
 **System capability**: SystemCapability.Communication.NetManager.Core
 
@@ -1683,6 +1682,8 @@ Removes the custom DNS rules of the specified host from the current application.
 
 **Required permissions**: ohos.permission.INTERNET
 
+**Atomic service API**: This API can be used in atomic services since API version 15.
+
 **System capability**: SystemCapability.Communication.NetManager.Core
 
 **Parameters**
@@ -1726,6 +1727,8 @@ removeCustomDnsRule(host: string): Promise\<void\>
 Removes the custom DNS rules of the specified host from the current application. This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.INTERNET
+
+**Atomic service API**: This API can be used in atomic services since API version 15.
 
 **System capability**: SystemCapability.Communication.NetManager.Core
 
@@ -1973,7 +1976,7 @@ netCon.register((error: BusinessError) => {
 
 unregister(callback: AsyncCallback\<void>): void
 
-Unregisters the listener for network status changes.
+Unregisters the listener for network status changes. You can unregister the listener when the service logic processing is complete, but not in the event callback function.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -2454,6 +2457,8 @@ Resolves the host name by using the corresponding network to obtain all IP addre
 
 **Required permissions**: ohos.permission.INTERNET
 
+**Atomic service API**: This API can be used in atomic services since API version 15.
+
 **System capability**: SystemCapability.Communication.NetManager.Core
 
 **Parameters**
@@ -2504,6 +2509,8 @@ getAddressesByName(host: string): Promise\<Array\<NetAddress>>
 Resolves the host name by using the corresponding network to obtain all IP addresses. This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.INTERNET
+
+**Atomic service API**: This API can be used in atomic services since API version 15.
 
 **System capability**: SystemCapability.Communication.NetManager.Core
 
@@ -2782,7 +2789,7 @@ Obtains the network block status information.
 | Name                | Type                                 | Mandatory|            Description           |
 | -------------------- | ------------------------------------- | --- |--------------------------- |
 | netHandle            | [NetHandle](#nethandle)               | Yes  |Data network handle.  |
-| blocked              | boolean                               | Yes  |Whether the current network is blocked.|
+| blocked              | boolean                               | Yes  |The value **true** indicates that the network is congested, and the value **false** indicates the opposite.|
 
 ## ConnectionProperties
 
@@ -2810,8 +2817,8 @@ Defines network route information.
 | interface      | string                      | Yes|NIC name.      |
 | destination    | [LinkAddress](#linkaddress) | Yes|Destination address.      |
 | gateway        | [NetAddress](#netaddress)   | Yes|Gateway address.      |
-| hasGateway     | boolean                     | Yes|Whether a gateway is present.    |
-| isDefaultRoute | boolean                     | Yes|Whether the route is the default route.|
+| hasGateway     | boolean                     | Yes|Whether a gateway is available. The value **true** indicates that a gateway is available, and the value **false** indicates the opposite.   |
+| isDefaultRoute | boolean                     | Yes|Whether the route is the default route. The value **true** indicates that the route is the default route, and the value **false** indicates the opposite.|
 
 ## LinkAddress
 

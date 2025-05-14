@@ -3740,7 +3740,7 @@ struct FrameNodeTypeTest {
 
 ## 节点操作示例
 ```ts
-import { NodeController, FrameNode, UIContext } from '@kit.ArkUI';
+import { NodeController, FrameNode, UIContext, typeNode } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 const TEST_TAG: string = "FrameNode "
@@ -3767,6 +3767,8 @@ class MyNodeController extends NodeController {
       this.childList.push(childNode);
       this.frameNode.appendChild(childNode);
     }
+    let stackNode = typeNode.createNode(uiContext, "Stack");
+    this.frameNode.appendChild(stackNode);
     return this.rootNode;
   }
 
@@ -3847,7 +3849,7 @@ class MyNodeController extends NodeController {
   }
 
   moveFrameNode() {
-    const currentNode = this.frameNode!.getChild(4);
+    const currentNode = this.frameNode!.getChild(10);
     try {
       currentNode!.moveTo(this.rootNode, 0);
       if (this.rootNode!.getChild(0) === currentNode) {
@@ -5323,25 +5325,25 @@ class MyNodeController extends NodeController {
   }
 
   onAttach(): void {
-    console.log("Cmw myButton on attach");
+    console.log("myButton on attach");
   }
 
   onDetach(): void {
-    console.log("Cmw myButton on detach");
+    console.log("myButton on detach");
   }
 
   //  onBind时复用
   onBind(containerId: number): void {
     // 该方法触发子组件复用，全局复用场景下，复用FrameNode后端资源。
     this.rootNode?.reuse();
-    console.log("Cmw myButton reuse");
+    console.log("myButton reuse");
   }
 
   //  onUnbind时回收
   onUnbind(containerId: number): void {
     // 该方法触发子组件的回收，全局复用场景下，回收FrameNode后端资源用于重新利用。
     this.rootNode?.recycle();
-    console.log("Cmw myButton recycle");
+    console.log("myButton recycle");
   }
 
   getButtonNode(): BuilderNode<[Params]> | null {

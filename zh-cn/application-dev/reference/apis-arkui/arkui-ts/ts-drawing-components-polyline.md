@@ -4,7 +4,7 @@
 
 >  **说明：**
 >
->  该组件从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>  该组件从API version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 
 ## 子组件
@@ -230,7 +230,7 @@ strokeOpacity(value: number | string | Resource)
 
 strokeWidth(value: Length)
 
-设置线条宽度。该属性若为string类型, 暂不支持百分比，百分比按照1px处理。
+设置线条宽度。该属性若为string类型，暂不支持百分比，百分比按照1px处理。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 

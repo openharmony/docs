@@ -4,7 +4,7 @@
 
 > **说明：** 
 >
->  该组件从API Version 8开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>  该组件从API version 8开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 ## 子组件
 
@@ -98,8 +98,8 @@ Canvas组件初始化完成时或者Canvas组件发生大小变化时的事件�
 @Entry
 @Component
 struct CanvasExample {
-  private settings: RenderingContextSettings = new RenderingContextSettings(true)
-  private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
+  private settings: RenderingContextSettings = new RenderingContextSettings(true);
+  private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
 
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
@@ -127,7 +127,7 @@ struct CanvasExample {
 @Entry
 @Component
 struct CanvasExample {
-  private context: DrawingRenderingContext = new DrawingRenderingContext()
+  private context: DrawingRenderingContext = new DrawingRenderingContext();
 
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {

@@ -23,7 +23,7 @@ stateStyles是属性方法，可以根据UI内部状态来设置样式，类似�
 
 > **说明**：
 >
-> 获焦态目前仅支持通过外接键盘的tab键、方向键触发。不支持嵌套滚动组件场景按键走焦。
+> 获焦态目前仅支持通过外接键盘的Tab键、方向键触发。不支持嵌套滚动组件场景按键走焦。
 
 
 ## 使用场景
@@ -123,7 +123,7 @@ stateStyles可以通过this绑定组件内的常规变量和状态变量。
 @Component
 struct CompWithInlineStateStyles {
   @State focusedColor: Color = Color.Red;
-  normalColor: Color = Color.Green
+  normalColor: Color = Color.Green;
 
   build() {
     Column() {
@@ -137,7 +137,7 @@ struct CompWithInlineStateStyles {
           }
         })
         .onClick(() => {
-          this.focusedColor = Color.Pink
+          this.focusedColor = Color.Pink;
         })
         .margin('30%')
     }

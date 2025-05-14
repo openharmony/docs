@@ -55,6 +55,7 @@
 >2. 声明技术时"uris"中"type"字段的内容填写，前缀必须是"tag-tech/"，后面接着NfcA/NfcB/NfcF/NfcV/IsoDep/Ndef/MifareClassic/MifareUL/NdefFormatable"中的一个。如果存在多个"type"时，需要分行填写。填写错误会造成解析失败。
 >3. 声明权限时"requestPermissions"中的"name"字段的内容填写，必须是"ohos.permission.NFC_TAG"，不能更改。
 >4. 调用本模块接口和常量时请使用canIUse("SystemCapability.Communication.NFC.Tag")判断设备是否支持NFC能力，否则可能导致应用运行稳定性问题，参考[nfc-tag开发指南](../../connectivity/nfc/nfc-tag-access-guide.md)。
+>5. 导入tag模块编辑器报错，在某个具体设备型号上能力可能超出工程默认设备定义的能力集范围，如需要使用此部分能力需额外配置自定义syscap，参考[syscap开发指南](https://developer.huawei.com/consumer/cn/doc/harmonyos-references/syscap#syscap开发指导)。
 
 ## **导入模块**
 

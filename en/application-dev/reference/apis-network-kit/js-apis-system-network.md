@@ -76,7 +76,7 @@ Listens to the network connection state of this device. If this API is called mu
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| success | Function | No| Called when the network state changes. The return value is defined by [NetworkResponse](#networkresponse3).|
+| success | Function | No| Called when the network connection state changes The return value is defined by [NetworkResponse](#networkresponse3).|
 | fail | Function | No| Called when an API call fails.|
 
 Error codes:

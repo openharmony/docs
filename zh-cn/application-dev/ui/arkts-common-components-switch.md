@@ -38,6 +38,7 @@ API version 11开始，Checkbox默认样式由圆角方形变为圆形。
     ![zh-cn_image_0000001511421228](figures/zh-cn_image_0000001511421228.png)
   
 - 创建包含子组件的Toggle。
+
   当ToggleType为Button时，只能包含一个子组件，如果子组件有文本设置，则相应的文本内容会显示在按钮上。
 
   ```ts

@@ -66,7 +66,7 @@ export default class MyAbility extends UIAbility {
     } catch (paramError) {
       console.error(`error: ${(paramError as BusinessError).code}, ${(paramError as BusinessError).message}`);
     }
-    console.log('Resgiter applicationStateChangeCallback');
+    console.log('Register applicationStateChangeCallback');
   }
   onDestroy() {
     let applicationContext = this.context.getApplicationContext();

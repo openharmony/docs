@@ -43,7 +43,7 @@ FileManagement_ErrCode OH_Environment_GetUserDesktopDir(char **result)
 
 **返回：**
 
-返回FileManageMent模块错误码[FileManagement_ErrCode](_file_i_o.md#filemanagement_errcode)。
+返回FileManagement模块错误码[FileManagement_ErrCode](_file_i_o.md#filemanagement_errcode)。
 
 
 ### OH_Environment_GetUserDocumentDir()
@@ -65,7 +65,7 @@ FileManagement_ErrCode OH_Environment_GetUserDocumentDir(char **result)
 
 **返回：**
 
-返回FileManageMent模块错误码[FileManagement_ErrCode](_file_i_o.md#filemanagement_errcode)。
+返回FileManagement模块错误码[FileManagement_ErrCode](_file_i_o.md#filemanagement_errcode)。
 
 
 ### OH_Environment_GetUserDownloadDir()
@@ -86,4 +86,4 @@ FileManagement_ErrCode OH_Environment_GetUserDownloadDir(char **result)
 
 **返回：**
 
-返回FileManageMent模块错误码[FileManagement_ErrCode](_file_i_o.md#filemanagement_errcode)。
+返回FileManagement模块错误码[FileManagement_ErrCode](_file_i_o.md#filemanagement_errcode)。
