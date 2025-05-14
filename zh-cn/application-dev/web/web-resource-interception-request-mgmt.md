@@ -169,6 +169,6 @@ Web网页上发起资源加载请求，应用层收到资源请求消息。应�
   }
   ```
 
-- 被拦截的页面
+- 被拦截后的页面
 
   ![输入图片说明](figures/web-rescource-intercption-request-2.PNG)
