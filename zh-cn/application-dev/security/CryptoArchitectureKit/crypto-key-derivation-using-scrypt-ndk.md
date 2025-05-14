@@ -6,7 +6,7 @@
 
 1. 调用[OH_CryptoKdfParams_Create]，指定字符串参数'SCRYPT'，创建密钥派生参数对象。
 
-2. 调用[OH_CryptoKdfParams_SetParam]，设置Scrypt所需的参数：
+2. 调用[OH_CryptoKdfParams_SetParam]，设置Scrypt所需的参数（如下参数不设置会导致密钥派生失败）：
    - CRYPTO_KDF_KEY_DATABLOB：用于生成派生密钥的原始密码
    - CRYPTO_KDF_SALT_DATABLOB：盐值
    - CRYPTO_KDF_SCRYPT_N_UINT64：CPU/内存开销参数，必须是2的幂

@@ -48,7 +48,7 @@
 
 | 非对称密钥类型 | 填充模式 | 摘要算法 | API版本 | 
 | -------- | -------- | -------- | -------- |
-| RSA512 | PKCS1 | [MD5\|SHA1\|SHA224\|SHA256] | 9+ | 
+| RSA512 | PKCS1 | [MD5\|SHA1\|SHA224\|SHA256\|SHA384] | 9+ | 
 | RSA768 | PKCS1 | [MD5\|SHA1\|SHA224\|SHA256\|SHA384\|SHA512] | 9+ | 
 | RSA1024 | PKCS1 | [MD5\|SHA1\|SHA224\|SHA256\|SHA384\|SHA512] | 9+ | 
 | RSA2048 | PKCS1 | [MD5\|SHA1\|SHA224\|SHA256\|SHA384\|SHA512] | 9+ | 
