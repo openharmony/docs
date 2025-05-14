@@ -2771,7 +2771,7 @@ struct WebComponent {
 
 createWebMessagePorts(isExtentionType?: boolean): Array\<WebMessagePort>
 
-创建Web消息端口。完整示例代码参考[onMessageEventExt](#onmessageeventext10)。
+创建Web消息端口。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -2798,33 +2798,7 @@ createWebMessagePorts(isExtentionType?: boolean): Array\<WebMessagePort>
 
 **示例：**
 
-```ts
-// xxx.ets
-import { webview } from '@kit.ArkWeb';
-import { BusinessError } from '@kit.BasicServicesKit';
-
-@Entry
-@Component
-struct WebComponent {
-  controller: webview.WebviewController = new webview.WebviewController();
-  ports: webview.WebMessagePort[] = [];
-
-  build() {
-    Column() {
-      Button('createWebMessagePorts')
-        .onClick(() => {
-          try {
-            this.ports = this.controller.createWebMessagePorts();
-            console.log("createWebMessagePorts size:" + this.ports.length);
-          } catch (error) {
-            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
-          }
-        })
-      Web({ src: 'www.example.com', controller: this.controller })
-    }
-  }
-}
-```
+完整示例代码参考[onMessageEventExt](#onmessageeventext10)。
 
 ### postMessage
 
@@ -6078,6 +6052,12 @@ static getDefaultUserAgent(): string
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
+**返回值：**
+
+| 类型     | 说明           |
+| ------ | ------------ |
+| string | ArkWeb默认User-Agent字符串。 |
+
 **示例：**
 
 ```ts
@@ -8203,7 +8183,7 @@ webPageSnapshot(info: SnapshotInfo, callback: AsyncCallback\<SnapshotResult>): v
 | 参数名       | 类型           | 必填  | 说明                      |
 | ----------- | ------------- | ---- | ------------------------ |
 | info        | [SnapshotInfo](#snapshotinfo12)| 是   | 全量绘制结果入参。 |
-| callback        | [SnapshotResult](#snapshotresult12)| 是   | 全量绘制回调结果。 |
+| callback        | AsyncCallback\<[SnapshotResult](#snapshotresult12)>| 是   | 全量绘制回调结果。 |
 
 **示例：**
 
@@ -10553,7 +10533,7 @@ static deleteSessionCookie(): void
 
 > **说明：**
 >
-> 从API version 9开始支持，从API version 11开始废弃。建议使用[clearSessionCookiesync](#clearsessioncookiesync11)替代
+> 从API version 9开始支持，从API version 11开始废弃。建议使用[clearSessionCookieSync](#clearsessioncookiesync11)替代
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -12544,7 +12524,7 @@ struct WebComponent {
 | isDisplayIsolated<sup>12+</sup> | boolean   | 是   | 是   | 设置了该选项的scheme的内容是否只能从相同scheme的其他内容中显示或访问。<br>true表示设置了该选项的scheme的内容只能从相同scheme的其他内容中显示或访问，false表示设置了该选项的scheme的内容不是只能从相同scheme的其他内容中显示或访问。<br>默认值：true。           |
 | isSecure<sup>12+</sup> | boolean   | 是   | 是   | 设置了该选项的scheme是否将使用与应用于“https”的安全规则相同的安全规则来处理。true表示设置了该选项的scheme将使用与应用于“https”的安全规则相同的安全规则来处理，false表示设置了该选项的scheme不使用与应用于“https”的安全规则相同的安全规则来处理。<br>默认值：true。           |
 | isCspBypassing<sup>12+</sup> | boolean   | 是   | 是   | 设置了该选项的scheme可以绕过内容安全策略（CSP）检查。<br>true表示设置了该选项的scheme可以绕过内容安全策略（CSP）检查，false表示设置了该选项的scheme不可以绕过内容安全策略（CSP）检查。<br>默认值：true。<br>在大多数情况下，当设置isStandard为true时，不应设置此值。         |
-| isCodeCacheSupported<sup>12+</sup> | boolean   | 是   | 是   | 设置了该选项的scheme的js资源是否支持生成code cache。<br>true表示设置了该选项的scheme的js资源支持生成code，false表示设置了该选项的scheme的js资源不支持生成code。<br>默认值：false。         |
+| isCodeCacheSupported<sup>12+</sup> | boolean   | 是   | 是   | 设置了该选项的scheme的js资源是否支持生成code cache。<br>true表示设置了该选项的scheme的js资源支持生成code cache，false表示设置了该选项的scheme的js资源不支持生成code cache。<br>默认值：false。         |
 
 ## SecureDnsMode<sup>10+</sup>
 
@@ -15153,7 +15133,7 @@ WebHttpBodyStream是否采用分块传输。
 
 isEof(): boolean
 
-判断WebHttpBodyStream中的所有数据是否都已被读取。如果所有数据都已被读取，则返回true。对于分块传输类型的 WebHttpBodyStream，在第一次读取尝试之前返回false。
+判断WebHttpBodyStream中的所有数据是否都已被读取。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -15161,7 +15141,7 @@ isEof(): boolean
 
 | 类型   | 说明                      |
 | ------ | ------------------------- |
-| boolean | WebHttpBodyStream中的所有数据是否都已被读取。 |
+| boolean | WebHttpBodyStream中的所有数据是否都已被读取。<br>如果所有数据都已被读取，则返回true。对于分块传输类型的WebHttpBodyStream，在第一次读取尝试之前返回false。 |
 
 **示例：**
 
