@@ -26,6 +26,8 @@ motionBlur(value: MotionBlurOptions)
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **参数：** 
 
 | 参数名 | 类型                                            | 必填 | 说明               |
@@ -52,6 +54,8 @@ motionBlur(motionBlur: Optional\<MotionBlurOptions>)
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **参数：** 
 
 |   参数名    |    类型                                                      |  必填  |     说明                                                       |
@@ -62,6 +66,8 @@ motionBlur(motionBlur: Optional\<MotionBlurOptions>)
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 | 名称          | 类型                                                        | 必填  | 说明                                                         |
 | ------------- | ----------------------------------------------------------- | ----- | ------------------------------------------------------------ |
 | radius | number      | 是    | 模糊半径，取值范围[0.0, ∞)，建议设置1.0以内。 |
@@ -70,6 +76,8 @@ motionBlur(motionBlur: Optional\<MotionBlurOptions>)
 ## MotionBlurAnchor对象说明
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称          | 类型                                                        | 必填  | 说明                                                         |
 | ------------- | ----------------------------------------------------------- | ----- | ------------------------------------------------------------ |

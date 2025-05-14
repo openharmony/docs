@@ -13,6 +13,8 @@ RotationGesture(value?: { fingers?: number, angle?: number, isFingerCountLimited
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **参数：**
 
 | 参数名称 | 参数类型 | 必填 | 参数描述 |
@@ -24,6 +26,8 @@ RotationGesture(value?: { fingers?: number, angle?: number, isFingerCountLimited
 
 ## 事件
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 | 名称 | 功能描述 |
 | -------- | -------- |
 | onActionStart(event:(event:&nbsp;[GestureEvent](ts-gesture-settings.md#gestureevent对象说明))&nbsp;=&gt;&nbsp;void) | Rotation手势识别成功回调。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
@@ -33,6 +37,8 @@ RotationGesture(value?: { fingers?: number, angle?: number, isFingerCountLimited
 | onActionCancel(event:(event:&nbsp;[GestureEvent](ts-gesture-settings.md#gestureevent对象说明))&nbsp;=&gt;&nbsp;void)<sup>18+</sup> | Rotation手势识别成功，接收到触摸取消事件触发回调。返回手势事件信息。<br/>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。|
 
 ## 属性
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称 | 类型    |描述                                        |
 | ----  | ------  | ---------------------------------------- |
