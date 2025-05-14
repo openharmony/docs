@@ -5,7 +5,7 @@
 
 ## 预解析和预连接
 
-此方法可以针对域名级进行优化，通过[prepareForPageLoad()](../reference/apis-arkweb/js-apis-webview.md#prepareforpageload10)来预解析或者预连接将要加载的页面。该方式仅对url进行DNS解析，socket建链操作，不会获取主资源子资源。
+此方法可以针对域名级进行优化，通过[prepareForPageLoad()](../reference/apis-arkweb/js-apis-webview.md#prepareforpageload10)来预解析或者预连接将要加载的页面。该方式仅对url进行DNS解析以及建立tcp连接，但不会获取主资源子资源。
 
   在下面的示例中，在Web组件的onAppear中对要加载的页面进行预连接。
 
