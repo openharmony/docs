@@ -128,7 +128,7 @@ off(type: 'hotkeyChange', hotkeyOptions: HotkeyOptions, callback?: Callback&lt;H
 | 参数名         | 类型                         | 必填   | 说明                              |
 | ---------- | -------------------------- | ---- | ---------- |
 | type       | string                     | 是    | 事件类型，固定取值为'hotkeyChange'。        |
-| hotkeyOptions | [HotkeyOptions](#hotkeyoptions14) | 是    | 快捷键选项。             |
+| hotkeyOptions | [HotkeyOptions](#hotkeyoptions) | 是    | 快捷键选项。             |
 | callback   | Callback&lt;HotkeyOptions&gt; | 否    | 需要取消订阅的回调函数。若缺省，则取消当前应用全局快捷键选项已订阅的所有回调函数。 |
 
 **错误码**：
