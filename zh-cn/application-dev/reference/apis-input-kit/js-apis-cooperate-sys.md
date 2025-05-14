@@ -97,7 +97,7 @@ try {
   inputDeviceCooperate.enable(true).then(() => {
     console.log(`Keyboard mouse crossing enable success.`);
   }, (error: BusinessError) => {
-    console.log(`Keyboard mouse crossing enable failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+    console.error(`Keyboard mouse crossing enable failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
   });
 } catch (error) {
   console.error(`Keyboard mouse crossing enable failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
@@ -196,7 +196,7 @@ try {
   inputDeviceCooperate.start(sinkDeviceDescriptor, srcInputDeviceId).then(() => {
     console.log(`Start Keyboard mouse crossing success.`);
   }, (error: BusinessError) => {
-    console.log(`Start Keyboard mouse crossing failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+    console.error(`Start Keyboard mouse crossing failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
   });
 } catch (error) {
   console.error(`Start Keyboard mouse crossing failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
@@ -268,7 +268,7 @@ try {
   inputDeviceCooperate.stop().then(() => {
     console.log(`Stop Keyboard mouse crossing success.`);
   }, (error: BusinessError) => {
-    console.log(`Stop Keyboard mouse crossing failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+    console.error(`Stop Keyboard mouse crossing failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
   });
 } catch (error) {
   console.error(`Stop Keyboard mouse crossing failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
@@ -359,7 +359,7 @@ try {
   inputDeviceCooperate.getState(deviceDescriptor).then((data: object) => {
     console.log(`Get the status success, data: ${JSON.stringify(data)}`);
   }, (error: BusinessError) => {
-    console.log(`Get the status failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+    console.error(`Get the status failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
   });
 } catch (error) {
   console.error(`Get the status failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
