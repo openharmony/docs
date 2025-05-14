@@ -486,7 +486,7 @@ import { window } from '@kit.ArkUI';
 | 名称   | 类型 | 只读  | 可写 | 说明                    |
 | ------ | ---- | ----- | ---- | ----------------------- |
 | type | [RotationChangeType](#rotationchangetype19) | 是 | 否 | 窗口旋转类型。 |
-| orientation | number | 是 | 否 | 窗口旋转方向。<br>- 0表示竖屏。<br>- 1表示横屏。<br>- 2表示反向竖屏。<br>- 3表示反向竖屏。 |
+| orientation | number | 是 | 否 | 屏幕旋转方向。<br>- 0表示竖屏。<br>- 1表示横屏。<br>- 2表示反向竖屏。<br>- 3表示反向横屏。 |
 | displayId | number | 是 | 否 | 窗口所在屏幕Id。 |
 | displayRect | [Rect](#rect7) | 是 | 否 | 窗口所在屏幕旋转后的矩形区域大小。 |
 
