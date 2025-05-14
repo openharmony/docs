@@ -4332,7 +4332,7 @@ try {
   windowClass.off('keyboardWillHide', callback);
   // 如果通过on开启多个callback进行监听，同时关闭所有监听：
   windowClass.off('keyboardWillHide');
-  console.info('Unregister keyboard will show animation success');
+  console.info('Unregister keyboard will hide animation success');
 } catch (exception) {
   console.error(`Failed to register or unregister callback. Cause code: ${exception.code}, message: ${exception.message}`);
 }
