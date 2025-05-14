@@ -52,6 +52,7 @@ setPrinterDisabled(admin: Want, disabled: boolean, callback: AsyncCallback\<void
 
 ```ts
 import { Want } from '@kit.AbilityKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -106,6 +107,7 @@ setPrinterDisabled(admin: Want, disabled: boolean): Promise\<void>
 ```ts
 import { Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -151,6 +153,7 @@ isPrinterDisabled(admin: Want, callback: AsyncCallback\<boolean>): void
 
 ```ts
 import { Want } from '@kit.AbilityKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -204,6 +207,7 @@ isPrinterDisabled(admin: Want): Promise\<boolean>
 ```ts
 import { Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -250,6 +254,7 @@ setHdcDisabled(admin: Want, disabled: boolean, callback: AsyncCallback\<void>): 
 
 ```ts
 import { Want } from '@kit.AbilityKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -304,6 +309,7 @@ setHdcDisabled(admin: Want, disabled: boolean): Promise\<void>
 ```ts
 import { Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -349,6 +355,7 @@ isHdcDisabled(admin: Want, callback: AsyncCallback\<boolean>): void
 
 ```ts
 import { Want } from '@kit.AbilityKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -402,6 +409,7 @@ isHdcDisabled(admin: Want): Promise\<boolean>
 ```ts
 import { Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -452,6 +460,7 @@ isMicrophoneDisabled(admin: Want): boolean
 
 ```ts
 import { Want } from '@kit.AbilityKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -499,6 +508,7 @@ disableMicrophone(admin: Want, disable: boolean): void
 ```ts
 import { Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',

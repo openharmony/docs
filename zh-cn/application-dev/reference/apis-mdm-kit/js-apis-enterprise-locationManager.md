@@ -50,7 +50,6 @@ setLocationPolicy(admin: Want, policy: LocationPolicy): void
 
 ```ts
 import { Want } from '@kit.AbilityKit';
-import { locationManager } from '@kit.MDMKit';
 
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
@@ -102,7 +101,7 @@ getLocationPolicy(admin: Want): LocationPolicy
 
 ```ts
 import { Want } from '@kit.AbilityKit';
-import { locationManager } from '@kit.MDMKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
