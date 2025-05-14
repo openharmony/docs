@@ -2519,7 +2519,7 @@ Input_Result OH_Input_RegisterDeviceListener(Input_DeviceListener* listener)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [Input_DeviceListener](capi-input-devicelistener.md)* listener | 指向设备热插拔监听器[Input_DeviceListener](capi-input-device.md)的指针。 |
+| [Input_DeviceListener](capi-input-devicelistener.md)* listener | 指向设备热插拔监听器[Input_DeviceListener](capi-input-devicelistener.md)的指针。 |
 
 **返回：**
 
@@ -2546,7 +2546,7 @@ Input_Result OH_Input_UnregisterDeviceListener(Input_DeviceListener* listener)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [Input_DeviceListener](capi-input-devicelistener.md)* listener | 指向设备热插拔监听器[Input_DeviceListener](capi-input-device.md)的指针。 |
+| [Input_DeviceListener](capi-input-devicelistener.md)* listener | 指向设备热插拔监听器[Input_DeviceListener](capi-input-devicelistener.md)的指针。 |
 
 **返回：**
 
