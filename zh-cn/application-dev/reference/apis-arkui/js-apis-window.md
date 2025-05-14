@@ -447,6 +447,61 @@ import { window } from '@kit.ArkUI';
 | -------------------------------- | ------------------------------------ |
 | V | 回调函数需要返回V类型的返回值。 |
 
+## RotationChangeType<sup>19+</sup>
+
+窗口旋转类型。
+
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
+
+**系统能力：**  SystemCapability.Window.SessionManager
+
+| 名称   | 值 | 类型  | 说明                    |
+| ------ | --- | --- | ------------------------ |
+| WINDOW_WILL_ROTATE| 0 | number | 窗口即将旋转。 |
+| WINDOW_DID_ROTATE | 1 | number | 窗口旋转结束。 |
+
+## RectType<sup>19+</sup>
+
+窗口矩形区域坐标系类型。
+
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
+
+**系统能力：**  SystemCapability.Window.SessionManager
+
+| 名称   | 值 | 类型  | 说明                    |
+| ------ | --- | --- | ------------------------ |
+| RELATIVE_TO_SCREEN | 0 | number | 窗口矩形区域相对于屏幕坐标系。 |
+| RELATIVE_TO_PARENT_WINDOW | 1 | number | 窗口矩形区域相对于父窗口坐标系。 |
+
+## RotationChangeInfo<sup>19+</sup>
+
+窗口旋转变化时的窗口信息。
+
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
+
+**系统能力：**  SystemCapability.Window.SessionManager
+
+| 名称   | 类型 | 只读  | 可写 | 说明                    |
+| ------ | ---- | ----- | ---- | ----------------------- |
+| type | [RotationChangeType](#rotationchangetype19) | 是 | 否 | 窗口旋转类型。 |
+| orientation | number | 是 | 否 | 屏幕旋转方向。<br>- 0表示竖屏。<br>- 1表示横屏。<br>- 2表示反向竖屏。<br>- 3表示反向横屏。 |
+| displayId | number | 是 | 否 | 窗口所在屏幕Id。 |
+| displayRect | [Rect](#rect7) | 是 | 否 | 窗口所在屏幕旋转后的矩形区域大小。 |
+
+## RotationChangeResult<sup>19+</sup>
+
+应用在窗口旋转变化时返回的信息，系统会根据此信息改变当前窗口矩形区域大小。当返回主窗口旋转变化的信息时，系统不改变主窗口的大小。
+应用窗口与系统窗口大小存在限制，具体限制与相关规则可见[resize](#resize9)。
+
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
+
+**系统能力：**  SystemCapability.Window.SessionManager
+
+| 名称   | 类型 | 只读  | 可写 | 说明                    |
+| ------ | ---- | ----- | ---- | ----------------------- |
+| rectType | [RectType](#recttype19) | 否 | 是 | 窗口矩形区域坐标系类型。 |
+| windowRect | [Rect](#rect7) | 否 | 是 | 相对于屏幕或父窗坐标系的窗口矩形区域信息。|
+
 ## window.createWindow<sup>9+</sup>
 
 createWindow(config: Configuration, callback: AsyncCallback&lt;Window&gt;): void
