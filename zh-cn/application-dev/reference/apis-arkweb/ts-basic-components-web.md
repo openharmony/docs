@@ -274,7 +274,7 @@ Web组件指定共享渲染进程。
 | 名称        | 类型                                     | 必填   | 说明                                     |
 | ---------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | src        | string \| [Resource](../apis-arkui/arkui-ts/ts-types.md#resource)   | 是    | 网页资源地址。如果访问本地资源文件，请使用$rawfile或者resource协议。如果加载应用包外沙箱路径的本地资源文件(文件支持html和txt类型)，请使用file://沙箱文件路径。<br>src不能通过状态变量（例如：@State）动态更改地址，如需更改，请通过[loadUrl()](js-apis-webview.md#loadurl)重新加载。 |
-| controller | [WebController](#webcontroller) \| [WebviewController<sup>9+</sup>](#webviewcontroller9)  | 是    | 控制器。从API Version 9开始，WebController不再维护，建议使用WebviewController替代。 |
+| controller | [WebController](#webcontroller) \| [WebviewController<sup>9+</sup>](#webviewcontroller9)  | 是    | 控制器，通过controller可以控制Web组件各种行为（包括页面导航、声明周期状态、JavaScript交互等行为）。从API Version 9开始，WebController不再维护，建议使用WebviewController替代。 |
 | renderMode<sup>12+</sup> | [RenderMode](#rendermode12枚举说明)| 否   | 表示当前Web组件的渲染方式，RenderMode.ASYNC_RENDER表示Web组件自渲染，RenderMode.SYNC_RENDER表示支持Web组件统一渲染能力，默认值RenderMode.ASYNC_RENDER，该模式不支持动态调整。 |
 | incognitoMode<sup>11+</sup> | boolean | 否 | 表示当前创建的webview是否是隐私模式。true表示创建隐私模式的webview，false表示创建正常模式的webview。<br> 默认值：false。 |
 | sharedRenderProcessToken<sup>12+</sup> | string | 否 | 表示当前Web组件指定共享渲染进程的token，多渲染进程模式下，相同token的Web组件会优先尝试复用与token相绑定的渲染进程。token与渲染进程的绑定发生在渲染进程的初始化阶段。当渲染进程没有关联的Web组件时，其与token绑定关系将被移除。<br> 默认值： ""。  |
@@ -792,26 +792,6 @@ multiWindowAccess(multiWindow: boolean)
 | 参数名         | 类型    | 必填   | 说明         |
 | ----------- | ------- | ---- | ------------ |
 | multiWindow | boolean | 是    | 设置是否开启多窗口权限。<br>true表示设置开启多窗口权限，false表示设置不开启多窗口权限。<br>默认值：false。 |
-
-**示例：**
-
-  ```ts
-  // xxx.ets
-  import { webview } from '@kit.ArkWeb';
-
-  @Entry
-  @Component
-  struct WebComponent {
-    controller: webview.WebviewController = new webview.WebviewController();
-
-    build() {
-      Column() {
-        Web({ src: 'www.example.com', controller: this.controller })
-        .multiWindowAccess(false)
-      }
-    }
-  }
-  ```
 
 ### horizontalScrollBarAccess<sup>9+</sup>
 
@@ -1720,18 +1700,12 @@ allowWindowOpenMethod(flag: boolean)
 
 设置网页是否可以通过JavaScript自动打开新窗口。
 
-该属性为true时，可通过JavaScript自动打开新窗口。该属性为false时，用户行为仍可通过JavaScript自动打开新窗口，但非用户行为不能通过JavaScript自动打开新窗口。此处的用户行为是指，在用户对Web组件进行点击等操作后，同时在5秒内请求打开新窗口（window.open）的行为。
-
-该属性仅在[javaScriptAccess](#javascriptaccess)开启时生效。
-
-该属性在[multiWindowAccess](#multiwindowaccess9)开启时打开新窗口，关闭时打开本地窗口。
-
-该属性的默认值与系统属性`persist.web.allowWindowOpenMethod.enabled`保持一致，如果未设置系统属性则默认值为false。
-
-检查系统配置项`persist.web.allowWindowOpenMethod.enabled`是否开启。
-
-通过`hdc shell param get persist.web.allowWindowOpenMethod.enabled` 查看，若配置项为0或不存在，
-可通过命令`hdc shell param set persist.web.allowWindowOpenMethod.enabled 1` 开启配置。
+> **说明：**
+>
+> - 该属性仅在[javaScriptAccess](#javascriptaccess)开启时生效。
+> - 该属性在[multiWindowAccess](#multiwindowaccess9)开启时打开新窗口，关闭时打开本地窗口。
+> - 该属性的默认值与系统属性`persist.web.allowWindowOpenMethod.enabled`保持一致，如果未设置系统属性则默认值为false。
+> - 通过`hdc shell param get persist.web.allowWindowOpenMethod.enabled` 检查是否开启系统属性`persist.web.allowWindowOpenMethod.enabled`。若属性值为1代表开启系统属性；若属性值为0或不存在，代表未开启系统属性，可通过命令`hdc shell param set persist.web.allowWindowOpenMethod.enabled 1` 开启系统属性。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -1739,7 +1713,7 @@ allowWindowOpenMethod(flag: boolean)
 
 | 参数名  | 类型    | 必填    | 说明                      |
 | ---- | ------- | ---- | ------------------------- |
-| flag | boolean | 是    | 网页是否可以通过JavaScript自动打开窗口。<br>true表示网页可以通过JavaScript自动打开窗口，false表示网页不可以通过JavaScript自动打开窗口。<br>默认值与系统参数关联，当系统参数`persist.web.allowWindowOpenMethod.enabled`为true时，默认值为true，如果未设置系统参数则默认值为false。 |
+| flag | boolean | 是    | <br>true表示网页可以通过JavaScript自动打开新窗口，该属性为false时，用户行为仍可通过JavaScript自动打开新窗口，但非用户行为不能通过JavaScript自动打开新窗口。<br>此处的用户行为是指，在用户对Web组件进行点击等操作后，同时在5秒内请求打开新窗口（window.open）的行为。<br>默认值与系统属性关联，当系统属性`persist.web.allowWindowOpenMethod.enabled`为true时，默认值为true，如果未设置系统属性则默认值为false。 |
 
 **示例：**
 
@@ -5358,12 +5332,11 @@ onFullScreenExit(callback: () => void)
 onWindowNew(callback: Callback\<OnWindowNewEvent\>)
 
 使能multiWindowAccess情况下，通知用户新建窗口请求。
-若不调用`event.handler.setWebController`接口，会造成render进程阻塞。
-如果没有创建新窗口，调用`event.handler.setWebController`接口时设置成null，通知Web没有创建新窗口。
+若不调用[setWebController](#setwebcontroller9)接口，会造成render进程阻塞。
+如果没有创建新窗口，调用[setWebController](#setwebcontroller9)接口时设置成null，通知Web没有创建新窗口。
 
-应用应谨慎的显示新窗口：不要简单的覆盖在原web组件上，防止误导用户正在查看哪个网站，如果应用显示主页的URL，请确保也以相似的方式显示新窗口的URL。否则请考虑完全禁止创建新窗口。
-
-注意：没有可靠的方式判断哪个页面请求了新窗口，该请求可能来自第三方iframe
+新窗口需避免直接覆盖在原Web组件上，且应与主页面以相同形式明确显示其URL（如地址栏）以防止用户混淆。若无法实现可信的URL可视化管理，则需考虑禁止创建新窗口。
+需注意：新窗口请求来源无法可靠追溯，可能由第三方iframe发起，应用需默认采取沙箱隔离、限制权限等防御性措施以确保安全。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -5619,7 +5592,7 @@ onInterceptKeyEvent(callback: (event: KeyEvent) => boolean)
 
 | 参数名    | 类型   | 必填   | 说明                  |
 | ------ | ------ | ---- | --------------------- |
-| callback | (event:[KeyEvent](../apis-arkui/arkui-ts/ts-universal-events-key.md#keyevent对象说明)) => boolean | 是 | 触发的KeyEvent事件。<br>返回值为boolean类型，true表示将该KeyEvent传入Webview内核，false表示不将该KeyEvent传入Webview内核。 |
+| callback | (event:[KeyEvent](../apis-arkui/arkui-ts/ts-universal-events-key.md#keyevent对象说明)) => boolean | 是 | 触发的KeyEvent事件。<br>返回值为boolean类型，true表示将该KeyEvent传入Webview内核，false表示不将该KeyEvent传入ArkWeb内核。 |
 
 **示例：**
 
@@ -7082,7 +7055,7 @@ WebKeyboardController的构造函数。
 
 insertText(text: string): void
 
-插入字符。
+Web输入框中插入字符。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -7096,7 +7069,7 @@ insertText(text: string): void
 
 deleteForward(length: number): void
 
-从后往前删除length参数指定长度的字符。
+从后往前删除Web输入框中指定长度的字符。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -7104,13 +7077,13 @@ deleteForward(length: number): void
 
 | 参数名 | 类型 | 必填 | 说明                 |
 | ------ | -------- | ---- | ------------------------ |
-| length | number   | 是   | 从后往前删除字符的长度。<br>参数无取值范围，当参数值大于字符长度时，默认删除光标前面所有字符；参数值为负数时，不执行删除操作。 |
+| length | number   | 是   | 从后往前删除Web输入框中指定长度的字符。<br>参数无取值范围，当参数值大于字符长度时，默认删除光标前面所有字符；参数值为负数时，不执行删除操作。 |
 
 ### deleteBackward12+</sup>
 
 deleteBackward(length: number): void
 
-从前往后删除length参数指定长度的字符。
+从前往后删除Web输入框中指定长度的字符。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -7118,13 +7091,13 @@ deleteBackward(length: number): void
 
 | 参数名 | 类型 | 必填 | 说明                 |
 | ------ | -------- | ---- | ------------------------ |
-| length | number   | 是   | 从前往后删除字符的长度。<br>参数无取值范围，当参数值大于字符长度时，默认删除光标后面所有字符；参数值为负数时，不执行删除操作。 |
+| length | number   | 是   | 从前往后删除Web输入框中指定长度的字符。<br>参数无取值范围，当参数值大于字符长度时，默认删除光标后面所有字符；参数值为负数时，不执行删除操作。 |
 
 ### sendFunctionKey<sup>12+</sup>
 
 sendFunctionKey(key: number): void
 
-插入功能按键，目前仅支持enter键类型，取值见[EnterKeyType](../apis-ime-kit/js-apis-inputmethod.md#enterkeytype10)。
+插入功能按键，目前仅支持Enter键类型，取值见[EnterKeyType](../apis-ime-kit/js-apis-inputmethod.md#enterkeytype10)。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -7132,7 +7105,7 @@ sendFunctionKey(key: number): void
 
 | 参数名 | 类型 | 必填 | 说明                                   |
 | ------ | -------- | ---- | ------------------------------------------ |
-| key    | number   | 是   | 向Web输入框传递功能键，目前仅支持enter键。 |
+| key    | number   | 是   | 向Web输入框传递功能键，目前仅支持Enter键。 |
 
 ### close<sup>12+</sup>
 
@@ -10412,8 +10385,8 @@ type OnNativeEmbedVisibilityChangeCallback = (nativeEmbedVisibilityInfo: NativeE
 
 | 名称     | 值 | 说明          |
 | ------ | -- | ----------- |
-| SILENT  | 0 | 软键盘收起时web组件失焦功能关闭，当用户手动收起软键盘时焦点仍在文本框。 |
-| BLUR | 1 | 软键盘收起时web组件失焦功能开启，当用户手动收起软键盘时，焦点会从文本框转移到Web的body上，文本框失焦。 |
+| SILENT  | 0 | 软键盘收起时Web组件失焦功能关闭，当用户手动收起软键盘时焦点仍在文本框。 |
+| BLUR | 1 | 软键盘收起时Web组件失焦功能开启，当用户手动收起软键盘时，焦点会从文本框转移到Web的body上，文本框失焦。 |
 
 ## EmbedOptions<sup>16+</sup>
 
