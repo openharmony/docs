@@ -115,7 +115,7 @@ struct Index {
     {
       id: 1,
       url: $r('sys.media.ohos_ic_public_web'),
-      text: '网路',
+      text: '网络',
       selected: true,
       order: 9
     },
