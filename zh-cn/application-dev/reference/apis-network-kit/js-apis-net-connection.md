@@ -2719,7 +2719,7 @@ let config: wifiManager.WifiDeviceConfig = {
   securityType: wifiManager.WifiSecurityType.WIFI_SEC_TYPE_PSK
 };
 // 通过wifiManager.addCandidateConfig获取注册WLAN的networkId
-let networkId: number = await wifiManager.addCandidateConfig(config);
+wifiManager.addCandidateConfig(config,(error,networkId)=>{
 let netConnectionWlan = connection.createNetConnection({
   netCapabilities: {
     bearerTypes: [connection.NetBearType.BEARER_WIFI]
@@ -2728,6 +2728,7 @@ let netConnectionWlan = connection.createNetConnection({
 });
 netConnectionWlan.register((error: BusinessError) => {
   console.log(JSON.stringify(error));
+});
 });
 ```
 
