@@ -1779,7 +1779,7 @@ runJavaScript(script: string, callback : AsyncCallback\<string>): void
 
 > **说明：**
 >
-> - 跨导航操作（如loadUrl）时，JavaScript状态 将不再保留，例如，调用loadUrl前定义的全局变量和函数在加载的页面中将不存在。
+> - 跨导航操作（如loadUrl）时，JavaScript状态将不再保留。例如，调用loadUrl前定义的全局变量和函数在加载的页面中将不存在。
 > - 建议应用程序 使用registerJavaScriptProxy来确保JavaScript状态能够在页面导航间保持。
 
 **系统能力：** SystemCapability.Web.Webview.Core
