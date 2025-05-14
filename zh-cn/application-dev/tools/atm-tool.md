@@ -134,6 +134,23 @@ atm dump [-h] [-t [-i <token-id>] [-b <bundle-name>] [-n <process-name>]] [-r [-
 示例：
 
 ```bash
+#查询系统中所有的权限定义
+atm dump -d
+
+#按权限名查询权限定义
+atm dump -d -p *********
+# 执行结果
+# {
+#     "permissionName": "ohos.permission.KERNEL_ATM_SELF_USE",
+#     "grantMode": SYSTEM_GRANT,
+#     "availableLevel": SYSTEM_CORE,
+#     "availableType": SYSTEM,
+#     "provisionEnable": true,
+#     "distributedSceneEnable": true,
+#     "isKernelEffect": true,
+#     "hasValue": true,
+# }
+
 #显示atm dump的帮助信息
 atm dump -h
 
