@@ -44,7 +44,7 @@ let portId: number = portList[0].portId;
 
 ## serialManager.hasSerialRight
 
-hasSerialRight(portId: number): boolean;
+hasSerialRight(portId: number): boolean
 
 检查应用程序是否具有访问串口设备的权限。应用退出后再拉起时，需要重新申请授权。
 
@@ -158,7 +158,7 @@ if (!serialManager.hasSerialRight(portId)) {
 
 ## serialManager.open
 
-open(portId: number): void;
+open(portId: number): void
 
 打开串口设备。
 
@@ -221,7 +221,7 @@ try {
 
 ## serialManager.getAttribute
 
-getAttribute(portId: number): Readonly&lt;[SerialAttribute](#serialattribute)&gt;;
+getAttribute(portId: number): Readonly&lt;[SerialAttribute](#serialattribute)&gt;
 
 获取指定串口的配置参数。
 
@@ -301,7 +301,7 @@ try {
 
 ## serialManager.setAttribute
 
-setAttribute(portId: number, attribute: [SerialAttribute](#serialattribute)): void;
+setAttribute(portId: number, attribute: [SerialAttribute](#serialattribute)): void
 
 设置串口的配置参数。如果未调用该方法，使用默认配置参数（波特率：9600bps；据位：8；校验位：0；停止位：1）。
 
@@ -378,7 +378,7 @@ try {
 
 ## serialManager.read
 
-read(portId: number, buffer: Uint8Array, timeout?: number): Promise&lt;number&gt;;
+read(portId: number, buffer: Uint8Array, timeout?: number): Promise&lt;number&gt;
 
 从串口设备异步读取数据。
 
@@ -458,7 +458,7 @@ serialManager.read(portId, readBuffer, 2000).then((size: number) => {
 
 ## serialManager.readSync
 
-readSync(portId: number, buffer: Uint8Array, timeout?: number): number;
+readSync(portId: number, buffer: Uint8Array, timeout?: number): number
 
 从串口设备同步读取数据。
 
@@ -539,7 +539,7 @@ try {
 
 ## serialManager.write
 
-write(portId: number, buffer: Uint8Array, timeout?: number): Promise&lt;number&gt;;
+write(portId: number, buffer: Uint8Array, timeout?: number): Promise&lt;number&gt;
 
 向串口设备异步写入数据。
 
@@ -619,7 +619,7 @@ serialManager.write(portId, writeBuffer, 2000).then((size: number) => {
 
 ## serialManager.writeSync
 
-writeSync(portId: number, buffer: Uint8Array, timeout?: number): number;
+writeSync(portId: number, buffer: Uint8Array, timeout?: number): number
 
 向串口设备同步写数据。
 
@@ -700,7 +700,7 @@ try {
 
 ## serialManager.close
 
-close(portId: number): void;
+close(portId: number): void
 
 关闭串口。
 
@@ -770,7 +770,7 @@ try {
 
 ## serialManager.cancelSerialRight
 
-cancelSerialRight(portId: number): void;
+cancelSerialRight(portId: number): void
 
 移除应用程序运行时访问串口设备的权限。此接口会调用close关闭已打开的串口。
 
@@ -840,9 +840,9 @@ try {
 | 名称       | 类型     | 必填 | 说明        |
 |----------|--------|----|-----------|
 | baudrate | number | 是  | 串口波特率。  |
-| dataBits | number | 否  | 串口数据位。  |
-| parity   | number | 否  | 串口奇偶校验。 |
-| stopBits | number | 否  | 串口停止位。  |
+| dataBits | number | 否  | 串口数据位，默认值由具体的串口设备和通信协议来确定。  |
+| parity   | number | 否  | 串口奇偶校验，默认值由具体的串口设备和通信协议来确定。 |
+| stopBits | number | 否  | 串口停止位，默认值由具体的串口设备和通信协议来确定。  |
 
 ## SerialPort
 
