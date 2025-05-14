@@ -169,11 +169,12 @@ static fromHtml(html: string): Promise\<StyledString>
 
 **错误码**：
 
-以下错误码详细介绍请参考[通用错误码](../../errorcode-universal.md)。
+以下错误码详细介绍请参考[通用错误码](../../errorcode-universal.md)和[属性字符串错误码](../errorcode-styled-string.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
+| 170001 | Convert Error. |
 
 ### toHtml<sup>14+</sup>
 
