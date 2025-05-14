@@ -4194,11 +4194,11 @@ on(type: 'keyboardWillShow', callback: Callback&lt;KeyboardInfo&gt;): void
 import { BusinessError } from '@kit.BasicServicesKit';
 
 const callback = (keyboardInfo: window.KeyboardInfo) => {
-  console.info('Keyboard will show animation. keyboardInfo: ' + JSON.stringify(keyboardInfo));
+  console.info(`Keyboard will show animation. keyboardInfo: ` + JSON.stringify(keyboardInfo));
 }
 try {
   windowClass.on('keyboardWillShow', callback);
-  console.info('Register keyboard will show animation success');
+  console.info(`Register keyboard will show animation success`);
 } catch (exception) {
   console.error(`Failed to register or unregister callback. Cause code: ${exception.code}, message: ${exception.message}`);
 }
@@ -4236,14 +4236,14 @@ off(type: 'keyboardWillShow', callback?: Callback&lt;KeyboardInfo&gt;): void
 import { BusinessError } from '@kit.BasicServicesKit';
 
 const callback = (keyboardInfo: window.KeyboardInfo) => {
-  console.info('Keyboard will show animation. keyboardInfo: ' + JSON.stringify(keyboardInfo));
+  console.info(`Keyboard will show animation. keyboardInfo: ` + JSON.stringify(keyboardInfo));
 }
 try {
   windowClass.on('keyboardWillShow', callback);
   windowClass.off('keyboardWillShow', callback);
   // 如果通过on开启多个callback进行监听，同时关闭所有监听：
   windowClass.off('keyboardWillShow');
-  console.info('Unregister keyboard will show animation success');
+  console.info(`Unregister keyboard will show animation success`);
 } catch (exception) {
   console.error(`Failed to register or unregister callback. Cause code: ${exception.code}, message: ${exception.message}`);
 }
@@ -4283,11 +4283,11 @@ on(type: 'keyboardWillHide', callback: Callback&lt;KeyboardInfo&gt;): void
 import { BusinessError } from '@kit.BasicServicesKit';
 
 const callback = (keyboardInfo: window.KeyboardInfo) => {
-  console.info('Keyboard will hide animation. keyboardInfo: ' + JSON.stringify(keyboardInfo));
+  console.info(`Keyboard will hide animation. keyboardInfo: ` + JSON.stringify(keyboardInfo));
 }
 try {
   windowClass.on('keyboardWillHide', callback);
-  console.info('Register keyboard will hide animation success');
+  console.info(`Register keyboard will hide animation success`);
 } catch (exception) {
   console.error(`Failed to register or unregister callback. Cause code: ${exception.code}, message: ${exception.message}`);
 }
@@ -4325,14 +4325,14 @@ off(type: 'keyboardWillHide', callback?: Callback&lt;KeyboardInfo&gt;): void
 import { BusinessError } from '@kit.BasicServicesKit';
 
 const callback = (keyboardInfo: window.KeyboardInfo) => {
-  console.info('Keyboard will hide animation. keyboardInfo: ' + JSON.stringify(keyboardInfo));
+  console.info(`Keyboard will hide animation. keyboardInfo: ` + JSON.stringify(keyboardInfo));
 }
 try {
   windowClass.on('keyboardWillHide', callback);
   windowClass.off('keyboardWillHide', callback);
   // 如果通过on开启多个callback进行监听，同时关闭所有监听：
   windowClass.off('keyboardWillHide');
-  console.info('Unregister keyboard will hide animation success');
+  console.info(`Unregister keyboard will hide animation success`);
 } catch (exception) {
   console.error(`Failed to register or unregister callback. Cause code: ${exception.code}, message: ${exception.message}`);
 }
