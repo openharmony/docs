@@ -407,12 +407,12 @@ import { window } from '@kit.ArkUI';
 | ------ | ------ | ---- | ------------------------------------------ |
 | beginRect | [Rect](#rect7)  | 是 | 动画开始前软键盘的位置和大小。 |
 | endRect | [Rect](#rect7)  | 是 | 动画结束后软键盘的位置和大小。 |
-| animated<sup>20+</sup> | boolean  | 否 | 当前显示/隐藏是否有动画，true表示有动画，false表示没有动画。 |
-| config<sup>20+</sup> | [WindowAnimationConfig](#windowanimationconfig20)  | 否 | 动画信息。 |
+| animated<sup>20+</sup> | boolean  | 否 | 当前是否有显示/隐藏动画，true表示有动画，false表示没有。 |
+| config<sup>20+</sup> | [WindowAnimationConfig](#windowanimationconfig20)  | 否 | 动画配置信息。 |
 
 ## WindowAnimationCurve<sup>20+</sup>
 
-窗口动画曲线枚举。
+窗口动画曲线类型。
 
 **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
@@ -421,11 +421,11 @@ import { window } from '@kit.ArkUI';
 | 名称                | 值   | 说明                                                         |
 | ------------------- | ---- | ------------------------------------------------------------ |
 | LINEAR              | 0    | 表示动画从头到尾的速度都是相同的。<br/>使用该曲线类型时[WindowAnimationConfig](#windowanimationconfig20)中duration必填。<br/>使用该曲线类型时[WindowAnimationConfig](#windowanimationconfig20)中param选填，且不生效。 |
-| INTERPOLATION_SPRING | 1    | 表示插值器弹簧曲线，一条从0到1的动画曲线，实际动画值根据曲线进行插值计算。动画时间由曲线参数决定，不受[WindowAnimationConfig](#windowanimationconfig20)中的duration参数控制。<br/>使用该曲线类型时[WindowAnimationConfig](#windowanimationconfig20)中duration选填且不生效。 |
+| INTERPOLATION_SPRING | 1    | 表示插值器弹簧曲线，一条从0到1的动画曲线，实际动画值根据曲线进行插值计算。动画时间由曲线参数决定，不受[WindowAnimationConfig](#windowanimationconfig20)中的duration参数控制。<br/>使用该曲线类型时[WindowAnimationConfig](#windowanimationconfig20)中duration选填，且不生效。 |
 
 ## WindowAnimationConfig<sup>20+</sup>
 
-窗口动画配置信息。
+窗口动画参数配置。
 
 **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
@@ -4164,7 +4164,7 @@ try {
 
 on(type: 'keyboardWillShow', callback: Callback&lt;KeyboardInfo&gt;): void
 
-开启固定态软键盘显示动画开始前的监听。此监听在固定态软键盘显示动画开始前或软键盘由悬浮态切换为固定态时触发。
+开启固定态软键盘即将开始显示的监听。此监听在固定态软键盘即将开始显示或软键盘由悬浮态切换为固定态时触发。
 
 改变软键盘为固定态或者悬浮态方法详细介绍请参见[输入法服务](../apis-ime-kit/js-apis-inputmethodengine.md#changeflag10)。
 
@@ -4176,7 +4176,7 @@ on(type: 'keyboardWillShow', callback: Callback&lt;KeyboardInfo&gt;): void
 
 | 参数名   | 类型                | 必填 | 说明                                        |
 | -------- | ------------------- | ---- |-------------------------------------------|
-| type     | string              | 是   | 监听事件，固定为'keyboardWillShow'，即固定态软键盘显示动画开始前事件。 |
+| type     | string              | 是   | 监听事件，固定为'keyboardWillShow'，即固定态软键盘即将开始显示的事件。 |
 | callback | Callback&lt;[KeyboardInfo](#keyboardinfo18)&gt; | 是   | 回调函数。返回软键盘窗口信息。                    |
 
 **错误码：**
@@ -4191,14 +4191,37 @@ on(type: 'keyboardWillShow', callback: Callback&lt;KeyboardInfo&gt;): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@kit.BasicServicesKit';
+import window from '@ohos.window';
+import { JSON } from '@kit.ArkTS';
 
-try {
-  windowClass.on('keyboardWillShow', (keyboardInfo) => {
-    console.info('keyboard show animation will begin. keyboardInfo: ' + JSON.stringify(keyboardInfo));
-  });
-} catch (exception) {
-  console.error(`Failed to register callback. Cause code: ${exception.code}, message: ${exception.message}`);
+@Entry
+@Component
+struct Index {
+  private registerKeyboardWillShowAnimationCallback = (keyboardInfo: window.KeyboardInfo) => {
+    console.log('Keyboard will show animation: ' + JSON.stringify(keyboardInfo));
+  }
+
+  build() {
+    Column() {
+      TextInput()
+    }
+  }
+
+  aboutToAppear(): void {
+    this.registerKeyboardWillShowAnimation()
+  }
+
+  private registerKeyboardWillShowAnimation() {
+    let context = getContext(this) as Context
+    window.getLastWindow(context).then((lastWindow) => {
+      try {
+        lastWindow.on("keyboardWillShow", this.registerKeyboardWillShowAnimationCallback);
+        console.log('Register keyboard will show animation success');
+      } catch ( exception) {
+        console.error('Failed to register callback.')
+      }
+    })
+  }
 }
 ```
 
@@ -4206,7 +4229,7 @@ try {
 
 off(type: 'keyboardWillShow', callback?: Callback&lt;KeyboardInfo&gt;): void
 
-关闭固定态软键盘显示动画开始前的监听。改变输入法窗口为固定态或者悬浮态方法详细介绍请参见[输入法服务](../apis-ime-kit/js-apis-inputmethodengine.md#changeflag10)。
+关闭固定态软键盘即将开始显示的监听。改变输入法窗口为固定态或者悬浮态方法详细介绍请参见[输入法服务](../apis-ime-kit/js-apis-inputmethodengine.md#changeflag10)。
 
 **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
@@ -4216,8 +4239,8 @@ off(type: 'keyboardWillShow', callback?: Callback&lt;KeyboardInfo&gt;): void
 
 | 参数名   | 类型                   | 必填 | 说明                                                         |
 | -------- | ---------------------- | ---- | ------------------------------------------------------------ |
-| type     | string                 | 是   | 监听事件，固定为'keyboardWillShow'，即固定态软键盘显示动画开始前事件。 |
-| callback | Callback&lt;[KeyboardInfo](#keyboardinfo18)&gt; | 否   |  回调函数。返回软键盘窗口信息。若传入参数，则关闭该监听。如果未传入参数，则关闭所有固定态软键盘显示动画开始前的监听。                               |
+| type     | string                 | 是   | 监听事件，固定为'keyboardWillShow'，即固定态软键盘即将开始显示的事件。 |
+| callback | Callback&lt;[KeyboardInfo](#keyboardinfo18)&gt; | 否   |  回调函数。返回软键盘窗口信息。若传入参数，则关闭该监听。如果未传入参数，则关闭所有固定态软键盘即将开始显示的监听。                               |
 
 **错误码：**
 
@@ -4231,18 +4254,40 @@ off(type: 'keyboardWillShow', callback?: Callback&lt;KeyboardInfo&gt;): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@kit.BasicServicesKit';
+import window from '@ohos.window';
+import { JSON } from '@kit.ArkTS';
 
-const callback = (keyboardInfo: window.KeyboardInfo) => {
-  // ...
-}
-try {
-  windowClass.on('keyboardWillShow', callback);
-  windowClass.off('keyboardWillShow', callback);
-  // 如果通过on开启多个callback进行监听，同时关闭所有监听：
-  windowClass.off('keyboardWillShow');
-} catch (exception) {
-  console.error(`Failed to register or unregister callback. Cause code: ${exception.code}, message: ${exception.message}`);
+@Entry
+@Component
+struct Index {
+  private registerKeyboardWillShowAnimationCallback = (keyboardInfo: window.KeyboardInfo) => {
+    console.log('ZJOHDev ====== keyboard will show animation: ' + JSON.stringify(keyboardInfo));
+  }
+
+  build() {
+    Column() {
+      TextInput()
+    }
+  }
+
+  aboutToAppear(): void {
+    this.unregisterKeyboardWillShowAnimation()
+  }
+
+  private unregisterKeyboardWillShowAnimation() {
+    let context = getContext(this) as Context
+    window.getLastWindow(context).then((lastWindow) => {
+      try {
+        lastWindow.on("keyboardWillShow", this.registerKeyboardWillShowAnimationCallback);
+        lastWindow.off('keyboardWillShow', this.registerKeyboardWillShowAnimationCallback);
+        // 如果通过on开启多个callback进行监听，同时关闭所有监听：
+        lastWindow.off('keyboardWillShow');
+        console.log('Unregister keyboard will show animation success');
+      } catch ( exception) {
+        console.error('Failed to register callback.')
+      }
+    })
+  }
 }
 ```
 
@@ -4250,7 +4295,7 @@ try {
 
 on(type: 'keyboardWillHide', callback: Callback&lt;KeyboardInfo&gt;): void
 
-开启固定态软键盘隐藏动画开始前的监听。此监听在固定态软键盘隐藏动画开始前触发或软键盘由固定态切换为悬浮态时触发。
+开启固定态软键盘即将开始隐藏的监听。此监听在固定态软键盘即将开始隐藏或软键盘由固定态切换为悬浮态时触发。
 
 改变软键盘为固定态或者悬浮态方法详细介绍请参见[输入法服务](../apis-ime-kit/js-apis-inputmethodengine.md#changeflag10)。
 
@@ -4262,7 +4307,7 @@ on(type: 'keyboardWillHide', callback: Callback&lt;KeyboardInfo&gt;): void
 
 | 参数名   | 类型                | 必填 | 说明                                        |
 | -------- | ------------------- | ---- |-------------------------------------------|
-| type     | string              | 是   | 监听事件，固定为'keyboardWillHide'，即固定态软键盘隐藏动画开始前事件。 |
+| type     | string              | 是   | 监听事件，固定为'keyboardWillHide'，即固定态软键盘即将开始隐藏的事件。 |
 | callback | Callback&lt;[KeyboardInfo](#keyboardinfo18)&gt; | 是   | 回调函数。返回软键盘窗口信息。                    |
 
 **错误码：**
@@ -4277,14 +4322,37 @@ on(type: 'keyboardWillHide', callback: Callback&lt;KeyboardInfo&gt;): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@kit.BasicServicesKit';
+import window from '@ohos.window';
+import { JSON } from '@kit.ArkTS';
 
-try {
-  windowClass.on('keyboardWillHide', (keyboardInfo) => {
-    console.info('keyboard hide animation will begin. keyboardInfo: ' + JSON.stringify(keyboardInfo));
-  });
-} catch (exception) {
-  console.error(`Failed to register callback. Cause code: ${exception.code}, message: ${exception.message}`);
+@Entry
+@Component
+struct Index {
+  private registerKeyboardWillHideAnimationCallback = (keyboardInfo: window.KeyboardInfo) => {
+    console.log('Keyboard will hide animation: ' + JSON.stringify(keyboardInfo));
+  }
+
+  build() {
+    Column() {
+      TextInput()
+    }
+  }
+
+  aboutToAppear(): void {
+    this.registerkeyboardWillHideAnimation()
+  }
+
+  private registerkeyboardWillHideAnimation() {
+    let context = getContext(this) as Context
+    window.getLastWindow(context).then((lastWindow) => {
+      try {
+        lastWindow.on("keyboardWillHide", this.registerKeyboardWillHideAnimationCallback);
+        console.log('Register keyboard will hide animation success');
+      } catch ( exception) {
+        console.error('Failed to register callback.')
+      }
+    })
+  }
 }
 ```
 
@@ -4292,7 +4360,7 @@ try {
 
 off(type: 'keyboardWillHide', callback?: Callback&lt;KeyboardInfo&gt;): void
 
-关闭固定态软键盘隐藏动画开始前的监听。改变输入法窗口为固定态切换至悬浮态方法详细介绍请参见[输入法服务](../apis-ime-kit/js-apis-inputmethodengine.md#changeflag10)。
+关闭固定态软键盘即将开始隐藏的监听。改变输入法窗口为固定态切换至悬浮态方法详细介绍请参见[输入法服务](../apis-ime-kit/js-apis-inputmethodengine.md#changeflag10)。
 
 **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
@@ -4302,8 +4370,8 @@ off(type: 'keyboardWillHide', callback?: Callback&lt;KeyboardInfo&gt;): void
 
 | 参数名   | 类型                   | 必填 | 说明                                                         |
 | -------- | ---------------------- | ---- | ------------------------------------------------------------ |
-| type     | string                 | 是   | 监听事件，固定为'keyboardWillHide'，即固定态软键盘隐藏动画开始前事件。 |
-| callback | Callback&lt;[KeyboardInfo](#keyboardinfo18)&gt; | 否   |  回调函数。返回软键盘窗口信息。若传入参数，则关闭该监听。如果未传入参数，则关闭所有固定态软键盘隐藏动画开始前的监听。                               |
+| type     | string                 | 是   | 监听事件，固定为'keyboardWillHide'，即固定态软键盘即将开始隐藏的事件。 |
+| callback | Callback&lt;[KeyboardInfo](#keyboardinfo18)&gt; | 否   |  回调函数。返回软键盘窗口信息。若传入参数，则关闭该监听。如果未传入参数，则关闭所有固定态软键盘即将开始隐藏的监听。                               |
 
 **错误码：**
 
@@ -4317,18 +4385,40 @@ off(type: 'keyboardWillHide', callback?: Callback&lt;KeyboardInfo&gt;): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@kit.BasicServicesKit';
+import window from '@ohos.window';
+import { JSON } from '@kit.ArkTS';
 
-const callback = (keyboardInfo: window.KeyboardInfo) => {
-  // ...
-}
-try {
-  windowClass.on('keyboardWillHide', callback);
-  windowClass.off('keyboardWillHide', callback);
-  // 如果通过on开启多个callback进行监听，同时关闭所有监听：
-  windowClass.off('keyboardWillHide');
-} catch (exception) {
-  console.error(`Failed to register or unregister callback. Cause code: ${exception.code}, message: ${exception.message}`);
+@Entry
+@Component
+struct Index {
+  private registerKeyboardWillHideAnimationCallback = (keyboardInfo: window.KeyboardInfo) => {
+    console.log('Keyboard will hide animation: ' + JSON.stringify(keyboardInfo));
+  }
+
+  build() {
+    Column() {
+      TextInput()
+    }
+  }
+
+  aboutToAppear(): void {
+    this.unregisterKeyboardWillHideAnimation()
+  }
+
+  private unregisterKeyboardWillHideAnimation() {
+    let context = getContext(this) as Context
+    window.getLastWindow(context).then((lastWindow) => {
+      try {
+        lastWindow.on("keyboardWillHide", this.registerKeyboardWillHideAnimationCallback);
+        lastWindow.off('keyboardWillHide', this.registerKeyboardWillHideAnimationCallback);
+        // 如果通过on开启多个callback进行监听，同时关闭所有监听：
+        lastWindow.off('keyboardWillHide');
+        console.log('Unregister keyboard will hide animation success');
+      } catch ( exception) {
+        console.error('Failed to register callback.')
+      }
+    })
+  }
 }
 ```
 
