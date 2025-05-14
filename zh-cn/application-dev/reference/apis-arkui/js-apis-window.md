@@ -12831,7 +12831,7 @@ export default class EntryAbility extends UIAbility {
 
 setDefaultDensityEnabled(enabled: boolean): void
 
-设置应用是否使用系统默认Density。
+设置应用是否使用系统默认Density，调用此接口前，需先调用[window.loadContent()](#loadcontent9)初始化布局，确保行为与预期一致。
 
 不调用此接口进行设置，则表示不使用系统默认Density，即窗口会跟随系统显示大小变化重新布局。
 
