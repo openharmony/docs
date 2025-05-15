@@ -2288,7 +2288,7 @@ Driver对象通过给定的key值，找到对应组合键并点击。例如，Ke
 | ------ | ------ | ---- | ------------------------------ |
 | key0   | number | 是   | 指定的第一个key值，取值大于等于0的整数，取值范围：[KeyCode键码值](../apis-input-kit/js-apis-keycode.md#keycode)。            |
 | key1   | number | 是   | 指定的第二个key值，取值大于等于0的整数，取值范围：[KeyCode键码值](../apis-input-kit/js-apis-keycode.md#keycode)。            |
-| key2   | number | 否   | 指定的第三个key值，取值大于等于0的整数。取值范围：[KeyCode键码值](../apis-input-kit/js-apis-keycode.md#keycode)，默认值为空。 |
+| key2   | number | 否   | 指定的第三个key值，取值大于等于0的整数。取值范围：[KeyCode键码值](../apis-input-kit/js-apis-keycode.md#keycode)，默认值为0。 |
 
 **错误码：**
 
@@ -3013,8 +3013,8 @@ mouseClick(p: Point, btnId: MouseButton, key1?: number, key2?: number): Promise\
 | ------ | ----------------------------- | ---- | ------------------------------ |
 | p      | [Point](#point9)              | 是   | 鼠标点击的坐标。               |
 | btnId  | [MouseButton](#mousebutton10) | 是   | 按下的鼠标按钮。               |
-| key1   | number                        | 否   | 指定的第一个key值，取值大于等于0的整数，取值范围：[KeyCode键码值](../apis-input-kit/js-apis-keycode.md#keycode)，默认值为空。 |
-| key2   | number                        | 否   | 指定的第二个key值，取值大于等于0的整数，取值范围：[KeyCode键码值](../apis-input-kit/js-apis-keycode.md#keycode)，默认值为空。 |
+| key1   | number                        | 否   | 指定的第一个key值，取值大于等于0的整数，取值范围：[KeyCode键码值](../apis-input-kit/js-apis-keycode.md#keycode)，默认值为0。 |
+| key2   | number                        | 否   | 指定的第二个key值，取值大于等于0的整数，取值范围：[KeyCode键码值](../apis-input-kit/js-apis-keycode.md#keycode)，默认值为0。 |
 
 **错误码：**
 
@@ -3052,8 +3052,8 @@ mouseScroll(p: Point, down: boolean, d: number, key1?: number, key2?: number): P
 | p      | [Point](#point9) | 是   | 鼠标点击的坐标。                                            |
 | down   | boolean          | 是   | 滚轮滑动方向是否向下。true表示向下滑动。false表示向上滚动。 |
 | d      | number           | 是   | 鼠标滚轮滚动的格数，取值大于等于0的整数，每格对应目标点位移120px。         |
-| key1   | number           | 否   | 指定的第一个key值，取值大于等于0的整数，取值范围：[KeyCode键码值](../apis-input-kit/js-apis-keycode.md#keycode)，默认值为空。                              |
-| key2   | number           | 否   | 指定的第二个key值，取值大于等于0的整数，取值范围：[KeyCode键码值](../apis-input-kit/js-apis-keycode.md#keycode)，默认值为空。                              |
+| key1   | number           | 否   | 指定的第一个key值，取值大于等于0的整数，取值范围：[KeyCode键码值](../apis-input-kit/js-apis-keycode.md#keycode)，默认值为0。                              |
+| key2   | number           | 否   | 指定的第二个key值，取值大于等于0的整数，取值范围：[KeyCode键码值](../apis-input-kit/js-apis-keycode.md#keycode)，默认值为0。                              |
 
 **错误码：**
 
@@ -3163,8 +3163,8 @@ mouseScroll(p: Point, down: boolean, d: number, key1?: number, key2?: number, sp
 | p      | [Point](#point9) | 是   | 鼠标点击的坐标。                                             |
 | down   | boolean          | 是   | 滚轮滑动方向是否向下。true表示向下滑动。false表示向上滚动。  |
 | d      | number           | 是   | 鼠标滚轮滚动的格数，取值大于等于0的整数，每格对应目标点位移120px。          |
-| key1   | number           | 否   | 指定的第一个key值，取值大于等于0的整数，取值范围：[KeyCode键码值](../apis-input-kit/js-apis-keycode.md#keycode)，默认值为空。                               |
-| key2   | number           | 否   | 指定的第二个key值，取值大于等于0的整数，取值范围：[KeyCode键码值](../apis-input-kit/js-apis-keycode.md#keycode)，默认值为空。                               |
+| key1   | number           | 否   | 指定的第一个key值，取值大于等于0的整数，取值范围：[KeyCode键码值](../apis-input-kit/js-apis-keycode.md#keycode)，默认值为0。                               |
+| key2   | number           | 否   | 指定的第二个key值，取值大于等于0的整数，取值范围：[KeyCode键码值](../apis-input-kit/js-apis-keycode.md#keycode)，默认值为0。                               |
 | speed  | number           | 否   | 鼠标滚轮滚动的速度，范围：1-500的整数，不在范围内设为默认值为20，单位：格/秒。 |
 
 **错误码：**
@@ -3202,8 +3202,8 @@ mouseDoubleClick(p: Point, btnId: MouseButton, key1?: number, key2?: number): Pr
 | ------ | ----------------------------- | ---- | ------------------------------ |
 | p      | [Point](#point9)              | 是   | 鼠标双击的坐标。               |
 | btnId  | [MouseButton](#mousebutton10) | 是   | 按下的鼠标按钮。               |
-| key1   | number                        | 否   | 指定的第一个key值，取值大于等于0的整数，取值范围：[KeyCode键码值](../apis-input-kit/js-apis-keycode.md#keycode)，默认值为空。 |
-| key2   | number                        | 否   | 指定的第二个key值，取值大于等于0的整数，取值范围：[KeyCode键码值](../apis-input-kit/js-apis-keycode.md#keycode)，默认值为空。 |
+| key1   | number                        | 否   | 指定的第一个key值，取值大于等于0的整数，取值范围：[KeyCode键码值](../apis-input-kit/js-apis-keycode.md#keycode)，默认值为0。 |
+| key2   | number                        | 否   | 指定的第二个key值，取值大于等于0的整数，取值范围：[KeyCode键码值](../apis-input-kit/js-apis-keycode.md#keycode)，默认值为0。 |
 
 **错误码：**
 
@@ -3241,8 +3241,8 @@ mouseLongClick(p: Point, btnId: MouseButton, key1?: number, key2?: number): Prom
 | ------ | ----------------------------- | ---- | ------------------------------ |
 | p      | [Point](#point9)              | 是   | 鼠标长按的坐标。               |
 | btnId  | [MouseButton](#mousebutton10) | 是   | 按下的鼠标按钮。               |
-| key1   | number                        | 否   | 指定的第一个key值，取值大于等于0的整数，取值范围：[KeyCode键码值](../apis-input-kit/js-apis-keycode.md#keycode)，默认值为空。 |
-| key2   | number                        | 否   | 指定的第二个key值，取值大于等于0的整数，取值范围：[KeyCode键码值](../apis-input-kit/js-apis-keycode.md#keycode)，默认值为空。 |
+| key1   | number                        | 否   | 指定的第一个key值，取值大于等于0的整数，取值范围：[KeyCode键码值](../apis-input-kit/js-apis-keycode.md#keycode)，默认值为0。 |
+| key2   | number                        | 否   | 指定的第二个key值，取值大于等于0的整数，取值范围：[KeyCode键码值](../apis-input-kit/js-apis-keycode.md#keycode)，默认值为0。 |
 
 **错误码：**
 
