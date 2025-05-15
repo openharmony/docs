@@ -36,7 +36,7 @@ getRequestInfo(want: Want): RequestInfo
 
 | 类型   | 说明                     |
 | ------ | ------------------------ |
-| [RequestInfo](#requestinfo) | 请求方RequestInfo,用于绑定模态窗口。 |
+| [RequestInfo](#requestinfo) | 请求方RequestInfo，用于绑定模态窗口。 |
 
 **错误码**：
 
@@ -122,8 +122,8 @@ export default class EntryAbility extends UIAbility {
 | ---- | ------ | ---- | --------------------------- |
 | left  | number | 是   | 弹框边框的左上角的X坐标。 |
 | top  | number | 是   | 弹框边框的左上角的Y坐标。 |
-| width  | number | 是   | 弹框的宽度。 |
-| height  | number | 是   | 弹框的高度。 |
+| width  | number | 是   | 弹框的宽度，单位为px。 |
+| height  | number | 是   | 弹框的高度，单位为px。 |
 
 ## RequestInfo
 

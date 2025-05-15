@@ -23,7 +23,7 @@ The **metadata_output.h** file declares the metadata output concepts.
 
 | Name| Description| 
 | -------- | -------- |
-| struct&nbsp;&nbsp;[MetadataOutput_Callbacks](_metadata_output___callbacks.md) | Describes the callbacks related to metadata output. | 
+| struct  [MetadataOutput_Callbacks](_metadata_output___callbacks.md) | Describes the callbacks related to metadata output. | 
 
 
 ### Types

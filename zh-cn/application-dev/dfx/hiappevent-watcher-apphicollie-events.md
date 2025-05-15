@@ -11,7 +11,7 @@ HiAppEvent提供接口用于订阅任务执行超时事件。
 | 名称    | 类型   | 说明                       |
 | ------- | ------ | ------------------------- |
 | time     | number | 事件触发时间，单位为毫秒。 |
-| foreground | boolean | 应用是否处于前台状态。 |
+| foreground | boolean | 应用是否处于前台状态。true-前台，false-后台。 |
 | bundle_version | string | 应用版本。 |
 | process_name | string | 应用的进程名称。 |
 | pid | number | 应用的进程id。|

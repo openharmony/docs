@@ -35,11 +35,11 @@ setTransform(transform?: Matrix2D): void
 @Entry
 @Component
 struct CanvasPatternPage {
-  private settings: RenderingContextSettings = new RenderingContextSettings(true)
-  private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
-  private matrix: Matrix2D = new Matrix2D()
-  private img: ImageBitmap = new ImageBitmap("common/pattern.jpg")
-  private pattern: CanvasPattern | null = null
+  private settings: RenderingContextSettings = new RenderingContextSettings(true);
+  private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
+  private matrix: Matrix2D = new Matrix2D();
+  private img: ImageBitmap = new ImageBitmap("common/pattern.jpg");
+  private pattern: CanvasPattern | null = null;
 
   build() {
       Column() {

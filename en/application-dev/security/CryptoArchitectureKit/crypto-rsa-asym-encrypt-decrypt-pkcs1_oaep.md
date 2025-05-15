@@ -1,11 +1,8 @@
 # Encryption and Decryption with an RSA Asymmetric Key Pair (PKCS1_OAEP)
 
-
 For details about the algorithm specifications, see [RSA](crypto-asym-encrypt-decrypt-spec.md#rsa).
 
-
 **Encryption**
-
 
 1. Call [cryptoFramework.createAsyKeyGeneratorBySpec](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreateasykeygeneratorbyspec10) and [AsyKeyGeneratorBySpec.generateKeyPair](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#generatekeypair-3) to generate an RSA asymmetric key pair (**KeyPair**) based on the specified key parameters.
    
@@ -15,12 +12,11 @@ For details about the algorithm specifications, see [RSA](crypto-asym-encrypt-de
 
 3. Call [Cipher.init](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#init-1) to initialize the **Cipher** instance. In **Cipher.init**, set **opMode** to **CryptoMode.ENCRYPT_MODE** (encryption) and **key** to **KeyPair.PubKey** (the key used for encryption).
    
-   No encryption parameter is required for asymmetric key pairs. Therefore, pass in **null** in **params**.
+   No encryption parameter is required for asymmetric key pairs. Therefore, set **params** to **null**.
 
 4. Call [Cipher.setCipherSpec](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#setcipherspec10) to set the parameter **pSource** for **PKCS1_OAEP** before **Cipher.doFinal** is called. You can use [Cipher.getCipherSpec](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#getcipherspec10) to obtain OAEP-related parameters.
 
 5. Call [Cipher.doFinal](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#dofinal-1) to pass in the plaintext and encrypt it.
-
 
 **Decryption**
 
@@ -32,7 +28,6 @@ For details about the algorithm specifications, see [RSA](crypto-asym-encrypt-de
 3. Call [Cipher.setCipherSpec](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#setcipherspec10) to set the parameter **pSource** for **PKCS1_OAEP** before **Cipher.doFinal** is called. The value of **pSource** must be the same as that set in encryption. You can use [Cipher.getCipherSpec](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#getcipherspec10) to obtain OAEP-related parameters.
 
 4. Call [Cipher.doFinal](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#dofinal-1) to pass in the ciphertext and decrypt it.
-
 
 - Example (using asynchronous APIs):
 

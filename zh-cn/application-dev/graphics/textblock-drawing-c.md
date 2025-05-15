@@ -4,9 +4,9 @@
 
 字块（TextBlob）是指文本的集合。无论是单个的文字还是大块的文本，都可以通过字块来绘制。
 
-本节聚焦于文字的绘制效果，更多关于文本测量、排版的场景指导，可见[文本开发概述](text-overview.md)。
-
 除了基本的字块绘制之外，还可以给文字添加各种绘制效果。常见的字块绘制场景包括[文字描边](#文字描边)、[文字渐变](#文字渐变)等，更多效果请见[绘制效果](drawing-effect-overview.md)。
+
+本节不涉及文本测量和布局排版相关内容，如需在开发中处理此类文本绘制需求，可参考[文本开发概述](text-overview.md)，该文档系统讲解了排版策略与相关使用指导。
 
 ## 基本字块绘制
 
@@ -126,6 +126,68 @@ OH_Drawing_BrushDestroy(brush);
 ```
 
 ![Screenshot_20241225173900576](figures/Screenshot_20241225173900576.jpg)
+
+## 主题字体
+
+主题字体，特指系统**主题应用**中能使用的字体，属于一种特殊的自定义字体。如需涉及文本测量和布局排版相关内容，可参考[使用主题字体（C/C++）](theme-font-c.md)。
+
+设置跟随主题字体的示例代码和效果图如下：
+
+```c++
+// 创建字型对象
+OH_Drawing_Font *font = OH_Drawing_FontCreate();
+// 设置文字大小
+OH_Drawing_FontSetTextSize(font, 100);
+// 设置跟随主题字体
+OH_Drawing_FontSetThemeFontFollowed(font, true);
+// 需要绘制的文字
+const char *str = "Hello World";
+// 创建字块对象
+OH_Drawing_TextBlob *textBlob =
+    OH_Drawing_TextBlobCreateFromString(str, font, OH_Drawing_TextEncoding::TEXT_ENCODING_UTF8);
+// 绘制字块
+OH_Drawing_CanvasDrawTextBlob(canvas, textBlob, 200, 800);
+// 释放字块对象
+OH_Drawing_TextBlobDestroy(textBlob);
+// 释放字型对象
+OH_Drawing_FontDestroy(font);
+```
+
+| 未跟随主题字体的效果图 | 跟随主题字体的效果图（不同主题字体显示效果不同，此处仅示意） |
+| -------- | -------- |
+| ![Snapshot_setThemeFontFollowed_sys](figures/Snapshot_setThemeFontFollowed_sys.jpg) | ![Snapshot_setThemeFontFollowed](figures/Snapshot_setThemeFontFollowed.jpg) |
+
+> **说明**
+>
+> 需要在应用入口文件（默认工程中为EntryAbility.ets）中复写onConfigurationUpdate函数，以响应切换主题字体的操作，确保切换后页面能够及时刷新并生效。具体实现可参考[使用主题字体（C/C++）](theme-font-c.md)。
+
+## 单字绘制
+
+相比字块绘制，单字绘制的优势在于能够利用字体退化机制，在当前字体无法显示某字符时，自动退化到使用系统字体绘制字符，从而提升对特殊字符的兼容性，避免字符缺失，增强用户体验。
+
+单字绘制的示例代码和效果图如下：
+
+```c++
+// 创建字型对象
+OH_Drawing_Font *font = OH_Drawing_FontCreate();
+// 设置文字大小
+OH_Drawing_FontSetTextSize(font, 100);
+float startX = 100;
+float startY = 100;
+const char* str = "Hello";
+for (int i = 0; i < 5; ++i) {
+    // 单字绘制
+    OH_Drawing_CanvasDrawSingleCharacter(canvas, &str[i], font, startX, startY);
+    float textWidth = 0.f;
+    // 测量单个字符的宽度
+    OH_Drawing_FontMeasureSingleCharacter(font, &str[i], &textWidth);
+    startX += textWidth;
+}
+// 释放字型对象
+OH_Drawing_FontDestroy(font);
+```
+
+![Snapshot_drawSingleCharacter](figures/Snapshot_drawSingleCharacter.jpg)
 
 <!--RP1-->
 ## 相关实例

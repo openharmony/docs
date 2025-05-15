@@ -32,5 +32,5 @@ skill标签对象，三方应用可以通过[bundleManager.getBundleInfoForSelf]
 | pathRegex       | string | 是   | 否   | 标识 URI 路径部分，用于正则匹配，仅当 scheme 和 host 同时存在时才生效。 |
 | type            | string | 是   | 否   | 标识与Want相匹配的数据类型，使用[MIME（Multipurpose Internet Mail Extensions）类型](../../database/uniform-data-type-descriptors.md#标准化数据类型的定义)规范。 |
 | utd             | string | 是   | 否   | 标识与 Want 相匹配的 URI 的标准化数据类型，适用于分享等场景。 |
-| maxFileSupported | number   | 是   | 否   | 对于指定类型的文件，标识一次能接收或打开的最大数量。 |
+| maxFileSupported | number   | 是   | 否   | 对于指定类型的文件，标识一次能接收或打开的最大数量。取值范围：不小于0的整数。 |
 | linkFeature     | string | 是   | 否   | 标识 URI 提供的[功能类型](../../application-models/app-uri-config.md#linkfeature标签说明)，用于实现应用间跳转，仅在AbilityInfo中存在。 |

@@ -53,9 +53,6 @@ ArkWeb同层渲染特性主要提供两种能力：同层标签生命周期和�
 
 如果应用需要在Web组件加载的网页中使用同层渲染，需要按照以下规格将网页中的&lt;embed&gt;、&lt;object&gt;标签指定为同层渲染组件。
 
-**支持的产品形态：** 
-当前仅支持移动设备和平板形态。
-
 **支持的H5标签：**
 - 支持&lt;embed&gt;标签：在开启同层渲染后，仅支持type类型为native前缀的标签识别为同层组件，不支持自定义属性。
 
@@ -85,7 +82,9 @@ display，position，z-index，visibility，opacity, background-color，backgrou
 
 - 不支持同层标签所在的应用页面缩放和[initialScale](../reference/apis-arkweb/ts-basic-components-web.md#initialscale9)、[zoom](../reference/apis-arkweb/js-apis-webview.md#zoom)、[zoomIn](../reference/apis-arkweb/js-apis-webview.md#zoomin)、[zoomOut](../reference/apis-arkweb/js-apis-webview.md#zoomout)等缩放接口。
 
-- 暂不支持鼠标、键盘、触摸板事件。
+- 暂不支持鼠标、键盘、触摸板事件上报。
+
+- 支持默认将鼠标和触摸板左键事件（MousePress/MouseRelease/MouseMOVE）转换为触摸事件（TouchDOWN/TouchUP/TouchMOVE）上报。
 
 **同层标签的可见状态变化：**
 当同层标签可见状态变化时触发[onNativeEmbedVisibilityChange](../reference/apis-arkweb/ts-basic-components-web.md#onnativeembedvisibilitychange12)回调。

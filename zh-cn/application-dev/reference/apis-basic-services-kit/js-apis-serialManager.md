@@ -574,6 +574,11 @@ write(portId: number, buffer: Uint8Array, timeout?: number): Promise&lt;number&g
 
 **示例：**
 
+> **说明：**
+>
+> 以下示例代码需要放入具体的方法中执行，只是调用addSerialRight接口新增串口访问权限的必要流程，实际调用时，设备开发者需要根据开发设备进行适配。
+
+<!--code_no_check-->
 ```ts
 import { JSON } from '@kit.ArkTS';
 import { serialManager } from '@kit.BasicServicesKit';

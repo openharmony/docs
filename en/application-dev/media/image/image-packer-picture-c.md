@@ -68,7 +68,7 @@ After an **ImagePacker** instance is created and encoding parameters are specifi
             source = nullptr;
             return thisPicture->errorCode;
         }
-    OH_LOG_DEBUG(LOG_APP, "ReleaseImageSource source is null !");
+    OH_LOG_DEBUG(LOG_APP, "ReleaseImageSource source is null!");
         return IMAGE_SUCCESS;
     }
 
@@ -86,7 +86,7 @@ After an **ImagePacker** instance is created and encoding parameters are specifi
         size_t argc = 2;
         napi_value args[2] = {nullptr};
         if (napi_get_cb_info(env, info, &argc, args, nullptr, nullptr) != napi_ok) {
-            OH_LOG_ERROR(LOG_APP, "napi_get_cb_info failed !");
+            OH_LOG_ERROR(LOG_APP, "napi_get_cb_info failed!");
             return getJsResult(env, thisPicture->errorCode);
         }
         uint32_t fd = 0;
@@ -138,7 +138,7 @@ After an **ImagePacker** instance is created and encoding parameters are specifi
         size_t argc = 2;
         napi_value args[2] = {nullptr};
         if (napi_get_cb_info(env, info, &argc, args, nullptr, nullptr) != napi_ok) {
-        OH_LOG_ERROR(LOG_APP, "napi_get_cb_info failed !");
+        OH_LOG_ERROR(LOG_APP, "napi_get_cb_info failed!");
             return getJsResult(env, thisPicture->errorCode);
         }
         uint32_t fd = 0;

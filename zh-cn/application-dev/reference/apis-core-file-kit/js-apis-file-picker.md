@@ -850,11 +850,11 @@ async function example18(context: common.UIAbilityContext) { // 需确保 contex
 
 | 名称                    | 类型                                          | 必填 | 说明                                       |
 | :---------------------- |---------------------------------------------| ---- |------------------------------------------|
-| maxSelectNumber<sup>12+</sup>       | number                                      | 否   | 选择文件最大个数，默认值为1，上限为500个，有效值范围1-500 |
+| maxSelectNumber<sup>12+</sup>       | number                                      | 否   | 选择文件最大个数，默认值为1，上限为500个，有效值范围1-500。 |
 
 ## AudioSaveOptions
 
-音频的保存选项。
+音频保存选项。
 
 **原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 

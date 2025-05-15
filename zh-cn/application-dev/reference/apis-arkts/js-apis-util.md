@@ -524,6 +524,29 @@ console.info('result2 is ' + result2);
 // 输出结果：result1 与 result2 的值相等，且为随机的Hash值。
 ```
 
+## util.getMainThreadStackTrace<sup>20+</sup>
+
+getMainThreadStackTrace(): string
+
+获取主线程的栈追踪信息，最多返回64层调用帧。该接口可能会影响到主线程性能，建议谨慎使用。
+
+**原子化服务API**：从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| string | 主线程的栈追踪信息。若主线程未处于执行JS代码状态，则返回空字符串。|
+
+**示例：**
+
+```ts
+let stack = util.getMainThreadStackTrace();
+console.info(stack);
+// 输出当前主线程的栈追踪信息。
+```
 
 ## TextDecoderOptions<sup>11+</sup>
 

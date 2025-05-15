@@ -3,7 +3,7 @@
 
 ## Overview
 
-Defines the structs of the HiDebug module. \@kit PerformanceAnalysisKit
+Defines the structs of the HiDebug module.
 
 **Library**: libohhidebug.so
 
@@ -71,7 +71,7 @@ Defines the structs of the HiDebug module. \@kit PerformanceAnalysisKit
 | -------- | -------- |
 | typedef enum [HiDebug_ErrorCode](_hi_debug.md#hidebug_errorcode-1) [HiDebug_ErrorCode](_hi_debug.md#hidebug_errorcode) | Defines an enum for the error codes used in the HiDebug module. | 
 | typedef struct [HiDebug_ThreadCpuUsage](_hi_debug___thread_cpu_usage.md) [HiDebug_ThreadCpuUsage](_hi_debug.md#hidebug_threadcpuusage) | Defines a struct for the CPU usage of all threads of an application. | 
-| typedef [HiDebug_ThreadCpuUsage](_hi_debug___thread_cpu_usage.md) \* [HiDebug_ThreadCpuUsagePtr](_hi_debug.md#hidebug_threadcpuusageptr) | Defines the pointer to **HiDebug_ThreadCpuUsage** . | 
+| typedef [HiDebug_ThreadCpuUsage](_hi_debug___thread_cpu_usage.md) \* [HiDebug_ThreadCpuUsagePtr](_hi_debug.md#hidebug_threadcpuusageptr) | Defines the pointer to **HiDebug_ThreadCpuUsage**. | 
 | typedef struct [HiDebug_SystemMemInfo](_hi_debug___system_mem_info.md) [HiDebug_SystemMemInfo](_hi_debug.md#hidebug_systemmeminfo) | Defines a struct for the system memory information. | 
 | typedef struct [HiDebug_NativeMemInfo](_hi_debug___native_mem_info.md) [HiDebug_NativeMemInfo](_hi_debug.md#hidebug_nativememinfo) | Defines a struct for the local memory information of an application process. | 
 | typedef struct [HiDebug_MemoryLimit](_hi_debug___memory_limit.md) [HiDebug_MemoryLimit](_hi_debug.md#hidebug_memorylimit) | Defines a struct for the memory limit of an application process. | 

@@ -175,6 +175,8 @@ enum UsbDdkErrCode
 
 USB DDK 错误码定义。
 
+**起始版本：** 10
+
 | 枚举定义 | 值 | 描述 |
 | -------- | -------- |-------- |
 | USB_DDK_SUCCESS | 0 | 操作成功。 |
@@ -201,6 +203,8 @@ int32_t OH_Usb_ClaimInterface (uint64_t deviceId, uint8_t interfaceIndex, uint64
 声明接口。
 
 **需要权限**：ohos.permission.ACCESS_DDK_USB
+
+**起始版本：** 10
 
 **参数:**
 
@@ -231,6 +235,8 @@ int32_t OH_Usb_CreateDeviceMemMap (uint64_t deviceId, size_t size, UsbDeviceMemM
 
 **需要权限**：ohos.permission.ACCESS_DDK_USB
 
+**起始版本：** 10
+
 **参数:**
 
 | 名称 | 描述 |
@@ -260,6 +266,8 @@ void OH_Usb_DestroyDeviceMemMap (UsbDeviceMemMap * devMmap)
 
 **需要权限**：ohos.permission.ACCESS_DDK_USB
 
+**起始版本：** 10
+
 **参数:**
 
 | 名称 | 描述 |
@@ -280,6 +288,8 @@ void OH_Usb_FreeConfigDescriptor (struct UsbDdkConfigDescriptor *const config)
 
 **需要权限**：ohos.permission.ACCESS_DDK_USB
 
+**起始版本：** 10
+
 **参数:**
 
 | 名称 | 描述 |
@@ -299,6 +309,8 @@ int32_t OH_Usb_GetConfigDescriptor (uint64_t deviceId, uint8_t configIndex, stru
 获取配置描述符。请在描述符使用完后使用[OH_Usb_FreeConfigDescriptor()](#oh_usb_freeconfigdescriptor)释放描述符，否则会造成内存泄露。
 
 **需要权限**：ohos.permission.ACCESS_DDK_USB
+
+**起始版本：** 10
 
 **参数:**
 
@@ -331,6 +343,8 @@ int32_t OH_Usb_GetCurrentInterfaceSetting (uint64_t interfaceHandle, uint8_t * s
 
 **需要权限**：ohos.permission.ACCESS_DDK_USB
 
+**起始版本：** 10
+
 **参数:**
 
 | 名称 | 描述 |
@@ -359,6 +373,8 @@ int32_t OH_Usb_GetDeviceDescriptor (uint64_t deviceId, struct UsbDeviceDescripto
 
 **需要权限**：ohos.permission.ACCESS_DDK_USB
 
+**起始版本：** 10
+
 **参数:**
 
 | 名称 | 描述 |
@@ -386,6 +402,8 @@ int32_t OH_Usb_Init (void )
 
 **需要权限**：ohos.permission.ACCESS_DDK_USB
 
+**起始版本：** 10
+
 **返回:**
 
 - [USB_DDK_SUCCESS](#usbddkerrcode)：表示调用接口成功。
@@ -404,6 +422,8 @@ void OH_Usb_Release (void)
 释放DDK。
 
 **需要权限**：ohos.permission.ACCESS_DDK_USB
+
+**起始版本：** 10
 
 ### OH_Usb_ReleaseResource()
 
@@ -437,6 +457,8 @@ int32_t OH_Usb_ReleaseInterface (uint64_t interfaceHandle)
 
 **需要权限**：ohos.permission.ACCESS_DDK_USB
 
+**起始版本**：10
+
 **参数:**
 
 | 名称 | 描述 |
@@ -464,6 +486,8 @@ int32_t OH_Usb_SelectInterfaceSetting (uint64_t interfaceHandle, uint8_t setting
 
 **需要权限**：ohos.permission.ACCESS_DDK_USB
 
+**起始版本**：10
+
 **参数:**
 
 | 名称 | 描述 |
@@ -490,6 +514,8 @@ int32_t OH_Usb_SendControlReadRequest (uint64_t interfaceHandle, const struct Us
 发送控制读请求，该接口为同步接口。
 
 **需要权限**：ohos.permission.ACCESS_DDK_USB
+
+**起始版本**：10
 
 **参数:**
 
@@ -525,6 +551,8 @@ int32_t OH_Usb_SendControlWriteRequest (uint64_t interfaceHandle, const struct U
 
 **需要权限**：ohos.permission.ACCESS_DDK_USB
 
+**起始版本**：10
+
 **参数:**
 
 | 名称 | 描述 |
@@ -558,6 +586,8 @@ int32_t OH_Usb_SendPipeRequest (const struct UsbRequestPipe * pipe, UsbDeviceMem
 发送管道请求，该接口为同步接口。中断传输和批量传输都使用该接口发送请求。
 
 **需要权限**：ohos.permission.ACCESS_DDK_USB
+
+**起始版本**：10
 
 **参数:**
 
