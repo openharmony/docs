@@ -74,7 +74,7 @@ try {
             abilityName: 'EntryAbility'
         }, (err: BusinessError, data: distributedBundle.RemoteAbilityInfo) => {
             if (err) {
-                console.log(`Operation failed: error code is ${err.code}  and error message is ${err.message}`);
+                console.error(`Operation failed: error code is ${err.code}  and error message is ${err.message}`);
             } else {
                 console.info('Operation succeed:' + JSON.stringify(data));
             }
@@ -82,7 +82,7 @@ try {
 } catch (err) {
     let code = (err as BusinessError).code;
     let message = (err as BusinessError).message;
-    console.log(`Operation failed: error code is ${code}  and error message is ${message}`);
+    console.error(`Operation failed: error code is ${code}  and error message is ${message}`);
 }
 ```
 
@@ -140,12 +140,12 @@ try {
         }).then((data: distributedBundle.RemoteAbilityInfo) => {
             console.info('Operation succeed:' + JSON.stringify(data));
         }).catch((err: BusinessError) => {
-            console.log(`Operation failed: error code is ${err.code}  and error message is ${err.message}`);
+            console.error(`Operation failed: error code is ${err.code}  and error message is ${err.message}`);
         });
 } catch (err) {
     let code = (err as BusinessError).code;
     let message = (err as BusinessError).message;
-    console.log(`Operation failed: error code is ${code}  and error message is ${message}`);
+    console.error(`Operation failed: error code is ${code}  and error message is ${message}`);
 }
 ```
 
@@ -204,7 +204,7 @@ try {
             }
         ], (err: BusinessError, data: distributedBundle.RemoteAbilityInfo[]) => {
           if (err) {
-            console.log(`Operation failed: error code is ${err.code}  and error message is ${err.message}`);
+            console.error(`Operation failed: error code is ${err.code}  and error message is ${err.message}`);
           } else {
             console.info('Operation succeed:' + JSON.stringify(data));
           }
@@ -212,7 +212,7 @@ try {
 } catch (err) {
     let code = (err as BusinessError).code;
     let message = (err as BusinessError).message;
-    console.log(`Operation failed: error code is ${code}  and error message is ${message}`);
+    console.error(`Operation failed: error code is ${code}  and error message is ${message}`);
 }
 ```
 
@@ -277,12 +277,12 @@ try {
         ]).then((data: distributedBundle.RemoteAbilityInfo[]) => {
             console.info('Operation succeed:' + JSON.stringify(data));
         }).catch((err: BusinessError) => {
-            console.log(`Operation failed: error code is ${err.code}  and error message is ${err.message}`);
+            console.error(`Operation failed: error code is ${err.code}  and error message is ${err.message}`);
         });
 } catch (err) {
     let code = (err as BusinessError).code;
     let message = (err as BusinessError).message;
-    console.log(`Operation failed: error code is ${code}  and error message is ${message}`);
+    console.error(`Operation failed: error code is ${code}  and error message is ${message}`);
 }
 ```
 
@@ -335,7 +335,7 @@ try {
             abilityName: 'EntryAbility'
         }, 'zh-Hans-CN', (err: BusinessError, data: distributedBundle.RemoteAbilityInfo) => {
           if (err) {
-            console.log(`Operation failed: error code is ${err.code}  and error message is ${err.message}`);
+            console.error(`Operation failed: error code is ${err.code}  and error message is ${err.message}`);
           } else {
             console.info('Operation succeed:' + JSON.stringify(data));
           }
@@ -343,7 +343,7 @@ try {
 } catch (err) {
     let code = (err as BusinessError).code;
     let message = (err as BusinessError).message;
-    console.log(`Operation failed: error code is ${code}  and error message is ${message}`);
+    console.error(`Operation failed: error code is ${code}  and error message is ${message}`);
 }
 ```
 
@@ -402,12 +402,12 @@ try {
         }, 'zh-Hans-CN').then((data: distributedBundle.RemoteAbilityInfo) => {
             console.info('Operation succeed:' + JSON.stringify(data));
         }).catch((err: BusinessError) => {
-            console.log(`Operation failed: error code is ${err.code}  and error message is ${err.message}`);
+            console.error(`Operation failed: error code is ${err.code}  and error message is ${err.message}`);
         });
 } catch (err) {
     let code = (err as BusinessError).code;
     let message = (err as BusinessError).message;
-    console.log(`Operation failed: error code is ${code}  and error message is ${message}`);
+    console.error(`Operation failed: error code is ${code}  and error message is ${message}`);
 }
 ```
 
@@ -467,7 +467,7 @@ try {
             }
         ], 'zh-Hans-CN', (err: BusinessError, data: distributedBundle.RemoteAbilityInfo[]) => {
           if (err) {
-           console.log(`Operation failed: error code is ${err.code}  and error message is ${err.message}`);
+           console.error(`Operation failed: error code is ${err.code}  and error message is ${err.message}`);
           } else {
             console.info('Operation succeed:' + JSON.stringify(data));
           }
@@ -475,7 +475,7 @@ try {
 } catch (err) {
     let code = (err as BusinessError).code;
     let message = (err as BusinessError).message;
-    console.log(`Operation failed: error code is ${code}  and error message is ${message}`);
+    console.error(`Operation failed: error code is ${code}  and error message is ${message}`);
 }
 ```
 
@@ -541,11 +541,11 @@ try {
         ], 'zh-Hans-CN').then((data: distributedBundle.RemoteAbilityInfo[]) => {
             console.info('Operation succeed:' + JSON.stringify(data));
         }).catch((err: BusinessError) => {
-            console.log(`Operation failed: error code is ${err.code}  and error message is ${err.message}`);
+            console.error(`Operation failed: error code is ${err.code}  and error message is ${err.message}`);
         });
 } catch (err) {
     let code = (err as BusinessError).code;
     let message = (err as BusinessError).message;
-    console.log(`Operation failed: error code is ${code}  and error message is ${message}`);
+    console.error(`Operation failed: error code is ${code}  and error message is ${message}`);
 }
 ```
