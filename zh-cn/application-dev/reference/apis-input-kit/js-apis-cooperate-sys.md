@@ -49,13 +49,13 @@ import { BusinessError } from '@kit.BasicServicesKit';
 try {
   inputDeviceCooperate.enable(true, (error: BusinessError) => {
     if (error) {
-      console.log(`Keyboard mouse crossing enable failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+      console.error(`Keyboard mouse crossing enable failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
       return;
     }
     console.log(`Keyboard mouse crossing enable success.`);
   });
 } catch (error) {
-  console.log(`Keyboard mouse crossing enable failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Keyboard mouse crossing enable failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -97,10 +97,10 @@ try {
   inputDeviceCooperate.enable(true).then(() => {
     console.log(`Keyboard mouse crossing enable success.`);
   }, (error: BusinessError) => {
-    console.log(`Keyboard mouse crossing enable failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+    console.error(`Keyboard mouse crossing enable failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
   });
 } catch (error) {
-  console.log(`Keyboard mouse crossing enable failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Keyboard mouse crossing enable failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -141,13 +141,13 @@ let srcInputDeviceId = 0;
 try {
   inputDeviceCooperate.start(sinkDeviceDescriptor, srcInputDeviceId, (error: BusinessError) => {
     if (error) {
-      console.log(`Start Keyboard mouse crossing failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+      console.error(`Start Keyboard mouse crossing failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
       return;
     }
     console.log(`Start Keyboard mouse crossing success.`);
   });
 } catch (error) {
-  console.log(`Start Keyboard mouse crossing failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Start Keyboard mouse crossing failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -196,10 +196,10 @@ try {
   inputDeviceCooperate.start(sinkDeviceDescriptor, srcInputDeviceId).then(() => {
     console.log(`Start Keyboard mouse crossing success.`);
   }, (error: BusinessError) => {
-    console.log(`Start Keyboard mouse crossing failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+    console.error(`Start Keyboard mouse crossing failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
   });
 } catch (error) {
-  console.log(`Start Keyboard mouse crossing failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Start Keyboard mouse crossing failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -234,13 +234,13 @@ import { BusinessError } from '@kit.BasicServicesKit';
 try {
   inputDeviceCooperate.stop((error: BusinessError) => {
     if (error) {
-      console.log(`Stop Keyboard mouse crossing failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+      console.error(`Stop Keyboard mouse crossing failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
       return;
     }
     console.log(`Stop Keyboard mouse crossing success.`);
   });
 } catch (error) {
-  console.log(`Stop Keyboard mouse crossing failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Stop Keyboard mouse crossing failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -268,10 +268,10 @@ try {
   inputDeviceCooperate.stop().then(() => {
     console.log(`Stop Keyboard mouse crossing success.`);
   }, (error: BusinessError) => {
-    console.log(`Stop Keyboard mouse crossing failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+    console.error(`Stop Keyboard mouse crossing failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
   });
 } catch (error) {
-  console.log(`Stop Keyboard mouse crossing failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Stop Keyboard mouse crossing failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -309,13 +309,13 @@ let deviceDescriptor = "descriptor";
 try {
   inputDeviceCooperate.getState(deviceDescriptor, (error: BusinessError, data: object) => {
     if (error) {
-      console.log(`Get the status failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+      console.error(`Get the status failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
       return;
     }
     console.log(`Get the status success, data: ${JSON.stringify(data)}`);
   });
 } catch (error) {
-  console.log(`Get the status failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Get the status failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -359,10 +359,10 @@ try {
   inputDeviceCooperate.getState(deviceDescriptor).then((data: object) => {
     console.log(`Get the status success, data: ${JSON.stringify(data)}`);
   }, (error: BusinessError) => {
-    console.log(`Get the status failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+    console.error(`Get the status failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
   });
 } catch (error) {
-  console.log(`Get the status failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Get the status failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -402,7 +402,7 @@ let callback = (msg: object) => {
 try {
   inputDeviceCooperate.on('cooperation', callback);
 } catch (error) {
-  console.log(`Register failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Register failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -448,7 +448,7 @@ try {
   inputDeviceCooperate.on('cooperation', callbackOn);
   inputDeviceCooperate.off("cooperation", callbackOff);
 } catch (error) {
-  console.log(`Execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 ```ts
@@ -463,7 +463,7 @@ try {
   inputDeviceCooperate.on('cooperation', callback);
   inputDeviceCooperate.off("cooperation");
 } catch (error) {
-  console.log(`Execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
