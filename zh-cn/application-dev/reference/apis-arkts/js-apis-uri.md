@@ -21,23 +21,23 @@ import { uri } from '@kit.ArkTS';
 
 **系统能力：** SystemCapability.Utils.Lang
 
-| 名称 | 类型 | 可读 | 可写 | 说明 |
+| 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| scheme | string | 是 | 否 | 获取URI的协议部分，若无此部分则返回null对象。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
-| userInfo | string | 是 | 否 | 获取URI的用户信息部分，若无此部分则返回null对象。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| scheme | string | 否 | 否 | 获取和设置URI的协议部分，若无此部分则返回null对象。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
+| userInfo | string | 否 | 否 | 获取和设置URI的用户信息部分，若无此部分则返回null对象。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | host | string | 是 | 否 | 获取URI的主机名部分（不带端口），若无此部分则返回null对象。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
 | port | string | 是 | 否 | 获取URI的端口部分。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| path | string | 是 | 否 | 获取URI的路径部分，若无此部分则返回null对象。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| query | string | 是 | 否 | 获取URI的查询部分，若无此部分则返回null对象。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| fragment | string | 是 | 否 | 获取URI的片段部分，若无此部分则返回null对象。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| authority | string | 是 | 否 | 获取此URI的解码权限组件部分，若无此部分则返回null对象。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| ssp | string | 是 | 否 | 获取URI的解码方案特定部分，方案特定部分是URI的一部分，它包含了特定于协议或方案的信息。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| encodedUserInfo<sup>12+</sup>  | string | 是   | 否   | 获取URI的编码用户信息部分，若无此部分则返回null对象。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。   |
-| encodedPath<sup>12+</sup>      | string | 是   | 否   | 获取URI的编码路径部分，若无此部分则返回null对象。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。       |
-| encodedQuery<sup>12+</sup>     | string | 是   | 否   | 获取URI的编码查询部分，若无此部分则返回null对象。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。      |
-| encodedFragment<sup>12+</sup>  | string | 是   | 否   | 获取URI的编码片段部分，若无此部分则返回null对象。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。      |
-| encodedAuthority<sup>12+</sup> | string | 是   | 否   | 获取URI的编码权限组件部分，若无此部分则返回null对象。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。   |
-| encodedSSP<sup>12+</sup>       | string | 是   | 否   | 获取URI的编码方案特定部分。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。   |
+| path | string | 否 | 否 | 获取和设置URI的路径部分，若无此部分则返回null对象。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| query | string | 否 | 否 | 获取和设置URI的查询部分，若无此部分则返回null对象。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| fragment | string | 否 | 否 | 获取和设置URI的片段部分，若无此部分则返回null对象。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| authority | string | 否 | 否 | 获取和设置此URI的解码权限组件部分，若无此部分则返回null对象。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| ssp | string | 否 | 否 | 获取和设置URI的解码方案特定部分，方案特定部分是URI的一部分，它包含了特定于协议或方案的信息。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| encodedUserInfo<sup>12+</sup>  | string | 否   | 否   | 获取和设置URI的编码用户信息部分，若无此部分则返回null对象。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。   |
+| encodedPath<sup>12+</sup>      | string | 否   | 否   | 获取和设置URI的编码路径部分，若无此部分则返回null对象。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。       |
+| encodedQuery<sup>12+</sup>     | string | 否   | 否   | 获取和设置URI的编码查询部分，若无此部分则返回null对象。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。      |
+| encodedFragment<sup>12+</sup>  | string | 否   | 否   | 获取和设置URI的编码片段部分，若无此部分则返回null对象。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。      |
+| encodedAuthority<sup>12+</sup> | string | 否   | 否   | 获取和设置URI的编码权限组件部分，若无此部分则返回null对象。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。   |
+| encodedSSP<sup>12+</sup>       | string | 否   | 否   | 获取和设置URI的编码方案特定部分。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。   |
 
 ### 命名规则
 

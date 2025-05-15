@@ -212,7 +212,7 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
     static napi_value Init(napi_env env, napi_value exports)
     {
         napi_property_descriptor desc[] = {
-           { "registerWatcher", nullptr, RegisterWatcher, nullptr, nullptr, nullptr, napi_default, nullptr },
+           { "RegisterWatcher", nullptr, RegisterWatcher, nullptr, nullptr, nullptr, napi_default, nullptr },
         };
         napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);
         return exports;
@@ -222,7 +222,7 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
     编辑"index.d.ts"文件，定义ArkTS接口：
 
     ```typescript
-    export const registerWatcher: () => void;
+    export const RegisterWatcher: () => void;
     ```
 
 6. 将TestHiCollieTimerNdk注册为ArkTS接口：
@@ -233,8 +233,8 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
     static napi_value Init(napi_env env, napi_value exports)
     {
         napi_property_descriptor desc[] = {
-            { "registerWatcher", nullptr, RegisterWatcher, nullptr, nullptr, nullptr, napi_default, nullptr },
-            { "testHiCollieTimerNdk", nullptr, TestHiCollieTimerNdk, nullptr, nullptr, nullptr, napi_default, nullptr },
+            { "RegisterWatcher", nullptr, RegisterWatcher, nullptr, nullptr, nullptr, napi_default, nullptr },
+            { "TestHiCollieTimerNdk", nullptr, TestHiCollieTimerNdk, nullptr, nullptr, nullptr, napi_default, nullptr },
         };
         napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);
         return exports;
@@ -268,16 +268,16 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
 
     // 在onCreate()函数中新增接口调用
     // 启动时，注册系统事件观察者
-    testNapi.registerWatcher();
+    testNapi.RegisterWatcher();
     ```
 
 8. 编辑"Index.ets"文件，新增按钮触发任务执行超时事件：
 
     ```typescript
-    Button("testHiCollieTimerNdk")
+    Button("TestHiCollieTimerNdk")
       .fontSize(50)
       .fontWeight(FontWeight.Bold)
-      .onClick(testNapi.testHiCollieTimerNdk);
+      .onClick(testNapi.TestHiCollieTimerNdk);
     ```
 
 9. 点击DevEco Studio界面中的运行按钮，运行应用工程，然后在应用界面中点击按钮“testHiCollieTimerNdk”，触发任务执行超时事件。

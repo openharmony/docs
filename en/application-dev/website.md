@@ -699,8 +699,7 @@
         - [Using Crashpad to Collect Web Component Crash Information](web/web-crashpad.md)
     - Background Tasks Kit<!--background-task-kit-->
       <!--Del-->
-      - Background Task Management
-      <!--DelEnd-->
+      - Background Task Management<!--background-task-management--><!--DelEnd-->
         - [Background Task Overview](task-management/background-task-overview.md)
         - [Transient Task (ArkTS)](task-management/transient-task.md)
         - [Transient Task (C/C++)](task-management/native-transient-task.md)
