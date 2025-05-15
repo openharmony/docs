@@ -936,6 +936,18 @@ Allows an application to control the SecurityGuard model switch.
 
 **Valid since**: 10
 
+## ohos.permission.UNLOCK_DEVELOPER_MODE
+
+Allows an application to unlock the developer mode.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 18
+
 ## ohos.permission.CAPTURE_VOICE_DOWNLINK_AUDIO
 
 Allows an application to capture the downlink voice audio.
@@ -2666,7 +2678,7 @@ Allows a system application to uninstall other applications.
 
 **Enable via ACL**: true
 
-**Valid since**: 18
+**Valid since**: 19
 
 ## ohos.permission.ACCESS_ADVANCED_SECURITY_MODE
 
@@ -4487,6 +4499,18 @@ Allows a system application to access the installation file path copied from ano
 
 **Valid since**: 18
 
+## ohos.permission.ACCESS_MEDIALIB_RESTORE
+
+Allows an application to mount media restore paths.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 17
+
 ## ohos.permission.ACCESS_TRUST_LIST_OOBE_MANAGER
 
 Allows an application to access the list of applications that can be started in the out-of-box experience.
@@ -4547,7 +4571,7 @@ Allows an application to call the APIs for installing plugins.
 
 **Enable via ACL**: true
 
-**Valid since**: 18
+**Valid since**: 19
 
 ## ohos.permission.UNINSTALL_PLUGIN_BUNDLE
 
@@ -4559,7 +4583,7 @@ Allows an application to call the APIs for uninstalling plugins.
 
 **Enable via ACL**: true
 
-**Valid since**: 18
+**Valid since**: 19
 
 ## ohos.permission.GET_EDM_CONFIG
 
@@ -4653,13 +4677,13 @@ Allows a system application to start the components provided by Tips.
 
 Allows an application to install and uninstall fonts.
 
-**Permission level**：system_basic
+**Permission level**: system_basic
 
-**Authorization mode**：system_grant
+**Authorization mode**: system_grant
 
-**Enable via ACL**：true
+**Enable via ACL**: true
 
-**Valid since**：19
+**Valid since**: 19
 
 ## ohos.permission.ACCESSIBILITY_EXTENSION_ABILITY
 
@@ -4670,6 +4694,34 @@ Allows an application to call the accessibility service extension APIs to query 
 **Authorization mode**: system_grant
 
 **Enable via ACL**: true
+
+**Valid since**: 20
+
+## ohos.permission.READ_SOUND_RECORD_IN_FILE_MANAGER
+
+Allows an application to read recording files from the file manager directory.
+
+**Permission level**: system_core
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Supported devices**: Phone | PC/2in1 | Tablet
+
+**Valid since**: 20
+
+## ohos.permission.WRITE_SOUND_RECORD_IN_FILE_MANAGER
+
+Allows an application to write recording files to the file manager directory.
+
+**Permission level**: system_core
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Supported devices**: Phone | PC/2in1 | Tablet
 
 **Valid since**: 20
 
@@ -4684,3 +4736,31 @@ Allows an application to access the sandbox directory of other applications.
 **Enable via ACL**: true
 
 **Valid since**: 17
+
+## ohos.permission.REQUEST_DISABLE_NOTIFICATION
+
+Allows an application to run background request tasks without triggering notifications in the notification bar.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Supported devices**: General
+
+**Valid since**: 20
+
+## ohos.permission.ALLOW_IOURING
+
+Allows a system application to call io_uring to perform async IO operations.
+
+**Permission level**：system_basic
+
+**Authorization mode**：system_grant
+
+**Enable via ACL**：true
+
+**Supported devices**: General
+
+**Valid since**：20

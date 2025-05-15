@@ -4,7 +4,7 @@
 
 >  **说明：**
 >
->  从API Version 10 开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>  从API version 10 开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 ## accessibilityGroup
 
@@ -252,7 +252,7 @@ type AccessibilityFocusCallback = (isFocus: boolean) => void
 
 | 参数名  | 类型    | 必填 | 说明              |
 | ------ | ------ | ---- | ---------------- |
-| isFocus | boolean | 是 | 是否获焦、失焦。 |
+| isFocus | boolean | 是 | 用于表示组件是否获焦。<br/>true：当前组件获焦。<br/>false：当前组件失焦。|
 
 ## AccessibilityRoleType<sup>18+</sup>枚举说明
 
@@ -493,7 +493,7 @@ accessibilityTextHint(value: string)
 | -------------- | ------- | ---- | ------------------------------------------------------------ |
 | value  | string | 是   | 组件的文本提示信息，供无障碍辅助应用查询。 |
 
-## accessibilityFocusDrawLevel<sup>18+</sup>
+## accessibilityFocusDrawLevel<sup>19+</sup>
 
 accessibilityFocusDrawLevel(drawLevel: FocusDrawLevel)
 
@@ -505,9 +505,9 @@ accessibilityFocusDrawLevel(drawLevel: FocusDrawLevel)
 > 2、在Z序顶层绘制绿框情况下，可以避免由于组件遮挡、裁切导致无障碍绿框被裁切遮挡。但由于具备较高的绘制层级，如果需要交互过程中，需要遮挡当前获焦的组件，并且不希望显示无障碍绿框则不适合使用这种配置。
 
 
-**卡片能力：** 从API version 18开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 19开始，该接口支持在ArkTS卡片中使用。
 
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -515,13 +515,15 @@ accessibilityFocusDrawLevel(drawLevel: FocusDrawLevel)
 
 | 参数名   | 类型    | 必填 | 说明                                                         |
 | -------- | ------- | ---- | ------------------------------------------------------------ |
-| drawLevel | [FocusDrawLevel](ts-appendix-enums.md#focusdrawlevel18) | 是   | 无障碍绘制能力，默认绘制聚焦节点本身。 |
+| drawLevel | [FocusDrawLevel](ts-appendix-enums.md#focusdrawlevel19) | 是   | 无障碍绘制能力，默认绘制聚焦节点本身。 |
 
-## 示例1（设置无障碍文本和无障碍说明）
+## 示例
+
+### 示例1（设置无障碍文本和无障碍说明）
 
 该示例主要演示accessibilityText无障碍文本和accessibilityDescription无障碍说明的播报内容。
 
-```
+```ts
 // xxx.ets
 @Entry
 @Component
@@ -559,11 +561,11 @@ struct Index {
 }
 ```
 
-## 示例2（设置无障碍组）
+### 示例2（设置无障碍组）
 
 该示例主要演示优先使用子组件的无障碍文本进行朗读。
 
-```
+```ts
 // xxx.ets
 @Entry
 @Component
@@ -582,7 +584,6 @@ struct Focus {
       Button('btn123').accessibilityLevel("yes")
     }
     .accessibilityGroup(true, { accessibilityPreferred: true })
-    //.accessibilityGroup(true)
     .borderWidth(5)
     .width('100%')
     .height('100%')
@@ -590,4 +591,76 @@ struct Focus {
 }
 ```
 
-##
+### 示例3（设置首焦点和组件的下一个焦点）
+
+该示例主要演示accessibilityDefaultFocus屏幕朗读当前页默认首焦点和accessibilityNextFocusId走焦过程中组件的下一个焦点。
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct Index {
+  build() {
+    Column({ space: 20 }) {
+      Text('Text Demo 1')
+        .fontSize(50)
+        .accessibilityLevel('yes')
+        .accessibilityNextFocusId('text3')
+      Text('Text Demo 2')
+        .id('text2')
+        .fontSize(50)
+        .accessibilityLevel('yes')
+        .accessibilityDefaultFocus(true)  // 设置该组件为屏幕朗读当前页默认首焦点
+        .accessibilityNextFocusId('text4')
+      Text('Text Demo 3')
+        .id('text3')
+        .fontSize(50)
+        .accessibilityLevel('yes')
+        .accessibilityNextFocusId('text2')
+      Text('Text Demo 4')
+        .id('text4')
+        .fontSize(50)
+        .accessibilityLevel('yes')
+    }
+    .height('100%')
+    .width('100%')
+  }
+}
+```
+
+### 示例4（设置无障碍组件类型和文本提示信息）
+
+该示例主要演示accessibilityRole无障碍组件类型和accessibilityTextHint供无障碍辅助应用查询的组件的文本提示信息。
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct Index {
+  @State isDownloading: boolean = false;
+  @State hintStr: string = '点击开始下载';
+
+  build() {
+    Column({ space: 20 }) {
+      Button(this.isDownloading ? '下载中' : '点击下载')
+        .accessibilityLevel('yes')
+        .accessibilityTextHint(this.hintStr)
+        .onClick(() => {
+          this.isDownloading = !this.isDownloading;
+          this.hintStr = this.isDownloading ? '状态变为下载中' : '状态变为暂停下载';
+        })
+      TextInput({ placeholder: '请输入手机号码' })
+        .accessibilityLevel('yes')
+        .accessibilityTextHint('请输入11位手机号码')
+        .width('80%')
+      Text('按照按钮类型播报')
+        .accessibilityLevel('yes')
+        .accessibilityRole(AccessibilityRoleType.BUTTON)
+        .accessibilityTextHint('屏幕朗读播报时，该组件将按照按钮类型进行播报')
+        .fontSize(30)
+    }
+    .height('100%')
+    .width('100%')
+  }
+}
+```

@@ -1033,7 +1033,7 @@ startOptimizeSpace的使用和stopOptimizeSpace方法调用一一对应，重复
 | 401 | The input parameter is invalid. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 13600001  | IPC error. |
 | 22400005  | Inner error. |
-| 22400006  | Other optimize task is running. |
+| 22400006  | The same task is already in progress. |
 
 **示例：**
 

@@ -4,7 +4,7 @@
 
 在状态管理框架的演进过程中，分别于API version 7和API version 12推出了状态管理V1和V2两个版本。对于已经使用状态管理V1的应用，如果有诉求向状态管理V2迁移，可参考[状态管理V1和V2迁移文档](./arkts-v1-v2-migration.md)。
 
-对于大型应用，迁移过程中会遇到V1V2混用的场景，在API version 18之前，混用场景有相对严格的校验，主要表现在复杂对象的传递上，具体规则可参考[自定义组件混用场景指导](./arkts-custom-component-mixed-scenarios.md)。为了帮助开发者顺利地向V2迁移，从API version 18开始，减少了对V1V2混用场景的约束。具体变更可参考下表。同时提供新的方法[enableV2Compatibility](../../reference/apis-arkui/js-apis-StateManagement.md#enablev2compatibility18)和[makeV1Observed](../../reference/apis-arkui/js-apis-StateManagement.md#makev1observed18)来帮助开发者解决在迁移过程中遇到的混用问题。
+对于大型应用，迁移过程中会遇到V1V2混用的场景，在API version 19之前，混用场景有相对严格的校验，主要表现在复杂对象的传递上，具体规则可参考[自定义组件混用场景指导](./arkts-custom-component-mixed-scenarios.md)。为了帮助开发者顺利地向V2迁移，从API version 19开始，减少了对V1V2混用场景的约束。具体变更可参考下表。同时提供新的方法[enableV2Compatibility](../../reference/apis-arkui/js-apis-StateManagement.md#enablev2compatibility19)和[makeV1Observed](../../reference/apis-arkui/js-apis-StateManagement.md#makev1observed19)来帮助开发者解决在迁移过程中遇到的混用问题。
 
 > **说明：**
 >
@@ -12,15 +12,15 @@
 
 
 ## 校验规则
-在API version 18以前，状态管理V1V2的混用规则可以总结为：
+在API version 19以前，状态管理V1V2的混用规则可以总结为：
 1. V1装饰器不能和@ObserveV2一起使用。
 2. V2装饰器不能和@Observed一起使用。
 3. V1->V2只能传简单类型，不允许传复杂类型，包括built-in类型Array、Map、Set、Date。
 4. V2->V1可以传简单类型和普通class，不允许传built-in类型Array、Map、Set、Date。
 
-从API version 18开始，仅第1条规则依旧禁止，第2-4条规则均放开校验。具体编译期校验见下表。
+从API version 19开始，仅第1条规则依旧禁止，第2-4条规则均放开校验。具体编译期校验见下表。
 
-| 场景  | API version 18以前 | API version 18及以后  |
+| 场景  | API version 19以前 | API version 19及以后  |
 |------|----|------|
 | V1装饰器和\@ObservedV2同时使用   | 报错 | 报错 |
 | V2装饰器和\@Observed同时使用 | 报错 | 不报错 |
@@ -38,11 +38,11 @@
 
 static makeV1Observed\<T extends object\>(source: T): T
 
-[makeV1Observed](../../reference/apis-arkui/js-apis-StateManagement.md#makev1observed18)将不可观察的对象包装成状态管理V1可观察的对象，能力等同于@Observed，其返回值可初始化@ObjectLink。
+[makeV1Observed](../../reference/apis-arkui/js-apis-StateManagement.md#makev1observed19)将不可观察的对象包装成状态管理V1可观察的对象，能力等同于@Observed，其返回值可初始化@ObjectLink。
 
 >**说明：**
 >
->从API version 18开始，开发者可以使用UIUtils中的makeV1Observed接口将不可观察的对象包装成状态管理V1可观察的对象。
+>从API version 19开始，开发者可以使用UIUtils中的makeV1Observed接口将不可观察的对象包装成状态管理V1可观察的对象。
 
 **接口说明**
 - makeV1Observed主要和enableV2Compatibility搭配使用，实现V2->V1的传递。
@@ -61,11 +61,11 @@ static makeV1Observed\<T extends object\>(source: T): T
 
 static enableV2Compatibility\<T extends object\>(source: T): T
 
-[enableV2Compatibility](../../reference/apis-arkui/js-apis-StateManagement.md#enablev2compatibility18)将V1的状态变量使能V2的观察能力，即让V1状态变量可以在\@ComponentV2中观察到变化。
+[enableV2Compatibility](../../reference/apis-arkui/js-apis-StateManagement.md#enablev2compatibility19)将V1的状态变量使能V2的观察能力，即让V1状态变量可以在\@ComponentV2中观察到变化。
 
 >**说明：**
 >
->从API version 18开始，开发者可以使用UIUtils中的enableV2Compatibility接口将V1的状态变量兼容V2中使用。
+>从API version 19开始，开发者可以使用UIUtils中的enableV2Compatibility接口将V1的状态变量兼容V2中使用。
 
 **接口说明**
 - 该接口主要应用于V1->V2的场景，V1的状态变量调用该接口后，传递到\@ComponentV2中，则可以在V2中观察到变化，从而实现数据的联动刷新。
@@ -80,7 +80,7 @@ static enableV2Compatibility\<T extends object\>(source: T): T
 
 ## 混用范式
 
-基于[enableV2Compatibility](../../reference/apis-arkui/js-apis-StateManagement.md#enablev2compatibility18)和[makeV1Observed](../../reference/apis-arkui/js-apis-StateManagement.md#makev1observed18)接口，V1V2混用范式如下：
+基于[enableV2Compatibility](../../reference/apis-arkui/js-apis-StateManagement.md#enablev2compatibility19)和[makeV1Observed](../../reference/apis-arkui/js-apis-StateManagement.md#makev1observed19)接口，V1V2混用范式如下：
 
 ### V1->V2
 - V1的状态变量传递给V2的\@Param，调用`UIUtils.enableV2Compatibility`使V1的状态变量可在\@ComponentV2中有观察能力。完整例子见[常见场景](#v1-v2-1)。

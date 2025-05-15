@@ -25,7 +25,7 @@ These parameters are used to control the playback volume, number of loops, and p
 
 | Name           | Type                                    | Mandatory| Description                                                        |
 | --------------- | ---------------------------------------- | ---- | ------------------------------------------------------------ |
-| loop | number   | No | Number of loops. If this parameter is set to a number greater than or equal to **1**, it will play that exact number of times. If this parameter is set to **0**, it will play once. If this parameter is set to **-1**, it will loop forever. Any value less than **-1** is interpreted as **-1**. Default value: **0**                  |
+| loop | number   | No | Number of loops.<br>If this parameter is set to a value greater than or equal to 0, the number of times the content is actually played is the value of **loop** plus 1.<br> If this parameter is set to a value less than 0, the content is played repeatedly.<br>The default value is **0**, indicating that the content is played only once.                  |
 | rate | number    | No | Playback rate. For details, see [AudioRendererRate](../apis-audio-kit/js-apis-audio.md#audiorendererrate8). Default value: **0**|
 | leftVolume  | number | No | Volume of the left channel. The value ranges from 0.0 to 1.0. Default value: **1.0**                                   |
 | rightVolume | number  | No | Volume of the right channel. The value ranges from 0.0 to 1.0. (Currently, the volume cannot be set separately for the left and right channels. The volume set for the left channel is used.) Default value: **1.0**|
@@ -268,32 +268,34 @@ import { media } from '@kit.MediaKit';
 import { audio } from '@kit.AudioKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// Create a SoundPool instance.
-let soundPool: media.SoundPool;
-let audioRendererInfo: audio.AudioRendererInfo = {
-  usage: audio.StreamUsage.STREAM_USAGE_MUSIC,
-  rendererFlags: 1
-}
-let soundID: number = 0;
-media.createSoundPool(5, audioRendererInfo, async (error: BusinessError, soundPool_: media.SoundPool) => {
-  if (error) {
-    console.error(`Failed to createSoundPool`)
-    return;
-  } else {
-    soundPool = soundPool_;
-    console.info(`Succeeded in createSoundPool`)
-    // The test_01.mp3 file is an audio file in the rawfile directory.
-    let fileDescriptor = await getContext().resourceManager.getRawFd('test_01.mp3');
-    soundPool.load(fileDescriptor.fd, fileDescriptor.offset, fileDescriptor.length, (error: BusinessError, soundId_: number) => {
-      if (error) {
-        console.error(`Failed to load soundPool: errCode is ${error.code}, errMessage is ${error.message}`)
-      } else {
-        soundID = soundId_;
-        console.info('Succeeded in loading soundId:' + soundId_);
-      }
-    });
+function create(context: Context) {
+  // Create a SoundPool instance.
+  let soundPool: media.SoundPool;
+  let audioRendererInfo: audio.AudioRendererInfo = {
+    usage: audio.StreamUsage.STREAM_USAGE_MUSIC,
+    rendererFlags: 1
   }
-});
+  let soundID: number = 0;
+  media.createSoundPool(5, audioRendererInfo, async (error: BusinessError, soundPool_: media.SoundPool) => {
+    if (error) {
+      console.error(`Failed to createSoundPool`)
+      return;
+    } else {
+      soundPool = soundPool_;
+      console.info(`Succeeded in createSoundPool`)
+      // The test_01.mp3 file is an audio file in the rawfile directory.
+      let fileDescriptor = await context.resourceManager.getRawFd('test_01.mp3');
+      soundPool.load(fileDescriptor.fd, fileDescriptor.offset, fileDescriptor.length, (error: BusinessError, soundId_: number) => {
+        if (error) {
+          console.error(`Failed to load soundPool: errCode is ${error.code}, errMessage is ${error.message}`)
+        } else {
+          soundID = soundId_;
+          console.info('Succeeded in loading soundId:' + soundId_);
+        }
+      });
+    }
+  });
+}
 
 ```
 
@@ -381,30 +383,32 @@ import { media } from '@kit.MediaKit';
 import { audio } from '@kit.AudioKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// Create a SoundPool instance.
-let soundPool: media.SoundPool;
-let audioRendererInfo: audio.AudioRendererInfo = {
-  usage: audio.StreamUsage.STREAM_USAGE_MUSIC,
-  rendererFlags: 1
-}
-let soundID: number = 0;
-media.createSoundPool(5, audioRendererInfo, async (error: BusinessError, soundPool_: media.SoundPool) => {
-  if (error) {
-    console.error(`Failed to createSoundPool`)
-    return;
-  } else {
-    soundPool = soundPool_;
-    console.info(`Succeeded in createSoundPool`)
-    // The test_01.mp3 file is an audio file in the rawfile directory.
-    let fileDescriptor = await getContext().resourceManager.getRawFd('test_01.mp3');
-    soundPool.load(fileDescriptor.fd, fileDescriptor.offset, fileDescriptor.length).then((soundId: number) => {
-      console.info('Succeeded in loading soundpool');
-      soundID = soundId;
-    }, (err: BusinessError) => {
-      console.error('Failed to load soundpool and catch error is ' + err.message);
-    });
+function create(context: Context) {
+  // Create a SoundPool instance.
+  let soundPool: media.SoundPool;
+  let audioRendererInfo: audio.AudioRendererInfo = {
+    usage: audio.StreamUsage.STREAM_USAGE_MUSIC,
+    rendererFlags: 1
   }
-});
+  let soundID: number = 0;
+  media.createSoundPool(5, audioRendererInfo, async (error: BusinessError, soundPool_: media.SoundPool) => {
+    if (error) {
+      console.error(`Failed to createSoundPool`)
+      return;
+    } else {
+      soundPool = soundPool_;
+      console.info(`Succeeded in createSoundPool`)
+      // The test_01.mp3 file is an audio file in the rawfile directory.
+      let fileDescriptor = await context.resourceManager.getRawFd('test_01.mp3');
+      soundPool.load(fileDescriptor.fd, fileDescriptor.offset, fileDescriptor.length).then((soundId: number) => {
+        console.info('Succeeded in loading soundpool');
+        soundID = soundId;
+      }, (err: BusinessError) => {
+        console.error('Failed to load soundpool and catch error is ' + err.message);
+      });
+    }
+  });
+}
 
 ```
 
@@ -731,7 +735,7 @@ Sets the loop mode for an audio stream. This API uses an asynchronous callback t
 | Name  | Type                  | Mandatory| Description                       |
 | -------- | ---------------------- | ---- | --------------------------- |
 | streamID | number | Yes  | Audio stream ID, which is obtained by calling **play()**.|
-| loop | number | Yes  | Number of loops. If this parameter is set to a number greater than or equal to **1**, it will play that exact number of times. If this parameter is set to **0**, it will play once. If this parameter is set to **-1**, it will loop forever. Any value less than **-1** is interpreted as **-1**.|
+| loop | number | Yes  | Number of loops.<br>If this parameter is set to a value greater than or equal to 0, the number of times the content is actually played is the value of **loop** plus 1.<br> If this parameter is set to a value less than 0, the content is played repeatedly.|
 | callback | AsyncCallback\<void> | Yes  | Callback used to return the result.|
 
 **Error codes**
@@ -790,7 +794,7 @@ Sets the loop mode for an audio stream. This API uses a promise to return the re
 | Name  | Type                  | Mandatory| Description                       |
 | -------- | ---------------------- | ---- | --------------------------- |
 | streamID | number | Yes  | Audio stream ID, which is obtained by calling **play()**.|
-| loop | number | Yes  | Number of loops. If this parameter is set to a number greater than or equal to **1**, it will play that exact number of times. If this parameter is set to **0**, it will play once. If this parameter is set to **-1**, it will loop forever. Any value less than **-1** is interpreted as **-1**.|
+| loop | number | Yes  | Number of loops.<br>If this parameter is set to a value greater than or equal to 0, the number of times the content is actually played is the value of **loop** plus 1.<br> If this parameter is set to a value less than 0, the content is played repeatedly.|
 
 **Return value**
 

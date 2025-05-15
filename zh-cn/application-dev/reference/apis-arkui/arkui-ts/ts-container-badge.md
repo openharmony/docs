@@ -58,7 +58,7 @@ Badge(value: BadgeParamWithString)
 
 ## BadgeParam对象说明
 
-包含创建Badge组件的基础参数。
+包含用于创建Badge组件的基础参数。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -309,7 +309,7 @@ struct BadgeExample {
 @Entry
 @Component
 struct Index {
-  @State badgeCount: number = 1
+  @State badgeCount: number = 1;
 
   build() {
     Column({ space: 40 }) {
@@ -325,10 +325,10 @@ struct Index {
       .width(55)
 
       Button('count 0').onClick(() => {
-        this.badgeCount = 0
+        this.badgeCount = 0;
       })
       Button('count 1').onClick(() => {
-        this.badgeCount = 1
+        this.badgeCount = 1;
       })
     }
     .margin({ top: 20 })

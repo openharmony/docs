@@ -236,7 +236,7 @@ createAVTranscoder(): Promise\<AVTranscoder>
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let avTranscoder: media.AVTranscoder;
+let avTranscoder: media.AVTranscoder | undefined = undefined;
 media.createAVTranscoder().then((transcoder: media.AVTranscoder) => {
   if (transcoder != null) {
     avTranscoder = transcoder;
@@ -906,9 +906,13 @@ setPlaybackStrategy(strategy: PlaybackStrategy): Promise\<void>
 ```ts
 import { common } from '@kit.AbilityKit';
 
+private context: Context | undefined;
+constructor(context: Context) {
+  this.context = context; // this.getUIContext().getHostContext();
+}
+
 let player = await media.createAVPlayer();
-let context = getContext(this) as common.UIAbilityContext
-let fileDescriptor = await context.resourceManager.getRawFd('xxx.mp4')
+let fileDescriptor = await this.context.resourceManager.getRawFd('xxx.mp4')
 player.fdSrc = fileDescriptor
 let playStrategy : media.PlaybackStrategy = {
   preferredWidth: 1,
@@ -1055,7 +1059,7 @@ setMediaMuted(mediaType: MediaType,  muted: boolean ): Promise\<void>
 | 参数名   | 类型     | 必填 | 说明                 |
 | -------- | -------- | ---- | -------------------- |
 | mediaType | [MediaType](#mediatype8) | 是   | 播放策略。 |
-| muted | boolean | 是   | 是否静音播放。 |
+| muted | boolean | 是   | 是否静音播放。true表示是静音播放，false表示不是静音播放。|
 
 **返回值：**
 
@@ -1854,16 +1858,12 @@ avPlayer.seek(seekTime, media.SeekMode.SEEK_PREV_SYNC)
 ```
 
 ```ts
-// SEEK_CONTINUOUS 可以结合seekBar/slider的回调方法进行对应处理。
-async onSlideMoving(position : number) : Promise<void> {
-  // seekBar/slider移动过程中回调触发，调用seek(position, media.SeekMode.SEEK_CONTINUOUS)进行seek。
-  this.avPlayer.seek(position, media.SeekMode.SEEK_CONTINUOUS)
-}
+// SEEK_CONTINUOUS 可以结合Slider的onChange回调方法进行对应处理，当slideMode为Moving时，触发拖动过程的SeekContinuous。
+let slideMovingTime: number = 2000
+avPlayer.seek(slideMovingTime, media.SeekMode.SEEK_CONTINUOUS)
 
-async onSlideEnd(position : number) : Promise<void> {
-  // seekBar/slider移动结束回调触发，调用seek(-1, media.SeekMode.SEEK_CONTINUOUS)结束seek。
-  this.avPlayer.seek(-1, media.SeekMode.SEEK_CONTINUOUS)
-}
+// 当slideMode为End时，调用seek(-1, media.SeekMode.SEEK_CONTINUOUS)结束seek。
+avPlayer.seek(-1, media.SeekMode.SEEK_CONTINUOUS)
 ```
 
 ### isSeekContinuousSupported<sup>18+</sup>
@@ -2654,8 +2654,8 @@ addSubtitleFromFd(fd: number, offset?: number, length?: number): Promise\<void>
 | 参数名 | 类型                   | 必填 | 说明                                                         |
 | ------ | ---------------------- | ---- | ------------------------------------------------------------ |
 | fd | number   | 是   | 资源句柄，通过[resourceManager.getRawFd](../apis-localization-kit/js-apis-resource-manager.md#getrawfd9)获取。 |
-| offset | number | 否   | 资源偏移量，需要基于预置资源的信息输入，非法值会造成字幕频资源解析错误。 |
-| length | number | 否   | 资源长度，默认值为文件中从偏移量开始的剩余字节，需要基于预置资源的信息输入，非法值会造成字幕频资源解析错误。 |
+| offset | number | 否   | 资源偏移量，需要基于预置资源的信息输入，非法值会造成字幕频资源解析错误，默认值:0。 |
+| length | number | 否   | 资源长度，默认值为文件中从偏移量开始的剩余字节，需要基于预置资源的信息输入，非法值会造成字幕频资源解析错误，默认值:0。 |
 
 **返回值：**
 
@@ -2676,8 +2676,11 @@ addSubtitleFromFd(fd: number, offset?: number, length?: number): Promise\<void>
 ```ts
 import { common } from '@kit.AbilityKit'
 
-let context = getContext(this) as common.UIAbilityContext
-let fileDescriptor = await context.resourceManager.getRawFd('xxx.srt')
+private context: Context | undefined;
+constructor(context: Context) {
+  this.context = context; // this.getUIContext().getHostContext();
+}
+let fileDescriptor = await this.context.resourceManager.getRawFd('xxx.srt');
 
 avPlayer.addSubtitleFromFd(fileDescriptor.fd, fileDescriptor.offset, fileDescriptor.length)
 ```
@@ -4739,13 +4742,16 @@ on(type: 'photoAssetAvailable', callback: Callback\<photoAccessHelper.PhotoAsset
 import { photoAccessHelper } from '@kit.MediaLibraryKit';
 import { common } from '@kit.AbilityKit'
 let photoAsset: photoAccessHelper.PhotoAsset;
-let context = getContext(this) as common.UIAbilityContext
+private context: Context | undefined;
+constructor(context: Context) {
+  this.context = context; // this.getUIContext().getHostContext();
+}
 
 // 例:处理photoAsset回调，保存video。
 async function saveVideo(asset: photoAccessHelper.PhotoAsset) {
   console.info("saveVideo called");
   try {
-    let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
+    let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(this.context);
     let assetChangeRequest: photoAccessHelper.MediaAssetChangeRequest = new photoAccessHelper.MediaAssetChangeRequest(asset);
     assetChangeRequest.saveCameraPhoto();
     await phAccessHelper.applyChanges(assetChangeRequest);
@@ -4820,8 +4826,8 @@ type OnAVRecorderStateChangeHandler = (state: AVRecorderState, reason: StateChan
 
 | 参数名   | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ------ | ------------------------------------------------------------ |
-| state  | [AVRecorderState](#avrecorderstate9) | 必填 | 当前录制状态。     |
-| reason | [StateChangeReason](#statechangereason9) | 必填 | 当前录制状态的切换原因。 |
+| state  | [AVRecorderState](#avrecorderstate9) | 是 | 当前录制状态。     |
+| reason | [StateChangeReason](#statechangereason9) | 是 | 当前录制状态的切换原因。 |
 
 ## AVRecorderConfig<sup>9+</sup>
 
@@ -4866,7 +4872,7 @@ type OnAVRecorderStateChangeHandler = (state: AVRecorderState, reason: StateChan
 | audioChannels    | number                                       | 否   | 音频采集声道数，选择音频录制时必填。<br>- AAC编码格式支持范围[1 - 8]。<br>- G711-mulaw编码格式支持范围[1]。<br>- MP3编码格式支持范围[1 - 2]。<br>- AMR-NB、AMR-WB编码格式支持范围[1]。<br> **原子化服务API：** 从API version 12 开始，该接口支持在原子化服务中使用。       |
 | audioCodec       | [CodecMimeType](#codecmimetype8)             | 否   | 音频编码格式，选择音频录制时必填。当前支持AUDIO_AAC，AUDIO_MP3，AUDIO_G711MU, AUDIO_AMR_NB, AUDIO_AMR_WB。<br> **原子化服务API：** 从API version 12 开始，该接口支持在原子化服务中使用。     |
 | audioSampleRate  | number                                       | 否   | 音频采样率，选择音频录制时必填。<br>支持范围：<br>- AAC编码支持采样率范围[8000, 11025, 12000, 16000, 22050, 24000, 32000, 44100, 48000, 64000, 88200, 96000]。<br>- G711-mulaw编码支持采样率范围[8000]。<br>- MP3编码支持采样率范围[8000, 11025, 12000, 16000, 22050, 24000, 32000, 44100, 48000]。<br>- AMR_NB编码支持采样率范围[8000]。<br>- AMR_WB编码支持采样率范围[16000]。<br>可变比特率模式，码率仅作参考。<br> **原子化服务API：** 从API version 12 开始，该接口支持在原子化服务中使用。 |
-| fileFormat       | [ContainerFormatType](#containerformattype8) | 是   | 文件的容器格式，必要参数。当前支持MP4、M4A、MP3、WAV、AMR封装格式，不支持在MP4封装格式下使用AUDIO_MP3编码格式。<br>**原子化服务API：** 从API version 12 开始，该接口支持在原子化服务中使用。|
+| fileFormat       | [ContainerFormatType](#containerformattype8) | 是   | 文件的容器格式，必要参数。当前支持MP4、M4A、MP3、WAV、AMR、AAC封装格式，当前AAC音频封装默认为ADTS帧头格式。不支持在MP4封装格式下使用AUDIO_MP3编码格式。<br>**原子化服务API：** 从API version 12 开始，该接口支持在原子化服务中使用。|
 | videoBitrate     | number                                       | 否   | 视频编码比特率，选择视频录制时必填，支持范围[10000 - 100000000]。  |
 | videoCodec       | [CodecMimeType](#codecmimetype8)             | 否   | 视频编码格式，选择视频录制时必填。当前支持VIDEO_AVC。|
 | videoFrameWidth  | number                                       | 否   | 视频帧的宽，选择视频录制时必填，支持范围[176 - 4096]。         |
@@ -4874,7 +4880,6 @@ type OnAVRecorderStateChangeHandler = (state: AVRecorderState, reason: StateChan
 | videoFrameRate   | number                                       | 否   | 视频帧率，选择视频录制时必填，支持范围[1 - 60]。             |
 | isHdr<sup>11+</sup>            | boolean                        | 否   | HDR编码，选择视频录制时选填，isHdr默认为false，对应编码格式没有要求，isHdr为true时，对应的编码格式必须为video/hevc。|
 | enableTemporalScale<sup>12+</sup>            | boolean                        | 否   | 视频录制是否支持时域分层编码功能，选择视频录制时选填，enableTemporalScale默认为false。设置为true时，编码输出的码流中部分帧可以支持跳过不编码。|
-| enableStableQualityMode<sup>18+</sup>            | boolean                        | 否   | 视频录制是否选择稳定质量模式，选择视频录制时选填，enableStableQualityMode默认为false。设置为true时，启用视频编码策略以实现质量稳定的编码。|
 
 ## AudioSourceType<sup>9+</sup>
 
@@ -4915,6 +4920,7 @@ type OnAVRecorderStateChangeHandler = (state: AVRecorderState, reason: StateChan
 | CFT_MP3<sup>12+</sup>  | 'mp3' | 音频的容器格式，MP3。 |
 | CFT_WAV<sup>12+</sup>  | 'wav' | 音频的容器格式，WAV。 |
 | CFT_AMR<sup>18+</sup>  | 'amr' | 音频的容器格式，AMR。 |
+| CFT_AAC<sup>20+</sup>  | 'aac' | 音频的容器格式，AAC。默认为ADTS帧头格式。 |
 
 ## Location
 
@@ -4968,7 +4974,7 @@ type OnAVRecorderStateChangeHandler = (state: AVRecorderState, reason: StateChan
 
 ## AVTranscoder<sup>12+</sup>
 
-视频转码管理类，用于视频转码。在调用AVTranscoder的方法前，需要先通过createAVTranscoder()构建一个AVTranscoder实例。
+视频转码管理类，用于视频转码。在调用AVTranscoder的方法前，需要先通过[createAVTranscoder()](#mediacreateavtranscoder12)构建一个AVTranscoder实例。
 
 视频转码demo可参考：[视频转码开发指导](../../media/media/using-avtranscoder-for-transcodering.md)
 
@@ -4993,7 +4999,7 @@ prepare(config: AVTranscoderConfig): Promise\<void>
 
 | 参数名 | 类型                                   | 必填 | 说明                       |
 | ------ | -------------------------------------- | ---- | -------------------------- |
-| config | [AVTranscoderConfig](#avtranscoderconfig12) | 是   | 配置视频转码的相关参数。 |
+| config | [AVTranscoderConfig](#avtranscoderconfig12) | 是   | 配置视频转码的相关参数。 <!--RP1--><!--RP1End-->|
 
 **返回值：**
 
@@ -5024,8 +5030,6 @@ let avTranscoderConfig: media.AVTranscoderConfig = {
   fileFormat : media.ContainerFormatType.CFT_MPEG_4,
   videoBitrate : 3000000,
   videoCodec : media.CodecMimeType.VIDEO_AVC,
-  videoFrameWidth : 1280,
-  videoFrameHeight : 720,
 }
 
 avTranscoder.prepare(avTranscoderConfig).then(() => {
@@ -7978,8 +7982,11 @@ let mediaSource : media.MediaSource = media.createMediaSourceWithUrl("http://xxx
 import { common } from '@kit.AbilityKit';
 import { resourceManager } from '@kit.LocalizationKit';
 
-let context = getContext(this) as common.UIAbilityContext;
-let mgr = context.resourceManager;
+private context: Context | undefined;
+constructor(context: Context) {
+  this.context = context; // this.getUIContext().getHostContext();
+}
+let mgr = this.context.resourceManager;
 let fileDescriptor = await mgr.getRawFd("xxx.m3u8");
 
 let fd:string = fileDescriptor.fd.toString();
@@ -7994,13 +8001,13 @@ let mimeType : media.AVMimeTypes = media.AVMimeTypes.APPLICATION_M3U8;
 mediaSource.setMimeType(mimeType);
 
 ```
-## media.createMediaSourceWithStreamData<sup>18+</sup>
+## media.createMediaSourceWithStreamData<sup>19+</sup>
 
 createMediaSourceWithStreamData(streams: Array\<MediaStream>): MediaSource
 
 创建流媒体多码率媒体来源实例方法，当前仅支持HTTP-FLV协议格式多码率。
 
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Media.Core
 
@@ -8008,22 +8015,13 @@ createMediaSourceWithStreamData(streams: Array\<MediaStream>): MediaSource
 
 | 参数名  | 类型                                 | 只读 | 可选 | 说明                                                  |
 | ------- | ------------------------------------ | --- | ---- | ----------------------------------------------------- |
-| streams | Array<[MediaStream](#mediastream18)> | 否 | 否   | 可设置MediaStream数组，支持的流媒体格式：HTTP-FLV。 |
+| streams | Array<[MediaStream](#mediastream19)> | 否 | 否   | 可设置MediaStream数组，支持的流媒体格式：HTTP-FLV。 |
 
 **返回值：**
 
 | 类型                          | 说明                |
 | ----------------------------- | ------------------- |
 | [MediaSource](#mediasource12) | 返回MediaSource，用于媒体资源设置。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[媒体错误码](errorcode-media.md)
-
-| 错误码ID | 错误信息                                                     |
-| -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
-| 5400101  | No memory.                                                   |
 
 **示例1：**
 
@@ -8035,7 +8033,7 @@ streams.push({url: "http:/xxx/1080p.flv", width: 1280, height: 720, bitrate: 200
 let mediaSource : media.MediaSource = media.createMediaSourceWithStreamData(streams);
 ```
 
-## MediaStream<sup>18+</sup>
+## MediaStream<sup>19+</sup>
 
 媒体流数据信息。
 
@@ -8255,7 +8253,7 @@ mediaSource.setMediaResourceLoaderDelegate(mediaSourceLoader);
 let playStrategy : media.PlaybackStrategy = {
   preferredBufferDuration: 20,
 };
-let player = await media.createAVPlayer();
+let player = media.createAVPlayer();
 player.setMediaSource(mediaSource, playStrategy);
 ```
 
@@ -8301,10 +8299,13 @@ respondData(uuid: number, offset: number, buffer: ArrayBuffer): number
 **示例：**
 
 ```ts
+import HashMap from '@ohos.util.HashMap';
 let requests: HashMap<number, media.MediaSourceLoadingRequest> = new HashMap();
 let uuid = 1;
 
 let request = requests.get(uuid);
+let offset = 0; // 当前媒体数据相对于资源起始位置的偏移量
+let buf = new ArrayBuffer(0); // 由应用定义，推送给播放器的数据
 let num = request.respondData(uuid, offset, buf);
 ```
 
@@ -8329,6 +8330,7 @@ respondHeader(uuid: number, header?: Record<string, string>, redirectUrl?: strin
 **示例：**
 
 ```ts
+import HashMap from '@ohos.util.HashMap';
 let requests: HashMap<number, media.MediaSourceLoadingRequest> = new HashMap();
 let uuid = 1;
 
@@ -8366,6 +8368,7 @@ finishLoading(uuid: number, state: LoadingRequestError): void
 **示例：**
 
 ```ts
+import HashMap from '@ohos.util.HashMap';
 let requests: HashMap<number, media.MediaSourceLoadingRequest> = new HashMap();
 let uuid = 1;
 
@@ -8416,7 +8419,7 @@ request.finishLoading(uuid, loadingError);
 | -------- | -------- | ---- | -------------------- |
 | preferredWidth| number | 否   | 播放策略首选宽度，设置范围为大于0的整数，如1080，单位为像素（px）。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | preferredHeight | number | 否   | 播放策略首选高度，设置范围为大于0的整数，如1920，单位为像素（px）。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| preferredBufferDuration | number | 否  | 播放策略首选缓冲持续时间，单位s，取值范围1-20。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| preferredBufferDuration | number | 否  | 播放策略首选缓冲持续时间，单位s，取值范围1-20。<br>具体使用方式可参考[在线视频播放卡顿优化实践](https://developer.huawei.com/consumer/cn/doc/best-practices/bpta-online-video-playback-lags-practice)。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | preferredHdr | boolean | 否   | 播放策略true是hdr，false非hdr，默认非hdr。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | enableSuperResolution<sup>18+</sup> | boolean | 否   | 表示是否使能超分功能。true表示使能超分，false表示不使能超分，默认为false。<br>若不使能超分，则后续不能调用超分相关接口。若使能超分，则超分功能默认开启，默认目标分辨率为1920x1080，单位为像素。<br>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。 |
 | showFirstFrameOnPrepare<sup>17+</sup> | boolean | 否   | 播放策略true是Prepare之后显示视频起播首帧，false是Prepare之后不显示视频起播首帧，默认不显示。<br>**原子化服务API：** 从API version 17开始，该接口支持在原子化服务中使用。 |

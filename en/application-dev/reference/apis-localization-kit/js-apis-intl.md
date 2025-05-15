@@ -34,8 +34,8 @@ import { intl } from '@kit.LocalizationKit';
 | --------------- | ------- | -------- | ---------------------------------------- |
 | language        | string  | Yes   | Language associated with the locale, for example, **zh**. The value complies with the ISO 639 standard.|
 | script          | string  | Yes   | Script type of the language, for example, **Hans**. The value complies with the Unicode ISO 15924 standard.|
-| region          | string  | Yes   | Country or region associated with the locale, for example, **CN**. The value complies with the ISO 3166 standard.|
-| baseName        | string  | Yes   | Basic information about the locale, which consists of the language, script, and region, for example, **zh-Hans-CN**. |
+| region          | string  | Yes   | Country/region associated with the locale, for example, **CN**. The value complies with the ISO 3166 standard.|
+| baseName        | string  | Yes   | Locale information, which consists of the language, script, and country/region, for example, **zh-Hans-CN**. |
 | caseFirst       | string  | Yes   | Whether case is taken into account for the locale's collation rules. The value can be:<br>"upper",&nbsp;"lower", or &nbsp;"false".<br>For details about their meanings, see Table 1 in [Sorting by Local Habits ](../../internationalization/i18n-sorting-local.md).|
 | calendar        | string  | Yes   | Calendar for the locale. The value can be:<br>The value can be any of the following: **buddhist**, **chinese**, **coptic**, **dangi**, **ethioaa**, **ethiopic**, **gregory**, **hebrew**, **indian**, **islamic**, **islamic-umalqura**, **islamic-tbla**, **islamic-civil**, **islamic-rgsa**, **iso8601**, **japanese**, **persian**, **roc**, or **islamicc**.<br>For details about their meanings, see Table 1 in [Calendar Setting](../../internationalization/i18n-calendar.md).|
 | collation       | string  | Yes   | Collation rules for the locale. The value can be:<br>The value can be any of the following: **big5han**, **compat**, **dict**, **direct**, **ducet**, **eor**, **gb2312**, **phonebk**, **phonetic**, **pinyin**, **reformed**, **searchjl**, **stroke**, **trad**, **unihan**, or **zhuyin**.<br>For details about their meanings, see Table 1 in [Sorting by Local Habits ](../../internationalization/i18n-sorting-local.md).|
@@ -57,9 +57,9 @@ Creates a **Locale** object.
 
 **Example**
   ```ts
-  // When creating a **Locale** object, the default constructor uses the current locale of the system.
+  // The current system locale is used by the default constructor.
   let locale = new intl.Locale();
-  // Return the current system locale.
+  // Return the current system locale ID.
   let localeID = locale.toString();
   ```
 
@@ -79,12 +79,12 @@ Creates a **Locale** object.
 
 | Name                 | Type                              | Mandatory  | Description                          |
 | -------------------- | -------------------------------- | ---- | ---------------------------- |
-| locale               | string                           | Yes   | A string containing locale information, including the language, optional script, and region.<br>The locale can any or all of the preceding information.|
+| locale               | string                           | Yes   | Locale information, which consists of the language, script, and country/region.|
 | options             | [LocaleOptions](#localeoptions) | No   | Options for creating the **Locale** object.|
 
 **Example**
   ```ts
-  // Create a Locale object named zh-CN.
+  // Create a zh-CN locale object.
   let locale = new intl.Locale("zh-CN");
   let localeID = locale.toString(); // localeID = "zh-CN"
   ```
@@ -110,7 +110,7 @@ Obtains the string that represents a **Locale** object.
 
 **Example**
   ```ts
-  // Create a Locale object named en-GB.
+  // Create an en-GB locale object.
   let locale = new intl.Locale("en-GB");
   let localeID = locale.toString(); // localeID = "en-GB"
   ```
@@ -119,7 +119,7 @@ Obtains the string that represents a **Locale** object.
 
 maximize(): Locale
 
-Maximizes information of a **Locale** object. If the script and country/region information is missing, add the information.
+Maximizes locale information by supplementing the missing script and country/region information.
 
 **Widget capability**: Since API version 11, this feature is supported in ArkTS widgets.
 
@@ -135,15 +135,15 @@ Maximizes information of a **Locale** object. If the script and country/region i
 
 **Example**
   ```ts
-  // Create a Locale object named zh.
+  // Create a zh locale object.
   let locale = new intl.Locale("zh");
-  // Complete the script and region of the Locale object.
+  // Supplement the locale object's script and region.
   let maximizedLocale = locale.maximize();
   let localeID = maximizedLocale.toString(); // localeID = "zh-Hans-CN"
 
-  // Create a Locale object named en-US.
+  // Create an en-US locale object.
   locale = new intl.Locale("en-US");
-  // Complete the script of the Locale object.
+  // Supplement the locale object's script.
   maximizedLocale = locale.maximize();
   localeID = maximizedLocale.toString(); // localeID = "en-Latn-US"
   ```
@@ -153,7 +153,7 @@ Maximizes information of a **Locale** object. If the script and country/region i
 
 minimize(): Locale
 
-Minimizes information of the **Locale** object. If the script and country/region information is present, delete the information.
+Minimizes locale information by removing the script and country/region information.
 
 **Widget capability**: Since API version 11, this feature is supported in ArkTS widgets.
 
@@ -165,19 +165,19 @@ Minimizes information of the **Locale** object. If the script and country/region
 
 | Type               | Description        |
 | ----------------- | ---------- |
-| [Locale](#locale) | **Locale** object without the script or country/region information.|
+| [Locale](#locale) | **Locale** object without the script and country/region information.|
 
 **Example**
   ```ts
-  // Create a Locale object named zh-Hans-CN.
+  // Create a zh-Hans-CN locale object.
   let locale = new intl.Locale("zh-Hans-CN");
-  // Remove the script and region of the Locale object.
+  // Remove the locale object's script and region.
   let minimizedLocale = locale.minimize();
   let localeID = minimizedLocale.toString(); // localeID = "zh"
 
-  // Create a Locale object named en-US.
+  // Create an en-US locale object.
   locale = new intl.Locale("en-US");
-  // Remove the region of the Locale object.
+  // Remove locale object's region.
   minimizedLocale = locale.minimize();
   localeID = minimizedLocale.toString(); // localeID = "en"
   ```
@@ -199,7 +199,7 @@ Options for initializing the **Locale** object. Since API version 9, the **Local
 | hourCycle       | string  | No    |Hour cycle. The value can be:<br>"h11",&nbsp;"h12",&nbsp;"h23", or &nbsp;"h24".|
 | numberingSystem | string  | No    |Numbering system. The value can be:<br>**adlm**, **ahom**, **arab**, **arabext**, **bali**, **beng**, **bhks**, **brah**, **cakm**, **cham**, **deva**, **diak**, **fullwide**, **gong**, **gonm**, **gujr**, **guru**, **hanidec**, **hmng**, **hmnp**, **java**, **kali**, **khmr**, **knda**, **lana**, **lanatham**, **laoo**, **latn**, **lepc**, **limb**, **mathbold**, **mathdbl**, **mathmono**, **mathsanb**, **mathsans**, **mlym**, **modi**, **mong**, **mroo**, **mtei**, **mymr**, **mymrshan**, **mymrtlng**, **newa**, **nkoo**, **olck**, **orya**, **osma**, **rohg**, **saur**, **segment**, **shrd**, **sind**, **sinh**, **sora**, **sund**, **takr**, **talu**, **tamldec**, **telu**, **thai**, **tibt**, **tirh**, **vaii**, **wara**, or **wcho**.|
 | numeric         | boolean | No    | Wether to use special sorting rules for digits. The value **true** means to use special sorting rules for digits, and the value **false** means the opposite. The default value is **false**.                              |
-| caseFirst       | string  | No    | Whether upper case or lower case is sorted first. The value can be:<br>"upper",&nbsp;"lower", or &nbsp;"false".|
+| caseFirst       | string  | No    | Whether upper case or lower case is sorted first. The value can be **upper**, **lower**, or **false**.|
 
 >  **NOTE**
 >
@@ -225,7 +225,7 @@ Creates a **DateTimeOptions** object for the specified locale.
 
 **Example**
   ```ts
-  // Use the current system locale to create a DateTimeFormat object.
+  // Create a DateTimeFormat object using the current system locale ID.
   let datefmt= new intl.DateTimeFormat();
   ```
 
@@ -245,15 +245,15 @@ Creates a **DateTimeOptions** object for the specified locale.
 
 | Name                 | Type                                  | Mandatory  | Description                          |
 | -------------------- | ------------------------------------ | ---- | ---------------------------- |
-| locale               | string \| Array&lt;string&gt;        | Yes   | A string containing locale information, including the language, optional script, and region.<br>The locale can any or all of the preceding information.|
+| locale               | string \| Array&lt;string&gt;        | Yes   | Locale ID or locale ID array. If the input is a locale ID array, the first valid locale ID is used.|
 | options              | [DateTimeOptions](#datetimeoptions) | No   | Options for creating the **DateTimeOptions** object.<br>If no options are set, the default values of **year**, **month**, and **day** are **numeric**.|
 
 **Example**
   ```ts
-  // Use locale zh-CN to create a DateTimeFormat object. Set dateStyle to full and timeStyle to medium.
+  // Create a DateTimeFormat object with locale ID being zh-CN, dateStyle being full, and timeStyle being medium.
   let datefmt= new intl.DateTimeFormat("zh-CN", { dateStyle: 'full', timeStyle: 'medium' });
 
-  // Use the locale list ["ban**, **zh"] to create a DateTimeFormat object. Because ban is an invalid locale ID, locale zh is used to create the DateTimeFormat object.
+  // Create a DateTimeFormat object with a locale ID array. The locale ID ban is invalid and therefore locale ID zh is used.
   let datefmt= new intl.DateTimeFormat(["ban", "zh"], { dateStyle: 'full', timeStyle: 'medium' });
   ```
 
@@ -284,11 +284,11 @@ Formats the date and time.
 **Example**
   ```ts
   let date = new Date (2021, 11, 17, 3, 24, 0); // The date and time is 2021.12.17 03:24:00.
-  // Use locale en-GB to create a DateTimeFormat object.
+  // Create a DateTimeFormat object with the locale ID being en-GB.
   let datefmt = new intl.DateTimeFormat("en-GB");
   let formattedDate = datefmt.format(date); // formattedDate "17/12/2021"
 
-  // Use locale en-GB to create a DateTimeFormat object. Set dateStyle to full and timeStyle to medium.
+  // Create a DateTimeFormat object with locale ID being en-GB, dateStyle being full, and timeStyle being medium.
   datefmt = new intl.DateTimeFormat("en-GB", { dateStyle: 'full', timeStyle: 'medium' });
   formattedDate = datefmt.format(date); // formattedDate "Friday, 17 December 2021 at 03:24:00"
   ```
@@ -322,7 +322,7 @@ Formats date and time ranges.
   ```ts
   let startDate = new Date(2021, 11, 17, 3, 24, 0); // The date and time is 2021.12.17 03:24:00.
   let endDate = new Date(2021, 11, 18, 3, 24, 0);
-  // Use locale en-GB to create a DateTimeFormat object.
+  // Create a DateTimeFormat object with the locale ID being en-GB.
   let datefmt = new intl.DateTimeFormat("en-GB");
   let formattedDateRange = datefmt.formatRange(startDate, endDate); // formattedDateRange = "17/12/2021 - 18/12/2021"
   ```
@@ -367,7 +367,7 @@ Defines the options for a **DateTimeOptions** object. Since API version 9, the *
 
 | Name             | Type     | Mandatory  | Description                                      |
 | --------------- | ------- | ---- |  ---------------------------------------- |
-| locale          | string  | No   |Locale, for example, **zh-Hans-CN**.          |
+| locale          | string  | No   |Valid locale ID, for example, **zh-Hans-CN**.<br>The default value is the current system locale.          |
 | dateStyle       | string  | No    |Date display format. The value can be:<br>"long",&nbsp;"short",&nbsp;"medium",&nbsp;"full", or &nbsp;"auto".<br>For details about their display effects, see Table 1 in [Date and Time Formatting](../../internationalization/i18n-time-date.md).|
 | timeStyle       | string  | No    |Time display format. The value can be:<br>"long",&nbsp;"short",&nbsp;"medium",&nbsp;"full", or &nbsp;"auto".<br>For details about their display effects, see Table 2 in [Date and Time Formatting](../../internationalization/i18n-time-date.md).|
 | hourCycle       | string  | No    |Hour cycle. The value can be:<br>"h11",&nbsp;"h12",&nbsp;"h23", or &nbsp;"h24".<br>For details about the display effect when **dateStyle** or **timeStyle** is not set, see Table 5 in [Date and Time Formatting](../../internationalization/i18n-time-date.md).<br>For details about the display effect when **dateStyle** or **timeStyle** is set, see Table 6 in [Date and Time Formatting](../../internationalization/i18n-time-date.md).|
@@ -401,7 +401,7 @@ Creates a **NumberFormat** object for the specified locale.
 
 **Example**
   ```ts
-  // Use the current system locale to create a NumberFormat object.
+  // Create a NumberFormat object using the current system locale ID.
   let numfmt = new intl.NumberFormat();
   ```
 
@@ -420,12 +420,12 @@ Creates a **NumberFormat** object for the specified locale.
 
 | Name                 | Type                              | Mandatory  | Description                          |
 | -------------------- | -------------------------------- | ---- | ---------------------------- |
-| locale               | string \| Array&lt;string&gt;    | Yes   | A string containing locale information, including the language, optional script, and region.|
+| locale               | string \| Array&lt;string&gt;    | Yes   | Locale ID or locale ID array. If the input is a locale ID array, the first valid locale ID is used.|
 | options              | [NumberOptions](#numberoptions) | No   | Options for creating the **NumberFormat** object.              |
 
 **Example**
   ```ts
-  // Use locale en-GB to create a NumberFormat object. Set style to decimal and notation to scientific.
+  // Create a NumberFormat object with locale ID being en-GB, style being decimal, and notation being scientific.
   let numfmt = new intl.NumberFormat("en-GB", {style:'decimal', notation:"scientific"});
   ```
 
@@ -454,7 +454,7 @@ Formats a number.
 
 **Example**
   ```ts
-  // Use locale list ["en-GB**, **zh"] to create a NumberFormat object. Because en-GB is a valid locale ID, it is used to create the NumberFormat object.
+  // Create a NumberFormat object with a locale ID array. The locale ID en-GB is valid and therefore is used.
   let numfmt : intl.NumberFormat = new intl.NumberFormat(["en-GB", "zh"], {style:'decimal', notation:"scientific"});
   let formattedNumber : string = numfmt.format(1223); // formattedNumber = 1.223E3
   let options : intl.NumberOptions = {
@@ -470,7 +470,7 @@ Formats a number.
 
 formatRange(startRange: number, endRange: number): string
 
-Formats number ranges.
+Formats a number range.
 
 **Atomic service API**: This API can be used in atomic services since API version 18.
 
@@ -531,20 +531,20 @@ Options for creating the **NumberFormat** object. Since API version 9, the **Num
 
 | Name                      | Type     | Mandatory  |  Description                                      |
 | ------------------------ | ------- | ---- |  ---------------------------------------- |
-| locale                   | string  | No   | Locale, for example, **zh-Hans-CN**.<br>The default value of **locale** is the system locale.<br>**Atomic service API**: This API can be used in atomic services since API version 12.              |
+| locale                   | string  | No   | Valid locale ID, for example, **zh-Hans-CN**.<br>The default value is the current system locale.<br>**Atomic service API**: This API can be used in atomic services since API version 12.              |
 | currency                 | string  | No   | Currency unit. The value must comply with the [ISO-4217 standard](https://www.iso.org/iso-4217-currency-codes.html), for example, EUR, CNY, and USD.<br>From API version 12, a three-digit number is supported, for example, **978**, **156**, or **840**.<br>**Atomic service API**: This API can be used in atomic services since API version 12.   |
 | currencySign             | string  | No   | Currency unit symbol. The value can be **standard** or **accounting**.<br>The default value is **standard**.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | currencyDisplay          | string  | No   | Currency display mode. The value can be **symbol**, **narrowSymbol**, **code**, or **name**.<br>The default value is **symbol**.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | unit                     | string  | No   | Unit name, for example, **meter**, **inch**, or **hectare**.<br>The combination units supported since API version 18 are as follows: beat-per-minute, body-weight-per-second, breath-per-minute, foot-per-hour, jump-rope-per-minute, meter-per-hour, milliliter-per-minute-per-kilogram, rotation-per-minute, step-per-minute, and stroke-per-minute.<br>**Atomic service API**: This API can be used in atomic services since API version 12.      |
 | unitDisplay              | string  | No   | Display format of units. The value can be **long**, **short**, or **narrow**.<br>The default value is **short**.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | unitUsage<sup>8+</sup>   | string  | No   | Application scenario of units. The value can be any of the following: "default**, **area-land-agricult**, **area-land-commercl**, **area-land-residntl**, **length-person**, **length-person-small**, **length-rainfall**, **length-road**, **length-road-small**, **length-snowfall**, **length-vehicle**, **length-visiblty**, **length-visiblty-small**, **length-person-informal**, **length-person-small-informal**, **length-road-informal**, **speed-road-travel**, **speed-wind**, **temperature-person**, **temperature-weather**, **volume-vehicle-fuel**, **elapsed-time-second**, **size-file-byte**, or **size-shortfile-byte**.<br>The default value is **default**.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
-| signDisplay              | string  | No   | Number sign display format. The value can be:<br>- "auto": automatically determines whether to display the plus or minus sign.<br>- "never": do not display the plus or minus sign.<br>- "always": always displays the plus or minus sign.<br>- "exceptZero": displays the plus or minus sign for all values except 0.<br>The default value is **auto**.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| signDisplay              | string  | No   | Number sign display format. The value can be:<br>- "auto": automatically determines whether to display the plus or minus sign.<br>- "never": do not display the plus or minus sign.<br>- "always": always displays the plus or minus sign.<br>- "exceptZero": displays the plus or minus sign for all values except 0.<br>Default value: **"auto"**<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | compactDisplay           | string  | No   | Compact display format. The value can be **long** or **short**.<br>The default value is **short**.<br>**Atomic service API**: This API can be used in atomic services since API version 12.     |
-| notation                 | string  | No   | Number formatting specification. The value can be **standard**, **scientific**, **engineering**, or **compact**.<br>The default value is **standard**.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| notation                 | string  | No   | Number notation. The value can be **standard**, **scientific**, **engineering**, or **compact**.<br>The default value is **standard**.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | localeMatcher            | string  | No   | Locale matching algorithm. The value can be **lookup** or **best fit**.<br>The default value is **best fit**.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | style                    | string  | No   | Number display format. The value can be **decimal**, **currency**, **percent**, or **unit**.<br>The default value is **decimal**.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
-| numberingSystem          | string  | No   | Numbering system. The value can be:<br>The value can be any of the following: **adlm**, **ahom**, **arab**, **arabext**, **bali**, **beng**, **bhks**, **brah**, **cakm**, **cham**, **deva**, **diak**, **fullwide**, **gong**, **gonm**, **gujr**, **guru**, **hanidec**, **hmng**, **hmnp**, **java**, **kali**, **khmr**, **knda**, **lana**, **lanatham**, **laoo**, **latn**, **lepc**, **limb**, **mathbold**, **mathdbl**, **mathmono**, **mathsanb**, **mathsans**, **mlym**, **modi**, **mong**, **mroo**, **mtei**, **mymr**, **mymrshan**, **mymrtlng**, **newa**, **nkoo**, **olck**, **orya**, **osma**, **rohg**, **saur**, **segment**, **shrd**, **sind**, **sinh**, **sora**, **sund**, **takr**, **talu**, **tamldec**, **telu**, **thai**, **tibt**, **tirh**, **vaii**, **wara**, or **wcho**. The default value is the default numbering system of the specified locale.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
-| useGrouping              | boolean | No   | Whether to enable grouping for display. The value **true** means to enable grouping for display, and the value **false** means the opposite. The default value is **auto**.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                 |
+| numberingSystem          | string  | No   | Numbering system. The value can be:<br>**adlm**, **ahom**, **arab**, **arabext**, **bali**, **beng**, **bhks**, **brah**, **cakm**, **cham**, **deva**, **diak**, **fullwide**, **gong**, **gonm**, **gujr**, **guru**, **hanidec**, **hmng**, **hmnp**, **java**, **kali**, **khmr**, **knda**, **lana**, **lanatham**, **laoo**, **latn**, **lepc**, **limb**, **mathbold**, **mathdbl**, **mathmono**, **mathsanb**, **mathsans**, **mlym**, **modi**, **mong**, **mroo**, **mtei**, **mymr**, **mymrshan**, **mymrtlng**, **newa**, **nkoo**, **olck**, **orya**, **osma**, **rohg**, **saur**, **segment**, **shrd**, **sind**, **sinh**, **sora**, **sund**, **takr**, **talu**, **tamldec**, **telu**, **thai**, **tibt**, **tirh**, **vaii**, **wara**, or **wcho**.<br>The default value is the default numbering system of the locale.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| useGrouping              | boolean | No   | Whether to enable grouping for display. The value **true** means to enable grouping for display, and the value **false** means the opposite.<br>The default value is **true**.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                 |
 | minimumIntegerDigits     | number  | No   | Minimum number of digits allowed in the integer part of a number. The value ranges from **1** to **21**.<br>The default value is **1**.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                 |
 | minimumFractionDigits    | number  | No   | Minimum number of digits in the fraction part of a number. The value ranges from **0** to **20**.<br>The default value is **0**.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                 |
 | maximumFractionDigits    | number  | No   | Maximum number of digits in the fraction part of a number. The value ranges from **1** to **21**.<br>The default value is **3**.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                 |
@@ -572,7 +572,7 @@ Creates a **Collator** object.
 
 **Example**
   ```ts
-  // Use the system locale to create a Collator object.
+  // Create a Collator object using the current system locale ID.
   let collator = new intl.Collator();
   ```
 
@@ -591,12 +591,12 @@ Creates a **Collator** object.
 
 | Name                 | Type                                  | Mandatory  | Description                          |
 | -------------------- | ------------------------------------ | ---- | ---------------------------- |
-| locale               | string \| Array&lt;string&gt;        | Yes   | A string containing locale information, including the language, optional script, and region. |
+| locale               | string \| Array&lt;string&gt;        | Yes   | Locale ID or locale ID array. If the input is a locale ID array, the first valid locale ID is used. |
 | options              | [CollatorOptions](#collatoroptions8) | No   | Options for creating a **Collator** object.      |
 
 **Example**
   ```ts
-  // Use locale zh-CN to create a Collator object. Set localeMatcher to lookup and usage to sort.
+  // Create a Collator object with the locale ID being zh-CN, localeMatcher being lookup, and usage being sort.
   let collator = new intl.Collator("zh-CN", {localeMatcher: "lookup", usage: "sort"});
   ```
 
@@ -626,7 +626,7 @@ Compares two strings based on the specified collation rules.
 
 **Example**
   ```ts
-  // Use locale en-GB to create a Collator object.
+  // Create a Collator object with the locale ID being en-GB.
   let collator = new intl.Collator("en-GB");
   // Compare the sequence of the first and second strings.
   let compareResult = collator.compare("first", "second"); // compareResult = -1
@@ -699,7 +699,7 @@ Creates a **PluralRules** object to obtain the singular-plural type of numbers.
 
 **Example**
   ```ts
-  // Use the system locale to create a PluralRules object.
+  // Create a PluralRules object using the current system locale ID.
   let pluralRules = new intl.PluralRules();
   ```
 
@@ -718,12 +718,12 @@ Creates a **PluralRules** object to obtain the singular-plural type of numbers.
 
 | Name                 | Type                                      | Mandatory  | Description                          |
 | -------------------- | ---------------------------------------- | ---- | ---------------------------- |
-| locale               | string \| Array&lt;string&gt;            | Yes   | A string containing locale information, including the language, optional script, and region.|
+| locale               | string \| Array&lt;string&gt;            | Yes   | Locale ID or locale ID array. If the input is a locale ID array, the first valid locale ID is used.|
 | options              | [PluralRulesOptions](#pluralrulesoptions8) | No   | Options for creating a **PluralRules** object.      |
 
 **Example**
   ```ts
-  // Use locale zh-CN to create a PluralRules object. Set localeMatcher to lookup and type to cardinal.
+  // Create a PluralRules object with the locale ID being zh-CN, localeMatcher being lookup, and type being cardinal.
   let pluralRules= new intl.PluralRules("zh-CN", {"localeMatcher": "lookup", "type": "cardinal"});
   ```
 
@@ -731,7 +731,7 @@ Creates a **PluralRules** object to obtain the singular-plural type of numbers.
 
 select(n: number): string
 
-Obtains a string that represents the singular-plural type of the specified number.
+Obtains the singular-plural type of the specified number.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -751,12 +751,12 @@ Obtains a string that represents the singular-plural type of the specified numbe
 
 **Example**
   ```ts
-  // Use locale zh-Hans to create a PluralRules object.
+  // Create a PluralRules object with the locale ID being zh-Hans.
   let zhPluralRules = new intl.PluralRules("zh-Hans");
   // Determine the singular-plural type corresponding to number 1 in locale zh-Hans.
   let plural = zhPluralRules.select(1); // plural = other
 
-  // Use locale en-US to create a PluralRules object.
+  // Create a PluralRules object with the locale ID being en-US.
   let enPluralRules = new intl.PluralRules("en-US");
   // Determine the singular-plural type corresponding to number 1 in locale en-US.
   plural = enPluralRules.select(1); // plural = one
@@ -796,7 +796,7 @@ Creates a **RelativeTimeFormat** object.
 
 **Example**
   ```ts
-  // Use the system locale to create a RelativeTimeFormat object.
+  // Create a RelativeTimeFormat object using the current system locale ID.
   let relativetimefmt = new intl.RelativeTimeFormat();
   ```
 
@@ -815,12 +815,12 @@ Creates a **RelativeTimeFormat** object.
 
 | Name                 | Type                                      | Mandatory  | Description                          |
 | -------------------- | ---------------------------------------- | ---- | ---------------------------- |
-| locale               | string \| Array&lt;string&gt;            | Yes   | A string containing locale information, including the language, optional script, and region.|
+| locale               | string \| Array&lt;string&gt;            | Yes   | Locale ID or locale ID array. If the input is a locale ID array, the first valid locale ID is used.|
 | options              | [RelativeTimeFormatInputOptions](#relativetimeformatinputoptions8) | No   | Options for creating a **RelativeTimeFormat** object.    |
 
 **Example**
   ```ts
-  // Use locale zh-CN to create a RelativeTimeFormat object. Set localeMatcher to lookup, numeric to always, and style to long.
+  // Create a RelativeTimeFormat object with the locale ID being zh-CN, localeMatcher being lookup, and style being long.
   let relativeTimeFormat = new intl.RelativeTimeFormat("zh-CN", {"localeMatcher": "lookup", "numeric": "always", "style": "long"});
   ```
 
@@ -829,7 +829,7 @@ Creates a **RelativeTimeFormat** object.
 
 format(value: number, unit: string): string
 
-Formats the value and unit based on the specified locale and formatting options.
+Formats a relative time.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -850,7 +850,7 @@ Formats the value and unit based on the specified locale and formatting options.
 
 **Example**
   ```ts
-  // Use locale zh-CN to create a RelativeTimeFormat object.
+  // Create a RelativeTimeFormat object with the locale ID being zh-CN.
   let relativetimefmt = new intl.RelativeTimeFormat("zh-CN");
   // Obtain the localized representation (in unit of quarter) of number 3 in locale zh-CN.
   let formatResult = relativetimefmt.format(3, "quarter"); // formatResult = "3 quarters later"
@@ -861,7 +861,7 @@ Formats the value and unit based on the specified locale and formatting options.
 
 formatToParts(value: number, unit: string): Array&lt;object&gt;
 
-Custom relative time for the specified locale.
+Formats the relative time
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -878,11 +878,11 @@ Custom relative time for the specified locale.
 
 | Type                 | Description                         |
 | ------------------- | --------------------------- |
-| Array&lt;object&gt; | Object array of the relative time format.|
+| Array&lt;object&gt; | to parts.|
 
 **Example**
   ```ts
-  // Use locale en to create a RelativeTimeFormat object. Set numeric to auto.
+  // Create a RelativeTimeFormat object with the locale ID being en and numeric being auto.
   let relativetimefmt = new intl.RelativeTimeFormat("en", {"numeric": "auto"});
   let parts = relativetimefmt.formatToParts(10, "seconds"); // parts = [ {type: "literal", value: "in"}, {type: "integer", value: 10, unit: "second"}, {type: "literal", value: "seconds"} ]
   ```
@@ -892,7 +892,7 @@ Custom relative time for the specified locale.
 
 resolvedOptions(): RelativeTimeFormatResolvedOptions
 
-Obtains the formatting options for **RelativeTimeFormat** objects.
+Defines the formatting options for a **RelativeTimeFormat** object.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -902,11 +902,11 @@ Obtains the formatting options for **RelativeTimeFormat** objects.
 
 | Type                                      | Description                               |
 | ---------------------------------------- | --------------------------------- |
-| [RelativeTimeFormatResolvedOptions](#relativetimeformatresolvedoptions8) | Formatting options for **RelativeTimeFormat** objects.|
+| [RelativeTimeFormatResolvedOptions](#relativetimeformatresolvedoptions8) | Options for the **RelativeTimeFormat** object.|
 
 **Example**
   ```ts
-  // Use locale en-GB to create a RelativeTimeFormat object.
+  // Create a RelativeTimeFormat object with the locale ID being en-GB.
   let relativetimefmt= new intl.RelativeTimeFormat("en-GB", { style: "short" });
   // Obtain the options of the RelativeTimeFormat object.
   let options = relativetimefmt.resolvedOptions();
@@ -916,7 +916,7 @@ Obtains the formatting options for **RelativeTimeFormat** objects.
 
 ## RelativeTimeFormatInputOptions<sup>8+</sup>
 
-Defines the options for creating a **RelativeTimeFormat** object.
+Defines the configuration options for a **RelativeTimeFormat** object.
 
 Since API version 9, the attributes in **RelativeTimeFormatInputOptions** are optional.
 
@@ -936,7 +936,7 @@ Since API version 9, the attributes in **RelativeTimeFormatInputOptions** are op
 
 ## RelativeTimeFormatResolvedOptions<sup>8+</sup>
 
-Represents the properties of a **RelativeTimeFormat** object.
+Represents the formatting options for the **RelativeTimeFormat** object.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -944,7 +944,7 @@ Represents the properties of a **RelativeTimeFormat** object.
 
 | Name             | Type    | Mandatory  |Description                                      |
 | --------------- | ------ | ---- | ---------------------------------------- |
-| locale          | string | Yes   | A string containing locale information, including the language, optional script, and region.            |
+| locale          | string | Yes   | Locale ID, including the language, script, and region.            |
 | numeric         | string | Yes   | Format of the output message. The value can be **always** or **auto**.     |
 | style           | string | Yes   | Length of an internationalized message. The value can be **long**, **short**, or **narrow**.|
 | numberingSystem | string | Yes   | Numbering system. The value can be:<br>**adlm**, **ahom**, **arab**, **arabext**, **bali**, **beng**, **bhks**, **brah**, **cakm**, **cham**, **deva**, **diak**, **fullwide**, **gong**, **gonm**, **gujr**, **guru**, **hanidec**, **hmng**, **hmnp**, **java**, **kali**, **khmr**, **knda**, **lana**, **lanatham**, **laoo**, **latn**, **lepc**, **limb**, **mathbold**, **mathdbl**, **mathmono**, **mathsanb**, **mathsans**, **mlym**, **modi**, **mong**, **mroo**, **mtei**, **mymr**, **mymrshan**, **mymrtlng**, **newa**, **nkoo**, **olck**, **orya**, **osma**, **rohg**, **saur**, **segment**, **shrd**, **sind**, **sinh**, **sora**, **sund**, **takr**, **talu**, **tamldec**, **telu**, **thai**, **tibt**, **tirh**, **vaii**, **wara**, or **wcho**.|

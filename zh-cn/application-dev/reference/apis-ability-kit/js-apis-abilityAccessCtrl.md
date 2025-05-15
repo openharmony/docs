@@ -158,9 +158,9 @@ on(type: 'selfPermissionStateChange', permissionList: Array&lt;Permissions&gt;, 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
-| 12100001 | Invalid parameter. The permissionName exceeds 256 characters. |
+| 12100001 | Invalid parameter. Possible causes: 1. The permissionList exceeds the size limit; 2. The permissionNames in the list are all invalid. |
 | 12100004 | The API is used repeatedly with the same input. |
-| 12100005 | The registration time has exceeded the limitation. |
+| 12100005 | The registration time has exceeded the limit. |
 | 12100007 | The service is abnormal. |
 
 **示例：**
@@ -268,7 +268,7 @@ import { abilityAccessCtrl, Context, PermissionRequestResult, common } from '@ki
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager();
-let context: Context = getContext(this) as common.UIAbilityContext;
+let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 atManager.requestPermissionsFromUser(context, ['ohos.permission.CAMERA'], (err: BusinessError, data: PermissionRequestResult) => {
   if (err) {
     console.error(`requestPermissionsFromUser fail, err->${JSON.stringify(err)}`);
@@ -331,7 +331,7 @@ import { abilityAccessCtrl, Context, PermissionRequestResult, common } from '@ki
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager();
-let context: Context = getContext(this) as common.UIAbilityContext;
+let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 atManager.requestPermissionsFromUser(context, ['ohos.permission.CAMERA']).then((data: PermissionRequestResult) => {
   console.info('data:' + JSON.stringify(data));
   console.info('data permissions:' + data.permissions);
@@ -393,7 +393,7 @@ import { abilityAccessCtrl, Context, common } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager();
-let context: Context = getContext(this) as common.UIAbilityContext;
+let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 atManager.requestPermissionOnSetting(context, ['ohos.permission.CAMERA']).then((data: Array<abilityAccessCtrl.GrantStatus>) => {
   console.info('data:' + JSON.stringify(data));
 }).catch((err: BusinessError) => {
@@ -451,12 +451,58 @@ import { abilityAccessCtrl, Context, common } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager();
-let context: Context = getContext(this) as common.UIAbilityContext;
+let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 atManager.requestGlobalSwitch(context, abilityAccessCtrl.SwitchType.CAMERA).then((data: Boolean) => {
   console.info('data:' + JSON.stringify(data));
 }).catch((err: BusinessError) => {
   console.error('data:' + JSON.stringify(err));
 });
+```
+
+### getSelfPermissionStatus<sup>20+</sup>
+
+getSelfPermissionStatus(permissionName: Permissions): PermissionStatus
+
+查询应用权限状态，同步返回结果。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Security.AccessToken
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| permissionName | Permissions | 是   | 需要校验的权限名称，合法的权限名取值可在[应用权限列表](../../security/AccessToken/app-permissions.md)中查询。 |
+
+**返回值：**
+
+| 类型          | 说明                                |
+| :------------ | :---------------------------------- |
+| [PermissionStatus](#permissionstatus20) | 枚举实例，返回权限状态。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[访问控制错误码](errorcode-access-token.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 12100001 | Invalid parameter. The permissionName is empty or exceeds 256 characters. |
+| 12100007 | The service is abnormal. |
+
+**示例：**
+
+```ts
+import { abilityAccessCtrl } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager();
+try {
+  let data: abilityAccessCtrl.PermissionStatus = atManager.getSelfPermissionStatus('ohos.permission.CAMERA');
+  console.info(`data->${JSON.stringify(data)}`);
+} catch(err) {
+  console.error(`catch err->${JSON.stringify(err)}`);
+}
 ```
 
 ### verifyAccessTokenSync<sup>9+</sup>
@@ -670,3 +716,19 @@ type Context = _Context
 | 类型 | 说明 |
 | -------- | -------- |
 | [_Context](js-apis-inner-application-context.md) | 提供了ability或application的上下文的能力，包括访问特定应用程序的资源等。 |
+
+## PermissionStatus<sup>20+</sup>
+
+表示权限状态的枚举。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Security.AccessToken
+
+| 名称               |    值 | 说明        |
+| ------------------ | ----- | ----------- |
+| DENIED  | -1    | 表示用户未授权。 |
+| GRANTED | 0     | 表示已授权。 |
+| NOT_DETERMINED | 1     | 表示未操作。应用申请用户授权权限，暂未向用户弹窗时，或用户在设置中将权限状态修改为每次询问时，查询权限状态将返回此值。 |
+| INVALID | 2     | 表示无效。权限未申请或当前无法处理。例如：当模糊位置权限的状态为NOT_DETERMINED时，查询精确位置权限状态，返回此值。 |
+| RESTRICTED | 3     | 表示受限。用户未同意隐私声明。 |

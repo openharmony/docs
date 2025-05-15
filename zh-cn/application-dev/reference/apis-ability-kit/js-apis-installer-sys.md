@@ -1652,7 +1652,7 @@ try {
 }
 ```
 
-## BundleInstaller.installPlugin<sup>18+</sup>
+## BundleInstaller.installPlugin<sup>19+</sup>
 
 installPlugin(hostBundleName: string, pluginFilePaths: Array\<string\>, pluginParam?: PluginParam): Promise\<void\> 
 
@@ -1670,7 +1670,7 @@ installPlugin(hostBundleName: string, pluginFilePaths: Array\<string\>, pluginPa
 | ------------ | ----------------------------- | ---- | ------------------------------------------------------------ |
 | hostBundleName   | string                        | 是   | 待安装插件的应用包名。                                           |
 | pluginFilePaths  | Array\<string\>                  | 是   | 存储插件程序包的路径。当传入多个文件路径或者一个目录时，需确保这些文件是同一插件程序的HSP，且这些HSP的签名需要保持一致。  |
-| pluginParam  | [PluginParam](#pluginparam18)      | 否   | 指定安装插件所需的参数，默认值：参照 [PluginParam](#pluginparam18) 的默认值。 |
+| pluginParam  | [PluginParam](#pluginparam19)      | 否   | 指定安装插件所需的参数，默认值：参照 [PluginParam](#pluginparam19) 的默认值。 |
 
 **返回值：**
 
@@ -1692,6 +1692,7 @@ installPlugin(hostBundleName: string, pluginFilePaths: Array\<string\>, pluginPa
 | 17700011 | Failed to install the plugin because the plugin signature fails to be verified. |
 | 17700012 | Failed to install the plugin because the HSP path is invalid or the HSP is too large. |
 | 17700015 | Failed to install the plugin because they have different configuration information. |
+| 17700016 | Failed to install the plugin because of insufficient system disk space. |
 | 17700017 | Failed to install the plugin since the version of the plugin to install is too early. |
 | 17700048 | Failed to install the plugin because the code signature verification is failed. |
 | 17700052 | Failed to install the plugin because debug bundle cannot be installed under non-developer mode. |
@@ -1730,7 +1731,7 @@ try {
 }
 ```
 
-## BundleInstaller.uninstallPlugin<sup>18+</sup>
+## BundleInstaller.uninstallPlugin<sup>19+</sup>
 
 uninstallPlugin(hostBundleName: string, pluginBundleName: string, pluginParam?: PluginParam): Promise\<void\>
 
@@ -1748,7 +1749,7 @@ uninstallPlugin(hostBundleName: string, pluginBundleName: string, pluginParam?: 
 | ------------ | ----------------------------- | ---- | ------------------------------------------------------------ |
 | hostBundleName   | string                        | 是   | 待卸载插件的应用包名。                       |
 | pluginBundleName  | string                  | 是   |   插件的包名。 |
-| pluginParam  | [PluginParam](#pluginparam18)      | 否   | 指定卸载插件所需的参数，默认值：参照 [PluginParam](#pluginparam18) 的默认值。 |
+| pluginParam  | [PluginParam](#pluginparam19)      | 否   | 指定卸载插件所需的参数，默认值：参照 [PluginParam](#pluginparam19) 的默认值。 |
 
 **返回值：**
 
@@ -1910,7 +1911,7 @@ PGO（Profile-guided Optimization）配置文件参数信息。
 | userId      | number | 否   | 指定删除分身应用所在的用户id。默认值：调用方所在用户。            |
 | parameters  | Array<[Parameters](#parameters15)> | 否   | 指定删除分身应用扩展参数，默认值为空。            |
 
-## PluginParam<sup>18+</sup>
+## PluginParam<sup>19+</sup>
 
 插件应用安装、卸载的参数信息。
 

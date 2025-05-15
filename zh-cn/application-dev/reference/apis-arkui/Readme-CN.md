@@ -133,6 +133,7 @@
       - [自定义绘制](arkui-ts/ts-universal-attributes-draw-modifier.md)
       - [自定义内容](arkui-ts/ts-universal-attributes-content-modifier.md)
       - [自定义属性设置](arkui-ts/ts-universal-attributes-custom-property.md)
+      - [自定义窗口工具栏](arkui-ts/ts-universal-attributes-toolbar.md)
       - 触摸交互控制<!--touch-interactions-->
         - [触摸热区设置](arkui-ts/ts-universal-attributes-touch-target.md)
         - [触摸测试控制](arkui-ts/ts-universal-attributes-hit-test-behavior.md)
@@ -212,6 +213,7 @@
     - [StepperItem](arkui-ts/ts-basic-components-stepperitem.md)
     - [Tabs](arkui-ts/ts-container-tabs.md)
     - [TabContent](arkui-ts/ts-container-tabcontent.md)
+    - [ToolBarItem](arkui-ts/ts-basic-components-toolbaritem.md)
   - 按钮与选择<!--buttons-and-selections-->
     - [Button](arkui-ts/ts-basic-components-button.md)
     - [Toggle](arkui-ts/ts-basic-components-toggle.md)
@@ -267,7 +269,6 @@
     - [DataPanel](arkui-ts/ts-basic-components-datapanel.md)
     - [Gauge](arkui-ts/ts-basic-components-gauge.md)
     - [LoadingProgress](arkui-ts/ts-basic-components-loadingprogress.md)
-    - [LinearIndicator](arkui-ts/ts-basic-components-linearindicator.md)
     - [Marquee](arkui-ts/ts-basic-components-marquee.md)
     - [PatternLock](arkui-ts/ts-basic-components-patternlock.md)
     - [Progress](arkui-ts/ts-basic-components-progress.md)
@@ -519,6 +520,9 @@
     - [滚动类组件错误码](errorcode-scroll.md)
     - [截图错误码](errorcode-snapshot.md)
     - [UI上下文错误码](errorcode-uicontext.md)
+    <!--Del-->
+    - [UIExtension错误码](errorcode-uiextension.md)
+    <!--DelEnd-->
   - 图形图像<!--arkui-graphics-images-arkts-errcode-->
     - [屏幕错误码](errorcode-display.md)
     - [窗口错误码](errorcode-window.md)

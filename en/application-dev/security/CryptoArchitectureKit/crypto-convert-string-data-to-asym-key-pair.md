@@ -1,8 +1,6 @@
 # Converting a PEM String into an Asymmetric Key Pair (ArkTS)
 
-
 This topic walks you through on how to convert a string in PEM format into an RSA asymmetric key pair (**KeyPair**).
-
 
 > **NOTE**
 >
@@ -13,7 +11,6 @@ This topic walks you through on how to convert a string in PEM format into an RS
 > - The private key must comply with the PKCS \#8 or PKCS \#1 specifications and the PEM encoding format.
 >
 > - Currently, only RSA asymmetric keys can be converted.
-
 
 ## Converting a String in PEM Format into an RSA Key Pair
 

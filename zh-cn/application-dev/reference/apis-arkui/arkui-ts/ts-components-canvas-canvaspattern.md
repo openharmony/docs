@@ -4,7 +4,7 @@
 
 >  **说明：**
 >
->  从 API Version 8 开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>  从 API version 8 开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 ## 方法
 
@@ -35,11 +35,11 @@ setTransform(transform?: Matrix2D): void
 @Entry
 @Component
 struct CanvasPatternPage {
-  private settings: RenderingContextSettings = new RenderingContextSettings(true)
-  private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
-  private matrix: Matrix2D = new Matrix2D()
-  private img: ImageBitmap = new ImageBitmap("common/pattern.jpg")
-  private pattern: CanvasPattern | null = null
+  private settings: RenderingContextSettings = new RenderingContextSettings(true);
+  private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
+  private matrix: Matrix2D = new Matrix2D();
+  private img: ImageBitmap = new ImageBitmap("common/pattern.jpg");
+  private pattern: CanvasPattern | null = null;
 
   build() {
       Column() {

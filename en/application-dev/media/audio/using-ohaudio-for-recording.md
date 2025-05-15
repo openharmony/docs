@@ -2,7 +2,7 @@
 
 **OHAudio** is a set of C APIs introduced in API version 10. These APIs are normalized in design and support both common and low-latency audio channels. They support the PCM format only. They are suitable for playback applications that implement audio input at the native layer.
 
-OHAudio audio recording state transition
+OHAudio audio capturer state transition
 
 ![OHAudioCapturer status change](figures/ohaudiocapturer-status-change.png)
 

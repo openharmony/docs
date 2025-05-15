@@ -5,6 +5,8 @@
 >  **说明：**
 >
 >  从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>
+>  部分设备会优先响应系统的双指长按手势，导致应用的双指长按手势不生效。
 
 
 ## 接口
@@ -19,6 +21,8 @@ LongPressGesture(value?: { fingers?: number, repeat?: boolean, duration?: number
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **参数：**
 
 | 参数名称 | 参数类型 | 必填 | 参数描述 |
@@ -31,6 +35,8 @@ LongPressGesture(value?: { fingers?: number, repeat?: boolean, duration?: number
 
 ## 事件
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 | 名称 | 功能描述 |
 | -------- | -------- |
 | onAction(event:(event:&nbsp;[GestureEvent](ts-gesture-settings.md#gestureevent对象说明))&nbsp;=&gt;&nbsp;void) | LongPress手势识别成功回调。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
@@ -39,6 +45,8 @@ LongPressGesture(value?: { fingers?: number, repeat?: boolean, duration?: number
 | onActionCancel(event:&nbsp;Callback<[GestureEvent](ts-gesture-settings.md#gestureevent对象说明)>)<sup>18+</sup> | LongPress手势识别成功，接收到触摸取消事件触发回调。返回手势事件信息。<br/>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。|
 
 ## 属性
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称 | 类型    |描述                                        |
 | ----  | ------  | ---------------------------------------- |
@@ -55,7 +63,7 @@ LongPressGesture(value?: { fingers?: number, repeat?: boolean, duration?: number
 @Entry
 @Component
 struct LongPressGestureExample {
-  @State count: number = 0
+  @State count: number = 0;
 
   build() {
     Column() {

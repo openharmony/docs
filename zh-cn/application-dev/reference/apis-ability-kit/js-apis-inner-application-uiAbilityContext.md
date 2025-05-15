@@ -639,32 +639,49 @@ terminateSelf(callback: AsyncCallback&lt;void&gt;): void
 
 **示例：**
 
-```ts
-import { UIAbility } from '@kit.AbilityKit';
-import { BusinessError } from '@kit.BasicServicesKit';
+1. 使用terminateSelf接口停止UIAbility示例代码如下，默认情况下应用会在最近任务列表中保留快照。
 
-export default class EntryAbility extends UIAbility {
-  onForeground() {
-    try {
-      this.context.terminateSelf((err: BusinessError) => {
-        if (err.code) {
-          // 处理业务逻辑错误
-          console.error(`terminateSelf failed, code is ${err.code}, message is ${err.message}`);
-          return;
+    ```ts
+    import { UIAbility } from '@kit.AbilityKit';
+    import { BusinessError } from '@kit.BasicServicesKit';
+
+    export default class EntryAbility extends UIAbility {
+      onForeground() {
+        try {
+          this.context.terminateSelf((err: BusinessError) => {
+            if (err.code) {
+              // 处理业务逻辑错误
+              console.error(`terminateSelf failed, code is ${err.code}, message is ${err.message}`);
+              return;
+            }
+            // 执行正常业务
+            console.info('terminateSelf succeed');
+          });
+        } catch (err) {
+          // 捕获同步的参数错误
+          let code = (err as BusinessError).code;
+          let message = (err as BusinessError).message;
+          console.error(`terminateSelf failed, code is ${code}, message is ${message}`);
         }
-        // 执行正常业务
-        console.info('terminateSelf succeed');
-      });
-    } catch (err) {
-      // 捕获同步的参数错误
-      let code = (err as BusinessError).code;
-      let message = (err as BusinessError).message;
-      console.error(`terminateSelf failed, code is ${code}, message is ${message}`);
+      }
     }
-  }
-}
-```
+    ```
 
+2. （可选）如果需要在停止UIAbility时，清理任务中心的相关任务（即不保留最近任务列表中的快照），需要在[module.json5](../../quick-start/module-configuration-file.md)配置文件中将removeMissionAfterTerminate字段取值配置为true。
+
+    ```json
+    { 
+      "module": { 
+        // ... 
+        "abilities": [
+          {
+            // ...
+            "removeMissionAfterTerminate": true
+          }
+        ]
+      }
+    }
+    ```
 
 ## UIAbilityContext.terminateSelf
 
@@ -699,32 +716,49 @@ terminateSelf(): Promise&lt;void&gt;
 
 **示例：**
 
-```ts
-import { UIAbility } from '@kit.AbilityKit';
-import { BusinessError } from '@kit.BasicServicesKit';
+1. 使用terminateSelf接口停止UIAbility示例代码如下，默认情况下应用会在最近任务列表中保留快照。
 
-export default class EntryAbility extends UIAbility {
-  onForeground() {
-    try {
-      this.context.terminateSelf()
-        .then(() => {
-          // 执行正常业务
-          console.info('terminateSelf succeed');
-        })
-        .catch((err: BusinessError) => {
-          // 处理业务逻辑错误
-          console.error(`terminateSelf failed, code is ${err.code}, message is ${err.message}`);
-        });
-    } catch (err) {
-      // 捕获同步的参数错误
-      let code = (err as BusinessError).code;
-      let message = (err as BusinessError).message;
-      console.error(`terminateSelf failed, code is ${code}, message is ${message}`);
+    ```ts
+    import { UIAbility } from '@kit.AbilityKit';
+    import { BusinessError } from '@kit.BasicServicesKit';
+
+    export default class EntryAbility extends UIAbility {
+      onForeground() {
+        try {
+          this.context.terminateSelf()
+            .then(() => {
+              // 执行正常业务
+              console.info('terminateSelf succeed');
+            })
+            .catch((err: BusinessError) => {
+              // 处理业务逻辑错误
+              console.error(`terminateSelf failed, code is ${err.code}, message is ${err.message}`);
+            });
+        } catch (err) {
+          // 捕获同步的参数错误
+          let code = (err as BusinessError).code;
+          let message = (err as BusinessError).message;
+          console.error(`terminateSelf failed, code is ${code}, message is ${message}`);
+        }
+      }
     }
-  }
-}
-```
+    ```
 
+2. （可选）如果需要在停止UIAbility时，清理任务中心的相关任务（即不保留最近任务列表中的快照），需要在[module.json5](../../quick-start/module-configuration-file.md)配置文件中将removeMissionAfterTerminate字段取值配置为true。
+
+    ```json
+    {
+      "module": {
+        // ...
+        "abilities": [
+          {
+            // ...
+            "removeMissionAfterTerminate": true
+          }
+        ]
+      }
+    }
+    ```
 
 ## UIAbilityContext.terminateSelfWithResult
 
@@ -1876,7 +1910,7 @@ struct Index {
           .fontSize(30)
           .fontWeight(FontWeight.Bold)
           .onClick(() => {
-            let context = getContext(this) as common.UIAbilityContext;
+            let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 
             context.showAbility().then(() => {
               console.log(`showAbility success`);
@@ -1974,7 +2008,7 @@ struct Index {
           .fontSize(30)
           .fontWeight(FontWeight.Bold)
           .onClick(() => {
-            let context = getContext(this) as common.UIAbilityContext;
+            let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 
             context.hideAbility().then(() => {
               console.log(`hideAbility success`);
@@ -2072,7 +2106,7 @@ struct Index {
           .fontSize(30)
           .fontWeight(FontWeight.Bold)
           .onClick(() => {
-            let context = getContext(this) as common.UIAbilityContext;
+            let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 
             context.moveAbilityToBackground().then(() => {
               console.log(`moveAbilityToBackground success.`);
@@ -2247,7 +2281,7 @@ struct Index {
     RelativeContainer() {
       Button("Call StartAbilityForResult")
         .onClick(() => {
-          let context = getContext(this) as common.UIAbilityContext;
+          let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
           let link: string = 'https://www.example.com';
           let openLinkOptions: OpenLinkOptions = {
             appLinkingOnly: true,
@@ -2341,7 +2375,7 @@ struct Index {
 
         Button("Call StartAbilityForResult")
           .onClick(() => {
-            let context: common.UIAbilityContext = getContext() as common.UIAbilityContext;
+            let context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
             let want: Want = {
               bundleName: 'com.example.demo2',
               abilityName: 'EntryAbility'
@@ -2535,7 +2569,7 @@ struct Index {
         Button('start ability')
           .enabled(true)
           .onClick(() => {
-            let context = getContext(this) as common.UIAbilityContext;
+            let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
             let startWant: Want = {
               bundleName: 'com.acts.uiserviceextensionability',
               abilityName: 'UiServiceExtAbility',
@@ -2600,7 +2634,7 @@ connectUIServiceExtensionAbility(want: Want, callback: UIServiceExtensionConnect
 | 16000005 | The specified process does not have the permission.                                 |
 | 16000008 | The crowdtesting application expires.                                               |
 | 16000011 | The context does not exist.                                                         |
-| 16000013 | The EDM prohibits the application from launching.                                   |
+| 16000013 | The application is controlled by EDM.                                               |
 | 16000050 | Internal error.                                                                     |
 | 16000055 | Installation-free timed out.                                                        |
 
@@ -2628,7 +2662,7 @@ struct UIServiceExtensionAbility {
 
   async myConnect() {
     // 获取上下文
-    let context = getContext(this) as common.UIAbilityContext;
+    let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
     let startWant: Want = {
       deviceId: '',
       bundleName: 'com.example.myapplication',
@@ -2745,7 +2779,7 @@ struct UIServiceExtensionAbility {
   }
 
   myDisconnectUIServiceExtensionAbility() {
-    let context = getContext(this) as common.UIAbilityContext;
+    let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 
     try {
       // 断开UIServiceExtension连接

@@ -47,13 +47,12 @@ sendData(data: Record\<string, Object>): void
 ```ts
 import { UIExtensionContentSession } from '@kit.AbilityKit';
 
-let storage = LocalStorage.getShared();
-
-@Entry(storage)
+@Entry()
 @Component
 struct Index {
+  private storage: LocalStorage | undefined = this.getUIContext().getSharedLocalStorage();
   private session: UIExtensionContentSession | undefined =
-    storage.get<UIExtensionContentSession>('session');
+    this.storage?.get<UIExtensionContentSession>('session');
 
   build() {
     RelativeContainer() {
@@ -108,20 +107,19 @@ setReceiveDataCallback(callback: (data: Record\<string, Object>) => void): void
 ```ts
 import { UIExtensionContentSession } from '@kit.AbilityKit';
 
-let storage = LocalStorage.getShared();
-
-@Entry(storage)
+@Entry()
 @Component
 struct Index {
+  storage: LocalStorage | undefined = this.getUIContext().getSharedLocalStorage();
   private session: UIExtensionContentSession | undefined =
-    storage.get<UIExtensionContentSession>('session');
+    this.storage?.get<UIExtensionContentSession>('session');
 
   build() {
     RelativeContainer() {
       Button('SendData')
         .onClick(() => {
           this.session?.setReceiveDataCallback((data: Record<string, Object>) => {
-            console.info(`Successed in setReceiveDataCallback, data: ${JSON.stringify(data)}`);
+            console.info(`Succeeded in setReceiveDataCallback, data: ${JSON.stringify(data)}`);
           });
         })
     }
@@ -146,7 +144,7 @@ setReceiveDataForResultCallback(callback: (data: Record<string, Object>) => Reco
 
 | 参数名 | 类型 | 必填 | 说明             |
 | -------- | -------- | -------- |----------------|
-| callback | (data: { [key: string]: Object }) => { [key: string]: Object } | 是 | 回调函数，返回带返回值的接收的数据。 |
+| callback | (data: Record\<string, Object>) => Record\<string, Object> | 是 | 回调函数，返回带返回值的接收的数据。 |
 
 **错误码：**
 
@@ -163,20 +161,19 @@ setReceiveDataForResultCallback(callback: (data: Record<string, Object>) => Reco
 ```ts
 import { UIExtensionContentSession } from '@kit.AbilityKit';
 
-let storage = LocalStorage.getShared();
-
-@Entry(storage)
+@Entry()
 @Component
 struct Index {
+  storage: LocalStorage | undefined = this.getUIContext().getSharedLocalStorage();
   private session: UIExtensionContentSession | undefined =
-    storage.get<UIExtensionContentSession>('session');
+    this.storage?.get<UIExtensionContentSession>('session');
 
   build() {
     RelativeContainer() {
       Button('SetReceiveDataForResultCallback')
         .onClick(() => {
           this.session?.setReceiveDataForResultCallback((data: Record<string, Object>) => {
-            console.info(`Successed in setReceiveDataCallback, data: ${JSON.stringify(data)}`);
+            console.info(`Succeeded in setReceiveDataCallback, data: ${JSON.stringify(data)}`);
             return data;
           });
         })
@@ -232,7 +229,6 @@ startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
-| 16000082 | The UIAbility is being started. |
 | 16200001 | The caller has been released. |
 
 **示例：**
@@ -250,7 +246,7 @@ export default class UIExtAbility extends UIExtensionAbility {
         console.error(`Failed to startAbility, code: ${err.code}, msg: ${err.message}`);
         return;
       }
-      console.info(`Successed in startAbility`);
+      console.info(`Succeeded in startAbility`);
     })
   }
 
@@ -302,7 +298,6 @@ startAbility(want: Want, options: StartOptions, callback: AsyncCallback&lt;void&
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
-| 16000082 | The UIAbility is being started. |
 | 16200001 | The caller has been released. |
 
 **示例：**
@@ -324,7 +319,7 @@ export default class UIExtAbility extends UIExtensionAbility {
         console.error(`Failed to startAbility, code: ${err.code}, msg: ${err.message}`);
         return;
       }
-      console.info(`Successed in startAbility`);
+      console.info(`Succeeded in startAbility`);
     })
   }
 
@@ -383,7 +378,6 @@ startAbility(want: Want, options?: StartOptions): Promise&lt;void&gt;
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
-| 16000082 | The UIAbility is being started. |
 | 16200001 | The caller has been released. |
 
 **示例：**
@@ -402,7 +396,7 @@ export default class UIExtAbility extends UIExtensionAbility {
 
     session.startAbility(want, starOptions)
       .then(() => {
-        console.info(`Successed in startAbility`);
+        console.info(`Succeeded in startAbility`);
       })
       .catch((err: BusinessError) => {
         console.error(`Failed to startAbility, code: ${err.code}, msg: ${err.message}`);
@@ -463,7 +457,6 @@ Ability的终止方式包括以下几种情况：
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
-| 16000082 | The UIAbility is being started. |
 | 16200001 | The caller has been released. |
 
 **示例：**
@@ -481,7 +474,7 @@ export default class UIExtAbility extends UIExtensionAbility {
         console.error(`Failed to startAbilityForResult, code: ${err.code}, msg: ${err.message}`);
         return;
       }
-      console.info(`Successed in startAbilityForResult, data: ${JSON.stringify(data)}`);
+      console.info(`Succeeded in startAbilityForResult, data: ${JSON.stringify(data)}`);
     })
   }
 
@@ -538,7 +531,6 @@ Ability的终止方式包括以下几种情况：
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
-| 16000082 | The UIAbility is being started. |
 | 16200001 | The caller has been released. |
 
 **示例：**
@@ -560,7 +552,7 @@ export default class UIExtAbility extends UIExtensionAbility {
         console.error(`Failed to startAbilityForResult, code: ${err.code}, msg: ${err.message}`);
         return;
       }
-      console.info(`Successed in startAbilityForResult, data: ${JSON.stringify(data)}`);
+      console.info(`Succeeded in startAbilityForResult, data: ${JSON.stringify(data)}`);
     })
   }
 
@@ -625,7 +617,6 @@ Ability的终止方式包括以下几种情况：
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
-| 16000082 | The UIAbility is being started. |
 | 16200001 | The caller has been released. |
 
 **示例：**
@@ -644,7 +635,7 @@ export default class UIExtAbility extends UIExtensionAbility {
 
     session.startAbilityForResult(want, starOptions)
       .then((data: common.AbilityResult) => {
-        console.info(`Successed in startAbilityForResult, data: ${JSON.stringify(data)}`);
+        console.info(`Succeeded in startAbilityForResult, data: ${JSON.stringify(data)}`);
       })
       .catch((err: BusinessError) => {
         console.error(`Failed to startAbilityForResult, code: ${err.code}, msg: ${err.message}`);
@@ -750,7 +741,6 @@ startAbilityAsCaller(want: Want, callback: AsyncCallback\<void>): void
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
-| 16000082 | The UIAbility is being started. |
 | 16200001 | The caller has been released. |
 
 **示例：**
@@ -773,7 +763,7 @@ export default class UIExtAbility extends UIExtensionAbility {
         console.error(`Failed to startAbilityAsCaller, code: ${err.code}, msg: ${err.message}`);
         return;
       }
-      console.info(`Successed in startAbilityAsCaller`);
+      console.info(`Succeeded in startAbilityAsCaller`);
     })
   }
 
@@ -820,7 +810,6 @@ startAbilityAsCaller(want: Want, options: StartOptions, callback: AsyncCallback\
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
-| 16000082 | The UIAbility is being started. |
 | 16200001 | The caller has been released. |
 
 **示例：**
@@ -847,7 +836,7 @@ export default class UIExtAbility extends UIExtensionAbility {
         console.error(`Failed to startAbilityAsCaller, code: ${err.code}, msg: ${err.message}`);
         return;
       }
-      console.info(`Successed in startAbilityAsCaller`);
+      console.info(`Succeeded in startAbilityAsCaller`);
     })
   }
 
@@ -901,7 +890,6 @@ startAbilityAsCaller(want: Want, options?: StartOptions): Promise\<void>
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
-| 16000082 | The UIAbility is being started. |
 | 16200001 | The caller has been released. |
 
 **示例：**
@@ -925,7 +913,7 @@ export default class UIExtAbility extends UIExtensionAbility {
 
     session.startAbilityAsCaller(localWant, startOptions)
       .then(() => {
-        console.info(`Successed in startAbilityAsCaller`);
+        console.info(`Succeeded in startAbilityAsCaller`);
       })
       .catch((err: BusinessError) => {
         console.error(`Failed to startAbilityAsCaller, code: ${err.code}, msg: ${err.message}`);

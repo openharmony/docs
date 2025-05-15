@@ -1,4 +1,5 @@
 # Context
+<!--deprecated_code_no_check-->
 
 Context模块提供了ability或application的上下文的能力，包括允许访问特定于应用程序的资源、请求和验证权限等。
 

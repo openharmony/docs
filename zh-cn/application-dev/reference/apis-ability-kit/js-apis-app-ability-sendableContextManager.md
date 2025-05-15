@@ -49,7 +49,7 @@ let sendableContext: sendableContextManager.SendableContext;
 
 ## sendableContextManager.convertFromContext
 
-convertFromContext(context: common.Context): SendableContext;
+convertFromContext(context: common.Context): SendableContext
 
 将Context转换为SendableContext对象。
 
@@ -61,7 +61,13 @@ convertFromContext(context: common.Context): SendableContext;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | ------- | ------- | ------- | ------- |
-| context | common.Context | 是 | Context对象，支持Context基类，ApplicationContext、AbilityStageContext和UIAbilityContext子类。 |
+| context | [common.Context](js-apis-inner-application-context.md) | 是 | Context对象。支持Context基类，[ApplicationContext](js-apis-inner-application-applicationContext.md)、[AbilityStageContext](js-apis-inner-application-abilityStageContext.md)和[UIAbilityContext](js-apis-inner-application-uiAbilityContext.md)子类。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| SendableContext | [SendableContext](js-apis-inner-application-sendableContext.md)对象。 |
 
 **错误码**：
 
@@ -122,6 +128,12 @@ convertToContext(sendableContext: SendableContext): common.Context
 | 参数名 | 类型 | 必填 | 说明 |
 | ------- | ------- | ------- | ------- |
 | sendableContext | [SendableContext](js-apis-inner-application-sendableContext.md) | 是 | SendableContext对象。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| common.Context | [Context](js-apis-inner-application-context.md)对象。 |
 
 **错误码**：
 
@@ -228,6 +240,12 @@ convertToApplicationContext(sendableContext: SendableContext): common.Applicatio
 | 参数名 | 类型 | 必填 | 说明 |
 | ------- | ------- | ------- | ------- |
 | sendableContext | [SendableContext](js-apis-inner-application-sendableContext.md) | 是 | SendableContext对象。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| common.ApplicationContext | [ApplicationContext](js-apis-inner-application-applicationContext.md)对象。 |
 
 **错误码**：
 
@@ -336,6 +354,12 @@ convertToAbilityStageContext(sendableContext: SendableContext): common.AbilitySt
 | ------- | ------- | ------- | ------- |
 | sendableContext | [SendableContext](js-apis-inner-application-sendableContext.md) | 是 | SendableContext对象。 |
 
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| common.AbilityStageContext | [AbilityStageContext](js-apis-inner-application-abilityStageContext.md)对象。 |
+
 **错误码**：
 
 以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)。
@@ -440,6 +464,12 @@ convertToUIAbilityContext(sendableContext: SendableContext): common.UIAbilityCon
 | 参数名 | 类型 | 必填 | 说明 |
 | ------- | ------- | ------- | ------- |
 | sendableContext | [SendableContext](js-apis-inner-application-sendableContext.md) | 是 | SendableContext对象。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| common.UIAbilityContext | [UIAbilityContext](js-apis-inner-application-uiAbilityContext.md)对象。 |
 
 **错误码**：
 

@@ -6,6 +6,10 @@
 >
 > 本模块首批接口从API version 7开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
+> **注意：**
+>
+> 导入tag模块编辑器报错，在某个具体设备型号上能力可能超出工程默认设备定义的能力集范围，如需要使用此部分能力需额外配置自定义syscap，参考[syscap开发指南](https://developer.huawei.com/consumer/cn/doc/harmonyos-references/syscap#syscap开发指导)。
+
 ## **导入模块**
 
 ```js
@@ -618,8 +622,7 @@ transmit(data: number[]): Promise<number[]>
 |401 | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
 |801 | Capability not supported.          |
 | 3100201 | The tag running state is abnormal in the service. |
-| 3100204 | The Tag I/O operation failed. |
-| 3100205 | The tag leaves the field. |
+| 3100204 | The tag I/O operation failed. |
 
 **示例：**
 
@@ -684,7 +687,7 @@ transmit(data: number[], callback: AsyncCallback<number[]>): void
 |401 | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
 |801 | Capability not supported.          |
 | 3100201 | The tag running state is abnormal in the service. |
-| 3100204 | Tag I/O operation failed. |
+| 3100204 | The tag I/O operation failed.. |
 
 **示例：**
 

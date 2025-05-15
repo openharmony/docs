@@ -43,11 +43,15 @@
 当应用需要通过解析本地Raw文件中的m3u8文件，播放在线流媒体资源时，可以通过[resourceManager.getRawFd](../../reference/apis-localization-kit/js-apis-resource-manager.md#getrawfd9)获取文件描述符，将其拼接成fdUrl，并通过[setMimeType](../../reference/apis-media-kit/js-apis-media.md#setmimetype12)设置MIME类型为APPLICATION_M3U8。
 ```ts
   import { resourceManager } from '@kit.LocalizationKit';
+  import { common } from '@kit.AbilityKit';
+  private context: Context | undefined;
+  constructor(context: Context) {
+    this.context = context; // this.getUIContext().getHostContext();
+  }
   // 创建avPlayer实例对象。
   let avPlayer: media.AVPlayer = await media.createAVPlayer();
   // 获取context实例。
-  let context = getContext(this) as common.UIAbilityContext;
-  let mgr = context.resourceManager;
+  let mgr = this.context.resourceManager;
   // 设置本地m3u8文件名。
   let m3u8FileName : string = "xxx.m3u8";
   // 通过本地m3u8文件名，获取文件描述符。
@@ -79,12 +83,16 @@
 当应用需要通过解析应用沙箱中的的m3u8文件，播放在线流媒体资源时，可以通过[fs.openSync](../../reference/apis-core-file-kit/js-apis-file-fs.md#fsopensync)获取文件句柄，将其拼接成fdUrl，并通过[setMimeType](../../reference/apis-media-kit/js-apis-media.md#setmimetype12)设置MIME类型为APPLICATION_M3U8。
 ```ts
   import { fileIo as fs } from '@kit.CoreFileKit';
+  import { common } from '@kit.AbilityKit';
+  private context: Context | undefined;
+  constructor(context: Context) {
+    this.context = context; // this.getUIContext().getHostContext();
+  }
   // 创建avPlayer实例对象。
   let avPlayer: media.AVPlayer = await media.createAVPlayer();
 
   // 获取context实例。
-  let context = getContext(this) as common.UIAbilityContext;
-  let mgr = context.resourceManager;
+  let mgr = this.context.resourceManager;
   // 设置本地m3u8文件名。
   let m3u8FileName : string = "xxx.m3u8";
   // 设置本地m3u8沙箱路径。
@@ -114,12 +122,16 @@
 ## 本地raw文件播放场景下设置URL
 **情况一：应用沙箱文件播放**
 ```ts
+  import { common } from '@kit.AbilityKit';
+  private context: Context | undefined;
+  constructor(context: Context) {
+    this.context = context; // this.getUIContext().getHostContext();
+  }
   // 创建avPlayer实例对象。
   let avPlayer: media.AVPlayer = await media.createAVPlayer();
   let fdPath = 'fd://';
   // 通过UIAbilityContext获取沙箱地址filesDir，以Stage模型为例。
-  let context = getContext(this) as common.UIAbilityContext;
-  let pathDir = context.filesDir;
+  let pathDir = this.context.filesDir;
   let path = '/data/storage/el1/bundle/01.mp3';
   // 打开相应的资源文件地址获取fd，并为url赋值触发initialized状态机上报。
   let file = await fs.open(path);
@@ -128,13 +140,21 @@
 ```
 
 **情况二：本地文件播放**
+
+> **说明：**
+> 当使用AVPlayer播放本地资源时，AVPlayer会独占此fd。
+
 ```ts
+  import { common } from '@kit.AbilityKit';
+  private context: Context | undefined;
+  constructor(context: Context) {
+    this.context = context; // this.getUIContext().getHostContext();
+  }
   // 创建avPlayer实例对象。
   let avPlayer: media.AVPlayer = await media.createAVPlayer();
   // 通过UIAbilityContext的resourceManager成员的getRawFd接口获取媒体资源播放地址。
   // 返回类型为{fd,offset,length},fd为HAP包fd地址，offset为媒体资源偏移量，length为播放长度。
-  let context = getContext(this) as common.UIAbilityContext;
-  let fileDescriptor = await context.resourceManager.getRawFd('01.mp3');
+  let fileDescriptor = await this.context.resourceManager.getRawFd('01.mp3');
   let avFileDescriptor: media.AVFileDescriptor =
     { fd: fileDescriptor.fd, offset: fileDescriptor.offset, length: fileDescriptor.length };
   // 为fdSrc赋值触发initialized状态机上报。

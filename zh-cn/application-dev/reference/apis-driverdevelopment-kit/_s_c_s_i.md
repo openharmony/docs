@@ -48,7 +48,7 @@ SCSI Peripheral DDK是为开发者提供专门用于开发SCSI设备驱动程序
 | [SCSIPERIPHERAL_MAX_CMD_DESC_BLOCK_LEN](#scsiperipheral_max_cmd_desc_block_len)&nbsp;&nbsp;&nbsp;16 | 命令描述符块的最大长度。 | 
 | [SCSIPERIPHERAL_MAX_SENSE_DATA_LEN](#scsiperipheral_max_sense_data_len)&nbsp;&nbsp;&nbsp;252 | 在SCSI协议中，Sense Data（感应数据）的最大长度通常为252字节。 | 
 | [SCSIPERIPHERAL_VENDOR_ID_LEN](#scsiperipheral_vendor_id_len)&nbsp;&nbsp;&nbsp;8 | vendor id的最大长度。 | 
-| [SCSIPERIPHERAL_PRODUCT_ID_LEN](#scsiperipheral_product_id_len)&nbsp;&nbsp;&nbsp;16 | product id的最大长度。 | 
+| [SCSIPERIPHERAL_PRODUCT_ID_LEN](#scsiperipheral_product_id_len)&nbsp;&nbsp;&nbsp;18 | product id的最大长度。 | 
 | [SCSIPERIPHERAL_PRODUCT_REV_LEN](#scsiperipheral_product_rev_len)&nbsp;&nbsp;&nbsp;4 | 产品版本的最大长度。 | 
 
 
@@ -158,7 +158,7 @@ sense data固定格式长度最小值。
 ### SCSIPERIPHERAL_PRODUCT_ID_LEN
 
 ```
-#define SCSIPERIPHERAL_PRODUCT_ID_LEN   16
+#define SCSIPERIPHERAL_PRODUCT_ID_LEN   18
 ```
 
 **描述**
@@ -640,6 +640,7 @@ ohos.permission.ACCESS_DDK_SCSI_PERIPHERAL
 
 - SCSIPERIPHERAL_DDK_INVALID_OPERATION 不支持该操作。
 
+- SCSIPERIPHERAL_DDK_TIMEOUT 传输超时。
 
 ### OH_ScsiPeripheral_ParseBasicSenseInfo()
 

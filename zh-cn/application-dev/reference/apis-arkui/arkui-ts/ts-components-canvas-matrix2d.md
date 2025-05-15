@@ -4,7 +4,7 @@
 
 >  **说明：**
 > 
-> 从 API Version 8 开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+> 从 API version 8 开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 ## 接口
 
@@ -50,9 +50,9 @@ Matrix2D(unit?: LengthMetricsUnit)
 @Entry
 @Component
 struct Parameter {
-  private settings: RenderingContextSettings = new RenderingContextSettings(true)
-  private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
-  private matrix: Matrix2D = new Matrix2D()
+  private settings: RenderingContextSettings = new RenderingContextSettings(true);
+  private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
+  private matrix: Matrix2D = new Matrix2D();
 
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
@@ -108,9 +108,9 @@ identity(): Matrix2D
 @Entry
 @Component
 struct Identity {
-  private settings: RenderingContextSettings = new RenderingContextSettings(true)
-  private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
-  private matrix: Matrix2D = new Matrix2D()
+  private settings: RenderingContextSettings = new RenderingContextSettings(true);
+  private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
+  private matrix: Matrix2D = new Matrix2D();
 
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
@@ -159,9 +159,9 @@ invert(): Matrix2D
 @Entry
 @Component
 struct Invert {
-  private settings: RenderingContextSettings = new RenderingContextSettings(true)
-  private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
-  private matrix: Matrix2D = new Matrix2D()
+  private settings: RenderingContextSettings = new RenderingContextSettings(true);
+  private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
+  private matrix: Matrix2D = new Matrix2D();
 
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
@@ -243,9 +243,9 @@ rotate(rx?: number, ry?: number): Matrix2D
 @Entry
 @Component
 struct Rotate {
-  private settings: RenderingContextSettings = new RenderingContextSettings(true)
-  private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
-  private matrix: Matrix2D = new Matrix2D()
+  private settings: RenderingContextSettings = new RenderingContextSettings(true);
+  private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
+  private matrix: Matrix2D = new Matrix2D();
 
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
@@ -264,7 +264,6 @@ struct Rotate {
           this.matrix.rotate(5, 5)
           this.context.setTransform(this.matrix)
           this.context.fillRect(50, 110, 50, 50)
-        })
     }
     .width('100%')
     .height('100%')
@@ -308,9 +307,9 @@ rotate(degree: number, rx?: number, ry?: number): Matrix2D
 @Entry
 @Component
 struct Rotate {
-  private settings: RenderingContextSettings = new RenderingContextSettings(true)
-  private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
-  private matrix: Matrix2D = new Matrix2D()
+  private settings: RenderingContextSettings = new RenderingContextSettings(true);
+  private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
+  private matrix: Matrix2D = new Matrix2D();
 
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
@@ -372,9 +371,9 @@ translate(tx?: number, ty?: number): Matrix2D
 @Entry
 @Component
 struct Translate {
-  private settings: RenderingContextSettings = new RenderingContextSettings(true)
-  private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
-  private matrix: Matrix2D = new Matrix2D()
+  private settings: RenderingContextSettings = new RenderingContextSettings(true);
+  private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
+  private matrix: Matrix2D = new Matrix2D();
 
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
@@ -436,9 +435,9 @@ scale(sx?: number, sy?: number): Matrix2D
 @Entry
 @Component
 struct Scale {
-  private settings: RenderingContextSettings = new RenderingContextSettings(true)
-  private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
-  private matrix: Matrix2D = new Matrix2D()
+  private settings: RenderingContextSettings = new RenderingContextSettings(true);
+  private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
+  private matrix: Matrix2D = new Matrix2D();
 
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {

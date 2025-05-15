@@ -5,9 +5,9 @@
 
 字块（TextBlob）是指文本的集合。无论是单个的文字还是大块的文本，都可以通过字块来绘制。
 
-本节聚焦于文字的绘制效果，更多关于文本测量、排版的场景指导，可见[文本开发概述](text-overview.md)。
-
 除了基本的字块绘制之外，还可以给文字添加各种绘制效果。常见的字块绘制场景包括[文字描边](#文字描边)、[文字渐变](#文字渐变)等，更多效果请见[绘制效果](drawing-effect-overview.md)。
+
+本节不涉及文本测量和布局排版相关内容，如需在开发中处理此类文本绘制需求，可参考[文本开发概述](text-overview.md)，该文档系统讲解了排版策略与相关使用指导。
 
 ## 基本字块绘制
 
@@ -106,3 +106,63 @@ canvas.detachBrush();
 ```
 
 ![Screenshot_20241225155707415](figures/Screenshot_20241225155707415.jpg)
+
+## 主题字体
+
+主题字体，特指系统**主题应用**中能使用的字体，属于一种特殊的自定义字体。如需涉及文本测量和布局排版相关内容，可参考[使用主题字体（ArkTS）](theme-font-arkts.md)。
+
+设置跟随主题字体的示例代码和效果图如下：
+
+```ts
+// 创建字型对象
+const font = new drawing.Font();
+// 设置文字大小
+font.setSize(100);
+// 设置跟随主题字体
+font.setThemeFontFollowed(true);
+// 创建字块对象
+const textBlob = drawing.TextBlob.makeFromString("Hello World", font, drawing.TextEncoding.TEXT_ENCODING_UTF8);
+// 绘制字块
+canvas.drawTextBlob(textBlob, 200, 300);
+```
+
+| 未跟随主题字体的效果图 | 跟随主题字体的效果图（不同主题字体显示效果不同，此处仅示意） |
+| -------- | -------- |
+| ![Snapshot_setThemeFontFollowed_sys](figures/Snapshot_setThemeFontFollowed_sys.jpg) | ![Snapshot_setThemeFontFollowed](figures/Snapshot_setThemeFontFollowed.jpg) |
+
+> **说明**
+>
+> 需要在应用入口文件（默认工程中为EntryAbility.ets）中复写onConfigurationUpdate函数，以响应切换主题字体的操作，确保切换后页面能够及时刷新并生效。具体实现可参考[使用主题字体（ArkTS）](theme-font-arkts.md)。
+
+## 单字绘制
+
+相比字块绘制，单字绘制的优势在于能够利用字体退化机制，在当前字体无法显示某字符时，自动退化到使用系统字体绘制字符，从而提升对特殊字符的兼容性，避免字符缺失，增强用户体验。
+
+单字绘制的示例代码和效果图如下：
+
+```ts
+// 创建字型对象
+const font = new drawing.Font();
+// 设置文字大小
+font.setSize(100);
+let startX = 100;
+let startY = 100;
+let text = ["H", "e", "l", "l", "o"];
+for (let s of text) {
+  // 单字绘制
+  canvas.drawSingleCharacter(s, font, startX, startY);
+  // 测量单个字符的宽度
+  let textWidth = font.measureSingleCharacter(s);
+  startX += textWidth;
+}
+```
+
+![Snapshot_drawSingleCharacter](figures/Snapshot_drawSingleCharacter.jpg)
+
+<!--RP1-->
+## 相关实例
+
+针对Drawing(ArkTS)的开发，有以下相关实例可供参考：
+
+- [ArkTSGraphicsDraw (API14)](https://gitee.com/openharmony/applications_app_samples/tree/master/code/DocsSample/Drawing/ArkTSGraphicsDraw)
+<!--RP1End-->

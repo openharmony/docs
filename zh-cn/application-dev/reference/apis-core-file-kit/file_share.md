@@ -15,7 +15,7 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [oh_file_share.h](oh__file__share_8h.md) | 提供基于URI的文件及目录授于持久化权限、权限激活、权限查询等方法。 | 
+| [oh_file_share.h](oh__file__share_8h.md) | 提供基于URI的文件及目录授予持久化权限、权限激活、权限查询等方法。 | 
 
 
 ### 结构体
@@ -182,7 +182,7 @@ ohos.permission.FILE_ACCESS_PERSIST
 
 **返回：**
 
-返回FileManageMent模块错误码[FileManagement_ErrCode](_file_i_o.md#filemanagement_errcode-1)。
+返回FileManagement模块错误码[FileManagement_ErrCode](_file_i_o.md#filemanagement_errcode-1)。
 
 
 ### OH_FileShare_CheckPersistentPermission()
@@ -212,7 +212,7 @@ ohos.permission.FILE_ACCESS_PERSIST
 
 **返回：**
 
-返回FileManageMent模块错误码[FileManagement_ErrCode](_file_i_o.md#filemanagement_errcode-1)。
+返回FileManagement模块错误码[FileManagement_ErrCode](_file_i_o.md#filemanagement_errcode-1)。
 
 
 ### OH_FileShare_DeactivatePermission()
@@ -242,7 +242,7 @@ ohos.permission.FILE_ACCESS_PERSIST
 
 **返回：**
 
-返回FileManageMent模块错误码[FileManagement_ErrCode](_file_i_o.md#filemanagement_errcode-1)。
+返回FileManagement模块错误码[FileManagement_ErrCode](_file_i_o.md#filemanagement_errcode-1)。
 
 
 ### OH_FileShare_PersistPermission()
@@ -272,7 +272,7 @@ ohos.permission.FILE_ACCESS_PERSIST
 
 **返回：**
 
-返回FileManageMent模块错误码[FileManagement_ErrCode](_file_i_o.md#filemanagement_errcode-1)。
+返回FileManagement模块错误码[FileManagement_ErrCode](_file_i_o.md#filemanagement_errcode-1)。
 
 
 ### OH_FileShare_ReleasePolicyErrorResult()
@@ -322,4 +322,4 @@ ohos.permission.FILE_ACCESS_PERSIST
 
 **返回：**
 
-返回FileManageMent模块错误码[FileManagement_ErrCode](_file_i_o.md#filemanagement_errcode-1)。
+返回FileManagement模块错误码[FileManagement_ErrCode](_file_i_o.md#filemanagement_errcode-1)。

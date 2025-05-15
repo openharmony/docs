@@ -307,6 +307,54 @@ getPanGestureOptions(): PanGestureOptions
 | ------ | --------- |
 | [PanGestureOptions](./ts-basic-gestures-pangesture.md#pangestureoptions) | 当前拖动手势识别器的属性。 |
 
+### getDirection<sup>19+</sup>
+
+getDirection(): PanDirection
+
+返回当前拖动手势识别器的方向。
+
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：**
+
+| 类型     | 说明        |
+| ------ | --------- |
+| [PanDirection](./ts-basic-gestures-pangesture.md#pandirection枚举说明) | 当前拖动手势识别器的方向。 |
+
+### getDistance<sup>19+</sup>
+
+getDistance(): number
+
+返回当前拖动手势识别器触发的最小滑动距离。
+
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：**
+
+| 类型     | 说明        |
+| ------ | --------- |
+| number | 当前拖动手势识别器触发的最小滑动距离。 |
+
+### getDistanceMap<sup>19+</sup>
+
+getDistanceMap(): Map\<SourceTool, number\>
+
+返回不同输入源的拖动手势识别器触发的最小滑动距离。
+
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：**
+
+| 类型     | 说明        |
+| ------ | --------- |
+| Map<[SourceTool](ts-gesture-settings.md#sourcetool枚举说明9), number> | 不同输入源的拖动手势识别器触发的最小滑动距离。 |
+
 ## TapRecognizer<sup>18+</sup>
 
 点击手势识别器对象，继承于[GestureRecognizer](#gesturerecognizer)。
@@ -514,12 +562,12 @@ type GestureRecognizerJudgeBeginCallback = (event: BaseGestureEvent, current: Ge
 @Entry
 @Component
 struct FatherControlChild {
-  scroller: Scroller = new Scroller()
+  scroller: Scroller = new Scroller();
   scroller2: Scroller = new Scroller()
-  private arr: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
-  private childRecognizer: GestureRecognizer = new GestureRecognizer()
-  private currentRecognizer: GestureRecognizer = new GestureRecognizer()
-  private lastOffset: number = 0
+  private arr: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+  private childRecognizer: GestureRecognizer = new GestureRecognizer();
+  private currentRecognizer: GestureRecognizer = new GestureRecognizer();
+  private lastOffset: number = 0;
 
   build() {
     Stack({ alignContent: Alignment.TopStart }) {
@@ -676,11 +724,11 @@ struct FatherControlChild {
 @Entry
 @Component
 struct Index {
-  @State currentIndex: number = 0
-  @State selectedIndex: number = 0
-  @State fontColor: string = '#182431'
-  @State selectedFontColor: string = '#007DFF'
-  innerSelectedIndex: number = 0 // 记录内层Tabs的索引
+  @State currentIndex: number = 0;
+  @State selectedIndex: number = 0;
+  @State fontColor: string = '#182431';
+  @State selectedFontColor: string = '#007DFF';
+  innerSelectedIndex: number = 0; // 记录内层Tabs的索引
   controller?: TabsController = new TabsController();
   @Builder
   tabBuilder(index: number, name: string) {

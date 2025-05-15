@@ -562,7 +562,7 @@ struct Index {
           this.w = 100;
           this.h = 100;
           this.message = 'Hello World';
-          animateTo({
+          this.getUIContext().animateTo({
             duration: 1000
           }, () => {
             this.w = 200;
@@ -594,7 +594,7 @@ struct Index {
   @Local w: number = 50; // 宽度
   @Local h: number = 50; // 高度
   @Local message: string = 'Hello';
-
+  
   build() {
     Column() {
       Button('change size')
@@ -608,7 +608,7 @@ struct Index {
             duration: 0
           }, () => {
           })
-          animateTo({
+          this.getUIContext().animateTo({
             duration: 1000
           }, () => {
             this.w = 200;

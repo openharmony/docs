@@ -746,6 +746,7 @@ error: install parse profile prop check error.
         d. 将证书指纹中SHA256的内容去掉冒号，即为最终要获得的签名指纹。
 
         如下图（仅作为格式示意，内容以实际为准）：
+
         ![示例图](figures/zh-cn_image_0000001635921233.png)
 
         去掉冒号后的签名指纹为：5753DDBC1A8EF88A62058A9FC4B6AFAFC1C5D8D1A1B86FB3532739B625F8F3DB。
@@ -1301,18 +1302,17 @@ error: install failed due to zero user can only install singleton app.
 
 **错误描述**
 
-UserID 0用户只允许安装singleton权限应用，singleton权限应用只允许被UserID 0用户安装。
+UserID 0用户只允许安装singleton权限应用。
 
 **可能原因**
 
-singleton权限应用安装未指定UserID 0。
+UserID 0用户安装了非singleton权限的应用。
 
 **处理步骤**
 
-1. 应用是singleton权限，安装时指定UserID 0。
+1. 应用是非singleton权限的，不需要指定用户，直接安装。
 	```bash
-	# 指定userId安装命令
-	hdc install -p hap名.hap -u 0
+	hdc shell bm install -p /data/hap名.hap
 	```
 
 
@@ -1508,28 +1508,6 @@ error: isolationMode does not match the system.
 	# 配置设备persist.bms.supportIsolationMode值
 	hdc shell
 	param set persist.bms.supportIsolationMode [true|false]
-	```
-
-
-### 9568315 数据代理的uri属性错误
-**错误信息**
-
-error: uri in proxy data is wrong.
-
-**错误描述**
-
-应用module.json文件中proxyData标签的uri属性验证失败。
-
-**可能原因**
-
-uri不满足格式规范。
-
-**处理步骤**
-
-1. 确认uri满足格式规范。
-	```bash
-	# uri格式规范
-	不同数据代理的uri不可重复，且需要满足datashareproxy://当前应用包名/xxx的格式
 	```
 
 
@@ -1738,6 +1716,25 @@ error: Failed to uninstall the HAP because the uninstall is forbidden by enterpr
 
 1. 由设置方取消该应用的卸载管控。
 
+### 9568389 未知错误导致安装失败
+**错误信息**
+
+error: unknown.
+
+**错误描述**
+
+未知的错误。
+
+**可能原因**
+
+系统未知的错误导致安装失败。
+
+**处理步骤**
+
+1. 重启手机后再次尝试安装应用。
+
+2. 重复上述步骤3到5次后依旧安装失败，请导出日志文件提[在线工单](https://developer.huawei.com/consumer/cn/support/feedback/#/)获取帮助。
+
 ### 9568284 安装版本不匹配
 **错误信息**
 
@@ -1763,7 +1760,7 @@ error: install version not compatible.
 ### 9568287 安装包entry模块数量不合规
 **错误信息**
 
-error: install invalid number of entry HAP.
+error: install invalid number of entry hap.
 
 **错误描述**
 
@@ -2136,7 +2133,7 @@ error: Failed to install the HAP because an enterprise normal/MDM bundle can not
 
 **错误描述**
 
-非企业设备禁止安装分发类型为enterprise_mdm或enterprise_normal的应用。
+非企业设备禁止安装[签名证书profile文件](https://developer.huawei.com/consumer/cn/doc/app/agc-help-add-releaseprofile-0000001914714796)中的类型为enterprise_mdm或enterprise_normal的应用。
 
 **可能原因**
 
@@ -2146,22 +2143,22 @@ error: Failed to install the HAP because an enterprise normal/MDM bundle can not
 
 1. 使用企业设备安装企业应用。
 
-### 9568402 禁止安装分发类型为app_gallery的release应用
+### 9568402 禁止安装签名证书profile文件中的类型为app_gallery的release应用
 **错误信息**
 
 error: Release bundle can not be installed.
 
 **错误描述**
 
-禁止通过bm命令安装分发类型为app_gallery并且签名证书类型为release的应用。
+禁止通过bm命令安装[签名证书profile文件](https://developer.huawei.com/consumer/cn/doc/app/agc-help-add-releaseprofile-0000001914714796)中的类型为app_gallery并且签名证书类型为release的应用。
 
 **可能原因**
 
-安装应用的分发类型为app_gallery并且签名证书类型为release。
+安装应用[签名证书profile文件](https://developer.huawei.com/consumer/cn/doc/app/agc-help-add-releaseprofile-0000001914714796)中的类型为app_gallery并且签名证书类型为release。
 
 **处理步骤**
 
-1. 使用非app_gallery分发类型的证书对应用重新签名。
+1. 使用[签名证书profile文件](https://developer.huawei.com/consumer/cn/doc/app/agc-help-add-releaseprofile-0000001914714796)中的类型非app_gallery的文件对应用重新签名。
 2. 使用debug类型证书对应用重新签名。
 
 ### 9568403 安装加密校验失败
@@ -2371,7 +2368,11 @@ error: install version code not same.
 ### 9568421 签名证书profile文件中的类型被限制，不允许安装到当前设备中，导致安装失败
 **错误信息**
 
-error: the app distribution type is not allowed install.
+error: Failed to install the HAP or HSP because the app distribution type is not allowed.
+
+**错误描述**
+
+签名证书profile文件中的类型被限制，不允许安装到当前设备中。
 
 **可能原因**
 
@@ -2449,22 +2450,6 @@ error: Failed to install the plugin because host application check permission fa
 1. 参考[权限申请指导](../security/AccessToken/declare-permissions.md)申请[ohos.permission.kernel.SUPPORT_PLUGIN权限](../security/AccessToken/restricted-permissions.md#ohospermissionkernelsupport_plugin)。
 2. 该权限等级为system_basic，若[应用APL等级](../security/AccessToken/app-permission-mgmt-overview.md#权限机制)低于system_basic，请[申请受限权限](../security/AccessToken/declare-permissions-in-acl.md)。
 
-### 9568434 应用包名不存在
-**错误信息**
-
-error: Host application is not found.
-
-**错误描述**
-
-传入的应用包名不存在。
-
-**可能原因**
-
-应用没有安装。
-
-**处理步骤**
-
-检查传入的应用是否存在。
 
 ### 9568333 模块名称为空
 **错误信息**
@@ -2592,7 +2577,7 @@ error: Install parse profile prop type error.
 ### 9568345 配置文件中的字符串长度或者数组大小过大
 **错误信息**
 
-error: Too large size of string or array type element in the profile.
+error: too large size of string or array type element in the profile.
 
 **错误描述**
 
@@ -2628,8 +2613,10 @@ error: install parse native so failed.
 
 **处理步骤**
 
-1. 将设备与DevEco Studio进行连接。
-2. 执行如下命令，查询设备支持的Abi列表，返回结果为default/armeabi-v7a/armeabi/arm64-v8a/x86/x86_64中的一个或多个Abi类型。
+1. 将设备或模拟器与DevEco Studio进行连接，具体指导及要求可查看[运行应用/元服务](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-running-app)。
+
+2. 在命令行执行如下[hdc命令](#环境要求hdc工具)，查询设备支持的Abi列表，返回结果为default/armeabi-v7a/armeabi/arm64-v8a/x86/x86_64中的一个或多个Abi类型。
+
     ```
     hdc shell
     param get const.product.cpu.abilist
@@ -2688,7 +2675,7 @@ error: Installd get proxy error.
 hdc file recv /data/log/hilog/
 ```
 
-### 9568435 设备不具备插件能力
+### 9568434 设备不具备插件能力
 **错误信息**
 
 error: Failed to install the plugin because current device does not support plugin.
@@ -2704,6 +2691,25 @@ error: Failed to install the plugin because current device does not support plug
 **处理步骤**
 
 使用[param工具](./param-tool.md)设置const.bms.support_plugin的值为true，即执行hdc shell param set const.bms.support_plugin true。
+
+
+### 9568435 应用包名不存在
+**错误信息**
+
+error: Host application is not found.
+
+**错误描述**
+
+传入的应用包名不存在。
+
+**可能原因**
+
+应用没有安装。
+
+**处理步骤**
+
+检查传入的应用是否存在。
+
 
 ### 9568436 多个HSP包信息不一致
 **错误信息**

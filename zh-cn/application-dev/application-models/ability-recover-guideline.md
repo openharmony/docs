@@ -51,7 +51,7 @@ export default class EntryAbility extends UIAbility {
 开发者主动保存数据，在UIAbility启动时恢复。
 
 ```ts
-import { AbilityConstant，UIAbility，Want } from '@kit.AbilityKit';
+import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 
 export default class EntryAbility extends UIAbility {
     onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {

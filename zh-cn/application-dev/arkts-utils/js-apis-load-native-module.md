@@ -15,9 +15,9 @@ loadNativeModule(moduleName: string): Object;
 > **说明**
 > loadNativeModule加载的模块名指的是依赖方oh-package.json5文件的dependencies中的名字。
 >
-> loadNativeModule只局限于在UI主线程中进行模块加载。
+> loadNativeModule只能在UI主线程中加载模块。
 >
-> 该接口功能不论是加载常量字符串还是变量表达式入参，都需要配置依赖。
+> 该接口功能在加载常量字符串或变量表达式作为参数时，都需要配置依赖。
 
 ## loadNativeModule支持的场景
 
@@ -44,7 +44,7 @@ libentry.so的index.d.ts文件如下：
 export const add: (a: number, b: number) => number;
 ```
 
-1.在加载本地so库时，首先需要在oh-package.json5文件中配置dependencies项。
+1.在加载本地so库时，需在oh-package.json5文件中配置dependencies项。
 
 ```json
 {
@@ -54,7 +54,7 @@ export const add: (a: number, b: number) => number;
 }
 ```
 
-2.其次，还需要在build-profile.json5中进行配置。
+2.在build-profile.json5中进行配置。
 
 ```json
 {
@@ -70,7 +70,7 @@ export const add: (a: number, b: number) => number;
 }
 ```
 
-3.用loadNativeModule加载libentry.so，调用函数add。
+3.使用loadNativeModule加载libentry.so，并调用函数add。
 
 ```js
 let module: ESObject = loadNativeModule("libentry.so");

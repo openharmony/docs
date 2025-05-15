@@ -44,7 +44,7 @@ SideBarContainer( type?: SideBarContainerType )
 
 | 名称 | 说明 |
 | -------- | -------- |
-| Embed | 侧边栏嵌入到组件内，和内容区并列显示。<br/>组件尺寸小于minContentWidth + minSideBarWidth,并且未设置showSideBar时，侧边栏自动隐藏。<br/>未设置minSideBarWidth或者minContentWidth采用未设置接口的默认值进行计算。<br/> 组件在自动隐藏后，如果通过点击控制按钮唤出侧边栏，则侧边栏悬浮在内容区上显示。|
+| Embed | 侧边栏嵌入到组件内，和内容区并列显示。<br/>组件尺寸小于minContentWidth + minSideBarWidth，并且未设置showSideBar时，侧边栏自动隐藏。<br/>未设置minSideBarWidth或者minContentWidth采用未设置接口的默认值进行计算。<br/> 组件在自动隐藏后，如果通过点击控制按钮唤出侧边栏，则侧边栏悬浮在内容区上显示。|
 | Overlay | 侧边栏浮在内容区上面。 |
 | AUTO<sup>10+</sup> | 组件尺寸大于等于minSideBarWidth+minContentWidth时，采用Embed模式显示。<br/>组件尺寸小于minSideBarWidth+minContentWidth时，采用Overlay模式显示。<br/>未设置minSideBarWidth或minContentWidth时，会使用未设置接口的默认值进行计算，若计算的值小于600vp，则使用600vp做为模式切换的断点值。|
 
@@ -303,13 +303,13 @@ minContentWidth优先于侧边栏的maxSideBarWidth与sideBarWidth属性，minCo
 | top | number | 否 | 设置侧边栏控制按钮距离容器上界限的间距。<br/>默认值：48vp<br/>单位：vp<br/>取值范围：[0, +∞) |
 | width | number | 否 | 设置侧边栏控制按钮的宽度。<br/>默认值：<br/>API version 9及之前版本：32vp<br/>从API version 10开始：24vp<br/>单位：vp<br/>取值范围：[0, +∞) |
 | height | number | 否 | 设置侧边栏控制按钮的高度。<br/>默认值：<br/>API version 9及之前版本：32vp<br/>从API version 10开始：24vp<br/>单位：vp<br/>取值范围：[0, +∞) |
-| icons | [ButtonIconOptions<sup>14+</sup>](#buttoniconoptions14对象说明) | 否 | 设置侧边栏控制按钮的图标。 |
+| icons | [ButtonIconOptions<sup>18+</sup>](#buttoniconoptions18对象说明) | 否 | 设置侧边栏控制按钮的图标。 |
 
-## ButtonIconOptions<sup>14+</sup>对象说明
+## ButtonIconOptions<sup>18+</sup>对象说明
 
 设置侧边栏控制按钮的图标。
 
-**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -398,10 +398,10 @@ onChange(callback: (value: boolean) =&gt; void)
 @Entry
 @Component
 struct SideBarContainerExample {
-  normalIcon: Resource = $r("app.media.icon")
-  selectedIcon: Resource = $r("app.media.icon")
-  @State arr: number[] = [1, 2, 3]
-  @State current: number = 1
+  normalIcon: Resource = $r("app.media.icon");
+  selectedIcon: Resource = $r("app.media.icon");
+  @State arr: number[] = [1, 2, 3];
+  @State current: number = 1;
 
   build() {
     SideBarContainer(SideBarContainerType.Embed) {
@@ -415,7 +415,7 @@ struct SideBarContainerExample {
               .fontFamily('source-sans-pro,cursive,sans-serif')
           }
           .onClick(() => {
-            this.current = item
+            this.current = item;
           })
         }, (item: string) => item)
       }.width('100%')
@@ -440,7 +440,7 @@ struct SideBarContainerExample {
     .maxSideBarWidth(300)
     .minContentWidth(0)
     .onChange((value: boolean) => {
-      console.info('status:' + value)
+      console.info('status:' + value);
     })
     .divider({ strokeWidth: '1vp', color: Color.Gray, startMargin: '4vp', endMargin: '4vp' })
   }

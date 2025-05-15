@@ -4,7 +4,7 @@
 
 > **说明：**
 >
-> 从API Version 12开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+> 从API version 12开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 ## 接口
 
@@ -63,7 +63,7 @@ invalidate(): void
 @Entry
 @Component
 struct CanvasExample {
-  private context: DrawingRenderingContext = new DrawingRenderingContext()
+  private context: DrawingRenderingContext = new DrawingRenderingContext();
 
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {

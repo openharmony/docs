@@ -88,7 +88,7 @@
     ```ts
     import { AbilityConstant, UIAbility } from '@kit.AbilityKit';
     import { hilog } from '@kit.PerformanceAnalysisKit';
-    import { promptAction } from '@kit.ArkUI';
+    import { PromptAction } from '@kit.ArkUI';
     
     const TAG: string = '[MigrationAbility]';
     const DOMAIN_NUMBER: number = 0xFF00;
@@ -101,8 +101,9 @@
         hilog.info(DOMAIN_NUMBER, TAG, `onContinue version = ${targetVersion}, targetDevice: ${targetDevice}`);
     
         // 应用可根据源端版本号设置支持接续的最小兼容版本号，源端版本号可从app.json5文件中的versionCode字段获取；防止目标端版本号过低导致不兼容。
-    	let versionThreshold: number = -1; // 替换为应用自己支持兼容的最小版本号
+        let versionThreshold: number = -1; // 替换为应用自己支持兼容的最小版本号
         // 兼容性校验
+        let promptAction: promptAction = uiContext.getPromptAction;
         if (targetVersion < versionThreshold) {
           // 建议在校验版本兼容性失败后，提示用户拒绝迁移的原因
           promptAction.showToast({
@@ -222,7 +223,7 @@
     @Entry
     @Component
     struct Page_MigrationAbilityFirst {
-      private context = getContext(this) as common.UIAbilityContext;
+      private context = this.getUIContext().getHostContext();
       build() {
         // ...
       }
@@ -242,7 +243,7 @@
     // Page_MigrationAbilityFirst.ets
     import { AbilityConstant, common } from '@kit.AbilityKit';
     import { hilog } from '@kit.PerformanceAnalysisKit';
-    import { promptAction } from '@kit.ArkUI';
+    import { PromptAction } from '@kit.ArkUI';
     
     const TAG: string = '[MigrationAbility]';
     const DOMAIN_NUMBER: number = 0xFF00;
@@ -250,7 +251,8 @@
     @Entry
     @Component
     struct Page_MigrationAbilityFirst {
-      private context = getContext(this) as common.UIAbilityContext;
+      private context = this.getUIContext().getHostContext();
+      let promptAction: promptAction = uiContext.getPromptAction;
       build() {
         Column() {
           //...

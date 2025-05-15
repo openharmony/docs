@@ -41,8 +41,9 @@ getFreeSize(path:string):Promise&lt;number&gt;
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
   import { common } from '@kit.AbilityKit';
-  
-  let context = getContext(this) as common.UIAbilityContext;
+
+  // 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   let path = context.filesDir;
   statfs.getFreeSize(path).then((number: number) => {
     console.info("getFreeSize succeed, Size: " + number);
@@ -75,8 +76,9 @@ getFreeSize(path:string, callback:AsyncCallback&lt;number&gt;): void
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
   import { common } from '@kit.AbilityKit';
-  
-  let context = getContext(this) as common.UIAbilityContext;
+
+  // 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   let path = context.filesDir;
   statfs.getFreeSize(path, (err: BusinessError, number: number) => {
     if (err) {
@@ -115,8 +117,9 @@ getFreeSizeSync(path:string): number
 
   ```ts
   import { common } from '@kit.AbilityKit';
-  
-  let context = getContext(this) as common.UIAbilityContext;
+
+  // 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   let path = context.filesDir;
   let number = statfs.getFreeSizeSync(path);
   console.info("getFreeSizeSync succeed, Size: " + number);
@@ -151,8 +154,9 @@ getTotalSize(path: string): Promise&lt;number&gt;
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
   import { common } from '@kit.AbilityKit';
-  
-  let context = getContext(this) as common.UIAbilityContext;
+
+  // 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   let path = context.filesDir;
   statfs.getTotalSize(path).then((number: number) => {
     console.info("getTotalSize succeed, Size: " + number);
@@ -185,8 +189,9 @@ getTotalSize(path: string, callback: AsyncCallback&lt;number&gt;): void
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
   import { common } from '@kit.AbilityKit';
-  
-  let context = getContext(this) as common.UIAbilityContext;
+
+  // 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   let path = context.filesDir;
   statfs.getTotalSize(path, (err: BusinessError, number: number) => {
     if (err) {
@@ -225,10 +230,10 @@ getTotalSizeSync(path: string): number
 
   ```ts
   import { common } from '@kit.AbilityKit';
-  
-  let context = getContext(this) as common.UIAbilityContext;
+
+  // 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   let path = context.filesDir;
   let number = statfs.getTotalSizeSync(path);
   console.info("getTotalSizeSync succeed, Size: " + number);
   ```
-  

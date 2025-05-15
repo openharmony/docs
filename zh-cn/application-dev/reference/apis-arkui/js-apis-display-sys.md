@@ -6,7 +6,7 @@
 >
 > - 本模块首批接口从API version 7开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 >
-> - 当前页面仅包含本模块的系统接口，其他公开接口参见[@ohso.display (屏幕属性)](js-apis-display.md)。
+> - 当前页面仅包含本模块的系统接口，其他公开接口参见[@ohos.display (屏幕属性)](js-apis-display.md)。
 
 ## 导入模块
 
@@ -154,7 +154,7 @@ try {
 ## display.setFoldDisplayMode<sup>10+</sup>
 setFoldDisplayMode(mode: FoldDisplayMode): void
 
-更改可折叠设备的显示模式。
+更改可折叠设备的显示模式，不适用于2in1设备。
 
 **系统接口：** 此接口为系统接口。
 
@@ -186,6 +186,44 @@ try {
   display.setFoldDisplayMode(mode);
 } catch (exception) {
   console.error('Failed to change the fold display mode. Code: ' + JSON.stringify(exception));
+}
+```
+
+## display.setFoldDisplayMode<sup>19+</sup>
+setFoldDisplayMode(mode: FoldDisplayMode, reason: string): void
+
+更改可折叠设备的显示模式，并指明更改原因，不适用于2in1设备。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**参数：**
+
+| 参数名   | 类型                                       | 必填 | 说明                                                    |
+| -------- |------------------------------------------| ---- | ------------------------------------------------------- |
+| mode     | [FoldDisplayMode](js-apis-display.md#folddisplaymode10)    | 是   | 可折叠设备的显示模式。 |
+| reason     | string    | 否   | 更改显示模式的原因。不设置，则默认为空字符串。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[屏幕错误码](errorcode-display.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ----------------------- |
+| 202     | Permission verification failed. A non-system application calls a system API.|
+| 1400003 | This display manager service works abnormally. |
+
+**示例：**
+
+```ts
+import { display } from '@kit.ArkUI';
+
+try {
+  let mode: display.FoldDisplayMode = display.FoldDisplayMode.FOLD_DISPLAY_MODE_MAIN;
+  display.setFoldDisplayMode(mode, 'backSelfie');
+} catch (exception) {
+  console.error(`Failed to change the fold display mode. Code: ${exception}`);
 }
 ```
 

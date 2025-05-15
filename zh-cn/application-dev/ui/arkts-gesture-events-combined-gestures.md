@@ -31,7 +31,7 @@ struct Index {
   @State count: number = 0;
   @State positionX: number = 0;
   @State positionY: number = 0;
-  @State borderStyles: BorderStyle = BorderStyle.Solid
+  @State borderStyles: BorderStyle = BorderStyle.Solid;
 
   build() {
     Column() {

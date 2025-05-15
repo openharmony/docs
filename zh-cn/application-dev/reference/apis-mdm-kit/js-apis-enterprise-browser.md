@@ -10,7 +10,7 @@
 >
 > 本模块接口仅可在Stage模型下使用。
 >
-> 本模块接口仅对[设备管理应用](../../mdm/mdm-kit-guide.md#功能介绍)开放，需将设备管理应用激活后调用，实现相应功能。
+> 本模块接口仅对设备管理应用开放，且调用接口前需激活设备管理应用，具体请参考[MDM Kit开发指南](../../mdm/mdm-kit-guide.md)。
 
 ## 导入模块
 
@@ -217,7 +217,7 @@ try {
   let buffer: ArrayBuffer = browser.getManagedBrowserPolicy(wantTemp, bundleName);
   let intBuffer: Uint8Array = new Uint8Array(buffer);
   let decoder: util.TextDecoder = util.TextDecoder.create('utf-8');
-  let stringData: string = decoder.decodeWithStream(intBuffer);
+  let stringData: string = decoder.decodeToString(intBuffer);
   console.info(`Succeeded in getting managed browser policy, result : ${stringData}`);
 } catch(err) {
   console.error(`Failed to get managed browser policy. Code is ${err.code}, message is ${err.message}`);
@@ -269,14 +269,13 @@ getSelfManagedBrowserPolicy(): ArrayBuffer
 **示例：**
 
 ```ts
-import { Want } from '@kit.AbilityKit';
 import { util } from '@kit.ArkTS';
 
 try {
   let buffer: ArrayBuffer = browser.getSelfManagedBrowserPolicy();
   let intBuffer: Uint8Array = new Uint8Array(buffer);
   let decoder: util.TextDecoder = util.TextDecoder.create('utf-8');
-  let stringData: string = decoder.decodeWithStream(intBuffer);
+  let stringData: string = decoder.decodeToString(intBuffer);
   console.info(`Succeeded in getting self managed browser policy, result : ${stringData}`);
 } catch(err) {
   console.error(`Failed to get self managed browser policy. Code is ${err.code}, message is ${err.message}`);

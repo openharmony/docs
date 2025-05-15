@@ -15,6 +15,7 @@ The AVPlayerCallback struct contains the set of the **OH_AVPlayerOnInfo** and **
 
 **Related module**: [AVPlayer](_a_v_player.md)
 
+**Header file**: [avplayer_base.h](avplayer__base_8h.md)
 
 ## Summary
 
@@ -23,5 +24,5 @@ The AVPlayerCallback struct contains the set of the **OH_AVPlayerOnInfo** and **
 
 | Name| Description| 
 | -------- | -------- |
-| [onInfo](_a_v_player.md#oninfo) | AVPlayer process information. For details, see [OH_AVPlayerOnInfo](_a_v_player.md#oh_avplayeroninfo).| 
-| [onError](_a_v_player.md#onerror) | AVPlayer error information. For details, see [OH_AVPlayerOnError](_a_v_player.md#oh_avplayeronerror).| 
+| onInfo | AVPlayer process information. For details, see [OH_AVPlayerOnInfo](_a_v_player.md#oh_avplayeroninfo).| 
+| onError | AVPlayer error information. For details, see [OH_AVPlayerOnError](_a_v_player.md#oh_avplayeronerror).| 

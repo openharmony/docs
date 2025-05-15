@@ -61,3 +61,11 @@
 | bool [OH_Drawing_MatrixIsEqual](_drawing.md#oh_drawing_matrixisequal) ([OH_Drawing_Matrix](_drawing.md#oh_drawing_matrix) \*, [OH_Drawing_Matrix](_drawing.md#oh_drawing_matrix) \*other) | 判断两个矩阵是否相等。 | 
 | bool [OH_Drawing_MatrixIsIdentity](_drawing.md#oh_drawing_matrixisidentity) ([OH_Drawing_Matrix](_drawing.md#oh_drawing_matrix) \*) | 判断矩阵是否是单位矩阵。 | 
 | void [OH_Drawing_MatrixDestroy](_drawing.md#oh_drawing_matrixdestroy) ([OH_Drawing_Matrix](_drawing.md#oh_drawing_matrix) \*) | 用于销毁矩阵对象并回收该对象占有的内存。 | 
+
+<!--RP1-->
+## 相关实例
+
+针对Drawing(C/C++)的开发，有以下相关实例可供参考：
+
+- [NDKAPIDrawing (API14)](https://gitee.com/openharmony/applications_app_samples/tree/master/code/DocsSample/Drawing/NDKAPIDrawing)
+<!--RP1End-->

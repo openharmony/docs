@@ -33,6 +33,20 @@ Runtime error.
 
 检查当前系统功能是否正常。
 
+## 19020003 参数检查失败
+
+**错误信息**
+
+Indicates that parameter check failed.
+
+**可能原因**
+
+输入枚举值不在范围内。
+
+**处理步骤**
+
+检查输入参数的正确性。
+
 ## 19030001 算法相关的操作错误，调用三方算法库API出错
 
 **错误信息**
@@ -116,7 +130,7 @@ The key cannot be used for signing a certificate.
 
 **可能原因**
 
-证书的秘钥用途不包括证书签名。
+证书的密钥用途不包括证书签名。
 
 **处理步骤**
 
@@ -130,7 +144,7 @@ The key cannot be used for digital signature.
 
 **可能原因**
 
-证书的秘钥用途不包括数字签名。
+证书的密钥用途不包括数字签名。
 
 **处理步骤**
 

@@ -29,10 +29,9 @@ hdc分为三部分：
 为了方便在命令行中直接执行hdc程序，开发者也可以将hdc程序文件路径添加到操作系统命令搜索路径的环境变量中。
 例如，Windows系统可以添加到系统环境变量Path中。
 
-### （可选）server监听端口配置
+### （可选）hdc server配置
 
-hdc server启动时，默认会监听PC的8710端口，hdc client使用tcp协议通过此端口连接server。如果PC的8710端口已经被使用或者希望使用其他端口，可以通过添加环境变量OHOS_HDC_SERVER_PORT到系统环境变量中来修改server启动时监听的端口号。
-例如，添加变量名为：OHOS_HDC_SERVER_PORT，变量值可设置为任意未被占用的端口，如18710。
+通过配置对应的系统环境变量，可以修改hdc server的监听端口，日志打印级别或特性开关等，详细介绍请查看[可选配置项](#可选配置项)章节。
 
 > **说明：**
 >
@@ -301,7 +300,7 @@ hdc list targets -v
 #### 远程连接场景
 
 远程连接场景是指客户端通过网络远程连接服务端，客户端和服务端在不同的PC运行，服务端连接设备。
-远程连接如图所示:
+远程连接如图所示：
 
 ![远程连接结构图](figures/hdc_image_004.PNG)
 
@@ -389,7 +388,7 @@ hdc client（客户端）在PC1中运行，hdc server（服务端）在PC2中运
    **参数：**
    | 参数 | 参数说明 |
    | -------- | -------- |
-   | port-number | 监听连接的网络端口号，范围:1~65535。 |
+   | port-number | 监听连接的网络端口号，范围：1~65535。 |
 
    **返回值：**
    | 返回值 | 说明 |
@@ -831,7 +830,7 @@ PC端支持的端口转发类型：tcp。
 
    > **说明：**
    >
-   > 1. 使用前台启动参数时，可通过附加 -s 参数来指定服务进程的网络监听参数。如果既没有使用 -s 指定网络监听参数，也没有配置环境变量OHOS_HDC_SERVER_PORT配置监听端口，系统将采用默认网络监听参数:127.0.0.1:8710。
+   > 1. 使用前台启动参数时，可通过附加 -s 参数来指定服务进程的网络监听参数。如果既没有使用 -s 指定网络监听参数，也没有配置环境变量OHOS_HDC_SERVER_PORT配置监听端口，系统将采用默认网络监听参数：127.0.0.1:8710。
    > 2. 在服务进程前台启动模式下，系统默认的日志输出等级设置为 LOG_DEBUG。如需变更日志等级，可通过结合使用 -l 参数来进行相应的调整。
    > 3. 在运行环境中，仅允许单一的服务进程实例存在。若运行环境中已存在一个活跃的后台服务进程，那么尝试在前台启动新的服务进程实例将不会成功。
 
@@ -1078,13 +1077,13 @@ hdc运行时日志等级，默认为LOG_INFO，命令格式如下：
 
    **使用方法：**
 
-   客户端打印LOG_DEBUG级别日志，以执行shell ls为例，命令示例如下:
+   客户端打印LOG_DEBUG级别日志，以执行shell ls为例，命令示例如下：
 
    ```shell
    hdc -l 5 shell ls
    ```
 
-   服务进程前台模式启动指定LOG_LIBUSB级别日志，命令示例如下:
+   服务进程前台模式启动指定LOG_LIBUSB级别日志，命令示例如下：
 
    ```shell
    hdc kill && hdc -l 6 -m
@@ -1093,7 +1092,7 @@ hdc运行时日志等级，默认为LOG_INFO，命令格式如下：
    > **说明：**
    > `-m`参数指定以前台模式启动服务进程，可以直接观察前台日志输出，按下Ctrl+C退出进程。
 
-   服务进程后台启动模式指定LOG_LIBUSB级别日志，命令示例如下:
+   服务进程后台启动模式指定LOG_LIBUSB级别日志，命令示例如下：
 
    ```shell
    hdc kill && hdc -l 6 start
@@ -1145,6 +1144,36 @@ hdc shell ls /data/log/hilog                          // 查看已落盘hilog日
 hdc file recv /data/log/hilog                         // 获取hilog已落盘日志（包含内核日志）
 ```
 
+## 可选配置项
+
+### OHOS_HDC_SERVER_PORT
+
+默认值：8710。
+
+用于设置hdc server运行时监听的端口号，该端口用于hdc client与hdc server之间的数据通讯。
+
+hdc server启动时，默认会监听电脑的8710端口，hdc client使用tcp协议通过此端口连接server。如果电脑的8710端口已经被使用或者希望使用其他端口，可以通过添加环境变量OHOS_HDC_SERVER_PORT到系统环境变量中来修改server启动时监听的端口号。可以设置的端口范围为1~65535。
+
+例如，添加变量名为：OHOS_HDC_SERVER_PORT，变量值可设置为任意未被占用的端口，如18710。
+
+### OHOS_HDC_LOG_LEVEL
+
+默认值：3。
+
+用于设置服务进程日志记录级别，日志级别详情参考：[server端日志](#server端日志)指定运行时日志等级章节。
+
+### OHOS_HDC_HEARTBEAT
+
+默认：心跳功能开启。
+
+用于设置hdc server和hdc daemon的心跳功能开关。
+
+hdc server和hdc daemon启动后，默认会互相发送心跳数据包，收到心跳数据包后会记录在hdc的日志中，方便后期查看设备的连接情况。
+
+当hdc server对应的电脑中配置环境变量OHOS_HDC_HEARTBEAT为“1”后，hdc server会关闭心跳特性；当设备连接这台电脑后，hdc server会给hdc daemon发送心跳特性关闭的信息，双方不再互相发送心跳数据包。
+
+设置为"1"表示关闭心跳功能；设置为其它数字表示开启心跳功能。
+
 ## 常见问题
 
 ### 设备无法识别
@@ -1165,7 +1194,7 @@ hdc file recv /data/log/hilog                         // 获取hilog已落盘日
 
    Linux环境：
 
-   在命令行执行`lsusb`,在返回的内容中查看是否有`HDC Device`（单一端口设备）或`HDC Interface`（复合端口设备）。
+   在命令行执行`lsusb`，在返回的内容中查看是否有`HDC Device`（单一端口设备）或`HDC Interface`（复合端口设备）。
 
    MacOS环境：
 
@@ -1213,7 +1242,7 @@ hdc file recv /data/log/hilog                         // 获取hilog已落盘日
 
    可能存在以下原因，可参考排查：
 
-   - hdc或SDK版本与设备不匹配: 如果设备更新到最新版本，可更新hdc或SDK工具至最新版本。
+   - hdc或SDK版本与设备不匹配：如果设备更新到最新版本，可更新hdc或SDK工具至最新版本。
    - 端口被占用：
 
    常见于hdc和hdc_std使用同一端口，同时运行时OHOS_HDC_SERVER_PORT设置的端口互相冲突（未设置则使用默认端口8710，仍然会冲突），注意只运行其中一个。其他软件占用hdc默认端口也会导致该问题发生。
@@ -1239,7 +1268,7 @@ hdc file recv /data/log/hilog                         // 获取hilog已落盘日
          netstat -an |grep 8710
          ```
 
-         Windows:
+         Windows：
 
          ```shell
          netstat -an |findstr 8710
@@ -1251,11 +1280,11 @@ hdc file recv /data/log/hilog                         // 获取hilog已落盘日
 
          Windows：
 
-         使用`任务管理器`>`详细信息`查询hdc.exe进程,右键打开文件所在位置，核对位置是否为配置的环境变量中的hdc文件位置，如果不一致，可尝试结束hdc.exe进程(hdc kill或者任务管理器直接结束进程)并重新执行hdc命令。（关闭hdc server后执行hdc命令会重新启动hdc server）
+         使用`任务管理器`>`详细信息`查询hdc.exe进程，右键打开文件所在位置，核对位置是否为配置的环境变量中的hdc文件位置，如果不一致，可尝试结束hdc.exe进程（hdc kill或者任务管理器直接结束进程）并重新执行hdc命令。（关闭hdc server后执行hdc命令会重新启动hdc server）
 
          Unix：
 
-         使用`ps -ef |grep hdc`查询hdc后台server进程，核对进程启动位置是否为配置的环境变量中的hdc文件位置，如果不一致，可尝试结束hdc进程(hdc kill或者kill -9 hdc进程的PID)并重新执行hdc命令。（关闭hdc server后执行hdc命令会重新启动hdc server）
+         使用`ps -ef |grep hdc`查询hdc后台server进程，核对进程启动位置是否为配置的环境变量中的hdc文件位置，如果不一致，可尝试结束hdc进程（hdc kill或者kill -9 hdc进程的PID）并重新执行hdc命令。（关闭hdc server后执行hdc命令会重新启动hdc server）
 
    - **注册表异常**
 
@@ -1277,13 +1306,13 @@ hdc file recv /data/log/hilog                         // 获取hilog已落盘日
 
 linux环境可以选择开启非root用户USB设备操作权限，方法如下：
 
-- （临时权限）设置USB设备操作权限最大化:
+- （临时权限）设置USB设备操作权限最大化：
 
    ```shell
    sudo chmod -R 777 /dev/bus/usb/
    ```
 
-- （永久权限）永久修改USB设备权限:
+- （永久权限）永久修改USB设备权限：
 
    1. 使用lsusb找出USB设备的vendorID和productID。
 

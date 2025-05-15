@@ -8,7 +8,7 @@
 >
 > 本模块接口仅可在Stage模型下使用。
 >
-> 本模块接口仅对[设备管理应用](../../mdm/mdm-kit-guide.md#功能介绍)开放，需将设备管理应用激活后调用，实现相应功能。
+> 本模块接口仅对设备管理应用开放，且调用接口前需激活设备管理应用，具体请参考[MDM Kit开发指南](../../mdm/mdm-kit-guide.md)。
 
 ## 导入模块
 
@@ -60,7 +60,7 @@ let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
-let aliasStr = "certName"
+let aliasStr = "certName";
 securityManager.uninstallUserCertificate(wantTemp, aliasStr).then(() => {
   console.info(`Succeeded in uninstalling user certificate.`);
 }).catch((err: BusinessError) => {
@@ -106,16 +106,17 @@ installUserCertificate(admin: Want, certificate: CertBlob): Promise&lt;string&gt
 **示例：**
 
 ```ts
-import { Want } from '@kit.AbilityKit';
+import { common, Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
 let certFileArray: Uint8Array = new Uint8Array();
-// 在MainAbility的onCreate回调函数中初始化Context变量
-// 把测试文件test.cer放入rawfile目录
-getContext().resourceManager.getRawFileContent("test.cer").then((value) => {
+// The variable context needs to be initialized in MainAbility's onCreate callback function
+// test.cer needs to be placed in the rawfile directory
+const context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+context.resourceManager.getRawFileContent("test.cer").then((value) => {
   certFileArray = value;
   securityManager.installUserCertificate(wantTemp, { inData: certFileArray, alias: "cert_alias_xts" })
     .then((result) => {
@@ -124,8 +125,8 @@ getContext().resourceManager.getRawFileContent("test.cer").then((value) => {
     console.error(`Failed to install user certificate. Code: ${err.code}, message: ${err.message}`);
   })
 }).catch((err: BusinessError) => {
-  console.error(`Failed to get row file content. message: ${err.message}`);
-  return
+  console.error(`Failed to get raw file content. message: ${err.message}`);
+  return;
 });
 ```
 
@@ -163,21 +164,21 @@ installUserCertificate(admin: Want, certificate: CertBlob, accountId: number): s
 | 9200002  | The administrator application does not have permission to manage the device. |
 | 9201001  | Failed to manage the certificate.                            |
 | 201      | Permission verification failed. The application does not have the permission required to call the API. |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
 ```ts
-import { Want } from '@kit.AbilityKit';
+import { common, Want } from '@kit.AbilityKit';
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
 let certFileArray: Uint8Array = new Uint8Array();
 let accountId: number = 100;
-// 在MainAbility的onCreate回调函数中初始化Context变量
-// 把测试文件test.cer放入rawfile目录
-getContext().resourceManager.getRawFileContent("test.cer").then((value) => {
+// The variable context needs to be initialized in MainAbility's onCreate callback function
+// test.cer needs to be placed in the rawfile directory
+const context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+context.resourceManager.getRawFileContent("test.cer").then((value) => {
   certFileArray = value;
   try {
     let result: string = securityManager.installUserCertificate(wantTemp, { inData: certFileArray, alias: "cert_alias_xts" }, accountId);
@@ -219,7 +220,6 @@ getUserCertificates(admin: Want, accountId: number): Array&lt;string&gt;
 | 9200001  | The application is not an administrator application of the device. |
 | 9200002  | The administrator application does not have permission to manage the device. |
 | 201      | Permission verification failed. The application does not have the permission required to call the API. |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -514,7 +514,6 @@ setAppClipboardPolicy(admin: Want, bundleName: string, accountId: number, policy
 | 9200001 | The application is not an administrator application of the device.                                                                              |
 | 9200002 | The administrator application does not have permission to manage the device.                                                                    |
 | 201     | Permission verification failed. The application does not have the permission required to call the API.                                          |
-| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -568,7 +567,6 @@ getAppClipboardPolicy(admin: Want, bundleName: string, accountId: number): strin
 | 9200001 | The application is not an administrator application of the device.                                                                              |
 | 9200002 | The administrator application does not have permission to manage the device.                                                                    |
 | 201     | Permission verification failed. The application does not have the permission required to call the API.                                          |
-| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 

@@ -1,6 +1,6 @@
 # 多线程取消TaskPool任务场景
 
-因为任务池[TaskPool](../reference/apis-arkts/js-apis-taskpool.md)的任务对象[Task](../reference/apis-arkts/js-apis-taskpool.md#task)不支持传递到子线程，因此在API version 18之前无法在子线程中取消任务。在API version 18及以后，Task新增了[任务ID](../reference/apis-arkts/js-apis-taskpool.md#属性)属性，支持通过任务ID在子线程中取消任务。以下示例提供多线程取消已提交给TaskPool中的任务的开发指导，用户可将已创建任务的任务ID存储在[Sendable对象](./arkts-sendable.md)中，在需要取消任务时，通过Sendable对象来多线程取消任务。
+任务池[TaskPool](../reference/apis-arkts/js-apis-taskpool.md)的任务对象[Task](../reference/apis-arkts/js-apis-taskpool.md#task)在 API version 18 之前不支持传递到子线程，因此无法在子线程中取消任务。从 API version 18 开始，Task新增了[任务ID](../reference/apis-arkts/js-apis-taskpool.md#属性)属性，支持通过任务ID在子线程中取消任务。以下示例提供多线程取消已提交给TaskPool中的任务开发指导，开发者可将已创建任务的任务ID存储在[Sendable对象](./arkts-sendable.md)中，需要取消任务时，通过Sendable对象来多线程取消任务。
 
 1. 定义一个Sendable类，在类属性中存储任务ID。
 
@@ -22,7 +22,7 @@
    }
    ```
 
-2. 在UI主线程向TaskPool提交一个延时任务，并在子线程取消该延时任务。
+2. 在UI主线程向TaskPool提交一个延时任务，并在子线程取消该任务。
 
    ```ts
    // Index.ets
