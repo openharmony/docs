@@ -14,6 +14,10 @@
 
 此变更不涉及应用适配。
 
+变更前：调用OH_Usb_SendPipeRequest和OH_Usb_SendPipeRequestWithAshmem接口时，如传参错误导致中断传输失败，不会上报错误信息。
+
+变更后：调用OH_Usb_SendPipeRequest和OH_Usb_SendPipeRequestWithAshmem接口时，如传参错误导致中断传输失败，会上报相关的错误信息，使得开发者获得接口的真实反馈，提升开发体验。
+
 **起始API Level**
 
 SendPipeRequest ：API 10。
