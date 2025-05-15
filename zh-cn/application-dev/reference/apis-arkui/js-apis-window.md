@@ -9748,8 +9748,9 @@ setWindowTransitionAnimation(transitionType: WindowTransitionType, animation: Tr
 
 ```typescript
 // EntryAbility.ets
-import { UIAbility } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+import { UIAbility } from '@kit.AbilityKit';
+import { window } from '@kit.ArkUI';
 
 export default class EntryAbility extends UIAbility {
   // ...
@@ -9781,7 +9782,7 @@ export default class EntryAbility extends UIAbility {
       } catch (exception) {
         console.error(`Failed to obtain the window status of window. Cause code: ${exception.code}, message: ${exception.message}`);
       }
-    }
+    })
   }
 }
 ```
@@ -9830,8 +9831,9 @@ getWindowTransitionAnimation(transitionType: WindowTransitionType): TransitionAn
 
 ```typescript
 // EntryAbility.ets
-import { UIAbility } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+import { UIAbility } from '@kit.AbilityKit';
+import { window } from '@kit.ArkUI';
 
 export default class EntryAbility extends UIAbility {
   // ...
@@ -9850,7 +9852,7 @@ export default class EntryAbility extends UIAbility {
       } catch (exception) {
         console.error(`Failed to obtain the window transition animation. Cause code: ${exception.code}, message: ${exception.message}`);
       }
-    }
+    })
   }
 }
 ```
