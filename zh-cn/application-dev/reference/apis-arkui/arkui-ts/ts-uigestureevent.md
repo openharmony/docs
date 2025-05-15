@@ -18,6 +18,8 @@ addGesture(gesture: GestureHandler\<T>, priority?: GesturePriority, mask?: Gestu
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **参数：**
 
 | 参数名 | 类型   | 必填 | 说明                       |
@@ -34,6 +36,8 @@ addParallelGesture(gesture: GestureHandler\<T>, mask?: GestureMask): void
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **参数：**
 
 | 参数名 | 类型   | 必填 | 说明                       |
@@ -49,6 +53,8 @@ removeGestureByTag(tag: string): void
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **参数：**
 
 | 参数名 | 类型   | 必填 | 说明                       |
@@ -63,6 +69,8 @@ clearGestures(): void
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 ## GestureHandler\<T>
 
 手势对象的基础类型。
@@ -74,6 +82,8 @@ tag(tag: string): T
 设置手势处理器的标志。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
 
@@ -108,6 +118,8 @@ constructor(options?: TapGestureHandlerOptions)
 构造函数。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
 
@@ -162,6 +174,8 @@ constructor(options?: LongPressGestureHandlerOptions)
 构造函数。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
 
@@ -262,6 +276,8 @@ constructor(options?: PanGestureHandlerOptions)
 构造函数。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
 
@@ -387,6 +403,8 @@ constructor(options?: SwipeGestureHandlerOptions)
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **参数：**
 
 | 参数名  | 类型                                                         | 必填 | 说明               |
@@ -441,6 +459,8 @@ constructor(options?: PinchGestureHandlerOptions)
 构造函数。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
 
@@ -563,6 +583,8 @@ constructor(options?: RotationGestureHandlerOptions)
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **参数：**
 
 
@@ -684,6 +706,8 @@ constructor(options?: GestureGroupGestureHandlerOptions)
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **参数：**
 
 | 参数名  | 类型                                                         | 必填 | 说明               |
@@ -728,6 +752,8 @@ Rotation手势识别成功，接收到触摸取消事件触发回调。
 ## GesturePriority枚举说明
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称 | 描述 |
 | -------- | -------- |
