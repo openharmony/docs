@@ -410,7 +410,6 @@ export default class MigrationAbility extends UIAbility {
    > continueType在本应用中要保证唯一，字符串以字母、数字和下划线组成，最大长度127个字节，不支持中文。
    > continueType标签类型为字符串数组，如果配置了多个字段，当前仅第一个字段会生效。
    
-
 示例如下：
 
    不同BundleName的相同应用在设备A和设备B之间相互迁移，设备A应用的BundleName为com.demo.example1，设备B应用的BundleName为com.demo.example2。
