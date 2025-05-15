@@ -45,6 +45,9 @@ import { display } from '@kit.ArkUI';
 | PORTRAIT_INVERTED | 2 | 表示设备当前以反向竖屏方式显示。|
 | LANDSCAPE_INVERTED | 3 | 表示设备当前以反向横屏方式显示。|
 
+>**说明：**<br>
+> 设备充电口朝下时为竖屏，每顺时针旋转90度，Orientation值加1。
+
 ## DisplaySourceMode<sup>18+</sup>
 
 屏幕显示内容的显示模式枚举。
@@ -116,7 +119,7 @@ import { display } from '@kit.ArkUI';
 | 名称   | 类型 | 可读 | 可写 | 说明               |
 | ------ | -------- | ---- | ---- | ------------------ |
 | displayId   | number   | 是   | 否   | 显示器ID，用于识别折痕所在的屏幕。 |
-| creaseRects    | Array\<[Rect](#rect9)>   | 是   | 否   | 折痕区域。 |
+| creaseRects    | Array\<[Rect](#rect9)>   | 是   | 否   | 折痕区域。该区域为横向矩形区域。 |
 
 ## Rect<sup>9+</sup>
 
@@ -798,7 +801,15 @@ off(type: 'foldAngleChange', callback?: Callback&lt;Array&lt;number&gt;&gt;): vo
 **示例：**
 
 ```ts
+
+// 如果通过on注册多个callback，同时关闭所有callback监听
 display.off('foldAngleChange');
+
+let callback: Callback<Array<number>> = (angles: Array<number>) => {
+  console.info('Listening fold angles length: ' + angles.length);
+};
+// 关闭传入的callback监听
+display.off('foldAngleChange', callback);
 ```
 
 ## display.on('captureStatusChange')<sup>12+</sup>
@@ -867,7 +878,15 @@ off(type: 'captureStatusChange', callback?: Callback&lt;boolean&gt;): void
 **示例：**
 
 ```ts
+
+// 如果通过on注册多个callback，同时关闭所有callback监听
 display.off('captureStatusChange');
+
+let callback: Callback<boolean> = (captureStatus: boolean) => {
+  console.info('Listening capture status: ' + captureStatus);
+};
+// 关闭传入的callback监听
+display.off('captureStatusChange', callback);
 ```
 
 ## display.isCaptured<sup>12+</sup>
@@ -1291,7 +1310,7 @@ makeUnique(screenId:number): Promise&lt;void&gt;
 
 | 参数名    | 类型   | 必填 | 说明          |
 | --------- | ------ | ---- | ------------- |
-| screenId  | number | 是   | 要设置成异源模式的屏幕id。其中id应为大于等于0的整数，否则返回401错误码。 |
+| screenId  | number | 是   | 要设置成异源模式的屏幕id。其中id应为大于0的整数，否则返回401错误码。 |
 
 **返回值：**
 
@@ -1340,7 +1359,7 @@ display.makeUnique(screenId).then(() => {
 | alive | boolean | 是 | 否 | 显示设备是否启用。true表示设备启用，false表示设备未启用。<br/>**系统能力：** SystemCapability.WindowManager.WindowManager.Core<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                                                     |
 | state | [DisplayState](#displaystate) | 是 | 否 | 显示设备的状态。<br/>**系统能力：** SystemCapability.WindowManager.WindowManager.Core<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                                                      |
 | refreshRate | number | 是 | 否 | 显示设备的刷新率，该参数应为整数，单位为hz。<br/>**系统能力：** SystemCapability.WindowManager.WindowManager.Core<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                                             |
-| rotation | number | 是 | 否 | 显示设备的屏幕顺时针旋转角度。<br>值为0时，表示显示设备屏幕顺时针旋转为0°；<br>值为1时，表示显示设备屏幕顺时针旋转为90°；<br>值为2时，表示显示设备屏幕顺时针旋转为180°；<br>值为3时，表示显示设备屏幕顺时针旋转为270°。<br/>**系统能力：** SystemCapability.WindowManager.WindowManager.Core<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| rotation | number | 是 | 否 | 显示设备的屏幕顺时针旋转角度。<br>值为0时，表示显示设备屏幕顺时针旋转为0°；(此时设备充电口朝下)<br>值为1时，表示显示设备屏幕顺时针旋转为90°；<br>值为2时，表示显示设备屏幕顺时针旋转为180°；<br>值为3时，表示显示设备屏幕顺时针旋转为270°。<br/>**系统能力：** SystemCapability.WindowManager.WindowManager.Core<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | width | number | 是 | 否 | 显示设备的屏幕宽度，单位为px，该参数应为整数。<br/>**系统能力：** SystemCapability.WindowManager.WindowManager.Core<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                                                                        |
 | height | number | 是 | 否 | 显示设备的屏幕高度，单位为px，该参数应为整数。<br/>**系统能力：** SystemCapability.WindowManager.WindowManager.Core<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                                                                        |
 | densityDPI | number | 是 | 否 | 显示设备屏幕的物理像素密度，表示每英寸上的像素点数。该参数为浮点数，单位为px。一般取值160.0、480.0等，实际能取到的值取决于不同设备设置里提供的可选值。<br/>**系统能力：** SystemCapability.WindowManager.WindowManager.Core<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                   |

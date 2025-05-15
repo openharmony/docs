@@ -528,7 +528,7 @@ makeUnique(uniqueScreen: Array&lt;number&gt;): Promise&lt;Array&lt;number&gt;&gt
 
 | 参数名    | 类型   | 必填 | 说明          |
 | --------- | ------ | ---- | ------------- |
-| uniqueScreen  | Array&lt;number&gt; | 是   | 异源屏幕id集合。其中id应为大于等于0的整数，否则返回401错误码。 |
+| uniqueScreen  | Array&lt;number&gt; | 是   | 异源屏幕id集合。其中id应为大于0的整数，否则返回401错误码。 |
 
 **返回值：**
 
@@ -813,6 +813,55 @@ screen.setVirtualScreenSurface(screenId, surfaceId, (err: BusinessError) => {
   console.info('Succeeded in setting the surface for the virtual screen.');
 });
 ```
+
+## screen.setVirtualScreenSurface
+
+setVirtualScreenSurface(screenId:number, surfaceId: string): Promise&lt;void&gt;
+
+设置虚拟屏幕的surface，使用Promise异步回调。
+
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+**需要权限**：ohos.permission.CAPTURE_SCREEN，仅系统应用可用。
+
+**参数：**
+
+| 参数名    | 类型   | 必填 | 说明          |
+| --------- | ------ | ---- | ------------- |
+| screenId  | number | 是   | 屏幕的id，该参数仅支持整数输入。    |
+| surfaceId | string | 是   | 代表虚拟屏幕的surface标识符，surfaceId值可自行定义。 |
+
+**返回值：**
+
+| 类型                | 说明                      |
+| ------------------- | ------------------------- |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[屏幕错误码](errorcode-display.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ----------------------- |
+| 201 | Permission verification failed. |
+| 202     | Permission verification failed. A non-system application calls a system API.|
+| 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types.|
+| 1400001 | Invalid display or screen. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let screenId: number = 1;
+let surfaceId: string = '2048';
+screen.setVirtualScreenSurface(screenId, surfaceId).then(() => {
+  console.info('Succeeded in setting the surface for the virtual screen.');
+}).catch((err: BusinessError) => {
+  console.error(`Failed to set the surface for the virtual screen. Code:${err.code},message is ${err.message}`);
+});
+```
+
 ## screen.setScreenPrivacyMaskImage<sup>18+</sup>
 
 setScreenPrivacyMaskImage(screenId:number, image?: image.PixelMap): Promise&lt;void&gt;
@@ -865,53 +914,6 @@ image.createPixelMap(color, opts).then((pixelMap: image.PixelMap) => {
 }).catch((error: BusinessError) => {
   console.error(`Failed to create pixelmap. code is ${error.code}, message is ${error.message}`);
 })
-```
-## screen.setVirtualScreenSurface
-
-setVirtualScreenSurface(screenId:number, surfaceId: string): Promise&lt;void&gt;
-
-设置虚拟屏幕的surface，使用Promise异步回调。
-
-**系统能力：** SystemCapability.WindowManager.WindowManager.Core
-
-**需要权限**：ohos.permission.CAPTURE_SCREEN，仅系统应用可用。
-
-**参数：**
-
-| 参数名    | 类型   | 必填 | 说明          |
-| --------- | ------ | ---- | ------------- |
-| screenId  | number | 是   | 屏幕的id，该参数仅支持整数输入。    |
-| surfaceId | string | 是   | 代表虚拟屏幕的surface标识符，surfaceId值可自行定义。 |
-
-**返回值：**
-
-| 类型                | 说明                      |
-| ------------------- | ------------------------- |
-| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[屏幕错误码](errorcode-display.md)。
-
-| 错误码ID | 错误信息 |
-| ------- | ----------------------- |
-| 201 | Permission verification failed. |
-| 202     | Permission verification failed. A non-system application calls a system API.|
-| 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types.|
-| 1400001 | Invalid display or screen. |
-
-**示例：**
-
-```ts
-import { BusinessError } from '@kit.BasicServicesKit';
-
-let screenId: number = 1;
-let surfaceId: string = '2048';
-screen.setVirtualScreenSurface(screenId, surfaceId).then(() => {
-  console.info('Succeeded in setting the surface for the virtual screen.');
-}).catch((err: BusinessError) => {
-  console.error(`Failed to set the surface for the virtual screen. Code:${err.code},message is ${err.message}`);
-});
 ```
 
 ## screen.isScreenRotationLocked
@@ -1222,7 +1224,7 @@ screen.setMultiScreenRelativePosition(mainScreenOptions, secondaryScreenOptions)
 
 makeMirrorWithRegion(mainScreen:number, mirrorScreen:Array&lt;number&gt;, mainScreenRegion:Rect): Promise&lt;number&gt;
 
-将屏幕的某一矩形区域设置为镜像模式，使用Promise异步回调。
+将屏幕的某一矩形区域设置为镜像模式，使用Promise异步回调。该接口不支持旋转。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
