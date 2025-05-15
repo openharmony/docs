@@ -13,10 +13,10 @@ HCE(Host Card Emulation)，称为基于主机的卡模拟，表示不依赖安�
 ```json
 {
   "module": {
-    // other declared attributes.
+    // 其他已声明的属性
     "abilities": [
       {
-        // other declared attributes.
+        // 其他已声明的属性
         "skills": [
           {
             "actions": [
@@ -39,7 +39,7 @@ HCE(Host Card Emulation)，称为基于主机的卡模拟，表示不依赖安�
     "requestPermissions": [
       {
         "name": "ohos.permission.NFC_CARD_EMULATION",
-        // should add variable card_emulation_reason in string.json
+        // 必须要添加reason: card_mulation_reason
         "reason": "$string:card_emulation_reason",
       }
     ]
@@ -57,7 +57,7 @@ HCE(Host Card Emulation)，称为基于主机的卡模拟，表示不依赖安�
 import { cardEmulation } from '@kit.ConnectivityKit';
 ```
 
-## cardEmulation.FeatureType<sup>(deprecated)</sup>
+## FeatureType<sup>(deprecated)</sup>
 
 定义不同的NFC卡模拟类型。
 
@@ -102,7 +102,7 @@ isSupported(feature: number): boolean
 
 | 参数名     | 类型     | 必填   | 说明                                       |
 | ------- | ------ | ---- | ---------------------------------------- |
-| feature | number | 是    | 卡模拟类型值，详细请见[FeatureType](#cardemulationfeaturetypedeprecated)枚举值。 |
+| feature | number | 是    | 卡模拟类型值，详细请见[FeatureType](#featuretypedeprecated)枚举值。 |
 
 **返回值：**
 
@@ -200,12 +200,7 @@ isDefaultService(elementName: ElementName, type: CardType): boolean
 import { cardEmulation } from '@kit.ConnectivityKit';
 import { bundleManager, Want } from '@kit.AbilityKit';
 
-// init elementName here, bundleName and abilityName are required.
-let want: Want = {
-  bundleName: "com.example.myapplication",
-  moduleName: "entry",
-  abilityName: "EntryAbility"
-};
+// 需要初始化 elementName、bundleName、abilityName，根据实际应用信息更改为正确的值
 let elementName: bundleManager.ElementName = {
   bundleName: "com.example.myapplication",
   moduleName: "entry",
@@ -213,9 +208,7 @@ let elementName: bundleManager.ElementName = {
 };
 
 let isDefaultService: boolean = cardEmulation.isDefaultService(elementName, cardEmulation.CardType.PAYMENT);
-// do something according to the isDefaultService value
 ```
-
 
 ## HceService<sup>8+</sup>
 
@@ -367,16 +360,16 @@ export default class EntryAbility extends UIAbility {
       moduleName: want.moduleName
     }
     const apduCallback: AsyncCallback<number[]> = (err, data) => {
-      //handle the data and err
+      //处理数据和异常
       console.log("got apdu data");
     };
     hceService.on('hceCmd', apduCallback);
   }
   onDestroy() {
     hilog.info(0x0000, 'testHce', '%{public}s', 'Ability onDestroy');
-    hceService.stop(element)
+    hceService.stop(element);
   }
-  // other life cycle method...
+  // 生命周期内的其它功能
 }
 ```
 
@@ -442,10 +435,10 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let hceService: cardEmulation.HceService = new cardEmulation.HceService();
 
-// the data app wanna send, just a example data
+// 应用程序实际想要发送的数据， 此处仅做为示例
 const responseData = [0x1, 0x2];
 hceService.transmit(responseData).then(() => {
-  // handle the transmit promise
+  // 处理 promise 的回调
   console.log("transmit Promise success.");
 }).catch((err: BusinessError) => {
   console.log("transmit Promise error:", err);
@@ -469,7 +462,7 @@ transmit(response: number[], callback: AsyncCallback\<void>): void
 | 参数名  | 类型     | 必填 | 说明                    |
 | ------- | -------- | ---- | ----------------------- |
 | response | number[] | 是   | 发送到对端读卡设备的符合APDU协议的数据，每个number十六进制表示，范围是0x00~0xFF。 |
-| callback | AsyncCallback\<void> | 是   | 以callback形式异步返回发送APDU数据的结果。 |
+| callback | AsyncCallback\<void> | 是   | 回调函数。当发送APDU数据成功时，err为undefined，否则为错误对象。 |
 
 **错误码：**
 
@@ -489,7 +482,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let hceService: cardEmulation.HceService = new cardEmulation.HceService();
 
-// the data app wanna send, just a example data
+// 应用程序实际想要发送的数据， 此处仅做为示例
 try {
   const responseData = [0x1, 0x2];
 
