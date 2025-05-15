@@ -520,6 +520,7 @@
     - [滚动类组件错误码](errorcode-scroll.md)
     - [截图错误码](errorcode-snapshot.md)
     - [UI上下文错误码](errorcode-uicontext.md)
+    - [注册节点渲染状态监听错误码](errorcode-node-render-monitor.md)
   - 图形图像<!--arkui-graphics-images-arkts-errcode-->
     - [屏幕错误码](errorcode-display.md)
     - [窗口错误码](errorcode-window.md)
