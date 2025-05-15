@@ -8,7 +8,7 @@
 
 **错误信息**
 
-Invalid parameter.
+Invalid parameter value.
 
 **错误描述**
 
@@ -42,7 +42,7 @@ Invalid parameter.
 
 **错误信息**
 
-Begin encryption or decryption error.
+Credential service busy due to too many tasks or duplicate tasks.
 
 **错误描述**
 
@@ -62,7 +62,7 @@ Begin encryption or decryption error.
 
 **错误信息**
 
-Encryption or decryption timeout.
+Credential task time out.
 
 **错误描述**
 
@@ -246,7 +246,7 @@ The system ability works abnormally.
 
 **错误信息**
 
-Out of memory.
+System memory is insufficient.
 
 **错误描述**
 
@@ -292,7 +292,7 @@ Account not logged in.
 
 **错误信息**
 
-Upgrade required.
+The system needs to be upgraded.
 
 **错误描述**
 
@@ -306,7 +306,7 @@ Upgrade required.
 
 **错误信息**
 
-uri missing in want.
+The uri field is missing in the want parameter.
 
 **错误描述**
 
@@ -320,7 +320,7 @@ want参数中没有uri。
 
 **错误信息**
 
-displayName missing in want.
+The displayName field is missing in the want parameter.
 
 **错误描述**
 
@@ -334,7 +334,7 @@ want参数中parameters内没有displayName。
 
 **错误信息**
 
-Application not authorized.
+The application is not authorized.
 
 **错误描述**
 

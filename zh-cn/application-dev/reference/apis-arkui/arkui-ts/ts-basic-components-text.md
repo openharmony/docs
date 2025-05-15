@@ -896,7 +896,16 @@ enableHapticFeedback(isEnabled: boolean)
 
 optimizeTrailingSpace(optimize: boolean)
 
-设置是否在文本布局过程中优化每行末尾的空格。
+
+设置是否在文本布局过程中优化每行末尾的空格，可解决行尾空格影响对齐显示效果问题。
+
+设置Text.optimizeTrailingSpace为true时：
+
+* 多行、单行、图文混排等多种情况下均会优化行尾空格（TextAlign.Center时，优化效果明显）；
+
+* 纯空格文本时，修饰线、阴影、背景色跟随空格文本显示；
+
+* 行首空格不在优化范围内，行尾文本强制换行，每行行尾空格根据组件宽度优化行尾空格。
 
 **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 

@@ -16,7 +16,7 @@ photoAccessHelper提供监听指定媒体资源变更的接口。
 
 ### 对指定PhotoAsset注册监听
 
-注册对指定PhotoAsset的监听，当监听的PhotoAsset发生变更时，返回回调。
+对指定PhotoAsset注册监听，当监听的PhotoAsset发生变更时，返回回调。
 
 **前提条件**
 
@@ -65,7 +65,7 @@ async function example() {
 
 ### 对指定Album注册监听
 
-注册Album监听，当Album发生变更时，触发监听回调。
+对指定Album注册监听，当Album发生变更时，触发监听回调。
 
 **前提条件**
 

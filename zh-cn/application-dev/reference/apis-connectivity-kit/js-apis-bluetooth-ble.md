@@ -266,7 +266,9 @@ startAdvertising(setting: AdvertiseSetting, advData: AdvertiseData, advResponse?
 |801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
 |2900003 | Bluetooth disabled.                 |
+|2900010 | The number of advertising resources reaches the upper limit.       |
 |2900099 | Operation failed.                        |
+|2902054 | The length of the advertising data exceeds the upper limit.        |
 
 **示例：**
 
@@ -380,7 +382,9 @@ startAdvertising(advertisingParams: AdvertisingParams, callback: AsyncCallback&l
 |801     | Capability not supported.                |
 |2900001 | Service stopped.                         |
 |2900003 | Bluetooth disabled.                 |
+|2900010 | The number of advertising resources reaches the upper limit.       |
 |2900099 | Operation failed.                        |
+|2902054 | The length of the advertising data exceeds the upper limit.        |
 
 **示例：**
 
@@ -477,7 +481,9 @@ startAdvertising(advertisingParams: AdvertisingParams): Promise&lt;number&gt;
 |801     | Capability not supported.                |
 |2900001 | Service stopped.                         |
 |2900003 | Bluetooth disabled.                 |
+|2900010 | The number of advertising resources reaches the upper limit.       |
 |2900099 | Operation failed.                        |
+|2902054 | The length of the advertising data exceeds the upper limit.        |
 
 **示例：**
 
@@ -566,6 +572,7 @@ enableAdvertising(advertisingEnableParams: AdvertisingEnableParams, callback: As
 |2900001 | Service stopped.                         |
 |2900003 | Bluetooth disabled.                 |
 |2900099 | Operation failed.                        |
+|2902055 | Invalid advertising id.                        |
 
 **示例：**
 
@@ -675,6 +682,7 @@ enableAdvertising(advertisingEnableParams: AdvertisingEnableParams): Promise&lt;
 |2900001 | Service stopped.                         |
 |2900003 | Bluetooth disabled.                 |
 |2900099 | Operation failed.                        |
+|2902055 | Invalid advertising id.                        |
 
 **示例：**
 
@@ -778,6 +786,7 @@ disableAdvertising(advertisingDisableParams: AdvertisingDisableParams, callback:
 |2900001 | Service stopped.                         |
 |2900003 | Bluetooth disabled.                 |
 |2900099 | Operation failed.                        |
+|2902055 | Invalid advertising id.                        |
 
 **示例：**
 
@@ -884,6 +893,7 @@ disableAdvertising(advertisingDisableParams: AdvertisingDisableParams): Promise&
 |2900001 | Service stopped.                         |
 |2900003 | Bluetooth disabled.                 |
 |2900099 | Operation failed.                        |
+|2902055 | Invalid advertising id.                        |
 
 **示例：**
 
@@ -983,6 +993,7 @@ stopAdvertising(advertisingId: number, callback: AsyncCallback&lt;void&gt;): voi
 |2900001 | Service stopped.                         |
 |2900003 | Bluetooth disabled.                 |
 |2900099 | Operation failed.                        |
+|2902055 | Invalid advertising id.                        |
 
 **示例：**
 
@@ -1086,6 +1097,7 @@ stopAdvertising(advertisingId: number): Promise&lt;void&gt;
 |2900001 | Service stopped.                         |
 |2900003 | Bluetooth disabled.                 |
 |2900099 | Operation failed.                        |
+|2902055 | Invalid advertising id.                        |
 
 **示例：**
 
@@ -2572,8 +2584,14 @@ client端从指定的server端特征值读取数据。使用Callback异步回调
 |401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
 |801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
-|2901000 | Read forbidden.                         |
+|2900011 | The operation is busy. The last operation is not complete.             |
 |2900099 | Operation failed.                        |
+|2901000 | Read forbidden.                         |
+|2901003 | The connection is not established.                |
+|2901004 | The connection is congested.                |
+|2901005 | The connection is not encrypted.                |
+|2901006 | The connection is not authenticated.                |
+|2901007 | The connection is not authorized.                |
 
 **示例：**
 
@@ -2649,8 +2667,14 @@ client端从指定的server端特征值读取数据。使用Promise异步回调�
 |401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
 |801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
-|2901000 | Read forbidden.                         |
+|2900011 | The operation is busy. The last operation is not complete.             |
 |2900099 | Operation failed.                        |
+|2901000 | Read forbidden.                         |
+|2901003 | The connection is not established.                |
+|2901004 | The connection is congested.                |
+|2901005 | The connection is not encrypted.                |
+|2901006 | The connection is not authenticated.                |
+|2901007 | The connection is not authorized.                |
 
 **示例：**
 
@@ -2712,8 +2736,14 @@ client端从指定的server端描述符读取数据。使用Callback异步回调
 |401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
 |801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
-|2901000 | Read forbidden.                         |
+|2900011 | The operation is busy. The last operation is not complete.             |
 |2900099 | Operation failed.                        |
+|2901000 | Read forbidden.                         |
+|2901003 | The connection is not established.                |
+|2901004 | The connection is congested.                |
+|2901005 | The connection is not encrypted.                |
+|2901006 | The connection is not authenticated.                |
+|2901007 | The connection is not authorized.                |
 
 **示例：**
 
@@ -2782,8 +2812,14 @@ client端从指定的server端描述符读取数据。使用Promise异步回调�
 |401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
 |801 | Capability not supported.          |
 |2900001 | Service stopped.               |
-|2901000 | Read forbidden.                |
-|2900099 | Operation failed.              |
+|2900011 | The operation is busy. The last operation is not complete.             |
+|2900099 | Operation failed.                        |
+|2901000 | Read forbidden.                         |
+|2901003 | The connection is not established.                |
+|2901004 | The connection is congested.                |
+|2901005 | The connection is not encrypted.                |
+|2901006 | The connection is not authenticated.                |
+|2901007 | The connection is not authorized.                |
 
 **示例：**
 
@@ -2839,8 +2875,14 @@ client端向指定的server端特征值写入数据。使用Callback异步回调
 |401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
 |801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
-|2901001 | Write forbidden.                        |
+|2900011 | The operation is busy. The last operation is not complete.             |
 |2900099 | Operation failed.                        |
+|2901001 | Write forbidden.                        |
+|2901003 | The connection is not established.                |
+|2901004 | The connection is congested.                |
+|2901005 | The connection is not encrypted.                |
+|2901006 | The connection is not authenticated.                |
+|2901007 | The connection is not authorized.                |
 
 **示例：**
 
@@ -2913,8 +2955,14 @@ client端向指定的server端特征值写入数据。使用Promise异步回调�
 |401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
 |801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
-|2901001 | Write forbidden.                        |
+|2900011 | The operation is busy. The last operation is not complete.             |
 |2900099 | Operation failed.                        |
+|2901001 | Write forbidden.                        |
+|2901003 | The connection is not established.                |
+|2901004 | The connection is congested.                |
+|2901005 | The connection is not encrypted.                |
+|2901006 | The connection is not authenticated.                |
+|2901007 | The connection is not authorized.                |
 
 **示例：**
 
@@ -2975,8 +3023,14 @@ client端向指定的server端描述符写入数据。使用Callback异步回调
 |401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
 |801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
-|2901001 | Write forbidden.                        |
+|2900011 | The operation is busy. The last operation is not complete.             |
 |2900099 | Operation failed.                        |
+|2901001 | Write forbidden.                        |
+|2901003 | The connection is not established.                |
+|2901004 | The connection is congested.                |
+|2901005 | The connection is not encrypted.                |
+|2901006 | The connection is not authenticated.                |
+|2901007 | The connection is not authorized.                |
 
 **示例：**
 
@@ -3042,8 +3096,14 @@ client端向指定的server端描述符写入数据。使用Promise异步回调�
 |401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
 |801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
-|2901001 | Write forbidden.                        |
+|2900011 | The operation is busy. The last operation is not complete.             |
 |2900099 | Operation failed.                        |
+|2901001 | Write forbidden.                        |
+|2901003 | The connection is not established.                |
+|2901004 | The connection is congested.                |
+|2901005 | The connection is not encrypted.                |
+|2901006 | The connection is not authenticated.                |
+|2901007 | The connection is not authorized.                |
 
 **示例：**
 
@@ -3097,7 +3157,9 @@ client获取远端蓝牙低功耗设备的信号强度 (Received Signal Strength
 |201 | Permission denied.                 |
 |401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.         |
 |801 | Capability not supported.          |
+|2900011 | The operation is busy. The last operation is not complete.             |
 |2900099 | Operation failed.                        |
+|2901003 | The connection is not established.                |
 
 **示例：**
 
@@ -3145,7 +3207,9 @@ client端获取和server端的GATT连接链路信号强度。使用Promise异步
 |201 | Permission denied.                 |
 |401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.               |
 |801 | Capability not supported.          |
+|2900011 | The operation is busy. The last operation is not complete.             |
 |2900099 | Operation failed.                        |
+|2901003 | The connection is not established.                |
 
 **示例：**
 
@@ -3244,7 +3308,9 @@ client端启用或者禁用接收server端特征值内容变更通知的能力�
 |401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
 |801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
+|2900011 | The operation is busy. The last operation is not complete.             |
 |2900099 | Operation failed.                        |
+|2901003 | The connection is not established.                |
 
 **示例：**
 
@@ -3319,7 +3385,9 @@ client端启用或者禁用接收server端特征值内容变更通知的能力�
 |401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
 |801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
+|2900011 | The operation is busy. The last operation is not complete.             |
 |2900099 | Operation failed.                        |
+|2901003 | The connection is not established.                |
 
 **示例：**
 
@@ -3383,7 +3451,9 @@ client端启用或者禁用接收server端特征值内容变更指示的能力�
 |401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
 |801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
+|2900011 | The operation is busy. The last operation is not complete.             |
 |2900099 | Operation failed.                        |
+|2901003 | The connection is not established.                |
 
 **示例：**
 
@@ -3458,7 +3528,9 @@ client端启用或者禁用接收server端特征值内容变更指示的能力�
 |401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
 |801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
+|2900011 | The operation is busy. The last operation is not complete.             |
 |2900099 | Operation failed.                        |
+|2901003 | The connection is not established.                |
 
 **示例：**
 
