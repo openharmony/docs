@@ -75,7 +75,7 @@ import { FrameNode, LayoutConstraint, ExpandMode, typeNode, NodeAdapter } from "
 
 ## UIStatesChangeHandler<sup>20+</sup>
 
-type UIStatesChangeHandler = (currentUIStates: number) => void
+type UIStatesChangeHandler = (node: FrameNode, currentUIStates: number) => void
 
 当UI状态发生变化时触发的回调。
 
@@ -85,7 +85,8 @@ type UIStatesChangeHandler = (currentUIStates: number) => void
 
 | 参数名   | 类型                      | 必填 | 说明                                                     |
 | -------- | ----------------------------- | ---- | ------------------------------------------------------------ |
-| currentUIStates    | number         | 是   | 回调触发时当前的UI状态。<br>可以通过位与运算判断当前包含哪些状态，如：if (currentState & UIState.PRESSED == UIState.PRESSED)                                            |
+| node    | [FrameNode](#framenode) | 是   | 触发UI状态变化的节点。                                            |
+| currentUIStates    | number         | 是   | 回调触发时当前的UI状态。<br>可以通过位与运算判断当前包含哪些[UIState](#uistate20)状态。<br>位与运算方法：if (currentState & UIState.PRESSED == UIState.PRESSED)。                                            |
 
 
 ## FrameNode
@@ -5707,35 +5708,35 @@ class MyNodeController extends NodeController {
       .focusable(true)
 
     //为Text组件添加多态样式处理能力
-    styleText.addSupportedUIStates(this.theStatesToBeSupported, (currentState: number) => {
+    styleText.addSupportedUIStates(this.theStatesToBeSupported, (node: FrameNode, currentState: number) => {
       if (currentState == UIState.NORMAL) { //判断是否normal要使用等于
         //normal状态，刷normal的UI效果
         console.info('Callback UIState.NORMAL')
-        styleText.commonAttribute.backgroundColor(Color.Green)
-        styleText.commonAttribute.borderWidth(2)
-        styleText.commonAttribute.borderColor(Color.Black)
+        node.commonAttribute.backgroundColor(Color.Green)
+        node.commonAttribute.borderWidth(2)
+        node.commonAttribute.borderColor(Color.Black)
       }
       if ((currentState & UIState.PRESSED) == UIState.PRESSED) {
         //press状态，刷press的UI效果
         console.info('Callback UIState.PRESSED')
-        styleText.commonAttribute.backgroundColor(Color.Brown)
+        node.commonAttribute.backgroundColor(Color.Brown)
       }
       if ((currentState & UIState.FOCUSED) == UIState.FOCUSED) {
         //focused状态，刷focused的UI效果
         console.info('Callback UIState.FOCUSED')
-        styleText.commonAttribute.borderWidth(5)
-        styleText.commonAttribute.borderColor(Color.Yellow)
+        node.commonAttribute.borderWidth(5)
+        node.commonAttribute.borderColor(Color.Yellow)
       }
       if ((currentState & UIState.DISABLED) == UIState.DISABLED) {
         //disabled状态，刷disabled的UI效果
         console.info('Callback UIState.DISABLED')
-        styleText.commonAttribute.backgroundColor(Color.Gray)
-        styleText.commonAttribute.borderWidth(0)
+        node.commonAttribute.backgroundColor(Color.Gray)
+        node.commonAttribute.borderWidth(0)
       }
       if ((currentState & UIState.SELECTED) == UIState.SELECTED) {
         //selected状态，刷selected的UI效果
         console.info('Callback UIState.SELECTED')
-        styleText.commonAttribute.backgroundColor(Color.Pink)
+        node.commonAttribute.backgroundColor(Color.Pink)
       }
     }, false)
 
