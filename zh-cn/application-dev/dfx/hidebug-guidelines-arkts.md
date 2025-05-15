@@ -53,7 +53,7 @@ HiDebug的具体用法可查看API参考[API参考文档](../reference/apis-perf
    import { BusinessError } from '@kit.BasicServicesKit';
    function testHiDebug(event?: ClickEvent) {
      try {
-       console.info(`getSystemCpuUsage: ${hidebug.getSystemCpuUsage()}`)
+       console.info(`getSystemCpuUsage: ${hidebug.getSystemCpuUsage()}`);
      } catch (error) {
        console.error(`error code: ${(error as BusinessError).code}, error msg: ${(error as BusinessError).message}`);
      }
@@ -66,7 +66,7 @@ HiDebug的具体用法可查看API参考[API参考文档](../reference/apis-perf
    @Entry
    @Component
    struct Index {
-     @State message: string = 'Hello World'
+     @State message: string = 'Hello World';
 
      build() {
        Row() {
