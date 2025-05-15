@@ -6737,8 +6737,8 @@ openCustomDialog\<T extends Object>(dialogContent: ComponentContent\<T>, options
 | 错误码ID  | 错误信息                               |
 | ------ | ---------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
-| 103301 | The ComponentContent is incorrect. |
-| 103302 | Dialog content already exists.|
+| 103301 | Dialog content error. The ComponentContent is incorrect. |
+| 103302 | Dialog content already exist. The ComponentContent has already been opened. |
 
 **示例：**
 
@@ -6829,8 +6829,8 @@ openCustomDialogWithController\<T extends Object>(dialogContent: ComponentConten
 | 错误码ID  | 错误信息                               |
 | ------ | ---------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
-| 103301 | The ComponentContent is incorrect. |
-| 103302 | Dialog content already exists.|
+| 103301 | Dialog content error. The ComponentContent is incorrect. |
+| 103302 | Dialog content already exist. The ComponentContent has already been opened. |
 
 **示例：**
 
@@ -6925,8 +6925,8 @@ closeCustomDialog\<T extends Object>(dialogContent: ComponentContent\<T>): Promi
 | 错误码ID  | 错误信息                               |
 | ------ | ---------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
-| 103301 | The ComponentContent is incorrect. |
-| 103303 | The ComponentContent cannot be found. |
+| 103301 | Dialog content error. The ComponentContent is incorrect. |
+| 103303 | Dialog content not found. The ComponentContent cannot be found. |
 
 **示例：**
 
@@ -7021,8 +7021,8 @@ updateCustomDialog\<T extends Object>(dialogContent: ComponentContent\<T>, optio
 | 错误码ID  | 错误信息                               |
 | ------ | ---------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
-| 103301 | The ComponentContent is incorrect. |
-| 103303 | The ComponentContent cannot be found. |
+| 103301 | Dialog content error. The ComponentContent is incorrect. |
+| 103303 | Dialog content not found. The ComponentContent cannot be found. |
 
 **示例：**
 
