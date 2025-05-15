@@ -189,7 +189,7 @@ Sets whether to enable privacy mode.
 | Name| Type | Mandatory|Description        |
 | ------ | ------ | ------- |------------|
 | value  | number | Yes| Current progress. Values less than 0 are adjusted to **0**. Values greater than the value of **total** are capped at the value of **total**.<br>Default value: **0**<br>Value range: [0, total]|
-| total  | number | Yes| Indicates the total progress.<br>Value range: [0, +∞]  |
+| total  | number | Yes| Indicates the total progress.<br>Value range: [0, +∞)  |
 
 ## CommonProgressStyleOptions<sup>10+</sup>
 

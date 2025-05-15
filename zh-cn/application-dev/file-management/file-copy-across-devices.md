@@ -112,7 +112,7 @@
     // 定义访问分布式目录的回调
     let listeners : fs.DfsListeners = {
       onStatus: (networkId: string, status: number): void => {
-        console.info(`Failed to access public directory`);
+        console.error(`Failed to access public directory，${status}`);
       }
     };
     // 开始跨设备文件拷贝

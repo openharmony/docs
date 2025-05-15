@@ -27,7 +27,7 @@ import { SwipeRefresher } from '@kit.ArkUI';
 
 ## SwipeRefresher
 
-SwipeRefresher ({content?: string, isLoading: boolean})
+SwipeRefresher ({content?: ResourceStr, isLoading: boolean})
 
 **装饰器类型：**\@Component
 
@@ -39,7 +39,7 @@ SwipeRefresher ({content?: string, isLoading: boolean})
 
 | 名称 | 类型 | 必填 | 装饰器类型 | 说明                                                                 |
 | -------- | -------- | -------- | -------- |--------------------------------------------------------------------|
-| content | string | 否 | \@Prop | 内容加载时显示的文本。<br/>默认值：空字符串。<br/>**说明**：如果文本大于列宽时，文本被截断。                                         |
+| content | [ResourceStr](ts-types.md#resourcestr) | 否 | @Prop | 内容加载时显示的文本。<br/>默认值：空字符串。<br/>**说明**：如果文本大于列宽时，文本被截断。从API version 20开始，支持Resource类型。   |
 | isLoading | boolean | 是 | \@Prop | 当前是否正在加载。<br> isLoading为true时，表示正在加载。<br> isLoading为false时，表示未在加载。 |
 
 ## 事件

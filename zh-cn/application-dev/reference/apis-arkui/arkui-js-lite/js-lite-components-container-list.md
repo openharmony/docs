@@ -38,7 +38,7 @@
 
 | 名称 | 类型 | 默认值 | 必填 | 描述 |
 | -------- | -------- | -------- | -------- | -------- |
-| flex-direction | string | column | 否 | 设置flex容器主轴的方向，指定flex项如何放置在flex容器中，可选值为：<br/>-&nbsp;column：主轴为纵向。<br/>-&nbsp;row：主轴为横向。<br/>其他组件默认值为row，在list组件中默认值为column。轻量级智能穿戴不支持动态修改。 |
+| flex-direction | string | column | 否 | 设置flex容器主轴的方向，指定flex项如何放置在flex容器中，可选值为：<br/>-&nbsp;column：主轴为纵向。<br/>-&nbsp;row：主轴为横向。<br/>其他组件默认值为row，在list组件中默认值为column。轻量级智能穿戴设备不支持动态修改。 |
 | width | &lt;length&gt;&nbsp;\|&nbsp;&lt;percentage&gt;<sup>5+</sup> | - | 否 | 设置组件自身的宽度。<br/>未设置时组件宽度默认为0。 |
 | height | &lt;length&gt;&nbsp;\|&nbsp;&lt;percentage&gt;<sup>5+</sup> | - | 否 | 设置组件自身的高度。<br/>未设置时组件高度默认为0。 |
 | padding | &lt;length&gt; | 0 | 否 | 使用简写属性设置所有的内边距属性。<br/>&nbsp;&nbsp;该属性可以有1到4个值：<br/>-&nbsp;指定一个值时，该值指定四个边的内边距。<br/>-&nbsp;指定两个值时，第一个值指定上下两边的内边距，第二个指定左右两边的内边距。<br/>-&nbsp;指定三个值时，第一个指定上边的内边距，第二个指定左右两边的内边距，第三个指定下边的内边距。<br/>-&nbsp;指定四个值时分别为上、右、下、左边的内边距（顺时针顺序）。 |
@@ -59,20 +59,19 @@
 | 名称 | 参数 | 描述 |
 | -------- | -------- | -------- |
 | scrollTo | {&nbsp;index:&nbsp;number(指定位置)&nbsp;} | list滑动到指定index的item位置。 |
-
-
+| rotation | {&nbsp;focus:&nbsp;boolean&nbsp;} | 控制list是否请求旋转表冠的焦点。设置focus参数为true，list将获取旋转表冠的焦点，允许用户通过旋转表冠来滚动选择器中的选项；设置为false将释放旋转表冠的焦点。|
 ## 示例
 
 
 ```html
 <!-- index.hml -->
 <div class="container">
-  <list class="todo-wraper">
-    <list-item for="{{todolist}}" class="todo-item">
-      <text class="todo-title">{{$item.title}}</text>
-      <text class="todo-title">{{$item.date}}</text>
-    </list-item>
-  </list>
+    <list class="todo-wraper" ref="listObj">
+        <list-item for="{{todolist}}" class="todo-item">
+            <text class="todo-title">{{$item.title}}</text>
+            <text class="todo-title">{{$item.date}}</text>
+        </list-item>
+    </list>
 </div>
 ```
 
@@ -80,15 +79,30 @@
 ```js
 // index.js
 export default {
-  data: {
-    todolist: [{
-      title: '刷题',
-      date: '2021-12-31 10:00:00',
-    }, {
-      title: '看电影',
-      date: '2021-12-31 20:00:00',
-    }],
-  },
+    data: {
+        todolist: [{
+            title: '刷题',
+            date: '2021-12-31 10:00:00',
+        }, {
+            title: '看电影',
+            date: '2021-12-31 20:00:00',
+        }
+        , {
+            title: '看书',
+            date: '2021-12-31 21:00:00',
+        },
+        {
+            title: '洗澡',
+            date: '2021-12-31 22:00:00',
+        },
+        {
+            title: '睡觉',
+            date: '2021-12-31 23:00:00',
+        }],
+    },
+    onShow() {
+        this.$refs.listObj.rotation({focus: true})
+    }
 }
 ```
 
@@ -104,7 +118,7 @@ export default {
   width: 454px;
   height: 454px;
 }
-.todo-wraper {
+.todo-wrapper {
   width: 454px;
   height: 300px;
 }

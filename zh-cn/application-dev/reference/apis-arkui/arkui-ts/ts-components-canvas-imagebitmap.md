@@ -85,9 +85,9 @@ close(): void
   @Entry
   @Component
   struct ImageExample {
-    private settings: RenderingContextSettings = new RenderingContextSettings(true)
-    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
-    private img: ImageBitmap = new ImageBitmap("common/images/example.jpg")
+    private settings: RenderingContextSettings = new RenderingContextSettings(true);
+    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
+    private img: ImageBitmap = new ImageBitmap("common/images/example.jpg");
 
     build() {
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
@@ -117,8 +117,8 @@ close(): void
 @Entry
 @Component
 struct Demo {
-  private settings: RenderingContextSettings = new RenderingContextSettings(true)
-  private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
+  private settings: RenderingContextSettings = new RenderingContextSettings(true);
+  private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
 
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
@@ -161,7 +161,7 @@ struct imageBitmapExamplePage {
   private settings: RenderingContextSettings = new RenderingContextSettings(true);
   private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
   private myWorker = new worker.ThreadWorker('entry/ets/workers/Worker.ts');
-  private img: ImageBitmap = new ImageBitmap("common/images/example.jpg")
+  private img: ImageBitmap = new ImageBitmap("common/images/example.jpg");
 
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {

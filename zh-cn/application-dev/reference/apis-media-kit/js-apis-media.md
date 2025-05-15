@@ -4872,7 +4872,7 @@ type OnAVRecorderStateChangeHandler = (state: AVRecorderState, reason: StateChan
 | audioChannels    | number                                       | 否   | 音频采集声道数，选择音频录制时必填。<br>- AAC编码格式支持范围[1 - 8]。<br>- G711-mulaw编码格式支持范围[1]。<br>- MP3编码格式支持范围[1 - 2]。<br>- AMR-NB、AMR-WB编码格式支持范围[1]。<br> **原子化服务API：** 从API version 12 开始，该接口支持在原子化服务中使用。       |
 | audioCodec       | [CodecMimeType](#codecmimetype8)             | 否   | 音频编码格式，选择音频录制时必填。当前支持AUDIO_AAC，AUDIO_MP3，AUDIO_G711MU, AUDIO_AMR_NB, AUDIO_AMR_WB。<br> **原子化服务API：** 从API version 12 开始，该接口支持在原子化服务中使用。     |
 | audioSampleRate  | number                                       | 否   | 音频采样率，选择音频录制时必填。<br>支持范围：<br>- AAC编码支持采样率范围[8000, 11025, 12000, 16000, 22050, 24000, 32000, 44100, 48000, 64000, 88200, 96000]。<br>- G711-mulaw编码支持采样率范围[8000]。<br>- MP3编码支持采样率范围[8000, 11025, 12000, 16000, 22050, 24000, 32000, 44100, 48000]。<br>- AMR_NB编码支持采样率范围[8000]。<br>- AMR_WB编码支持采样率范围[16000]。<br>可变比特率模式，码率仅作参考。<br> **原子化服务API：** 从API version 12 开始，该接口支持在原子化服务中使用。 |
-| fileFormat       | [ContainerFormatType](#containerformattype8) | 是   | 文件的容器格式，必要参数。当前支持MP4、M4A、MP3、WAV、AMR封装格式，不支持在MP4封装格式下使用AUDIO_MP3编码格式。<br>**原子化服务API：** 从API version 12 开始，该接口支持在原子化服务中使用。|
+| fileFormat       | [ContainerFormatType](#containerformattype8) | 是   | 文件的容器格式，必要参数。当前支持MP4、M4A、MP3、WAV、AMR、AAC封装格式，当前AAC音频封装默认为ADTS帧头格式。不支持在MP4封装格式下使用AUDIO_MP3编码格式。<br>**原子化服务API：** 从API version 12 开始，该接口支持在原子化服务中使用。|
 | videoBitrate     | number                                       | 否   | 视频编码比特率，选择视频录制时必填，支持范围[10000 - 100000000]。  |
 | videoCodec       | [CodecMimeType](#codecmimetype8)             | 否   | 视频编码格式，选择视频录制时必填。当前支持VIDEO_AVC。|
 | videoFrameWidth  | number                                       | 否   | 视频帧的宽，选择视频录制时必填，支持范围[176 - 4096]。         |
@@ -4920,6 +4920,7 @@ type OnAVRecorderStateChangeHandler = (state: AVRecorderState, reason: StateChan
 | CFT_MP3<sup>12+</sup>  | 'mp3' | 音频的容器格式，MP3。 |
 | CFT_WAV<sup>12+</sup>  | 'wav' | 音频的容器格式，WAV。 |
 | CFT_AMR<sup>18+</sup>  | 'amr' | 音频的容器格式，AMR。 |
+| CFT_AAC<sup>20+</sup>  | 'aac' | 音频的容器格式，AAC。默认为ADTS帧头格式。 |
 
 ## Location
 
@@ -8000,13 +8001,13 @@ let mimeType : media.AVMimeTypes = media.AVMimeTypes.APPLICATION_M3U8;
 mediaSource.setMimeType(mimeType);
 
 ```
-## media.createMediaSourceWithStreamData<sup>18+</sup>
+## media.createMediaSourceWithStreamData<sup>19+</sup>
 
 createMediaSourceWithStreamData(streams: Array\<MediaStream>): MediaSource
 
 创建流媒体多码率媒体来源实例方法，当前仅支持HTTP-FLV协议格式多码率。
 
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Media.Core
 
@@ -8014,22 +8015,13 @@ createMediaSourceWithStreamData(streams: Array\<MediaStream>): MediaSource
 
 | 参数名  | 类型                                 | 只读 | 可选 | 说明                                                  |
 | ------- | ------------------------------------ | --- | ---- | ----------------------------------------------------- |
-| streams | Array<[MediaStream](#mediastream18)> | 否 | 否   | 可设置MediaStream数组，支持的流媒体格式：HTTP-FLV。 |
+| streams | Array<[MediaStream](#mediastream19)> | 否 | 否   | 可设置MediaStream数组，支持的流媒体格式：HTTP-FLV。 |
 
 **返回值：**
 
 | 类型                          | 说明                |
 | ----------------------------- | ------------------- |
 | [MediaSource](#mediasource12) | 返回MediaSource，用于媒体资源设置。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[媒体错误码](errorcode-media.md)
-
-| 错误码ID | 错误信息                                                     |
-| -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
-| 5400101  | No memory.                                                   |
 
 **示例1：**
 
@@ -8041,7 +8033,7 @@ streams.push({url: "http:/xxx/1080p.flv", width: 1280, height: 720, bitrate: 200
 let mediaSource : media.MediaSource = media.createMediaSourceWithStreamData(streams);
 ```
 
-## MediaStream<sup>18+</sup>
+## MediaStream<sup>19+</sup>
 
 媒体流数据信息。
 

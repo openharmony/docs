@@ -4697,6 +4697,34 @@
 
 **起始版本**：20
 
+## ohos.permission.READ_SOUND_RECORD_IN_FILE_MANAGER
+
+允许应用从文件管理目录读取录音文件。
+
+**权限级别**：system_core
+
+**授权方式**：系统授权（system_grant）
+
+**ACL使能**：true
+
+**支持设备**：Phone | PC/2in1 | Tablet
+
+**起始版本**：20
+
+## ohos.permission.WRITE_SOUND_RECORD_IN_FILE_MANAGER
+
+允许应用向文件管理目录写入录音文件。
+
+**权限级别**：system_core
+
+**授权方式**：系统授权（system_grant）
+
+**ACL使能**：true
+
+**支持设备**：Phone | PC/2in1 | Tablet
+
+**起始版本**：20
+
 ## ohos.permission.SANDBOX_ACCESS_MANAGER
 
 允许应用访问其它应用的沙箱目录。
@@ -4708,3 +4736,31 @@
 **ACL使能**：true
 
 **起始版本**：17
+
+## ohos.permission.REQUEST_DISABLE_NOTIFICATION
+
+允许应用运行的后台上传下载任务不在通知栏显示。
+
+**权限级别**：system_basic
+
+**授权方式**：系统授权（system_grant）
+
+**ACL使能**：true
+
+**支持设备**：General
+
+**起始版本**：20
+
+## ohos.permission.ALLOW_IOURING
+
+允许系统应用调用io_uring相关系统调用实现异步IO操作。
+
+**权限级别**：system_basic
+
+**授权方式**：系统授权（system_grant）
+
+**ACL使能**：true
+
+**支持设备**：General
+
+**起始版本**：20

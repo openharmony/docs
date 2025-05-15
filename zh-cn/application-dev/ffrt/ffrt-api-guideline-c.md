@@ -537,6 +537,50 @@ FFRT_C_API void ffrt_submit_base(ffrt_function_header_t* f, const ffrt_deps_t* i
     }
     ```
 
+### ffrt_submit_f
+
+#### 声明
+
+```c
+FFRT_C_API void ffrt_submit_f(ffrt_function_t func, void* arg, const ffrt_deps_t* in_deps, const ffrt_deps_t* out_deps, const ffrt_task_attr_t* attr);
+```
+
+#### 参数
+
+- `func`：指定的任务函数。
+- `arg`：传递给任务函数的参数。
+- `in_deps`：任务的输入数据依赖。输入数据依赖通常以实际数据的地址表达，也支持`ffrt_task_handle_t`作为一种特殊输入依赖。
+- `out_deps`：任务的输出数据依赖。输出数据依赖通常以实际数据的地址表达，不支持`ffrt_task_handle_t`。
+- `attr`：任务的属性设置。
+
+#### 描述
+
+`ffrt_submit_f`接口是`ffrt_submit_base`接口的简化包装形式。当任务不需要销毁回调函数时，接口内部将任务函数及其参数包装成通用任务结构，再调用`ffrt_submit_base`接口提交任务。
+
+#### 样例
+
+```cpp
+#include <stdio.h>
+#include "ffrt/task.h"
+
+// 待提交执行的函数
+void OnePlusForTest(void* arg)
+{
+    (*static_cast<int*>(arg)) += 1;
+}
+
+int main()
+{
+    int a = 0;
+    ffrt_submit_f(OnePlusForTest, &a, NULL, NULL, NULL);
+
+    ffrt_wait();
+
+    printf("a = %d\n", a);
+    return 0;
+}
+```
+
 ### ffrt_submit_h_base
 
 #### 声明
@@ -572,6 +616,59 @@ func->destroy = after_foo;
 ffrt_task_handle_t t = ffrt_submit_h_base(func, NULL, NULL, NULL);
 // 注意C API的ffrt_task_handle_t需要用户调用ffrt_task_handle_destroy显式销毁
 ffrt_task_handle_destroy(t);
+```
+
+### ffrt_submit_h_f
+
+#### 声明
+
+```c
+typedef void* ffrt_task_handle_t;
+
+FFRT_C_API ffrt_task_handle_t ffrt_submit_h_f(ffrt_function_t func, void* arg, const ffrt_deps_t* in_deps, const ffrt_deps_t* out_deps, const ffrt_task_attr_t* attr);
+```
+
+#### 参数
+
+- `func`：指定的任务函数。
+- `arg`：传递给任务函数的参数。
+- `in_deps`：任务的输入数据依赖。输入数据依赖通常以实际数据的地址表达，也支持`ffrt_task_handle_t`作为一种特殊输入依赖。
+- `out_deps`：任务的输出数据依赖。输出数据依赖通常以实际数据的地址表达，不支持`ffrt_task_handle_t`。
+- `attr`：任务的属性设置。
+
+#### 返回值
+
+- `ffrt_task_handle_t`任务的句柄。
+
+#### 描述
+
+相比于`ffrt_submit_f`接口，增加了任务句柄的返回值。
+
+#### 样例
+
+```cpp
+#include <stdio.h>
+#include <vector>
+#include "ffrt/task.h"
+
+// 待提交执行的函数
+void OnePlusForTest(void* arg)
+{
+    (*static_cast<int*>(arg)) += 1;
+}
+
+int main()
+{
+    int a = 0;
+    ffrt_task_handle_t task = ffrt_submit_h_f(OnePlusForTest, &a, NULL, NULL, NULL);
+
+    const std::vector<ffrt_dependence_t> wait_deps = {{ffrt_dependence_task, task}};
+    ffrt_deps_t wait{static_cast<uint32_t>(wait_deps.size()), wait_deps.data()};
+    ffrt_wait_deps(&wait);
+
+    printf("a = %d\n", a);
+    return 0;
+}
 ```
 
 ### ffrt_task_handle_inc_ref
@@ -1048,6 +1145,23 @@ void ffrt_queue_submit(ffrt_queue_t queue, ffrt_function_header_t* f, const ffrt
 
 - 提交任务到队列中。
 
+##### ffrt_queue_submit_f
+
+```c
+void ffrt_queue_submit_f(ffrt_queue_t queue, ffrt_function_t func, void* arg, const ffrt_task_attr_t* attr);
+```
+
+参数
+
+- `queue`：队列的句柄。
+- `func`：指定的任务函数。
+- `arg`：传递给任务函数的参数。
+- `attr`：任务属性。
+
+描述
+
+- 当任务不需要销毁回调函数时，提交任务到队列中。
+
 ##### ffrt_queue_submit_h
 
 ```c
@@ -1067,6 +1181,27 @@ ffrt_task_handle_t ffrt_queue_submit_h(ffrt_queue_t queue, ffrt_function_header_
 描述
 
 - 提交任务到队列中，并返回任务句柄。
+
+##### ffrt_queue_submit_h_f
+
+```c
+ffrt_task_handle_t ffrt_queue_submit_h_f(ffrt_queue_t queue, ffrt_function_t func, void* arg, const ffrt_task_attr_t* attr);
+```
+
+参数
+
+- `queue`：队列的句柄。
+- `func`：指定的任务函数。
+- `arg`：传递给任务函数的参数。
+- `attr`：任务属性。
+
+返回值
+
+- `ffrt_task_handle_t`：成功则返回一个非空的任务句柄；否则返回空指针。
+
+描述
+
+- 当任务不需要销毁回调函数时，提交任务到队列中，并返回任务句柄。
 
 ##### ffrt_queue_wait
 

@@ -267,7 +267,6 @@ Enumerates the color formats supported by the video thumbnail.
 | RGB_888        | 5    | RGB_888.                |
 
 ## AVMetadataExtractor<sup>11+</sup>
-
 Provides APIs to obtain metadata from media assets. Before calling any API of **AVMetadataExtractor**, you must use [createAVMetadataExtractor()](js-apis-media.md#mediacreateavmetadataextractor11) to create an **AVMetadataExtractor** instance.
 
 ### getTimeByFrameIndex<sup>12+</sup>
@@ -384,7 +383,7 @@ This API can be called after the [prepare()](js-apis-media.md#prepare9-3), [star
 
 | Type            | Description                            |
 | ---------------- | -------------------------------- |
-| Promise\<boolean> | Promise used to return the check result.|
+| Promise\<boolean> | Promise used to return the check result. The value **true** means that the device supports the hardware digital watermark, and **false** means the opposite.|
 
 **Example**
 
@@ -447,6 +446,60 @@ avRecorder.setWatermark(watermark, watermarkConfig).then(() => {
   console.error(`Failed to setWatermark and catch error is ${error.message}`);
 });
 ```
+
+### setMetadata<sup>18+</sup>
+setMetadata(metadata: Record\<string, string\>): void
+
+Sets custom metadata for the recording file of AVRecorder.
+
+This API can be called only after the [prepare()](js-apis-media.md#prepare9-3) event is successfully triggered and before the [stop()](js-apis-media.md#stop9-3) API is called.
+
+**System capability**: SystemCapability.Multimedia.Media.AVRecorder
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name  | Type                 | Mandatory| Description                                                               |
+| -------- | -------------------- | ---- |-------------------------------------------------------------------|
+| metadata | [Record<string, string>]  | Yes  | Tag and value of the metadata in key-value pairs.<br>- The first string is the tag.<br>- The second string is the value.|
+
+**Return value**
+
+| Type           | Description       |
+| --------------- |-----------|
+| void | No result.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message           |
+|-------|-----------------|
+| 202   | Not System App. |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let meta : Record<string, string> = {
+   'com.openharmony.userdefine':'10',
+   'com.openharmony.userdefine2':'20'
+};
+
+avRecorder.setMetadata(meta);
+```
+
+## AVRecorderProfile<sup>9+</sup>
+
+Describes the audio and video recording profile.
+
+**System capability**: SystemCapability.Multimedia.Media.AVRecorder
+
+| Name            | Type                                        | Mandatory| Description                                                        |
+| ---------------- | -------------------------------------------- | ---- | ------------------------------------------------------------ |
+| enableStableQualityMode<sup>18+</sup>            | boolean                        | No  | Whether to enable stable quality mode for video recording. This parameter is optional for video recording. The default value is **false**. If this parameter is set to **true**, the system will use a video encoding strategy designed to maintain stable quality.<br>**System API**: This is a system API.|
 
 ## VideoRecorder<sup>9+</sup>
 

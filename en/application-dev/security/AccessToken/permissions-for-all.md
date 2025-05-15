@@ -105,6 +105,18 @@ Allows an application to obtain network information.
 
 **Valid since**: 8
 
+## ohos.permission.SET_NETWORK_INFO
+
+Allows an application to set data network information.
+
+With this permission, the application can activate or deactivate a network, and obtain and listen for network information.
+
+**Permission level**: normal
+
+**Authorization mode**: system_grant
+
+**Valid since**: 8
+
 ## ohos.permission.GET_WIFI_INFO
 
 Allows an application to obtain Wi-Fi information.
@@ -175,7 +187,7 @@ Allows an application to set screens that cannot be captured or recorded.
 
 **Valid since**: 9
 
-**Changelog**: The permission level is system_basic in API versions 9 to 10, and is changed to normal since API version 11.
+**Changelog**: The permission level is system_basic in API versions 9 to 10 and changed to normal since API version 11.
 
 ## ohos.permission.PUBLISH_AGENT_REMINDER
 
@@ -388,6 +400,7 @@ With this permission, the application can obtain the maximum frequency supported
 ## ohos.permission.INPUT_KEYBOARD_CONTROLLER
 
 Allows an application to set the status of keyboard function keys.
+
 With this permission, the application can turn on or off the function keys, such as **CapsLock**. This permission is available only to input method applications.
 
 **Permission level**: normal

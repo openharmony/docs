@@ -309,7 +309,7 @@ SSL链接失败。
 
 **错误信息**
 
-SSL server cert needed.
+SSL server cert untrusted.
 
 **错误描述**
 
