@@ -4764,3 +4764,17 @@
 **支持设备**：General
 
 **起始版本**：20
+
+## ohos.permission.NFC_NOTIFICATION
+
+允许应用发布NFC通知相关的公共事件。
+
+**权限级别**：system_basic
+
+**授权方式**：系统授权（system_grant）
+
+**ACL使能**：true
+
+**支持设备**：Phone
+
+**起始版本**：20
