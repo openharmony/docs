@@ -5,9 +5,9 @@
 
 声明主机侧访问设备的BASE DDK接口。
 
-**起始版本：** 
+**系统能力：**SystemCapability.Driver.DDK.Extension
 
-12
+**起始版本：**12 
 
 **相关模块：**
 
