@@ -5286,7 +5286,6 @@ isSlowMotionDetectionSupported(): boolean
 | 错误码ID   | 错误信息        |
 |---------| --------------- |
 | 202     |  Not System Application.                               |
-| 7400103 |  Session not config.                                   |
 
 **示例：**
 
@@ -5333,8 +5332,6 @@ setSlowMotionDetectionArea(area: Rect): void
 | 错误码ID   | 错误信息        |
 |---------| --------------- |
 | 202     |  Not System Application.                            |
-| 7400101 |  Parameter missing or parameter type incorrect.     |
-| 7400103 |  Session not config.                                |
 
 **示例：**
 

@@ -488,6 +488,78 @@ show参数设置为false、插入数组项时的动画效果：
 
 ![Repeat-No-Disappearing-Animation](figures/repeat_animateTo_exception.gif)
 
+## 前插保持
+
+前插保持，即在显示区域之前插入或删除数据后，保持显示区域的子组件位置不变。
+
+从API version 20开始，仅当父容器组件为List且[maintainVisibleContentPosition](../../reference/apis-arkui/arkui-ts/ts-container-list.md#maintainvisiblecontentposition12)属性设置为true后，在List显示区域之前插入或删除数据时保持List显示区域子组件位置不变。
+
+**示例代码**
+
+```ts
+@Entry
+@ComponentV2
+struct PreInsertDemo {
+  @Local simpleList: Array<string> = [];
+  private cnt: number = 1;
+
+  aboutToAppear(): void {
+    for (let i = 0; i < 30; i++) {
+      this.simpleList.push(`Hello ${this.cnt++}`);
+    }
+  }
+
+  build() {
+    Column() {
+      Row() {
+        Button(`insert #5`)
+          .onClick(() => {
+            this.simpleList.splice(5, 0, `Hello ${this.cnt++}`);
+          })
+        Button(`delete #0`)
+          .onClick(() => {
+            this.simpleList.splice(0, 1);
+          })
+      }
+
+      List({ initialIndex: 5 }) {
+        Repeat<string>(this.simpleList)
+          .each((obj: RepeatItem<string>) => {
+            ListItem() {
+              Row() {
+                Text(`index: ${obj.index}  `)
+                  .fontSize(16)
+                  .fontColor("#70707070")
+                  .textAlign(TextAlign.End)
+                  .size({ height: 100, width: "40%" })
+                Text(`item: ${obj.item}`)
+                  .fontSize(16)
+                  .textAlign(TextAlign.Start)
+                  .size({ height: 100, width: "60%" })
+              }
+            }.margin(10)
+            .borderRadius(10)
+            .backgroundColor("#FFFFFFFF")
+          })
+          .key((item: string, index: number) => item)
+          .virtualScroll({ totalCount: this.simpleList.length })
+      }
+      .maintainVisibleContentPosition(true) // 启用前插保持
+      .border({ width: 1 })
+      .backgroundColor("#FFDCDCDC")
+      .width('100%')
+      .height('100%')
+    }
+  }
+}
+```
+
+示例中，通过点击按钮在显示区域上方插入或删除数据时，显示区域的节点仅index发生改变，对应数据项不变。
+
+运行效果：
+
+![Repeat-pre-insert-preserve](figures/repeat-pre-insert-preserve.gif)
+
 ## 常见使用场景
 
 ### 数据展示&操作
