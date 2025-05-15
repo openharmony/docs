@@ -659,7 +659,7 @@ unregisterKeyObserver(context: Context, name: string, domainName: string): boole
 
 | 类型             | 说明                                |
 | ---------------- | ----------------------------------- |
-| boolean | 返回注销指定域名下指定键的监视器是否成功的结果。true表示注销成功，false表示注销失败。 |
+| boolean | 返回注销指定域名下指定键的监视器是否成功。true表示注销成功，false表示注销失败。 |
 
 **示例**：
 
