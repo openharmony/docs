@@ -184,7 +184,7 @@ import { settings } from '@kit.BasicServicesKit';
 | 名称                              | 类型   | 可读 | 可写 | 说明                                                                                                       |
 | --------------------------------- | ------ | ---- | ---- |----------------------------------------------------------------------------------------------------------|
 | BLUETOOTH_DISCOVER_ABILITY_STATUS | string | 是   | 是   | 设备是否可以被其他设备通过蓝牙发现或连接。<br>- 值为0，表示设备不可以被连接或发现。<br/>- 值为1，表示设备可以被连接但不可以被发现。<br/>- 值为2，表示设备可以被连接和发现。        |
-| BLUETOOTH_DISCOVER_TIMEOUT        | string | 是   | 是   | 通过蓝牙发现设备的持续时间(以秒为单位)。<br>这段时间后，设备不可以被蓝牙搜寻到。                                                              |
+| BLUETOOTH_DISCOVER_TIMEOUT        | string | 是   | 是   | 通过蓝牙发现设备的持续时间（以秒为单位）。<br>这段时间后，设备不可以被蓝牙搜寻到。                                                              |
 | AIRPLANE_MODE_RADIOS              | string | 是   | 是   | 启用飞行模式时要禁用的无线电信号列表。 <br>多个无线电信号用逗号(,)分隔。<br>取值包括以下常量：BLUETOOTH_RADIO、 CELL_RADIO、 NFC_RADIO、 WIFI_RADIO。 |
 | BLUETOOTH_RADIO                   | string | 是   | 否   | 常量，作为AIRPLANE_MODE_RADIOS的取值时表示蓝牙在飞行模式下禁用。                                                               |
 | CELL_RADIO                        | string | 是   | 否   | 常量，作为AIRPLANE_MODE_RADIOS的取值时表示蜂窝无线电在飞行模式下禁用。                                                            |
