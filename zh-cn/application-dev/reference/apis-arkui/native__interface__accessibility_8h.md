@@ -3,7 +3,7 @@
 
 ## 概述
 
-声明用于三方注册无障碍访问Native Accessibility的API。
+声明用于第三方注册无障碍访问Native Accessibility的API。
 
 **库：** libace_ndk.z.so
 
@@ -24,14 +24,14 @@
 | [ArkUI_AccessibilityElementInfo](arkui_native_interface_accessibility.md#arkui_accessibilityelementinfo) | 无障碍节点信息，用于向无障碍服务、辅助应用（屏幕朗读）传递节点信息。 |
 | [ArkUI_AccessibilityElementInfoList](arkui_native_interface_accessibility.md#arkui_accessibilityelementinfolist) | 无障碍节点列表，包含需要的无障碍节点列表信息 。              |
 | [ArkUI_AccessibilityEventInfo](arkui_native_interface_accessibility.md#arkui_accessibilityeventinfo) | 无障碍事件信息，无障碍服务或辅助应用要求控件执行操作后，需要发送执行成功事件。控件自身交互诉求需要同步状态给无障碍服务或辅助应用时，也需要主动发送事件。 |
-| [ArkUI_AccessibilityProvider](arkui_native_interface_accessibility.md#arkui_accessibilityprovider) | 三方操作provider，承载回调函数实现。                         |
-| [ArkUI_AccessibilityProviderCallbacks](arkui_native_interface_accessibility.md#arkui_accessibilityprovidercallbacks) | 三方操作provider回调函数结构定义，需要三方平台实现的相关函数，通过OH_ArkUI_AccessibilityProviderRegisterCallback注册到系统侧。 |
-| [ArkUI_AccessibilityProviderCallbacksWithInstance](arkui_native_interface_accessibility.md#arkui_accessibilityprovidercallbackswithinstance) | 适配多实例场景三方操作provider回调函数结构定义，需要三方平台实现的相关函数，通过OH_ArkUI_AccessibilityProviderRegisterCallbackWithInstance注册到系统侧。 |
+| [ArkUI_AccessibilityProvider](arkui_native_interface_accessibility.md#arkui_accessibilityprovider) | 第三方操作provider，承载回调函数实现。                         |
+| [ArkUI_AccessibilityProviderCallbacks](arkui_native_interface_accessibility.md#arkui_accessibilityprovidercallbacks) | 第三方操作provider回调函数结构定义，需要第三方平台实现的相关函数，通过OH_ArkUI_AccessibilityProviderRegisterCallback注册到系统侧。 |
+| [ArkUI_AccessibilityProviderCallbacksWithInstance](arkui_native_interface_accessibility.md#arkui_accessibilityprovidercallbackswithinstance) | 适配多实例场景第三方操作provider回调函数结构定义，需要第三方平台实现的相关函数，通过OH_ArkUI_AccessibilityProviderRegisterCallbackWithInstance注册到系统侧。 |
 | [ArkUI_AccessibilityActionArguments](arkui_native_interface_accessibility.md#arkui_accessibilityactionarguments) | Action附加字段，对需要执行的Action进行处理的进一步说明。     |
 | [ArkUI_AccessibleRect](arkui_native_interface_accessibility.md#arkui_accessiblerect) | 节点所在坐标位置。                                           |
-| [ArkUI_AccessibleRangeInfo](arkui_native_interface_accessibility.md#arkui_accessiblerangeinfo) | 特定控件需要使用，如slider、rating、progress控件。设置控件属性中的当前值以及最大值、最小值。 |
-| [ArkUI_AccessibleGridInfo](arkui_native_interface_accessibility.md#arkui_accessiblegridinfo) | 特定控件需要使用，如list、flex、select、swiper控件。设置控件，”行数“，”列数“，以及选择模式。 |
-| [ArkUI_AccessibleGridItemInfo](arkui_native_interface_accessibility.md#arkui_accessiblegriditeminfo) | 特定控件需要使用，如list、flex、select、swiper控件。设置控件item的属性值。 |
+| [ArkUI_AccessibleRangeInfo](arkui_native_interface_accessibility.md#arkui_accessiblerangeinfo) | 用于特定组件设置组件的当前值、最大值、最小值，如Slider、Rating、Progress组件。 |
+| [ArkUI_AccessibleGridInfo](arkui_native_interface_accessibility.md#arkui_accessiblegridinfo) | 用于特定组件设置组件的行数、列数以及选择模式，如list、flex、select、swiper组件。 |
+| [ArkUI_AccessibleGridItemInfo](arkui_native_interface_accessibility.md#arkui_accessiblegriditeminfo) | 用于特定组件设置组件的属性值，如list、flex、select、swiper组件。 |
 | [ArkUI_AccessibleAction](arkui_native_interface_accessibility.md#arkui_accessibleaction) | 无障碍操作内容结构。                                         |
 
 
