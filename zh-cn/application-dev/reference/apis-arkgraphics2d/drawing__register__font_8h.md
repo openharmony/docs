@@ -4,6 +4,8 @@
 ## 概述
 
 定义绘制模块中字体管理器相关的函数。
+<!--Del-->
+**相关示例：**[NDKGraphics2D](https://gitee.com/openharmony/applications_app_samples/tree/master/code/DocsSample/graphic/NDKGraphics2D)<!--DelEnd-->
 
 **引用文件：**&lt;native_drawing/drawing_register_font.h&gt;
 
