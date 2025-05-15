@@ -20,6 +20,7 @@
 - 在继承类中，父类或子类中的属性property被\@Trace装饰且该property所在类被\@ObservedV2装饰时，才具有触发UI刷新的能力。
 - 未被\@Trace装饰的属性用在UI中无法感知到变化，也无法触发UI刷新。
 - \@ObservedV2的类实例目前不支持使用JSON.stringify进行序列化。
+- 使用\@ObservedV2与\@Trace装饰器的类，需通过new操作符实例化后，才具备被观测变化的能力。
 
 ## 状态管理V1版本对嵌套类对象属性变化直接观测的局限性
 
@@ -381,6 +382,7 @@ struct Index {
 ```
 
 - \@ObservedV2的类实例目前不支持使用JSON.stringify进行序列化。
+- 使用\@ObservedV2与\@Trace装饰器的类，需通过new操作符实例化后，才具备被观测变化的能力。
 
 ## 使用场景
 

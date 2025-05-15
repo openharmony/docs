@@ -1427,6 +1427,10 @@ vp2px(value : number) : number
 
 将vp单位的数值转换为以px为单位的数值。
 
+转换公式为：px值 = vp值 × 像素密度
+
+像素密度：当前窗口生效的像素密度值，即屏幕物理像素密度[VirtualScreenConfig.density](js-apis-display.md#virtualscreenconfig16)。
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -1455,6 +1459,10 @@ uiContext.vp2px(200);
 px2vp(value : number) : number
 
 将px单位的数值转换为以vp为单位的数值。
+
+转换公式为：vp值 = px值 ÷ 像素密度
+
+像素密度：当前窗口生效的像素密度值，即屏幕物理像素密度[VirtualScreenConfig.density](js-apis-display.md#virtualscreenconfig16)。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1485,6 +1493,12 @@ fp2px(value : number) : number
 
 将fp单位的数值转换为以px为单位的数值。
 
+转换公式为：px值 = fp值 × 像素密度 × 字体缩放比例
+
+像素密度：当前窗口生效的像素密度值，即屏幕物理像素密度[VirtualScreenConfig.density](js-apis-display.md#virtualscreenconfig16)。
+
+字体缩放比例：系统设置的字体缩放系数，对应 [Configuration.fontScale](arkui-ts/ts-types.md#configuration)。
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -1513,6 +1527,12 @@ uiContext.fp2px(200);
 px2fp(value : number) : number
 
 将px单位的数值转换为以fp为单位的数值。
+
+转换公式为：fp值 = px值 ÷ 像素密度 ÷ 字体缩放比例
+
+像素密度：当前窗口生效的像素密度值，通常就是屏幕物理像素密度[VirtualScreenConfig.density](js-apis-display.md#virtualscreenconfig16)。
+
+字体缩放比例：系统设置的字体缩放系数，对应 [Configuration.fontScale](arkui-ts/ts-types.md#configuration)。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1543,6 +1563,8 @@ lpx2px(value : number) : number
 
 将lpx单位的数值转换为以px为单位的数值。
 
+转换公式为：px值 = lpx值 × 实际屏幕宽度与逻辑宽度（通过[designWidth](../../quick-start/module-configuration-file.md#pages标签)配置）的比值
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -1571,6 +1593,8 @@ uiContext.lpx2px(200);
 px2lpx(value : number) : number
 
 将px单位的数值转换为以lpx为单位的数值。
+
+转换公式为：px值 = lpx值 ÷ 实际屏幕宽度与逻辑宽度（通过[designWidth](../../quick-start/module-configuration-file.md#pages标签)配置）的比值
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -2789,7 +2813,7 @@ type Context = common.Context
 
 getRectangleById(id: string): componentUtils.ComponentInfo
 
-获取组件大小、位置、平移缩放旋转及仿射矩阵属性信息。
+获取组件大小、位置、平移、缩放、旋转及仿射矩阵属性信息。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -2809,7 +2833,7 @@ getRectangleById(id: string): componentUtils.ComponentInfo
 
 **错误码：** 
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)错误码。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID  | 错误信息                |
 | ------ | ------------------- |
@@ -8619,7 +8643,7 @@ struct Index {
 
 
 ## FocusController<sup>12+</sup>
-以下API需先使用UIContext中的[getFocusController()](js-apis-arkui-UIContext.md#getFocusController12)方法获取UIContext实例，再通过此实例调用对应方法。
+以下API需先使用UIContext中的[getFocusController()](js-apis-arkui-UIContext.md#getFocusController12)方法获取UIContext实例，再通过该实例调用对应方法。
 
 ### clearFocus<sup>12+</sup>
 
@@ -8682,7 +8706,7 @@ struct ClearFocusExample {
 
 requestFocus(key: string): void
 
-通过组件的id将焦点转移到组件树对应的实体节点。当前帧生效。
+通过组件的id将焦点转移到组件树对应的实体节点，当前帧生效。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 

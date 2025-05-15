@@ -329,7 +329,7 @@
     @Component
     struct Index {
         @State message: string = 'Hello World'
-        private resmgr = getContext().resourceManager;  // 获取本应用包的资源对象
+        private resmgr = this.getUIContext().getHostContext()?.resourceManager;  // 获取本应用包的资源对象
         build() {
             Row() {
             Column() {

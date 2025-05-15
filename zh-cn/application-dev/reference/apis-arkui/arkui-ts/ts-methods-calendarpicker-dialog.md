@@ -6,7 +6,7 @@
 >
 > 该组件从API Version 10开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 >
-> 本模块功能依赖UI的执行上下文，不可在UI上下文不明确的地方使用，参见[UIContext](../js-apis-arkui-UIContext.md#uicontext)说明。
+> 本模块功能依赖UI的执行上下文，不可在[UI上下文不明确](../../../ui/arkts-global-interface.md)的地方使用，参见[UIContext](../js-apis-arkui-UIContext.md#uicontext)说明。
 >
 > 该组件不支持在Wearable设备上使用。
 
@@ -66,42 +66,42 @@ static show(options?: CalendarDialogOptions)
 @Entry
 @Component
 struct CalendarPickerDialogExample {
-  private selectedDate: Date = new Date('2024-04-23')
+  private selectedDate: Date = new Date('2024-04-23');
 
   build() {
     Column() {
       Button("Show CalendarPicker Dialog")
         .margin(20)
         .onClick(() => {
-          console.info("CalendarDialog.show")
+          console.info("CalendarDialog.show");
           CalendarPickerDialog.show({
             selected: this.selectedDate,
             backgroundColor: Color.Gray,
             backgroundBlurStyle: BlurStyle.NONE,
             shadow: ShadowStyle.OUTER_FLOATING_SM,
             onAccept: (value) => {
-              this.selectedDate = value
-              console.info("calendar onAccept:" + JSON.stringify(value))
+              this.selectedDate = value;
+              console.info("calendar onAccept:" + JSON.stringify(value));
             },
             onCancel: () => {
-              console.info("calendar onCancel")
+              console.info("calendar onCancel");
             },
             onChange: (value) => {
-              console.info("calendar onChange:" + JSON.stringify(value))
+              console.info("calendar onChange:" + JSON.stringify(value));
             },
             onDidAppear: () => {
-              console.info("calendar onDidAppear")
+              console.info("calendar onDidAppear");
             },
             onDidDisappear: () => {
-              console.info("calendar onDidDisappear")
+              console.info("calendar onDidDisappear");
             },
             onWillAppear: () => {
-              console.info("calendar onWillAppear")
+              console.info("calendar onWillAppear");
             },
             onWillDisappear: () => {
-              console.info("calendar onWillDisappear")
+              console.info("calendar onWillDisappear");
             }
-          })
+          });
         })
     }.width('100%')
   }
@@ -119,14 +119,14 @@ struct CalendarPickerDialogExample {
 @Entry
 @Component
 struct CalendarPickerDialogExample {
-  private selectedDate: Date = new Date()
+  private selectedDate: Date = new Date();
 
   build() {
     Column() {
       Button("Show CalendarPicker Dialog")
         .margin(20)
         .onClick(() => {
-          console.info("CalendarDialog.show")
+          console.info("CalendarDialog.show");
           CalendarPickerDialog.show({
             selected: this.selectedDate,
             acceptButtonStyle: {
@@ -154,10 +154,10 @@ struct CalendarPickerDialogExample {
               borderRadius: 10
             },
             onAccept: (value) => {
-              this.selectedDate = value
-              console.info("calendar onAccept:" + JSON.stringify(value))
+              this.selectedDate = value;
+              console.info("calendar onAccept:" + JSON.stringify(value));
             }
-          })
+          });
         })
     }.width('100%')
   }
@@ -181,33 +181,33 @@ struct CalendarPickerDialogExample {
       Button("Show CalendarPicker Dialog")
         .margin(20)
         .onClick(() => {
-          console.info("CalendarDialog.show")
+          console.info("CalendarDialog.show");
           CalendarPickerDialog.show({
             selected: this.selectedDate,
             onAccept: (value) => {
-              console.info("calendar onAccept:" + JSON.stringify(value))
+              console.info("calendar onAccept:" + JSON.stringify(value));
             },
             onCancel: () => {
-              console.info("calendar onCancel")
+              console.info("calendar onCancel");
             },
             onChange: (value) => {
-              console.info("calendar onChange:" + JSON.stringify(value))
+              console.info("calendar onChange:" + JSON.stringify(value));
             },
             onDidAppear: () => {
-              console.info("calendar onDidAppear")
+              console.info("calendar onDidAppear");
             },
             onDidDisappear: () => {
-              console.info("calendar onDidDisappear")
+              console.info("calendar onDidDisappear");
             },
             onWillAppear: () => {
-              console.info("calendar onWillAppear")
+              console.info("calendar onWillAppear");
             },
             onWillDisappear: () => {
-              console.info("calendar onWillDisappear")
+              console.info("calendar onWillDisappear");
             },
             enableHoverMode: true,
             hoverModeArea: HoverModeAreaType.TOP_SCREEN,
-          })
+          });
         })
     }.width('100%')
   }
@@ -225,22 +225,22 @@ struct CalendarPickerDialogExample {
 @Entry
 @Component
 struct CalendarPickerDialogExample {
-  private selectedDate: Date = new Date('2024-04-23')
+  private selectedDate: Date = new Date('2024-04-23');
 
   build() {
     Column() {
       Button("Show CalendarPicker Dialog")
         .margin(20)
         .onClick(() => {
-          console.info("CalendarDialog.show")
+          console.info("CalendarDialog.show");
           CalendarPickerDialog.show({
             selected: this.selectedDate,
             hintRadius: 1,
             onAccept: (value) => {
-              this.selectedDate = value
-              console.info("calendar onAccept:" + JSON.stringify(value))
+              this.selectedDate = value;
+              console.info("calendar onAccept:" + JSON.stringify(value));
             }
-          })
+          });
         })
     }.width('100%')
   }
@@ -258,9 +258,9 @@ struct CalendarPickerDialogExample {
 @Entry
 @Component
 struct CalendarPickerDialogExample {
-  private selectedDate: Date = new Date('2025-01-01')
-  private startDate: Date = new Date('2024-01-10')
-  private endDate: Date = new Date('2025-1-10')
+  private selectedDate: Date = new Date('2025-01-01');
+  private startDate: Date = new Date('2024-01-10');
+  private endDate: Date = new Date('2025-1-10');
 
   build() {
     Column() {
@@ -268,12 +268,12 @@ struct CalendarPickerDialogExample {
       Button("Show CalendarPicker Dialog")
         .margin(20)
         .onClick(() => {
-          console.info("CalendarDialog.show")
+          console.info("CalendarDialog.show");
           CalendarPickerDialog.show({
             start: this.startDate,
             end: this.endDate,
             selected: this.selectedDate,
-          })
+          });
         })
     }.width('100%').margin({ top: 350 })
   }

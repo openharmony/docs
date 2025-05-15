@@ -1856,16 +1856,12 @@ avPlayer.seek(seekTime, media.SeekMode.SEEK_PREV_SYNC)
 ```
 
 ```ts
-// SEEK_CONTINUOUS 可以结合seekBar/slider的回调方法进行对应处理。
-async onSlideMoving(position : number) : Promise<void> {
-  // seekBar/slider移动过程中回调触发，调用seek(position, media.SeekMode.SEEK_CONTINUOUS)进行seek。
-  this.avPlayer.seek(position, media.SeekMode.SEEK_CONTINUOUS)
-}
+// SEEK_CONTINUOUS 可以结合Slider的onChange回调方法进行对应处理，当slideMode为Moving时，触发拖动过程的SeekContinuous。
+let slideMovingTime: number = 2000
+avPlayer.seek(slideMovingTime, media.SeekMode.SEEK_CONTINUOUS)
 
-async onSlideEnd(position : number) : Promise<void> {
-  // seekBar/slider移动结束回调触发，调用seek(-1, media.SeekMode.SEEK_CONTINUOUS)结束seek。
-  this.avPlayer.seek(-1, media.SeekMode.SEEK_CONTINUOUS)
-}
+// 当slideMode为End时，调用seek(-1, media.SeekMode.SEEK_CONTINUOUS)结束seek。
+avPlayer.seek(-1, media.SeekMode.SEEK_CONTINUOUS)
 ```
 
 ### isSeekContinuousSupported<sup>18+</sup>
@@ -4975,7 +4971,7 @@ type OnAVRecorderStateChangeHandler = (state: AVRecorderState, reason: StateChan
 
 ## AVTranscoder<sup>12+</sup>
 
-视频转码管理类，用于视频转码。在调用AVTranscoder的方法前，需要先通过createAVTranscoder()构建一个AVTranscoder实例。
+视频转码管理类，用于视频转码。在调用AVTranscoder的方法前，需要先通过[createAVTranscoder()](#mediacreateavtranscoder12)构建一个AVTranscoder实例。
 
 视频转码demo可参考：[视频转码开发指导](../../media/media/using-avtranscoder-for-transcodering.md)
 
@@ -5000,7 +4996,7 @@ prepare(config: AVTranscoderConfig): Promise\<void>
 
 | 参数名 | 类型                                   | 必填 | 说明                       |
 | ------ | -------------------------------------- | ---- | -------------------------- |
-| config | [AVTranscoderConfig](#avtranscoderconfig12) | 是   | 配置视频转码的相关参数。 |
+| config | [AVTranscoderConfig](#avtranscoderconfig12) | 是   | 配置视频转码的相关参数。 <!--RP1--><!--RP1End-->|
 
 **返回值：**
 
@@ -5031,8 +5027,6 @@ let avTranscoderConfig: media.AVTranscoderConfig = {
   fileFormat : media.ContainerFormatType.CFT_MPEG_4,
   videoBitrate : 3000000,
   videoCodec : media.CodecMimeType.VIDEO_AVC,
-  videoFrameWidth : 1280,
-  videoFrameHeight : 720,
 }
 
 avTranscoder.prepare(avTranscoderConfig).then(() => {
@@ -8212,7 +8206,7 @@ mediaSource.setMediaResourceLoaderDelegate(mediaSourceLoader);
 let playStrategy : media.PlaybackStrategy = {
   preferredBufferDuration: 20,
 };
-let player = await media.createAVPlayer();
+let player = media.createAVPlayer();
 player.setMediaSource(mediaSource, playStrategy);
 ```
 
@@ -8258,10 +8252,13 @@ respondData(uuid: number, offset: number, buffer: ArrayBuffer): number
 **示例：**
 
 ```ts
+import HashMap from '@ohos.util.HashMap';
 let requests: HashMap<number, media.MediaSourceLoadingRequest> = new HashMap();
 let uuid = 1;
 
 let request = requests.get(uuid);
+let offset = 0; // 当前媒体数据相对于资源起始位置的偏移量
+let buf = new ArrayBuffer(0); // 由应用定义，推送给播放器的数据
 let num = request.respondData(uuid, offset, buf);
 ```
 
@@ -8286,6 +8283,7 @@ respondHeader(uuid: number, header?: Record<string, string>, redirectUrl?: strin
 **示例：**
 
 ```ts
+import HashMap from '@ohos.util.HashMap';
 let requests: HashMap<number, media.MediaSourceLoadingRequest> = new HashMap();
 let uuid = 1;
 
@@ -8323,6 +8321,7 @@ finishLoading(uuid: number, state: LoadingRequestError): void
 **示例：**
 
 ```ts
+import HashMap from '@ohos.util.HashMap';
 let requests: HashMap<number, media.MediaSourceLoadingRequest> = new HashMap();
 let uuid = 1;
 

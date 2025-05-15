@@ -199,7 +199,7 @@ class Utils {
     let rectInfo:string[] = JSON.parse('[' + obj.$rect + ']');
     console.info("[getInspectorByKey] rectInfo is: " + rectInfo);
     Utils.rect_left = JSON.parse('[' + rectInfo[0] + ']')[0];     // 相对于组件左上角的水平方向坐标
-    Utils.rect_top = JSON.parse('[' + rectInfo[0] + ']')[1];     // 相对于组件左上角的垂直方向坐标
+    Utils.rect_top = JSON.parse('[' + rectInfo[0] + ']')[1];      // 相对于组件左上角的垂直方向坐标
     Utils.rect_right = JSON.parse('[' + rectInfo[1] + ']')[0];    // 相对于组件右下角的水平方向坐标
     Utils.rect_bottom = JSON.parse('[' + rectInfo[1] + ']')[1];   // 相对于组件右下角的垂直方向坐标
     return Utils.rect_value = {

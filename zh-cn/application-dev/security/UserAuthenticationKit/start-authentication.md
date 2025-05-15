@@ -1,6 +1,6 @@
 # 发起认证
 
-应用发起身份认证请求，获取身份认证结果，从而访问受保护的系统/服务/应用的功能和数据（包括用户个人数据）。
+应用发起身份认证请求，获取身份认证结果，以访问受保护的系统、服务或应用的功能和数据，包括用户个人数据。
 
 ## 接口说明
 
@@ -31,7 +31,7 @@
 
 - 标注2：导航按键上显示的文本（WidgetParam.navigationButtonText），最大长度为60字符。API 10-17仅在单指纹、单人脸场景下支持配置。从API 18开始，增加支持人脸+指纹场景。
    
-  当生物认证失败后，将出现该按钮，点击后从生物认证切换到应用自定义认证。
+  当生物认证失败后，将显示一个按钮。点击该按钮，可以从生物认证切换到应用自定义认证。
 
 <!--Del-->
 - 如图所示，认证控件的显示形式（WidgetParam.windowMode）为弹窗。
@@ -45,17 +45,17 @@
 
 当前支持使用认证控件的认证类型包括：
 
-- 锁屏密码认证
+- 锁屏口令认证
 
 - 人脸认证
 
 - 指纹认证
 
-- 人脸+锁屏密码认证
+- 人脸+锁屏口令认证
 
-- 指纹+锁屏密码认证
+- 指纹+锁屏口令认证
 
-- 人脸+指纹+锁屏密码认证
+- 人脸+指纹+锁屏口令认证
 
 - 人脸+自定义导航按键
 
@@ -75,7 +75,7 @@
 
 **示例1：**
 
- 发起用户认证，采用认证可信等级≥ATL3的人脸+锁屏密码认证，获取认证结果：
+ 发起用户认证，采用认证可信等级≥ATL3的人脸+锁屏口令认证，获取认证结果：
 
 ```ts
 // API version 10
@@ -215,10 +215,10 @@ try {
 
 **示例4：**
 
-以模应用方式进行用户身份认证：
+以模应用方式拉起身份认证控件对用户进行身份认证：
 
 ```ts
-// API version 16
+// API version 18
 import { BusinessError } from '@kit.BasicServicesKit';
 import { cryptoFramework } from '@kit.CryptoArchitectureKit';
 import { userAuth } from '@kit.UserAuthenticationKit';
@@ -245,6 +245,8 @@ try {
     }
   });
   console.info('auth on success');
+  userAuthInstance.start();
+  console.info('auth start success');
 } catch (error) {
   const err: BusinessError = error as BusinessError;
   console.error(`auth catch error. Code is ${err?.code}, message is ${err?.message}`);

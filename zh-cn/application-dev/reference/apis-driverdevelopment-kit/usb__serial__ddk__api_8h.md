@@ -1,4 +1,4 @@
-# usb_serial_ddk_api.h
+# usb_serial_api.h
 
 
 ## 概述
@@ -7,7 +7,7 @@
 
 **库：** libusb_serial.z.so
 
-**引用文件：**&lt;serial/usb_serial_ddk_api.h&gt;
+**引用文件：**&lt;serial/usb_serial_api.h&gt;
 
 **系统能力：** SystemCapability.Driver.SERIAL.Extension
 
