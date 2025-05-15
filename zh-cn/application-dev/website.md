@@ -1694,6 +1694,13 @@
       <!--Del-->
       - [订阅通知（仅对系统应用开放）](notification/notification-subscription.md)
       <!--DelEnd-->
+      - 跨设备协同通知<!--notification-distributed-->
+        - [跨设备协同通知概述](notification/notification-distributed-overview.md)
+        <!--Del-->
+        - [通知消息跨设备协同管理（仅对系统应用开放）](notification/notification-distributed-notdistributed.md)
+        <!--DelEnd-->
+        - [为跨设备协同通知添加快捷回复](notification/notification-quickreply.md)
+        - [清除跨设备场景下的重复通知](notification/notification-distributed-messageid.md)
   - AI<!--ai-->
     - MindSpore Lite Kit（昇思推理框架服务）<!--mindspore-lite-kit-->
       - [MindSpore Lite Kit简介](ai/mindspore/MindSpore-Lite-Kit-Introduction.md)
