@@ -2495,6 +2495,7 @@ Driver对象采取如下操作：从起始坐标点拖拽至目的坐标点。
 
 ```ts
 import { Driver } from '@kit.TestKit';
+
 async function demo() {
   let driver: Driver = Driver.create();
   await driver.drag(100, 100, 200, 200, 600);
@@ -2857,6 +2858,7 @@ fling(from: Point, to: Point, stepLen: number, speed: number): Promise\<void>
 
 ```ts
 import { Driver } from '@kit.TestKit';
+
 async function demo() {
   let driver: Driver = Driver.create();
   await driver.fling({x: 500, y: 480},{x: 450, y: 480}, 5, 600);
@@ -2899,6 +2901,7 @@ injectMultiPointerAction(pointers: PointerMatrix, speed?: number): Promise\<bool
 
 ```ts
 import { Driver, PointerMatrix } from '@kit.TestKit';
+
 async function demo() {
   let driver: Driver = Driver.create();
   let pointers: PointerMatrix = PointerMatrix.create(2, 5);
@@ -3065,6 +3068,7 @@ mouseScroll(p: Point, down: boolean, d: number, key1?: number, key2?: number): P
 
 ```ts
 import { Driver } from '@kit.TestKit';
+
 async function demo() {
   let driver: Driver = Driver.create();
   await driver.mouseScroll({x:360, y:640}, true, 30, 2072);
@@ -3100,6 +3104,7 @@ mouseMoveTo(p: Point): Promise\<void>;
 
 ```ts
 import { Driver } from '@kit.TestKit';
+
 async function demo() {
   let driver: Driver = Driver.create();
   await driver.mouseMoveTo({x:100, y:100});
@@ -3134,6 +3139,7 @@ createUIEventObserver(): UIEventObserver;
 
 ```ts
 import { Driver, UIEventObserver } from '@kit.TestKit';
+
 async function demo() {
   let driver: Driver = Driver.create();
   let observer: UIEventObserver = await driver.createUIEventObserver();
@@ -3212,6 +3218,7 @@ mouseDoubleClick(p: Point, btnId: MouseButton, key1?: number, key2?: number): Pr
 
 ```ts
 import { Driver,MouseButton } from '@kit.TestKit';
+
 async function demo() {
   let driver: Driver = Driver.create();
   await driver.mouseDoubleClick({x:248, y:194}, MouseButton.MOUSE_BUTTON_LEFT, 2072);
@@ -3287,6 +3294,7 @@ mouseMoveWithTrack(from: Point, to: Point, speed?: number): Promise\<void>
 
 ```ts
 import { Driver } from '@kit.TestKit';
+
 async function demo() {
   let driver: Driver = Driver.create();
   await driver.mouseMoveWithTrack({x:100, y:100}, {x:200, y:200}, 600);
@@ -3627,6 +3635,7 @@ injectPenPointerAction(pointers: PointerMatrix, speed?: number, pressure?: numbe
 
 ```ts
 import { Driver, PointerMatrix } from '@kit.TestKit';
+
 async function demo() {
   let driver: Driver = Driver.create();
   let pointer = PointerMatrix.create(1, 8);
@@ -3676,6 +3685,7 @@ static create(fingers: number, steps: number): PointerMatrix
 
 ```ts
 import { PointerMatrix } from '@kit.TestKit';
+
 async function demo() {
   let pointerMatrix: PointerMatrix = PointerMatrix.create(2, 3);
 }
@@ -5362,6 +5372,7 @@ UiDriver对象采取如下操作：在目标坐标点双击。
 
 ```ts
 import { UiDriver } from '@kit.TestKit';
+
 async function demo() {
   let driver: UiDriver = UiDriver.create();
   await driver.doubleClick(100, 100);
@@ -5389,6 +5400,7 @@ UiDriver对象采取如下操作：在目标坐标点长按下鼠标左键。
 
 ```ts
 import { UiDriver } from '@kit.TestKit';
+
 async function demo() {
   let driver: UiDriver = UiDriver.create();
   await driver.longClick(100, 100);
