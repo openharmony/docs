@@ -898,7 +898,7 @@ getId(): Promise\<string>
 
 | 类型             | 说明                            |
 | ---------------- | ------------------------------- |
-| Promise\<string> | Promise对象，控件的id值。 |
+| Promise\<string> | Promise对象，返回控件的id值。 |
 
 **错误码：**
 
@@ -934,7 +934,7 @@ getText(): Promise\<string>
 
 | 类型             | 说明                              |
 | ---------------- | --------------------------------- |
-| Promise\<string> | Promise对象，控件的文本信息。 |
+| Promise\<string> | Promise对象，返回控件的文本信息。 |
 
 **错误码：**
 
@@ -970,7 +970,7 @@ getType(): Promise\<string>
 
 | 类型             | 说明                          |
 | ---------------- | ----------------------------- |
-| Promise\<string> | Promise对象，控件的类型。 |
+| Promise\<string> | Promise对象，返回控件的类型。 |
 
 **错误码：**
 
@@ -1006,7 +1006,7 @@ getBounds(): Promise\<Rect>
 
 | 类型                     | 说明                                  |
 | ------------------------ | ------------------------------------- |
-| Promise\<[Rect](#rect9)> | Promise对象，控件对象的边框信息。 |
+| Promise\<[Rect](#rect9)> | Promise对象，返回控件对象的边框信息。 |
 
 **错误码：**
 
@@ -1042,7 +1042,7 @@ getBoundsCenter(): Promise\<Point>
 
 | 类型                       | 说明                                            |
 | -------------------------- | ----------------------------------------------- |
-| Promise\<[Point](#point9)> | Promise对象，控件对象所占区域的中心点信息。 |
+| Promise\<[Point](#point9)> | Promise对象，返回控件对象所占区域的中心点信息。 |
 
 **错误码：**
 
@@ -1078,7 +1078,7 @@ isClickable(): Promise\<boolean>
 
 | 类型              | 说明                                                         |
 | ----------------- | ------------------------------------------------------------ |
-| Promise\<boolean> | Promise对象，控件对象是否可点击。true：可点击。false：不可点击。 |
+| Promise\<boolean> | Promise对象，返回控件对象是否可点击。true：可点击。false：不可点击。 |
 
 **错误码：**
 
@@ -1118,7 +1118,7 @@ isLongClickable(): Promise\<boolean>
 
 | 类型              | 说明                                               |
 | ----------------- |--------------------------------------------------|
-| Promise\<boolean> | Promise对象，控件对象是否可长按点击。true：可长按点击。false：不可长按点击。 |
+| Promise\<boolean> | Promise对象，返回控件对象是否可长按点击。true：可长按点击。false：不可长按点击。 |
 
 **错误码：**
 
@@ -1158,7 +1158,7 @@ isChecked(): Promise\<boolean>
 
 | 类型              | 说明                                                         |
 | ----------------- | ------------------------------------------------------------ |
-| Promise\<boolean> | Promise对象，控件对象被勾选状态。true：被勾选。false：未被勾选。 |
+| Promise\<boolean> | Promise对象，返回控件对象被勾选状态。true：被勾选。false：未被勾选。 |
 
 **错误码：**
 
@@ -1198,7 +1198,7 @@ isCheckable(): Promise\<boolean>
 
 | 类型              | 说明                                                         |
 | ----------------- | ------------------------------------------------------------ |
-| Promise\<boolean> | Promise对象，控件对象能否可被勾选属性。true：可被勾选。false：不可被勾选。 |
+| Promise\<boolean> | Promise对象，返回控件对象能否可被勾选属性。true：可被勾选。false：不可被勾选。 |
 
 **错误码：**
 
@@ -1238,7 +1238,7 @@ isScrollable(): Promise\<boolean>
 
 | 类型              | 说明                                                         |
 | ----------------- | ------------------------------------------------------------ |
-| Promise\<boolean> | Promise对象，控件对象是否可滑动。true：可滑动。false：不可滑动。 |
+| Promise\<boolean> | Promise对象，返回控件对象是否可滑动。true：可滑动。false：不可滑动。 |
 
 **错误码：**
 
@@ -1279,7 +1279,7 @@ isEnabled(): Promise\<boolean>
 
 | 类型              | 说明                                                       |
 | ----------------- | ---------------------------------------------------------- |
-| Promise\<boolean> | Promise对象，控件使能状态。true：使能。false：未使能。 |
+| Promise\<boolean> | Promise对象，返回控件使能状态。true：使能。false：未使能。 |
 
 **错误码：**
 
@@ -1319,7 +1319,7 @@ isFocused(): Promise\<boolean>
 
 | 类型              | 说明                                                         |
 | ----------------- | ------------------------------------------------------------ |
-| Promise\<boolean> | Promise对象，控件对象获焦状态。true：获焦。false：未获焦。 |
+| Promise\<boolean> | Promise对象，返回控件对象获焦状态。true：获焦。false：未获焦。 |
 
 **错误码：**
 
@@ -1359,7 +1359,7 @@ isSelected(): Promise\<boolean>
 
 | 类型              | 说明                                                |
 | ----------------- | --------------------------------------------------- |
-| Promise\<boolean> | Promise对象，控件对象被选中状态。true：被选中。false：未被选中。 |
+| Promise\<boolean> | Promise对象，返回控件对象被选中状态。true：被选中。false：未被选中。 |
 
 **错误码：**
 
@@ -1471,7 +1471,7 @@ scrollSearch(on: On): Promise\<Component>
 
 | 类型                               | 说明                                  |
 | ---------------------------------- | ------------------------------------- |
-| Promise\<[Component](#component9)> | Promise对象，目标控件对象。 |
+| Promise\<[Component](#component9)> | Promise对象，返回目标控件对象。 |
 
 **错误码：**
 
@@ -1698,7 +1698,7 @@ getDescription(): Promise\<string>
 
 | 类型             | 说明                              |
 | ---------------- | --------------------------------- |
-| Promise\<string> | Promise对象，控件的描述信息。 |
+| Promise\<string> | Promise对象，返回控件的描述信息。 |
 
 **错误码：**
 
@@ -1813,7 +1813,7 @@ findComponent(on: On): Promise\<Component>
 
 | 类型                               | 说明                              |
 | ---------------------------------- | --------------------------------- |
-| Promise\<[Component](#component9)> | Promise对象，控件对象。 |
+| Promise\<[Component](#component9)> | Promise对象，返回控件对象。 |
 
 **错误码：**
 
@@ -1854,7 +1854,7 @@ findComponents(on: On): Promise\<Array\<Component>>
 
 | 类型                                       | 说明                                    |
 | ------------------------------------------ | --------------------------------------- |
-| Promise\<Array\<[Component](#component9)>> | Promise对象，控件对象的列表。 |
+| Promise\<Array\<[Component](#component9)>> | Promise对象，返回控件对象的列表。 |
 
 **错误码：**
 
@@ -1895,7 +1895,7 @@ findWindow(filter: WindowFilter): Promise\<UiWindow>
 
 | 类型                             | 说明                                  |
 | -------------------------------- | ------------------------------------- |
-| Promise\<[UiWindow](#uiwindow9)> | Promise对象，目标窗口对象。 |
+| Promise\<[UiWindow](#uiwindow9)> | Promise对象，返回目标窗口对象。 |
 
 **错误码：**
 
@@ -1937,7 +1937,7 @@ waitForComponent(on: On, time: number): Promise\<Component>
 
 | 类型                              | 说明                              |
 | --------------------------------- | --------------------------------- |
-| Promise\<[Component](#component9)> | Promise对象，控件对象。 |
+| Promise\<[Component](#component9)> | Promise对象，返回控件对象。 |
 
 **错误码：**
 
@@ -2036,7 +2036,7 @@ Driver对象采取如下操作：传入key值实现模拟点击对应按键的�
 
 | 参数名  | 类型   | 必填 | 说明          |
 | ------- | ------ | ---- | ------------- |
-| keyCode | number | 是   | 指定的key值，取值大于等于0的整数。取值范围：[KeyCode键码值](../apis-input-kit/js-apis-keycode.md#keycode) |
+| keyCode | number | 是   | 指定的key值，取值大于等于0的整数。取值范围：[KeyCode键码值](../apis-input-kit/js-apis-keycode.md#keycode)。|
 
 **错误码：**
 
@@ -2279,6 +2279,7 @@ Driver对象采取如下操作：从起始坐标点拖拽至目的坐标点。
 
 ```ts
 import { Driver } from '@kit.TestKit';
+
 async function demo() {
   let driver: Driver = Driver.create();
   await driver.drag(100, 100, 200, 200, 600);
@@ -2305,7 +2306,7 @@ Driver对象采取如下操作：捕获当前屏幕，并保存为PNG格式的�
 
 | 类型              | 说明                                        |
 | ----------------- |-------------------------------------------|
-| Promise\<boolean> | Promise对象，截图操作是否成功完成，true：完成，false：未完成。 |
+| Promise\<boolean> | Promise对象，返回截图操作是否成功完成。true：完成，false：未完成。 |
 
 **错误码：**
 
@@ -2379,7 +2380,7 @@ getDisplayRotation(): Promise\<DisplayRotation>
 
 | 类型                                           | 说明                                    |
 | ---------------------------------------------- | --------------------------------------- |
-| Promise\<[DisplayRotation](#displayrotation9)> | Promise对象，当前设备的显示方向。 |
+| Promise\<[DisplayRotation](#displayrotation9)> | Promise对象，返回当前设备的显示方向。 |
 
 **错误码：**
 
@@ -2452,7 +2453,7 @@ getDisplaySize(): Promise\<Point>
 
 | 类型                       | 说明                                    |
 | -------------------------- | --------------------------------------- |
-| Promise\<[Point](#point9)> | Promise对象，当前设备的屏幕大小。 |
+| Promise\<[Point](#point9)> | Promise对象，返回当前设备的屏幕大小。 |
 
 **错误码：**
 
@@ -2487,7 +2488,7 @@ getDisplayDensity(): Promise\<Point>
 
 | 类型                       | 说明                                      |
 | -------------------------- | ----------------------------------------- |
-| Promise\<[Point](#point9)> | Promise对象，当前设备屏幕的分辨率。 |
+| Promise\<[Point](#point9)> | Promise对象，返回当前设备屏幕的分辨率。 |
 
 **错误码：**
 
@@ -2588,7 +2589,7 @@ waitForIdle(idleTime: number, timeout: number): Promise\<boolean>
 
 | 类型              | 说明                                                |
 | ----------------- |---------------------------------------------------|
-| Promise\<boolean> | Promise对象，当前界面的所有控件是否已经空闲，true：已经空闲，false：不空闲。 |
+| Promise\<boolean> | Promise对象，返回当前界面的所有控件是否已经空闲。true：已经空闲，false：不空闲。 |
 
 **错误码：**
 
@@ -2641,6 +2642,7 @@ fling(from: Point, to: Point, stepLen: number, speed: number): Promise\<void>
 
 ```ts
 import { Driver } from '@kit.TestKit';
+
 async function demo() {
   let driver: Driver = Driver.create();
   await driver.fling({x: 500, y: 480},{x: 450, y: 480}, 5, 600);
@@ -2668,7 +2670,7 @@ injectMultiPointerAction(pointers: PointerMatrix, speed?: number): Promise\<bool
 
 | 类型              | 说明                                  |
 | ----------------- | ------------------------------------- |
-| Promise\<boolean> | Promise对象，操作是否成功完成，true：完成，false：未完成。 |
+| Promise\<boolean> | Promise对象，返回操作是否成功完成。true：完成，false：未完成。 |
 
 **错误码：**
 
@@ -2757,7 +2759,7 @@ screenCapture(savePath: string, rect?: Rect): Promise\<boolean>;
 
 | 类型              | 说明                                          |
 | ----------------- |---------------------------------------------|
-| Promise\<boolean> | Promise对象，截图操作是否成功完成，true：成功完成，false：未成功完成。 |
+| Promise\<boolean> | Promise对象，返回截图操作是否成功完成。true：成功完成，false：未成功完成。 |
 
 **错误码：**
 
@@ -2849,6 +2851,7 @@ mouseScroll(p: Point, down: boolean, d: number, key1?: number, key2?: number): P
 
 ```ts
 import { Driver } from '@kit.TestKit';
+
 async function demo() {
   let driver: Driver = Driver.create();
   await driver.mouseScroll({x:360, y:640}, true, 30, 2072);
@@ -2884,6 +2887,7 @@ mouseMoveTo(p: Point): Promise\<void>;
 
 ```ts
 import { Driver } from '@kit.TestKit';
+
 async function demo() {
   let driver: Driver = Driver.create();
   await driver.mouseMoveTo({x:100, y:100});
@@ -2918,6 +2922,7 @@ createUIEventObserver(): UIEventObserver;
 
 ```ts
 import { Driver, UIEventObserver } from '@kit.TestKit';
+
 async function demo() {
   let driver: Driver = Driver.create();
   let observer: UIEventObserver = await driver.createUIEventObserver();
@@ -2958,6 +2963,7 @@ mouseScroll(p: Point, down: boolean, d: number, key1?: number, key2?: number, sp
 
 ```ts
 import { Driver } from '@kit.TestKit';
+
 async function demo() {
   let driver: Driver = Driver.create();
   await driver.mouseScroll({x:360, y:640}, true, 30, 2072,20);
@@ -3071,6 +3077,7 @@ mouseMoveWithTrack(from: Point, to: Point, speed?: number): Promise\<void>
 
 ```ts
 import { Driver } from '@kit.TestKit';
+
 async function demo() {
   let driver: Driver = Driver.create();
   await driver.mouseMoveWithTrack({x:100, y:100}, {x:200, y:200}, 600);
@@ -3112,6 +3119,7 @@ mouseDrag(from: Point, to: Point, speed?: number): Promise\<void>
 
 ```ts
 import { Driver } from '@kit.TestKit';
+
 async function demo() {
   let driver: Driver = Driver.create();
   await driver.mouseDrag({x:100, y:100},{x:200, y:200}, 600);
@@ -3195,6 +3203,7 @@ static create(fingers: number, steps: number): PointerMatrix
 
 ```ts
 import { PointerMatrix } from '@kit.TestKit';
+
 async function demo() {
   let pointerMatrix: PointerMatrix = PointerMatrix.create(2, 3);
 }
@@ -3214,8 +3223,8 @@ setPoint(finger: number, step: number, point: Point): void
 
 | 参数名 | 类型             | 必填 | 说明                                                       |
 | ------ | ---------------- | ---- | ---------------------------------------------------------- |
-| finger | number           | 是   | 手指的序号，取值大于等于0的整数。                                               |
-| step   | number           | 是   | 步骤的序号，取值大于等于0的整数。                                               |
+| finger | number           | 是   | 手指的序号，取值大于等于0的整数。**说明：** 不大于设置操作中注入的手指数。                                               |
+| step   | number           | 是   | 步骤的序号，取值大于等于0的整数。**说明：** 不大于设置操作中注入的手指数。                                               |
 | point  | [Point](#point9) | 是   | 该行为的坐标点。建议相邻的坐标点距离在10px至80px范围内。 |
 
 **错误码：**
@@ -3230,6 +3239,7 @@ setPoint(finger: number, step: number, point: Point): void
 
 ```ts
 import { PointerMatrix } from '@kit.TestKit';
+
 async function demo() {
   let pointers: PointerMatrix = PointerMatrix.create(2, 5);
   pointers.setPoint(0, 0, {x:250, y:480});
@@ -3264,7 +3274,7 @@ getBundleName(): Promise\<string>
 
 | 类型             | 说明                                      |
 | ---------------- | ----------------------------------------- |
-| Promise\<string> | Promise对象，窗口归属应用的包名信息。 |
+| Promise\<string> | Promise对象，返回窗口归属应用的包名信息。 |
 
 **错误码：**
 
@@ -3301,7 +3311,7 @@ getBounds(): Promise\<Rect>
 
 | 类型                     | 说明                              |
 | ------------------------ | --------------------------------- |
-| Promise\<[Rect](#rect9)> | Promise对象，窗口的边框信息。 |
+| Promise\<[Rect](#rect9)> | Promise对象，返回窗口的边框信息。 |
 
 **错误码：**
 
@@ -3337,7 +3347,7 @@ getTitle(): Promise\<string>
 
 | 类型             | 说明                              |
 | ---------------- | --------------------------------- |
-| Promise\<string> | Promise对象，窗口的标题信息。 |
+| Promise\<string> | Promise对象，返回窗口的标题信息。 |
 
 **错误码：**
 
@@ -3373,7 +3383,7 @@ getWindowMode(): Promise\<WindowMode>
 
 | 类型                                 | 说明                                  |
 | ------------------------------------ | ------------------------------------- |
-| Promise\<[WindowMode](#windowmode9)> | Promise对象，窗口的窗口模式信息。 |
+| Promise\<[WindowMode](#windowmode9)> | Promise对象，返回窗口的窗口模式信息。 |
 
 **错误码：**
 
@@ -3409,7 +3419,7 @@ isFocused(): Promise\<boolean>
 
 | 类型              | 说明                                                         |
 | ----------------- | ------------------------------------------------------------ |
-| Promise\<boolean> | Promise对象，窗口对象是否获取获焦状态。true：获焦。false：未获焦。 |
+| Promise\<boolean> | Promise对象，返回窗口对象是否获取获焦状态。true：获焦。false：未获焦。 |
 
 **错误码：**
 
@@ -3445,7 +3455,7 @@ isActived(): Promise\<boolean>
 
 | 类型              | 说明                                                         |
 | ----------------- | ------------------------------------------------------------ |
-| Promise\<boolean> | Promise对象，窗口对象是否为用户正在交互窗口。true表示是交互窗口。false表示非交互窗口。 |
+| Promise\<boolean> | Promise对象，返回窗口对象是否为用户正在交互窗口。true表示是交互窗口。false表示非交互窗口。 |
 
 **错误码：**
 
@@ -3781,7 +3791,7 @@ isActive(): Promise\<boolean>
 
 | 类型              | 说明                                                         |
 | ----------------- | ------------------------------------------------------------ |
-| Promise\<boolean> | Promise对象，窗口对象是否为用户正在交互窗口。true：交互窗口。false：非交互窗口。 |
+| Promise\<boolean> | Promise对象，返回窗口对象是否为用户正在交互窗口。true：交互窗口。false：非交互窗口。 |
 
 **错误码：**
 
@@ -3836,6 +3846,7 @@ once(type: 'toastShow', callback: Callback\<UIElementInfo>): void;
 
 ```ts
 import { Driver, UIElementInfo, UIEventObserver } from '@kit.TestKit';
+
 async function demo() {
   let driver: Driver = Driver.create();
   let observer:  UIEventObserver = await driver.createUIEventObserver();
@@ -3877,6 +3888,7 @@ once(type: 'dialogShow', callback: Callback\<UIElementInfo>): void;
 
 ```ts
 import { Driver, UIElementInfo, UIEventObserver } from '@kit.TestKit';
+
 async function demo() {
   let driver: Driver = Driver.create();
   let observer: UIEventObserver = await driver.createUIEventObserver();
@@ -4314,7 +4326,7 @@ getId(): Promise\<number>
 
 | 类型             | 说明                            |
 | ---------------- | ------------------------------- |
-| Promise\<number> | Promise对象，控件的id值。 |
+| Promise\<number> | Promise对象，返回控件的id值。 |
 
 **示例：**
 
@@ -4341,7 +4353,7 @@ getKey(): Promise\<string>
 
 | 类型             | 说明                           |
 | ---------------- | ------------------------------ |
-| Promise\<string> | Promise对象，控件的key值。 |
+| Promise\<string> | Promise对象，返回控件的key值。 |
 
 **示例：**
 
@@ -4368,7 +4380,7 @@ getText(): Promise\<string>
 
 | 类型             | 说明                              |
 | ---------------- | --------------------------------- |
-| Promise\<string> | Promise对象，控件的文本信息。 |
+| Promise\<string> | Promise对象，返回控件的文本信息。 |
 
 **示例：**
 
@@ -4395,7 +4407,7 @@ getType(): Promise\<string>
 
 | 类型             | 说明                          |
 | ---------------- | ----------------------------- |
-| Promise\<string> | Promise对象，控件的类型。 |
+| Promise\<string> | Promise对象，返回控件的类型。 |
 
 **示例：**
 
@@ -4422,7 +4434,7 @@ isClickable(): Promise\<boolean>
 
 | 类型              | 说明                                                         |
 | ----------------- | ------------------------------------------------------------ |
-| Promise\<boolean> | Promise对象，控件对象可点击状态。true：可点击。false：不可点击。 |
+| Promise\<boolean> | Promise对象，返回控件对象可点击状态。true：可点击。false：不可点击。 |
 
 **示例：**
 
@@ -4453,7 +4465,7 @@ isScrollable(): Promise\<boolean>
 
 | 类型              | 说明                                                         |
 | ----------------- | ------------------------------------------------------------ |
-| Promise\<boolean> | Promise对象，控件对象可滑动状态。true：可滑动。false：不可滑动。 |
+| Promise\<boolean> | Promise对象，返回控件对象可滑动状态。true：可滑动。false：不可滑动。 |
 
 **示例：**
 
@@ -4485,7 +4497,7 @@ isEnabled(): Promise\<boolean>
 
 | 类型              | 说明                                                       |
 | ----------------- | ---------------------------------------------------------- |
-| Promise\<boolean> | Promise对象，控件使能状态。true：使能。false：未使能。 |
+| Promise\<boolean> | Promise对象，返回控件使能状态。true：使能。false：未使能。 |
 
 **示例：**
 
@@ -4517,7 +4529,7 @@ isFocused(): Promise\<boolean>
 
 | 类型              | 说明                                                         |
 | ----------------- | ------------------------------------------------------------ |
-| Promise\<boolean> | Promise对象，控件对象是否获焦。true：获焦。false：未获焦。 |
+| Promise\<boolean> | Promise对象，返回控件对象是否获焦。true：获焦。false：未获焦。 |
 
 **示例：**
 
@@ -4548,7 +4560,7 @@ isSelected(): Promise\<boolean>
 
 | 类型              | 说明                                                  |
 | ----------------- | ----------------------------------------------------- |
-| Promise\<boolean> | Promise对象，控件对象被选中的状态。true：被选中。false：未被选中。 |
+| Promise\<boolean> | Promise对象，返回控件对象被选中的状态。true：被选中。false：未被选中。 |
 
 **示例：**
 
@@ -4612,7 +4624,7 @@ scrollSearch(by: By): Promise\<UiComponent>
 
 | 类型                                            | 说明                                  |
 | ----------------------------------------------- | ------------------------------------- |
-| Promise\<[UiComponent](#uicomponentdeprecated)> | Promise对象，目标控件对象。 |
+| Promise\<[UiComponent](#uicomponentdeprecated)> | Promise对象，返回目标控件对象。 |
 
 **示例：**
 
@@ -4703,7 +4715,7 @@ findComponent(by: By): Promise\<UiComponent>
 
 | 类型                                            | 说明                              |
 | ----------------------------------------------- | --------------------------------- |
-| Promise\<[UiComponent](#uicomponentdeprecated)> | Promise对象，控件对象。 |
+| Promise\<[UiComponent](#uicomponentdeprecated)> | Promise对象，返回控件对象。 |
 
 **示例：**
 
@@ -4735,7 +4747,7 @@ findComponents(by: By): Promise\<Array\<UiComponent>>
 
 | 类型                                                    | 说明                                    |
 | ------------------------------------------------------- | --------------------------------------- |
-| Promise\<Array\<[UiComponent](#uicomponentdeprecated)>> | Promise对象，控件对象的列表。 |
+| Promise\<Array\<[UiComponent](#uicomponentdeprecated)>> | Promise对象，返回控件对象的列表。 |
 
 **示例：**
 
@@ -4851,6 +4863,7 @@ UiDriver对象采取如下操作：在目标坐标点单击。
 
 ```ts
 import { UiDriver } from '@kit.TestKit';
+
 async function demo() {
   let driver: UiDriver = UiDriver.create();
   await driver.click(100, 100);
@@ -4878,6 +4891,7 @@ UiDriver对象采取如下操作：在目标坐标点双击。
 
 ```ts
 import { UiDriver } from '@kit.TestKit';
+
 async function demo() {
   let driver: UiDriver = UiDriver.create();
   await driver.doubleClick(100, 100);
@@ -4934,6 +4948,7 @@ UiDriver对象采取如下操作：从给出的起始坐标点滑向给出的目
 
 ```ts
 import { UiDriver } from '@kit.TestKit';
+
 async function demo() {
   let driver: UiDriver = UiDriver.create();
   await driver.swipe(100, 100, 200, 200);
@@ -4960,7 +4975,7 @@ UiDriver对象采取如下操作：捕获当前屏幕，并保存为PNG格式的
 
 | 类型              | 说明                                            |
 | ----------------- |-----------------------------------------------|
-| Promise\<boolean> | Promise对象，截图操作是否成功完成，true：成功完成，false：未成功完成。 |
+| Promise\<boolean> | Promise对象，返回截图操作是否成功完成。true：成功完成，false：未成功完成。 |
 
 **示例：**
 
