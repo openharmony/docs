@@ -201,6 +201,7 @@
     - [应用深浅色适配](ui-dark-light-color-adaptation.md)
     - [设置应用内主题换肤](theme_skinning.md)
   - [使用UI上下文接口操作界面（UIContext）](arkts-global-interface.md)
+  - [使用组件截图（ComponentSnapshot）](arkts-uicontext-component-snapshot.md)
   - 嵌入式组件<!--arkts-ui-cross-process-->
     - [全屏启动原子化服务 (FullScreenLaunchComponent)](arkts-FullScreenComponent.md)
     - [同应用进程嵌入式组件 (EmbeddedComponent)](arkts-embedded-components.md)
