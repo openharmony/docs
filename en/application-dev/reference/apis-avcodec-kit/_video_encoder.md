@@ -155,7 +155,7 @@ Parameter verification rules are as follows:
 | ------------------------------------------------------------------------- | -------- | -------- | ------ |
 | OH_MD_KEY_WIDTH                                                           | AV_ERR_OK       | AV_ERR_INVALID_VAL       | AV_ERR_INVALID_VAL     |
 | OH_MD_KEY_HEIGHT                                                          | AV_ERR_OK       | AV_ERR_INVALID_VAL       | AV_ERR_INVALID_VAL     |
-| OH_MD_KEY_PIXEL_FORMAT<br>For details, see [OH_AVPixelFormat](_core.md#oh_avpixelformat).| AV_ERR_OK       | AV_ERR_UNSUPPORT       | AV_ERR_OK    |
+| OH_MD_KEY_PIXEL_FORMAT<br>For details, see [OH_AVPixelFormat](_core.md#oh_avpixelformat-1).| AV_ERR_OK       | AV_ERR_UNSUPPORT       | AV_ERR_OK    |
 | OH_MD_KEY_FRAME_RATE                                                       | AV_ERR_OK       | AV_ERR_INVALID_VAL       |AV_ERR_OK        |
 | OH_MD_KEY_PROFILE<br>For details, see [OH_MD_KEY_PROFILE](_codec_base.md#oh_md_key_profile).   | AV_ERR_OK       | AV_ERR_INVALID_VAL       |AV_ERR_OK       |
 | OH_MD_KEY_I_FRAME_INTERVAL                                                 | AV_ERR_OK       | \\       | AV_ERR_OK       |
@@ -205,6 +205,7 @@ Returns one of the following result codes:
 
 **AV_ERR_INVALID_STATE**: The function is not called prior to **OH_VideoEncoder_Prepare**.
 
+**AV_ERR_UNSUPPORT**: The feature is not supported.
 
 ### OH_VideoEncoder_CreateByMime()
 
@@ -342,7 +343,7 @@ OH_AVErrCode OH_VideoEncoder_FreeOutputBuffer (OH_AVCodec *codec, uint32_t index
 
 Returns the processed OH_AVBuffer corresponding to the index to a video encoder. You need to call this function to release the output buffer in a timely manner. Otherwise, the encoding process is blocked.
 
-For details, see step 13 in surface mode or step 10 in buffer mode in [Video Encoding](../../media/avcodec/video-encoding.md).
+For details, see step 13 in surface mode or step 11 in buffer mode in [Video Encoding](../../media/avcodec/video-encoding.md).
 
 **System capability**: SystemCapability.Multimedia.Media.VideoEncoder
 
