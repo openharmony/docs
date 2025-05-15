@@ -1,4 +1,4 @@
-# STA模式开发指导
+# STA模式开发指南
 
 ## 简介
 Wi-Fi STA模式（Station Mode，站点模式）是无线设备作为客户端接入无线局域网（WLAN）的工作模式。在该模式下，设备（如手机、电脑、平板等）通过连接到接入点（AP，Access Point）或无线路由器，实现对网络的访问。
@@ -13,7 +13,7 @@ Wi-Fi STA模式（Station Mode，站点模式）是无线设备作为客户端�
 
 完整的JS API说明以及示例代码请参考：[STA接口](../../reference/apis-connectivity-kit/js-apis-wifiManager.md)。
 
-具体接口说明如下表。
+具体接口说明如下表所示。
 
 | 接口名 | 功能描述 |
 | -------- | -------- |
@@ -32,7 +32,7 @@ Wi-Fi STA模式（Station Mode，站点模式）是无线设备作为客户端�
 ## 主要场景开发步骤
 
 ### 判断Wi-Fi状态
-1. import需要的WI-FI模块。
+1. 导入需要的Wi-Fi模块。
 2. 需要SystemCapability.Communication.WiFi.STA系统能力。
 3. 需要申请权限ohos.permission.GET_WIFI_INFO。
 4. 开启设备的WI-FI。
@@ -75,8 +75,8 @@ Wi-Fi STA模式（Station Mode，站点模式）是无线设备作为客户端�
 ```
 
 ### 建立Wi-Fi连接
-1. import需要的WI-FI模块。
-2. 开启设备的WI-FI。
+1. 导入需要的Wi-Fi模块。
+2. 开启设备的Wi-Fi。
 3. 需要SystemCapability.Communication.WiFi.STA系统能力。
 4. 需要申请权限ohos.permission.GET_WIFI_INFO，ohos.permission.SET_WIFI_INFO。
 5. 示例代码：
@@ -115,7 +115,7 @@ Wi-Fi STA模式（Station Mode，站点模式）是无线设备作为客户端�
     let level = wifiManager.getSignalLevel(rssi,band);
     console.info("level:" + JSON.stringify(level));
 
-    // Unregister event
+    // 取消注册，停止更新当前WiFi连接状态
     wifiManager.off("wifiConnectionChange", recvWifiConnectionChangeFunc);
   }
 ```
