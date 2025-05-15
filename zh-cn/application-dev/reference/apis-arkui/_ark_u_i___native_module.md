@@ -1687,6 +1687,29 @@ typedef struct ArkUI_VisibleAreaEventOptions ArkUI_VisibleAreaEventOptions
 
 **起始版本：** 18
 
+
+### ArkUI_TextPickerRangeContentArray
+```
+typedef struct ArkUI_TextPickerRangeContentArray ArkUI_TextPickerRangeContentArray
+```
+**描述：**
+
+定义文本选择器的数据选择列表。
+
+**起始版本：** 19
+
+### ArkUI_TextCascadePickerRangeContentArray
+
+```
+typedef struct ArkUI_TextCascadePickerRangeContentArray ArkUI_TextCascadePickerRangeContentArray
+```
+**描述：**
+
+定义多列联动数据选择器的多列联动数据选择列表。
+
+**起始版本：** 19
+
+
 ### ArkUI_SnapshotOptions
 
 ```
@@ -18144,6 +18167,164 @@ int32_t OH_ArkUI_NotifyDragEndPendingDone(int32_t requestIdentify)
 ARKUI_ERROR_CODE_NO_ERROR 成功。
 ARKUI_ERROR_CODE_PARAM_INVALID 函数参数异常。
 ARKUI_ERROR_CODE_DRAG_DROP_OPERATION_NOT_ALLOWED 执行函数时不允许落入。
+
+
+### OH_ArkUI_TextPickerRangeContentArray_Create()
+
+```
+ArkUI_TextPickerRangeContentArray* OH_ArkUI_TextPickerRangeContentArray_Create(int32_t length)
+```
+**描述：**
+
+创建TextPickerRangeContent数组的对象。
+
+**起始版本：** 19
+
+**参数:**
+
+| 名称 | 描述 |
+| -------- | -------- |
+| length | 指定TextPickerRangeContent数组的长度。  |
+
+**返回：**
+
+返回指向TextPickerRangeContent空数组的指针。
+
+### OH_ArkUI_TextPickerRangeArray_SetIconAtIndex()
+
+```
+void OH_ArkUI_TextPickerRangeArray_SetIconAtIndex(ArkUI_TextPickerRangeContentArray* handle,char* icon,int32_t index);
+```
+**描述：**
+
+ 指定TextPickerRangeContent数组指定位置的icon数据。
+
+**起始版本：** 19
+
+**参数:**
+
+| 名称 | 描述 |
+| -------- | -------- |
+| handle | 指向TextPickerRangeContent数组的指针。|
+| icon | 图片地址。|
+| index | 数组位置，从0开始。|
+
+
+### OH_ArkUI_TextPickerRangeContentArray_SetTextAtIndex()
+
+```
+void OH_ArkUI_TextPickerRangeContentArray_SetTextAtIndex(ArkUI_TextPickerRangeContentArray* handle,char* text,int32_t index);
+```
+**描述：**
+
+ 指定TextPickerRangeContent数组指定位置的text数据。
+
+**起始版本：** 19
+
+**参数:**
+
+| 名称 | 描述 |
+| -------- | -------- |
+| handle | 指向TextPickerRangeContent数组的指针。|
+| text | 文本内容。|
+| index | 数组位置，从0开始。|
+
+
+### OH_ArkUI_TextPickerRangeContentArray_Destroy()
+
+```
+void OH_ArkUI_TextPickerRangeContentArray_Destroy(ArkUI_TextPickerRangeContentArray* handle);
+```
+**描述：**
+
+ 删除TextPickerRangeContent数组对象。
+
+**起始版本：** 19
+
+**参数:**
+
+| 名称 | 描述 |
+| -------- | -------- |
+| handle | 指向TextPickerRangeContent数组的指针。|
+
+
+### OH_ArkUI_TextCascadePickerRangeContentArray_Create()
+
+```
+ArkUI_TextCascadePickerRangeContentArray* OH_ArkUI_TextCascadePickerRangeContentArray_Create(int32_t length);
+```
+**描述：**
+
+创建TextCascadePickerRangeContent数组对象。
+
+**起始版本：** 19
+
+**参数:**
+
+| 名称 | 描述 |
+| -------- | -------- |
+| length | 指向TextPickerRangeContent数组的长度。|
+
+**返回：**
+
+返回指向TextCascadePickerRangeContent空数组的指针。
+
+### OH_ArkUI_TextCascadePickerRangeContentArray_SetTextAtIndex()
+
+```
+void OH_ArkUI_TextCascadePickerRangeContentArray_SetTextAtIndex(ArkUI_TextCascadePickerRangeContentArray* handle,char* text,int32_t index);
+```
+**描述：**
+
+ 指定TextCascadePickerRangeContent数组指定位置的text数据。
+
+**起始版本：** 19
+
+**参数:**
+
+| 名称 | 描述 |
+| -------- | -------- |
+| handle | 指向TextCascadePickerRangeContentHandle的指针。|
+| text | 文本内容。|
+| index | 数组位置，从0开始。|
+
+
+### OH_ArkUI_TextCascadePickerRangeContentArray_setChildAtIndex()
+
+```
+void OH_ArkUI_TextCascadePickerRangeContentArray_setChildAtIndex(ArkUI_TextCascadePickerRangeContentArray* handle,ArkUI_TextCascadePickerRangeContentArray* child,int32_t index);
+```
+**描述：**
+
+ 指定TextCascadePickerRangeContent数组指定位置的child数据。
+
+**起始版本：** 19
+
+**参数:**
+
+| 名称 | 描述 |
+| -------- | -------- |
+| handle | 指向TextCascadePickerRangeContentHandle的指针。|
+| child | 子节点数组指针。|
+| index | 数组位置，从0开始。|
+
+
+### OH_ArkUI_TextCascadePickerRangeContentArray_Destroy()
+
+```
+void OH_ArkUI_TextCascadePickerRangeContentArray_Destroy(ArkUI_TextCascadePickerRangeContentArray* handle);
+```
+**描述：**
+
+ 删除TextCascadePickerRangeContent数组对象。
+
+**起始版本：** 19
+
+**参数:**
+
+| 名称 | 描述 |
+| -------- | -------- |
+| handle | 指向TextCascadePickerRangeContentHandle的指针。|
 
 ### OH_ArkUI_GetNodeSnapshot()
 
