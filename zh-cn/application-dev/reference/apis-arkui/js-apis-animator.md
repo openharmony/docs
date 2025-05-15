@@ -990,7 +990,7 @@ struct AnimatorTest {
     })
     this.backAnimator.onFinish = () => {
       this.flag = true
-      console.info(this.TAG, 'backAnimator onfinish')
+      console.info(this.TAG, 'backAnimator onFinish')
     }
     this.backAnimator.onRepeat = () => {
       console.info(this.TAG, 'backAnimator repeat')
@@ -1145,7 +1145,7 @@ struct AnimatorTest {
     )
     this.backAnimator.onFinish = ()=> {
       this.flag = true
-      console.info(this.TAG, 'backAnimator onfinish')
+      console.info(this.TAG, 'backAnimator onFinish')
     }
     this.backAnimator.onFrame = (value:number)=> {
       this.translate_ = value

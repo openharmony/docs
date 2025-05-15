@@ -297,9 +297,9 @@ struct WebComponent {
           }
         })
         Button('SendToH5 setNumber').margin({
-        top: 10,
-        right: 800,
-      })
+          top: 10,
+          right: 800,
+        })
         .onClick(() => {
           // 使用本侧端口发送消息给HTML5
           try {
@@ -586,7 +586,7 @@ struct WebComponent {
 
 ## WebviewController
 
-通过WebviewController可以控制Web组件各种行为。一个WebviewController对象只能控制一个Web组件，且必须在Web组件和WebviewController绑定后，才能调用WebviewController上的方法（静态方法除外）。
+通过WebviewController可以控制Web组件各种行为（包括页面导航、声明周期状态、JavaScript交互等行为）。一个WebviewController对象只能控制一个Web组件，且必须在Web组件和WebviewController绑定后，才能调用WebviewController上的方法（静态方法除外）。
 
 ### constructor<sup>11+</sup>
 
@@ -1220,7 +1220,7 @@ accessBackward(): boolean
 
 | 类型    | 说明                             |
 | ------- | -------------------------------- |
-| boolean | 可以后退返回true,否则返回false。 |
+| boolean | 当前页面可以后退返回true,否则返回false。 |
 
 **错误码：**
 
@@ -1263,7 +1263,7 @@ struct WebComponent {
 
 backward(): void
 
-按照历史栈，后退一个页面。一般结合accessBackward一起使用。
+按照历史栈，后退一个页面。一般结合[accessBackward](accessbackward)一起使用。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -1775,7 +1775,12 @@ struct Index {
 
 runJavaScript(script: string, callback : AsyncCallback\<string>): void
 
-异步执行JavaScript脚本，并通过回调方式返回脚本执行的结果。runJavaScript需要在loadUrl完成后，比如onPageEnd中调用。
+在当前显示页面的上下文中异步执行JavaScript脚本，脚本执行的结果将通过异步回调方式返回。此方法必须在用户界面（UI）线程上使用 ，并且回调也将在用户界面（UI）线程上调用。
+
+> **说明：**
+>
+> - 跨导航操作（如loadUrl）时，JavaScript状态将不再保留。例如，调用loadUrl前定义的全局变量和函数在加载的页面中将不存在。
+> - 建议应用程序使用registerJavaScriptProxy来确保JavaScript状态能够在页面导航间保持。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -1860,7 +1865,12 @@ struct WebComponent {
 
 runJavaScript(script: string): Promise\<string>
 
-异步执行JavaScript脚本，并通过Promise方式返回脚本执行的结果。runJavaScript需要在loadUrl完成后，比如onPageEnd中调用。
+在当前显示页面的上下文中异步执行JavaScript脚本，脚本执行的结果将通过Promise方式返回。此方法必须在用户界面（UI）线程上使用 ，并且回调也将在用户界面（UI）线程上调用。
+
+> **说明：**
+>
+> - 跨导航操作（如loadUrl）时，JavaScript状态 将不再保留，例如，调用loadUrl前定义的全局变量和函数在加载的页面中将不存在。
+> - 建议应用程序使用registerJavaScriptProxy来确保JavaScript状态能够在页面导航间保持。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -9672,11 +9682,13 @@ static configCookieSync(url: string, value: string, incognito?: boolean): void
 
 > **说明：**
 >
-> configCookie中的url，可以指定域名的方式来使得页面内请求也附带上cookie。
+> configCookieSync中的url，可以指定域名的方式来使得页面内请求也附带上cookie。
 >
 > 同步cookie的时机建议在Web组件加载之前完成。
 >
 > 若通过configCookieSync进行两次或多次设置cookie，则每次设置的cookie之间会通过"; "进行分隔。
+>
+> Cookie每30s周期性保存到磁盘中，也可以使用接口[saveCookieAsync](#savecookieasync)进行强制落盘。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -10018,6 +10030,10 @@ struct WebComponent {
 static saveCookieAsync(callback: AsyncCallback\<void>): void
 
 将当前存在内存中的cookie异步保存到磁盘中。
+
+> **说明：**
+>
+> Cookie信息存储在应用沙箱路径下/proc/{pid}/root/data/storage/el2/base/cache/web/Cookies。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 

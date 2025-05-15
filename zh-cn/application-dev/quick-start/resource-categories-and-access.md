@@ -5,7 +5,7 @@
 
 - 应用资源：开发者在应用中自定义的资源，可以利用资源文件管理资源在不同的设备或配置中的表现。
 
-- 系统资源：系统提供的资源，开发者可以通过[主题图标库](https://developer.huawei.com/consumer/cn/design/harmonyos-symbol/)获取系统图标资源信息、通过[系统资源分层设计表](../../design/ux-design/design-resources.md)获取系统字体等资源信息。
+- 系统资源：系统提供的资源，开发者可以通过[主题图标库](https://developer.huawei.com/consumer/cn/design/harmonyos-symbol/)获取系统图标资源信息、通过[系统资源分层设计表](https://gitee.com/openharmony/docs/blob/master/zh-cn/design/ux-design/design-resources.md)获取系统字体等资源信息。
 
 
 ## 资源分类
