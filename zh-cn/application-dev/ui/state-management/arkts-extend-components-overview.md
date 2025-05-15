@@ -1,6 +1,6 @@
 # 组件扩展概述
 
-ArkUI通过@Builder装饰器为开发者提供代码精简解决方案，该装饰器不仅能通过模块化封装简化UI开发流程，还衍生出@BuilderParam装饰器、@LocalBuilder装饰器和wrapBuilder，形成完整的组件复用技术链。
+ArkUI通过@Builder装饰器为开发者提供代码精简解决方案，该装饰器不仅能通过模块化封装简化UI开发流程，还衍生出@BuilderParam装饰器、@LocalBuilder装饰器和wrapBuilder，形成完整的可复用的UI结构体系。
 
 > **说明：**
 >
@@ -16,8 +16,7 @@ ArkUI通过@Builder装饰器为开发者提供代码精简解决方案，该装�
 
 ## @LocalBuilder装饰器
 
-在使用@Builder实现组件间数据传递时，开发者需注意组件层级关系。当使用bind(this)方法后，组件树中的父子关系可能与状态管理的父子关系产生不一致。为此，框架提供了[@LocalBuilder装饰器](./arkts-localBuilder.md)装饰器来解决这一特定问题。
-
+在使用@Builder实现组件间数据传递时，开发者需注意组件层级关系。组件树中的父子关系可能与状态管理的父子关系产生不一致。为此，框架提供了[@LocalBuilder装饰器](./arkts-localBuilder.md)装饰器来解决这一特定问题。
 
 ## wrapBuilder
 
