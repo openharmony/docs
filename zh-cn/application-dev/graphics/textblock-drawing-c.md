@@ -141,7 +141,7 @@ OH_Drawing_FontSetTextSize(font, 100);
 // 设置跟随主题字体
 OH_Drawing_FontSetThemeFontFollowed(font, true);
 // 需要绘制的文字
-const char *str = "Hello world";
+const char *str = "Hello World";
 // 创建字块对象
 OH_Drawing_TextBlob *textBlob =
     OH_Drawing_TextBlobCreateFromString(str, font, OH_Drawing_TextEncoding::TEXT_ENCODING_UTF8);

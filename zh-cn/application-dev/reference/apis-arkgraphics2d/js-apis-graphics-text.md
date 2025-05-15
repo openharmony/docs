@@ -369,7 +369,7 @@ struct Index {
 | ALL                   | 0x0 | 高度修饰符设置为段落中第一行上升、最后一行下降。            |
 | DISABLE_FIRST_ASCENT  | 0x1 | 高度修饰符设置为禁止段落中第一行上升。                   |
 | DISABLE_LAST_ASCENT   | 0x2 | 高度修饰符设置为禁止段落中最后一行下降。                 |
-| DISABLE_ALL           | 0x1 \| 0x2 | 高度修饰符设置为段落中第一行上升、最后一行下降。          |
+| DISABLE_ALL           | 0x1 \| 0x2 | 高度修饰符设置为禁止段落中第一行上升、最后一行下降。          |
 
 ## TextBaseline
 
@@ -494,7 +494,7 @@ EllipsisMode.START和EllipsisMode.MIDDLE仅在单行超长文本生效。
 
 | 名称                      | 类型                                       | 只读 | 可选 | 说明                                                                 |
 | -------------  | ---------------------------------------------------- | ---- | -- | --------------------------------------------------------------------- |
-| fontFamilies   | Array\<string>                                       | 是   | 是 | 字体族名称列表，默认为系统字体。                                               |
+| fontFamilies   | Array\<string>                                       | 是   | 是 | 字体族名称列表，默认为空，匹配系统字体。                                               |
 | fontStyle      | [FontStyle](#fontstyle)                              | 是   | 是 | 字体样式，默认为常规样式。                                               |
 | fontWidth      | [FontWidth](#fontwidth)                              | 是   | 是 | 字体宽度，默认为NORMAL。                                                |
 | fontWeight     | [FontWeight](#fontweight)                            | 是   | 是 | 字重，默认为W400。系统默认字体支持字重调节，其他字体设置字重值小于W600时无变化，大于等于W600时可能触发伪加粗效果。                             |
@@ -514,7 +514,7 @@ EllipsisMode.START和EllipsisMode.MIDDLE仅在单行超长文本生效。
 
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | - | - | -  | - | - |
-| path | string | 否 | 是 | 字体绝对路径，可取任意字符串，跟随实际系统路径限制规则，默认为空字符串。 |
+| path | string | 否 | 是 | 字体绝对路径，可取遵循系统限制的任意字符串，默认为空字符串。 |
 | postScriptName | string | 否 | 是 | 字体唯一标识名称，可取任意字符串，默认为空字符串。 |
 | fullName | string | 否 | 是 | 字体名称，可取任意字符串，默认为空字符串。 |
 | fontFamily | string | 否 | 是 | 字体家族，可取任意字符串，默认为空字符串。 |

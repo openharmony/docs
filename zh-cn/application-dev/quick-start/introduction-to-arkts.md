@@ -580,7 +580,11 @@ function processData(s: string) {
 
 函数声明引入一个函数，包含其名称、参数列表、返回类型和函数体。
 
-以下示例是一个简单的函数，包含两个`string`类型的参数，返回类型为`string`：
+以下示例是一个简单的函数和它的语法语义说明：
+
+1.参数类型标注：x: string, y: string 显式声明参数类型为字符串。
+
+2.返回值类型：: string 指定函数返回值为字符串类型。
 
 ```typescript
 function add(x: string, y: string): string {

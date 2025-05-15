@@ -6,11 +6,11 @@ In the pivotal shift from digital transformation to AI advancement, creating int
 
 The system provides the ArkData Intelligence Platform (AIP) to offer on-device intelligent data solution with four fundamental features: semantic data processing, structured data storage, knowledge generation, and integrated knowledge retrieval — implementing AI-powered data processing on devices.
 
-For example, in personal office scenarios, you can vectorize the semantics of user documents, save them in a vector store (database), and uncover similar documents to generate personalized knowledge, which supports intelligent retrieval, recommendation, content generation, and Q&A.
+In personal office scenarios, you can vectorize the semantics of user documents, save them in a vector store (database), and uncover similar documents to generate personalized knowledge, which supports intelligent retrieval, recommendation, content generation, and Q&A.
 
 ## Basic Concepts
 
-To get started, it's helpful to understand the following concepts:
+To get started, it is helpful to understand the following concepts:
 
 ### Vectorization
 The process of vectorization uses embedding models to convert high-dimensional unstructured data (such as text and images) into low-dimensional continuous vector representations. This approach captures the semantic relationships with the data, translating abstract information into a format that can be analyzed and processed by computers. Embedding technology is widely used in fields such as natural language processing (semantic search), image recognition (feature extraction), and recommendation systems (user/item representation).

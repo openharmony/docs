@@ -10,11 +10,9 @@ For routing management, it is recommended that you use the [Navigation](../../ui
 >
 > - Page routing APIs can be invoked only after page rendering is complete. Do not call these APIs in **onInit** and **onReady** when the page is still in the rendering phase.
 >
-> - The functionality of this module depends on UI context. This means that the APIs of this module cannot be used where the UI context is unclear. For details, see [UIContext](./js-apis-arkui-UIContext.md#uicontext).
+> - The functionality of this module depends on UI context. This means that the APIs of this module cannot be used where [the UI context is unclear](../../ui/arkts-global-interface.md). For details, see [UIContext](./js-apis-arkui-UIContext.md#uicontext).
 >
-> - Since API version 10, you can use the [getRouter](./js-apis-arkui-UIContext.md#getrouter) API in [UIContext](./js-apis-arkui-UIContext.md#uicontext) to obtain the [Router](./js-apis-arkui-UIContext.md#router) object associated with the current UI context.
->
-> - When the [pushUrl](#routerpushurl9-1) or [pushNamedRoute](#routerpushnamedroute10-1) API is used with a callback, the information obtained from the callback using APIs such as [getLength](#routergetlength) may represent an intermediate state of the stack. This means that the information might not be consistent with the stack information obtained after all stack operations have been completed.
+> - When using [pushUrl](js-apis-arkui-UIContext.md#pushurl-1) or [pushNamedRoute](js-apis-arkui-UIContext.md#pushnamedroute-1) with a callback to return the result, be aware that the stack information obtained through the callback using APIs such as [getLength](js-apis-arkui-UIContext.md#getlength) represents an intermediate state during the navigation operation. This temporary state might differ from the final stack information available after the stack operation is complete.
 
 ## Modules to Import
 
@@ -22,11 +20,17 @@ For routing management, it is recommended that you use the [Navigation](../../ui
 import { router } from '@kit.ArkUI';
 ```
 
-## router.pushUrl<sup>9+</sup>
+## router.pushUrl<sup>(deprecated)</sup>
 
 pushUrl(options: RouterOptions): Promise&lt;void&gt;
 
 Navigates to a specified page in the application.
+
+> **NOTE**
+>
+> This API is supported since API version 9 and deprecated since API version 18. You are advised to use [pushUrl](js-apis-arkui-UIContext.md#pushurl) instead on the obtained [Router](js-apis-arkui-UIContext.md#router) object.
+>
+> Since API version 10, you can use the [getRouter](js-apis-arkui-UIContext.md#getrouter) API in [UIContext](js-apis-arkui-UIContext.md#uicontext) to obtain the [Router](js-apis-arkui-UIContext.md#router) object associated with the current UI context.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -64,20 +68,20 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 import { BusinessError } from '@kit.BasicServicesKit';
 
 class innerParams {
-  data3: number[]
+  data3: number[];
 
   constructor(tuple: number[]) {
-    this.data3 = tuple
+    this.data3 = tuple;
   }
 }
 
 class routerParams {
-  data1: string
-  data2: innerParams
+  data1: string;
+  data2: innerParams;
 
   constructor(str: string, tuple: number[]) {
-    this.data1 = str
-    this.data2 = new innerParams(tuple)
+    this.data1 = str;
+    this.data2 = new innerParams(tuple);
   }
 }
 
@@ -93,11 +97,17 @@ router.pushUrl({
   })
 ```
 
-## router.pushUrl<sup>9+</sup>
+## router.pushUrl<sup>(deprecated)</sup>
 
 pushUrl(options: RouterOptions, callback: AsyncCallback&lt;void&gt;): void
 
 Navigates to a specified page in the application.
+
+> **NOTE**
+>
+> This API is supported since API version 9 and deprecated since API version 18. You are advised to use [[pushUrl](js-apis-arkui-UIContext.md#pushurl-1) instead on the obtained [Router](js-apis-arkui-UIContext.md#router) object.
+>
+> Since API version 10, you can use the [getRouter](js-apis-arkui-UIContext.md#getrouter) API in [UIContext](js-apis-arkui-UIContext.md#uicontext) to obtain the [Router](js-apis-arkui-UIContext.md#router) object associated with the current UI context.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -128,20 +138,20 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 ```ts
 class innerParams {
-  data3: number[]
+  data3: number[];
 
   constructor(tuple: number[]) {
-    this.data3 = tuple
+    this.data3 = tuple;
   }
 }
 
 class routerParams {
-  data1: string
-  data2: innerParams
+  data1: string;
+  data2: innerParams;
 
   constructor(str: string, tuple: number[]) {
-    this.data1 = str
-    this.data2 = new innerParams(tuple)
+    this.data1 = str;
+    this.data2 = new innerParams(tuple);
   }
 }
 
@@ -156,11 +166,17 @@ router.pushUrl({
   console.info('pushUrl success');
 })
 ```
-## router.pushUrl<sup>9+</sup>
+## router.pushUrl<sup>(deprecated)</sup>
 
 pushUrl(options: RouterOptions, mode: RouterMode): Promise&lt;void&gt;
 
 Navigates to a specified page in the application.
+
+> **NOTE**
+>
+> This API is supported since API version 9 and deprecated since API version 18. You are advised to use [[pushUrl](js-apis-arkui-UIContext.md#pushurl-2) instead on the obtained [Router](js-apis-arkui-UIContext.md#router) object.
+>
+> Since API version 10, you can use the [getRouter](js-apis-arkui-UIContext.md#getrouter) API in [UIContext](js-apis-arkui-UIContext.md#uicontext) to obtain the [Router](js-apis-arkui-UIContext.md#router) object associated with the current UI context.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -199,20 +215,20 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 import { BusinessError } from '@kit.BasicServicesKit';
 
 class innerParams {
-  data3: number[]
+  data3: number[];
 
   constructor(tuple: number[]) {
-    this.data3 = tuple
+    this.data3 = tuple;
   }
 }
 
 class routerParams {
-  data1: string
-  data2: innerParams
+  data1: string;
+  data2: innerParams;
 
   constructor(str: string, tuple: number[]) {
-    this.data1 = str
-    this.data2 = new innerParams(tuple)
+    this.data1 = str;
+    this.data2 = new innerParams(tuple);
   }
 }
 
@@ -228,11 +244,17 @@ router.pushUrl({
   })
 ```
 
-## router.pushUrl<sup>9+</sup>
+## router.pushUrl<sup>(deprecated)</sup>
 
 pushUrl(options: RouterOptions, mode: RouterMode, callback: AsyncCallback&lt;void&gt;): void
 
 Navigates to a specified page in the application.
+
+> **NOTE**
+>
+> This API is supported since API version 9 and deprecated since API version 18. You are advised to use [[pushUrl](js-apis-arkui-UIContext.md#pushurl-3) instead on the obtained [Router](js-apis-arkui-UIContext.md#router) object.
+>
+> Since API version 10, you can use the [getRouter](js-apis-arkui-UIContext.md#getrouter) API in [UIContext](js-apis-arkui-UIContext.md#uicontext) to obtain the [Router](js-apis-arkui-UIContext.md#router) object associated with the current UI context.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -264,20 +286,20 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 ```ts
 class innerParams {
-  data3: number[]
+  data3: number[];
 
   constructor(tuple: number[]) {
-    this.data3 = tuple
+    this.data3 = tuple;
   }
 }
 
 class routerParams {
-  data1: string
-  data2: innerParams
+  data1: string;
+  data2: innerParams;
 
   constructor(str: string, tuple: number[]) {
-    this.data1 = str
-    this.data2 = new innerParams(tuple)
+    this.data1 = str;
+    this.data2 = new innerParams(tuple);
   }
 }
 
@@ -293,11 +315,17 @@ router.pushUrl({
 })
 ```
 
-## router.replaceUrl<sup>9+</sup>
+## router.replaceUrl<sup>(deprecated)</sup>
 
 replaceUrl(options: RouterOptions): Promise&lt;void&gt;
 
 Replaces the current page with another one in the application and destroys the current page. This API cannot be used to configure page transition effects. To configure page transition effects, use the [Navigation](../../ui/arkts-navigation-navigation.md) component.
+
+> **NOTE**
+>
+> This API is supported since API version 9 and deprecated since API version 18. You are advised to use [replaceUrl](js-apis-arkui-UIContext.md#replaceurl) instead on the obtained [Router](js-apis-arkui-UIContext.md#router) object.
+>
+> Since API version 10, you can use the [getRouter](js-apis-arkui-UIContext.md#getrouter) API in [UIContext](js-apis-arkui-UIContext.md#uicontext) to obtain the [Router](js-apis-arkui-UIContext.md#router) object associated with the current UI context.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -334,10 +362,10 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 import { BusinessError } from '@kit.BasicServicesKit';
 
 class routerParams {
-  data1: string
+  data1: string;
 
   constructor(str: string) {
-    this.data1 = str
+    this.data1 = str;
   }
 }
 
@@ -353,11 +381,17 @@ router.replaceUrl({
   })
 ```
 
-## router.replaceUrl<sup>9+</sup>
+## router.replaceUrl<sup>(deprecated)</sup>
 
 replaceUrl(options: RouterOptions, callback: AsyncCallback&lt;void&gt;): void
 
 Replaces the current page with another one in the application and destroys the current page.
+
+> **NOTE**
+>
+> This API is supported since API version 9 and deprecated since API version 18. You are advised to use [replaceUrl](js-apis-arkui-UIContext.md#replaceurl-1) instead on the obtained [Router](js-apis-arkui-UIContext.md#router) object.
+>
+> Since API version 10, you can use the [getRouter](js-apis-arkui-UIContext.md#getrouter) API in [UIContext](js-apis-arkui-UIContext.md#uicontext) to obtain the [Router](js-apis-arkui-UIContext.md#router) object associated with the current UI context.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -387,10 +421,10 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 ```ts
 class routerParams {
-  data1: string
+  data1: string;
 
   constructor(str: string) {
-    this.data1 = str
+    this.data1 = str;
   }
 }
 
@@ -406,11 +440,17 @@ router.replaceUrl({
 })
 ```
 
-## router.replaceUrl<sup>9+</sup>
+## router.replaceUrl<sup>(deprecated)</sup>
 
 replaceUrl(options: RouterOptions, mode: RouterMode): Promise&lt;void&gt;
 
 Replaces the current page with another one in the application and destroys the current page.
+
+> **NOTE**
+>
+> This API is supported since API version 9 and deprecated since API version 18. You are advised to use [replaceUrl](js-apis-arkui-UIContext.md#replaceurl-2) instead on the obtained [Router](js-apis-arkui-UIContext.md#router) object.
+>
+> Since API version 10, you can use the [getRouter](js-apis-arkui-UIContext.md#getrouter) API in [UIContext](js-apis-arkui-UIContext.md#uicontext) to obtain the [Router](js-apis-arkui-UIContext.md#router) object associated with the current UI context.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -449,10 +489,10 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 import { BusinessError } from '@kit.BasicServicesKit';
 
 class routerParams {
-  data1:string
+  data1:string;
 
   constructor(str:string) {
-    this.data1 = str
+    this.data1 = str;
   }
 }
 
@@ -468,11 +508,17 @@ router.replaceUrl({
   })
 ```
 
-## router.replaceUrl<sup>9+</sup>
+## router.replaceUrl<sup>(deprecated)</sup>
 
 replaceUrl(options: RouterOptions, mode: RouterMode, callback: AsyncCallback&lt;void&gt;): void
 
 Replaces the current page with another one in the application and destroys the current page.
+
+> **NOTE**
+>
+> This API is supported since API version 9 and deprecated since API version 18. You are advised to use [replaceUrl](js-apis-arkui-UIContext.md#replaceurl-3) instead on the obtained [Router](js-apis-arkui-UIContext.md#router) object.
+>
+> Since API version 10, you can use the [getRouter](js-apis-arkui-UIContext.md#getrouter) API in [UIContext](js-apis-arkui-UIContext.md#uicontext) to obtain the [Router](js-apis-arkui-UIContext.md#router) object associated with the current UI context.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -503,10 +549,10 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 ```ts
 class routerParams {
-  data1: string
+  data1: string;
 
   constructor(str: string) {
-    this.data1 = str
+    this.data1 = str;
   }
 }
 
@@ -522,11 +568,17 @@ router.replaceUrl({
 });
 ```
 
-## router.pushNamedRoute<sup>10+</sup>
+## router.pushNamedRoute<sup>(deprecated)</sup>
 
 pushNamedRoute(options: NamedRouterOptions): Promise&lt;void&gt;
 
 Navigates to a page using the named route. This API uses a promise to return the result.
+
+> **NOTE**
+>
+> This API is supported since API version 10 and deprecated since API version 18. You are advised to use [pushNamedRoute](js-apis-arkui-UIContext.md#pushnamedroute) instead on the obtained [Router](js-apis-arkui-UIContext.md#router) object.
+>
+> Since API version 10, you can use the [getRouter](js-apis-arkui-UIContext.md#getrouter) API in [UIContext](js-apis-arkui-UIContext.md#uicontext) to obtain the [Router](js-apis-arkui-UIContext.md#router) object associated with the current UI context.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -564,20 +616,20 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 import { BusinessError } from '@kit.BasicServicesKit';
 
 class innerParams {
-  data3: number[]
+  data3: number[];
 
   constructor(tuple: number[]) {
-    this.data3 = tuple
+    this.data3 = tuple;
   }
 }
 
 class routerParams {
-  data1: string
-  data2: innerParams
+  data1: string;
+  data2: innerParams;
 
   constructor(str: string, tuple: number[]) {
-    this.data1 = str
-    this.data2 = new innerParams(tuple)
+    this.data1 = str;
+    this.data2 = new innerParams(tuple);
   }
 }
 
@@ -595,11 +647,17 @@ router.pushNamedRoute({
 
 For details, see [UI Development-Named Route](../../ui/arkts-routing.md#named-route).
 
-## router.pushNamedRoute<sup>10+</sup>
+## router.pushNamedRoute<sup>(deprecated)</sup>
 
 pushNamedRoute(options: NamedRouterOptions, callback: AsyncCallback&lt;void&gt;): void
 
 Navigates to a page using the named route. This API uses a promise to return the result.
+
+> **NOTE**
+>
+> This API is supported since API version 10 and deprecated since API version 18. You are advised to use [pushNamedRoute](js-apis-arkui-UIContext.md#pushnamedroute-1) instead on the obtained [Router](js-apis-arkui-UIContext.md#router) object.
+>
+> Since API version 10, you can use the [getRouter](js-apis-arkui-UIContext.md#getrouter) API in [UIContext](js-apis-arkui-UIContext.md#uicontext) to obtain the [Router](js-apis-arkui-UIContext.md#router) object associated with the current UI context.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -630,20 +688,20 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 ```ts
 class innerParams {
-  data3: number[]
+  data3: number[];
 
   constructor(tuple: number[]) {
-    this.data3 = tuple
+    this.data3 = tuple;
   }
 }
 
 class routerParams {
-  data1: string
-  data2: innerParams
+  data1: string;
+  data2: innerParams;
 
   constructor(str: string, tuple: number[]) {
-    this.data1 = str
-    this.data2 = new innerParams(tuple)
+    this.data1 = str;
+    this.data2 = new innerParams(tuple);
   }
 }
 
@@ -658,11 +716,17 @@ router.pushNamedRoute({
   console.info('pushNamedRoute success');
 })
 ```
-## router.pushNamedRoute<sup>10+</sup>
+## router.pushNamedRoute<sup>(deprecated)</sup>
 
 pushNamedRoute(options: NamedRouterOptions, mode: RouterMode): Promise&lt;void&gt;
 
 Navigates to a page using the named route. This API uses a promise to return the result.
+
+> **NOTE**
+>
+> This API is supported since API version 10 and deprecated since API version 18. You are advised to use [pushNamedRoute](js-apis-arkui-UIContext.md#pushnamedroute-2) instead on the obtained [Router](js-apis-arkui-UIContext.md#router) object.
+>
+> Since API version 10, you can use the [getRouter](js-apis-arkui-UIContext.md#getrouter) API in [UIContext](js-apis-arkui-UIContext.md#uicontext) to obtain the [Router](js-apis-arkui-UIContext.md#router) object associated with the current UI context.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -701,16 +765,16 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 import { BusinessError } from '@kit.BasicServicesKit';
 
 class innerParams {
-  data3: number[]
+  data3: number[];
 
   constructor(tuple: number[]) {
-    this.data3 = tuple
+    this.data3 = tuple;
   }
 }
 
 class routerParams {
-  data1: string
-  data2: innerParams
+  data1: string;
+  data2: innerParams;
 
   constructor(str: string, tuple: number[]) {
     this.data1 = str
@@ -730,11 +794,17 @@ router.pushNamedRoute({
   })
 ```
 
-## router.pushNamedRoute<sup>10+</sup>
+## router.pushNamedRoute<sup>(deprecated)</sup>
 
 pushNamedRoute(options: NamedRouterOptions, mode: RouterMode, callback: AsyncCallback&lt;void&gt;): void
 
 Navigates to a page using the named route. This API uses a promise to return the result.
+
+> **NOTE**
+>
+> This API is supported since API version 10 and deprecated since API version 18. You are advised to use [pushNamedRoute](js-apis-arkui-UIContext.md#pushnamedroute-3) instead on the obtained [Router](js-apis-arkui-UIContext.md#router) object.
+>
+> Since API version 10, you can use the [getRouter](js-apis-arkui-UIContext.md#getrouter) API in [UIContext](js-apis-arkui-UIContext.md#uicontext) to obtain the [Router](js-apis-arkui-UIContext.md#router) object associated with the current UI context.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -766,20 +836,20 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 ```ts
 class innerParams {
-  data3: number[]
+  data3: number[];
 
   constructor(tuple: number[]) {
-    this.data3 = tuple
+    this.data3 = tuple;
   }
 }
 
 class routerParams {
-  data1: string
-  data2: innerParams
+  data1: string;
+  data2: innerParams;
 
   constructor(str: string, tuple: number[]) {
-    this.data1 = str
-    this.data2 = new innerParams(tuple)
+    this.data1 = str;
+    this.data2 = new innerParams(tuple);
   }
 }
 
@@ -795,11 +865,17 @@ router.pushNamedRoute({
 })
 ```
 
-## router.replaceNamedRoute<sup>10+</sup>
+## router.replaceNamedRoute<sup>(deprecated)</sup>
 
 replaceNamedRoute(options: NamedRouterOptions): Promise&lt;void&gt;
 
 Replaces the current page with another one using the named route and destroys the current page. This API uses a promise to return the result.
+
+> **NOTE**
+>
+> This API is supported since API version 10 and deprecated since API version 18. You are advised to use [replaceNamedRoute](js-apis-arkui-UIContext.md#replacenamedroute) instead on the obtained [Router](js-apis-arkui-UIContext.md#router) object.
+>
+> Since API version 10, you can use the [getRouter](js-apis-arkui-UIContext.md#getrouter) API in [UIContext](js-apis-arkui-UIContext.md#uicontext) to obtain the [Router](js-apis-arkui-UIContext.md#router) object associated with the current UI context.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -836,10 +912,10 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 import { BusinessError } from '@kit.BasicServicesKit';
 
 class routerParams {
-  data1: string
+  data1: string;
 
   constructor(str: string) {
-    this.data1 = str
+    this.data1 = str;
   }
 }
 
@@ -855,11 +931,17 @@ router.replaceNamedRoute({
   })
 ```
 
-## router.replaceNamedRoute<sup>10+</sup>
+## router.replaceNamedRoute<sup>(deprecated)</sup>
 
 replaceNamedRoute(options: NamedRouterOptions, callback: AsyncCallback&lt;void&gt;): void
 
 Replaces the current page with another one using the named route and destroys the current page. This API uses a promise to return the result.
+
+> **NOTE**
+>
+> This API is supported since API version 10 and deprecated since API version 18. You are advised to use [replaceNamedRoute](js-apis-arkui-UIContext.md#replacenamedroute-1) instead on the obtained [Router](js-apis-arkui-UIContext.md#router) object.
+>
+> Since API version 10, you can use the [getRouter](js-apis-arkui-UIContext.md#getrouter) API in [UIContext](js-apis-arkui-UIContext.md#uicontext) to obtain the [Router](js-apis-arkui-UIContext.md#router) object associated with the current UI context.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -889,10 +971,10 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 ```ts
 class routerParams {
-  data1: string
+  data1: string;
 
   constructor(str: string) {
-    this.data1 = str
+    this.data1 = str;
   }
 }
 
@@ -908,11 +990,17 @@ router.replaceNamedRoute({
 })
 ```
 
-## router.replaceNamedRoute<sup>10+</sup>
+## router.replaceNamedRoute<sup>(deprecated)</sup>
 
 replaceNamedRoute(options: NamedRouterOptions, mode: RouterMode): Promise&lt;void&gt;
 
 Replaces the current page with another one using the named route and destroys the current page. This API uses a promise to return the result.
+
+> **NOTE**
+>
+> This API is supported since API version 10 and deprecated since API version 18. You are advised to use [replaceNamedRoute](js-apis-arkui-UIContext.md#replacenamedroute-2) instead on the obtained [Router](js-apis-arkui-UIContext.md#router) object.
+>
+> Since API version 10, you can use the [getRouter](js-apis-arkui-UIContext.md#getrouter) API in [UIContext](js-apis-arkui-UIContext.md#uicontext) to obtain the [Router](js-apis-arkui-UIContext.md#router) object associated with the current UI context.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -951,10 +1039,10 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 import { BusinessError } from '@kit.BasicServicesKit';
 
 class routerParams {
-  data1: string
+  data1: string;
 
   constructor(str: string) {
-    this.data1 = str
+    this.data1 = str;
   }
 }
 
@@ -970,11 +1058,17 @@ router.replaceNamedRoute({
   })
 ```
 
-## router.replaceNamedRoute<sup>10+</sup>
+## router.replaceNamedRoute<sup>(deprecated)</sup>
 
 replaceNamedRoute(options: NamedRouterOptions, mode: RouterMode, callback: AsyncCallback&lt;void&gt;): void
 
 Replaces the current page with another one using the named route and destroys the current page. This API uses a promise to return the result.
+
+> **NOTE**
+>
+> This API is supported since API version 10 and deprecated since API version 18. You are advised to use [replaceNamedRoute](js-apis-arkui-UIContext.md#replacenamedroute-3) instead on the obtained [Router](js-apis-arkui-UIContext.md#router) object.
+>
+> Since API version 10, you can use the [getRouter](js-apis-arkui-UIContext.md#getrouter) API in [UIContext](js-apis-arkui-UIContext.md#uicontext) to obtain the [Router](js-apis-arkui-UIContext.md#router) object associated with the current UI context.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -1005,10 +1099,10 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 ```ts
 class routerParams {
-  data1: string
+  data1: string;
 
   constructor(str: string) {
-    this.data1 = str
+    this.data1 = str;
   }
 }
 
@@ -1024,11 +1118,17 @@ router.replaceNamedRoute({
 });
 ```
 
-## router.back
+## router.back<sup>(deprecated)</sup>
 
 back(options?: RouterOptions ): void
 
 Returns to the previous page or a specified page, which deletes all pages between the current page and the target page.
+
+> **NOTE**
+>
+> This API is deprecated since API version 18. You are advised to use [back](js-apis-arkui-UIContext.md#back) instead on the obtained [Router](js-apis-arkui-UIContext.md#router) object.
+>
+> Since API version 10, you can use the [getRouter](js-apis-arkui-UIContext.md#getrouter) API in [UIContext](js-apis-arkui-UIContext.md#uicontext) to obtain the [Router](js-apis-arkui-UIContext.md#router) object associated with the current UI context.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -1043,14 +1143,20 @@ Returns to the previous page or a specified page, which deletes all pages betwee
 **Example**
 
 ```ts
-router.back({ url: 'pages/detail' });
+this.getUIContext().getRouter().back({ url: 'pages/detail' });
 ```
 
-## router.back<sup>12+</sup>
+## router.back<sup>(deprecated)</sup>
 
 back(index: number, params?: Object): void;
 
 Returns to the specified page, which deletes all pages between the current page and the target page.
+
+> **NOTE**
+>
+> This API is supported since API version 12 and deprecated since API version 18. You are advised to use [back](js-apis-arkui-UIContext.md#back12) instead on the obtained [Router](js-apis-arkui-UIContext.md#router) object.
+>
+> Since API version 12, you can use the [getRouter](js-apis-arkui-UIContext.md#getrouter) API in [UIContext](js-apis-arkui-UIContext.md#uicontext) to obtain the [Router](js-apis-arkui-UIContext.md#router) object associated with the current UI context.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -1066,17 +1172,23 @@ Returns to the specified page, which deletes all pages between the current page 
 **Example**
 
 ```ts
-router.back(1);
+this.getUIContext().getRouter().back(1);
 ```
 ```ts
-router.back(1, { info: 'From Home' }); // Returning with parameters.
+this.getUIContext().getRouter().back(1, { info: 'From Home' }); // Returning with parameters.
 ```
 
-## router.clear
+## router.clear<sup>(deprecated)</sup>
 
 clear(): void
 
 Clears all historical pages in the stack and retains only the current page at the top of the stack.
+
+> **NOTE**
+>
+> This API is deprecated since API version 18. You are advised to use [clear](js-apis-arkui-UIContext.md#clear) instead on the obtained [Router](js-apis-arkui-UIContext.md#router) object.
+>
+> Since API version 10, you can use the [getRouter](js-apis-arkui-UIContext.md#getrouter) API in [UIContext](js-apis-arkui-UIContext.md#uicontext) to obtain the [Router](js-apis-arkui-UIContext.md#router) object associated with the current UI context.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -1085,14 +1197,20 @@ Clears all historical pages in the stack and retains only the current page at th
 **Example**
 
 ```ts
-router.clear();
+this.getUIContext().getRouter().clear();
 ```
 
-## router.getLength
+## router.getLength<sup>(deprecated)</sup>
 
 getLength(): string
 
 Obtains the number of pages in the current stack.
+
+> **NOTE**
+>
+> This API is deprecated since API version 18. You are advised to use [getLength](js-apis-arkui-UIContext.md#getlength) instead on the obtained [Router](js-apis-arkui-UIContext.md#router) object.
+>
+> Since API version 10, you can use the [getRouter](js-apis-arkui-UIContext.md#getrouter) API in [UIContext](js-apis-arkui-UIContext.md#uicontext) to obtain the [Router](js-apis-arkui-UIContext.md#router) object associated with the current UI context.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -1107,15 +1225,21 @@ Obtains the number of pages in the current stack.
 **Example**
 
 ```ts
-let size = router.getLength();
+let size = this.getUIContext().getRouter().getLength();
 console.log('pages stack size = ' + size);
 ```
 
-## router.getState
+## router.getState<sup>(deprecated)</sup>
 
 getState(): RouterState
 
 Obtains state information about the page at the top of the navigation stack.
+
+> **NOTE**
+>
+> This API is deprecated since API version 18. You are advised to use [getState](js-apis-arkui-UIContext.md#getstate) instead on the obtained [Router](js-apis-arkui-UIContext.md#router) object.
+>
+> Since API version 10, you can use the [getRouter](js-apis-arkui-UIContext.md#getrouter) API in [UIContext](js-apis-arkui-UIContext.md#uicontext) to obtain the [Router](js-apis-arkui-UIContext.md#router) object associated with the current UI context.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -1130,17 +1254,23 @@ Obtains state information about the page at the top of the navigation stack.
 **Example**
 
 ```ts
-let page = router.getState();
+let page = this.getUIContext().getRouter().getState();
 console.log('current index = ' + page.index);
 console.log('current name = ' + page.name);
 console.log('current path = ' + page.path);
 ```
 
-## router.getStateByIndex<sup>12+</sup>
+## router.getStateByIndex<sup>(deprecated)</sup>
 
 getStateByIndex(index: number): RouterState | undefined
 
 Obtains the status information about a page by its index.
+
+> **NOTE**
+>
+> This API is supported since API version 12 and deprecated since API version 18. You are advised to use [getStateByIndex](js-apis-arkui-UIContext.md#getstatebyindex12) instead on the obtained [Router](js-apis-arkui-UIContext.md#router) object.
+>
+> Since API version 12, you can use the [getRouter](js-apis-arkui-UIContext.md#getrouter) API in [UIContext](js-apis-arkui-UIContext.md#uicontext) to obtain the [Router](js-apis-arkui-UIContext.md#router) object associated with the current UI context.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -1169,11 +1299,17 @@ if (options != undefined) {
   console.log('params = ' + options.params);
 }
 ```
-## router.getStateByUrl<sup>12+</sup>
+## router.getStateByUrl<sup>(deprecated)</sup>
 
 getStateByUrl(url: string): Array&lt;RouterState&gt;
 
 Obtains the status information about a page by its URL.
+
+> **NOTE**
+>
+> This API is supported since API version 12 and deprecated since API version 18. You are advised to use [getStateByUrl](js-apis-arkui-UIContext.md#getstatebyurl12) instead on the obtained [Router](js-apis-arkui-UIContext.md#router) object.
+>
+> Since API version 12, you can use the [getRouter](js-apis-arkui-UIContext.md#getrouter) API in [UIContext](js-apis-arkui-UIContext.md#uicontext) to obtain the [Router](js-apis-arkui-UIContext.md#router) object associated with the current UI context.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -1216,11 +1352,17 @@ Describes the page routing state.
 | path  | string | Yes  | Path of the current page.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | params<sup>12+</sup>  | Object |  Yes | Parameters carried on the current page.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                        |
 
-## router.showAlertBeforeBackPage<sup>9+</sup>
+## router.showAlertBeforeBackPage<sup>(deprecated)</sup>
 
 showAlertBeforeBackPage(options: EnableAlertOptions): void
 
 Enables the display of a confirm dialog box before returning to the previous page.
+
+> **NOTE**
+>
+> This API is supported since API version 9 and deprecated since API version 18. You are advised to use [showAlertBeforeBackPage](js-apis-arkui-UIContext.md#showalertbeforebackpage) instead on the obtained [Router](js-apis-arkui-UIContext.md#router) object.
+>
+> Since API version 10, you can use the [getRouter](js-apis-arkui-UIContext.md#getrouter) API in [UIContext](js-apis-arkui-UIContext.md#uicontext) to obtain the [Router](js-apis-arkui-UIContext.md#router) object associated with the current UI context.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -1247,7 +1389,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
-  router.showAlertBeforeBackPage({
+  this.getUIContext().getRouter().showAlertBeforeBackPage({
     message: 'Message Info'
   });
 } catch (err) {
@@ -1266,11 +1408,17 @@ Describes the confirm dialog box.
 | ------- | ------ | ---- | -------- |
 | message | string | Yes   | Content displayed in the confirm dialog box.|
 
-## router.hideAlertBeforeBackPage<sup>9+</sup>
+## router.hideAlertBeforeBackPage<sup>(deprecated)</sup>
 
 hideAlertBeforeBackPage(): void
 
 Disables the display of a confirm dialog box before returning to the previous page.
+
+> **NOTE**
+>
+> This API is supported since API version 9 and deprecated since API version 18. You are advised to use [hideAlertBeforeBackPage](js-apis-arkui-UIContext.md#hidealertbeforebackpage) instead on the obtained [Router](js-apis-arkui-UIContext.md#router) object.
+>
+> Since API version 10, you can use the [getRouter](js-apis-arkui-UIContext.md#getrouter) API in [UIContext](js-apis-arkui-UIContext.md#uicontext) to obtain the [Router](js-apis-arkui-UIContext.md#router) object associated with the current UI context.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -1279,14 +1427,20 @@ Disables the display of a confirm dialog box before returning to the previous pa
 **Example**
 
 ```ts
-router.hideAlertBeforeBackPage();
+this.getUIContext().getRouter().hideAlertBeforeBackPage();   
 ```
 
-##  router.getParams
+##  router.getParams<sup>(deprecated)</sup>
 
 getParams(): Object
 
 Obtains the parameters passed from the page that initiates redirection to the current page.
+
+> **NOTE**
+>
+> This API is deprecated since API version 18. You are advised to use [getParams](js-apis-arkui-UIContext.md#getparams) instead on the obtained [Router](js-apis-arkui-UIContext.md#router) object.
+>
+> Since API version 10, you can use the [getRouter](js-apis-arkui-UIContext.md#getrouter) API in [UIContext](js-apis-arkui-UIContext.md#uicontext) to obtain the [Router](js-apis-arkui-UIContext.md#router) object associated with the current UI context.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -1301,7 +1455,7 @@ Obtains the parameters passed from the page that initiates redirection to the cu
 **Example**
 
 ```ts
-router.getParams();
+this.getUIContext().getRouter().getParams();
 ```
 
 ## RouterOptions
@@ -1369,7 +1523,7 @@ export default {
 // detail page
 export default {
   onInit() {
-    console.info('showData1:' + router.getParams()['data1']);
+    console.info('showData1:' + this.getUIContext().getRouter().getParams()['data1']);
   }
 }
 ```
@@ -1378,8 +1532,9 @@ export default {
 
 > **NOTE**
 > 
-> Directly using **router** can lead to ambiguous instance issues. To avoid this, it is recommended that you obtain a **UIContext** instance using the [getUIContext](js-apis-arkui-UIContext.md#uicontext) API, and then obtain the **router** instance bound to the context through the [getRouter](js-apis-arkui-UIContext.md#getrouter) API.
+> Directly using **router** can lead to [ambiguous instance issues](../../ui/arkts-global-interface.md). To avoid this, obtain a **UIContext** instance using [getUIContext](js-apis-arkui-UIContext.md#uicontext), and then obtain the associated **Router** object using [getRouter](js-apis-arkui-UIContext.md#getrouter).
 
+<!--deperecated_code_no_check-->
 ```ts
 // Navigate to the target page through router.pushUrl with the params parameter carried.
 import { router } from '@kit.ArkUI';
@@ -1387,20 +1542,20 @@ import { BusinessError } from '@kit.BasicServicesKit'
 
 // Define the class for passing parameters.
 class innerParams {
-  array: number[]
+  array: number[];
 
   constructor(tuple: number[]) {
-    this.array = tuple
+    this.array = tuple;
   }
 }
 
 class routerParams {
-  text: string
-  data: innerParams
+  text: string;
+  data: innerParams;
 
   constructor(str: string, tuple: number[]) {
-    this.text = str
-    this.data = new innerParams(tuple)
+    this.text = str;
+    this.data = new innerParams(tuple);
   }
 }
 
@@ -1449,31 +1604,31 @@ struct Index {
 import { router } from '@kit.ArkUI';
 
 class innerParams {
-  array: number[]
+  array: number[];
 
   constructor(tuple: number[]) {
-    this.array = tuple
+    this.array = tuple;
   }
 }
 
 class routerParams {
-  text: string
-  data: innerParams
+  text: string;
+  data: innerParams;
 
   constructor(str: string, tuple: number[]) {
-    this.text = str
-    this.data = new innerParams(tuple)
+    this.text = str;
+    this.data = new innerParams(tuple);
   }
 }
 
 @Entry
 @Component
 struct Second {
-  private content: string = "This is the second page."
+  private content: string = "This is the second page.";
   // You are advised to use this.getUIContext().getRouter().getParams().
-  @State text: string = (router.getParams() as routerParams).text
-  @State data: object = (router.getParams() as routerParams).data
-  @State secondData: string = ''
+  @State text: string = (this.getUIContext().getRouter().getParams() as routerParams).text;
+  @State data: object = (this.getUIContext().getRouter().getParams() as routerParams).data;
+  @State secondData: string = '';
 
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
@@ -1483,7 +1638,7 @@ struct Second {
       Text(this.text)
         .fontSize(30)
         .onClick(() => {
-          this.secondData = (this.data['array'][1]).toString()
+          this.secondData = (this.data['array'][1]).toString();
         })
         .margin({ top: 20 })
       Text(`This is the data passed from the first page: ${this.secondData}`)
@@ -1503,7 +1658,7 @@ push(options: RouterOptions): void
 
 Navigates to a specified page in the application.
 
-This API is deprecated since API version 9. You are advised to use [pushUrl<sup>9+</sup>](#routerpushurl9) instead.
+This API is deprecated since API version 9. You are advised to use [pushUrl](js-apis-arkui-UIContext.md#pushurl) instead.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -1518,20 +1673,20 @@ This API is deprecated since API version 9. You are advised to use [pushUrl<sup>
 
 ```ts
 class innerParams {
-  data3: number[]
+  data3: number[];
 
   constructor(tuple: number[]) {
-    this.data3 = tuple
+    this.data3 = tuple;
   }
 }
 
 class routerParams {
-  data1: string
-  data2: innerParams
+  data1: string;
+  data2: innerParams;
 
   constructor(str: string, tuple: number[]) {
-    this.data1 = str
-    this.data2 = new innerParams(tuple)
+    this.data1 = str;
+    this.data2 = new innerParams(tuple);
   }
 }
 
@@ -1547,7 +1702,7 @@ replace(options: RouterOptions): void
 
 Replaces the current page with another one in the application and destroys the current page.
 
-This API is deprecated since API version 9. You are advised to use [replaceUrl<sup>9+</sup>](#routerreplaceurl9) instead.
+This API is deprecated since API version 9. You are advised to use [replaceUrl](js-apis-arkui-UIContext.md#replaceurl) instead.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Lite
 
@@ -1561,10 +1716,10 @@ This API is deprecated since API version 9. You are advised to use [replaceUrl<s
 
 ```ts
 class routerParams {
-  data1: string
+  data1: string;
 
   constructor(str: string) {
-    this.data1 = str
+    this.data1 = str;
   }
 }
 
@@ -1580,7 +1735,7 @@ enableAlertBeforeBackPage(options: EnableAlertOptions): void
 
 Enables the display of a confirm dialog box before returning to the previous page.
 
-This API is deprecated since API version 9. You are advised to use [showAlertBeforeBackPage<sup>9+</sup>](#routershowalertbeforebackpage9) instead.
+This API is deprecated since API version 9. You are advised to use [showAlertBeforeBackPage](js-apis-arkui-UIContext.md#showalertbeforebackpage) instead.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -1604,7 +1759,7 @@ disableAlertBeforeBackPage(): void
 
 Disables the display of a confirm dialog box before returning to the previous page.
 
-This API is deprecated since API version 9. You are advised to use [hideAlertBeforeBackPage<sup>9+</sup>](#routerhidealertbeforebackpage9) instead.
+This API is deprecated since API version 9. You are advised to use [hideAlertBeforeBackPage](js-apis-arkui-UIContext.md#hidealertbeforebackpage) instead.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 

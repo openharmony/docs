@@ -4,7 +4,7 @@ For details about the corresponding algorithm specifications, see [Scrypt](crypt
 
 ## How to Develop
 
-1. Create an [ScryptSpec](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#scryptspec16) object and use it as a parameter for key derivation.
+1. Create an [ScryptSpec](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#scryptspec18) object and use it as a parameter for key derivation.
    
    **SCRYPTSpec** is a child class of [KdfSpec](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#kdfspec11). You need to specify the following:
 

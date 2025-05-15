@@ -1,8 +1,6 @@
 # Encryption and Decryption by Segment with an SM4 Symmetric Key (GCM Mode) (C/C++)
 
-
 For details about the algorithm specifications, see [SM4](crypto-sym-encrypt-decrypt-spec.md#sm4).
-
 
 ## Adding the Dynamic Library in the CMake Script
 ```txt
@@ -10,7 +8,6 @@ target_link_libraries(entry PUBLIC libohcrypto.so)
 ```
 
 **Encryption**
-
 
 1. Call [OH_CryptoSymKeyGenerator_Create](../../reference/apis-crypto-architecture-kit/_crypto_sym_key_api.md#oh_cryptosymkeygenerator_create) and [OH_CryptoSymKeyGenerator_Generate](../../reference/apis-crypto-architecture-kit/_crypto_sym_key_api.md#oh_cryptosymkeygenerator_generate) to generate a 128-bit SM4 symmetric key (**OH_CryptoSymKey**).
    
@@ -41,7 +38,6 @@ target_link_libraries(entry PUBLIC libohcrypto.so)
 
 8. Call [OH_CryptoSymKeyGenerator_Destroy](../../reference/apis-crypto-architecture-kit/_crypto_sym_key_api.md#oh_cryptosymkeygenerator_destroy), [OH_CryptoSymCipher_Destroy](../../reference/apis-crypto-architecture-kit/_crypto_sym_cipher_api.md#oh_cryptosymcipher_destroy), and [OH_CryptoSymCipherParams_Destroy](../../reference/apis-crypto-architecture-kit/_crypto_sym_cipher_api.md#oh_cryptosymcipherparams_destroy) to destroy the instances created.
 
-
 **Decryption**
 
 1. Call [OH_CryptoSymCipher_Create](../../reference/apis-crypto-architecture-kit/_crypto_sym_cipher_api.md#oh_cryptosymcipher_create) with the string parameter **'SM4_128|GCM|PKCS7'** to create a **Cipher** instance for decryption. The key type is **SM4_128**, block cipher mode is **GCM**, and the padding mode is **PKCS7**.
@@ -51,7 +47,6 @@ target_link_libraries(entry PUBLIC libohcrypto.so)
 3. Set the size of the data to be passed in each time to 20 bytes, and call [OH_CryptoSymCipher_Update](../../reference/apis-crypto-architecture-kit/_crypto_sym_cipher_api.md#oh_cryptosymcipher_update) multiple times to pass in the data (ciphertext) to be decrypted.
 
 4. Call [OH_CryptoSymCipher_Final](../../reference/apis-crypto-architecture-kit/_crypto_sym_cipher_api.md#oh_cryptosymcipher_final) to generate the plaintext.
-
 
 **Example**
 
@@ -119,7 +114,7 @@ static OH_Crypto_ErrCode doTestSm4GcmSeg()
         goto end;
     }
 
-    // Encrypt data.
+    // Encrypt the message.
     ret = OH_CryptoSymCipher_Create("SM4_128|GCM|PKCS7", &encCtx);
     if (ret != CRYPTO_SUCCESS) {
         goto end;
@@ -153,7 +148,7 @@ static OH_Crypto_ErrCode doTestSm4GcmSeg()
         goto end;
     }
     
-    // Decrypt data.
+    // Decrypt the message.
     cipherBlob = {.data = reinterpret_cast<uint8_t *>(cipherText), .len = (size_t)cipherLen};
     msgBlob.data -= strlen(plainText) - rem;
     msgBlob.len = strlen(plainText);

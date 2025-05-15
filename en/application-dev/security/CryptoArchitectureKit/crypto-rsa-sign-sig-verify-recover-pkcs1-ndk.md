@@ -1,8 +1,6 @@
 # Signature Recovery Using an RSA Key Pair (PKCS1 Mode) (C/C++)
 
-
 For details about the algorithm specifications, see [RSA](crypto-sign-sig-verify-overview.md#rsa).
-
 
 ## Adding the Dynamic Library in the CMake Script
 ```txt
@@ -11,7 +9,6 @@ target_link_libraries(entry PUBLIC libohcrypto.so)
 
 ## How to Develop
 
-
 1. Call [OH_CryptoVerify_Create](../../reference/apis-crypto-architecture-kit/_crypto_signature_api.md#oh_cryptoverify_create) with the string parameter **'RSA1024|PKCS1|SHA256|Recover'** to create a **Verify** instance. The key parameters must be the same as that used to create the **Sign** instance.
 
 2. Call [OH_CryptoVerify_Init](../../reference/apis-crypto-architecture-kit/_crypto_signature_api.md#oh_cryptoverify_init) to initialize the **Verify** instance by using the public key (**OH_CryptoPubKey**).
@@ -19,7 +16,6 @@ target_link_libraries(entry PUBLIC libohcrypto.so)
 3. Call [OH_CryptoVerify_Recover](../../reference/apis-crypto-architecture-kit/_crypto_signature_api.md#oh_cryptoverify_recover) to restore the data.
 
 **Example**
-
 ```c++
 #include "CryptoArchitectureKit/crypto_common.h"
 #include "CryptoArchitectureKit/crypto_signature.h"

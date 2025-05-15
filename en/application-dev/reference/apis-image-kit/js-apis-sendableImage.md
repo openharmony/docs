@@ -363,8 +363,9 @@ Reads the pixels of this image and writes the data to an ArrayBuffer. This API u
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
+import { sendableImage } from '@kit.ImageKit';
 
-async function Demo() {
+async function Demo(pixelMap : sendableImage.PixelMap) {
     const readBuffer: ArrayBuffer = new ArrayBuffer(96); // 96 is the size of the pixel buffer to create. The value is calculated as follows: height * width *4.
     if (pixelMap != undefined) {
         pixelMap.readPixelsToBuffer(readBuffer).then(() => {
@@ -1474,10 +1475,11 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 **Example**
 
 ```ts
+import { sendableImage } from '@kit.ImageKit';
 import { colorSpaceManager } from '@kit.ArkGraphics2D';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function Demo() {
+async function Demo(pixelMap : sendableImage.PixelMap) {
     let colorSpaceName = colorSpaceManager.ColorSpace.SRGB;
     let targetColorSpace: colorSpaceManager.ColorSpaceManager = colorSpaceManager.create(colorSpaceName);
     pixelMap.applyColorSpace(targetColorSpace).then(() => {

@@ -27,7 +27,7 @@
 | bundle_name | string | 应用名称。 |
 | pid | number | 应用的进程ID。|
 | uid | number | 应用的用户ID。 |
-| uuid | string | 故障ID。 |
+| uuid | string | 根据故障信息生成的故障特征码，用于标识特征相同的崩溃故障。 |
 | exception | object | 异常信息, 详见[exception字段说明](#exception字段说明)。包含故障简要信息，全量故障信息见external_log文件。 |
 | hilog | string[] | 日志信息，最多显示100行hilog日志。更多日志请查看故障日志文件。|
 | threads | object[] | 全量线程调用栈，详见[thread字段说明](#thread字段说明)。仅NativeCrash类型的崩溃事件提供。 |
