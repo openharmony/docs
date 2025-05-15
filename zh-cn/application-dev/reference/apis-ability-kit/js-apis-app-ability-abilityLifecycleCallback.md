@@ -498,7 +498,7 @@ import { AbilityLifecycleCallback, UIAbility } from '@kit.AbilityKit';
 import { window } from '@kit.ArkUI';
 
 // 导入GlobalContext，以开发者自己声明的路径为准
-import { GlobalContext } from '../GlobalContext'
+import { GlobalContext } from '../GlobalContext';
 
 // 声明ability生命周期回调，需配置所有回调后才可以在applicationContext注册
 let abilityLifecycleCallback: AbilityLifecycleCallback = {
@@ -593,7 +593,7 @@ MySecondAbility.ts
 import { UIAbility } from '@kit.AbilityKit';
 
 // 导入GlobalContext，以开发者自己声明的路径为准
-import { GlobalContext } from '../GlobalContext'
+import { GlobalContext } from '../GlobalContext';
 import { BusinessError } from '@ohos.base';
 
 export default class MySecondAbility extends UIAbility {

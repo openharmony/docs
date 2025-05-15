@@ -133,6 +133,12 @@ onFileReady : AsyncCallback&lt;File&gt;
 
 **系统能力**：SystemCapability.FileManagement.StorageService.Backup
 
+**返回值：**
+
+| 参数名     | 类型          | 必填 | 说明                                                        |
+| ---------- | ------------- | ---- | ----------------------------------------------------------- |
+| File | [File](#file)     | 是   | 返回对应文件的[File](#file)内容。                       |
+
 **错误码：**
 
 以下错误码的详细介绍请参见[文件管理子系统错误码](errorcode-filemanagement.md)。
@@ -164,7 +170,7 @@ onFileReady : AsyncCallback&lt;File&gt;
 
 ### onBundleBegin
 
-onBundleBegin : AsyncCallback&lt;string, void | string&gt;
+onBundleBegin: AsyncCallback&lt;string, void | string&gt;
 
 回调函数。当应用备份/恢复开始时，如果成功触发回调，返回对应的bundleName；如果触发失败，则返回err错误对象。从API version 12开始，返回err的同时，将同时返回第二个string参数bundleName。
 
@@ -189,7 +195,6 @@ onBundleBegin : AsyncCallback&lt;string, void | string&gt;
 | 13600001 | IPC error.                                             |
 | 13900005 | I/O error.                                             |
 | 13900011 | Out of memory.                                         |
-| 13900020 | Invalid argument.                                      |
 | 13900025 | No space left on device.                               |
 | 13900042 | Unknown error.                                         |
 
@@ -221,7 +226,7 @@ onBundleBegin : AsyncCallback&lt;string, void | string&gt;
 
 ### onBundleEnd
 
-onBundleEnd : AsyncCallback&lt;string, void | string&gt;
+onBundleEnd: AsyncCallback&lt;string, void | string&gt;
 
 回调函数。当应用备份/恢复结束后，如果成功触发回调，返回对应的bundleName；如果触发失败，则返回err错误对象。从API version 12开始，返回err的同时，将同时返回第二个string参数bundleName。
 
@@ -244,7 +249,7 @@ onBundleEnd : AsyncCallback&lt;string, void | string&gt;
 | 13500003 | Backup or restore timed out.     |
 | 13500004 | Application extension death.     |
 | 13600001 | IPC error.                       |
-| 13900005 | I/O error.                       |
+| 13900005 | I/O error.                      |
 | 13900011 | Out of memory.                   |
 | 13900020 | Invalid argument.                |
 | 13900025 | No space left on device.         |
@@ -278,7 +283,7 @@ onBundleEnd : AsyncCallback&lt;string, void | string&gt;
 
 ### onAllBundlesEnd
 
-onAllBundlesEnd : AsyncCallback&lt;undefined&gt;
+onAllBundlesEnd: AsyncCallback&lt;undefined&gt;
 
 回调函数。当所有bundle的备份/恢复过程结束成功时触发回调，如果触发失败，则返回err错误对象。
 
@@ -313,7 +318,7 @@ onAllBundlesEnd : AsyncCallback&lt;undefined&gt;
 
 ### onBackupServiceDied
 
-onBackupServiceDied : Callback&lt;undefined&gt;
+onBackupServiceDied: Callback&lt;undefined&gt;
 
 回调函数。备份服务死亡时触发回调，如果触发失败，则返回err错误对象。
 
@@ -402,10 +407,10 @@ getLocalCapabilities(callback: AsyncCallback&lt;FileData&gt;): void
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
 | 13600001 | IPC error.               |
-| 13900005 | I/O error.              |
+| 13900005 | I/O error.               |
 | 13900011 | Out of memory.           |
 | 13900025 | No space left on device. |
-| 13900042 | Unknown error.           |
+| 13900042 | Unknown error.          |
 
 **示例：**
 
@@ -433,6 +438,7 @@ getLocalCapabilities(callback: AsyncCallback&lt;FileData&gt;): void
 
  ```json
  {
+  "backupVersion" : "16.0",
   "bundleInfos" :[{
     "allToBackup" : true,
     "extensionName" : "BackupExtensionAbility",
@@ -575,7 +581,7 @@ getLocalCapabilities(dataList:Array&lt;IncrementalBackupTime&gt;): Promise&lt;Fi
 
 ## backup.getBackupInfo<sup>12+</sup>
 
-getBackupInfo(bundleToBackup: string): string;
+getBackupInfo(bundleToBackup: string): string
 
 获取需要备份的应用信息。
 
@@ -601,13 +607,9 @@ getBackupInfo(bundleToBackup: string): string;
 
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
-| 13600001 | IPC error.               |
-| 13900001 | Operation not permitted. |
-| 13900005 | I/O error.               |
-| 13900011 | Out of memory.           |
-| 13900020 | Invalid argument.        |
-| 13900025 | No space left on device. |
-| 13900042 | Unknown error.           |
+| 201      | Permission verification failed, usually the result returned by VerifyAccessToken. |
+| 202      | Permission verification failed, application which is not a system application uses system API. |
+| 401      | The input parameter is invalid. |
 
 **示例：**
 
@@ -630,7 +632,7 @@ getBackupInfo(bundleToBackup: string): string;
 
 ## backup.updateTimer<sup>12+</sup>
 
-updateTimer(bundleName: string, timeout: number): void;
+updateTimer(bundleName: string, timeout: number): boolean
 
 调用时机为onBundleBegin之后，onBundleEnd之前。
 
@@ -643,7 +645,7 @@ updateTimer(bundleName: string, timeout: number): void;
 | 参数名          | 类型     | 必填 | 说明                       |
 | --------------- | -------- | ---- | -------------------------- |
 | bundleName | string | 是   | 需要设置备份或恢复时长的应用名称。 |
-| timeout | number | 是   | 备份或恢复的限制时长，入参范围[0,14400000]，单位:ms。 |
+| timeout | number | 是   | 备份或恢复的限制时长，入参范围[0,14400000]，单位：ms。 |
 
 **返回值：**
 
@@ -684,7 +686,7 @@ updateTimer(bundleName: string, timeout: number): void;
 
 ## backup.updateSendRate<sup>12+</sup>
 
-updateSendRate(bundleName: string, sendRate: number): boolean;
+updateSendRate(bundleName: string, sendRate: number): boolean
 
 调用时机为onBundleBegin之后，onBundleEnd之前。
 
@@ -742,7 +744,7 @@ updateSendRate(bundleName: string, sendRate: number): boolean;
 
 ### constructor
 
-constructor(callbacks: GeneralCallbacks);
+constructor(callbacks: GeneralCallbacks)
 
 备份流程的构造函数，用于获取SessionBackup类的实例。
 
@@ -1131,7 +1133,7 @@ release(): Promise&lt;void&gt;
 
 ### constructor
 
-constructor(callbacks: GeneralCallbacks);
+constructor(callbacks: GeneralCallbacks)
 
 恢复流程的构造函数，用于获取SessionRestore类的实例。
 
@@ -1226,7 +1228,7 @@ appendBundles(remoteCapabilitiesFd: number, bundlesToBackup: string[], callback:
 | 13600001 | IPC error.               |
 | 13900001 | Operation not permitted. |
 | 13900005 | I/O error.               |
-| 13900011 | Out of memory.           |
+| 13900011 | Out of memory.          |
 | 13900020 | Invalid argument.        |
 | 13900025 | No space left on device. |
 | 13900042 | Unknown error.           |
@@ -1454,7 +1456,7 @@ getFileHandle(fileMeta: FileMeta, callback: AsyncCallback&lt;void&gt;): void
 > - 使用getFileHandle前需要获取SessionRestore类的实例，并且成功通过appendBundles添加需要待恢复的应用。
 > - 开发者可以通过onFileReady回调来获取文件句柄，当客户端完成文件操作时，需要使用publishFile来进行发布。
 > - 根据所需要恢复的文件个数，可以多次调用getFileHandle。
-> - 所需恢复的文件，不支持使用相对路径(../)和软链接。
+> - 所需恢复的文件，不支持使用相对路径（../）和软链接。
 
 **需要权限**：ohos.permission.BACKUP
 
@@ -1475,7 +1477,7 @@ getFileHandle(fileMeta: FileMeta, callback: AsyncCallback&lt;void&gt;): void
 | -------- | ----------------------- |
 | 13600001 | IPC error.               |
 | 13900001 | Operation not permitted. |
-| 13900020 | Invalid argument.       |
+| 13900020 | Invalid argument.        |
 | 13900042 | Unknown error.           |
 
 **示例：**
@@ -1549,7 +1551,7 @@ getFileHandle(fileMeta: FileMeta): Promise&lt;void&gt;
 > - 使用getFileHandle前需要获取SessionRestore类的实例，并且成功通过appendBundles添加需要待恢复的应用。
 > - 开发者可以通过onFileReady回调来获取文件句柄，当客户端完成文件操作时，需要使用publishFile来进行发布。
 > - 根据所需要恢复的文件个数，可以多次调用getFileHandle。
-> - 所需恢复的文件，不支持使用相对路径(../)和软链接。
+> - 所需恢复的文件，不支持使用相对路径（../）和软链接。
 
 **需要权限**：ohos.permission.BACKUP
 
@@ -1573,10 +1575,10 @@ getFileHandle(fileMeta: FileMeta): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
-| 13600001 | IPC error.               |
+| 13600001 | IPC error.              |
 | 13900001 | Operation not permitted. |
 | 13900020 | Invalid argument.        |
-| 13900042 | Unknown error.           |
+| 13900042 | Unknown error.          |
 
 **示例：**
 
@@ -1974,7 +1976,7 @@ release(): Promise&lt;void&gt;
 
 ### constructor<sup>12+</sup>
 
-constructor(callbacks: GeneralCallbacks);
+constructor(callbacks: GeneralCallbacks)
 
 增量备份流程的构造函数，用于获取IncrementalBackupSession类的实例。
 
@@ -2286,6 +2288,7 @@ appendBundles(bundlesToBackup: Array&lt;IncrementalBackupData&gt;, infos: string
     console.error('appendBundles failed with err: ' + JSON.stringify(err));
   }); 
   ```
+
 ### release<sup>12+</sup>
 
 release(): Promise&lt;void&gt;

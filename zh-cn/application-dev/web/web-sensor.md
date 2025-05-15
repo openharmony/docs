@@ -54,7 +54,6 @@ Web组件在对接运动和方向传感器时，需配置[onPermissionRequest](.
        try {
          atManager.requestPermissionsFromUser(getContext(this), ['ohos.permission.ACCELEROMETER', 'ohos.permission.GYROSCOPE']
            , (err: BusinessError, data: PermissionRequestResult) => {
-           console.info('data:' + JSON.stringify(data));
            console.info('data permissions:' + data.permissions);
            console.info('data authResults:' + data.authResults);
          })

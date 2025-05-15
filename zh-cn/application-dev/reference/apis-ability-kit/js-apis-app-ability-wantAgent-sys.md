@@ -81,7 +81,7 @@ let wantAgentInfo: wantAgent.WantAgentInfo = {
 //getWantAgent回调
 function getWantAgentCallback(err: BusinessError, data: _WantAgent) {
   if (err) {
-    console.info(`getWantAgent failed, code: ${err.code}, message: ${err.message}`);
+    console.error(`getWantAgent failed, code: ${err.code}, message: ${err.message}`);
   } else {
     wantAgentData = data;
   }
@@ -187,7 +187,7 @@ let wantAgentInfo: wantAgent.WantAgentInfo = {
 //getWantAgent回调
 function getWantAgentCallback(err: BusinessError, data: _WantAgent) {
   if (err) {
-    console.info(`getWantAgent failed, code: ${err.code}, message: ${err.message}`);
+    console.error(`getWantAgent failed, code: ${err.code}, message: ${err.message}`);
   } else {
     wantAgentData = data;
   }

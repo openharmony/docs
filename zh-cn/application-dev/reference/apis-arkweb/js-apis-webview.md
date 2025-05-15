@@ -297,9 +297,9 @@ struct WebComponent {
           }
         })
         Button('SendToH5 setNumber').margin({
-        top: 10,
-        right: 800,
-      })
+          top: 10,
+          right: 800,
+        })
         .onClick(() => {
           // 使用本侧端口发送消息给HTML5
           try {
@@ -586,7 +586,7 @@ struct WebComponent {
 
 ## WebviewController
 
-通过WebviewController可以控制Web组件各种行为。一个WebviewController对象只能控制一个Web组件，且必须在Web组件和WebviewController绑定后，才能调用WebviewController上的方法（静态方法除外）。
+通过WebviewController可以控制Web组件各种行为（包括页面导航、声明周期状态、JavaScript交互等行为）。一个WebviewController对象只能控制一个Web组件，且必须在Web组件和WebviewController绑定后，才能调用WebviewController上的方法（静态方法除外）。
 
 ### constructor<sup>11+</sup>
 
@@ -1220,7 +1220,7 @@ accessBackward(): boolean
 
 | 类型    | 说明                             |
 | ------- | -------------------------------- |
-| boolean | 可以后退返回true,否则返回false。 |
+| boolean | 当前页面可以后退返回true,否则返回false。 |
 
 **错误码：**
 
@@ -1263,7 +1263,7 @@ struct WebComponent {
 
 backward(): void
 
-按照历史栈，后退一个页面。一般结合accessBackward一起使用。
+按照历史栈，后退一个页面。一般结合[accessBackward](accessbackward)一起使用。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -1771,7 +1771,12 @@ struct Index {
 
 runJavaScript(script: string, callback : AsyncCallback\<string>): void
 
-异步执行JavaScript脚本，并通过回调方式返回脚本执行的结果。runJavaScript需要在loadUrl完成后，比如onPageEnd中调用。
+在当前显示页面的上下文中异步执行JavaScript脚本，脚本执行的结果将通过异步回调方式返回。此方法必须在用户界面（UI）线程上使用 ，并且回调也将在用户界面（UI）线程上调用。
+
+> **说明：**
+>
+> - 跨导航操作（如loadUrl）时，JavaScript状态将不再保留。例如，调用loadUrl前定义的全局变量和函数在加载的页面中将不存在。
+> - 建议应用程序使用registerJavaScriptProxy来确保JavaScript状态能够在页面导航间保持。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -1856,8 +1861,12 @@ struct WebComponent {
 
 runJavaScript(script: string): Promise\<string>
 
-异步执行JavaScript脚本，并通过Promise方式返回脚本执行的结果。runJavaScript需要在loadUrl完成后，比如onPageEnd中调用。
+在当前显示页面的上下文中异步执行JavaScript脚本，脚本执行的结果将通过Promise方式返回。此方法必须在用户界面（UI）线程上使用 ，并且回调也将在用户界面（UI）线程上调用。
 
+> **说明：**
+>
+> - 跨导航操作（如loadUrl）时，JavaScript状态 将不再保留，例如，调用loadUrl前定义的全局变量和函数在加载的页面中将不存在。
+> - 建议应用程序使用registerJavaScriptProxy来确保JavaScript状态能够在页面导航间保持。
 **系统能力：** SystemCapability.Web.Webview.Core
 
 **参数：**
@@ -2765,7 +2774,7 @@ struct WebComponent {
 
 createWebMessagePorts(isExtentionType?: boolean): Array\<WebMessagePort>
 
-创建Web消息端口。完整示例代码参考[onMessageEventExt](#onmessageeventext10)。
+创建Web消息端口。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -2792,33 +2801,7 @@ createWebMessagePorts(isExtentionType?: boolean): Array\<WebMessagePort>
 
 **示例：**
 
-```ts
-// xxx.ets
-import { webview } from '@kit.ArkWeb';
-import { BusinessError } from '@kit.BasicServicesKit';
-
-@Entry
-@Component
-struct WebComponent {
-  controller: webview.WebviewController = new webview.WebviewController();
-  ports: webview.WebMessagePort[] = [];
-
-  build() {
-    Column() {
-      Button('createWebMessagePorts')
-        .onClick(() => {
-          try {
-            this.ports = this.controller.createWebMessagePorts();
-            console.log("createWebMessagePorts size:" + this.ports.length);
-          } catch (error) {
-            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
-          }
-        })
-      Web({ src: 'www.example.com', controller: this.controller })
-    }
-  }
-}
-```
+完整示例代码参考[onMessageEventExt](#onmessageeventext10)。
 
 ### postMessage
 
@@ -5982,6 +5965,12 @@ static getDefaultUserAgent(): string
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
+**返回值：**
+
+| 类型     | 说明           |
+| ------ | ------------ |
+| string | ArkWeb默认User-Agent字符串。 |
+
 **示例：**
 
 ```ts
@@ -8076,7 +8065,7 @@ webPageSnapshot(info: SnapshotInfo, callback: AsyncCallback\<SnapshotResult>): v
 | 参数名       | 类型           | 必填  | 说明                      |
 | ----------- | ------------- | ---- | ------------------------ |
 | info        | [SnapshotInfo](#snapshotinfo12)| 是   | 全量绘制结果入参。 |
-| callback        | [SnapshotResult](#snapshotresult12)| 是   | 全量绘制回调结果。 |
+| callback        | AsyncCallback\<[SnapshotResult](#snapshotresult12)>| 是   | 全量绘制回调结果。 |
 
 **示例：**
 
@@ -8693,7 +8682,7 @@ struct WebComponent {
 
 ```
 
-加载的html文件，位于应用资源目录resource/rawfile/index.html。
+加载的html文件，位于应用资源目录resource/resfile/index.html。
 ```html
 <!-- index.html -->
 <!DOCTYPE html>
@@ -8739,7 +8728,7 @@ struct WebComponent {
 </html>
 ```
 
-html中使用file协议通过XMLHttpRequest跨域访问本地js文件，js文件位于resource/rawfile/js/script.js。
+html中使用file协议通过XMLHttpRequest跨域访问本地js文件，js文件位于resource/resfile/js/script.js。
 <!--code_no_check-->
 ```javascript
 const body = document.body;
@@ -9510,11 +9499,13 @@ static configCookieSync(url: string, value: string, incognito?: boolean): void
 
 > **说明：**
 >
-> configCookie中的url，可以指定域名的方式来使得页面内请求也附带上cookie。
+> configCookieSync中的url，可以指定域名的方式来使得页面内请求也附带上cookie。
 >
 > 同步cookie的时机建议在Web组件加载之前完成。
 >
 > 若通过configCookieSync进行两次或多次设置cookie，则每次设置的cookie之间会通过"; "进行分隔。
+>
+> Cookie每30s周期性保存到磁盘中，也可以使用接口[saveCookieAsync](#savecookieasync)进行强制落盘。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -9856,6 +9847,10 @@ struct WebComponent {
 static saveCookieAsync(callback: AsyncCallback\<void>): void
 
 将当前存在内存中的cookie异步保存到磁盘中。
+
+> **说明：**
+>
+> Cookie信息存储在应用沙箱路径下/proc/{pid}/root/data/storage/el2/base/cache/web/Cookies。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -10371,7 +10366,7 @@ static deleteSessionCookie(): void
 
 > **说明：**
 >
-> 从API version9开始支持，从API version 11开始废弃。建议使用[clearSessionCookiesync](#clearsessioncookiesync11)替代
+> 从API version9开始支持，从API version 11开始废弃。建议使用[clearSessionCookieSync](#clearsessioncookiesync11)替代
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -12362,7 +12357,7 @@ struct WebComponent {
 | isDisplayIsolated<sup>12+</sup> | boolean   | 是   | 是   | 设置了该选项的scheme的内容是否只能从相同scheme的其他内容中显示或访问。<br>true表示设置了该选项的scheme的内容只能从相同scheme的其他内容中显示或访问，false表示设置了该选项的scheme的内容不是只能从相同scheme的其他内容中显示或访问。<br>默认值：true。           |
 | isSecure<sup>12+</sup> | boolean   | 是   | 是   | 设置了该选项的scheme是否将使用与应用于“https”的安全规则相同的安全规则来处理。true表示设置了该选项的scheme将使用与应用于“https”的安全规则相同的安全规则来处理，false表示设置了该选项的scheme不使用与应用于“https”的安全规则相同的安全规则来处理。<br>默认值：true。           |
 | isCspBypassing<sup>12+</sup> | boolean   | 是   | 是   | 设置了该选项的scheme可以绕过内容安全策略（CSP）检查。<br>true表示设置了该选项的scheme可以绕过内容安全策略（CSP）检查，false表示设置了该选项的scheme不可以绕过内容安全策略（CSP）检查。<br>默认值：true。<br>在大多数情况下，当设置isStandard为true时，不应设置此值。         |
-| isCodeCacheSupported<sup>12+</sup> | boolean   | 是   | 是   | 设置了该选项的scheme的js资源是否支持生成code cache。<br>true表示设置了该选项的scheme的js资源支持生成code，false表示设置了该选项的scheme的js资源不支持生成code。<br>默认值：false。         |
+| isCodeCacheSupported<sup>12+</sup> | boolean   | 是   | 是   | 设置了该选项的scheme的js资源是否支持生成code cache。<br>true表示设置了该选项的scheme的js资源支持生成code cache，false表示设置了该选项的scheme的js资源不支持生成code cache。<br>默认值：false。         |
 
 ## SecureDnsMode<sup>10+</sup>
 
@@ -14971,7 +14966,7 @@ WebHttpBodyStream是否采用分块传输。
 
 isEof(): boolean
 
-判断WebHttpBodyStream中的所有数据是否都已被读取。如果所有数据都已被读取，则返回true。对于分块传输类型的 WebHttpBodyStream，在第一次读取尝试之前返回false。
+判断WebHttpBodyStream中的所有数据是否都已被读取。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -14979,7 +14974,7 @@ isEof(): boolean
 
 | 类型   | 说明                      |
 | ------ | ------------------------- |
-| boolean | WebHttpBodyStream中的所有数据是否都已被读取。 |
+| boolean | WebHttpBodyStream中的所有数据是否都已被读取。<br>如果所有数据都已被读取，则返回true。对于分块传输类型的WebHttpBodyStream，在第一次读取尝试之前返回false。 |
 
 **示例：**
 

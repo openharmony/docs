@@ -335,8 +335,8 @@ If the device supports the low-latency channel and the sampling rate is set to 4
 The development process is similar to that in the common playback scenario. The only difference is that you need to set the low delay mode by calling [OH_AudioStreamBuilder_SetLatencyMode()](../../reference/apis-audio-kit/_o_h_audio.md#oh_audiostreambuilder_setlatencymode) when creating an audio stream builder.
 
 > **NOTE**
-> 
-> In audio recording scenarios, if [OH_AudioStream_Usage](../../reference/apis-audio-kit/_o_h_audio.md#oh_audiostream_usage) is set to **AUDIOSTREAM_USAGE_VOICE_COMMUNICATION** or **AUDIOSTREAM_USAGE_VIDEO_COMMUNICATION**, the low-latency mode cannot be set. The system determines the output audio channel based on the device capability.
+> - In audio recording scenarios, if [OH_AudioStream_Usage](../../reference/apis-audio-kit/_o_h_audio.md#oh_audiostream_usage) is set to **AUDIOSTREAM_USAGE_VOICE_COMMUNICATION** or **AUDIOSTREAM_USAGE_VIDEO_COMMUNICATION**, the low-latency mode cannot be set. The system determines the output audio channel based on the device capability.
+> - The low-latency mode requires robust data processing capabilities. If your application generates data slowly, it may lead to lag. Therefore, for typical music and video playback, this mode is not recommended. It is best suited for applications that are sensitive to latency, such as gaming and karaoke.
 
 The code snippet is as follows:
 
@@ -362,14 +362,13 @@ The code snippet is as follows:
 OH_AudioStreamBuilder_SetChannelLayout(builder, CH_LAYOUT_STEREO);
 ```
 
-## Playing Audio Files in AudioVivid Format
+## Playing Audio Files in Audio Vivid Format
 
-In the case of audio file playback in AudioVivid format, the callback function used for writing data is different from that in the common playback scenario. This callback function can write PCM data and metadata at the same time.
+In the case of audio file playback in Audio Vivid format, the callback function used for writing data is different from that in the common playback scenario. This callback function can write PCM data and metadata at the same time.
 
 The development process is similar to that in the common playback scenario. The only difference is that you need to call [OH_AudioStreamBuilder_SetWriteDataWithMetadataCallback()](../../reference/apis-audio-kit/_o_h_audio.md#oh_audiostreambuilder_setwritedatawithmetadatacallback) to set the callback function and call [OH_AudioStreamBuilder_SetEncodingType()](../../reference/apis-audio-kit/_o_h_audio.md#oh_audiostreambuilder_setencodingtype) to set the encoding type to **AUDIOSTREAM_ENCODING_TYPE_AUDIOVIVID** when creating an audio stream builder.
 
-When an audio file in AudioVivid format is played, the frame size is fixed. Therefore, do not call [OH_AudioStreamBuilder_SetFrameSizeInCallback()](../../reference/apis-audio-kit/_o_h_audio.md#oh_audiostreambuilder_setframesizeincallback) to set the frame size in the callback. In addition, when setting the number of audio channels and the audio channel layout, use the sum of the number of sound beds written into the audio source and the number of objects.
-
+When an audio file in Audio Vivid format is played, the frame size is fixed. Therefore, do not call [OH_AudioStreamBuilder_SetFrameSizeInCallback()](../../reference/apis-audio-kit/_o_h_audio.md#oh_audiostreambuilder_setframesizeincallback) to set the frame size in the callback. In addition, when setting the number of audio channels and the audio channel layout, use the sum of the number of sound beds written into the audio source and the number of objects.
 
 ```cpp
 // Customize a callback function for simultaneously writing PCM data and metadata.
