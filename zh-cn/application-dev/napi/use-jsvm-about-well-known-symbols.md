@@ -31,9 +31,9 @@ JSVM-API接口开发流程参考[使用JSVM-API实现JS与C/C++语言交互开�
 ### 使用接口获取Well-known symbols（以OH_JSVM_GetSymbolToStringTag为例）
 
 cpp部分代码
+```cpp
 #include <string>
 
-```cpp
 static JSVM_Value WellKnownSymbols(JSVM_Env env, JSVM_CallbackInfo info) {
     JSVM_VM vm;
     OH_JSVM_GetVM(env, &vm);
