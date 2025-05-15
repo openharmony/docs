@@ -8,76 +8,13 @@ The **PromptAction** module provides APIs for creating and showing toasts, dialo
 >
 > This module cannot be used in the file declaration of the [UIAbility](../apis-ability-kit/js-apis-app-ability-uiAbility.md). In other words, the APIs of this module can be used only after a component instance is created; they cannot be called in the lifecycle of the UIAbility.
 >
-> The functionality of this module depends on UI context. This means that the APIs of this module cannot be used where the UI context is unclear. For details, see [UIContext](js-apis-arkui-UIContext.md#uicontext). Except for UI-less scenarios<!--Del--> such as [ServiceExtension](../../application-models/serviceextensionability.md)<!--DelEnd-->, it is recommended that you use the dialog APIs provided by **UIContext**.
->
-> Since API version 10, you can use the [getPromptAction](js-apis-arkui-UIContext.md#getpromptaction) API in [UIContext](js-apis-arkui-UIContext.md#uicontext) to obtain the [PromptAction](js-apis-arkui-UIContext.md#promptaction) object associated with the current UI context.
+> The functionality of this module depends on UI context. This means that the APIs of this module cannot be used where [the UI context is unclear](../../ui/arkts-global-interface.md). For details, see [UIContext](js-apis-arkui-UIContext.md#uicontext). Except for UI-less scenarios<!--Del--> such as [ServiceExtension](../../application-models/serviceextensionability.md)<!--DelEnd-->, it is recommended that you use the dialog APIs provided by **UIContext**.
 
 ## Modules to Import
 
 ```ts
 import { promptAction } from '@kit.ArkUI';
 ```
-
-## promptAction.showToast
-
-showToast(options: ShowToastOptions): void
-
-Shows a toast.
-
-**Atomic service API**: This API can be used in atomic services since API version 11.
-
-**System capability**: SystemCapability.ArkUI.ArkUI.Full
-
-**Parameters**
-
-| Name    | Type                                   | Mandatory  | Description     |
-| ------- | ------------------------------------- | ---- | ------- |
-| options | [ShowToastOptions](#showtoastoptions) | Yes   | Toast options.|
-
-**Error codes**
-
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [promptAction Error Codes](errorcode-promptAction.md).
-
-| ID  | Error Message|
-| --------- | ------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
-| 100001    | Internal error. |
-
-**Example**
-
-```ts
-import { promptAction } from '@kit.ArkUI'
-import { BusinessError } from '@kit.BasicServicesKit';
-
-@Entry
-@Component
-struct toastExample {
-  build() {
-    Column() {
-      Button('Show toast').fontSize(20)
-        .onClick(() => {
-          try {
-            promptAction.showToast({
-              message: 'Hello World',
-              duration: 2000
-            });
-          } catch (error) {
-            let message = (error as BusinessError).message
-            let code = (error as BusinessError).code
-            console.error(`showToast args error code is ${code}, message is ${message}`);
-          };
-        })
-    }.height('100%').width('100%').justifyContent(FlexAlign.Center)
-  }
-}
-```
-Below is a toast in API version 11 and earlier versions.
-
-![en-us_image_0001](figures/toast-api11.gif)
-
-Below is a toast in API version 12 and later versions.
-
-![en-us_image_0001](figures/toast-api12.gif)
 
 ## promptAction.openToast<sup>18+</sup>
 
@@ -186,589 +123,6 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 See the example for [promptAction.openToaset18](#promptactionopentoast18).
 
-## promptAction.showDialog
-
-showDialog(options: ShowDialogOptions): Promise&lt;ShowDialogSuccessResponse&gt;
-
-Shows a dialog box. This API uses a promise to return the result asynchronously.
-
-**Atomic service API**: This API can be used in atomic services since API version 11.
-
-**System capability**: SystemCapability.ArkUI.ArkUI.Full
-
-**Parameters**
-
-| Name    | Type                                     | Mandatory  | Description    |
-| ------- | --------------------------------------- | ---- | ------ |
-| options | [ShowDialogOptions](#showdialogoptions) | Yes   | Dialog box options.|
-
-**Return value**
-
-| Type                                      | Description      |
-| ---------------------------------------- | -------- |
-| Promise&lt;[ShowDialogSuccessResponse](#showdialogsuccessresponse)&gt; | Promise used to return the dialog box response result.|
-
-**Error codes**
-
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [promptAction Error Codes](errorcode-promptAction.md).
-
-| ID  | Error Message|
-| --------- | ------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
-| 100001    | Internal error. |
-
-**Example**
-
-```ts
-import { promptAction } from '@kit.ArkUI'
-
-promptAction.showDialog({
-  title: 'Title Info',
-  message: 'Message Info',
-  buttons: [
-    {
-      text: 'button1',
-      color: '#000000'
-    },
-    {
-      text: 'button2',
-      color: '#000000'
-    }
-  ],
-})
-  .then(data => {
-    console.info('showDialog success, click button: ' + data.index);
-  })
-  .catch((err: Error) => {
-    console.info('showDialog error: ' + err);
-  })
-```
-
-![en-us_image_0002](figures/en-us_image_0002.gif)
-
-## promptAction.showDialog
-
-showDialog(options: ShowDialogOptions, callback: AsyncCallback&lt;ShowDialogSuccessResponse&gt;):void
-
-Shows a dialog box. This API uses an asynchronous callback to return the result.
-
-**Atomic service API**: This API can be used in atomic services since API version 11.
-
-**System capability**: SystemCapability.ArkUI.ArkUI.Full
-
-**Parameters**
-
-| Name     | Type                                      | Mandatory  | Description          |
-| -------- | ---------------------------------------- | ---- | ------------ |
-| options  | [ShowDialogOptions](#showdialogoptions)  | Yes   | Dialog box options.|
-| callback | AsyncCallback&lt;[ShowDialogSuccessResponse](#showdialogsuccessresponse)&gt; | Yes   | Callback used to return the dialog box response result.  |
-
-**Error codes**
-
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [promptAction Error Codes](errorcode-promptAction.md).
-
-| ID  | Error Message|
-| --------- | ------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
-| 100001    | Internal error. |
-
-**Example**
-
-```ts
-import { promptAction } from '@kit.ArkUI';
-import { BusinessError } from '@kit.BasicServicesKit';
-
-try {
-  promptAction.showDialog({
-    title: 'showDialog Title Info',
-    message: 'Message Info',
-    buttons: [
-      {
-        text: 'button1',
-        color: '#000000'
-      },
-      {
-        text: 'button2',
-        color: '#000000'
-      }
-    ]
-  }, (err, data) => {
-    if (err) {
-      console.info('showDialog err: ' + err);
-      return;
-    }
-    console.info('showDialog success callback, click button: ' + data.index);
-  });
-} catch (error) {
-  let message = (error as BusinessError).message
-  let code = (error as BusinessError).code
-  console.error(`showDialog args error code is ${code}, message is ${message}`);
-};
-```
-
-![en-us_image_0004](figures/en-us_image_0004.gif)
-
-When the **showInSubWindow** attribute is set to **true**, the toast can be displayed outside the window.
-
-```ts
-import { promptAction } from '@kit.ArkUI';
-import { BusinessError } from '@kit.BasicServicesKit';
-
-try {
-  promptAction.showDialog({
-    title: 'showDialog Title Info',
-    message: 'Message Info',
-    isModal: true,
-    showInSubWindow: true,
-    buttons: [
-      {
-        text: 'button1',
-        color: '#000000'
-      },
-      {
-        text: 'button2',
-        color: '#000000'
-      }
-    ]
-  }, (err, data) => {
-    if (err) {
-      console.info('showDialog err: ' + err);
-      return;
-    }
-    console.info('showDialog success callback, click button: ' + data.index);
-  });
-} catch (error) {
-  let message = (error as BusinessError).message
-  let code = (error as BusinessError).code
-  console.error(`showDialog args error code is ${code}, message is ${message}`);
-};
-```
-
-![en-us_image_0002_showinsubwindow](figures/en-us_image_0002_showinsubwindow.jpg)
-
-
-
-## promptAction.showActionMenu
-
-showActionMenu(options: ActionMenuOptions, callback: AsyncCallback&lt;ActionMenuSuccessResponse&gt;):void
-
-Shows an action menu. This API uses a callback to return the result asynchronously.
-
-**Atomic service API**: This API can be used in atomic services since API version 11.
-
-**System capability**: SystemCapability.ArkUI.ArkUI.Full
-
-**Parameters**
-
-| Name     | Type                                      | Mandatory  | Description       |
-| -------- | ---------------------------------------- | ---- | --------- |
-| options  | [ActionMenuOptions](#actionmenuoptions)  | Yes   | Action menu options.  |
-| callback | AsyncCallback&lt;[ActionMenuSuccessResponse](#actionmenusuccessresponse)> | Yes   | Callback used to return the action menu response result.|
-
-**Error codes**
-
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [promptAction Error Codes](errorcode-promptAction.md).
-
-| ID  | Error Message|
-| --------- | ------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
-| 100001    | Internal error. |
-
-**Example**
-
-```ts
-import { promptAction } from '@kit.ArkUI';
-import { BusinessError } from '@kit.BasicServicesKit';
-
-try {
-  promptAction.showActionMenu({
-    title: 'Title Info',
-    buttons: [
-      {
-        text: 'item1',
-        color: '#666666'
-      },
-      {
-        text: 'item2',
-        color: '#000000'
-      },
-    ]
-  }, (err, data) => {
-    if (err) {
-      console.info('showActionMenu err: ' + err);
-      return;
-    }
-    console.info('showActionMenu success callback, click button: ' + data.index);
-  })
-} catch (error) {
-  let message = (error as BusinessError).message
-  let code = (error as BusinessError).code
-  console.error(`showActionMenu args error code is ${code}, message is ${message}`);
-};
-```
-
-![en-us_image_0005](figures/en-us_image_0005.gif)
-
-## promptAction.showActionMenu
-
-showActionMenu(options: ActionMenuOptions): Promise&lt;ActionMenuSuccessResponse&gt;
-
-Shows an action menu. This API uses a promise to return the result asynchronously.
-
-**Atomic service API**: This API can be used in atomic services since API version 11.
-
-**System capability**: SystemCapability.ArkUI.ArkUI.Full
-
-**Parameters**
-
-| Name    | Type                                     | Mandatory  | Description     |
-| ------- | --------------------------------------- | ---- | ------- |
-| options | [ActionMenuOptions](#actionmenuoptions) | Yes   | Action menu options.|
-
-**Return value**
-
-| Type                                      | Description     |
-| ---------------------------------------- | ------- |
-| Promise&lt;[ActionMenuSuccessResponse](#actionmenusuccessresponse)&gt; | Promise used to return the action menu response result.|
-
-**Error codes**
-
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [promptAction Error Codes](errorcode-promptAction.md).
-
-| ID  | Error Message|
-| --------- | ------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
-| 100001    | Internal error. |
-
-**Example**
-
-```ts
-import { promptAction } from '@kit.ArkUI';
-
-promptAction.showActionMenu({
-  title: 'showActionMenu Title Info',
-  buttons: [
-    {
-      text: 'item1',
-      color: '#666666'
-    },
-    {
-      text: 'item2',
-      color: '#000000'
-    },
-  ]
-})
-  .then(data => {
-    console.info('showActionMenu success, click button: ' + data.index);
-  })
-  .catch((err: Error) => {
-    console.info('showActionMenu error: ' + err);
-  })
-```
-
-![en-us_image_0006](figures/en-us_image_0006.gif)
-
-## promptAction.openCustomDialog<sup>11+</sup>
-
-openCustomDialog(options: CustomDialogOptions): Promise&lt;number&gt;
-
-Opens a custom dialog box.
-
-<!--Del-->This API cannot be used in **ServiceExtension**.<!--DelEnd-->
-
-**isModal = true** and **showInSubWindow = true** cannot be used at the same time.
-
-By default, the width of the dialog box in portrait mode is the width of the window where it is located minus the left and right margins (40 vp for 2-in-1 devices and 16 vp for other devices), and the maximum width is 400 vp.
-
-**Atomic service API**: This API can be used in atomic services since API version 12.
-
-**System capability**: SystemCapability.ArkUI.ArkUI.Full
-
-**Parameters**
-
-| Name | Type                                         | Mandatory| Description              |
-| ------- | --------------------------------------------- | ---- | ------------------ |
-| options | [CustomDialogOptions](#customdialogoptions11) | Yes  | Content of the custom dialog box.|
-
-**Return value**
-
-| Type                 | Description                                 |
-| --------------------- | ------------------------------------- |
-| Promise&lt;number&gt; | ID of the custom dialog box, which can be used in **closeCustomDialog**.|
-
-**Error codes**
-
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [promptAction Error Codes](errorcode-promptAction.md).
-
-| ID| Error Message                          |
-| -------- | ---------------------------------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
-| 100001   | Internal error. |
-
-**Example**
-
-```ts
-import { promptAction } from '@kit.ArkUI'
-import { BusinessError } from '@kit.BasicServicesKit'
-
-@Entry
-@Component
-struct Index {
-  private customDialogComponentId: number = 0
-
-  @Builder
-  customDialogComponent() {
-    Column() {
-      Text('Dialog box').fontSize(30)
-      Row({ space: 50 }) {
-        Button("OK").onClick(() => {
-          try {
-            promptAction.closeCustomDialog(this.customDialogComponentId)
-          } catch (error) {
-            let message = (error as BusinessError).message;
-            let code = (error as BusinessError).code;
-            console.error(`closeCustomDialog error code is ${code}, message is ${message}`);
-          }
-        })
-        Button("Cancel").onClick(() => {
-          try {
-            promptAction.closeCustomDialog(this.customDialogComponentId)
-          } catch (error) {
-            let message = (error as BusinessError).message;
-            let code = (error as BusinessError).code;
-            console.error(`closeCustomDialog error code is ${code}, message is ${message}`);
-          }
-        })
-      }
-    }.height(200).padding(5).justifyContent(FlexAlign.SpaceBetween)
-  }
-
-  build() {
-    Row() {
-      Column({ space: 20 }) {
-        Text('In-component dialog box')
-          .fontSize(30)
-          .onClick(() => {
-            promptAction.openCustomDialog({
-              builder: () => {
-                this.customDialogComponent()
-              },
-              onWillDismiss: (dismissDialogAction: DismissDialogAction) => {
-                console.info("reason" + JSON.stringify(dismissDialogAction.reason))
-                console.log("dialog onWillDismiss")
-                if (dismissDialogAction.reason == DismissReason.PRESS_BACK) {
-                  dismissDialogAction.dismiss()
-                }
-                if (dismissDialogAction.reason == DismissReason.TOUCH_OUTSIDE) {
-                  dismissDialogAction.dismiss()
-                }
-              }
-            }).then((dialogId: number) => {
-              this.customDialogComponentId = dialogId
-            })
-              .catch((error: BusinessError) => {
-                console.error(`openCustomDialog error code is ${error.code}, message is ${error.message}`)
-              })
-          })
-      }
-      .width('100%')
-    }
-    .height('100%')
-  }
-}
-
-```
-This example demonstrates how to set styles of a dialog box, including the width, height, background color, and shadow.
-```ts
-import { promptAction, LevelMode, ImmersiveMode } from '@kit.ArkUI'
-
-let customDialogId: number = 0
-
-@Builder
-function customDialogBuilder() {
-  Column() {
-    Text('Custom dialog Message').fontSize(10)
-    Row() {
-      Button("OK").onClick(() => {
-        promptAction.closeCustomDialog(customDialogId)
-      })
-      Blank().width(50)
-      Button("Cancel").onClick(() => {
-        promptAction.closeCustomDialog(customDialogId)
-      })
-    }
-  }
-}
-
-@Entry
-@Component
-struct Index {
-  @State message: string = 'Hello World'
-
-  @Builder
-  customDialogComponent() {
-    customDialogBuilder()
-  }
-
-  build() {
-    Row() {
-      Column() {
-        Text(this.message).id("test_text")
-          .fontSize(50)
-          .fontWeight(FontWeight.Bold)
-          .onClick(() => {
-            const node: FrameNode | null = this.getUIContext().getFrameNodeById("test_text") || null;
-            promptAction.openCustomDialog({
-              builder: () => {
-                this.customDialogComponent()
-              },
-              keyboardAvoidMode: KeyboardAvoidMode.NONE,
-              showInSubWindow: false,
-              offset: { dx: 5, dy: 5 },
-              backgroundColor: 0xd9ffffff,
-              cornerRadius: 20,
-              width: '80%',
-              height: 200,
-              borderWidth: 1,
-              borderStyle: BorderStyle.Dashed, // borderStyle must be used with borderWidth in pairs.
-              borderColor: Color.Blue, // borderColor must be used with borderWidth in pairs.
-              shadow: ({
-                radius: 20,
-                color: Color.Grey,
-                offsetX: 50,
-                offsetY: 0
-              }),
-              levelMode: LevelMode.EMBEDDED,
-              levelUniqueId: node?.getUniqueId(),
-              immersiveMode: ImmersiveMode.DEFAULT,
-            }).then((dialogId: number) => {
-              customDialogId = dialogId
-            })
-          })
-      }
-      .width('100%')
-    }
-    .height('100%')
-  }
-}
-```
-![en-us_image_0007](figures/en-us_image_0007.gif)
-
-This example shows how to implement a dialog box on a page.
-```ts
-// Index.ets
-import { promptAction, LevelMode, ImmersiveMode, router } from '@kit.ArkUI'
-
-let customDialogId: number = 0
-
-@Builder
-function customDialogBuilder() {
-  Column() {
-    Text('Custom dialog Message').fontSize(10).height(100)
-    Row() {
-      Button("Next").onClick(() => {
-        router.pushUrl({url: 'pages/Next'})
-      })
-      Blank().width(50)
-      Button("Close").onClick(() => {
-        promptAction.closeCustomDialog(customDialogId)
-      })
-    }
-  }.padding(20)
-}
-
-@Entry
-@Component
-struct Index {
-  @State message: string = 'Hello World'
-
-  @Builder
-  customDialogComponent() {
-    customDialogBuilder()
-  }
-
-  build() {
-    Row() {
-      Column() {
-        Text(this.message).id("test_text")
-          .fontSize(50)
-          .fontWeight(FontWeight.Bold)
-          .onClick(() => {
-            const node: FrameNode | null = this.getUIContext().getFrameNodeById("test_text") || null;
-            promptAction.openCustomDialog({
-              builder: () => {
-                this.customDialogComponent()
-              },
-              levelMode: LevelMode.EMBEDDED,
-              levelUniqueId: node?.getUniqueId(),
-              immersiveMode: ImmersiveMode.DEFAULT,
-            }).then((dialogId: number) => {
-              customDialogId = dialogId
-            })
-          })
-      }
-      .width('100%')
-    }
-    .height('100%')
-  }
-}
-```
-```ts
-// Next.ets
-import { router } from '@kit.ArkUI'
-
-@Entry
-@Component
-struct Next {
-  @State message: string = 'Back'
-
-  build() {
-    Row() {
-      Column() {
-        Button(this.message)
-          .fontSize(50)
-          .fontWeight(FontWeight.Bold)
-          .onClick(() => {
-            router.back()
-          })
-      }
-      .width('100%')
-    }
-    .height('100%')
-  }
-}
-```
-![embedded_dialog](figures/embedded_dialog.gif)
-
-## promptAction.closeCustomDialog<sup>11+</sup>
-
-closeCustomDialog(dialogId: number): void
-
-Closes the specified custom dialog box.
-
-**Atomic service API**: This API can be used in atomic services since API version 12.
-
-**System capability**: SystemCapability.ArkUI.ArkUI.Full
-
-**Parameters**
-
-| Name  | Type  | Mandatory| Description                            |
-| -------- | ------ | ---- | -------------------------------- |
-| dialogId | number | Yes  | ID of the custom dialog box to close. It is returned from **openCustomDialog**.|
-
-**Error codes**
-
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [promptAction Error Codes](errorcode-promptAction.md).
-
-| ID| Error Message                          |
-| -------- | ---------------------------------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
-| 100001   | Internal error. |
-
-**Example**
-
-See the example of [promptAction.openCustomDialog](#promptactionopencustomdialog11).
-
 ## ShowToastOptions
 
 Describes the options for showing the toast.
@@ -816,7 +170,7 @@ Describes the options for showing the dialog box.
 | buttons                           | Array&lt;[Button](#button)&gt;                               | No  | Array of buttons in the dialog box. The array structure is {text:'button', color: '\#666666'}. More than one button is supported.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | alignment<sup>10+</sup>           | [DialogAlignment](arkui-ts/ts-methods-alert-dialog-box.md#dialogalignment) | No  | Alignment mode of the dialog box in the vertical direction.<br>Default value: **DialogAlignment.Default**<br>**NOTE**<br>If **showInSubWindow** is set to **true** in **UIExtension**, the dialog box is aligned with the host window based on **UIExtension**.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | offset<sup>10+</sup>              | [Offset](arkui-ts/ts-types.md#offset)                        | No  | Offset of the dialog box based on the **alignment** settings.<br>Default value: **{ dx: 0 , dy: 0 }**<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| maskRect<sup>10+</sup>            | [Rectangle](arkui-ts/ts-methods-alert-dialog-box.md#rectangle8) | No  | Mask area of the dialog box. Events outside the mask area are transparently transmitted, and events within the mask area are not.<br>Default value: **{ x: 0, y: 0, width: '100%', height: '100%' }**<br>**NOTE**<br>**maskRect** does not take effect when **showInSubWindow** is set to **true**.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| maskRect<sup>10+</sup>            | [Rectangle](arkui-ts/ts-methods-alert-dialog-box.md#rectangle8) | No  | Mask area of the dialog box. Events outside the mask area are transparently transmitted, and events within the mask area are not.<br>Default value: **{ x: 0, y: 0, width: '100%', height: '100%' }**<br>**NOTE**<br>**maskRect** does not take effect when **showInSubWindow** is set to **true**.<br>If only partial properties are set, the unspecified properties default to **0**.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | showInSubWindow<sup>11+</sup>     | boolean                                                      | No  | Whether to show the dialog box in a subwindow when it is not in the main window.<br>Default value: **false**, meaning the dialog box is displayed within the application, not in a separate subwindow<br>**NOTE**<br>A dialog box whose **showInSubWindow** attribute is **true** cannot trigger the display of another dialog box whose **showInSubWindow** attribute is also **true**.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | isModal<sup>11+</sup>             | boolean                                                      | No  | Whether the dialog box is a modal. A modal dialog box has a mask applied, while a non-modal dialog box does not.<br>Default value: **true**<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | backgroundColor<sup>12+</sup>     | [ResourceColor](arkui-ts/ts-types.md#resourcecolor)          | No  | Background color of the dialog box.<br>Default value: **Color.Transparent**<br>**NOTE**<br>When **backgroundColor** is set to a non-transparent color, **backgroundBlurStyle** must be set to **BlurStyle.NONE**; otherwise, the color display may not meet the expected effect.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
@@ -826,6 +180,10 @@ Describes the options for showing the dialog box.
 | shadow<sup>12+</sup>              | [ShadowOptions](arkui-ts/ts-universal-attributes-image-effect.md#shadowoptions) \| [ShadowStyle](arkui-ts/ts-universal-attributes-image-effect.md#shadowstyle10) | No  | Shadow of the dialog box.<br> Default value on 2-in-1 devices: **ShadowStyle.OUTER_FLOATING_MD** when the dialog box is focused and **ShadowStyle.OUTER_FLOATING_SM** otherwise<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | enableHoverMode<sup>14+</sup>     | boolean                                                      | No  | Whether to enable the hover state.<br>Default value: **false**, meaning not to enable the hover state.<br>**Atomic service API**: This API can be used in atomic services since API version 14.           |
 | hoverModeArea<sup>14+</sup>       | [HoverModeAreaType](arkui-ts/ts-appendix-enums.md#hovermodeareatype14) | No  | Display area of the dialog box in the hover state.<br>Default value: **HoverModeAreaType.BOTTOM_SCREEN**<br>**Atomic service API**: This API can be used in atomic services since API version 14.|
+| onWillAppear<sup>18+</sup> | Callback&lt;void&gt; | No| Event callback when the dialog box is about to appear.<br>**NOTE**<br>1. The normal timing sequence is as follows: onWillAppear > onDidAppear > onWillDisappear > onDidDisappear.<br>2. You can set the callback event for changing the dialog box display effect in **onWillAppear**. The settings take effect next time the dialog box appears.<br>**Atomic service API**: This API can be used in atomic services since API version 18.|
+| onDidAppear<sup>18+</sup> | Callback&lt;void&gt; | No| Event callback when the dialog box appears.<br>**NOTE**<br>1. The normal timing sequence is as follows: onWillAppear > onDidAppear > onWillDisappear > onDidDisappear.<br>2. You can set the callback event for changing the dialog box display effect in **onDidAppear**. The settings take effect next time the dialog box appears.<br>3. When a dialog box is dismissed immediately after being shown, **onWillDisappear** may be triggered before **onDidAppear**.<br>4. If the dialog box is dismissed before its entrance animation is finished, the animation will be interrupted, and **onDidAppear** will not be triggered.<br>**Atomic service API**: This API can be used in atomic services since API version 18.|
+| onWillDisappear<sup>18+</sup> | Callback&lt;void&gt; | No| Event callback when the dialog box is about to disappear.<br>**NOTE**<br>1. The normal timing sequence is as follows: onWillAppear > onDidAppear > onWillDisappear > onDidDisappear.<br> **Atomic service API**: This API can be used in atomic services since API version 18.|
+| onDidDisappear<sup>18+</sup> | Callback&lt;void&gt; | No| Event callback when the dialog box disappears.<br>**NOTE**<br>1. The normal timing sequence is as follows: onWillAppear > onDidAppear > onWillDisappear > onDidDisappear.<br>**Atomic service API**: This API can be used in atomic services since API version 18.|
 | levelMode<sup>15+</sup>       | [LevelMode](#levelmode15) | No  | Display level of the dialog box.<br>**NOTE**<br>- Default value: **LevelMode.OVERLAY**<br>- This parameter takes effect only when **showInSubWindow** is set to **false**.<br>**Atomic service API**: This API can be used in atomic services since API version 15.|
 | levelUniqueId<sup>15+</sup>       | number | No  | [Unique ID](js-apis-arkui-frameNode.md#getuniqueid12) of the node under the display level for the page-level dialog box.<br>**NOTE**<br>- This parameter takes effect only when **levelMode** is set to **LevelMode.EMBEDDED**.<br>**Atomic service API**: This API can be used in atomic services since API version 15.|
 | immersiveMode<sup>15+</sup>       | [ImmersiveMode](#immersivemode15) | No  | Overlay effect for the page-level dialog box.<br>**NOTE**<br>- Default value: **ImmersiveMode.DEFAULT**<br>- This parameter takes effect only when **levelMode** is set to **LevelMode.EMBEDDED**.<br>**Atomic service API**: This API can be used in atomic services since API version 15.|
@@ -1054,7 +412,7 @@ Defines the options of a custom dialog box, which inherit from [BaseDialogOption
 
 | Name   | Type                                                   | Mandatory| Description                                                        |
 | ------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| builder | [CustomBuilder](arkui-ts/ts-types.md#custombuilder8) | Yes | Content of the custom dialog box.<br>**NOTE**<br>The builder needs to be assigned an arrow function in the following format: () => { this.XXX() }, where XXX indicates the internal builder name.<br>If you are working with a global builder, you need to call it within a local builder within a component.<br>The aspect ratio of the root node of a builder is relative to the size of the dialog box container.<br>The aspect ratio of a non-root node is relative to the size of its parent node.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| builder | [CustomBuilder](arkui-ts/ts-types.md#custombuilder8) | Yes | Content of the custom dialog box.<br>**NOTE**<br>The builder needs to be assigned an arrow function in the following format: () => { this.XXX() }, where XXX indicates the internal builder name.<br>If you are working with a global builder, call it within a local builder within a component.<br>The aspect ratio of the root node of a builder is relative to the size of the dialog box container.<br>The aspect ratio of a non-root node is relative to the size of its parent node.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | backgroundColor <sup>12+</sup>| [ResourceColor](arkui-ts/ts-types.md#resourcecolor)  | No| Background color of the dialog box.<br>Default value: **Color.Transparent**<br>**NOTE**<br>When **backgroundColor** is set to a non-transparent color, **backgroundBlurStyle** must be set to **BlurStyle.NONE**; otherwise, the color display may not meet the expected effect.|
 | cornerRadius<sup>12+</sup>| [Dimension](arkui-ts/ts-types.md#dimension10) \| [BorderRadiuses](arkui-ts/ts-types.md#borderradiuses9) | No| Radius of the rounded corners of the background.<br>You can set separate radiuses for the four rounded corners.<br>Default value: **{ topLeft: '32vp', topRight: '32vp', bottomLeft: '32vp', bottomRight: '32vp' }**<br> The radius of the rounded corners is subject to the component size. Its maximum value is half of the component width or height. If the value is negative, the default value is used.<br> When set to a percentage, the value defines the radius as a percentage of the parent component's width or height.|
 | borderWidth<sup>12+</sup>| [Dimension](arkui-ts/ts-types.md#dimension10) \| [EdgeWidths](arkui-ts/ts-types.md#edgewidths9)  | No| Border width of the dialog box.<br>You can set the width for all four sides or set separate widths for individual sides.<br>Default value: **0**<br> When set to a percentage, the value defines the border width as a percentage of the parent dialog box's width.<br>If the left and right borders are greater than its width, or the top and bottom borders are greater than its height, the dialog box may not display as expected.|
@@ -1073,7 +431,7 @@ Defines the options of the dialog box.
 
 | Name           | Type                                                        | Mandatory| Description                                                        |
 | --------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| maskRect        | [Rectangle](arkui-ts/ts-methods-alert-dialog-box.md#rectangle8) | No  | Mask area.<br>Default value: **{ x: 0, y: 0, width: '100%', height: '100%' }**<br>**NOTE**<br>**maskRect** does not take effect when **showInSubWindow** is set to **true**.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| maskRect        | [Rectangle](arkui-ts/ts-methods-alert-dialog-box.md#rectangle8) | No  | Mask area.<br>Default value: **{ x: 0, y: 0, width: '100%', height: '100%' }**<br>**NOTE**<br>**maskRect** does not take effect when **showInSubWindow** is set to **true**.<br>If only partial properties are set, the unspecified properties default to **0**.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | alignment       | [DialogAlignment](arkui-ts/ts-methods-alert-dialog-box.md#dialogalignment) | No  | Alignment mode of the dialog box in the vertical direction.<br>Default value: **DialogAlignment.Default**<br>**NOTE**<br>If **showInSubWindow** is set to **true** in **UIExtension**, the dialog box is aligned with the host window based on **UIExtension**.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | offset          | [Offset](arkui-ts/ts-types.md#offset)                     | No  | Offset of the dialog box based on the **alignment** settings.<br>Default value: **{ dx: 0 , dy: 0 }**<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | isModal         | boolean                                                      | No  | Whether the dialog box is a modal. A modal dialog box has a mask applied, while a non-modal dialog box does not.<br>Default value: **true**<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
@@ -1108,7 +466,7 @@ Provides information about the action to dismiss the dialog box.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-### Properties
+### Attributes
 
 | Name   | Type                                                        | Readable| Writable| Description                                                        |
 | ------- | ------------------------------------------------------------ | ---- | ---- | ------------------------------------------------------------ |
@@ -1165,3 +523,702 @@ Describes the menu item button in the action menu.
 | text  | string \| [Resource](arkui-ts/ts-types.md#resource)| Yes   | Button text.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | color | string \|  [Resource](arkui-ts/ts-types.md#resource) | Yes   | Text color of the button.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | primary<sup>12+</sup> | boolean | No   | Whether the button responds to the **Enter** key by default when the dialog box has focus and the **Tab** key is not pressed for sequential focus navigation. If there are multiple buttons, set this parameter to **true** for only one button. Otherwise, no button will respond. Multiple dialog boxes can automatically gain focus and respond to user interactions in a sequential manner.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+
+## promptAction.showToast<sup>(deprecated)</sup>
+
+showToast(options: ShowToastOptions): void
+
+Shows a toast.
+
+> **NOTE**
+>
+> This API is deprecated since API version 18. You are advised to use [showToast](js-apis-arkui-UIContext.md#showtoast) on the obtained [PromptAction](js-apis-arkui-UIContext.md#promptaction) object.
+>
+> Since API version 10, you can use the [getPromptAction](js-apis-arkui-UIContext.md#getpromptaction) API in [UIContext](js-apis-arkui-UIContext.md#uicontext) to obtain the [PromptAction](js-apis-arkui-UIContext.md#promptaction) object associated with the current UI context.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name | Type                                 | Mandatory| Description          |
+| ------- | ------------------------------------- | ---- | -------------- |
+| options | [ShowToastOptions](#showtoastoptions) | Yes  | Toast options.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [promptAction Error Codes](errorcode-promptAction.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed. |
+| 100001   | Internal error.                                              |
+
+**Example**
+
+```ts
+import { promptAction } from '@kit.ArkUI';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+@Entry
+@Component
+struct toastExample {
+  build() {
+    Column() {
+      Button('Show toast').fontSize(20)
+        .onClick(() => {
+          try {
+            promptAction.showToast({
+              message: 'Hello World',
+              duration: 2000
+            });
+          } catch (error) {
+            let message = (error as BusinessError).message;
+            let code = (error as BusinessError).code;
+            console.error(`showToast args error code is ${code}, message is ${message}`);
+          };
+        })
+    }.height('100%').width('100%').justifyContent(FlexAlign.Center)
+  }
+}
+```
+
+Below is a toast in API version 11 and earlier versions.
+
+![en-us_image_0001](figures/toast-api11.gif)
+
+Below is a toast in API version 12 and later versions.
+
+![en-us_image_0001](figures/toast-api12.gif)
+
+## promptAction.showDialog<sup>(deprecated)</sup>
+
+showDialog(options: ShowDialogOptions): Promise&lt;ShowDialogSuccessResponse&gt;
+
+Shows a dialog box. This API uses a promise to return the result asynchronously.
+
+> **NOTE**
+>
+> This API is deprecated since API version 18. You are advised to use [showDialog](js-apis-arkui-UIContext.md#showdialog-1) instead on the obtained [PromptAction](js-apis-arkui-UIContext.md#promptaction) object.
+>
+> Since API version 10, you can use the [getPromptAction](js-apis-arkui-UIContext.md#getpromptaction) API in [UIContext](js-apis-arkui-UIContext.md#uicontext) to obtain the [PromptAction](js-apis-arkui-UIContext.md#promptaction) object associated with the current UI context.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name | Type                                   | Mandatory| Description        |
+| ------- | --------------------------------------- | ---- | ------------ |
+| options | [ShowDialogOptions](#showdialogoptions) | Yes  | Dialog box options.|
+
+**Return value**
+
+| Type                                                        | Description            |
+| ------------------------------------------------------------ | ---------------- |
+| Promise&lt;[ShowDialogSuccessResponse](#showdialogsuccessresponse)&gt; | Promise used to return the dialog box response result.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [promptAction Error Codes](errorcode-promptAction.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed. |
+| 100001   | Internal error.                                              |
+
+**Example**
+
+```ts
+import { promptAction } from '@kit.ArkUI';
+
+promptAction.showDialog({
+  title: 'Title Info',
+  message: 'Message Info',
+  buttons: [
+    {
+      text: 'button1',
+      color: '#000000'
+    },
+    {
+      text: 'button2',
+      color: '#000000'
+    }
+  ],
+})
+  .then(data => {
+    console.info('showDialog success, click button: ' + data.index);
+  })
+  .catch((err: Error) => {
+    console.info('showDialog error: ' + err);
+  })
+```
+
+![en-us_image_0002](figures/en-us_image_0002.gif)
+
+## promptAction.showDialog<sup>(deprecated)</sup>
+
+showDialog(options: ShowDialogOptions, callback: AsyncCallback&lt;ShowDialogSuccessResponse&gt;):void
+
+Shows a dialog box. This API uses an asynchronous callback to return the result.
+
+> **NOTE**
+>
+> This API is deprecated since API version 18. You are advised to use [showDialog](js-apis-arkui-UIContext.md#showdialog) instead on the obtained [PromptAction](js-apis-arkui-UIContext.md#promptaction) object.
+>
+> Since API version 10, you can use the [getPromptAction](js-apis-arkui-UIContext.md#getpromptaction) API in [UIContext](js-apis-arkui-UIContext.md#uicontext) to obtain the [PromptAction](js-apis-arkui-UIContext.md#promptaction) object associated with the current UI context.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name  | Type                                                        | Mandatory| Description                    |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------ |
+| options  | [ShowDialogOptions](#showdialogoptions)                      | Yes  | Dialog box options.|
+| callback | AsyncCallback&lt;[ShowDialogSuccessResponse](#showdialogsuccessresponse)&gt; | Yes  | Callback used to return the dialog box response result.    |
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [promptAction Error Codes](errorcode-promptAction.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed. |
+| 100001   | Internal error.                                              |
+
+**Example**
+
+```ts
+import { promptAction } from '@kit.ArkUI';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+  promptAction.showDialog({
+    title: 'showDialog Title Info',
+    message: 'Message Info',
+    buttons: [
+      {
+        text: 'button1',
+        color: '#000000'
+      },
+      {
+        text: 'button2',
+        color: '#000000'
+      }
+    ]
+  }, (err, data) => {
+    if (err) {
+      console.info('showDialog err: ' + err);
+      return;
+    }
+    console.info('showDialog success callback, click button: ' + data.index);
+  });
+} catch (error) {
+  let message = (error as BusinessError).message;
+  let code = (error as BusinessError).code;
+  console.error(`showDialog args error code is ${code}, message is ${message}`);
+};
+```
+
+![en-us_image_0004](figures/en-us_image_0004.gif)
+
+When the **showInSubWindow** attribute is set to **true**, the toast can be displayed outside the window.
+
+```ts
+import { promptAction } from '@kit.ArkUI';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+  promptAction.showDialog({
+    title: 'showDialog Title Info',
+    message: 'Message Info',
+    isModal: true,
+    showInSubWindow: true,
+    buttons: [
+      {
+        text: 'button1',
+        color: '#000000'
+      },
+      {
+        text: 'button2',
+        color: '#000000'
+      }
+    ]
+  }, (err, data) => {
+    if (err) {
+      console.info('showDialog err: ' + err);
+      return;
+    }
+    console.info('showDialog success callback, click button: ' + data.index);
+  });
+} catch (error) {
+  let message = (error as BusinessError).message;
+  let code = (error as BusinessError).code;
+  console.error(`showDialog args error code is ${code}, message is ${message}`);
+};
+```
+
+![en-us_image_0002_showinsubwindow](figures/en-us_image_0002_showinsubwindow.jpg)
+
+
+
+## promptAction.showActionMenu<sup>(deprecated)</sup>
+
+showActionMenu(options: ActionMenuOptions, callback: AsyncCallback&lt;ActionMenuSuccessResponse&gt;):void
+
+Shows an action menu. This API uses a callback to return the result asynchronously.
+
+> **NOTE**
+>
+> This API is deprecated since API version 18. You are advised to use [showActionMenu](js-apis-arkui-UIContext.md#showactionmenu11) instead on the obtained [PromptAction](js-apis-arkui-UIContext.md#promptaction) object.
+>
+> Since API version 11, you can use the [getPromptAction](js-apis-arkui-UIContext.md#getpromptaction) API in [UIContext](js-apis-arkui-UIContext.md#uicontext) to obtain the [PromptAction](js-apis-arkui-UIContext.md#promptaction) object associated with the current UI context.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name  | Type                                                        | Mandatory| Description              |
+| -------- | ------------------------------------------------------------ | ---- | ------------------ |
+| options  | [ActionMenuOptions](#actionmenuoptions)                      | Yes  | Action menu options.    |
+| callback | AsyncCallback&lt;[ActionMenuSuccessResponse](#actionmenusuccessresponse)> | Yes  | Callback used to return the action menu response result.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [promptAction Error Codes](errorcode-promptAction.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed. |
+| 100001   | Internal error.                                              |
+
+**Example**
+
+```ts
+import { promptAction } from '@kit.ArkUI';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+  promptAction.showActionMenu({
+    title: 'Title Info',
+    buttons: [
+      {
+        text: 'item1',
+        color: '#666666'
+      },
+      {
+        text: 'item2',
+        color: '#000000'
+      },
+    ]
+  }, (err, data) => {
+    if (err) {
+      console.info('showActionMenu err: ' + err);
+      return;
+    }
+    console.info('showActionMenu success callback, click button: ' + data.index);
+  })
+} catch (error) {
+  let message = (error as BusinessError).message
+  let code = (error as BusinessError).code
+  console.error(`showActionMenu args error code is ${code}, message is ${message}`);
+};
+```
+
+![en-us_image_0005](figures/en-us_image_0005.gif)
+
+## promptAction.showActionMenu<sup>(deprecated)</sup>
+
+showActionMenu(options: ActionMenuOptions): Promise&lt;ActionMenuSuccessResponse&gt;
+
+Shows an action menu. This API uses a promise to return the result asynchronously.
+
+> **NOTE**
+>
+> This API is deprecated since API version 18. You are advised to use [showActionMenu](js-apis-arkui-UIContext.md#showactionmenu) instead on the obtained [PromptAction](js-apis-arkui-UIContext.md#promptaction) object.instead 
+>
+> Since API version 10, you can use the [getPromptAction](js-apis-arkui-UIContext.md#getpromptaction) API in [UIContext](js-apis-arkui-UIContext.md#uicontext) to obtain the [PromptAction](js-apis-arkui-UIContext.md#promptaction) object associated with the current UI context.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name | Type                                   | Mandatory| Description          |
+| ------- | --------------------------------------- | ---- | -------------- |
+| options | [ActionMenuOptions](#actionmenuoptions) | Yes  | Action menu options.|
+
+**Return value**
+
+| Type                                                        | Description          |
+| ------------------------------------------------------------ | -------------- |
+| Promise&lt;[ActionMenuSuccessResponse](#actionmenusuccessresponse)&gt; | Promise used to return the action menu response result.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [promptAction Error Codes](errorcode-promptAction.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed. |
+| 100001   | Internal error.                                              |
+
+**Example**
+
+```ts
+import { promptAction } from '@kit.ArkUI';
+
+promptAction.showActionMenu({
+  title: 'showActionMenu Title Info',
+  buttons: [
+    {
+      text: 'item1',
+      color: '#666666'
+    },
+    {
+      text: 'item2',
+      color: '#000000'
+    },
+  ]
+})
+  .then(data => {
+    console.info('showActionMenu success, click button: ' + data.index);
+  })
+  .catch((err: Error) => {
+    console.info('showActionMenu error: ' + err);
+  })
+```
+
+![en-us_image_0006](figures/en-us_image_0006.gif)
+
+## promptAction.openCustomDialog<sup>(deprecated)</sup>
+
+openCustomDialog(options: CustomDialogOptions): Promise&lt;number&gt;
+
+Opens a custom dialog box.
+
+<!--Del-->This API cannot be used in **ServiceExtension**.<!--DelEnd-->
+
+**isModal = true** and **showInSubWindow = true** cannot be used at the same time.
+
+By default, the width of the dialog box in portrait mode is the width of the window where it is located minus the left and right margins (40 vp for 2-in-1 devices and 16 vp for other devices), and the maximum width is 400 vp.
+
+> **NOTE**
+>
+> This API is supported since API version 11 and deprecated since API version 18. You are advised to use [openCustomDialog](js-apis-arkui-UIContext.md#opencustomdialog12-1) instead on the obtained [PromptAction](js-apis-arkui-UIContext.md#promptaction) object.
+>
+> Since API version 12, you can use the [getPromptAction](js-apis-arkui-UIContext.md#getpromptaction) API in [UIContext](js-apis-arkui-UIContext.md#uicontext) to obtain the [PromptAction](js-apis-arkui-UIContext.md#promptaction) object associated with the current UI context.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name | Type                                         | Mandatory| Description              |
+| ------- | --------------------------------------------- | ---- | ------------------ |
+| options | [CustomDialogOptions](#customdialogoptions11) | Yes  | Content of the custom dialog box.|
+
+**Return value**
+
+| Type                 | Description                                   |
+| --------------------- | --------------------------------------- |
+| Promise&lt;number&gt; | ID of the custom dialog box, which can be used in **closeCustomDialog**.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [promptAction Error Codes](errorcode-promptAction.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed. |
+| 100001   | Internal error.                                              |
+
+**Example**
+
+```ts
+import { promptAction } from '@kit.ArkUI';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+@Entry
+@Component
+struct Index {
+  private customDialogComponentId: number = 0;
+
+  @Builder
+  customDialogComponent() {
+    Column() {
+      Text('Dialog box').fontSize(30)
+      Row({ space: 50 }) {
+        Button("OK").onClick(() => {
+          try {
+            promptAction.closeCustomDialog(this.customDialogComponentId)
+          } catch (error) {
+            let message = (error as BusinessError).message;
+            let code = (error as BusinessError).code;
+            console.error(`closeCustomDialog error code is ${code}, message is ${message}`);
+          }
+        })
+        Button("Cancel").onClick(() => {
+          try {
+            promptAction.closeCustomDialog(this.customDialogComponentId)
+          } catch (error) {
+            let message = (error as BusinessError).message;
+            let code = (error as BusinessError).code;
+            console.error(`closeCustomDialog error code is ${code}, message is ${message}`);
+          }
+        })
+      }
+    }.height(200).padding(5).justifyContent(FlexAlign.SpaceBetween)
+  }
+
+  build() {
+    Row() {
+      Column({ space: 20 }) {
+        Text('In-component dialog box')
+          .fontSize(30)
+          .onClick(() => {
+            promptAction.openCustomDialog({
+              builder: () => {
+                this.customDialogComponent()
+              },
+              onWillDismiss: (dismissDialogAction: DismissDialogAction) => {
+                console.info("reason" + JSON.stringify(dismissDialogAction.reason));
+                console.log("dialog onWillDismiss");
+                if (dismissDialogAction.reason == DismissReason.PRESS_BACK) {
+                  dismissDialogAction.dismiss();
+                }
+                if (dismissDialogAction.reason == DismissReason.TOUCH_OUTSIDE) {
+                  dismissDialogAction.dismiss();
+                }
+              }
+            }).then((dialogId: number) => {
+              this.customDialogComponentId = dialogId;
+            })
+              .catch((error: BusinessError) => {
+                console.error(`openCustomDialog error code is ${error.code}, message is ${error.message}`);
+              })
+          })
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+
+```
+
+This example demonstrates how to set styles of a dialog box, including the width, height, background color, and shadow.
+
+> **NOTE**
+>
+> Directly using **openCustomDialog** can lead to ambiguous instance issues. To avoid this, obtain a [PromptAction](js-apis-arkui-UIContext.md#promptaction) instance using the [getPromptAction](js-apis-arkui-UIContext.md#getpromptaction) API in [UIContext](js-apis-arkui-UIContext.md#uicontext), and then call [openCustomDialog](js-apis-arkui-UIContext.md#opencustomdialog12-1) on the obtained instance.
+
+```ts
+import { LevelMode, ImmersiveMode } from '@kit.ArkUI';
+
+let customDialogId: number = 0;
+
+@Builder
+function customDialogBuilder(uiContext: UIContext) {
+  Column() {
+    Text('Custom dialog Message').fontSize(10)
+    Row() {
+      Button("OK").onClick(() => {
+        uiContext.getPromptAction().closeCustomDialog(customDialogId);
+      })
+      Blank().width(50)
+      Button("Cancel").onClick(() => {
+        uiContext.getPromptAction().closeCustomDialog(customDialogId);
+      })
+    }
+  }
+}
+
+@Entry
+@Component
+struct Index {
+  @State message: string = 'Hello World';
+  private uiContext: UIContext = this.getUIContext();
+
+  @Builder
+  customDialogComponent() {
+    customDialogBuilder(this.uiContext)
+  }
+
+  build() {
+    Row() {
+      Column() {
+        Text(this.message).id("test_text")
+          .fontSize(50)
+          .fontWeight(FontWeight.Bold)
+          .onClick(() => {
+            const node: FrameNode | null = this.uiContext.getFrameNodeById("test_text") || null;
+            this.uiContext.getPromptAction().openCustomDialog({
+              builder: () => {
+                this.customDialogComponent()
+              },
+              keyboardAvoidMode: KeyboardAvoidMode.NONE,
+              showInSubWindow: false,
+              offset: { dx: 5, dy: 5 },
+              backgroundColor: 0xd9ffffff,
+              cornerRadius: 20,
+              width: '80%',
+              height: 200,
+              borderWidth: 1,
+              borderStyle: BorderStyle.Dashed, // borderStyle must be used with borderWidth in pairs.
+              borderColor: Color.Blue, // borderColor must be used with borderWidth in pairs.
+              shadow: ({
+                radius: 20,
+                color: Color.Grey,
+                offsetX: 50,
+                offsetY: 0
+              }),
+              levelMode: LevelMode.EMBEDDED,
+              levelUniqueId: node?.getUniqueId(),
+              immersiveMode: ImmersiveMode.DEFAULT,
+            }).then((dialogId: number) => {
+              customDialogId = dialogId;
+            })
+          })
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+```
+
+![en-us_image_0007](figures/en-us_image_0007.gif)
+
+This example shows how to implement a dialog box on a page.
+
+> **NOTE**
+>
+> Directly using **openCustomDialog** can lead to ambiguous instance issues. To avoid this, it is recommended that you obtain a [PromptAction](js-apis-arkui-UIContext.md#promptaction) instance using the [getPromptAction](js-apis-arkui-UIContext.md#getpromptaction) API in [UIContext](js-apis-arkui-UIContext.md#uicontext), and then call [openCustomDialog](js-apis-arkui-UIContext.md#opencustomdialog12-1) on the obtained instance.
+
+```ts
+// Index.ets
+import { LevelMode, ImmersiveMode } from '@kit.ArkUI';
+
+let customDialogId: number = 0;
+
+@Builder
+function customDialogBuilder(uiContext: UIContext) {
+  Column() {
+    Text('Custom dialog Message').fontSize(10).height(100)
+    Row() {
+      Button("Next").onClick(() => {
+        uiContext.getRouter().pushUrl({ url: 'pages/Next' });
+      })
+      Blank().width(50)
+      Button("Close").onClick(() => {
+        uiContext.getPromptAction().closeCustomDialog(customDialogId);
+      })
+    }
+  }.padding(20)
+}
+
+@Entry
+@Component
+struct Index {
+  @State message: string = 'Hello World';
+  private uiContext: UIContext = this.getUIContext();
+
+  @Builder
+  customDialogComponent() {
+    customDialogBuilder(this.uiContext)
+  }
+
+  build() {
+    Row() {
+      Column() {
+        Text(this.message).id("test_text")
+          .fontSize(50)
+          .fontWeight(FontWeight.Bold)
+          .onClick(() => {
+            const node: FrameNode | null = this.uiContext.getFrameNodeById("test_text") || null;
+            this.uiContext.getPromptAction().openCustomDialog({
+              builder: () => {
+                this.customDialogComponent()
+              },
+              levelMode: LevelMode.EMBEDDED,
+              levelUniqueId: node?.getUniqueId(),
+              immersiveMode: ImmersiveMode.DEFAULT,
+            }).then((dialogId: number) => {
+              customDialogId = dialogId;
+            })
+          })
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+```
+
+```ts
+// Next.ets
+@Entry
+@Component
+struct Next {
+  @State message: string = 'Back';
+
+  build() {
+    Row() {
+      Column() {
+        Button(this.message)
+          .onClick(() => {
+            this.getUIContext().getRouter().back();
+          })
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+```
+
+![embedded_dialog](figures/embedded_dialog.gif)
+
+## promptAction.closeCustomDialog<sup>(deprecated)</sup>
+
+closeCustomDialog(dialogId: number): void
+
+Closes the specified custom dialog box.
+
+> **NOTE**
+>
+> This API is supported since API version 11 and deprecated since API version 18. You are advised to use [closeCustomDialog](js-apis-arkui-UIContext.md#closecustomdialog12-1) instead on the obtained [PromptAction](js-apis-arkui-UIContext.md#promptaction) object.
+>
+> Since API version 12, you can use the [getPromptAction](js-apis-arkui-UIContext.md#getpromptaction) API in [UIContext](js-apis-arkui-UIContext.md#uicontext) to obtain the [PromptAction](js-apis-arkui-UIContext.md#promptaction) object associated with the current UI context.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name  | Type  | Mandatory| Description                            |
+| -------- | ------ | ---- | -------------------------------- |
+| dialogId | number | Yes  | ID of the custom dialog box to close. It is returned from **openCustomDialog**.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [promptAction Error Codes](errorcode-promptAction.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed. |
+| 100001   | Internal error.                                              |
+
+**Example**
+
+See the example of [promptAction.openCustomDialog](#promptactionopencustomdialogdeprecated).

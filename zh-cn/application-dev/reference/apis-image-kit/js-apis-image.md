@@ -1312,8 +1312,9 @@ readPixelsToBuffer(dst: ArrayBuffer): Promise\<void>
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
+import { image } from '@kit.ImageKit';
 
-async function ReadPixelsToBuffer() {
+async function ReadPixelsToBuffer(pixelMap : image.PixelMap) {
   const readBuffer: ArrayBuffer = new ArrayBuffer(96); // 96为需要创建的像素buffer大小，取值为：height * width *4。
   if (pixelMap != undefined) {
     pixelMap.readPixelsToBuffer(readBuffer).then(() => {
@@ -1348,8 +1349,9 @@ readPixelsToBuffer(dst: ArrayBuffer, callback: AsyncCallback\<void>): void
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
+import { image } from '@kit.ImageKit';
 
-async function ReadPixelsToBuffer() {
+async function ReadPixelsToBuffer(pixelMap : image.PixelMap) {
   const readBuffer: ArrayBuffer = new ArrayBuffer(96); // 96为需要创建的像素buffer大小，取值为：height * width *4。
   if (pixelMap != undefined) {
     pixelMap.readPixelsToBuffer(readBuffer, (error: BusinessError, res: void) => {
@@ -1395,8 +1397,9 @@ readPixelsToBufferSync(dst: ArrayBuffer): void
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
+import { image } from '@kit.ImageKit';
 
-async function ReadPixelsToBufferSync() {
+async function ReadPixelsToBufferSync(pixelMap : image.PixelMap) {
   const readBuffer: ArrayBuffer = new ArrayBuffer(96); // 96为需要创建的像素buffer大小，取值为：height * width *4。
   if (pixelMap != undefined) {
     pixelMap.readPixelsToBufferSync(readBuffer);
@@ -1438,8 +1441,9 @@ RGBA的区域计算公式：读取区域（region.size{width * height}）* 4 （
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
+import { image } from '@kit.ImageKit';
 
-async function ReadPixelsRGBA() {
+async function ReadPixelsRGBA(pixelMap : image.PixelMap) {
   const area: image.PositionArea = {
     pixels: new ArrayBuffer(8), // 8为需要创建的像素buffer大小，取值为：height * width *4。
     offset: 0,
@@ -1455,7 +1459,7 @@ async function ReadPixelsRGBA() {
   }
 }
 
-async function ReadPixelsYUV() {
+async function ReadPixelsYUV(pixelMap : image.PixelMap) {
   const area: image.PositionArea = {
     pixels: new ArrayBuffer(6),  // 6为需要创建的像素buffer大小，取值为：height * width *1.5。
     offset: 0,
@@ -1501,8 +1505,9 @@ RGBA的区域计算公式：读取区域（region.size{width * height}）* 4 （
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
+import { image } from '@kit.ImageKit';
 
-async function ReadPixelsRGBA() {
+async function ReadPixelsRGBA(pixelMap : image.PixelMap) {
   const area: image.PositionArea = {
     pixels: new ArrayBuffer(8), // 8为需要创建的像素buffer大小，取值为：height * width *4。
     offset: 0,
@@ -1521,7 +1526,7 @@ async function ReadPixelsRGBA() {
   }
 }
 
-async function ReadPixelsYUV() {
+async function ReadPixelsYUV(pixelMap : image.PixelMap) {
   const area: image.PositionArea = {
     pixels: new ArrayBuffer(6), // 6为需要创建的像素buffer大小，取值为：height * width *1.5。
     offset: 0,
@@ -1571,7 +1576,7 @@ readPixelsSync(area: PositionArea): void
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function ReadPixelsSync() {
+async function ReadPixelsSync(pixelMap : image.PixelMap) {
   const area : image.PositionArea = {
     pixels: new ArrayBuffer(8),
     offset: 0,
@@ -5233,7 +5238,7 @@ let decodeOpts: image.DecodingOptions = {
 imageSourceApi.createPixelMapList(decodeOpts).then((pixelMapList: Array<image.PixelMap>) => {
   console.info('Succeeded in creating pixelMapList object.');
 }).catch((err: BusinessError) => {
-  console.error(`Failed to create pixelMapList object, error code is ${error}`);
+  console.error(`Failed to create pixelMapList object, error code is ${err}`);
 })
 ```
 
@@ -5285,7 +5290,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 imageSourceApi.createPixelMapList((err: BusinessError, pixelMapList: Array<image.PixelMap>) => {
   if (err) {
-    console.error(`Failed to create pixelMapList object, error code is ${error}`);
+    console.error(`Failed to create pixelMapList object, error code is ${err}`);
   } else {
     console.info('Succeeded in creating pixelMapList object.');
   }
@@ -5349,7 +5354,7 @@ let decodeOpts: image.DecodingOptions = {
 };
 imageSourceApi.createPixelMapList(decodeOpts, (err: BusinessError, pixelMapList: Array<image.PixelMap>) => {
   if (err) {
-    console.error(`Failed to create pixelMapList object, error code is ${error}`);
+    console.error(`Failed to create pixelMapList object, error code is ${err}`);
   } else {
     console.info('Succeeded in creating pixelMapList object.');
   }
@@ -8518,7 +8523,7 @@ PixelMap的初始化选项。
 | FLASH <sup>10+</sup>                      | "Flash"                     | **读写能力：** 可读写<br> 闪光灯,记录闪光灯状态。|
 | FOCAL_LENGTH <sup>10+</sup>               | "FocalLength"               | **读写能力：** 可读写<br> 焦距。|
 | SUBJECT_AREA <sup>12+</sup>               | "SubjectArea"               | **读写能力：** 可读写<br> 该标签指示整个场景中主要主体的位置和区域。|
-| MAKER_NOTE <sup>12+</sup>                 | "MakerNote"                 | **读写能力：** 只读<br> Exif/DCF制造商使用的标签，用于记录任何所需信息。|
+| MAKER_NOTE <sup>12+</sup>                 | "MakerNote"                 | **读写能力：** 可读写<br> Exif/DCF制造商使用的标签，用于记录任何所需信息。<br>在API 12-19，该字段为只读；从API 20开始，该字段可读写。|
 | SCENE_POINTER <sup>12+</sup>              | "HwMnoteScenePointer"       | **读写能力：** 只读<br> 场景指针。|
 | SCENE_VERSION <sup>12+</sup>              | "HwMnoteSceneVersion"       | **读写能力：** 只读<br> 场景算法版本信息。|
 | SCENE_FOOD_CONF<sup>11+</sup>             | "HwMnoteSceneFoodConf"      | **读写能力：** 只读<br> 拍照场景：食物。|

@@ -14,9 +14,9 @@ onAttach(callback: Callback\<void>): T
 
 > **说明：**
 >
-> 回调的调用时机一定在组件布局渲染之前。
+> 回调在组件布局渲染之前调用。
 >
-> 不允许在回调中对组件树进行变更，例如启动动画，或是使用if-else变更组件树结构。
+> 不允许在回调中对组件树进行变更，例如启动动画或使用if-else变更组件树结构。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -101,7 +101,7 @@ onDisAppear(event: () => void): T
 
 ## 示例
 
-该示例通过按钮控制组件的卸载和挂载，触发onAttach和onDetach事件。
+该示例通过按钮控制组件的挂载和卸载，触发onAttach和onDetach事件。
 
 ```ts
 // xxx.ets

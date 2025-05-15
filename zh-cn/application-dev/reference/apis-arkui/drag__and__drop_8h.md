@@ -109,3 +109,4 @@
 |int32_t [OH_ArkUI_DragEvent_RequestDragEndPending](_ark_u_i___native_module.md#oh_arkui_dragevent_requestdragendpending)([ArkUI_DragEvent](_ark_u_i___native_module.md#arkui_dragevent)\* event, int32_t* requestIdentify) | 请求延迟执行拖拽结束。|
 |int32_t [OH_ArkUI_NotifyDragResult](_ark_u_i___native_module.md#oh_arkui_notifydragresult)(int32_t requestIdentify, [ArkUI_DragResult](_ark_u_i___native_module.md#arkui_dragresult) \* result) | 通知拖拽结果。|
 |int32_t [OH_ArkUI_NotifyDragEndPendingDone](_ark_u_i___native_module.md#oh_arkui_notifydragendpendingdone)(int32_t requestIdentify) | 通知拖拽延迟执行结束。|
+| int32_t [OH_ArkUI_EnableDropDisallowedBadge](_ark_u_i___native_module.md#oh_arkui_enabledropdisallowedbadge) ([ArkUI_ContextHandle](_ark_u_i___native_module.md#arkui_contexthandle-12) uiContext, bool enabled) | 设置是否可以显示禁用角标。<br />**起始版本：** 20  | 

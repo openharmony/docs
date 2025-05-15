@@ -31,7 +31,7 @@ import { dialogSession } from '@kit.AbilityKit';
 | abilityLabelId | number | 是 | 是 | 表示Ability标签ID。 |
 | bundleIconId | number | 是 | 是 | 表示Bundle图标ID。 |
 | bundleLabelId | number | 是 | 是 | 表示Bundle标签ID。 |
-| visible<sup>12+</sup> | boolean | 是 | 是 | 表示Ability是否可见。 |
+| visible<sup>12+</sup> | boolean | 是 | 是 | 表示Ability是否可见。true表示Ability可见，false表示Ability不可见。 |
 | appIndex<sup>12+</sup> | number | 是 | 是 | 表示应用的分身索引。 |
 | multiAppMode<sup>12+</sup> | [MultiAppMode](./js-apis-bundleManager-applicationInfo.md#multiappmode12) | 是 | 是 | 表示应用的多开模式。|
 

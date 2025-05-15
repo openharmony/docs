@@ -4697,6 +4697,34 @@ Allows an application to call the accessibility service extension APIs to query 
 
 **Valid since**: 20
 
+## ohos.permission.READ_SOUND_RECORD_IN_FILE_MANAGER
+
+Allows an application to read recording files from the file manager directory.
+
+**Permission level**: system_core
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Supported devices**: Phone | PC/2in1 | Tablet
+
+**Valid since**: 20
+
+## ohos.permission.WRITE_SOUND_RECORD_IN_FILE_MANAGER
+
+Allows an application to write recording files to the file manager directory.
+
+**Permission level**: system_core
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Supported devices**: Phone | PC/2in1 | Tablet
+
+**Valid since**: 20
+
 ## ohos.permission.SANDBOX_ACCESS_MANAGER
 
 Allows an application to access the sandbox directory of other applications.
@@ -4708,3 +4736,31 @@ Allows an application to access the sandbox directory of other applications.
 **Enable via ACL**: true
 
 **Valid since**: 17
+
+## ohos.permission.REQUEST_DISABLE_NOTIFICATION
+
+Allows an application to run background request tasks without triggering notifications in the notification bar.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Supported devices**: General
+
+**Valid since**: 20
+
+## ohos.permission.ALLOW_IOURING
+
+Allows a system application to call io_uring to perform async IO operations.
+
+**Permission level**：system_basic
+
+**Authorization mode**：system_grant
+
+**Enable via ACL**：true
+
+**Supported devices**: General
+
+**Valid since**：20

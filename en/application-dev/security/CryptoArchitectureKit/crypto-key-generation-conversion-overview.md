@@ -1,6 +1,5 @@
 # Key Generation and Conversion Overview
 
-
 Typical key generation operations involve the following:
 
 
@@ -13,6 +12,5 @@ Typical key generation operations involve the following:
 - Obtain the binary data of a key object for storage or transmission.
 
 - Obtain the properties of an asymmetric key object for storage or transmission. 
-
 
 The key object can be a symmetric key object (**SymKey**) or an asymmetric key pair object (**KeyPair**). The **KeyPair** object consists a public key (**PubKey**) and a private key (**PriKey**).

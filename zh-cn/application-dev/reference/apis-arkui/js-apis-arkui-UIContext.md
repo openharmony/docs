@@ -2876,7 +2876,7 @@ type Context = common.Context
 
 getRectangleById(id: string): componentUtils.ComponentInfo
 
-获取组件大小、位置、平移缩放旋转及仿射矩阵属性信息。
+获取组件大小、位置、平移、缩放、旋转及仿射矩阵属性信息。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -2896,7 +2896,7 @@ getRectangleById(id: string): componentUtils.ComponentInfo
 
 **错误码：** 
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)错误码。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID  | 错误信息                |
 | ------ | ------------------- |
@@ -3051,7 +3051,7 @@ off(type: 'navDestinationUpdate', callback?: Callback\<observer.NavDestinationIn
 | 参数名   | 类型                                                  | 必填 | 说明                                                         |
 | -------- | ----------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | string                                                | 是   | 监听事件，固定为'navDestinationUpdate'，即NavDestination组件的状态变化。 |
-| callback | Callback\<observer.[NavDestinationInfo](js-apis-arkui-observer.md#navdestinationinfo)\> | 否   | 回调函数。返回当前的NavDestination组件状态。                 |
+| callback | Callback\<observer.[NavDestinationInfo](js-apis-arkui-observer.md#navdestinationinfo)\> | 否   | 需要取消的监听回调，不传参数时，取消所有的Navigation监听回调。                 |
 
 **示例：** 
 
@@ -3144,11 +3144,115 @@ off(type: 'navDestinationUpdate', options: { navigationId: ResourceStr }, callba
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | string                                                       | 是   | 监听事件，固定为'navDestinationUpdate'，即NavDestination组件的状态变化。 |
 | options  | { navigationId: [ResourceStr](arkui-ts/ts-types.md#resourcestr) } | 是   | 指定监听的Navigation的id。                                   |
-| callback | Callback\<observer.[NavDestinationInfo](js-apis-arkui-observer.md#navdestinationinfo)\>        | 否   | 回调函数。返回当前的NavDestination组件状态。                 |
+| callback | Callback\<observer.[NavDestinationInfo](js-apis-arkui-observer.md#navdestinationinfo)\>        | 否   |需要取消的监听回调，不传参数时，取消该Navigation上所有的监听回调。                 |
 
 **示例：**
 
 参考[uiObserver.on('navDestinationUpdate')](#onnavdestinationupdate11-1)示例。
+
+### on('navDestinationUpdate')<sup>20+</sup>
+
+on(type: 'navDestinationUpdate', navigationUniqueId: number, callback: Callback\<observer.NavDestinationInfo\>): void
+
+通过Navigation的uniqueId监听NavDestination组件的状态变化，uniqueId可通过[queryNavigationInfo](arkui-ts/ts-custom-component-api.md#querynavigationinfo12)获取。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名   | 类型                                                                 | 必填 | 说明                                                                     |
+| -------- | -------------------------------------------------------------------- | ---- | ------------------------------------------------------------------------ |
+| type     | string                                                               | 是   | 监听事件，固定为'navDestinationUpdate'，即NavDestination组件的状态变化。 |
+| navigationUniqueId  | number | 是   | 指定监听的Navigation的uniqueId，可以通过[queryNavigationInfo](arkui-ts/ts-custom-component-api.md#querynavigationinfo12)获取。                                               |
+| callback | Callback\<observer.[NavDestinationInfo](js-apis-arkui-observer.md#navdestinationinfo)\>                | 是   | 回调函数。返回当前的NavDestination组件状态。                             |
+
+**示例：**
+
+通过Navigation的uniqueId，可以触发NavDestination组件的状态变化。
+
+```ts
+// Index.ets
+// 演示 on('navDestinationUpdate', navigationUniqueId, callback)
+// off('navDestinationUpdate', navigationUniqueId, callback)
+@Component
+struct PageOne {
+  private text = '';
+  private uniqueid = -1;
+  aboutToAppear() {
+    let navigationuniqueid = this.queryNavigationInfo()?.uniqueId;
+    if(navigationuniqueid) {
+      this.uniqueid = navigationuniqueid.valueOf();
+    }
+    this.text = JSON.stringify(this.uniqueid);
+    this.getUIContext().getUIObserver().on('navDestinationUpdate',this.uniqueid, (info) => {
+      console.info('NavDestination state update navigationId', JSON.stringify(info));
+    });
+  }
+  aboutToDisappear() {
+    this.getUIContext().getUIObserver().off('navDestinationUpdate', this.uniqueid);
+  }
+  build() {
+    NavDestination() {
+      Text("pageOne")
+      Text('navigationuniqueid是:' + this.text)
+        .width('80%')
+        .height(50)
+        .margin(50)
+        .fontSize(20)
+    }.title("pageOne")
+  }
+}
+
+@Entry
+@Component
+struct Index {
+  private stack: NavPathStack = new NavPathStack();
+
+  @Builder
+  PageBuilder(name: string) {
+    PageOne()
+  }
+
+  build() {
+    Column() {
+      Navigation(this.stack) {
+        Button("push").onClick(() => {
+          this.stack.pushPath({ name: "pageOne" });
+        })
+      }
+      .id("testId")
+      .title("Navigation")
+      .navDestination(this.PageBuilder)
+    }
+    .width('100%')
+    .height('100%')
+  }
+}
+```
+
+### off('navDestinationUpdate')<sup>20+</sup>
+
+off(type: 'navDestinationUpdate', navigationUniqueId: number, callback?: Callback\<observer.NavDestinationInfo\>): void
+
+取消通过navigationUniqueId监听NavDestination组件的变化。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名   | 类型                                                                 | 必填 | 说明                                                                     |
+| -------- | -------------------------------------------------------------------- | ---- | ------------------------------------------------------------------------ |
+| type     | string                                                               | 是   | 监听事件，固定为'navDestinationUpdate'，即NavDestination组件的状态变化。 |
+| navigationUniqueId  | number | 是   | 指定监听的Navigation的uniqueId，可以通过[queryNavigationInfo](arkui-ts/ts-custom-component-api.md#querynavigationinfo12)获取。                                               |
+| callback | Callback\<observer.[NavDestinationInfo](js-apis-arkui-observer.md#navdestinationinfo)\>                | 否   | 需要取消的监听回调，不传参数时，取消该Navigation上所有的监听回调。                             |
+
+**示例：**
+
+参考[uiObserver.on('navDestinationUpdate')](#onnavdestinationupdate20)示例。
 
 ### on('scrollEvent')<sup>12+</sup>
 
@@ -4212,13 +4316,13 @@ off(type: 'tabContentUpdate', options: observer.ObserverOptions, callback?: Call
 
 参考[on('tabContentUpdate')](#ontabcontentupdate12-1)接口示例。
 
-### on('beforePanStart')<sup>18+</sup>
+### on('beforePanStart')<sup>19+</sup>
 
 on(type: 'beforePanStart', callback: PanListenerCallback): void
 
 监听Pan手势[onActionStart](arkui-ts/ts-basic-gestures-pangesture.md#事件)事件，在onActionStart事件执行之前执行callback回调。支持手指滑动、鼠标滑动、鼠标滚轮和触摸板拖动，暂不支持屏幕朗读触控模式。
 
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -4227,7 +4331,7 @@ on(type: 'beforePanStart', callback: PanListenerCallback): void
 | 参数名   | 类型                                                        | 必填 | 说明                                                         |
 | -------- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | string                                                      | 是   | 监听事件，固定为'beforePanStart'，用于监听Pan手势onActionStart事件执行前的指令下发情况，所注册回调将于Pan手势onActionStart事件触发前触发。 |
-| callback | [PanListenerCallback](#panlistenercallback18) | 是   | 回调函数。可以获得Pan手势事件的GestureEvent，GestureRecognizer和组件的FrameNode。   |
+| callback | [PanListenerCallback](#panlistenercallback19) | 是   | 回调函数。可以获得Pan手势事件的GestureEvent，GestureRecognizer和组件的FrameNode。   |
 
 **示例：**
 
@@ -4329,13 +4433,13 @@ struct PanExample {
 }
 ```
 
-### off('beforePanStart')<sup>18+</sup>
+### off('beforePanStart')<sup>19+</sup>
 
 off(type: 'beforePanStart', callback?: PanListenerCallback): void
 
-取消[on('beforePanStart')](#onbeforepanstart18)监听Pan手势[onActionStart](arkui-ts/ts-basic-gestures-pangesture.md#事件)事件执行前的callback回调。
+取消[on('beforePanStart')](#onbeforepanstart19)监听Pan手势[onActionStart](arkui-ts/ts-basic-gestures-pangesture.md#事件)事件执行前的callback回调。
 
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -4344,7 +4448,7 @@ off(type: 'beforePanStart', callback?: PanListenerCallback): void
 | 参数名   | 类型                                                        | 必填 | 说明                                                 |
 | -------- | ----------------------------------------------------------- | ---- | ---------------------------------------------------- |
 | type     | string                                                      | 是   | 监听事件，固定为'beforePanStart'，即Pan手势onActionStart事件执行前的指令下发情况。 |
-| callback | [PanListenerCallback](#panlistenercallback18) | 否   | 需要被注销的回调函数。                               |
+| callback | [PanListenerCallback](#panlistenercallback19) | 否   | 需要被注销的回调函数。                               |
 
 **示例：**
 
@@ -4358,13 +4462,13 @@ let observer: UIObserver = this.getUIContext().getUIObserver();
 observer.off('beforePanStart', callback);
 ```
 
-### on('afterPanStart')<sup>18+</sup>
+### on('afterPanStart')<sup>19+</sup>
 
 on(type: 'afterPanStart', callback: PanListenerCallback): void
 
 监听Pan手势[onActionStart](arkui-ts/ts-basic-gestures-pangesture.md#事件)事件执行后的指令下发情况，在onActionStart事件执行之后执行callback回调。支持手指滑动、鼠标滑动、鼠标滚轮和触摸板拖动，暂不支持屏幕朗读触控模式。
 
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -4373,17 +4477,17 @@ on(type: 'afterPanStart', callback: PanListenerCallback): void
 | 参数名   | 类型                                                        | 必填 | 说明                                                         |
 | -------- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | string                                                      | 是   | 监听事件，固定为'afterPanStart'，用于监听Pan手势onActionStart事件执行后的指令下发情况，所注册回调将于Pan手势onActionStart事件触发后触发。 |
-| callback | [PanListenerCallback](#panlistenercallback18) | 是   | 回调函数。可以获得Pan手势事件的GestureEvent，GestureRecognizer和组件的FrameNode。   |
+| callback | [PanListenerCallback](#panlistenercallback19) | 是   | 回调函数。可以获得Pan手势事件的GestureEvent，GestureRecognizer和组件的FrameNode。   |
 
 **示例：**
 
-参考[on('beforePanStart')](#onbeforepanstart18)接口示例
+参考[on('beforePanStart')](#onbeforepanstart19)接口示例
 
-### off('afterPanStart')<sup>18+</sup>
+### off('afterPanStart')<sup>19+</sup>
 
 off(type: 'afterPanStart', callback?: PanListenerCallback): void
 
-取消[on('afterPanStart')](#onafterpanstart18)监听Pan手势[onActionStart](arkui-ts/ts-basic-gestures-pangesture.md#事件)事件执行后的callback回调。
+取消[on('afterPanStart')](#onafterpanstart19)监听Pan手势[onActionStart](arkui-ts/ts-basic-gestures-pangesture.md#事件)事件执行后的callback回调。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
@@ -4394,19 +4498,19 @@ off(type: 'afterPanStart', callback?: PanListenerCallback): void
 | 参数名   | 类型                                                        | 必填 | 说明                                                 |
 | -------- | ----------------------------------------------------------- | ---- | ---------------------------------------------------- |
 | type     | string                                                      | 是   | 监听事件，固定为'afterPanStart'，即Pan手势onActionStart事件执行后的指令下发情况。 |
-| callback | [PanListenerCallback](#panlistenercallback18) | 否   | 需要被注销的回调函数。                               |
+| callback | [PanListenerCallback](#panlistenercallback19) | 否   | 需要被注销的回调函数。                               |
 
 **示例：**
 
-参考[on('beforePanStart')](#onbeforepanstart18)接口示例
+参考[on('beforePanStart')](#onbeforepanstart19)接口示例
 
-### on('beforePanEnd')<sup>18+</sup>
+### on('beforePanEnd')<sup>19+</sup>
 
 on(type: 'beforePanEnd', callback: PanListenerCallback): void
 
 监听Pan手势[onActionEnd](arkui-ts/ts-basic-gestures-pangesture.md#事件)事件执行前的指令下发情况，在onActionEnd事件执行之前执行callback回调。支持手指滑动、鼠标滑动、鼠标滚轮和触摸板拖动，暂不支持屏幕朗读触控模式。
 
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -4415,19 +4519,19 @@ on(type: 'beforePanEnd', callback: PanListenerCallback): void
 | 参数名   | 类型                                                        | 必填 | 说明                                                         |
 | -------- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | string                                                      | 是   | 监听事件，固定为'beforePanEnd'，用于监听Pan手势onActionEnd事件执行前的指令下发情况，所注册回调将于Pan手势onActionEnd事件触发前触发。 |
-| callback | [PanListenerCallback](#panlistenercallback18) | 是   | 回调函数。可以获得Pan手势事件的GestureEvent，GestureRecognizer和组件的FrameNode。   |
+| callback | [PanListenerCallback](#panlistenercallback19) | 是   | 回调函数。可以获得Pan手势事件的GestureEvent，GestureRecognizer和组件的FrameNode。   |
 
 **示例：**
 
-参考[on('beforePanStart')](#onbeforepanstart18)接口示例
+参考[on('beforePanStart')](#onbeforepanstart19)接口示例
 
-### off('beforePanEnd')<sup>18+</sup>
+### off('beforePanEnd')<sup>19+</sup>
 
 off(type: 'beforePanEnd', callback?: PanListenerCallback): void
 
-取消[on('beforePanEnd')](#onbeforepanend18)监听Pan手势[onActionEnd](arkui-ts/ts-basic-gestures-pangesture.md#事件)事件执行前的callback回调。
+取消[on('beforePanEnd')](#onbeforepanend19)监听Pan手势[onActionEnd](arkui-ts/ts-basic-gestures-pangesture.md#事件)事件执行前的callback回调。
 
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -4436,19 +4540,19 @@ off(type: 'beforePanEnd', callback?: PanListenerCallback): void
 | 参数名   | 类型                                                        | 必填 | 说明                                                 |
 | -------- | ----------------------------------------------------------- | ---- | ---------------------------------------------------- |
 | type     | string                                                      | 是   | 监听事件，固定为'beforePanEnd'，即Pan手势onActionEnd事件执行前的指令下发情况。 |
-| callback | [PanListenerCallback](#panlistenercallback18) | 否   | 需要被注销的回调函数。                               |
+| callback | [PanListenerCallback](#panlistenercallback19) | 否   | 需要被注销的回调函数。                               |
 
 **示例：**
 
-参考[on('beforePanStart')](#onbeforepanstart18)接口示例
+参考[on('beforePanStart')](#onbeforepanstart19)接口示例
 
-### on('afterPanEnd')<sup>18+</sup>
+### on('afterPanEnd')<sup>19+</sup>
 
 on(type: 'afterPanEnd', callback: PanListenerCallback): void
 
 监听Pan手势[onActionEnd](arkui-ts/ts-basic-gestures-pangesture.md#事件)事件执行后的指令下发情况，在onActionEnd事件执行之后执行callback回调。支持手指滑动、鼠标滑动、鼠标滚轮和触摸板拖动，暂不支持屏幕朗读触控模式。
 
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -4457,19 +4561,19 @@ on(type: 'afterPanEnd', callback: PanListenerCallback): void
 | 参数名   | 类型                                                        | 必填 | 说明                                                         |
 | -------- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | string                                                      | 是   | 监听事件，固定为'beforePanEnd'，用于监听Pan手势onActionEnd事件执行后的指令下发情况，所注册回调将于Pan手势onActionEnd事件触发后触发。 |
-| callback | [PanListenerCallback](#panlistenercallback18) | 是   | 回调函数。可以获得Pan手势事件的GestureEvent，GestureRecognizer和组件的FrameNode。   |
+| callback | [PanListenerCallback](#panlistenercallback19) | 是   | 回调函数。可以获得Pan手势事件的GestureEvent，GestureRecognizer和组件的FrameNode。   |
 
 **示例：**
 
-参考[on('beforePanStart')](#onbeforepanstart18)接口示例
+参考[on('beforePanStart')](#onbeforepanstart19)接口示例
 
-### off('afterPanEnd')<sup>18+</sup>
+### off('afterPanEnd')<sup>19+</sup>
 
 off(type: 'afterPanEnd', callback?: PanListenerCallback): void
 
-取消[on('afterPanEnd')](#onafterpanend18)监听Pan手势[onActionEnd](arkui-ts/ts-basic-gestures-pangesture.md#事件)事件执行后的callback回调。
+取消[on('afterPanEnd')](#onafterpanend19)监听Pan手势[onActionEnd](arkui-ts/ts-basic-gestures-pangesture.md#事件)事件执行后的callback回调。
 
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -4478,19 +4582,19 @@ off(type: 'afterPanEnd', callback?: PanListenerCallback): void
 | 参数名   | 类型                                                        | 必填 | 说明                                                 |
 | -------- | ----------------------------------------------------------- | ---- | ---------------------------------------------------- |
 | type     | string                                                      | 是   | 监听事件，固定为'afterPanEnd'，即Pan手势onActionEnd事件执行后的指令下发情况。 |
-| callback | [PanListenerCallback](#panlistenercallback18) | 否   | 需要被注销的回调函数。                               |
+| callback | [PanListenerCallback](#panlistenercallback19) | 否   | 需要被注销的回调函数。                               |
 
 **示例：**
 
-参考[on('beforePanStart')](#onbeforepanstart18)接口示例
+参考[on('beforePanStart')](#onbeforepanstart19)接口示例
 
 
-## PanListenerCallback<sup>18+</sup>
+## PanListenerCallback<sup>19+</sup>
 type PanListenerCallback = (event: GestureEvent, current: GestureRecognizer, node?: FrameNode) => void
 
 Pan手势事件监听函数类型。
 
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -8758,14 +8862,12 @@ hideAllComponentContents(): void
 
 初始化[OverlayManager](#overlaymanager12)时所用参数。
 
-**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
-
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称             | 类型                | 必填     | 说明                     |
 | --------------- | ---------------------- | ------------ | --------------------- |
-| renderRootOverlay   | boolean | 否 | 是否渲染overlay根节点，true表示渲染overlay根节点，false表示不渲染overlay根节点，默认值为true。|
-| enableBackPressedEvent<sup>18+</sup>   | boolean | 否 | 是否支持通过侧滑手势关闭OverlayManager下的ComponentContent，默认值为false。 |
+| renderRootOverlay   | boolean | 否 | 是否渲染overlay根节点，true表示渲染overlay根节点，false表示不渲染overlay根节点，默认值为true。<br/>**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。|
+| enableBackPressedEvent<sup>19+</sup>   | boolean | 否 | 是否支持通过侧滑手势关闭OverlayManager下的ComponentContent，true表示可以通过侧滑关闭，false表示不可以通过侧滑关闭，默认值为false。 <br/>**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。|
 
 ## AtomicServiceBar<sup>11+</sup>
 
@@ -9040,7 +9142,7 @@ struct Index {
 
 
 ## FocusController<sup>12+</sup>
-以下API需先使用UIContext中的[getFocusController()](js-apis-arkui-UIContext.md#getFocusController12)方法获取UIContext实例，再通过此实例调用对应方法。
+以下API需先使用UIContext中的[getFocusController()](js-apis-arkui-UIContext.md#getFocusController12)方法获取UIContext实例，再通过该实例调用对应方法。
 
 ### clearFocus<sup>12+</sup>
 
@@ -9103,7 +9205,7 @@ struct ClearFocusExample {
 
 requestFocus(key: string): void
 
-通过组件的id将焦点转移到组件树对应的实体节点。当前帧生效。
+通过组件的id将焦点转移到组件树对应的实体节点，当前帧生效。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -9229,6 +9331,71 @@ struct ActivateExample {
     .padding(10)
     .justifyContent(FlexAlign.SpaceBetween)
     .width(800)
+  }
+}
+```
+
+### isActive<sup>20+</sup>
+
+isActive(): boolean
+
+返回UI实例的获焦状态。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：**
+
+| 类型          | 说明       |
+| ------------  | --------- |
+|  boolean  | 返回UI实例的获焦状态。true表示UI实例获取焦点，false表示UI实例失去焦点。 |
+
+**示例：**
+
+```ts
+@Entry
+@Component
+struct ClearFocusExample {
+  @State inputValue: string = ''
+  @State btColor: Color = Color.Blue
+
+  build() {
+    Column({ space: 20 }) {
+      Column({ space: 5 }) {
+        Button('button1')
+          .width(200)
+          .height(70)
+          .fontColor(Color.White)
+          .focusOnTouch(true)
+          .backgroundColor(Color.Blue)
+          .onClick(()=> {
+            console.log("button1 onClick")
+            this.getUIContext().getFocusController().activate(true)
+            console.log("focus status " + this.getUIContext().getFocusController().isActive())
+          })
+        Button('button2')
+          .width(200)
+          .height(70)
+          .fontColor(Color.White)
+          .focusOnTouch(true)
+          .backgroundColor(this.btColor)
+          .defaultFocus(true)
+          .onClick(()=> {
+            console.log("button2 onClick")
+            this.getUIContext().getFocusController().activate(false)
+            console.log("focus status " + this.getUIContext().getFocusController().isActive())
+          })
+          .onFocus(() => {
+            this.btColor = Color.Red
+          })
+          .onBlur(() => {
+            this.btColor = Color.Blue
+          })
+      }
+    }
+    .width('100%')
+    .height('100%')
   }
 }
 ```
