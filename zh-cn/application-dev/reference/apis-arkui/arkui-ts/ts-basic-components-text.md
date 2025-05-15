@@ -1045,7 +1045,7 @@ marqueeOptions(options: Optional\<TextMarqueeOptions>)
 
 onCopy(callback:(value:&nbsp;string)&nbsp;=&gt;&nbsp;void)
 
-长按文本内部区域弹出剪贴板后，点击剪切板复制按钮，触发该回调。目前文本复制仅支持文本。
+长按文本内部区域弹出剪贴板后，点击剪贴板复制按钮，触发该回调。目前文本复制仅支持文本。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
