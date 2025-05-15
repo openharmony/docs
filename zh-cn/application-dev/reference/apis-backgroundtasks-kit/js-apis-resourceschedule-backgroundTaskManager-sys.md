@@ -129,7 +129,7 @@ getAllEfficiencyResources(): Promise&lt;EfficiencyResourcesInfo[]&gt;
 | 202 | Not System App. |
 | 18700001 | Caller information verification failed for an energy resource request. |
 | 18700002 | Failed to write data into parcel. Possible reasons: 1. Invalid parameters; 2. Failed to apply for memory. |
-| 18700003 | System service operation failed. |
+| 18700004 | System service operation failed. |
 
 **示例**：
 
