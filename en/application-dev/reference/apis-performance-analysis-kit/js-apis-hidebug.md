@@ -1,10 +1,10 @@
 # @ohos.hidebug (HiDebug)
 
+HiDebug allows you to obtain the memory usage of an application, including the static heap memory (native heap) and proportional set size (PSS) occupied by the application process. It also allows you to export VM memory slices and collect VM CPU profiling data.
+
 > **NOTE**
 >
 > The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
-
-The **hidebug** module provides APIs for you to obtain the memory usage of an application, including the static heap memory (native heap) and proportional set size (PSS) occupied by the application process. You can also export VM memory slices and collect VM CPU profiling data.
 
 ## Modules to Import
 
@@ -22,7 +22,7 @@ Obtains the size of heap memory (including the allocator metadata) held by a pro
 
 **Return value**
 
-| Type  | Description                       |
+| Type  | Description                                        |
 | ------ | --------------------------- |
 | bigint | Size of the heap memory (including the allocator metadata) held by the process, in bytes.|
 
@@ -81,7 +81,11 @@ let nativeHeapFreeSize: bigint = hidebug.getNativeHeapFreeSize();
 
 getPss(): bigint
 
-Obtains the size of the physical memory actually used by the application process.
+Obtains the size of the physical memory actually used by the application process. This API is implemented by summing up the values of **Pss** and **SwapPss** in the **/proc/{pid}/smaps_rollup** node.
+
+> **NOTE**
+> 
+> Reading the **/proc/{pid}/smaps_rollup** node is time-consuming. Therefore, you are advised not to use this API in the main thread to avoid frame freezing.
 
 **System capability**: SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
@@ -102,7 +106,7 @@ let pss: bigint = hidebug.getPss();
 
 getVss(): bigint
 
-Obtains the virtual set size used by the application process.
+Obtains the virtual set size used by the application process. This API is implemented by multiplying the value of **size** (number of memory pages) in the **/proc/{pid}/statm** node by the page size (4 KB per page).
 
 **System capability**: SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
@@ -124,7 +128,11 @@ let vss: bigint = hidebug.getVss();
 
 getSharedDirty(): bigint
 
-Obtains the size of the shared dirty memory of a process.
+Obtains the size of the shared dirty memory of a process. This API is implemented by reading the value of **Shared_Dirty** in the **/proc/{pid}/smaps_rollup** node.
+
+> **NOTE**
+> 
+> Reading the **/proc/{pid}/smaps_rollup** node is time-consuming. Therefore, you are advised not to use this API in the main thread to avoid frame freezing.
 
 **System capability**: SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
@@ -146,7 +154,11 @@ let sharedDirty: bigint = hidebug.getSharedDirty();
 
 getPrivateDirty(): bigint
 
-Obtains the size of the private dirty memory of a process.
+Obtains the size of the private dirty memory of a process. This API is implemented by reading the value of **Private_Dirty** in the **/proc/{pid}/smaps_rollup** node.
+
+> **NOTE**
+>
+> Reading the **/proc/{pid}/smaps_rollup** node is time-consuming. Therefore, you are advised not to use this API in the main thread to avoid frame freezing.
 
 **System capability**: SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
@@ -189,7 +201,7 @@ let cpuUsage: number = hidebug.getCpuUsage();
 
 ## hidebug.getServiceDump<sup>9+<sup>
 
-getServiceDump(serviceid : number, fd : number, args : Array\<string>) : void
+getServiceDump(serviceid : number, fd : number, args : Array&lt;string&gt;) : void
 
 Obtains system service information.
 
@@ -199,11 +211,11 @@ Obtains system service information.
 
 **Parameters**
 
-| Name  | Type  | Mandatory| Description                                                        |
+| Name  | Type  | Mandatory| Description                        |
 | -------- | ------ | ---- | ------------------------------------------------------------ |
 | serviceid | number | Yes  | Obtains the system service information based on the specified service ID.|
 | fd | number | Yes  | File descriptor to which data is written by the API.|
-| args | Array\<string> | Yes  | Parameter list corresponding to the **Dump** API of the system service.|
+| args | Array&lt;string&gt; | Yes  | Parameter list of the **Dump** API of the system service.|
 
 **Error codes**
 
@@ -211,7 +223,7 @@ For details about the error codes, see [HiDebug Error Codes](errorcode-hiviewdfx
 
 | ID| Error Message|
 | ------- | ----------------------------------------------------------------- |
-| 401 | the parameter check failed,Possible causes:1.the parameter type error 2.the args parameter is not string array  |
+| 401 | the parameter check failed,Possible causes:1.the parameter type error 2.the args parameter is not string array.  |
 | 11400101 | ServiceId invalid. The system ability does not exist.                                           |
 
 **Example**
@@ -232,10 +244,10 @@ try {
 
 let filesDir: string = applicationContext!.filesDir;
 let path: string = filesDir + "/serviceInfo.txt";
-console.info("output path: " + path);
+  console.info("output path: " + path);
 let file = fileIo.openSync(path, fileIo.OpenMode.READ_WRITE | fileIo.OpenMode.CREATE);
-let serviceId: number = 10;
-let args: Array<string> = new Array("allInfo");
+  let serviceId: number = 10;
+  let args: Array<string> = new Array("allInfo");
 
 try {
   hidebug.getServiceDump(serviceId, file.fd, args);
@@ -247,17 +259,17 @@ fileIo.closeSync(file);
 
 ## hidebug.startJsCpuProfiling<sup>9+</sup>
 
-startJsCpuProfiling(filename : string) : void
+startJsCpuProfiling(filename: string) : void
 
-Starts the profiling method. `startJsCpuProfiling()` and `stopJsCpuProfiling()` are called in pairs. `startJsCpuProfiling()` always occurs before `stopJsCpuProfiling()`; that is, calling the functions in the sequence similar to the following is prohibited: `start->start->stop`, `start->stop->stop`, and `start->start->stop->stop`.
+Starts the VM profiling method. **startJsCpuProfiling()** and **stopJsCpuProfiling()** are called in pairs. **startJsCpuProfiling(filename: string)** always occurs before **stopJsCpuProfiling()**; that is, calling the APIs in the sequence similar to the following is prohibited: start -> start -> stop, start -> stop -> stop, and start -> start -> stop -> stop
 
 **System capability**: SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
 **Parameters**
 
-| Name  | Type  | Mandatory| Description                                                        |
+| Name  | Type  | Mandatory| Description                                              |
 | -------- | ------ | ---- | ------------------------------------------------------------ |
-| filename | string | Yes  | User-defined profile name. The `filename.json` file is generated in the `files` directory of the application based on the specified `filename`.|
+| filename | string | Yes  | User-defined profile name. The **filename.json** file is generated in the **files** directory of the application based on the specified **filename**.|
 
 **Error codes**
 
@@ -265,7 +277,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message|
 | ------- | ----------------------------------------------------------------- |
-| 401 | the parameter check failed,Parameter type error                        |
+| 401 | the parameter check failed,Parameter type error.                        |
 
 **Example**
 
@@ -286,7 +298,7 @@ try {
 
 stopJsCpuProfiling() : void
 
-Stops the profiling method. `startJsCpuProfiling()` and `stopJsCpuProfiling()` are called in pairs. `startJsCpuProfiling()` always occurs before `stopJsCpuProfiling()`; that is, calling the functions in the sequence similar to the following is prohibited: `start->start->stop`, `start->stop->stop`, and `start->start->stop->stop`.
+Stops the VM profiling method. **startJsCpuProfiling()** and **stopJsCpuProfiling()** are called in pairs. **startJsCpuProfiling()** always occurs before **stopJsCpuProfiling()**; that is, calling the APIs in the sequence similar to the following is prohibited: start -> start -> stop, start -> stop -> stop, and start -> start -> stop -> stop.
 
 **System capability**: SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
@@ -307,7 +319,7 @@ try {
 
 ## hidebug.dumpJsHeapData<sup>9+</sup>
 
-dumpJsHeapData(filename : string) : void
+dumpJsHeapData(filename: string) : void
 
 Exports the heap data.
 
@@ -315,9 +327,9 @@ Exports the heap data.
 
 **Parameters**
 
-| Name  | Type  | Mandatory| Description                                                        |
+| Name  | Type  | Mandatory| Description                                           |
 | -------- | ------ | ---- | ------------------------------------------------------------ |
-| filename | string | Yes  | User-defined heap file name. The `filename.heapsnapshot` file is generated in the `files` directory of the application based on the specified `filename`.|
+| filename | string | Yes  | User-defined heap file name. The **filename.heapsnapshot** file is generated in the **files** directory of the application based on the specified **filename**.|
 
 **Error codes**
 
@@ -325,7 +337,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message|
 | ------- | ----------------------------------------------------------------- |
-| 401 | the parameter check failed, Parameter type error                      |
+| 401 | the parameter check failed, Parameter type error.                      |
 
 **Example**
 
@@ -342,20 +354,21 @@ try {
 
 ## hidebug.startProfiling<sup>(deprecated)</sup>
 
-startProfiling(filename : string) : void
+startProfiling(filename: string) : void
 
 > **NOTE**
+> 
 > This API is deprecated since API version 9. You are advised to use [hidebug.startJsCpuProfiling](#hidebugstartjscpuprofiling9).
 
-Starts the profiling method. `startProfiling()` and `stopProfiling()` are called in pairs. `startProfiling()` always occurs before `stopProfiling()`; that is, calling the functions in the sequence similar to the following is prohibited: `start->start->stop`, `start->stop->stop`, and `start->start->stop->stop`.
+Starts the VM profiling method. **startProfiling()** and **stopProfiling()** are called in pairs. **startProfiling(filename: string)** always occurs before **stopProfiling()**; that is, calling the APIs in the sequence similar to the following is prohibited: start -> start -> stop, start -> stop -> stop, and start -> start -> stop -> stop.
 
 **System capability**: SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
 **Parameters**
 
-| Name  | Type  | Mandatory| Description                                                        |
-| -------- | ------ | ---- | ------------------------------------------------------------ |
-| filename | string | Yes  | User-defined profile name. The `filename.json` file is generated in the `files` directory of the application based on the specified `filename`.|
+| Name  | Type  | Mandatory| Description                                            |
+| -------- | ------ | ---- | ------------------------------------------------ |
+| filename | string | Yes  | User-defined file name of the sampling data. The .json file is generated in the **files** directory of the application based on the specified file name.|
 
 **Example**
 
@@ -374,9 +387,10 @@ hidebug.stopProfiling();
 stopProfiling() : void
 
 > **NOTE**
+> 
 > This API is deprecated since API version 9. You are advised to use [hidebug.stopJsCpuProfiling](#hidebugstopjscpuprofiling9).
 
-Stops the profiling method. `startProfiling()` and `stopProfiling()` are called in pairs. `startProfiling()` always occurs before `stopProfiling()`; that is, calling the functions in the sequence similar to the following is prohibited: `start->start->stop`, `start->stop->stop`, and `start->start->stop->stop`.
+Stops the VM profiling method. **stopProfiling()** and **startProfiling()** are called in pairs. **startProfiling(filename: string)** always occurs before **stopProfiling()**; that is, calling the APIs in the sequence similar to the following is prohibited: start -> start -> stop, start -> stop -> stop, and start -> start -> stop -> stop.
 
 **System capability**: SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
@@ -394,20 +408,21 @@ hidebug.stopProfiling();
 
 ## hidebug.dumpHeapData<sup>(deprecated)</sup>
 
-dumpHeapData(filename : string) : void
+dumpHeapData(filename: string) : void
 
 > **NOTE**
+> 
 > This API is deprecated since API version 9. You are advised to use [hidebug.dumpJsHeapData](#hidebugdumpjsheapdata9).
 
-Exports the heap data.
+Exports the VM heap data.
 
 **System capability**: SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
 **Parameters**
 
-| Name  | Type  | Mandatory| Description                                                        |
+| Name  | Type  | Mandatory| Description                                                     |
 | -------- | ------ | ---- | ------------------------------------------------------------ |
-| filename | string | Yes  | User-defined heap file name. The `filename.heapsnapshot` file is generated in the `files` directory of the application based on the specified `filename`.|
+| filename | string | Yes  | User-defined heap file name. The **filename.heapsnapshot** file is generated in the **files** directory of the application based on the specified **filename**.
 
 **Example**
 
@@ -429,7 +444,7 @@ Obtains VM memory information.
 
 | Type        | Description                                   |
 | -------------| --------------------------------------- |
-| [VMMemoryInfo](#vmmemoryinfo12) |  VM memory information. |
+| [VMMemoryInfo](#vmmemoryinfo12) | VM memory information.|
 
 **Example**
 
@@ -463,19 +478,19 @@ Obtains the CPU usage of application threads.
 import { hidebug } from '@kit.PerformanceAnalysisKit';
 
 let appThreadCpuUsage: hidebug.ThreadCpuUsage[] = hidebug.getAppThreadCpuUsage();
-for (let ii = 0; ii < appThreadCpuUsage.length; ii++) {
-  console.info(`threadId=${appThreadCpuUsage[ii].threadId}, cpuUsage=${appThreadCpuUsage[ii].cpuUsage}`);
+for (let i = 0; i < appThreadCpuUsage.length; i++) {
+  console.info(`threadId=${appThreadCpuUsage[i].threadId}, cpuUsage=${appThreadCpuUsage[i].cpuUsage}`);
 }
 ```
 
 ## hidebug.startAppTraceCapture<sup>12+</sup>
 
-startAppTraceCapture(tags : number[], flag: TraceFlag, limitSize: number) : string
+startAppTraceCapture(tags: number[], flag: TraceFlag, limitSize: number) : string
 
-Starts automatic trace collection for a specified scope. This API is a supplement to the [hitrace](../../dfx/hitrace.md) module.
+Starts automatic trace collection in a specified scope. This API is a supplement to the [HiTrace](../../dfx/hitrace.md) module. 
 The performance consumption during trace collection increases with the collection scope. Therefore, before using this API, you are advised to run the **hitrace** command to capture trace logs and select the key scope of trace collection to improve the API performance.
 
-**startAppTraceCapture()** and [stopAppTraceCapture ()](#hidebugstopapptracecapture12) must be called in pairs. Repeat calling of **startAppTraceCapture()** will cause exceptions. Trace collection consumes a lot of performance resources. Therefore, call **stopAppTraceCapture()** immediately after trace collection is complete.
+**startAppTraceCapture()** and [stopAppTraceCapture()](#hidebugstopapptracecapture12) must be called in pairs. Repeat calling of **startAppTraceCapture()** will cause exceptions. Trace collection consumes a lot of performance resources. Therefore, call **stopAppTraceCapture()** immediately after trace collection is complete.
 
 When an application calls **startAppTraceCapture()** to collect trace data and the size of the data exceeds the value of **limitSize**, the system automatically calls **stopAppTraceCapture()** to stop trace collection. Therefore, if **limitSize** is set improperly, the collected trace data is insufficient for fault analysis. Therefore, you need to evaluate the value of **limitSize** as required.
 
@@ -483,9 +498,9 @@ Evaluation method: limitSize = Expected trace collection duration x Unit trace t
 
 Expected trace collection duration: You can determine the duration based on the fault scenario. The unit is second.
 
-Unit trace traffic: The size of a trace generated by an application per second. The recommended value is 300 KB/s. You are advised to use the actual value of your application. The unit is KB/s.
+Unit trace traffic: The size of trace data generated by an application per second. The recommended value is 300 KB/s. You are advised to use the actual value of your application. The unit is KB/s.
 
-To obtain the unit trace traffic, you can call **startAppTraceCapture()** with **limitSize** set to the maximum value 500 MB. After **N** seconds, call **stopAppTraceCapture()** to stop the collection and check the trace size (**S** KB). The unit trace traffic is S/N.
+To obtain the unit trace traffic of an application, you can call **startAppTraceCapture()** with **limitSize** set to the maximum value 500 MB. After **N** seconds, call **stopAppTraceCapture()** to stop the collection and check the size **S** (KB) of the trace data. The unit trace traffic is **S**/**N** (KB/s).
 
 **System capability**: SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
@@ -493,15 +508,15 @@ To obtain the unit trace traffic, you can call **startAppTraceCapture()** with *
 
 | Name  | Type    | Mandatory| Description                                |
 | -------- | ------   | ---- |------------------------------------|
-| tags     | number[] | Yes  | Scope for trace collection. For details, see [tags](#hidebugtags12).|
-| flag     | TraceFlag| Yes  | For details, see [TraceFlag](#traceflag12).     |
+| tags     | number[] | Yes  | Scope for trace collection. For details, see [tags](#hidebugtags12).  |
+| flag     | TraceFlag| Yes  | For details, see [TraceFlag](#traceflag12).       |
 | limitSize| number   | Yes  | Limit on the trace file size, in bytes. The maximum size of a single file is 500 MB.|
 
 **Return value**
 
-| Type            | Description                                          |
-| -----------------| -----------------------------------------------|
-| string           | Path of the trace file.                           |
+| Type            | Description           |
+| -----------------|---------------|
+| string           | Path of the trace file.|
 
 **Error codes**
 
@@ -509,7 +524,7 @@ For details about the error codes, see [HiDebug Error Codes](errorcode-hiviewdfx
 
 | ID| Error Message|
 | ------- | ----------------------------------------------------------------- |
-| 401 | Invalid argument, Possible causes:1.The limit parameter is too small 2.The parameter is not within the enumeration type 3.The parameter type error or parameter order error|
+| 401 | Invalid argument, Possible causes:1.The limit parameter is too small 2.The parameter is not within the enumeration type 3.The parameter type error or parameter order error. |
 | 11400102 | Capture trace already enabled.                                         |
 | 11400103 | No write permission on the file.                                |
 | 11400104 | Abnormal trace status.                                 |
@@ -518,6 +533,7 @@ For details about the error codes, see [HiDebug Error Codes](errorcode-hiviewdfx
 
 ```ts
 import { hidebug } from '@kit.PerformanceAnalysisKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let tags: number[] = [hidebug.tags.ABILITY_MANAGER, hidebug.tags.ARKUI];
 let flag: hidebug.TraceFlag = hidebug.TraceFlag.MAIN_THREAD;
@@ -550,13 +566,14 @@ For details about the error codes, see [HiDebug Error Codes](errorcode-hiviewdfx
 
 | ID| Error Message|
 | ------- | ----------------------------------------------------------------- |
-| 11400104 | The status of the trace is abnormal                                |
-| 11400105 |   No capture trace running                                       |
+| 11400104 | The status of the trace is abnormal.                                |
+| 11400105 | No capture trace running.                                       |
 
 **Example**
 
 ```ts
 import { hidebug } from '@kit.PerformanceAnalysisKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let tags: number[] = [hidebug.tags.ABILITY_MANAGER, hidebug.tags.ARKUI];
 let flag: hidebug.TraceFlag = hidebug.TraceFlag.MAIN_THREAD;
@@ -576,7 +593,7 @@ try {
 
 getAppMemoryLimit() : MemoryLimit
 
-Obtains the memory limit of the application process.
+Obtains the memory limit of an application process.
 
 **System capability**: SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
@@ -584,7 +601,7 @@ Obtains the memory limit of the application process.
 
 | Type | Description                     |
 | ------ | -------------------------- |
-| [MemoryLimit](#memorylimit12) | Memory limit of the application process.|
+| [MemoryLimit](#memorylimit12) | Defines the memory limit of the application process.|
 
 **Example**
 
@@ -621,6 +638,7 @@ For details about the error codes, see [HiDebug CPU Usage Error Codes](errorcode
 **Example**
 ```ts
 import { hidebug } from '@kit.PerformanceAnalysisKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   console.info(`getSystemCpuUsage: ${hidebug.getSystemCpuUsage()}`)
@@ -634,7 +652,10 @@ try {
 setAppResourceLimit(type: string, value: number, enableDebugLog: boolean) : void
 
 Sets the number of FDs, number of threads, JS memory, or native memory limit of the application.
-**NOTE**: This feature is available only after **Developer options** is enabled and the device is restarted.
+
+> **NOTE**
+>
+> This API is valid only when the **Developer options** is enabled.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -644,9 +665,9 @@ Sets the number of FDs, number of threads, JS memory, or native memory limit of 
 
 | Name  | Type  | Mandatory| Description                                                        |
 | -------- | ------ | ---- | ------------------------------------------------------------ |
-| type | string |  Yes | Types of resource leakage: pss_memory (native memory) leak, js_heap (js heap memory) leak, fd (file descriptor) leak, and thread (thread) leak.|
-| value | number |  Yes | The maximum value of a resource leakage type. Value range: pss_memory leak **[1024, 4 * 1024 * 1024] (in KB)**, js_heap memory leak **[85, 95]** (85% to 95% of the upper limit of the JS heap memory), fd leak [10, 10000], thread leak **[1, 1000]**|
-| enableDebugLog | boolean |  Yes | Whether to enable debug log. The default value is **false**. Set this parameter to **true** only in the dark version because collecting debug logs consumes too much CPU or memory.|
+| type | string |  Yes | Types of leak resources:<br>- pss_memory (native memory)<br>- js_heap (JavaScript heap memory)<br>- fd (file descriptor)<br>- thread (thread)                                                                      |
+| value | number |  Yes | Value range of the maximum values of the leak resource types:<br>- pss_memory: **[1024, 4 x 1024 x 1024]** (Unit: KB)<br>- js_heap: **[85, 95]** (85% to 95% of the upper size limit of the JS heap memory)<br>- fd: **[10, 10000]**<br>- thread: **[1, 1000]**|
+| enableDebugLog | boolean |  Yes | Whether to enable external debug log. The default value is **false**. Set this parameter to **true** only in the gray version because collecting debug logs consumes too much CPU or memory.                                                                                    |
 
 **Error codes**
 
@@ -654,13 +675,14 @@ For details about the error codes, see [HiDebug Error Codes](errorcode-hiviewdfx
 
 | ID| Error Message|
 | ------- | ----------------------------------------------------------------- |
-| 401 | Invalid argument, Possible causes:1.The limit parameter is too small 2.The parameter is not in the specified type 3.The parameter type error or parameter order error  |
-| 11400104 | Set limit failed due to remote exception |
+| 401 | Invalid argument, Possible causes:1.The limit parameter is too small 2.The parameter is not in the specified type 3.The parameter type error or parameter order error.  |
+| 11400104 | Set limit failed due to remote exception. |
 
 **Example**
 
 ```ts
 import { hidebug } from '@kit.PerformanceAnalysisKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let type: string = 'js_heap';
 let value: number = 85;
@@ -676,9 +698,14 @@ try {
 
 getAppNativeMemInfo(): NativeMemInfo
 
-Obtains the memory information of the application process.
+Obtains the memory information of the application process. This API is implemented by reading data from the **/proc/{pid}/smaps_rollup and /proc/{pid}/statm** node. For details, see "Return value".
 
 **System capability**: SystemCapability.HiviewDFX.HiProfiler.HiDebug
+
+> **NOTE**
+>
+> Reading the **/proc/{pid}/smaps_rollup** node is time-consuming. Therefore, you are advised not to use this API in the main thread to avoid frame freezing.
+
 
 **Return value**
 
@@ -701,7 +728,7 @@ console.info(`pss: ${nativeMemInfo.pss}, vss: ${nativeMemInfo.vss}, rss: ${nativ
 
 getSystemMemInfo(): SystemMemInfo
 
-Obtains system memory information.
+Obtains system memory information. This API is implemented by reading data from the **/proc/meminfo** node. For details, see "Return value".
 
 **System capability**: SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
@@ -751,7 +778,7 @@ console.info(`fullgc-longtime-count: ${vMRuntimeStats['ark.gc.fullgc-longtime-co
 
 ## hidebug.getVMRuntimeStat<sup>12+</sup>
 
-getVMRuntimeStat(item : string): number
+getVMRuntimeStat(item: string): number
 
 Obtains the specified system GC statistics based on parameters.
 
@@ -781,6 +808,8 @@ Obtains the specified system GC statistics based on parameters.
 
 ```ts
 import { hidebug } from '@kit.PerformanceAnalysisKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 try {
   console.info(`gc-count: ${hidebug.getVMRuntimeStat('ark.gc.gc-count')}`);
   console.info(`gc-time: ${hidebug.getVMRuntimeStat('ark.gc.gc-time')}`);
@@ -802,8 +831,8 @@ Defines the memory limit of the application process.
 | --------- | ------ | ---- | ------------ |
 | rssLimit    | bigint |  Yes | Limit on the resident set size, in KB.    |
 | vssLimit  | bigint |  Yes | Limit on the virtual memory size, in KB.      |
-| vmHeapLimit | bigint |  Yes | Limit on the JS VM heap size of the calling thread, in KB.     |
-| vmTotalHeapSize | bigint |  Yes | Size limit of the JS heap memory of the process, in KB.     |
+| vmHeapLimit | bigint |  Yes | Limit on the JS VM heap size of the calling thread, in KB.|
+| vmTotalHeapSize | bigint |  Yes | Size limit of the JS heap memory of the process, in KB. |
 
 ## VMMemoryInfo<sup>12+</sup>
 
@@ -813,8 +842,8 @@ Describes the VM memory information.
 
 | Name              | Type   | Readable| Writable| Description                               |
 | -------------------| ------- | ---- | ---- | ---------------------------------- |
-| totalHeap          | bigint  | Yes  | No  | Total heap size of the current VM, in KB.   |
-| heapUsed           | bigint  | Yes  | No  | Heap size used by the current VM, in KB. |
+| totalHeap          | bigint  | Yes  | No  | Total heap size of the current VM, in KB.    |
+| heapUsed           | bigint  | Yes  | No  | Heap size used by the current VM, in KB.   |
 | allArraySize       | bigint  | Yes  | No  | Size of all array objects of the current VM, in KB.|
 
 ## ThreadCpuUsage<sup>12+</sup>
@@ -825,51 +854,53 @@ Describes the CPU usage of a thread.
 
 | Name              | Type   | Readable| Writable| Description                               |
 | -------------------| ------- | ---- | ---- | ----------------------------------- |
-| threadId           | number  | Yes  | No  | Thread ID.                          |
-| cpuUsage           | number  | Yes  | No  | CPU usage of the thread.                      |
+| threadId           | number  | Yes  | No  | Thread ID.     |
+| cpuUsage           | number  | Yes  | No  | CPU usage of the thread.|
 
 ## hidebug.tags<sup>12+</sup>
 
-Enumerates the tags used in trace collection. You can use the [hitrace](../../dfx/hitrace.md) commands to capture the trace data of a specified tag for preview.
+Enumerates the tags used in trace collection. You can use the [HiTrace](../../dfx/hitrace.md) commands to capture the trace data of a specified tag.
 
-Note that the tag values are defined by the system and may change with the version upgrade. To avoid compatibility issues after the upgrade, use the tag names instead of the tag values in application development.
+> **NOTE**
+>
+> The following tag values are defined by the system and may change with the version upgrade. To avoid compatibility issues after the upgrade, use the tag names instead of the tag values in application development.
 
 **System capability**: SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
 | Name                    | Type   | Read Only | Description                                        |
 | -------------------------| ------- |-----|--------------------------------------------|
-| ABILITY_MANAGER          | number  | Yes| Capability management. The corresponding command is **tagName:ability**.                 |
-| ARKUI                    | number  | Yes| ArkUI development framework. The corresponding command is **tagName:ace**.               |
-| ARK                      | number  | Yes| JSVM VM. The corresponding command is **tagName:ark**.                 |
-| BLUETOOTH                | number  | Yes| Bluetooth. The corresponding command is **tagName:bluetooth**.                |
-| COMMON_LIBRARY           | number  | Yes| Common library subsystem. The corresponding command is **tagName:commonlibrary**.        |
-| DISTRIBUTED_HARDWARE_DEVICE_MANAGER | number  | Yes| Distributed hardware device management. The corresponding command is **tagName:devicemanager**.     |
-| DISTRIBUTED_AUDIO        | number  | Yes| Distributed audio. The corresponding command is **tagName:daudio**.                |
-| DISTRIBUTED_CAMERA       | number  | Yes| Distributed camera. The corresponding command is **tagName:dcamera**.               |
-| DISTRIBUTED_DATA         | number  | Yes| Distributed data management. The corresponding command is **tagName:distributeddatamgr**.|
-| DISTRIBUTED_HARDWARE_FRAMEWORK | number  | Yes| Distributed hardware framework. The corresponding command is **tagName:dhfwk**.                |
-| DISTRIBUTED_INPUT        | number  | Yes| Distributed input. The corresponding command is **tagName:dinput**.                |
-| DISTRIBUTED_SCREEN       | number  | Yes| Distributed screen. The corresponding command is **tagName:dscreen**.               |
-| DISTRIBUTED_SCHEDULER    | number  | Yes| Distributed scheduler. The corresponding command is **tagName:dsched**.               |
-| FFRT                     | number  | Yes| FFRT task. The corresponding command is **tagName:ffrt**.                 |
-| FILE_MANAGEMENT          | number  | Yes| File management system. The corresponding command is **tagName:filemanagement**.       |
-| GLOBAL_RESOURCE_MANAGER  | number  | Yes| Global resource management. The corresponding command is **tagName:gresource**.            |
-| GRAPHICS                 | number  | Yes| Graphics module. The corresponding command is **tagName:graphic**.                |
-| HDF                      | number  | Yes| HDF subsystem. The corresponding command is **tagName:hdf**.                  |
-| MISC                     | number  | Yes| MISC module. The corresponding command is **tagName:misc**.                 |
-| MULTIMODAL_INPUT         | number  | Yes| Multi-modal input module. The corresponding command is **tagName:multimodalinput**.     |
-| NET                      | number  | Yes| Network. The corresponding command is **tagName:net**.                      |
-| NOTIFICATION             | number  | Yes| Notification module. The corresponding command is **tagName:notification**.           |
-| NWEB                     | number  | Yes| Nweb. The corresponding command is **tagName:nweb**.                   |
-| OHOS                     | number  | Yes| OHOS. The corresponding command is **tagName:ohos**.                 |
-| POWER_MANAGER            | number  | Yes| Power management. The corresponding command is **tagName:power**.                  |
-| RPC                      | number  | Yes| RPC. The corresponding command is **tagName:rpc**.                     |
-| SAMGR                    | number  | Yes| System capability management. The corresponding command is **tagName:samgr**.                |
-| WINDOW_MANAGER           | number  | Yes| Window management. The corresponding command is **tagName:window**.                 |
-| AUDIO                    | number  | Yes| Audio module. The corresponding command is **tagName:zaudio**.                 |
-| CAMERA                   | number  | Yes| Camera module. The corresponding command is **tagName:zcamera**.                |
-| IMAGE                    | number  | Yes| Image module. The corresponding command is **tagName:zimage**.                 |
-| MEDIA                    | number  | Yes| Media module. The corresponding command is **tagName:zmedia**.                 |
+| ABILITY_MANAGER          | number  | Yes| Capability management. The corresponding HiTrace command is **tagName:ability**.                 |
+| ARKUI                    | number  | Yes| ArkUI development framework. The corresponding HiTrace command is **tagName:ace**.               |
+| ARK                      | number  | Yes| JSVM VM. The corresponding HiTrace command is **tagName:ark**.                 |
+| BLUETOOTH                | number  | Yes| Bluetooth. The corresponding HiTrace command is **tagName:bluetooth**.                |
+| COMMON_LIBRARY           | number  | Yes| Common library subsystem. The corresponding HiTrace command is **tagName:commonlibrary**.        |
+| DISTRIBUTED_HARDWARE_DEVICE_MANAGER | number  | Yes| Distributed hardware device management. The corresponding HiTrace command is **tagName:devicemanager**.     |
+| DISTRIBUTED_AUDIO        | number  | Yes| Distributed audio. The corresponding HiTrace command is **tagName:daudio**.                |
+| DISTRIBUTED_CAMERA       | number  | Yes| Distributed camera. The corresponding HiTrace command is **tagName:dcamera**.               |
+| DISTRIBUTED_DATA         | number  | Yes| Distributed data management. The corresponding HiTrace command is **tagName:distributeddatamgr**.|
+| DISTRIBUTED_HARDWARE_FRAMEWORK | number  | Yes| Distributed hardware framework. The corresponding HiTrace command is **tagName:dhfwk**.                |
+| DISTRIBUTED_INPUT        | number  | Yes| Distributed input. The corresponding HiTrace command is **tagName:dinput**.                |
+| DISTRIBUTED_SCREEN       | number  | Yes| Distributed screen. The corresponding HiTrace command is **tagName:dscreen**.               |
+| DISTRIBUTED_SCHEDULER    | number  | Yes| Distributed scheduler. The corresponding HiTrace command is **tagName:dsched**.               |
+| FFRT                     | number  | Yes| FFRT task. The corresponding HiTrace command is **tagName:ffrt**.                 |
+| FILE_MANAGEMENT          | number  | Yes| File management system. The corresponding HiTrace command is **tagName:filemanagement**.       |
+| GLOBAL_RESOURCE_MANAGER  | number  | Yes| Global resource management. The corresponding HiTrace command is **tagName:gresource**.            |
+| GRAPHICS                 | number  | Yes| Graphics module. The corresponding HiTrace command is **tagName:graphic**.                |
+| HDF                      | number  | Yes| HDF subsystem. The corresponding HiTrace command is **tagName:hdf**.                  |
+| MISC                     | number  | Yes| MISC module. The corresponding HiTrace command is **tagName:misc**.                 |
+| MULTIMODAL_INPUT         | number  | Yes| Multi-modal input module. The corresponding HiTrace command is **tagName:multimodalinput**.     |
+| NET                      | number  | Yes| Network. The corresponding HiTrace command is **tagName:net**.                      |
+| NOTIFICATION             | number  | Yes| Notification module. The corresponding HiTrace command is **tagName:notification**.           |
+| NWEB                     | number  | Yes| Nweb. The corresponding HiTrace command is **tagName:nweb**.                   |
+| OHOS                     | number  | Yes| OHOS. The corresponding HiTrace command is **tagName:ohos**.                 |
+| POWER_MANAGER            | number  | Yes| Power management. The corresponding HiTrace command is **tagName:power**.                  |
+| RPC                      | number  | Yes| RPC. The corresponding HiTrace command is **tagName:rpc**.                     |
+| SAMGR                    | number  | Yes| System capability management. The corresponding HiTrace command is **tagName:samgr**.                |
+| WINDOW_MANAGER           | number  | Yes| Window management. The corresponding HiTrace command is **tagName:window**.                 |
+| AUDIO                    | number  | Yes| Audio module. The corresponding HiTrace command is **tagName:zaudio**.                 |
+| CAMERA                   | number  | Yes| Camera module. The corresponding HiTrace command is **tagName:zcamera**.                |
+| IMAGE                    | number  | Yes| Image module. The corresponding HiTrace command is **tagName:zimage**.                 |
+| MEDIA                    | number  | Yes| Media module. The corresponding HiTrace command is **tagName:zmedia**.                 |
 
 ## NativeMemInfo<sup>12+</sup>
 
@@ -877,15 +908,15 @@ Describes memory information of the application process.
 
 **System capability**: SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
-| Name     | Type  | Mandatory| Description        |
-| --------- | ------ | ---- | ------------ |
-| pss  | bigint |  Yes | Size of the occupied physical memory (including the proportionally allocated memory occupied by the shared library), in KB.    |
-| vss  | bigint |  Yes | Size of the occupied virtual memory (including the memory occupied by the shared library), in KB.      |
-| rss  | bigint |  Yes | Size of the occupied physical memory (including the memory occupied by the shared library), in KB.        |
-| sharedDirty  | bigint |  Yes | Size of the shared dirty memory, in KB.     |
-| privateDirty  | bigint |  Yes | Size of the private dirty memory, in KB.     |
-| sharedClean  | bigint |  Yes | Size of the shared clean memory, in KB.     |
-| privateClean  | bigint |  Yes | Size of the private clean memory, in KB.     |
+| Name     | Type  | Mandatory| Description                                                                            |
+| --------- | ------ | ---- |------------------------------------------------------------------------------|
+| pss  | bigint |  Yes | Size of the occupied physical memory (including the proportionally allocated memory occupied by the shared library), in KB. The value of this parameter is obtained by summing up the values of **Pss** and **SwapPss** in the **/proc/{pid}/smaps_rollup** node.|
+| vss  | bigint |  Yes |  Size of the occupied virtual memory (including the memory occupied by the shared library), in KB. The value of this parameter is obtained by multiplying the value of **size** in the **/proc/{pid}/statm** node by **4**.               |
+| rss  | bigint |  Yes | Size of the occupied physical memory (including the memory occupied by the shared library), in KB. The value of this parameter is obtained by reading the value of **Rss** in the **/proc/{pid}/smaps_rollup** node.               |
+| sharedDirty  | bigint |  Yes | Size of the shared dirty memory, in KB. The value of this parameter is obtained by reading the value of **Shared_Dirty** in the **/proc/{pid}/smaps_rollup** node.                   |
+| privateDirty  | bigint |  Yes | Size of the private dirty memory, in KB. The value of this parameter is obtained by reading the value of **Private_Dirty** in the **/proc/{pid}/smaps_rollup** node.                  |
+| sharedClean  | bigint |  Yes | Size of the shared clean memory, in KB. The value of this parameter is obtained by reading the value of **Shared_Clean** in the **/proc/{pid}/smaps_rollup** node.                   |
+| privateClean  | bigint |  Yes | Size of the private clean memory, in KB. The value of this parameter is obtained by reading the value of **Private_Clean** in the **/proc/{pid}/smaps_rollup** node.                 |
 
 ## SystemMemInfo<sup>12+</sup>
 
@@ -893,15 +924,15 @@ Describes the system memory information.
 
 **System capability**: SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
-| Name     | Type  | Mandatory| Description        |
-| --------- | ------ | ---- | ------------ |
-| totalMem  | bigint |  Yes | Total memory of the system, in KB.    |
-| freeMem  | bigint |  Yes | Free memory of the system, in KB.      |
-| availableMem  | bigint |  Yes | Available memory of the system, in KB.     |
+| Name     | Type  | Mandatory| Description                                             |
+| --------- | ------ | ---- |-------------------------------------------------|
+| totalMem  | bigint |  Yes | Total memory of the system, in KB. The value of this parameter is obtained by reading the value of **MemTotal** in the **/proc/meminfo** node.     |
+| freeMem  | bigint |  Yes | Free memory of the system, in KB. The value of this parameter is obtained by reading the value of **MemFree** in the **/proc/meminfo** node.     |
+| availableMem  | bigint |  Yes | Available memory of the system, in KB. The value of this parameter is obtained by reading the value of **MemAvailable** in the **/proc/meminfo** node.|
 
 ## TraceFlag<sup>12+</sup>
 
-Defines the type of the trace collection thread.
+Describes types of trace collection threads.
 
 **System capability**: SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
@@ -914,15 +945,15 @@ Defines the type of the trace collection thread.
 
 type GcStats = Record&lt;string, number&gt;
 
-Key-value pair format used to store GC statistics. This type is not multi-thread safe. If a **GcStats** instance is operated by multiple threads at the same time in an application, use the lock mechanism for the instance.
+Describes the key-value pair used to store GC statistics. This type is not multi-thread safe. If an instance is operated by multiple threads at the same time in an application, use a lock for it.
 
-System capability: SystemCapability.HiviewDFX.HiProfiler.HiDebug
+**System capability**: SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
 | Type     | Description                         |
 | -----------| ---------------------------- |
-| Record&lt;string, number&gt;     | Indicates the value is in **Record** key-value pair format.    |
+| Record&lt;string, number&gt;     | The value in **Record** key-value pair format.    |
 
-**GcStats** contain the following key values:
+GcStats contains the following information:
 
 | Name                    | Type  | Description                     |
 |-------------------------| ------ |------------------------- |
@@ -936,7 +967,7 @@ System capability: SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
 isDebugState(): boolean
 
-Obtains whether an application process is being debugged. If the ark or native layer of the application process is being debugged, **true** is returned. Otherwise, **false** is returned.
+Obtains the debugging state of an application process. If the Ark or native layer of the application process is in debugging state, **true** is returned. Otherwise, **false** is returned.
 
 **System capability**: SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
@@ -944,7 +975,7 @@ Obtains whether an application process is being debugged. If the ark or native l
 
 | Type | Description                     |
 | ------ | -------------------------- |
-| boolean | Whether an application process is being debugged.|
+| boolean | Whether an application process is in the debugging state.|
 
 **Example**
 
@@ -993,9 +1024,11 @@ hidebug.getGraphicsMemory().then((ret: number) => {
 
 getGraphicsMemorySync(): number
 
-Obtains the size of the GPU memory. This API uses a synchronous callback to return the result.
+Obtains the size of the GPU memory synchronously.
 
-**Note**: This API involves multiple cross-process communications and may have performance problems. The asynchronous API **getGraphicsMemory** is recommended.
+> **NOTE**
+>
+> This API involves multiple cross-process communications and may have performance problems. The asynchronous API **getGraphicsMemory** is recommended.
 
 **Atomic service API**: This API can be used in atomic services since API version 14.
 
@@ -1003,8 +1036,8 @@ Obtains the size of the GPU memory. This API uses a synchronous callback to retu
 
 **Return value**
 
-| Type | Description        |
-| ------ |------------|
+| Type | Description            |
+| ------ |----------------|
 | number | Size of the GPU memory, in KB.|
 
 **Error codes**

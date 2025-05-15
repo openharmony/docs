@@ -117,7 +117,7 @@ Checks whether the specified rule exists in the collection of added rules. If th
 
 | Type   | Description                                                      |
 | ------- | ---------------------------------------------------------- |
-| boolean | Returns **true** if the rule exists in the collection of added rules; returns **false** otherwise.|
+| boolean | Check result. If the rule exists in the collection of added rules, **true** is returned; otherwise, **false** is returned.|
 
 **Error codes**
 
@@ -246,7 +246,7 @@ Checks whether the specified rule exists in the collection of added rules. If th
 
 | Type   | Description                                                      |
 | ------- | ---------------------------------------------------------- |
-| boolean | Returns **true** if the rule exists in the collection of added rules; returns **false** otherwise.|
+| boolean | Check result. If the rule exists in the collection of added rules, **true** is returned; otherwise, **false** is returned.|
 
 **Example**
 
