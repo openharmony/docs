@@ -25,7 +25,7 @@ target_link_libraries(entry PUBLIC libohcrypto.so)
 
 2. 调用[OH_CryptoAsymKeyGenerator_Create](../../reference/apis-crypto-architecture-kit/_crypto_asym_key_api.md#oh_cryptoasymkeygenerator_create)，指定字符串参数'RSA1024'，创建密钥算法为RSA1024、素数个数为2的非对称密钥生成器（OH_CryptoAsymKeyGenerator）。
 
-   生成RSA非对称密钥时，默认使用2个素数，参数PRIMES_2被省略。
+   生成RSA非对称密钥时，默认素数为2，此处省略了参数PRIMES_2。
 
 3. 调用[OH_CryptoAsymKeyGenerator_Convert](../../reference/apis-crypto-architecture-kit/_crypto_asym_key_api.md#oh_cryptoasymkeygenerator_convert)，传入二进制密钥数据，生成非对称密钥对象（OH_CryptoKeyPair）。
 
@@ -133,7 +133,7 @@ static OH_Crypto_ErrCode doAsymEccCovert()
 
 3. 调用[OH_CryptoAsymKeyGenerator_Convert](../../reference/apis-crypto-architecture-kit/_crypto_asym_key_api.md#oh_cryptoasymkeygenerator_convert)，传入公钥二进制和私钥二进制，生成非对称密钥对象（OH_CryptoKeyPair）。
 
-- 以下以创建SM2密钥对为例：
+- 下以生成SM2密钥对为例：
 ```c++
 #include "CryptoArchitectureKit/crypto_common.h"
 #include "CryptoArchitectureKit/crypto_asym_key.h"
