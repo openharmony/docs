@@ -3068,7 +3068,7 @@
           - [WindowManager_Rect](reference/apis-arkui/_window_manager___rect.md)
           - [WindowManager_WindowProperties](reference/apis-arkui/_window_manager___window_properties.md)
       - 错误码<!--arkui-arkts-errcode-->
-       - UI界面<!--arkui-ui-arkts-errcode-->
+        - UI界面<!--arkui-ui-arkts-errcode-->
           - [动画错误码](reference/apis-arkui/errorcode-animator.md)
           - [弹窗错误码](reference/apis-arkui/errorcode-promptAction.md)
           - [页面路由错误码](reference/apis-arkui/errorcode-router.md)
