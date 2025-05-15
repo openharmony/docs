@@ -1088,3 +1088,120 @@ struct Parent {
   }
 }
 ```
+
+### 在\@Builder内调用自定义组件传递参数不刷新问题
+
+在parentBuilder方法中调用自定义组件HelloComponent，传参为class对象时，UI不会触发刷新功能。
+
+【反例】
+
+```ts
+class Tmp {
+  name: string = 'Hello';
+  age: number = 16;
+}
+
+@Builder
+function parentBuilder(params: Tmp) {
+  Row() {
+    Column() {
+      Text(`parentBuilder===${params.name}===${params.age}`)
+        .fontSize(20)
+        .fontWeight(FontWeight.Bold)
+      // 这种写法不属于按引用传递方式，用法错误导致UI不刷新。
+      HelloComponent({ info: params })
+    }
+  }
+}
+
+@Component
+struct HelloComponent {
+  @Prop info: Tmp = new Tmp();
+
+  build() {
+    Row() {
+      Text(`HelloComponent===${this.info.name}===${this.info.age}`)
+        .fontSize(20)
+        .fontWeight(FontWeight.Bold)
+    }
+  }
+}
+
+@Entry
+@Component
+struct ParentPage {
+  @State nameValue: string = '张三';
+  @State ageValue: number = 18;
+
+  build() {
+    Column() {
+      parentBuilder({ name: this.nameValue, age: this.ageValue })
+      Button('Click me')
+        .onClick(() => {
+          this.nameValue = '李四';
+          this.ageValue = 20;
+        })
+    }
+    .height('100%')
+    .width('100%')
+  }
+}
+```
+
+在parentBuilder方法中调用自定义组件HelloComponent，传参为对象字面量形式时，UI触发刷新功能。
+
+【正例】
+
+```ts
+class Tmp {
+  name: string = 'Hello';
+  age: number = 16;
+}
+
+@Builder
+function parentBuilder(params: Tmp) {
+  Row() {
+    Column() {
+      Text(`parentBuilder===${params.name}===${params.age}`)
+        .fontSize(20)
+        .fontWeight(FontWeight.Bold)
+      // 这里把整个对象拆分开变成简单类型，属于按引用传递方式，用法正确触发UI刷新功能。
+      HelloComponent({ childName: params.name, childAge: params.age })
+    }
+  }
+}
+
+@Component
+struct HelloComponent {
+  @Prop childName: string = '';
+  @Prop childAge: number = 0;
+
+  build() {
+    Row() {
+      Text(`HelloComponent===${this.childName}===${this.childAge}`)
+        .fontSize(20)
+        .fontWeight(FontWeight.Bold)
+    }
+  }
+}
+
+@Entry
+@Component
+struct ParentPage {
+  @State nameValue: string = '张三';
+  @State ageValue: number = 18;
+
+  build() {
+    Column() {
+      parentBuilder({ name: this.nameValue, age: this.ageValue })
+      Button('Click me')
+        .onClick(() => {
+          this.nameValue = '李四';
+          this.ageValue = 20;
+        })
+    }
+    .height('100%')
+    .width('100%')
+  }
+}
+```
