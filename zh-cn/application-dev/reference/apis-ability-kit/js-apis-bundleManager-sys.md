@@ -1188,7 +1188,7 @@ queryAbilityInfo(wants: Array\<Want>, abilityFlags: number, userId?: number): Pr
 
 | 类型                                                         | 说明                                 |
 | ------------------------------------------------------------ | ------------------------------------ |
-| Array\<[AbilityInfo](js-apis-bundleManager-abilityInfo.md)> | Array\<AbilityInfo>信息。 |
+| Promise<Array\<[AbilityInfo](js-apis-bundleManager-abilityInfo.md)>> | Promise对象，返回Array\<[AbilityInfo](js-apis-bundleManager-abilityInfo.md)>信息。 |
 
 **错误码：**
 
@@ -5302,7 +5302,7 @@ getAppCloneBundleInfo(bundleName: string, appIndex: number, bundleFlags: number,
 
 | 参数名     | 类型   | 必填 | 说明                       |
 | ---------- | ------ | ---- | ---------------------------|
-|    bundleName     | number |  是  |       表示要查询的应用Bundle名称。      |
+|    bundleName     | string |  是  |       表示要查询的应用Bundle名称。      |
 |    appIndex     | number |  是  |       表示要查询的分身应用索引。<br>appIndex为0时，表示查询主应用信息。appIndex大于0时，表示查询指定分身应用信息。      |
 |    [bundleFlags](js-apis-bundleManager.md#bundleflag)     | number |  是  |       表示用于指定要返回的BundleInfo对象中包含的信息的标志。    |
 |    userId     | number |  否  |       表示用户ID，默认值：调用方所在用户，取值范围：大于等于0。      |
@@ -5365,7 +5365,7 @@ getAllAppCloneBundleInfo(bundleName: string, bundleFlags: number, userId?: numbe
 
 | 参数名     | 类型   | 必填 | 说明                       |
 | ---------- | ------ | ---- | ---------------------------|
-|    bundleName     | number |  是  |       表示要查询的应用Bundle名称。      |
+|    bundleName     | string |  是  |       表示要查询的应用Bundle名称。      |
 |    [bundleFlags](js-apis-bundleManager.md#bundleflag)     | number |  是  |       表示用于指定要返回的BundleInfo对象中包含的信息的标志。    |
 |    userId     | number |  否  |       表示用户ID，默认值：调用方所在用户，取值范围：大于等于0。      |
 
