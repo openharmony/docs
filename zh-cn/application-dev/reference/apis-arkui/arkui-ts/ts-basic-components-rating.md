@@ -122,7 +122,7 @@ starStyle(options: StarStyleOptions)
 
 | 参数名  | 类型                                            | 必填 | 说明                                                         |
 | ------- | ----------------------------------------------- | ---- | ------------------------------------------------------------ |
-| options | [StarStyleOptions](#starstyleoptions18对象说明) | 是   | 评分的样式。<br/>**说明：** <br/>backgroundUri或者foregroundUri或者secondaryUri设置的图片路径错误时，图片不显示。<br/>backgroundUri或者foregroundUri设置为undefined或者空字符串时，rating会选择加载系统默认星型图源。<br/>secondaryUri不设置或者设置的值为undefined或者空字符串时，优先设置为backgroundUri，效果上等同于只设置了foregroundUri、backgroundUri。 |
+| options | [StarStyleOptions](#starstyleoptions18对象说明) | 是   | 评分的样式。<br/>**说明：** <br/>当backgroundUri、foregroundUri或secondaryUri设置的图片路径错误时，图片将不显示。<br/>当backgroundUri或foregroundUri设置为undefined或空字符串时，Rating组件将加载系统默认星型图源。<br/>当secondaryUri未设置或设置为undefined或空字符串时，将优先使用backgroundUri，效果等同于仅设置foregroundUri和backgroundUri。 |
 
 ### starStyle<sup>18+</sup>
 
@@ -146,13 +146,13 @@ starStyle(options: Optional\<StarStyleOptions>)
 
 | 参数名  | 类型                                                         | 必填 | 说明                                                         |
 | ------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| options | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[StarStyleOptions](#starstyleoptions18对象说明)> | 是   | 评分的样式。<br/>**说明：** <br/>backgroundUri或者foregroundUri或者secondaryUri设置的图片路径错误时，图片不显示。<br/>backgroundUri或者foregroundUri设置为undefined或者空字符串时，rating会选择加载系统默认星型图源。<br/>secondaryUri不设置或者设置的值为undefined或者空字符串时，优先设置为backgroundUri，效果上等同于只设置了foregroundUri、backgroundUri。 |
+| options | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[StarStyleOptions](#starstyleoptions18对象说明)> | 是   | 评分的样式。<br/>**说明：** <br/>当backgroundUri、foregroundUri或secondaryUri设置的图片路径错误时，图片将不显示。<br/>当backgroundUri或foregroundUri设置为undefined或空字符串时，Rating组件将加载系统默认星型图源。<br/>当secondaryUri未设置或设置为undefined或空字符串时，将优先使用backgroundUri，效果等同于仅设置foregroundUri和backgroundUri。 |
 
 >  **说明：**
 >
->  rating宽高为[width, height]时，单个图片的绘制区域为[width / stars, height]。
+>  当Rating组件的宽高为[width, height]时，单个图片的绘制区域为[width / stars, height]。
 >
->  为了指定绘制区域为方形，建议自定义宽高时采取[height * stars, height], width = height * stars的方式。
+>  为确保绘制区域为方形，建议自定义宽高时采用[height * stars, height]，即width = height * stars的方式。
 
 ### contentModifier<sup>12+</sup>
 
@@ -192,7 +192,7 @@ contentModifier(modifier: Optional<ContentModifier\<RatingConfiguration>>)
 
 onChange(callback:(value:&nbsp;number)&nbsp;=&gt;&nbsp;void)
 
-操作评分条的评星发生改变时触发该回调。
+当评分条的评星发生改变时，将触发该回调。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -210,7 +210,7 @@ onChange(callback:(value:&nbsp;number)&nbsp;=&gt;&nbsp;void)
 
 onChange(callback:Optional\<OnRatingChangeCallback>)
 
-操作评分条的评星发生改变时触发该回调。与[onChange](#onchange)相比，callback:参数新增了对undefined类型的支持。
+当评分条的评星发生改变时，将触发该回调。与[onChange](#onchange)相比，callback:参数新增了对undefined类型的支持。
 
 **卡片能力：** 从API version 18开始，该接口支持在ArkTS卡片中使用。
 
@@ -260,7 +260,7 @@ type OnRatingChangeCallback = (rating: number) => void
 | 名称  | 类型    |    只读    |    可选      |  说明              |
 | ------ | ------ | ------ |-------------------------------- |-------------------------------- |
 | rating    | number  | 否 | 否 | 设置并接收评分值。<br/>默认值：0<br/>取值范围： [0, stars]<br/>小于0取0，大于[stars](#stars)取最大值stars。<br />该参数支持[$$](../../../ui/state-management/arkts-two-way-sync.md)双向绑定变量。<br />该参数支持[!!](../../../ui/state-management/arkts-new-binding.md#系统组件参数双向绑定)双向绑定变量。 |
-| indicator | boolean | 否 | 否 | 评分条是否作为一个指示器。值为true时，表示作为一个指示器，值为false时，表示不作为一个指示器。<br/>默认值：false |
+| indicator | boolean | 否 | 否 | 评分条是否作为指示器使用。当值为true时，表示作为指示器；当值为false时，表示不作为指示器。<br/>默认值：false |
 | stars | number | 否 | 否 |评分条的星级总数。<br/>默认值：5 |
 | stepSize | number | 否 | 否 |评分条的评分步长。<br/>默认值：0.5 |
 | triggerChange | Callback\<number> | 否 | 否 |触发评分数量变化。 |
@@ -296,7 +296,7 @@ type OnRatingChangeCallback = (rating: number) => void
 
 ### 示例1（设置默认评分样式）
 
-该示例为创建默认星型评分样式。
+以下示例展示了如何创建默认星型评分样式。
 
 ```ts
 // xxx.ets
@@ -354,7 +354,7 @@ struct RatingExample {
 
 ### 示例2（设置评分的样式）
 
-该示例通过配置starStyle实现自定义星级的图片链接。
+以下示例展示了如何通过配置starStyle实现自定义星级的图片链接。
 
 ```ts
 // xxx.ets
@@ -389,8 +389,7 @@ struct RatingExample {
 ![rating1](figures/rating1.gif)
 
 ### 示例3（自定义评分条）
-该示例实现了自定义评分条的功能，每个圆圈表示0.5分。ratingIndicator为true时表示评分条作为一个指示器不可改变评分；
-为false时可以进行评分。ratingStars可改变评分总数。ratingStepsize可改变评分步长。
+以下示例实现了自定义评分条的功能，其中每个圆圈表示0.5分。当ratingIndicator为true时，评分条作为指示器使用，不可改变评分；当为false时，可进行评分。ratingStars用于设置评分总数，ratingStepsize用于设置评分步长。
 
 ```ts
 // xxx.ets
