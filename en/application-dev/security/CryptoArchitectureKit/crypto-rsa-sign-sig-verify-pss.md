@@ -1,11 +1,8 @@
 # Signing and Signature Verification with an RSA Key Pair (PSS Mode) (ArkTS)
 
-
 For details about the algorithm specifications, see [RSA](crypto-sign-sig-verify-overview.md#rsa).
 
-
 **Signing**
-
 
 1. Call [cryptoFramework.createAsyKeyGeneratorBySpec](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreateasykeygeneratorbyspec10) and [AsyKeyGeneratorBySpec.generateKeyPair](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#generatekeypair-3) to generate an RSA asymmetric key pair (**KeyPair**) based on the specified key parameters.
    In addition to the example in this topic, [RSA](crypto-asym-key-generation-conversion-spec.md#rsa) and [Generating an Asymmetric Key Pair Based on Key Parameters](crypto-generate-asym-key-pair-from-key-spec.md) may help you better understand how to generate an RSA asymmetric key pair. Note that the input parameters in the reference documents may be different from those in the example below.
@@ -18,14 +15,11 @@ For details about the algorithm specifications, see [RSA](crypto-sign-sig-verify
 
 5. Call [Sign.getSignSpec](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#getsignspec10) to obtain other parameters for signing.
 
-6. Call [Sign.update](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#update-3) to pass in the data to be signed.
-   Currently, the amount of data to be passed in by a single **Sign.update()** is not limited. You can determine how to pass in data based on the data volume.
+6. Call [Sign.update](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#update-3) to pass in the data to be signed.<br>Currently, the amount of data to be passed in by a single **Sign.update()** is not limited. You can determine how to pass in data based on the data volume.
 
 7. Call [Sign.sign](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#sign-1) to generate a signature.
 
-
 **Signature Verification**
-
 
 1. Call [cryptoFramework.createVerify](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreateverify) with the string parameter **'RSA2048|PSS|SHA256|MGF1_SHA256'** to create a **Verify** instance. As indicated by the string parameter, the asymmetric key type is **RSA2048**, the padding mode is **PSS**, the MD algorithm is **SHA256**, and mask algorithm is **MGF1_SHA256**.
 
@@ -33,8 +27,7 @@ For details about the algorithm specifications, see [RSA](crypto-sign-sig-verify
 
 3. Call [Verify.init](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#init-5) to initialize the **Verify** instance using the public key (**PubKey**).
 
-4. Call [Verify.update](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#update-5) to pass in the data to be verified.
-   Currently, the amount of data to be passed in by a single **Verify.update()** is not limited. You can determine how to pass in data based on the data volume.
+4. Call [Verify.update](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#update-5) to pass in the data to be verified.<br>Currently, the amount of data to be passed in by a single **Verify.update()** is not limited. You can determine how to pass in data based on the data volume.
 
 5. Call [Verify.verify](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#verify-1) to verify the data signature.
 
@@ -118,7 +111,6 @@ For details about the algorithm specifications, see [RSA](crypto-sign-sig-verify
     }
   }
   ```
-
 
 - Example (using synchronous APIs):
 

@@ -19,6 +19,14 @@ The **native_audiorenderer.h** file declares the functions related to an audio r
 ## Summary
 
 
+### Types
+
+| Name| Description| 
+| -------- | -------- |
+| typedef void(\* [OH_AudioRenderer_OnInterruptCallback](_o_h_audio.md#oh_audiorenderer_oninterruptcallback)) ([OH_AudioRenderer](_o_h_audio.md#oh_audiorenderer) \*renderer, void \*userData, [OH_AudioInterrupt_ForceType](_o_h_audio.md#oh_audiointerrupt_forcetype) type, [OH_AudioInterrupt_Hint](_o_h_audio.md#oh_audiointerrupt_hint) hint) | Defines the callback for interruption events of an audio renderer.| 
+| typedef void(\* [OH_AudioRenderer_OnErrorCallback](_o_h_audio.md#oh_audiorenderer_onerrorcallback)) ([OH_AudioRenderer](_o_h_audio.md#oh_audiorenderer) \*renderer, void \*userData, [OH_AudioStream_Result](_o_h_audio.md#oh_audiostream_result) error) | Defines the callback for error events of an audio renderer.| 
+
+
 ### Functions
 
 | Name| Description| 

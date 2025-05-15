@@ -144,7 +144,7 @@ setReceiveDataForResultCallback(callback: (data: Record<string, Object>) => Reco
 
 | 参数名 | 类型 | 必填 | 说明             |
 | -------- | -------- | -------- |----------------|
-| callback | (data: { [key: string]: Object }) => { [key: string]: Object } | 是 | 回调函数，返回带返回值的接收的数据。 |
+| callback | (data: Record\<string, Object>) => Record\<string, Object> | 是 | 回调函数，返回带返回值的接收的数据。 |
 
 **错误码：**
 
@@ -229,7 +229,6 @@ startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
-| 16000082 | The UIAbility is being started. |
 | 16200001 | The caller has been released. |
 
 **示例：**
@@ -299,7 +298,6 @@ startAbility(want: Want, options: StartOptions, callback: AsyncCallback&lt;void&
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
-| 16000082 | The UIAbility is being started. |
 | 16200001 | The caller has been released. |
 
 **示例：**
@@ -380,7 +378,6 @@ startAbility(want: Want, options?: StartOptions): Promise&lt;void&gt;
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
-| 16000082 | The UIAbility is being started. |
 | 16200001 | The caller has been released. |
 
 **示例：**
@@ -460,7 +457,6 @@ Ability的终止方式包括以下几种情况：
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
-| 16000082 | The UIAbility is being started. |
 | 16200001 | The caller has been released. |
 
 **示例：**
@@ -535,7 +531,6 @@ Ability的终止方式包括以下几种情况：
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
-| 16000082 | The UIAbility is being started. |
 | 16200001 | The caller has been released. |
 
 **示例：**
@@ -622,7 +617,6 @@ Ability的终止方式包括以下几种情况：
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
-| 16000082 | The UIAbility is being started. |
 | 16200001 | The caller has been released. |
 
 **示例：**
@@ -747,7 +741,6 @@ startAbilityAsCaller(want: Want, callback: AsyncCallback\<void>): void
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
-| 16000082 | The UIAbility is being started. |
 | 16200001 | The caller has been released. |
 
 **示例：**
@@ -817,7 +810,6 @@ startAbilityAsCaller(want: Want, options: StartOptions, callback: AsyncCallback\
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
-| 16000082 | The UIAbility is being started. |
 | 16200001 | The caller has been released. |
 
 **示例：**
@@ -898,7 +890,6 @@ startAbilityAsCaller(want: Want, options?: StartOptions): Promise\<void>
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
-| 16000082 | The UIAbility is being started. |
 | 16200001 | The caller has been released. |
 
 **示例：**
