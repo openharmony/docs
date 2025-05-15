@@ -784,7 +784,7 @@ struct Index {
 该示例通过fontFeature属性实现了文本在不同文字特性下的展示效果。
 
 ```ts
-import { AtomicServiceSearch } from '@kit.ArkUI';
+​​​​import { AtomicServiceSearch } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -800,14 +800,28 @@ struct Index {
       AtomicServiceSearch({
         value: 'This is ss01 on : 0123456789',
         search: {
-          fontFeature: "\"ss012\" on"
+          fontFeature: "\"ss01\" on"
         }
       });
-      
+
       AtomicServiceSearch({
         value: 'This is ss01 off : 0123456789',
         search: {
           fontFeature: "\"ss01\" off"
+        }
+      });
+
+      AtomicServiceSearch({
+        value: 'fiabc1234567DEFGHIJKLMN',
+        search: {
+          fontFeature: "\"frac\" on"
+        }
+      });
+
+      AtomicServiceSearch({
+        value: 'fiabc1234567DEFGHIJKLMN',
+        search: {
+          fontFeature: "\"frac\" off"
         }
       });
     }.padding({ left: 16, right: 16 })
@@ -819,7 +833,7 @@ struct Index {
 }
 ```
 
-![](figures/AtomicServiceSearchDemo08.png)
+![](figures/AtomicServiceSearchDemo08_frac.png)
 
 
 

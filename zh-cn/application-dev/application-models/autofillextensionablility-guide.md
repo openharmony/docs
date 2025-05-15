@@ -207,8 +207,8 @@
                   console.info('last' + lastIndex)
                   console.info('center' + centerIndex)
                 })
-                .onScroll((scrollOffset: number, scrollState: ScrollState) => {
-                  console.info(`onScroll scrollState = ScrollState` + scrollState + `scrollOffset = ` + scrollOffset)
+                .onDidScroll((scrollOffset: number, scrollState: ScrollState) => {
+                  console.info(`onDidScroll scrollState = ScrollState` + scrollState + `scrollOffset = ` + scrollOffset)
                 })
               }
               .width('100%')

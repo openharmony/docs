@@ -182,12 +182,7 @@ struct KeyframeAnimateToDemo {
       .onClick(() => {
         // 第三步：调用keyframeAnimateTo接口
         this.getUIContext()?.keyframeAnimateTo({
-          iterations: 1,
-          expectedFrameRateRange: {
-            min: 10,
-            max: 120,
-            expected: 60,
-          }
+          iterations: 1
         }, [
           {
             // 第一段关键帧动画时长为800ms，组件一顺时针旋转90度，组件二的透明度变从1变为0.6，组件二的translate从0位移到50

@@ -34,7 +34,7 @@ on(type:'mission', listener: MissionListener): number
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | type     | string   | 是       | 监听的任务名称。 |
+  | type     | string   | 是       | 监听的任务名称。固定值：'mission'，表示系统任务状态监听器。 |
   | listener | [MissionListener](js-apis-inner-application-missionListener-sys.md) | 是 | 系统任务监听器。 |
 
 **错误码：**
@@ -1370,7 +1370,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 try {
   missionManager.getMissionInfos("", 10, (error: BusinessError, missionInfos: Array<missionManager.MissionInfo>) => {
     if (error.code) {
-      console.log("getMissionInfos failed, error.code:" + JSON.stringify(error.code));
+      console.error(`getMissionInfos failed, error code: ${error.code}, error msg: ${error.message}.`);
       return;
     }
     if (missionInfos.length < 1) {
@@ -1438,7 +1438,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 try {
   missionManager.getMissionInfos("", 10, (error: BusinessError, missionInfos: Array<missionManager.MissionInfo>) => {
     if (error.code) {
-      console.log("getMissionInfos failed, error.code:" + JSON.stringify(error.code));
+      console.error(`getMissionInfos failed, error code: ${error.code}, error msg: ${error.message}.`);
       return;
     }
     if (missionInfos.length < 1) {
@@ -1511,7 +1511,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 try {
   missionManager.getMissionInfos("", 10, (error: BusinessError, missionInfos: Array<missionManager.MissionInfo>) => {
     if (error.code) {
-      console.log("getMissionInfos failed, error.code:" + JSON.stringify(error.code));
+      console.error(`getMissionInfos failed, error code: ${error.code}, error msg: ${error.message}`);
       return;
     }
     if (missionInfos.length < 1) {
@@ -1525,7 +1525,7 @@ try {
       }
     }
     missionManager.moveMissionsToForeground(toShows, toShows[0]).then(() => {
-      console.log("moveMissionsToForeground is called" );
+      console.log(`moveMissionsToForeground is called`);
     });
   });
 } catch (paramError) {
@@ -1574,7 +1574,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 try {
   missionManager.getMissionInfos("", 10, (error: BusinessError, missionInfos: Array<missionManager.MissionInfo>) => {
     if (error.code) {
-      console.log("getMissionInfos failed, error.code:" + JSON.stringify(error.code));
+      console.error(`getMissionInfos failed, error code: ${error.code}, error msg: ${error.message}`);
       return;
     }
 
@@ -1643,7 +1643,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 try {
   missionManager.getMissionInfos("", 10, (error: BusinessError, missionInfos: Array<missionManager.MissionInfo>) => {
     if (error.code) {
-      console.log("getMissionInfos failed, error.code:" + JSON.stringify(error.code));
+      console.error(`getMissionInfos failed, error code: ${error.code}, error msg: ${error.message}`);
       return;
     }
 
@@ -1654,7 +1654,7 @@ try {
       }
     }
     missionManager.moveMissionsToBackground(toHides).then((hideRes: Array<number>) => {
-      console.log("moveMissionsToBackground is called, res: "+ JSON.stringify(hideRes));
+      console.log(`moveMissionsToBackground is called, res: ${JSON.stringify(hideRes)}`);
     });
   });
 } catch (paramError) {

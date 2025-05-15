@@ -64,10 +64,10 @@ ohos.permission.DISTRIBUTED_DATASYNC：分布式数据同步权限
      }
    }
    ```
-2. 导入common和abilityAccessCtrl模块，用于获取权限申请的能力。
+2. 导入abilityAccessCtrl模块，用于获取权限申请的能力。
 
    ```ts
-   import { common, abilityAccessCtrl } from '@kit.AbilityKit';
+   import { abilityAccessCtrl } from '@kit.AbilityKit';
    ```
 
 3. 分布式数据同步权限的授权方式为user_grant，因此需要调用requestPermissionsFromUser接口，以动态弹窗的方式向用户申请授权。
@@ -147,6 +147,7 @@ startDiscovering(discoverParam: {[key:&nbsp;string]:&nbsp;Object;} , filterOptio
      'availableStatus': 0
    };
    try {
+     let dmInstance = distributedDeviceManager.createDeviceManager('ohos.samples.jsHelloWorld');
      dmInstance.startDiscovering(discoverParam, filterOptions);
    } catch (err) {
      let e: BusinessError = err as BusinessError;
@@ -175,6 +176,9 @@ bindTarget(deviceId: string, bindParam: {[key:&nbsp;string]:&nbsp;Object;} , cal
 3. 选择不可信设备id，发起设备绑定。
 
    ```ts
+   import { distributedDeviceManager } from '@kit.DistributedServiceKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
+
    class Data {
      deviceId: string = '';
    }
@@ -187,6 +191,7 @@ bindTarget(deviceId: string, bindParam: {[key:&nbsp;string]:&nbsp;Object;} , cal
      'customDescription': 'xxxx'
    };
    try {
+     let dmInstance = distributedDeviceManager.createDeviceManager('ohos.samples.jsHelloWorld');
      dmInstance.bindTarget(deviceId, bindParam, (err: BusinessError, data: Data) => {
        if (err) {
          console.error('bindTarget errCode:' + err.code + ',errMessage:' + err.message);
@@ -223,7 +228,11 @@ getAvailableDeviceListSync(): Array&lt;DeviceBasicInfo&gt;;
 4. 查询周围上线并且可信的设备。
 
    ```ts
+   import { distributedDeviceManager } from '@kit.DistributedServiceKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
+
    try {
+     let dmInstance = distributedDeviceManager.createDeviceManager('ohos.samples.jsHelloWorld');
      let deviceInfoList: Array<distributedDeviceManager.DeviceBasicInfo> = dmInstance.getAvailableDeviceListSync();
    } catch (err) {
      let e: BusinessError = err as BusinessError;

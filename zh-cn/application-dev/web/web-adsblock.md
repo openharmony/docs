@@ -2,21 +2,21 @@
 
 ArkWeb为应用提供广告过滤功能，支持通过云端推送默认的easylist规则，或允许应用通过接口设定自定义规则文件。它在网络层拦截广告资源的下载，或在网页中注入CSS规则以隐藏特定的广告元素。
 
-当前配置文件格式为easylist语法规则。
+当前配置文件格式为easylist规则。
 
 ## 常用easylist语法规则
 
 | 规则类别     | 说明   | 示例 |
 | ---------- | ------ | ---- |
-| URL拦截规则 | 拦截所有网站中url能匹配"example.com/js/*_tv.js"的子资源请求。用于定义域名过滤规则，用于匹配特定的域名及其所有子域名。 | \|\|example.com/js/*_tv.js   |
+| URL拦截规则 | 拦截所有网站中url能匹配"example.com/js/*_tv.js"的子资源请求。用于定义域名过滤规则，匹配特定的域名及其所有子域名。 | \|\|example.com/js/*_tv.js   |
 | URL拦截规则 | 拦截非alimama.com、非taobao.com域名网站中的url匹配"alimama.cn"的第三方资源。\$third\_party是一种options语法，表示匹配第三方资源；域名前使用'~'表示不包括该域名。 | \|\|alimama.cn^$third-party,domain\=~alimama.com\|\~taobao.com   |
 | 例外规则 | 关闭example.com网页内的广告过滤。@@是例外规则的语法关键字，表示不过滤。 | \@\@\|\|example.com^$document   |
 | 例外规则 | 在域名为litv.tv的网页中，不过滤能匹配上".adserver."的子资源。 | \@\@.adserver.$domain=litv.tv   |
 | 元素隐藏规则 | 隐藏myabandonware.com和myware.com域名中所有class="i528"的元素。##用于表示元素隐藏。 | myabandonware.com, myware.com##.i528   |
 | 元素隐藏例外规则 | 不隐藏sdf-event.sakura.ne.jp网站中id="ad_1"的元素。 | sdf-event.sakura.ne.jp#@##ad_1   |
 
-例外规则，通常是配合普通规则一起使用的，使普通规则在某些场景下不起作用，单独应用例外规则没有意义。
-例如先配置了一条过滤所有网站的拦截规则，||abc.com/js/123.js，但是某些网站中出现了误拦截或者不能拦截的场景，就可以针对这些网站配置新的例外规则。
+例外规则，通常是与普通规则配合使用的，在某些特定场景下使普通规则不适用，单独应用例外规则是没有意义的。
+例如先配置了一条过滤所有网站的拦截规则：||abc.com/js/123.js，如果某些网站出现误拦截或不能拦截的情况，可以针对这些网站配置新的例外规则。
 
 ## 约束与限制
 
@@ -34,7 +34,7 @@ ArkWeb为应用提供广告过滤功能，支持通过云端推送默认的easyl
 
 - allowlist和disallowlist数据共同使用时，allowlist的优先级高于disallowlist，即先使用allowlist匹配，如果匹配成功就不再使用disallowlist匹配，该网站会启用广告过滤特性。
 
-- 如果应用没有使能广告过滤特性，那么确保Web组件不会向服务器请求默认的内置easylist配置文件。
+- 如果应用未启用广告过滤特性，那么Web组件不会向服务器请求默认的内置easylist规则。
 
 - disallowlist和allowlist数据采用后缀匹配，例如应用的设置的域名"xxyy.com"，可以匹配上url为"wwsstt.xxyy.com"的网站。
 
@@ -94,7 +94,7 @@ struct WebComponent {
 
 如果存在内置的easylist规则文件，[setAdsBlockRules()](../reference/apis-arkweb/js-apis-webview.md#setadsblockrules12)接口的replace参数可用于设置规则文件的使用策略，replace为true表示不使用内置的easylist规则文件，replace为false表示自定义规则和内置的规则将会同时工作，如果发现内置规则与自定义规则冲突，可使用replace=true禁用内置规则效果。
 
-设置的自定义规则文件将在应用进程内对所有的Web组件生效，是一个应用级全局配置文件，并将持久化，应用重启后可继续工作。
+设置的自定义规则文件在应用进程内对所有的Web组件生效，是一个应用级全局配置文件，并将持久化，应用重启后可继续工作。
 
 ### 关闭特定域名页面的广告过滤
 在Web组件的广告过滤开关开启后，应用有时候会期望关闭一些特定页面的广告过滤功能，除了可以使用自定义的easylist规则，AdsBlockManager还提供了[addAdsBlockDisallowedList()](../reference/apis-arkweb/js-apis-webview.md#addadsblockdisallowedlist12)接口完成此功能。
