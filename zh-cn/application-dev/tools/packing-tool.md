@@ -150,7 +150,7 @@ java -jar app_packing_tool.jar --mode multiApp [--hap-list <path>] [--hsp-list <
 | --out-path | 是     | NA | 目标文件路径，文件名必须以.app为后缀。 |
 | --force    | 否     | true或者false | 默认值为false。如果为true，表示当目标文件存在时，强制删除。                                                                  |
 | --encrypt-path | 否     | encrypt.json的路径 | 文件名必须为encrypt.json。                                                                  |
-| --pac-json-path | 否     | NA          | 文件名必须为pac.json 。<br/>--app-list参数指定app包中的pac.json不会打包进最终app|
+| --pac-json-path | 否     | NA          | 文件名必须为pac.json 。<br/>--app-list参数指定的app包中的pac.json不会打包进最终app|
 
 
 
