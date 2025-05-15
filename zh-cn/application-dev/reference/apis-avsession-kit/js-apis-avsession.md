@@ -3471,19 +3471,19 @@ type AVCastControlCommandType = 'play' | 'pause' | 'stop' | 'playNext' | 'playPr
 
 | 类型             | 说明         |
 | ---------------- | ------------ |
-| 'play'           | 播放。         |
-| 'pause'          | 暂停。        |
-| 'stop'           | 停止。         |
-| 'playNext'       | 下一首。       |
-| 'playPrevious'   | 上一首。       |
-| 'fastForward'    | 快进。         |
-| 'rewind'         | 快退。         |
-| 'seek'           | 跳转某一节点。 |
-| 'setVolume'      | 设置音量。     |
-| 'setSpeed'       | 设置播放倍速。 |
-| 'setLoopMode'    | 设置循环模式。 |
-| 'toggleFavorite' | 是否收藏。     |
-| 'toggleMute'     | 设置静音状态。 |
+| 'play'           | 播放。无需传入参数。 |
+| 'pause'          | 暂停。无需传入参数。   |
+| 'stop'           | 停止。无需传入参数。         |
+| 'playNext'       | 下一首。无需传入参数。       |
+| 'playPrevious'   | 上一首。无需传入参数。       |
+| 'fastForward'    | 快进。无需传入参数。       |
+| 'rewind'         | 快退。无需传入参数。        |
+| 'seek'           | 跳转某一节点。对应参数使用number类型。 |
+| 'setVolume'      | 设置音量。对应参数使用number类型, 可通过[AVPlaybackState.maxVolume](#avplaybackstate10)获取系统最大音量     |
+| 'setSpeed'       | 设置播放倍速。对应参数使用[media.PlaybackSpeed](../apis-media-kit/js-apis-media.md#playbackspeed8)。 |
+| 'setLoopMode'    | 设置循环模式。对应参数使用[LoopMode](#loopmode10)。 |
+| 'toggleFavorite' | 是否收藏。对应参数使用[AVMetadata.assetId](#avmetadata10)。    |
+| 'toggleMute'     | 设置静音状态。无需传入参数。 |
 
 ## AVCastControlCommand<sup>10+</sup>
 
@@ -3495,7 +3495,7 @@ type AVCastControlCommandType = 'play' | 'pause' | 'stop' | 'playNext' | 'playPr
 
 | 名称      | 类型                                              | 必填 | 说明           |
 | --------- | ------------------------------------------------- | ---- | -------------- |
-| command   | [AVCastControlCommandType](#avcastcontrolcommandtype10)     | 是   | 命令。           |
+| command   | [AVCastControlCommandType](#avcastcontrolcommandtype10)     | 是   | 命令。每种命令对应的参数不同，具体的对应关系可查阅[AVCastControlCommandType](#avcastcontrolcommandtype10)里的详细介绍。 |
 | parameter | [media.PlaybackSpeed](../apis-media-kit/js-apis-media.md#playbackspeed8) &#124; number &#124; string &#124; [LoopMode](#loopmode10) | 否   | 命令对应的参数。 |
 
 ## AVCastController<sup>10+</sup>
@@ -8556,23 +8556,23 @@ type AVControlCommandType = 'play' | 'pause' | 'stop' | 'playNext' | 'playPrevio
 
 | 类型             | 说明         |
 | ---------------- | ------------ |
-| 'play'           | 播放。         |
-| 'pause'          | 暂停。         |
-| 'stop'           | 停止。         |
-| 'playNext'       | 下一首。       |
-| 'playPrevious'   | 上一首。       |
-| 'fastForward'    | 快进。         |
-| 'rewind'         | 快退。         |
-| 'seek'           | 跳转某一节点。 |
-| 'setSpeed'       | 设置播放倍速。 |
-| 'setLoopMode'    | 设置循环模式。 |
-| 'toggleFavorite' | 是否收藏。     |
-| 'playFromAssetId'| 播放指定的assetid。 |
-| 'playWithAssetId' <sup>20+</sup>    | 播放指定的assetid。 |
-|'answer'          | 接听。        |
-| 'hangUp'         | 挂断。        |
-|'toggleCallMute'  | 设置通话静音状态。 |
-| 'setTargetLoopMode' <sup>18+</sup>   | 设置目标循环模式。 |
+| 'play'           | 播放。无需传入参数。|
+| 'pause'          | 暂停。无需传入参数。|
+| 'stop'           | 停止。 无需传入参数。 |
+| 'playNext'       | 下一首。无需传入参数。|
+| 'playPrevious'   | 上一首。无需传入参数。|
+| 'fastForward'    | 快进。无需传入参数。 |
+| 'rewind'         | 快退。无需传入参数。 |
+| 'seek'           | 跳转某一节点。对应参数使用number类型。|
+| 'setSpeed'       | 设置播放倍速。对应参数使用number类型。 |
+| 'setLoopMode'    | 设置循环模式。对应参数使用[LoopMode](#loopmode10)。 |
+| 'toggleFavorite' | 是否收藏。对应参数使用[AVMetadata.assetId](#avmetadata10)。     |
+| 'playFromAssetId'| 播放指定的assetId。 |
+| 'playWithAssetId' <sup>20+</sup>    | 播放指定的assetId。对应参数使用[AVMetadata.assetId](#avmetadata10)，<br>字符串长度<40960字节。<br> |
+|'answer'          | 接听。无需传入参数。        |
+| 'hangUp'         | 挂断。无需传入参数。        |
+|'toggleCallMute'  | 设置通话静音状态。无需传入参数。 |
+| 'setTargetLoopMode' <sup>18+</sup>   | 设置目标循环模式。对应参数推荐使用[LoopMode](#loopmode10)。 |
 
 ## AVControlCommand<sup>10+</sup>
 
@@ -8584,7 +8584,7 @@ type AVControlCommandType = 'play' | 'pause' | 'stop' | 'playNext' | 'playPrevio
 
 | 名称      | 类型                                              | 必填 | 说明           |
 | --------- | ------------------------------------------------- | ---- | -------------- |
-| command   | [AVControlCommandType](#avcontrolcommandtype10)     | 是   | 命令。           |
+| command   | [AVControlCommandType](#avcontrolcommandtype10)     | 是   | 命令。每种命令对应的参数不同，具体的对应关系可查阅[AVControlCommandType](#avcontrolcommandtype10)里的详细介绍。       |
 | parameter | [LoopMode](#loopmode10) &#124; string &#124; number | 否   | 命令对应的参数。 |
 
 
