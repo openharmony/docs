@@ -14,7 +14,7 @@ Wi-Fi扫描是指设备（如手机、电脑、路由器等）搜索周围可用
 
 完整的JS API说明以及示例代码请参考：[SCAN接口](../../reference/apis-connectivity-kit/js-apis-wifiManager.md)。
 
-具体接口说明如下表。
+具体接口说明如下表所示。
 
 | 接口名 | 功能描述 |
 | -------- | -------- |
@@ -77,7 +77,7 @@ Wi-Fi扫描是指设备（如手机、电脑、路由器等）搜索周围可用
   }
 ```
 
- 5. 错误码请参见[WIFI错误码](../../reference/apis-connectivity-kit/errorcode-wifi.md)。
+ 5. 错误码详情请参见[WIFI错误码](../../reference/apis-connectivity-kit/errorcode-wifi.md)。
 
  ### PNO扫描
 

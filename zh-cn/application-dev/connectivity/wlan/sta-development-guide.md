@@ -35,7 +35,7 @@ Wi-Fi STA模式（Station Mode，站点模式）是无线设备作为客户端�
 1. 导入需要的Wi-Fi模块。
 2. 需要SystemCapability.Communication.WiFi.STA系统能力。
 3. 需要申请权限ohos.permission.GET_WIFI_INFO。
-4. 开启设备的WI-FI。
+4. 开启设备Wi-Fi。
 5. 示例代码：
 
 ```ts
@@ -120,5 +120,5 @@ Wi-Fi STA模式（Station Mode，站点模式）是无线设备作为客户端�
   }
 ```
 
-5. WiFi连接状态值，详情请参考[ConnState](../reference/apis-connectivity-kit/js-apis-wifiManager.md)。
-6. 错误码请参见[WIFI错误码](../../reference/apis-connectivity-kit/errorcode-wifi.md)。
+5. WiFi连接状态值，详情请参考[ConnState](../../reference/apis-connectivity-kit/js-apis-wifiManager.md)。
+6. 错误码详情请参见[WIFI错误码](../../reference/apis-connectivity-kit/errorcode-wifi.md)。
