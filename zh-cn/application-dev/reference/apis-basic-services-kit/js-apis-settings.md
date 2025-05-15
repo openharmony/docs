@@ -58,7 +58,7 @@ import { settings } from '@kit.BasicServicesKit';
 | MANUAL_SCREEN_BRIGHTNESS_MODE | number | 是   | 是   | 使用屏幕亮度手动调整时的AUTO_SCREEN_BRIGHTNESS值。                                                                                 |
 | SCREEN_OFF_TIMEOUT            | string | 是   | 是   | 设备在一段时间不活动后进入睡眠状态的等待时间(单位: ms)。                                                                                      |
 | DEFAULT_SCREEN_ROTATION       | string | 是   | 是   | 启用屏幕的自动旋转时，此属性无效。不启用自动旋转时，以下值可用: <br>- 值为0，表示屏幕旋转0度。<br>- 值为1，表示屏幕旋转90度。<br/>- 值为2，表示屏幕旋转180度。<br/>- 值为3，表示屏幕旋转270度。 |
-| ANIMATOR_DURATION_SCALE       | string | 是   | 是   | 动画持续时间的比例因子。影响所有此类动画的开始延迟和持续时间。<br/>值为0，表示动画将立即结束。默认值为1。                                                             |
+| ANIMATOR_DURATION_SCALE       | string | 是   | 是   | 动画持续时间的比例因子，影响所有此类动画的开始延迟和持续时间。<br/>值为0，表示动画将立即结束。默认值为1。                                                             |
 | TRANSITION_ANIMATION_SCALE    | string | 是   | 是   | 过渡动画的比例因子。<br/>值为0，表示禁用过渡动画。                                                                                         |
 | WINDOW_ANIMATION_SCALE        | string | 是   | 是   | 普通窗口动画的比例因子。<br/>值为0，表示禁用窗口动画。                                                                                       |
 | DISPLAY_INVERSION_STATUS      | string | 是   | 是   | 是否启用显示颜色反转。<br/>- 值为1，表示启用显示颜色反转。<br/>- 值为0，表示不启用显示颜色反转。                                                             |
@@ -71,24 +71,24 @@ import { settings } from '@kit.BasicServicesKit';
 
 **系统能力：** SystemCapability.Applications.Settings.Core
 
-| 名称                             | 类型   | 可读 | 可写 | 说明                                                         |
-| -------------------------------- | ------ | ---- | ---- | ------------------------------------------------------------ |
-| SETUP_WIZARD_FINISHED            | string | 是   | 是   | 是否已运行启动向导。<br>- 值为0，表示启动向导尚未运行。<br/>- 值不为0，表示启动向导已运行。 |
-| END_BUTTON_ACTION                | string | 是   | 是   | 用户不在呼叫中时，由用户按下呼叫结束按钮会发生的情况。<br/>- 值为0，表示没有任何反应。<br/>- 值为1，表示显示主屏幕。<br/>- 值为2，表示设备进入睡眠状态，屏幕锁定。<br/>- 值为3，表示显示主屏幕。如果用户已在主屏幕上，设备将进入睡眠状态。 |
-| ACCELEROMETER_ROTATION_STATUS    | string | 是   | 是   | 是否使用加速计更改屏幕方向，即是否启用自动旋转。<br>- 值为1，表示启用加速计。<br/>- 值为0，表示不启用加速计。 |
-| DEVICE_PROVISION_STATUS          | string | 是   | 是   | 是否预配设备。<br>在具有单个系统用户的多用户设备上，当值为true时，屏幕可能会被锁定。此外，其他功能无法在系统用户上启动，除非被标记在屏幕锁定上显示。 |
-| HDC_STATUS                       | string | 是   | 是   | 是否启用USB设备上的硬盘控制器(HDC)。<br>- 值为true，表示启用HDC。<br/>- 值为false，表示不启用HDC。 |
-| BOOT_COUNTING                    | string | 是   | 是   | 设备开机后的启动操作数。                                     |
-| CONTACT_METADATA_SYNC_STATUS     | string | 是   | 是   | 是否启用联系人元数据同步。<br>- 值为true，表示启用同步。<br/>- 值为false，表示不启用同步。 |
-| DEVICE_NAME                      | string | 是   | 是   | 设备名称。                                                   |
-| USB_STORAGE_STATUS               | string | 是   | 是   | 是否启用USB大容量存储。<br>- 值为true，表示启用USB大容量存储。<br/>- 值为false，表示不启用USB大容量存储。 |
-| DEBUGGER_WAITING                 | string | 是   | 是   | 设备在启动应用程序进行调试时是否等待调试器进行调试。<br>- 值为1，表示设备等待调试器。<br/>- 值为0，表示系统不会等待调试器，因此应用程序会正常运行。 |
-| DEBUG_APP_PACKAGE                | string | 是   | 是   | 要调试的应用程序的bundle name。                              |
-| ACCESSIBILITY_STATUS             | string | 是   | 是   | 是否启用辅助功能。<br>- 值为1，表示启用辅助功能。<br/>- 值为0，表示不启用辅助功能。 |
-| ACTIVATED_ACCESSIBILITY_SERVICES | string | 是   | 是   | 已激活的辅助功能的列表。                                     |
-| GEOLOCATION_ORIGINS_ALLOWED      | string | 是   | 是   | 浏览器可以使用的默认地理位置。多个地理位置由空格分隔。       |
-| SKIP_USE_HINTS                   | string | 是   | 是   | 应用程序是否应在首次启动时跳过所有介绍性提示。适用于临时用户或熟悉环境的用户。<br>- 值为1，表示应用程序将在第一次启动时跳过所有介绍性提示。<br/>- 值为0，表示应用程序不会在首次启动时跳过介绍性提示。 |
-| TOUCH_EXPLORATION_STATUS         | string | 是   | 是   | 是否启用触摸浏览。<br>- 值为1，表示启用触摸浏览。<br/>- 值为0，表示不启用触摸浏览。 |
+| 名称                             | 类型   | 可读 | 可写 | 说明                                                                                                                                      |
+| -------------------------------- | ------ | ---- | ---- |-----------------------------------------------------------------------------------------------------------------------------------------|
+| SETUP_WIZARD_FINISHED            | string | 是   | 是   | 是否已运行启动向导。<br>- 值为0，表示启动向导尚未运行。<br/>- 值不为0，表示启动向导已运行。                                                                                   |
+| END_BUTTON_ACTION                | string | 是   | 是   | 当用户不在呼叫中时，由用户按下呼叫结束按钮的会发生的情况。<br/>- 值为0，表示没有任何反应。<br/>- 值为1，表示显示主屏幕。<br/>- 值为2，表示设备进入睡眠状态，屏幕锁定。<br/>- 值为3，表示显示主屏幕。如果用户已在主屏幕上，设备将进入睡眠状态。 |
+| ACCELEROMETER_ROTATION_STATUS    | string | 是   | 是   | 是否启用加速计更改屏幕方向，即是否启用自动旋转。<br>- 值为1，表示启用加速计。<br/>- 值为0，表示不启用加速计。                                                                          |
+| DEVICE_PROVISION_STATUS          | string | 是   | 是   | 是否预配设备。<br>在具有单个系统用户的多用户设备上，当值为true时，屏幕可能会被锁定。此外，其他功能无法在系统用户上启动，除非被标记在屏幕锁定上显示。                                                          |
+| HDC_STATUS                       | string | 是   | 是   | 是否启用USB设备上的硬盘控制器(HDC)。<br>- 值为true，表示启用HDC。<br/>- 值为false，表示不启用HDC。                                                                     |
+| BOOT_COUNTING                    | string | 是   | 是   | 设备开机后的启动操作数。                                                                                                                            |
+| CONTACT_METADATA_SYNC_STATUS     | string | 是   | 是   | 是否启用联系人元数据同步。<br>- 值为true，表示启用同步。<br/>- 值为false，表示不启用同步。                                                                                |
+| DEVICE_NAME                      | string | 是   | 是   | 设备名称。                                                                                                                                   |
+| USB_STORAGE_STATUS               | string | 是   | 是   | 是否启用USB大容量存储。<br>- 值为true，表示启用USB大容量存储。<br/>- 值为false，表示不启用USB大容量存储。                                                                    |
+| DEBUGGER_WAITING                 | string | 是   | 是   | 设备在启动应用程序进行调试时是否等待调试器进行调试。<br>- 值为1，表示设备等待调试器。<br/>- 值为0，表示系统不会等待调试器，应用程序正常运行。                                                          |
+| DEBUG_APP_PACKAGE                | string | 是   | 是   | 要调试的应用程序的bundle name。                                                                                                                   |
+| ACCESSIBILITY_STATUS             | string | 是   | 是   | 是否启用辅助功能。<br>- 值为1，表示启用辅助功能。<br/>- 值为0，表示不启用辅助功能。                                                                                       |
+| ACTIVATED_ACCESSIBILITY_SERVICES | string | 是   | 是   | 已激活的辅助功能的列表。                                                                                                                            |
+| GEOLOCATION_ORIGINS_ALLOWED      | string | 是   | 是   | 浏览器可以使用的默认地理位置。多个地理位置由空格分隔。                                                                                                             |
+| SKIP_USE_HINTS                   | string | 是   | 是   | 控制应用程序首次启动时是否跳过所有介绍性提示。适用于临时用户或熟悉环境的用户。<br>- 值为1，表示应用程序将在首次启动时跳过所有介绍性提示。<br/>- 值为0，表示应用程序不会在首次启动时跳过所有介绍性提示。                             |
+| TOUCH_EXPLORATION_STATUS         | string | 是   | 是   | 是否启用触摸浏览。<br>- 值为1，表示启用触摸浏览。<br/>- 值为0，表示不启用触摸浏览。                                                                                       |
 
 ## input
 
@@ -131,9 +131,9 @@ import { settings } from '@kit.BasicServicesKit';
 
 **系统能力：** SystemCapability.Applications.Settings.Core
 
-| 名称               | 类型   | 可读 | 可写 | 说明                                                         |
-| ------------------ | ------ | ---- | ---- | ------------------------------------------------------------ |
-| RTT_CALLING_STATUS | string | 是   | 是   | 是否启用实时文本(RTT)呼叫。启用，来电和去电在设备和运营商支持时作为RTT呼叫应答。 <br> 值为1，表示启用RTT呼叫。 <br/> 值为0，表示不启用RTT呼叫。 |
+| 名称               | 类型   | 可读 | 可写 | 说明                                                                                      |
+| ------------------ | ------ | ---- | ---- |-----------------------------------------------------------------------------------------|
+| RTT_CALLING_STATUS | string | 是   | 是   | 是否启用实时文本(RTT)呼叫。启用表示来电和去电在设备和运营商支持时作为RTT呼叫应答。 <br> 值为1，表示启用RTT呼叫。 <br/> 值为0，表示不启用RTT呼叫。 |
 
 ## sound
 
@@ -143,19 +143,19 @@ import { settings } from '@kit.BasicServicesKit';
 
 **系统能力：** SystemCapability.Applications.Settings.Core
 
-| 名称                         | 类型   | 可读 | 可写 | 说明                                                                       |
-| ---------------------------- | ------ | ---- | ---- |--------------------------------------------------------------------------|
+| 名称                         | 类型   | 可读 | 可写 | 说明                                                                      |
+| ---------------------------- | ------ | ---- | ---- |-------------------------------------------------------------------------|
 | VIBRATE_WHILE_RINGING        | string | 是   | 是   | 设备在来电响铃时是否振动。此属性由电话和设置应用程序使用。<br/>该值是布尔类型，仅影响设备因来电而响铃的情况，不影响任何其他应用程序或场景。 |
-| DEFAULT_ALARM_ALERT          | string | 是   | 是   | 系统默认告警的存储区域。                                                             |
-| DTMF_TONE_TYPE_WHILE_DIALING | string | 是   | 是   | 拨号时播放的双音多频(DTMF)音的类型。 <br>值为0，表示常规的短音效。<br/>值为1，表示长音效。                   |
-| DTMF_TONE_WHILE_DIALING      | string | 是   | 是   | 拨号时是否播放DTMF音。<br>值为1，表示播放DTMF音。<br/>值为0，表示不播放。                           |
-| AFFECTED_MODE_RINGER_STREAMS | string | 是   | 是   | 音频流受振铃模式和请勿打扰(DND)模式更改的影响。要求特定的音频流受到振铃模式和DND模式变化的影响，将对应比特位设置为1。          |
-| AFFECTED_MUTE_STREAMS        | string | 是   | 是   | 受静音模式影响的音频流。要求特定音频流在静音模式下保持静音，将相应位设置为1。                                  |
-| DEFAULT_NOTIFICATION_SOUND   | string | 是   | 是   | 系统默认通知音的存储区域。                                                            |
-| DEFAULT_RINGTONE             | string | 是   | 是   | 系统默认铃声的存储区域。                                                             |
-| SOUND_EFFECTS_STATUS         | string | 是   | 是   | 声音功能是否可用。<br>值为0，表示不可用。 <br/>值为1，表示可用。                                   |
-| VIBRATE_STATUS               | string | 是   | 是   | 设备是否为事件振动。该参数在系统内部使用。 <br>值为1，表示设备会因事件而振动。 <br/>值为0，表示设备不因事件振动。          |
-| HAPTIC_FEEDBACK_STATUS       | string | 是   | 是   | 设备是否启用触觉反馈。<br/>值为true，表示启用触觉反馈。<br/>值为false，表示不启用触觉反馈。                  |
+| DEFAULT_ALARM_ALERT          | string | 是   | 是   | 系统默认告警的存储区域。                                                            |
+| DTMF_TONE_TYPE_WHILE_DIALING | string | 是   | 是   | 拨号时播放的双音多频(DTMF)音的类型。 <br>值为0，表示常规的短音效。<br/>值为1，表示长音效。                  |
+| DTMF_TONE_WHILE_DIALING      | string | 是   | 是   | 拨号时是否播放DTMF音。<br>值为1，表示播放DTMF音。<br/>值为0，表示不播放。                          |
+| AFFECTED_MODE_RINGER_STREAMS | string | 是   | 是   | 音频流受振铃模式和请勿打扰(DND)模式更改的影响。要求特定的音频流受到振铃模式和DND模式变化的影响，将对应比特位设置为1。         |
+| AFFECTED_MUTE_STREAMS        | string | 是   | 是   | 受静音模式影响的音频流。若需在静音模式下保持特定音频流静音，将相应位设为1。                                  |
+| DEFAULT_NOTIFICATION_SOUND   | string | 是   | 是   | 系统默认通知音的存储区域。                                                           |
+| DEFAULT_RINGTONE             | string | 是   | 是   | 系统默认铃声的存储区域。                                                            |
+| SOUND_EFFECTS_STATUS         | string | 是   | 是   | 声音功能是否可用。<br>值为0，表示不可用。 <br/>值为1，表示可用。                                  |
+| VIBRATE_STATUS               | string | 是   | 是   | 设备是否为事件振动。该参数在系统内部使用。 <br>值为1，表示设备会因事件而振动。 <br/>值为0，表示设备不因事件振动。         |
+| HAPTIC_FEEDBACK_STATUS       | string | 是   | 是   | 设备是否启用触觉反馈。<br/>值为true，表示启用触觉反馈。<br/>值为false，表示不启用触觉反馈。                 |
 
 ## TTS
 
@@ -202,7 +202,7 @@ import { settings } from '@kit.BasicServicesKit';
 
 setValue(context: Context, name: string, value: string, callback: AsyncCallback\<boolean>): void
 
-将数据项名称及数据项的值保存到DEVICE_SHARED域数据库中，使用callback异步回调。
+将数据项名称及数据项的值保存到DEVICE_SHARED域数据库中，使用callback进行异步回调。
 
 **模型约束**：此接口仅可在Stage模型下使用。
 
@@ -236,7 +236,7 @@ settings.setValue(context, settings.display.SCREEN_BRIGHTNESS_STATUS, '100', (st
 
 setValue(context: Context, name: string, value: string): Promise\<boolean>
 
-将数据项名称及数据项的值保存到DEVICE_SHARED域数据库中。使用Promise异步回调。
+将数据项名称及数据项的值保存到DEVICE_SHARED域数据库中。使用Promise进行异步回调。
 
 **模型约束**：此接口仅可在Stage模型下使用。
 
@@ -275,7 +275,7 @@ settings.setValue(context, settings.display.SCREEN_BRIGHTNESS_STATUS, '100').the
 
 setValue(context: Context, name: string, value: string, domainName: string): Promise\<boolean>
 
-将数据项名称及数据项的值保存到数据库中。使用 Promise异步回调。
+将数据项名称及数据项的值保存到数据库中。使用Promise进行异步回调。
 
 **模型约束**：此接口仅可在Stage模型下使用。
 
@@ -296,9 +296,9 @@ setValue(context: Context, name: string, value: string, domainName: string): Pro
 
 **返回值**：
 
-| 类型             | 说明                                |
-| ---------------- | ----------------------------------- |
-| Promise\<string> | Promise对象。返回true表示操作成功，否则返回false。 |
+| 类型                | 说明                                |
+|-------------------| ----------------------------------- |
+| Promise\<boolean> | Promise对象。返回true表示操作成功，否则返回false。 |
 
 **错误码**：
 
@@ -325,7 +325,7 @@ settings.setValue(context, settings.display.SCREEN_BRIGHTNESS_STATUS, '100', set
 
 getValue(context: Context, name: string, callback: AsyncCallback\<string>): void
 
-获取数据库中DEVICE_SHARD域指定数据项的值。使用callback异步回调。
+获取数据库中DEVICE_SHARD域指定数据项的值。使用callback进行异步回调。
 
 **模型约束**：此接口仅可在Stage模型下使用。
 
@@ -359,7 +359,7 @@ settings.getValue(context, settings.display.SCREEN_BRIGHTNESS_STATUS, (err, valu
 
 getValue(context: Context, name: string): Promise\<string>
 
-获取数据库中DEVICE_SHARD域指定数据项的值。使用Promise异步回调。
+获取数据库中DEVICE_SHARD域指定数据项的值。使用Promise进行异步回调。
 
 **模型约束**：此接口仅可在Stage模型下使用。
 
@@ -392,9 +392,9 @@ settings.getValue(context, settings.display.SCREEN_BRIGHTNESS_STATUS).then((valu
 
 ## settings.getValue<sup>11+</sup>
 
-getValue(context: Context, name: string, domainName: string): Promise\<string>;
+getValue(context: Context, name: string, domainName: string): Promise\<string>
 
-获取数据库中指定数据项的值。使用 Promise异步回调。
+获取数据库中指定数据项的值。使用Promise进行异步回调。
 
 **模型约束**：此接口仅可在Stage模型下使用。
 
@@ -432,7 +432,7 @@ settings.getValue(context, settings.display.SCREEN_BRIGHTNESS_STATUS, settings.d
 
 ## settings.getValueSync<sup>10+</sup>
 
-getValueSync(context: Context, name: string, defValue: string): string;
+getValueSync(context: Context, name: string, defValue: string): string
 
 获取数据项的值。此方法相较getValue为同步方法。
 
@@ -442,11 +442,11 @@ getValueSync(context: Context, name: string, defValue: string): string;
 
 **参数**：
 
-| 参数名   | 类型    | 必填 | 说明                                                         |
-| -------- | ------- | ---- | ------------------------------------------------------------ |
+| 参数名   | 类型    | 必填 | 说明                                                                                                                                       |
+| -------- | ------- | ---- |------------------------------------------------------------------------------------------------------------------------------------------|
 | context  | Context | 是   | 应用上下文(仅支持UIAbilityContext和ExtensionContext)。<br />Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-application-context.md)。 |
-| name     | string  | 是   | 数据项的名称。数据项名称分为以下两种。<br>- 上述任意一个数据库中已存在的数据项。<br>- 开发者自行添加的数据项。 |
-| defValue | string  | 是   | 默认值。由开发者设置，未从数据库中查询到该数据时，表示返回该默认值。 |
+| name     | string  | 是   | 数据项的名称。数据项名称分为以下两种。<br>- 上述任意一个数据库中已存在的数据项。<br>- 开发者自行添加的数据项。                                                                            |
+| defValue | string  | 是   | 默认值。由开发者设置，当未从数据库中查询到该数据时，返回该默认值。                                                                                                        |
 
 **返回值**：
 
@@ -467,7 +467,7 @@ let value = settings.getValueSync(context, settings.display.SCREEN_BRIGHTNESS_ST
 
 ## settings.getValueSync<sup>11+</sup>
 
-getValueSync(context: Context, name: string, defValue: string, domainName: string): string;
+getValueSync(context: Context, name: string, defValue: string, domainName: string): string
 
 获取数据项的值。此方法相较getValue为同步方法。
 
@@ -484,7 +484,7 @@ getValueSync(context: Context, name: string, defValue: string, domainName: strin
 |------------| ---------------------- | ---- | ------------------------------------------------------------ |
 | context    | Context                | 是   | 应用上下文(仅支持UIAbilityContext和ExtensionContext)。<br />Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-application-context.md)。 |
 | name       | string                 | 是   | 数据项的名称。数据项名称分为以下两种。<br>- 上述任意一个数据库中已存在的数据项。<br>- 开发者自行添加的数据项。 |
-| defValue   | string                 | 是   | 数据项值。取值范围随业务变动。                   |
+| defValue   | string                 | 是   | 默认值。由开发者设置，当未从数据库中查询到该数据时，返回该默认值。                 |
 | domainName | string                 | 是   | 指定要设置的域名。 <br>- domainName为domainName.DEVICE_SHARED,<br>&nbsp;&nbsp;&nbsp;设备属性共享域。<br>- domainName为domainName.USER_PROPERTY,<br>&nbsp;&nbsp;&nbsp;表示为用户属性域。 <br>- domainName为domainName.USER_SECURITY,<br>&nbsp;&nbsp;&nbsp;表示为用户安全属性域(仅对系统应用开放)。|
 
 
@@ -511,8 +511,8 @@ setValueSync(context: Context, name: string, value: string): boolean
 
 设置数据项的值。此方法相较setValue为同步方法。
 
-- 如果数据库中已经存在该数据项，则setValueSync方法将更新该数据项的值。
-- 如果数据库中尚未存在该数据项，则setValueSync方法将向数据库中插入该数据项。
+- 如果数据库中已经存在该数据项，setValueSync方法将更新该数据项的值。
+- 如果数据库中不存在该数据项，setValueSync方法将向数据库中插入该数据项。
 
 **模型约束**：此接口仅可在Stage模型下使用。
 
@@ -617,9 +617,9 @@ registerKeyObserver(context: Context, name: string, domainName: string, observer
 
 **返回值**：
 
-| 类型             | 说明                                |
-| ---------------- | ----------------------------------- |
-| boolean | 返回设置数据项的值是否成功的结果。true表示设置成功，false表示设置失败。 |
+| 类型             | 说明                                     |
+| ---------------- |----------------------------------------|
+| boolean | 返回注册观察者是否成功的结果。true表示注册成功，false表示注册失败。 |
 
 **示例**：
 
@@ -643,7 +643,7 @@ settings.registerKeyObserver(context, settings.display.SCREEN_BRIGHTNESS_STATUS,
 
 unregisterKeyObserver(context: Context, name: string, domainName: string): boolean
 
-同步方法，进行注销指定域名下对指定数据项名称的监视器。
+同步方法，注销指定域名下对指定数据项名称的观察者。
 
 **模型约束**：此接口仅可在Stage模型下使用。
 
@@ -659,7 +659,7 @@ unregisterKeyObserver(context: Context, name: string, domainName: string): boole
 
 | 类型             | 说明                                |
 | ---------------- | ----------------------------------- |
-| boolean | 返回注销指定域名下对指定键的监视器是否成功的结果。true表示注销成功，false表示注销失败。 |
+| boolean | 返回注销指定域名下指定键的监视器是否成功的结果。true表示注销成功，false表示注销失败。 |
 
 **示例**：
 
@@ -675,7 +675,7 @@ let ret = settings.unregisterKeyObserver(context, settings.display.SCREEN_BRIGHT
 
 openNetworkManagerSettings(context: Context): Promise\<boolean>
 
-打开网络管理器设置页面。使用Promise异步回调。
+打开网络管理器设置页面。使用Promise进行异步回调。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
@@ -689,9 +689,9 @@ openNetworkManagerSettings(context: Context): Promise\<boolean>
 
 **返回值**：
 
-| 类型             | 说明                                |
-| ---------------- | ----------------------------------- |
-| Promise\<string> | Promise对象。返回true表示操作成功，否则返回false。 |
+| 类型             | 说明                                    |
+| ---------------- |---------------------------------------|
+| Promise\<string> | Promise对象。返回true表示操作成功，返回false表示操作失败。 |
 
 **错误码**：
 
@@ -719,7 +719,7 @@ settings.openNetworkManagerSettings(context).then((status) => {
 
 enableAirplaneMode(enable: boolean, callback: AsyncCallback\<void>): void
 
-启用或禁用飞行模式。使用callback异步回调(暂不支持)。
+启用或禁用飞行模式。使用callback进行异步回调(暂不支持)。
 
 **系统能力**：SystemCapability.Applications.Settings.Core
 
@@ -747,7 +747,7 @@ settings.enableAirplaneMode(isEnabled, (err:Error) => {
 
 enableAirplaneMode(enable: boolean): Promise\<void>
 
-启用或禁用飞行模式。使用Promise异步回调(暂不支持)。
+启用或禁用飞行模式。使用Promise进行异步回调(暂不支持)。
 
 **系统能力**：SystemCapability.Applications.Settings.Core
 
@@ -778,7 +778,7 @@ settings.enableAirplaneMode(isEnabled).then(() => {
 
 canShowFloating(callback: AsyncCallback\<boolean>): void
 
-检查应用是否能够以悬浮窗形式显示。使用callback异步回调(暂不支持)。
+检查应用是否能够以悬浮窗形式显示。使用callback进行异步回调(暂不支持)。
 
 **系统能力**：SystemCapability.Applications.Settings.Core
 
@@ -804,7 +804,7 @@ settings.canShowFloating((err:Error, status: boolean) => {
 
 canShowFloating(): Promise\<boolean>
 
-检查应用是否能够以悬浮窗形式显示。使用Promise异步回调(暂不支持)。
+检查应用是否能够以悬浮窗形式显示。使用Promise进行异步回调(暂不支持)。
 
 **系统能力**：SystemCapability.Applications.Settings.Core
 
@@ -853,7 +853,7 @@ let uriVar:string = settings.getUriSync(settings.display.SCREEN_BRIGHTNESS_STATU
 
 getURI(name: string, callback: AsyncCallback\<object>): void
 
-获取数据项的URI。使用callback异步回调(暂不支持)。
+获取数据项的URI。使用callback进行异步回调(暂不支持)。
 
 > **说明：**
 >
@@ -880,7 +880,7 @@ settings.getURI(settings.display.SCREEN_BRIGHTNESS_STATUS, (uri:string) => {
 
 getURI(name: string): Promise\<object>
 
-获取数据项的URI。使用Promise异步回调(暂不支持)。
+获取数据项的URI。使用Promise进行异步回调(暂不支持)。
 
 > **说明：**
 >
@@ -914,7 +914,7 @@ settings.getURI(settings.display.SCREEN_BRIGHTNESS_STATUS).then((uri:string) => 
 
 getValue(dataAbilityHelper: DataAbilityHelper, name: string, callback: AsyncCallback\<object>): void
 
-获取数据库中DEVICE_SHARD域指定数据项的值。使用callback异步回调。
+获取数据库中DEVICE_SHARD域指定数据项的值。使用callback进行异步回调。
 
 > **说明：**
 >
@@ -952,7 +952,7 @@ settings.getValue(helper, settings.display.SCREEN_BRIGHTNESS_STATUS, (err:Error,
 
 getValue(dataAbilityHelper: DataAbilityHelper, name: string): Promise\<object>
 
-获取数据库中DEVICE_SHARD域指定数据项的值。使用Promise异步回调。
+获取数据库中DEVICE_SHARD域指定数据项的值。使用Promise进行异步回调。
 
 > **说明：**
 >
@@ -971,9 +971,9 @@ getValue(dataAbilityHelper: DataAbilityHelper, name: string): Promise\<object>
 
 **返回值**：
 
-| 类型             | 说明                                |
-| ---------------- | ----------------------------------- |
-| Promise\<object> | Promise对象。返回获得的数据项的值。 |
+| 类型             | 说明                    |
+| ---------------- |-----------------------|
+| Promise\<object> | Promise对象。返回获取的数据项的值。 |
 
 **示例**：
 
@@ -1003,11 +1003,11 @@ getValueSync(dataAbilityHelper: DataAbilityHelper, name: string, defValue: strin
 
 **参数**：
 
-| 参数名            | 类型                                                         | 必填 | 说明                                                         |
-| ----------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| dataAbilityHelper | [DataAbilityHelper](../apis-ability-kit/js-apis-inner-ability-dataAbilityHelper.md) | 是   | 数据管理辅助类。                                             |
+| 参数名            | 类型                                                         | 必填 | 说明                                                       |
+| ----------------- | ------------------------------------------------------------ | ---- | ---------------------------------------------------------- |
+| dataAbilityHelper | [DataAbilityHelper](../apis-ability-kit/js-apis-inner-ability-dataAbilityHelper.md) | 是   | 数据管理辅助类。                                           |
 | name              | string                                                       | 是   | 数据项的名称。数据项名称分为以下两种。<br>- 上述任意一个数据库中已存在的数据项。<br>- 开发者自行添加的数据项。 |
-| defValue          | string                                                       | 是   | 默认值。由开发者设置，当未从数据库中查询到该数据时，表示返回该默认值。 |
+| defValue          | string                                                       | 是   | 默认值。由开发者设置，当未从数据库中查询到该数据时，返回该默认值。 |
 
 **返回值**：
 
@@ -1032,8 +1032,8 @@ setValueSync(dataAbilityHelper: DataAbilityHelper, name: string, value: string):
 
 设置数据项的值。此方法相较setValue为同步方法。
 
-- 如果数据库中已经存在该数据项，则setValueSync方法将更新该数据项的值。
-- 如果数据库中尚未存在该数据项，则setValueSync方法将向数据库中插入该数据项。
+- 如果数据库中已经存在该数据项，setValueSync方法将更新该数据项的值。
+- 如果数据库中不存在该数据项，setValueSync方法将向数据库中插入该数据项。
 
 > **说明：**
 >
