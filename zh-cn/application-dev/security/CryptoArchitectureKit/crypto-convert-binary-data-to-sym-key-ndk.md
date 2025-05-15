@@ -19,7 +19,7 @@ target_link_libraries(entry PUBLIC libohcrypto.so)
 
 4. 调用[OH_CryptoSymKey_GetKeyData](../../reference/apis-crypto-architecture-kit/_crypto_sym_key_api.md#oh_cryptosymkey_getkeydata)，获取密钥对象的二进制数据。
 
-以下以生成对称密钥（3DES）为例：
+以下以生成3DES密钥为例：
 
   ```c++
   #include "CryptoArchitectureKit/crypto_common.h"
@@ -66,7 +66,7 @@ target_link_libraries(entry PUBLIC libohcrypto.so)
 
 4. 调用[OH_CryptoSymKey_GetKeyData](../../reference/apis-crypto-architecture-kit/_crypto_sym_key_api.md#oh_cryptosymkey_getkeydata)，获取密钥对象的二进制数据。
 
-以下以生成对称密钥（HMAC）为例：
+以下以生成HMAC密钥为例：
 
   ```c++
   #include "CryptoArchitectureKit/crypto_common.h"
