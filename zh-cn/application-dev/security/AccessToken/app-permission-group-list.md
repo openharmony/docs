@@ -128,7 +128,7 @@
 - [ohos.permission.SEND_MESSAGES](permissions-for-system-apps-user.md#ohospermissionsend_messages)
 <!--DelEnd-->
 
-## 剪贴板
+## 剪切板
 
 - [ohos.permission.READ_PASTEBOARD](restricted-permissions.md#ohospermissionread_pasteboard)
 
