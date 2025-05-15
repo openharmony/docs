@@ -20,7 +20,7 @@ add(attributes: AssetMap): Promise\<void>
 
 设置[IS_PERSISTENT](#tag)属性时，需要申请ohos.permission.STORE_PERSISTENT_DATA权限。
 
-**原子化服务API：** 从API version 14开始，该接口可在原子化服务中使用。
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Security.Asset
 
@@ -91,7 +91,7 @@ try {
 
 addSync(attributes: AssetMap): void
 
-新增一条关键资产，以同步方式返回结果。
+新增一条关键资产，使用同步方式返回结果。
 
 如果要设置[IS_PERSISTENT](#tag)属性，需要申请ohos.permission.STORE_PERSISTENT_DATA权限。
 
@@ -349,7 +349,7 @@ try {
 
 updateSync(query: AssetMap, attributesToUpdate: AssetMap): void
 
-更新符合条件的一条关键资产，以同步方式返回结果。
+更新符合条件的一条关键资产，使用同步方式返回结果。
 
 **原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
 
@@ -756,7 +756,7 @@ postQuerySync(handle: AssetMap): void
 
 | 参数名 | 类型     | 必填 | 说明                                                         |
 | ------ | -------- | ---- | ------------------------------------------------------------ |
-| handle | [AssetMap](#assetmap) | 是   | 待处理的查询句柄，当前包含[asset.preQuerySync](#assetprequerysync12)执行成功返回的挑战值。 |
+| handle | [AssetMap](#assetmap) | 是   | 待处理的查询句柄，包含[asset.preQuerySync](#assetprequerysync12)执行成功返回的挑战值。 |
 
 **错误码：**
 
