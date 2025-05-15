@@ -2123,6 +2123,7 @@
             <!--Del-->
             - [ApplicationInfo (系统接口)](reference/apis-ability-kit/js-apis-bundleManager-ApplicationInfo-sys.md)
             - [AppProvisionInfo (系统接口)](reference/apis-ability-kit/js-apis-bundleManager-AppProvisionInfo-sys.md)
+            - [BundleInfo (系统接口)](reference/apis-ability-kit/js-apis-bundleManager-BundleInfo-sys.md)
             - [BundlePackInfo (系统接口)](reference/apis-ability-kit/js-apis-bundleManager-BundlePackInfo-sys.md)
             - [BundleResourceInfo (系统接口)](reference/apis-ability-kit/js-apis-bundleManager-BundleResourceInfo-sys.md)
             - [BusinessAbilityInfo (系统接口)](reference/apis-ability-kit/js-apis-bundleManager-businessAbilityInfo-sys.md)
