@@ -171,7 +171,7 @@ class EntryAbility extends UIAbility {
 
 ## ValueType
 
-type ValueType = null | number | string
+type ValueType = null | number | string | Float32Array
 
 用于表示允许的数据字段类型，接口参数具体类型根据其功能而定。
 
@@ -182,6 +182,7 @@ type ValueType = null | number | string
 | null    | 表示值类型为空。 |
 | number  | 表示值类型为数字，可取任意值。 |
 | string  | 表示值类型为字符，可取任意值。 |
+| Float32Array<sup>20+</sup>  | 表示值类型为向量，可取任意值，维度范围[1, 1024]。 |
 
 ## Vertex
 
