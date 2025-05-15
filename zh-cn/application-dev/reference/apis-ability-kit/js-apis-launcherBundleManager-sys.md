@@ -524,6 +524,12 @@ startShortcut(shortcutInfo: ShortcutInfo, options?: StartOptions): Promise\<void
 | shortcutInfo | [ShortcutInfo](js-apis-bundleManager-shortcutInfo-sys.md) | 是   | 应用的快捷方式信息。 |
 | options      | [StartOptions](js-apis-app-ability-startOptions-sys.md)   | 否   | 启动参数选项，用于指定任务切到前台时的窗口模式，设备ID等。 |
 
+**返回值：**
+
+| 类型                                       | 说明      |
+| ---------------------------------------- | ------- |
+| Promise\<void> | 无返回结果的Promise对象。 |
+
 **错误码：**
 
 以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。
