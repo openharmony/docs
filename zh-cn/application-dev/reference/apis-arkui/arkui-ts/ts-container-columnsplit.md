@@ -87,7 +87,7 @@ ColumnSplit的基本用法。设置可拖动的、纵向布局的子组件。
 struct ColumnSplitExample {
   build() {
     Column(){
-      Text('The secant line can be dragged').fontSize(9).fontColor(0xCCCCCC).width('90%')
+      Text('The dividing line can be dragged').fontSize(9).fontColor(0xCCCCCC).width('90%')
       ColumnSplit() {
         Text('1').width('100%').height(50).backgroundColor(0xF5DEB3).textAlign(TextAlign.Center)
         Text('2').width('100%').height(50).backgroundColor(0xD2B48C).textAlign(TextAlign.Center)
