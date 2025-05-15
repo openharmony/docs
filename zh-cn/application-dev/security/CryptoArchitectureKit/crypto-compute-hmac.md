@@ -4,7 +4,7 @@ HMAC使用指定的摘要算法，以共享密钥和消息作为输入，生成�
 
 ## 开发步骤
 
-调用update接口传入数据时，可以选择一次性传入所有数据，也可以分段传入。对于同一段数据，无论是否分段，计算结果相同。对于大体量数据，开发者根据实际需求决定是否分段传入。
+在调用update接口传入数据时，可以[一次性传入所有数据](#hmac一次性传入)，也可以把数据人工分段，然后[分段update](#分段hmac)。对于同一段数据而言，是否分段，计算结果没有差异。对于数据量较大的数据，开发者可以根据实际需求选择是否分段传入。
 
 下面分别提供两种方式的示例代码。
 
@@ -112,7 +112,7 @@ HMAC使用指定的摘要算法，以共享密钥和消息作为输入，生成�
     return symKey;
   }
   async function doLoopHmac() {
-    // 将字符串按utf-8解码为Uint8Array，使用16字节的密钥。
+    // 把字符串按utf-8解码为Uint8Array，使用固定的128位的密钥，即16字节。
     let keyData = new Uint8Array(buffer.from("12345678abcdefgh", 'utf-8').buffer);
     let key = await genSymKeyByData(keyData);
     let macAlgName = "SHA256"; // 摘要算法名。
@@ -148,7 +148,7 @@ HMAC使用指定的摘要算法，以共享密钥和消息作为输入，生成�
     return symKey;
   }
   function doLoopHmacBySync() {
-    // 将字符串按utf-8解码为Uint8Array，使用16字节的密钥。
+    // 字符串按utf-8解码为Uint8Array，使用固定的128位的密钥，即16字节。
     let keyData = new Uint8Array(buffer.from("12345678abcdefgh", 'utf-8').buffer);
     let key = genSymKeyByData(keyData);
     let macAlgName = "SHA256"; // 摘要算法名。
