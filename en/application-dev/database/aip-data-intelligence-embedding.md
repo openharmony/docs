@@ -29,7 +29,7 @@ The following table lists the APIs related to application data vectorization. Fo
 | API| Description| 
 | -------- | -------- |
 | getTextEmbeddingModel(config: ModelConfig): Promise&lt;TextEmbedding&gt; | Obtains a text embedding model.| 
-| loadModel(): Promise&lt;void&gt; | Loads this embedding model.| 
+| loadModel(): Promise&lt;void&gt; | Loads this text embedding model.| 
 | splitText(text: string, config: SplitConfig): Promise&lt;Array&lt;string&gt;&gt; | Splits text.| 
 | getEmbedding(text: string): Promise&lt;Array&lt;number&gt;&gt; | Obtains the embedding vector of the given text.| 
 | getEmbedding(batchTexts: Array&lt;string&gt;): Promise&lt;Array&lt;Array&lt;number&gt;&gt;&gt; | Obtains the embedding vector of a given batch of text.|
