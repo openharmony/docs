@@ -237,7 +237,7 @@ deviceTypes示例：
 | -------- | -------- | -------- | -------- |
 | name | 标识数据项的名称，取值为长度不超过255字节的字符串。 | 字符串 | 该标签可缺省，缺省值为空。 |
 | value | 标识数据项的值，取值为长度不超过255字节的字符串。 | 字符串 | 该标签可缺省，缺省值为空。 |
-| resource | 标识定义用户自定义数据格式，取值为长度不超过255字节的字符串，内容为标识该数据的资源索引，例如配置成$profile:shortcuts_config，指定了/resources/base/profile/shortcuts_config.json配置文件。| 字符串 | 该标签可缺省，缺省值为空。 |
+| resource | 标识定义用户自定义数据格式，取值为长度不超过255字节的字符串，内容为标识该数据的资源索引，例如配置成$profile:shortcuts_config，指向/resources/base/profile/shortcuts_config.json配置文件。| 字符串 | 该标签可缺省，缺省值为空。 |
 
 如下给出两种metadata标签的使用场景及示例，开发者也可以根据实际需求自定义设置。
 
