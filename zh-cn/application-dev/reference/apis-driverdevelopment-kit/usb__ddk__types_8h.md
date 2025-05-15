@@ -5,13 +5,15 @@
 
 提供USB DDK中的枚举变量、结构体定义与宏定义。
 
-**起始版本：**
+**引用文件：** <usb/usb_ddk_types.h>
 
-10
+**库：** libusb_ndk.z.so
 
-**相关模块:**
+**系统能力：** SystemCapability.Driver.USB.Extension
 
-[USB DDK](_usb_ddk.md)
+**起始版本：** 10
+
+**相关模块：** [USB DDK](_usb_ddk.md)
 
 
 ## 汇总
