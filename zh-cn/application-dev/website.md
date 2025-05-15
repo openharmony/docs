@@ -3068,7 +3068,7 @@
           - [WindowManager_Rect](reference/apis-arkui/_window_manager___rect.md)
           - [WindowManager_WindowProperties](reference/apis-arkui/_window_manager___window_properties.md)
       - 错误码<!--arkui-arkts-errcode-->
-        - UI界面<!--arkui-ui-arkts-errcode-->
+       - UI界面<!--arkui-ui-arkts-errcode-->
           - [动画错误码](reference/apis-arkui/errorcode-animator.md)
           - [弹窗错误码](reference/apis-arkui/errorcode-promptAction.md)
           - [页面路由错误码](reference/apis-arkui/errorcode-router.md)
@@ -3081,6 +3081,12 @@
           - [滚动类组件错误码](reference/apis-arkui/errorcode-scroll.md)
           - [截图错误码](reference/apis-arkui/errorcode-snapshot.md)
           - [属性字符串错误码](reference/apis-arkui/errorcode-styled-string.md)
+          - [UI上下文错误码](reference/apis-arkui/errorcode-uicontext.md)
+          <!--Del-->
+          - [UIExtension错误码](reference/apis-arkui/errorcode-uiextension.md)
+          <!--DelEnd-->
+        - UI编译<!--arkui-compile-arkts-errcode-->
+          - [编译错误码](reference/apis-arkui/_ark_ui_compile.md)
         - 图形图像<!--arkui-graphics-images-arkts-errcode-->
           - [屏幕错误码](reference/apis-arkui/errorcode-display.md)
           - [窗口错误码](reference/apis-arkui/errorcode-window.md)
