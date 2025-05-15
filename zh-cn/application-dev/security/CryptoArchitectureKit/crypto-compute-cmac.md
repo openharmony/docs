@@ -80,7 +80,7 @@ CMAC通过使用分组密码（如AES）和一个密钥生成认证码，确保�
     let message = 'cmacTestMessage'; // 待进行CMAC的数据。
     let mac = cryptoFramework.createMac(spec);
     mac.initSync(key);
-    // 数据量不大时，可以一次性更新，将所有数据传入，接口没有入参长度限制
+    // 数据量不大时，可以一次性更新，将所有数据传入，接口没有入参长度限制。
     mac.updateSync({ data: new Uint8Array(buffer.from(message, 'utf-8').buffer) });
     let macResult = mac.doFinalSync();
     console.info('[Sync]CMAC result:' + macResult.data);
