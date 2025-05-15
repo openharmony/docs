@@ -9849,6 +9849,7 @@ export default class EntryAbility extends UIAbility {
       windowClass = data;
       try {
         let transitionAnimationResult = windowClass.getWindowTransitionAnimation(window.WindowTransitionType.DESTROY);
+        console.info('Succeeded in getting window transition animation: ' + JSON.stringify(transitionAnimationResult));
       } catch (exception) {
         console.error(`Failed to obtain the window transition animation. Cause code: ${exception.code}, message: ${exception.message}`);
       }
