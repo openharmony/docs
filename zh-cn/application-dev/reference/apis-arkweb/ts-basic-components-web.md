@@ -747,7 +747,7 @@ geolocationAccess(geolocationAccess: boolean)
 
 mediaPlayGestureAccess(access: boolean)
 
-设置有声视频播放是否需要用户手动点击，静音视频播放不受该接口管控。
+设置有声视频的自动播放是否需要用户手动点击，静音视频播放不受该接口管控。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -755,7 +755,7 @@ mediaPlayGestureAccess(access: boolean)
 
 | 参数名    | 类型    | 必填   | 说明                |
 | ------ | ------- | ---- | ------------------- |
-| access | boolean | 是    | 设置有声视频播放是否需要用户手动点击。<br>true表示设置有声视频播放需要用户手动点击，false表示设置有声视频播放不需要用户手动点击。<br>默认值：true。 |
+| access | boolean | 是    | 设置有声视频的自动播放是否需要用户手动点击。<br>true表示设置有声视频的自动播放需要用户手动点击，false表示设置有声视频的自动播放不需要用户手动点击，能自动播放。<br>默认值：true。 |
 
 **示例：**
 
