@@ -543,17 +543,6 @@ hdc shell uitest uiInput dircFling 3
 hdc shell uitest uiInput inputText 100 100 hello 
 ```
 
-#### uiInput text使用示例
-
-| 配置参数             | 必填       | 描述 |       
-|------|------------------|----------|
-| text   | 是                | 输入文本内容。  |
-
-```shell  
-# 无需输入坐标点，在当前获焦处，执行输入框输入操作。若当前获焦处不支持文本输入，则无实际效果。
-hdc shell uitest uiInput text hello
-```
-
 #### uiInput keyEvent使用示例
 
 | 配置参数             | 必填       | 描述                                                                                                                              |                
