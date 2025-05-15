@@ -5,6 +5,9 @@
 
 文件中定义了与画刷相关的功能函数。
 
+<!--RP1-->
+**相关示例：**[NDKAPIDrawing (API14)](https://gitee.com/openharmony/applications_app_samples/tree/master/code/DocsSample/Drawing/NDKAPIDrawing)<!--RP1End-->
+
 **引用文件：**&lt;native_drawing/drawing_brush.h&gt;
 
 **库：** libnative_drawing.so
@@ -36,11 +39,3 @@
 | void [OH_Drawing_BrushGetFilter](_drawing.md#oh_drawing_brushgetfilter) ([OH_Drawing_Brush](_drawing.md#oh_drawing_brush) \*, [OH_Drawing_Filter](_drawing.md#oh_drawing_filter) \*) | 从画刷获取滤波器[OH_Drawing_Filter](_drawing.md#oh_drawing_filter)。滤波器是一个容器，可以承载蒙版滤波器和颜色滤波器。 | 
 | void [OH_Drawing_BrushSetBlendMode](_drawing.md#oh_drawing_brushsetblendmode) ([OH_Drawing_Brush](_drawing.md#oh_drawing_brush) \*, [OH_Drawing_BlendMode](_drawing.md#oh_drawing_blendmode)) | 为画刷设置一个混合器，该混合器实现了指定的混合模式枚举。 | 
 | void [OH_Drawing_BrushReset](_drawing.md#oh_drawing_brushreset) ([OH_Drawing_Brush](_drawing.md#oh_drawing_brush) \*) | 将画刷重置至初始状态，清空所有已设置的属性。 | 
-
-<!--RP1-->
-## 相关实例
-
-针对Drawing(C/C++)的开发，有以下相关实例可供参考：
-
-- [NDKAPIDrawing (API14)](https://gitee.com/openharmony/applications_app_samples/tree/master/code/DocsSample/Drawing/NDKAPIDrawing)
-<!--RP1End-->

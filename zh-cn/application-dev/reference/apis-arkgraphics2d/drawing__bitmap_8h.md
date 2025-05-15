@@ -5,6 +5,9 @@
 
 文件中定义了与位图相关的功能函数。
 
+<!--RP1-->
+**相关示例：**[NDKAPIDrawing (API14)](https://gitee.com/openharmony/applications_app_samples/tree/master/code/DocsSample/Drawing/NDKAPIDrawing)<!--RP1End-->
+
 **引用文件：**&lt;native_drawing/drawing_bitmap.h&gt;
 
 **库：** libnative_drawing.so
@@ -46,11 +49,3 @@
 | void \* [OH_Drawing_BitmapGetPixels](_drawing.md#oh_drawing_bitmapgetpixels) ([OH_Drawing_Bitmap](_drawing.md#oh_drawing_bitmap) \*) | 用于获取指定位图的像素地址，可以通过像素地址获取到位图的像素数据。 | 
 | void [OH_Drawing_BitmapGetImageInfo](_drawing.md#oh_drawing_bitmapgetimageinfo) ([OH_Drawing_Bitmap](_drawing.md#oh_drawing_bitmap) \*, [OH_Drawing_Image_Info](_o_h___drawing___image___info.md) \*) | 用于获取指定位图的信息。 | 
 | bool [OH_Drawing_BitmapReadPixels](_drawing.md#oh_drawing_bitmapreadpixels) ([OH_Drawing_Bitmap](_drawing.md#oh_drawing_bitmap) \*, const [OH_Drawing_Image_Info](_o_h___drawing___image___info.md) \*dstInfo, void \*dstPixels, size_t dstRowBytes, int32_t srcX, int32_t srcY) | 将位图中的矩形区域像素数据读取到指定的内存缓冲区中。 | 
-
-<!--RP1-->
-## 相关实例
-
-针对Drawing(C/C++)的开发，有以下相关实例可供参考：
-
-- [NDKAPIDrawing (API14)](https://gitee.com/openharmony/applications_app_samples/tree/master/code/DocsSample/Drawing/NDKAPIDrawing)
-<!--RP1End-->
