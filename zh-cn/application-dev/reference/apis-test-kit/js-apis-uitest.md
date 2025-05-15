@@ -198,7 +198,7 @@ UI事件的相关信息。
 
 | 名称       | 类型   | 可读 | 可写 | 说明                                                       |
 | ---------- | ------ |----|----|----------------------------------------------------------|
-| paste | boolean | 是  | 是  | 输入文本时是否指定以复制粘贴方式输入，默认为false。<br>**说明：** 当输入文本中包含中文、特殊字符或文本长度超过200时，无论该参数取值为何，均以复制粘贴方式输入。
+| paste | boolean | 是  | 是  | 输入文本时是否指定以复制粘贴方式输入，默认为false。<br>**说明：** 当输入文本中包含中文、特殊字符或文本长度超过200时，无论该参数取值为何，均以复制粘贴方式输入。在智能穿戴设备中，该接口不支持以复制粘贴方式输入。|
 | addition       | boolean | 是  | 是  | 输入文本时是否以追加的方式进行输入， 默认为false。 |
 
 
@@ -1585,7 +1585,7 @@ inputText(text: string, mode: InputTextMode): Promise\<void>
 | 参数名 | 类型   | 必填 | 说明                                     |
 | ------ | ------ | ---- | ---------------------------------------- |
 | text   | string | 是   | 输入的文本信息，当前支持英文、中文和特殊字符。 <br> **说明：** 在智能穿戴设备中，该接口不支持输入包含中文的文本。 |
-| mode | InputTextMode | 否   | 输入文本的方式，paste支持指定以复制粘贴/逐字键入方式输入，addition支持指定对当前控件进行覆盖输入/追加输入。 <br> **说明：** addition取值为false时，将清空控件已有文本并输入指定文本；addition取值为ture时，将光标移动至文本末尾后输入指定文本。 |
+| mode | [InputTextMode](#inputtextmode20)  | 否   | 输入文本的方式，参数paste支持指定是否以复制粘贴方式输入，参数addition支持指定是否对当前文本进行追加输入。 <br> **说明：** addition取值为false时，将清空控件已有文本并输入指定文本。addition取值为ture时，将光标移动至文本末尾后输入指定文本。 |
 
 **错误码：**
 
@@ -1596,6 +1596,7 @@ inputText(text: string, mode: InputTextMode): Promise\<void>
 | 17000002 | The async function is not called with await. |
 | 17000004 | The window or component is invisible or destroyed.           |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
+| 801      | Capability not support, function can not work correctly due to limited device capabilities.|
 
 **示例：**
 ```ts
@@ -3438,7 +3439,7 @@ inputText(p: Point, text: string, mode: InputTextMode): Promise\<void>
 | ------ | ---------------- | ---- | ------------------ |
 | p      | [Point](#point9) | 是   | 输入文本的坐标点。 |
 | text   | string           | 是   |输入的文本信息，当前支持英文、中文和特殊字符。 <br> **说明：** 在智能穿戴设备中，该接口不支持输入包含中文的文本。 |
-| mode | InputTextMode | 否   | 输入文本的方式，paste支持指定是否以复制粘贴方式输入，addition支持指定是否对当前文本进行追加输入。 <br> **说明：** 当addition取值为false时，将在坐标点位置输入指定文本；当addition取值为ture时，将光标移动至文本末尾后输入指定文本。 |
+| mode | [InputTextMode](#inputtextmode20) | 否   | 输入文本的方式，参数paste支持指定是否以复制粘贴方式输入，参数addition支持指定是否对当前文本进行追加输入。 <br> **说明：** 当addition取值为false时，将在坐标点位置输入指定文本。当addition取值为ture时，将光标移动至文本末尾后输入指定文本。 |
 
 **错误码：**
 
@@ -3448,6 +3449,7 @@ inputText(p: Point, text: string, mode: InputTextMode): Promise\<void>
 | -------- | ------------------------------------------------------------ |
 | 17000002 | The async function is not called with await.             |
 | 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
+| 801      | Capability not support, function can not work correctly due to limited device capabilities.|
 
 **示例：**
 
@@ -3751,7 +3753,7 @@ crownRotate(d: number, speed?: number): Promise</void>;
 | 参数名 | 类型                                         | 必填 | 说明                                                             |
 | ------ |-----------------------------------------------|----|-------------------------------------------------------------------|
 | d      | number   | 是   | 手表表冠旋转的格数，正值表示顺时针旋转，负值表示逆时针旋转。         |
-| speed  | number   | 否   | 手表表冠旋转的速度，取值范围：1-500的整数，不在范围内设为默认值为20，单位：格/秒。 |
+| speed  | number   | 否   | 手表表冠旋转的速度，取值范围：1-500的整数，默认值为20，单位：格/秒。<br> **说明：** 参数取值超出合法范围时，设为默认值20。 |
 
 **返回值：**
 
@@ -3775,8 +3777,10 @@ crownRotate(d: number, speed?: number): Promise</void>;
 import { Driver } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
-  // 逆时针旋转50格，旋转速度为30格/秒
-  await driver.crownRotate(-50, 30);
+  // 顺时针旋转50格，旋转速度为30格/秒
+  await driver.crownRotate(50, 30);
+  // 逆时针旋转20格，旋转速度为30格/秒
+  await driver.crownRotate(-20, 30);
 }
 ```
 
