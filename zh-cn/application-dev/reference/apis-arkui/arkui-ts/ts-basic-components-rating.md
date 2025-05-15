@@ -108,7 +108,7 @@ starStyle(options: StarStyleOptions)
 
 设置评分的样式。该属性所支持的图片类型能力参考[Image](ts-basic-components-image.md)组件。
 
-支持加载本地图片和网络图片，暂不支持PixelMap类型和Resource资源。
+支持加载本地图片和网络图片，暂不支持PixelMap类型。
 
 默认图片加载方式为异步，暂不支持同步加载。
 
@@ -130,7 +130,7 @@ starStyle(options: Optional\<StarStyleOptions>)
 
 设置评分的样式。该属性所支持的图片类型能力参考[Image](ts-basic-components-image.md)组件。
 
-支持加载本地图片和网络图片，暂不支持PixelMap类型和Resource资源。
+支持加载本地图片和网络图片，暂不支持PixelMap类型。
 
 默认图片加载方式为异步，暂不支持同步加载。
 
@@ -288,9 +288,9 @@ type OnRatingChangeCallback = (rating: number) => void
 
 | 名称                       | 类型   | 必填 | 说明                                                         |
 | -------------------------- | ------ | ---- | ------------------------------------------------------------ |
-| backgroundUri<sup>7+</sup> | ResourceStr | 是   | 未选中的星级的图片链接，可由用户自定义或使用系统默认图片。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。<br/>从API version 20开始，该接口支持设置Resource资源。 |
-| foregroundUri<sup>7+</sup> | ResourceStr | 是   | 选中的星级的图片路径，可由用户自定义或使用系统默认图片。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。<br/>从API version 20开始，该接口支持设置Resource资源。 |
-| secondaryUri<sup>7+</sup>  | ResourceStr | 否   | 部分选中的星级的图片路径，可由用户自定义或使用系统默认图片。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。<br/>从API version 20开始，该接口支持设置Resource资源。 |
+| backgroundUri<sup>7+</sup> | [ResourceStr](ts-types.md#resourcestr) | 是   | 未选中的星级的图片链接，可由用户自定义或使用系统默认图片。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。<br/>从API version 20开始，该接口支持设置Resource资源。参考[示例4（通过Resource资源设置评分的样式）](#示例4通过resource资源设置评分的样式)代码。|
+| foregroundUri<sup>7+</sup> | [ResourceStr](ts-types.md#resourcestr) | 是   | 选中的星级的图片路径，可由用户自定义或使用系统默认图片。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。<br/>从API version 20开始，该接口支持设置Resource资源。参考[示例4（通过Resource资源设置评分的样式）](#示例4通过resource资源设置评分的样式)代码。|
+| secondaryUri<sup>7+</sup>  | [ResourceStr](ts-types.md#resourcestr) | 否   | 部分选中的星级的图片路径，可由用户自定义或使用系统默认图片。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。<br/>从API version 20开始，该接口支持设置Resource资源。参考[示例4（通过Resource资源设置评分的样式）](#示例4通过resource资源设置评分的样式)代码。|
 
 ## 示例
 
