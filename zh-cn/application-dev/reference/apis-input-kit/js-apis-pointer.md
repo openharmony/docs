@@ -601,7 +601,7 @@ setCustomCursor(windowId: number, pixelMap: image.PixelMap, focusX?: number, foc
 | 参数名    | 类型     | 必填   | 说明                                  |
 | ----- | ------ | ---- | ----------------------------------- |
 | windowId  | number  | 是    | 窗口id。                          |
-| pixelMap  | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | 是    | 自定义光标资源。资源图最大为128MB。 |
+| pixelMap  | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | 是    | 自定义光标资源。最小限制为资源图本身的最小限制。最大限制为256 x 256px。 |
 | focusX  | number | 否    | 自定义光标焦点x，取值范围：大于等于0，默认为0。 |
 | focusY  | number | 否    | 自定义光标焦点y，取值范围：大于等于0，默认为0。 |
 
