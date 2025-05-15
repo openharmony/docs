@@ -5935,7 +5935,9 @@ function isMacroSupported(photoSession: camera.PhotoSession): boolean {
 
 ## Macro<sup>19+</sup>
 
-Macro继承自[MacroQuery](#macroquery19)，提供使能微距能力的接口。
+Macro extends [MacroQuery](#macroquery19)
+
+提供使能微距能力的接口。
 
 ### enableMacro<sup>19+</sup>
 
