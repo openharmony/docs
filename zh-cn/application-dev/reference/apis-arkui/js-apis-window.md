@@ -1030,7 +1030,7 @@ struct Index {
 
 getWindowsByCoordinate(displayId: number, windowNumber?: number, x?: number, y?: number): Promise&lt;Array&lt;Window&gt;&gt;
 
-查询本应用指定坐标下的可见窗口，使用Promise异步回调。
+查询本应用指定坐标下的可见窗口数组，按当前窗口层级排列，层级最高的窗口对应数组index为0，使用Promise异步回调。
 
 **原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
 
@@ -1069,8 +1069,8 @@ import { BusinessError } from '@kit.BasicServicesKit';
 export default class EntryAbility extends UIAbility {
 
   onWindowStageCreate(windowStage: window.WindowStage): void {
-    let windowClass = windowStage.getMainWindowSync();
     try {
+      let windowClass = windowStage.getMainWindowSync();
       let properties = windowClass.getWindowProperties();
       window.getWindowsByCoordinate(properties.displayId).then((data) => {
         console.info('Succeeded in creating the subwindow. Data: ' + JSON.stringify(data));
