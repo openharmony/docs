@@ -133,7 +133,7 @@ static OH_Crypto_ErrCode doAsymEccCovert()
 
 3. 调用[OH_CryptoAsymKeyGenerator_Convert](../../reference/apis-crypto-architecture-kit/_crypto_asym_key_api.md#oh_cryptoasymkeygenerator_convert)，传入公钥二进制和私钥二进制，生成非对称密钥对象（OH_CryptoKeyPair）。
 
-- 下以生成SM2密钥对为例：
+- 以生成SM2密钥对为例：
 ```c++
 #include "CryptoArchitectureKit/crypto_common.h"
 #include "CryptoArchitectureKit/crypto_asym_key.h"

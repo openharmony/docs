@@ -74,7 +74,7 @@ HMAC使用指定的摘要算法，以共享密钥和消息作为输入，生成�
     let message = 'hmacTestMessage'; // 待进行HMAC的数据。
     let mac = cryptoFramework.createMac(macAlgName);
     mac.initSync(key);
-    // 数据量较少时，可以一次性执行update操作，将所有数据传入。接口不对入参长度进行限制。。
+    // 数据量较少时，可以一次性执行update操作，将所有数据传入。接口不对入参长度进行限制。
     mac.updateSync({ data: new Uint8Array(buffer.from(message, 'utf-8').buffer) });
     let macResult = mac.doFinalSync();
     console.info('[Sync]HMAC result:' + macResult.data);
