@@ -878,6 +878,7 @@ audio.createAudioCapturer(audioCapturerOptions).then((data) => {
 | SOURCE_TYPE_CAMCORDER<sup>13+</sup>          | 13     | 录像的音频源。<br/>**系统能力：** SystemCapability.Multimedia.Audio.Core |
 | SOURCE_TYPE_UNPROCESSED<sup>14+</sup>     | 14 |  麦克风纯净录音的音频源（系统不做任何算法处理）。<br/>**系统能力：** SystemCapability.Multimedia.Audio.Core |
 |  SOURCE_TYPE_LIVE<sup>20+</sup>     | 17 |  直播场景的音频源。<br/>**系统能力：** SystemCapability.Multimedia.Audio.Core |
+
 ## AudioPlaybackCaptureConfig<sup>(deprecated)</sup>
 
 播放音频流录制（内录）的配置信息。
@@ -4439,7 +4440,7 @@ try {
 
 isAcousticEchoCancelerSupported(sourceType: SourceType): boolean
 
-查询指定的 source type 是否支持回声消除
+查询指定的source type是否支持回声消除
 
 **系统能力：** SystemCapability.Multimedia.Audio.Capturer
 
@@ -4453,7 +4454,7 @@ isAcousticEchoCancelerSupported(sourceType: SourceType): boolean
 
 | 类型                                                                      | 说明                                    |
 | --------------------------------------------------------------------------| --------------------------------------- |
-| [boolean]                | 返回是否支持回声消除      |
+|  boolean     | 表示是否支持回声消除。true表示支持回声消除，false表示不支持回声消除。        |
 
 **错误码：**
 
