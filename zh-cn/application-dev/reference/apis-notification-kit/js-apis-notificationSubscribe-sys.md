@@ -897,6 +897,12 @@ removeAll(userId: number): Promise\<void>
 | ------ | ------------ | ---- | ---------- |
 | userId | number | 是   | 用户ID。 |
 
+**返回值：**
+
+| 类型     | 说明         |
+| ------- |------------|
+| Promise\<void\> | 无返回结果的Promise对象。 |
+
 **错误码：**
 
 以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[通知错误码](./errorcode-notification.md)。
