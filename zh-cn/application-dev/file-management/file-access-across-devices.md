@@ -78,7 +78,7 @@
      // 定义访问公共文件目录的回调
      let listeners : fs.DfsListeners = {
        onStatus: (networkId: string, status: number): void => {
-         console.info('Failed to access public directory');
+         console.error(`Failed to access public directory，${status}`);
        }
      };
      // 开始跨设备文件访问

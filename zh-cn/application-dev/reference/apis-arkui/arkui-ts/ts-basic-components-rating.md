@@ -118,7 +118,7 @@ contentModifier(modifier: ContentModifier\<RatingConfiguration>)
 
 onChange(callback:(value:&nbsp;number)&nbsp;=&gt;&nbsp;void)
 
-操作评分条的评星发生改变时触发该回调。
+当评分条的评星发生改变时，将触发该回调。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -161,7 +161,7 @@ onChange(callback:(value:&nbsp;number)&nbsp;=&gt;&nbsp;void)
 
 ### 示例1（设置默认评分样式）
 
-该示例为创建默认星型评分样式。
+以下示例展示了如何创建默认星型评分样式。
 
 ```ts
 // xxx.ets
@@ -219,7 +219,7 @@ struct RatingExample {
 
 ### 示例2（设置评分的样式）
 
-该示例通过配置starStyle实现自定义星级的图片链接。
+以下示例展示了如何通过配置starStyle实现自定义星级的图片链接。
 
 ```ts
 // xxx.ets
@@ -254,8 +254,7 @@ struct RatingExample {
 ![rating1](figures/rating1.gif)
 
 ### 示例3（自定义评分条）
-该示例实现了自定义评分条的功能，每个圆圈表示0.5分。ratingIndicator为true时表示评分条作为一个指示器不可改变评分；
-为false时可以进行评分。ratingStars可改变评分总数。ratingStepsize可改变评分步长。
+以下示例实现了自定义评分条的功能，其中每个圆圈表示0.5分。当ratingIndicator为true时，评分条作为指示器使用，不可改变评分；当为false时，可进行评分。ratingStars用于设置评分总数，ratingStepsize用于设置评分步长。
 
 ```ts
 // xxx.ets

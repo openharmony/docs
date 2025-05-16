@@ -184,6 +184,28 @@ ArkWeb组件根据避让模式进行避让，效果见图3。
 
 ![web-keyboardavoid](figures/web-keyboardavoid.png)
 
+3.在软键盘弹出时，为使Web组件不发生避让行为，可通过调用[expandSafeArea()](../reference/apis-arkui/arkui-ts/ts-universal-attributes-expand-safe-area.md#expandsafearea)设置Web组件扩展安全区域。更多详细示例可参考[网页中安全区域计算和避让适配](../web/web-safe-area-insets.md)。
+
+  ```ts
+  // xxx.ets
+  import { webview } from '@kit.ArkWeb';
+
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: webview.WebviewController = new webview.WebviewController();
+
+    build() {
+      Column() {
+        Web({ src: 'www.example.com', controller: this.controller })
+          .width('100%').height('100%')
+          .expandSafeArea([SafeAreaType.KEYBOARD, SafeAreaType.SYSTEM])
+      }
+    }
+  }
+  ```
+
+
 与其他Web组件行为的交互场景：
 
 | 交叉场景         | 规格                                       |
