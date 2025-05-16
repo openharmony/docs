@@ -2,7 +2,7 @@
 
 > **NOTE**
 >
-> The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version. 
 
 ## Modules to Import
 
@@ -53,7 +53,7 @@ Obtains the fault information about the current process. This API uses an asynch
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | faultType | [FaultType](#faulttype) | Yes| Fault type.|
-| callback | AsyncCallback&lt;Array&lt;[FaultLogInfo](#faultloginfo)&gt;&gt; | Yes| Callback used to return the fault information array.<br>**value** is the fault information array obtained. If **value** is **undefined**, an exception occurs during the information retrieval. In this case, an error string will be returned.
+| callback | AsyncCallback&lt;Array&lt;[FaultLogInfo](#faultloginfo)&gt;&gt; | Yes| Callback used to return the fault information array.<br>**value** is the fault information array obtained. If **value** is **undefined**, an exception occurs during the information retrieval. In this case, an error string will be returned.|
 
 **Error codes**
 
@@ -61,9 +61,9 @@ For details about the error codes, see [FaultLogger Error Codes](errorcode-fault
 
 | ID| Error Message|
 | --- | --- |
-| 401 | The parameter check failed, Parameter type error |
-| 801 | The specified SystemCapability name was not found |
-| 10600001 | The service is not started or is faulty |
+| 401 | The parameter check failed, Parameter type error. |
+| 801 | The specified SystemCapability name was not found. |
+| 10600001 | The service is not started or is faulty. |
 
 **Example**
 
@@ -123,9 +123,9 @@ For details about the error codes, see [FaultLogger Error Codes](errorcode-fault
 
 | ID| Error Message|
 | --- | --- |
-| 401 | The parameter check failed, Parameter type error |
-| 801 | The specified SystemCapability name was not found |
-| 10600001 | The service is not started or is faulty |
+| 401 | The parameter check failed, Parameter type error. |
+| 801 | The specified SystemCapability name was not found. |
+| 10600001 | The service is not started or is faulty. |
 
 **Example**
 
@@ -174,7 +174,7 @@ Obtains the fault information about the current process. This API uses an asynch
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | faultType | [FaultType](#faulttype) | Yes| Fault type.|
-| callback | AsyncCallback&lt;Array&lt;[FaultLogInfo](#faultloginfo)&gt;&gt; | Yes| Callback used to return the fault information array.<br>**value** is the fault information array obtained. If **value** is **undefined**, an exception occurs during the information retrieval. In this case, an error string will be returned.
+| callback | AsyncCallback&lt;Array&lt;[FaultLogInfo](#faultloginfo)&gt;&gt; | Yes| Callback used to return the fault information array.<br>**value** is the fault information array obtained. If **value** is **undefined**, an exception occurs during the information retrieval. In this case, an error string will be returned.|
 
 **Example**
 

@@ -375,7 +375,7 @@ let params: Record<string, hiAppEvent.ParamType> = {
   "sample_interval": "100",
   "ignore_startup_time": "11",
   "sample_count": "21",
-  "report_times_per_app": "3",
+  "report_times_per_app": "3"
 };
 hiAppEvent.setEventConfig(hiAppEvent.event.MAIN_THREAD_JANK, params).then(() => {
   hilog.info(0x0000, 'hiAppEvent', `success to set event config`);
