@@ -18,7 +18,6 @@ Wi-Fi扫描是指设备（如手机、电脑、路由器等）搜索周围可用
 
 | 接口名 | 功能描述 |
 | -------- | -------- |
-| scan() | 启动WLAN扫描，使用前先使能WLAN。|
 | getScanInfoList() | 获取扫描结果。|
 | on(type: 'wifiScanStateChange') | 注册注册扫描状态改变事件。|
 | off(type: 'wifiScanStateChange') | 取消注册扫描状态改变事件。|
@@ -49,8 +48,7 @@ Wi-Fi扫描是指设备（如手机、电脑、路由器等）搜索周围可用
       console.error("wifi not enable"); // 请先手动打开WiFi
       return;
     }
-    // 发起扫描（从 API version 9开始支持，从API version 10开始废弃。替代接口仅向系统应用开放。）
-    wifiManager.scan(); 
+    // 主动扫描接口，从API version 10开始废弃。替代接口仅向系统应用开放。
 
     let scanInfoList = wifiManager.getScanInfoList();
 
@@ -98,5 +96,5 @@ Wi-Fi扫描是指设备（如手机、电脑、路由器等）搜索周围可用
   2. WiFi连接过程中不允许触发扫描。<br>
   3. 前台应用2分钟内最多发起4次扫描。<br>
   4. 设备温度达到阈值，设备扫描会被管控。<br>
-  5. 扫描接口从 API version 9开始支持，从API version 10开始废弃，替代接口仅向系统应用开放。
-  
+  5. 扫描接口从 API version 9开始支持，从API version 10开始废弃，替代接口仅向系统应用开放。<br>
+  6. 扫描结果获取真实bssid，需要申请ohos.permission.GET_WIFI_PEERS_MAC权限。
