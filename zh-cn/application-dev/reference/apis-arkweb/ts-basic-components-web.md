@@ -747,7 +747,7 @@ geolocationAccess(geolocationAccess: boolean)
 
 mediaPlayGestureAccess(access: boolean)
 
-设置有声视频播放是否需要用户手动点击，静音视频播放不受该接口管控。
+设置有声视频的自动播放是否需要用户手动点击，静音视频播放不受该接口管控。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -755,7 +755,7 @@ mediaPlayGestureAccess(access: boolean)
 
 | 参数名    | 类型    | 必填   | 说明                |
 | ------ | ------- | ---- | ------------------- |
-| access | boolean | 是    | 设置有声视频播放是否需要用户手动点击。<br>true表示设置有声视频播放需要用户手动点击，false表示设置有声视频播放不需要用户手动点击。<br>默认值：true。 |
+| access | boolean | 是    | 设置有声视频的自动播放是否需要用户手动点击。<br>true表示设置有声视频的自动播放需要用户手动点击，false表示设置有声视频的自动播放不需要用户手动点击，能自动播放。<br>默认值：true。 |
 
 **示例：**
 
@@ -8576,7 +8576,7 @@ Web媒体策略的配置。
 
 | 名称             | 类型      | 必填   | 说明                                       |
 | -------------- | ------- | ---- | ---------------------------------------- |
-| resumeInterval | number  | 否    | 被暂停的Web音频能够自动续播的有效期，单位：秒。有效期范围0~60秒，如若超过60秒，按照60s处理，由于近似值原因，该有效期可能存在一秒内的误差。 |
+| resumeInterval | number  | 否    | 被其他应用暂停的Web音视频能够自动续播的有效期，单位：秒。有效期范围0~60秒，如若超过60秒，按照60s处理，由于近似值原因，该有效期可能存在一秒内的误差。 |
 | audioExclusive | boolean | 否    | 应用内多个Web实例的音频是否独占。<br>true表示应用内多个Web实例的音频独占，false表示应用内多个Web实例的音频不独占。                       |
 
 ## ScreenCaptureConfig<sup>10+</sup>
