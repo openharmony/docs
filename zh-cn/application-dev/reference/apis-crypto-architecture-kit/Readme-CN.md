@@ -7,7 +7,6 @@
 - C API<!--crypto-architecture-c-->
   - 模块<!--crypto-architecture-module-->
     - [CryptoArchitectureKit](capi-cryptoarchitecturekit.md)
-    - [CryptoAsymCipherApi](capi-cryptoasymcipherapi.md)
     - [CryptoAsymKeyApi](capi-cryptoasymkeyapi.md)
     - [CryptoCommonApi](capi-cryptocommonapi.md)
     - [CryptoDigestApi](capi-cryptodigestapi.md)
@@ -16,6 +15,7 @@
     - [CryptoSymKeyApi](capi-cryptosymkeyapi.md)
   - 头文件<!--crypto-architecture-headerfile-->
     - [crypto_architecture_kit.h](capi-crypto-architecture-kit-h.md)
+    - [crypto_asym_key.h](capi-crypto-asym-key-h.md)
     - [crypto_common.h](capi-crypto-common-h.md)
     - [crypto_digest.h](capi-crypto-digest-h.md)
     - [crypto_signature.h](capi-crypto-signature-h.md)
