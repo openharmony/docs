@@ -495,6 +495,7 @@
     - [半模态错误码](errorcode-bindSheet.md)
     - [滚动类组件错误码](errorcode-scroll.md)
     - [UI上下文错误码](errorcode-uicontext.md)
+    - [交互事件错误码](errorcode-event.md)
     <!--Del-->
     - [UIExtension错误码](errorcode-uiextension.md)
     <!--DelEnd-->
