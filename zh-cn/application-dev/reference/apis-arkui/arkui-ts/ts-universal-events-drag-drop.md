@@ -238,6 +238,8 @@ onPreDrag(event: (preDragStatus: PreDragStatus) => void)
 | getX()<sup>(deprecated)</sup> | number | 当前拖拽点相对于窗口左上角的x轴坐标，单位为vp。<br>从API version 10开始不再维护，建议使用getWindowX()代替。 |
 | getY()<sup>(deprecated)</sup> | number | 当前拖拽点相对于窗口左上角的y轴坐标，单位为vp。<br>从API version 10开始不再维护，建议使用getWindowY()代替。 |
 | getDisplayId()<sup>20+</sup> | number | 获取当前拖拽事件发生时所在的屏幕ID，不支持当eventType为NODE_ON_DRAG_END时获取。<br/>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
+| getDragSource()<sup>20+</sup> | string | 获取拖起方包名。<br/>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
+| isRemote()<sup>20+</sup> | boolean | 获取是否是跨设备拖拽，跨设备拖拽时为true。<br/>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
 
 **错误码：**
 
@@ -901,3 +903,83 @@ struct Index {
 }
 ```
 ![DragEvent_getDisplayId](figures/DragEvent_getDisplayId.png)
+
+### 示例5（获取包名和是否是跨设备）
+
+通过onDragXXX接口获取到拖拽事件，调用拖拽事件里的getDragSource接口获取包名，调用isRemote接口获取是否是跨设备。
+
+```ts
+@Entry
+@Component
+struct Index {
+  @State targetImage: string = '';
+  @State startDragSource: string = '';
+  @State startIsRemote: boolean = true;
+  @State enterDragSource: string = '';
+  @State enterIsRemote: boolean = true;
+
+  build() {
+    Column() {
+      Row() {
+        Column() {
+          Text('start Drag Area')
+            .fontSize(18)
+            .width('100%')
+            .height(40)
+            .margin(10)
+            .backgroundColor('#008888')
+          Image($r('app.media.startIcon'))
+            .onDragStart((event) => {
+              this.startDragSource = (event as DragEvent).getDragSource();
+              this.startIsRemote = (event as DragEvent).isRemote();
+            })
+            .width(100)
+            .height(100)
+            .draggable(true)
+            .margin({ left: 15 })
+        }
+        .border({ color: Color.Black, width: 1 })
+        .width('45%')
+        .height('50%')
+
+        Column() {
+          Text('Drag Target Area')
+            .fontSize(20)
+            .width('100%')
+            .height(40)
+            .margin(10)
+            .backgroundColor('#008888')
+          Image(this.targetImage)
+            .width(100)
+            .height(100)
+            .draggable(true)
+            .margin({ left: 15 })
+            .border({ color: Color.Black, width: 1 })
+            .onDragEnter((event) => {
+              this.enterDragSource = (event as DragEvent).getDragSource();
+              this.enterIsRemote = (event as DragEvent).isRemote();
+            })
+            .onDrop(()=>{})
+        }
+        .border({ color: Color.Black, width: 1 })
+        .width('45%')
+        .height('50%')
+        .margin({ left: '5%' })
+      }
+      .height('70%')
+
+      Text('onDragStart dragSource: ' + this.startDragSource.toString() + '\n' + 'onDragStart isRemote: ' +
+      this.startIsRemote.toString())
+        .width('100%')
+        .height(50)
+        .margin({ left: 15 })
+      Text('onDragEnter dragSource: ' + this.enterDragSource.toString() + '\n' + 'onDragEnter isRemote: ' +
+      this.startIsRemote.toString())
+        .width('100%')
+        .height(50)
+        .margin({ left: 15 })
+    }
+  }
+}
+```
+![dragSourceAndIsRemote](figures/dragSourceAndIsRemote.png)
