@@ -5100,9 +5100,13 @@ on(type:  'windowRectChange', callback: Callback&lt;RectChangeOptions&gt;): void
 **示例：**
 
 ```ts
-windowClass.on('windowRectChange', (data: window.RectChangeOptions) => {
-    console.info('Succeeded window rect changes. Data: ' + JSON.stringify(data));
-});
+try {
+  windowClass.on('windowRectChange', (data: window.RectChangeOptions) => {
+      console.info('Succeeded window rect changes. Data: ' + JSON.stringify(data));
+  });
+} catch (exception) {
+  console.error(`Failed to disable the listener for window rect changes. Cause code: ${exception.code}, message: ${exception.message}`);
+}
 ```
 
 ### off('windowRectChange')<sup>12+</sup>
@@ -5139,10 +5143,15 @@ off(type: 'windowRectChange', callback?: Callback&lt;RectChangeOptions&gt;): voi
 const callback = (rectChangeOptions: window.RectChangeOptions) => {
   // ...
 }
-windowClass.on('windowRectChange', callback);
-windowClass.off('windowRectChange', callback);
-// 如果通过on开启多个callback进行监听，同时关闭所有监听：
-windowClass.off('windowRectChange');
+
+try {
+  windowClass.on('windowRectChange', callback);
+  windowClass.off('windowRectChange', callback);
+  // 如果通过on开启多个callback进行监听，同时关闭所有监听：
+  windowClass.off('windowRectChange');
+} catch (exception) {
+  console.error(`Failed to disable the listener for window rect changes. Cause code: ${exception.code}, message: ${exception.message}`);
+}
 ```
 
 ### on('subWindowClose')<sup>12+</sup>
@@ -6788,14 +6797,18 @@ setResizeByDragEnabled(enable: boolean, callback: AsyncCallback&lt;void&gt;): vo
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let enabled = false;
-windowClass.setResizeByDragEnabled(enabled, (err) => {
-  if (err.code) {
-    console.error(`Failed to set the function of disabling the resize by drag window. Cause code: ${err.code}, message: ${err.message}`);
-    return;
-  }
-  console.info('Succeeded in setting the function of disabling the resize by drag window.');
-});
+try {
+  let enabled = false;
+  windowClass.setResizeByDragEnabled(enabled, (err) => {
+    if (err.code) {
+      console.error(`Failed to set the function of disabling the resize by drag window. Cause code: ${err.code}, message: ${err.message}`);
+      return;
+    }
+    console.info('Succeeded in setting the function of disabling the resize by drag window.');
+  });
+} catch (exception) {
+  console.error(`Failed to set the function of disabling the resize by drag window. Cause code: ${exception.code}, message: ${exception.message}`);
+}
 ```
 
 ### setResizeByDragEnabled<sup>14+</sup>
@@ -6835,13 +6848,17 @@ setResizeByDragEnabled(enable: boolean): Promise&lt;void&gt;
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let enabled = false;
-let promise = windowClass.setResizeByDragEnabled(enabled);
-promise.then(() => {
-  console.info('Succeeded in setting the function of disabling the resize by drag window.');
-}).catch((err: BusinessError) => {
-  console.error(`Failed to set the function of disabling the resize by drag window. Cause code: ${err.code}, message: ${err.message}`);
-});
+try {
+  let enabled = false;
+  let promise = windowClass.setResizeByDragEnabled(enabled);
+  promise.then(() => {
+    console.info('Succeeded in setting the function of disabling the resize by drag window.');
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to set the function of disabling the resize by drag window. Cause code: ${err.code}, message: ${err.message}`);
+  });
+} catch (exception) {
+  console.error(`Failed to set the function of disabling the resize by drag window. Cause code: ${exception.code}, message: ${exception.message}`);
+}
 ```
 
 ### recover<sup>11+</sup>
@@ -8447,7 +8464,7 @@ startMoving(): Promise&lt;void&gt;
 
 开始移动窗口，使用Promise异步回调。
 
-仅在[onTouch](./arkui-ts/ts-universal-events-touch.md#touchevent)事件（其中，事件类型必须为TouchType.Down）的回调方法中调用此接口才会有移动效果，成功调用此接口后，窗口将跟随鼠标移动。
+仅在[onTouch](./arkui-ts/ts-universal-events-touch.md#touchevent)事件（其中，事件类型必须为TouchType.Down）的回调方法中调用此接口才会有移动效果，成功调用此接口后，窗口将跟随鼠标或触摸点移动。
 
 <!--RP6-->此接口仅可在2in1设备下使用。<!--RP6End-->
 
