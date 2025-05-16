@@ -1,6 +1,6 @@
 # ArkUI子系统Changelog
 
-## cl.arkui.1 TextPicker、Progress、QRCode、TextClock、TextTimer接口支持Resource类型
+## cl.arkui.1 文本与输入、信息展示、按钮与选择、滚动与滑动、图形绘制组件接口支持Resource类型
 
 **访问级别**
 
@@ -8,15 +8,15 @@
 
 **变更原因**
 
-基础能力增强，TextPicker、Progress、QRCode、TextClock、TextTimer接口支持Resource类型，可以使用资源对象设置默认选项的值。
+基础能力增强，文本与输入、信息展示、按钮与选择、滚动与滑动、图形绘制组件的接口支持Resource类型，可以使用资源对象设置默认选项的值。
 
 **变更影响**
 
-此变更不涉及应用适配。
+此变更涉及应用适配。
 
-- 变更前：TextPickerOptions、Progress、QRCode、TextClock、TextTimer中部分接口不支持Resource类型。
+- 变更前：TextPickerOptions、Progress、QRCode、TextClock、TextTimer、Badge、Circle、Text、TextArea、TextInput、Search、Span、RichEditor、Rating、Rect、Ellipse、Line、Polyline、Path、Polygon、ProgressButton、SubHeader、SubHeaderV2、Shape、SwipeRefresher中部分接口不支持Resource类型。
 
-- 变更后：TextPickerOptions、Progress、QRCode、TextClock、TextTimer中部分接口支持Resource类型。
+- 变更后：TextPickerOptions、Progress、QRCode、TextClock、TextTimer、Badge、Circle、Text、TextArea、TextInput、Search、Span、RichEditor、Rating、Rect、Ellipse、Line、Polyline、Path、Polygon、ProgressButton、SubHeader、SubHeaderV2、Shape、SwipeRefresher中部分接口支持Resource类型。
 
 
 **起始API Level**
@@ -29,11 +29,52 @@
 
 **变更的接口/组件**
 
-TextPicker.TextPickerOptions.value、Progress.CapsuleStyleOptions.content、QRCode.value、TextClock.format、TextTimer.fontWeight
+|组件名称|接口名称|参数名称|
+|--|--|--|
+|TextPicker|TextPickerOptions|value|
+|Progress|CapsuleStyleOptions|content|
+|TextPicker|TextPickerOptions|value|
+|QRCode|QRCodeInterface|value|
+|TextClock|format|value|
+|TextTimer|fontWeight|value|
+|Badge|BadgeStyle|fontSize、badgeSize、fontWeight|
+|Badge|BadgeParamWithString|value|
+|Circle|CircleOptions|width、height|
+|Text|fontWeight|value、weight|
+|Text|letterSpacing|value|
+|Text|baselineOffset|value|
+|TextArea|fontWeight|value|
+|TextInput|fontWeight|value|
+|Search|SearchOptions|value|
+|Search|searchButton|value|
+|Span|fontWeight|value|
+|Span|letterSpacing|value|
+|RichEditor|RichEditorController.addTextSpan|content|
+|Rating|StarStyleOptions|backgroundUri、foregroundUri、secondaryUri|
+|Rect|RectOptions|width、height、radius|
+|Rect|RoundedRectOptions|width、height、radiusWidth、radiusHeight|
+|Rect|radiusWidth|value|
+|Rect|radiusHeight|value|
+|Rect|radius|value|
+|Ellipse|EllipseOptions|width、height|
+|Line|LineOptions|width、height|
+|Polyline|PolylineOptions|width、height|
+|Path|PathOptions|width、height、commands|
+|Path|commands|value|
+|Polygon|PolygonOptions|width、height|
+|ProgressButton|-|content|
+|SubHeader|SelectOptions|value|
+|SubHeaderV2|SubHeaderV2SelectOptions|selectedContent|
+|SubHeaderV2|SubHeaderV2Select|selectedContent|
+|Shape|ViewportRect|x、y、width、height|
+|Shape|strokeDashOffset|value|
+|Shape|strokeMiterLimit|value|
+|Shape|strokeWidth|value|
+|SwipeRefresher|-|content|
 
 **适配指导**
 
-默认行为变更，无需适配。
+若有继承派生则需要在继承派生定义处增加Resource类型支持，否则无需适配。
 
 ## cl.arkui.2 width和height支持的matchParent接口规格变更
 
