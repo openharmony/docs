@@ -202,6 +202,8 @@ try {
     }
   });
   console.info('auth on success');
+  userAuthInstance.start();
+  console.info('auth start success');
 } catch (error) {
   const err: BusinessError = error as BusinessError;
   console.error(`auth catch error. Code is ${err?.code}, message is ${err?.message}`);
@@ -243,6 +245,8 @@ try {
     }
   });
   console.info('auth on success');
+  userAuthInstance.start();
+  console.info('auth start success');
 } catch (error) {
   const err: BusinessError = error as BusinessError;
   console.error(`auth catch error. Code is ${err?.code}, message is ${err?.message}`);
@@ -284,6 +288,8 @@ try {
     }
   });
   console.info('auth on success');
+  userAuthInstance.start();
+  console.info('auth start success');
 } catch (error) {
   const err: BusinessError = error as BusinessError;
   console.error(`auth catch error. Code is ${err?.code}, message is ${err?.message}`);
@@ -351,6 +357,8 @@ try {
     }
   });
   console.info('auth on success');
+  userAuthInstance.start();
+  console.info('auth start success');
 } catch (error) {
   const err: BusinessError = error as BusinessError;
   console.error(`auth catch error. Code is ${err?.code}, message is ${err?.message}`);
@@ -394,6 +402,8 @@ struct Index {
         }
       });
       console.info('auth on success');
+      userAuthInstance.start();
+      console.info('auth start success');
     } catch (error) {
       const err: BusinessError = error as BusinessError;
       console.error(`auth catch error. Code is ${err?.code}, message is ${err?.message}`);
@@ -584,6 +594,8 @@ try {
   const userAuthInstance = userAuth.getUserAuthInstance(authParam, widgetParam);
   console.info('get userAuth instance success');
   // 需要调用UserAuthInstance的start()接口，启动认证后，才能调用cancel()接口。
+  userAuthInstance.start();
+  console.info('auth start success');
   userAuthInstance.cancel();
   console.info('auth cancel success');
 } catch (error) {
@@ -1098,7 +1110,7 @@ getAvailableStatus(authType : UserAuthType, authTrustLevel : AuthTrustLevel): vo
 > - 如果已注册对应执行器，功能未禁用，但密码过期时，需返回12500013。
 
 > **注意：**
-> - 若用户注册的锁屏口令是4位PIN时，其认证可信等级为ALT3，调用该接口查询是否支持ALT4级别的密码认证时，需返回12500010。
+> - 若用户注册的锁屏口令是4位PIN时，其认证可信等级为ATL3，调用该接口查询是否支持ATL4级别的密码认证时，需返回12500010。
 
 **错误码：**
 
@@ -1120,7 +1132,7 @@ getAvailableStatus(authType : UserAuthType, authTrustLevel : AuthTrustLevel): vo
 import { userAuth } from '@kit.UserAuthenticationKit';
 
 try {
-  userAuth.getAvailableStatus(userAuth.UserAuthType.FACE, userAuth.AuthTrustLevel.ATL1);
+  userAuth.getAvailableStatus(userAuth.UserAuthType.FACE, userAuth.AuthTrustLevel.ATL3);
   console.info('current auth trust level is supported');
 } catch (error) {
   console.error(`current auth trust level is not supported, error = ${error}`);

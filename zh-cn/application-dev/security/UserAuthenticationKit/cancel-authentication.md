@@ -20,7 +20,7 @@
 
 3. 使用已经成功发起认证的UserAuthInstance对象调用[UserAuthInstance.cancel](../../reference/apis-user-authentication-kit/js-apis-useriam-userauth.md#cancel10)接口取消本次认证。
 
-示例代码为发起认证可信等级≥ATL3的人脸+锁屏密码认证后，取消认证请求：
+示例代码为发起认证可信等级≥ATL3的人脸+锁屏口令认证后，取消认证请求：
 
 ```ts
 import { BusinessError } from  '@kit.BasicServicesKit';

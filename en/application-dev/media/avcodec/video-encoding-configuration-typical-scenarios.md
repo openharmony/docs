@@ -19,7 +19,7 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
 
 > **NOTE**
 >
-> The word 'sample' in the preceding code snippet is only an example. Use the actual project directory name.
+> The word **sample** in the preceding code snippet is only an example. Use the actual project directory name.
 >
 
 **Adding Header Files**
@@ -72,7 +72,7 @@ This section describes only the steps involved in the encoder configuration phas
     ```c++
     // 2.1 Create an AVFormat parameter instance.
     OH_AVFormat *format = OH_AVFormat_Create();
-    
+
     // 2.2 Fill in the encoding parameter key-value pairs (using the 1080p@30 fps SDR input source as an example).
     OH_AVFormat_SetIntValue(format, OH_MD_KEY_WIDTH, 1920); // (Mandatory) Video width.
     OH_AVFormat_SetIntValue(format, OH_MD_KEY_HEIGHT, 1080); // (Mandatory) Video height.
@@ -86,12 +86,12 @@ This section describes only the steps involved in the encoder configuration phas
     if (isSupported) {
         // Enable the low-latency feature: one YUV frame in, one stream data frame out.
         // Mandatory if the video encoder supports the low-latency feature (isSupported = true).
-        OH_AVFormat_SetIntValue(format, OH_MD_KEY_VIDEO_ENABLE_LOW_LATENCY, 1)
+        OH_AVFormat_SetIntValue(format, OH_MD_KEY_VIDEO_ENABLE_LOW_LATENCY, 1);
     }
     OH_AVFormat_SetIntValue(format, OH_MD_KEY_I_FRAME_INTERVAL, -1); // (Mandatory) Key frame interval.
     OH_AVFormat_SetIntValue(format, OH_MD_KEY_VIDEO_ENCODE_BITRATE_MODE, OH_BitrateMode::BITRATE_MODE_CBR); // (Mandatory) Set the bit rate control mode to CBR.
     OH_AVFormat_SetLongValue(format, OH_MD_KEY_BITRATE, 1500000); // (Mandatory). Bit rate, in bit/s.
-    
+
     // 2.3 Set the encoding parameters of the video encoder.
     int32_t ret = OH_VideoEncoder_Configure(videoEnc, format);
     if (ret != AV_ERR_OK) {
@@ -100,7 +100,6 @@ This section describes only the steps involved in the encoder configuration phas
     // 2.4 Destroy the AVFormat instance after the configuration is complete.
     OH_AVFormat_Destroy(format);
     ```
-
     > **NOTE**
     > 
     > A key frame interval of -1 indicates that only the first frame is a key frame. You can dynamically configure encoder parameters during running based on transmission conditions and image quality to insert new key frames (IDR).

@@ -170,8 +170,9 @@ OH_JSVM_RejectDeferred reject
 
 用于设置 Promise 解析或拒绝后的回调，效果等价于调用原生的 `Promise.then()` 或 `Promise.catch()`
 
-cpp 部分代码
-```
+以下仅对 cpp 部分代码进行展示，其余框架代码如 `TestJSVM` 函数参考 [使用JSVM-API接口进行任务队列相关开发](use-jsvm-execute_tasks.md) OH_JSVM_SetMicrotaskPolicy 段落中的实现。
+
+```cpp
 static int PromiseRegisterHandler(JSVM_VM vm, JSVM_Env env) {
     const char *defineFunction = R"JS(
         var x1 = 0;

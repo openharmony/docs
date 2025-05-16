@@ -5,6 +5,9 @@
 
 文件中定义了与画笔相关的功能函数。
 
+<!--RP1-->
+**相关示例：**[NDKAPIDrawing (API14)](https://gitee.com/openharmony/applications_app_samples/tree/master/code/DocsSample/Drawing/NDKAPIDrawing)<!--RP1End-->
+
 **引用文件：**&lt;native_drawing/drawing_pen.h&gt;
 
 **库：** libnative_drawing.so
@@ -62,11 +65,3 @@
 | void [OH_Drawing_PenSetBlendMode](_drawing.md#oh_drawing_pensetblendmode) ([OH_Drawing_Pen](_drawing.md#oh_drawing_pen) \*, [OH_Drawing_BlendMode](_drawing.md#oh_drawing_blendmode)) | 为画笔设置一个混合器，该混合器实现了指定的混合模式枚举。 | 
 | bool [OH_Drawing_PenGetFillPath](_drawing.md#oh_drawing_pengetfillpath) ([OH_Drawing_Pen](_drawing.md#oh_drawing_pen) \*, const [OH_Drawing_Path](_drawing.md#oh_drawing_path) \*src, [OH_Drawing_Path](_drawing.md#oh_drawing_path) \*dst, const [OH_Drawing_Rect](_drawing.md#oh_drawing_rect) \*, const [OH_Drawing_Matrix](_drawing.md#oh_drawing_matrix) \*) | 获取使用画笔绘制的源路径轮廓，并用目标路径表示。 | 
 | void [OH_Drawing_PenReset](_drawing.md#oh_drawing_penreset) ([OH_Drawing_Pen](_drawing.md#oh_drawing_pen) \*) | 将画笔重置至初始值。 | 
-
-<!--RP1-->
-## 相关实例
-
-针对Drawing(C/C++)的开发，有以下相关实例可供参考：
-
-- [NDKAPIDrawing (API14)](https://gitee.com/openharmony/applications_app_samples/tree/master/code/DocsSample/Drawing/NDKAPIDrawing)
-<!--RP1End-->

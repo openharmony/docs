@@ -46,6 +46,7 @@ addContact(context: Context, contact: Contact, callback: AsyncCallback&lt;number
 
 ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+  import { common } from '@kit.AbilityKit';
   // 获取context。
   let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   contact.addContact(
@@ -145,6 +146,7 @@ addContact(context: Context, contact: Contact): Promise<number&gt;
 
 ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+  import { common } from '@kit.AbilityKit';
   // 获取context。
   let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   let promise = contact.addContact(
@@ -238,6 +240,7 @@ deleteContact(context: Context, key: string, callback: AsyncCallback&lt;void&gt;
 
 ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+  import { common } from '@kit.AbilityKit';
   // 获取context。
   let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   contact.deleteContact(context, 'xxx', (err: BusinessError) => {
@@ -317,6 +320,7 @@ deleteContact(context: Context,  key: string): Promise&lt;void&gt;
 
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+  import { common } from '@kit.AbilityKit';
   // 获取context。
   let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   let promise = contact.deleteContact(context, 'xxx');
@@ -394,6 +398,7 @@ updateContact(context: Context, contact: Contact, callback: AsyncCallback&lt;voi
 
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+  import { common } from '@kit.AbilityKit';
   // 获取context。
   let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   contact.updateContact(context, {
@@ -485,6 +490,7 @@ updateContact(context: Context,  contact: Contact, attrs: ContactAttributes, cal
 
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+  import { common } from '@kit.AbilityKit';
   // 获取context。
   let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   contact.updateContact(context, {
@@ -586,6 +592,7 @@ updateContact(context: Context,  contact: Contact, attrs?: ContactAttributes): P
 
 ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+  import { common } from '@kit.AbilityKit';
   // 获取context。
   let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   let promise = contact.updateContact(context, {
@@ -686,6 +693,7 @@ isLocalContact(context: Context,  id: number, callback: AsyncCallback&lt;boolean
 
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+  import { common } from '@kit.AbilityKit';
   // 获取context。
   let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   contact.isLocalContact(context, /*id*/1, (err: BusinessError, data) => {
@@ -767,6 +775,7 @@ isLocalContact(context: Context,  id: number): Promise&lt;boolean&gt;
 
 ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+  import { common } from '@kit.AbilityKit';
   // 获取context。
   let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   let promise = contact.isLocalContact(context, /*id*/1);
@@ -846,6 +855,7 @@ isMyCard(context: Context,  id: number, callback: AsyncCallback&lt;boolean&gt;):
 
 ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+  import { common } from '@kit.AbilityKit';
   // 获取context。
   let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   contact.isMyCard(context, /*id*/1, (err: BusinessError, data) => {
@@ -927,6 +937,7 @@ isMyCard(context: Context,  id: number): Promise&lt;boolean&gt;
 
 ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+  import { common } from '@kit.AbilityKit';
   // 获取context。
   let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   let promise = contact.isMyCard(context, /*id*/1);
@@ -1005,6 +1016,7 @@ queryMyCard(context: Context,  callback: AsyncCallback&lt;Contact&gt;): void
 
 ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+  import { common } from '@kit.AbilityKit';
   // 获取context。
   let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   contact.queryMyCard(context, (err: BusinessError, data) => {
@@ -1080,6 +1092,7 @@ queryMyCard(context: Context,  attrs: ContactAttributes, callback: AsyncCallback
 
 ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+  import { common } from '@kit.AbilityKit';
   // 获取context。
   let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   contact.queryMyCard(context, {
@@ -1165,6 +1178,7 @@ queryMyCard(context: Context,  attrs?: ContactAttributes): Promise&lt;Contact&gt
 
 ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+  import { common } from '@kit.AbilityKit';
   // 获取context。
   let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   let promise = contact.queryMyCard(context, {
@@ -1457,6 +1471,7 @@ queryContact(context: Context,  key: string,  callback: AsyncCallback&lt;Contact
 
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+  import { common } from '@kit.AbilityKit';
   // 获取context。
   let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   contact.queryContact(context, 'xxx', (err: BusinessError, data) => {
@@ -1534,6 +1549,7 @@ queryContact(context: Context,  key: string, holder: Holder, callback: AsyncCall
 
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+  import { common } from '@kit.AbilityKit';
   // 获取context。
   let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   contact.queryContact(context, 'xxx', {
@@ -1620,6 +1636,7 @@ queryContact(context: Context,  key: string,  attrs: ContactAttributes, callback
 
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+  import { common } from '@kit.AbilityKit';
   // 获取context。
   let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   contact.queryContact(context, 'xxx', {
@@ -1703,6 +1720,7 @@ queryContact(context: Context,  key: string, holder: Holder, attrs: ContactAttri
 
 ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+  import { common } from '@kit.AbilityKit';
   // 获取context。
   let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   contact.queryContact(context, 'xxx', {
@@ -1800,6 +1818,7 @@ queryContact(context: Context,  key: string, holder?: Holder, attrs?: ContactAtt
 
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+  import { common } from '@kit.AbilityKit';
   // 获取context。
   let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   let promise = contact.queryContact(context, 'xxx', {
@@ -1892,6 +1911,7 @@ queryContacts(context: Context,  callback: AsyncCallback&lt;Array&lt;Contact&gt;
 
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+  import { common } from '@kit.AbilityKit';
   // 获取context。
   let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   contact.queryContacts(context, (err: BusinessError, data) => {
@@ -1967,6 +1987,7 @@ queryContacts(context: Context,  holder: Holder, callback: AsyncCallback&lt;Arra
 
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+  import { common } from '@kit.AbilityKit';
   // 获取context。
   let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   contact.queryContacts(context, {
@@ -2051,6 +2072,7 @@ queryContacts(context: Context,  attrs: ContactAttributes, callback: AsyncCallba
 
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+  import { common } from '@kit.AbilityKit';
   // 获取context。
   let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   contact.queryContacts(context, {
@@ -2132,6 +2154,7 @@ queryContacts(context: Context,  holder: Holder, attrs: ContactAttributes, callb
 
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+  import { common } from '@kit.AbilityKit';
   // 获取context。
   let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   contact.queryContacts(context, {
@@ -2227,6 +2250,7 @@ queryContacts(context: Context,  holder?: Holder, attrs?: ContactAttributes): Pr
 
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+  import { common } from '@kit.AbilityKit';
   // 获取context。
   let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   let promise = contact.queryContacts(context, {
@@ -2319,6 +2343,7 @@ queryContactsByPhoneNumber(context: Context,  phoneNumber: string, callback: Asy
 
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+  import { common } from '@kit.AbilityKit';
   // 获取context。
   let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   contact.queryContactsByPhoneNumber(context, '138xxxxxxxx', (err: BusinessError, data) => {
@@ -2396,6 +2421,7 @@ queryContactsByPhoneNumber(context: Context,  phoneNumber: string, holder: Holde
 
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+  import { common } from '@kit.AbilityKit';
   // 获取context。
   let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   contact.queryContactsByPhoneNumber(context, '138xxxxxxxx', {
@@ -2482,6 +2508,7 @@ queryContactsByPhoneNumber(context: Context,  phoneNumber: string, attrs: Contac
 
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+  import { common } from '@kit.AbilityKit';
   // 获取context。
   let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   contact.queryContactsByPhoneNumber(context, '138xxxxxxxx', {
@@ -2565,6 +2592,7 @@ queryContactsByPhoneNumber(context: Context,  phoneNumber: string, holder: Holde
 
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+  import { common } from '@kit.AbilityKit';
   // 获取context。
   let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   contact.queryContactsByPhoneNumber(context, '138xxxxxxxx', {
@@ -2662,6 +2690,7 @@ queryContactsByPhoneNumber(context: Context,  phoneNumber: string, holder?: Hold
 
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+  import { common } from '@kit.AbilityKit';
   // 获取context。
   let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   let promise = contact.queryContactsByPhoneNumber(context, '138xxxxxxxx', {
@@ -2755,6 +2784,7 @@ queryContactsByEmail(context: Context,  email: string, callback: AsyncCallback&l
 
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+  import { common } from '@kit.AbilityKit';
   // 获取context。
   let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   contact.queryContactsByEmail(context, 'xxx@email.com', (err: BusinessError, data) => {
@@ -2832,6 +2862,7 @@ queryContactsByEmail(context: Context,  email: string, holder: Holder, callback:
 
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+  import { common } from '@kit.AbilityKit';
   // 获取context。
   let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   contact.queryContactsByEmail(context, 'xxx@email.com', {
@@ -2918,6 +2949,7 @@ queryContactsByEmail(context: Context,  email: string, attrs: ContactAttributes,
 
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+  import { common } from '@kit.AbilityKit';
   // 获取context。
   let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   contact.queryContactsByEmail(context, 'xxx@email.com', {
@@ -3001,6 +3033,7 @@ queryContactsByEmail(context: Context,  email: string, holder: Holder, attrs: Co
 
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+  import { common } from '@kit.AbilityKit';
   // 获取context。
   let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   contact.queryContactsByEmail(context, 'xxx@email.com', {
@@ -3098,6 +3131,7 @@ queryContactsByEmail(context: Context,  email: string, holder?: Holder, attrs?: 
 
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+  import { common } from '@kit.AbilityKit';
   // 获取context。
   let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   let promise = contact.queryContactsByEmail(context, 'xxx@email.com', {
@@ -3188,6 +3222,7 @@ queryGroups(context: Context,  callback: AsyncCallback&lt;Array&lt;Group&gt;&gt;
 
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+  import { common } from '@kit.AbilityKit';
   // 获取context。
   let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   contact.queryGroups(context, (err: BusinessError, data) => {
@@ -3263,6 +3298,7 @@ queryGroups(context: Context,  holder: Holder, callback: AsyncCallback&lt;Array&
 
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+  import { common } from '@kit.AbilityKit';
   // 获取context。
   let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   contact.queryGroups(context, {
@@ -3352,6 +3388,7 @@ queryGroups(context: Context,  holder?: Holder): Promise&lt;Array&lt;Group&gt;&g
 
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+  import { common } from '@kit.AbilityKit';
   // 获取context。
   let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   let promise = contact.queryGroups(context, {
@@ -3438,6 +3475,7 @@ queryHolders(context: Context, callback: AsyncCallback&lt;Array&lt;Holder&gt;&gt
 
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+  import { common } from '@kit.AbilityKit';
   // 获取context。
   let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   contact.queryHolders(context, (err: BusinessError, data) => {
@@ -3517,6 +3555,7 @@ queryHolders(context: Context): Promise&lt;Array&lt;Holder&gt;&gt;
 
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+  import { common } from '@kit.AbilityKit';
   // 获取context。
   let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   let promise = contact.queryHolders(context);
@@ -3590,6 +3629,7 @@ queryKey(context: Context,  id: number, callback: AsyncCallback&lt;string&gt;): 
 
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+  import { common } from '@kit.AbilityKit';
   // 获取context。
   let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   contact.queryKey(context, /*id*/1, (err: BusinessError, data) => {
@@ -3667,6 +3707,7 @@ queryKey(context: Context,  id: number, holder: Holder, callback: AsyncCallback&
 
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+  import { common } from '@kit.AbilityKit';
   // 获取context。
   let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   contact.queryKey(context, /*id*/1, {
@@ -3758,6 +3799,7 @@ queryKey(context: Context,  id: number, holder?: Holder): Promise&lt;string&gt;
 
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+  import { common } from '@kit.AbilityKit';
   // 获取context。
   let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   let promise = contact.queryKey(context, /*id*/1, {
@@ -3854,6 +3896,7 @@ addContactViaUI(context: Context, contact: Contact): Promise&lt;number&gt;
 
 ```js
 import { BusinessError } from '@kit.BasicServicesKit';
+import { common } from '@kit.AbilityKit';
 // 获取context。
 let contactInfo: contact.Contact = {
     name: {
@@ -3907,6 +3950,7 @@ saveToExistingContactViaUI(context: Context, contact: Contact): Promise&lt;numbe
 
 ```js
 import { BusinessError } from '@kit.BasicServicesKit';
+import { common } from '@kit.AbilityKit';
 // 获取context。
 let contactInfo: contact.Contact = {
     id: 1,
@@ -4377,7 +4421,7 @@ let name: contact.Name = {
 
 | 名称     |   类型   | 只读 | 可选 | 说明           |
 | -------- | -------- | ---- | ---- | -------------- |
-| nickName | string   | 否   | 是   | 联系人的昵称。 |
+| nickName | string   | 否   | 否   | 联系人的昵称。 |
 
 **对象创建示例：**
 

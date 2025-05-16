@@ -1,4 +1,4 @@
-# Managing Global Audio Input Devices
+# Global Audio Input Device Management
 
 If a device is connected to multiple audio input devices, you can use **AudioRoutingManager** to specify an audio input device to record audio. For details about the API reference, see [AudioRoutingManager](../../reference/apis-audio-kit/js-apis-audio.md#audioroutingmanager9).
 
@@ -9,8 +9,8 @@ Before using **AudioRoutingManager** to manage audio devices, import the audio m
 ```ts
 import { audio } from '@kit.AudioKit';  // Import the audio module.
 
-let audioManager = audio.getAudioManager(); // Create an AudioManager instance.
-let audioRoutingManager = audioManager.getRoutingManager(); // Call an API of AudioManager to create an AudioRoutingManager instance.
+let audioManager = audio.getAudioManager();  // Create an AudioManager instance.
+let audioRoutingManager = audioManager.getRoutingManager();  // Call an API of AudioManager to create an AudioRoutingManager instance.
 ```
 
 ## Supported Audio Input Device Types
@@ -45,10 +45,10 @@ import { audio } from '@kit.AudioKit';
 
 // Listen for connection state changes of audio devices.
 audioRoutingManager.on('deviceChange', audio.DeviceFlag.INPUT_DEVICES_FLAG, (deviceChanged: audio.DeviceChangeAction) => {
-  console.info('device change type: ' + deviceChanged.type); // Device connection state change. The value 0 means that the device is connected and 1 means that the device is disconnected.
+  console.info('device change type: ' + deviceChanged.type);  // Device connection state change. The value 0 means that the device is connected and 1 means that the device is disconnected.
   console.info('device descriptor size : ' + deviceChanged.deviceDescriptors.length);
-  console.info('device change descriptor: ' + deviceChanged.deviceDescriptors[0].deviceRole); // Device role.
-  console.info('device change descriptor: ' + deviceChanged.deviceDescriptors[0].deviceType); // Device type.
+  console.info('device change descriptor: ' + deviceChanged.deviceDescriptors[0].deviceRole);  // Device role.
+  console.info('device change descriptor: ' + deviceChanged.deviceDescriptors[0].deviceType);  // Device type.
 });
 
 // Cancel the listener for the connection state changes of audio devices.
