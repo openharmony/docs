@@ -118,7 +118,7 @@ controls(value: boolean)
 
 objectFit(value: ImageFit)
 
-设置视频显示模式。
+设置视频填充模式。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -128,7 +128,7 @@ objectFit(value: ImageFit)
 
 | 参数名 | 类型                                      | 必填 | 说明                             |
 | ------ | ----------------------------------------- | ---- | -------------------------------- |
-| value  | [ImageFit](ts-appendix-enums.md#imagefit) | 是   | 视频显示模式。<br/>默认值：Cover |
+| value  | [ImageFit](ts-appendix-enums.md#imagefit) | 是   | 视频填充模式。<br/>默认值：Cover。<br/>约束：不支持ImageFit类型中的枚举值MATRIX，若设置，则作用效果与Cover一致。<br/>异常值：若设置异常值undefined、null，或不在[ImageFit](ts-appendix-enums.md#imagefit)枚举范围内的值，作用效果均与Cover一致。|
 
 ### loop
 
@@ -559,10 +559,10 @@ struct VideoCreateComponent {
     Column() {
       Video({
         src: this.videoSrc,
-        previewUri: this.previewUri,
-        currentProgressRate: this.curRate,
+        previewUri: this.previewUri, //设置预览图
+        currentProgressRate: this.curRate, //设置播放速度
         controller: this.controller,
-        posterOptions: { showFirstFrame: this.showFirstFrame }
+        posterOptions: { showFirstFrame: this.showFirstFrame } //关闭首帧送显
       })
         .width('100%')
         .height(600)
@@ -696,7 +696,7 @@ struct ImageAnalyzerExample {
         src: this.videoSrc,
         previewUri: this.previewUri,
         controller: this.controller,
-        imageAIOptions: this.options
+        imageAIOptions: this.options //设置图像AI分析选项
       })
         .width('100%')
         .height(600)
@@ -765,3 +765,64 @@ struct Index {
   }
 }
 ```
+### 示例4（视频填充模式）
+
+使用objectFit属性设置视频填充模式。
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct video {
+  @State videoSrc: Resource = $rawfile('rabbit.mp4')
+  @State previewUri: Resource = $r('app.media.tree')
+  @State curRate: PlaybackSpeed = PlaybackSpeed.Speed_Forward_1_00_X
+  @State isAutoPlay: boolean = true
+  @State showControls: boolean = true
+  controller: VideoController = new VideoController()
+
+  build() {
+    Column() {
+      Text("ImageFit.Contain").fontSize(12)
+      Video({
+        src: this.videoSrc,
+        previewUri: this.previewUri,
+        currentProgressRate: this.curRate,
+        controller: this.controller
+      })
+        .width(350)
+        .height(230)
+        .controls(this.showControls)
+        .objectFit(ImageFit.Contain)//设置视频填充模式为ImageFit.Contain
+        .margin(5)
+
+      Text("ImageFit.Fill").fontSize(12)
+      Video({
+        src: this.videoSrc,
+        previewUri: this.previewUri,
+        currentProgressRate: this.curRate,
+        controller: this.controller
+      })
+        .width(350)
+        .height(230)
+        .controls(this.showControls)
+        .objectFit(ImageFit.Fill)//设置视频填充模式为ImageFit.Fill
+        .margin(5)
+
+      Text("ImageFit.START").fontSize(12)
+      Video({
+        src: this.videoSrc,
+        previewUri: this.previewUri,
+        currentProgressRate: this.curRate,
+        controller: this.controller
+      })
+        .width(350)
+        .height(230)
+        .controls(this.showControls)
+        .objectFit(ImageFit.START)//设置视频填充模式为ImageFit.START
+        .margin(5)
+    }.width('100%').alignItems(HorizontalAlign.Center)
+  }
+}
+```
+![VideoObjectFit](figures/video_objectfit.png)
