@@ -1,14 +1,14 @@
 # 指定PEM格式字符串数据转换非对称密钥对(ArkTS)
 
-以RSA为例，根据指定的非对称密钥字符串数据，生成非对称密钥对（KeyPair）。
+以RSA为例，根据指定的非对称密钥字符串生成非对称密钥对（KeyPair）。
 
 > **说明：**
 >
 > 针对非对称密钥的convertPemKey操作：
 >
-> - 公钥需满足：X.509规范、PKCS\#1规范、PEM编码格式。
+> - 公钥需满足X.509规范、PKCS\#1规范、PEM编码格式。
 >
-> - 私钥需满足：PKCS\#8规范、PKCS\#1规范、PEM编码格式。
+> - 私钥需满足PKCS\#8规范、PKCS\#1规范、PEM编码格式。
 >
 > - 当前只支持RSA非对称密钥的转换。
 
@@ -18,12 +18,12 @@
 
 1. 调用[cryptoFramework.createAsyKeyGenerator](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreateasykeygenerator)，指定字符串参数'RSA1024'，创建RSA密钥类型为RSA1024、素数个数为2的非对称密钥生成器（AsyKeyGenerator）。
 
-   生成RSA非对称密钥时，默认素数为2，此处省略了参数PRIMES_2。
+   生成RSA非对称密钥时，默认使用2个素数，此处省略了参数PRIMES_2。
 
 2. 调用[AsyKeyGenerator.convertPemKey](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#convertpemkey12)，传入二进制密钥数据，生成非对称密钥对象（KeyPair）。
 3. 调用[AsyKeyGenerator.getEncodedPem](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#getencodedpem12)，将非对称密钥对象中的公钥转换成pkcs1或x509格式，私钥转换成pkcs1或pkcs8格式。
 
-- 以使用Promise方式生成RSA密钥对为例：
+- 以Promise方式生成RSA密钥对为例：
 
   ```ts
   import { cryptoFramework } from '@kit.CryptoArchitectureKit';
