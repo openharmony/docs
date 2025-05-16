@@ -1,11 +1,8 @@
 # Encryption and Decryption with an AES Symmetric Key (CBC Mode) (ArkTS)
 
-
 For details about the algorithm specifications, see [AES](crypto-sym-encrypt-decrypt-spec.md#aes).
 
-
 **Encryption**
-
 
 1. Call [cryptoFramework.createSymKeyGenerator](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreatesymkeygenerator) and [SymKeyGenerator.generateSymKey](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#generatesymkey-1) to generate a 128-bit AES symmetric key (**SymKey**).
    
@@ -17,7 +14,6 @@ For details about the algorithm specifications, see [AES](crypto-sym-encrypt-dec
 
 4. If a small amount of data is to be encrypted, you can use [Cipher.doFinal](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#dofinal-1) after **Cipher.init** to obtain the encrypted data.
 
-
 **Decryption**
 
 1. Call [cryptoFramework.createCipher](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreatecipher) with the string parameter **'AES128|CBC|PKCS7'** to create a **Cipher** instance for decryption. The key type is **AES128**, block cipher mode is **CBC**, and the padding mode is **PKCS7**.
@@ -25,7 +21,6 @@ For details about the algorithm specifications, see [AES](crypto-sym-encrypt-dec
 2. Call [Cipher.init](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#init-1) to initialize the **Cipher** instance. In the **Cipher.init** API, set **opMode** to **CryptoMode.DECRYPT_MODE** (decryption), **key** to **SymKey** (the key for decryption), and **params** to **IvParamsSpec** corresponding to the CBC mode.
 
 3. If a small amount of data is to be decrypted, you can use [Cipher.doFinal](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#dofinal-1) after **Cipher.init** to obtain the decrypted data.
-
 
 - Example (using asynchronous APIs):
 

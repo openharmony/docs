@@ -1,4 +1,4 @@
-# UIAbility与Extension连接开发指南
+# 分布式Extension开发指南
 
 ## 简介
 

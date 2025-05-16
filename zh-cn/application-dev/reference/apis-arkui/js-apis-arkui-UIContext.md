@@ -3051,7 +3051,7 @@ off(type: 'navDestinationUpdate', callback?: Callback\<observer.NavDestinationIn
 | 参数名   | 类型                                                  | 必填 | 说明                                                         |
 | -------- | ----------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | string                                                | 是   | 监听事件，固定为'navDestinationUpdate'，即NavDestination组件的状态变化。 |
-| callback | Callback\<observer.[NavDestinationInfo](js-apis-arkui-observer.md#navdestinationinfo)\> | 否   | 回调函数。返回当前的NavDestination组件状态。                 |
+| callback | Callback\<observer.[NavDestinationInfo](js-apis-arkui-observer.md#navdestinationinfo)\> | 否   | 需要取消的监听回调，不传参数时，取消所有的Navigation监听回调。                 |
 
 **示例：** 
 
@@ -3144,11 +3144,115 @@ off(type: 'navDestinationUpdate', options: { navigationId: ResourceStr }, callba
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | string                                                       | 是   | 监听事件，固定为'navDestinationUpdate'，即NavDestination组件的状态变化。 |
 | options  | { navigationId: [ResourceStr](arkui-ts/ts-types.md#resourcestr) } | 是   | 指定监听的Navigation的id。                                   |
-| callback | Callback\<observer.[NavDestinationInfo](js-apis-arkui-observer.md#navdestinationinfo)\>        | 否   | 回调函数。返回当前的NavDestination组件状态。                 |
+| callback | Callback\<observer.[NavDestinationInfo](js-apis-arkui-observer.md#navdestinationinfo)\>        | 否   |需要取消的监听回调，不传参数时，取消该Navigation上所有的监听回调。                 |
 
 **示例：**
 
 参考[uiObserver.on('navDestinationUpdate')](#onnavdestinationupdate11-1)示例。
+
+### on('navDestinationUpdate')<sup>20+</sup>
+
+on(type: 'navDestinationUpdate', navigationUniqueId: number, callback: Callback\<observer.NavDestinationInfo\>): void
+
+通过Navigation的uniqueId监听NavDestination组件的状态变化，uniqueId可通过[queryNavigationInfo](arkui-ts/ts-custom-component-api.md#querynavigationinfo12)获取。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名   | 类型                                                                 | 必填 | 说明                                                                     |
+| -------- | -------------------------------------------------------------------- | ---- | ------------------------------------------------------------------------ |
+| type     | string                                                               | 是   | 监听事件，固定为'navDestinationUpdate'，即NavDestination组件的状态变化。 |
+| navigationUniqueId  | number | 是   | 指定监听的Navigation的uniqueId，可以通过[queryNavigationInfo](arkui-ts/ts-custom-component-api.md#querynavigationinfo12)获取。                                               |
+| callback | Callback\<observer.[NavDestinationInfo](js-apis-arkui-observer.md#navdestinationinfo)\>                | 是   | 回调函数。返回当前的NavDestination组件状态。                             |
+
+**示例：**
+
+通过Navigation的uniqueId，可以触发NavDestination组件的状态变化。
+
+```ts
+// Index.ets
+// 演示 on('navDestinationUpdate', navigationUniqueId, callback)
+// off('navDestinationUpdate', navigationUniqueId, callback)
+@Component
+struct PageOne {
+  private text = '';
+  private uniqueid = -1;
+  aboutToAppear() {
+    let navigationuniqueid = this.queryNavigationInfo()?.uniqueId;
+    if(navigationuniqueid) {
+      this.uniqueid = navigationuniqueid.valueOf();
+    }
+    this.text = JSON.stringify(this.uniqueid);
+    this.getUIContext().getUIObserver().on('navDestinationUpdate',this.uniqueid, (info) => {
+      console.info('NavDestination state update navigationId', JSON.stringify(info));
+    });
+  }
+  aboutToDisappear() {
+    this.getUIContext().getUIObserver().off('navDestinationUpdate', this.uniqueid);
+  }
+  build() {
+    NavDestination() {
+      Text("pageOne")
+      Text('navigationuniqueid是:' + this.text)
+        .width('80%')
+        .height(50)
+        .margin(50)
+        .fontSize(20)
+    }.title("pageOne")
+  }
+}
+
+@Entry
+@Component
+struct Index {
+  private stack: NavPathStack = new NavPathStack();
+
+  @Builder
+  PageBuilder(name: string) {
+    PageOne()
+  }
+
+  build() {
+    Column() {
+      Navigation(this.stack) {
+        Button("push").onClick(() => {
+          this.stack.pushPath({ name: "pageOne" });
+        })
+      }
+      .id("testId")
+      .title("Navigation")
+      .navDestination(this.PageBuilder)
+    }
+    .width('100%')
+    .height('100%')
+  }
+}
+```
+
+### off('navDestinationUpdate')<sup>20+</sup>
+
+off(type: 'navDestinationUpdate', navigationUniqueId: number, callback?: Callback\<observer.NavDestinationInfo\>): void
+
+取消通过navigationUniqueId监听NavDestination组件的变化。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名   | 类型                                                                 | 必填 | 说明                                                                     |
+| -------- | -------------------------------------------------------------------- | ---- | ------------------------------------------------------------------------ |
+| type     | string                                                               | 是   | 监听事件，固定为'navDestinationUpdate'，即NavDestination组件的状态变化。 |
+| navigationUniqueId  | number | 是   | 指定监听的Navigation的uniqueId，可以通过[queryNavigationInfo](arkui-ts/ts-custom-component-api.md#querynavigationinfo12)获取。                                               |
+| callback | Callback\<observer.[NavDestinationInfo](js-apis-arkui-observer.md#navdestinationinfo)\>                | 否   | 需要取消的监听回调，不传参数时，取消该Navigation上所有的监听回调。                             |
+
+**示例：**
+
+参考[uiObserver.on('navDestinationUpdate')](#onnavdestinationupdate20)示例。
 
 ### on('scrollEvent')<sup>12+</sup>
 
@@ -6633,8 +6737,8 @@ openCustomDialog\<T extends Object>(dialogContent: ComponentContent\<T>, options
 | 错误码ID  | 错误信息                               |
 | ------ | ---------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
-| 103301 | The ComponentContent is incorrect. |
-| 103302 | Dialog content already exists.|
+| 103301 | Dialog content error. The ComponentContent is incorrect. |
+| 103302 | Dialog content already exist. The ComponentContent has already been opened. |
 
 **示例：**
 
@@ -6725,8 +6829,8 @@ openCustomDialogWithController\<T extends Object>(dialogContent: ComponentConten
 | 错误码ID  | 错误信息                               |
 | ------ | ---------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
-| 103301 | The ComponentContent is incorrect. |
-| 103302 | Dialog content already exists.|
+| 103301 | Dialog content error. The ComponentContent is incorrect. |
+| 103302 | Dialog content already exist. The ComponentContent has already been opened. |
 
 **示例：**
 
@@ -6821,8 +6925,8 @@ closeCustomDialog\<T extends Object>(dialogContent: ComponentContent\<T>): Promi
 | 错误码ID  | 错误信息                               |
 | ------ | ---------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
-| 103301 | The ComponentContent is incorrect. |
-| 103303 | The ComponentContent cannot be found. |
+| 103301 | Dialog content error. The ComponentContent is incorrect. |
+| 103303 | Dialog content not found. The ComponentContent cannot be found. |
 
 **示例：**
 
@@ -6917,8 +7021,8 @@ updateCustomDialog\<T extends Object>(dialogContent: ComponentContent\<T>, optio
 | 错误码ID  | 错误信息                               |
 | ------ | ---------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
-| 103301 | The ComponentContent is incorrect. |
-| 103303 | The ComponentContent cannot be found. |
+| 103301 | Dialog content error. The ComponentContent is incorrect. |
+| 103303 | Dialog content not found. The ComponentContent cannot be found. |
 
 **示例：**
 

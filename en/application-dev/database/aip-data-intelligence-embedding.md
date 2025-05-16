@@ -13,7 +13,7 @@ Application data vectorization leverages embedding models to convert multi-modal
 Embedding models are used to implement application data vectorization. The system supports multimodal embedding models, which can map different data modalities, such as text and images, into a unified vector space. These models support both single-modal semantic representation (text-to-text and image-to-image retrieval) and cross-modal capabilities (text-to-image and image-to-text retrieval).
 
 ### Text Segmentation
-To address length limitations when textual data is vectorized, you can use the APIs provided by the ArkData Intelligence Platform (AIP) to split the input text into smaller sections based on the specified maximum length. This approach ensures efficient and effective data vectorization.
+To address length limitations when textual data is vectorized, you can use the APIs provided by the ArkData Intelligence Platform (AIP) to split the input text into smaller sections. This approach ensures efficient and effective data vectorization.
 
 ## Working Principles
 Application data vectorization involves converting raw application data into vector formats and storing them in a vector database (store).
@@ -29,7 +29,7 @@ The following table lists the APIs related to application data vectorization. Fo
 | API| Description| 
 | -------- | -------- |
 | getTextEmbeddingModel(config: ModelConfig): Promise&lt;TextEmbedding&gt; | Obtains a text embedding model.| 
-| loadModel(): Promise&lt;void&gt; | Loads this embedding model.| 
+| loadModel(): Promise&lt;void&gt; | Loads this text embedding model.| 
 | splitText(text: string, config: SplitConfig): Promise&lt;Array&lt;string&gt;&gt; | Splits text.| 
 | getEmbedding(text: string): Promise&lt;Array&lt;number&gt;&gt; | Obtains the embedding vector of the given text.| 
 | getEmbedding(batchTexts: Array&lt;string&gt;): Promise&lt;Array&lt;Array&lt;number&gt;&gt;&gt; | Obtains the embedding vector of a given batch of text.|
@@ -82,7 +82,7 @@ The following table lists the APIs related to application data vectorization. Fo
      })
    ```
 
-4. Split text. If the data to be vectorized is too long, call **splitText()** to split the data into smaller text blocks and then vectorize them.
+4. Split text. If the data length exceeds the limit, call **splitText()** to split the data into smaller text blocks and then vectorize them.
 
    ```ts
    let splitConfig:intelligence.SplitConfig = {

@@ -642,7 +642,7 @@ svg类型图源不支持该属性。
 
 | 名称     | 值    | 说明                    |
 | ------ | -------------------------- | -------------------------- |
-| AUTO   | 0  | 读取图片携带的EXIF元数据作为显示方向。              |
+| AUTO   | 0  | 读取图片携带的EXIF元数据作为显示方向，支持旋转和镜像。              |
 | UP | 1 | 默认按照当前图片进行显示，不做任何EXIF处理。          |
 | RIGHT | 2 | 将当前图片向右旋转90度后显示。         |
 | DOWN | 3| 将当前图片旋转180度后显示。         |
@@ -779,7 +779,7 @@ onError(callback: ImageErrorCallback)
 
 | 参数名   | 类型                                       | 必填 | 说明                       |
 | -------- | ------------------------------------------ | ---- | -------------------------- |
-| callback | [ImageErrorCallback](#imageerrorcallback9) | 是   | 图片加载异常时触发的回调。<br>**说明：**<br/>建议开发者使用此回调，可快速确认图片加载失败时的具体原因。 |
+| callback | [ImageErrorCallback](#imageerrorcallback9) | 是   | 图片加载异常时触发的回调。<br>**说明：**<br/>建议开发者使用此回调，可快速确认图片加载失败时的具体原因，参见[ImageError的错误信息详细介绍](#imageerror9)。 |
 
 ### onFinish
 
@@ -819,15 +819,60 @@ type ImageErrorCallback = (error: ImageError) => void
 
 当组件的参数类型为[AnimatedDrawableDescriptor](../js-apis-arkui-drawableDescriptor.md#animateddrawabledescriptor12)时该事件不触发。
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
-
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称          | 类型   | 必填 | 说明                      |
 | --------------- | ------ | ---- | ------------------------- |
-| componentWidth  | number | 是   | 组件的宽。<br/>单位：像素<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。 |
-| componentHeight | number | 是   | 组件的高。<br/>单位：像素<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。 |
-| message<sup>10+</sup>         | string | 是   | 报错信息。<br/>**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。 |
+| componentWidth  | number | 是   | 组件的宽。<br/>单位：像素<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| componentHeight | number | 是   | 组件的高。<br/>单位：像素<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| message<sup>10+</sup>         | string | 是   | 报错信息。<br/>**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| error<sup>20+</sup>         | [BusinessError\<void>](#businesserror20) | 否   | 图片加载异常返回的报错信息，其中code为错误码，message为错误信息。报错信息请参考以下错误信息的详细介绍。<br/>默认值：{ code : -1, message : "" }<br/>**卡片能力：** 从API version 20开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
+
+
+
+以下是错误信息的详细介绍。
+
+| 错误码ID  | 错误信息                       | 错误信息发生阶段 | 图片加载类型 |
+| --------  | ----------------------------   | --------- | ------- |
+| 101000    | unknown source type.           | 数据加载 | 未知类型 |
+| 102010    | sync http task of uri cancelled. | 数据加载 | 网络文件 |
+| 102011    | sync http task of uri failed.  | 数据加载 | 网络文件 |
+| 102012    | async http task of uri cancelled. | 数据加载 | 网络文件 |
+| 102013    | async http task of uri failed. | 数据加载 | 网络文件 |
+| 102030    | wrong code format.             | 数据加载 | base64字符串 |
+| 102031    | decode base64 image failed.    | 数据加载 | base64字符串 |
+| 102050    | path is too long.              | 数据加载 | base64字符串 |
+| 102051    | read data failed.              | 数据加载 | 沙箱文件 |
+| 102070    | get image data by name failed. | 数据加载 | 沙箱文件 |
+| 102071    | get image data by id failed.   | 数据加载 | 资源文件 |
+| 102072    | uri is invalid.                | 数据加载 | 资源文件 |
+| 102090    | uri is invalid.                | 数据加载 | 包内文件 |
+| 102091    | get asset failed.              | 数据加载 | 包内文件 |
+| 102110    | open file failed.              | 数据加载 | 媒体库文件 |
+| 102111    | get file stat failed.          | 数据加载 | 媒体库文件 |
+| 102112    | read file failed.              | 数据加载 | 媒体库文件 |
+| 102130    | decoded data is empty.         | 数据加载 | 媒体库缩略图文件 |
+| 102131    | load shared memory image data timeout. | 数据加载 | 共享内存 |
+| 102010    | make svg dom failed.           | 数据加载 | 矢量图 |
+| 102010    | image data size is invalid.    | 数据加载 | 位图 |
+| 111000    | image source create failed.    | 数据解码 | 位图 |
+| 111001    | pixelmap create failed.        | 数据解码 | 位图 |
+
+## BusinessError<sup>20+</sup>
+
+type BusinessError\<T> = BusinessError\<T>
+
+图片加载异常返回的错误信息。
+
+**卡片能力：** 从API version 20开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 类型  | 说明   |
+| ---- | ------ |
+| [BusinessError\<T>](../../apis-basic-services-kit/js-apis-base.md#businesserror) | 图片加载异常返回的错误信息。 |
 
 ## 示例
 
