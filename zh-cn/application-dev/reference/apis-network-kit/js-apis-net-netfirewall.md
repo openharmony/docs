@@ -486,8 +486,8 @@ let dnsRule: netFirewall.NetFirewallRule = {
  dns:{
   primaryDns: "4.4.4.4",
   standbyDns: "8.8.8.8",
+  },
   userId: 100
- },
 };
 netFirewall.addNetFirewallRule(dnsRule).then((result: number) => {
   console.info('rule Id: ', result);
