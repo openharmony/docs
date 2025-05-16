@@ -87,7 +87,7 @@ gridColOffset(value: number | GridColColumnOption)
 
 order(value: number | GridColColumnOption)
 
-设置元素的序号，根据栅格子组件的序号，从小到大对栅格子组件做排序。
+设置栅格子组件的序号，根据序号从小到大对栅格子组件进行排序。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
