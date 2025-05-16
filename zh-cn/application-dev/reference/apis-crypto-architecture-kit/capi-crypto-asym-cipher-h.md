@@ -110,7 +110,7 @@ OH_Crypto_ErrCode OH_CryptoAsymCipher_Init(OH_CryptoAsymCipher *ctx, Crypto_Ciph
 | -- | -- |
 | [OH_CryptoAsymCipher](capi-oh-cryptoasymcipher.md) *ctx | 非对称加密上下文。 |
 | [Crypto_CipherMode](capi-crypto-common-h.md#crypto_ciphermode) mode | 加密模式是加密还是解密。 |
-| [OH_CryptoKeyPair](capi-crypto-asym-key-h.md#oh_cryptokeypair.md) *key | 非对称密钥。 |
+| [OH_CryptoKeyPair](capi-oh-cryptokeypair.md) *key | 非对称密钥。 |
 
 **返回：**
 
