@@ -450,7 +450,7 @@ let domainRule: netFirewall.NetFirewallRule = {
   name: "rule2",
   description: "rule2 description",
   direction: netFirewall.NetFirewallRuleDirection.RULE_IN,
-  action:netFirewall.NetFirewallRuleDirection.RULE_DENY,
+  action:netFirewall.FirewallRuleAction.RULE_DENY,
   type: netFirewall.NetFirewallRuleType.RULE_DOMAIN,
   isEnabled: true,
   appUid: 20002,
@@ -474,12 +474,14 @@ let dnsRule: netFirewall.NetFirewallRule = {
   name: "rule3",
   description: "rule3 description",
   direction: netFirewall.NetFirewallRuleDirection.RULE_IN,
-  action:netFirewall.NetFirewallRuleDirection.RULE_DENY,
+  action:netFirewall.FirewallRuleAction.RULE_DENY,
   type: netFirewall.NetFirewallRuleType.RULE_DNS,
   isEnabled: true,
   appUid: 20003,
+ dns:{
   primaryDns: "4.4.4.4",
   standbyDns: "8.8.8.8",
+ },
   userId: 100
 };
 netFirewall.addNetFirewallRule(dnsRule).then((result: number) => {
