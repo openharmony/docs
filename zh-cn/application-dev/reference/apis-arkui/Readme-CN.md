@@ -523,6 +523,7 @@
     - [属性字符串错误码](errorcode-styled-string.md)
     - [UI上下文错误码](errorcode-uicontext.md)
     - [交互事件错误码](errorcode-event.md)
+    - [Canvas错误码](errorcode-canvas.md)
     <!--Del-->
     - [UIExtension错误码](errorcode-uiextension.md)
     <!--DelEnd-->

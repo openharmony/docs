@@ -253,13 +253,26 @@ onFinish(event:&nbsp;VoidCallback)
 
 ### onError
 
-onError(event: () => void)
+onError(event: VoidCallback | ErrorCallback)
 
 播放失败时触发该事件。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                           | 必填 | 说明                                 |
+| ------ | --------------------------------------------- | ---- | ----------------------------------- |
+| event  | [VoidCallback](ts-types.md#voidcallback12) \| [ErrorCallback](../../apis-basic-services-kit/js-apis-base.md#errorcallback)<sup>20+</sup> | 是   | 视频播放失败时的回调函数，[ErrorCallback](../../apis-basic-services-kit/js-apis-base.md#errorcallback)入参用于接收异常信息。<br>Video组件报错信息请参考以下错误信息的详细介绍，其余错误码请请参考[媒体错误码](../../apis-media-kit/errorcode-media.md)。|
+
+以下是错误信息的详细介绍。
+
+|错误码|错误信息|错误描述|
+|--|--|--|
+|103601 |Failed to create the media player.|播放器创建失败。|
+|103602 |Not a valid source.|视频资源设置无效。|
 
 ### onStop<sup>12+</sup>
 
@@ -826,3 +839,49 @@ struct video {
 }
 ```
 ![VideoObjectFit](figures/video_objectfit.png)
+
+### 示例5（onError事件上报错误码）
+
+以下示例以传入不存在的视频资源路径为例，展示了如何使Video组件能够通过onError事件获取错误码。
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct VideoErrorComponent {
+  @State videoSrc: string = "video.mp4" // 传入不存在的视频资源路径。
+  @State curRate: PlaybackSpeed = PlaybackSpeed.Speed_Forward_1_00_X
+  @State isAutoPlay: boolean = false
+  @State showControls: boolean = true
+  @State showFirstFrame: boolean = false
+  controller: VideoController = new VideoController()
+  @State errorMessage: string = ""
+
+  build() {
+    Column() {
+      Video({
+        src: this.videoSrc,
+        currentProgressRate: this.curRate,
+        controller: this.controller,
+      })
+        .width(200)
+        .height(120)
+        .margin(5)
+        .autoPlay(this.isAutoPlay)
+        .controls(this.showControls)
+        .onError((err) => {
+          // 通过onError事件获取错误码，code为错误码，message为错误信息。
+          console.error(`code is ${err.code}, message is ${err.message}`);
+          this.errorMessage = `code is ${err.code}, message is ${err.message}`;
+        })
+      // 传入不存在的视频资源路径，预期："code is 103602, message is Not a valid source"。
+      Text(this.errorMessage)
+    }
+    .width("100%")
+    .height("100%")
+    .backgroundColor('rgb(213,213,213)')
+  }
+}
+```
+
+![](figures/onError.png)
