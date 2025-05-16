@@ -16,7 +16,7 @@ import { userAuth } from '@kit.UserAuthenticationKit';
 
 | Name       | Value  | Description      |
 | ----------- | ---- | ---------- |
-| MAX_ALLOWABLE_REUSE_DURATION<sup>12+</sup>    | 300000   | Maximum reuse duration of the unlock authentication result, in milliseconds. The value is **300000**.<br>**System capability**: SystemCapability.UserIAM.UserAuth.Core<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| MAX_ALLOWABLE_REUSE_DURATION<sup>12+</sup>    | 300000   | Maximum reuse duration of the authentication result, in milliseconds. The value is **300000**.<br>**System capability**: SystemCapability.UserIAM.UserAuth.Core<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 
 ## EnrolledState<sup>12+</sup>
 
@@ -49,7 +49,9 @@ Enumerates the modes for reusing authentication results.
 Represents information about the authentication result reuse.
 > **NOTE**
 >
-> If the credential changes within the reuse duration after a successful identity authentication (including device unlock authentication), the authentication result can still be reused and the actual **EnrolledState** is returned in the authentication result. If the credential used for the previous authentication has been deleted when the authentication result is used:<br>- If the deleted credential is face or fingerprint, the authentication result can still be reused, but **credentialCount** and **credentialDigest** in the **EnrolledState** returned are both **0**.<br>- If the deleted credential is a lock screen password, the reuse will fail.
+> If the credential changes within the reuse duration after a successful identity authentication (including device unlock authentication), the authentication result can still be reused and the actual **EnrolledState** is returned in the authentication result. 
+>
+> If the credential used for the previous authentication has been deleted when the authentication result is used:<br>- If the deleted credential is face or fingerprint, the authentication result can still be reused, but **credentialCount** and **credentialDigest** in the **EnrolledState** returned are both **0**.<br>- If the deleted credential is a lock screen password, the reuse will fail.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -1099,7 +1101,7 @@ Checks whether the specified authentication capability is supported.
 
 > **NOTE**
 >
-> - If **getAvailableStatus** is called to check whether lock screen password authentication at ALT4 is supported for a user who has enrolled a 4-digit PIN as the lock screen password (the authentication trust level is ALT3), error code 12500010 will be returned.
+> - If **getAvailableStatus** is called to check whether lock screen password authentication at ATL4 is supported for a user who has enrolled a 4-digit PIN as the lock screen password (the authentication trust level is ATL3), error code 12500010 will be returned.
 
 **Error codes**
 
@@ -1528,7 +1530,7 @@ Enumerates the identity authentication types.
 
 | Name       | Value  | Description      |
 | ----------- | ---- | ---------- |
-| PIN<sup>10+</sup>         | 1    | PIN authentication.|
+| PIN<sup>10+</sup>         | 1    | Password authentication. |
 | FACE        | 2    | Facial authentication.|
 | FINGERPRINT | 4    | Fingerprint authentication.|
 
