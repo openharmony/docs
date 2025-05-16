@@ -106,7 +106,7 @@ OH_Crypto_ErrCode OH_CryptoSymKeyGenerator_Convert(OH_CryptoSymKeyGenerator *ctx
 | 参数项 | 描述 |
 | -- | -- |
 | [OH_CryptoSymKeyGenerator](capi-oh-cryptosymkeygenerator.md) *ctx | 指向对称密钥生成器实例。 |
-| const [Crypto_DataBlob](capi-crypto-common-hcrypto_datablob.md) *keyData | 指向生成对称密钥的数据。 |
+| const [Crypto_DataBlob](capi-crypto-datablob.md) *keyData | 指向生成对称密钥的数据。 |
 | [OH_CryptoSymKey](capi-oh-cryptosymkey.md) **keyCtx | 指向对称密钥实例的指针。 |
 
 **返回：**
@@ -202,7 +202,7 @@ OH_Crypto_ErrCode OH_CryptoSymKey_GetKeyData(OH_CryptoSymKey *keyCtx, Crypto_Dat
 | 参数项 | 描述 |
 | -- | -- |
 | [OH_CryptoSymKey](capi-oh-cryptosymkey.md) *keyCtx | 指向对称密钥实例。 |
-| [Crypto_DataBlob](capi-crypto-common-hcrypto_datablob.md) *out | 获取到的结果。 |
+| [Crypto_DataBlob](capi-crypto-datablob.md) *out | 获取到的结果。 |
 
 **返回：**
 

@@ -77,7 +77,7 @@ OH_Crypto_ErrCode OH_CryptoDigest_Update(OH_CryptoDigest *ctx, Crypto_DataBlob *
 | 参数项 | 描述 |
 | -- | -- |
 | [OH_CryptoDigest](capi-oh-cryptodigest.md) *ctx | 指向摘要实例。 |
-| [Crypto_DataBlob](capi-crypto-common-hcrypto_datablob.md) *in | 传入的消息。 |
+| [Crypto_DataBlob](capi-crypto-datablob.md) *in | 传入的消息。 |
 
 **返回：**
 
@@ -107,7 +107,7 @@ OH_Crypto_ErrCode OH_CryptoDigest_Final(OH_CryptoDigest *ctx, Crypto_DataBlob *o
 | 参数项 | 描述 |
 | -- | -- |
 | [OH_CryptoDigest](capi-oh-cryptodigest.md) *ctx | 指向摘要实例。 |
-| [Crypto_DataBlob](capi-crypto-common-hcrypto_datablob.md) *out | 返回的Md的计算结果。 |
+| [Crypto_DataBlob](capi-crypto-datablob.md) *out | 返回的Md的计算结果。 |
 
 **返回：**
 

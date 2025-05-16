@@ -142,7 +142,7 @@ OH_Crypto_ErrCode OH_CryptoVerify_Update(OH_CryptoVerify *ctx, Crypto_DataBlob *
 | 参数项 | 描述 |
 | -- | -- |
 | [OH_CryptoVerify](capi-oh-cryptoverify.md) *ctx | 指向验签实例。 |
-| [Crypto_DataBlob](capi-crypto-common-hcrypto_datablob.md) *in | 传入的消息。 |
+| [Crypto_DataBlob](capi-crypto-datablob.md) *in | 传入的消息。 |
 
 **返回：**
 
@@ -172,8 +172,8 @@ bool OH_CryptoVerify_Final(OH_CryptoVerify *ctx, Crypto_DataBlob *in, Crypto_Dat
 | 参数项 | 描述 |
 | -- | -- |
 | [OH_CryptoVerify](capi-oh-cryptoverify.md) *ctx | 指向验签实例。 |
-| [Crypto_DataBlob](capi-crypto-common-hcrypto_datablob.md) *in | 传入的数据。 |
-| [Crypto_DataBlob](capi-crypto-common-hcrypto_datablob.md) *signData | 签名数据。 |
+| [Crypto_DataBlob](capi-crypto-datablob.md) *in | 传入的数据。 |
+| [Crypto_DataBlob](capi-crypto-datablob.md) *signData | 签名数据。 |
 
 **返回：**
 
@@ -203,8 +203,8 @@ OH_Crypto_ErrCode OH_CryptoVerify_Recover(OH_CryptoVerify *ctx, Crypto_DataBlob 
 | 参数项 | 描述 |
 | -- | -- |
 | [OH_CryptoVerify](capi-oh-cryptoverify.md) *ctx | 指向验签实例。 |
-| [Crypto_DataBlob](capi-crypto-common-hcrypto_datablob.md) *signData | 签名数据。 |
-| [Crypto_DataBlob](capi-crypto-common-hcrypto_datablob.md) *rawSignData |  验签恢复的数据。 |
+| [Crypto_DataBlob](capi-crypto-datablob.md) *signData | 签名数据。 |
+| [Crypto_DataBlob](capi-crypto-datablob.md) *rawSignData |  验签恢复的数据。 |
 
 **返回：**
 
@@ -256,7 +256,7 @@ OH_Crypto_ErrCode OH_CryptoVerify_SetParam(OH_CryptoVerify *ctx, CryptoSignature
 | -- | -- |
 | [OH_CryptoVerify](capi-oh-cryptoverify.md) *ctx | 指向验签实例。 |
 | [CryptoSignature_ParamType](#cryptosignature_paramtype) type | 用于指定需要设置的验签参数。 |
-| [Crypto_DataBlob](capi-crypto-common-hcrypto_datablob.md) *value | 用于指定验签参数的具体值。 |
+| [Crypto_DataBlob](capi-crypto-datablob.md) *value | 用于指定验签参数的具体值。 |
 
 **返回：**
 
@@ -283,7 +283,7 @@ OH_Crypto_ErrCode OH_CryptoVerify_GetParam(OH_CryptoVerify *ctx, CryptoSignature
 | -- | -- |
 | [OH_CryptoVerify](capi-oh-cryptoverify.md) *ctx | 指向验签实例。 |
 | [CryptoSignature_ParamType](#cryptosignature_paramtype) type | 用于指定需要获取的验签参数。 |
-| [Crypto_DataBlob](capi-crypto-common-hcrypto_datablob.md) *value | 获取的验签参数的具体值。 |
+| [Crypto_DataBlob](capi-crypto-datablob.md) *value | 获取的验签参数的具体值。 |
 
 **返回：**
 
