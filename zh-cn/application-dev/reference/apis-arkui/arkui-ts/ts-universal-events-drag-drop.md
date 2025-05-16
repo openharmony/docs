@@ -900,4 +900,4 @@ struct Index {
   }
 }
 ```
-![DragEvent_getDisplayId](DragEvent_getDisplayId.png)
+![DragEvent_getDisplayId](figures/DragEvent_getDisplayId.png)
