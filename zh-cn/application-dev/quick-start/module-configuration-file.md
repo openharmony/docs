@@ -209,7 +209,7 @@ deviceTypes示例：
 | 属性名称 | 含义 | 数据类型 | 是否可缺省 |
 | -------- | -------- | -------- | -------- |
 | designWidth | 标识页面设计基准宽度。以此为基准，根据实际设备宽度来缩放元素大小。 | 数值 | 可缺省，缺省值为720px。 |
-| autoDesignWidth | 标识页面设计基准宽度是否自动计算。当配置为true时，designWidth将会被忽略，设计基准宽度由设备宽度与屏幕密度计算得出。 | 布尔值 | 可缺省，缺省值为false。 |
+| autoDesignWidth | 标识页面设计基准宽度是否自动计算。当配置为true时，designWidth将会被忽略，设计基准宽度由设备宽度与屏幕密度计算得出。当配置为false时，设计基准宽度为designWidth。 | 布尔值 | 可缺省，缺省值为false。 |
 
 ```json
 {
@@ -923,8 +923,8 @@ routerMap配置文件描述模块的路由表信息，routerMap标签值为数�
 | name          | 标识跳转页面的名称。取值为长度不超过1023字节的字符串。 | 字符串  | 该标签不可缺省。       |
 | pageSourceFile| 标识页面在模块内的路径。取值为长度不超过255字节的字符串。 | 字符串 | 该标签不可缺省。  |
 | buildFunction | 标识被@Builder修饰的函数，该函数描述页面的UI。取值为长度不超过1023字节的字符串。 | 字符串  | 该标签不可缺省。   |
-| [data](#data标签)  | 标识字符串类型的自定义数据。 每个自定义数据字符串取值不超过128字节。 | 对象   | 该标签可缺省，缺省值为空。   |
-| [customData](#customdata标签)  | 标识任意类型的自定义数据，总长度不超过4096字节。  | 对象   | 该标签可缺省，缺省值为空。   |
+| [data](#data标签)  | 标识字符串类型的自定义数据，开发者自行扩展能力，可以通过[HapModuleInfo对象](../reference/apis-ability-kit/js-apis-bundleManager-hapModuleInfo.md)中routerMap集合对象下的data获取字段内容，该字段已由系统解析，无需开发者自行解析。 每个自定义数据字符串取值不超过128字节。 | 对象   | 该标签可缺省，缺省值为空。   |
+| [customData](#customdata标签)  | 标识任意类型的自定义数据，开发者自行扩展能力，可以通过[HapModuleInfo对象](../reference/apis-ability-kit/js-apis-bundleManager-hapModuleInfo.md)中routerMap集合对象下的customData获取字段内容，开发者需要调用JSON.parse函数解析出具体内容。总长度不超过4096字节。  | 对象   | 该标签可缺省，缺省值为空。   |
 
 示例如下：
 
@@ -1057,8 +1057,8 @@ appEnvironments标签示例：
 | name | 标识权限的名称，该标签最大长度为255字节。 | 字符串 | 不可缺省。 |
 | grantMode | 标识权限的授予方式，支持如下两种授予模式如下：<br/>-&nbsp;system_grant：安装后系统自动授予该权限。<br/>-&nbsp;user_grant：使用时动态申请，用户授权后才可使用。 | 字符串 | 可缺省，缺省值为system_grant。 |
 | availableLevel | 标识权限限制类别，可选值如下：<br/>-&nbsp;system_core：系统核心权限。<br/>-&nbsp;system_basic：系统基础权限。<br/>-&nbsp;normal：普通权限。所有应用允许申请的权限。 | 字符串 | 可缺省，缺省值为normal。 |
-| provisionEnable | 标识权限是否支持证书方式申请权限，包括高级别的权限。配置为true标识开发者可以通过provision方式申请权限。 | 布尔值 | 可缺省，缺省值为true。 |
-| distributedSceneEnabled | 标识权限是否支持分布式场景下使用该权限。 | 布尔值 | 可缺省，缺省值为false。 |
+| provisionEnable | 标识权限是否支持证书方式申请权限，包括高级别的权限。配置为true表示开发者可以通过证书方式申请权限。配置为false表示开发者不可以通过证书方式申请权限。 | 布尔值 | 可缺省，缺省值为true。 |
+| distributedSceneEnabled | 标识权限是否支持分布式场景下使用该权限。配置为true表示开发者可以在分布式场景下使用该权限。配置为false表示开发者不可以在分布式场景下使用该权限。 | 布尔值 | 可缺省，缺省值为false。 |
 | label | 标识权限的简短描述，配置为对描述内容的资源索引。 | 字符串 | 可缺省，缺省值为空。 |
 | description | 标识权限的详细描述，可以是字符串，或者是对描述内容的资源索引。 | 字符串 | 可缺省，缺省值为空。 |
 

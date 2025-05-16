@@ -4750,3 +4750,17 @@ Allows an application to run background request tasks without triggering notific
 **Supported devices**: General
 
 **Valid since**: 20
+
+## ohos.permission.ALLOW_IOURING
+
+Allows a system application to call io_uring to perform async IO operations.
+
+**Permission level**：system_basic
+
+**Authorization mode**：system_grant
+
+**Enable via ACL**：true
+
+**Supported devices**: General
+
+**Valid since**：20

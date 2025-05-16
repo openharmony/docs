@@ -49,12 +49,12 @@ grantUserGrantedPermission(tokenID: number, permissionName: Permissions, permiss
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 201 | Permission denied. Interface caller does not have permission. |
+| 201 | Permission denied. Interface caller does not have permission "ohos.permission.GRANT_SENSITIVE_PERMISSIONS". |
 | 202 | Not System App. Interface caller is not a system app. |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
-| 12100001 | Invalid parameter. The tokenID is 0, or the permissionName exceeds 256 characters, or the flags value is invalid. |
+| 12100001 | Invalid parameter. The tokenID is 0, the permissionName exceeds 256 characters or is not declared in the module.json file, or the flags value is invalid. |
 | 12100002 | The specified tokenID does not exist. |
-| 12100003 | The specified permission does not exist. |
+| 12100003 | The specified permission does not exist or is not a user_grant permission. |
 | 12100006 | The application specified by the tokenID is not allowed to be granted with the specified permission. Either the application is a sandbox or the tokenID is from a remote device. |
 | 12100007 | The service is abnormal. |
 
@@ -101,12 +101,12 @@ grantUserGrantedPermission(tokenID: number, permissionName: Permissions, permiss
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 201 | Permission denied. Interface caller does not have permission. |
+| 201 | Permission denied. Interface caller does not have permission "ohos.permission.GRANT_SENSITIVE_PERMISSIONS". |
 | 202 | Not System App. Interface caller is not a system app. |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
-| 12100001 | Invalid parameter. The tokenID is 0, or the permissionName exceeds 256 characters, or the flags value is invalid. |
+| 12100001 | Invalid parameter. The tokenID is 0, the permissionName exceeds 256 characters or is not declared in the module.json file, or the flags value is invalid. |
 | 12100002 | The specified tokenID does not exist. |
-| 12100003 | The specified permission does not exist. |
+| 12100003 | The specified permission does not exist or is not a user_grant permission. |
 | 12100006 | The application specified by the tokenID is not allowed to be granted with the specified permission. Either the application is a sandbox or the tokenID is from a remote device. |
 | 12100007 | The service is abnormal. |
 
@@ -160,12 +160,12 @@ revokeUserGrantedPermission(tokenID: number, permissionName: Permissions, permis
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 201 | Permission denied. Interface caller does not have permission. |
+| 201 | Permission denied. Interface caller does not have permission "ohos.permission.REVOKE_SENSITIVE_PERMISSIONS". |
 | 202 | Not System App. Interface caller is not a system app. |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
-| 12100001 | Invalid parameter. The tokenID is 0, or the permissionName exceeds 256 characters, or the flags value is invalid. |
+| 12100001 | Invalid parameter. The tokenID is 0, the permissionName exceeds 256 characters or is not declared in the module.json file, or the flags value is invalid. |
 | 12100002 | The specified tokenID does not exist. |
-| 12100003 | The specified permission does not exist. |
+| 12100003 | The specified permission does not exist or is not a user_grant permission. |
 | 12100006 | The application specified by the tokenID is not allowed to be revoked with the specified permission. Either the application is a sandbox or the tokenID is from a remote device. |
 | 12100007 | The service is abnormal. |
 
@@ -212,12 +212,12 @@ revokeUserGrantedPermission(tokenID: number, permissionName: Permissions, permis
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 201 | Permission denied. Interface caller does not have permission. |
+| 201 | Permission denied. Interface caller does not have permission "ohos.permission.REVOKE_SENSITIVE_PERMISSIONS". |
 | 202 | Not System App. Interface caller is not a system app. |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
-| 12100001 | Invalid parameter. The tokenID is 0, or the permissionName exceeds 256 characters, or the flags value is invalid. |
+| 12100001 | Invalid parameter. The tokenID is 0, the permissionName exceeds 256 characters or is not declared in the module.json file, or the flags value is invalid. |
 | 12100002 | The specified tokenID does not exist. |
-| 12100003 | The specified permission does not exist. |
+| 12100003 | The specified permission does not exist or is not a user_grant permission. |
 | 12100006 | The application specified by the tokenID is not allowed to be revoked with the specified permission. Either the application is a sandbox or the tokenID is from a remote device. |
 | 12100007 | The service is abnormal. |
 
@@ -270,12 +270,12 @@ getPermissionFlags(tokenID: number, permissionName: Permissions): Promise&lt;num
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 201 | Permission denied. Interface caller does not have permission. |
+| 201 | Permission denied. Interface caller does not have permission specified below. |
 | 202 | Not System App. Interface caller is not a system app. |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 | 12100001 | Invalid parameter. The tokenID is 0, or the permissionName exceeds 256 characters. |
 | 12100002 | The specified tokenID does not exist. |
-| 12100003 | The specified permission does not exist. |
+| 12100003 | The specified permission does not exist or is not declared in the module.json file. |
 | 12100006 | The operation is not allowed. Either the application is a sandbox or the tokenID is from a remote device. |
 | 12100007 | The service is abnormal. |
 
@@ -325,10 +325,10 @@ setPermissionRequestToggleStatus(permissionName: Permissions, status: Permission
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 201 | Permission denied. Interface caller does not have permission. |
+| 201 | Permission denied. Interface caller does not have permission specified below. |
 | 202 | Not System App. Interface caller is not a system app. |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
-| 12100001 | Invalid parameter. The permissionName exceeds 256 characters, or the status value is invalid. |
+| 12100001 | Invalid parameter. The permissionName exceeds 256 characters, the specified permission is not a user_grant permission, or the status value is invalid. |
 | 12100003 | The specified permission does not exist. |
 | 12100007 | The service is abnormal. |
 
@@ -344,7 +344,7 @@ let permission: Permissions = 'ohos.permission.CAMERA';
 atManager.setPermissionRequestToggleStatus(permission, abilityAccessCtrl.PermissionRequestToggleStatus.CLOSED).then((err) => {
   console.info('toggle_status: Set closed successful');
 }).catch((err: BusinessError) => {
-  console.error('toggle_status: Code is ${err.code}, message is ${err.message}');
+  console.error(`toggle_status: Code is ${err.code}, message is ${err.message}`);
 });
 ```
 
@@ -378,10 +378,10 @@ getPermissionRequestToggleStatus(permissionName: Permissions): Promise&lt;Permis
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 201 | Permission denied. Interface caller does not have permission. |
+| 201 | Permission denied. Interface caller does not have permission specified below. |
 | 202 | Not System App. Interface caller is not a system app. |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
-| 12100001 | Invalid parameter. The permissionName exceeds 256 characters. |
+| 12100001 | Invalid parameter. The permissionName exceeds 256 characters, or the specified permission is not a user_grant permission. |
 | 12100003 | The specified permission does not exist. |
 | 12100007 | The service is abnormal. |
 
@@ -401,7 +401,7 @@ atManager.getPermissionRequestToggleStatus(permission).then((res) => {
     console.info('toggle_status: The toggle status is open');
   }
 }).catch((err: BusinessError) => {
-console.error('toggle_status: Code is ${err.code}, message is ${err.message}');
+console.error(`toggle_status: Code is ${err.code}, message is ${err.message}`);
 });
 ```
 
@@ -468,10 +468,10 @@ getPermissionsStatus(tokenID: number, permissionList: Array&lt;Permissions&gt;):
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 201 | Permission denied. Interface caller does not have permission. |
+| 201 | Permission denied. Interface caller does not have permission "ohos.permission.GET_SENSITIVE_PERMISSIONS". |
 | 202 | Not System App. Interface caller is not a system app. |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
-| 12100001 | Invalid parameter. The tokenID is 0, or the permissionName exceeds 256 characters. |
+| 12100001 | Invalid parameter. The tokenID is 0 or the permissionList is empty or exceeds the size limit. |
 | 12100002 | The specified tokenID does not exist. |
 | 12100007 | The service is abnormal. |
 
@@ -521,12 +521,12 @@ on(type: 'permissionStateChange', tokenIDList: Array&lt;number&gt;, permissionLi
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 201 | Permission denied. Interface caller does not have permission. |
+| 201 | Permission denied. Interface caller does not have permission "ohos.permission.GET_SENSITIVE_PERMISSIONS". |
 | 202 | Not System App. Interface caller is not a system app. |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
-| 12100001 | Invalid parameter. The tokenID is 0, or the permissionName exceeds 256 characters. |
+| 12100001 | Invalid parameter. Possible causes: 1. The tokenIDList or permissionList exceeds the size limit; 2. The tokenIDs or permissionNames in the list are all invalid. |
 | 12100004 | The API is used repeatedly with the same input. |
-| 12100005 | The registration time has exceeded the limitation. |
+| 12100005 | The registration time has exceeded the limit. |
 | 12100007 | The service is abnormal. |
 | 12100008 | Out of memory. |
 
@@ -577,10 +577,10 @@ off(type: 'permissionStateChange', tokenIDList: Array&lt;number&gt;, permissionL
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 201 | Permission denied. Interface caller does not have permission. |
+| 201 | Permission denied. Interface caller does not have permission "ohos.permission.GET_SENSITIVE_PERMISSIONS". |
 | 202 | Not System App. Interface caller is not a system app. |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
-| 12100001 | Invalid parameter. The tokenIDs or permissionNames in the list are all invalid. |
+| 12100001 | Invalid parameter. The tokenIDList or permissionList is not in the listening list. |
 | 12100004 | The API is not used in pair with 'on'. |
 | 12100007 | The service is abnormal. |
 | 12100008 | Out of memory. |
