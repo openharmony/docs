@@ -266,24 +266,6 @@ Service timeout.
 
 服务超时，请稍后重试。
 
-## 16000017 上一个Ability未启动完成，先缓存在队列中等待后续启动
-
-**错误信息**
-
-Another ability is being started. Wait until it finishes starting.
-
-**错误描述**
-
-需要启动的Ability过多，由于系统处理能力有限，会先将请求缓存在队列中，按照顺序依次处理。
-
-**可能原因**
-
-系统并发大。
-
-**处理步骤**
-
-无需处理，等待启动即可。
-
 ## 16000018 限制API 11以上版本三方应用跳转
 
 **错误信息**
@@ -338,42 +320,6 @@ Internal error.
 2. 检查是否启动了过多的ability。
 3. 尝试重启设备。
 
-## 16000051 网络异常
-
-**错误信息**
-
-Network error.
-
-**错误描述**
-
-当网络异常时，方法将返回该错误码。
-
-**可能原因**
-
-网络不可用。
-
-**处理步骤**
-
-网络异常，请稍后重试，或者重连网络尝试。
-
-## 16000052 不支持免安装
-
-**错误信息**
-
-Installation-free is not supported.
-
-**错误描述**
-
-当前应用不支持免安装时，方法将返回该错误码。
-
-**可能原因**
-
-应用包不满足免安装要求，如包大小超过限制等。
-
-**处理步骤**
-
-请检查应用是否支持免安装。
-
 ## 16000053 非顶层应用
 
 **错误信息**
@@ -392,24 +338,6 @@ The ability is not on the top of the UI.
 
 请检查当前应用是否显示在界面顶层。
 
-## 16000054 免安装服务繁忙
-
-**错误信息**
-
-The installation-free service is busy. Try again later.
-
-**错误描述**
-
-当免安装服务繁忙时，方法将返回该错误码。
-
-**可能原因**
-
-已有相同原子化服务的下载安装任务在执行。
-
-**处理步骤**
-
-免安装服务繁忙，请稍后重试。
-
 ## 16000055 免安装超时
 
 **错误信息**
@@ -427,42 +355,6 @@ Installation-free timed out.
 **处理步骤**
 
 免安装超时，请稍后重试。
-
-## 16000056 不允许免安装其他应用
-
-**错误信息**
-
-Installation-free is not allowed for other applications.
-
-**错误描述**
-
-当免安装其他应用时，方法将返回该错误码。
-
-**可能原因**
-
-不允许免安装其他应用。
-
-**处理步骤**
-
-确认免安装的是正确的应用。
-
-## 16000057 不支持跨设备免安装
-
-**错误信息**
-
-Cross-device installation-free is not supported.
-
-**错误描述**
-
-当持跨设备免安装时，方法将返回该错误码。
-
-**可能原因**
-
-不支持跨设备免安装。
-
-**处理步骤**
-
-确认为非跨设备免安装应用。
 
 ## 16000058 指定的URI flag无效
 
@@ -915,42 +807,6 @@ Get target application info failed.
 2. 检查分身应用索引是否在允许范围内。
 3. 检查目标应用是否创建了该索引对应的分身应用。
 
-## 16000082 单实例模式下的UIAbility未完成启动
-
-**错误信息**
-
-The UIAbility is being started.
-
-**错误描述**
-
-如果UIAbility启动模式为“singleton”，在UIAbility启动完成之前不能再次调用启动接口，否则将返回该错误码。
-
-**可能原因**
-
-该UIAbility为singleton模式，正在启动过程中。
-
-**处理步骤**
-
-确保该UIAbility启动完成，再执行新的启动任务。
-
-## 16000083 不允许该类型ExtensionAbility启动指定Ability
-
-**错误信息**
-
-The extension can not start the ability due to extension control.
-
-**错误描述**
-
-不同类型ExtensionAbility所需要的能力不同。系统不允许该类型ExtensionAbility启动指定Ability。
-
-**可能原因**
-
-当前类型ExtensionAbility受系统管控，不允许该类型Extension启动指定Ability。
-
-**处理步骤**
-
-查看对应类型ExtensionAbility的使用约束限制，确保接口使用符合约束限制。
-
 ## 16000084 只允许DelegatorAbility单次调用
 
 **错误信息**
@@ -1033,24 +889,6 @@ The interaction process between Ability and Window encountered an error.
 
 检查是否成功创建了AbilityDelegatorRegistry实例。
 
-## 16000101 执行shell命令失败
-
-**错误信息**
-
-Failed to run the shell command.
-
-**错误描述**
-
-当命令不是有效的shell命令时，方法将返回该错误码。
-
-**可能原因**
-
-命令不是有效的shell命令。
-
-**处理步骤**
-
-检查命令是否为有效的shell命令。
-
 ## 16000151 无效wantAgent对象
 
 **错误信息**
@@ -1071,79 +909,6 @@ Invalid wantAgent object.
 
 1. 检查传入接口的wantAgent对象是否存在。
 2. 检查调用方是否为三方应用。不支持三方应用设置其他应用的Ability。
-
-## 16000152 未找到wantAgent对象
-
-**错误信息**
-
-The wantAgent object does not exist.
-
-**错误描述**
-
-当传入接口的wantAgent对象不存在时，方法将返回该错误码。
-
-**可能原因**
-
-传入接口的wantAgent对象不存在。
-
-**处理步骤**
-
-检查传入接口的wantAgent对象是否合法。
-
-## 16000153 wangAgent对象已取消
-
-**错误信息**
-
-The wantAgent object has been canceled.
-
-**错误描述**
-
-当传入接口的wangAgent对象已取消时，方法将返回该错误码。
-
-**可能原因**
-
-传入接口的触发的wantAgent已取消。
-
-**处理步骤**
-
-检查触发的wantAgent对象是否已取消。
-
-## 16100001 指定Uri的Ability不存在
-
-**错误信息**
-
-The ability with the specified URI does not exist.
-
-**错误描述**
-
-当指定Uri的Ability不存在时，方法将返回该错误码。
-
-**可能原因**
-
-所查询的Ability不存在。
-
-**处理步骤**
-
-确认查询的Ability是否存在。
-
-## 16100002 接口调用Ability类型错误
-
-**错误信息**
-
-Incorrect ability type.
-
-**错误描述**
-
-当接口调用Ability类型错误时，方法将返回该错误码。
-
-**可能原因**
-
-接口调用所在的Ability类型不支持该接口调用。
-
-**处理步骤**
-
-1. 检查包名对应的Ability是否正确。
-2. 根据Ability类型调用不同接口。
 
 ## 16200001 通用组件客户端(Caller)已回收
 
@@ -1182,24 +947,6 @@ The callee does not exist.
 **处理步骤**
 
 请检查通用组件服务端是否存在。
-
-## 16200003 回收失败
-
-**错误信息**
-
-Release error. The caller does not call any callee.
-
-**错误描述**
-
-当回收失败时，方法将返回该错误码。
-
-**可能原因**
-
-通用组件客户端(Caller)对象未注册通用组件服务端(Callee)。
-
-**处理步骤**
-
-请检查是否已注册通用组件服务端。
 
 ## 16200004 方法已注册
 
@@ -1345,102 +1092,6 @@ Invalid patch package.
 
 1. 请检查传递的补丁包文件路径是否有效。
 2. 请检查是否有权限访问此补丁包文件。
-
-## 18500003 补丁包部署失败
-
-**错误信息**
-
-Failed to deploy the patch.
-
-**错误描述**
-
-当补丁包部署失败时，方法将返回该错误码。
-
-**可能原因**
-
-1. patch.json中type只能为patch或者hotreload，否则部署失败。
-2. 若对应bundleName的hap包未安装，部署失败。
-3. bundleName、versionCode必须和已安装的hap应用相同，如果为patch类型，还需确保versionName相同，否则部署失败。
-4. 如果已经部署过补丁包，新部署的补丁包的versionCode必须大于之前补丁包的versionCode，否则部署失败。
-5. 对于patch类型的补丁会校验签名信息，使用的签名证书需要和应用相同，签名不一致，部署失败。
-6. 在部署patch类型的补丁包时，如果是debug版本，先判断是否有在使用的补丁包，如果在使用的补丁包为hotreload类型，则部署失败。
-7. 在部署hotreload类型的补丁包时，如果是debug版本，先判断是否有在使用的补丁包，如果在使用的补丁包为patch类型，则部署失败；如果是release版本，则部署失败。
-
-**处理步骤**
-
-请检查补丁包是否符合规则。
-
-## 18500004 补丁包使能失败
-
-**错误信息**
-
-Failed to enable the patch package.
-
-**错误描述**
-
-当补丁包使能失败时，方法将返回该错误码。
-
-**可能原因**
-
-使能补丁时补丁包状态不正确。
-
-**处理步骤**
-
-请检查补丁包状态。
-
-## 18500005 补丁包删除失败
-
-**错误信息**
-
-Failed to remove the patch package.
-
-**错误描述**
-
-当补丁包删除失败时，方法将返回该错误码。
-
-**可能原因**
-
-删除旧补丁时补丁包状态不正确。
-
-**处理步骤**
-
-请检查补丁包状态。
-
-## 18500006 加载补丁失败
-
-**错误信息**
-
-Failed to load the patch.
-
-**错误描述**
-
-当加载补丁失败时，方法将返回该错误码。
-
-**可能原因**
-
-方舟引擎加载补丁失败。
-
-**处理步骤**
-
-请检查补丁包是否正确。
-
-## 18500007 卸载旧补丁失败
-
-**错误信息**
-
-Failed to unload the patch.
-
-**错误描述**
-
-当方舟引擎卸载旧补丁失败时，方法将返回该错误码。
-
-**可能原因**
-
-方舟引擎卸载补丁失败。
-
-**处理步骤**
-
-请检查补丁包是否正确。
 
 ## 18500008 快速修复内部错误
 
