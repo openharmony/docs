@@ -42,7 +42,7 @@
      accountManager.setOsAccountConstraints(localId, constraint, true);
      console.log('setOsAccountConstraints successfully');
    } catch (err) {
-     console.log('setOsAccountConstraints failed, error: ' + JSON.stringify(err));
+     console.error('setOsAccountConstraints failed, error: ' + JSON.stringify(err));
    }
    ```
 
