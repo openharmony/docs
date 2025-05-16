@@ -11817,12 +11817,6 @@ export default class EntryAbility extends UIAbility {
   // ...
 
   onWindowStageCreate(windowStage: window.WindowStage) {
-    console.info('onWindowStageCreate');
-    try {
-      windowStage.setDefaultDensityEnabled(true);
-    } catch (exception) {
-      console.error(`Failed to set default density enabled. Cause code: ${exception.code}, message: ${exception.message}`);
-    }
       windowStage.loadContent("pages/page2", (err: BusinessError) => {
         let errCode: number = err.code;
         if (errCode) {
