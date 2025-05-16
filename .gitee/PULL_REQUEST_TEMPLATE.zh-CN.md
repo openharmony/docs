@@ -2,9 +2,10 @@
 
 > **注意：**
 > 请务必按如下模板反馈PR所携带的修改信息。
-> 请分析是否需要同步合入活跃的发布分支。当前活跃的发布分支除master外还包括：
-> OpenHarmony-5.1.0-Release (API Level 18)
-> OpenHarmony-feature-20240401 (API Level 17)
+> 请分析是否需要同步合入活跃的发布分支。当前活跃的分支除master外还包括：
+> OpenHarmony-feature-20250512 (API 19)
+> OpenHarmony-5.1.0-Release (API 18)
+> OpenHarmony-feature-20240401 (API 17)
 
 
 ## 文档变更类型

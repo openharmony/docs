@@ -642,6 +642,12 @@ resetDefaultApplication(type: string, userId?: number): Promise\<void>
 | type  | string | 是    | 要重置的应用类型，取[ApplicationType](js-apis-defaultAppManager.md#applicationtype)中的值，或者符合媒体类型格式的文件类型，或者[UniformDataType](../apis-arkdata/js-apis-data-uniformTypeDescriptor.md)类型。       |
 | userId  | number | 否    | 用户ID。默认值：调用方所在用户。                           |
 
+**返回值：**
+
+| 类型           | 说明                               |
+| -------------- | ---------------------------------- |
+| Promise\<void> | Promise对象，无返回结果的Promise对象。 |
+
 **错误码：**
 
 以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。

@@ -137,10 +137,10 @@ struct ParentPage {
         .backgroundColor('#000000').margin(10)
       Button("change info1&info2")
         .onClick(() => {
-          this.info1 = { name: "Cat", age: 18}; // Text1不会刷新，原因是没有装饰器修饰监听不到值的改变。
-          this.info2 = { name: "Cat", age: 18}; // Text2会刷新，原因是有装饰器修饰，可以监听到值的改变。
-          this.label1 = "Luck"; // 不会刷新，原因是没有装饰器修饰监听不到值的改变。
-          this.label2 = "Luck"; // 会刷新，原因是有装饰器修饰，可以监听到值的改变。
+          this.info1 = { name: "Cat", age: 18}; // Text1不会刷新，原因是info1没有装饰器装饰，监听不到值的改变。
+          this.info2 = { name: "Cat", age: 18}; // Text2会刷新，原因是info2有装饰器装饰，能够监听到值的改变。
+          this.label1 = "Luck"; // 不会刷新，原因是label1没有装饰器装饰，监听不到值的改变。
+          this.label2 = "Luck"; // 会刷新，原因是label2有装饰器装饰，可以监听到值的改变。
         })
     }
   }

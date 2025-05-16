@@ -215,13 +215,14 @@
       - [绑定手势事件](ndk-bind-gesture-events.md)
       - [拖拽事件](ndk-drag-event.md)
     - [使用动画](ndk-use-animation.md)
-    - 构建布局
+    - 构建布局<!--arkts-build-layout-ndk-->
       - [使用列表](ndk-loading-long-list.md)
       - [使用瀑布流](ndk-waterflow.md)
     - [构建弹窗](ndk-build-pop-up-window.md)
     - [构建自定义组件](ndk-build-custom-components.md)
     - [嵌入ArkTS组件](ndk-embed-arkts-components.md)
     - [通过XComponent接入无障碍](ndk-accessibility-xcomponent.md)
+    - [自定义绘制](arkts-user-defined-draw.md)
 - UI开发 (兼容JS的类Web开发范式)<!--ui-js-dev-->
   - [UI开发 (兼容JS的类Web开发范式)概述](ui-js-overview.md)
   - 框架说明<!--js-framework-overview-->

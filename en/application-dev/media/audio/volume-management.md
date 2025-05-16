@@ -1,6 +1,32 @@
 # Volume Management
 
-You can use different APIs to manage the system volume and audio stream volume. The system volume and audio stream volume refer to the volume of a OpenHarmony device and the volume of a specified audio stream, respectively. The audio stream volume is restricted by the system volume.
+This module provides capabilities for managing playback volume, covering system volume, application volume, and audio stream volume.
+
+The system volume is managed globally by OpenHarmony and applies to all applications and devices. OpenHarmony categorizes audio into various stream types, each with its own independent system volume control.
+
+> **NOTE**
+>
+> The system volume can be adjusted using physical volume buttons or through the system settings screen. On the system settings screen, users can individually adjust the volume levels for each type of system volume.
+
+The following lists the common stream types and their corresponding system volumes.
+- Media volume: used for media playback such as music, videos, and games.
+- Call volume: used for voice calls.
+- Ringtone volume: used for incoming call ringtones.
+- Alarm volume: used for alarm notifications.
+
+The application volume is a type of volume control provided by OpenHarmony for third-party applications to manage the volume of all audio streams within that application. Once set, all audio streams initiated by the application will use this volume level by default. In addition, applications with the system application permission can adjust the volume of specific applications by using their UIDs.
+
+The audio stream volume is a volume setting controlled independently by an application and affects only the output volume of the specified audio stream within that application. For example, a media player can control its playback volume independently without affecting the system volume or other types of stream volumes within the application.
+
+The following describes the relationship between the system volume, application volume, and audio stream volume.
+- Hierarchy: The system volume is global, whereas the application volume and audio stream volume are local.
+
+  The adjustment range for the application volume and audio stream volume is limited by the system volume. For example, if the system media volume is set to 50% and the application volume is set to 100%, the final output volume of the application can only reach 50%.
+
+  The audio stream volume provides more precise control over the application volume. Third-party applications that have set an application volume can further fine-tune the volume of specific audio streams using the audio stream volume.
+- Synergy: The final output volume of an application is determined collectively by the system volume, application volume, and audio stream volume. For example, if the system media volume is set to 50%, the application volume is set to 50%, and the application sets the audio stream volume for media audio to 100%, the final output volume of that audio stream will be 25%.
+
+OpenHarmony achieves precise volume control for applications through the coordinated use of the system volume, app volume, and audio stream volume.
 
 ## System Volume
 

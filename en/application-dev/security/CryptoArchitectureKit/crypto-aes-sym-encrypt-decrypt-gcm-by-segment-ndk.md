@@ -1,8 +1,6 @@
 # Encryption and Decryption by Segment with an AES Symmetric Key (GCM Mode) (C/C++)
 
-
 For details about the algorithm specifications, see [AES](crypto-sym-encrypt-decrypt-spec.md#aes).
-
 
 ## Adding the Dynamic Library in the CMake Script
 ```txt
@@ -14,7 +12,7 @@ target_link_libraries(entry PUBLIC libohcrypto.so)
 **Creating an Object**
 
 Call [OH_CryptoSymKeyGenerator_Create](../../reference/apis-crypto-architecture-kit/_crypto_sym_key_api.md#oh_cryptosymkeygenerator_create) and [OH_CryptoSymKeyGenerator_Generate](../../reference/apis-crypto-architecture-kit/_crypto_sym_key_api.md#oh_cryptosymkeygenerator_generate) to generate a 128-bit AES symmetric key (**OH_CryptoSymKey**).
-
+   
 In addition to the example in this topic, [AES](crypto-sym-key-generation-conversion-spec.md#aes) and [Randomly Generating a Symmetric Key](crypto-generate-sym-key-randomly-ndk.md) may help you better understand how to generate an AES symmetric key. Note that the input parameters in the reference documents may be different from those in the example below.
 
 **Encrypting a Message**
@@ -29,7 +27,7 @@ In addition to the example in this topic, [AES](crypto-sym-key-generation-conver
    
    - Currently, the amount of data to be passed in by a single **OH_CryptoSymCipher_Update()** is not limited. You can determine how to pass in data based on the data volume.
    - You are advised to check the result of each **OH_CryptoSymCipher_Update()**. If the result is not **null**, obtain the data and combine the data segments into complete ciphertext. The **OH_CryptoSymCipher_Update()** result may vary with the key specifications.
-     
+      
       If a block cipher mode (ECB or CBC) is used, data is encrypted and output based on the block size. That is, if the data of an **OH_CryptoSymCipher_Update()** operation matches the block size, the ciphertext is output. Otherwise, **null** is output, and the plaintext will be combined with the input data of the next **OH_CryptoSymCipher_Update()** to form a block. When **OH_CryptoSymCipher_Final()** is called, the unencrypted data is padded to the block size based on the specified padding mode, and then encrypted. The **OH_CryptoSymCipher_Update()** API works in the same way in decryption.
 
       If a stream cipher mode (CTR or OFB) is used, the ciphertext length is usually the same as the plaintext length.
@@ -41,7 +39,6 @@ In addition to the example in this topic, [AES](crypto-sym-key-generation-conver
    > **NOTE**<br>
    > If GCM mode is used, **authTag** returned by **OH_CryptoSymCipher_Final()** will be used to initialize the authentication information during decryption and needs to be saved.
    > In GCM mode, **authTag** must be of 16 bytes. It is used as the authentication information during decryption. In the example, **authTag** is of 16 bytes.
-
 
 **Decrypting a Message**
 
@@ -60,7 +57,6 @@ In addition to the example in this topic, [AES](crypto-sym-key-generation-conver
 **Destroying Objects**
 
 Call [OH_CryptoSymKeyGenerator_Destroy](../../reference/apis-crypto-architecture-kit/_crypto_sym_key_api.md#oh_cryptosymkeygenerator_destroy), [OH_CryptoSymCipher_Destroy](../../reference/apis-crypto-architecture-kit/_crypto_sym_cipher_api.md#oh_cryptosymcipher_destroy), and [OH_CryptoSymCipherParams_Destroy](../../reference/apis-crypto-architecture-kit/_crypto_sym_cipher_api.md#oh_cryptosymcipherparams_destroy) to destroy the instances created.
-
 
 **Example**
 
@@ -99,6 +95,7 @@ static OH_Crypto_ErrCode doTestAesGcmSeg()
     int cnt = randomLen / blockSize;
     int rem = randomLen % blockSize;
     uint8_t cipherText[OH_CRYPTO_MAX_TEST_DATA_LEN] = {0};
+
     // Define the decryption variables.
     int decCnt = cipherLen / blockSize;
     int decRem = cipherLen % blockSize;
@@ -134,7 +131,7 @@ static OH_Crypto_ErrCode doTestAesGcmSeg()
         goto end;
     }
     
-    // Encrypt data.
+    // Encrypt the message.
     ret = OH_CryptoSymCipher_Create("AES128|GCM|PKCS7", &encCtx);
     if (ret != CRYPTO_SUCCESS) {
         goto end;
@@ -168,7 +165,7 @@ static OH_Crypto_ErrCode doTestAesGcmSeg()
         goto end;
     }
 
-    // Decrypt data.
+    // Decrypt the message.
     cipherBlob = {.data = reinterpret_cast<uint8_t *>(cipherText), .len = (size_t)cipherLen};
     ret = OH_CryptoSymCipher_Create("AES128|GCM|PKCS7", &decCtx);
     if (ret != CRYPTO_SUCCESS) {

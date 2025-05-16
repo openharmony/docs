@@ -4,7 +4,6 @@ This topic walks you through on how to generate an RSA, an ECC, and an SM2 asymm
 
 The **KeyPair** object created can be used for subsequent operations, such as encryption and decryption. The obtained key parameter properties can be used for key storage and transfer.
 
-
 ## Generating an RSA Public Key Based on Key Parameters
 
 For details about the algorithm specifications, see [RSA](crypto-asym-key-generation-conversion-spec.md#rsa).
@@ -151,7 +150,6 @@ For details about the algorithm specifications, see [RSA](crypto-asym-key-genera
     }
   }
   ```
-
 
 ## Generating an ECC Key Pair Based on Key Parameters
 

@@ -28,6 +28,7 @@ target_link_libraries(entry PUBLIC libhilog_ndk.z.so libimage_source.so libpixel
       #include <string>
 
       #include <hilog/log.h>
+      #include <multimedia/image_framework/image/image_common.h>
       #include <multimedia/image_framework/image/image_source_native.h>
       #include <multimedia/image_framework/image/pixelmap_native.h>
 
@@ -58,16 +59,26 @@ target_link_libraries(entry PUBLIC libhilog_ndk.z.so libimage_source.so libpixel
           char name[1024];
           size_t nameSize = 1024;
           napi_get_value_string_utf8(env, argValue[NUM_0], name, 1024, &nameSize);
-
-          //创建ImageSource实例。
+          // 获取解码能力范围。
+          Image_MimeType* mimeType = nullptr;
+          size_t length = 0;
+          Image_ErrorCode errCode = OH_ImageSourceNative_GetSupportedFormats(&mimeType, &length);
+		  if (errCode != IMAGE_SUCCESS) {
+              OH_LOG_ERROR(LOG_APP, "ImageSourceNativeCTest sourceTest OH_ImageSourceNative_GetSupportedFormats failed, errCode: %{public}d.", errCode);
+              return getJsResult(env, errCode);
+          }
+          for (size_t count = 0; count < length; count++) {
+              OH_LOG_INFO(LOG_APP, "Decode supportedFormats:%{public}s", mimeType[count].data);
+          }
+          // 创建ImageSource实例。
           OH_ImageSourceNative *source = nullptr;
-          Image_ErrorCode errCode = OH_ImageSourceNative_CreateFromUri(name, nameSize, &source);
+          errCode = OH_ImageSourceNative_CreateFromUri(name, nameSize, &source);
           if (errCode != IMAGE_SUCCESS) {
               OH_LOG_ERROR(LOG_APP, "ImageSourceNativeCTest sourceTest OH_ImageSourceNative_CreateFromUri failed, errCode: %{public}d.", errCode);
               return getJsResult(env, errCode);
           }
 
-          //创建定义图片信息的结构体对象，并获取图片信息。
+          // 创建定义图片信息的结构体对象，并获取图片信息。
           OH_ImageSource_Info *imageInfo;
           OH_ImageSourceInfo_Create(&imageInfo);
           errCode = OH_ImageSourceNative_GetImageInfo(source, 0, imageInfo);
@@ -76,7 +87,7 @@ target_link_libraries(entry PUBLIC libhilog_ndk.z.so libimage_source.so libpixel
               return getJsResult(env, errCode);
           }
 
-          //获取指定属性键的值。
+          // 获取指定属性键的值。
           uint32_t width, height;
           OH_ImageSourceInfo_GetWidth(imageInfo, &width);
           OH_ImageSourceInfo_GetHeight(imageInfo, &height);
@@ -93,7 +104,7 @@ target_link_libraries(entry PUBLIC libhilog_ndk.z.so libimage_source.so libpixel
               return getJsResult(env, errCode);
           }
 
-          //修改指定属性键的值。
+          // 修改指定属性键的值。
           Image_String setKey;
           const std::string ORIENTATION = "Orientation";
           setKey.data = (char *)ORIENTATION.c_str();
@@ -107,14 +118,14 @@ target_link_libraries(entry PUBLIC libhilog_ndk.z.so libimage_source.so libpixel
               return getJsResult(env, errCode);
           }
 
-          //通过图片解码参数创建PixelMap对象。
+          // 通过图片解码参数创建PixelMap对象。
           OH_DecodingOptions *ops = nullptr;
           OH_DecodingOptions_Create(&ops);
-          //设置为AUTO会根据图片资源格式解码，如果图片资源为HDR资源则会解码为HDR的pixelmap。
+          // 设置为AUTO会根据图片资源格式解码，如果图片资源为HDR资源则会解码为HDR的pixelmap。
           OH_DecodingOptions_SetDesiredDynamicRange(ops, IMAGE_DYNAMIC_RANGE_AUTO);
           OH_PixelmapNative *resPixMap = nullptr;
 
-          //ops参数支持传入nullptr, 当不需要设置解码参数时，不用创建。
+          // ops参数支持传入nullptr, 当不需要设置解码参数时，不用创建。
           errCode = OH_ImageSourceNative_CreatePixelmap(source, ops, &resPixMap);
           OH_DecodingOptions_Release(ops);
           if (errCode != IMAGE_SUCCESS) {
@@ -122,7 +133,7 @@ target_link_libraries(entry PUBLIC libhilog_ndk.z.so libimage_source.so libpixel
               return getJsResult(env, errCode);
           }
 
-          //判断pixelmap是否为hdr内容。
+          // 判断pixelmap是否为hdr内容。
           OH_Pixelmap_ImageInfo *pixelmapImageInfo = nullptr;
           OH_PixelmapImageInfo_Create(&pixelmapImageInfo);
           OH_PixelmapNative_GetImageInfo(resPixMap, pixelmapImageInfo);
@@ -130,7 +141,7 @@ target_link_libraries(entry PUBLIC libhilog_ndk.z.so libimage_source.so libpixel
           OH_PixelmapImageInfo_GetDynamicRange(pixelmapImageInfo, &pixelmapIsHdr);
           OH_PixelmapImageInfo_Release(pixelmapImageInfo);
 
-          //获取图像帧数。
+          // 获取图像帧数。
           uint32_t frameCnt = 0;
           errCode = OH_ImageSourceNative_GetFrameCount(source, &frameCnt);
           if (errCode != IMAGE_SUCCESS) {
@@ -138,7 +149,7 @@ target_link_libraries(entry PUBLIC libhilog_ndk.z.so libimage_source.so libpixel
               return getJsResult(env, errCode);
           }
 
-          //通过图片解码参数创建Pixelmap列表。
+          // 通过图片解码参数创建Pixelmap列表。
           OH_DecodingOptions *opts = nullptr;
           OH_DecodingOptions_Create(&opts);
           OH_PixelmapNative **resVecPixMap = new OH_PixelmapNative*[frameCnt];
@@ -151,7 +162,7 @@ target_link_libraries(entry PUBLIC libhilog_ndk.z.so libimage_source.so libpixel
               return getJsResult(env, errCode);
           }
 
-          //获取图像延迟时间列表。
+          // 获取图像延迟时间列表。
           int32_t *delayTimeList = new int32_t[frameCnt];
           size_t size = frameCnt;
           errCode = OH_ImageSourceNative_GetDelayTimeList(source, delayTimeList, size);
@@ -161,7 +172,7 @@ target_link_libraries(entry PUBLIC libhilog_ndk.z.so libimage_source.so libpixel
               return getJsResult(env, errCode);
           }
 
-          //释放ImageSource实例。
+          // 释放ImageSource实例。
           OH_ImageSourceNative_Release(source);
           OH_LOG_INFO(LOG_APP, "ImageSourceNativeCTest sourceTest success.");
           return getJsResult(env, IMAGE_SUCCESS);

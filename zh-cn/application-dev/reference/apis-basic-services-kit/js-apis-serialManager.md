@@ -14,7 +14,7 @@ import { serialManager } from '@kit.BasicServicesKit';
 
 ## serialManager.getPortList
 
-getPortList(): Readonly&lt;serialport&gt;[];
+getPortList(): Readonly&lt;serialport&gt;[]
 
 查询串口设备清单，包括设备名称和对应的端口号。
 
@@ -390,7 +390,7 @@ read(portId: number, buffer: Uint8Array, timeout?: number): Promise&lt;number&gt
 |---------|------------|----|------------------|
 | portId  | number     | 是  | 端口号。      |
 | buffer  | Uint8Array | 是  | 读取数据的缓冲区。 |
-| timeout | number     | 否  | 读取的超时时间（以毫秒为单位）。 |
+| timeout | number     | 否  | 超时时间（单位：ms），可选参数，默认为0不超时，用户按需选择。 |
 
 **返回值：**
 
@@ -409,7 +409,7 @@ read(portId: number, buffer: Uint8Array, timeout?: number): Promise&lt;number&gt
 | 31400003 | Device does not exist. |
 | 31400005 | The serial port device is not opened. Call the open API first. |
 | 31400006 | Data transfer timed out. |
-| 31400007 | I/O exception. Possible causes: 1. The transfer was canceled. 2. The device offered more data. |
+| 31400007 | I/O exception. Possible causes: 1. The transfer was canceled. 2. The device offered more data than allowed. |
 
 **示例：**
 
@@ -470,7 +470,7 @@ readSync(portId: number, buffer: Uint8Array, timeout?: number): number;
 |---------|------------|----|------------------|
 | portId  | number     | 是  | 端口号。|
 | buffer  | Uint8Array | 是  | 读取数据的缓冲区。 |
-| timeout | number     | 否  | 读取的超时时间（以毫秒为单位）。 |
+| timeout | number     | 否  | 超时时间（单位：ms），可选参数，默认为0不超时，用户按需选择。 |
 
 **返回值：**
 
@@ -489,7 +489,7 @@ readSync(portId: number, buffer: Uint8Array, timeout?: number): number;
 | 31400003 | Device does not exist. |
 | 31400005 | The serial port device is not opened. Call the open API first. |
 | 31400006 | Data transfer timed out. |
-| 31400007 | I/O exception. Possible causes: 1. The transfer was canceled. 2. The device offered more data. |
+| 31400007 | I/O exception. Possible causes: 1. The transfer was canceled. 2. The device offered more data than allowed. |
 
 **示例：**
 
@@ -551,7 +551,7 @@ write(portId: number, buffer: Uint8Array, timeout?: number): Promise&lt;number&g
 |---------|------------|----|------------------|
 | portId  | number     | 是  | 端口号。      |
 | buffer  | Uint8Array | 是  | 写入数据的缓冲区。 |
-| timeout | number     | 否  | 写入的超时时间（以毫秒为单位）。 |
+| timeout | number     | 否  | 超时时间（单位：ms），可选参数，默认为0不超时，用户按需选择。 |
 
 **返回值：**
 
@@ -570,10 +570,15 @@ write(portId: number, buffer: Uint8Array, timeout?: number): Promise&lt;number&g
 | 31400003 | Device does not exist. |
 | 31400005 | The serial port device is not opened. Call the open API first. |
 | 31400006 | Data transfer timed out. |
-| 31400007 | I/O exception. Possible causes: 1. The transfer was canceled. 2. The device offered more data. |
+| 31400007 | I/O exception. Possible causes: 1. The transfer was canceled. 2. The device offered more data than allowed. |
 
 **示例：**
 
+> **说明：**
+>
+> 以下示例代码需要放入具体的方法中执行，只是调用addSerialRight接口新增串口访问权限的必要流程，实际调用时，设备开发者需要根据开发设备进行适配。
+
+<!--code_no_check-->
 ```ts
 import { JSON } from '@kit.ArkTS';
 import { serialManager } from '@kit.BasicServicesKit';
@@ -631,7 +636,7 @@ writeSync(portId: number, buffer: Uint8Array, timeout?: number): number;
 |---------|------------|----|------------------|
 | portId  | number     | 是  | 端口号。     |
 | buffer  | Uint8Array | 是  | 写入目标缓冲区。 |
-| timeout | number     | 否  | 写入的超时时间（以毫秒为单位）。|
+| timeout | number     | 否  | 超时时间（单位：ms），可选参数，默认为0不超时，用户按需选择。|
 
 **返回值：**
 
@@ -650,7 +655,7 @@ writeSync(portId: number, buffer: Uint8Array, timeout?: number): number;
 | 31400003 | Device does not exist. |
 | 31400005 | The serial port device is not opened. Call the open API first. |
 | 31400006 | Data transfer timed out. |
-| 31400007 | I/O exception. Possible causes: 1. The transfer was canceled. 2. The device offered more data. |
+| 31400007 | I/O exception. Possible causes: 1. The transfer was canceled. 2. The device offered more data than allowed. |
 
 **示例：**
 

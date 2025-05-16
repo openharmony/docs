@@ -27,6 +27,7 @@ import { cryptoFramework } from '@kit.CryptoArchitectureKit';
 | NOT_SUPPORT                           | 801      | 操作不支持。                  |
 | ERR_OUT_OF_MEMORY                     | 19020001 | 内存错误。                    |
 | ERR_RUNTIME_ERROR                     | 19020002 | 运行时外部错误。              |
+| ERR_PARAMETER_CHECK_FAILED<sup>20+</sup>             | 19020003 | 参数检查失败。 <br> **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。               |
 | ERR_CRYPTO_OPERATION                  | 19030001 | 调用三方算法库API出错。       |
 | ERR_CERT_SIGNATURE_FAILURE            | 19030002 | 证书签名验证错误。            |
 | ERR_CERT_NOT_YET_VALID                | 19030003 | 证书尚未生效。                |
@@ -1445,9 +1446,9 @@ getIssuerName(encodingType: EncodingType): string
 
 | 错误码ID | 错误信息                                          |
 | -------- | ------------------------------------------------- |
-| 401 | Parameter error.  Possible causes: <br>1. Incorrect parameter types;<br>2. Parameter verification failed.           |
 | 19020001 | memory malloc failed.                                     |
 | 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C.                                    |
+| 19020003 | parameter check failed. Possible causes: <br>1. The value of encodingType is not in the EncodingType enumeration range.|
 | 19030001 | crypto operation error.|
 
 **示例：**
@@ -2939,9 +2940,9 @@ toString(encodingType: EncodingType): string
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
-| 401 | Parameter error.  Possible causes: <br>1. Incorrect parameter types;<br>2. Parameter verification failed. |
 | 19020001 | memory malloc failed. |
 | 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C. |
+| 19020003 | parameter check failed. Possible causes: <br>1. The value of encodingType is not in the EncodingType enumeration range.|
 | 19030001 | crypto operation error. |
 
 **示例：**
@@ -6298,9 +6299,9 @@ getIssuerName(encodingType: EncodingType): string
 
 | 错误码ID | 错误信息                                          |
 | -------- | ------------------------------------------------- |
-| 401 | Parameter error.  Possible causes: <br>1. Incorrect parameter types;<br>2. Parameter verification failed.           |
 | 19020001 | memory malloc failed.                                     |
 | 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C.                                    |
+| 19020003 | parameter check failed. Possible causes: <br>1. The value of encodingType is not in the EncodingType enumeration range.|
 | 19030001 | crypto operation error. |
 
 **示例：**
@@ -7552,9 +7553,9 @@ toString(encodingType: EncodingType): string
 
 | 错误码ID | 错误信息                                          |
 | -------- | ------------------------------------------------- |
-| 401 | Parameter error.  Possible causes: <br>1. Incorrect parameter types;<br>2. Parameter verification failed.           |
 | 19020001 | memory malloc failed.                                     |
 | 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C.                                    |
+| 19020003 | parameter check failed. Possible causes: <br>1. The value of encodingType is not in the EncodingType enumeration range.|
 | 19030001 | crypto operation error. |
 
 **示例：**
@@ -8803,10 +8804,10 @@ getCertIssuer(encodingType: EncodingType): string
 
 | 错误码ID | 错误信息                                          |
 | -------- | ------------------------------------------------- |
-| 401 | Parameter error.  Possible causes: <br>1. Incorrect parameter types;<br>2. Parameter verification failed.           |
 | 801 | this operation is not supported. |
 | 19020001 | memory malloc failed.                                     |
 | 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C.                                    |
+| 19020003 | parameter check failed. Possible causes: <br>1. The value of encodingType is not in the EncodingType enumeration range.|
 | 19030001 | crypto operation error. |
 
 **示例：**
@@ -11739,9 +11740,9 @@ getName(encodingType: EncodingType): string
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
-| 401 | Parameter error.  Possible causes: <br>1. Incorrect parameter types;<br>2. Parameter verification failed.|
 | 19020001 | memory malloc failed. |
 | 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C. |
+| 19020003 | parameter check failed. Possible causes: <br>1. The value of encodingType is not in the EncodingType enumeration range.|
 | 19030001 | crypto operation error. |
 
 **示例：**

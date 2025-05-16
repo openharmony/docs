@@ -102,7 +102,7 @@ java -jar app_packing_tool.jar --mode hsp --json-path <path> [--resources-path <
 示例：
 
 ```
-java -jar app_packing_tool.jar --mode app [--hap-path <path>] [--hsp-path <path>] --out-path <path> [--signature-path <path>] [--certificate-path <path>] --pack-info-path <path> [--pack-res-path <path>] [--force true] [--encrypt-path <path>]
+java -jar app_packing_tool.jar --mode app [--hap-path <path>] [--hsp-path <path>] --out-path <path> [--signature-path <path>] [--certificate-path <path>] --pack-info-path <path> [--pack-res-path <path>] [--force true] [--encrypt-path <path>] [--pac-json-path <path>]
 ```
 
 **表3** App打包指令参数说明
@@ -119,6 +119,7 @@ java -jar app_packing_tool.jar --mode app [--hap-path <path>] [--hsp-path <path>
 | --pack-res-path    | 否     | NA          | pack.res快照文件路径。                                 |
 | --force            | 否     | true或者false | 默认值为false。如果为true，表示当目标文件存在时，强制删除。                           |
 | --encrypt-path     | 否     | NA          | 文件名必须为encrypt.json 。                           |
+| --pac-json-path     | 否     | NA          | pac.json文件路径，文件名必须为pac.json。                           |
 
 
 
@@ -135,7 +136,7 @@ java -jar app_packing_tool.jar --mode app [--hap-path <path>] [--hsp-path <path>
 示例：
 
 ```
-java -jar app_packing_tool.jar --mode multiApp [--hap-list <path>] [--hsp-list <path>] [--app-list <path>] --out-path <option> [--force true] [--encrypt-path <path>]
+java -jar app_packing_tool.jar --mode multiApp [--hap-list <path>] [--hsp-list <path>] [--app-list <path>] --out-path <option> [--force true] [--encrypt-path <path>] [--pac-json-path <path>]
 ```
 
 **表4** 多工程打包指令参数说明
@@ -149,6 +150,7 @@ java -jar app_packing_tool.jar --mode multiApp [--hap-list <path>] [--hsp-list <
 | --out-path | 是     | NA | 目标文件路径，文件名必须以.app为后缀。 |
 | --force    | 否     | true或者false | 默认值为false。如果为true，表示当目标文件存在时，强制删除。                                                                  |
 | --encrypt-path | 否     | encrypt.json的路径 | 文件名必须为encrypt.json。                                                                  |
+| --pac-json-path | 否     | NA          | pac.json文件路径，文件名必须为pac.json。<br/>最终app产物中pac.json文件只来源于该参数，不配置的话，最终app产物不包含该文件。<br/>--app-list参数指定的app包中的pac.json不会打包进最终app。|
 
 
 
@@ -262,7 +264,7 @@ java -jar app_packing_tool.jar --mode res --entrycard-path <path> --pack-info-pa
 示例：
 
 ```
-java -jar app_packing_tool.jar --mode fastApp [--hap-path <path>] [--hsp-path <path>] --out-path <path> [--signature-path <path>] [--certificate-path <path>] --pack-info-path <path> [--pack-res-path <path>] [--force true] [--encrypt-path <path>]
+java -jar app_packing_tool.jar --mode fastApp [--hap-path <path>] [--hsp-path <path>] --out-path <path> [--signature-path <path>] [--certificate-path <path>] --pack-info-path <path> [--pack-res-path <path>] [--force true] [--encrypt-path <path>] [--pac-json-path <path>]
 ```
 
 **表10** 参数含义及规范
@@ -279,6 +281,7 @@ java -jar app_packing_tool.jar --mode fastApp [--hap-path <path>] [--hsp-path <p
 | --pack-res-path    | 否     | NA         | pack.res快照文件路径。                   |
 | --force            | 否     | true或者false | 默认值为false。如果为true，表示当目标文件存在时，强制删除。           |
 | --encrypt-path     | 否     | NA         | 文件名必须为encrypt.json。           |
+| --pac-json-path     | 否     | NA          | pac.json文件路径，文件名必须为pac.json。                           |
 
 ## 打包工具错误码
 

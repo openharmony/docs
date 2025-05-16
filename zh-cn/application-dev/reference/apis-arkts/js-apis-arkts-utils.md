@@ -153,9 +153,9 @@ static query(name: string): AsyncLockState
 
 **参数：**
 
-| 名称 | 类型   | 必填 | 说明       |
-| ---- | ------ | ---- | ---------- |
-| name | string | 是   | 锁的名称。 |
+| 名称 | 类型   | 必填 | 说明                                                                                                                     |
+| ---- | ------ | ---- | ------------------------------------------------------------------------------------------------------------------------ |
+| name | string | 是   | 要查询的锁的名称，仅可查询通过[request接口](#request)获取的锁（即与[request接口](#request)入参锁名称保持一致）。 |
 
 **返回值：**
 
@@ -224,7 +224,7 @@ lockAsync\<T>(callback: AsyncLockCallback\<T>): Promise\<T>
 
 | 名称     | 类型                                    | 必填 | 说明                   |
 | -------- | --------------------------------------- | ---- | ---------------------- |
-| callback | [AsyncLockCallback](#asynclockcallback) | 是   | 获取锁后要调用的函数。 |
+| callback | [AsyncLockCallback\<T>](#asynclockcallback) | 是   | 获取锁后要调用的函数。 |
 
 **返回值：**
 
@@ -264,7 +264,7 @@ lockAsync\<T>(callback: AsyncLockCallback\<T>, mode: AsyncLockMode): Promise\<T>
 
 | 名称     | 类型                                    | 必填 | 说明                   |
 | -------- | --------------------------------------- | ---- | ---------------------- |
-| callback | [AsyncLockCallback](#asynclockcallback) | 是   | 获取锁后要调用的函数。 |
+| callback | [AsyncLockCallback\<T>](#asynclockcallback) | 是   | 获取锁后要调用的函数。 |
 | mode     | [AsyncLockMode](#asynclockmode)         | 是   | 锁的操作模式。         |
 
 **返回值：**
@@ -305,7 +305,7 @@ lockAsync\<T, U>(callback: AsyncLockCallback\<T>, mode: AsyncLockMode, options: 
 
 | 名称     | 类型                                      | 必填 | 说明                   |
 | -------- | ----------------------------------------- | ---- | ---------------------- |
-| callback | [AsyncLockCallback](#asynclockcallback)   | 是   | 获取锁后要调用的函数。 |
+| callback | [AsyncLockCallback\<T>](#asynclockcallback)   | 是   | 获取锁后要调用的函数。 |
 | mode     | [AsyncLockMode](#asynclockmode)           | 是   | 锁的操作模式。         |
 | options  | [AsyncLockOptions\<U>](#asynclockoptions) | 是   | 锁的操作选项。         |
 
@@ -544,7 +544,7 @@ wait(): Promise\<void>
 **示例：**
 
 ```ts
-let conditionVariable = ArkTSUtils.locks.AsyncLock.ConditionVariable();
+const conditionVariable: ArkTSUtils.locks.ConditionVariable = new ArkTSUtils.locks.ConditionVariable();
 conditionVariable.wait().then(() => {
   console.info(`Thread being awakened, then continue...`); //被唤醒后输出日志
 });
@@ -575,7 +575,7 @@ waitFor(timeout : number) : Promise\<void>
 **示例：**
 
 ```ts
-let conditionVariable = ArkTSUtils.locks.AsyncLock.ConditionVariable();
+const conditionVariable: ArkTSUtils.locks.ConditionVariable = new ArkTSUtils.locks.ConditionVariable();
 conditionVariable.waitFor(3000).then(() => {
   console.info(`Thread being awakened, then continue...`); //被唤醒后输出日志
 });
@@ -594,7 +594,7 @@ notifyAll() : void
 **示例：**
 
 ```ts
-let conditionVariable = ArkTSUtils.locks.AsyncLock.ConditionVariable();
+const conditionVariable: ArkTSUtils.locks.ConditionVariable = new ArkTSUtils.locks.ConditionVariable();
 conditionVariable.waitFor(3000).then(() => {
   console.info(`Thread being awakened, then continue...`); //被唤醒后输出日志
 });
@@ -614,12 +614,9 @@ notifyOne() : void
 **示例：**
 
 ```ts
-let conditionVariable = ArkTSUtils.locks.AsyncLock.ConditionVariable();
+const conditionVariable: ArkTSUtils.locks.ConditionVariable = new ArkTSUtils.locks.ConditionVariable();
 conditionVariable.waitFor(3000).then(() => {
   console.info(`Thread a being awakened, then continue...`); //被唤醒后输出日志
-});
-conditionVariable.waitFor().then(() => {
-  console.info(`Thread twob being awakened, then continue...`); //被唤醒后输出日志
 });
 conditionVariable.notifyOne();
 ```
@@ -658,7 +655,7 @@ type Transformer = (this: ISendable, key: string, value: ISendable | undefined |
 | ------ | ------ | ---- | --------------- |
 | this   | [ISendable](#isendable) | 是 | 在解析的键值对所属的对象。|
 | key  | string | 是 | 属性名。|
-| value  | [ISendable](#isendable) | 是 | 在解析的键值对的值。|
+| value  | [ISendable](#isendable) \| undefined \| null| 是 | 在解析的键值对的值。|
 
 **返回值：**
 
@@ -895,11 +892,11 @@ isSendable(value: Object | null | undefined): boolean
 **示例：**
 
 ```ts
-import { ArkTSUtils } from '@kit.ArkTS'
+import { ArkTSUtils } from '@kit.ArkTS';
 
 @Sendable
 function sendableFunc() {
-  console.info("sendableFunc")
+  console.info("sendableFunc");
 }
 
 if (ArkTSUtils.isSendable(sendableFunc)) {

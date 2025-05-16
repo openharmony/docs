@@ -31,14 +31,16 @@ import { relationalStore } from '@kit.ArkData';
 
 getRdbStore(context: Context, config: StoreConfig, callback: AsyncCallback&lt;RdbStore&gt;): void
 
-Obtains an RdbStore instance. This API uses an asynchronous callback to return the result. You can set parameters for the RDB store based on service requirements and call APIs to perform data operations.
+Obtains an RdbStore instance. You can set the **config** parameter as required and use **RdbStore** APIs to perform data operations. This API uses an asynchronous callback to return the result.
 
-The parameter [encrypt](#storeconfig) takes effect only when the RDB store is created for the first time, and cannot be modified. It is important to set this parameter correctly.
+If no database file exists in the corresponding sandbox directory, a database file is created. For details, see [StoreConfig](#storeconfig). If a database file exists in the corresponding directory, the existing database file is opened.
+
+When creating a database, you should consider whether to configure the [encrypt](#storeconfig) parameter. Once the database is created, you are not allowed to change this parameter.
 
 | Encryption Type When the RDB Store Is Opened | Encryption Type When the RDB Store Is Created          | Behavior|
 | ------- | -------------------------------- | ---- |
 | Not encrypt| Encrypt                         | The RDB store is opened in encrypted mode.  |
-|  Encrypt| Not encrypt                         | The RDB store is opened in non-encrypted mode.  |
+| Encrypt| Not encrypt                         | The RDB store is opened in non-encrypted mode.  |
 
 Currently, **getRdbStore()** does not support multi-thread concurrent operations.
 
@@ -60,13 +62,13 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 |-----------|---------|
 | 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 14800000  | Inner error.     |
-| 14800010  | Invalid database path.   |
-| 14800011  | Database corrupted.    |
+| 14800010  | Failed to open or delete the database by an invalid database path.   |
+| 14800011  | Failed to open the database because it is corrupted.    |
 | 14801001  | The operation is supported in the stage model only.    |
 | 14801002  | Invalid data group ID.   |
-| 14800017  | Config changed.   |
+| 14800017  | StoreConfig is changed. |
 | 14800020  | The secret key is corrupted or lost.   |
-| 14800021  | SQLite: Generic error.    |
+| 14800021  | SQLite: Generic error. Possible causes: Insert failed or the updated data does not exist.    |
 | 14800022  | SQLite: Callback routine requested an abort.   |
 | 14800023  | SQLite: Access permission denied.    |
 | 14800027  | SQLite: Attempt to write a readonly database.   |
@@ -84,7 +86,7 @@ import { featureAbility } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let store: relationalStore.RdbStore | undefined = undefined;
-let context = featureAbility.getContext(); 
+let context = featureAbility.getContext();
 
 const STORE_CONFIG: relationalStore.StoreConfig = {
   name: "RdbTest.db",
@@ -99,7 +101,7 @@ relationalStore.getRdbStore(context, STORE_CONFIG, async (err: BusinessError, rd
   console.info('Get RdbStore successfully.');
   store = rdbStore;
   // Perform subsequent operations after the rdbStore instance is successfully obtained.
-})
+});
 ```
 
 Stage model:
@@ -117,7 +119,7 @@ class EntryAbility extends UIAbility {
       name: "RdbTest.db",
       securityLevel: relationalStore.SecurityLevel.S3
     };
-        
+
     relationalStore.getRdbStore(this.context, STORE_CONFIG, async (err: BusinessError, rdbStore: relationalStore.RdbStore) => {
       if (err) {
         console.error(`Get RdbStore failed, code is ${err.code},message is ${err.message}`);
@@ -126,7 +128,7 @@ class EntryAbility extends UIAbility {
       console.info('Get RdbStore successfully.');
       store = rdbStore;
       // Perform subsequent operations after the rdbStore instance is successfully obtained.
-    })
+    });
   }
 }
 ```
@@ -135,14 +137,16 @@ class EntryAbility extends UIAbility {
 
 getRdbStore(context: Context, config: StoreConfig): Promise&lt;RdbStore&gt;
 
-Obtains an RdbStore instance. This API uses a promise to return the result. You can set parameters for the RDB store based on service requirements and call APIs to perform data operations.
+Obtains an RdbStore instance. You can set the **config** parameter as required and use **RdbStore** APIs to perform data operations. This API uses a promise to return the result.
 
-The parameter [encrypt](#storeconfig) takes effect only when the RDB store is created for the first time, and cannot be modified. It is important to set this parameter correctly.
+If no database file exists in the corresponding sandbox directory, a database file is created. For details, see [StoreConfig](#storeconfig). If a database file exists in the corresponding directory, the existing database file is opened.
+
+When creating a database, you should consider whether to configure the [encrypt](#storeconfig) parameter. Once the database is created, you are not allowed to change this parameter.
 
 | Encryption Type When the RDB Store Is Opened | Encryption Type When the RDB Store Is Created          | Behavior|
 | ------- | -------------------------------- | ---- |
 | Not encrypt| Encrypt                         | The RDB store is opened in encrypted mode.  |
-|  Encrypt| Not encrypt                         | The RDB store is opened in non-encrypted mode.  |
+| Encrypt| Not encrypt                         | The RDB store is opened in non-encrypted mode.  |
 
 Currently, **getRdbStore()** does not support multi-thread concurrent operations.
 
@@ -159,7 +163,7 @@ Currently, **getRdbStore()** does not support multi-thread concurrent operations
 
 | Type                                     | Description                             |
 | ----------------------------------------- | --------------------------------- |
-| Promise&lt;[RdbStore](#rdbstore)&gt; | Promise used to return the **RdbStore** instance obtained.|
+| Promise&lt;[RdbStore](#rdbstore)&gt; | Promise used to return the **RdbStore** object obtained.|
 
 **Error codes**
 
@@ -169,13 +173,13 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 |-----------| ------------------------------------------------------------ |
 | 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 14800000  | Inner error. |
-| 14800010  | Invalid database path. |
-| 14800011  | Database corrupted.  |
+| 14800010  | Failed to open or delete the database by an invalid database path. |
+| 14800011  | Failed to open the database because it is corrupted.  |
 | 14801001  | The operation is supported in the stage model only.                               |
 | 14801002  | Invalid data group ID.                             |
-| 14800017  | Config changed. |
+| 14800017  | StoreConfig is changed. |
 | 14800020  | The secret key is corrupted or lost.   |
-| 14800021  | SQLite: Generic error. |
+| 14800021  | SQLite: Generic error. Possible causes: Insert failed or the updated data does not exist. |
 | 14800022  | SQLite: Callback routine requested an abort.   |
 | 14800023  | SQLite: Access permission denied.    |
 | 14800027  | SQLite: Attempt to write a readonly database. |
@@ -193,7 +197,7 @@ import { featureAbility } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let store: relationalStore.RdbStore | undefined = undefined;
-let context = featureAbility.getContext(); 
+let context = featureAbility.getContext();
 
 const STORE_CONFIG: relationalStore.StoreConfig = {
   name: "RdbTest.db",
@@ -202,10 +206,10 @@ const STORE_CONFIG: relationalStore.StoreConfig = {
 
 relationalStore.getRdbStore(context, STORE_CONFIG).then(async (rdbStore: relationalStore.RdbStore) => {
   store = rdbStore;
-  console.info('Get RdbStore successfully.')
+  console.info('Get RdbStore successfully.');
 }).catch((err: BusinessError) => {
   console.error(`Get RdbStore failed, code is ${err.code},message is ${err.message}`);
-})
+});
 ```
 
 Stage model:
@@ -226,10 +230,10 @@ class EntryAbility extends UIAbility {
 
     relationalStore.getRdbStore(this.context, STORE_CONFIG).then(async (rdbStore: relationalStore.RdbStore) => {
       store = rdbStore;
-      console.info('Get RdbStore successfully.')
+      console.info('Get RdbStore successfully.');
     }).catch((err: BusinessError) => {
       console.error(`Get RdbStore failed, code is ${err.code},message is ${err.message}`);
-    })
+    });
   }
 }
 ```
@@ -260,7 +264,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 |-----------|---------------------------------------|
 | 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 14800000  | Inner error.     |
-| 14800010  | Failed to open or delete database by invalid database path. |
+| 14800010  | Failed to open or delete the database by an invalid database path. |
 
 **Example**
 
@@ -272,7 +276,7 @@ import { featureAbility } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let store: relationalStore.RdbStore | undefined = undefined;
-let context = featureAbility.getContext(); 
+let context = featureAbility.getContext();
 
 relationalStore.deleteRdbStore(context, "RdbTest.db", (err: BusinessError) => {
   if (err) {
@@ -281,7 +285,7 @@ relationalStore.deleteRdbStore(context, "RdbTest.db", (err: BusinessError) => {
   }
   store = undefined;
   console.info('Delete RdbStore successfully.');
-})
+});
 ```
 
 Stage model:
@@ -294,7 +298,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 let store: relationalStore.RdbStore | undefined = undefined;
 
 class EntryAbility extends UIAbility {
-  onWindowStageCreate(windowStage: window.WindowStage){
+  onWindowStageCreate(windowStage: window.WindowStage) {
     relationalStore.deleteRdbStore(this.context, "RdbTest.db", (err: BusinessError) => {
       if (err) {
         console.error(`Delete RdbStore failed, code is ${err.code},message is ${err.message}`);
@@ -302,7 +306,7 @@ class EntryAbility extends UIAbility {
       }
       store = undefined;
       console.info('Delete RdbStore successfully.');
-    })
+    });
   }
 }
 ```
@@ -338,7 +342,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 |-----------|----------------------------------------------------------------------------------|
 | 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 14800000  | Inner error.                                                                     |
-| 14800010  | Invalid database path.                      |
+| 14800010  | Failed to open or delete the database by an invalid database path.                      |
 
 **Example**
 
@@ -350,14 +354,14 @@ import { featureAbility } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let store: relationalStore.RdbStore | undefined = undefined;
-let context = featureAbility.getContext(); 
+let context = featureAbility.getContext();
 
-relationalStore.deleteRdbStore(context, "RdbTest.db").then(()=>{
+relationalStore.deleteRdbStore(context, "RdbTest.db").then(() => {
   store = undefined;
   console.info('Delete RdbStore successfully.');
 }).catch((err: BusinessError) => {
   console.error(`Delete RdbStore failed, code is ${err.code},message is ${err.message}`);
-})
+});
 ```
 
 Stage model:
@@ -370,13 +374,13 @@ import { BusinessError } from '@kit.BasicServicesKit';
 let store: relationalStore.RdbStore | undefined = undefined;
 
 class EntryAbility extends UIAbility {
-  onWindowStageCreate(windowStage: window.WindowStage){
-    relationalStore.deleteRdbStore(this.context, "RdbTest.db").then(()=>{
+  onWindowStageCreate(windowStage: window.WindowStage) {
+    relationalStore.deleteRdbStore(this.context, "RdbTest.db").then(() => {
       store = undefined;
       console.info('Delete RdbStore successfully.');
     }).catch((err: BusinessError) => {
       console.error(`Delete RdbStore failed, code is ${err.code},message is ${err.message}`);
-    })
+    });
   }
 }
 ```
@@ -407,7 +411,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 |-----------|----------|
 | 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 14800000  | Inner error.        |
-| 14800010  | Failed to open or delete database by invalid database path.        |
+| 14800010  | Failed to open or delete the database by an invalid database path.        |
 | 14801001  | The operation is supported in the stage model only.         |
 | 14801002  | Invalid data group ID.        |
 
@@ -421,7 +425,7 @@ import { featureAbility } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let store: relationalStore.RdbStore | undefined = undefined;
-let context = featureAbility.getContext(); 
+let context = featureAbility.getContext();
 
 const STORE_CONFIG: relationalStore.StoreConfig = {
   name: "RdbTest.db",
@@ -435,7 +439,7 @@ relationalStore.deleteRdbStore(context, STORE_CONFIG, (err: BusinessError) => {
   }
   store = undefined;
   console.info('Delete RdbStore successfully.');
-})
+});
 ```
 
 Stage model:
@@ -448,7 +452,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 let store: relationalStore.RdbStore | undefined = undefined;
 
 class EntryAbility extends UIAbility {
-  onWindowStageCreate(windowStage: window.WindowStage){
+  onWindowStageCreate(windowStage: window.WindowStage) {
     const STORE_CONFIG: relationalStore.StoreConfig = {
       name: "RdbTest.db",
       securityLevel: relationalStore.SecurityLevel.S3
@@ -460,7 +464,7 @@ class EntryAbility extends UIAbility {
       }
       store = undefined;
       console.info('Delete RdbStore successfully.');
-    })
+    });
   }
 }
 ```
@@ -497,7 +501,7 @@ For details about the error codes, see [RDB Error Codes](errorcode-data-rdb.md).
 | 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 801       | Capability not supported.      |
 | 14800000  | Inner error.      |
-| 14800010  | Invalid database path.   |
+| 14800010  | Failed to open or delete the database by an invalid database path.   |
 | 14801001  | The operation is supported in the stage model only.   |
 | 14801002  | Invalid data group ID.   |
 
@@ -511,19 +515,19 @@ import { featureAbility } from "@kit.AbilityKit";
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let store: relationalStore.RdbStore | undefined = undefined;
-let context = featureAbility.getContext(); 
+let context = featureAbility.getContext();
 
 const STORE_CONFIG: relationalStore.StoreConfig = {
   name: "RdbTest.db",
   securityLevel: relationalStore.SecurityLevel.S3
 };
 
-relationalStore.deleteRdbStore(context, STORE_CONFIG).then(()=>{
+relationalStore.deleteRdbStore(context, STORE_CONFIG).then(() => {
   store = undefined;
   console.info('Delete RdbStore successfully.');
 }).catch((err: BusinessError) => {
   console.error(`Delete RdbStore failed, code is ${err.code},message is ${err.message}`);
-})
+});
 ```
 
 Stage model:
@@ -536,17 +540,17 @@ import { BusinessError } from '@kit.BasicServicesKit';
 let store: relationalStore.RdbStore | undefined = undefined;
 
 class EntryAbility extends UIAbility {
-  onWindowStageCreate(windowStage: window.WindowStage){
+  onWindowStageCreate(windowStage: window.WindowStage) {
     const STORE_CONFIG: relationalStore.StoreConfig = {
       name: "RdbTest.db",
       securityLevel: relationalStore.SecurityLevel.S3
     };
-    relationalStore.deleteRdbStore(this.context, STORE_CONFIG).then(()=>{
+    relationalStore.deleteRdbStore(this.context, STORE_CONFIG).then(() => {
       store = undefined;
       console.info('Delete RdbStore successfully.');
     }).catch((err: BusinessError) => {
       console.error(`Delete RdbStore failed, code is ${err.code},message is ${err.message}`);
-    })
+    });
   }
 }
 ```
@@ -584,7 +588,7 @@ This API returns **true** if the specified tokenizer is supported; returns **fal
 
 | Name | Type                 | Mandatory| Description                                                        |
 | ------- | --------------------- | ---- | ------------------------------------------------------------ |
-| tokenizer | [Tokenizer](#tokenizer18)               | Yes  | Tokenizer to check.|
+| tokenizer | [Tokenizer](#tokenizer17)               | Yes  | Tokenizer to check.|
 
 **Return value**
 
@@ -628,8 +632,8 @@ Defines the RDB store configuration.
 | isReadOnly<sup>12+</sup> | boolean | No| Whether the RDB store is read-only.<br>**true**: The RDB store is read-only. Writing data to the RDB store will result in error code 801.<br>**false** (default): The RDB store is readable and writeable.<br>This parameter is supported since API version 12.<br>**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core|
 | pluginLibs<sup>12+</sup> | Array\<string> | No| Dynamic libraries with capabilities such as Full-Text Search (FTS).<br>**Constraints**<br>1. The maximum number of dynamic library names is 16. If the number of dynamic library names exceeds 16, the library fails to be opened and an error is returned.<br>2. The dynamic libraries must be those in the sandbox directory or system directory of the application. If a dynamic library fails to be loaded, the RDB store cannot be opened and an error will be returned.<br>3. The dynamic library name must be a complete path that can be loaded by SQLite.<br>Example: [context.bundleCodeDir + "/libs/arm64/" + libtokenizer.so], where **context.bundleCodeDir** indicates the application sandbox path, **/libs/arm64/** is the subdirectory, **libtokenizer.so** indicates the file name of the dynamic library. If this parameter is left blank, dynamic libraries are not loaded by default.<br>4. The dynamic library must contain all its dependencies to prevent the failure caused by the lack of dependencies.<br>For example, in an NDK project, the default compilation parameters are used to build **libtokenizer.so**, which depends on the C++ standard library. When the dynamic library is loaded, **libc++_shared.so** is linked by mistake because the namespace is different from that during compilation. As a result, the **__emutls_get_address** symbol cannot be found. To solve this problem, you need to statically link the C++ standard library during compilation. For details, see [NDK Project Building Overview](../../napi/build-with-ndk-overview.md).<br>**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core|
 | cryptoParam<sup>14+</sup> | [CryptoParam](#cryptoparam14) | No| Custom encryption parameters.<br>If this parameter is left empty, the default encryption parameters are used. For details, see default values of [CryptoParam](#cryptoparam14).<br>This parameter is valid only when **encrypt** is **true**.<br>This parameter is supported since API version 14.<br>**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core|
-| vector<sup>18+</sup> | boolean | No| Whether the RDB store is a vector store. The value **true** means the RDB store is a vector store; the value **false** means the opposite.<br>The vector store is ideal for storing and managing high-dimensional vector data, while the relational database is optimal for storing and processing structured data.<br>Currently, vector databases support [execute](#execute12-1), [querySql](#querysql-1), [beginTrans](#begintrans12), [commit](#commit12), [rollback](#rollback12), [backup](#backup), [restore](#restore), and [ResultSet](#resultset) APIs. Before calling **deleteRdbStore** to delete a vector store, ensure that the vector store is properly closed.<br>**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core|
-| tokenizer<sup>18+</sup> | [Tokenizer](#tokenizer18) | No| Type of the tokenizer to be used for FTS.<br>If this parameter is left blank, English tokenization is supported if FTS does not support Chinese or multi-language tokenization.<br>**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core|
+| vector<sup>18+</sup> | boolean | No| Whether the RDB store is a vector store. The value **true** means the RDB store is a vector store, and the value **false** means the opposite.<br>Default value: **false**.<br>The vector store is ideal for storing and managing high-dimensional vector data, while the relational database is optimal for storing and processing structured data.<br>Currently, vector databases support [execute](#execute12-1), [querySql](#querysql-1), [beginTrans](#begintrans12), [commit](#commit12), [rollback](#rollback12), [backup](#backup), [restore](#restore), and [ResultSet](#resultset) APIs. Before calling **deleteRdbStore** to delete a vector store, ensure that the vector store is properly closed.<br>**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core|
+| tokenizer<sup>17+</sup> | [Tokenizer](#tokenizer17) | No| Type of the tokenizer to be used for FTS.<br>If this parameter is left blank, English tokenization is supported if FTS does not support Chinese or multi-language tokenization.<br>**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core|
 | persist<sup>18+</sup> | boolean | No| Whether to persist the RDB store. The value **true** means to persist the RDB store; the value **false** means the opposite (using an in-memory database). <br>Default value: **true**.<br>An in-memory database does not support encryption, backup, restore, cross-process access, and distributed capabilities, with the **securityLevel** property ignored.<br>**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core|
 
 ## SecurityLevel
@@ -699,7 +703,7 @@ Enumerates the PBKDF2 algorithms for the database. Use the enum name rather than
 | KDF_SHA256 |  1    | PBKDF2_HMAC_SHA256.    |
 | KDF_SHA512 |  2    | PBKDF2_HMAC_SHA512.    |
 
-## Tokenizer<sup>18+</sup>
+## Tokenizer<sup>17+</sup>
 
 Enumerates tokenizers that can be used for FTS. Use the enum name rather than the enum value.
 
@@ -709,7 +713,7 @@ Enumerates tokenizers that can be used for FTS. Use the enum name rather than th
 | ------------------------------- | --- | -------------- |
 | NONE_TOKENIZER     | 0  | No tokenizer is used.     |
 | ICU_TOKENIZER | 1 | The ICU tokenizer is used, which supports Chinese and multiple languages. If the ICU tokenizer is used, you can set the language to use, for example, **zh_CN** for Chinese and **tr_TR** for Turkish. For details about the supported languages, see [ICU tokenizer](https://gitee.com/openharmony/third_party_icu/blob/master/icu4c/source/data/lang/en.txt). For details about the language abbreviations, see [locales](https://gitee.com/openharmony/third_party_icu/tree/master/icu4c/source/data/locales).|
-| CUSTOM_TOKENIZER | 2 | A custom tokenizer is used. Chinese (simplified and traditional), English, and Arabic numerals are supported. Compared with **ICU_TOKENIZER**, **CUSTOM_TOKENIZER** has advantages in tokenization accuracy and resident memory usage.|
+| CUSTOM_TOKENIZER<sup>18+</sup> | 2 | A custom tokenizer is used. Chinese (simplified and traditional), English, and Arabic numerals are supported. Compared with **ICU_TOKENIZER**, **CUSTOM_TOKENIZER** has advantages in tokenization accuracy and resident memory usage.|
 
 The table creation statement varies with the tokenizer in use.
 
@@ -734,7 +738,7 @@ class EntryAbility extends UIAbility {
     };
     store = await relationalStore.getRdbStore(this.context, STORE_CONFIG);
 
-    const SQL_CREATE_TABLE = "CREATE VIRTUAL TABLE example USING fts4(name, content, tokenize=icu zh_CN)"
+    const SQL_CREATE_TABLE = "CREATE VIRTUAL TABLE example USING fts4(name, content, tokenize=icu zh_CN)";
     if (store != undefined) {
       (store as relationalStore.RdbStore).executeSql(SQL_CREATE_TABLE, (err) => {
         if (err) {
@@ -742,7 +746,7 @@ class EntryAbility extends UIAbility {
           return;
         }
         console.info('create virtual table done.');
-      })
+      });
     }
   }
 }
@@ -767,7 +771,7 @@ class EntryAbility extends UIAbility {
     };
     store = await relationalStore.getRdbStore(this.context, STORE_CONFIG);
 
-    const SQL_CREATE_TABLE = "CREATE VIRTUAL TABLE example USING fts5(name, content, tokenize='customtokenizer')"
+    const SQL_CREATE_TABLE = "CREATE VIRTUAL TABLE example USING fts5(name, content, tokenize='customtokenizer')";
     if (store != undefined) {
       (store as relationalStore.RdbStore).executeSql(SQL_CREATE_TABLE, (err) => {
         if (err) {
@@ -775,7 +779,7 @@ class EntryAbility extends UIAbility {
           return;
         }
         console.info('create virtual table done.');
-      })
+      });
     }
   }
 }
@@ -848,7 +852,7 @@ Enumerates the types of the value in a KV pair. The type varies with the paramet
 
 type ValuesBucket = Record<string, ValueType>
 
-Defines the data in the form of a KV pair. **ValuesBucket** cannot be passed across threads.
+Defines the data in the form of a KV pair. **ValuesBucket** cannot be passed across threads using Sendable.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -1138,7 +1142,7 @@ Enumerates the types of the column data. Use the enum name rather than the enum 
 
 ## RdbPredicates
 
-Provides APIs for creating the predicates (condition) for RDB store operations. This class determines whether the conditional expression for the RDB store is true or false. Multiple predicates statements can be concatenated by using **and()** by default. **RdbPredicates** cannot be passed across threads.
+Provides APIs for creating the predicates (condition) for RDB store operations. This class determines whether the conditional expression for the RDB store is true or false. Multiple predicates statements can be concatenated by using **and()** by default. **RdbPredicates** cannot be passed across threads using Sendable.
 
 ### constructor
 
@@ -1218,7 +1222,7 @@ try {
   }
 } catch (err) {
   let code = (err as BusinessError).code;
-  let message = (err as BusinessError).message
+  let message = (err as BusinessError).message;
   console.error("createDeviceManager errCode:" + code + ",errMessage:" + message);
 }
 
@@ -1343,11 +1347,11 @@ Creates an **RdbPredicates** object to add a left parenthesis.
 ```ts
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.equalTo("NAME", "Lisa")
-    .beginWrap()
-    .equalTo("AGE", 18)
-    .or()
-    .equalTo("SALARY", 200.5)
-    .endWrap()
+  .beginWrap()
+  .equalTo("AGE", 18)
+  .or()
+  .equalTo("SALARY", 200.5)
+  .endWrap();
 ```
 
 ### endWrap
@@ -1369,11 +1373,11 @@ Creates an **RdbPredicates** object to add a right parenthesis.
 ```ts
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.equalTo("NAME", "Lisa")
-    .beginWrap()
-    .equalTo("AGE", 18)
-    .or()
-    .equalTo("SALARY", 200.5)
-    .endWrap()
+  .beginWrap()
+  .equalTo("AGE", 18)
+  .or()
+  .equalTo("SALARY", 200.5)
+  .endWrap();
 ```
 
 ### or
@@ -1396,8 +1400,8 @@ Creates an **RdbPredicates** object to add the OR condition.
 // Find all records in the NAME column where the value is Lisa or Rose.
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.equalTo("NAME", "Lisa")
-    .or()
-    .equalTo("NAME", "Rose")
+  .or()
+  .equalTo("NAME", "Rose");
 ```
 
 ### and
@@ -1420,8 +1424,8 @@ Creates an **RdbPredicates** object to add the AND condition.
 // Find the records in the EMPLOYEE table where the NAME column is Lisa and the SALARY column is 200.5.
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.equalTo("NAME", "Lisa")
-    .and()
-    .equalTo("SALARY", 200.5)
+  .and()
+  .equalTo("SALARY", 200.5);
 ```
 
 ### contains
@@ -2033,7 +2037,7 @@ predicates.equalTo("NAME", "Rose").limitAs(3);
 
 offsetAs(rowOffset: number): RdbPredicates
 
-Creates an **RdbPredicates** object to set the start position of the query result. This API must be used together with **limitAs**. Otherwise, no result will be returned. To query all rows after the specified offset, pass in **-1** in **limitAs**.
+Creates an **RdbPredicates** object to set the start position of the query result. This API must be used together with **limitAs**. Otherwise, no result will be returned. To query all rows after the specified offset, pass in a parameter less than or equal to **0** in **limitAs**.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -2041,7 +2045,7 @@ Creates an **RdbPredicates** object to set the start position of the query resul
 
 | Name   | Type  | Mandatory| Description                              |
 | --------- | ------ | ---- | ---------------------------------- |
-| rowOffset | number | Yes  | Start position to set. The value should be a positive integer. The start position of the result set is **0**. If a value less than or equal to **0** is specified, the query result is returned from the 0 index position.|
+| rowOffset | number | Yes  | Start position of the query result. By default, the start position is the beginning of the result set. If **rowOffset** is a negative number, the start position is the beginning of the result set. If **rowOffset** exceeds the end of the result set, the query result is empty.|
 
 **Return value**
 
@@ -2309,9 +2313,9 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 801       | Capability not supported. |
 | 14800000  | Inner error. |
-| 14800014  | Already closed. |
+| 14800014  | The RdbStore or ResultSet is already closed. |
 | 14800015  | The database does not respond. |
-| 14800021  | SQLite: Generic error. |
+| 14800021  | SQLite: Generic error. Possible causes: Insert failed or the updated data does not exist. |
 | 14800023  | SQLite: Access permission denied. |
 | 14800024  | SQLite: The database file is locked. |
 | 14800025  | SQLite: A table in the database is locked. |
@@ -2335,17 +2339,17 @@ class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage) {
     const STORE_CONFIG: relationalStore.StoreConfig = {
       name: "RdbTest.db",
-      securityLevel: relationalStore.SecurityLevel.S3,
+      securityLevel: relationalStore.SecurityLevel.S3
     };
-	const SQL_CREATE_TABLE = 'CREATE TABLE IF NOT EXISTS EMPLOYEE (ID INTEGER PRIMARY KEY AUTOINCREMENT, NAME TEXT NOT NULL, AGE INTEGER, SALARY REAL, CODES BLOB, IDENTITY UNLIMITED INT, ASSETDATA ASSET, ASSETSDATA ASSETS, FLOATARRAY floatvector(128))'
+    const SQL_CREATE_TABLE = 'CREATE TABLE IF NOT EXISTS EMPLOYEE (ID INTEGER PRIMARY KEY AUTOINCREMENT, NAME TEXT NOT NULL, AGE INTEGER, SALARY REAL, CODES BLOB, IDENTITY UNLIMITED INT, ASSETDATA ASSET, ASSETSDATA ASSETS, FLOATARRAY floatvector(128))';
     relationalStore.getRdbStore(this.context, STORE_CONFIG).then(async (rdbStore: relationalStore.RdbStore) => {
       store = rdbStore;
       await (store as relationalStore.RdbStore).executeSql(SQL_CREATE_TABLE);
-      console.info('Get RdbStore successfully.')
+      console.info('Get RdbStore successfully.');
     }).catch((err: BusinessError) => {
       console.error(`Get RdbStore failed, code is ${err.code},message is ${err.message}`);
-    })
-    
+    });
+
     // Set the RDB store version.
     if (store != undefined) {
       (store as relationalStore.RdbStore).version = 3;
@@ -2382,10 +2386,10 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 |-----------| ------------------------------------------------------------ |
 | 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 14800000  | Inner error. |
-| 14800011  | Database corrupted. |
-| 14800014  | Already closed. |
+| 14800011  | Failed to open the database because it is corrupted. |
+| 14800014  | The RdbStore or ResultSet is already closed. |
 | 14800015  | The database does not respond. |
-| 14800021  | SQLite: Generic error. |
+| 14800021  | SQLite: Generic error. Possible causes: Insert failed or the updated data does not exist. |
 | 14800022  | SQLite: Callback routine requested an abort. |
 | 14800023  | SQLite: Access permission denied. |
 | 14800024  | SQLite: The database file is locked. |
@@ -2414,19 +2418,19 @@ const valueBucket1: relationalStore.ValuesBucket = {
   'NAME': value1,
   'AGE': value2,
   'SALARY': value3,
-  'CODES': value4,
+  'CODES': value4
 };
 const valueBucket2: relationalStore.ValuesBucket = {
   NAME: value1,
   AGE: value2,
   SALARY: value3,
-  CODES: value4,
+  CODES: value4
 };
 const valueBucket3: relationalStore.ValuesBucket = {
   "NAME": value1,
   "AGE": value2,
   "SALARY": value3,
-  "CODES": value4,
+  "CODES": value4
 };
 
 if (store != undefined) {
@@ -2436,7 +2440,7 @@ if (store != undefined) {
       return;
     }
     console.info(`Insert is successful, rowId = ${rowId}`);
-  })
+  });
 }
 ```
 
@@ -2465,10 +2469,10 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 |-----------| ---------------------------------------------------- |
 | 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 14800000  | Inner error. |
-| 14800011  | Database corrupted. |
-| 14800014  | Already closed. |
+| 14800011  | Failed to open the database because it is corrupted. |
+| 14800014  | The RdbStore or ResultSet is already closed. |
 | 14800015  | The database does not respond. |
-| 14800021  | SQLite: Generic error. |
+| 14800021  | SQLite: Generic error. Possible causes: Insert failed or the updated data does not exist. |
 | 14800022  | SQLite: Callback routine requested an abort. |
 | 14800023  | SQLite: Access permission denied. |
 | 14800024  | SQLite: The database file is locked. |
@@ -2497,19 +2501,19 @@ const valueBucket1: relationalStore.ValuesBucket = {
   'NAME': value1,
   'AGE': value2,
   'SALARY': value3,
-  'CODES': value4,
+  'CODES': value4
 };
 const valueBucket2: relationalStore.ValuesBucket = {
   NAME: value1,
   AGE: value2,
   SALARY: value3,
-  CODES: value4,
+  CODES: value4
 };
 const valueBucket3: relationalStore.ValuesBucket = {
   "NAME": value1,
   "AGE": value2,
   "SALARY": value3,
-  "CODES": value4,
+  "CODES": value4
 };
 
 if (store != undefined) {
@@ -2520,7 +2524,7 @@ if (store != undefined) {
         return;
       }
       console.info(`Insert is successful, rowId = ${rowId}`);
-  })
+    });
 }
 ```
 
@@ -2553,10 +2557,10 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 |-----------| ------------------------------------------------------------ |
 | 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 14800000  | Inner error. |
-| 14800011  | Database corrupted. |
-| 14800014  | Already closed. |
+| 14800011  | Failed to open the database because it is corrupted. |
+| 14800014  | The RdbStore or ResultSet is already closed. |
 | 14800015  | The database does not respond. |
-| 14800021  | SQLite: Generic error. |
+| 14800021  | SQLite: Generic error. Possible causes: Insert failed or the updated data does not exist. |
 | 14800022  | SQLite: Callback routine requested an abort. |
 | 14800023  | SQLite: Access permission denied. |
 | 14800024  | SQLite: The database file is locked. |
@@ -2587,19 +2591,19 @@ const valueBucket1: relationalStore.ValuesBucket = {
   'NAME': value1,
   'AGE': value2,
   'SALARY': value3,
-  'CODES': value4,
+  'CODES': value4
 };
 const valueBucket2: relationalStore.ValuesBucket = {
   NAME: value1,
   AGE: value2,
   SALARY: value3,
-  CODES: value4,
+  CODES: value4
 };
 const valueBucket3: relationalStore.ValuesBucket = {
   "NAME": value1,
   "AGE": value2,
   "SALARY": value3,
-  "CODES": value4,
+  "CODES": value4
 };
 
 if (store != undefined) {
@@ -2607,7 +2611,7 @@ if (store != undefined) {
     console.info(`Insert is successful, rowId = ${rowId}`);
   }).catch((err: BusinessError) => {
     console.error(`Insert is failed, code is ${err.code},message is ${err.message}`);
-  })
+  });
 }
 ```
 
@@ -2641,10 +2645,10 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 |-----------| ------------------------------------------------------------ |
 | 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 14800000  | Inner error. |
-| 14800011  | Database corrupted. |
-| 14800014  | Already closed. |
+| 14800011  | Failed to open the database because it is corrupted. |
+| 14800014  | The RdbStore or ResultSet is already closed. |
 | 14800015  | The database does not respond. |
-| 14800021  | SQLite: Generic error. |
+| 14800021  | SQLite: Generic error. Possible causes: Insert failed or the updated data does not exist. |
 | 14800022  | SQLite: Callback routine requested an abort. |
 | 14800023  | SQLite: Access permission denied. |
 | 14800024  | SQLite: The database file is locked. |
@@ -2675,19 +2679,19 @@ const valueBucket1: relationalStore.ValuesBucket = {
   'NAME': value1,
   'AGE': value2,
   'SALARY': value3,
-  'CODES': value4,
+  'CODES': value4
 };
 const valueBucket2: relationalStore.ValuesBucket = {
   NAME: value1,
   AGE: value2,
   SALARY: value3,
-  CODES: value4,
+  CODES: value4
 };
 const valueBucket3: relationalStore.ValuesBucket = {
   "NAME": value1,
   "AGE": value2,
   "SALARY": value3,
-  "CODES": value4,
+  "CODES": value4
 };
 
 if (store != undefined) {
@@ -2695,7 +2699,7 @@ if (store != undefined) {
     console.info(`Insert is successful, rowId = ${rowId}`);
   }).catch((err: BusinessError) => {
     console.error(`Insert is failed, code is ${err.code},message is ${err.message}`);
-  })
+  });
 }
 ```
 
@@ -2729,10 +2733,10 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ------------ | ------------------------------------------------------------ |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 14800000     | Inner error.                                                 |
-| 14800011     | Database corrupted.                                          |
-| 14800014     | Already closed.                                              |
+| 14800011     | Failed to open the database because it is corrupted.                                          |
+| 14800014     | The RdbStore or ResultSet is already closed.                                              |
 | 14800015     | The database does not respond.                                        |
-| 14800021     | SQLite: Generic error.                                       |
+| 14800021     | SQLite: Generic error. Possible causes: Insert failed or the updated data does not exist.                                       |
 | 14800022     | SQLite: Callback routine requested an abort.                 |
 | 14800023     | SQLite: Access permission denied.                            |
 | 14800024     | SQLite: The database file is locked.                         |
@@ -2763,27 +2767,27 @@ const valueBucket1: relationalStore.ValuesBucket = {
   'NAME': value1,
   'AGE': value2,
   'SALARY': value3,
-  'CODES': value4,
+  'CODES': value4
 };
 const valueBucket2: relationalStore.ValuesBucket = {
   NAME: value1,
   AGE: value2,
   SALARY: value3,
-  CODES: value4,
+  CODES: value4
 };
 const valueBucket3: relationalStore.ValuesBucket = {
   "NAME": value1,
   "AGE": value2,
   "SALARY": value3,
-  "CODES": value4,
+  "CODES": value4
 };
 
 if (store != undefined) {
   try {
-    let rowId : number = (store as relationalStore.RdbStore).insertSync("EMPLOYEE", valueBucket1, relationalStore.ConflictResolution.ON_CONFLICT_REPLACE);
+    let rowId: number = (store as relationalStore.RdbStore).insertSync("EMPLOYEE", valueBucket1, relationalStore.ConflictResolution.ON_CONFLICT_REPLACE);
     console.info(`Insert is successful, rowId = ${rowId}`);
   } catch (error) {
-      console.error(`Insert is failed, code is ${error.code},message is ${error.message}`);
+    console.error(`Insert is failed, code is ${error.code},message is ${error.message}`);
   }
 }
 ```
@@ -2818,10 +2822,10 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ------------ | ------------------------------------------------------------ |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 14800000     | Inner error.                                                 |
-| 14800011     | Database corrupted.                                          |
-| 14800014     | Already closed.                                              |
+| 14800011     | Failed to open the database because it is corrupted.                                          |
+| 14800014     | The RdbStore or ResultSet is already closed.                                              |
 | 14800015     | The database does not respond.                                        |
-| 14800021     | SQLite: Generic error.                                       |
+| 14800021     | SQLite: Generic error. Possible causes: Insert failed or the updated data does not exist.                                       |
 | 14800022     | SQLite: Callback routine requested an abort.                 |
 | 14800023     | SQLite: Access permission denied.                            |
 | 14800024     | SQLite: The database file is locked.                         |
@@ -2846,13 +2850,13 @@ const valuesBucket: relationalStore.ValuesBucket = {
   "NAME": 'hangman',
   "AGE": 18,
   "SALARY": 100.5,
-  "CODES": new Uint8Array([1,2,3]),
+  "CODES": new Uint8Array([1, 2, 3])
 };
 const sendableValuesBucket = sendableRelationalStore.toSendableValuesBucket(valuesBucket);
 
 if (store != undefined) {
   try {
-    let rowId : number = (store as relationalStore.RdbStore).insertSync("EMPLOYEE", sendableValuesBucket, relationalStore.ConflictResolution.ON_CONFLICT_REPLACE);
+    let rowId: number = (store as relationalStore.RdbStore).insertSync("EMPLOYEE", sendableValuesBucket, relationalStore.ConflictResolution.ON_CONFLICT_REPLACE);
     console.info(`Insert is successful, rowId = ${rowId}`);
   } catch (error) {
     console.error(`Insert is failed, code is ${error.code},message is ${error.message}`);
@@ -2884,10 +2888,10 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 |-----------| ------------------------------------------------------------ |
 | 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 14800000  | Inner error. |
-| 14800011  | Database corrupted. |
-| 14800014  | Already closed. |
+| 14800011  | Failed to open the database because it is corrupted. |
+| 14800014  | The RdbStore or ResultSet is already closed. |
 | 14800015  | The database does not respond. |
-| 14800021  | SQLite: Generic error. |
+| 14800021  | SQLite: Generic error. Possible causes: Insert failed or the updated data does not exist. |
 | 14800022  | SQLite: Callback routine requested an abort. |
 | 14800023  | SQLite: Access permission denied. |
 | 14800024  | SQLite: The database file is locked. |
@@ -2906,7 +2910,6 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-
 let value1 = "Lisa";
 let value2 = 18;
 let value3 = 100.5;
@@ -2924,19 +2927,19 @@ const valueBucket1: relationalStore.ValuesBucket = {
   'NAME': value1,
   'AGE': value2,
   'SALARY': value3,
-  'CODES': value4,
+  'CODES': value4
 };
 const valueBucket2: relationalStore.ValuesBucket = {
   'NAME': value5,
   'AGE': value6,
   'SALARY': value7,
-  'CODES': value8,
+  'CODES': value8
 };
 const valueBucket3: relationalStore.ValuesBucket = {
   'NAME': value9,
   'AGE': value10,
   'SALARY': value11,
-  'CODES': value12,
+  'CODES': value12
 };
 
 let valueBuckets = new Array(valueBucket1, valueBucket2, valueBucket3);
@@ -2980,10 +2983,10 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 |-----------| ------------------------------------------------------------ |
 | 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 14800000  | Inner error. |
-| 14800011  | Database corrupted. |
-| 14800014  | Already closed. |
+| 14800011  | Failed to open the database because it is corrupted. |
+| 14800014  | The RdbStore or ResultSet is already closed. |
 | 14800015  | The database does not respond. |
-| 14800021  | SQLite: Generic error. |
+| 14800021  | SQLite: Generic error. Possible causes: Insert failed or the updated data does not exist. |
 | 14800022  | SQLite: Callback routine requested an abort. |
 | 14800023  | SQLite: Access permission denied. |
 | 14800024  | SQLite: The database file is locked. |
@@ -3021,19 +3024,19 @@ const valueBucket1: relationalStore.ValuesBucket = {
   'NAME': value1,
   'AGE': value2,
   'SALARY': value3,
-  'CODES': value4,
+  'CODES': value4
 };
 const valueBucket2: relationalStore.ValuesBucket = {
   'NAME': value5,
   'AGE': value6,
   'SALARY': value7,
-  'CODES': value8,
+  'CODES': value8
 };
 const valueBucket3: relationalStore.ValuesBucket = {
   'NAME': value9,
   'AGE': value10,
   'SALARY': value11,
-  'CODES': value12,
+  'CODES': value12
 };
 
 let valueBuckets = new Array(valueBucket1, valueBucket2, valueBucket3);
@@ -3050,7 +3053,7 @@ if (store != undefined) {
 
 batchInsertSync(table: string, values: Array&lt;ValuesBucket&gt;):number
 
-Inserts a batch of data into a table. This API returns the result synchronously.
+Inserts a batch of data into a table.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -3075,10 +3078,10 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ------------ | ------------------------------------------------------------ |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 14800000     | Inner error.                                                 |
-| 14800011     | Database corrupted.                                          |
-| 14800014     | Already closed.                                              |
+| 14800011     | Failed to open the database because it is corrupted.                                          |
+| 14800014     | The RdbStore or ResultSet is already closed.                                              |
 | 14800015     | The database does not respond.                                        |
-| 14800021     | SQLite: Generic error.                                       |
+| 14800021     | SQLite: Generic error. Possible causes: Insert failed or the updated data does not exist.                                       |
 | 14800022     | SQLite: Callback routine requested an abort.                 |
 | 14800023     | SQLite: Access permission denied.                            |
 | 14800024     | SQLite: The database file is locked.                         |
@@ -3116,19 +3119,19 @@ const valueBucket1: relationalStore.ValuesBucket = {
   'NAME': value1,
   'AGE': value2,
   'SALARY': value3,
-  'CODES': value4,
+  'CODES': value4
 };
 const valueBucket2: relationalStore.ValuesBucket = {
   'NAME': value5,
   'AGE': value6,
   'SALARY': value7,
-  'CODES': value8,
+  'CODES': value8
 };
 const valueBucket3: relationalStore.ValuesBucket = {
   'NAME': value9,
   'AGE': value10,
   'SALARY': value11,
-  'CODES': value12,
+  'CODES': value12
 };
 
 let valueBuckets = new Array(valueBucket1, valueBucket2, valueBucket3);
@@ -3137,7 +3140,7 @@ if (store != undefined) {
     let insertNum: number = (store as relationalStore.RdbStore).batchInsertSync("EMPLOYEE", valueBuckets);
     console.info(`batchInsert is successful, the number of values that were inserted = ${insertNum}`);
   } catch (err) {
-      console.error(`batchInsert is failed, code is ${err.code},message is ${err.message}`);
+    console.error(`batchInsert is failed, code is ${err.code},message is ${err.message}`);
   }
 }
 ```
@@ -3172,10 +3175,10 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ------------ | ------------------------------------------------------------ |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 14800000     | Inner error.                                                 |
-| 14800011     | Database corrupted.                                          |
-| 14800014     | Already closed.                                              |
+| 14800011     | Failed to open the database because it is corrupted. |
+| 14800014     | The RdbStore or ResultSet is already closed.                                              |
 | 14800015     | The database does not respond.                                        |
-| 14800021     | SQLite: Generic error.                                       |
+| 14800021     | SQLite: Generic error. Possible causes: Insert failed or the updated data does not exist.                                     |
 | 14800022     | SQLite: Callback routine requested an abort.                 |
 | 14800023     | SQLite: Access permission denied.                            |
 | 14800024     | SQLite: The database file is locked.                         |
@@ -3213,19 +3216,19 @@ const valueBucket1: relationalStore.ValuesBucket = {
   'NAME': value1,
   'AGE': value2,
   'SALARY': value3,
-  'CODES': value4,
+  'CODES': value4
 };
 const valueBucket2: relationalStore.ValuesBucket = {
   'NAME': value5,
   'AGE': value6,
   'SALARY': value7,
-  'CODES': value8,
+  'CODES': value8
 };
 const valueBucket3: relationalStore.ValuesBucket = {
   'NAME': value9,
   'AGE': value10,
   'SALARY': value11,
-  'CODES': value12,
+  'CODES': value12
 };
 
 let valueBuckets = new Array(valueBucket1, valueBucket2, valueBucket3);
@@ -3234,7 +3237,7 @@ if (store != undefined) {
     console.info(`batchInsert is successful, insertNum = ${insertNum}`);
   }).catch((err: BusinessError) => {
     console.error(`batchInsert is failed, code is ${err.code},message is ${err.message}`);
-  })
+  });
 }
 ```
 
@@ -3268,10 +3271,10 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ------------ | ------------------------------------------------------------ |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 14800000     | Inner error.                                                 |
-| 14800011     | Database corrupted.                                          |
-| 14800014     | Already closed.                                              |
+| 14800011     | Failed to open the database because it is corrupted. |
+| 14800014     | The RdbStore or ResultSet is already closed.                                              |
 | 14800015     | The database does not respond.                                        |
-| 14800021     | SQLite: Generic error.                                       |
+| 14800021     | SQLite: Generic error. Possible causes: Insert failed or the updated data does not exist.                                     |
 | 14800022     | SQLite: Callback routine requested an abort.                 |
 | 14800023     | SQLite: Access permission denied.                            |
 | 14800024     | SQLite: The database file is locked.                         |
@@ -3309,19 +3312,19 @@ const valueBucket1: relationalStore.ValuesBucket = {
   'NAME': value1,
   'AGE': value2,
   'SALARY': value3,
-  'CODES': value4,
+  'CODES': value4
 };
 const valueBucket2: relationalStore.ValuesBucket = {
   'NAME': value5,
   'AGE': value6,
   'SALARY': value7,
-  'CODES': value8,
+  'CODES': value8
 };
 const valueBucket3: relationalStore.ValuesBucket = {
   'NAME': value9,
   'AGE': value10,
   'SALARY': value11,
-  'CODES': value12,
+  'CODES': value12
 };
 
 let valueBuckets = new Array(valueBucket1, valueBucket2, valueBucket3);
@@ -3330,7 +3333,7 @@ if (store != undefined) {
     let insertNum: number = (store as relationalStore.RdbStore).batchInsertWithConflictResolutionSync("EMPLOYEE", valueBuckets, relationalStore.ConflictResolution.ON_CONFLICT_REPLACE);
     console.info(`batchInsert is successful, the number of values that were inserted = ${insertNum}`);
   } catch (err) {
-      console.error(`batchInsert is failed, code is ${err.code},message is ${err.message}`);
+    console.error(`batchInsert is failed, code is ${err.code},message is ${err.message}`);
   }
 }
 ```
@@ -3359,10 +3362,10 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 |-----------| ------------------------------------------------------------ |
 | 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 14800000  | Inner error. |
-| 14800011  | Database corrupted. |
-| 14800014  | Already closed. |
+| 14800011  | Failed to open the database because it is corrupted. |
+| 14800014  | The RdbStore or ResultSet is already closed. |
 | 14800015  | The database does not respond. |
-| 14800021  | SQLite: Generic error. |
+| 14800021  | SQLite: Generic error. Possible causes: Insert failed or the updated data does not exist. |
 | 14800022  | SQLite: Callback routine requested an abort. |
 | 14800023  | SQLite: Access permission denied. |
 | 14800024  | SQLite: The database file is locked. |
@@ -3381,7 +3384,6 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-
 let value1 = "Rose";
 let value2 = 22;
 let value3 = 200.5;
@@ -3392,31 +3394,31 @@ const valueBucket1: relationalStore.ValuesBucket = {
   'NAME': value1,
   'AGE': value2,
   'SALARY': value3,
-  'CODES': value4,
+  'CODES': value4
 };
 const valueBucket2: relationalStore.ValuesBucket = {
   NAME: value1,
   AGE: value2,
   SALARY: value3,
-  CODES: value4,
+  CODES: value4
 };
 const valueBucket3: relationalStore.ValuesBucket = {
   "NAME": value1,
   "AGE": value2,
   "SALARY": value3,
-  "CODES": value4,
+  "CODES": value4
 };
 
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.equalTo("NAME", "Lisa");
 if (store != undefined) {
-  (store as relationalStore.RdbStore).update(valueBucket1, predicates,(err, rows) => {
+  (store as relationalStore.RdbStore).update(valueBucket1, predicates, (err, rows) => {
     if (err) {
       console.error(`Updated failed, code is ${err.code},message is ${err.message}`);
       return;
     }
     console.info(`Updated row count: ${rows}`);
-  })
+  });
 }
 ```
 
@@ -3445,10 +3447,10 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 |-----------| ------------------------------------------------------------ |
 | 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 14800000  | Inner error. |
-| 14800011  | Database corrupted. |
-| 14800014  | Already closed. |
+| 14800011  | Failed to open the database because it is corrupted. |
+| 14800014  | The RdbStore or ResultSet is already closed. |
 | 14800015  | The database does not respond. |
-| 14800021  | SQLite: Generic error. |
+| 14800021  | SQLite: Generic error. Possible causes: Insert failed or the updated data does not exist. |
 | 14800022  | SQLite: Callback routine requested an abort. |
 | 14800023  | SQLite: Access permission denied. |
 | 14800024  | SQLite: The database file is locked. |
@@ -3467,7 +3469,6 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-
 let value1 = "Rose";
 let value2 = 22;
 let value3 = 200.5;
@@ -3478,19 +3479,19 @@ const valueBucket1: relationalStore.ValuesBucket = {
   'NAME': value1,
   'AGE': value2,
   'SALARY': value3,
-  'CODES': value4,
+  'CODES': value4
 };
 const valueBucket2: relationalStore.ValuesBucket = {
   NAME: value1,
   AGE: value2,
   SALARY: value3,
-  CODES: value4,
+  CODES: value4
 };
 const valueBucket3: relationalStore.ValuesBucket = {
   "NAME": value1,
   "AGE": value2,
   "SALARY": value3,
-  "CODES": value4,
+  "CODES": value4
 };
 
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
@@ -3502,7 +3503,7 @@ if (store != undefined) {
       return;
     }
     console.info(`Updated row count: ${rows}`);
-  })
+  });
 }
 ```
 
@@ -3535,10 +3536,10 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 |-----------| ------------------------------------------------------------ |
 | 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 14800000  | Inner error. |
-| 14800011  | Database corrupted. |
-| 14800014  | Already closed. |
+| 14800011  | Failed to open the database because it is corrupted. |
+| 14800014  | The RdbStore or ResultSet is already closed. |
 | 14800015  | The database does not respond. |
-| 14800021  | SQLite: Generic error. |
+| 14800021  | SQLite: Generic error. Possible causes: Insert failed or the updated data does not exist. |
 | 14800022  | SQLite: Callback routine requested an abort. |
 | 14800023  | SQLite: Access permission denied. |
 | 14800024  | SQLite: The database file is locked. |
@@ -3569,19 +3570,19 @@ const valueBucket1: relationalStore.ValuesBucket = {
   'NAME': value1,
   'AGE': value2,
   'SALARY': value3,
-  'CODES': value4,
+  'CODES': value4
 };
 const valueBucket2: relationalStore.ValuesBucket = {
   NAME: value1,
   AGE: value2,
   SALARY: value3,
-  CODES: value4,
+  CODES: value4
 };
 const valueBucket3: relationalStore.ValuesBucket = {
   "NAME": value1,
   "AGE": value2,
   "SALARY": value3,
-  "CODES": value4,
+  "CODES": value4
 };
 
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
@@ -3591,7 +3592,7 @@ if (store != undefined) {
     console.info(`Updated row count: ${rows}`);
   }).catch((err: BusinessError) => {
     console.error(`Updated failed, code is ${err.code},message is ${err.message}`);
-  })
+  });
 }
 ```
 
@@ -3625,10 +3626,10 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 |-----------| ------------------------------------------------------------ |
 | 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 14800000  | Inner error. |
-| 14800011  | Database corrupted. |
-| 14800014  | Already closed. |
+| 14800011  | Failed to open the database because it is corrupted. |
+| 14800014  | The RdbStore or ResultSet is already closed. |
 | 14800015  | The database does not respond. |
-| 14800021  | SQLite: Generic error. |
+| 14800021  | SQLite: Generic error. Possible causes: Insert failed or the updated data does not exist. |
 | 14800022  | SQLite: Callback routine requested an abort. |
 | 14800023  | SQLite: Access permission denied. |
 | 14800024  | SQLite: The database file is locked. |
@@ -3659,19 +3660,19 @@ const valueBucket1: relationalStore.ValuesBucket = {
   'NAME': value1,
   'AGE': value2,
   'SALARY': value3,
-  'CODES': value4,
+  'CODES': value4
 };
 const valueBucket2: relationalStore.ValuesBucket = {
   NAME: value1,
   AGE: value2,
   SALARY: value3,
-  CODES: value4,
+  CODES: value4
 };
 const valueBucket3: relationalStore.ValuesBucket = {
   "NAME": value1,
   "AGE": value2,
   "SALARY": value3,
-  "CODES": value4,
+  "CODES": value4
 };
 
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
@@ -3681,7 +3682,7 @@ if (store != undefined) {
     console.info(`Updated row count: ${rows}`);
   }).catch((err: BusinessError) => {
     console.error(`Updated failed, code is ${err.code},message is ${err.message}`);
-  })
+  });
 }
 ```
 
@@ -3689,7 +3690,7 @@ if (store != undefined) {
 
 updateSync(values: ValuesBucket, predicates: RdbPredicates, conflict?: ConflictResolution):number
 
-Updates data in the RDB store based on the specified **RdbPredicates** instance. Due to the limit of the shared memory (max. 2 MB), a single data record cannot exceed 2 MB. Otherwise, the query operation will fail.
+Updates data in the database based on the specified **RdbPredicates** instance. Due to the limit of the shared memory (max. 2 MB), a single data record cannot exceed 2 MB. Otherwise, the query operation will fail.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -3715,10 +3716,10 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ------------ | ------------------------------------------------------------ |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 14800000     | Inner error.                                                 |
-| 14800011     | Database corrupted.                                          |
-| 14800014     | Already closed.                                              |
+| 14800011     | Failed to open the database because it is corrupted.                                          |
+| 14800014     | The RdbStore or ResultSet is already closed.                                              |
 | 14800015     | The database does not respond.                                        |
-| 14800021     | SQLite: Generic error.                                       |
+| 14800021     | SQLite: Generic error. Possible causes: Insert failed or the updated data does not exist.                                       |
 | 14800022     | SQLite: Callback routine requested an abort.                 |
 | 14800023     | SQLite: Access permission denied.                            |
 | 14800024     | SQLite: The database file is locked.                         |
@@ -3749,19 +3750,19 @@ const valueBucket1: relationalStore.ValuesBucket = {
   'NAME': value1,
   'AGE': value2,
   'SALARY': value3,
-  'CODES': value4,
+  'CODES': value4
 };
 const valueBucket2: relationalStore.ValuesBucket = {
   NAME: value1,
   AGE: value2,
   SALARY: value3,
-  CODES: value4,
+  CODES: value4
 };
 const valueBucket3: relationalStore.ValuesBucket = {
   "NAME": value1,
   "AGE": value2,
   "SALARY": value3,
-  "CODES": value4,
+  "CODES": value4
 };
 
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
@@ -3789,7 +3790,7 @@ Deletes data from the RDB store based on the specified **RdbPredicates** object.
 | Name    | Type                                | Mandatory| Description                                     |
 | ---------- | ------------------------------------ | ---- | ----------------------------------------- |
 | predicates | [RdbPredicates](#rdbpredicates) | Yes  | Conditions specified by the **RdbPredicates** object for deleting data.|
-| callback   | AsyncCallback&lt;number&gt;          | Yes  | Callback used to return the number of rows deleted. |
+| callback   | AsyncCallback&lt;number&gt;          | Yes  | Callback used to return the number of rows deleted.|
 
 **Error codes**
 
@@ -3799,10 +3800,10 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 |-----------| ------------------------------------------------------------ |
 | 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 14800000  | Inner error. |
-| 14800011  | Database corrupted. |
-| 14800014  | Already closed. |
+| 14800011  | Failed to open the database because it is corrupted. |
+| 14800014  | The RdbStore or ResultSet is already closed. |
 | 14800015  | The database does not respond. |
-| 14800021  | SQLite: Generic error. |
+| 14800021  | SQLite: Generic error. Possible causes: Insert failed or the updated data does not exist. |
 | 14800022  | SQLite: Callback routine requested an abort. |
 | 14800023  | SQLite: Access permission denied. |
 | 14800024  | SQLite: The database file is locked. |
@@ -3830,7 +3831,7 @@ if (store != undefined) {
       return;
     }
     console.info(`Delete rows: ${rows}`);
-  })
+  });
 }
 ```
 
@@ -3862,10 +3863,10 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 |-----------| ------------------------------------------------------------ |
 | 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 14800000  | Inner error. |
-| 14800011  | Database corrupted. |
-| 14800014  | Already closed. |
+| 14800011  | Failed to open the database because it is corrupted. |
+| 14800014  | The RdbStore or ResultSet is already closed. |
 | 14800015  | The database does not respond. |
-| 14800021  | SQLite: Generic error. |
+| 14800021  | SQLite: Generic error. Possible causes: Insert failed or the updated data does not exist. |
 | 14800022  | SQLite: Callback routine requested an abort. |
 | 14800023  | SQLite: Access permission denied. |
 | 14800024  | SQLite: The database file is locked. |
@@ -3893,7 +3894,7 @@ if (store != undefined) {
     console.info(`Delete rows: ${rows}`);
   }).catch((err: BusinessError) => {
     console.error(`Delete failed, code is ${err.code},message is ${err.message}`);
-  })
+  });
 }
 ```
 
@@ -3901,7 +3902,7 @@ if (store != undefined) {
 
 deleteSync(predicates: RdbPredicates):number
 
-Deletes data from the RDB store based on the specified **RdbPredicates** object.
+Deletes data from the database based on the specified **RdbPredicates** object.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -3915,7 +3916,7 @@ Deletes data from the RDB store based on the specified **RdbPredicates** object.
 
 | Type  | Description              |
 | ------ | ------------------ |
-| number | Number of rows updated.|
+| number | Number of rows deleted.|
 
 **Error codes**
 
@@ -3925,10 +3926,10 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ------------ | ------------------------------------------------------------ |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 14800000     | Inner error.                                                 |
-| 14800011     | Database corrupted.                                          |
-| 14800014     | Already closed.                                              |
+| 14800011     | Failed to open the database because it is corrupted.                                          |
+| 14800014     | The RdbStore or ResultSet is already closed.                                              |
 | 14800015     | The database does not respond.                                        |
-| 14800021     | SQLite: Generic error.                                       |
+| 14800021     | SQLite: Generic error. Possible causes: Insert failed or the updated data does not exist.                                       |
 | 14800022     | SQLite: Callback routine requested an abort.                 |
 | 14800023     | SQLite: Access permission denied.                            |
 | 14800024     | SQLite: The database file is locked.                         |
@@ -3953,7 +3954,7 @@ let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.equalTo("NAME", "Lisa");
 if (store != undefined) {
   try {
-    let rows: Number = (store as relationalStore.RdbStore).deleteSync(predicates)
+    let rows: Number = (store as relationalStore.RdbStore).deleteSync(predicates);
     console.info(`Delete rows: ${rows}`);
   } catch (err) {
     console.error(`Delete failed, code is ${err.code},message is ${err.message}`);
@@ -3984,7 +3985,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 |-----------| ------------------------------------------------------------ |
 | 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 14800000  | Inner error. |
-| 14800014  | Already closed. |
+| 14800014  | The RdbStore or ResultSet is already closed. |
 | 14800015  | The database does not respond. |
 
 **Example**
@@ -3993,7 +3994,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.equalTo("NAME", "Rose");
 if (store != undefined) {
-  (store as relationalStore.RdbStore).query(predicates, (err, resultSet) => {
+  (store as relationalStore.RdbStore).query(predicates, async (err, resultSet) => {
     if (err) {
       console.error(`Query failed, code is ${err.code},message is ${err.message}`);
       return;
@@ -4009,7 +4010,7 @@ if (store != undefined) {
     }
     // Release the memory of resultSet. If the memory is not released, FD or memory leaks may occur.
     resultSet.close();
-  })
+  });
 }
 ```
 
@@ -4037,7 +4038,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 |-----------| ------------------------------------------------------------ |
 | 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 14800000  | Inner error. |
-| 14800014  | Already closed. |
+| 14800014  | The RdbStore or ResultSet is already closed. |
 | 14800015  | The database does not respond. |
 
 **Example**
@@ -4046,7 +4047,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.equalTo("NAME", "Rose");
 if (store != undefined) {
-  (store as relationalStore.RdbStore).query(predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"], (err, resultSet) => {
+  (store as relationalStore.RdbStore).query(predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"], async (err, resultSet) => {
     if (err) {
       console.error(`Query failed, code is ${err.code},message is ${err.message}`);
       return;
@@ -4062,7 +4063,7 @@ if (store != undefined) {
     }
     // Release the memory of resultSet. If the memory is not released, FD or memory leaks may occur.
     resultSet.close();
-  })
+  });
 }
 ```
 
@@ -4089,7 +4090,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 |-----------| ------------------------------------------------------------ |
 | 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 14800000  | Inner error. |
-| 14800014  | Already closed. |
+| 14800014  | The RdbStore or ResultSet is already closed. |
 | 14800015  | The database does not respond. |
 
 **Return value**
@@ -4106,7 +4107,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.equalTo("NAME", "Rose");
 if (store != undefined) {
-  (store as relationalStore.RdbStore).query(predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"]).then((resultSet: relationalStore.ResultSet) => {
+  (store as relationalStore.RdbStore).query(predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"]).then(async (resultSet: relationalStore.ResultSet) => {
     console.info(`ResultSet column names: ${resultSet.columnNames}, column count: ${resultSet.columnCount}`);
     // resultSet is a cursor of a data set. By default, the cursor points to the -1st record. Valid data starts from 0.
     while (resultSet.goToNextRow()) {
@@ -4120,7 +4121,7 @@ if (store != undefined) {
     resultSet.close();
   }).catch((err: BusinessError) => {
     console.error(`Query failed, code is ${err.code},message is ${err.message}`);
-  })
+  });
 }
 ```
 
@@ -4128,7 +4129,7 @@ if (store != undefined) {
 
 querySync(predicates: RdbPredicates, columns?: Array&lt;string&gt;):ResultSet
 
-Queries data in the RDB store based on specified conditions. This API returns the result synchronously. If complex logic and a large number of loops are involved in the operations on the **resultSet** obtained by **querySync()**, the freeze problem may occur. You are advised to perform this operation in the [taskpool](../apis-arkts/js-apis-taskpool.md) thread.
+Queries data in a database based on specified conditions. This API returns the result synchronously. If complex logic and a large number of loops are involved in the operations on the **resultSet** obtained by **querySync()**, the freeze problem may occur. You are advised to perform this operation in the [taskpool](../apis-arkts/js-apis-taskpool.md) thread.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -4147,7 +4148,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ------------ | ------------------------------------------------------------ |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 14800000     | Inner error.                                                 |
-| 14800014     | Already closed.                                              |
+| 14800014     | The RdbStore or ResultSet is already closed.                                              |
 | 14800015     | The database does not respond.                                        |
 
 **Return value**
@@ -4214,7 +4215,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 801       | Capability not supported. |
 | 14800000  | Inner error. |
-| 14800014  | Already closed. |
+| 14800014  | The RdbStore or ResultSet is already closed. |
 
 **Example**
 
@@ -4240,7 +4241,7 @@ try {
 let predicates = new relationalStore.RdbPredicates('EMPLOYEE');
 predicates.greaterThan("id", 0);
 if (store != undefined && deviceId != undefined) {
-  (store as relationalStore.RdbStore).remoteQuery(deviceId, "EMPLOYEE", predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"]).then((resultSet: relationalStore.ResultSet) => {
+  (store as relationalStore.RdbStore).remoteQuery(deviceId, "EMPLOYEE", predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"]).then(async (resultSet: relationalStore.ResultSet) => {
     console.info(`ResultSet column names: ${resultSet.columnNames}, column count: ${resultSet.columnCount}`);
     // resultSet is a cursor of a data set. By default, the cursor points to the -1st record. Valid data starts from 0.
     while (resultSet.goToNextRow()) {
@@ -4254,7 +4255,7 @@ if (store != undefined && deviceId != undefined) {
     resultSet.close();
   }).catch((err: BusinessError) => {
     console.error(`Failed to remoteQuery, code is ${err.code},message is ${err.message}`);
-  })
+  });
 }
 ```
 
@@ -4294,7 +4295,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 801       | Capability not supported. |
 | 14800000  | Inner error. |
-| 14800014  | Already closed. |
+| 14800014  | The RdbStore or ResultSet is already closed. |
 
 **Example**
 
@@ -4320,7 +4321,7 @@ try {
 let predicates = new relationalStore.RdbPredicates('EMPLOYEE');
 predicates.greaterThan("id", 0);
 if (store != undefined && deviceId != undefined) {
-  (store as relationalStore.RdbStore).remoteQuery(deviceId, "EMPLOYEE", predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"]).then((resultSet: relationalStore.ResultSet) => {
+  (store as relationalStore.RdbStore).remoteQuery(deviceId, "EMPLOYEE", predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"]).then(async (resultSet: relationalStore.ResultSet) => {
     console.info(`ResultSet column names: ${resultSet.columnNames}, column count: ${resultSet.columnCount}`);
     // resultSet is a cursor of a data set. By default, the cursor points to the -1st record. Valid data starts from 0.
     while (resultSet.goToNextRow()) {
@@ -4334,7 +4335,7 @@ if (store != undefined && deviceId != undefined) {
     resultSet.close();
   }).catch((err: BusinessError) => {
     console.error(`Failed to remoteQuery, code is ${err.code},message is ${err.message}`);
-  })
+  });
 }
 ```
 
@@ -4365,7 +4366,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 |-----------| ------------------------------------------------------------ |
 | 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 14800000  | Inner error. |
-| 14800014  | Already closed. |
+| 14800014  | The RdbStore or ResultSet is already closed. |
 | 14800015  | The database does not respond. |
 
 **Example**
@@ -4374,7 +4375,7 @@ RDB store:
 
 ```ts
 if (store != undefined) {
-  (store as relationalStore.RdbStore).querySql("SELECT * FROM EMPLOYEE CROSS JOIN BOOK WHERE BOOK.NAME = 'sanguo'", (err, resultSet) => {
+  (store as relationalStore.RdbStore).querySql("SELECT * FROM EMPLOYEE CROSS JOIN BOOK WHERE BOOK.NAME = 'sanguo'", async (err, resultSet) => {
     if (err) {
       console.error(`Query failed, code is ${err.code},message is ${err.message}`);
       return;
@@ -4390,7 +4391,7 @@ if (store != undefined) {
     }
     // Release the memory of resultSet. If the memory is not released, FD or memory leaks may occur.
     resultSet.close();
-  })
+  });
 }
 ```
 
@@ -4402,7 +4403,7 @@ const querySql = "select id, repr <-> '[1.5,5.6]' as distance from test ORDER BY
 let resultSet = await store.querySql(querySql);
 
 // Aggregate query. GROUP BY supports multiple columns.
-const querySql1 = "select id, repr from test group by id, repr having max(repr<=>[1.5,5.6]);";
+const querySql1 = "select id, repr from test group by id, repr having max(repr<=>'[1.5,5.6]');";
 let resultSet1 = await store.querySql(querySql1);
 
 // Subquery. A maximum of 32 nested layers are supported.
@@ -4438,14 +4439,14 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 |-----------| ------------------------------------------------------------ |
 | 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 14800000  | Inner error. |
-| 14800014  | Already closed. |
+| 14800014  | The RdbStore or ResultSet is already closed. |
 | 14800015  | The database does not respond. |
 
 **Example**
 
 ```ts
 if (store != undefined) {
-  (store as relationalStore.RdbStore).querySql("SELECT * FROM EMPLOYEE CROSS JOIN BOOK WHERE BOOK.NAME = ?", ['sanguo'], (err, resultSet) => {
+  (store as relationalStore.RdbStore).querySql("SELECT * FROM EMPLOYEE CROSS JOIN BOOK WHERE BOOK.NAME = ?", ['sanguo'], async (err, resultSet) => {
     if (err) {
       console.error(`Query failed, code is ${err.code},message is ${err.message}`);
       return;
@@ -4461,7 +4462,7 @@ if (store != undefined) {
     }
     // Release the memory of resultSet. If the memory is not released, FD or memory leaks may occur.
     resultSet.close();
-  })
+  });
 }
 ```
 
@@ -4498,7 +4499,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 |-----------| ------------------------------------------------------------ |
 | 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 14800000  | Inner error. |
-| 14800014  | Already closed. |
+| 14800014  | The RdbStore or ResultSet is already closed. |
 | 14800015  | The database does not respond. |
 
 **Example**
@@ -4509,7 +4510,7 @@ RDB store:
 import { BusinessError } from '@kit.BasicServicesKit';
 
 if (store != undefined) {
-  (store as relationalStore.RdbStore).querySql("SELECT * FROM EMPLOYEE CROSS JOIN BOOK WHERE BOOK.NAME = 'sanguo'").then((resultSet: relationalStore.ResultSet) => {
+  (store as relationalStore.RdbStore).querySql("SELECT * FROM EMPLOYEE CROSS JOIN BOOK WHERE BOOK.NAME = 'sanguo'").then(async (resultSet: relationalStore.ResultSet) => {
     console.info(`ResultSet column names: ${resultSet.columnNames}, column count: ${resultSet.columnCount}`);
     // resultSet is a cursor of a data set. By default, the cursor points to the -1st record. Valid data starts from 0.
     while (resultSet.goToNextRow()) {
@@ -4523,7 +4524,7 @@ if (store != undefined) {
     resultSet.close();
   }).catch((err: BusinessError) => {
     console.error(`Query failed, code is ${err.code},message is ${err.message}`);
-  })
+  });
 }
 ```
 
@@ -4565,7 +4566,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ------------ | ------------------------------------------------------------ |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 14800000     | Inner error.                                                 |
-| 14800014     | Already closed.                                              |
+| 14800014     | The RdbStore or ResultSet is already closed.                                              |
 | 14800015     | The database does not respond.                                        |
 
 **Example**
@@ -4621,10 +4622,10 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 801       | Capability not supported the sql(attach,begin,commit,rollback etc.). |
 | 14800000  | Inner error. |
-| 14800011  | Database corrupted. |
-| 14800014  | Already closed. |
+| 14800011  | Failed to open the database because it is corrupted. |
+| 14800014  | The RdbStore or ResultSet is already closed. |
 | 14800015  | The database does not respond. |
-| 14800021  | SQLite: Generic error. |
+| 14800021  | SQLite: Generic error. Possible causes: Insert failed or the updated data does not exist. |
 | 14800022  | SQLite: Callback routine requested an abort. |
 | 14800023  | SQLite: Access permission denied. |
 | 14800024  | SQLite: The database file is locked. |
@@ -4643,7 +4644,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-const SQL_DELETE_TABLE = "DELETE FROM test WHERE name = 'zhangsan'"
+const SQL_DELETE_TABLE = "DELETE FROM test WHERE name = 'zhangsan'";
 if (store != undefined) {
   (store as relationalStore.RdbStore).executeSql(SQL_DELETE_TABLE, (err) => {
     if (err) {
@@ -4651,7 +4652,7 @@ if (store != undefined) {
       return;
     }
     console.info('Delete table done.');
-  })
+  });
 }
 ```
 
@@ -4684,10 +4685,10 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 801       | Capability not supported the sql(attach,begin,commit,rollback etc.). |
 | 14800000  | Inner error. |
-| 14800011  | Database corrupted. |
-| 14800014  | Already closed. |
+| 14800011  | Failed to open the database because it is corrupted. |
+| 14800014  | The RdbStore or ResultSet is already closed. |
 | 14800015  | The database does not respond. |
-| 14800021  | SQLite: Generic error. |
+| 14800021  | SQLite: Generic error. Possible causes: Insert failed or the updated data does not exist. |
 | 14800022  | SQLite: Callback routine requested an abort. |
 | 14800023  | SQLite: Access permission denied. |
 | 14800024  | SQLite: The database file is locked. |
@@ -4706,7 +4707,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-const SQL_DELETE_TABLE = "DELETE FROM test WHERE name = ?"
+const SQL_DELETE_TABLE = "DELETE FROM test WHERE name = ?";
 if (store != undefined) {
   (store as relationalStore.RdbStore).executeSql(SQL_DELETE_TABLE, ['zhangsan'], (err) => {
     if (err) {
@@ -4714,7 +4715,7 @@ if (store != undefined) {
       return;
     }
     console.info('Delete table done.');
-  })
+  });
 }
 ```
 
@@ -4752,10 +4753,10 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 801       | Capability not supported the sql(attach,begin,commit,rollback etc.). |
 | 14800000  | Inner error. |
-| 14800011  | Database corrupted. |
-| 14800014  | Already closed. |
+| 14800011  | Failed to open the database because it is corrupted. |
+| 14800014  | The RdbStore or ResultSet is already closed. |
 | 14800015  | The database does not respond. |
-| 14800021  | SQLite: Generic error. |
+| 14800021  | SQLite: Generic error. Possible causes: Insert failed or the updated data does not exist. |
 | 14800022  | SQLite: Callback routine requested an abort. |
 | 14800023  | SQLite: Access permission denied. |
 | 14800024  | SQLite: The database file is locked. |
@@ -4776,13 +4777,13 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-const SQL_DELETE_TABLE = "DELETE FROM test WHERE name = 'zhangsan'"
+const SQL_DELETE_TABLE = "DELETE FROM test WHERE name = 'zhangsan'";
 if (store != undefined) {
   (store as relationalStore.RdbStore).executeSql(SQL_DELETE_TABLE).then(() => {
     console.info('Delete table done.');
   }).catch((err: BusinessError) => {
     console.error(`ExecuteSql failed, code is ${err.code},message is ${err.message}`);
-  })
+  });
 }
 ```
 
@@ -4824,10 +4825,10 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 801       | Capability not supported the sql(attach,begin,commit,rollback etc.). |
 | 14800000  | Inner error. |
-| 14800011  | Database corrupted. |
-| 14800014  | Already closed. |
+| 14800011  | Failed to open the database because it is corrupted. |
+| 14800014  | The RdbStore or ResultSet is already closed. |
 | 14800015  | The database does not respond. |
-| 14800021  | SQLite: Generic error. |
+| 14800021  | SQLite: Generic error. Possible causes: Insert failed or the updated data does not exist. |
 | 14800022  | SQLite: Callback routine requested an abort. |
 | 14800023  | SQLite: Access permission denied. |
 | 14800024  | SQLite: The database file is locked. |
@@ -4857,7 +4858,7 @@ if (store != undefined) {
     console.info(`check result: ${data}`);
   }).catch((err: BusinessError) => {
     console.error(`check failed, code is ${err.code}, message is ${err.message}`);
-  })
+  });
 }
 
 // Delete all data from the table.
@@ -4867,7 +4868,7 @@ if (store != undefined) {
     console.info(`delete result: ${data}`);
   }).catch((err: BusinessError) => {
     console.error(`delete failed, code is ${err.code}, message is ${err.message}`);
-  })
+  });
 }
 
 // Delete a table.
@@ -4877,7 +4878,7 @@ if (store != undefined) {
     console.info(`drop result: ${data}`);
   }).catch((err: BusinessError) => {
     console.error(`drop failed, code is ${err.code}, message is ${err.message}`);
-  })
+  });
 }
 ```
 
@@ -4885,13 +4886,13 @@ Vector store:
 
 ```ts
 // FLOATVECTOR(2) is a vector property with a dimension of 2. The subsequent repr operation should be performed based on this dimension.
-let createSql = "CREATE TABLE test (ID text PRIMARY KEY,REPR FLOATVECTOR(2));";
+let createSql = "CREATE TABLE test (ID INTEGER PRIMARY KEY,REPR FLOATVECTOR(2));";
 // Create a table.
 await store!.execute(createSql);
 // Insert data using parameter binding.
-let insertSql= "insert into test VALUES(?, ?);";
+let insertSql = "insert into test VALUES(?, ?);";
 const vectorValue: Float32Array = Float32Array.from([1.5, 6.6]);
-await store!.execute(insertSql, [0, vectorValue]); 
+await store!.execute(insertSql, [0, vectorValue]);
 // Execute without using bound parameters.
 await store!.execute("insert into test values(1, '[3.5, 1.8]');");
 ```
@@ -4916,7 +4917,7 @@ Statements separated by semicolons (\;) are not supported.
 | -------- | ------------------------------------ | ---- | ------------------------------------------------------------ |
 | sql      | string                               | Yes  | SQL statement to run.                                       |
 | txId      | number                               | Yes  | Transaction ID obtained via [beginTrans](#begintrans12). If the value is **0**, the SQL statement is executed in a separate transaction by default.                                     |
-| args | Array&lt;[ValueType](#valuetype)&gt; | No  | Arguments in the SQL statement. The value corresponds to the placeholders in the SQL parameter statement. If this parameter is left blank or set to **null** or **undefined**, the SQL statement is considered complete.|
+| args | Array&lt;[ValueType](#valuetype)&gt; | No  | Arguments in the SQL statement. The value corresponds to the placeholders in the SQL parameter statement. If this parameter is left blank or set to **null** or **undefined**, the SQL parameter statement is considered complete.|
 
 **Return value**
 
@@ -4933,10 +4934,10 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 801       | Capability not supported the sql(attach,begin,commit,rollback etc.). |
 | 14800000  | Inner error. |
-| 14800011  | Database corrupted. |
-| 14800014  | Already closed. |
+| 14800011  | Failed to open the database because it is corrupted. |
+| 14800014  | The RdbStore or ResultSet is already closed. |
 | 14800015  | The database does not respond. |
-| 14800021  | SQLite: Generic error. |
+| 14800021  | SQLite: Generic error. Possible causes: Insert failed or the updated data does not exist. |
 | 14800022  | SQLite: Callback routine requested an abort. |
 | 14800023  | SQLite: Access permission denied. |
 | 14800024  | SQLite: The database file is locked. |
@@ -4957,16 +4958,16 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 if (store != null) {
-  let txId : number;
-  (store as relationalStore.RdbStore).beginTrans().then((txId : number) => {
+  let txId: number;
+  (store as relationalStore.RdbStore).beginTrans().then((txId: number) => {
     (store as relationalStore.RdbStore).execute("DELETE FROM TEST WHERE age = ? OR age = ?", txId, ["18", "20"])
       .then(() => {
         (store as relationalStore.RdbStore).commit(txId);
-    })
-    .catch((err: BusinessError) => {
-      (store as relationalStore.RdbStore).rollback(txId)
-      console.error(`execute sql failed, code is ${err.code},message is ${err.message}`);
-    });
+      })
+      .catch((err: BusinessError) => {
+        (store as relationalStore.RdbStore).rollback(txId);
+        console.error(`execute sql failed, code is ${err.code},message is ${err.message}`);
+      });
   });
 }
 ```
@@ -5006,10 +5007,10 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ------------ | ------------------------------------------------------------ |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 14800000     | Inner error.                                                 |
-| 14800011     | Database corrupted.                                          |
-| 14800014     | Already closed.                                              |
+| 14800011     | Failed to open the database because it is corrupted.                                          |
+| 14800014     | The RdbStore or ResultSet is already closed.                                              |
 | 14800015     | The database does not respond.                               |
-| 14800021     | SQLite: Generic error.                                       |
+| 14800021     | SQLite: Generic error. Possible causes: Insert failed or the updated data does not exist.                                       |
 | 14800022     | SQLite: Callback routine requested an abort.                 |
 | 14800023     | SQLite: Access permission denied.                            |
 | 14800024     | SQLite: The database file is locked.                         |
@@ -5034,7 +5035,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 if (store != undefined) {
   const SQL_CHECK_INTEGRITY = 'PRAGMA integrity_check';
   try {
-    let data = (store as relationalStore.RdbStore).executeSync(SQL_CHECK_INTEGRITY)
+    let data = (store as relationalStore.RdbStore).executeSync(SQL_CHECK_INTEGRITY);
     console.info(`check result: ${data}`);
   } catch (err) {
     console.error(`check failed, code is ${err.code}, message is ${err.message}`);
@@ -5045,7 +5046,7 @@ if (store != undefined) {
 if (store != undefined) {
   const SQL_DELETE_TABLE = 'DELETE FROM test';
   try {
-    let data = (store as relationalStore.RdbStore).executeSync(SQL_DELETE_TABLE)
+    let data = (store as relationalStore.RdbStore).executeSync(SQL_DELETE_TABLE);
     console.info(`delete result: ${data}`);
   } catch (err) {
     console.error(`delete failed, code is ${err.code}, message is ${err.message}`);
@@ -5056,7 +5057,7 @@ if (store != undefined) {
 if (store != undefined) {
   const SQL_DROP_TABLE = 'DROP TABLE test';
   try {
-    let data = (store as relationalStore.RdbStore).executeSync(SQL_DROP_TABLE)
+    let data = (store as relationalStore.RdbStore).executeSync(SQL_DROP_TABLE);
     console.info(`drop result: ${data}`);
   } catch (err) {
     console.error(`drop failed, code is ${err.code}, message is ${err.message}`);
@@ -5090,10 +5091,10 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 401       | Parameter error. Possible causes: 1. Need 3 - 4  parameter(s)! 2. The RdbStore must be not nullptr.3. The tablesNames must be not empty string. 4. The columnName must be not empty string. 5. The PRIKey must be number or string. |
 | 801       | Capability not supported. |
 | 14800000  | Inner error. |
-| 14800011  | Database corrupted. |
-| 14800014  | Already closed. |
+| 14800011  | Failed to open the database because it is corrupted. |
+| 14800014  | The RdbStore or ResultSet is already closed. |
 | 14800015  | The database does not respond. |
-| 14800021  | SQLite: Generic error. |
+| 14800021  | SQLite: Generic error. Possible causes: Insert failed or the updated data does not exist. |
 | 14800022  | SQLite: Callback routine requested an abort. |
 | 14800023  | SQLite: Access permission denied. |
 | 14800024  | SQLite: The database file is locked. |
@@ -5154,10 +5155,10 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 401       | Parameter error. Possible causes: 1. Need 3 - 4  parameter(s)! 2. The RdbStore must be not nullptr.3. The tablesNames must be not empty string. 4. The columnName must be not empty string. 5. The PRIKey must be number or string. |
 | 801       | Capability not supported. |
 | 14800000  | Inner error. |
-| 14800011  | Database corrupted. |
-| 14800014  | Already closed. |
+| 14800011  | Failed to open the database because it is corrupted. |
+| 14800014  | The RdbStore or ResultSet is already closed. |
 | 14800015  | The database does not respond. |
-| 14800021  | SQLite: Generic error. |
+| 14800021  | SQLite: Generic error. Possible causes: Insert failed or the updated data does not exist. |
 | 14800022  | SQLite: Callback routine requested an abort. |
 | 14800023  | SQLite: Access permission denied. |
 | 14800024  | SQLite: The database file is locked. |
@@ -5206,10 +5207,10 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 |-----------| ------------------------------------------------------------ |
 | 401       | Parameter error. The store must not be nullptr. |
 | 14800000  | Inner error. |
-| 14800011  | Database corrupted. |
-| 14800014  | Already closed. |
+| 14800011  | Failed to open the database because it is corrupted. |
+| 14800014  | The RdbStore or ResultSet is already closed. |
 | 14800015  | The database does not respond. |
-| 14800021  | SQLite: Generic error. |
+| 14800021  | SQLite: Generic error. Possible causes: Insert failed or the updated data does not exist. |
 | 14800022  | SQLite: Callback routine requested an abort. |
 | 14800023  | SQLite: Access permission denied. |
 | 14800024  | SQLite: The database file is locked. |
@@ -5228,7 +5229,6 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-
 let value1 = "Lisa";
 let value2 = 18;
 let value3 = 100.5;
@@ -5240,7 +5240,7 @@ if (store != undefined) {
     'NAME': value1,
     'AGE': value2,
     'SALARY': value3,
-    'CODES': value4,
+    'CODES': value4
   };
   (store as relationalStore.RdbStore).insert("test", valueBucket);
   (store as relationalStore.RdbStore).commit();
@@ -5274,10 +5274,10 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 401       | Parameter error. The store must not be nullptr. |
 | 801       | Capability not supported the sql(attach,begin,commit,rollback etc.). |
 | 14800000  | Inner error. |
-| 14800011  | Database corrupted. |
-| 14800014  | Already closed. |
+| 14800011  | Failed to open the database because it is corrupted. |
+| 14800014  | The RdbStore or ResultSet is already closed. |
 | 14800015  | The database does not respond. |
-| 14800021  | SQLite: Generic error. |
+| 14800021  | SQLite: Generic error. Possible causes: Insert failed or the updated data does not exist. |
 | 14800022  | SQLite: Callback routine requested an abort. |
 | 14800023  | SQLite: Access permission denied. |
 | 14800024  | SQLite: The database file is locked. |
@@ -5298,16 +5298,16 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 if (store != null) {
-  let txId : number;
-  (store as relationalStore.RdbStore).beginTrans().then((txId : number) => {
+  let txId: number;
+  (store as relationalStore.RdbStore).beginTrans().then((txId: number) => {
     (store as relationalStore.RdbStore).execute("DELETE FROM TEST WHERE age = ? OR age = ?", txId, ["18", "20"])
       .then(() => {
         (store as relationalStore.RdbStore).commit(txId);
-    })
-    .catch((err: BusinessError) => {
-      (store as relationalStore.RdbStore).rollback(txId)
-      console.error(`execute sql failed, code is ${err.code},message is ${err.message}`);
-    });
+      })
+      .catch((err: BusinessError) => {
+        (store as relationalStore.RdbStore).rollback(txId);
+        console.error(`execute sql failed, code is ${err.code},message is ${err.message}`);
+      });
   });
 }
 ```
@@ -5345,8 +5345,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | **ID**| **Error Message**                                                |
 |-----------| ------------------------------------------------------------ |
 | 14800000  | Inner error. |
-| 14800011  | Database corrupted. |
-| 14800014  | Already closed. |
+| 14800011  | Failed to open the database because it is corrupted. |
+| 14800014  | The RdbStore or ResultSet is already closed. |
 | 14800015  | The database is busy.              |
 | 14800023  | SQLite: Access permission denied. |
 | 14800024  | SQLite: The database file is locked. |
@@ -5391,10 +5391,10 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 |-----------| ------------------------------------------------------------ |
 | 401       | Parameter error. The store must not be nullptr. |
 | 14800000  | Inner error. |
-| 14800011  | Database corrupted. |
-| 14800014  | Already closed. |
+| 14800011  | Failed to open the database because it is corrupted. |
+| 14800014  | The RdbStore or ResultSet is already closed. |
 | 14800015  | The database does not respond. |
-| 14800021  | SQLite: Generic error. |
+| 14800021  | SQLite: Generic error. Possible causes: Insert failed or the updated data does not exist. |
 | 14800022  | SQLite: Callback routine requested an abort. |
 | 14800023  | SQLite: Access permission denied. |
 | 14800024  | SQLite: The database file is locked. |
@@ -5412,7 +5412,6 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-
 let value1 = "Lisa";
 let value2 = 18;
 let value3 = 100.5;
@@ -5424,7 +5423,7 @@ if (store != undefined) {
     'NAME': value1,
     'AGE': value2,
     'SALARY': value3,
-    'CODES': value4,
+    'CODES': value4
   };
   (store as relationalStore.RdbStore).insert("test", valueBucket);
   (store as relationalStore.RdbStore).commit();
@@ -5461,10 +5460,10 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 |-----------| ------------------------------------------------------------ |
 | 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 14800000  | Inner error. |
-| 14800011  | Database corrupted. |
-| 14800014  | Already closed. |
+| 14800011  | Failed to open the database because it is corrupted. |
+| 14800014  | The RdbStore or ResultSet is already closed. |
 | 14800015  | The database does not respond. |
-| 14800021  | SQLite: Generic error. |
+| 14800021  | SQLite: Generic error. Possible causes: Insert failed or the updated data does not exist. |
 | 14800022  | SQLite: Callback routine requested an abort. |
 | 14800023  | SQLite: Access permission denied. |
 | 14800024  | SQLite: The database file is locked. |
@@ -5484,16 +5483,16 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 if (store != null) {
-  let txId : number;
-  (store as relationalStore.RdbStore).beginTrans().then((txId : number) => {
+  let txId: number;
+  (store as relationalStore.RdbStore).beginTrans().then((txId: number) => {
     (store as relationalStore.RdbStore).execute("DELETE FROM TEST WHERE age = ? OR age = ?", txId, ["18", "20"])
       .then(() => {
         (store as relationalStore.RdbStore).commit(txId);
-    })
-    .catch((err: BusinessError) => {
-      (store as relationalStore.RdbStore).rollback(txId)
-      console.error(`execute sql failed, code is ${err.code},message is ${err.message}`);
-    });
+      })
+      .catch((err: BusinessError) => {
+        (store as relationalStore.RdbStore).rollback(txId);
+        console.error(`execute sql failed, code is ${err.code},message is ${err.message}`);
+      });
   });
 }
 ```
@@ -5515,10 +5514,10 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 |-----------| ------------------------------------------------------------ |
 | 401       | Parameter error. The store must not be nullptr. |
 | 14800000  | Inner error. |
-| 14800011  | Database corrupted. |
-| 14800014  | Already closed. |
+| 14800011  | Failed to open the database because it is corrupted. |
+| 14800014  | The RdbStore or ResultSet is already closed. |
 | 14800015  | The database does not respond. |
-| 14800021  | SQLite: Generic error. |
+| 14800021  | SQLite: Generic error. Possible causes: Insert failed or the updated data does not exist. |
 | 14800022  | SQLite: Callback routine requested an abort. |
 | 14800023  | SQLite: Access permission denied. |
 | 14800024  | SQLite: The database file is locked. |
@@ -5545,18 +5544,18 @@ let value4 = new Uint8Array([1, 2, 3]);
 
 if (store != undefined) {
   try {
-    (store as relationalStore.RdbStore).beginTransaction()
+    (store as relationalStore.RdbStore).beginTransaction();
     const valueBucket: relationalStore.ValuesBucket = {
       'NAME': value1,
       'AGE': value2,
       'SALARY': value3,
-      'CODES': value4,
+      'CODES': value4
     };
     (store as relationalStore.RdbStore).insert("test", valueBucket);
     (store as relationalStore.RdbStore).commit();
   } catch (err) {
     let code = (err as BusinessError).code;
-    let message = (err as BusinessError).message
+    let message = (err as BusinessError).message;
     console.error(`Transaction failed, code is ${code},message is ${message}`);
     (store as relationalStore.RdbStore).rollBack();
   }
@@ -5593,10 +5592,10 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 |-----------| ------------------------------------------------------------ |
 | 401       | Parameter error. The store must not be nullptr. |
 | 14800000  | Inner error. |
-| 14800011  | Database corrupted. |
-| 14800014  | Already closed. |
+| 14800011  | Failed to open the database because it is corrupted. |
+| 14800014  | The RdbStore or ResultSet is already closed. |
 | 14800015  | The database does not respond. |
-| 14800021  | SQLite: Generic error. |
+| 14800021  | SQLite: Generic error. Possible causes: Insert failed or the updated data does not exist. |
 | 14800022  | SQLite: Callback routine requested an abort. |
 | 14800023  | SQLite: Access permission denied. |
 | 14800024  | SQLite: The database file is locked. |
@@ -5616,16 +5615,16 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 if (store != null) {
-  let txId : number;
-  (store as relationalStore.RdbStore).beginTrans().then((txId : number) => {
+  let txId: number;
+  (store as relationalStore.RdbStore).beginTrans().then((txId: number) => {
     (store as relationalStore.RdbStore).execute("DELETE FROM TEST WHERE age = ? OR age = ?", txId, ["18", "20"])
       .then(() => {
         (store as relationalStore.RdbStore).commit(txId);
-    })
-    .catch((err: BusinessError) => {
-      (store as relationalStore.RdbStore).rollback(txId)
-      console.error(`execute sql failed, code is ${err.code},message is ${err.message}`);
-    });
+      })
+      .catch((err: BusinessError) => {
+        (store as relationalStore.RdbStore).rollback(txId);
+        console.error(`execute sql failed, code is ${err.code},message is ${err.message}`);
+      });
   });
 }
 ```
@@ -5653,11 +5652,11 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 |-----------| ------------------------------------------------------------ |
 | 401       | Parameter error. The store must not be nullptr. |
 | 14800000  | Inner error. |
-| 14800010  | Invalid database path. |
-| 14800011  | Database corrupted. |
-| 14800014  | Already closed. |
+| 14800010  | Failed to open or delete the database by an invalid database path. |
+| 14800011  | Failed to open the database because it is corrupted. |
+| 14800014  | The RdbStore or ResultSet is already closed. |
 | 14800015  | The database does not respond. |
-| 14800021  | SQLite: Generic error. |
+| 14800021  | SQLite: Generic error. Possible causes: Insert failed or the updated data does not exist. |
 | 14800022  | SQLite: Callback routine requested an abort. |
 | 14800023  | SQLite: Access permission denied. |
 | 14800024  | SQLite: The database file is locked. |
@@ -5682,7 +5681,7 @@ if (store != undefined) {
       return;
     }
     console.info('Backup success.');
-  })
+  });
 }
 ```
 
@@ -5714,10 +5713,10 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 |-----------| ------------------------------------------------------------ |
 | 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 14800000  | Inner error. |
-| 14800011  | Database corrupted. |
-| 14800014  | Already closed. |
+| 14800011  | Failed to open the database because it is corrupted. |
+| 14800014  | The RdbStore or ResultSet is already closed. |
 | 14800015  | The database does not respond. |
-| 14800021  | SQLite: Generic error. |
+| 14800021  | SQLite: Generic error. Possible causes: Insert failed or the updated data does not exist. |
 | 14800022  | SQLite: Callback routine requested an abort. |
 | 14800023  | SQLite: Access permission denied. |
 | 14800024  | SQLite: The database file is locked. |
@@ -5743,7 +5742,7 @@ if (store != undefined) {
     console.info('Backup success.');
   }).catch((err: BusinessError) => {
     console.error(`Backup failed, code is ${err.code},message is ${err.message}`);
-  })
+  });
 }
 ```
 
@@ -5770,10 +5769,10 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 |-----------| ------------------------------------------------------------ |
 | 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 14800000  | Inner error. |
-| 14800011  | Database corrupted. |
-| 14800014  | Already closed. |
+| 14800011  | Failed to open the database because it is corrupted. |
+| 14800014  | The RdbStore or ResultSet is already closed. |
 | 14800015  | The database does not respond. |
-| 14800021  | SQLite: Generic error. |
+| 14800021  | SQLite: Generic error. Possible causes: Insert failed or the updated data does not exist. |
 | 14800022  | SQLite: Callback routine requested an abort. |
 | 14800023  | SQLite: Access permission denied. |
 | 14800024  | SQLite: The database file is locked. |
@@ -5798,7 +5797,7 @@ if (store != undefined) {
       return;
     }
     console.info('Restore success.');
-  })
+  });
 }
 ```
 
@@ -5830,10 +5829,10 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 |-----------| ------------------------------------------------------------ |
 | 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 14800000  | Inner error. |
-| 14800011  | Database corrupted. |
-| 14800014  | Already closed. |
+| 14800011  | Failed to open the database because it is corrupted. |
+| 14800014  | The RdbStore or ResultSet is already closed. |
 | 14800015  | The database does not respond. |
-| 14800021  | SQLite: Generic error. |
+| 14800021  | SQLite: Generic error. Possible causes: Insert failed or the updated data does not exist. |
 | 14800022  | SQLite: Callback routine requested an abort. |
 | 14800023  | SQLite: Access permission denied. |
 | 14800024  | SQLite: The database file is locked. |
@@ -5859,7 +5858,7 @@ if (store != undefined) {
     console.info('Restore success.');
   }).catch((err: BusinessError) => {
     console.error(`Restore failed, code is ${err.code},message is ${err.message}`);
-  })
+  });
 }
 ```
 
@@ -5889,7 +5888,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 801       | Capability not supported. |
 | 14800000  | Inner error. |
-| 14800014  | Already closed. |
+| 14800014  | The RdbStore or ResultSet is already closed. |
 
 **Example**
 
@@ -5901,7 +5900,7 @@ if (store != undefined) {
       return;
     }
     console.info('SetDistributedTables successfully.');
-  })
+  });
 }
 ```
 
@@ -5919,7 +5918,7 @@ Sets distributed tables. This API uses a promise to return the result.
 
 | Name| Type                    | Mandatory| Description                    |
 | ------ | ------------------------ | ---- | ------------------------ |
-| tables | ArrayArray&lt;string&gt; | Yes  | Names of the distributed tables to set.|
+| tables | Array&lt;string&gt; | Yes  | Names of the distributed tables to set.|
 
 **Return value**
 
@@ -5936,7 +5935,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 801       | Capability not supported. |
 | 14800000  | Inner error. |
-| 14800014  | Already closed. |
+| 14800014  | The RdbStore or ResultSet is already closed. |
 
 **Example**
 
@@ -5948,7 +5947,7 @@ if (store != undefined) {
     console.info('SetDistributedTables successfully.');
   }).catch((err: BusinessError) => {
     console.error(`SetDistributedTables failed, code is ${err.code},message is ${err.message}`);
-  })
+  });
 }
 ```
 
@@ -5966,9 +5965,9 @@ Sets distributed tables. This API uses an asynchronous callback to return the re
 
 | Name  | Type                                 | Mandatory| Description                        |
 | -------- | ------------------------------------- | ---- | ---------------------------- |
-| tables   | Array&lt;string&gt;                   | Yes  | Names of the distributed tables to set.|
-| type     | [DistributedType](#distributedtype10) | Yes  | Distributed type of the tables.            |
-| callback | AsyncCallback&lt;void&gt;             | Yes  | Callback used to return the result.      |
+| tables   | Array&lt;string&gt;                   | Yes  | Names of the distributed tables to set. |
+| type     | [DistributedType](#distributedtype10) | Yes  | Distributed type of the tables.       |
+| callback | AsyncCallback&lt;void&gt;             | Yes  | Callback used to return the result.|
 
 **Error codes**
 
@@ -5979,7 +5978,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 801       | Capability not supported. |
 | 14800000  | Inner error. |
-| 14800014  | Already closed. |
+| 14800014  | The RdbStore or ResultSet is already closed. |
 | 14800051  | The type of the distributed table does not match. |
 
 **Example**
@@ -5992,7 +5991,7 @@ if (store != undefined) {
       return;
     }
     console.info('SetDistributedTables successfully.');
-  })
+  });
 }
 ```
 
@@ -6009,10 +6008,10 @@ Sets distributed tables. This API uses an asynchronous callback to return the re
 **Parameters**
 
 | Name     | Type                                 | Mandatory | Description             |
-| -------- | ----------------------------------- | --- | --------------- |
-| tables   | Array&lt;string&gt;                 | Yes  | Names of the distributed tables to set.    |
-| type     | [DistributedType](#distributedtype10) | Yes  | Distributed type of the tables.|
-| config | [DistributedConfig](#distributedconfig10) | Yes| Configuration of the distributed mode.|
+| -------- | ----------------------------------- | --- |-----------------|
+| tables   | Array&lt;string&gt;                 | Yes  | Names of the distributed tables to set. |
+| type     | [DistributedType](#distributedtype10) | Yes  | Distributed type of the tables.       |
+| config | [DistributedConfig](#distributedconfig10) | Yes| Configuration of the distributed mode.     |
 | callback | AsyncCallback&lt;void&gt;           | Yes  | Callback used to return the result.|
 
 **Error codes**
@@ -6024,7 +6023,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 801       | Capability not supported. |
 | 14800000  | Inner error. |
-| 14800014  | Already closed. |
+| 14800014  | The RdbStore or ResultSet is already closed. |
 | 14800051  | The type of the distributed table does not match. |
 
 **Example**
@@ -6039,7 +6038,7 @@ if (store != undefined) {
       return;
     }
     console.info('SetDistributedTables successfully.');
-  })
+  });
 }
 ```
 
@@ -6055,11 +6054,11 @@ Sets distributed tables. This API uses a promise to return the result.
 
 **Parameters**
 
-| Name| Type                                     | Mandatory| Description                                                        |
-| ------ | ----------------------------------------- | ---- | ------------------------------------------------------------ |
-| tables | Array&lt;string&gt;                       | Yes  | Names of the distributed tables to set.                                |
+| Name| Type                                     | Mandatory| Description                                                             |
+| ------ | ----------------------------------------- | ---- |-----------------------------------------------------------------|
+| tables | Array&lt;string&gt;                       | Yes  | Names of the distributed tables to set.                                                 |
 | type   | [DistributedType](#distributedtype10)     | No  | Distributed type of the tables. <br>Default value: **relationalStore.DistributedType.DISTRIBUTED_DEVICE**.|
-| config | [DistributedConfig](#distributedconfig10) | No  | Configuration of the distributed mode. If this parameter is not specified, the value of **autoSync** is **false** by default, which means only manual sync is supported.|
+| config | [DistributedConfig](#distributedconfig10) | No  | Configuration of the distributed mode. If this parameter is not specified, the value of **autoSync** is **false** by default, which means only manual sync is supported.                       |
 
 **Return value**
 
@@ -6076,7 +6075,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 801       | Capability not supported. |
 | 14800000  | Inner error. |
-| 14800014  | Already closed. |
+| 14800014  | The RdbStore or ResultSet is already closed. |
 | 14800051  | The type of the distributed table does not match. |
 
 **Example**
@@ -6091,7 +6090,7 @@ if (store != undefined) {
     console.info('SetDistributedTables successfully.');
   }).catch((err: BusinessError) => {
     console.error(`SetDistributedTables failed, code is ${err.code},message is ${err.message}`);
-  })
+  });
 }
 ```
 
@@ -6126,7 +6125,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 801       | Capability not supported. |
 | 14800000  | Inner error. |
-| 14800014  | Already closed. |
+| 14800014  | The RdbStore or ResultSet is already closed. |
 
 **Example**
 
@@ -6143,7 +6142,7 @@ try {
   deviceId = devices[0].networkId;
 } catch (err) {
   let code = (err as BusinessError).code;
-  let message = (err as BusinessError).message
+  let message = (err as BusinessError).message;
   console.error("createDeviceManager errCode:" + code + ",errMessage:" + message);
 }
 
@@ -6154,7 +6153,7 @@ if (store != undefined && deviceId != undefined) {
       return;
     }
     console.info(`ObtainDistributedTableName successfully, tableName= ${tableName}`);
-  })
+  });
 }
 ```
 
@@ -6194,7 +6193,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 801       | Capability not supported. |
 | 14800000  | Inner error. |
-| 14800014  | Already closed. |
+| 14800014  | The RdbStore or ResultSet is already closed. |
 
 **Example**
 
@@ -6211,7 +6210,7 @@ try {
   deviceId = devices[0].networkId;
 } catch (err) {
   let code = (err as BusinessError).code;
-  let message = (err as BusinessError).message
+  let message = (err as BusinessError).message;
   console.error("createDeviceManager errCode:" + code + ",errMessage:" + message);
 }
 
@@ -6220,7 +6219,7 @@ if (store != undefined && deviceId != undefined) {
     console.info(`ObtainDistributedTableName successfully, tableName= ${tableName}`);
   }).catch((err: BusinessError) => {
     console.error(`ObtainDistributedTableName failed, code is ${err.code},message is ${err.message}`);
-  })
+  });
 }
 ```
 
@@ -6251,7 +6250,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 801       | Capability not supported. |
 | 14800000  | Inner error. |
-| 14800014  | Already closed. |
+| 14800014  | The RdbStore or ResultSet is already closed. |
 
 **Example**
 
@@ -6270,7 +6269,7 @@ try {
   }
 } catch (err) {
   let code = (err as BusinessError).code;
-  let message = (err as BusinessError).message
+  let message = (err as BusinessError).message;
   console.error("createDeviceManager errCode:" + code + ",errMessage:" + message);
 }
 
@@ -6286,7 +6285,7 @@ if (store != undefined) {
     for (let i = 0; i < result.length; i++) {
       console.info(`device= ${result[i][0]}, status= ${result[i][1]}`);
     }
-  })
+  });
 }
 ```
 
@@ -6322,7 +6321,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 801       | Capability not supported. |
 | 14800000  | Inner error. |
-| 14800014  | Already closed. |
+| 14800014  | The RdbStore or ResultSet is already closed. |
 
 **Example**
 
@@ -6341,7 +6340,7 @@ try {
   }
 } catch (err) {
   let code = (err as BusinessError).code;
-  let message = (err as BusinessError).message
+  let message = (err as BusinessError).message;
   console.error("createDeviceManager errCode:" + code + ",errMessage:" + message);
 }
 
@@ -6355,7 +6354,7 @@ if (store != undefined) {
     }
   }).catch((err: BusinessError) => {
     console.error(`Sync failed, code is ${err.code},message is ${err.message}`);
-  })
+  });
 }
 ```
 
@@ -6383,7 +6382,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 |-----------|-------|
 | 401       | Parameter error. Possible causes: 1. Need 2 - 4  parameter(s). 2. The RdbStore must be not nullptr. 3. The mode must be a SyncMode of cloud. 4. The progress must be a callback type. 5. The callback must be a function. |
 | 801       | Capability not supported.       |
-| 14800014  | Already closed.        |
+| 14800014  | The RdbStore or ResultSet is already closed.        |
 
 **Example**
 
@@ -6430,7 +6429,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 |-----------|------------------|
 | 401       | Parameter error. Possible causes: 1. Need 2 - 4  parameter(s). 2. The RdbStore must be not nullptr. 3. The mode must be a SyncMode of cloud. 4. The progress must be a callback type. |
 | 801       | Capability not supported.   |
-| 14800014  | Already closed.           |
+| 14800014  | The RdbStore or ResultSet is already closed.           |
 
 **Example**
 
@@ -6473,7 +6472,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 |-----------|-------|
 | 401       | Parameter error. Possible causes: 1. Need 2 - 4  parameter(s). 2. The RdbStore must be not nullptr. 3. The mode must be a SyncMode of cloud. 4. The tablesNames must be not empty. 5. The progress must be a callback type. 6.The callback must be a function.|
 | 801       | Capability not supported.   |
-| 14800014  | Already closed.   |
+| 14800014  | The RdbStore or ResultSet is already closed.   |
 
 **Example**
 
@@ -6523,7 +6522,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 |-----------|---------------|
 | 401       | Parameter error. Possible causes: 1. Need 2 - 4  parameter(s). 2. The RdbStore must be not nullptr. 3. The mode must be a SyncMode of cloud. 4. The tablesNames must be not empty. 5. The progress must be a callback type |
 | 801       | Capability not supported.    |
-| 14800014  | Already closed.  |
+| 14800014  | The RdbStore or ResultSet is already closed.  |
 
 **Example**
 
@@ -6547,7 +6546,7 @@ if (store != undefined) {
 
 on(event: 'dataChange', type: SubscribeType, observer: Callback&lt;Array&lt;string&gt;&gt;): void
 
-Subscribes to data changes of specified devices. When the data of the specified devices changes, a callback is invoked to return the data change.
+Subscribes to data changes of this RDB store. The registered callback will be called when data in a distributed RDB store changes.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -6557,7 +6556,7 @@ Subscribes to data changes of specified devices. When the data of the specified 
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | event    | string                                                       | Yes  | Event type. The value is **'dataChange'**, which indicates data changes.                          |
 | type     | [SubscribeType](#subscribetype)                              | Yes  | Type of data change to observe.                                                  |
-| observer | Callback&lt;Array&lt;string&gt;&gt;                          | Yes  | Callback used to return the data change. Array&lt;string&gt; holds the IDs of the peer devices whose data is changed.|
+| observer | Callback&lt;Array&lt;string&gt;&gt;                          | Yes  | Callback used to return the data change. **Array\<string>** holds the IDs of the peer devices whose data is changed.|
 
 **Error codes**
 
@@ -6567,7 +6566,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 |-----------|-------------|
 | 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 801       | Capability not supported. |
-| 14800014  | Already closed.    |
+| 14800014  | The RdbStore or ResultSet is already closed.    |
 
 **Example**
 
@@ -6581,16 +6580,16 @@ let storeObserver = (devices: Array<string>) => {
       console.info(`device= ${devices[i]} data changed`);
     }
   }
-}
+};
 
 try {
   if (store != undefined) {
-    (store as relationalStore.RdbStore).on('dataChange', relationalStore.SubscribeType.SUBSCRIBE_TYPE_REMOTE, storeObserver)
+    (store as relationalStore.RdbStore).on('dataChange', relationalStore.SubscribeType.SUBSCRIBE_TYPE_REMOTE, storeObserver);
   }
 } catch (err) {
-    let code = (err as BusinessError).code;
-    let message = (err as BusinessError).message
-    console.error(`Register observer failed, code is ${code},message is ${message}`);
+  let code = (err as BusinessError).code;
+  let message = (err as BusinessError).message;
+  console.error(`Register observer failed, code is ${code},message is ${message}`);
 }
 ```
 
@@ -6598,7 +6597,7 @@ try {
 
 on(event: 'dataChange', type: SubscribeType, observer: Callback&lt;Array&lt;string&gt;&gt;\| Callback&lt;Array&lt;ChangeInfo&gt;&gt;): void
 
-Subscribes to data changes of the specified devices. The registered callback will be called when data in a distributed or local RDB store changes.
+Subscribes to data changes of this RDB store. The registered callback will be called when data in a distributed or local RDB store changes.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -6619,7 +6618,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 202       | Permission verification failed, application which is not a system application uses system API. |
 | 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 801       | Capability not supported. |
-| 14800014  | Already closed.    |
+| 14800014  | The RdbStore or ResultSet is already closed.    |
 
 Example 1: **type** is **SUBSCRIBE_TYPE_REMOTE**.
 
@@ -6633,7 +6632,7 @@ let storeObserver = (devices: Array<string>) => {
       console.info(`device= ${devices[i]} data changed`);
     }
   }
-}
+};
 
 try {
   if (store != undefined) {
@@ -6655,7 +6654,7 @@ let changeInfos = (changeInfos: Array<relationalStore.ChangeInfo>) => {
   for (let i = 0; i < changeInfos.length; i++) {
     console.info(`changeInfos = ${changeInfos[i]}`);
   }
-}
+};
 
 try {
   if (store != undefined) {
@@ -6677,7 +6676,7 @@ try {
     'name': value1,
     'age': value2,
     'salary': value3,
-    'blobType': value4,
+    'blobType': value4
   };
 
   if (store != undefined) {
@@ -6702,7 +6701,7 @@ Subscribes to process events. This callback is invoked by [emit](#emit10).
 
 | Name      | Type           | Mandatory| Description                                                        |
 | ------------ | --------------- | ---- | ------------------------------------------------------------ |
-| event        | string          | Yes  | Event name, which must match the event type in **emit**.              |
+| event        | string          | Yes  | Event type, which must match the event type in **emit**.              |
 | interProcess | boolean         | Yes  | Type of the data to observe.<br> The value **true** means inter-process events.<br> The value **false** means intra-process events.|
 | observer     | Callback\<void> | Yes  | Callback used to return the result.                                                  |
 
@@ -6715,7 +6714,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 801       | Capability not supported. |
 | 14800000  | Inner error.    |
-| 14800014  | Already closed.    |
+| 14800014  | The RdbStore or ResultSet is already closed.    |
 | 14800050  | Failed to obtain the subscription service.    |
 
 **Example**
@@ -6725,7 +6724,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let storeObserver = () => {
   console.info(`storeObserver`);
-}
+};
 
 try {
   if (store != undefined) {
@@ -6733,7 +6732,7 @@ try {
   }
 } catch (err) {
   let code = (err as BusinessError).code;
-  let message = (err as BusinessError).message
+  let message = (err as BusinessError).message;
   console.error(`Register observer failed, code is ${code},message is ${message}`);
 }
 ```
@@ -6751,7 +6750,7 @@ Subscribes to the auto sync progress. This API can be called only when device-cl
 | Name      | Type                             | Mandatory| Description                               |
 | ------------ |---------------------------------| ---- |-----------------------------------|
 | event        | string                          | Yes  | Event type. The value is **'autoSyncProgress'**, which indicates the auto sync progress.|
-| progress     | Callback&lt;[ProgressDetails](#progressdetails10)&gt; | Yes  | Callback used to return the auto sync progress.                            |
+| progress     | Callback&lt;[ProgressDetails](#progressdetails10)&gt; | Yes  | Callback used to return the result.                            |
 
 **Error codes**
 
@@ -6761,7 +6760,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 |-----------|--------|
 | 401       | Parameter error. Possible causes: 1. Need 2 - 3  parameter(s)! 2. The RdbStore must be valid. 3. The event must be a not empty string. 4. The progress must be function. |
 | 801       | Capability not supported.  |
-| 14800014  | Already closed.     |
+| 14800014  | The RdbStore or ResultSet is already closed.     |
 
 **Example**
 
@@ -6770,15 +6769,15 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let progressDetail = (progressDetail: relationalStore.ProgressDetails) => {
   console.info(`progress: ${progressDetail}`);
-}
+};
 
 try {
   if (store != undefined) {
-    (store as relationalStore.RdbStore).on('autoSyncProgress', progressDetail)
+    (store as relationalStore.RdbStore).on('autoSyncProgress', progressDetail);
   }
 } catch (err) {
   let code = (err as BusinessError).code;
-  let message = (err as BusinessError).message
+  let message = (err as BusinessError).message;
   console.error(`Register observer failed, code is ${code},message is ${message}`);
 }
 ```
@@ -6807,7 +6806,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 401       | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 | 801       | Capability not supported.  |
 | 14800000  | Inner error.  |
-| 14800014  | Already closed.     |
+| 14800014  | The RdbStore or ResultSet is already closed.     |
 
 **Example**
 
@@ -6820,7 +6819,7 @@ let sqlExecutionInfo = (sqlExecutionInfo: relationalStore.SqlExecutionInfo) => {
   console.info(`waitTime: ${sqlExecutionInfo.waitTime}`);
   console.info(`prepareTime: ${sqlExecutionInfo.prepareTime}`);
   console.info(`executeTime: ${sqlExecutionInfo.executeTime}`);
-}
+};
 
 try {
   if (store != undefined) {
@@ -6842,7 +6841,7 @@ try {
     'NAME': value1,
     'AGE': value2,
     'SALARY': value3,
-    'CODES': value4,
+    'CODES': value4
   };
   if (store != undefined) {
     (store as relationalStore.RdbStore).insert('test', valueBucket);
@@ -6866,7 +6865,7 @@ Unsubscribes from data changes of the specified devices.
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | event    | string                                                       | Yes  | Event type. The value is **'dataChange'**, which indicates data changes.                          |
 | type     | [SubscribeType](#subscribetype) | Yes  | Type of data change to observe.                                                  |
-| observer | Callback&lt;Array&lt;string&gt;&gt;                          | Yes  | Callback to unregister. **Array&lt;string&gt;** holds the IDs of the peer devices whose data is changed.|
+| observer | Callback&lt;Array&lt;string&gt;&gt;                          | Yes  | Callback to unregister. **Array\<string>** holds the IDs of the peer devices whose data is changed.|
 
 **Error codes**
 
@@ -6876,7 +6875,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 |-----------|-------------|
 | 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 801       | Capability not supported. |
-| 14800014  | Already closed.    |
+| 14800014  | The RdbStore or ResultSet is already closed.    |
 
 **Example**
 
@@ -6889,17 +6888,17 @@ let storeObserver = (devices: Array<string>) => {
       console.info(`device= ${devices[i]} data changed`);
     }
   }
-}
+};
 
 try {
   if (store != undefined) {
     // The Lambda expression cannot be used here.
-    (store as relationalStore.RdbStore).on('dataChange', relationalStore.SubscribeType.SUBSCRIBE_TYPE_REMOTE, storeObserver)
+    (store as relationalStore.RdbStore).on('dataChange', relationalStore.SubscribeType.SUBSCRIBE_TYPE_REMOTE, storeObserver);
   }
 } catch (err) {
-    let code = (err as BusinessError).code;
-    let message = (err as BusinessError).message
-    console.error(`Register observer failed, code is ${code},message is ${message}`);
+  let code = (err as BusinessError).code;
+  let message = (err as BusinessError).message;
+  console.error(`Register observer failed, code is ${code},message is ${message}`);
 }
 
 try {
@@ -6908,7 +6907,7 @@ try {
   }
 } catch (err) {
   let code = (err as BusinessError).code;
-  let message = (err as BusinessError).message
+  let message = (err as BusinessError).message;
   console.error(`Unregister observer failed, code is ${code},message is ${message}`);
 }
 ```
@@ -6938,7 +6937,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 202       | Permission verification failed, application which is not a system application uses system API. |
 | 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 801       | Capability not supported. |
-| 14800014  | Already closed.    |
+| 14800014  | The RdbStore or ResultSet is already closed.    |
 
 **Example**
 
@@ -6952,7 +6951,7 @@ let storeObserver = (devices: Array<string>) => {
       console.info(`device= ${devices[i]} data changed`);
     }
   }
-}
+};
 
 try {
   if (store != undefined) {
@@ -6970,7 +6969,7 @@ try {
   }
 } catch (err) {
   let code = (err as BusinessError).code;
-  let message = (err as BusinessError).message
+  let message = (err as BusinessError).message;
   console.error(`Unregister observer failed, code is ${code},message is ${message}`);
 }
 ```
@@ -7000,7 +6999,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 801       | Capability not supported. |
 | 14800000     | Inner error.                           |
-| 14800014  | Already closed.    |
+| 14800014  | The RdbStore or ResultSet is already closed.    |
 | 14800050     | Failed to obtain the subscription service. |
 
 **Example**
@@ -7010,7 +7009,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let storeObserver = () => {
   console.info(`storeObserver`);
-}
+};
 
 try {
   if (store != undefined) {
@@ -7018,7 +7017,7 @@ try {
   }
 } catch (err) {
   let code = (err as BusinessError).code;
-  let message = (err as BusinessError).message
+  let message = (err as BusinessError).message;
   console.error(`Register observer failed, code is ${code},message is ${message}`);
 }
 
@@ -7028,7 +7027,7 @@ try {
   }
 } catch (err) {
   let code = (err as BusinessError).code;
-  let message = (err as BusinessError).message
+  let message = (err as BusinessError).message;
   console.error(`Unregister observer failed, code is ${code},message is ${message}`);
 }
 ```
@@ -7056,7 +7055,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ------------ |--------------------|
 | 401       | Parameter error. Possible causes: 1. Need 1 - 3  parameter(s)! 2. The RdbStore must be valid. 3. The event must be a not empty string. 4. The progress must be function. |
 | 801       | Capability not supported.  |
-| 14800014  | Already closed.       |
+| 14800014  | The RdbStore or ResultSet is already closed.       |
 
 **Example**
 
@@ -7065,15 +7064,15 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let progressDetail = (progressDetail: relationalStore.ProgressDetails) => {
   console.info(`progress: ${progressDetail}`);
-}
+};
 
 try {
   if (store != undefined) {
-    (store as relationalStore.RdbStore).on('autoSyncProgress', progressDetail)
+    (store as relationalStore.RdbStore).on('autoSyncProgress', progressDetail);
   }
 } catch (err) {
   let code = (err as BusinessError).code;
-  let message = (err as BusinessError).message
+  let message = (err as BusinessError).message;
   console.error(`Register observer failed, code is ${code},message is ${message}`);
 }
 
@@ -7113,7 +7112,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 401       | Parameter error.  |
 | 801       | Capability not supported.  |
 | 14800000  | Inner error.  |
-| 14800014  | Already closed.     |
+| 14800014  | The RdbStore or ResultSet is already closed.     |
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -7141,7 +7140,7 @@ Triggers the inter-process or intra-process event listener registered in [on](#o
 
 | Name| Type  | Mandatory| Description                |
 | ------ | ------ | ---- | -------------------- |
-| event  | string | Yes  | Event name. Custom event names are allowed. However, the customized event name cannot be duplicate with the existing event names [dataChange](#ondatachange), [autoSyncProgress](#onautosyncprogress11) and [statistics](#onstatistics12).|
+| event  | string | Yes  | Event name. Custom event names are allowed. However, the customized event name cannot be duplicate with the existing event names [dataChange](#ondatachange), [autoSyncProgress](#onautosyncprogress11), and [statistics](#onstatistics12).|
 
 **Error codes**
 
@@ -7152,7 +7151,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 801       | Capability not supported.     |
 | 14800000  | Inner error.   |
-| 14800014  | Already closed.     |
+| 14800014  | The RdbStore or ResultSet is already closed.     |
 | 14800050  | Failed to obtain the subscription service.    |
 
 
@@ -7189,10 +7188,10 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 401       | Parameter error. Possible causes: 1. Need 1 - 3  parameter(s)! 2. The RdbStore must be not nullptr. 3. The tablesNames must be not empty string. 4. The cursor must be valid cursor. |
 | 801       | Capability not supported. |
 | 14800000  | Inner error. |
-| 14800011  | Database corrupted. |
-| 14800014  | Already closed. |
+| 14800011  | Failed to open the database because it is corrupted. |
+| 14800014  | The RdbStore or ResultSet is already closed. |
 | 14800015  | The database does not respond. |
-| 14800021  | SQLite: Generic error. |
+| 14800021  | SQLite: Generic error. Possible causes: Insert failed or the updated data does not exist. |
 | 14800022  | SQLite: Callback routine requested an abort. |
 | 14800023  | SQLite: Access permission denied. |
 | 14800024  | SQLite: The database file is locked. |
@@ -7211,13 +7210,13 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 ```ts
 if (store != undefined) {
- (store as relationalStore.RdbStore).cleanDirtyData('test_table', 100, (err) => {
+  (store as relationalStore.RdbStore).cleanDirtyData('test_table', 100, (err) => {
     if (err) {
       console.error(`clean dirty data failed, code is ${err.code},message is ${err.message}`);
       return;
     }
     console.info('clean dirty data succeeded');
-  })
+  });
 }
 ```
 
@@ -7245,10 +7244,10 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 401       | Parameter error. Possible causes: 1. Need 1 - 3  parameter(s). 2. The RdbStore must be not nullptr. 3. The tablesNames must be not empty string. |
 | 801       | Capability not supported.    |
 | 14800000  | Inner error.        |
-| 14800011  | Database corrupted.   |
-| 14800014  | Already closed.       |
+| 14800011  | Failed to open the database because it is corrupted.   |
+| 14800014  | The RdbStore or ResultSet is already closed.       |
 | 14800015  | The database does not respond.      |
-| 14800021  | SQLite: Generic error.     |
+| 14800021  | SQLite: Generic error. Possible causes: Insert failed or the updated data does not exist.     |
 | 14800022  | SQLite: Callback routine requested an abort. |
 | 14800023  | SQLite: Access permission denied.           |
 | 14800024  | SQLite: The database file is locked.        |
@@ -7273,7 +7272,7 @@ if (store != undefined) {
       return;
     }
     console.info('clean dirty data succeeded');
-  })
+  });
 }
 ```
 
@@ -7306,10 +7305,10 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 401       | Parameter error. Possible causes: 1. Need 1 - 3  parameter(s)! 2. The RdbStore must be not nullptr. 3. The tablesNames must be not empty string. 4. The cursor must be valid cursor. |
 | 801       | Capability not supported. |
 | 14800000  | Inner error.            |
-| 14800011  | Database corrupted.   |
-| 14800014  | Already closed. |
+| 14800011  | Failed to open the database because it is corrupted.   |
+| 14800014  | The RdbStore or ResultSet is already closed. |
 | 14800015  | The database does not respond.   |
-| 14800021  | SQLite: Generic error.   |
+| 14800021  | SQLite: Generic error. Possible causes: Insert failed or the updated data does not exist.   |
 | 14800022  | SQLite: Callback routine requested an abort. |
 | 14800023  | SQLite: Access permission denied.          |
 | 14800024  | SQLite: The database file is locked.      |
@@ -7330,11 +7329,11 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 import { BusinessError } from '@kit.BasicServicesKit';
 
 if (store != undefined) {
-    (store as relationalStore.RdbStore).cleanDirtyData('test_table', 100).then(() => {
-        console.info('clean dirty data  succeeded');
-    }).catch ((err: BusinessError) => {
-        console.error(`clean dirty data failed, code is ${err.code},message is ${err.message}`);
-    })
+  (store as relationalStore.RdbStore).cleanDirtyData('test_table', 100).then(() => {
+    console.info('clean dirty data  succeeded');
+  }).catch((err: BusinessError) => {
+    console.error(`clean dirty data failed, code is ${err.code},message is ${err.message}`);
+  });
 }
 ```
 
@@ -7344,11 +7343,11 @@ attach(fullPath: string, attachName: string, waitTime?: number) : Promise&lt;num
 
 Attaches an RDB store to this RDB store so that the data in the attached RDB store can be directly accessed using the SQL statement.
 
-The RDB store is attached via a database file. This API cannot be used for encrypted RDB stores. After the **attach()** API is called, the RDB store is switched to the non-WAL mode, which may affect the performance.
+The RDB store is attached via a database file. This API cannot be used for encrypted RDB stores. After the **attach** API is called, the RDB store is switched to the non-WAL mode, which may affect the performance.
 
-Before the RDB store is switched to the non-WAL mode, ensure that all **ResultSet**s are closed and all write operations are complete. Otherwise, error 14800015 will be reported.
+Before the RDB store is switched to non-WAL mode, ensure that all **ResultSet**s are closed and all write operations are complete. Otherwise, error 14800015 will be reported.
 
-The **attach()** API cannot be called concurrently. Concurrent calls may cause the system to become unresponsive and trigger 14800015. If this occurs, try to call **attach()** again later.
+The **attach** API cannot be called concurrently. Concurrent calls may cause the system to become unresponsive and trigger 14800015. If this occurs, try to call **attach()** again later.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -7375,12 +7374,12 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 801       | Capability not supported. |
 | 14800000  | Inner error. |
-| 14800010  | Invalid database path.               |
-| 14800011  | Database corrupted. |
-| 14800014  | Already closed. |
+| 14800010  | Failed to open or delete the database by an invalid database path.               |
+| 14800011  | Failed to open the database because it is corrupted. |
+| 14800014  | The RdbStore or ResultSet is already closed. |
 | 14800015  | The database does not respond.                 |
 | 14800016  | The database alias already exists.                |
-| 14800021  | SQLite: Generic error. |
+| 14800021  | SQLite: Generic error. Possible causes: Insert failed or the updated data does not exist. |
 | 14800022  | SQLite: Callback routine requested an abort. |
 | 14800023  | SQLite: Access permission denied. |
 | 14800024  | SQLite: The database file is locked. |
@@ -7402,11 +7401,11 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 import { BusinessError } from '@kit.BasicServicesKit';
 
 if (store != undefined) {
-    (store as relationalStore.RdbStore).attach("/path/rdbstore1.db", "attachDB").then((number: number) => {
-        console.info('attach succeeded');
-    }).catch ((err: BusinessError) => {
-        console.error(`attach failed, code is ${err.code},message is ${err.message}`);
-    })
+  (store as relationalStore.RdbStore).attach("/path/rdbstore1.db", "attachDB").then((number: number) => {
+    console.info('attach succeeded');
+  }).catch((err: BusinessError) => {
+    console.error(`attach failed, code is ${err.code},message is ${err.message}`);
+  });
 }
 ```
 
@@ -7416,11 +7415,11 @@ attach(context: Context, config: StoreConfig, attachName: string, waitTime?: num
 
 Attaches an RDB store to this RDB store so that the data in the attached RDB store can be directly accessed using the SQL statement.
 
-This API cannot be used to attach a non-encrypted RDB store to an encrypted RDB store. After the **attach()** API is called, the RDB store is switched to non-WAL mode, which may affect the performance.
+This API cannot be used to attach a non-encrypted RDB store to an encrypted RDB store. After the **attach** API is called, the RDB store is switched to the non-WAL mode, which may affect the performance.
 
 Before the RDB store is switched to non-WAL mode, ensure that all **ResultSet**s are closed and all write operations are complete. Otherwise, error 14800015 will be reported.
 
-The **attach()** API cannot be called concurrently. Concurrent calls may cause the system to become unresponsive and trigger 14800015. If this occurs, try to call **attach()** again later. In addition, when an encrypted database is attached, the database may fail to be decrypted due to concurrency and error 14800011 is reported. In this case, explicitly specify encryption parameters and try again.
+The **attach** API cannot be called concurrently. Concurrent calls may cause the system to become unresponsive and trigger 14800015. If this occurs, try to call **attach()** again later. In addition, when an encrypted database is attached, the database may fail to be decrypted due to concurrency and error 14800011 is reported. In this case, explicitly specify encryption parameters and try again.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -7429,7 +7428,7 @@ The **attach()** API cannot be called concurrently. Concurrent calls may cause t
 | Name       | Type    | Mandatory | Description          |
 | ----------- | ------ | --- | ------------ |
 | context | Context                          | Yes  | Application context.<br>For details about the application context of the FA model, see [Context](../apis-ability-kit/js-apis-inner-app-context.md).<br>For details about the application context of the stage model, see [Context](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md).|
-| config  | [StoreConfig](#storeconfig) | Yes  | Configuration of the RDB store to attach.                               |
+| config  | [StoreConfig](#storeconfig) | Yes  | Configuration of the RDB store.                               |
 | attachName | string | Yes  | Alias of the RDB store formed after the attach operation.|
 | waitTime | number | No  | Maximum time period (in seconds) allowed for attaching the database file. <br>Value range: 1 to 300<br>Default value: 2|
 
@@ -7448,14 +7447,14 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 801       | Capability not supported. |
 | 14800000  | Inner error. |
-| 14800010  | Invalid database path.               |
-| 14800011  | Database corrupted. |
-| 14800014  | Already closed. |
+| 14800010  | Failed to open or delete the database by an invalid database path.               |
+| 14800011  | Failed to open the database because it is corrupted. |
+| 14800014  | The RdbStore or ResultSet is already closed. |
 | 14800015  | The database does not respond.                 |
 | 14800016  | The database alias already exists.                |
 | 14801001  | The operation is supported in the stage model only.                 |
 | 14801002  | Invalid data group ID.                |
-| 14800021  | SQLite: Generic error. |
+| 14800021  | SQLite: Generic error. Possible causes: Insert failed or the updated data does not exist. |
 | 14800022  | SQLite: Callback routine requested an abort. |
 | 14800023  | SQLite: Access permission denied. |
 | 14800024  | SQLite: The database file is locked. |
@@ -7478,23 +7477,23 @@ import { BusinessError } from '@kit.BasicServicesKit';
 let attachStore: relationalStore.RdbStore | undefined = undefined;
 
 const STORE_CONFIG1: relationalStore.StoreConfig = {
-    name: "rdbstore1.db",
-    securityLevel: relationalStore.SecurityLevel.S3,
-}
+  name: "rdbstore1.db",
+  securityLevel: relationalStore.SecurityLevel.S3
+};
 
 relationalStore.getRdbStore(this.context, STORE_CONFIG1).then(async (rdbStore: relationalStore.RdbStore) => {
-    attachStore = rdbStore;
-    console.info('Get RdbStore successfully.')
+  attachStore = rdbStore;
+  console.info('Get RdbStore successfully.');
 }).catch((err: BusinessError) => {
-    console.error(`Get RdbStore failed, code is ${err.code},message is ${err.message}`);
-})
+  console.error(`Get RdbStore failed, code is ${err.code},message is ${err.message}`);
+});
 
 if (store != undefined) {
-    (store as relationalStore.RdbStore).attach(this.context, STORE_CONFIG1, "attachDB").then((number: number) => {
-        console.info(`attach succeeded, number is ${number}`);
-    }).catch ((err: BusinessError) => {
-        console.error(`attach failed, code is ${err.code},message is ${err.message}`);
-    })
+  (store as relationalStore.RdbStore).attach(this.context, STORE_CONFIG1, "attachDB").then((number: number) => {
+    console.info(`attach succeeded, number is ${number}`);
+  }).catch((err: BusinessError) => {
+    console.error(`attach failed, code is ${err.code},message is ${err.message}`);
+  });
 }
 ```
 
@@ -7505,26 +7504,25 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let attachStore: relationalStore.RdbStore | undefined = undefined;
 
-
 const STORE_CONFIG2: relationalStore.StoreConfig = {
-    name: "rdbstore2.db",
-    encrypt: true,
-    securityLevel: relationalStore.SecurityLevel.S3,
-}
+  name: "rdbstore2.db",
+  encrypt: true,
+  securityLevel: relationalStore.SecurityLevel.S3
+};
 
 relationalStore.getRdbStore(this.context, STORE_CONFIG2).then(async (rdbStore: relationalStore.RdbStore) => {
-    attachStore = rdbStore;
-    console.info('Get RdbStore successfully.')
+  attachStore = rdbStore;
+  console.info('Get RdbStore successfully.');
 }).catch((err: BusinessError) => {
-    console.error(`Get RdbStore failed, code is ${err.code},message is ${err.message}`);
-})
+  console.error(`Get RdbStore failed, code is ${err.code},message is ${err.message}`);
+});
 
 if (store != undefined) {
-    (store as relationalStore.RdbStore).attach(this.context, STORE_CONFIG2, "attachDB2", 10).then((number: number) => {
-        console.info(`attach succeeded, number is ${number}`);
-    }).catch ((err: BusinessError) => {
-        console.error(`attach failed, code is ${err.code},message is ${err.message}`);
-    })
+  (store as relationalStore.RdbStore).attach(this.context, STORE_CONFIG2, "attachDB2", 10).then((number: number) => {
+    console.info(`attach succeeded, number is ${number}`);
+  }).catch((err: BusinessError) => {
+    console.error(`attach failed, code is ${err.code},message is ${err.message}`);
+  });
 }
 ```
 
@@ -7561,10 +7559,10 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 |-----------|------------------------|
 | 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 14800000  | Inner error.            |
-| 14800011  | Database corrupted.         |
-| 14800014  | Already closed.        |
+| 14800011  | Failed to open the database because it is corrupted.         |
+| 14800014  | The RdbStore or ResultSet is already closed.        |
 | 14800015  | The database does not respond.         |
-| 14800021  | SQLite: Generic error.            |
+| 14800021  | SQLite: Generic error. Possible causes: Insert failed or the updated data does not exist.            |
 | 14800022  | SQLite: Callback routine requested an abort.       |
 | 14800023  | SQLite: Access permission denied.           |
 | 14800024  | SQLite: The database file is locked.        |
@@ -7585,11 +7583,11 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 import { BusinessError } from '@kit.BasicServicesKit';
 
 if (store != undefined) {
-    (store as relationalStore.RdbStore).detach("attachDB").then((number: number) => {
-        console.info(`detach succeeded, number is ${number}`);
-    }).catch ((err: BusinessError) => {
-        console.error(`detach failed, code is ${err.code},message is ${err.message}`);
-    })
+  (store as relationalStore.RdbStore).detach("attachDB").then((number: number) => {
+    console.info(`detach succeeded, number is ${number}`);
+  }).catch((err: BusinessError) => {
+    console.error(`detach failed, code is ${err.code},message is ${err.message}`);
+  });
 }
 ```
 
@@ -7625,11 +7623,11 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 |-----------|----------------------------------------------------------------------------------------------|
 | 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 14800000  | Inner error.                                                                                 |
-| 14800011  | Database corrupted.                                                                          |
-| 14800014  | Already closed.                                                                              |
+| 14800011  | Failed to open the database because it is corrupted.                                                                          |
+| 14800014  | The RdbStore or ResultSet is already closed.                                                                              |
 | 14800015  | The database does not respond.                                                                        |
 | 14800018  | No data meets the condition.                                                                 |
-| 14800021  | SQLite: Generic error.                                                                       |
+| 14800021  | SQLite: Generic error. Possible causes: Insert failed or the updated data does not exist.                                                                       |
 | 14800022  | SQLite: Callback routine requested an abort.                                                 |
 | 14800023  | SQLite: Access permission denied.                                                            |
 | 14800024  | SQLite: The database file is locked.                                                         |
@@ -7656,7 +7654,7 @@ if (store != undefined) {
     console.info(`Lock success`);
   }).catch((err: BusinessError) => {
     console.error(`Lock failed, code is ${err.code},message is ${err.message}`);
-  })
+  });
 }
 ```
 
@@ -7676,7 +7674,7 @@ This API cannot be used for deleted data.
 
 | Name    | Type                                | Mandatory| Description                                     |
 | ---------- | ------------------------------------ | ---- | ----------------------------------------- |
-| predicates | [RdbPredicates](#rdbpredicates) | Yes  | Conditions for unlocking data.|
+| predicates | [RdbPredicates](#rdbpredicates) | Yes  | Conditions for locking data.|
 
 **Return value**
 
@@ -7692,11 +7690,11 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 |-----------| ------------------------------------------------------------ |
 | 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 14800000  | Inner error. |
-| 14800011  | Database corrupted. |
-| 14800014  | Already closed. |
+| 14800011  | Failed to open the database because it is corrupted. |
+| 14800014  | The RdbStore or ResultSet is already closed. |
 | 14800015  | The database does not respond.                 |
 | 14800018  | No data meets the condition.                |
-| 14800021  | SQLite: Generic error. |
+| 14800021  | SQLite: Generic error. Possible causes: Insert failed or the updated data does not exist. |
 | 14800022  | SQLite: Callback routine requested an abort. |
 | 14800023  | SQLite: Access permission denied. |
 | 14800024  | SQLite: The database file is locked. |
@@ -7723,7 +7721,7 @@ if (store != undefined) {
     console.info(`Unlock success`);
   }).catch((err: BusinessError) => {
     console.error(`Unlock failed, code is ${err.code},message is ${err.message}`);
-  })
+  });
 }
 ```
 
@@ -7751,10 +7749,10 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 |-----------| ------------------------------------------------------------ |
 | 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 14800000  | Inner error. |
-| 14800011  | Database corrupted. |
-| 14800014  | Already closed. |
+| 14800011  | Failed to open the database because it is corrupted. |
+| 14800014  | The RdbStore or ResultSet is already closed. |
 | 14800015  | The database does not respond.                 |
-| 14800021  | SQLite: Generic error. |
+| 14800021  | SQLite: Generic error. Possible causes: Insert failed or the updated data does not exist. |
 | 14800022  | SQLite: Callback routine requested an abort. |
 | 14800023  | SQLite: Access permission denied. |
 | 14800024  | SQLite: The database file is locked. |
@@ -7783,7 +7781,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.equalTo("NAME", "Rose");
 if (store != undefined) {
-  (store as relationalStore.RdbStore).queryLockedRow(predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"]).then((resultSet: relationalStore.ResultSet) => {
+  (store as relationalStore.RdbStore).queryLockedRow(predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"]).then(async (resultSet: relationalStore.ResultSet) => {
     console.info(`ResultSet column names: ${resultSet.columnNames}, column count: ${resultSet.columnCount}`);
     // resultSet is a cursor of a data set. By default, the cursor points to the -1st record. Valid data starts from 0.
     while (resultSet.goToNextRow()) {
@@ -7797,7 +7795,7 @@ if (store != undefined) {
     resultSet.close();
   }).catch((err: BusinessError) => {
     console.error(`Query failed, code is ${err.code},message is ${err.message}`);
-  })
+  });
 }
 ```
 ### close<sup>12+</sup>
@@ -7812,7 +7810,7 @@ Closes this RDB store. This API uses a promise to return the result.
 
 | Type               | Description         |
 | ------------------- | ------------- |
-| Promise&lt;void&gt; | Promise used to|
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Error codes**
 
@@ -7829,11 +7827,11 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 import { BusinessError } from '@kit.BasicServicesKit';
 
 if (store != undefined) {
-    (store as relationalStore.RdbStore).close().then(() => {
-        console.info(`close succeeded`);
-    }).catch ((err: BusinessError) => {
-        console.error(`close failed, code is ${err.code},message is ${err.message}`);
-    })
+  (store as relationalStore.RdbStore).close().then(() => {
+    console.info(`close succeeded`);
+  }).catch((err: BusinessError) => {
+    console.error(`close failed, code is ${err.code},message is ${err.message}`);
+  });
 }
 ```
 
@@ -7841,63 +7839,7 @@ if (store != undefined) {
 
 Provides APIs to access the **resultSet** object returned by **query()**.
 
-### Usage
-
-Obtain the **resultSet** object first.
-
-**Example**
-
-```ts
-import { UIAbility } from '@kit.AbilityKit';
-import { BusinessError } from '@kit.BasicServicesKit';
-import { window } from '@kit.ArkUI';
-
-let store: relationalStore.RdbStore | undefined = undefined;
-
-class EntryAbility extends UIAbility {
-  onWindowStageCreate(windowStage: window.WindowStage) {
-    const STORE_CONFIG: relationalStore.StoreConfig = {
-      name: "RdbTest.db",
-      securityLevel: relationalStore.SecurityLevel.S3,
-    };
-
-    relationalStore.getRdbStore(this.context, STORE_CONFIG).then(async (rdbStore: relationalStore.RdbStore) => {
-      store = rdbStore;
-      const asset: relationalStore.Asset = {
-        name: "name",
-        uri: "uri",
-        createTime: "createTime",
-        modifyTime: "modifyTime",
-        size: "size",
-        path: "path",
-      };
-      const assets: relationalStore.Assets = [asset];
-      const valueBucket: relationalStore.ValuesBucket = {
-        "NAME": "hello world",
-        "AGE": 3,
-        "SALARY": 0.5,
-        "CODES": new Uint8Array([1, 2, 3]),
-        "IDENTITY":100n,
-        "ASSETDATA":asset,
-        "ASSETSDATA":assets,
-        "FLOATARRAY":new Float32Array([1.5, 2.5]),
-      };
-      (store as relationalStore.RdbStore).insertSync("EMPLOYEE", valueBucket);
-      let resultSet: relationalStore.ResultSet | undefined = undefined;
-      let predicates: relationalStore.RdbPredicates = new relationalStore.RdbPredicates("EMPLOYEE");
-      let columns: Array<string> = ["ID", "NAME", "AGE", "SALARY", "CODES", "IDENTITY", "ASSETDATA", "ASSETSDATA", "FLOATARRAY"];
-      await (store as relationalStore.RdbStore).query(predicates, columns).then(async (result: relationalStore.ResultSet) => {
-        resultSet = result;
-        console.info(`resultSet columnNames: ${resultSet.columnNames}`);
-        console.info(`resultSet columnCount: ${resultSet.columnCount}`);
-      });
-      console.info('Get RdbStore successfully.');
-    }).catch((err: BusinessError) => {
-      console.error(`Get RdbStore failed, code is ${err.code},message is ${err.message}`);
-    })
-  }
-}
-```
+For the following APIs, you should use either [query](#query14), [querySql](#querysql14), [remoteQuery](#remotequery-1), or [queryLockedRow](#querylockedrow12) to obtain the **ResultSet** instance first, and then use this instance to call the corresponding method.
 
 ### Properties
 
@@ -7943,11 +7885,11 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 |-----------| ------------------------------------------------------------ |
 | 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 14800000  | Inner error. |
-| 14800011  | Database corrupted. |
-| 14800013  | Column out of bounds. |
-| 14800014  | Already closed. |
+| 14800011  | Failed to open the database because it is corrupted. |
+| 14800013  | Resultset is empty or column index is out of bounds. |
+| 14800014  | The RdbStore or ResultSet is already closed. |
 | 14800019  | The SQL must be a query statement. |
-| 14800021  | SQLite: Generic error. |
+| 14800021  | SQLite: Generic error. Possible causes: Insert failed or the updated data does not exist. |
 | 14800022  | SQLite: Callback routine requested an abort. |
 | 14800023  | SQLite: Access permission denied. |
 | 14800024  | SQLite: The database file is locked. |
@@ -8001,11 +7943,11 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 |-----------| ------------------------------------------------------------ |
 | 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 14800000  | Inner error. |
-| 14800011  | Database corrupted. |
-| 14800013  | Column out of bounds. |
-| 14800014  | Already closed. |
+| 14800011  | Failed to open the database because it is corrupted. |
+| 14800013  | Resultset is empty or column index is out of bounds. |
+| 14800014  | The RdbStore or ResultSet is already closed. |
 | 14800019  | The SQL must be a query statement. |
-| 14800021  | SQLite: Generic error. |
+| 14800021  | SQLite: Generic error. Possible causes: Insert failed or the updated data does not exist. |
 | 14800022  | SQLite: Callback routine requested an abort. |
 | 14800023  | SQLite: Access permission denied. |
 | 14800024  | SQLite: The database file is locked. |
@@ -8058,12 +8000,12 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ------------ | ------------------------------------------------------------ |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 14800000     | Inner error.                                                 |
-| 14800011     | Database corrupted.                                          |
-| 14800012     | Row out of bounds.                                           |
-| 14800013     | Column out of bounds.                                        |
-| 14800014     | Already closed.                                              |
+| 14800011     | Failed to open the database because it is corrupted. |
+| 14800012     | ResultSet is empty or pointer index is out of bounds.                                           |
+| 14800013     | Resultset is empty or column index is out of bounds.                                        |
+| 14800014     | The RdbStore or ResultSet is already closed.                                              |
 | 14800019     | The SQL must be a query statement.                           |
-| 14800021     | SQLite: Generic error.                                       |
+| 14800021     | SQLite: Generic error. Possible causes: Insert failed or the updated data does not exist.                                     |
 | 14800022     | SQLite: Callback routine requested an abort.                 |
 | 14800023     | SQLite: Access permission denied.                            |
 | 14800024     | SQLite: The database file is locked.                         |
@@ -8122,12 +8064,12 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ------------ | ------------------------------------------------------------ |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 14800000     | Inner error.                                                 |
-| 14800011     | Database corrupted.                                          |
-| 14800012     | Row out of bounds.                                           |
-| 14800013     | Column out of bounds.                                        |
-| 14800014     | Already closed.                                              |
+| 14800011     | Failed to open the database because it is corrupted. |
+| 14800012     | ResultSet is empty or pointer index is out of bounds.                                           |
+| 14800013     | Resultset is empty or column index is out of bounds.                                        |
+| 14800014     | The RdbStore or ResultSet is already closed.                                              |
 | 14800019     | The SQL must be a query statement.                           |
-| 14800021     | SQLite: Generic error.                                       |
+| 14800021     | SQLite: Generic error. Possible causes: Insert failed or the updated data does not exist.                                     |
 | 14800022     | SQLite: Callback routine requested an abort.                 |
 | 14800023     | SQLite: Access permission denied.                            |
 | 14800024     | SQLite: The database file is locked.                         |
@@ -8186,11 +8128,11 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 |-----------| ------------------------------------------------------------ |
 | 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 14800000  | Inner error. |
-| 14800011  | Database corrupted. |
-| 14800012  | Row out of bounds. |
-| 14800014  | Already closed. |
+| 14800011  | Failed to open the database because it is corrupted. |
+| 14800012  | ResultSet is empty or pointer index is out of bounds. |
+| 14800014  | The RdbStore or ResultSet is already closed. |
 | 14800019  | The SQL must be a query statement. |
-| 14800021  | SQLite: Generic error. |
+| 14800021  | SQLite: Generic error. Possible causes: Insert failed or the updated data does not exist. |
 | 14800022  | SQLite: Callback routine requested an abort. |
 | 14800023  | SQLite: Access permission denied. |
 | 14800024  | SQLite: The database file is locked. |
@@ -8241,11 +8183,11 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 |-----------| ------------------------------------------------------------ |
 | 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 14800000  | Inner error. |
-| 14800011  | Database corrupted. |
-| 14800012  | Row out of bounds. |
-| 14800014  | Already closed. |
+| 14800011  | Failed to open the database because it is corrupted. |
+| 14800012  | ResultSet is empty or pointer index is out of bounds. |
+| 14800014  | The RdbStore or ResultSet is already closed. |
 | 14800019  | The SQL must be a query statement. |
-| 14800021  | SQLite: Generic error. |
+| 14800021  | SQLite: Generic error. Possible causes: Insert failed or the updated data does not exist. |
 | 14800022  | SQLite: Callback routine requested an abort. |
 | 14800023  | SQLite: Access permission denied. |
 | 14800024  | SQLite: The database file is locked. |
@@ -8290,11 +8232,11 @@ For details about the error codes, see [RDB Error Codes](errorcode-data-rdb.md).
 | **ID**| **Error Message**                                                |
 |-----------| ------------------------------------------------------------ |
 | 14800000  | Inner error. |
-| 14800011  | Database corrupted. |
-| 14800012  | Row out of bounds. |
-| 14800014  | Already closed. |
+| 14800011  | Failed to open the database because it is corrupted. |
+| 14800012  | ResultSet is empty or pointer index is out of bounds. |
+| 14800014  | The RdbStore or ResultSet is already closed. |
 | 14800019  | The SQL must be a query statement. |
-| 14800021  | SQLite: Generic error. |
+| 14800021  | SQLite: Generic error. Possible causes: Insert failed or the updated data does not exist. |
 | 14800022  | SQLite: Callback routine requested an abort. |
 | 14800023  | SQLite: Access permission denied. |
 | 14800024  | SQLite: The database file is locked. |
@@ -8338,11 +8280,11 @@ For details about the error codes, see [RDB Error Codes](errorcode-data-rdb.md).
 | **ID**| **Error Message**                                                |
 |-----------| ------------------------------------------------------------ |
 | 14800000  | Inner error. |
-| 14800011  | Database corrupted. |
-| 14800012  | Row out of bounds. |
-| 14800014  | Already closed. |
+| 14800011  | Failed to open the database because it is corrupted. |
+| 14800012  | ResultSet is empty or pointer index is out of bounds. |
+| 14800014  | The RdbStore or ResultSet is already closed. |
 | 14800019  | The SQL must be a query statement. |
-| 14800021  | SQLite: Generic error. |
+| 14800021  | SQLite: Generic error. Possible causes: Insert failed or the updated data does not exist. |
 | 14800022  | SQLite: Callback routine requested an abort. |
 | 14800023  | SQLite: Access permission denied. |
 | 14800024  | SQLite: The database file is locked. |
@@ -8386,11 +8328,11 @@ For details about the error codes, see [RDB Error Codes](errorcode-data-rdb.md).
 | **ID**| **Error Message**                                                |
 |-----------| ------------------------------------------------------------ |
 | 14800000  | Inner error. |
-| 14800011  | Database corrupted. |
-| 14800012  | Row out of bounds. |
-| 14800014  | Already closed. |
+| 14800011  | Failed to open the database because it is corrupted. |
+| 14800012  | ResultSet is empty or pointer index is out of bounds. |
+| 14800014  | The RdbStore or ResultSet is already closed. |
 | 14800019  | The SQL must be a query statement. |
-| 14800021  | SQLite: Generic error. |
+| 14800021  | SQLite: Generic error. Possible causes: Insert failed or the updated data does not exist. |
 | 14800022  | SQLite: Callback routine requested an abort. |
 | 14800023  | SQLite: Access permission denied. |
 | 14800024  | SQLite: The database file is locked. |
@@ -8434,11 +8376,11 @@ For details about the error codes, see [RDB Error Codes](errorcode-data-rdb.md).
 | **ID**| **Error Message**                                                |
 |-----------| ------------------------------------------------------------ |
 | 14800000  | Inner error. |
-| 14800011  | Database corrupted. |
-| 14800012  | Row out of bounds. |
-| 14800014  | Already closed. |
+| 14800011  | Failed to open the database because it is corrupted. |
+| 14800012  | ResultSet is empty or pointer index is out of bounds. |
+| 14800014  | The RdbStore or ResultSet is already closed. |
 | 14800019  | The SQL must be a query statement. |
-| 14800021  | SQLite: Generic error. |
+| 14800021  | SQLite: Generic error. Possible causes: Insert failed or the updated data does not exist. |
 | 14800022  | SQLite: Callback routine requested an abort. |
 | 14800023  | SQLite: Access permission denied. |
 | 14800024  | SQLite: The database file is locked. |
@@ -8479,7 +8421,7 @@ Obtains the value from the specified column and current row. If the value type i
 
 | Type      | Description                            |
 | ---------- | -------------------------------- |
-| [ValueType](#valuetype) | Value obtained. |
+| [ValueType](#valuetype) | Values of the specified type.|
 
 **Error codes**
 
@@ -8489,11 +8431,11 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 |-----------|---------|
 | 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 14800000  | Inner error.      |
-| 14800011  | Database corrupted.        |
-| 14800012  | Row out of bounds.       |
-| 14800013  | Column out of bounds.   |
-| 14800014  | Already closed.       |
-| 14800021  | SQLite: Generic error.    |
+| 14800011  | Failed to open the database because it is corrupted.        |
+| 14800012  | ResultSet is empty or pointer index is out of bounds.       |
+| 14800013  | Resultset is empty or column index is out of bounds.   |
+| 14800014  | The RdbStore or ResultSet is already closed.       |
+| 14800021  | SQLite: Generic error. Possible causes: Insert failed or the updated data does not exist.    |
 | 14800022  | SQLite: Callback routine requested an abort.     |
 | 14800023  | SQLite: Access permission denied.    |
 | 14800024  | SQLite: The database file is locked.    |
@@ -8545,11 +8487,11 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 |-----------| ------------------------------------------------------------ |
 | 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 14800000  | Inner error. |
-| 14800011  | Database corrupted. |
-| 14800012  | Row out of bounds. |
-| 14800013  | Column out of bounds. |
-| 14800014  | Already closed. |
-| 14800021  | SQLite: Generic error. |
+| 14800011  | Failed to open the database because it is corrupted. |
+| 14800012  | ResultSet is empty or pointer index is out of bounds. |
+| 14800013  | Resultset is empty or column index is out of bounds. |
+| 14800014  | The RdbStore or ResultSet is already closed. |
+| 14800021  | SQLite: Generic error. Possible causes: Insert failed or the updated data does not exist. |
 | 14800022  | SQLite: Callback routine requested an abort. |
 | 14800023  | SQLite: Access permission denied. |
 | 14800024  | SQLite: The database file is locked. |
@@ -8600,11 +8542,11 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 |-----------| ------------------------------------------------------------ |
 | 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 14800000  | Inner error. |
-| 14800011  | Database corrupted. |
-| 14800012  | Row out of bounds. |
-| 14800013  | Column out of bounds. |
-| 14800014  | Already closed. |
-| 14800021  | SQLite: Generic error. |
+| 14800011  | Failed to open the database because it is corrupted. |
+| 14800012  | ResultSet is empty or pointer index is out of bounds. |
+| 14800013  | Resultset is empty or column index is out of bounds. |
+| 14800014  | The RdbStore or ResultSet is already closed. |
+| 14800021  | SQLite: Generic error. Possible causes: Insert failed or the updated data does not exist. |
 | 14800022  | SQLite: Callback routine requested an abort. |
 | 14800023  | SQLite: Access permission denied. |
 | 14800024  | SQLite: The database file is locked. |
@@ -8655,11 +8597,11 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 |-----------| ------------------------------------------------------------ |
 | 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 14800000  | Inner error. |
-| 14800011  | Database corrupted. |
-| 14800012  | Row out of bounds. |
-| 14800013  | Column out of bounds. |
-| 14800014  | Already closed. |
-| 14800021  | SQLite: Generic error. |
+| 14800011  | Failed to open the database because it is corrupted. |
+| 14800012  | ResultSet is empty or pointer index is out of bounds. |
+| 14800013  | Resultset is empty or column index is out of bounds. |
+| 14800014  | The RdbStore or ResultSet is already closed. |
+| 14800021  | SQLite: Generic error. Possible causes: Insert failed or the updated data does not exist. |
 | 14800022  | SQLite: Callback routine requested an abort. |
 | 14800023  | SQLite: Access permission denied. |
 | 14800024  | SQLite: The database file is locked. |
@@ -8710,11 +8652,11 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 |-----------| ------------------------------------------------------------ |
 | 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 14800000  | Inner error. |
-| 14800011  | Database corrupted. |
-| 14800012  | Row out of bounds. |
-| 14800013  | Column out of bounds. |
-| 14800014  | Already closed. |
-| 14800021  | SQLite: Generic error. |
+| 14800011  | Failed to open the database because it is corrupted. |
+| 14800012  | ResultSet is empty or pointer index is out of bounds. |
+| 14800013  | Resultset is empty or column index is out of bounds. |
+| 14800014  | The RdbStore or ResultSet is already closed. |
+| 14800021  | SQLite: Generic error. Possible causes: Insert failed or the updated data does not exist. |
 | 14800022  | SQLite: Callback routine requested an abort. |
 | 14800023  | SQLite: Access permission denied. |
 | 14800024  | SQLite: The database file is locked. |
@@ -8765,11 +8707,11 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 |-----------| ------------------------------------------------------------ |
 | 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 14800000  | Inner error. |
-| 14800011  | Database corrupted. |
-| 14800012  | Row out of bounds. |
-| 14800013  | Column out of bounds. |
-| 14800014  | Already closed. |
-| 14800021  | SQLite: Generic error. |
+| 14800011  | Failed to open the database because it is corrupted. |
+| 14800012  | ResultSet is empty or pointer index is out of bounds. |
+| 14800013  | Resultset is empty or column index is out of bounds. |
+| 14800014  | The RdbStore or ResultSet is already closed. |
+| 14800021  | SQLite: Generic error. Possible causes: Insert failed or the updated data does not exist. |
 | 14800022  | SQLite: Callback routine requested an abort. |
 | 14800023  | SQLite: Access permission denied. |
 | 14800024  | SQLite: The database file is locked. |
@@ -8796,7 +8738,7 @@ if (resultSet != undefined) {
 
 getAssets(columnIndex: number): Assets
 
-Obtains the value from the specified column and current row, and returns the value in the [Assets](#assets10) format. If the type of the value in the column is **Assets**, the value of the Assets type is returned. If the value in the column is null, **null** is returned. If the value in the column is of other types, **14800000** is returned.
+Obtains the value from the specified column and current row, and returns the value obtained in the [Assets](#assets10) format. If the type of the value in the column is **Assets**, the value of the Assets type is returned. If the value in the column is null, **null** is returned. If the value in the column is of other types, **14800000** is returned.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -8820,11 +8762,11 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 |-----------| ------------------------------------------------------------ |
 | 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 14800000  | Inner error. |
-| 14800011  | Database corrupted. |
-| 14800012  | Row out of bounds. |
-| 14800013  | Column out of bounds. |
-| 14800014  | Already closed. |
-| 14800021  | SQLite: Generic error. |
+| 14800011  | Failed to open the database because it is corrupted. |
+| 14800012  | ResultSet is empty or pointer index is out of bounds. |
+| 14800013  | Resultset is empty or column index is out of bounds. |
+| 14800014  | The RdbStore or ResultSet is already closed. |
+| 14800021  | SQLite: Generic error. Possible causes: Insert failed or the updated data does not exist. |
 | 14800022  | SQLite: Callback routine requested an abort. |
 | 14800023  | SQLite: Access permission denied. |
 | 14800024  | SQLite: The database file is locked. |
@@ -8868,11 +8810,11 @@ For details about the error codes, see [RDB Error Codes](errorcode-data-rdb.md).
 | **ID**| **Error Message**                                                |
 |-----------| ------------------------------------------------------------ |
 | 14800000  | Inner error. |
-| 14800011  | Database corrupted. |
-| 14800012  | Row out of bounds. |
-| 14800013  | Column out of bounds. |
-| 14800014  | Already closed. |
-| 14800021  | SQLite: Generic error. |
+| 14800011  | Failed to open the database because it is corrupted. |
+| 14800012  | ResultSet is empty or pointer index is out of bounds. |
+| 14800013  | Resultset is empty or column index is out of bounds. |
+| 14800014  | The RdbStore or ResultSet is already closed. |
+| 14800021  | SQLite: Generic error. Possible causes: Insert failed or the updated data does not exist. |
 | 14800022  | SQLite: Callback routine requested an abort. |
 | 14800023  | SQLite: Access permission denied. |
 | 14800024  | SQLite: The database file is locked. |
@@ -8925,11 +8867,11 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 |-----------| ------------------------------------------------------------ |
 | 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 14800000  | Inner error. |
-| 14800011  | Database corrupted. |
-| 14800012  | Row out of bounds. |
-| 14800013  | Column out of bounds. |
-| 14800014  | Already closed. |
-| 14800021  | SQLite: Generic error. |
+| 14800011  | Failed to open the database because it is corrupted. |
+| 14800012  | ResultSet is empty or pointer index is out of bounds. |
+| 14800013  | Resultset is empty or column index is out of bounds. |
+| 14800014  | The RdbStore or ResultSet is already closed. |
+| 14800021  | SQLite: Generic error. Possible causes: Insert failed or the updated data does not exist. |
 | 14800022  | SQLite: Callback routine requested an abort. |
 | 14800023  | SQLite: Access permission denied. |
 | 14800024  | SQLite: The database file is locked. |
@@ -8948,23 +8890,23 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 async function proccessRows(resultSet: relationalStore.ResultSet) {
   // Example 1: Specify only maxCount.
   if (resultSet != undefined) {
-    let rows:Array<relationalStore.ValuesBucket>
-    let maxCount:number = 50
+    let rows: Array<relationalStore.ValuesBucket>;
+    let maxCount: number = 50;
     // Obtain data from the current row of the result set. By default, the first fetch starts from the first row of the current result set. Subsequent fetches start from the row following the last row retrieved.
     // getRows automatically moves the current row of the result set to the row following the last row retrieved by the previous getRows call. You do not need to use APIs such as goToFirstRow and goToNextRow.
     while ((rows = await (resultSet as relationalStore.ResultSet).getRows(maxCount)).length != 0) {
-      console.info(JSON.stringify(rows[0]))
+      console.info(JSON.stringify(rows[0]));
     }
   }
 
   // Example 2: Specify maxCount and position.
   if (resultSet != undefined) {
-    let rows:Array<relationalStore.ValuesBucket>
-    let maxCount:number = 50
-    let position:number = 50
+    let rows: Array<relationalStore.ValuesBucket>;
+    let maxCount: number = 50;
+    let position: number = 50;
     while ((rows = await (resultSet as relationalStore.ResultSet).getRows(maxCount, position)).length != 0) {
-      console.info(JSON.stringify(rows[0]))
-      position += rows.length
+      console.info(JSON.stringify(rows[0]));
+      position += rows.length;
     }
   }
 }
@@ -8980,8 +8922,8 @@ Obtains the sendable data from the current row. The sendable data can be passed 
 
 **Return value**
 
-| Type                                                                                          | Description                                          |
-| ---------------------------------------------------------------------------------------------- | ---------------------------------------------- |
+| Type                                                                                          | Description                                        |
+| ---------------------------------------------------------------------------------------------- | -------------------------------------------- |
 | [sendableRelationalStore.ValuesBucket](./js-apis-data-sendableRelationalStore.md#valuesbucket) | Sendable data obtained for cross-thread transfer.|
 
 **Error codes**
@@ -8991,11 +8933,11 @@ For details about the error codes, see [RDB Error Codes](errorcode-data-rdb.md).
 | **ID**| **Error Message**                                 |
 | ------------ | --------------------------------------------- |
 | 14800000     | Inner error.                                  |
-| 14800011     | Database corrupted.                           |
-| 14800012     | Row out of bounds.                            |
-| 14800013     | Column out of bounds.                         |
-| 14800014     | Already closed.                               |
-| 14800021     | SQLite: Generic error.                        |
+| 14800011     | Failed to open the database because it is corrupted.                           |
+| 14800012     | ResultSet is empty or pointer index is out of bounds.                            |
+| 14800013     | Resultset is empty or column index is out of bounds.                         |
+| 14800014     | The RdbStore or ResultSet is already closed.                               |
+| 14800021     | SQLite: Generic error. Possible causes: Insert failed or the updated data does not exist.                        |
 | 14800022     | SQLite: Callback routine requested an abort.  |
 | 14800023     | SQLite: Access permission denied.             |
 | 14800024     | SQLite: The database file is locked.          |
@@ -9012,7 +8954,11 @@ For details about the error codes, see [RDB Error Codes](errorcode-data-rdb.md).
 
 **Example**
 
+<!--code_no_check-->
 ```ts
+import { window } from '@kit.ArkUI';
+import { UIAbility } from '@kit.AbilityKit';
+import { relationalStore } from '@kit.ArkData';
 import { taskpool } from '@kit.ArkTS';
 import type ctx from '@ohos.app.ability.common';
 import { sendableRelationalStore } from '@kit.ArkData';
@@ -9037,16 +8983,16 @@ async function getDataByName(name: string, context: ctx.UIAbilityContext) {
   }
 }
 
-class EntryAbility extends UIAbility {
+export default class EntryAbility extends UIAbility {
   async onWindowStageCreate(windowStage: window.WindowStage) {
-    const task = new taskpool.Task(getDataByName, 'Lisa', getContext());
-    const sendableValuesBucket  = await taskpool.execute(task) as sendableRelationalStore.ValuesBucket;
+    const task = new taskpool.Task(getDataByName, 'Lisa', this.context);
+    const sendableValuesBucket = await taskpool.execute(task) as sendableRelationalStore.ValuesBucket;
 
     if (sendableValuesBucket) {
       const columnCount = sendableValuesBucket.size;
       const age = sendableValuesBucket.get('age');
       const name = sendableValuesBucket.get('name');
-      console.info(`Query data in taskpool succeeded, name is "${name}", age is "${age}"`)
+      console.info(`Query data in taskpool succeeded, name is "${name}", age is "${age}"`);
     }
   }
 }
@@ -9080,11 +9026,11 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 |-----------| ------------------------------------------------------- |
 | 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 14800000  | Inner error. |
-| 14800011  | Database corrupted. |
-| 14800012  | Row out of bounds. |
-| 14800013  | Column out of bounds. |
-| 14800014  | Already closed. |
-| 14800021  | SQLite: Generic error. |
+| 14800011  | Failed to open the database because it is corrupted. |
+| 14800012  | ResultSet is empty or pointer index is out of bounds. |
+| 14800013  | Resultset is empty or column index is out of bounds. |
+| 14800014  | The RdbStore or ResultSet is already closed. |
+| 14800021  | SQLite: Generic error. Possible causes: Insert failed or the updated data does not exist. |
 | 14800022  | SQLite: Callback routine requested an abort. |
 | 14800023  | SQLite: Access permission denied. |
 | 14800024  | SQLite: The database file is locked. |
@@ -9130,7 +9076,7 @@ For details about the error codes, see [RDB Error Codes](errorcode-data-rdb.md).
 | **ID**| **Error Message**                                                |
 |-----------| ------------------------------------------------------------ |
 | 14800000  | Inner error. |
-| 14800012  | Row out of bounds. |
+| 14800012  | ResultSet is empty or pointer index is out of bounds. |
 
 ## Transaction<sup>14+</sup>
 
@@ -9155,15 +9101,15 @@ class EntryAbility extends UIAbility {
   async onWindowStageCreate(windowStage: window.WindowStage) {
     const STORE_CONFIG: relationalStore.StoreConfig = {
       name: "RdbTest.db",
-      securityLevel: relationalStore.SecurityLevel.S3,
+      securityLevel: relationalStore.SecurityLevel.S3
     };
 
     await relationalStore.getRdbStore(this.context, STORE_CONFIG).then(async (rdbStore: relationalStore.RdbStore) => {
       store = rdbStore;
-      console.info('Get RdbStore successfully.')
+      console.info('Get RdbStore successfully.');
     }).catch((err: BusinessError) => {
       console.error(`Get RdbStore failed, code is ${err.code},message is ${err.message}`);
-    })
+    });
 
     if (store != undefined) {
       (store as relationalStore.RdbStore).createTransaction().then((transaction: relationalStore.Transaction) => {
@@ -9198,8 +9144,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | **ID**| **Error Message**                                                |
 |-----------| ------------------------------------------------------------ |
 | 14800000  | Inner error. |
-| 14800011  | Database corrupted. |
-| 14800014  | Already closed. |
+| 14800011  | Failed to open the database because it is corrupted. |
+| 14800014  | The RdbStore or ResultSet is already closed. |
 | 14800023  | SQLite: Access permission denied. |
 | 14800024  | SQLite: The database file is locked. |
 | 14800026  | SQLite: The database is out of memory. |
@@ -9220,7 +9166,7 @@ if (store != undefined) {
     'NAME': value1,
     'AGE': value2,
     'SALARY': value3,
-    'CODES': value4,
+    'CODES': value4
   };
   (store as relationalStore.RdbStore).createTransaction().then((transaction: relationalStore.Transaction) => {
     transaction.execute("DELETE FROM TEST WHERE age = ? OR age = ?", ["18", "20"]).then(() => {
@@ -9256,8 +9202,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | **ID**| **Error Message**                                                |
 |-----------| ------------------------------------------------------------ |
 | 14800000  | Inner error. |
-| 14800011  | Database corrupted. |
-| 14800014  | Already closed. |
+| 14800011  | Failed to open the database because it is corrupted. |
+| 14800014  | The RdbStore or ResultSet is already closed. |
 | 14800023  | SQLite: Access permission denied. |
 | 14800024  | SQLite: The database file is locked. |
 | 14800026  | SQLite: The database is out of memory. |
@@ -9280,7 +9226,6 @@ if (store != undefined) {
     console.error(`createTransaction failed, code is ${err.code},message is ${err.message}`);
   });
 }
-
 ```
 
 ### insert<sup>14+</sup>
@@ -9313,9 +9258,9 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 |-----------| ------------------------------------------------------------ |
 | 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 14800000  | Inner error. |
-| 14800011  | Database corrupted. |
-| 14800014  | Already closed. |
-| 14800021  | SQLite: Generic error. |
+| 14800011  | Failed to open the database because it is corrupted. |
+| 14800014  | The RdbStore or ResultSet is already closed. |
+| 14800021  | SQLite: Generic error. Possible causes: Insert failed or the updated data does not exist. |
 | 14800023  | SQLite: Access permission denied. |
 | 14800024  | SQLite: The database file is locked. |
 | 14800025  | SQLite: A table in the database is locked. |
@@ -9340,19 +9285,19 @@ const valueBucket1: relationalStore.ValuesBucket = {
   'NAME': value1,
   'AGE': value2,
   'SALARY': value3,
-  'CODES': value4,
+  'CODES': value4
 };
 const valueBucket2: relationalStore.ValuesBucket = {
   NAME: value1,
   AGE: value2,
   SALARY: value3,
-  CODES: value4,
+  CODES: value4
 };
 const valueBucket3: relationalStore.ValuesBucket = {
   "NAME": value1,
   "AGE": value2,
   "SALARY": value3,
-  "CODES": value4,
+  "CODES": value4
 };
 
 if (store != undefined) {
@@ -9400,9 +9345,9 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ------------ | ------------------------------------------------------------ |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 14800000     | Inner error.                                                 |
-| 14800011     | Database corrupted.                                          |
-| 14800014     | Already closed.                                              |
-| 14800021     | SQLite: Generic error.                                       |
+| 14800011     | Failed to open the database because it is corrupted.                                          |
+| 14800014     | The RdbStore or ResultSet is already closed.                                              |
+| 14800021     | SQLite: Generic error. Possible causes: Insert failed or the updated data does not exist.                                       |
 | 14800023     | SQLite: Access permission denied.                            |
 | 14800024     | SQLite: The database file is locked.                         |
 | 14800025     | SQLite: A table in the database is locked.                   |
@@ -9427,19 +9372,19 @@ const valueBucket1: relationalStore.ValuesBucket = {
   'NAME': value1,
   'AGE': value2,
   'SALARY': value3,
-  'CODES': value4,
+  'CODES': value4
 };
 const valueBucket2: relationalStore.ValuesBucket = {
   NAME: value1,
   AGE: value2,
   SALARY: value3,
-  CODES: value4,
+  CODES: value4
 };
 const valueBucket3: relationalStore.ValuesBucket = {
   "NAME": value1,
   "AGE": value2,
   "SALARY": value3,
-  "CODES": value4,
+  "CODES": value4
 };
 
 if (store != undefined) {
@@ -9487,9 +9432,9 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 |-----------| ------------------------------------------------------------ |
 | 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 14800000  | Inner error. |
-| 14800011  | Database corrupted. |
-| 14800014  | Already closed. |
-| 14800021  | SQLite: Generic error. |
+| 14800011  | Failed to open the database because it is corrupted. |
+| 14800014  | The RdbStore or ResultSet is already closed. |
+| 14800021  | SQLite: Generic error. Possible causes: Insert failed or the updated data does not exist. |
 | 14800023  | SQLite: Access permission denied. |
 | 14800024  | SQLite: The database file is locked. |
 | 14800025  | SQLite: A table in the database is locked. |
@@ -9521,19 +9466,19 @@ const valueBucket1: relationalStore.ValuesBucket = {
   'NAME': value1,
   'AGE': value2,
   'SALARY': value3,
-  'CODES': value4,
+  'CODES': value4
 };
 const valueBucket2: relationalStore.ValuesBucket = {
   'NAME': value5,
   'AGE': value6,
   'SALARY': value7,
-  'CODES': value8,
+  'CODES': value8
 };
 const valueBucket3: relationalStore.ValuesBucket = {
   'NAME': value9,
   'AGE': value10,
   'SALARY': value11,
-  'CODES': value12,
+  'CODES': value12
 };
 
 let valueBuckets = new Array(valueBucket1, valueBucket2, valueBucket3);
@@ -9581,9 +9526,9 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ------------ | ------------------------------------------------------------ |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 14800000     | Inner error.                                                 |
-| 14800011     | Database corrupted.                                          |
-| 14800014     | Already closed.                                              |
-| 14800021     | SQLite: Generic error.                                       |
+| 14800011     | Failed to open the database because it is corrupted.                                          |
+| 14800014     | The RdbStore or ResultSet is already closed.                                              |
+| 14800021     | SQLite: Generic error. Possible causes: Insert failed or the updated data does not exist.                                       |
 | 14800023     | SQLite: Access permission denied.                            |
 | 14800024     | SQLite: The database file is locked.                         |
 | 14800025     | SQLite: A table in the database is locked.                   |
@@ -9615,19 +9560,19 @@ const valueBucket1: relationalStore.ValuesBucket = {
   'NAME': value1,
   'AGE': value2,
   'SALARY': value3,
-  'CODES': value4,
+  'CODES': value4
 };
 const valueBucket2: relationalStore.ValuesBucket = {
   'NAME': value5,
   'AGE': value6,
   'SALARY': value7,
-  'CODES': value8,
+  'CODES': value8
 };
 const valueBucket3: relationalStore.ValuesBucket = {
   'NAME': value9,
   'AGE': value10,
   'SALARY': value11,
-  'CODES': value12,
+  'CODES': value12
 };
 
 let valueBuckets = new Array(valueBucket1, valueBucket2, valueBucket3);
@@ -9677,9 +9622,9 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 |-----------| ------------------------------------------------------------ |
 | 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 14800000  | Inner error. |
-| 14800011  | Database corrupted. |
-| 14800014  | Already closed. |
-| 14800021  | SQLite: Generic error. |
+| 14800011  | Failed to open the database because it is corrupted. |
+| 14800014  | The RdbStore or ResultSet is already closed. |
+| 14800021  | SQLite: Generic error. Possible causes: Insert failed or the updated data does not exist. |
 | 14800022  | SQLite: Callback routine requested an abort. |
 | 14800023  | SQLite: Access permission denied. |
 | 14800024  | SQLite: The database file is locked. |
@@ -9714,19 +9659,19 @@ const valueBucket1: relationalStore.ValuesBucket = {
   'NAME': value1,
   'AGE': value2,
   'SALARY': value3,
-  'CODES': value4,
+  'CODES': value4
 };
 const valueBucket2: relationalStore.ValuesBucket = {
   'NAME': value5,
   'AGE': value6,
   'SALARY': value7,
-  'CODES': value8,
+  'CODES': value8
 };
 const valueBucket3: relationalStore.ValuesBucket = {
   'NAME': value9,
   'AGE': value10,
   'SALARY': value11,
-  'CODES': value12,
+  'CODES': value12
 };
 
 let valueBuckets = new Array(valueBucket1, valueBucket2, valueBucket3);
@@ -9775,9 +9720,9 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ------------ | ------------------------------------------------------------ |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 14800000  | Inner error. |
-| 14800011  | Database corrupted. |
-| 14800014  | Already closed. |
-| 14800021  | SQLite: Generic error. |
+| 14800011  | Failed to open the database because it is corrupted. |
+| 14800014  | The RdbStore or ResultSet is already closed. |
+| 14800021  | SQLite: Generic error. Possible causes: Insert failed or the updated data does not exist. |
 | 14800022  | SQLite: Callback routine requested an abort. |
 | 14800023  | SQLite: Access permission denied. |
 | 14800024  | SQLite: The database file is locked. |
@@ -9812,19 +9757,19 @@ const valueBucket1: relationalStore.ValuesBucket = {
   'NAME': value1,
   'AGE': value2,
   'SALARY': value3,
-  'CODES': value4,
+  'CODES': value4
 };
 const valueBucket2: relationalStore.ValuesBucket = {
   'NAME': value5,
   'AGE': value6,
   'SALARY': value7,
-  'CODES': value8,
+  'CODES': value8
 };
 const valueBucket3: relationalStore.ValuesBucket = {
   'NAME': value9,
   'AGE': value10,
   'SALARY': value11,
-  'CODES': value12,
+  'CODES': value12
 };
 
 let valueBuckets = new Array(valueBucket1, valueBucket2, valueBucket3);
@@ -9874,9 +9819,9 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 |-----------| ------------------------------------------------------------ |
 | 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 14800000  | Inner error. |
-| 14800011  | Database corrupted. |
-| 14800014  | Already closed. |
-| 14800021  | SQLite: Generic error. |
+| 14800011  | Failed to open the database because it is corrupted. |
+| 14800014  | The RdbStore or ResultSet is already closed. |
+| 14800021  | SQLite: Generic error. Possible causes: Insert failed or the updated data does not exist. |
 | 14800023  | SQLite: Access permission denied. |
 | 14800024  | SQLite: The database file is locked. |
 | 14800025  | SQLite: A table in the database is locked. |
@@ -9901,19 +9846,19 @@ const valueBucket1: relationalStore.ValuesBucket = {
   'NAME': value1,
   'AGE': value2,
   'SALARY': value3,
-  'CODES': value4,
+  'CODES': value4
 };
 const valueBucket2: relationalStore.ValuesBucket = {
   NAME: value1,
   AGE: value2,
   SALARY: value3,
-  CODES: value4,
+  CODES: value4
 };
 const valueBucket3: relationalStore.ValuesBucket = {
   "NAME": value1,
   "AGE": value2,
   "SALARY": value3,
-  "CODES": value4,
+  "CODES": value4
 };
 
 let predicates = new relationalStore.RdbPredicates('EMPLOYEE');
@@ -9964,9 +9909,9 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ------------ | ------------------------------------------------------------ |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 14800000     | Inner error.                                                 |
-| 14800011     | Database corrupted.                                          |
-| 14800014     | Already closed.                                              |
-| 14800021     | SQLite: Generic error.                                       |
+| 14800011     | Failed to open the database because it is corrupted.                                          |
+| 14800014     | The RdbStore or ResultSet is already closed.                                              |
+| 14800021     | SQLite: Generic error. Possible causes: Insert failed or the updated data does not exist.                                       |
 | 14800023     | SQLite: Access permission denied.                            |
 | 14800024     | SQLite: The database file is locked.                         |
 | 14800025     | SQLite: A table in the database is locked.                   |
@@ -9991,19 +9936,19 @@ const valueBucket1: relationalStore.ValuesBucket = {
   'NAME': value1,
   'AGE': value2,
   'SALARY': value3,
-  'CODES': value4,
+  'CODES': value4
 };
 const valueBucket2: relationalStore.ValuesBucket = {
   NAME: value1,
   AGE: value2,
   SALARY: value3,
-  CODES: value4,
+  CODES: value4
 };
 const valueBucket3: relationalStore.ValuesBucket = {
   "NAME": value1,
   "AGE": value2,
   "SALARY": value3,
-  "CODES": value4,
+  "CODES": value4
 };
 
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
@@ -10053,9 +9998,9 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 |-----------| ------------------------------------------------------------ |
 | 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 14800000  | Inner error. |
-| 14800011  | Database corrupted. |
-| 14800014  | Already closed. |
-| 14800021  | SQLite: Generic error. |
+| 14800011  | Failed to open the database because it is corrupted. |
+| 14800014  | The RdbStore or ResultSet is already closed. |
+| 14800021  | SQLite: Generic error. Possible causes: Insert failed or the updated data does not exist. |
 | 14800023  | SQLite: Access permission denied. |
 | 14800024  | SQLite: The database file is locked. |
 | 14800025  | SQLite: A table in the database is locked. |
@@ -10106,7 +10051,7 @@ Deletes data from the database based on the specified **RdbPredicates** object.
 
 | Type  | Description              |
 | ------ | ------------------ |
-| number | return the number of rows updated.|
+| number | return the number of rows deleted.|
 
 **Error codes**
 
@@ -10116,9 +10061,9 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ------------ | ------------------------------------------------------------ |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 14800000  | Inner error. |
-| 14800011  | Database corrupted. |
-| 14800014  | Already closed. |
-| 14800021  | SQLite: Generic error. |
+| 14800011  | Failed to open the database because it is corrupted. |
+| 14800014  | The RdbStore or ResultSet is already closed. |
+| 14800021  | SQLite: Generic error. Possible causes: Insert failed or the updated data does not exist. |
 | 14800023  | SQLite: Access permission denied. |
 | 14800024  | SQLite: The database file is locked. |
 | 14800025  | SQLite: A table in the database is locked. |
@@ -10175,9 +10120,9 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 |-----------| ------------------------------------------------------------ |
 | 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 14800000  | Inner error. |
-| 14800011  | Database corrupted. |
-| 14800014  | Already closed. |
-| 14800021  | SQLite: Generic error. |
+| 14800011  | Failed to open the database because it is corrupted. |
+| 14800014  | The RdbStore or ResultSet is already closed. |
+| 14800021  | SQLite: Generic error. Possible causes: Insert failed or the updated data does not exist. |
 | 14800023  | SQLite: Access permission denied. |
 | 14800024  | SQLite: The database file is locked. |
 | 14800026  | SQLite: The database is out of memory. |
@@ -10198,7 +10143,7 @@ predicates.equalTo("NAME", "Rose");
 
 if (store != undefined) {
   (store as relationalStore.RdbStore).createTransaction().then((transaction: relationalStore.Transaction) => {
-    transaction.query(predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"]).then((resultSet: relationalStore.ResultSet) => {
+    transaction.query(predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"]).then(async (resultSet: relationalStore.ResultSet) => {
       console.info(`ResultSet column names: ${resultSet.columnNames}, column count: ${resultSet.columnCount}`);
       // resultSet is a cursor of a data set. By default, the cursor points to the -1st record. Valid data starts from 0.
       while (resultSet.goToNextRow()) {
@@ -10244,9 +10189,9 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ------------ | ------------------------------------------------------------ |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 14800000  | Inner error. |
-| 14800011  | Database corrupted. |
-| 14800014  | Already closed. |
-| 14800021  | SQLite: Generic error. |
+| 14800011  | Failed to open the database because it is corrupted. |
+| 14800014  | The RdbStore or ResultSet is already closed. |
+| 14800021  | SQLite: Generic error. Possible causes: Insert failed or the updated data does not exist. |
 | 14800023  | SQLite: Access permission denied. |
 | 14800024  | SQLite: The database file is locked. |
 | 14800025  | SQLite: A table in the database is locked. |
@@ -10267,7 +10212,7 @@ let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.equalTo("NAME", "Rose");
 
 if (store != undefined) {
-  (store as relationalStore.RdbStore).createTransaction().then((transaction: relationalStore.Transaction) => {
+  (store as relationalStore.RdbStore).createTransaction().then(async (transaction: relationalStore.Transaction) => {
     try {
       let resultSet: relationalStore.ResultSet = (transaction as relationalStore.Transaction).querySync(predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"]);
       console.info(`ResultSet column names: ${resultSet.columnNames}, column count: ${resultSet.columnCount}`);
@@ -10321,9 +10266,9 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 |-----------| ------------------------------------------------------------ |
 | 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 14800000  | Inner error. |
-| 14800011  | Database corrupted. |
-| 14800014  | Already closed. |
-| 14800021  | SQLite: Generic error. |
+| 14800011  | Failed to open the database because it is corrupted. |
+| 14800014  | The RdbStore or ResultSet is already closed. |
+| 14800021  | SQLite: Generic error. Possible causes: Insert failed or the updated data does not exist. |
 | 14800023  | SQLite: Access permission denied. |
 | 14800024  | SQLite: The database file is locked. |
 | 14800025  | SQLite: A table in the database is locked. |
@@ -10336,7 +10281,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 ```ts
 if (store != undefined) {
   (store as relationalStore.RdbStore).createTransaction().then((transaction: relationalStore.Transaction) => {
-    transaction.querySql("SELECT * FROM EMPLOYEE CROSS JOIN BOOK WHERE BOOK.NAME = 'sanguo'").then((resultSet: relationalStore.ResultSet) => {
+    transaction.querySql("SELECT * FROM EMPLOYEE CROSS JOIN BOOK WHERE BOOK.NAME = 'sanguo'").then(async (resultSet: relationalStore.ResultSet) => {
       console.info(`ResultSet column names: ${resultSet.columnNames}, column count: ${resultSet.columnCount}`);
       // resultSet is a cursor of a data set. By default, the cursor points to the -1st record. Valid data starts from 0.
       while (resultSet.goToNextRow()) {
@@ -10388,9 +10333,9 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ------------ | ------------------------------------------------------------ |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 14800000  | Inner error. |
-| 14800011  | Database corrupted. |
-| 14800014  | Already closed. |
-| 14800021  | SQLite: Generic error. |
+| 14800011  | Failed to open the database because it is corrupted. |
+| 14800014  | The RdbStore or ResultSet is already closed. |
+| 14800021  | SQLite: Generic error. Possible causes: Insert failed or the updated data does not exist. |
 | 14800023  | SQLite: Access permission denied. |
 | 14800024  | SQLite: The database file is locked. |
 | 14800025  | SQLite: A table in the database is locked. |
@@ -10402,7 +10347,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 ```ts
 if (store != undefined) {
-  (store as relationalStore.RdbStore).createTransaction().then((transaction: relationalStore.Transaction) => {
+  (store as relationalStore.RdbStore).createTransaction().then(async (transaction: relationalStore.Transaction) => {
     try {
       let resultSet: relationalStore.ResultSet = (transaction as relationalStore.Transaction).querySqlSync("SELECT * FROM EMPLOYEE CROSS JOIN BOOK WHERE BOOK.NAME = 'sanguo'");
       console.info(`ResultSet column names: ${resultSet.columnNames}, column count: ${resultSet.columnCount}`);
@@ -10463,9 +10408,9 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 801       | Capability not supported the sql(attach,begin,commit,rollback etc.). |
 | 14800000  | Inner error. |
-| 14800011  | Database corrupted. |
-| 14800014  | Already closed. |
-| 14800021  | SQLite: Generic error. |
+| 14800011  | Failed to open the database because it is corrupted. |
+| 14800014  | The RdbStore or ResultSet is already closed. |
+| 14800021  | SQLite: Generic error. Possible causes: Insert failed or the updated data does not exist. |
 | 14800023  | SQLite: Access permission denied. |
 | 14800024  | SQLite: The database file is locked. |
 | 14800025  | SQLite: A table in the database is locked. |
@@ -10533,9 +10478,9 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 801       | Capability not supported the sql(attach,begin,commit,rollback etc.). |
 | 14800000     | Inner error.                                                 |
-| 14800011     | Database corrupted.                                          |
-| 14800014     | Already closed.                                              |
-| 14800021     | SQLite: Generic error.                                       |
+| 14800011     | Failed to open the database because it is corrupted.                                          |
+| 14800014     | The RdbStore or ResultSet is already closed.                                              |
+| 14800021     | SQLite: Generic error. Possible causes: Insert failed or the updated data does not exist.                                       |
 | 14800023     | SQLite: Access permission denied.                            |
 | 14800024     | SQLite: The database file is locked.                         |
 | 14800025     | SQLite: A table in the database is locked.                   |
