@@ -190,7 +190,7 @@ UI事件的相关信息。
 
 ## InputTextMode<sup>20+</sup>
 
-输入文本的方式，paste支持指定以复制粘贴或逐字键入方式输入，addition支持指定对当前控件进行覆盖输入或追加输入。
+输入文本的方式。
 
 **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
@@ -198,7 +198,7 @@ UI事件的相关信息。
 
 | 名称       | 类型   | 可读 | 可写 | 说明                                                       |
 | ---------- | ------ |----|----|----------------------------------------------------------|
-| paste | boolean | 是  | 是  | 输入文本时是否指定以复制粘贴方式输入。true：指定以复制粘贴方式输入。false：指定以逐字键入方式输入。默认为false。<br>**说明：** 当输入文本中包含中文、特殊字符或文本长度超过200时，无论该参数取值为何，均以复制粘贴方式输入。在智能穿戴设备中，该接口不支持以复制粘贴方式输入。|
+| paste | boolean | 是  | 是  | 输入文本时是否指定以复制粘贴方式输入。true：指定以复制粘贴方式输入。false：指定以逐字键入方式输入。默认为false。<br>**说明：**1.当输入文本中包含中文、特殊字符或文本长度超过200字符时，无论该参数取值为何，均以复制粘贴方式输入。2.在智能穿戴设备中，该接口不支持以复制粘贴方式输入。|
 | addition       | boolean | 是  | 是  | 输入文本时是否以追加的方式进行输入。true：以追加方式输入。false：不以追加方式输入。默认为false。|
 
 
@@ -1574,7 +1574,7 @@ async function demo() {
 
 inputText(text: string, mode: InputTextMode): Promise\<void>
 
-向控件中输入文本（适用于文本框控件），支持指定文本输入方式。
+向控件中输入文本（适用于文本框控件），支持指定文本输入方式，使用Promise异步回调。
 
 **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
@@ -1585,7 +1585,7 @@ inputText(text: string, mode: InputTextMode): Promise\<void>
 | 参数名 | 类型   | 必填 | 说明                                     |
 | ------ | ------ | ---- | ---------------------------------------- |
 | text   | string | 是   | 输入的文本信息，当前支持英文、中文和特殊字符。 <br> **说明：** 在智能穿戴设备中，该接口不支持输入包含中文的文本。 |
-| mode | [InputTextMode](#inputtextmode20)  | 否   | 输入文本的方式，参数paste支持指定是否以复制粘贴方式输入，参数addition支持指定是否对当前文本进行追加输入。<br> **说明：** addition取值为false时，指定文本将覆盖控件已有文本。addition取值为ture时，在控件已有文本末尾后追加指定文本。|
+| mode | [InputTextMode](#inputtextmode20)  | 否   | 输入文本的方式，取值请参考[InputTextMode](#inputtextmode20)。<br> **说明：** InputTextMode.addition取值为ture时，在控件已有文本末尾后追加指定文本。取值为false时，指定文本将覆盖控件已有文本。|
 
 **错误码：**
 
@@ -3431,7 +3431,7 @@ async function demo() {
 
 inputText(p: Point, text: string, mode: InputTextMode): Promise\<void>
 
-在指定坐标点输入文本，支持指定文本输入方式。
+在指定坐标点输入文本，支持指定文本输入方式，使用Promise异步回调。
 
 **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
@@ -3443,7 +3443,7 @@ inputText(p: Point, text: string, mode: InputTextMode): Promise\<void>
 | ------ | ---------------- | ---- | ------------------ |
 | p      | [Point](#point9) | 是   | 输入文本的坐标点。 |
 | text   | string           | 是   |输入的文本信息，当前支持英文、中文和特殊字符。 <br> **说明：** 在智能穿戴设备中，该接口不支持输入包含中文的文本。 |
-| mode | [InputTextMode](#inputtextmode20) | 否   | 输入文本的方式，参数paste支持指定是否以复制粘贴方式输入，参数addition支持指定是否对当前文本进行追加输入。 <br> **说明：** 当addition取值为false时，将在坐标点位置输入指定文本。当addition取值为ture时，将光标移动至文本末尾后输入指定文本。 |
+| mode | [InputTextMode](#inputtextmode20) | 否   | 输入文本的方式，取值请参考[InputTextMode](#inputtextmode20)。 <br> **说明：** InputTextMode.addition取值为ture时，将光标移动至文本末尾后输入指定文本。取值为false时，将在坐标点位置输入指定文本。 |
 
 **错误码：**
 
@@ -3743,9 +3743,9 @@ async function demo() {
 
 ### crownRotate<sup>20+</sup>
 
-crownRotate(d: number, speed?: number): Promise</void>;
+crownRotate(d: number, speed?: number): Promise</void>
 
-注入手表表冠旋转事件，可指定旋转速度。
+注入手表表冠旋转事件，可指定旋转速度，使用Promise异步回调。
 
 该接口仅在智能穿戴设备上生效。
 
