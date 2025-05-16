@@ -109,8 +109,8 @@ ArkTS侧示例代码
 
 ```ts
 // index.ets
-import hilog from '@ohos.hilog'
-import worker from '@ohos.worker'
+import hilog from '@ohos.hilog';
+import worker from '@ohos.worker';
 
 let wk = new worker.ThreadWorker("entry/ets/workers/worker.ts");
 // 发送消息到worker线程
@@ -124,13 +124,13 @@ wk.onmessage = (message) => {
 
 ```ts
 // worker.ts
-import hilog from '@ohos.hilog'
-import worker from '@ohos.worker'
-import testNapi from 'libentry.so'
+import hilog from '@ohos.hilog';
+import worker from '@ohos.worker';
+import testNapi from 'libentry.so';
 
 let parent = worker.workerPort;
 // 处理来自主线程的消息
-parent.onmessage = function(message) {
+parent.onmessage = (message) => {
   hilog.info(0x0000, 'testTag', 'Test Node-API message from main thread: %{public}s', JSON.stringify(message));
   // 发送消息到主线程
   parent.postMessage('Test Node-API worker:' + testNapi.napiEnvCleanUpHook());
@@ -241,8 +241,8 @@ export const napiAsyncCleanUpHook: () => boolean | void;
 ArkTS侧示例代码
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import hilog from '@ohos.hilog';
+import testNapi from 'libentry.so';
 try {
   hilog.info(0x0000, 'testTag', 'Test Node-API napi_add_async_cleanup_hook: %{public}s', testNapi.napiAsyncCleanUpHook());
 } catch (error) {
