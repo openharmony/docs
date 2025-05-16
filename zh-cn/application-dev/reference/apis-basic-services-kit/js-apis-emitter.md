@@ -580,7 +580,14 @@ getListenerCount(eventId: number | string): number
 
 | 参数名  | 类型           | 必填 | 说明     |
 | ------- | -------------- | ---- | -------- |
-| eventId | number \| string | 是   | 事件ID，string类型的eventId不支持空字符串。 |
+| eventId | number \| string | 是   | 事件ID，string类型的eventId取值为长度不超过10240字节的自定义字符串，且不可为空字符。 |
+
+**返回值：**
+
+| 类型     | 说明         |
+| ------- |------------|
+| number | 指定事件的订阅数。 |
+
 
 **示例：**
 
