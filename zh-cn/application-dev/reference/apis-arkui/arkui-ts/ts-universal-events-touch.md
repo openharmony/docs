@@ -30,7 +30,7 @@ onTouch(event: (event: TouchEvent) => void): T
 
 ## TouchEvent对象说明
 
-继承于[BaseEvent](ts-gesture-customize-judge.md#baseevent对象说明8)。非事件注入场景下，changedTouches是按屏幕显示刷新率重采样的点，而touches是按器件刷新率报上来的点，changedTouches的数据可能会和touches里面的不相同。
+继承于[BaseEvent](ts-gesture-customize-judge.md#baseevent对象说明8)。在非事件注入场景下，changedTouches是按屏幕刷新率重采样的点，而touches是按器件刷新率上报的点，因此changedTouches的数据可能与touches不同。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -77,8 +77,8 @@ getHistoricalPoints(): Array&lt;HistoricalPoint&gt;
 | screenY<sup>(deprecated)</sup> | number               | 触摸点相对于应用窗口左上角的Y坐标。<br/>单位：vp <br>从API version 10开始不再维护，建议使用windowY代替。   |
 | PressedTime<sup>15+</sup> | number | 当前手指按下的时间。<br />**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。 |
 | pressure<sup>15+</sup> | number | 当前手指按着的压力值。<br />**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。 |
-| width<sup>15+</sup> | number | 当前手指按压区域的宽。<br />**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。 |
-| height<sup>15+</sup> | number | 当前手指按压区域的高。<br />**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。 |
+| width<sup>15+</sup> | number | 当前手指按压区域的宽。<br />单位：vp<br/>**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。 |
+| height<sup>15+</sup> | number | 当前手指按压区域的高。<br />单位：vp<br/>**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。 |
 | hand<sup>15+</sup> | [InteractionHand](./ts-gesture-settings.md#interactionhand枚举说明15) | 表示事件是由左手点击还是右手点击触发。<br />**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。 |
 
 ## HistoricalPoint<sup>10+</sup>对象说明
