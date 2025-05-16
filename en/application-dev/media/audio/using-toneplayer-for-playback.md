@@ -31,6 +31,7 @@ The table below lists the supported [ToneType](../../reference/apis-audio-kit/js
 | TONE_TYPE_COMMON_SUPERVISORY_RADIO_NOT_AVAILABLE | 104 | Supervisory tone - radio path not available.|
 | TONE_TYPE_COMMON_SUPERVISORY_CALL_WAITING | 106 | Supervisory tone - call waiting tone.|
 | TONE_TYPE_COMMON_SUPERVISORY_RINGTONE | 107 | Supervisory tone - ringing tone.|
+| TONE_TYPE_COMMON_SUPERVISORY_CALL_HOLDING<sup>18+</sup> | 108 | Call hold tone.|
 | TONE_TYPE_COMMON_PROPRIETARY_BEEP | 200 | Proprietary tone - beep tone.|
 | TONE_TYPE_COMMON_PROPRIETARY_ACK | 201 | Proprietary tone - ACK.|
 | TONE_TYPE_COMMON_PROPRIETARY_PROMPT | 203 | Proprietary tone - PROMPT.|

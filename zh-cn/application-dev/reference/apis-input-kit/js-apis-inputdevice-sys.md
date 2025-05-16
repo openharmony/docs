@@ -40,6 +40,7 @@ setKeyboardRepeatDelay(delay: number, callback: AsyncCallback&lt;void&gt;): void
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
+| 202 | SystemAPI permission error. |
 | 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例**：
@@ -48,13 +49,13 @@ setKeyboardRepeatDelay(delay: number, callback: AsyncCallback&lt;void&gt;): void
 try {
   inputDevice.setKeyboardRepeatDelay(350, (error: Error) => {
     if (error) {
-      console.log(`Set keyboard repeat delay failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+      console.error(`Set keyboard repeat delay failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
       return;
     }
     console.log(`Set keyboard repeat delay success`);
   });
 } catch (error) {
-  console.log(`Set keyboard repeat delay failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Set keyboard repeat delay failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -86,6 +87,7 @@ setKeyboardRepeatDelay(delay: number): Promise&lt;void&gt;
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
+| 202 | SystemAPI permission error. |
 | 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例**：
@@ -96,7 +98,7 @@ try {
     console.log(`Set keyboard repeat delay success`);
   });
 } catch (error) {
-  console.log(`Set keyboard repeat delay failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Set keyboard repeat delay failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -122,7 +124,7 @@ getKeyboardRepeatDelay(callback: AsyncCallback&lt;number&gt;): void
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
-| 202  | SystemAPI permission error |
+| 202  | SystemAPI permission error. |
 | 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例**：
@@ -131,13 +133,13 @@ getKeyboardRepeatDelay(callback: AsyncCallback&lt;number&gt;): void
 try {
   inputDevice.getKeyboardRepeatDelay((error: Error, delay: Number) => {
     if (error) {
-      console.log(`Get keyboard repeat delay failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+      console.error(`Get keyboard repeat delay failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
       return;
     }
     console.log(`Get keyboard repeat delay success`);
   });
 } catch (error) {
-  console.log(`Get keyboard repeat delay failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Get keyboard repeat delay failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -163,7 +165,7 @@ getKeyboardRepeatDelay(): Promise&lt;number&gt;
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
-| 202  | SystemAPI permission error |
+| 202  | SystemAPI permission error. |
 | 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例**：
@@ -174,7 +176,7 @@ try {
     console.log(`Get keyboard repeat delay success`);
   });
 } catch (error) {
-  console.log(`Get keyboard repeat delay failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Get keyboard repeat delay failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -201,7 +203,7 @@ setKeyboardRepeatRate(rate: number, callback: AsyncCallback&lt;void&gt;): void
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
-| 202  | SystemAPI permission error |
+| 202  | SystemAPI permission error. |
 | 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例**：
@@ -210,13 +212,13 @@ setKeyboardRepeatRate(rate: number, callback: AsyncCallback&lt;void&gt;): void
 try {
   inputDevice.setKeyboardRepeatRate(60, (error: Error) => {
     if (error) {
-      console.log(`Set keyboard repeat rate failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+      console.error(`Set keyboard repeat rate failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
       return;
     }
     console.log(`Set keyboard repeat rate success`);
   });
 } catch (error) {
-  console.log(`Set keyboard repeat rate failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Set keyboard repeat rate failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -248,7 +250,7 @@ setKeyboardRepeatRate(rate: number): Promise&lt;void&gt;
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
-| 202  | SystemAPI permission error |
+| 202  | SystemAPI permission error. |
 | 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例**：
@@ -259,7 +261,7 @@ try {
     console.log(`Set keyboard repeat rate success`);
   });
 } catch (error) {
-  console.log(`Set keyboard repeat rate failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Set keyboard repeat rate failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -285,7 +287,7 @@ getKeyboardRepeatRate(callback: AsyncCallback&lt;number&gt;): void
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
-| 202  | SystemAPI permission error |
+| 202  | SystemAPI permission error. |
 | 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例**：
@@ -294,13 +296,13 @@ getKeyboardRepeatRate(callback: AsyncCallback&lt;number&gt;): void
 try {
   inputDevice.getKeyboardRepeatRate((error: Error, rate: Number) => {
     if (error) {
-      console.log(`Get keyboard repeat rate failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+      console.error(`Get keyboard repeat rate failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
       return;
     }
     console.log(`Get keyboard repeat rate success`);
   });
 } catch (error) {
-  console.log(`Get keyboard repeat rate failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Get keyboard repeat rate failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -326,7 +328,7 @@ getKeyboardRepeatRate(): Promise&lt;number&gt;
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
-| 202  | SystemAPI permission error |
+| 202  | SystemAPI permission error. |
 | 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例**：
@@ -337,7 +339,7 @@ try {
     console.log(`Get keyboard repeat rate success`);
   });
 } catch (error) {
-  console.log(`Get keyboard repeat rate failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Get keyboard repeat rate failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -380,6 +382,6 @@ try {
     console.info(`Set input device enable success`);
   });
 } catch (error) {
-    console.info(`Set input device enable error`);
+    console.error(`Set input device enable error`);
 }
 ```

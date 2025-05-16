@@ -4,8 +4,10 @@
 ## 概述
 
 定义绘制模块中排版相关的函数。
+<!--Del-->
+**相关示例：**[NDKGraphics2D](https://gitee.com/openharmony/applications_app_samples/tree/master/code/DocsSample/graphic/NDKGraphics2D)<!--DelEnd-->
 
-引用文件"native_drawing/drawing_text_typography.h"
+**引用文件：**<native_drawing/drawing_text_typography.h>
 
 **库：** libnative_drawing.so
 

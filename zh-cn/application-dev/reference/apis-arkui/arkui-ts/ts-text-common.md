@@ -320,6 +320,20 @@ type EditableTextOnChangeCallback = (value: string, previewText?: PreviewText, o
 | BACKWARD | 0    | 向后删除。 |
 | FORWARD    | 1    | 向前删除。 |
 
+## SuperscriptStyle<sup>20+</sup>枚举说明
+
+定义文本上下角标样式。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称    | 值   | 说明                        |
+| ------- | ---- | ---------------------------------- |
+| NORMAL | 0    | 普通文本样式。 |
+| SUPERSCRIPT    | 1    | 上标文本样式。 |
+| SUBSCRIPT    | 2    | 下标文本样式。 |
+
 ## MenuType<sup>13+</sup>枚举说明
 
 菜单类型。

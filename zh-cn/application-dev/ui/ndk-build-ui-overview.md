@@ -67,6 +67,7 @@ ArkUI NDK接口能力主要包括：
 | [嵌入ArkTS组件](ndk-embed-arkts-components.md) | 介绍了如何在Native侧构建带有ArkTS组件的界面。 |
 | [通过XComponent接入无障碍](ndk-accessibility-xcomponent.md) | 介绍了通过XComponent接入UI平台的三方系统如何对接无障碍。 |
 | [自定义绘制](arkts-user-defined-draw.md) | 介绍了如何使用自定义绘制能力，实现自定义内容的绘制。 |
+| [通过EmbeddedComponent拉起EmbeddedUIExtensionAbility](ndk-embedded-component.md) | 介绍了如何在Native侧通过EmbeddedComponent拉起EmbeddedUIExtensionAbility。主要用于有进程隔离需求的模块化开发场景。 |
 
 
 ## 注意事项

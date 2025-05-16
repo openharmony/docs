@@ -25,6 +25,8 @@
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 | 名称 | 描述 |
 | -------- | -------- |
 | [TapGesture](ts-basic-gestures-tapgesture.md) | 点击手势，支持单次点击、多次点击识别。 |
@@ -40,6 +42,8 @@
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 | 名称 | 描述 |
 | -------- | -------- |
 | Normal | 不屏蔽子组件的手势，按照默认手势识别顺序进行识别。 |
@@ -47,7 +51,7 @@
 
 ## 响应手势事件
 
-组件通过手势事件绑定不同GestureType的手势对象，各手势对象在响应手势操作的事件回调中提供手势相关信息。下面通过TapGesture手势对象的onAction事件响应点击事件，获取事件相关信息。其余手势对象的事件定义见各个手势对象章节。 若需绑定多种手势请使用 [组合手势](ts-combined-gestures.md)。
+组件通过手势事件绑定不同GestureType的手势对象，各手势对象在响应手势操作的事件回调中提供手势相关信息。下面通过TapGesture手势对象的onAction事件响应点击事件，获取事件相关信息。其余手势对象的事件定义见各个手势对象章节。 若需绑定多种手势，请使用[组合手势](ts-combined-gestures.md)。
 
 **TapGesture事件说明**
 
@@ -58,6 +62,8 @@
 ## GestureEvent对象说明
 
 继承于[BaseEvent](ts-gesture-customize-judge.md#baseevent对象说明8)。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -80,6 +86,8 @@
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 | 名称 | 描述 |
 | -------- | -------- |
 | Unknown | 未知设备。 |
@@ -87,6 +95,8 @@
 | TouchScreen | 触摸屏。 |
 
 ## FingerInfo对象说明<sup>8+</sup>
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称 | 类型 | 描述 |
 | -------- | -------- | -------- |
@@ -100,6 +110,8 @@
 | hand<sup>15+</sup> | [InteractionHand](#interactionhand枚举说明15) | 表示事件是由左手点击还是右手点击触发。<br/>**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。 |
 
 ## SourceTool枚举说明<sup>9+</sup>
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称 | 描述 |
 | -------- | -------- |

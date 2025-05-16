@@ -1,11 +1,8 @@
 # Encryption and Decryption by Segment with an RSA Asymmetric Key Pair
 
-
 For details about the algorithm specifications, see [RSA](crypto-asym-encrypt-decrypt-spec.md#rsa).
 
-
 **Encryption**
-
 
 1. Call [cryptoFramework.createAsyKeyGenerator](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreateasykeygenerator) and [AsyKeyGenerator.generateKeyPair](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#generatekeypair-1) to generate a 1024-bit RSA asymmetric key pair (**KeyPair**) with two primes. The number of primes is not specified by default. The **KeyPair** object includes a public key (**PubKey**) and a private key (**PriKey**).
    
@@ -21,16 +18,13 @@ For details about the algorithm specifications, see [RSA](crypto-asym-encrypt-de
 
    In this example, the plaintext is split by 64 bytes and encrypted multiple times by a 1024-bit key. A 128-byte ciphertext is generated each time.
 
-
 **Decryption**
-
 
 1. If RSA is used, the **Cipher** instance cannot be initialized repeatedly. Call [cryptoFramework.createCipher](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreatecipher) to create a new **Cipher** instance.
 
 2. Call [Cipher.init](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#init-1) to initialize the **Cipher** instance. In **Cipher.init**, set **opMode** to **CryptoMode.DECRYPT_MODE** (decryption) and **key** to **KeyPair.PriKey** (the key used for decryption). If PKCS1 is used, set **params** to **null**.
 
 3. Call [Cipher.doFinal](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#dofinal-1) multiple times to pass in the ciphertext and decrypt it by segment.
-
 
 - Example (using asynchronous APIs):
 
