@@ -1,6 +1,5 @@
 # 数据库加密
 
-
 ## 场景介绍
 
 为了增强数据库的安全性，数据库提供了一个安全适用的数据库加密能力，从而对数据库存储的内容实施有效保护。通过数据库加密等安全方法实现了数据库数据存储的保密性和完整性要求，使得数据库以密文方式存储并在密态方式下工作，确保了数据安全。
@@ -74,12 +73,11 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-
 ## 关系型数据库加密
 
 关系型数据库，通过[StoreConfig](../reference/apis-arkdata/js-apis-data-relationalStore.md#storeconfig)中encrypt属性来设置是否加密。encrypt参数为true时表示加密；为false时表示不加密；默认值为false。
 
-当encrypt为true时，支持开发者通过ArkTs API中的可选属性cryptoParam设置自定义的加密/解密密钥和算法等参数。Native侧暂不支持此配置项。
+当encrypt为true时，支持开发者通过ArkTs API中的可选属性cryptoParam设置自定义的加密/解密密钥和算法等参数。
 
 针对cryptoParam的配置与否，有如下两种场景：
 
