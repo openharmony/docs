@@ -2056,6 +2056,7 @@ enum ArkUI_ButtonType
 | ARKUI_BUTTON_TYPE_NORMAL  | 普通按钮，默认不带圆角。  | 
 | ARKUI_BUTTON_TYPE_CAPSULE  | 胶囊型按钮，圆角默认为高度的一半。  | 
 | ARKUI_BUTTON_TYPE_CIRCLE  | 圆形按钮。  | 
+| ARKUI_BUTTON_ROUNDED_RECTANGLE | 圆角矩形按钮。<br/>**起始版本：** 19  |
 
 
 ### ArkUI_CalendarAlignment
