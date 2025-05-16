@@ -76,7 +76,7 @@ OH_Crypto_ErrCode OH_CryptoRand_GenerateRandom(OH_CryptoRand *ctx, int len, Cryp
 | -- | -- |
 | [OH_CryptoRand](capi-oh-cryptorand.md) *ctx | 随机数生成器实例。 |
 | int len | 表示生成随机数的长度，单位为byte，范围在[1, INT_MAX]。 |
-| [Crypto_DataBlob](capi-crypto-common-hcrypto_datablob.md) *out | 用于获取随机数的指针。 |
+| [Crypto_DataBlob](capi-crypto-datablob.md) *out | 用于获取随机数的指针。 |
 
 **返回：**
 
@@ -127,7 +127,7 @@ OH_Crypto_ErrCode OH_CryptoRand_SetSeed(OH_CryptoRand *ctx, Crypto_DataBlob *see
 | 参数项 | 描述 |
 | -- | -- |
 | [OH_CryptoRand](capi-oh-cryptorand.md) *ctx | 随机数生成器实例。 |
-| [Crypto_DataBlob](capi-crypto-common-hcrypto_datablob.md) *seed | 种子数据。 |
+| [Crypto_DataBlob](capi-crypto-datablob.md) *seed | 种子数据。 |
 
 **返回：**
 

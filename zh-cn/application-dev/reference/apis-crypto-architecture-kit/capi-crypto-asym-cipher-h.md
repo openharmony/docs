@@ -140,8 +140,8 @@ OH_Crypto_ErrCode OH_CryptoAsymCipher_Final(OH_CryptoAsymCipher *ctx, const Cryp
 | 参数项 | 描述 |
 | -- | -- |
 | [OH_CryptoAsymCipher](capi-oh-cryptoasymcipher.md) *ctx | 非对称加密上下文。 |
-| const [Crypto_DataBlob](capi-crypto-common-hcrypto_datablob.md) *in | 要加密或解密的数据。 |
-| [Crypto_DataBlob](capi-crypto-common-hcrypto_datablob.md) *out | 最终加密或解密的数据。 |
+| const [Crypto_DataBlob](capi-crypto-datablob.md) *in | 要加密或解密的数据。 |
+| [Crypto_DataBlob](capi-crypto-datablob.md) *out | 最终加密或解密的数据。 |
 
 **返回：**
 
@@ -186,7 +186,7 @@ OH_Crypto_ErrCode OH_CryptoSm2CiphertextSpec_Create(Crypto_DataBlob *sm2Cipherte
 
 | 参数项 | 描述 |
 | -- | -- |
-| [Crypto_DataBlob](capi-crypto-common-hcrypto_datablob.md) *sm2Ciphertext | SM2密文DER格式数据，如果为NULL则创建空的SM2密文规范。 |
+| [Crypto_DataBlob](capi-crypto-datablob.md) *sm2Ciphertext | SM2密文DER格式数据，如果为NULL则创建空的SM2密文规范。 |
 | [OH_CryptoSm2CiphertextSpec](capi-oh-cryptosm2ciphertextspec.md) **spec |  输出的SM2密文规范。 |
 
 **返回：**
@@ -214,7 +214,7 @@ OH_Crypto_ErrCode OH_CryptoSm2CiphertextSpec_GetItem(OH_CryptoSm2CiphertextSpec 
 | -- | -- |
 | [OH_CryptoSm2CiphertextSpec](capi-oh-cryptosm2ciphertextspec.md) *spec |  SM2密文规范。 |
 | [CryptoSm2CiphertextSpec_item](#cryptosm2ciphertextspec_item) item | SM2密文规范项。 |
-| [Crypto_DataBlob](capi-crypto-common-hcrypto_datablob.md) *out | 输出数据。 |
+| [Crypto_DataBlob](capi-crypto-datablob.md) *out | 输出数据。 |
 
 **返回：**
 
@@ -241,7 +241,7 @@ OH_Crypto_ErrCode OH_CryptoSm2CiphertextSpec_SetItem(OH_CryptoSm2CiphertextSpec 
 | -- | -- |
 | [OH_CryptoSm2CiphertextSpec](capi-oh-cryptosm2ciphertextspec.md) *spec |  SM2密文规范。 |
 | [CryptoSm2CiphertextSpec_item](#cryptosm2ciphertextspec_item) item | SM2密文规范项。 |
-| [Crypto_DataBlob](capi-crypto-common-hcrypto_datablob.md) *in | 输入数据。 |
+| [Crypto_DataBlob](capi-crypto-datablob.md) *in | 输入数据。 |
 
 **返回：**
 
@@ -267,7 +267,7 @@ OH_Crypto_ErrCode OH_CryptoSm2CiphertextSpec_Encode(OH_CryptoSm2CiphertextSpec *
 | 参数项 | 描述 |
 | -- | -- |
 | [OH_CryptoSm2CiphertextSpec](capi-oh-cryptosm2ciphertextspec.md) *spec |  SM2密文规范。 |
-| [Crypto_DataBlob](capi-crypto-common-hcrypto_datablob.md) *out | 输出数据。 |
+| [Crypto_DataBlob](capi-crypto-datablob.md) *out | 输出数据。 |
 
 **返回：**
 

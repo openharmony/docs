@@ -111,7 +111,7 @@ OH_Crypto_ErrCode OH_CryptoKdfParams_SetParam(OH_CryptoKdfParams *params, Crypto
 | -- | -- |
 | [OH_CryptoKdfParams](capi-oh-cryptokdfparams.md) *params | KDF参数。 |
 | [CryptoKdf_ParamType](#cryptokdf_paramtype) type | KDF参数类型。 |
-| [Crypto_DataBlob](capi-crypto-common-hcrypto_datablob.md) *value | KDF参数值。 |
+| [Crypto_DataBlob](capi-crypto-datablob.md) *value | KDF参数值。 |
 
 **返回：**
 

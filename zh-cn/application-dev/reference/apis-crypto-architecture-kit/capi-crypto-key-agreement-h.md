@@ -74,9 +74,9 @@ OH_Crypto_ErrCode OH_CryptoKeyAgreement_GenerateSecret(OH_CryptoKeyAgreement *ct
 | 参数项 | 描述 |
 | -- | -- |
 | [OH_CryptoKeyAgreement](capi-oh-cryptokeyagreement.md) *ctx |密钥协商实例。 |
-| [OH_CryptoPrivKey](capi-crypto-asym-key-hoh_cryptoprivkey.md) *privkey | 私钥。 |
-| [OH_CryptoPubKey](capi-crypto-asym-key-hoh_cryptopubkey.md) *pubkey | 公钥。 |
-| [Crypto_DataBlob](capi-crypto-common-hcrypto_datablob.md) *secret | 秘密值。 |
+| [OH_CryptoPrivKey](capi-oh-cryptoprivkey.md) *privkey | 私钥。 |
+| [OH_CryptoPubKey](capi-oh-cryptopubkey.md) *pubkey | 公钥。 |
+| [Crypto_DataBlob](capi-crypto-datablob.md) *secret | 秘密值。 |
 
 **返回：**
 

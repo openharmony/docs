@@ -105,7 +105,7 @@ OH_Crypto_ErrCode OH_CryptoMac_SetParam(OH_CryptoMac *ctx, CryptoMac_ParamType t
 | -- | -- |
 | [OH_CryptoMac](capi-oh-cryptomac.md) *ctx | MAC实例。 |
 | [CryptoMac_ParamType](#cryptomac_paramtype) type | MAC参数类型。 |
-| const [Crypto_DataBlob](capi-crypto-common-hcrypto_datablob.md) *value | 参数。 |
+| const [Crypto_DataBlob](capi-crypto-datablob.md) *value | 参数。 |
 
 **返回：**
 
@@ -131,7 +131,7 @@ OH_Crypto_ErrCode OH_CryptoMac_Init(OH_CryptoMac *ctx, const OH_CryptoSymKey *ke
 | 参数项 | 描述 |
 | -- | -- |
 | [OH_CryptoMac](capi-oh-cryptomac.md) *ctx | MAC实例。 |
-| const [OH_CryptoSymKey](capi-crypto-sym-key-hoh_cryptosymkey.md) *key | key 对称密钥。 |
+| const [OH_CryptoSymKey](capi-oh-cryptosymkey.md) *key | key 对称密钥。 |
 
 **返回：**
 
@@ -161,7 +161,7 @@ OH_Crypto_ErrCode OH_CryptoMac_Update(OH_CryptoMac *ctx, const Crypto_DataBlob *
 | 参数项 | 描述 |
 | -- | -- |
 | [OH_CryptoMac](capi-oh-cryptomac.md) *ctx | MAC实例。 |
-| const [Crypto_DataBlob](capi-crypto-common-hcrypto_datablob.md) *in | in 数据。 |
+| const [Crypto_DataBlob](capi-crypto-datablob.md) *in | in 数据。 |
 
 **返回：**
 
@@ -191,7 +191,7 @@ OH_Crypto_ErrCode OH_CryptoMac_Final(OH_CryptoMac *ctx, Crypto_DataBlob *out)
 | 参数项 | 描述 |
 | -- | -- |
 | [OH_CryptoMac](capi-oh-cryptomac.md) *ctx | MAC实例。 |
-| [Crypto_DataBlob](capi-crypto-common-hcrypto_datablob.md) *out | MAC数据。 |
+| [Crypto_DataBlob](capi-crypto-datablob.md) *out | MAC数据。 |
 
 **返回：**
 
