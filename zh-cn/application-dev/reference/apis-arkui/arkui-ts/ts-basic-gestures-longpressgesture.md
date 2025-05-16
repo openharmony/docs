@@ -15,11 +15,13 @@ LongPressGesture(value?: { fingers?: number, repeat?: boolean, duration?: number
 
 当组件默认支持可拖拽时，如Text、TextInput、TextArea、HyperLink、Image和RichEditor等组件。长按手势与拖拽会出现冲突，事件优先级如下： 
 
-长按触发时间 < 500ms，长按事件优先拖拽事件响应。 
+当长按触发时间小于500毫秒时，系统优先响应长按事件而非拖拽事件。 
 
-长按触发时间 >= 500ms，拖拽事件优先长按事件响应。 
+当长按触发时间达到或超过500毫秒时，系统优先响应拖拽事件而非长按事件。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
 
@@ -33,6 +35,8 @@ LongPressGesture(value?: { fingers?: number, repeat?: boolean, duration?: number
 
 ## 事件
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 | 名称 | 功能描述 |
 | -------- | -------- |
 | onAction(event:(event:&nbsp;[GestureEvent](ts-gesture-settings.md#gestureevent对象说明))&nbsp;=&gt;&nbsp;void) | LongPress手势识别成功回调。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
@@ -41,6 +45,8 @@ LongPressGesture(value?: { fingers?: number, repeat?: boolean, duration?: number
 | onActionCancel(event:&nbsp;Callback<[GestureEvent](ts-gesture-settings.md#gestureevent对象说明)>)<sup>18+</sup> | LongPress手势识别成功，接收到触摸取消事件触发回调。返回手势事件信息。<br/>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。|
 
 ## 属性
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称 | 类型    |描述                                        |
 | ----  | ------  | ---------------------------------------- |

@@ -222,6 +222,11 @@
     - [构建自定义组件](ndk-build-custom-components.md)
     - [嵌入ArkTS组件](ndk-embed-arkts-components.md)
     - [通过XComponent接入无障碍](ndk-accessibility-xcomponent.md)
+    - [自定义绘制](arkts-user-defined-draw.md)
+    - [通过EmbeddedComponent拉起EmbeddedUIExtensionAbility](ndk-embedded-component.md)
+    - 使用文本
+        - [Text组件的文本绘制与显示](ndk-styled-string.md)
+        - [输入框文本事件监听](ndk-textarea-event.md)
 - UI开发 (兼容JS的类Web开发范式)<!--ui-js-dev-->
   - [UI开发 (兼容JS的类Web开发范式)概述](ui-js-overview.md)
   - 框架说明<!--js-framework-overview-->

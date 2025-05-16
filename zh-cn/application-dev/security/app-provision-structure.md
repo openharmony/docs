@@ -10,7 +10,7 @@ HarmonyAppProvision文件包含version-code对象、version-name对象、uuid对
 | version-name     | 表示版本号的文字描述，推荐使用三段数字版本号，如A.B.C。        | 字符串   | 必选 | 不可缺省 |
 | uuid    | 表示文件的唯一ID号，用于OEM厂商标识HarmonyAppProvision文件，开源社区版本该属性不做强制要求。                       | 字符串     | 必选 | 不可缺省 |
 | type | 表示HarmonyAppProvision文件的类型， 系统预定义的文件类型包括：debug（用于应用调试场景）和release（用于应用发布场景） ，开源社区版本该属性值建议为debug。 | 字符串     | 必选 | 不可缺省 |
-| app-distribution-type | 表示应用的分发类型，分发类型包括: <li>app_gallery：应用市场分发的应用。 <li> enterprise：企业应用，可以安装到个人设备上。<li> enterprise_mdm：企业MDM应用，只能安装在企业设备上。需要设备管理特权，比如远程锁定，安装普通企业应用等。 <li>enterprise_normal：普通企业应用，只能通过企业MDM应用安装在企业设备上。无需设备管理特权。<li>os_integration：系统预置应用。<li>crowdtesting：众包测试应用。<li>none：其他。 | 字符串 | 必选 | 不可缺省 |
+| app-distribution-type | 表示应用的分发类型，分发类型包括: <li>app_gallery：应用市场分发的应用。 <li> enterprise：企业应用，可以安装到个人设备上。<li> enterprise_mdm：企业MDM应用，只能安装在企业设备上。需要设备管理特权，比如远程锁定，安装普通企业应用等。 <li>enterprise_normal：普通企业应用，只能通过企业MDM应用安装在企业设备上。无需设备管理特权。<li>os_integration：系统预置应用。<li>crowdtesting：众包测试应用。<li>internaltesting：应用市场内测的应用。<li>none：其他。 | 字符串 | 必选 | 不可缺省 |
 | issuer | 表示HarmonyAppProvision签发者。        | 字符串     | 必选 | 不可缺省 |
 | validity    | 表示HarmonyAppProvision文件有效期的信息。参考[validity对象内部结构](#validity对象内部结构)。  | 对象     | 必选 | 不可缺省  |
 | bundle-info | 表示应用包以及开发者的信息。参考[bundle-info对象内部结构](#bundle-info对象内部结构)。         | 对象     | 必选 | 不可缺省  |
@@ -94,7 +94,7 @@ permissions对象包含允许使用的受限敏感权限。不同于acls对象�
 
 | 属性名称                  | 含义                            | 数据类型 | 是否必选 | 是否可缺省 |
 | ------------------------ | ------------------------------- | ------- | ------- | --------- |
-| restricted-permissions | 表示允许使用的[受限敏感权限](AccessToken/permissions-for-all-user.md)。 | 字符串数组    | 可选 | 不可缺省   |
+| restricted-permissions | 表示允许使用的[受限敏感权限](AccessToken/restricted-permissions.md)。 | 字符串数组    | 可选 | 不可缺省   |
 
 ### debug-info对象内部结构
 debug-info对象包含应用调试场景下的信息，主要是设备管控的信息。

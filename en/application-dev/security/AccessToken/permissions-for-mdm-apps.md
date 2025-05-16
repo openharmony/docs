@@ -460,3 +460,93 @@ Allows a device administrator application to delegate other applications to set 
 **Enable via ACL**: true<!--DelEnd-->
 
 **Valid since**: 14
+
+## ohos.permission.ENTERPRISE_GET_ALL_BUNDLE_INFO
+
+Allows a device administrator application to obtain information about all applications of the device.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+<!--Del-->
+**Enable via ACL**: true<!--DelEnd-->
+
+**Supported devices**: Phone | PC/2in1 | Tablet
+
+**Valid since**: 20
+
+## ohos.permission.ENTERPRISE_SET_USER_RESTRICTION
+
+Allows a device administrator application to restrict users from modifying system settings.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+<!--Del-->
+**Enable via ACL**: true<!--DelEnd-->
+
+**Supported devices**: Phone | PC/2in1 | Tablet
+
+**Valid since**: 20
+
+## ohos.permission.ENTERPRISE_MANAGE_APN
+
+Allows a device administrator application to manage device APN policies.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+<!--Del-->
+**Enable via ACL**: true<!--DelEnd-->
+
+**Supported devices**: Phone | PC/2in1 | Tablet
+
+**Valid since**: 20
+
+## ohos.permission.ENTERPRISE_MANAGE_TELEPHONY
+
+Allows a device administrator application to manage device telephony policies.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+<!--Del-->
+**Enable via ACL**: true<!--DelEnd-->
+
+**Supported devices**: Phone | PC/2in1 | Tablet
+
+**Valid since**: 20
+
+## ohos.permission.ENTERPRISE_SET_KIOSK
+
+Allows a device administrator application to set the Kiosk mode.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+<!--Del-->
+**Enable via ACL**: true<!--DelEnd-->
+
+**Supported devices**: Phone | PC/2in1 | Tablet
+
+**Valid since**: 20
+
+## ohos.permission.ENTERPRISE_SET_WALLPAPER
+
+Allows a device administrator application to set wallpapers.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+<!--Del-->
+**Enable via ACL**: true<!--DelEnd-->
+
+**Supported devices**: Phone | PC/2in1 | Tablet
+
+**Valid since**: 20

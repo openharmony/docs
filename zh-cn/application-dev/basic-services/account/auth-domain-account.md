@@ -45,7 +45,7 @@ import { osAccount } from '@kit.BasicServicesKit';
    try {
      osAccount.DomainAccountManager.auth(domainAccountInfo, credential, callback);
    } catch (err) {
-     console.log('auth exception = ' + JSON.stringify(err));
+     console.error('auth exception = ' + JSON.stringify(err));
    }
    ```
 
@@ -72,6 +72,6 @@ import { osAccount } from '@kit.BasicServicesKit';
    try {
      osAccount.DomainAccountManager.authWithPopup(callback)
    } catch (err) {
-     console.log('authWithPopup exception = ' + JSON.stringify(err));
+     console.error('authWithPopup exception = ' + JSON.stringify(err));
    }
    ```

@@ -11,7 +11,7 @@
 ## PluginBundleInfo
 插件信息。
 
-**系统能力:** SystemCapability.BundleManager.BundleFramework.Core
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Core
  
 **系统接口：** 此接口为系统接口。
 
@@ -29,7 +29,7 @@
 ## PluginModuleInfo
 插件的模块信息。
 
-**系统能力:** SystemCapability.BundleManager.BundleFramework.Core
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Core
 
 **系统接口：** 此接口为系统接口。
 

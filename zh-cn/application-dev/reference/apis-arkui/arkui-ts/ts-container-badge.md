@@ -58,7 +58,7 @@ Badge(value: BadgeParamWithString)
 
 ## BadgeParam对象说明
 
-包含创建Badge组件的基础参数。
+包含用于创建Badge组件的基础参数。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 

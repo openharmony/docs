@@ -149,4 +149,6 @@
     - [window接口切换](window-switch.md)
     - [Storage接口切换](storage-switch.md)
 <!--DelEnd-->
-- [Native子进程开发指导（C/C++）](capi_nativechildprocess_development_guideline.md)
+- Native子进程开发指导<!--native-childprocess-development-->
+    - [创建Native子进程](capi_nativechildprocess_development_guideline.md)
+    - [获取Native子进程退出信息](capi-nativechildprocess-exit-info.md)

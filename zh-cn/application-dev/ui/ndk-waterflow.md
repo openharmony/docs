@@ -7,11 +7,11 @@ ArkUI开发框架在NDK接口提供了瀑布流容器组件，通过瀑布流自
 
 ## 使用懒加载
 ### NodeAdapter介绍 
-NDK中提供了NodeAdapter对象替代ArkTS侧的Lazyforeach功能，用于按需生成子组件。详细介绍可参考[NodeAdapter介绍](../ui/ndk-loading-long-list.md)。
+NDK中提供了NodeAdapter对象替代ArkTS侧的LazyForeach功能，用于按需生成子组件。详情请参阅[NodeAdapter介绍](../ui/ndk-loading-long-list.md#nodeadapter介绍)。
 
 ### 实现懒加载适配器
 
-使用FlowItemAdapter类管理懒加载适配器。在类的构造中创建NodeAdapter对象，并给NodeAdapter对象设置事件监听器，在类的析构函数中，销毁NodeAdapter对象。
+使用FlowItemAdapter类管理懒加载适配器。在类的构造函数中创建NodeAdapter对象，并给NodeAdapter对象设置事件监听器，在类的析构函数中，销毁NodeAdapter对象。
 
 ```c++
 // FlowItemAdapter.h

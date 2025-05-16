@@ -47,9 +47,8 @@ Scrypt is a KDF used to produce a key from a password and a salt value. It has t
 - **p**: parallelization. 
 
 By adjusting these parameters, you can optimize the system based on different security requirements and hardware performance.
-Using scrypt to derive keys consumes memory and computing resources. You must pass in appropriate values based on the device hardware conditions. You can use the following formula to calculate the memory:
-
-Memory (in bytes) = p * 128 * r + 32 * r * (n + 2) * 4
+Using scrypt to derive keys consumes memory and computing resources. You must pass in appropriate values based on the device hardware conditions.
+You can use the following formula to calculate the memory:<br>Memory (in bytes) = p * 128 * r + 32 * r * (n + 2) * 4
 
 | KDF Algorithm| String Parameter| API Version|
 | -------- | -------- | -------- |
