@@ -19,8 +19,6 @@
 | 名称 | typedef关键字 | 描述 |
 | -- | -- | -- |
 | [OH_CryptoVerify](capi-oh-cryptoverify.md) | OH_CryptoVerify | 定义验签结构体。 |
-| [OH_CryptoSign](capi-oh-cryptosign.md) | OH_CryptoSign | 定义签名结构体。 |
-| [OH_CryptoEccSignatureSpec](capi-oh-cryptoeccsignaturespec.md) | OH_CryptoEccSignatureSpec | 定义ECC签名规范结构体。 |
 
 ### 枚举
 
@@ -112,7 +110,6 @@ OH_Crypto_ErrCode OH_CryptoVerify_Init(OH_CryptoVerify *ctx, OH_CryptoPubKey *pu
 | 参数项 | 描述 |
 | -- | -- |
 | [OH_CryptoVerify](capi-oh-cryptoverify.md) *ctx | 指向验签实例。 |
-| [OH_CryptoPubKey](capi-crypto-asym-key-hoh_cryptopubkey.md) *pubKey | 公钥对象。 |
 
 **返回：**
 
