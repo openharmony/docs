@@ -367,7 +367,7 @@ OH_Crypto_ErrCode OH_CryptoSign_Init(OH_CryptoSign *ctx, OH_CryptoPrivKey *privK
 | 参数项 | 描述 |
 | -- | -- |
 | [OH_CryptoSign](capi-oh-cryptosign.md) *ctx | 指向签名实例。 |
-| [OH_CryptoPrivKey](capi-crypto-asym-key-hoh_cryptoprivkey.md) *privKey | 私钥。 |
+| [OH_CryptoPrivKey](capi-oh-cryptoprivkey.md) *privKey | 私钥。 |
 
 **返回：**
 
@@ -397,7 +397,7 @@ OH_Crypto_ErrCode OH_CryptoSign_Update(OH_CryptoSign *ctx, const Crypto_DataBlob
 | 参数项 | 描述 |
 | -- | -- |
 | [OH_CryptoSign](capi-oh-cryptosign.md) *ctx | 指向签名实例。 |
-| const [Crypto_DataBlob](capi-crypto-common-hcrypto_datablob.md) *in | 需要签名的数据。 |
+| const [Crypto_DataBlob](capi-crypto-datablob.md) *in | 需要签名的数据。 |
 
 **返回：**
 
@@ -427,8 +427,8 @@ OH_Crypto_ErrCode OH_CryptoSign_Final(OH_CryptoSign *ctx, const Crypto_DataBlob 
 | 参数项 | 描述 |
 | -- | -- |
 | [OH_CryptoSign](capi-oh-cryptosign.md) *ctx | 指向签名实例。 |
-| const [Crypto_DataBlob](capi-crypto-common-hcrypto_datablob.md) *in | 需要签名的数据。 |
-| [Crypto_DataBlob](capi-crypto-common-hcrypto_datablob.md) *out | 签名结果。 |
+| const [Crypto_DataBlob](capi-crypto-datablob.md) *in | 需要签名的数据。 |
+| [Crypto_DataBlob](capi-crypto-datablob.md) *out | 签名结果。 |
 
 **返回：**
 
@@ -484,7 +484,7 @@ OH_Crypto_ErrCode OH_CryptoSign_SetParam(OH_CryptoSign *ctx, CryptoSignature_Par
 | -- | -- |
 | [OH_CryptoSign](capi-oh-cryptosign.md) *ctx | 指向签名实例。 |
 | [CryptoSignature_ParamType](#cryptosignature_paramtype) type | 签名参数类型。 |
-| const [Crypto_DataBlob](capi-crypto-common-hcrypto_datablob.md) *value | 输入数据。 |
+| const [Crypto_DataBlob](capi-crypto-datablob.md) *value | 输入数据。 |
 
 **返回：**
 
@@ -511,7 +511,7 @@ OH_Crypto_ErrCode OH_CryptoSign_GetParam(OH_CryptoSign *ctx, CryptoSignature_Par
 | -- | -- |
 | [OH_CryptoSign](capi-oh-cryptosign.md) *ctx | 指向签名实例。 |
 | [CryptoSignature_ParamType](#cryptosignature_paramtype) type | 签名参数类型。 |
-| [Crypto_DataBlob](capi-crypto-common-hcrypto_datablob.md) *value | 输出数据。 |
+| [Crypto_DataBlob](capi-crypto-datablob.md) *value | 输出数据。 |
 
 **返回：**
 
@@ -555,7 +555,7 @@ OH_Crypto_ErrCode OH_CryptoEccSignatureSpec_Create(Crypto_DataBlob *EccSignature
 
 | 参数项 | 描述 |
 | -- | -- |
-| [Crypto_DataBlob](capi-crypto-common-hcrypto_datablob.md) *EccSignature | ECC签名（DER格式），如果EccSignature参数为NULL，将创建一个空的ECC签名规范。 |
+| [Crypto_DataBlob](capi-crypto-datablob.md) *EccSignature | ECC签名（DER格式），如果EccSignature参数为NULL，将创建一个空的ECC签名规范。 |
 | [OH_CryptoEccSignatureSpec](capi-oh-cryptoeccsignaturespec.md) **spec | 输出的ECC签名规范。 |
 
 **返回：**
@@ -636,7 +636,7 @@ OH_Crypto_ErrCode OH_CryptoEccSignatureSpec_Encode(OH_CryptoEccSignatureSpec *sp
 | 参数项 | 描述 |
 | -- | -- |
 | [OH_CryptoEccSignatureSpec](capi-oh-cryptoeccsignaturespec.md) *spec | 指向ECC签名规范。 |
-| [Crypto_DataBlob](capi-crypto-common-hcrypto_datablob.md) *out | 输出数据。 |
+| [Crypto_DataBlob](capi-crypto-datablob.md) *out | 输出数据。 |
 
 **返回：**
 
