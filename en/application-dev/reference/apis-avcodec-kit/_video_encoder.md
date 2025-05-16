@@ -205,6 +205,7 @@ Returns one of the following result codes:
 
 **AV_ERR_INVALID_STATE**: The function is not called prior to **OH_VideoEncoder_Prepare**.
 
+**AV_ERR_UNSUPPORT**: The feature is not supported.
 
 ### OH_VideoEncoder_CreateByMime()
 

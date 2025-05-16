@@ -216,7 +216,7 @@ The table below lists the key-value pairs dedicated for multiplexing and demulti
 | [OH_AVCProfile](#oh_avcprofile-1) {<br>AVC_PROFILE_BASELINE = 0,<br>AVC_PROFILE_HIGH = 4,<br>AVC_PROFILE_MAIN = 8<br>} | Enumerates the AVC profiles.|
 | [OH_HEVCProfile](#oh_hevcprofile-1) {<br>HEVC_PROFILE_MAIN = 0,<br>HEVC_PROFILE_MAIN_10 = 1,<br>HEVC_PROFILE_MAIN_STILL = 2,<br>HEVC_PROFILE_MAIN_10_HDR10 = 3,<br>HEVC_PROFILE_MAIN_10_HDR10_PLUS = 4<br>} | Enumerates the HEVC profiles.<br>(**HEVC_PROFILE_MAIN_10_HDR10** and **HEVC_PROFILE_MAIN_10_HDR10_PLUS** are deprecated since API version 14.)|
 | [OH_VVCProfile](#oh_vvcprofile-1) {<br>VVC_PROFILE_MAIN_10 = 1, <br>VVC_PROFILE_MAIN_12 = 2, <br>VVC_PROFILE_MAIN_12_INTRA = 10, <br>VVC_PROFILE_MULTI_MAIN_10 = 17, <br>VVC_PROFILE_MAIN_10_444 = 33, <br>VVC_PROFILE_MAIN_12_444 = 34, <br>VVC_PROFILE_MAIN_16_444 = 36, <br>VVC_PROFILE_MAIN_12_444_INTRA = 42, <br>VVC_PROFILE_MAIN_16_444_INTRA = 44, <br>VVC_PROFILE_MULTI_MAIN_10_444 = 49, <br>VVC_PROFILE_MAIN_10_STILL = 65, <br>VVC_PROFILE_MAIN_12_STILL = 66, <br>VVC_PROFILE_MAIN_10_444_STILL = 97, <br>VVC_PROFILE_MAIN_12_444_STILL = 98, <br>VVC_PROFILE_MAIN_16_444_STILL = 100 <br>} | Enumerates the VVC profiles.|
-| [OH_AVOutputFormat](#oh_avoutputformat-1) {<br>AV_OUTPUT_FORMAT_DEFAULT = 0,<br>AV_OUTPUT_FORMAT_MPEG_4 = 2,<br>AV_OUTPUT_FORMAT_M4A = 6,<br>AV_OUTPUT_FORMAT_AMR = 8,<br>AV_OUTPUT_FORMAT_MP3 = 9,<br>AV_OUTPUT_FORMAT_WAV = 10<br>} | Enumerates the output file formats supported by a muxer.|
+| [OH_AVOutputFormat](#oh_avoutputformat-1) {<br>AV_OUTPUT_FORMAT_DEFAULT = 0,<br>AV_OUTPUT_FORMAT_MPEG_4 = 2,<br>AV_OUTPUT_FORMAT_M4A = 6,<br>AV_OUTPUT_FORMAT_AMR = 8,<br>AV_OUTPUT_FORMAT_MP3 = 9,<br>AV_OUTPUT_FORMAT_WAV = 10,<br>} | Enumerates the output file formats supported by a muxer.|
 | [OH_AVSeekMode](#oh_avseekmode-1) {<br>SEEK_MODE_NEXT_SYNC = 0,<br>SEEK_MODE_PREVIOUS_SYNC,<br>SEEK_MODE_CLOSEST_SYNC<br>} | Enumerates the seek modes.|
 | [OH_ScalingMode](#oh_scalingmode-1) {<br>SCALING_MODE_SCALE_TO_WINDOW = 1,<br>SCALING_MODE_SCALE_CROP = 2<br>} | Enumerates the scaling modes. (This enum is deprecated from API version 14.)|
 | [OH_BitsPerSample](#oh_bitspersample-1) {<br>SAMPLE_U8 = 0, SAMPLE_S16LE = 1,<br>SAMPLE_S24LE = 2, SAMPLE_S32LE = 3,<br>SAMPLE_F32LE = 4, SAMPLE_U8P = 5,<br>SAMPLE_S16P = 6, SAMPLE_S24P = 7,<br>SAMPLE_S32P = 8, SAMPLE_F32P = 9,<br>INVALID_WIDTH = -1<br>} | Enumerates the number of audio bits for each coded sample.|
@@ -246,7 +246,7 @@ The table below lists the key-value pairs dedicated for multiplexing and demulti
 | const char \* [OH_AVCODEC_MIMETYPE_VIDEO_VVC](#oh_avcodec_mimetype_video_vvc) | Pointer to the key that describes the MIME type of the VVC (H.266) video codec.|
 | const char \* [OH_AVCODEC_MIMETYPE_VIDEO_HEVC](#oh_avcodec_mimetype_video_hevc) | Pointer to the key that describes the MIME type of the HEVC (H.265) video codec.|
 | const char \* [OH_AVCODEC_MIMETYPE_VIDEO_AVC](#oh_avcodec_mimetype_video_avc) | Pointer to the key that describes the MIME type of the AVC (H.264) video codec.|
-| const char \* [OH_AVCODEC_MIMETYPE_VIDEO_MPEG4](#oh_avcodec_mimetype_video_mpeg4) | Pointer to the key that describes the MIME type of the MPEG4 video encoder, which is used only for multiplexing MPEG4 video streams. (This function is deprecated in API version 11.)|
+| const char \* [OH_AVCODEC_MIMETYPE_VIDEO_MPEG4](#oh_avcodec_mimetype_video_mpeg4) | Pointer to the key that describes the MIME type of MPEG2 video codec.                       |
 | const char \* [OH_AVCODEC_MIMETYPE_IMAGE_JPG](#oh_avcodec_mimetype_image_jpg) | Pointer to the key that describes the MIME type of the JPG image encoder, which is used only for multiplexing JPG covers.|
 | const char \* [OH_AVCODEC_MIMETYPE_IMAGE_PNG](#oh_avcodec_mimetype_image_png) | Pointer to the key that describes the MIME type of the PNG image encoder, which is used only for multiplexing PNG covers.|
 | const char \* [OH_AVCODEC_MIMETYPE_IMAGE_BMP](#oh_avcodec_mimetype_image_bmp) | Pointer to the key that describes the MIME type of the BMP image encoder, which is used only for multiplexing BMP covers.|
@@ -764,6 +764,7 @@ Defines an enum for the media types.
 **System capability**: SystemCapability.Multimedia.Media.CodecBase
 
 **Since**: 9
+
 
 ### OH_ScalingMode
 
