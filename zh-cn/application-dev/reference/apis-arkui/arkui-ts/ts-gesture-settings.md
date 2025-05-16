@@ -60,28 +60,27 @@
 | onAction((event:GestureEvent)&nbsp;=&gt;&nbsp;void) | Tap手势识别成功回调。 |
 
 ## GestureEvent对象说明
-
 继承于[BaseEvent](ts-gesture-customize-judge.md#baseevent对象说明8)。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+| 名称 | 类型 |   必填  |  描述 |
+| -------- | -------- | ---- | -------- |
+| repeat | boolean | 是 | 是否为重复触发事件，用于LongPressGesture手势触发场景。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| offsetX | number | 是 |手势事件偏移量X，单位为vp，用于PanGesture手势触发场景，从左向右滑动offsetX为正，反之为负。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| offsetY | number | 是 | 手势事件偏移量Y，单位为vp，用于PanGesture手势触发场景，从上向下滑动offsetY为正，反之为负。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| angle | number | 是 | 用于RotationGesture手势触发场景时，表示旋转角度。<br/>用于SwipeGesture手势触发场景时，表示滑动手势的角度，即两根手指间的线段与水平方向的夹角变化的度数。<br/>**说明：**<br/>角度计算方式：滑动手势被识别到后，连接两根手指之间的线被识别为起始线条，随着手指的滑动，手指之间的线条会发生旋转，根据起始线条两端点和当前线条两端点的坐标，使用反正切函数分别计算其相对于水平方向的夹角，最后arctan2(cy2-cy1,cx2-cx1)-arctan2(y2-y1,x2-x1)为旋转的角度。以起始线条为坐标系，顺时针旋转为0到180度，逆时针旋转为-180到0度。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| scale | number | 是 | 缩放比例，用于PinchGesture手势触发场景。<br/>取值范围：[0, +∞)<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| pinchCenterX | number | 是 | 捏合手势中心点的x轴坐标，单位为vp，用于PinchGesture手势触发场景。<br/>取值范围：[0, +∞)<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| pinchCenterY | number | 是 | 捏合手势中心点的y轴坐标，单位为vp，用于PinchGesture手势触发场景。<br/>取值范围：[0, +∞)<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| speed<sup>8+</sup> | number | 是 | 滑动手势速度，即所有手指相对当前组件元素原始区域滑动的平均速度，单位为vp/秒，用于SwipeGesture手势触发场景。<br/>取值范围：[0, +∞)<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| fingerList<sup>8+</sup> | [FingerInfo](#fingerinfo对象说明8)[] | 是 | 输入源为触屏产生的手势，fingerList中会包含触发事件的所有触点信息；由鼠标发起的手势，fingerList中只会有一条记录；触摸板的事件大类与鼠标一致，所以由触摸板发起的手势，fingerList只会携带一条记录。<br/>**说明：**<br/>手指索引编号与位置对应，即fingerList[index]的id为index。先按下且未参与当前手势触发的手指在fingerList中对应位置为空。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| fingerInfos<sup>20+</sup> | [FingerInfo](#fingerinfo对象说明8)[] | 否 | 由触屏产生的手势，fingerInfos中会包含触发事件的所有触点信息；由鼠标发起的手势，fingerInfos中只会有一条记录；触摸板的事件大类与鼠标一致，所以由触摸板发起的手势，fingerInfos只会携带一条记录。<br/> **说明：**<br/>fingerInfos只会记录参与触摸的有效手指信息，先按下但未参与当前手势触发的手指在fingerInfos中不会显示。默认值为空数组[]，返回空数组时，表示当前无有效触点信息。<br/>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。|
+| velocityX<sup>10+</sup> | number | 是 | 用于[PanGesture](ts-basic-gestures-pangesture.md)手势中，获取当前手势的x轴方向速度。坐标轴原点为屏幕左上角，分正负方向速度，从左往右为正，反之为负。单位为vp/s。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| velocityY<sup>10+</sup> | number | 是 | 用于[PanGesture](ts-basic-gestures-pangesture.md)手势中，获取当前手势的y轴方向速度。坐标轴原点为屏幕左上角，分正负方向速度，从上往下为正，反之为负。单位为vp/s。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| velocity<sup>10+</sup> | number | 是 | 用于[PanGesture](ts-basic-gestures-pangesture.md)手势中，获取当前手势的主方向速度。为xy轴方向速度的平方和的算术平方根。单位为vp/s。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| tapLocation<sup>20+</sup> | [EventLocationInfo](ts-basic-gestures-tapgesture.md#eventlocationinfo20对象说明) | 是 | 用于点击手势中，获取当前手势的坐标信息。<br/>取值范围：[0, +∞) <br/> **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。|
 
-| 名称 | 类型 | 描述 |
-| -------- | -------- | -------- |
-| repeat | boolean | 是否为重复触发事件，用于LongPressGesture手势触发场景。<br>true：表示为重复触发事件。<br>false：表示非重复触发事件。 |
-| offsetX | number | 手势事件偏移量X，单位为vp，用于PanGesture手势触发场景，从左向右滑动offsetX为正，反之为负。 |
-| offsetY | number | 手势事件偏移量Y，单位为vp，用于PanGesture手势触发场景，从上向下滑动offsetY为正，反之为负。 |
-| angle | number | 用于RotationGesture手势触发场景时，表示旋转角度。<br/>用于SwipeGesture手势触发场景时，表示滑动手势的角度，即两根手指间的线段与水平方向的夹角变化的度数。<br/>**说明：**<br/>角度计算方式：滑动手势被识别到后，连接两根手指之间的线被识别为起始线条，随着手指的滑动，手指之间的线条会发生旋转，根据起始线条两端点和当前线条两端点的坐标，使用反正切函数分别计算其相对于水平方向的夹角，最后arctan2(cy2-cy1,cx2-cx1)-arctan2(y2-y1,x2-x1)为旋转的角度。以起始线条为坐标系，顺时针旋转为0到180度，逆时针旋转为-180到0度。 |
-| scale | number | 缩放比例，用于PinchGesture手势触发场景。<br/>取值范围：[0, +∞) |
-| pinchCenterX | number | 捏合手势中心点的x轴坐标，单位为vp，用于PinchGesture手势触发场景。<br/>取值范围：[0, +∞) |
-| pinchCenterY | number | 捏合手势中心点的y轴坐标，单位为vp，用于PinchGesture手势触发场景。<br/>取值范围：[0, +∞) |
-| speed<sup>8+</sup> | number | 滑动手势速度，即所有手指相对当前组件元素原始区域滑动的平均速度，单位为vp/秒，用于SwipeGesture手势触发场景。<br/>取值范围：[0, +∞) <br/> **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
-| fingerList<sup>8+</sup> | [FingerInfo](#fingerinfo对象说明8)[] | 输入源为触屏产生的手势，fingerList中会包含触发事件的所有触点信息；由鼠标发起的手势，fingerList中只会有一条记录；触摸板的事件大类与鼠标一致，所以由触摸板发起的手势，fingerList只会携带一条记录。<br/>**说明：**<br/>手指索引编号与位置对应，即fingerList[index]的id为index。先按下且未参与当前手势触发的手指在fingerList中对应位置为空。 <br/> **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
-| velocityX<sup>10+</sup> | number | 用于[PanGesture](ts-basic-gestures-pangesture.md)手势中，获取当前手势的x轴方向速度。坐标轴原点为屏幕左上角，分正负方向速度，从左往右为正，反之为负。单位为vp/s。 <br/> **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
-| velocityY<sup>10+</sup> | number | 用于[PanGesture](ts-basic-gestures-pangesture.md)手势中，获取当前手势的y轴方向速度。坐标轴原点为屏幕左上角，分正负方向速度，从上往下为正，反之为负。单位为vp/s。 <br/> **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
-| velocity<sup>10+</sup> | number | 用于[PanGesture](ts-basic-gestures-pangesture.md)手势中，获取当前手势的主方向速度。为xy轴方向速度的平方和的算术平方根。单位为vp/s。 <br/> **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
-| tapLocation<sup>20+</sup> | [EventLocationInfo](ts-basic-gestures-tapgesture.md#eventlocationinfo20对象说明) | 用于点击手势中，获取当前手势的坐标信息。<br/>取值范围：[0, +∞) <br/> **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。|
 ## SourceType枚举说明<sup>8+</sup>
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
@@ -138,6 +137,8 @@
 
 
 ## 示例
+
+### 示例1(父组件优先识别手势和父子组件同时触发手势)
 
 该示例通过配置priorityGesture和parallelGesture分别实现了父组件优先识别手势和父子组件同时触发手势。
 
@@ -196,3 +197,74 @@ struct GestureSettingsExample {
 ```
 
 ![zh-cn_image_0000001210195016](figures/zh-cn_image_0000001210195016.gif)
+
+### 示例2（实时监测参与滑动手势的有效触点数量）
+
+该示例通过配置fingerInfos实时监测参与滑动手势的有效触点数量
+
+```ts
+// xxx.ets
+@Entry
+@Component
+
+struct PanGestureWithFingerCount {
+  @State offsetX: number = 0
+  @State offsetY: number = 0
+  @State positionX: number = 0
+  @State positionY: number = 0
+  @State fingerCount: number = 0  //用于记录参与手势的触点数量
+
+  private panOption: PanGestureOptions = new PanGestureOptions({
+    direction: PanDirection.All,
+    fingers: 1
+  })
+
+  build() {
+    Column() {
+      // 显示当前有效触点数量
+      Text(`触点数量: ${this.fingerCount}`)
+        .fontSize(20)
+        .margin(10)
+
+      Column() {
+        Text('PanGesture offset:\nX: ' + this.offsetX + '\n' + 'Y: ' + this.offsetY)
+      }
+      .height(200)
+      .width(300)
+      .padding(20)
+      .border({ width: 3 })
+      .margin(50)
+      .translate({ x: this.offsetX, y: this.offsetY, z: 0 })
+      .gesture(
+        PanGesture(this.panOption)
+          .onActionStart((event: GestureEvent) => {
+            console.info('Pan start')
+            this.fingerCount = event.fingerInfos?.length || 0  // 记录触点数量
+          })
+          .onActionUpdate((event: GestureEvent) => {
+            if (event) {
+              console.log('fingerInfos',JSON.stringify(event.fingerInfos))
+              this.offsetX = this.positionX + event.offsetX
+              this.offsetY = this.positionY + event.offsetY
+              this.fingerCount = event.fingerInfos?.length || 0  // 更新触点数量,记录下参与当前手势的有效触点的数量
+            }
+          })
+          .onActionEnd((event: GestureEvent) => {
+            this.positionX = this.offsetX
+            this.positionY = this.offsetY
+            this.fingerCount = 0  // 触点离开触摸区域后归零
+            console.info('Pan end')
+          })
+          .onActionCancel(() => {
+            this.fingerCount = 0  // 手势取消后归零
+          })
+      )
+
+      Button('切换为双指滑动')
+        .onClick(() => {
+          this.panOption.setFingers(2)
+        })
+    }
+  }
+}
+```
