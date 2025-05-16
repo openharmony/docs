@@ -4,7 +4,7 @@
 
 >  **说明：**
 >
->  从API version 18开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>  从API version 19开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 >
 >  目前支持通过外接鼠标、手写笔以及触控板触发。
 
@@ -17,7 +17,7 @@ bindTips(message: TipsMessageType, options?: TipsOptions)
 >
 > 当绑定bindTips的组件设置通用属性enable为false时，仍支持弹出悬浮气泡。
 
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -32,7 +32,7 @@ bindTips(message: TipsMessageType, options?: TipsOptions)
 
 悬浮气泡自定义参数。
 
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -53,7 +53,7 @@ type TipsMessageType = ResourceStr | StyledString
 
 悬浮气泡弹窗信息。
 
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
