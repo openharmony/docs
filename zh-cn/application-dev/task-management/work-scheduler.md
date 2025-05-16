@@ -250,7 +250,7 @@ WorkInfo参数用于设置应用条件，参数设置时需遵循以下规则：
 
 2. 确认延迟任务WorkSchedulerExtensionAbility回调方法onWorkStart、onWorkStop实现是否正确、是否可以成功回调
 
-   延迟任务申请成功之后，执行延迟任务回调需要等到条件满足之后，为了快速验证延迟任务回调功能是否正确，可以通过以下hidumper命令手动触发延迟任务执行回调。
+   延迟任务申请成功之后，执行延迟任务回调需要等到条件满足之后，为了快速验证延迟任务回调功能是否正确，可以通过以下[hidumper命令](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/hidumper)手动触发延迟任务执行回调。
 
    ```ts
    $ hidumper -s 1904 -a '-t com.example.application MyWorkSchedulerExtensionAbility'
