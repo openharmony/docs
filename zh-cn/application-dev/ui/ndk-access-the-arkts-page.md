@@ -68,7 +68,7 @@
 
 ## NDK组件模块
 
-NDK提供的UI组件能力如组件创建、树操作、属性设置、事件注册等是通过函数指针结构体(如[ArkUI_NativeNodeAPI_1](../reference/apis-arkui/_ark_u_i___native_node_a_p_i__1.md)）进行暴露，该函数指针结构体可以通过[模块查询接口](../reference/apis-arkui/_ark_u_i___native_module.md#oh_arkui_getmoduleinterface)获取。
+NDK提供的UI组件能力如组件创建、树操作、属性设置、事件注册等是通过函数指针结构体（如[ArkUI_NativeNodeAPI_1](../reference/apis-arkui/_ark_u_i___native_node_a_p_i__1.md)）进行暴露，该函数指针结构体可以通过[模块查询接口](../reference/apis-arkui/_ark_u_i___native_module.md#oh_arkui_getmoduleinterface)获取。
 
 ```
 ArkUI_NativeNodeAPI_1* arkUINativeNodeApi = nullptr;
@@ -124,7 +124,7 @@ OH_ArkUI_GetModuleInterface(ARKUI_NATIVE_NODE, ArkUI_NativeNodeAPI_1, arkUINativ
 
 下面的示例展示了如何使用ContentSlot挂载Native侧的文本列表。
 
-**图1** Native文本列表  
+**图1** Native文本列表
 
 ![text_list](figures/text_list.gif)
 
