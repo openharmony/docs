@@ -16,15 +16,15 @@ target_link_libraries(entry PUBLIC libhilog_ndk.z.so libimage_packer.so)
 
 For details about the APIs, see [Image_NativeModule](../../reference/apis-image-kit/_image___native_module.md).
 
-Implement the C APIs in **hello.cpp**. Refer to the sample code below.
+Create a native C++ application in DevEco Studio. The project created by default contains the **index.ets** file, and a **hello.cpp** or **napi_init.cpp** file is generated in the **entry\src\main\cpp** directory. In this example, the generated file is **hello.cpp**. Implement the C APIs in **hello.cpp**. Refer to the sample code below.
 
 **Example of Using the Encoding APIs**
 
-After an **ImagePacker** instance is created and packing parameters are specified, the Picture object is packed to a file or buffer.
+After an **ImagePacker** instance is created and encoding parameters are specified, the Picture object is encoded to a file or buffer.
 
 > **NOTE**
 >
-> According to the MIME protocol, the standard encoding format is image/jpeg. When the APIs provided by the image module are used for encoding, **image_MimeType** of the packing parameters must be set to **image/jpeg**. The file name extension of the encoded image file can be .jpg or .jpeg, and the file can be used on platforms that support image/jpeg decoding.
+> According to the MIME protocol, the standard encoding format is image/jpeg. When the APIs provided by the image module are used for encoding, **image_MimeType** of the encoding parameters must be set to **image/jpeg**. The file name extension of the encoded image file can be .jpg or .jpeg, and the file can be used on platforms that support image/jpeg decoding.
 
    ```c++
 
@@ -68,7 +68,7 @@ After an **ImagePacker** instance is created and packing parameters are specifie
             source = nullptr;
             return thisPicture->errorCode;
         }
-    OH_LOG_DEBUG(LOG_APP, "ReleaseImageSource source is null !");
+    OH_LOG_DEBUG(LOG_APP, "ReleaseImageSource source is null!");
         return IMAGE_SUCCESS;
     }
 
@@ -86,7 +86,7 @@ After an **ImagePacker** instance is created and packing parameters are specifie
         size_t argc = 2;
         napi_value args[2] = {nullptr};
         if (napi_get_cb_info(env, info, &argc, args, nullptr, nullptr) != napi_ok) {
-            OH_LOG_ERROR(LOG_APP, "napi_get_cb_info failed !");
+            OH_LOG_ERROR(LOG_APP, "napi_get_cb_info failed!");
             return getJsResult(env, thisPicture->errorCode);
         }
         uint32_t fd = 0;
@@ -138,7 +138,7 @@ After an **ImagePacker** instance is created and packing parameters are specifie
         size_t argc = 2;
         napi_value args[2] = {nullptr};
         if (napi_get_cb_info(env, info, &argc, args, nullptr, nullptr) != napi_ok) {
-        OH_LOG_ERROR(LOG_APP, "napi_get_cb_info failed !");
+        OH_LOG_ERROR(LOG_APP, "napi_get_cb_info failed!");
             return getJsResult(env, thisPicture->errorCode);
         }
         uint32_t fd = 0;

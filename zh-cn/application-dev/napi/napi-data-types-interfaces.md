@@ -112,7 +112,7 @@ Node-API包含以下内存管理类型：
 
 **napi_handle_scope**
 
-napi_handle_scope数据类型是用来管理JavaScript对象的生命周期的。它允许JavaScript对象在一定范围内保持活动状态，以便在JavaScript代码中使用。在创建napi_handle_scope时，所有在该范围内创建的JavaScript对象都会保持活动状态，直到结束。这样可以做到JavaScript对象生命周期最小化，[避免发生内存泄漏问题](napi-guidelines.md#生命周期管理)。同时，napi_handle_scope也可参考[生命周期类问题注意事项](../dfx/cppcrash-guidelines.md#类型三生命周期类问题)。
+napi_handle_scope数据类型是用来管理JavaScript对象的生命周期的。它允许JavaScript对象在一定范围内保持活动状态，以便在JavaScript代码中使用。在创建napi_handle_scope时，所有在该范围内创建的JavaScript对象都会保持活动状态，直到结束。这样可以做到JavaScript对象生命周期最小化，[避免发生内存泄漏问题](napi-guidelines.md#生命周期管理)。同时，napi_handle_scope也可参考[生命周期类问题注意事项](../dfx/cppcrash-guidelines.md#案例4生命周期类问题)。
 
 **napi_escapable_handle_scope**
 

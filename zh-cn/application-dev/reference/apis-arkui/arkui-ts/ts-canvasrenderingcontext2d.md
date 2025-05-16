@@ -46,7 +46,7 @@ RenderingContextSettings(antialias?: boolean)
 
 | 参数名       | 类型    | 必填   | 说明                          |
 | --------- | ------- | ---- | ----------------------------- |
-| antialias | boolean | 否    | 表明canvas是否开启抗锯齿。<br>默认值：false。 |
+| antialias | boolean | 否    | 表明canvas是否开启抗锯齿。<br>默认值：false，表示不开启抗锯齿功能。 |
 
 ### LengthMetricsUnit<sup>12+</sup>
 
@@ -3774,8 +3774,9 @@ startImageAnalyzer(config: ImageAnalyzerConfig): Promise\<void>
 
 | 错误码ID | 错误信息                                      |
 | -------- | -------------------------------------------- |
-| 110001 | AI analysis is unsupported.               |
-| 110002 | AI analysis is ongoing.  |
+| 110001 | Image analysis feature is unsupported.               |
+| 110002 | Image analysis is currently being executed.  |
+| 110003 | Image analysis is stopped.  |
 
 ### stopImageAnalyzer<sup>12+</sup>
 

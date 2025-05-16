@@ -95,6 +95,9 @@
     - [QOS开发指导](qos-guidelines.md)
   - 内存管理<!--memory-management-->
     - [Purgeable memory开发指导](purgeable-memory-guidelines.md)
+  - 设备管理<!--device-management-->
+    - [USB DDK开发指导](usb-ddk-guidelines.md)
+    - [HID DDK开发指导](hid-ddk-guidelines.md)
   - 包管理<!--bundle-management-->
     - [NativeBundle开发指导](native-bundle-guidelines.md)
 - 调试和性能分析<!--debugging-profiling-->

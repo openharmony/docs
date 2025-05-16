@@ -1264,7 +1264,7 @@ UserID 0用户安装了非singleton权限的应用。
 1. 应用是非singleton权限的，不需要指定用户，直接安装。
 
   ```bash
-  hdc install -p hap名.hap
+  hdc shell bm install -p /data/hap名.hap
   ```
 
 
@@ -1460,28 +1460,6 @@ error: isolationMode does not match the system.
 	//配置设备persist.bms.supportIsolationMode值
 	hdc shell
 	param set persist.bms.supportIsolationMode [true|false]
-	```
-
-
-### 9568315 数据代理的uri属性错误
-**错误信息**
-
-error: uri in proxy data is wrong.
-
-**错误描述**
-
-应用module.json文件中proxyData标签的uri属性验证失败。
-
-**可能原因**
-
-uri不满足格式规范。
-
-**处理步骤**
-
-1. 确认uri满足格式规范。
-	```
-	//uri格式规范
-	不同数据代理的uri不可重复，且需要满足datashareproxy://当前应用包名/xxx的格式
 	```
 
 
@@ -1689,6 +1667,25 @@ error: Failed to uninstall the HAP because the uninstall is forbidden by enterpr
 **处理步骤**
 
 1. 由设置方取消该应用的卸载管控。
+
+### 9568389 未知错误导致安装失败
+**错误信息**
+
+error: unknown.
+
+**错误描述**
+
+未知的错误。
+
+**可能原因**
+
+系统未知的错误导致安装失败。
+
+**处理步骤**
+
+1. 重启手机后再次尝试安装应用。
+
+2. 重复上述步骤3到5次后依旧安装失败，请导出日志文件提[在线工单](https://developer.huawei.com/consumer/cn/support/feedback/#/)获取帮助。
 
 ### 9568284 安装版本不匹配
 **错误信息**
@@ -2311,7 +2308,7 @@ error: Install parse profile prop type error.
 ### 9568345 配置文件中的字符串长度或者数组大小过大
 **错误信息**
 
-error: Too large size of string or array type element in the profile.
+error: too large size of string or array type element in the profile.
 
 **错误描述**
 

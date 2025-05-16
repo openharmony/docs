@@ -23,20 +23,6 @@ This module provides the following classes for creating complex text paragraphs:
 import { text } from '@kit.ArkGraphics2D';
 ```
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 ## text.getSystemFontFullNamesByType<sup>14+</sup>
 
 getSystemFontFullNamesByType(fontType: SystemFontType): Promise&lt;Array&lt;string&gt;&gt;
@@ -551,23 +537,6 @@ struct RenderTest {
 }
 ```
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 ### clearCaches
 
 clearCaches(): void
@@ -625,7 +594,7 @@ Enumerates the vertical alignment modes of a placeholder relative to the surroun
 | OFFSET_AT_BASELINE  | 0 | Aligns the baseline of the placeholder to the baseline of the text.    |
 | ABOVE_BASELINE      | 1 | Aligns the bottom edge of the placeholder to the baseline of the text.  |
 | BELOW_BASELINE      | 2 | Aligns the top edge of the placeholder to the baseline of the text.  |
-| TOP_OF_ROW_BOX      | 3 | Aligns the top edge of the placeholder to the bottom edge of the text.  |
+| TOP_OF_ROW_BOX      | 3 | Aligns the top edge of the placeholder to the top edge of the text.  |
 | BOTTOM_OF_ROW_BOX   | 4 | Aligns the bottom edge of the placeholder to the bottom edge of the text.  |
 | CENTER_OF_ROW_BOX   | 5 | Center-aligned.|
 
@@ -687,26 +656,6 @@ Performs layout and calculates the positions of all glyphs.
 ```ts
 paragraph.layoutSync(100);
 ```
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 ### paint
 
@@ -1211,35 +1160,6 @@ Obtains the line measurement information of a line.
 let lineMetrics =  paragraph.getLineMetrics(0);
 ```
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 ## RunMetrics
 
 Describes the layout information and measurement information of a run of text in a text line.
@@ -1631,16 +1551,6 @@ struct Index {
 }
 ```
 
-
-
-
-
-
-
-
-
-
-
 ### addSymbol
 
 addSymbol(symbolId: number): void
@@ -1688,18 +1598,6 @@ struct Index {
   }
 }
 ```
-
-
-
-
-
-
-
-
-
-
-
-
 
 ## TextLine
 
@@ -1817,83 +1715,6 @@ struct Index {
 }
 ```
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 ## Run
 
 Implements a unit for text layout.
@@ -1940,18 +1761,6 @@ Obtains the index of each glyph in this run.
 let glyph = runs[0].getGlyphs();
 ```
 
-
-
-
-
-
-
-
-
-
-
-
-
 ### getPositions
 
 getPositions(): Array<common2D.Point>
@@ -1971,17 +1780,6 @@ Obtains the position of each glyph relative to the respective line in this run.
 ```ts
 let positions = runs[0].getPositions();
 ```
-
-
-
-
-
-
-
-
-
-
-
 
 ### getOffsets
 
@@ -2073,56 +1871,6 @@ struct Index {
   }
 }
 ```
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 ## SystemFontType<sup>14+</sup>
 

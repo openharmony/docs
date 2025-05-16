@@ -90,7 +90,7 @@ getAssets(options: photoAccessHelper.FetchOptions): Promise&lt;FetchResult&lt;Ph
 
 **示例：**
 
-
+phAccessHelper的创建请参考[sendablePhotoAccessHelper.getPhotoAccessHelper](#sendablephotoaccesshelpergetphotoaccesshelper)的示例使用。
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -152,6 +152,8 @@ getBurstAssets(burstKey: string, options: photoAccessHelper.FetchOptions): Promi
 | 14000011 | Internal system error.                                       |
 
 **示例：**
+
+phAccessHelper的创建请参考[sendablePhotoAccessHelper.getPhotoAccessHelper](#sendablephotoaccesshelpergetphotoaccesshelper)的示例使用。
 
 ```ts
 import { photoAccessHelper } from '@kit.MediaLibraryKit';
@@ -228,6 +230,8 @@ createAsset(photoType: PhotoType, extension: string, options?: photoAccessHelper
 
 **示例：**
 
+phAccessHelper的创建请参考[sendablePhotoAccessHelper.getPhotoAccessHelper](#sendablephotoaccesshelpergetphotoaccesshelper)的示例使用。
+
 ```ts
 import { photoAccessHelper } from '@kit.MediaLibraryKit';
 
@@ -285,6 +289,8 @@ getAlbums(type: AlbumType, subtype: AlbumSubtype, options?: photoAccessHelper.Fe
 | 14000011 | Internal system error.                                        |
 
 **示例：**
+
+phAccessHelper的创建请参考[sendablePhotoAccessHelper.getPhotoAccessHelper](#sendablephotoaccesshelpergetphotoaccesshelper)的示例使用。
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -350,6 +356,8 @@ getAlbums(options: photoAccessHelper.FetchOptions): Promise&lt;FetchResult&lt;Al
 
 **示例：**
 
+phAccessHelper的创建请参考[sendablePhotoAccessHelper.getPhotoAccessHelper](#sendablephotoaccesshelpergetphotoaccesshelper)的示例使用。
+
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -402,6 +410,8 @@ release(): Promise&lt;void&gt;
 | 14000011 | Internal system error.                                        |
 
 **示例：**
+
+phAccessHelper的创建请参考[sendablePhotoAccessHelper.getPhotoAccessHelper](#sendablephotoaccesshelpergetphotoaccesshelper)的示例使用。
 
 ```ts
 async function example() {
@@ -462,6 +472,8 @@ convertToPhotoAsset():  photoAccessHelper.PhotoAsset
 
 **示例：**
 
+phAccessHelper的创建请参考[sendablePhotoAccessHelper.getPhotoAccessHelper](#sendablephotoaccesshelpergetphotoaccesshelper)的示例使用。
+
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 import { photoAccessHelper } from '@kit.MediaLibraryKit';
@@ -514,6 +526,8 @@ get(member: string): photoAccessHelper.MemberType
 
 **示例：**
 
+phAccessHelper的创建请参考[sendablePhotoAccessHelper.getPhotoAccessHelper](#sendablephotoaccesshelpergetphotoaccesshelper)的示例使用。
+
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 import { photoAccessHelper } from '@kit.MediaLibraryKit';
@@ -561,6 +575,8 @@ set(member: string, value: string): void
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
+
+phAccessHelper的创建请参考[sendablePhotoAccessHelper.getPhotoAccessHelper](#sendablephotoaccesshelpergetphotoaccesshelper)的示例使用。
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -613,6 +629,8 @@ commitModify(): Promise&lt;void&gt;
 | 14000011 | Internal system error.                                        |
 
 **示例：**
+
+phAccessHelper的创建请参考[sendablePhotoAccessHelper.getPhotoAccessHelper](#sendablephotoaccesshelpergetphotoaccesshelper)的示例使用。
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -675,6 +693,8 @@ getThumbnail(size?: image.Size): Promise&lt;image.PixelMap&gt;
 
 **示例：**
 
+phAccessHelper的创建请参考[sendablePhotoAccessHelper.getPhotoAccessHelper](#sendablephotoaccesshelpergetphotoaccesshelper)的示例使用。
+
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 import { image } from '@kit.ImageKit';
@@ -728,6 +748,8 @@ getCount(): number
 
 **示例：**
 
+phAccessHelper的创建请参考[sendablePhotoAccessHelper.getPhotoAccessHelper](#sendablephotoaccesshelpergetphotoaccesshelper)的示例使用。
+
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 import { photoAccessHelper } from '@kit.MediaLibraryKit';
@@ -769,6 +791,8 @@ isAfterLast(): boolean
 
 **示例：**
 
+phAccessHelper的创建请参考[sendablePhotoAccessHelper.getPhotoAccessHelper](#sendablephotoaccesshelpergetphotoaccesshelper)的示例使用。
+
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 import { photoAccessHelper } from '@kit.MediaLibraryKit';
@@ -808,6 +832,8 @@ close(): void
 | 14000011 | Internal system error.                                        |
 
 **示例：**
+
+phAccessHelper的创建请参考[sendablePhotoAccessHelper.getPhotoAccessHelper](#sendablephotoaccesshelpergetphotoaccesshelper)的示例使用。
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -854,6 +880,8 @@ getFirstObject(): Promise&lt;T&gt;
 
 **示例：**
 
+phAccessHelper的创建请参考[sendablePhotoAccessHelper.getPhotoAccessHelper](#sendablephotoaccesshelpergetphotoaccesshelper)的示例使用。
+
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 import { photoAccessHelper } from '@kit.MediaLibraryKit';
@@ -896,6 +924,8 @@ getNextObject(): Promise&lt;T&gt;
 
 **示例：**
 
+phAccessHelper的创建请参考[sendablePhotoAccessHelper.getPhotoAccessHelper](#sendablephotoaccesshelpergetphotoaccesshelper)的示例使用。
+
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 import { photoAccessHelper } from '@kit.MediaLibraryKit';
@@ -937,6 +967,8 @@ getLastObject(): Promise&lt;T&gt;
 | 14000011 | Internal system error.                                        |
 
 **示例：**
+
+phAccessHelper的创建请参考[sendablePhotoAccessHelper.getPhotoAccessHelper](#sendablephotoaccesshelpergetphotoaccesshelper)的示例使用。
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -986,6 +1018,8 @@ getObjectByPosition(index: number): Promise&lt;T&gt;
 
 **示例：**
 
+phAccessHelper的创建请参考[sendablePhotoAccessHelper.getPhotoAccessHelper](#sendablephotoaccesshelpergetphotoaccesshelper)的示例使用。
+
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 import { photoAccessHelper } from '@kit.MediaLibraryKit';
@@ -1026,6 +1060,8 @@ getAllObjects(): Promise&lt;Array&lt;T&gt;&gt;
 | 14000011 | Internal system error.                                        |
 
 **示例：**
+
+phAccessHelper的创建请参考[sendablePhotoAccessHelper.getPhotoAccessHelper](#sendablephotoaccesshelpergetphotoaccesshelper)的示例使用。
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -1085,6 +1121,8 @@ convertToPhotoAlbum(): photoAccessHelper.Album
 | 14000011 | Internal system error.                                        |
 
 **示例：**
+
+phAccessHelper的创建请参考[sendablePhotoAccessHelper.getPhotoAccessHelper](#sendablephotoaccesshelpergetphotoaccesshelper)的示例使用。
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -1148,6 +1186,8 @@ getAssets(options: FetchOptions): Promise&lt;FetchResult&lt;PhotoAsset&gt;&gt;
 
 **示例：**
 
+phAccessHelper的创建请参考[sendablePhotoAccessHelper.getPhotoAccessHelper](#sendablephotoaccesshelpergetphotoaccesshelper)的示例使用。
+
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -1200,6 +1240,8 @@ commitModify(): Promise&lt;void&gt;
 | 14000011 | Internal system error.                                        |
 
 **示例：**
+
+phAccessHelper的创建请参考[sendablePhotoAccessHelper.getPhotoAccessHelper](#sendablephotoaccesshelpergetphotoaccesshelper)的示例使用。
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';

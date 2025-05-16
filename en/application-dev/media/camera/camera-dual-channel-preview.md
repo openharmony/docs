@@ -1,6 +1,6 @@
 # Dual-Channel Preview (ArkTS)
 
-Before developing a camera application, request permissions by following the instructions provided in [Camera Development Preparations](camera-preparation.md).
+Before developing a camera application, request permissions by following the instructions provided in [Requesting Camera Development Permissions](camera-preparation.md).
 
 Dual-channel preview means that an application can use two preview streams at the same time. One preview stream is used for display on the screen, and the other is used for other operations such as image processing, so as to improve the processing efficiency.
 
@@ -195,8 +195,6 @@ imageReceiverSurfaceId: string, xComponentSurfaceId: string): void {
     session.addOutput(previewOutput2);
 }
 ```
-
- 
 
 ## Sample
 

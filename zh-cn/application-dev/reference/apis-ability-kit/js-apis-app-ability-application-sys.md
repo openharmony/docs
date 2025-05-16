@@ -17,6 +17,10 @@ createModuleContext(context: Context, bundleName: string, moduleName: string): P
 
 根据入参Context创建相应模块的Context。
 
+> **说明：**
+>
+> 该接口需要多次查询包信息、加载指定Module的全部资源，耗时较长。建议首次使用该接口时缓存创建的Context，以避免重复调用该接口创建Context。
+
 **元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core

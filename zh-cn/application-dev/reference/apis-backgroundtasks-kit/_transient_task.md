@@ -152,7 +152,7 @@ int32_t OH_BackgroundTaskManager_GetRemainingDelayTime (int32_t requestId, int32
 | 名称 | 描述 | 
 | -------- | -------- |
 | requestId | 短时任务的请求ID。  | 
-| time | 短时任务的剩余时间。  | 
+| delayTime | 短时任务的剩余时间。  | 
 
 **返回：**
 
@@ -177,7 +177,7 @@ int32_t OH_BackgroundTaskManager_RequestSuspendDelay (const char * reason, Trans
 | -------- | -------- |
 | reason | 申请短时任务的原因。  | 
 | callback | 短时任务即将超时的回调，一般在超时前6秒，通过此回调通知应用。  | 
-| delaySuspendInfo | 返回短时任务信息。  | 
+| info | 返回短时任务信息。  | 
 
 **返回：**
 

@@ -72,7 +72,7 @@ Read [AVRecorder](../../reference/apis-media-kit/js-apis-media.md#avrecorder9) f
    > - Before parameter configuration, ensure that you have gained the required permissions. For details, see [Requesting Permissions](#requesting-permissions).
    >
    > - In pure audio recording scenarios, set only audio-related parameters in **avConfig** of **prepare()**. If video-related parameters are configured, an error will be reported in subsequent steps. If video recording is required, follow the instructions provided in [Video Recording Development](video-recording.md).
-   > - The [recording specifications](media-kit-intro.md#supported-formats) in use must be those supported. The specific recording parameters must strictly comply with the specified [recording parameter configuration](../../reference/apis-media-kit/js-apis-media.md#avrecorderprofile9).
+   > - The [recording specifications](media-kit-intro.md#supported-formats) in use must be those supported.
    > - The recording output URL (URL in **avConfig** in the sample code) must be in the format of fd://xx (where xx indicates a file descriptor). You must call [ohos.file.fs of Core File Kit](../../reference/apis-core-file-kit/js-apis-file-fs.md) to implement access to the application file. For details, see [Accessing Application Files](../../file-management/app-file-access.md).
 
    ```ts
@@ -87,7 +87,7 @@ Read [AVRecorder](../../reference/apis-media-kit/js-apis-media.md#avrecorder9) f
      audioSampleRate: 48000, // Audio sampling rate.
      fileFormat: media.ContainerFormatType.CFT_MPEG_4A, // Container format. Currently, MP4, M4A, MP3, and WAV are supported.
    };
-   
+  
    const context: Context = getContext(this); // Refer to Accessing Application Files.
    let filePath: string = context.filesDir + '/example.mp3';
    let audioFile: fs.File = fs.openSync(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
@@ -182,7 +182,7 @@ export class AudioRecorderDemo {
       this.avConfig.url = 'fd://' + audioFile.fd; // Update the URL.
       this.filePath = path;
   }
-
+  
   // Set AVRecorder callback functions.
   setAudioRecorderCallback() {
     if (this.avRecorder != undefined) {

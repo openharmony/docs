@@ -19,7 +19,7 @@
   import { webview } from '@kit.ArkWeb';
   import { BusinessError } from '@kit.BasicServicesKit';
 
-  class testClass {
+  class TestClass {
     constructor() {
     }
 
@@ -33,7 +33,7 @@
   struct WebComponent {
     webviewController: webview.WebviewController = new webview.WebviewController();
     // 声明需要注册的对象
-    @State testObj: testClass = new testClass();
+    @State testObj: testClass = new TestClass();
 
     build() {
       Column() {
@@ -67,14 +67,14 @@
   ```
 
 
-- 应用侧使用[registerJavaScriptProxy()](../reference/apis-arkweb/js-apis-webview.md#registerjavascriptproxy)接口注册。
+- 应用侧使用[registerJavaScriptProxy()](../reference/apis-arkweb/js-apis-webview.md#registerjavascriptproxy)接口注册示例如下。
 
   ```ts
   // xxx.ets
   import { webview } from '@kit.ArkWeb';
   import { BusinessError } from '@kit.BasicServicesKit';
 
-  class testClass {
+  class TestClass {
     constructor() {
     }
 
@@ -91,7 +91,7 @@
   @Component
   struct Index {
     webviewController: webview.WebviewController = new webview.WebviewController();
-    @State testObj: testClass = new testClass();
+    @State testObj: testClass = new TestClass();
 
     build() {
       Column() {
@@ -222,7 +222,7 @@
   import { webview } from '@kit.ArkWeb';
   import { BusinessError } from '@kit.BasicServicesKit';
 
-  class testClass {
+  class TestClass {
     constructor() {
     }
 
@@ -239,7 +239,7 @@
   @Component
   struct Index {
     webviewController: webview.WebviewController = new webview.WebviewController();
-    @State testObj: testClass = new testClass();
+    @State testObj: testClass = new TestClass();
 
     build() {
       Column() {
@@ -294,12 +294,12 @@
   import { webview } from '@kit.ArkWeb';
   import { BusinessError } from '@kit.BasicServicesKit';
 
-  class student {
+  class Student {
     name: string = '';
     age: string = '';
   }
 
-  class testClass {
+  class TestClass {
     constructor() {
     }
 
@@ -318,7 +318,7 @@
   @Component
   struct Index {
     webviewController: webview.WebviewController = new webview.WebviewController();
-    @State testObj: testClass = new testClass();
+    @State testObj: testClass = new TestClass();
 
     build() {
       Column() {
@@ -374,7 +374,7 @@
   import { webview } from '@kit.ArkWeb';
   import { BusinessError } from '@kit.BasicServicesKit';
 
-  class testClass {
+  class TestClass {
     constructor() {
     }
 
@@ -391,7 +391,7 @@
   @Component
   struct Index {
     webviewController: webview.WebviewController = new webview.WebviewController();
-    @State testObj: testClass = new testClass();
+    @State testObj: testClass = new TestClass();
 
     build() {
       Column() {
@@ -447,7 +447,7 @@
   import { webview } from '@kit.ArkWeb';
   import { BusinessError } from '@kit.BasicServicesKit';
 
-  class testClass {
+  class TestClass {
     constructor() {
     }
 
@@ -464,7 +464,7 @@
   @Component
   struct Index {
     webviewController: webview.WebviewController = new webview.WebviewController();
-    @State testObj: testClass = new testClass();
+    @State testObj: testClass = new TestClass();
 
     build() {
       Column() {
@@ -556,7 +556,7 @@
     }
   }
 
-  class testClass {
+  class TestClass {
     ObjReturn: ObjOther
 
     constructor() {
@@ -576,7 +576,7 @@
   @Component
   struct Index {
     webviewController: webview.WebviewController = new webview.WebviewController();
-    @State testObj: testClass = new testClass();
+    @State testObj: testClass = new TestClass();
 
     build() {
       Column() {
@@ -633,7 +633,7 @@
   import { webview } from '@kit.ArkWeb';
   import { BusinessError } from '@kit.BasicServicesKit';
 
-  class testClass {
+  class TestClass {
     constructor() {
     }
 
@@ -656,7 +656,7 @@
   @Component
   struct Index {
     webviewController: webview.WebviewController = new webview.WebviewController();
-    @State testObj: testClass = new testClass();
+    @State testObj: testClass = new TestClass();
 
     build() {
       Column() {
@@ -711,7 +711,7 @@
   import { webview } from '@kit.ArkWeb';
   import { BusinessError } from '@kit.BasicServicesKit';
 
-  class testClass {
+  class TestClass {
     constructor() {
     }
 
@@ -728,7 +728,7 @@
   @Component
   struct Index {
     webviewController: webview.WebviewController = new webview.WebviewController();
-    @State testObj: testClass = new testClass();
+    @State testObj: testClass = new TestClass();
 
     build() {
       Column() {
@@ -782,12 +782,12 @@
   ```
 ## 验证通道是否建立成功
 
- 1.打开web调试
+1. 打开web调试。
 
- 开启web调试请参考[使用DevTools工具调试前端页面](../web/web-debugging-with-devtools.md)
+   开启web调试请参考[使用DevTools工具调试前端页面](web-debugging-with-devtools.md)。
 
- 2.举例说明通道是否建立成功
+2. 举例说明通道是否建立成功。
 
- 使用[复杂类型使用方法](复杂类型使用方法)中应用侧和前端页面之间传递Array作为示例，调试结果如下图所示
+   使用[复杂类型使用方法](#复杂类型使用方法)中应用侧和前端页面之间传递Array作为示例，调试结果如下图所示：
 
-![输入图片说明](figures/webtoolstest.png)
+   ![DevTools工具验证成功示例](figures/webtoolstest.png)

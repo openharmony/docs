@@ -132,7 +132,7 @@ struct ColorGradientExample {
           colors: [[0xff0000, 0.0], [0x0000ff, 0.3], [0xffff00, 1.0]]
         })
       
-      Text('sweepGradient Reapeat').fontSize(12).width('90%').fontColor(0xCCCCCC)
+      Text('sweepGradient Repeat').fontSize(12).width('90%').fontColor(0xCCCCCC)
       Row()
         .width(100)
         .height(100)

@@ -24,15 +24,15 @@
 | 名称                                                         | 描述                                                         |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | [ArkUI_AccessibilityElementInfo](#arkui_accessibilityelementinfo) | 无障碍节点信息，用于向无障碍服务、辅助应用传递节点信息。     |
-| [ArkUI_AccessibilityElementInfoList](#arkui_accessibilityelementinfolist) | 无障碍节点列表，包含需要的无障碍节点列表信息 。              |
+| [ArkUI_AccessibilityElementInfoList](#arkui_accessibilityelementinfolist) | 无障碍节点列表，包含需要的无障碍节点列表信息。              |
 | [ArkUI_AccessibilityEventInfo](#arkui_accessibilityeventinfo) | 无障碍事件信息，无障碍服务或辅助应用要求组件执行操作后，需要发送执行成功事件。组件自身交互诉求需要同步状态给无障碍服务或辅助应用时，也需要主动发送事件。 |
-| [ArkUI_AccessibilityProvider](#arkui_accessibilityprovider)  | 三方操作provider，承载回调函数实现。                         |
-| [ArkUI_AccessibilityProviderCallbacks](#arkui_accessibilityprovidercallbacks) | 三方操作provider回调函数结构定义，需要三方平台实现的相关函数，通过OH_ArkUI_AccessibilityProviderRegisterCallback注册到系统侧。 |
+| [ArkUI_AccessibilityProvider](#arkui_accessibilityprovider)  | 第三方操作provider，承载回调函数实现。                         |
+| [ArkUI_AccessibilityProviderCallbacks](#arkui_accessibilityprovidercallbacks) | 第三方操作provider回调函数结构定义，需要第三方平台实现的相关函数，通过OH_ArkUI_AccessibilityProviderRegisterCallback注册到系统侧。 |
 | [ArkUI_AccessibilityActionArguments](#arkui_accessibilityactionarguments) | Action附加字段，对需要执行的Action进行处理的说明。           |
 | [ArkUI_AccessibleRect](#arkui_accessiblerect)                | 节点所在坐标位置。                                           |
-| [ArkUI_AccessibleRangeInfo](#arkui_accessiblerangeinfo)      | 特定组件需要使用，如Slider、Rating、Progress组件。设置组件属性中的当前值以及最大值、最小值。 |
-| [ArkUI_AccessibleGridInfo](#arkui_accessiblegridinfo)        | 特定组件需要使用，如list、flex、select、swiper组件。设置组件，”行数“，”列数“，以及选择模式。 |
-| [ArkUI_AccessibleGridItemInfo](#arkui_accessiblegriditeminfo) | 特定组件需要使用，如list、flex、select、swiper组件。设置组件item的属性值。 |
+| [ArkUI_AccessibleRangeInfo](#arkui_accessiblerangeinfo)      | 用于特定组件设置组件的当前值、最大值、最小值，如Slider、Rating、Progress组件。 |
+| [ArkUI_AccessibleGridInfo](#arkui_accessiblegridinfo)        | 用于特定组件设置组件的行数、列数以及选择模式，如list、flex、select、swiper组件。 |
+| [ArkUI_AccessibleGridItemInfo](#arkui_accessiblegriditeminfo) | 用于特定组件设置组件的属性值，如list、flex、select、swiper组件。 |
 | [ArkUI_AccessibleAction](#arkui_accessibleaction)            | 无障碍操作内容结构。                                         |
 
 ### 枚举
@@ -54,7 +54,7 @@
 typedef struct ArkUI_AccessibilityElementInfo ArkUI_AccessibilityElementInfo
 ```
 
-**描述:**
+**描述：**
 
 无障碍节点信息，用于向无障碍服务、辅助应用传递节点信息。
 
@@ -68,7 +68,7 @@ typedef struct ArkUI_AccessibilityElementInfo ArkUI_AccessibilityElementInfo
 typedef struct ArkUI_AccessibilityElementInfoList ArkUI_AccessibilityElementInfoList
 ```
 
-**描述:**
+**描述：**
 
 无障碍节点列表，包含需要的无障碍节点列表信息。
 
@@ -82,9 +82,9 @@ typedef struct ArkUI_AccessibilityElementInfoList ArkUI_AccessibilityElementInfo
 typedef struct ArkUI_AccessibilityEventInfo ArkUI_AccessibilityEventInfo
 ```
 
-**描述:**
+**描述：**
 
-无障碍事件信息，无障碍服务或辅助应用要求组件执行操作后，需要发送执行成功事件。组件自身交互诉求需要同步状态给无障碍服务或辅助应用时，也需要主动发送事件。
+无障碍事件信息，无障碍服务或辅助应用要求组件执行操作后，需要发送执行成功事件。组件自身交互需求要同步状态给无障碍服务或辅助应用时，也需要主动发送事件。
 
 **起始版本：**
 
@@ -96,9 +96,9 @@ typedef struct ArkUI_AccessibilityEventInfo ArkUI_AccessibilityEventInfo
 typedef struct ArkUI_AccessibilityProvider ArkUI_AccessibilityProvider
 ```
 
-**描述:**
+**描述：**
 
-三方操作provider，承载回调函数实现。
+第三方操作provider，承载回调函数实现。
 
 **起始版本：**
 
@@ -118,15 +118,15 @@ typedef struct ArkUI_AccessibilityProviderCallbacks {
 } ArkUI_AccessibilityProviderCallbacks;
 ```
 
-**描述:**
+**描述：**
 
-三方操作provider回调函数结构定义，需要三方平台实现的相关函数，通过OH_ArkUI_AccessibilityProviderRegisterCallback注册到系统侧。
+第三方操作provider回调函数结构定义，需要第三方平台实现的相关函数，通过OH_ArkUI_AccessibilityProviderRegisterCallback注册到系统侧。
 
 | 回调函数                                                     | 函数功能                             |
 | ------------------------------------------------------------ | ------------------------------------ |
-| [findAccessibilityNodeInfosById](#findaccessibilitynodeinfosbyid) | 基于指定的节点，查询所需的节点信息。 |
+| [findAccessibilityNodeInfosById](#findaccessibilitynodeinfosbyid) | 查询指定节点的节点信息。 |
 | [findAccessibilityNodeInfosByText](#findaccessibilitynodeinfosbytext) | 查询满足指定text内容的节点信息。     |
-| [findFocusedAccessibilityNode](#findfocusedaccessibilitynode) | 从指定节点查找已经聚焦的节点。       |
+| [findFocusedAccessibilityNode](#findfocusedaccessibilitynode) | 从指定节点查找已聚焦的节点。       |
 | [findNextFocusAccessibilityNode](#findnextfocusaccessibilitynode) | 从指定节点查询指定方向的节点。       |
 | [executeAccessibilityAction](#executeaccessibilityaction)    | 对指定节点执行指定的操作（Action）。 |
 | [clearFocusedFocusAccessibilityNode](#clearfocusedfocusaccessibilitynode) | 清除当前获焦的节点。                 |
@@ -150,15 +150,15 @@ typedef struct ArkUI_AccessibilityProviderCallbacksWithInstance {
 } ArkUI_AccessibilityProviderCallbacksWithInstance;
 ```
 
-**描述:**
+**描述：**
 
-适配多实例场景三方操作provider回调函数结构定义，需要三方平台实现的相关函数，通过OH_ArkUI_AccessibilityProviderRegisterCallbackWithInstance注册到系统侧。
+适配多实例场景第三方操作provider回调函数结构定义，需要第三方平台实现的相关函数，通过OH_ArkUI_AccessibilityProviderRegisterCallbackWithInstance注册到系统侧。
 
 | 回调函数                                                     | 函数功能                             |
 | ------------------------------------------------------------ | ------------------------------------ |
 | [findAccessibilityNodeInfosById](#findaccessibilitynodeinfosbyid-1) | 由接入方平台实现的回调函数，注册给系统侧调用。基于指定的节点，查询所需的节点信息。支持多实例场景。 |
 | [findAccessibilityNodeInfosByText](#findaccessibilitynodeinfosbytext-1) | 由接入方平台实现的回调函数，注册给系统侧调用。基于指定的节点，查询满足指定组件文本内容的节点信息。支持多实例场景。 |
-| [findFocusedAccessibilityNode](#findfocusedaccessibilitynode-1) | 由接入方平台实现的回调函数，注册给系统侧调用。从指定节点查找已经聚焦的节点。支持多实例场景。  |
+| [findFocusedAccessibilityNode](#findfocusedaccessibilitynode-1) | 由接入方平台实现的回调函数，注册给系统侧调用。从指定节点查找已聚焦的节点。支持多实例场景。  |
 | [findNextFocusAccessibilityNode](#findnextfocusaccessibilitynode-1) | 由接入方平台实现的回调函数，注册给系统侧调用。从指定节点查询指定方向的节点。支持多实例场景。  |
 | [executeAccessibilityAction](#executeaccessibilityaction-1)    | 由接入方平台实现的回调函数，注册给系统侧调用。对指定节点执行指定的操作。支持多实例场景。  |
 | [clearFocusedFocusAccessibilityNode](#clearfocusedfocusaccessibilitynode-1) | 由接入方平台实现的回调函数，注册给系统侧调用。 清除当前获焦的节点。支持多实例场景。  |
@@ -170,7 +170,7 @@ typedef struct ArkUI_AccessibilityProviderCallbacksWithInstance {
 
 ### ArkUI_AccessibilityActionArguments
 
-**描述:**
+**描述：**
 
 Action附加字段，对需要执行的Action进行处理说明。
 
@@ -182,7 +182,7 @@ Action附加字段，对需要执行的Action进行处理说明。
 
 ### ArkUI_AccessibleRect
 
-**描述:**
+**描述：**
 
 节点所在坐标位置。
 
@@ -203,9 +203,9 @@ Action附加字段，对需要执行的Action进行处理说明。
 
 ### ArkUI_AccessibleRangeInfo
 
-**描述:**
+**描述：**
 
-特定组件需要使用，如Slider、Rating、Progress组件。设置组件属性中的当前值以及最大值、最小值。
+用于特定组件设置组件的当前值、最大值、最小值，如Slider、Rating、Progress组件。
 
 **参数:**
 
@@ -223,16 +223,16 @@ Action附加字段，对需要执行的Action进行处理说明。
 
 ### ArkUI_AccessibleGridInfo
 
-**描述:**
+**描述：**
 
-特定组件需要使用，如list、flex、select、swiper组件。设置组件，”行数“，”列数“，以及选择模式。
+用于特定组件设置组件的行数、列数以及选择模式，如list、flex、select、swiper组件。
 
 **参数:**
 
 | 名称          | 类型  | 描述       |
 | ------------- | ----- | ---------- |
-| rowCount      | int32 | 列数。     |
-| columnCount   | int32 | 行数。     |
+| rowCount      | int32 | 行数。     |
+| columnCount   | int32 | 列数。     |
 | selectionMode | int32 | 选择模式。 |
 
 **起始版本：**
@@ -243,9 +243,9 @@ Action附加字段，对需要执行的Action进行处理说明。
 
 ### ArkUI_AccessibleGridItemInfo
 
-**描述:**
+**描述：**
 
-特定组件需要使用，如list、flex、select、swiper组件。设置组件item的属性值。
+用于特定组件设置组件的属性值，如list、flex、select、swiper组件。
 
 **参数:**
 
@@ -253,10 +253,10 @@ Action附加字段，对需要执行的Action进行处理说明。
 | ----------- | ----- | ------------ |
 | heading     | bool  | 是否是标题。 |
 | selected    | bool  | 是否被选中。 |
-| columnIndex | int32 | 行下标。     |
-| rowIndex    | int32 | 列下标。     |
-| columnSpan  | int32 | 行跨度。     |
-| rowSpan     | int32 | 列跨度。     |
+| columnIndex | int32 | 列下标。     |
+| rowIndex    | int32 | 行下标。     |
+| columnSpan  | int32 | 列跨度。     |
+| rowSpan     | int32 | 行跨度。     |
 
 **起始版本：**
 
@@ -264,9 +264,9 @@ Action附加字段，对需要执行的Action进行处理说明。
 
 ### ArkUI_AccessibleAction
 
-**描述:**
+**描述：**
 
-无障碍操作事件结构。
+无障碍操作内容结构。
 
 **参数:**
 
@@ -299,8 +299,8 @@ int32_t (*findAccessibilityNodeInfosById)(int64_t elementId, ArkUI_Accessibility
 | ----------- | ------------------------------------------------------------ |
 | elementId   | 指定节点的id，从该节点出发进行搜索查询。当指定为-1时，代表从组件树的根节点进行查询。 |
 | mode        | 查询模式，支持如下查询类型：[ArkUI_AccessibilitySearchMode](#arkui_accessibilitysearchmode)。 |
-| requestId   | 请求id，用于关联请求过程，方便问题定位。三方输出日志关键日志时，建议一起输出。 |
-| elementList | 查询结果，接入方根据查收调节将结果返回。                     |
+| requestId   | 请求id，用于关联请求过程，方便问题定位。第三方输出日志关键日志时，建议一起输出。 |
+| elementList | 查询结果，接入方根据查询结果进行调整并返回。                     |
 
 **返回：**
 
@@ -324,8 +324,8 @@ int32_t (*findAccessibilityNodeInfosByText)(int64_t elementId, const char* text,
 | ----------- | ------------------------------------------------------------ |
 | elementId   | 指定节点的id，从该节点出发进行搜索查询。当指定为-1时，代表从组件树的根节点进行查询。 |
 | text        | 指定文本，匹配节点中无障碍属性的文本内容。                   |
-| requestId   | 请求id，用于关联请求过程，方便问题定位。三方输出日志关键日志时，建议一起输出。 |
-| elementList | 查询结果，接入方根据查收调节将结果返回。                     |
+| requestId   | 请求id，用于关联请求过程，方便问题定位。第三方输出日志关键日志时，建议一起输出。 |
+| elementList | 查询结果，接入方根据查询结果进行调整并返回。                     |
 
 **返回：**
 
@@ -349,8 +349,8 @@ int32_t (*findFocusedAccessibilityNode)(int64_t elementId, ArkUI_AccessibilityFo
 | ----------- | ------------------------------------------------------------ |
 | elementId   | 指定节点的id，从该节点出发进行搜索查询。当指定为-1时，代表从组件树的根节点进行查询。 |
 | focusType   | 无障碍焦点类型[ArkUI_AccessibilityFocusType](#arkui_accessibilityfocustype)。 |
-| requestId   | 请求id，用于关联请求过程，方便问题定位。三方输出日志关键日志时，建议一起输出。 |
-| elementList | 查询结果，接入方根据查收调节将结果返回。                     |
+| requestId   | 请求id，用于关联请求过程，方便问题定位。第三方输出日志关键日志时，建议一起输出。 |
+| elementList | 查询结果，接入方根据查询结果进行调整并返回。                     |
 
 **返回：**
 
@@ -375,9 +375,9 @@ int32_t (*findNextFocusAccessibilityNode)(int64_t elementId, ArkUI_Accessibility
 | 名称        | 描述                                                         |
 | ----------- | ------------------------------------------------------------ |
 | elementId   | 指定节点的id，从该节点出发进行搜索查询。当指定为-1时，代表从组件树的根节点进行查询。 |
-| focusType   | 无障碍焦点类型ArkUI_AccessibilityFocusType](#arkui_accessibilityfocustype)。 |
-| requestId   | 请求id，用于关联请求过程，方便问题定位。三方输出日志关键日志时，建议一起输出。 |
-| elementList | 查询结果，接入方根据查收调节将结果返回。                     |
+| focusType   | 无障碍焦点类型[ArkUI_AccessibilityFocusType](#arkui_accessibilityfocustype)。 |
+| requestId   | 请求id，用于关联请求过程，方便问题定位。第三方输出日志关键日志时，建议一起输出。 |
+| elementList | 查询结果，接入方根据查询结果进行调整并返回。                     |
 
 **返回：**
 
@@ -401,7 +401,7 @@ int32_t (*executeAccessibilityAction)(int64_t elementId, ArkUI_Accessibility_Act
 | --------------- | ------------------------------------------------------------ |
 | elementId       | 指定节点的id。                                               |
 | action          | 执行操作类型[ArkUI_Accessibility_ActionType](#arkui_accessibility_actiontype)。 |
-| requestId       | 请求id，用于关联请求过程，方便问题定位。三方输出日志关键日志时，建议一起输出。 |
+| requestId       | 请求id，用于关联请求过程，方便问题定位。第三方输出日志关键日志时，建议一起输出。 |
 | actionArguments | Action辅助配置信息。                                         |
 
 **返回：**
@@ -443,7 +443,7 @@ int32_t (*getAccessibilityNodeCursorPosition)(int64_t elementId, int32_t request
 | 名称      | 描述                                                         |
 | --------- | ------------------------------------------------------------ |
 | elementId | 指定节点的id。                                               |
-| requestId | 请求id，用于关联请求过程，方便问题定位。三方输出日志关键日志时，建议一起输出。 |
+| requestId | 请求id，用于关联请求过程，方便问题定位。第三方输出日志关键日志时，建议一起输出。 |
 | index     | 返回光标位置结果。                                           |
 
 **返回：**
@@ -470,7 +470,7 @@ int32_t (*findAccessibilityNodeInfosById)(const char* instanceId, int64_t elemen
 | elementId   | 指定节点的id，从该节点出发进行搜索查询。当指定为-1时，代表从组件树的根节点进行查询。 |
 | mode        | 查询模式，支持如下查询类型：[ArkUI_AccessibilitySearchMode](#arkui_accessibilitysearchmode)。 |
 | requestId   | 请求id，用于关联请求过程，方便问题定位。建议日志打印时附带输出该信息，方便定位。 |
-| elementList | 查询结果，接入方根据查收调节将结果返回。                     |
+| elementList | 查询结果，接入方根据查询结果进行调整并返回。                     |
 
 **返回：**
 
@@ -496,7 +496,7 @@ int32_t (*findAccessibilityNodeInfosByText)(const char* instanceId, int64_t elem
 | elementId   | 指定节点的id，从该节点出发进行搜索查询。当指定为-1时，代表从组件树的根节点进行查询。 |
 | text        | 指定文本，匹配节点中无障碍属性的文本内容。                   |
 | requestId   | 请求id，用于关联请求过程，方便问题定位。建议日志打印时附带输出该信息，方便定位。 |
-| elementList | 查询结果，接入方根据查收调节将结果返回。                     |
+| elementList | 查询结果，接入方根据查询结果进行调整并返回。                     |
 
 **返回：**
 
@@ -510,7 +510,7 @@ int32_t (*findFocusedAccessibilityNode)(const char* instanceId, int64_t elementI
 
 **描述：**
 
-由接入方平台实现的回调函数，注册给系统侧调用。从指定节点查找已经聚焦的节点。支持多实例场景。
+由接入方平台实现的回调函数，注册给系统侧调用。从指定节点查找已聚焦的节点。支持多实例场景。
 
 **起始版本：** 15
 
@@ -522,7 +522,7 @@ int32_t (*findFocusedAccessibilityNode)(const char* instanceId, int64_t elementI
 | elementId   | 指定节点的id，从该节点出发进行搜索查询。当指定为-1时，代表从组件树的根节点进行查询。 |
 | focusType   | 无障碍焦点类型[ArkUI_AccessibilityFocusType](#arkui_accessibilityfocustype)。 |
 | requestId   | 请求id，用于关联请求过程，方便问题定位。建议日志打印时附带输出该信息，方便定位。 |
-| elementList | 查询结果，接入方根据查收调节将结果返回。                     |
+| elementList | 查询结果，接入方根据查询结果进行调整并返回。                     |
 
 **返回：**
 
@@ -550,7 +550,7 @@ int32_t (*findNextFocusAccessibilityNode)(const char* instanceId, int64_t elemen
 | elementId   | 指定节点的id，从该节点出发进行搜索查询。当指定为-1时，代表从组件树的根节点进行查询。 |
 | focusType   | 无障碍焦点类型[ArkUI_AccessibilityFocusType](#arkui_accessibilityfocustype)。 |
 | requestId   | 请求id，用于关联请求过程，方便问题定位。建议日志打印时附带输出该信息，方便定位。 |
-| elementList | 查询结果，接入方根据查收调节将结果返回。                     |
+| elementList | 查询结果，接入方根据查询结果进行调整并返回。                     |
 
 **返回：**
 
@@ -648,7 +648,7 @@ int32_t OH_ArkUI_AccessibilityProviderRegisterCallback(
 
 | 名称      | 描述                       |
 | --------- | -------------------------- |
-| provider  | 三方平台接入provider句柄。 |
+| provider  | 第三方平台接入provider句柄。 |
 | callbacks | 回调函数实现。             |
 
 **返回：**
@@ -673,8 +673,8 @@ int32_t OH_ArkUI_AccessibilityProviderRegisterCallbackWithInstance(const char* i
 
 | 名称      | 描述                       |
 | --------- | -------------------------- |
-| instanceId| 三方平台接入的实例ID，用于区分多实例场景中不同的第三方实例，ID由三方平台指定与维护。 |
-| provider  | 三方平台接入provider句柄。 |
+| instanceId| 第三方平台接入的实例ID，用于区分多实例场景中不同的第三方实例，ID由三方平台指定与维护。 |
+| provider  | 第三方平台接入provider句柄。 |
 | callbacks | 回调函数实现。             |
 
 **返回：**
@@ -700,7 +700,7 @@ void OH_ArkUI_SendAccessibilityAsyncEvent(
 
 | 名称      | 描述                       |
 | --------- | -------------------------- |
-| provider  | 三方平台接入provider句柄。 |
+| provider  | 第三方平台接入provider句柄。 |
 | eventInfo | 上报事件。                 |
 | callback  | 结果返回回调。             |
 
@@ -1389,7 +1389,7 @@ int32_t OH_ArkUI_AccessibilityElementInfoSetRangeInfo(ArkUI_AccessibilityElement
 | 名称        | 描述                                                         |
 | ----------- | ------------------------------------------------------------ |
 | elementInfo | Element结构。                                                |
-| rangeInfo   | 特定组件需要使用，如Slider、Rating、Progress组件。设置组件属性中的当前值以及最大值、最小值。 |
+| rangeInfo   | 用于特定组件设置组件的当前值、最大值、最小值，如Slider、Rating、Progress组件。 |
 
 **返回：** 
 
@@ -1414,7 +1414,7 @@ int32_t OH_ArkUI_AccessibilityElementInfoSetGridInfo(ArkUI_AccessibilityElementI
 | 名称        | 描述                                                         |
 | ----------- | ------------------------------------------------------------ |
 | elementInfo | Element结构。                                                |
-| gridInfo    | 特定组件需要使用，如list、flex、select、swiper组件。设置组件，”行数“，”列数“，以及选择模式。 |
+| gridInfo    | 用于特定组件设置组件的行数、列数以及选择模式，如list、flex、select、swiper组件。 |
 
 **返回：** 
 
@@ -1439,7 +1439,7 @@ int32_t OH_ArkUI_AccessibilityElementInfoSetGridItemInfo(ArkUI_AccessibilityElem
 | 名称        | 描述                                                 |
 | ----------- | ---------------------------------------------------- |
 | elementInfo | Element结构。                                        |
-| gridItem    | 特定组件需要使用，如list、flex、select、swiper组件。 |
+| gridItem    | 用于特定组件设置组件的属性值，如list、flex、select、swiper组件。 |
 
 **返回：** 
 
@@ -1925,7 +1925,7 @@ int32_t OH_ArkUI_AccessibilityEventSetTextAnnouncedForAccessibility(
 
 ### OH_ArkUI_AccessibilityEventSetRequestFocusId
 
-```
+```c
 int32_t OH_ArkUI_AccessibilityEventSetRequestFocusId(
     ArkUI_AccessibilityEventInfo* eventInfo, int32_t requestFocusId);
 ```
@@ -2006,9 +2006,9 @@ int32_t OH_ArkUI_FindAccessibilityActionArgumentByKey(
 
 ### ArkUI_AcessbilityErrorCode
 
-**描述:**
+**描述：**
 
-错误码定义。
+定义了各种错误码及其含义。
 
 | 枚举值                                          | 描述       |
 | ----------------------------------------------- | ---------- |
@@ -2023,7 +2023,7 @@ int32_t OH_ArkUI_FindAccessibilityActionArgumentByKey(
 
 ### ArkUI_AccessibilitySearchMode
 
-**描述:**
+**描述：**
 
 查询模式。
 
@@ -2041,7 +2041,7 @@ int32_t OH_ArkUI_FindAccessibilityActionArgumentByKey(
 
 ### ArkUI_AccessibilityFocusType
 
-**描述:**
+**描述：**
 
 焦点类型。
 
@@ -2057,7 +2057,7 @@ int32_t OH_ArkUI_FindAccessibilityActionArgumentByKey(
 
 ### ArkUI_Accessibility_ActionType
 
-**描述:**
+**描述：**
 
 执行操作类型。
 
@@ -2085,7 +2085,7 @@ int32_t OH_ArkUI_FindAccessibilityActionArgumentByKey(
 
 ### ArkUI_AccessibilityEventType
 
-**描述:**
+**描述：**
 
 事件类型。
 
@@ -2099,13 +2099,13 @@ int32_t OH_ArkUI_FindAccessibilityActionArgumentByKey(
 | ARKUI_ACCESSIBILITY_NATIVE_EVENT_TYPE_PAGE_STATE_UPDATE      | 页面跳转、切换、大小变化、移动等需要发送该事件。 |
 | ARKUI_ACCESSIBILITY_NATIVE_EVENT_TYPE_PAGE_CONTENT_UPDATE    | 页面内容发生变化时需要发送该事件。               |
 | ARKUI_ACCESSIBILITY_NATIVE_EVENT_TYPE_SCROLLED               | 可以滚动的组件发生滚动事件时需要发送该事件。     |
-| ARKUI_ACCESSIBILITY_NATIVE_EVENT_TYPE_ACCESSIBILITY_FOCUSED  | 被无障碍聚焦事件。                               |
-| ARKUI_ACCESSIBILITY_NATIVE_EVENT_TYPE_ACCESSIBILITY_FOCUS_CLEARED | 清除无障碍聚焦事件。                             |
-| ARKUI_ACCESSIBILITY_NATIVE_EVENT_TYPE_REQUEST_ACCESSIBILITY_FOCUS | 主动请求指定节点聚焦。                           |
-| ARKUI_ACCESSIBILITY_NATIVE_EVENT_TYPE_PAGE_OPEN              | 页面关闭时需要发送该事件。                       |
-| ARKUI_ACCESSIBILITY_NATIVE_EVENT_TYPE_PAGE_CLOSE             | 页面打开时需要发送该事件。                       |
-| ARKUI_ACCESSIBILITY_NATIVE_EVENT_TYPE_ANNOUNCE_FOR_ACCESSIBILITY | 请求主动播报指定内容的事件。                     |
-| ARKUI_ACCESSIBILITY_NATIVE_EVENT_TYPE_FOCUS_NODE_UPDATE      | 获焦组件发生位置或大小变化时需要发生事件。       |
+| ARKUI_ACCESSIBILITY_NATIVE_EVENT_TYPE_ACCESSIBILITY_FOCUSED  | 触发无障碍聚焦事件。                               |
+| ARKUI_ACCESSIBILITY_NATIVE_EVENT_TYPE_ACCESSIBILITY_FOCUS_CLEARED | 清除无障碍节点聚焦事件。                             |
+| ARKUI_ACCESSIBILITY_NATIVE_EVENT_TYPE_REQUEST_ACCESSIBILITY_FOCUS | 请求指定节点聚焦。                           |
+| ARKUI_ACCESSIBILITY_NATIVE_EVENT_TYPE_PAGE_OPEN              | 页面打开时需要发送该事件。                       |
+| ARKUI_ACCESSIBILITY_NATIVE_EVENT_TYPE_PAGE_CLOSE             | 页面关闭时需要发送该事件。                       |
+| ARKUI_ACCESSIBILITY_NATIVE_EVENT_TYPE_ANNOUNCE_FOR_ACCESSIBILITY | 请求播报指定内容的事件。                     |
+| ARKUI_ACCESSIBILITY_NATIVE_EVENT_TYPE_FOCUS_NODE_UPDATE      | 获焦组件发生位置或大小变化时需要发送事件。       |
 
 **起始版本：**
 
@@ -2113,7 +2113,7 @@ int32_t OH_ArkUI_FindAccessibilityActionArgumentByKey(
 
 ### ArkUI_AccessibilityFocusMoveDirection
 
-**描述:**
+**描述：**
 
 焦点移动方向。
 
