@@ -2,7 +2,7 @@
 
 ## 概述
 
-定义密钥派生接口。
+定义密钥派生接口。 
 
 **库：** libohcrypto.so
 
@@ -18,25 +18,25 @@
 
 | 名称 | typedef关键字 | 描述 |
 | -- | -- | -- |
-| [OH_CryptoKdf](capi-oh-cryptokdf.md) | OH_CryptoKdf | 定义密钥派生函数(KDF)结构。 |
-| [OH_CryptoKdfParams](capi-oh-cryptokdfparams.md) | OH_CryptoKdfParams | 定义密钥派生函数(KDF)参数结构。 |
+| [OH_CryptoKdf](capi-oh-cryptokdf.md) | OH_CryptoKdf | 定义密钥派生函数（KDF）结构。 |
+| [OH_CryptoKdfParams](capi-oh-cryptokdfparams.md) | OH_CryptoKdfParams | 定义密钥派生函数（KDF）参数结构。 |
 
 ### 枚举
 
 | 名称 | typedef关键字 | 描述 |
 | -- | -- | -- |
-| [CryptoKdf_ParamType](#cryptokdf_paramtype) | CryptoKdf_ParamType | 定义密钥派生函数(KDF)参数类型。 |
+| [CryptoKdf_ParamType](#cryptokdf_paramtype) | CryptoKdf_ParamType | 定义密钥派生函数（KDF）参数类型。 |
 
 ### 函数
 
 | 名称 | 描述 |
 | -- | -- |
-| [OH_Crypto_ErrCode OH_CryptoKdfParams_Create(const char *algoName, OH_CryptoKdfParams **params)](#oh_cryptokdfparams_create) | 创建密钥派生函数(KDF)参数。 |
-| [OH_Crypto_ErrCode OH_CryptoKdfParams_SetParam(OH_CryptoKdfParams *params, CryptoKdf_ParamType type,Crypto_DataBlob *value)](#oh_cryptokdfparams_setparam) | 设置密钥派生函数(KDF)参数。 |
-| [void OH_CryptoKdfParams_Destroy(OH_CryptoKdfParams *params)](#oh_cryptokdfparams_destroy) | 销毁密钥派生函数(KDF)参数。 |
-| [OH_Crypto_ErrCode OH_CryptoKdf_Create(const char *algoName, OH_CryptoKdf **ctx)](#oh_cryptokdf_create) | 创建密钥派生函数(KDF)上下文。 |
+| [OH_Crypto_ErrCode OH_CryptoKdfParams_Create(const char *algoName, OH_CryptoKdfParams **params)](#oh_cryptokdfparams_create) | 创建密钥派生函数（KDF）参数。 |
+| [OH_Crypto_ErrCode OH_CryptoKdfParams_SetParam(OH_CryptoKdfParams *params, CryptoKdf_ParamType type,Crypto_DataBlob *value)](#oh_cryptokdfparams_setparam) | 设置密钥派生函数（KDF）参数。 |
+| [void OH_CryptoKdfParams_Destroy(OH_CryptoKdfParams *params)](#oh_cryptokdfparams_destroy) | 销毁密钥派生函数（KDF）参数。 |
+| [OH_Crypto_ErrCode OH_CryptoKdf_Create(const char *algoName, OH_CryptoKdf **ctx)](#oh_cryptokdf_create) | 创建密钥派生函数（KDF）实例。 |
 | [OH_Crypto_ErrCode OH_CryptoKdf_Derive(OH_CryptoKdf *ctx, const OH_CryptoKdfParams *params, int keyLen,Crypto_DataBlob *key)](#oh_cryptokdf_derive) | 派生密钥。 |
-| [void OH_CryptoKdf_Destroy(OH_CryptoKdf *ctx)](#oh_cryptokdf_destroy) | 销毁密钥派生函数(KDF)上下文。 |
+| [void OH_CryptoKdf_Destroy(OH_CryptoKdf *ctx)](#oh_cryptokdf_destroy) | 销毁密钥派生函数（KDF）实例。 |
 
 ## 枚举类型说明
 
@@ -48,7 +48,7 @@ enum CryptoKdf_ParamType
 
 **描述**
 
-定义密钥派生函数(KDF)参数类型。
+定义密钥派生函数（KDF）参数类型。
 
 **起始版本：** 20
 
@@ -74,7 +74,7 @@ OH_Crypto_ErrCode OH_CryptoKdfParams_Create(const char *algoName, OH_CryptoKdfPa
 
 **描述**
 
-创建密钥派生函数(KDF)参数。
+创建密钥派生函数（KDF）参数。
 
 **起始版本：** 20
 
@@ -83,14 +83,14 @@ OH_Crypto_ErrCode OH_CryptoKdfParams_Create(const char *algoName, OH_CryptoKdfPa
 
 | 参数项 | 描述 |
 | -- | -- |
-| const char *algoName | algoName KDF算法名称。\n例如"HKDF|SHA384|EXTRACT_AND_EXPAND"、"PBKDF2|SHA384"。 |
-| [OH_CryptoKdfParams](capi-oh-cryptokdfparams.md) **params | params KDF参数。 |
+| const char *algoName | KDF算法名称。<br>例如"HKDF\|SHA384\|EXTRACT_AND_EXPAND"、"PBKDF2\|SHA384"。 |
+| [OH_CryptoKdfParams](capi-oh-cryptokdfparams.md) **params | KDF参数。 |
 
 **返回：**
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_Crypto_ErrCode](capi-crypto-common-h#oh_crypto_errcode) | [OH_Crypto_ErrCode](capi-crypto-common-h#oh_crypto_errcode): <br>         CRYPTO_SUCCESS = 0 : 操作成功。<br>         CRYPTO_INVALID_PARAMS = 401 : 参数无效。<br>         CRYPTO_NOT_SUPPORTED = 801 : 操作不支持。<br>         CRYPTO_MEMORY_ERROR = 17620001 : 内存错误。<br>         CRYPTO_OPERTION_ERROR = 17630001 : 调用三方算法库API出错。 |
+| [OH_Crypto_ErrCode](capi-crypto-common-h.md#oh_crypto_errcode) | CRYPTO_SUCCESS = 0 : 操作成功。<br>         CRYPTO_INVALID_PARAMS = 401 : 参数无效。<br>         CRYPTO_NOT_SUPPORTED = 801 : 操作不支持。<br>         CRYPTO_MEMORY_ERROR = 17620001 : 内存错误。<br>         CRYPTO_OPERTION_ERROR = 17630001 : 调用三方算法库API出错。 |
 
 ### OH_CryptoKdfParams_SetParam()
 
@@ -100,7 +100,7 @@ OH_Crypto_ErrCode OH_CryptoKdfParams_SetParam(OH_CryptoKdfParams *params, Crypto
 
 **描述**
 
-设置密钥派生函数(KDF)参数。
+设置密钥派生函数（KDF）参数。
 
 **起始版本：** 20
 
@@ -109,15 +109,15 @@ OH_Crypto_ErrCode OH_CryptoKdfParams_SetParam(OH_CryptoKdfParams *params, Crypto
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_CryptoKdfParams](capi-oh-cryptokdfparams.md) *params | params KDF参数。 |
+| [OH_CryptoKdfParams](capi-oh-cryptokdfparams.md) *params | KDF参数。 |
 | [CryptoKdf_ParamType](#cryptokdf_paramtype) type | KDF参数类型。 |
-| [Crypto_DataBlob](capi-crypto-common-hcrypto_datablob.md) *value | value KDF参数值。 |
+| [Crypto_DataBlob](capi-crypto-common-hcrypto_datablob.md) *value | KDF参数值。 |
 
 **返回：**
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_Crypto_ErrCode](capi-crypto-common-h#oh_crypto_errcode) | [OH_Crypto_ErrCode](capi-crypto-common-h#oh_crypto_errcode): <br>         CRYPTO_SUCCESS = 0 : 操作成功。<br>         CRYPTO_INVALID_PARAMS = 401 : 参数无效。<br>         CRYPTO_NOT_SUPPORTED = 801 : 操作不支持。<br>         CRYPTO_MEMORY_ERROR = 17620001 : 内存错误。<br>         CRYPTO_OPERTION_ERROR = 17630001 : 调用三方算法库API出错。 |
+| [OH_Crypto_ErrCode](capi-crypto-common-h.md#oh_crypto_errcode) |     CRYPTO_SUCCESS = 0 : 操作成功。<br>         CRYPTO_INVALID_PARAMS = 401 : 参数无效。<br>         CRYPTO_NOT_SUPPORTED = 801 : 操作不支持。<br>         CRYPTO_MEMORY_ERROR = 17620001 : 内存错误。<br>         CRYPTO_OPERTION_ERROR = 17630001 : 调用三方算法库API出错。 |
 
 ### OH_CryptoKdfParams_Destroy()
 
@@ -127,7 +127,7 @@ void OH_CryptoKdfParams_Destroy(OH_CryptoKdfParams *params)
 
 **描述**
 
-销毁密钥派生函数(KDF)参数。
+销毁密钥派生函数（KDF）参数。
 
 **起始版本：** 20
 
@@ -136,7 +136,7 @@ void OH_CryptoKdfParams_Destroy(OH_CryptoKdfParams *params)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_CryptoKdfParams](capi-oh-cryptokdfparams.md) *params | params KDF参数。 |
+| [OH_CryptoKdfParams](capi-oh-cryptokdfparams.md) *params | KDF参数。 |
 
 ### OH_CryptoKdf_Create()
 
@@ -146,7 +146,7 @@ OH_Crypto_ErrCode OH_CryptoKdf_Create(const char *algoName, OH_CryptoKdf **ctx)
 
 **描述**
 
-创建密钥派生函数(KDF)上下文。
+创建密钥派生函数（KDF）实例。
 
 **起始版本：** 20
 
@@ -155,14 +155,14 @@ OH_Crypto_ErrCode OH_CryptoKdf_Create(const char *algoName, OH_CryptoKdf **ctx)
 
 | 参数项 | 描述 |
 | -- | -- |
-| const char *algoName | algoName KDF算法名称。 |
-| [OH_CryptoKdf](capi-oh-cryptokdf.md) **ctx | ctx KDF上下文。 |
+| const char *algoName | KDF算法名称。 |
+| [OH_CryptoKdf](capi-oh-cryptokdf.md) **ctx | KDF实例。 |
 
 **返回：**
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_Crypto_ErrCode](capi-crypto-common-h#oh_crypto_errcode) | [OH_Crypto_ErrCode](capi-crypto-common-h#oh_crypto_errcode): <br>         CRYPTO_SUCCESS = 0 : 操作成功。<br>         CRYPTO_INVALID_PARAMS = 401 : 参数无效。<br>         CRYPTO_NOT_SUPPORTED = 801 : 操作不支持。<br>         CRYPTO_MEMORY_ERROR = 17620001 : 内存错误。<br>         CRYPTO_OPERTION_ERROR = 17630001 : 调用三方算法库API出错。 |
+| [OH_Crypto_ErrCode](capi-crypto-common-h.md#oh_crypto_errcode) |     CRYPTO_SUCCESS = 0 : 操作成功。<br>         CRYPTO_INVALID_PARAMS = 401 : 参数无效。<br>         CRYPTO_NOT_SUPPORTED = 801 : 操作不支持。<br>         CRYPTO_MEMORY_ERROR = 17620001 : 内存错误。<br>         CRYPTO_OPERTION_ERROR = 17630001 : 调用三方算法库API出错。 |
 
 ### OH_CryptoKdf_Derive()
 
@@ -181,16 +181,16 @@ OH_Crypto_ErrCode OH_CryptoKdf_Derive(OH_CryptoKdf *ctx, const OH_CryptoKdfParam
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_CryptoKdf](capi-oh-cryptokdf.md) *ctx | ctx KDF上下文。 |
-| const [OH_CryptoKdfParams](capi-oh-cryptokdfparams.md) *params | params KDF参数。 |
+| [OH_CryptoKdf](capi-oh-cryptokdf.md) *ctx |KDF实例。 |
+| const [OH_CryptoKdfParams](capi-oh-cryptokdfparams.md) *params | KDF参数。 |
 | int keyLen | 密钥派生长度。 |
-| int keyLen | key 派生出的密钥。 |
+| [Crypto_DataBlob](capi-crypto-datablob.md) key | 派生出的密钥。 |
 
 **返回：**
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_Crypto_ErrCode](capi-crypto-common-h#oh_crypto_errcode) | [OH_Crypto_ErrCode](capi-crypto-common-h#oh_crypto_errcode): <br>         CRYPTO_SUCCESS = 0 : 操作成功。<br>         CRYPTO_INVALID_PARAMS = 401 : 参数无效。<br>         CRYPTO_NOT_SUPPORTED = 801 : 操作不支持。<br>         CRYPTO_MEMORY_ERROR = 17620001 : 内存错误。<br>         CRYPTO_OPERTION_ERROR = 17630001 : 调用三方算法库API出错。 |
+| [OH_Crypto_ErrCode](capi-crypto-common-h.md#oh_crypto_errcode) |     CRYPTO_SUCCESS = 0 : 操作成功。<br>         CRYPTO_INVALID_PARAMS = 401 : 参数无效。<br>         CRYPTO_NOT_SUPPORTED = 801 : 操作不支持。<br>         CRYPTO_MEMORY_ERROR = 17620001 : 内存错误。<br>         CRYPTO_OPERTION_ERROR = 17630001 : 调用三方算法库API出错。 |
 
 ### OH_CryptoKdf_Destroy()
 
@@ -200,7 +200,7 @@ void OH_CryptoKdf_Destroy(OH_CryptoKdf *ctx)
 
 **描述**
 
-销毁密钥派生函数(KDF)上下文。
+销毁密钥派生函数（KDF）实例。
 
 **起始版本：** 20
 
@@ -209,6 +209,6 @@ void OH_CryptoKdf_Destroy(OH_CryptoKdf *ctx)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_CryptoKdf](capi-oh-cryptokdf.md) *ctx | ctx KDF上下文。 |
+| [OH_CryptoKdf](capi-oh-cryptokdf.md) *ctx |KDF实例。 |
 
 

@@ -2,7 +2,7 @@
 
 ## 概述
 
-定义对称密钥API。
+定义对称密钥接口。
 
 **库：** libohcrypto.so
 
@@ -18,8 +18,8 @@
 
 | 名称 | typedef关键字 | 描述 |
 | -- | -- | -- |
-| [OH_CryptoSymKey](capi-oh-cryptosymkey.md) | OH_CryptoSymKey | 定义对称密钥生成器结构。 |
-| [OH_CryptoSymKeyGenerator](capi-oh-cryptosymkeygenerator.md) | OH_CryptoSymKeyGenerator | 定义对称密钥结构。 |
+| [OH_CryptoSymKey](capi-oh-cryptosymkey.md) | OH_CryptoSymKey | 定义对称密钥生成器结构体。 |
+| [OH_CryptoSymKeyGenerator](capi-oh-cryptosymkeygenerator.md) | OH_CryptoSymKeyGenerator | 定义对称密钥结构体。 |
 
 ### 函数
 
@@ -29,10 +29,10 @@
 | [OH_Crypto_ErrCode OH_CryptoSymKeyGenerator_Generate(OH_CryptoSymKeyGenerator *ctx, OH_CryptoSymKey **keyCtx)](#oh_cryptosymkeygenerator_generate) | 随机生成对称密钥。 |
 | [OH_Crypto_ErrCode OH_CryptoSymKeyGenerator_Convert(OH_CryptoSymKeyGenerator *ctx,const Crypto_DataBlob *keyData, OH_CryptoSymKey **keyCtx)](#oh_cryptosymkeygenerator_convert) | 将对称密钥数据转换为对称密钥。 |
 | [const char *OH_CryptoSymKeyGenerator_GetAlgoName(OH_CryptoSymKeyGenerator *ctx)](#oh_cryptosymkeygenerator_getalgoname) | 获取对称密钥生成器的算法名称。 |
-| [void OH_CryptoSymKeyGenerator_Destroy(OH_CryptoSymKeyGenerator *ctx)](#oh_cryptosymkeygenerator_destroy) | 销毁对称密钥生成器上下文。 |
-| [const char *OH_CryptoSymKey_GetAlgoName(OH_CryptoSymKey *keyCtx)](#oh_cryptosymkey_getalgoname) | 获取对称密钥的算法名称。 |
+| [void OH_CryptoSymKeyGenerator_Destroy(OH_CryptoSymKeyGenerator *ctx)](#oh_cryptosymkeygenerator_destroy) | 销毁对称密钥生成器。 |
+| [const char *OH_CryptoSymKey_GetAlgoName(OH_CryptoSymKey *keyCtx)](#oh_cryptosymkey_getalgoname) | 从对称密钥获取对称密钥算法名称。 |
 | [OH_Crypto_ErrCode OH_CryptoSymKey_GetKeyData(OH_CryptoSymKey *keyCtx, Crypto_DataBlob *out)](#oh_cryptosymkey_getkeydata) | 从密钥实例获取对称密钥数据。 |
-| [void OH_CryptoSymKey_Destroy(OH_CryptoSymKey *keyCtx)](#oh_cryptosymkey_destroy) | 销毁对称密钥上下文。 |
+| [void OH_CryptoSymKey_Destroy(OH_CryptoSymKey *keyCtx)](#oh_cryptosymkey_destroy) | 销毁对称密钥实例。 |
 
 ## 函数说明
 
@@ -53,14 +53,14 @@ OH_Crypto_ErrCode OH_CryptoSymKeyGenerator_Create(const char *algoName, OH_Crypt
 
 | 参数项 | 描述 |
 | -- | -- |
-| const char *algoName | algoName 用于生成生成器的算法名称。\n例如"AES128", "SM4"。 |
-| [OH_CryptoSymKeyGenerator](capi-oh-cryptosymkeygenerator.md) **ctx | ctx 指向对称密钥生成器上下文的指针。 |
+| const char *algoName | algoName 用于生成生成器的算法名称。<br>例如"AES256"、"AES128"、"SM4"等。 |
+| [OH_CryptoSymKeyGenerator](capi-oh-cryptosymkeygenerator.md) **ctx | 指向对称密钥生成器实例的指针。 |
 
 **返回：**
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_Crypto_ErrCode](capi-crypto-common-h#oh_crypto_errcode) | [OH_Crypto_ErrCode](capi-crypto-common-h#oh_crypto_errcode): <br>         CRYPTO_SUCCESS = 0 : 操作成功。<br>         CRYPTO_INVALID_PARAMS = 401 : 参数无效。<br>         CRYPTO_NOT_SUPPORTED = 801 : 操作不支持。<br>         CRYPTO_MEMORY_ERROR = 17620001 : 内存错误。<br>         CRYPTO_OPERTION_ERROR = 17630001 : 调用三方算法库API出错。 |
+| [OH_Crypto_ErrCode](capi-crypto-common-h.md#oh_crypto_errcode) | CRYPTO_SUCCESS = 0 : 操作成功。<br>         CRYPTO_INVALID_PARAMS = 401 : 参数无效。<br>         CRYPTO_NOT_SUPPORTED = 801 : 操作不支持。<br>         CRYPTO_MEMORY_ERROR = 17620001 : 内存错误。<br>         CRYPTO_OPERTION_ERROR = 17630001 : 调用三方算法库API出错。 |
 
 ### OH_CryptoSymKeyGenerator_Generate()
 
@@ -79,14 +79,14 @@ OH_Crypto_ErrCode OH_CryptoSymKeyGenerator_Generate(OH_CryptoSymKeyGenerator *ct
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_CryptoSymKeyGenerator](capi-oh-cryptosymkeygenerator.md) *ctx | ctx 指向对称密钥生成器实例。 |
-| [OH_CryptoSymKey](capi-oh-cryptosymkey.md) **keyCtx | keyCtx 指向对称密钥的指针。 |
+| [OH_CryptoSymKeyGenerator](capi-oh-cryptosymkeygenerator.md) *ctx | 指向对称密钥生成器实例。 |
+| [OH_CryptoSymKey](capi-oh-cryptosymkey.md) **keyCtx | 指向对称密钥的指针。 |
 
 **返回：**
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_Crypto_ErrCode](capi-crypto-common-h#oh_crypto_errcode) | [OH_Crypto_ErrCode](capi-crypto-common-h#oh_crypto_errcode): <br>         CRYPTO_SUCCESS = 0 : 操作成功。<br>         CRYPTO_INVALID_PARAMS = 401 : 参数无效。<br>         CRYPTO_NOT_SUPPORTED = 801 : 操作不支持。<br>         CRYPTO_MEMORY_ERROR = 17620001 : 内存错误。<br>         CRYPTO_OPERTION_ERROR = 17630001 : 调用三方算法库API出错。 |
+| [OH_Crypto_ErrCode](capi-crypto-common-h.md#oh_crypto_errcode) | CRYPTO_SUCCESS = 0 : 操作成功。<br>         CRYPTO_INVALID_PARAMS = 401 : 参数无效。<br>         CRYPTO_NOT_SUPPORTED = 801 : 操作不支持。<br>         CRYPTO_MEMORY_ERROR = 17620001 : 内存错误。<br>         CRYPTO_OPERTION_ERROR = 17630001 : 调用三方算法库API出错。 |
 
 ### OH_CryptoSymKeyGenerator_Convert()
 
@@ -105,15 +105,15 @@ OH_Crypto_ErrCode OH_CryptoSymKeyGenerator_Convert(OH_CryptoSymKeyGenerator *ctx
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_CryptoSymKeyGenerator](capi-oh-cryptosymkeygenerator.md) *ctx | ctx 指向对称密钥生成器实例。 |
-| const [Crypto_DataBlob](capi-crypto-common-hcrypto_datablob.md) *keyData | keyData 指向生成对称密钥的数据。 |
-| [OH_CryptoSymKey](capi-oh-cryptosymkey.md) **keyCtx | keyCtx 指向对称密钥实例的指针。 |
+| [OH_CryptoSymKeyGenerator](capi-oh-cryptosymkeygenerator.md) *ctx | 指向对称密钥生成器实例。 |
+| const [Crypto_DataBlob](capi-crypto-common-hcrypto_datablob.md) *keyData | 指向生成对称密钥的数据。 |
+| [OH_CryptoSymKey](capi-oh-cryptosymkey.md) **keyCtx | 指向对称密钥实例的指针。 |
 
 **返回：**
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_Crypto_ErrCode](capi-crypto-common-h#oh_crypto_errcode) | [OH_Crypto_ErrCode](capi-crypto-common-h#oh_crypto_errcode): <br>         CRYPTO_SUCCESS = 0 : 操作成功。<br>         CRYPTO_INVALID_PARAMS = 401 : 参数无效。<br>         CRYPTO_NOT_SUPPORTED = 801 : 操作不支持。<br>         CRYPTO_MEMORY_ERROR = 17620001 : 内存错误。<br>         CRYPTO_OPERTION_ERROR = 17630001 : 调用三方算法库API出错。 |
+| [OH_Crypto_ErrCode](capi-crypto-common-h.md#oh_crypto_errcode) | CRYPTO_SUCCESS = 0 : 操作成功。<br>         CRYPTO_INVALID_PARAMS = 401 : 参数无效。<br>         CRYPTO_NOT_SUPPORTED = 801 : 操作不支持。<br>         CRYPTO_MEMORY_ERROR = 17620001 : 内存错误。<br>         CRYPTO_OPERTION_ERROR = 17630001 : 调用三方算法库API出错。 |
 
 ### OH_CryptoSymKeyGenerator_GetAlgoName()
 
@@ -132,13 +132,13 @@ const char *OH_CryptoSymKeyGenerator_GetAlgoName(OH_CryptoSymKeyGenerator *ctx)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_CryptoSymKeyGenerator](capi-oh-cryptosymkeygenerator.md) *ctx | ctx 对称密钥生成器上下文。 |
+| [OH_CryptoSymKeyGenerator](capi-oh-cryptosymkeygenerator.md) *ctx | 指向对称密钥生成器实例的指针。 |
 
 **返回：**
 
 | 类型 | 说明 |
 | -- | -- |
-| const | 返回对称密钥生成器算法名称。 |
+| const char | 返回对称密钥生成器算法名称。 |
 
 ### OH_CryptoSymKeyGenerator_Destroy()
 
@@ -148,7 +148,7 @@ void OH_CryptoSymKeyGenerator_Destroy(OH_CryptoSymKeyGenerator *ctx)
 
 **描述**
 
-销毁对称密钥生成器上下文。
+销毁对称密钥生成器。
 
 **起始版本：** 12
 
@@ -157,7 +157,7 @@ void OH_CryptoSymKeyGenerator_Destroy(OH_CryptoSymKeyGenerator *ctx)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_CryptoSymKeyGenerator](capi-oh-cryptosymkeygenerator.md) *ctx | ctx 对称密钥生成器上下文。 |
+| [OH_CryptoSymKeyGenerator](capi-oh-cryptosymkeygenerator.md) *ctx | 指向对称密钥生成器实例的指针。 |
 
 ### OH_CryptoSymKey_GetAlgoName()
 
@@ -167,7 +167,7 @@ const char *OH_CryptoSymKey_GetAlgoName(OH_CryptoSymKey *keyCtx)
 
 **描述**
 
-获取对称密钥的算法名称。
+从对称密钥获取对称密钥算法名称。
 
 **起始版本：** 12
 
@@ -176,13 +176,13 @@ const char *OH_CryptoSymKey_GetAlgoName(OH_CryptoSymKey *keyCtx)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_CryptoSymKey](capi-oh-cryptosymkey.md) *keyCtx | keyCtx 对称密钥上下文。 |
+| [OH_CryptoSymKey](capi-oh-cryptosymkey.md) *keyCtx | 指向对称密钥实例。 |
 
 **返回：**
 
 | 类型 | 说明 |
 | -- | -- |
-| const | 返回对称密钥算法名称。 |
+| const char | 返回对称密钥算法名称。 |
 
 ### OH_CryptoSymKey_GetKeyData()
 
@@ -201,14 +201,14 @@ OH_Crypto_ErrCode OH_CryptoSymKey_GetKeyData(OH_CryptoSymKey *keyCtx, Crypto_Dat
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_CryptoSymKey](capi-oh-cryptosymkey.md) *keyCtx | keyCtx 指向对称密钥实例。 |
-| [Crypto_DataBlob](capi-crypto-common-hcrypto_datablob.md) *out | out 获取到的结果。 |
+| [OH_CryptoSymKey](capi-oh-cryptosymkey.md) *keyCtx | 指向对称密钥实例。 |
+| [Crypto_DataBlob](capi-crypto-common-hcrypto_datablob.md) *out | 获取到的结果。 |
 
 **返回：**
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_Crypto_ErrCode](capi-crypto-common-h#oh_crypto_errcode) | [OH_Crypto_ErrCode](capi-crypto-common-h#oh_crypto_errcode): <br>         CRYPTO_SUCCESS = 0 : 操作成功。<br>         CRYPTO_INVALID_PARAMS = 401 : 参数无效。<br>         CRYPTO_NOT_SUPPORTED = 801 : 操作不支持。<br>         CRYPTO_MEMORY_ERROR = 17620001 : 内存错误。<br>         CRYPTO_OPERTION_ERROR = 17630001 : 调用三方算法库API出错。 |
+| [OH_Crypto_ErrCode](capi-crypto-common-h.md#oh_crypto_errcode) | CRYPTO_SUCCESS = 0 : 操作成功。<br>         CRYPTO_INVALID_PARAMS = 401 : 参数无效。<br>         CRYPTO_NOT_SUPPORTED = 801 : 操作不支持。<br>         CRYPTO_MEMORY_ERROR = 17620001 : 内存错误。<br>         CRYPTO_OPERTION_ERROR = 17630001 : 调用三方算法库API出错。 |
 
 ### OH_CryptoSymKey_Destroy()
 
@@ -218,7 +218,7 @@ void OH_CryptoSymKey_Destroy(OH_CryptoSymKey *keyCtx)
 
 **描述**
 
-销毁对称密钥上下文。
+销毁对称密钥实例。
 
 **起始版本：** 12
 
@@ -227,6 +227,6 @@ void OH_CryptoSymKey_Destroy(OH_CryptoSymKey *keyCtx)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_CryptoSymKey](capi-oh-cryptosymkey.md) *keyCtx | keyCtx 对称密钥上下文。 |
+| [OH_CryptoSymKey](capi-oh-cryptosymkey.md) *keyCtx | 指向对称密钥实例。 |
 
 

@@ -12,4 +12,4 @@
 
 | 名称 | 描述 |
 | -- | -- |
-| [crypto_architecture_kit.h](capi-crypto-architecture-kit-h.md) | 提供对加密头文件的访问入口，开发者在使用时，导入这一个头文件，即可使用其他头文件中的接口。 |
+| [crypto_architecture_kit.h](capi-crypto-architecture-kit-h.md) | 提供对加密头文件的访问入口，开发者在使用时，可仅导入一个头文件，即可使用其他头文件中的接口。 |

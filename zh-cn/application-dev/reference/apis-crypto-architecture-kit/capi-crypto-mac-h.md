@@ -24,19 +24,19 @@
 
 | 名称 | typedef关键字 | 描述 |
 | -- | -- | -- |
-| [CryptoMac_ParamType](#cryptomac_paramtype) | CryptoMac_ParamType | Defines the MAC algorithm parameter type. |
+| [CryptoMac_ParamType](#cryptomac_paramtype) | CryptoMac_ParamType | 定义MAC算法参数类型。 |
 
 ### 函数
 
 | 名称 | 描述 |
 | -- | -- |
-| [OH_Crypto_ErrCode OH_CryptoMac_Create(const char *algoName, OH_CryptoMac **ctx)](#oh_cryptomac_create) | 根据给定的算法名称创建MAC上下文。 |
+| [OH_Crypto_ErrCode OH_CryptoMac_Create(const char *algoName, OH_CryptoMac **ctx)](#oh_cryptomac_create) | 根据给定的算法名称创建MAC实例。 |
 | [OH_Crypto_ErrCode OH_CryptoMac_SetParam(OH_CryptoMac *ctx, CryptoMac_ParamType type, const Crypto_DataBlob *value)](#oh_cryptomac_setparam) | 设置MAC参数。 |
-| [OH_Crypto_ErrCode OH_CryptoMac_Init(OH_CryptoMac *ctx, const OH_CryptoSymKey *key)](#oh_cryptomac_init) | 使用对称密钥初始化MAC上下文。 |
-| [OH_Crypto_ErrCode OH_CryptoMac_Update(OH_CryptoMac *ctx, const Crypto_DataBlob *in)](#oh_cryptomac_update) | 更新MAC上下文。 |
+| [OH_Crypto_ErrCode OH_CryptoMac_Init(OH_CryptoMac *ctx, const OH_CryptoSymKey *key)](#oh_cryptomac_init) | 使用对称密钥初始化MAC实例。 |
+| [OH_Crypto_ErrCode OH_CryptoMac_Update(OH_CryptoMac *ctx, const Crypto_DataBlob *in)](#oh_cryptomac_update) | 更新MAC实例。 |
 | [OH_Crypto_ErrCode OH_CryptoMac_Final(OH_CryptoMac *ctx, Crypto_DataBlob *out)](#oh_cryptomac_final) | 完成MAC操作。 |
 | [OH_Crypto_ErrCode OH_CryptoMac_GetLength(OH_CryptoMac *ctx, uint32_t *length)](#oh_cryptomac_getlength) | 获取MAC长度。 |
-| [void OH_CryptoMac_Destroy(OH_CryptoMac *ctx)](#oh_cryptomac_destroy) | 销毁MAC上下文。 |
+| [void OH_CryptoMac_Destroy(OH_CryptoMac *ctx)](#oh_cryptomac_destroy) | 销毁MAC实例。 |
 
 ## 枚举类型说明
 
@@ -48,14 +48,14 @@ enum CryptoMac_ParamType
 
 **描述**
 
-Defines the MAC algorithm parameter type.
+定义MAC算法参数类型。
 
 **起始版本：** 20
 
 | 枚举项 | 描述 |
 | -- | -- |
-| CRYPTO_MAC_DIGEST_NAME_STR = 0 | Indicates the algorithm name of the message digest function for HMAC. e.g. "SHA256". |
-| CRYPTO_MAC_CIPHER_NAME_STR = 1 | Indicates the algorithm name of the symmetric cipher function for CMAC. e.g. "AES256". |
+| CRYPTO_MAC_DIGEST_NAME_STR = 0 | HMAC消息认证码使用的摘要函数的算法名称，例如SHA256。 |
+| CRYPTO_MAC_CIPHER_NAME_STR = 1 | CMAC消息认证码使用的对称加密算法名称，例如AES256。 |
 
 
 ## 函数说明
@@ -68,7 +68,7 @@ OH_Crypto_ErrCode OH_CryptoMac_Create(const char *algoName, OH_CryptoMac **ctx)
 
 **描述**
 
-根据给定的算法名称创建MAC上下文。
+根据给定的算法名称创建MAC实例。
 
 **起始版本：** 20
 
@@ -77,14 +77,14 @@ OH_Crypto_ErrCode OH_CryptoMac_Create(const char *algoName, OH_CryptoMac **ctx)
 
 | 参数项 | 描述 |
 | -- | -- |
-| const char *algoName | algoName 用于生成MAC上下文的算法名称。\n例如"HMAC"、"CMAC"。 |
-| [OH_CryptoMac](capi-oh-cryptomac.md) **ctx | ctx MAC上下文。 |
+| const char *algoName | 用于生成MAC实例的算法名称。<br>例如"HMAC"、"CMAC"。 |
+| [OH_CryptoMac](capi-oh-cryptomac.md) **ctx | MAC实例。 |
 
 **返回：**
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_Crypto_ErrCode](capi-crypto-common-h#oh_crypto_errcode) | [OH_Crypto_ErrCode](capi-crypto-common-h#oh_crypto_errcode): <br>         CRYPTO_SUCCESS = 0 : 操作成功。<br>         CRYPTO_INVALID_PARAMS = 401 : 参数无效。<br>         CRYPTO_NOT_SUPPORTED = 801 : 操作不支持。<br>         CRYPTO_MEMORY_ERROR = 17620001 : 内存错误。<br>         CRYPTO_OPERTION_ERROR = 17630001 : 调用三方算法库API出错。 |
+| [OH_Crypto_ErrCode](capi-crypto-common-h.md#oh_crypto_errcode) | CRYPTO_SUCCESS = 0 : 操作成功。<br>         CRYPTO_INVALID_PARAMS = 401 : 参数无效。<br>         CRYPTO_NOT_SUPPORTED = 801 : 操作不支持。<br>         CRYPTO_MEMORY_ERROR = 17620001 : 内存错误。<br>         CRYPTO_OPERTION_ERROR = 17630001 : 调用三方算法库API出错。 |
 
 ### OH_CryptoMac_SetParam()
 
@@ -103,15 +103,15 @@ OH_Crypto_ErrCode OH_CryptoMac_SetParam(OH_CryptoMac *ctx, CryptoMac_ParamType t
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_CryptoMac](capi-oh-cryptomac.md) *ctx | ctx MAC上下文。 |
-| [CryptoMac_ParamType](#cryptomac_paramtype) type | MAC参数类型. |
-| const [Crypto_DataBlob](capi-crypto-common-hcrypto_datablob.md) *value | value 参数。 |
+| [OH_CryptoMac](capi-oh-cryptomac.md) *ctx | MAC实例。 |
+| [CryptoMac_ParamType](#cryptomac_paramtype) type | MAC参数类型。 |
+| const [Crypto_DataBlob](capi-crypto-common-hcrypto_datablob.md) *value | 参数。 |
 
 **返回：**
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_Crypto_ErrCode](capi-crypto-common-h#oh_crypto_errcode) | [OH_Crypto_ErrCode](capi-crypto-common-h#oh_crypto_errcode): <br>         CRYPTO_SUCCESS = 0 : 操作成功。<br>         CRYPTO_INVALID_PARAMS = 401 : 参数无效。<br>         CRYPTO_NOT_SUPPORTED = 801 : 操作不支持。<br>         CRYPTO_MEMORY_ERROR = 17620001 : 内存错误。<br>         CRYPTO_OPERTION_ERROR = 17630001 : 调用三方算法库API出错。 |
+| [OH_Crypto_ErrCode](capi-crypto-common-h.md#oh_crypto_errcode) | CRYPTO_SUCCESS = 0 : 操作成功。<br>         CRYPTO_INVALID_PARAMS = 401 : 参数无效。<br>         CRYPTO_NOT_SUPPORTED = 801 : 操作不支持。<br>         CRYPTO_MEMORY_ERROR = 17620001 : 内存错误。<br>         CRYPTO_OPERTION_ERROR = 17630001 : 调用三方算法库API出错。 |
 
 ### OH_CryptoMac_Init()
 
@@ -121,7 +121,7 @@ OH_Crypto_ErrCode OH_CryptoMac_Init(OH_CryptoMac *ctx, const OH_CryptoSymKey *ke
 
 **描述**
 
-使用对称密钥初始化MAC上下文。
+使用对称密钥初始化MAC实例。
 
 **起始版本：** 20
 
@@ -130,14 +130,14 @@ OH_Crypto_ErrCode OH_CryptoMac_Init(OH_CryptoMac *ctx, const OH_CryptoSymKey *ke
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_CryptoMac](capi-oh-cryptomac.md) *ctx | ctx MAC上下文。 |
+| [OH_CryptoMac](capi-oh-cryptomac.md) *ctx | MAC实例。 |
 | const [OH_CryptoSymKey](capi-crypto-sym-key-hoh_cryptosymkey.md) *key | key 对称密钥。 |
 
 **返回：**
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_Crypto_ErrCode](capi-crypto-common-h#oh_crypto_errcode) | [OH_Crypto_ErrCode](capi-crypto-common-h#oh_crypto_errcode): <br>         CRYPTO_SUCCESS = 0 : 操作成功。<br>         CRYPTO_INVALID_PARAMS = 401 : 参数无效。<br>         CRYPTO_NOT_SUPPORTED = 801 : 操作不支持。<br>         CRYPTO_MEMORY_ERROR = 17620001 : 内存错误。<br>         CRYPTO_OPERTION_ERROR = 17630001 : 调用三方算法库API出错。 |
+| [OH_Crypto_ErrCode](capi-crypto-common-h.md#oh_crypto_errcode) | CRYPTO_SUCCESS = 0 : 操作成功。<br>         CRYPTO_INVALID_PARAMS = 401 : 参数无效。<br>         CRYPTO_NOT_SUPPORTED = 801 : 操作不支持。<br>         CRYPTO_MEMORY_ERROR = 17620001 : 内存错误。<br>         CRYPTO_OPERTION_ERROR = 17630001 : 调用三方算法库API出错。 |
 
 **参考：**
 
@@ -151,7 +151,7 @@ OH_Crypto_ErrCode OH_CryptoMac_Update(OH_CryptoMac *ctx, const Crypto_DataBlob *
 
 **描述**
 
-更新MAC上下文。
+更新MAC实例。
 
 **起始版本：** 20
 
@@ -160,14 +160,14 @@ OH_Crypto_ErrCode OH_CryptoMac_Update(OH_CryptoMac *ctx, const Crypto_DataBlob *
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_CryptoMac](capi-oh-cryptomac.md) *ctx | ctx MAC上下文。 |
+| [OH_CryptoMac](capi-oh-cryptomac.md) *ctx | MAC实例。 |
 | const [Crypto_DataBlob](capi-crypto-common-hcrypto_datablob.md) *in | in 数据。 |
 
 **返回：**
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_Crypto_ErrCode](capi-crypto-common-h#oh_crypto_errcode) | [OH_Crypto_ErrCode](capi-crypto-common-h#oh_crypto_errcode): <br>         CRYPTO_SUCCESS = 0 : 操作成功。<br>         CRYPTO_INVALID_PARAMS = 401 : 参数无效。<br>         CRYPTO_NOT_SUPPORTED = 801 : 操作不支持。<br>         CRYPTO_MEMORY_ERROR = 17620001 : 内存错误。<br>         CRYPTO_OPERTION_ERROR = 17630001 : 调用三方算法库API出错。 |
+| [OH_Crypto_ErrCode](capi-crypto-common-h.md#oh_crypto_errcode) | CRYPTO_SUCCESS = 0 : 操作成功。<br>         CRYPTO_INVALID_PARAMS = 401 : 参数无效。<br>         CRYPTO_NOT_SUPPORTED = 801 : 操作不支持。<br>         CRYPTO_MEMORY_ERROR = 17620001 : 内存错误。<br>         CRYPTO_OPERTION_ERROR = 17630001 : 调用三方算法库API出错。 |
 
 **参考：**
 
@@ -190,14 +190,14 @@ OH_Crypto_ErrCode OH_CryptoMac_Final(OH_CryptoMac *ctx, Crypto_DataBlob *out)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_CryptoMac](capi-oh-cryptomac.md) *ctx | ctx MAC上下文。 |
-| mac | MAC值。 |
+| [OH_CryptoMac](capi-oh-cryptomac.md) *ctx | MAC实例。 |
+| [Crypto_DataBlob](capi-crypto-common-hcrypto_datablob.md) *out | MAC数据。 |
 
 **返回：**
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_Crypto_ErrCode](capi-crypto-common-h#oh_crypto_errcode) | [OH_Crypto_ErrCode](capi-crypto-common-h#oh_crypto_errcode): <br>         CRYPTO_SUCCESS = 0 : 操作成功。<br>         CRYPTO_INVALID_PARAMS = 401 : 参数无效。<br>         CRYPTO_NOT_SUPPORTED = 801 : 操作不支持。<br>         CRYPTO_MEMORY_ERROR = 17620001 : 内存错误。<br>         CRYPTO_OPERTION_ERROR = 17630001 : 调用三方算法库API出错。 |
+| [OH_Crypto_ErrCode](capi-crypto-common-h.md#oh_crypto_errcode) | CRYPTO_SUCCESS = 0 : 操作成功。<br>         CRYPTO_INVALID_PARAMS = 401 : 参数无效。<br>         CRYPTO_NOT_SUPPORTED = 801 : 操作不支持。<br>         CRYPTO_MEMORY_ERROR = 17620001 : 内存错误。<br>         CRYPTO_OPERTION_ERROR = 17630001 : 调用三方算法库API出错。 |
 
 **参考：**
 
@@ -220,14 +220,14 @@ OH_Crypto_ErrCode OH_CryptoMac_GetLength(OH_CryptoMac *ctx, uint32_t *length)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_CryptoMac](capi-oh-cryptomac.md) *ctx | ctx 指向MAC上下文。 |
-| uint32_t *length | length MAC长度。 |
+| [OH_CryptoMac](capi-oh-cryptomac.md) *ctx | 指向MAC实例。 |
+| uint32_t *length | MAC长度。 |
 
 **返回：**
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_Crypto_ErrCode](capi-crypto-common-h#oh_crypto_errcode) | [OH_Crypto_ErrCode](capi-crypto-common-h#oh_crypto_errcode): <br>         CRYPTO_SUCCESS = 0 : 操作成功。<br>         CRYPTO_INVALID_PARAMS = 401 : 参数无效。<br>         CRYPTO_NOT_SUPPORTED = 801 : 操作不支持。<br>         CRYPTO_MEMORY_ERROR = 17620001 : 内存错误。<br>         CRYPTO_OPERTION_ERROR = 17630001 : 调用三方算法库API出错。 |
+| [OH_Crypto_ErrCode](capi-crypto-common-h.md#oh_crypto_errcode) | CRYPTO_SUCCESS = 0 : 操作成功。<br>         CRYPTO_INVALID_PARAMS = 401 : 参数无效。<br>         CRYPTO_NOT_SUPPORTED = 801 : 操作不支持。<br>         CRYPTO_MEMORY_ERROR = 17620001 : 内存错误。<br>         CRYPTO_OPERTION_ERROR = 17630001 : 调用三方算法库API出错。 |
 
 ### OH_CryptoMac_Destroy()
 
@@ -237,7 +237,7 @@ void OH_CryptoMac_Destroy(OH_CryptoMac *ctx)
 
 **描述**
 
-销毁MAC上下文。
+销毁MAC实例。
 
 **起始版本：** 20
 
@@ -246,6 +246,6 @@ void OH_CryptoMac_Destroy(OH_CryptoMac *ctx)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_CryptoMac](capi-oh-cryptomac.md) *ctx | ctx MAC上下文。 |
+| [OH_CryptoMac](capi-oh-cryptomac.md) *ctx | MAC实例。 |
 
 
