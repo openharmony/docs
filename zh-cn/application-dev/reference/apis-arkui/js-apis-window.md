@@ -4725,7 +4725,7 @@ on(type:  'windowRectChange', callback: Callback&lt;RectChangeOptions&gt;): void
 ```ts
 try {
   windowClass.on('windowRectChange', (data: window.RectChangeOptions) => {
-      console.info('Succeeded window rect changes. Data: ' + JSON.stringify(data));
+      console.info(`Succeeded window rect changes. Data: ` + JSON.stringify(data));
   });
 } catch (exception) {
   console.error(`Failed to disable the listener for window rect changes. Cause code: ${exception.code}, message: ${exception.message}`);
@@ -6382,7 +6382,7 @@ try {
       console.error(`Failed to set the function of disabling the resize by drag window. Cause code: ${err.code}, message: ${err.message}`);
       return;
     }
-    console.info('Succeeded in setting the function of disabling the resize by drag window.');
+    console.info(`Succeeded in setting the function of disabling the resize by drag window.`);
   });
 } catch (exception) {
   console.error(`Failed to set the function of disabling the resize by drag window. Cause code: ${exception.code}, message: ${exception.message}`);
@@ -6430,7 +6430,7 @@ try {
   let enabled = false;
   let promise = windowClass.setResizeByDragEnabled(enabled);
   promise.then(() => {
-    console.info('Succeeded in setting the function of disabling the resize by drag window.');
+    console.info(`Succeeded in setting the function of disabling the resize by drag window.`);
   }).catch((err: BusinessError) => {
     console.error(`Failed to set the function of disabling the resize by drag window. Cause code: ${err.code}, message: ${err.message}`);
   });
