@@ -20,12 +20,7 @@
 | -- | -- | -- |
 | [OH_CryptoKeyPair](capi-oh-cryptokeypair.md) | OH_CryptoKeyPair | 定义密钥对结构体。 |
 | [OH_CryptoPubKey](capi-oh-cryptopubkey.md) | OH_CryptoPubKey | 定义公钥结构体。 |
-| [OH_CryptoPrivKey](capi-oh-cryptoprivkey.md) | OH_CryptoPrivKey | 定义私钥结构体。 |
 | [OH_CryptoAsymKeyGenerator](capi-oh-cryptoasymkeygenerator.md) | OH_CryptoAsymKeyGenerator | 定义非对称密钥生成器结构体。 |
-| [OH_CryptoPrivKeyEncodingParams](capi-oh-cryptoprivkeyencodingparams.md) | OH_CryptoPrivKeyEncodingParams | 定义私钥编码参数结构体。 |
-| [OH_CryptoAsymKeySpec](capi-oh-cryptoasymkeyspec.md) | OH_CryptoAsymKeySpec | 定义非对称密钥规格结构体。 |
-| [OH_CryptoAsymKeyGeneratorWithSpec](capi-oh-cryptoasymkeygeneratorwithspec.md) | OH_CryptoAsymKeyGeneratorWithSpec | 定义带规格的非对称密钥生成器。 |
-| [OH_CryptoEcPoint](capi-oh-cryptoecpoint.md) | OH_CryptoEcPoint | 定义EC点结构体。 |
 
 ### 枚举
 
