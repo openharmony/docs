@@ -6,8 +6,8 @@ Wi-Fi STA模式（Station Mode，站点模式）是无线设备作为客户端�
 
 ## 场景介绍
 
-- 判断Wi-Fi状态
-- 建议网络发起连接
+- [判断Wi-Fi状态](#判断wi-fi状态)
+- [建议网络发起连接](#建立wi-fi连接)
 
 ## 接口说明
 
@@ -119,5 +119,5 @@ Wi-Fi STA模式（Station Mode，站点模式）是无线设备作为客户端�
     wifiManager.off("wifiConnectionChange", recvWifiConnectionChangeFunc);
   }
 ```
-5. WiFi连接状态值，详情请参考[ConnState](../../reference/apis-connectivity-kit/js-apis-wifiManager.md#connstate9)。
-6. 错误码详情请参见[WIFI错误码](../../reference/apis-connectivity-kit/errorcode-wifi.md)。
+6. WiFi连接状态值，详情请参考[ConnState](../../reference/apis-connectivity-kit/js-apis-wifiManager.md#connstate9)。
+7. 错误码详情请参见[WIFI错误码](../../reference/apis-connectivity-kit/errorcode-wifi.md)。
