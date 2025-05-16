@@ -70,7 +70,7 @@
        console.log('createOsAccountForDomain osAccountInfo:' + JSON.stringify(osAccountInfo));
    });
    } catch (e) {
-   console.log('createOsAccountForDomain exception: ' + JSON.stringify(e));
+   console.error('createOsAccountForDomain exception: ' + JSON.stringify(e));
    }
    ```
 
@@ -92,7 +92,7 @@
    try {
      localId = await osAccountMgr.getOsAccountLocalIdForDomain(domainInfo);
    } catch (err) {
-     console.log('getOsAccountLocalIdForDomain exception: ' + JSON.stringify(err));
+     console.error('getOsAccountLocalIdForDomain exception: ' + JSON.stringify(err));
    }
    ```
 
@@ -102,13 +102,13 @@
    try {
      osAccountMgr.removeOsAccount(localId, (err: BusinessError)=>{
        if (err) {
-           console.log('removeOsAccount failed, error: ' + JSON.stringify(err));
+           console.error('removeOsAccount failed, error: ' + JSON.stringify(err));
        } else {
            console.log('removeOsAccount successfully');
        }
      });
    } catch (err) {
-     console.log('removeOsAccount exception: ' + JSON.stringify(err));
+     console.error('removeOsAccount exception: ' + JSON.stringify(err));
    }
    ```
 
@@ -134,12 +134,12 @@
      osAccount.DomainAccountManager.getAccountInfo(options,
        (err: BusinessError, result: osAccount.DomainAccountInfo) => {
        if (err) {
-           console.log('call getAccountInfo failed, error: ' + JSON.stringify(err));
+           console.error('call getAccountInfo failed, error: ' + JSON.stringify(err));
        } else {
            console.log('getAccountInfo result: ' + result);
        }
      });
    } catch (err) {
-       console.log('getAccountInfo exception = ' + JSON.stringify(err));
+       console.error('getAccountInfo exception = ' + JSON.stringify(err));
    }
    ```
