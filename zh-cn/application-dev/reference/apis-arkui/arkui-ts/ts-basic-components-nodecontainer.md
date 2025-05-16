@@ -4,7 +4,7 @@
 
 > **说明：**
 >
-> 该组件从API Version 11开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+> 该组件从API version 11开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 >
 > 该组件下仅支持挂载自定义节点[FrameNode](../js-apis-arkui-frameNode.md)或者是[BuilderNode](../js-apis-arkui-builderNode.md)中获取的根节点FrameNode。
 > 不支持挂载查询获得的系统组件[代理节点](../js-apis-arkui-frameNode.md#ismodifiable12)。
