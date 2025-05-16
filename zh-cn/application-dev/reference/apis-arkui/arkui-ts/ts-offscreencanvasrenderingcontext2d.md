@@ -3448,14 +3448,14 @@ transferToImageBitmap(): ImageBitmap
         Canvas(this.context)
           .width('100%')
           .height('100%')
-          .backgroundColor('#ffff00')
-          .onReady(() =>{
+          .backgroundColor('rgb(213,213,213)')
+          .onReady(() => {
             let offContext = this.offCanvas.getContext("2d", this.settings)
             let imageData = offContext.createImageData(100, 100)
             for (let i = 0; i < imageData.data.length; i += 4) {
-              imageData.data[i + 0] = 255
-              imageData.data[i + 1] = 0
-              imageData.data[i + 2] = 255
+              imageData.data[i + 0] = 112
+              imageData.data[i + 1] = 112
+              imageData.data[i + 2] = 112
               imageData.data[i + 3] = 255
             }
             offContext.putImageData(imageData, 10, 10)
