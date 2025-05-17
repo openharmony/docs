@@ -96,7 +96,7 @@ ListItem设置[多态样式](ts-universal-attributes-polymorphic-style.md)时，
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | {<br/>strokeWidth:&nbsp;[Length](ts-types.md#length),<br/>color?:[ResourceColor](ts-types.md#resourcecolor),<br/>startMargin?:&nbsp;[Length](ts-types.md#length),<br/>endMargin?:&nbsp;[Length](ts-types.md#length)<br/>}&nbsp;\|&nbsp;null | 是   | ListItem分割线样式。<br/>- strokeWidth:&nbsp;分割线的线宽。<br/>**说明：** <br/>设置为负数或者大于等于List内容区长度时，按0处理。<br/>- color:&nbsp;分割线的颜色。<br/>默认值：0x08000000<br/>- startMargin:&nbsp;分割线与列表侧边起始端的距离。<br/>默认值：0，单位：vp<br/>**说明：** <br/>设置为负数时，按默认值处理。<br/>- endMargin:&nbsp;分割线与列表侧边结束端的距离。<br/>默认值：0，单位：vp<br/> **说明：** <br/>设置为负数时，按默认值处理。 |
+| value  | {<br/>strokeWidth:&nbsp;[Length](ts-types.md#length),<br/>color?:[ResourceColor](ts-types.md#resourcecolor),<br/>startMargin?:&nbsp;[Length](ts-types.md#length),<br/>endMargin?:&nbsp;[Length](ts-types.md#length)<br/>}&nbsp;\|&nbsp;null | 是   | ListItem分割线样式。<br/>- strokeWidth:&nbsp;分割线的线宽。<br/>单位：vp<br/>**说明：** <br/>设置为负数或者大于等于List内容区长度时，按0处理。<br/>- color:&nbsp;分割线的颜色。<br/>默认值：0x08000000<br/>- startMargin:&nbsp;分割线与列表侧边起始端的距离。<br/>默认值：0，单位：vp<br/>**说明：** <br/>设置为负数时，按默认值处理。<br/>- endMargin:&nbsp;分割线与列表侧边结束端的距离。<br/>默认值：0，单位：vp<br/> **说明：** <br/>设置为负数时，按默认值处理。 |
 
 ### scrollBar
 
