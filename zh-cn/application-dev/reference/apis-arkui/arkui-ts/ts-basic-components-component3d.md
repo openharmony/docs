@@ -200,7 +200,7 @@ GLTF模型加载示例。 <br/>
 @Entry
 @Component
 struct Index {
-  scene: SceneOptions = { scene: $rawfile('gltf/DamageHemlt/glTF/DamagedHelmet.gltf'), modelType: ModelType.SURFACE};
+  scene: SceneOptions = { scene: $rawfile('gltf/DamagedHelmet/glTF/DamagedHelmet.gltf'), modelType: ModelType.SURFACE};
   build() {
     Row() {
       Column() {
@@ -240,7 +240,7 @@ function TickFrame() {
 @Entry
 @Component
 struct Index {
-  scene: SceneOptions = { scene: $rawfile('gltf/DamageHemlt/glTF/DamagedHelmet.gltf'), modelType: ModelType.SURFACE};
+  scene: SceneOptions = { scene: $rawfile('gltf/DamagedHelmet/glTF/DamagedHelmet.gltf'), modelType: ModelType.SURFACE};
   backAnimator: AnimatorResult = this.getUIContext().createAnimator({
     duration: 2000,
     easing: "ease",

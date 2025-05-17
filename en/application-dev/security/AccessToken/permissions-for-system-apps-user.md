@@ -165,17 +165,3 @@ Allows an application to add, remove, and edit call logs.
 **Enable via ACL**: true
 
 **Valid since**: 8
-
-## ohos.permission.CUSTOM_SCREEN_CAPTURE
-
-Allows an application to capture screen information.
-
-With this permission, the application can perform operations such as taking screenshots and recording on-screen information. Currently, this permission is available only to applications running on tablets and 2-in-1 devices.
-
-**Permission level**: system_basic
-
-**Authorization mode**: user_grant
-
-**Enable via ACL**: true
-
-**Valid since**: 14

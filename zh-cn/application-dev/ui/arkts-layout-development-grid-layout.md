@@ -32,7 +32,7 @@
 | md   | [600,&nbsp;840) | 中等宽度类型设备。 |
 | lg   | [840,&nbsp;+∞)  | 大宽度类型设备。  |
 
-在GridRow栅格组件中，允许开发者使用breakpoints自定义修改断点的取值范围，最多支持6个断点，除了默认的四个断点外，还可以启用xl，xxl两个断点，支持六种不同尺寸（xs, sm, md, lg, xl, xxl）设备的布局设置。
+在GridRow栅格组件中，允许开发者使用[BreakPoints](../reference/apis-arkui/arkui-ts/ts-container-gridrow.md#breakpoints)自定义修改断点的取值范围，最多支持6个断点，除了默认的4个断点外，还可以启用xl和xxl断点，支持6种不同尺寸（xs，sm，md，lg，xl，xxl）设备的布局设置。
 
 | 断点名称 | 设备描述      |
 | ---- | --------- |
@@ -43,72 +43,68 @@
 | xl   | 特大宽度类型设备。 |
 | xxl  | 超大宽度类型设备。 |
 
-- 开发者根据实际使用场景，通过一个单调递增数组设置断点位置，不设置时的默认值：["320vp", "600vp", "840vp"]。由于breakpoints最多支持六个断点，单调递增数组长度最大为5。假设传入的数组是[n0, n1, n2, n3, n4]，各个断点取值如下：
+- 开发者可根据实际使用场景，通过一个单调递增数组设置断点位置。由于栅格容器默认支持4个断点，在不设置断点位置时，系统为默认断点配置的单调递增数组为["320vp", "600vp", "840vp"]。开发者使用[BreakPoints](../reference/apis-arkui/arkui-ts/ts-container-gridrow.md#breakpoints)最多可支持6个断点，因此此单调递增数组最大长度为5。
 
-|断点|取值范围|
-|---|-----------|
-|xs |[0, n0)    |
-|sm |[n0, n1)   |
-|md |[n1, n2)   |
-|lg |[n2, n3)   |
-|xl |[n3, n4)   |
-|xxl|[n4, INF)  |
+  假设传入的数组是[n0, n1, n2, n3, n4]，则各个断点取值如下：
 
-```ts
-breakpoints: {value: ['100vp', '200vp']} // 表示xs、sm、md共3个断点被使用，小于100vp为xs，100vp-200vp为sm，大于200vp为md。
-```
+  |断点|取值范围|
+  |---|-----------|
+  |xs |[0, n0)    |
+  |sm |[n0, n1)   |
+  |md |[n1, n2)   |
+  |lg |[n2, n3)   |
+  |xl |[n3, n4)   |
+  |xxl|[n4, INF)  |
 
-```ts
-breakpoints: {value: ['320vp', '600vp']} // 表示xs、sm、md共3个断点被使用，小于320vp为xs，320vp-600vp为sm，大于600vp为md。
-```
+  ```ts
+  breakpoints: {value: ['100vp', '200vp']} // 表示xs、sm、md共3个断点被使用，小于100vp为xs，100vp-200vp为sm，大于200vp为md。
+  breakpoints: {value: ['320vp', '600vp']} // 表示xs、sm、md共3个断点被使用，小于320vp为xs，320vp-600vp为sm，大于600vp为md。
+  breakpoints: {value: ['320vp', '600vp', '840vp', '1440vp']} // 表示xs、sm、md、lg、xl共5个断点被使用，小于320vp为xs，320vp-600vp为sm，  600vp-840vp为md，840vp-1440vp为lg，大于1440vp为xl。
+  ```
 
-```ts
-breakpoints: {value: ['320vp', '600vp', '840vp', '1440vp']} // 表示xs、sm、md、lg、xl共5个断点被使用，小于320vp为xs，320vp-600vp为sm，600vp-840vp为md，840vp-1440vp为lg，大于1440vp为xl。
-```
+- 栅格容器通过监听窗口或容器的尺寸变化进行断点，通过reference设置断点切换参考物。考虑到应用可能以非全屏窗口的形式显示，以应用窗口宽度为参照物更为通用。
 
-- 栅格容器通过监听窗口或容器的尺寸变化进行断点，通过reference设置断点切换参考物。 考虑到应用可能以非全屏窗口的形式显示，以应用窗口宽度为参照物更为通用。
-
-例如，使用栅格的默认列数12列，通过断点设置将应用宽度分成六个区间，在各区间中，每个栅格子元素占用的列数均不同。
+  例如，通过断点设置将应用宽度分成6个区间，通过columns配置各断点下栅格容器的栅格列数。
 
 
-```ts
-@State bgColors: ResourceColor[] =
-    ['rgb(213,213,213)', 'rgb(150,150,150)', 'rgb(0,74,175)', 'rgb(39,135,217)', 'rgb(61,157,180)', 'rgb(23,169,141)',
-      'rgb(255,192,0)', 'rgb(170,10,33)'];
-// ...
-GridRow({
-  breakpoints: {
-    value: ['320vp', '600vp', '840vp', '1440vp', '1600vp'], // 表示在保留默认断点['320vp', '600vp', '840vp']的同时自定义增加'1440vp', '1600vp'的断点，实际开发中需要根据实际使用场景，合理设置断点值实现一次开发多端适配。
-    reference: BreakpointsReference.WindowSize
-  }
-}) {
-   ForEach(this.bgColors, (color:ResourceColor, index?:number|undefined) => {
-     GridCol({
-       span: {
-         xs: 2, // 窗口宽度落入xs断点上，栅格子组件占据的栅格容器2列。
-         sm: 3, // 窗口宽度落入sm断点上，栅格子组件占据的栅格容器3列。
-         md: 4, // 窗口宽度落入md断点上，栅格子组件占据的栅格容器4列。
-         lg: 6, // 窗口宽度落入lg断点上，栅格子组件占据的栅格容器6列。
-         xl: 8, // 窗口宽度落入xl断点上，栅格子组件占据的栅格容器8列。
-         xxl: 12 // 窗口宽度落入xxl断点上，栅格子组件占据的栅格容器12列。
-       }
-     }) {
-       Row() {
-         Text(`${index}`)
-       }.width("100%").height('50vp')
-     }.backgroundColor(color)
-   })
-}                                                                    
-```
+  ```ts
+  @State bgColors: ResourceColor[] =
+      ['rgb(213,213,213)', 'rgb(150,150,150)', 'rgb(0,74,175)', 'rgb(39,135,217)', 'rgb(61,157,180)', 'rgb(23,169,141)',
+        'rgb(255,192,0)', 'rgb(170,10,33)'];
+  // ...
+  GridRow({
+    columns: {
+              xs: 2, // 窗口宽度落入xs断点上，栅格容器分为2列。
+              sm: 4, // 窗口宽度落入sm断点上，栅格容器分为4列。
+              md: 8, // 窗口宽度落入md断点上，栅格容器分为8列。
+              lg: 12, // 窗口宽度落入lg断点上，栅格容器分为12列。
+              xl: 12, // 窗口宽度落入xl断点上，栅格容器分为12列。
+              xxl: 12 // 窗口宽度落入xxl断点上，栅格容器分为12列。
+    },
+    breakpoints: {
+      value: ['320vp', '600vp', '840vp', '1440vp', '1600vp'], // 表示在保留默认断点['320vp', '600vp', '840vp']的同时自定义增加'1440vp', '1600vp'的断点，实际开发中需要根据实际使用场景，合理设置断点值实现一次开发多端适配。
+      reference: BreakpointsReference.WindowSize
+    }
+  }) {
+    ForEach(this.bgColors, (color:ResourceColor, index?:number|undefined) => {
+      GridCol({ span: 1 }) { // 所有子组件占一列。
+        Row() {
+          Text(`${index}`)
+        }.width("100%").height('50vp')
+      }.backgroundColor(color)
+    })
+  }                                    
+  ```
 
-![zh-cn_image_0000001511421272](figures/zh-cn_image_0000001511421272.gif)
+  ![zh-cn_image_0000001511421272](figures/zh-cn_image_0000001511421272.gif)
 
 
 ### 布局的总列数
 
 GridRow中通过columns设置栅格布局的总列数。
 
-- columns默认值为12，即在未设置columns时，任何断点下，栅格布局被分成12列。
+- API version 20之前，columns默认值为12，即在未设置columns时，任何断点下，栅格布局均被分成12列。 
+- API version 20及以后，columns默认值为{ xs: 2, sm: 4, md: 8, lg: 12, xl: 12, xxl: 12 }。
 
 
     ```ts
@@ -118,27 +114,28 @@ GridRow中通过columns设置栅格布局的总列数。
      // ...
     GridRow() {
       ForEach(this.bgColors, (item:ResourceColor, index?:number|undefined) => {
-        GridCol() {
+        GridCol({span: 1}) {
           Row() {
               Text(`${index}`)
           }.width('100%').height('50')
         }.backgroundColor(item)
       })
-    }           
+    }
     ```
 
-    ![zh-cn_image_0000001563060709](figures/zh-cn_image_0000001563060709.png)
+    API version 20之前布局显示：
 
-- 当columns为自定义值，栅格布局在任何尺寸设备下都被分为columns列。下面分别设置栅格布局列数为4和8，子元素默认占一列，效果如下：
+    ![zh-cn_image_0000001563060709](figures/zh-cn_image_0000001563060709.png)
+    
+    API version 20及以后布局显示（以sm设备为例，默认栅格列数为4）：
+    
+    ![zh-cn_image_0000001563060710](figures/zh-cn_image_0000001563060710.png)
+
+
+columns支持number和[GridRowColumnOption](../reference/apis-arkui/arkui-ts/ts-container-gridrow.md#gridrowcolumnoption)两种类型, 可按两种方式设置栅格布局的总列数。
+- 当columns类型为number时，栅格布局在任何尺寸设备下都被分为同一列数。下面分别设置栅格布局列数为4和8，子元素占一列，效果如下：
 
   ```ts
-  class CurrTmp{
-    currentBp: string = 'unknown';
-    set(val:string){
-      this.currentBp = val
-    }
-  }
-  let BorderWH:Record<string,Color|number> = { 'color': Color.Blue, 'width': 2 }
   @State bgColors: ResourceColor[] =
       ['rgb(213,213,213)', 'rgb(150,150,150)', 'rgb(0,74,175)', 'rgb(39,135,217)', 'rgb(61,157,180)', 'rgb(23,169,141)',
         'rgb(255,192,0)', 'rgb(170,10,33)'];
@@ -146,8 +143,8 @@ GridRow中通过columns设置栅格布局的总列数。
   // ...
   Row() {
     GridRow({ columns: 4 }) {
-      ForEach(this.bgColors, (item: ResourceColor, index?:number|undefined) => {
-        GridCol() {
+      ForEach(this.bgColors, (item: ResourceColor, index?: number | undefined) => {
+        GridCol({ span: 1 }) {
           Row() {
             Text(`${index}`)
           }.width('100%').height('50')
@@ -155,39 +152,31 @@ GridRow中通过columns设置栅格布局的总列数。
       })
     }
     .width('100%').height('100%')
-    .onBreakpointChange((breakpoint:string) => {
-      let CurrSet:CurrTmp = new CurrTmp()
-      CurrSet.set(breakpoint)
-    })
   }
   .height(160)
-  .border(BorderWH)
+  .border({ color: 'rgb(39,135,217)', width: 2 })
   .width('90%')
-  
+
   Row() {
     GridRow({ columns: 8 }) {
-      ForEach(this.bgColors, (item: ResourceColor, index?:number|undefined) => {
-          GridCol() {
-            Row() {
-              Text(`${index}`)
-            }.width('100%').height('50')
-          }.backgroundColor(item)
+      ForEach(this.bgColors, (item: ResourceColor, index?: number | undefined) => {
+        GridCol({ span: 1 }) {
+          Row() {
+            Text(`${index}`)
+          }.width('100%').height('50')
+        }.backgroundColor(item)
       })
     }
     .width('100%').height('100%')
-    .onBreakpointChange((breakpoint:string) => {
-      let CurrSet:CurrTmp = new CurrTmp()
-      CurrSet.set(breakpoint)
-    })
   }
   .height(160)
-  .border(BorderWH)
+  .border({ color: 'rgb(39,135,217)', width: 2 })
   .width('90%')
   ```
 
     ![zh-cn_image_0000001511421268](figures/zh-cn_image_0000001511421268.png)
 
-- 当columns类型为GridRowColumnOption时，支持下面六种不同尺寸（xs, sm, md, lg, xl, xxl）设备的总列数设置，各个尺寸下数值可不同。
+- 当columns类型为[GridRowColumnOption](../reference/apis-arkui/arkui-ts/ts-container-gridrow.md#gridrowcolumnoption)时，支持下面6种不同尺寸（xs，sm，md，lg，xl，xxl）设备的栅格列数设置，不同尺寸的设备支持配置不同的栅格列数。
 
   ```ts
   @State bgColors: ResourceColor[] =
@@ -200,18 +189,25 @@ GridRow中通过columns设置栅格布局的总列数。
     }
   }) {
     ForEach(this.bgColors, (item: ResourceColor, index?: number | undefined) => {
-      GridCol() {
+      GridCol({ span: 1 }) {
         Row() {
           Text(`${index}`)
         }.width('100%').height('50')
       }.backgroundColor(item)
     })
   }
+  .height(200)
+  .border({ color: 'rgb(39,135,217)', width: 2 })
   ```
+    API version 20之前布局显示（xs设备未配置栅格列数，取默认列数12）：
 
     ![zh-cn_image_0000001563060689](figures/zh-cn_image_0000001563060689.gif)
 
-若只设置sm, md的栅格总列数，则较小的尺寸使用默认columns值12，较大的尺寸使用前一个尺寸的columns。这里只设置sm:4, md:8，则较小尺寸的xs:12，较大尺寸的参照md的设置，lg:8, xl:8, xxl:8。
+    API version 20及以后布局显示（xs设备继承sm设备栅格列数）：
+
+    ![zh-cn_image_0000001563060689](figures/zh-cn_image_0000001563060690.gif)
+
+  仅部分设置sm、md的栅格列数，未配置的xs、lg、xl、xxl设备根据[栅格列数补全](../reference/apis-arkui/arkui-ts/ts-container-gridrow.md#gridrowcolumnoption)取默认值。
 
 
 ### 排列方向
@@ -222,7 +218,7 @@ GridRow中通过columns设置栅格布局的总列数。
 
 
     ```ts
-    GridRow({ direction: GridRowDirection.Row }){}
+    GridRow({ direction: GridRowDirection.Row }){ /* ... */ }
     ```
 
     ![zh-cn_image_0000001511740488](figures/zh-cn_image_0000001511740488.png)
@@ -231,7 +227,7 @@ GridRow中通过columns设置栅格布局的总列数。
 
 
     ```ts
-    GridRow({ direction: GridRowDirection.RowReverse }){}
+    GridRow({ direction: GridRowDirection.RowReverse }){ /* ... */ }
     ```
 
     ![zh-cn_image_0000001562940517](figures/zh-cn_image_0000001562940517.png)
@@ -245,7 +241,7 @@ GridRow中通过gutter属性设置子元素在水平和垂直方向的间距。
 
 
     ```ts
-    GridRow({ gutter: 10 }){}
+    GridRow({ gutter: 10 }){ /* ... */ }
     ```
 
     ![zh-cn_image_0000001511740476](figures/zh-cn_image_0000001511740476.png)
@@ -254,7 +250,7 @@ GridRow中通过gutter属性设置子元素在水平和垂直方向的间距。
 
 
     ```ts
-    GridRow({ gutter: { x: 20, y: 50 } }){}
+    GridRow({ gutter: { x: 20, y: 50 } }){ /* ... */ }
     ```
 
     ![zh-cn_image_0000001511900456](figures/zh-cn_image_0000001511900456.png)
@@ -280,9 +276,9 @@ GridCol组件作为GridRow组件的子组件，通过给GridCol传参或者设�
 
     ```ts
   let Goffset:Record<string,number> = { 'xs': 1, 'sm': 2, 'md': 3, 'lg': 4 }
-  GridCol({ offset: 2 }){}
-  GridCol({ offset: { xs: 2, sm: 2, md: 2, lg: 2 } }){}
-  GridCol(){}.offset(Goffset) 
+  GridCol({ offset: 2, span: 1 }){}
+  GridCol({ offset: { xs: 2, sm: 2, md: 2, lg: 2 }, span: 1 }){}
+  GridCol({ span: 1 }){}.offset(Goffset) 
     ```
 
 - 设置order。
@@ -290,18 +286,19 @@ GridCol组件作为GridRow组件的子组件，通过给GridCol传参或者设�
 
     ```ts
   let Gorder:Record<string,number> = { 'xs': 1, 'sm': 2, 'md': 3, 'lg': 4 }
-  GridCol({ order: 2 }){}
-  GridCol({ order: { xs: 1, sm: 2, md: 3, lg: 4 } }){}
-  GridCol(){}.order(2)
-  GridCol(){}.order(Gorder)
+  GridCol({ order: 2, span: 1 }){}
+  GridCol({ order: { xs: 1, sm: 2, md: 3, lg: 4 }, span: 1 }){}
+  GridCol({ span: 1 }){}.order(2)
+  GridCol({ span: 1 }){}.order(Gorder)
     ```
 
 
 ### span
 
-子组件占栅格布局的列数，决定了子组件的宽度，默认为1。
+子组件占栅格布局的列数，决定了子组件的宽度。默认值为1。
 
-- 当类型为number时，子组件在所有尺寸设备下占用的列数相同。
+span支持number和[GridColColumnOption](../reference/apis-arkui/arkui-ts/ts-container-gridcol.md#gridcolcolumnoption)两种类型, 可按两种方式设置栅格子组件占栅格容器的列数。
+- 当span类型为number时，子组件在所有尺寸设备下占用的列数相同。
 
 
     ```ts
@@ -323,7 +320,7 @@ GridCol组件作为GridRow组件的子组件，通过给GridCol传参或者设�
 
     ![zh-cn_image_0000001511421264](figures/zh-cn_image_0000001511421264.png)
 
-- 当类型为GridColColumnOption时，支持六种不同尺寸（xs, sm, md, lg, xl, xxl）设备中子组件所占列数设置，各个尺寸下数值可不同。
+- 当span类型为GridColColumnOption时，支持6种不同尺寸（xs，sm，md，lg，xl，xxl）设备中子组件所占列数设置，不同尺寸的设备下子组件支持配置不同列数。若仅部分设置sm、md的列数，未配置的xs、lg、xl、xxl设备根据[列数补全](../reference/apis-arkui/arkui-ts/ts-container-gridcol.md#gridcolcolumnoption)取默认值。
 
 
     ```ts
@@ -350,7 +347,7 @@ GridCol组件作为GridRow组件的子组件，通过给GridCol传参或者设�
 
 栅格子组件相对于前一个子组件的偏移列数，默认为0。
 
-- 当类型为number时，子组件偏移相同列数。
+- 当offset类型为number时，子组件偏移相同列数。
 
 
     ```ts
@@ -360,7 +357,7 @@ GridCol组件作为GridRow组件的子组件，通过给GridCol传参或者设�
     // ...
     GridRow() {
       ForEach(this.bgColors, (color:ResourceColor, index?:number|undefined) => {
-        GridCol({ offset: 2 }) {      
+        GridCol({ offset: 2, span: 1 }) {     
           Row() {
             Text('' + index)
           }.width('100%').height('50vp')          
@@ -372,9 +369,9 @@ GridCol组件作为GridRow组件的子组件，通过给GridCol传参或者设�
 
     ![zh-cn_image_0000001563060705](figures/zh-cn_image_0000001563060705.png)
 
-  栅格默认分成12列，每一个子组件默认占1列，偏移2列，每个子组件及间距共占3列，一行放四个子组件。
+  栅格分成12列，每一个子组件占1列，偏移2列，每个子组件及间距共占3列，1行放4个子组件。
 
-- 当类型为GridColColumnOption时，支持六种不同尺寸（xs, sm, md, lg, xl, xxl）设备中子组件所占列数设置,各个尺寸下数值可不同。
+- 当offset类型为GridColColumnOption时，支持6种不同尺寸（xs，sm，md，lg，xl，xxl）设备中子组件所占列数设置，各个尺寸下数值可不同。
 
 
     ```ts
@@ -383,16 +380,18 @@ GridCol组件作为GridRow组件的子组件，通过给GridCol传参或者设�
         'rgb(255,192,0)', 'rgb(170,10,33)'];
     // ...
   
-    GridRow() {
-      ForEach(this.bgColors, (color:ResourceColor, index?:number|undefined) => {
-        GridCol({ offset: { xs: 1, sm: 2, md: 3, lg: 4 } }) {      
+    GridRow({ columns: 12 }) {
+      ForEach(this.bgColors, (color: ResourceColor, index?: number | undefined) => {
+        GridCol({ offset: { xs: 1, sm: 2, md: 3, lg: 4 }, span: 1 }) {
           Row() {
             Text('' + index)
-          }.width('100%').height('50vp')          
+          }.width('100%').height('50vp')
         }
         .backgroundColor(color)
       })
-    }                 
+    }
+    .height(200)
+    .border({ color: 'rgb(39,135,217)', width: 2 })          
     ```
 
     ![zh-cn_image_0000001562700433](figures/zh-cn_image_0000001562700433.gif)
@@ -404,27 +403,27 @@ GridCol组件作为GridRow组件的子组件，通过给GridCol传参或者设�
 
 当子组件部分设置order，部分不设置order时，未设置order的子组件依次排序靠前，设置了order的子组件按照数值从小到大排列。
 
-- 当类型为number时，子组件在任何尺寸下排序次序一致。
+- 当order类型为number时，子组件在任何尺寸下排序次序一致。
 
 
     ```ts
-  GridRow() {
-    GridCol({ order: 4 }) {
+  GridRow({ columns: 12 }) {
+    GridCol({ order: 4, span: 1 }) {
       Row() {
         Text('1')
       }.width('100%').height('50vp')
     }.backgroundColor('rgb(213,213,213)')
-    GridCol({ order: 3 }) {
+    GridCol({ order: 3, span: 1 }) {
       Row() {
         Text('2')
       }.width('100%').height('50vp')
     }.backgroundColor('rgb(150,150,150)')
-    GridCol({ order: 2 }) {
+    GridCol({ order: 2, span: 1 }) {
       Row() {
         Text('3')
       }.width('100%').height('50vp')
     }.backgroundColor('rgb(0,74,175)')
-    GridCol({ order: 1 }) {
+    GridCol({ order: 1, span: 1 }) {
       Row() {
         Text('4')
       }.width('100%').height('50vp')
@@ -434,32 +433,32 @@ GridCol组件作为GridRow组件的子组件，通过给GridCol传参或者设�
 
     ![zh-cn_image_0000001511580892](figures/zh-cn_image_0000001511580892.png)
 
-- 当类型为GridColColumnOption时，支持六种不同尺寸（xs, sm, md, lg, xl, xxl）设备中子组件排序次序设置。在xs设备中，子组件排列顺序为1234；sm为2341，md为3412，lg为2431。
+- 当order类型为GridColColumnOption时，支持6种不同尺寸（xs，sm，md，lg，xl，xxl）设备中子组件排序次序设置。在xs设备中，子组件排列顺序为1234；sm为2341，md为3412，lg为2431。
 
 
     ```ts
-    GridRow() {
-      GridCol({ order: { xs:1, sm:5, md:3, lg:7}}) {
+    GridRow({ columns: 12 }) {
+      GridCol({ order: { xs:1, sm:5, md:3, lg:7}, span: 1 }) {
         Row() {
           Text('1')
         }.width('100%').height('50vp')
       }.backgroundColor(Color.Red)
-      GridCol({ order: { xs:2, sm:2, md:6, lg:1} }) {
+      GridCol({ order: { xs:2, sm:2, md:6, lg:1}, span:1 }) {
         Row() {
           Text('2')
         }.width('100%').height('50vp')
       }.backgroundColor(Color.Orange)
-      GridCol({ order: { xs:3, sm:3, md:1, lg:6} }) {
+      GridCol({ order: { xs:3, sm:3, md:1, lg:6}, span:1 }) {
         Row() {
           Text('3')
         }.width('100%').height('50vp')
       }.backgroundColor(Color.Yellow)
-      GridCol({ order: { xs:4, sm:4, md:2, lg:5} }) {
+      GridCol({ order: { xs:4, sm:4, md:2, lg:5}, span:1 }) {
         Row() {
           Text('4')
         }.width('100%').height('50vp')
       }.backgroundColor(Color.Green)
-    } 
+    }
     ```
 
     ![zh-cn_image_0000001511900444](figures/zh-cn_image_0000001511900444.gif)
@@ -476,10 +475,10 @@ GridCol组件作为GridRow组件的子组件，通过给GridCol传参或者设�
 @Component
 struct GridRowExample {
   build() {
-    GridRow() {
-      GridCol({ span: { sm: 12 } }) {
-        GridRow() {
-          GridCol({ span: { sm: 2 } }) {
+    GridRow({ columns: 12 }) {
+      GridCol({ span: 12 }) {
+        GridRow({ columns: 12 }) {
+          GridCol({ span: 2 }) {
             Row() {
               Text('left').fontSize(24)
             }
@@ -487,7 +486,7 @@ struct GridRowExample {
             .height('90%')
           }.backgroundColor('#ff41dbaa')
 
-          GridCol({ span: { sm: 10 } }) {
+          GridCol({ span: 10 }) {
             Row() {
               Text('right').fontSize(24)
             }
@@ -498,7 +497,7 @@ struct GridRowExample {
         .backgroundColor('#19000000')
       }
 
-      GridCol({ span: { sm: 12 } }) {
+      GridCol({ span: 12 }) {
         Row() {
           Text('footer').width('100%').textAlign(TextAlign.Center)
         }.width('100%').height('10%').backgroundColor(Color.Pink)

@@ -36,14 +36,18 @@ Subscribes to an event in persistent manner and executes a callback after the ev
 **Example**
 
 ```ts
+import { Callback} from '@kit.BasicServicesKit';
+
 let innerEvent: emitter.InnerEvent = {
   eventId: 1
 };
 
+let callback: Callback<emitter.EventData> = (eventData: emitter.EventData) => {
+  console.info(`eventData: ${JSON.stringify(eventData)}`);
+}
+
 // Execute the callback after receiving the event whose eventId is 1.
-emitter.on(innerEvent, () => {
-  console.info('callback');
-});
+emitter.on(innerEvent, callback);
 ```
 
 ## emitter.on<sup>11+</sup>
@@ -66,10 +70,13 @@ Subscribes to an event in persistent manner and executes a callback after the ev
 **Example**
 
 ```ts
+import { Callback} from '@kit.BasicServicesKit';
+
+let callback: Callback<emitter.EventData> = (eventData: emitter.EventData) => {
+  console.info(`eventData: ${JSON.stringify(eventData)}`);
+}
 // Execute the callback after receiving the event whose eventId is eventId.
-emitter.on("eventId", () => {
-  console.info('callback');
-});
+emitter.on(`eventId`, callback);
 ```
 
 ## emitter.on<sup>12+</sup>
@@ -92,20 +99,24 @@ Subscribes to an event in persistent manner and executes a callback after the ev
 **Example**
 
 ```ts
+import { Callback} from '@kit.BasicServicesKit';
+
 @Sendable
 class Sample {
-    constructor() {
-        this.count = 100;
-    }
-    printCount() {
-        console.info('Print count : ' + this.count);
-    }
-    count: number;
+  constructor() {
+    this.count = 100;
+  }
+  printCount() {
+    console.info('Print count : ' + this.count);
+  }
+  count: number;
 }
 
-let callback = (eventData: emitter.GenericEventData<Sample>): void => {
-   let storage: Sample = eventData.data!;
-   storage.printCount();
+let callback: Callback<emitter.GenericEventData<Sample>> = (eventData: emitter.GenericEventData<Sample>): void => {
+  console.info(`eventData: ${JSON.stringify(eventData?.data)}`);
+  if (eventData?.data instanceof Sample) {
+    eventData?.data?.printCount();
+  }
 }
 // Execute the callback after receiving the event whose eventId is eventId.
 emitter.on("eventId", callback);
@@ -131,14 +142,17 @@ Subscribes to an event in one-shot manner and unsubscribes from it after the eve
 **Example**
 
 ```ts
+import { Callback} from '@kit.BasicServicesKit';
+
 let innerEvent: emitter.InnerEvent = {
-    eventId: 1
+  eventId: 1
 };
 
+let callback: Callback<emitter.EventData> = (eventData: emitter.EventData) => {
+  console.info(`eventData: ${JSON.stringify(eventData)}`);
+}
 // Execute the callback after receiving the event whose eventId is 1.
-emitter.once(innerEvent, () => {
-    console.info('once callback');
-});
+emitter.once(innerEvent, callback);
 ```
 
 ## emitter.once<sup>11+</sup>
@@ -161,10 +175,13 @@ Subscribes to an event in one-shot manner and unsubscribes from it after the eve
 **Example**
 
 ```ts
+import { Callback} from '@kit.BasicServicesKit';
+
+let callback: Callback<emitter.EventData> = (eventData: emitter.EventData) => {
+  console.info(`eventData: ${JSON.stringify(eventData)}`);
+}
 // Execute the callback after receiving the event whose eventId is eventId.
-emitter.once("eventId", () => {
-    console.info('once callback');
-});
+emitter.once("eventId", callback);
 ```
 
 ## emitter.once<sup>12+</sup>
@@ -187,20 +204,24 @@ Subscribes to an event in one-shot manner and unsubscribes from it after the eve
 **Example**
 
 ```ts
+import { Callback} from '@kit.BasicServicesKit';
+
 @Sendable
 class Sample {
-    constructor() {
-        this.count = 100;
-    }
-    printCount() {
-        console.info('Print count : ' + this.count);
-    }
-    count: number;
+  constructor() {
+    this.count = 100;
+  }
+  printCount() {
+    console.info('Print count : ' + this.count);
+  }
+  count: number;
 }
 
-let callback = (eventData: emitter.GenericEventData<Sample>): void => {
-   let storage: Sample = eventData.data!;
-   storage.printCount();
+let callback: Callback<emitter.GenericEventData<Sample>> = (eventData: emitter.GenericEventData<Sample>): void => {
+  console.info(`eventData: ${JSON.stringify(eventData?.data)}`);
+  if (eventData?.data instanceof Sample) {
+    eventData?.data?.printCount();
+  }
 }
 // Execute the callback after receiving the event whose eventId is eventId.
 emitter.once("eventId", callback);
@@ -210,7 +231,9 @@ emitter.once("eventId", callback);
 
 off(eventId: number): void
 
-Unsubscribes from an event.
+Unsubscribes from all events with the specified event ID.
+
+After this API is used to unsubscribe from an event, the event that has been published through the [emit](#emitteremit) API but has not been executed will be unsubscribed.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -233,7 +256,9 @@ emitter.off(1);
 
 off(eventId: string): void
 
-Unsubscribes from an event.
+Unsubscribes from all events with the specified event ID.
+
+After this API is used to unsubscribe from an event, the event that has been published through the [emit](#emitteremit11) API but has not been executed will be unsubscribed.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -256,7 +281,9 @@ emitter.off("eventId");
 
 off(eventId: number, callback: Callback\<EventData\>): void
 
-Unsubscribes from an event. If **Callback\<EventData\>** has been registered through the **on** or **once** API, it is unregistered. Otherwise, no processing is performed.
+Unsubscribes from an event with the specified event ID and processed by the specified callback. This API takes effect only when **Callback\<EventData>** has been registered through the [on](#emitteron) or [once](#emitteronce) API. Otherwise, no processing is performed.
+
+After this API is used to unsubscribe from an event, the event that has been published through the [emit](#emitteremit) API but has not been executed will be unsubscribed.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -267,23 +294,28 @@ Unsubscribes from an event. If **Callback\<EventData\>** has been registered thr
 | Name | Type  | Mandatory| Description  |
 | ------- | ------ | ---- | ------ |
 | eventId | number | Yes  | Event ID.|
-| callback | Callback\<[EventData](#eventdata)\> | Yes  |Callback to unregister.  |
+| callback | Callback\<[EventData](#eventdata)\> | Yes  | Callback to unregister.  |
 
 **Example**
 
 ```ts
-// Unregister the callbacks of all events whose eventID is 1.
+import { Callback} from '@kit.BasicServicesKit';
+
+let callback: Callback<emitter.EventData> = (eventData: emitter.EventData) => {
+  console.info(`eventData: ${JSON.stringify(eventData)}`);
+}
+// Unregister the callback of the event whose eventID is 1. The callback object must be the registered object.
 // If the callback has not been registered, no processing is performed.
-emitter.off(1, () => {
-  console.info('callback');
-});
+emitter.off(1, callback);
 ```
 
 ## emitter.off<sup>11+</sup>
 
 off(eventId: string, callback: Callback\<EventData\>): void
 
-Unsubscribes from an event. If **Callback\<EventData\>** has been registered through the **on** or **once** API, it is unregistered. Otherwise, no processing is performed.
+Unsubscribes from an event with the specified event ID and processed by the specified callback. This API takes effect only when **Callback\<EventData>** has been registered through the [on](#emitteron11) or [once](#emitteronce11) API. Otherwise, no processing is performed.
+
+After this API is used to unsubscribe from an event, the event that has been published through the [emit](#emitteremit11) API but has not been executed will be unsubscribed.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -299,18 +331,23 @@ Unsubscribes from an event. If **Callback\<EventData\>** has been registered thr
 **Example**
 
 ```ts
-// Unregister the callback of the event whose eventID is eventId.
+import { Callback} from '@kit.BasicServicesKit';
+
+let callback: Callback<emitter.EventData> = (eventData: emitter.EventData) => {
+  console.info(`eventData: ${JSON.stringify(eventData)}`);
+}
+// Unregister the callback of the event whose eventID is eventId. The callback object must be the registered object.
 // If the callback has not been registered, no processing is performed.
-emitter.off("eventId", () => {
-  console.info('callback');
-});
+emitter.off("eventId", callback);
 ```
 
 ## emitter.off<sup>12+</sup>
 
 off<T\>(eventId: string, callback: Callback\<GenericEventData<T\>\>): void
 
-Unsubscribes from an event. If **Callback\<GenericEventData<T\>\>** has been registered through the **on** or **once** API, it is unregistered. Otherwise, no processing is performed.
+Unsubscribes from an event with the specified event ID and processed by the specified callback. This API takes effect only when **Callback\<EventData>** has been registered through the [on](#emitteron12) or [once](#emitteronce12) API. Otherwise, no processing is performed.
+
+After this API is used to unsubscribe from an event, the event that has been published through the [emit](#emitteremit12) API but has not been executed will be unsubscribed.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -326,22 +363,26 @@ Unsubscribes from an event. If **Callback\<GenericEventData<T\>\>** has been reg
 **Example**
 
 ```ts
+import { Callback} from '@kit.BasicServicesKit';
+
 @Sendable
 class Sample {
-    constructor() {
-        this.count = 100;
-    }
-    printCount() {
-        console.info('Print count : ' + this.count);
-    }
-    count: number;
+  constructor() {
+    this.count = 100;
+  }
+  printCount() {
+    console.info('Print count : ' + this.count);
+  }
+  count: number;
 }
 
-let callback = (eventData: emitter.GenericEventData<Sample>): void => {
-   let storage: Sample = eventData.data!;
-   storage.printCount();
+let callback: Callback<emitter.GenericEventData<Sample>> = (eventData: emitter.GenericEventData<Sample>): void => {
+  console.info(`eventData: ${JSON.stringify(eventData?.data)}`);
+  if (eventData?.data instanceof Sample) {
+    eventData?.data?.printCount();
+  }
 }
-// Unregister the callback of the event whose eventID is eventId.
+// Unregister the callback of the event whose eventID is eventId. The callback object must be the registered object.
 // If the callback has not been registered, no processing is performed.
 emitter.off("eventId", callback);
 ```
@@ -367,15 +408,15 @@ Emits the specified event.
 
 ```ts
 let eventData: emitter.EventData = {
-    data: {
-        "content": "content",
-        "id": 1,
-    }
+  data: {
+    "content": "content",
+    "id": 1,
+  }
 };
 
 let innerEvent: emitter.InnerEvent = {
-    eventId: 1,
-    priority: emitter.EventPriority.HIGH
+  eventId: 1,
+  priority: emitter.EventPriority.HIGH
 };
 
 emitter.emit(innerEvent, eventData);
@@ -402,10 +443,10 @@ Emits the specified event.
 
 ```ts
 let eventData: emitter.EventData = {
-    data: {
-        "content": "content",
-        "id": 1,
-    }
+  data: {
+  "content": "content",
+  "id": 1,
+  }
 };
 
 emitter.emit("eventId", eventData);
@@ -433,20 +474,18 @@ Emits the specified event.
 ```ts
 @Sendable
 class Sample {
-    constructor() {
-        this.count = 100;
-    }
-    printCount() {
-        console.info('Print count : ' + this.count);
-    }
-    count: number;
+  constructor() {
+    this.count = 100;
+  }
+  printCount() {
+    console.info('Print count : ' + this.count);
+  }
+  count: number;
 }
 
-class SelfEventData implements emitter.EventData {
-    data: Sample = new Sample();
-}
-
-let eventData = new SelfEventData();
+let eventData: emitter.GenericEventData<Sample> = {
+  data: new Sample()
+};
 emitter.emit("eventId", eventData);
 ```
 
@@ -472,14 +511,14 @@ Emits an event of a specified priority.
 
 ```ts
 let eventData: emitter.EventData = {
-    data: {
-        "content": "content",
-        "id": 1,
-    }
+  data: {
+    "content": "content",
+    "id": 1,
+  }
 };
 
 let options: emitter.Options = {
-    priority: emitter.EventPriority.HIGH
+  priority: emitter.EventPriority.HIGH
 };
 
 emitter.emit("eventId", options, eventData);
@@ -508,24 +547,22 @@ Emits an event of a specified priority.
 ```ts
 @Sendable
 class Sample {
-    constructor() {
-        this.count = 100;
-    }
-    printCount() {
-        console.info('Print count : ' + this.count);
-    }
-    count: number;
-}
-
-class SelfEventData implements emitter.EventData {
-    data: Sample = new Sample();
+  constructor() {
+    this.count = 100;
+  }
+  printCount() {
+    console.info('Print count : ' + this.count);
+  }
+  count: number;
 }
 
 let options: emitter.Options = {
-    priority: emitter.EventPriority.HIGH
+  priority: emitter.EventPriority.HIGH
+};
+let eventData: emitter.GenericEventData<Sample> = {
+  data: new Sample()
 };
 
-let eventData = new SelfEventData();
 emitter.emit("eventId", options, eventData);
 ```
 
@@ -553,7 +590,7 @@ let count = emitter.getListenerCount("eventId");
 
 ## EventPriority
 
-Enumerates the event emit priority levels.
+Enumerates the event priorities.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -577,11 +614,11 @@ Describes an event to subscribe to or emit. The **EventPriority** settings do no
 | Name    | Type                       | Read Only| Optional| Description                                |
 | -------- | ------------------------------- | ---- | ---- | ------------------------------ |
 | eventId  | number                          | No  | No  | Event ID.|
-| priority | [EventPriority](#eventpriority) | No  | Yes  | Emit priority of the event.            |
+| priority | [EventPriority](#eventpriority) | No  | Yes  | Event priority. The default value is **EventPriority.LOW**.            |
 
 ## EventData
 
-Describes data passed in the event.
+Describes the data passed in the event.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -595,13 +632,13 @@ Describes data passed in the event.
 
 Describes the event emit priority.
 
-**Atomic service API**: This API can be used in atomic services since API version 11.
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Notification.Emitter
 
 | Name    | Type                           | Read Only| Optional| Description          |
 | -------- | ------------------------------- | ---- | ---- | -------------- |
-| priority | [EventPriority](#eventpriority) | No  | Yes  | Event priority.|
+| priority | [EventPriority](#eventpriority) | No  | Yes  | Event priority. The default value is **EventPriority.LOW**.|
 
 ## GenericEventData<T\><sup>12+</sup>
 

@@ -32,7 +32,7 @@ A constructor used to create a **ComponentContent** object.
 | Name   | Type                                     | Mandatory| Description                              |
 | --------- | ----------------------------------------- | ---- | ---------------------------------- |
 | uiContext | [UIContext](./js-apis-arkui-UIContext.md) | Yes  | UI context required for creating the node.|
-| builder  | [WrappedBuilder\<[]>](../../quick-start/arkts-wrapBuilder.md) | Yes  |   **WrappedBuilder** object that encapsulates a builder function that has no parameters.|
+| builder  | [WrappedBuilder\<[]>](../../ui/state-management/arkts-wrapBuilder.md) | Yes  |   **WrappedBuilder** object that encapsulates a builder function that has no parameters.|
 
 ### constructor
 
@@ -49,7 +49,7 @@ A constructor used to create a **ComponentContent** object.
 | Name   | Type                                     | Mandatory| Description                              |
 | --------- | ----------------------------------------- | ---- | ---------------------------------- |
 | uiContext | [UIContext](./js-apis-arkui-UIContext.md) | Yes  | UI context required for creating the node.|
-| builder  | [WrappedBuilder\<[T]>](../../quick-start/arkts-wrapBuilder.md) | Yes  |   **WrappedBuilder** object that encapsulates a builder function that has parameters.|
+| builder  | [WrappedBuilder\<[T]>](../../ui/state-management/arkts-wrapBuilder.md) | Yes  |   **WrappedBuilder** object that encapsulates a builder function that has parameters.|
 | args     |     T     |   Yes  |   Parameters of the builder function encapsulated in the **WrappedBuilder** object.|
 
 ### constructor
@@ -67,7 +67,7 @@ A constructor used to create a **ComponentContent** object.
 | Name   | Type                                     | Mandatory| Description                              |
 | --------- | ----------------------------------------- | ---- | ---------------------------------- |
 | uiContext | [UIContext](./js-apis-arkui-UIContext.md) | Yes  | UI context required for creating the node.|
-| builder  | [WrappedBuilder\<[T]>](../../quick-start/arkts-wrapBuilder.md) | Yes  |   **WrappedBuilder** object that encapsulates a builder function that has parameters.|
+| builder  | [WrappedBuilder\<[T]>](../../ui/state-management/arkts-wrapBuilder.md) | Yes  |   **WrappedBuilder** object that encapsulates a builder function that has parameters.|
 | args     |     T     |   Yes  |   Parameters of the builder function encapsulated in the **WrappedBuilder** object.|
 | options | [BuildOptions](./js-apis-arkui-builderNode.md#buildoptions12)                                                    | Yes  |  Build options, which determine whether to support the behavior of nesting **@Builder** within **@Builder**.                                        |
 
@@ -225,68 +225,173 @@ Passes the recycle event to the custom component in this **ComponentContent** ob
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 ```ts
-import { ComponentContent } from '@kit.ArkUI';
+import { NodeContent, typeNode, ComponentContent } from "@kit.ArkUI";
+
+const TEST_TAG: string = "Reuse+Recycle";
+
+class MyDataSource {
+  private dataArray: string[] = [];
+  private listener: DataChangeListener | null = null
+
+  public totalCount(): number {
+    return this.dataArray.length;
+  }
+
+  public getData(index: number) {
+    return this.dataArray[index];
+  }
+
+  public pushData(data: string) {
+    this.dataArray.push(data);
+  }
+
+  public reloadListener(): void {
+    this.listener?.onDataReloaded();
+  }
+
+  public registerDataChangeListener(listener: DataChangeListener): void {
+    this.listener = listener;
+  }
+
+  public unregisterDataChangeListener(): void {
+    this.listener = null;
+  }
+}
 
 class Params {
-  text: string = ""
+  item: string = '';
 
-  constructor(text: string) {
-    this.text = text;
+  constructor(item: string) {
+    this.item = item;
   }
 }
 
 @Builder
-function buildText(params: Params) {
-  ReusableChildComponent2({ text: params.text });
+function buildNode(param: Params = new Params("hello")) {
+  Row() {
+    Text(`C${param.item} -- `)
+    ReusableChildComponent2({ item: param.item }) // This custom component cannot be correctly reused in the ComponentContent.
+  }
+}
+
+// The custom component that is reused and recycled will have its state variables updated, and the state variables of the nested custom component ReusableChildComponent3 will also be updated. However, the ComponentContent will block this propagation process.
+@Reusable
+@Component
+struct ReusableChildComponent {
+  @Prop item: string = '';
+  @Prop switch: string = '';
+  private content: NodeContent = new NodeContent();
+  private componentContent: ComponentContent<Params> = new ComponentContent<Params>(
+    this.getUIContext(),
+    wrapBuilder<[Params]>(buildNode),
+    new Params(this.item),
+    { nestingBuilderSupported: true });
+
+  aboutToAppear() {
+    let column = typeNode.createNode(this.getUIContext(), "Column");
+    column.initialize();
+    column.addComponentContent(this.componentContent);
+    this.content.addFrameNode(column);
+  }
+
+  aboutToRecycle(): void {
+    console.log(`${TEST_TAG} ReusableChildComponent aboutToRecycle ${this.item}`);
+
+    // When the switch is open, pass the recycle event to the nested custom component, such as ReusableChildComponent2, through the ComponentContent's recycle API to complete recycling.
+    if (this.switch === 'open') {
+      this.componentContent.recycle();
+    }
+  }
+
+  aboutToReuse(params: object): void {
+    console.log(`${TEST_TAG} ReusableChildComponent aboutToReuse ${JSON.stringify(params)}`);
+
+    // When the switch is open, pass the reuse event to the nested custom component, such as ReusableChildComponent2, through the ComponentContent's reuse API to complete reuse.
+    if (this.switch === 'open') {
+      this.componentContent.reuse(params);
+    }
+  }
+
+  build() {
+    Row() {
+      Text(`A${this.item}--`)
+      ReusableChildComponent3({ item: this.item })
+      ContentSlot(this.content)
+    }
+  }
 }
 
 @Component
 struct ReusableChildComponent2 {
-  @Prop text: string = "false";
+  @Prop item: string = "false";
 
   aboutToReuse(params: Record<string, object>) {
-    console.log("ReusableChildComponent2 Reusable " + JSON.stringify(params));
+    console.log(`${TEST_TAG} ReusableChildComponent2 aboutToReuse ${JSON.stringify(params)}`);
   }
 
   aboutToRecycle(): void {
-    console.log("ReusableChildComponent2 aboutToRecycle " + this.text);
+    console.log(`${TEST_TAG} ReusableChildComponent2 aboutToRecycle ${this.item}`);
   }
 
   build() {
-    Column() {
-      Text(this.text)
-        .fontSize(50)
-        .fontWeight(FontWeight.Bold)
-        .margin({ bottom: 36 })
-    }.backgroundColor('#FFF0F0F0')
+    Row() {
+      Text(`D${this.item}`)
+        .fontSize(20)
+        .backgroundColor(Color.Yellow)
+        .margin({ left: 10 })
+    }.margin({ left: 10, right: 10 })
   }
 }
+
+@Component
+struct ReusableChildComponent3 {
+  @Prop item: string = "false";
+
+  aboutToReuse(params: Record<string, object>) {
+    console.log(`${TEST_TAG} ReusableChildComponent3 aboutToReuse ${JSON.stringify(params)}`);
+  }
+
+  aboutToRecycle(): void {
+    console.log(`${TEST_TAG} ReusableChildComponent3 aboutToRecycle ${this.item}`);
+  }
+
+  build() {
+    Row() {
+      Text(`B${this.item}`)
+        .fontSize(20)
+        .backgroundColor(Color.Yellow)
+        .margin({ left: 10 })
+    }.margin({ left: 10, right: 10 })
+  }
+}
+
 
 @Entry
 @Component
 struct Index {
-  @State message: string = "hello"
+  @State data: MyDataSource = new MyDataSource();
+
+  aboutToAppear() {
+    for (let i = 0; i < 100; i++) {
+      this.data.pushData(i.toString());
+    }
+  }
 
   build() {
-    Row() {
-      Column() {
-        Button("click me")
-          .onClick(() => {
-            let uiContext = this.getUIContext();
-            let promptAction = uiContext.getPromptAction();
-            let contentNode = new ComponentContent(uiContext, wrapBuilder(buildText), new Params(this.message));
-            promptAction.openCustomDialog(contentNode);
-
-            setTimeout(() => {
-              contentNode.reuse(new Params("new message"));
-              contentNode.recycle();
-            }, 2000); // Automatically update the text in the dialog box after 2 seconds.
-          })
+    Column() {
+      List({ space: 3 }) {
+        LazyForEach(this.data, (item: string) => {
+          ListItem() {
+            ReusableChildComponent({
+              item: item,
+              switch: 'open' // Changing open to close can be used to observe the behavior of custom components inside the ComponentContent when reuse and recycle events are not passed through the ComponentContent's reuse and recycle APIs.
+            })
+          }
+        }, (item: string) => item)
       }
       .width('100%')
       .height('100%')
     }
-    .height('100%')
   }
 }
 ```

@@ -364,7 +364,7 @@ maxLines(value: number)
 
 maxLines(value: number, options?: MaxLinesOptions)
 
-配置[textOverflow](ts-basic-components-textarea.md#textoverflow12)一起使用时，maxlines为可显示行数，超出可配置为截断或滚动。配置[textOverflow](ts-basic-components-textarea.md#textoverflow12)时，内联模式获焦状态下内容超出maxlines时，文本可滚动显示。内联模式非获焦状态下不生效maxlines，非内联模式按行截断。
+配置[textOverflow](ts-basic-components-textarea.md#textoverflow12)一起使用时，maxlines为可显示行数，超出可配置为截断或滚动。未配置[textOverflow](ts-basic-components-textarea.md#textoverflow12)时，内联模式获焦状态下内容超出maxlines时，文本可滚动显示。内联模式非获焦状态下不生效maxlines。
 
 **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
@@ -848,6 +848,38 @@ keyboardAppearance(appearance: Optional\<KeyboardAppearance>)
 | 参数名 | 类型 | 必填 | 说明 |
 | ------ | ----------------------------------------- | ---- | ------------------------------------------------------ |
 | appearance | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[KeyboardAppearance](ts-text-common.md#keyboardappearance15枚举说明)> | 是   | 键盘样式。<br/>默认值：KeyboardAppearance.NONE_IMMERSIVE |
+
+### strokeWidth<sup>20+</sup>
+
+strokeWidth(width: Optional\<LengthMetrics>)
+
+设置文本描边的宽度。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型                                                         | 必填 | 说明             |
+| ------ | ------------------------------------------------------------ | ---- | ---------------- |
+| width  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)> | 是   | 文本描边的宽度。当LengthMetrics的单位为px时，<br/>若设置值小于0，显示实心字；若大于0，显示空心字。<br/>默认值为0，不做描边处理。 |
+
+### strokeColor<sup>20+</sup>
+
+strokeColor(color: Optional\<ResourceColor>)
+
+设置文本描边的颜色。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型                                       | 必填 | 说明       |
+| ------ | ------------------------------------------ | ---- | ---------- |
+| color  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[ResourceColor](ts-types.md#resourcecolor)> | 是   | 描边颜色。 |
 
 ### stopBackPress<sup>15+</sup>
 

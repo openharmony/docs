@@ -19,7 +19,7 @@ shouldBuiltInRecognizerParallelWith(callback: ShouldBuiltInRecognizerParallelWit
 **参数：**
 | 参数名        | 参数类型                    | 必填  | 参数描述                          |
 | ---------- | -------------------------- | ------- | ----------------------------- |
-| callback      | [ShouldBuiltInRecognizerParallelWithCallback](#shouldbuiltinrecognizerparallelwithcallback) | 是   |  提供系统内置手势与响应链上其他组件的手势设置并行关系的回调事件，当该组件做触摸碰撞测试时，会触发用户定义的回调来形成手势并行关系。 |
+| callback      | [ShouldBuiltInRecognizerParallelWithCallback](#shouldbuiltinrecognizerparallelwithcallback) | 是   |  提供系统内置手势与响应链上其他组件的手势设置并行关系的回调事件，当该组件进行触摸碰撞测试时，会触发用户定义的回调来形成手势并行关系。 |
 
 **返回值：**
 
@@ -307,13 +307,13 @@ getPanGestureOptions(): PanGestureOptions
 | ------ | --------- |
 | [PanGestureOptions](./ts-basic-gestures-pangesture.md#pangestureoptions) | 当前拖动手势识别器的属性。 |
 
-### getDirection<sup>18+</sup>
+### getDirection<sup>19+</sup>
 
 getDirection(): PanDirection
 
 返回当前拖动手势识别器的方向。
 
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -323,13 +323,13 @@ getDirection(): PanDirection
 | ------ | --------- |
 | [PanDirection](./ts-basic-gestures-pangesture.md#pandirection枚举说明) | 当前拖动手势识别器的方向。 |
 
-### getDistance<sup>18+</sup>
+### getDistance<sup>19+</sup>
 
 getDistance(): number
 
 返回当前拖动手势识别器触发的最小滑动距离。
 
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -339,13 +339,13 @@ getDistance(): number
 | ------ | --------- |
 | number | 当前拖动手势识别器触发的最小滑动距离。 |
 
-### getDistanceMap<sup>18+</sup>
+### getDistanceMap<sup>19+</sup>
 
 getDistanceMap(): Map\<SourceTool, number\>
 
 返回不同输入源的拖动手势识别器触发的最小滑动距离。
 
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -409,7 +409,7 @@ getDuration(): number
 
 | 类型     | 说明        |
 | ------ | --------- |
-| number | 预设长按手势识别器触发长按最短时间阈值，单位为ms。<br/>取值范围：[0, +∞) |
+| number | 返回预设长按手势识别器触发长按最短时间阈值，单位为ms。<br/>取值范围：[0, +∞) |
 
 ## SwipeRecognizer<sup>18+</sup>
 
@@ -435,7 +435,7 @@ getVelocityThreshold(): number
 
 getDirection(): SwipeDirection
 
-返回预设滑动手势识别器触发滑动手势滑动方向阈值。
+返回预设滑动手势识别器触发滑动手势滑动方向。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
@@ -445,7 +445,7 @@ getDirection(): SwipeDirection
 
 | 类型     | 说明        |
 | ------ | --------- |
-| [SwipeDirection](./ts-basic-gestures-swipegesture.md#swipedirection枚举说明) | 预设滑动手势识别器触发滑动手势滑动方向阈值。 |
+| [SwipeDirection](./ts-basic-gestures-swipegesture.md#swipedirection枚举说明) | 预设滑动手势识别器触发滑动手势滑动方向。 |
 
 ## PinchRecognizer<sup>18+</sup>
 
@@ -562,12 +562,12 @@ type GestureRecognizerJudgeBeginCallback = (event: BaseGestureEvent, current: Ge
 @Entry
 @Component
 struct FatherControlChild {
-  scroller: Scroller = new Scroller()
+  scroller: Scroller = new Scroller();
   scroller2: Scroller = new Scroller()
-  private arr: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
-  private childRecognizer: GestureRecognizer = new GestureRecognizer()
-  private currentRecognizer: GestureRecognizer = new GestureRecognizer()
-  private lastOffset: number = 0
+  private arr: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+  private childRecognizer: GestureRecognizer = new GestureRecognizer();
+  private currentRecognizer: GestureRecognizer = new GestureRecognizer();
+  private lastOffset: number = 0;
 
   build() {
     Stack({ alignContent: Alignment.TopStart }) {
@@ -724,11 +724,11 @@ struct FatherControlChild {
 @Entry
 @Component
 struct Index {
-  @State currentIndex: number = 0
-  @State selectedIndex: number = 0
-  @State fontColor: string = '#182431'
-  @State selectedFontColor: string = '#007DFF'
-  innerSelectedIndex: number = 0 // 记录内层Tabs的索引
+  @State currentIndex: number = 0;
+  @State selectedIndex: number = 0;
+  @State fontColor: string = '#182431';
+  @State selectedFontColor: string = '#007DFF';
+  innerSelectedIndex: number = 0; // 记录内层Tabs的索引
   controller?: TabsController = new TabsController();
   @Builder
   tabBuilder(index: number, name: string) {

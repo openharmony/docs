@@ -12,7 +12,7 @@ Read [Camera](../../reference/apis-camera-kit/_o_h___camera.md) for the API refe
 1. Import the NDK, which provides camera-related attributes and methods.
 
    ```c++
-    // Include the NDK header files.
+   // Include the NDK header files.
    #include <cstdint>
    #include <cstdlib>
    #include <cstring>
@@ -20,7 +20,9 @@ Read [Camera](../../reference/apis-camera-kit/_o_h___camera.md) for the API refe
    #include <memory>
    #include "hilog/log.h"
    #include "napi/native_api.h"
-   #include "camera_manager.h"
+   #include <ohcamera/camera.h>
+   #include <ohcamera/photo_output.h>
+   #include <ohcamera/camera_manager.h>
    #include <multimedia/media_library/media_asset_manager_capi.h>
    #include <multimedia/media_library/media_asset_change_request_capi.h>
    #include <multimedia/media_library/media_access_helper_capi.h>
@@ -61,14 +63,16 @@ Read [Camera](../../reference/apis-camera-kit/_o_h___camera.md) for the API refe
 
    ```c++
    // Method 1: Call the media library API to save the images.
-   void mediaLibSavePhoto(OH_MediaAsset *mediaAsset) {
+   void mediaLibSavePhoto(OH_MediaAsset* mediaAsset) {
        if (mediaAsset == nullptr) {
            OH_LOG_ERROR(LOG_APP, "mediaAsset is nullptr!");
+           return;
        }
        // Create a media asset change request object.
-       OH_MediaAssetChangeRequest *changeRequest = OH_MediaAssetChangeRequest_Create(mediaAsset);
+       OH_MediaAssetChangeRequest* changeRequest = OH_MediaAssetChangeRequest_Create(mediaAsset);
        if (changeRequest == nullptr) {
            OH_LOG_ERROR(LOG_APP, "changeRequest is nullptr!");
+           return;
        }
        // Request to save the image.
        MediaLibrary_ErrorCode errCode =
@@ -81,22 +85,22 @@ Read [Camera](../../reference/apis-camera-kit/_o_h___camera.md) for the API refe
    
    // Method 2: Call the media library API to request images.
    // Called when the image source is ready.
-   OH_MediaAsset *g_mediaAsset_;
+   OH_MediaAsset* g_mediaAsset_;
    void OnImageDataPrepared(MediaLibrary_ErrorCode result, MediaLibrary_RequestId requestId,
                             MediaLibrary_MediaQuality mediaQuality, MediaLibrary_MediaContentType type,
-                            OH_ImageSourceNative *imageSourceNative) {
+                            OH_ImageSourceNative* imageSourceNative) {
        if (imageSourceNative == nullptr) {
            OH_LOG_ERROR(LOG_APP, "OnImageDataPrepared: imageSourceNative is nullptr!");
            return;
        }
-      if (mediaQuality == MediaLibrary_MediaQuality::MEDIA_LIBRARY_QUALITY_FAST) {
+       if (mediaQuality == MediaLibrary_MediaQuality::MEDIA_LIBRARY_QUALITY_FAST) {
            OH_LOG_INFO(LOG_APP, "OnImageDataPrepared: Using fast media quality.");
        } else if (mediaQuality == MediaLibrary_MediaQuality::MEDIA_LIBRARY_QUALITY_FULL) {
            OH_LOG_INFO(LOG_APP, "OnImageDataPrepared: Using full media quality.");
        }
        // Create OH_PixelmapNative through OH_ImageSourceNative.
-       OH_PixelmapNative *pixelmapNative = nullptr;
-       OH_DecodingOptions *decodingOptions = nullptr;
+       OH_PixelmapNative* pixelmapNative = nullptr;
+       OH_DecodingOptions* decodingOptions = nullptr;
        Image_ErrorCode imageErr = IMAGE_SUCCESS;
        imageErr = OH_ImageSourceNative_CreatePixelmap(imageSourceNative, decodingOptions, &pixelmapNative);
        if (imageErr != IMAGE_SUCCESS) {
@@ -104,9 +108,9 @@ Read [Camera](../../reference/apis-camera-kit/_o_h___camera.md) for the API refe
            return;
        }
        // Create an image packer and set packing options.
-       OH_ImagePackerNative *imagePacker;
+       OH_ImagePackerNative* imagePacker;
        OH_ImagePackerNative_Create(&imagePacker);
-       OH_PackingOptions *options;
+       OH_PackingOptions* options;
        OH_PackingOptions_Create(&options);
        char format[] = "image/jpeg";
        Image_MimeType image_MimeType = {format, strlen(format)};
@@ -119,9 +123,10 @@ Read [Camera](../../reference/apis-camera-kit/_o_h___camera.md) for the API refe
        OH_LOG_INFO(LOG_APP, "OnImageDataPrepared: packToData ret code:%{public}u outsize:%{public}zu", imageErr, bufferSize);
        if (g_mediaAsset_ == nullptr) {
            OH_LOG_ERROR(LOG_APP,  "OnImageDataPrepared: get current mediaAsset failed!");
+           return;
        }
        // Call the media library API to save images in the buffer.
-       OH_MediaAssetChangeRequest *changeRequest = OH_MediaAssetChangeRequest_Create(g_mediaAsset_);
+       OH_MediaAssetChangeRequest* changeRequest = OH_MediaAssetChangeRequest_Create(g_mediaAsset_);
        MediaLibrary_ErrorCode mediaErr = OH_MediaAssetChangeRequest_AddResourceWithBuffer(changeRequest,
            MEDIA_LIBRARY_IMAGE_RESOURCE, buffer.get(), bufferSize);
        OH_LOG_INFO(LOG_APP,  "OnImageDataPrepared: AddResourceWithBuffer get errCode:%{public}d", mediaErr);
@@ -131,17 +136,16 @@ Read [Camera](../../reference/apis-camera-kit/_o_h___camera.md) for the API refe
        OH_LOG_INFO(LOG_APP,  "OnImageDataPrepared: ApplyChanges get errCode:%{public}d", mediaErr);
    }
    
-   void mediaLibRequestBuffer(Camera_PhotoOutput *photoOutput, OH_MediaAsset *mediaAsset) {
-       if (photoOutput == nullptr) {
-           OH_LOG_ERROR(LOG_APP, "photoOutput is nullptr!");
-       }
+   void mediaLibRequestBuffer(OH_MediaAsset* mediaAsset) {
        if (mediaAsset == nullptr) {
            OH_LOG_ERROR(LOG_APP, "mediaAsset is nullptr!");
+           return;
        }
        // Create a media asset manager.
-       OH_MediaAssetManager *mediaAssetManager = OH_MediaAssetManager_Create();
+       OH_MediaAssetManager* mediaAssetManager = OH_MediaAssetManager_Create();
        if (mediaAssetManager == nullptr) {
            OH_LOG_ERROR(LOG_APP, "mediaAssetManager is nullptr!");
+           return;
        }
        // Set the parameters for requesting images.
        MediaLibrary_RequestOptions requestOptions;
@@ -159,23 +163,24 @@ Read [Camera](../../reference/apis-camera-kit/_o_h___camera.md) for the API refe
    }
    
    // Deferred phot delivery callback.
-   void OnPhotoAssetAvailable(Camera_PhotoOutput *photoOutput, OH_MediaAsset *mediaAsset) {
+   void OnPhotoAssetAvailable(Camera_PhotoOutput* photoOutput, OH_MediaAsset* mediaAsset) {
        OH_LOG_INFO(LOG_APP, "OnPhotoAssetAvailable start!");
        if (mediaAsset == nullptr) {
            OH_LOG_ERROR(LOG_APP, "OnPhotoAssetAvailable mediaAsset nullptr!");
+           return;
        }
        // Processing method 1: Call the media library API to save the image in the first phase. After the image in the second phase is ready, the media library proactively replaces the image flushed.
-       //     mediaLibSavePhoto(mediaAsset);
+       // mediaLibSavePhoto(mediaAsset);
        // Processing method 2: Call the media library API to request an image asset, obtain the buffer of the first-phase or second-phase image, and save the image in the buffer after service processing.
        g_mediaAsset_ = mediaAsset;
-       mediaLibRequestBuffer(photoOutput, mediaAsset);
+       mediaLibRequestBuffer(mediaAsset);
    }
    
    // Register the PhotoAssetAvailableCallback callback.
-   Camera_ErrorCode PhotoOutputRegisterPhotoAssetAvailableCallback(Camera_PhotoOutput *photoOutput) {
+   Camera_ErrorCode PhotoOutputRegisterPhotoAssetAvailableCallback(Camera_PhotoOutput* photoOutput) {
        Camera_ErrorCode ret = OH_PhotoOutput_RegisterPhotoAssetAvailableCallback(photoOutput, OnPhotoAssetAvailable);
        if (ret != CAMERA_OK) {
-           OH_LOG_ERROR("OH_PhotoOutput_RegisterPhotoAssetAvailableCallback failed.");
+           OH_LOG_ERROR(LOG_APP, "OH_PhotoOutput_RegisterPhotoAssetAvailableCallback failed.");
        }
        return ret;
    }

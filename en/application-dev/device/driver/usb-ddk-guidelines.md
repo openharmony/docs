@@ -28,11 +28,11 @@ A non-standard peripheral application obtains the USB device ID by using the per
 
 ## Constraints
 
-* The open APIs of USB DDK can be used to develop drivers of non-standard USB peripherals.
+- The open APIs of USB DDK can be used to develop drivers of non-standard USB peripherals.
 
-* The open APIs of USB DDK can be used only within the lifecycle of **DriverExtensionAbility**.
+- The open APIs of USB DDK can be used only within the lifecycle of **DriverExtensionAbility**.
 
-* To use the open APIs of the USB DDK, you need to declare the matching ACL permissions in **module.json5**, for example, **ohos.permission.ACCESS_DDK_USB**.
+- To use the open APIs of the USB DDK, you need to declare the matching ACL permissions in **module.json5**, for example, **ohos.permission.ACCESS_DDK_USB**.
 
 ## Environment Setup
 

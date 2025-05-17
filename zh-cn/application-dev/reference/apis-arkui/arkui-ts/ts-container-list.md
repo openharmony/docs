@@ -471,7 +471,7 @@ maintainVisibleContentPosition(enabled: boolean)
 
 > **说明：** 
 > - 只有使用LazyForEach在显示区域外插入或删除数据时，才能保持可见内容位置不变。使用ForEach插入或删除数据或使用LazyForEach重新加载数据时，即使maintainVisibleContentPosition属性设置为true，可见区内容位置也会跟随变化。
-> - 从API version 20开始，使用[Repeat](../../../ui/state-management/arkts-new-rendering-control-repeat.md)在virtualScroll模式下，显示区域外插入或删除数据时，保持可见内容位置不变。
+> - 从API version 20开始，使用[Repeat](../../../ui/state-management/arkts-new-rendering-control-repeat.md)在懒加载场景下，显示区域外插入或删除数据时，保持可见内容位置不变。
 > - maintainVisibleContentPosition属性设置为true后，在显示区域上方插入或删除数据，会触发onDidScroll、onScrollIndex事件。
 > - maintainVisibleContentPosition属性设置为true后，在多列场景下，一次插入或删除整行数据，可以保持可见内容位置不变，如果不是插入或删除整行数据，可见内容位置还是会发生变化。
 
@@ -686,7 +686,7 @@ onScrollFrameBegin(event: (offset: number, state: ScrollState) => { offsetRemain
 
 onScrollStart(event: () => void)
 
-列表滑动开始时触发。手指拖动列表或列表的滚动条触发的滑动开始时，会触发该事件。使用[Scroller](ts-container-scroll.md#scroller)滑动控制器触发的带动画的滑动，动画开始时会触发该事件
+列表滑动开始时触发。手指拖动列表或列表的滚动条触发的滑动开始时，会触发该事件。使用[Scroller](ts-container-scroll.md#scroller)滑动控制器触发的带动画的滑动，动画开始时会触发该事件。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 

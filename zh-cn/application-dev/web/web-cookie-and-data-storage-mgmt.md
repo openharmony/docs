@@ -8,7 +8,7 @@ Cookie是服务端发送客户端的数据。客户端持有Cookie，便于服�
 
 Web组件提供[WebCookieManager](../reference/apis-arkweb/js-apis-webview.md#webcookiemanager)类来管理Cookie信息。Cookie信息存储在应用沙箱路径下/proc/{pid}/root/data/storage/el2/base/cache/web/Cookies的文件中。
 
-下面以[configCookieSync()](../reference/apis-arkweb/js-apis-webview.md#configcookiesync11)接口举例，为“www\.example.com”设置单个Cookie的值“value=test”。其他Cookie的相关功能及使用，请参考[WebCookieManager()](../reference/apis-arkweb/js-apis-webview.md#webcookiemanager)接口文档。
+下面以[configCookieSync()](../reference/apis-arkweb/js-apis-webview.md#configcookiesync11)接口为例，为“www\.example.com”设置单个Cookie的值“value=test”。其他Cookie的相关功能及使用，请参考[WebCookieManager()](../reference/apis-arkweb/js-apis-webview.md#webcookiemanager)接口文档。
 
 
 ```ts
@@ -47,13 +47,13 @@ struct WebComponent {
 
 使用[cacheMode()](../reference/apis-arkweb/ts-basic-components-web.md#cachemode)配置页面资源的缓存模式，Web组件为开发者提供四种缓存模式，分别为：
 
-- Default : 优先使用未过期的缓存。如果缓存不存在，则从网络获取。
+- Default：优先使用未过期的缓存。如果缓存不存在，则从网络获取。
 
-- None : 加载资源使用缓存。如果缓存中无该资源，则从网络中获取。
+- None：加载资源使用缓存。如果缓存中无该资源，则从网络中获取。
 
-- Online : 加载资源不使用缓存。全部从网络中获取。
+- Online：加载资源不使用缓存。全部从网络中获取。
 
-- Only : 只从缓存中加载资源。
+- Only：只从缓存中加载资源。
 
 
 在下面的示例中，缓存设置为None模式。

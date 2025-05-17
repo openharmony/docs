@@ -42,11 +42,11 @@ import { FrameNode, LayoutConstraint, ExpandMode, typeNode, NodeAdapter } from "
 | EXPAND | 1 | 表示展开当前FrameNode的子节点。如果FrameNode包含[LazyForEach](./arkui-ts/ts-rendering-control-lazyforeach.md)子节点，获取所有子节点时，展开当前FrameNode的子节点。子节点序列号按所有子节点计算。 |
 | LAZY_EXPAND | 2 | 表示按需展开当前FrameNode的子节点。如果FrameNode包含[LazyForEach](./arkui-ts/ts-rendering-control-lazyforeach.md)子节点，获取在主树上的子节点时，不展开当前FrameNode的子节点；获取不在主树上的子节点时，展开当前FrameNode的子节点。子节点序列号按所有子节点计算。 |
 
-## InteractionEventBindingInfo<sup>18+</sup>
+## InteractionEventBindingInfo<sup>19+</sup>
 
 如果当前节点上绑定了所要查询的交互事件，则返回一个InteractionEventBindingInfo对象，指示事件绑定详细信息。
 
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -75,7 +75,7 @@ import { FrameNode, LayoutConstraint, ExpandMode, typeNode, NodeAdapter } from "
 
 ## UIStatesChangeHandler<sup>20+</sup>
 
-type UIStatesChangeHandler = (currentUIStates: number) => void
+type UIStatesChangeHandler = (node: FrameNode, currentUIStates: number) => void
 
 当UI状态发生变化时触发的回调。
 
@@ -85,7 +85,8 @@ type UIStatesChangeHandler = (currentUIStates: number) => void
 
 | 参数名   | 类型                      | 必填 | 说明                                                     |
 | -------- | ----------------------------- | ---- | ------------------------------------------------------------ |
-| currentUIStates    | number         | 是   | 回调触发时当前的UI状态。<br>可以通过位与运算判断当前包含哪些状态，如：if (currentState & UIState.PRESSED == UIState.PRESSED)                                            |
+| node    | [FrameNode](#framenode) | 是   | 触发UI状态变化的节点。                                            |
+| currentUIStates    | number         | 是   | 回调触发时当前的UI状态。<br>可以通过位与运算判断当前包含哪些[UIState](#uistate20)状态。<br>位与运算方法：if (currentState & UIState.PRESSED == UIState.PRESSED)。                                            |
 
 
 ## FrameNode
@@ -1583,25 +1584,25 @@ getCrossLanguageOptions(): CrossLanguageOptions
 
 请参考[节点操作示例](#节点操作示例)。
 
-### getInteractionEventBindingInfo<sup>18+</sup>
+### getInteractionEventBindingInfo<sup>19+</sup>
 
 getInteractionEventBindingInfo(eventType: EventQueryType): InteractionEventBindingInfo | undefined
 
 获取目标节点的事件绑定信息，如果该组件节点上没有绑定要查询的交互事件类型时，返回 undefined。
 
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 参数名 | 类型 | 必填 | 说明  |
 | ------------------ | ------------------ | ------------------- | ------------------- |
-| eventType | [EventQueryType](./arkui-ts/ts-appendix-enums.md#eventquerytype18) | 是  | 要查询的交互事件类型。 |
+| eventType | [EventQueryType](./arkui-ts/ts-appendix-enums.md#eventquerytype19) | 是  | 要查询的交互事件类型。 |
 
 **返回值：**
 
 | 类型               | 说明               |
 | ------------------ | ------------------ |
-| [InteractionEventBindingInfo](#interactioneventbindinginfo18)&nbsp;\|&nbsp;undefined | 如果当前节点上绑定了所要查询的交互事件，则返回一个InteractionEventBindingInfo对象，指示事件绑定详细信息，如果没有绑定任何交互事件则返回undefined。 |
+| [InteractionEventBindingInfo](#interactioneventbindinginfo19)&nbsp;\|&nbsp;undefined | 如果当前节点上绑定了所要查询的交互事件，则返回一个InteractionEventBindingInfo对象，指示事件绑定详细信息，如果没有绑定任何交互事件则返回undefined。 |
 
 **示例：**
 
@@ -4003,7 +4004,7 @@ struct FrameNodeTypeTest {
 
 ## 节点操作示例
 ```ts
-import { NodeController, FrameNode, UIContext } from '@kit.ArkUI';
+import { NodeController, FrameNode, UIContext, typeNode } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 const TEST_TAG: string = "FrameNode "
@@ -4030,6 +4031,8 @@ class MyNodeController extends NodeController {
       this.childList.push(childNode);
       this.frameNode.appendChild(childNode);
     }
+    let stackNode = typeNode.createNode(uiContext, "Stack");
+    this.frameNode.appendChild(stackNode);
     return this.rootNode;
   }
 
@@ -4116,7 +4119,7 @@ class MyNodeController extends NodeController {
   }
 
   moveFrameNode() {
-    const currentNode = this.frameNode!.getChild(4);
+    const currentNode = this.frameNode!.getChild(10);
     try {
       currentNode!.moveTo(this.rootNode, 0);
       if (this.rootNode!.getChild(0) === currentNode) {
@@ -5707,35 +5710,35 @@ class MyNodeController extends NodeController {
       .focusable(true)
 
     //为Text组件添加多态样式处理能力
-    styleText.addSupportedUIStates(this.theStatesToBeSupported, (currentState: number) => {
+    styleText.addSupportedUIStates(this.theStatesToBeSupported, (node: FrameNode, currentState: number) => {
       if (currentState == UIState.NORMAL) { //判断是否normal要使用等于
         //normal状态，刷normal的UI效果
         console.info('Callback UIState.NORMAL')
-        styleText.commonAttribute.backgroundColor(Color.Green)
-        styleText.commonAttribute.borderWidth(2)
-        styleText.commonAttribute.borderColor(Color.Black)
+        node.commonAttribute.backgroundColor(Color.Green)
+        node.commonAttribute.borderWidth(2)
+        node.commonAttribute.borderColor(Color.Black)
       }
       if ((currentState & UIState.PRESSED) == UIState.PRESSED) {
         //press状态，刷press的UI效果
         console.info('Callback UIState.PRESSED')
-        styleText.commonAttribute.backgroundColor(Color.Brown)
+        node.commonAttribute.backgroundColor(Color.Brown)
       }
       if ((currentState & UIState.FOCUSED) == UIState.FOCUSED) {
         //focused状态，刷focused的UI效果
         console.info('Callback UIState.FOCUSED')
-        styleText.commonAttribute.borderWidth(5)
-        styleText.commonAttribute.borderColor(Color.Yellow)
+        node.commonAttribute.borderWidth(5)
+        node.commonAttribute.borderColor(Color.Yellow)
       }
       if ((currentState & UIState.DISABLED) == UIState.DISABLED) {
         //disabled状态，刷disabled的UI效果
         console.info('Callback UIState.DISABLED')
-        styleText.commonAttribute.backgroundColor(Color.Gray)
-        styleText.commonAttribute.borderWidth(0)
+        node.commonAttribute.backgroundColor(Color.Gray)
+        node.commonAttribute.borderWidth(0)
       }
       if ((currentState & UIState.SELECTED) == UIState.SELECTED) {
         //selected状态，刷selected的UI效果
         console.info('Callback UIState.SELECTED')
-        styleText.commonAttribute.backgroundColor(Color.Pink)
+        node.commonAttribute.backgroundColor(Color.Pink)
       }
     }, false)
 

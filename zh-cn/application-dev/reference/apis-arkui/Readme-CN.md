@@ -84,6 +84,7 @@
       - [鼠标事件](arkui-ts/ts-universal-mouse-key.md)
       - [表冠事件](arkui-ts/ts-universal-events-crown.md)
       - [悬浮事件](arkui-ts/ts-universal-events-hover.md)
+      - [无障碍事件](arkui-ts/ts-universal-accessibility-event.md)
       - [无障碍悬浮事件](arkui-ts/ts-universal-accessibility-hover-event.md)
       - [组件区域变化事件](arkui-ts/ts-universal-component-area-change-event.md)
       - [组件尺寸变化事件](arkui-ts/ts-universal-component-size-change-event.md)
@@ -133,6 +134,7 @@
       - [自定义绘制](arkui-ts/ts-universal-attributes-draw-modifier.md)
       - [自定义内容](arkui-ts/ts-universal-attributes-content-modifier.md)
       - [自定义属性设置](arkui-ts/ts-universal-attributes-custom-property.md)
+      - [自定义窗口工具栏](arkui-ts/ts-universal-attributes-toolbar.md)
       - 触摸交互控制<!--touch-interactions-->
         - [触摸热区设置](arkui-ts/ts-universal-attributes-touch-target.md)
         - [触摸测试控制](arkui-ts/ts-universal-attributes-hit-test-behavior.md)
@@ -212,6 +214,7 @@
     - [StepperItem](arkui-ts/ts-basic-components-stepperitem.md)
     - [Tabs](arkui-ts/ts-container-tabs.md)
     - [TabContent](arkui-ts/ts-container-tabcontent.md)
+    - [ToolBarItem](arkui-ts/ts-basic-components-toolbaritem.md)
   - 按钮与选择<!--buttons-and-selections-->
     - [Button](arkui-ts/ts-basic-components-button.md)
     - [Toggle](arkui-ts/ts-basic-components-toggle.md)
@@ -517,7 +520,9 @@
     - [半模态错误码](errorcode-bindSheet.md)
     - [滚动类组件错误码](errorcode-scroll.md)
     - [截图错误码](errorcode-snapshot.md)
+    - [属性字符串错误码](errorcode-styled-string.md)
     - [UI上下文错误码](errorcode-uicontext.md)
+    - [交互事件错误码](errorcode-event.md)
     <!--Del-->
     - [UIExtension错误码](errorcode-uiextension.md)
     <!--DelEnd-->

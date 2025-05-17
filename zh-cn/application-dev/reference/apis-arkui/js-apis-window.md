@@ -407,6 +407,66 @@ import { window } from '@kit.ArkUI';
 | ------ | ------ | ---- | ------------------------------------------ |
 | beginRect | [Rect](#rect7)  | 是 | 动画开始前软键盘的位置和大小。 |
 | endRect | [Rect](#rect7)  | 是 | 动画结束后软键盘的位置和大小。 |
+| animated<sup>20+</sup> | boolean  | 否 | 当前是否有显示/隐藏动画，true表示有动画，false表示没有。 |
+| config<sup>20+</sup> | [WindowAnimationConfig](#windowanimationconfig20)  | 否 | 动画配置信息。 |
+
+## WindowAnimationCurve<sup>20+</sup>
+
+窗口动画曲线类型。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：**  SystemCapability.Window.SessionManager
+
+| 名称                | 值   | 说明                                                         |
+| ------------------- | ---- | ------------------------------------------------------------ |
+| LINEAR              | 0    | 表示动画从头到尾的速度都是相同的。<br/>使用该曲线类型时[WindowAnimationConfig](#windowanimationconfig20)中duration必填。<br/>使用该曲线类型时[WindowAnimationConfig](#windowanimationconfig20)中param选填，且不生效。 |
+| INTERPOLATION_SPRING | 1    | 表示插值器弹簧曲线，一条从0到1的动画曲线，实际动画值根据曲线进行插值计算。动画时间由曲线参数决定，不受[WindowAnimationConfig](#windowanimationconfig20)中的duration参数控制。<br/>使用该曲线类型时[WindowAnimationConfig](#windowanimationconfig20)中duration选填，且不生效。<br/>使用该曲线类型时[WindowAnimationConfig](#windowanimationconfig20)中param必填。 |
+
+## WindowAnimationConfig<sup>20+</sup>
+
+窗口动画参数配置。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+| 名称     | 类型                                                      | 必填 | 说明                                                         |
+| -------- | --------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| curve    | [WindowAnimationCurve](#windowanimationcurve20)           | 是   | 动画曲线类型。                                               |
+| duration | number                                                    | 否   | 动画播放的时长，单位毫秒（ms）。<br/>默认值：0，最大值：3000。<br/>根据动画曲线类型决定是否必填。 |
+| param    | [WindowAnimationCurveParam](#windowanimationcurveparam20) | 否   | 动画曲线参数，根据动画曲线类型决定是否必填。                 |
+
+## WindowAnimationCurveParam<sup>20+</sup>
+
+type WindowAnimationCurveParam = Array&lt;number&gt;
+
+动画曲线参数。不同曲线类型[WindowAnimationCurve](#windowanimationcurve20)，对应的WindowAnimationCurveParam参数含义不同。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+当曲线类型为LINEAR，动画曲线参数选填，且不生效。
+
+当曲线类型为INTERPOLATION_SPRING时，动画曲线参数需设置为长度为4的数组：[velocity,mass,stiffness,damping]。
+
+- velocity：表示初始速度，类型为number，必填。
+
+  用于描述外部因素对弹性动效产生的影响参数，目的是保证对象从之前的运动状态平滑地过渡到弹性动效。该速度是归一化速度，其值等于动画开始时的实际速度除以动画属性改变值。
+
+- mass：表示质量，类型为number。必填，取值范围为(0, +∞)，当取值小于等于0时，按1处理。
+
+  用于描述弹性系统的受力对象，会对弹性系统产生惯性影响。质量越大，震荡的幅度越大，恢复到平衡位置的速度越慢。
+
+- stiffness：表示刚度，类型为number。必填，取值范围为(0, +∞)，当取值小于等于0时，按1处理。
+
+  用于描述物体抵抗施加的力而形变的程度。刚度越大，抵抗变形的能力越强，恢复到平衡位置的速度越快。
+
+- damping：表示刚度，类型为number。必填，取值范围为(0, +∞)，当取值小于等于0时，按1处理。
+
+  用于描述系统在受到扰动后震荡及衰减的情形。阻尼越大，弹性运动的震荡次数越少、震荡幅度越小。
+
 
 ## WindowInfo<sup>18+</sup>
 
@@ -1724,7 +1784,6 @@ destroyWindow(callback: AsyncCallback&lt;void&gt;): void
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
 | 1300002 | This window state is abnormal.               |
-| 1300003 | This window manager service works abnormally. |
 
 **示例：**
 
@@ -1764,7 +1823,6 @@ destroyWindow(): Promise&lt;void&gt;
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
 | 1300002 | This window state is abnormal.               |
-| 1300003 | This window manager service works abnormally. |
 
 **示例：**
 
@@ -1838,7 +1896,7 @@ moveWindowTo(x: number, y: number): Promise&lt;void&gt;
 
 <!--RP4-->
 全屏模式下，本接口仅在2in1设备上生效。<!--RP4End-->
-在2in1设备上窗口相对于屏幕移动，其他设备上窗口相对于父窗口移动。
+使用此接口，在2in1设备上窗口相对于屏幕移动，在其他设备上窗口相对于父窗口移动。若需要在非2in1设备上相对于屏幕进行移动，建议使用接口[moveWindowToGlobal()](#movewindowtoglobal15)。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -1888,7 +1946,7 @@ try {
 
 moveWindowToAsync(x: number, y: number): Promise&lt;void&gt;
 
-移动窗口位置，使用Promise异步回调。调用生效后返回，回调中可使用getWindowProperties（见示例）立即获取最终生效结果。
+移动窗口位置，使用Promise异步回调。调用生效后返回，回调中可使用[getWindowProperties()](#getwindowproperties9)（见示例）立即获取最终生效结果。
 
 仅在自由悬浮窗口模式（即窗口模式为window.WindowStatusType.FLOATING）下生效。
 在2in1设备上窗口相对于屏幕移动，其他设备上窗口相对于父窗口移动。
@@ -1945,7 +2003,7 @@ try {
 
 moveWindowToAsync(x: number, y: number, moveConfiguration?: MoveConfiguration): Promise&lt;void&gt;
 
-移动窗口位置，使用Promise异步回调。调用生效后返回，回调中可使用getWindowProperties（见示例）立即获取最终生效结果。
+移动窗口位置，使用Promise异步回调。调用生效后返回，回调中可使用[getWindowProperties()](#getwindowproperties9)（见示例）立即获取最终生效结果。
 
 仅在自由悬浮窗口模式（即窗口模式为window.WindowStatusType.FLOATING）下生效。
 在2in1设备上窗口相对于屏幕移动，其他设备上窗口相对于父窗口移动。
@@ -2007,7 +2065,7 @@ try {
 
 moveWindowToGlobal(x: number, y: number): Promise&lt;void&gt;
 
-基于屏幕坐标移动窗口位置，使用Promise异步回调。调用生效后返回。
+基于屏幕坐标移动窗口位置，使用Promise异步回调。调用生效后返回，回调中可使用[getWindowProperties()](#getwindowproperties9)（见示例）立即获取最终生效结果。
 
 全屏模式窗口不支持该操作。
 
@@ -2051,6 +2109,8 @@ try {
   let promise = windowClass.moveWindowToGlobal(300, 300);
   promise.then(() => {
     console.info('Succeeded in moving the window.');
+    let rect = windowClass?.getWindowProperties().windowRect;
+    console.info(`Get window rect: ` + JSON.stringify(rect));
   }).catch((err: BusinessError) => {
     console.error(`Failed to move the window. Cause code: ${err.code}, message: ${err.message}`);
   });
@@ -2063,7 +2123,7 @@ try {
 
 moveWindowToGlobal(x: number, y: number, moveConfiguration?: MoveConfiguration): Promise&lt;void&gt;
 
-基于屏幕坐标移动窗口位置，使用Promise异步回调。调用生效后返回。
+基于屏幕坐标移动窗口位置，使用Promise异步回调。调用生效后返回，回调中可使用[getWindowProperties()](#getwindowproperties9)（见示例）立即获取最终生效结果。
 
 全屏模式窗口不支持该操作。
 
@@ -2112,6 +2172,8 @@ try {
   let promise = windowClass.moveWindowToGlobal(300, 300, moveConfiguration);
   promise.then(() => {
     console.info('Succeeded in moving the window.');
+    let rect = windowClass?.getWindowProperties().windowRect;
+    console.info(`Get window rect: ` + JSON.stringify(rect));
   }).catch((err: BusinessError) => {
     console.error(`Failed to move the window. Cause code: ${err.code}, message: ${err.message}`);
   });
@@ -2127,7 +2189,7 @@ resize(width: number, height: number, callback: AsyncCallback&lt;void&gt;): void
 改变当前窗口大小，使用callback异步回调。
 
 应用主窗口与子窗口存在大小限制，默认宽度范围：[320, 1920]，默认高度范围：[240, 1920]，单位为vp。
-应用主窗口与子窗口的最小宽度与最小高度可由产品端进行配置，配置后的最小宽度与最小高度以产品段配置值为准，具体尺寸限制范围可以通过[getWindowLimits](#getwindowlimits11)接口进行查询。
+应用主窗口与子窗口的最小宽度与最小高度可由产品端进行配置，配置后的最小宽度与最小高度以产品端配置值为准，具体尺寸限制范围可以通过[getWindowLimits](#getwindowlimits11)接口进行查询。
 
 系统窗口存在大小限制，宽度范围：(0, 1920]，高度范围：(0, 1920]，单位为vp。
 
@@ -2185,7 +2247,7 @@ resize(width: number, height: number): Promise&lt;void&gt;
 改变当前窗口大小，使用Promise异步回调。调用成功即返回，该接口返回后无法立即获取最终生效结果，如需立即获取，建议使用接口[resizeAsync()](#resizeasync12)。
 
 应用主窗口与子窗口存在大小限制，默认宽度范围：[320, 1920]，默认高度范围：[240, 1920]，单位为vp。
-应用主窗口与子窗口的最小宽度与最小高度可由产品端进行配置，配置后的最小宽度与最小高度以产品段配置值为准，具体尺寸限制范围可以通过[getWindowLimits](#getwindowlimits11)接口进行查询。
+应用主窗口与子窗口的最小宽度与最小高度可由产品端进行配置，配置后的最小宽度与最小高度以产品端配置值为准，具体尺寸限制范围可以通过[getWindowLimits](#getwindowlimits11)接口进行查询。
 
 系统窗口存在大小限制，宽度范围：(0, 1920]，高度范围：(0, 1920]，单位为vp。
 
@@ -2243,10 +2305,10 @@ try {
 
 resizeAsync(width: number, height: number): Promise&lt;void&gt;
 
-改变当前窗口大小，使用Promise异步回调。调用生效后返回，回调中可使用getWindowProperties（见示例）立即获取最终生效结果。
+改变当前窗口大小，使用Promise异步回调。调用生效后返回，回调中可使用[getWindowProperties()](#getwindowproperties9)（见示例）立即获取最终生效结果。
 
 应用主窗口与子窗口存在大小限制，默认宽度范围：[320, 1920]，默认高度范围：[240, 1920]，单位为vp。
-应用主窗口与子窗口的最小宽度与最小高度可由产品端进行配置，配置后的最小宽度与最小高度以产品段配置值为准，具体尺寸限制范围可以通过[getWindowLimits](#getwindowlimits11)接口进行查询。
+应用主窗口与子窗口的最小宽度与最小高度可由产品端进行配置，配置后的最小宽度与最小高度以产品端配置值为准，具体尺寸限制范围可以通过[getWindowLimits](#getwindowlimits11)接口进行查询。
 
 系统窗口存在大小限制，宽度范围：(0, 1920]，高度范围：(0, 1920]，单位为vp。
 
@@ -3493,7 +3555,6 @@ setUIContent(path: string, callback: AsyncCallback&lt;void&gt;): void
 | ------- | -------------------------------------------- |
 | 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 1300002 | This window state is abnormal.               |
-| 1300003 | This window manager service works abnormally. |
 
 **示例：**
 
@@ -3544,7 +3605,6 @@ setUIContent(path: string): Promise&lt;void&gt;
 | ------- | -------------------------------------------- |
 | 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 1300002 | This window state is abnormal.               |
-| 1300003 | This window manager service works abnormally. |
 
 **示例：**
 
@@ -3591,7 +3651,6 @@ loadContent(path: string, storage: LocalStorage, callback: AsyncCallback&lt;void
 | ------- | -------------------------------------------- |
 | 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Invalid path parameter.|
 | 1300002 | This window state is abnormal.               |
-| 1300003 | This window manager service works abnormally. |
 
 **示例：**
 
@@ -3643,7 +3702,6 @@ loadContent(path: string, storage: LocalStorage): Promise&lt;void&gt;
 | ------- | -------------------------------------------- |
 | 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Invalid path parameter.|
 | 1300002 | This window state is abnormal.               |
-| 1300003 | This window manager service works abnormally. |
 
 **示例：**
 
@@ -3688,7 +3746,6 @@ loadContentByName(name: string, storage: LocalStorage, callback: AsyncCallback&l
 | -------- | --------------------------------------------- |
 | 401      | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 1300002  | This window state is abnormal.                |
-| 1300003  | This window manager service works abnormally. |
 
 **示例：**
 <!--code_no_check-->
@@ -3761,7 +3818,6 @@ loadContentByName(name: string, callback: AsyncCallback&lt;void&gt;): void
 | -------- | --------------------------------------------- |
 | 401      | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 1300002  | This window state is abnormal.                |
-| 1300003  | This window manager service works abnormally. |
 
 **示例：**
 <!--code_no_check-->
@@ -3837,7 +3893,6 @@ loadContentByName(name: string, storage?: LocalStorage): Promise&lt;void&gt;
 | -------- | --------------------------------------------- |
 | 401      | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 1300002  | This window state is abnormal.                |
-| 1300003  | This window manager service works abnormally. |
 
 **示例：**
 <!--code_no_check-->
@@ -4084,7 +4139,7 @@ try {
 
 on(type: 'keyboardHeightChange', callback: Callback&lt;number&gt;): void
 
-开启固定态软键盘高度变化的监听，当软键盘由本窗口唤出并存在重叠区域时通知键盘高度变化。从API version 10开始，改变软键盘为固定态或者悬浮态方法详细介绍请参见[输入法服务](../apis-ime-kit/js-apis-inputmethodengine.md#changeflag10)。
+开启固定态软键盘高度变化的监听。当软键盘从本窗口唤出且与窗口有重叠区域时，通知键盘高度变化。从API version 10开始，有关将软键盘设置为固定态或悬浮态的方法，请参见[输入法服务](../apis-ime-kit/js-apis-inputmethodengine.md#changeflag10)。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -4095,7 +4150,7 @@ on(type: 'keyboardHeightChange', callback: Callback&lt;number&gt;): void
 | 参数名   | 类型                | 必填 | 说明                                        |
 | -------- | ------------------- | ---- |-------------------------------------------|
 | type     | string              | 是   | 监听事件，固定为'keyboardHeightChange'，即键盘高度变化事件。 |
-| callback | Callback&lt;number&gt; | 是   | 回调函数。返回当前的键盘高度，返回值为整数，单位为px。     |
+| callback | Callback&lt;number&gt; | 是   | 回调函数。返回当前的键盘高度。返回值为整数，单位为px。     |
 
 **错误码：**
 
@@ -4123,7 +4178,7 @@ try {
 
 off(type: 'keyboardHeightChange', callback?: Callback&lt;number&gt;): void
 
-关闭固定态软键盘高度变化的监听。从API version 10开始，改变软键盘为固定态或者悬浮态方法详细介绍请参见[输入法服务](../apis-ime-kit/js-apis-inputmethodengine.md#changeflag10)。
+关闭固定态软键盘高度变化的监听，使应用程序不再接收键盘高度变化的通知。从API version 10开始，有关将软键盘设置为固定态或悬浮态的方法，请参见[输入法服务](../apis-ime-kit/js-apis-inputmethodengine.md#changeflag10)。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -4134,7 +4189,7 @@ off(type: 'keyboardHeightChange', callback?: Callback&lt;number&gt;): void
 | 参数名   | 类型                   | 必填 | 说明                                                         |
 | -------- | ---------------------- | ---- | ------------------------------------------------------------ |
 | type     | string                 | 是   | 监听事件，固定为'keyboardHeightChange'，即键盘高度变化事件。 |
-| callback | Callback&lt;number&gt; | 否   | 回调函数。返回当前的键盘高度，返回值为整数，单位为px。若传入参数，则关闭该监听。如果未传入参数，则关闭所有固定态软键盘高度变化的监听。                               |
+| callback | Callback&lt;number&gt; | 否   | 回调函数。返回当前的键盘高度，返回值为整数，单位为px。若传入参数，则关闭该监听；未传入参数，则关闭所有固定态软键盘高度变化的监听。                               |
 
 **错误码：**
 
@@ -4160,6 +4215,184 @@ try {
   windowClass.off('keyboardHeightChange');
 } catch (exception) {
   console.error(`Failed to disable the listener for keyboard height changes. Cause code: ${exception.code}, message: ${exception.message}`);
+}
+```
+
+### on('keyboardWillShow')<sup>20+</sup>
+
+on(type: 'keyboardWillShow', callback: Callback&lt;KeyboardInfo&gt;): void
+
+开启固定态软键盘即将开始显示的监听。此监听在固定态软键盘即将开始显示或软键盘由悬浮态切换为固定态时触发。
+
+改变软键盘为固定态或者悬浮态方法详细介绍请参见[输入法服务](../apis-ime-kit/js-apis-inputmethodengine.md#changeflag10)。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**参数：**
+
+| 参数名   | 类型                | 必填 | 说明                                        |
+| -------- | ------------------- | ---- |-------------------------------------------|
+| type     | string              | 是   | 监听事件，固定为'keyboardWillShow'，即固定态软键盘即将开始显示的事件。 |
+| callback | Callback&lt;[KeyboardInfo](#keyboardinfo18)&gt; | 是   | 回调函数。返回软键盘窗口信息。                    |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[窗口错误码](errorcode-window.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------------------- |
+| 801     | Capability not supported. Function keyboardWillShow can not work correctly due to limited device capabilities. |
+| 1300002 | This window state is abnormal.               |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+const callback = (keyboardInfo: window.KeyboardInfo) => {
+  console.info(`Keyboard will show animation. keyboardInfo: ` + JSON.stringify(keyboardInfo));
+}
+try {
+  windowClass.on('keyboardWillShow', callback);
+  console.info(`Register keyboard will show animation success`);
+} catch (exception) {
+  console.error(`Failed to register or unregister callback. Cause code: ${exception.code}, message: ${exception.message}`);
+}
+```
+
+### off('keyboardWillShow')<sup>20</sup>
+
+off(type: 'keyboardWillShow', callback?: Callback&lt;KeyboardInfo&gt;): void
+
+关闭固定态软键盘即将开始显示的监听。改变输入法窗口为固定态或者悬浮态方法详细介绍请参见[输入法服务](../apis-ime-kit/js-apis-inputmethodengine.md#changeflag10)。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**参数：**
+
+| 参数名   | 类型                   | 必填 | 说明                                                         |
+| -------- | ---------------------- | ---- | ------------------------------------------------------------ |
+| type     | string                 | 是   | 监听事件，固定为'keyboardWillShow'，即固定态软键盘即将开始显示的事件。 |
+| callback | Callback&lt;[KeyboardInfo](#keyboardinfo18)&gt; | 否   |  回调函数。返回软键盘窗口信息。若传入参数，则关闭该监听。如果未传入参数，则关闭所有固定态软键盘即将开始显示的监听。                               |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[窗口错误码](errorcode-window.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------------------- |
+| 801     | Capability not supported. Function keyboardWillShow can not work correctly due to limited device capabilities. |
+| 1300002 | This window state is abnormal.               |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+const callback = (keyboardInfo: window.KeyboardInfo) => {
+  console.info(`Keyboard will show animation. keyboardInfo: ` + JSON.stringify(keyboardInfo));
+}
+try {
+  windowClass.on('keyboardWillShow', callback);
+  windowClass.off('keyboardWillShow', callback);
+  // 如果通过on开启多个callback进行监听，同时关闭所有监听：
+  windowClass.off('keyboardWillShow');
+  console.info(`Unregister keyboard will show animation success`);
+} catch (exception) {
+  console.error(`Failed to register or unregister callback. Cause code: ${exception.code}, message: ${exception.message}`);
+}
+```
+
+### on('keyboardWillHide')<sup>20+</sup>
+
+on(type: 'keyboardWillHide', callback: Callback&lt;KeyboardInfo&gt;): void
+
+开启固定态软键盘即将开始隐藏的监听。此监听在固定态软键盘即将开始隐藏或软键盘由固定态切换为悬浮态时触发。
+
+改变软键盘为固定态或者悬浮态方法详细介绍请参见[输入法服务](../apis-ime-kit/js-apis-inputmethodengine.md#changeflag10)。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**参数：**
+
+| 参数名   | 类型                | 必填 | 说明                                        |
+| -------- | ------------------- | ---- |-------------------------------------------|
+| type     | string              | 是   | 监听事件，固定为'keyboardWillHide'，即固定态软键盘即将开始隐藏的事件。 |
+| callback | Callback&lt;[KeyboardInfo](#keyboardinfo18)&gt; | 是   | 回调函数。返回软键盘窗口信息。                    |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[窗口错误码](errorcode-window.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------------------- |
+| 801     | Capability not supported. Function keyboardWillHide can not work correctly due to limited device capabilities. |
+| 1300002 | This window state is abnormal.               |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+const callback = (keyboardInfo: window.KeyboardInfo) => {
+  console.info(`Keyboard will hide animation. keyboardInfo: ` + JSON.stringify(keyboardInfo));
+}
+try {
+  windowClass.on('keyboardWillHide', callback);
+  console.info(`Register keyboard will hide animation success`);
+} catch (exception) {
+  console.error(`Failed to register or unregister callback. Cause code: ${exception.code}, message: ${exception.message}`);
+}
+```
+
+### off('keyboardWillHide')<sup>20+</sup>
+
+off(type: 'keyboardWillHide', callback?: Callback&lt;KeyboardInfo&gt;): void
+
+关闭固定态软键盘即将开始隐藏的监听。改变输入法窗口为固定态切换至悬浮态方法详细介绍请参见[输入法服务](../apis-ime-kit/js-apis-inputmethodengine.md#changeflag10)。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**参数：**
+
+| 参数名   | 类型                   | 必填 | 说明                                                         |
+| -------- | ---------------------- | ---- | ------------------------------------------------------------ |
+| type     | string                 | 是   | 监听事件，固定为'keyboardWillHide'，即固定态软键盘即将开始隐藏的事件。 |
+| callback | Callback&lt;[KeyboardInfo](#keyboardinfo18)&gt; | 否   |  回调函数。返回软键盘窗口信息。若传入参数，则关闭该监听。如果未传入参数，则关闭所有固定态软键盘即将开始隐藏的监听。                               |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[窗口错误码](errorcode-window.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------------------- |
+| 801     | Capability not supported. Function keyboardWillHide can not work correctly due to limited device capabilities. |
+| 1300002 | This window state is abnormal.               |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+const callback = (keyboardInfo: window.KeyboardInfo) => {
+  console.info(`Keyboard will hide animation. keyboardInfo: ` + JSON.stringify(keyboardInfo));
+}
+try {
+  windowClass.on('keyboardWillHide', callback);
+  windowClass.off('keyboardWillHide', callback);
+  // 如果通过on开启多个callback进行监听，同时关闭所有监听：
+  windowClass.off('keyboardWillHide');
+  console.info(`Unregister keyboard will hide animation success`);
+} catch (exception) {
+  console.error(`Failed to register or unregister callback. Cause code: ${exception.code}, message: ${exception.message}`);
 }
 ```
 
@@ -8202,7 +8435,7 @@ try {
 }
 ```
 
-### setParentWindow<sup>18+</sup>
+### setParentWindow<sup>19+</sup>
 
 setParentWindow(windowId: number): Promise&lt;void&gt;
 
@@ -8216,7 +8449,7 @@ setParentWindow(windowId: number): Promise&lt;void&gt;
 
 **系统能力：** SystemCapability.Window.SessionManager
 
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -8236,7 +8469,6 @@ setParentWindow(windowId: number): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息 |
 | ------- | ------------------------------ |
-| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
 | 1300002 | This window state is abnormal. |
 | 1300003 | This window manager service works abnormally. |
@@ -8263,7 +8495,7 @@ try {
 }
 ```
 
-### getParentWindow<sup>18+</sup>
+### getParentWindow<sup>19+</sup>
 
 getParentWindow(): Window
 
@@ -8273,7 +8505,7 @@ getParentWindow(): Window
 
 **系统能力：** SystemCapability.Window.SessionManager
 
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **返回值：**
 
@@ -11981,7 +12213,6 @@ createSubWindow(name: string, callback: AsyncCallback&lt;Window&gt;): void
 | ------- | ------------------------------ |
 | 401     | Parameter error. Possible cause: Incorrect parameter types. |
 | 1300002 | This window state is abnormal. |
-| 1300005 | This window stage is abnormal. |
 
 **示例：**
 
@@ -12051,7 +12282,6 @@ createSubWindow(name: string): Promise&lt;Window&gt;
 | ------- | ------------------------------ |
 | 401     | Parameter error. Possible cause: Incorrect parameter types. |
 | 1300002 | This window state is abnormal. |
-| 1300005 | This window stage is abnormal. |
 
 **示例：**
 
@@ -12173,7 +12403,7 @@ getSubWindow(callback: AsyncCallback&lt;Array&lt;Window&gt;&gt;): void
 
 | 错误码ID | 错误信息 |
 | ------- | ------------------------------ |
-| 1300005 | This window stage is abnormal. |
+| 1300002 | This window state is abnormal. |
 
 **示例：**
 <!--code_no_check-->
@@ -12225,7 +12455,7 @@ getSubWindow(): Promise&lt;Array&lt;Window&gt;&gt;
 
 | 错误码ID | 错误信息 |
 | ------- | ------------------------------ |
-| 1300005 | This window stage is abnormal. |
+| 1300002 | This window state is abnormal. |
 
 **示例：**
 <!--code_no_check-->
@@ -12279,7 +12509,6 @@ loadContent(path: string, storage: LocalStorage, callback: AsyncCallback&lt;void
 | ------- | ------------------------------ |
 | 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Invalid path parameter.|
 | 1300002 | This window state is abnormal. |
-| 1300005 | This window stage is abnormal. |
 
 **示例：**
 
@@ -12345,7 +12574,6 @@ loadContent(path: string, storage?: LocalStorage): Promise&lt;void&gt;
 | ------- | ------------------------------ |
 | 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Invalid path parameter.|
 | 1300002 | This window state is abnormal. |
-| 1300005 | This window stage is abnormal. |
 
 **示例：**
 
@@ -12404,7 +12632,6 @@ loadContent(path: string, callback: AsyncCallback&lt;void&gt;): void
 | ------- | ------------------------------ |
 | 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Invalid path parameter.|
 | 1300002 | This window state is abnormal. |
-| 1300005 | This window stage is abnormal. |
 
 **示例：**
 
@@ -12462,7 +12689,6 @@ loadContentByName(name: string, storage: LocalStorage, callback: AsyncCallback&l
 | -------- | --------------------------------------------- |
 | 401      | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 1300002  | This window state is abnormal.                |
-| 1300003  | This window manager service works abnormally. |
 
 **示例：**
 
@@ -12545,7 +12771,6 @@ loadContentByName(name: string, callback: AsyncCallback&lt;void&gt;): void
 | -------- | --------------------------------------------- |
 | 401      | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 1300002  | This window state is abnormal.                |
-| 1300003  | This window manager service works abnormally. |
 
 **示例：**
 
@@ -12625,7 +12850,6 @@ loadContentByName(name: string, storage?: LocalStorage): Promise&lt;void&gt;;
 | -------- | --------------------------------------------- |
 | 401      | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 1300002  | This window state is abnormal.                |
-| 1300003  | This window manager service works abnormally. |
 
 **示例：**
 
@@ -12913,7 +13137,7 @@ export default class EntryAbility extends UIAbility {
 
 setDefaultDensityEnabled(enabled: boolean): void
 
-设置应用是否使用系统默认Density。
+设置应用是否使用系统默认Density，调用此接口前，需先调用[WindowStage.loadContent()](#loadcontent9-2)初始化布局，确保接口调用时序正确。
 
 不调用此接口进行设置，则表示不使用系统默认Density，即窗口会跟随系统显示大小变化重新布局。
 
@@ -12945,17 +13169,27 @@ setDefaultDensityEnabled(enabled: boolean): void
 ```ts
 // EntryAbility.ets
 import { UIAbility } from '@kit.AbilityKit';
+import { window } from '@kit.ArkUI';
+import { BusinessError } from '@kit.BasicServicesKit'
 
 export default class EntryAbility extends UIAbility {
   // ...
 
   onWindowStageCreate(windowStage: window.WindowStage) {
-    console.info('onWindowStageCreate');
-    try {
-      windowStage.setDefaultDensityEnabled(true);
-    } catch (exception) {
-      console.error(`Failed to set default density enabled. Cause code: ${exception.code}, message: ${exception.message}`);
-    }
+      windowStage.loadContent("pages/page2", (err: BusinessError) => {
+        let errCode: number = err.code;
+        if (errCode) {
+          console.error(`Failed to load the content. Cause code: ${err.code}, message: ${err.message}`);
+          return;
+        }
+        console.info('onWindowStageCreate');
+      try {
+        windowStage.setDefaultDensityEnabled(true);
+        console.info('Succeeded in loading the content.');
+      } catch (exception) {
+        console.error(`Failed to set default density enabled. Cause code: ${exception.code}, message: ${exception.message}`);
+      }
+    });
   }
 };
 ```

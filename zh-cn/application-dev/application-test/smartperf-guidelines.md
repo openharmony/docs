@@ -27,7 +27,7 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
 
 2. Device-daemon端执行需连接硬件设备，Device-hap端需在有屏幕设备使用。
 
-3.<!--RP2-->Device-daemon端执行前需完成[hdc环境配置](https://gitee.com/openharmony/developtools_hdc)。<!--RP2End--> 
+3. <!--RP2-->Device-daemon端执行前需完成[hdc环境配置](https://gitee.com/openharmony/developtools_hdc)。<!--RP2End--> 
 
 <!--RP3-->
 ## SmartPerf Device-hap端
@@ -109,6 +109,7 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
     -VIEW           set layler, for example: -VIEW DisplayNode
     -OUT            set csv output path.
     -d              get device DDR information
+    -ci             get cpu instructions and cycles
     -screen         get screen resolution
     -deviceinfo     get device information
     -server         start a process to listen to the socket message of the start and stop commands
@@ -155,6 +156,7 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
 | -N    |是| 设置采集次数，一秒采集一次。    |
 | -PKG  |否| 设置包名。                |
 | -c    |否| 采集cpu的频点和使用率。<br>设置应用包名时，采集整机和应用CPU信息。 <br>不设置应用包名时，采集整机CPU信息。     |
+| -ci    |否| 采集cpu的指令数。<br>设置应用包名时，采集整机和应用CPU指令数。 <br>不设置应用包名时，采集整机CPU指令数。     |
 | -g    |否| 采集gpu的频点和负载信息。   |
 | -f    |否| 采集指定应用的fps以及屏幕刷新率，必须设置应用包名。        |
 | -t    |否| 采集GPU温度、系统芯片温度。           |
@@ -377,6 +379,35 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
   >
   >- 使用该命令采集时需进入被测应用内。
   >- 该命令集成了历史版本-m的数据（arktsHeapPss、gpuPss、graphicPss...）。
+
+- 采集1次整机cpu指令数
+
+  ```
+    # SP_daemon -N 1 -ci
+
+    order:0 cycles per instruction=4.098151
+    order:1 hw-cpu-cycles=190604622.000000
+    order:2 hw-instructions=46509906.000000
+    order:3 timestamp=1609502927840
+    command exec finished!
+    #
+  ```
+
+- 采集1次整机和指定应用cpu指令数
+
+  ```
+    # SP_daemon -N 1 -PKG ohos.samples.ecg -ci
+
+    order:0 cycles per instruction=4.121963
+    order:1 hw-cpu-cycles=190092457.000000
+    order:2 hw-instructions=46116973.000000
+    order:3 timestamp=1609502995191
+    command exec finished!
+    #
+  ```
+  >**说明**
+  >
+  >- 使用该命令采集时需进入被测应用内。
 
 - 采集2次截图
 
@@ -716,52 +747,55 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
 
     | 数据项    | 说明             |备注|
     | :-----| :--------------------- |:-----|
-    | cpuFrequency      | CPU大中小核频率。        |单位：Hz|
-    | cpuUasge          | CPU各核使用率。          |%|
-    | cpuidleUsage      | CPU空闲态使用率。        |%| 
-    | cpuioWaitUsage    | 等待I/O的使用率。        |%|
-    | cpuirqUsage       | 硬中断的使用率。         |%|  
-    | cpuniceUsage      | 低优先级用户态使用率。    |%|
-    | cpusoftIrqUsage   | 软中断的使用率。         |%| 
-    | cpusystemUsage    | 系统/内核态使用率。      |%|
-    | cpuuserUsage      | 用户态使用率。           |%| 
-    | ProcId            | 进程id。                |-|
-    | ProcAppName       | app包名。                |-| 
-    | ProcCpuLoad       | 进程CPU负载占比。        |%|
-    | ProcCpuUsage      | 进程CPU使用率。          |%| 
-    | ProcUCpuUsage     | 进程用户态CPU使用率。     |%|
-    | ProcSCpuUsage     | 进程内核态CPU使用率。     |%| 
-    | gpuFrequ          | 整机GPU的频率。          |%|
-    | gpuLoad           | 整机GPU的负载占比。      |%|
-    | currentNow        | 当前读到的电流值。       |单位：mA| 
-    | voltageNow        | 当前读到的电压值。       |单位：μV| 
-    | fps               | 每秒帧数。              |单位：fps|
-    | fpsJitters        | 每一帧绘制间隔。        |单位：ns|
-    | refreshrate       | 屏幕刷新率。            |单位：Hz|
-    | networkDown       | 下行速率。              |单位：byte/s|
-    | networkUp         | 上行速率。              |单位：byte/s|
-    | ddrFrequency      | DDR频率。               |单位：Hz|
-    | gpu-thermal       | GPU温度。              |单位：°C|
-    | soc-thermal       | 系统芯片温度。          |单位：°C|
-    | memAvailable      | 整机可用内存。         |单位：KB|
-    | memFree           | 整机空闲内存。         |单位：KB|
-    | memTotal          | 整机总内存。           |单位：KB|
-    | pss               | 进程实际使用内存。      |单位：KB|
-    | sharedClean       | 共享的未改写页面。      |单位：KB|
-    | sharedDirty       | 共享的已改写页面。      |单位：KB|
-    | priviateClean     | 私有的未改写页面。      |单位：KB|
-    | privateDirty      | 私有的已改写页面。      |单位：KB|
-    | swapTotal         | 总的交换内存。          |单位：KB|
-    | swapPss           | 交换的pss内存。        |单位：KB|
-    | HeapSize          | 堆内存大小。           |单位：KB|
-    | HeapAlloc         | 可分配的堆内存大小。    |单位：KB|
-    | HeapFree          | 剩余的堆内存大小。      |单位：KB|
-    | gpuPss            | 使用的gpu内存大小。     |单位：KB|
-    | graphicPss        | 使用的图形内存大小。     |单位：KB|
-    | arktsHeapPss      | 使用的arkts内存大小。    |单位：KB|
-    | nativeHeapPss     | 使用的native内存大小。   |单位：KB|
-    | stackPss          | 使用的栈内存大小。       |单位：KB|
-    | timeStamp         | 当前时间戳。            |对应采集时间| 
+    | cpuFrequency            | CPU大中小核频率。        |单位：Hz|
+    | cpuUasge                | CPU各核使用率。          |%|
+    | cpuidleUsage            | CPU空闲态使用率。        |%| 
+    | cpuioWaitUsage          | 等待I/O的使用率。        |%|
+    | cpuirqUsage             | 硬中断的使用率。         |%|  
+    | cpuniceUsage            | 低优先级用户态使用率。    |%|
+    | cpusoftIrqUsage         | 软中断的使用率。         |%| 
+    | cpusystemUsage          | 系统/内核态使用率。      |%|
+    | cpuuserUsage            | 用户态使用率。           |%| 
+    | ProcId                  | 进程id。                |-|
+    | ProcAppName             | app包名。                |-| 
+    | ProcCpuLoad             | 进程CPU负载占比。        |%|
+    | ProcCpuUsage            | 进程CPU使用率。          |%| 
+    | ProcUCpuUsage           | 进程用户态CPU使用率。     |%|
+    | ProcSCpuUsage           | 进程内核态CPU使用率。     |%| 
+    | gpuFrequ                | 整机GPU的频率。          |%|
+    | gpuLoad                 | 整机GPU的负载占比。      |%|
+    | hw-instructions         | 执行的指令数。          |-|
+    | cycles per instruction  | 每条指令的平均周期数。    |单位：ns|
+    | hw-cpu-cycles           | CPU时钟周期数。          |单位：ns|
+    | currentNow              | 当前读到的电流值。       |单位：mA| 
+    | voltageNow              | 当前读到的电压值。       |单位：μV| 
+    | fps                     | 每秒帧数。              |单位：fps|
+    | fpsJitters              | 每一帧绘制间隔。        |单位：ns|
+    | refreshrate             | 屏幕刷新率。            |单位：Hz|
+    | networkDown             | 下行速率。              |单位：byte/s|
+    | networkUp               | 上行速率。              |单位：byte/s|
+    | ddrFrequency            | DDR频率。               |单位：Hz|
+    | gpu-thermal             | GPU温度。              |单位：°C|
+    | soc-thermal             | 系统芯片温度。          |单位：°C|
+    | memAvailable            | 整机可用内存。         |单位：KB|
+    | memFree                 | 整机空闲内存。         |单位：KB|
+    | memTotal                | 整机总内存。           |单位：KB|
+    | pss                     | 进程实际使用内存。      |单位：KB|
+    | sharedClean             | 共享的未改写页面。      |单位：KB|
+    | sharedDirty             | 共享的已改写页面。      |单位：KB|
+    | priviateClean           | 私有的未改写页面。      |单位：KB|
+    | privateDirty            | 私有的已改写页面。      |单位：KB|
+    | swapTotal               | 总的交换内存。          |单位：KB|
+    | swapPss                 | 交换的pss内存。        |单位：KB|
+    | HeapSize                | 堆内存大小。           |单位：KB|
+    | HeapAlloc               | 可分配的堆内存大小。    |单位：KB|
+    | HeapFree                | 剩余的堆内存大小。      |单位：KB|
+    | gpuPss                  | 使用的gpu内存大小。     |单位：KB|
+    | graphicPss              | 使用的图形内存大小。     |单位：KB|
+    | arktsHeapPss            | 使用的arkts内存大小。    |单位：KB|
+    | nativeHeapPss           | 使用的native内存大小。   |单位：KB|
+    | stackPss                | 使用的栈内存大小。       |单位：KB|
+    | timeStamp               | 当前时间戳。            |对应采集时间| 
 
 ### 场景化采集
 
