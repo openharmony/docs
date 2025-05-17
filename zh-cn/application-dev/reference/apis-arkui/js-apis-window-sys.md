@@ -3326,6 +3326,8 @@ setImageForRecent(imgResourceId: number, value: ImageFit): Promise&lt;void&gt;
 
 **系统接口：** 此接口为系统接口。
 
+**模型约束：** 此接口仅可在Stage模型下使用。
+
 **系统能力**：SystemCapability.Window.SessionManager
 
 **参数：**
