@@ -27,7 +27,7 @@ blur(value: number, options?: BlurOptions)
 
 ## blur<sup>18+</sup>
 
-blur(blurRadius: Optional\<number>, options?: BlurOptions, sysOptions?: [SystemAdaptiveOptions](ts-universal-attributes-background.md#systemadaptiveoptions18))
+blur(blurRadius: Optional\<number>, options?: BlurOptions)
 
 为组件添加内容模糊效果。与[blur](#blur)相比，blurRadius参数新增了对undefined类型的支持。
 
@@ -42,8 +42,27 @@ blur(blurRadius: Optional\<number>, options?: BlurOptions, sysOptions?: [SystemA
 | 参数名                | 类型                                                         | 必填 | 说明                                                         |
 | --------------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | blurRadius            | Optional\<number>                                            | 是   | 当前组件添加内容模糊效果，入参为模糊半径，模糊半径越大越模糊，为0时不模糊。<br/>当blurRadius的值为undefined时，维持之前取值。 |
-| options<sup>16+</sup> | [BlurOptions](ts-universal-attributes-foreground-blur-style.md#bluroptions11) | 否   | 灰阶梯参数。   |
-| sysOptions<sup>18+</sup>   |  [SystemAdaptiveOptions](ts-universal-attributes-background.md#systemadaptiveoptions18)    |   否   |  系统自适应调节参数。<br/>默认值：{ disableSystemAdaptation: false }    |
+| options | [BlurOptions](ts-universal-attributes-foreground-blur-style.md#bluroptions11) | 否   | 灰阶梯参数。   |
+
+## blur<sup>19+</sup>
+
+blur(blurRadius: Optional\<number>, options?: BlurOptions, sysOptions?: SystemAdaptiveOptions)
+
+为组件添加内容模糊效果。与[blur<sup>18+</sup>](#blur18)相比，新增了sysOptions参数，即支持系统自适应调节参数。
+
+**卡片能力：** 从API version 19开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名                | 类型                                                         | 必填 | 说明                                                         |
+| --------------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| blurRadius            | Optional\<number>                                            | 是   | 当前组件添加内容模糊效果，入参为模糊半径，模糊半径越大越模糊，为0时不模糊。<br/>当blurRadius的值为undefined时，维持之前取值。 |
+| options | [BlurOptions](ts-universal-attributes-foreground-blur-style.md#bluroptions11) | 否   | 灰阶梯参数。   |
+| sysOptions   |  [SystemAdaptiveOptions](ts-universal-attributes-background.md#systemadaptiveoptions19)    |   否   |  系统自适应调节参数。<br/>默认值：{ disableSystemAdaptation: false }    |
 
 ## shadow
 

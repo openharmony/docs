@@ -163,13 +163,13 @@ backgroundImagePosition(value: Position | Alignment)
 | COMPONENT_THICK<sup>11+</sup> | 组件厚材质模糊。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | COMPONENT_ULTRA_THICK<sup>11+</sup> | 组件超厚材质模糊。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 
-## SystemAdaptiveOptions<sup>18+</sup>
+## SystemAdaptiveOptions<sup>19+</sup>
 
 系统自适应调节参数，系统会默认开启根据芯片算力进行自适应效果调节的能力。
 
-**卡片能力：** 从API version 18开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 19开始，该接口支持在ArkTS卡片中使用。
 
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -198,7 +198,7 @@ backgroundBlurStyle(value: BlurStyle, options?: BackgroundBlurStyleOptions)
 
 ## backgroundBlurStyle<sup>18+</sup>
 
-backgroundBlurStyle(style: Optional\<BlurStyle>, options?: BackgroundBlurStyleOptions, sysOptions?: SystemAdaptiveOptions)
+backgroundBlurStyle(style: Optional\<BlurStyle>, options?: BackgroundBlurStyleOptions)
 
 为当前组件提供一种在背景和内容之间的模糊能力，通过枚举值的方式封装了不同的模糊半径、蒙版颜色、蒙版透明度、饱和度、亮度。与[backgroundBlurStyle<sup>9+</sup>](#backgroundblurstyle9)相比，style参数新增了对undefined类型的支持。
 
@@ -213,8 +213,31 @@ backgroundBlurStyle(style: Optional\<BlurStyle>, options?: BackgroundBlurStyleOp
 | 参数名                | 类型                                                         | 必填 | 说明                                                         |
 | --------------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | style                 | Optional\<[BlurStyle](#blurstyle9)>                          | 是   | 背景模糊样式。模糊样式中封装了模糊半径、蒙版颜色、蒙版透明度、饱和度、亮度五个参数。<br/>当style的值为undefined时，恢复为默认关闭模糊的背景。 |
-| options<sup>16+</sup> | [BackgroundBlurStyleOptions](#backgroundblurstyleoptions10对象说明) | 否   | 背景模糊选项。<br/>该参数在ArkTS卡片中，暂不支持使用。                                            |
-| sysOptions<sup>18+</sup>   |  [SystemAdaptiveOptions](#systemadaptiveoptions18)    |   否   |  系统自适应调节参数。<br/>默认值：{ disableSystemAdaptation: false }    |
+| options | [BackgroundBlurStyleOptions](#backgroundblurstyleoptions10对象说明) | 否   | 背景模糊选项。<br/>该参数在ArkTS卡片中，暂不支持使用。                                            |
+
+>  **说明：**
+>
+>  当通过backgroundBlurStyle中的inactiveColor指定背景色时，不建议再通过[backgroundColor](#backgroundcolor)设置背景色。
+
+## backgroundBlurStyle<sup>19+</sup>
+
+backgroundBlurStyle(style: Optional\<BlurStyle>, options?: BackgroundBlurStyleOptions, sysOptions?: SystemAdaptiveOptions)
+
+为当前组件提供一种在背景和内容之间的模糊能力，通过枚举值的方式封装了不同的模糊半径、蒙版颜色、蒙版透明度、饱和度、亮度。与[backgroundBlurStyle<sup>18+</sup>](#backgroundblurstyle18)相比，新增了sysOptions参数，即支持系统自适应调节参数。
+
+**卡片能力：** 从API version 19开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名                | 类型                                                         | 必填 | 说明                                                         |
+| --------------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| style                 | Optional\<[BlurStyle](#blurstyle9)>                          | 是   | 背景模糊样式。模糊样式中封装了模糊半径、蒙版颜色、蒙版透明度、饱和度、亮度五个参数。<br/>当style的值为undefined时，恢复为默认关闭模糊的背景。 |
+| options | [BackgroundBlurStyleOptions](#backgroundblurstyleoptions10对象说明) | 否   | 背景模糊选项。<br/>该参数在ArkTS卡片中，暂不支持使用。                                            |
+| sysOptions   |  [SystemAdaptiveOptions](#systemadaptiveoptions19)    |   否   |  系统自适应调节参数。<br/>默认值：{ disableSystemAdaptation: false }    |
 
 >  **说明：**
 >
@@ -241,7 +264,7 @@ backdropBlur(value: number, options?: BlurOptions)
 
 ## backdropBlur<sup>18+</sup>
 
-backdropBlur(radius: Optional\<number>, options?: BlurOptions, sysOptions?: SystemAdaptiveOptions)
+backdropBlur(radius: Optional\<number>, options?: BlurOptions)
 
 为组件添加背景模糊效果，可以自定义设置模糊半径和灰阶参数。与[backdropBlur](#backdropblur)相比，radius参数新增了对undefined类型的支持。
 
@@ -256,8 +279,31 @@ backdropBlur(radius: Optional\<number>, options?: BlurOptions, sysOptions?: Syst
 | 参数名                | 类型                                                         | 必填 | 说明                                                         |
 | --------------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | radius                | Optional\<number>                                            | 是   | 为当前组件添加背景模糊效果，入参为模糊半径，模糊半径越大越模糊，为0时不模糊。<br/>当radius的值为undefined时，恢复为默认无模糊的背景。 |
-| options<sup>16+</sup> | [BlurOptions](ts-universal-attributes-foreground-blur-style.md#bluroptions11) | 否   | 灰阶梯参数。                                                 |
-| sysOptions<sup>18+</sup>   |  [SystemAdaptiveOptions](#systemadaptiveoptions18)    |   否   |  系统自适应调节参数。<br/>默认值：{ disableSystemAdaptation: false }    |
+| options | [BlurOptions](ts-universal-attributes-foreground-blur-style.md#bluroptions11) | 否   | 灰阶梯参数。                                                 |
+
+>  **说明：**
+>
+>  blur和backdropBlur是实时模糊接口，会每帧进行实时渲染，性能负载较高。当模糊内容和模糊半径都不需要变化时，建议使用[静态模糊接口](../../apis-arkgraphics2d/js-apis-effectKit.md#blur)。
+
+## backdropBlur<sup>19+</sup>
+
+backdropBlur(radius: Optional\<number>, options?: BlurOptions, sysOptions?: SystemAdaptiveOptions)
+
+为组件添加背景模糊效果，可以自定义设置模糊半径和灰阶参数。与[backdropBlur<sup>18+</sup>](#backdropblur18)相比，新增了sysOptions参数，即支持系统自适应调节参数。
+
+**卡片能力：** 从API version 19开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名                | 类型                                                         | 必填 | 说明                                                         |
+| --------------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| radius                | Optional\<number>                                            | 是   | 为当前组件添加背景模糊效果，入参为模糊半径，模糊半径越大越模糊，为0时不模糊。<br/>当radius的值为undefined时，恢复为默认无模糊的背景。 |
+| options | [BlurOptions](ts-universal-attributes-foreground-blur-style.md#bluroptions11) | 否   | 灰阶梯参数。                                                 |
+| sysOptions   |  [SystemAdaptiveOptions](#systemadaptiveoptions19)    |   否   |  系统自适应调节参数。<br/>默认值：{ disableSystemAdaptation: false }    |
 
 >  **说明：**
 >
@@ -281,7 +327,7 @@ backgroundEffect(options: BackgroundEffectOptions)
 
 ## backgroundEffect<sup>18+</sup> 
 
-backgroundEffect(options: Optional\<BackgroundEffectOptions>, sysOptions?: SystemAdaptiveOptions)
+backgroundEffect(options: Optional\<BackgroundEffectOptions>)
 
 设置组件背景属性，包含背景模糊半径，亮度，饱和度，颜色等参数。与[backgroundEffect<sup>11+</sup>](#backgroundeffect11 )相比，options参数新增了对undefined类型的支持。
 
@@ -294,7 +340,23 @@ backgroundEffect(options: Optional\<BackgroundEffectOptions>, sysOptions?: Syste
 | 参数名  | 类型                                                         | 必填 | 说明                                                         |
 | ------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | options | Optional\<[BackgroundEffectOptions](#backgroundeffectoptions11)> | 是   | 设置组件背景属性包括：饱和度，亮度，颜色。<br/>当options的值为undefined时，恢复为无效果的背景。 |
-| sysOptions<sup>18+</sup>   |  [SystemAdaptiveOptions](#systemadaptiveoptions18)    |   否   |  系统自适应调节参数。<br/>默认值：{ disableSystemAdaptation: false }    |
+
+## backgroundEffect<sup>19+</sup> 
+
+backgroundEffect(options: Optional\<BackgroundEffectOptions>, sysOptions?: SystemAdaptiveOptions)
+
+设置组件背景属性，包含背景模糊半径，亮度，饱和度，颜色等参数。与[backgroundEffect<sup>18+</sup>](#backgroundeffect18 )相比，新增了sysOptions参数，即支持系统自适应调节参数。
+
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名  | 类型                                                         | 必填 | 说明                                                         |
+| ------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| options | Optional\<[BackgroundEffectOptions](#backgroundeffectoptions11)> | 是   | 设置组件背景属性包括：饱和度，亮度，颜色。<br/>当options的值为undefined时，恢复为无效果的背景。 |
+| sysOptions   |  [SystemAdaptiveOptions](#systemadaptiveoptions19)    |   否   |  系统自适应调节参数。<br/>默认值：{ disableSystemAdaptation: false }    |
 
 ## BackgroundEffectOptions<sup>11+</sup>
 背景效果参数。
