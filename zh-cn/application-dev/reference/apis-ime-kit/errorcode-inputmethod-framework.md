@@ -310,4 +310,43 @@ Invalid panel type or panel flag.
 
 **处理步骤**
 
-建议开发者进一步阅读接口使用说明，按要求调整当前输入法面板类型或面板状态、调整传入的参数，或者即当前面板无法使用此接口能力。
+建议开发者进一步阅读接口使用说明，按要求调整当前的输入法面板类型或者面板状态。
+
+## 12800018 输入法未找到
+
+**错误信息**
+
+The input method is not found.
+
+**错误描述**
+
+输入法未找到。
+
+**可能原因**
+
+该输入法未安装。
+
+**处理步骤**
+
+开发者可以通过接口[getAllInputMethods](js-apis-inputmethod.md#getallinputmethods11)查询所有已经安装的输入法。
+
+<!--Del-->
+## 12800019 系统配置的默认输入法不支持停用
+
+**错误信息**
+
+The preconfigured default input method cannot be disabled.
+
+**错误描述**
+
+系统配置的默认输入法不支持停用。
+
+**可能原因**
+
+开发者调用接口[enableInputMethod](js-apis-inputmethod-sys.md#enableinputmethod20)设置系统配置的默认输入法的启用状态[EnabledState](js-apis-inputmethod.md#enabledstate15)为DISABLED。
+
+**处理步骤**
+
+开发者可以通过接口[getDefaultInputMethod](js-apis-inputmethod.md#inputmethodgetdefaultinputmethod11)查询系统配置的默认输入法，判断当前停用的输入法是否为系统配置的默认输入法，若是，则不做停用处理。
+
+<!--DelEnd-->
