@@ -19,7 +19,7 @@
    function collectFrame() {
       // 采集数据，并且进行处理
       // 模拟处理过程，这里是个耗时任务
-      et t = new Date().getTime()
+      let t = new Date().getTime()
       while (new Date().getTime() - t < 30000) {
         continue;
       }
