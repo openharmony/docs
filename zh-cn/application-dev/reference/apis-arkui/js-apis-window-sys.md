@@ -3326,18 +3326,14 @@ setImageForRecent(imgResourceId: number, value: ImageFit): Promise&lt;void&gt;
 
 **系统接口：** 此接口为系统接口。
 
-### 属性
-
-**系统接口：** 此接口为系统接口。
-
 **系统能力**：SystemCapability.Window.SessionManager
 
 **参数：**
 
 | 参数名      | 类型    | 必填 | 说明                                                         |
 | ----------- | ------- | ---- | ------------------------------------------------------------ |
-| imgResourceId | number | 是   | 静态图的资源id，获取方式：$r("imagePath").id，imagePath为图片所在路径，如$r("app.media.cat").id |
-| value | ImageFit | 是 | 静态图的填充方式：https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-appendix-enums.md#imagefit |
+| imgResourceId | number | 是   | 静态图的资源id，获取方式：\$r("imagePath").id，imagePath为图片所在路径，如\$r("app.media.cat").id |
+| value | ImageFit | 是 | 静态图的[填充方式](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-appendix-enums.md#imagefit) |
 
 **返回值：**
 
@@ -3366,11 +3362,15 @@ export default class EntryAbility extends UIAbility {
   // ...
 
   onWindowStageCreate(windowStage: window.WindowStage) {
-    console.log('onWindowStageCreate');
     try {
-      windowStage.setImageForRecent(11, ImageFit.Cover);
+      let promise = windowStage.setImageForRecent(11, ImageFit.FILL);
+      promise.then(() => {
+        console.info(`Succeeded in setting image for recent`);
+      }).catch((err: BusinessError) => {
+        console.error(`Failed to set image for recent. Cause code: ${err.code}, message: ${err.message}`);
+      });
     } catch (exception) {
-      console.error(`Failed to set image for recent. Cause code: ${exception.code}, message: ${exception.message}`);
+      console.error(`Failed to set image for recent.`);
     }
   }
 };
