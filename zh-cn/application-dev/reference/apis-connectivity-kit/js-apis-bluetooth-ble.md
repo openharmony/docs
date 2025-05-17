@@ -3073,7 +3073,7 @@ try {
 
 getRssiValue(callback: AsyncCallback&lt;number&gt;): void
 
-client获取远端蓝牙低功耗设备的信号强度 (Received Signal Strength Indication, RSSI)。使用Callback异步回调。<br>
+client端获取GATT连接链路信号强度 (Received Signal Strength Indication, RSSI)。使用Callback异步回调。<br>
 - 需先调用[connect](#connect)方法，等GATT profile连接成功后才能使用。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
@@ -3121,7 +3121,7 @@ try {
 
 getRssiValue(): Promise&lt;number&gt;
 
-client端获取和server端的GATT连接链路信号强度。使用Promise异步回调。<br>
+client端获取GATT连接链路信号强度 (Received Signal Strength Indication, RSSI)。使用Promise异步回调。<br>
 - 需先调用[connect](#connect)方法，等GATT profile连接成功后才能使用。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
