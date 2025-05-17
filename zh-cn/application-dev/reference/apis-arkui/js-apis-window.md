@@ -566,7 +566,7 @@ type WindowAnimationCurveParam = Array&lt;number&gt;
 
 ## GlobalWindowMode<sup>20+</sup>
 
-窗口类型。在获取屏幕上有哪些类型的窗口时返回。
+窗口模式。
 
 **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
@@ -1163,7 +1163,7 @@ try {
 
 getGlobalWindowMode(displayId?: number): Promise&lt;number&gt;
 
-获取指定屏幕上存在哪些类型的前台可见主窗，比如全屏窗口、分屏、悬浮窗和画中画，使用Promise异步回调。
+获取指定屏幕上除SCB系统窗外所有的前台窗口模式，包括不可见但生命周期位于前台的窗口，使用Promise异步回调。
 
 **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
@@ -1173,13 +1173,13 @@ getGlobalWindowMode(displayId?: number): Promise&lt;number&gt;
 
 | 参数名 | 类型   | 必填 | 说明                                                                        |
 | ------ | ---------- |----|---------------------------------------------------------------------------|
-| displayId   | number| 否  | 可选的屏幕ID，用于获取对应屏幕上的窗口类型信息，该参数应为大于等于0的整数，小于0时会返回错误码1300016，不传则代表查询所有屏幕，如果指定的屏幕不存在，返回值为0。|
+| displayId   | number| 否  | 可选的屏幕ID，用于获取对应屏幕上的窗口模式信息，该参数应为大于等于0的整数，小于0时会返回错误码1300016，不传则代表查询所有屏幕，如果指定的屏幕不存在，返回值为0。|
 
 **返回值：**
 
 | 类型                             | 说明                      |
 | -------------------------------- |-------------------------|
-| Promise&lt;number&gt; | Promise对象。返回获取到的窗口类型。每一个二进制位代表一种窗口类型，当前支持的窗口类型见[GlobalWindowMode](#globalwindowmode20)，返回值为对应窗口值按位进行或运算的结果，比如，当前屏幕上存在全屏窗口、悬浮窗和画中画三种窗口，则返回值为`0b1\|0b100\|0b1000 = 13`。|
+| Promise&lt;number&gt; | Promise对象。返回获取到的窗口模式。每一个二进制位代表一种窗口模式，当前支持的窗口模式见[GlobalWindowMode](#globalwindowmode20)，返回值为对应窗口模式值按位进行或运算的结果，比如，当前屏幕上存在全屏窗口、悬浮窗和画中画三种窗口，则返回值为`0b1\|0b100\|0b1000 = 13`。|
 
 **错误码：**
 
@@ -1199,7 +1199,7 @@ try {
   let displayId = 0;
   let promise = window.getGlobalWindowMode(displayId);
   promise.then((data) => {
-    console.info('Succeeded in obtaining global window mode. Data: ' + JSON.stringify(data));
+    console.info('Succeeded in obtaining global window mode. Data: ' + data);
   }).catch((err: BusinessError) => {
     console.error(`Failed to obtain global window mode. Cause code: ${err.code}, message: ${err.message}`);
   });
