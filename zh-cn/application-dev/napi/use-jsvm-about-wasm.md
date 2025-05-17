@@ -40,7 +40,7 @@ cpp 部分代码：
 #include "napi/native_api.h"
 #include "ark_runtime/jsvm.h"
 #include <hilog/log.h>
-
+#include <vector> 
 
 // 判断一个 JSVM_Value 是否是 wasm module
 static bool IsWasmModuleObject(JSVM_Env env, JSVM_Value value) {
@@ -187,7 +187,8 @@ const char *srcCallNative = R"JS(wasmDemo())JS";
 预期输出
 ```
 JSVM IsWasmModuleObject: 1 
-JSVM1 resultInt32: 3 
+JSVM resultInt32: 3 
 JSVM cacheRejected: 1 
 JSVM IsWasmModuleObject2: 1
+JSVM resultInt32: 3 
 ```
