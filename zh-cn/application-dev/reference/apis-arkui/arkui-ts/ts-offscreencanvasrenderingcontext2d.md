@@ -2083,6 +2083,99 @@ rect(x: number, y: number, w: number, h: number): void
 
   ![zh-cn_image_0000001238712445](figures/zh-cn_image_0000001238712445.jpeg)
 
+### roundRect<sup>20+</sup>
+
+roundRect(x: number, y: number, w: number, h: number, radii?: number | Array\<number>): void
+
+创建圆角矩形路径，此方法不会直接渲染内容，如需将圆角矩形绘制到画布上，可以使用fill或stroke方法。
+
+**卡片能力：** 从API version 20开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名   | 类型     | 必填   | 说明            |
+| ---- | ------ | ---- | ------------- |
+| x    | number | 是    | 指定矩形的左上角x坐标值。<br>null按0处理，undefined按无效值处理，不进行绘制。<br>如需绘制完整矩形，取值范围：[0, Canvas宽度)。<br>默认单位：vp |
+| y    | number | 是    | 指定矩形的左上角y坐标值。<br>null按0处理，undefined按无效值处理，不进行绘制。<br>如需绘制完整矩形，取值范围：[0, Canvas高度)。<br>默认单位：vp |
+| w    | number | 是    | 指定矩形的宽度，设置负值为向左绘制。<br>null按0处理，undefined按无效值处理，不进行绘制。<br>如需绘制完整矩形，取值范围：[-x, Canvas宽度 - x]。<br>默认单位：vp |
+| h    | number | 是    | 指定矩形的高度，设置负值为向上绘制。<br>null按0处理，undefined按无效值处理，不进行绘制。<br>如需绘制完整矩形，取值范围：[-y, Canvas高度 - y]。<br>默认单位：vp |
+| radii | number \| Array\<number> | 否 | 指定用于矩形角的圆弧半径的数字或列表。<br>参数类型为number时，所有矩形角的圆弧半径按该数字执行。<br>参数类型为Array\<number>时，数目为1-4个按下面执行：<br>[所有矩形角的圆弧半径]<br>[左上及右下矩形角的圆弧半径, 右上及左下矩形角的圆弧半径]<br>[左上矩形角的圆弧半径, 右上及左下矩形角的圆弧半径, 右下矩形角的圆弧半径]<br>[左上矩形角的圆弧半径, 右上矩形角的圆弧半径, 右下矩形角的圆弧半径, 左下矩形角的圆弧半径]<br>radii存在负数或列表的数目不在[1,4]内时抛出异常，出现jscrash。<br>默认值：0，null和undefined按默认值处理。<br>圆弧半径超过矩形宽高时会等比例缩放到宽高的长度。<br>默认单位：vp |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Canvas组件错误码](../errorcode-canvas.md)。
+
+| 错误码ID | 错误信息 | 可能原因 |
+| -------- | -------- | -------- |
+| 103701   | Parameter error.| 1. The param radii is a list that has zero or more than four elements; 2. The param radii contains negative value. |
+
+**示例：**
+
+该示例展示了绘制五个圆角矩形：
+
+1. 创建一个(10vp, 10vp)为起点，宽高为100vp，四个矩形角圆弧半径为10vp的圆角矩形并填充；
+
+2. 创建一个(120vp, 10vp)为起点，宽高为100vp，四个矩形角圆弧半径为10vp的圆角矩形并填充；
+
+3. 创建一个(10vp, 120vp)为起点，宽高为100vp，左上矩形角圆弧半径及右下矩形角圆弧半径为10vp，右上矩形角圆弧半径及左下矩形角圆弧半径为20vp的圆角矩形并描边；
+
+4. 创建一个(120vp, 120vp)为起点，宽高为100vp，左上矩形角圆弧半径为10vp，右上矩形角圆弧半径及左下矩形角圆弧半径为20vp，右下矩形角圆弧半径为30vp的圆角矩形并描边；
+
+5. 创建一个(10vp, 230vp)为起点，宽高为100vp，左上矩形角圆弧半径为10vp，右上矩形角圆弧半径为20vp，右下矩形角圆弧半径为30vp，左下矩形角圆弧半径为40vp的圆角矩形并描边。
+
+  ```ts
+  // xxx.ets
+  @Entry
+  @Component
+  struct CanvasExample {
+    private settings: RenderingContextSettings = new RenderingContextSettings(true)
+    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
+    private offCanvas: OffscreenCanvas = new OffscreenCanvas(600, 600)
+
+    build() {
+      Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+        Canvas(this.context)
+          .width('100%')
+          .height('100%')
+          .backgroundColor('#D5D5D5')
+          .onReady(() => {
+            let offContext = this.offCanvas.getContext("2d", this.settings)
+            offContext.beginPath()
+            // Create a 100*100 rectangle at (10, 10) and specifies a 10vp radius for all the corners.
+            offContext.roundRect(10, 10, 100, 100, 10)
+            // Create a 100*100 rectangle at (120, 10) and specifies a 10vp radius for all the corners in a list.
+            let radii = [10]
+            offContext.roundRect(120, 10, 100, 100, radii)
+            offContext.fillStyle = '#707070'
+            offContext.fill()
+            offContext.beginPath()
+            // Create a 100*100 rectangle at (10, 120) and specifies [10, 20] for the corners.
+            radii = [10, 20]
+            offContext.roundRect(10, 120, 100, 100, radii)
+            // Create a 100*100 rectangle at (120, 120) and specifies [10, 20, 30] for the corners.
+            radii = [10, 20, 30]
+            offContext.roundRect(120, 120, 100, 100, radii)
+            // Create a 100*100 rectangle at (10, 230) and specifies [10, 20, 30, 40] for the corners.
+            radii = [10, 20, 30, 40]
+            offContext.roundRect(10, 230, 100, 100, radii)
+            offContext.stroke()
+            let image = this.offCanvas.transferToImageBitmap()
+            this.context.transferFromImageBitmap(image)
+          })
+      }
+      .width('100%')
+      .height('100%')
+    }
+  }
+  ```
+
+  ![CanvasRoundRect](figures/CanvasRoundRect.jpeg)
+
+
 
 ### fill
 
@@ -3505,14 +3598,14 @@ transferToImageBitmap(): ImageBitmap
         Canvas(this.context)
           .width('100%')
           .height('100%')
-          .backgroundColor('#ffff00')
-          .onReady(() =>{
+          .backgroundColor('rgb(213,213,213)')
+          .onReady(() => {
             let offContext = this.offCanvas.getContext("2d", this.settings)
             let imageData = offContext.createImageData(100, 100)
             for (let i = 0; i < imageData.data.length; i += 4) {
-              imageData.data[i + 0] = 255
-              imageData.data[i + 1] = 0
-              imageData.data[i + 2] = 255
+              imageData.data[i + 0] = 112
+              imageData.data[i + 1] = 112
+              imageData.data[i + 2] = 112
               imageData.data[i + 3] = 255
             }
             offContext.putImageData(imageData, 10, 10)
