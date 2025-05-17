@@ -168,7 +168,7 @@ LightWeightSet支持增、删、改、查操作，常用API如下：
 
 | 操作 | 方法 | 描述 |
 | --------- | ------- | ------- |
-| 增加元素 | add(value: T) | 增加一个值。 |
+| 增加元素 | add(obj: T) | 增加一个值。 |
 | 访问元素 | getIndexOf(key: T) | 获取对应的index值。 |
 | 访问元素 | getValueAt(index: number) | 获取指定index对应的value值。 |
 | 访问元素 | values() | 返回一个迭代器对象，包含set中的所有value值。 |
