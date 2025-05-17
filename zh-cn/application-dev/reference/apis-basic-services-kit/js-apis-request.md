@@ -92,15 +92,18 @@ uploadFile(context: BaseContext, config: UploadConfig): Promise&lt;UploadTask&gt
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 201 | the permissions check fails |
-  | 401 | the parameters check fails. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
-  | 13400002 | bad file path |
+  | 201 | The permissions check fails. |
+  | 401 | The parameters check fails. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
+  | 13400002 | File path not supported or invalid. |
 
 **示例：**
 
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
-
+  import { common } from '@kit.AbilityKit';
+  
+  // 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   let uploadTask: request.UploadTask;
   let uploadConfig: request.UploadConfig = {
     url: 'http://www.example.com', // 需要手动将url替换为真实服务器的HTTP协议地址
@@ -110,7 +113,7 @@ uploadFile(context: BaseContext, config: UploadConfig): Promise&lt;UploadTask&gt
     data: [{ name: "name123", value: "123" }],
   };
   try {
-    request.uploadFile(getContext(), uploadConfig).then((data: request.UploadTask) => {
+    request.uploadFile(context, uploadConfig).then((data: request.UploadTask) => {
       uploadTask = data;
     }).catch((err: BusinessError) => {
       console.error(`Failed to request the upload. Code: ${err.code}, message: ${err.message}`);
@@ -149,15 +152,18 @@ uploadFile(context: BaseContext, config: UploadConfig, callback: AsyncCallback&l
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 201 | the permissions check fails |
-  | 401 | the parameters check fails. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
-  | 13400002 | bad file path |
+  | 201 | The permissions check fails. |
+  | 401 | The parameters check fails. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
+  | 13400002 | File path not supported or invalid. |
 
 **示例：**
 
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
+  import { common } from '@kit.AbilityKit';
 
+  // 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   let uploadTask: request.UploadTask;
   let uploadConfig: request.UploadConfig = {
     url: 'http://www.example.com', // 需要手动将url替换为真实服务器的HTTP协议地址
@@ -167,7 +173,7 @@ uploadFile(context: BaseContext, config: UploadConfig, callback: AsyncCallback&l
     data: [{ name: "name123", value: "123" }],
   };
   try {
-    request.uploadFile(getContext(), uploadConfig, (err: BusinessError, data: request.UploadTask) => {
+    request.uploadFile(context, uploadConfig, (err: BusinessError, data: request.UploadTask) => {
       if (err) {
         console.error(`Failed to request the upload. Code: ${err.code}, message: ${err.message}`);
         return;
@@ -217,7 +223,7 @@ upload(config: UploadConfig): Promise&lt;UploadTask&gt;
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 201 | the permissions check fails |
+  | 201 | The permissions check fails. |
 
 **示例：**
 
@@ -267,7 +273,7 @@ upload(config: UploadConfig, callback: AsyncCallback&lt;UploadTask&gt;): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 201 | the permissions check fails |
+  | 201 | The permissions check fails. |
 
 **示例：**
 
@@ -297,7 +303,7 @@ upload(config: UploadConfig, callback: AsyncCallback&lt;UploadTask&gt;): void
 
 ### on('progress')
 
-on(type: 'progress', callback:(uploadedSize: number, totalSize: number) =&gt; void): void
+on(type: 'progress', callback: (uploadedSize: number, totalSize: number) =&gt; void): void
 
 订阅上传任务进度事件，使用callback异步回调。
 
@@ -327,7 +333,7 @@ on(type: 'progress', callback:(uploadedSize: number, totalSize: number) =&gt; vo
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401 | the parameters check fails. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
+  | 401 | The parameters check fails. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
 
 **示例：**
 
@@ -367,7 +373,7 @@ on(type: 'headerReceive', callback:  (header: object) =&gt; void): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401 | the parameters check fails. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
+  | 401 | The parameters check fails. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
 
 **示例：**
 
@@ -382,7 +388,7 @@ on(type: 'headerReceive', callback:  (header: object) =&gt; void): void
 
 ### on('complete' | 'fail')<sup>9+</sup>
 
- on(type:'complete' | 'fail', callback: Callback&lt;Array&lt;TaskState&gt;&gt;): void
+ on(type: 'complete' | 'fail', callback: Callback&lt;Array&lt;TaskState&gt;&gt;): void
 
 订阅上传任务完成或失败事件，使用callback异步回调。
 
@@ -402,7 +408,7 @@ on(type: 'headerReceive', callback:  (header: object) =&gt; void): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401 | the parameters check fails. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
+  | 401 | The parameters check fails. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
 
 **示例：**
 
@@ -452,7 +458,7 @@ off(type:  'progress',  callback?: (uploadedSize: number, totalSize: number) =&g
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401 | the parameters check fails. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
+  | 401 | The parameters check fails. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
 
 **示例：**
 
@@ -500,7 +506,7 @@ off(type: 'headerReceive', callback?: (header: object) =&gt; void): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401 | the parameters check fails. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
+  | 401 | The parameters check fails. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
 
 **示例：**
 
@@ -522,7 +528,7 @@ off(type: 'headerReceive', callback?: (header: object) =&gt; void): void
 
 ### off('complete' | 'fail')<sup>9+</sup>
 
- off(type:'complete' | 'fail', callback?: Callback&lt;Array&lt;TaskState&gt;&gt;): void
+ off(type: 'complete' | 'fail', callback?: Callback&lt;Array&lt;TaskState&gt;&gt;): void
 
 取消订阅上传任务的完成或失败事件。
 
@@ -541,7 +547,7 @@ off(type: 'headerReceive', callback?: (header: object) =&gt; void): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401 | the parameters check fails. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
+  | 401 | The parameters check fails. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
 
 **示例：**
 
@@ -607,7 +613,7 @@ delete(): Promise&lt;boolean&gt;
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 201 | the permissions check fails |
+  | 201 | The permissions check fails. |
 
 **示例：**
 
@@ -647,7 +653,7 @@ delete(callback: AsyncCallback&lt;boolean&gt;): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 201 | the permissions check fails |
+  | 201 | The permissions check fails. |
 
 **示例：**
 
@@ -693,7 +699,7 @@ remove(): Promise&lt;boolean&gt;
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 201 | the permissions check fails |
+  | 201 | The permissions check fails. |
 
 **示例：**
 
@@ -732,7 +738,7 @@ remove(callback: AsyncCallback&lt;boolean&gt;): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 201 | the permissions check fails |
+  | 201 | The permissions check fails. |
 
 **示例：**
 
@@ -757,7 +763,7 @@ remove(callback: AsyncCallback&lt;boolean&gt;): void
 
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| url | string | 是 | 资源地址。从API 6到API 14，最大长度为2048个字符；从API 15开始，最大长度为8192个字符。 |
+| url | string | 是 | 资源地址。从API 6到API 14，最大长度为2048个字符；从API 15开始，最大长度为8192个字符。支持HTTP拦截功能。 |
 | header | Object | 是 | 添加要包含在上传请求中的HTTP或HTTPS标志头。 |
 | method | string | 是 |  HTTP请求方法：POST、PUT，缺省为POST。使用POST新增资源，使用PUT修改资源。 |
 | index<sup>11+</sup> | number | 否 | 任务的路径索引，默认值为0。 |
@@ -847,20 +853,23 @@ downloadFile(context: BaseContext, config: DownloadConfig): Promise&lt;DownloadT
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 201 | the permissions check fails |
-  | 401 | the parameters check fails. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
-  | 13400001 | file operation error. |
-  | 13400002 | bad file path. |
-  | 13400003 | task service ability error. |
+  | 201 | The permissions check fails. |
+  | 401 | The parameters check fails. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
+  | 13400001 | Invalid file or file system error. |
+  | 13400002 | File path not supported or invalid. |
+  | 13400003 | Task service ability error. |
 
 **示例：**
 
   ```ts
-import { BusinessError } from '@kit.BasicServicesKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { common } from '@kit.AbilityKit';
 
+  // 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   try {
     // 需要手动将url替换为真实服务器的HTTP协议地址
-    request.downloadFile(getContext(), { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
+    request.downloadFile(context, { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
        let downloadTask: request.DownloadTask = data;
     }).catch((err: BusinessError) => {
       console.error(`Failed to request the download. Code: ${err.code}, message: ${err.message}`);
@@ -899,20 +908,23 @@ downloadFile(context: BaseContext, config: DownloadConfig, callback: AsyncCallba
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 201 | the permissions check fails |
-  | 401 | the parameters check fails. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
-  | 13400001 | file operation error. |
-  | 13400002 | bad file path. |
-  | 13400003 | task service ability error. |
+  | 201 | The permissions check fails. |
+  | 401 | The parameters check fails. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
+  | 13400001 | Invalid file or file system error. |
+  | 13400002 | File path not supported or invalid. |
+  | 13400003 | Task service ability error. |
 
 **示例：**
 
   ```ts
-import { BusinessError } from '@kit.BasicServicesKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { common } from '@kit.AbilityKit';
 
+  // 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   try {
     // 需要手动将url替换为真实服务器的HTTP协议地址
-    request.downloadFile(getContext(), {
+    request.downloadFile(context, {
       url: 'https://xxxx/xxxxx.hap',
       filePath: 'xxx/xxxxx.hap'
     }, (err: BusinessError, data: request.DownloadTask) => {
@@ -965,7 +977,7 @@ download(config: DownloadConfig): Promise&lt;DownloadTask&gt;
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 201 | the permissions check fails |
+  | 201 | The permissions check fails. |
 
 **示例：**
 
@@ -1009,7 +1021,7 @@ download(config: DownloadConfig, callback: AsyncCallback&lt;DownloadTask&gt;): v
 
 | 错误码ID | 错误信息 |
   | -------- | -------- |
-| 201 | the permissions check fails |
+| 201 | The permissions check fails. |
 
 **示例：**
 
@@ -1033,7 +1045,7 @@ download(config: DownloadConfig, callback: AsyncCallback&lt;DownloadTask&gt;): v
 
 ### on('progress')
 
-on(type: 'progress', callback:(receivedSize: number, totalSize: number) =&gt; void): void
+on(type: 'progress', callback: (receivedSize: number, totalSize: number) =&gt; void): void
 
 订阅下载任务进度事件，使用callback异步回调。
 
@@ -1063,16 +1075,19 @@ on(type: 'progress', callback:(receivedSize: number, totalSize: number) =&gt; vo
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401 | the parameters check fails. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
+  | 401 | The parameters check fails. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
 
 **示例：**
 
   ```ts
-import { BusinessError } from '@kit.BasicServicesKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { common } from '@kit.AbilityKit';
 
+  // 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   try {
     // 需要手动将url替换为真实服务器的HTTP协议地址
-    request.downloadFile(getContext(), { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
+    request.downloadFile(context, { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
       let downloadTask: request.DownloadTask = data;
       let progressCallback = (receivedSize: number, totalSize: number) => {
         console.info("download receivedSize:" + receivedSize + " totalSize:" + totalSize);
@@ -1116,16 +1131,19 @@ off(type: 'progress', callback?: (receivedSize: number, totalSize: number) =&gt;
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401 | the parameters check fails. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
+  | 401 | The parameters check fails. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
 
 **示例：**
 
   ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
+import { common } from '@kit.AbilityKit';
 
+// 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 try {
   // 需要手动将url替换为真实服务器的HTTP协议地址
-  request.downloadFile(getContext(), { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
+  request.downloadFile(context, { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
     let downloadTask: request.DownloadTask = data;
     let progressCallback1 = (receivedSize: number, totalSize: number) => {
       console.info('Download delete progress notification.' + 'receivedSize:' + receivedSize + 'totalSize:' + totalSize);
@@ -1150,7 +1168,7 @@ try {
 
 ### on('complete'|'pause'|'remove')<sup>7+</sup>
 
-on(type: 'complete'|'pause'|'remove', callback:() =&gt; void): void
+on(type: 'complete'|'pause'|'remove', callback: () =&gt; void): void
 
 订阅下载任务相关的事件，使用callback异步回调。
 
@@ -1169,16 +1187,19 @@ on(type: 'complete'|'pause'|'remove', callback:() =&gt; void): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401 | the parameters check fails. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
+  | 401 | The parameters check fails. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
 
 **示例：**
 
   ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
+import { common } from '@kit.AbilityKit';
 
+// 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 try {
   // 需要手动将url替换为真实服务器的HTTP协议地址
-  request.downloadFile(getContext(), { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
+  request.downloadFile(context, { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
     let downloadTask: request.DownloadTask = data;
     let completeCallback = () => {
       console.info('Download task completed.');
@@ -1224,16 +1245,19 @@ off(type: 'complete'|'pause'|'remove', callback?: () =&gt; void): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401 | the parameters check fails. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
+  | 401 | The parameters check fails. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
 
 **示例：**
 
   ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
+import { common } from '@kit.AbilityKit';
 
+// 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 try {
   // 需要手动将url替换为真实服务器的HTTP协议地址
-  request.downloadFile(getContext(), { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
+  request.downloadFile(context, { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
     let downloadTask: request.DownloadTask = data;
     let completeCallback1 = () => {
       console.info('Download delete complete notification.');
@@ -1310,16 +1334,19 @@ on(type: 'fail', callback: (err: number) =&gt; void): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401 | the parameters check fails. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
+  | 401 | The parameters check fails. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
 
 **示例：**
 
   ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
+import { common } from '@kit.AbilityKit';
 
+// 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 try {
   // 需要手动将url替换为真实服务器的HTTP协议地址
-  request.downloadFile(getContext(), { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
+  request.downloadFile(context, { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
     let downloadTask: request.DownloadTask = data;
     let failCallback = (err: number) => {
       console.error(`Failed to download the task. Code: ${err}`);
@@ -1361,16 +1388,19 @@ off(type: 'fail', callback?: (err: number) =&gt; void): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401 | the parameters check fails. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
+  | 401 | The parameters check fails. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
 
 **示例：**
 
   ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
+import { common } from '@kit.AbilityKit';
 
+// 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 try {
   // 需要手动将url替换为真实服务器的HTTP协议地址
-  request.downloadFile(getContext(), { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
+  request.downloadFile(context, { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
     let downloadTask: request.DownloadTask = data;
     let failCallback1 = (err: number) => {
       console.error(`Failed to download the task. Code: ${err}`);
@@ -1414,16 +1444,19 @@ delete(): Promise&lt;boolean&gt;
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 201 | the permissions check fails |
+  | 201 | The permissions check fails. |
 
 **示例：**
 
   ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
+import { common } from '@kit.AbilityKit';
 
+// 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 try {
   // 需要手动将url替换为真实服务器的HTTP协议地址
-  request.downloadFile(getContext(), { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
+  request.downloadFile(context, { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
     let downloadTask: request.DownloadTask = data;
     downloadTask.delete().then((result: boolean) => {
       console.info('Succeeded in removing the download task.');
@@ -1465,16 +1498,19 @@ delete(callback: AsyncCallback&lt;boolean&gt;): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 201 | the permissions check fails |
+  | 201 | The permissions check fails. |
 
 **示例：**
 
   ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
+import { common } from '@kit.AbilityKit';
 
+// 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 try {
   // 需要手动将url替换为真实服务器的HTTP协议地址
-  request.downloadFile(getContext(), { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
+  request.downloadFile(context, { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
     let downloadTask: request.DownloadTask = data;
     downloadTask.delete((err: BusinessError, result: boolean) => {
       if (err) {
@@ -1518,16 +1554,19 @@ getTaskInfo(): Promise&lt;DownloadInfo&gt;
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 201 | the permissions check fails |
+  | 201 | The permissions check fails. |
 
 **示例：**
 
   ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
+import { common } from '@kit.AbilityKit';
 
+// 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 try {
   // 需要手动将url替换为真实服务器的HTTP协议地址
-  request.downloadFile(getContext(), { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
+  request.downloadFile(context, { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
     let downloadTask: request.DownloadTask = data;
     downloadTask.getTaskInfo().then((downloadInfo: request.DownloadInfo) => {
       console.info('Succeeded in querying the download task')
@@ -1569,16 +1608,19 @@ getTaskInfo(callback: AsyncCallback&lt;DownloadInfo&gt;): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 201 | the permissions check fails |
+  | 201 | The permissions check fails. |
 
 **示例：**
 
   ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
+import { common } from '@kit.AbilityKit';
 
+// 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 try {
   // 需要手动将url替换为真实服务器的HTTP协议地址
-  request.downloadFile(getContext(), { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
+  request.downloadFile(context, { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
     let downloadTask: request.DownloadTask = data;
     downloadTask.getTaskInfo((err: BusinessError, downloadInfo: request.DownloadInfo) => {
       if (err) {
@@ -1622,16 +1664,19 @@ getTaskMimeType(): Promise&lt;string&gt;
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 201 | the permissions check fails |
+  | 201 | The permissions check fails. |
 
 **示例：**
 
   ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
+import { common } from '@kit.AbilityKit';
 
+// 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 try {
   // 需要手动将url替换为真实服务器的HTTP协议地址
-  request.downloadFile(getContext(), { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
+  request.downloadFile(context, { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
     let downloadTask: request.DownloadTask = data;
     downloadTask.getTaskMimeType().then((data: string) => {
       console.info('Succeeded in querying the download MimeType');
@@ -1673,16 +1718,19 @@ getTaskMimeType(callback: AsyncCallback&lt;string&gt;): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 201 | the permissions check fails |
+  | 201 | The permissions check fails. |
 
 **示例：**
 
   ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
+import { common } from '@kit.AbilityKit';
 
+// 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 try {
   // 需要手动将url替换为真实服务器的HTTP协议地址
-  request.downloadFile(getContext(), { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
+  request.downloadFile(context, { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
     let downloadTask: request.DownloadTask = data;
     downloadTask.getTaskMimeType((err: BusinessError, data: string) => {
       if (err) {
@@ -1726,16 +1774,19 @@ suspend(): Promise&lt;boolean&gt;
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 201 | the permissions check fails |
+  | 201 | The permissions check fails. |
 
 **示例：**
 
   ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
+import { common } from '@kit.AbilityKit';
 
+// 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 try {
   // 需要手动将url替换为真实服务器的HTTP协议地址
-  request.downloadFile(getContext(), { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
+  request.downloadFile(context, { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
     let downloadTask: request.DownloadTask = data;
     downloadTask.suspend().then((result: boolean) => {
       console.info('Succeeded in pausing the download task.');
@@ -1777,16 +1828,19 @@ suspend(callback: AsyncCallback&lt;boolean&gt;): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 201 | the permissions check fails |
+  | 201 | The permissions check fails. |
 
 **示例：**
 
   ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
+import { common } from '@kit.AbilityKit';
 
+// 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 try {
   // 需要手动将url替换为真实服务器的HTTP协议地址
-  request.downloadFile(getContext(), { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
+  request.downloadFile(context, { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
     let downloadTask: request.DownloadTask = data;
     downloadTask.suspend((err: BusinessError, result: boolean) => {
       if (err) {
@@ -1830,16 +1884,19 @@ restore(): Promise&lt;boolean&gt;
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 201 | the permissions check fails |
+  | 201 | The permissions check fails. |
 
 **示例：**
 
   ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
+import { common } from '@kit.AbilityKit';
 
+// 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 try {
   // 需要手动将url替换为真实服务器的HTTP协议地址
-  request.downloadFile(getContext(), { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
+  request.downloadFile(context, { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
     let downloadTask: request.DownloadTask = data;
     downloadTask.restore().then((result: boolean) => {
       console.info('Succeeded in resuming the download task.')
@@ -1881,16 +1938,19 @@ restore(callback: AsyncCallback&lt;boolean&gt;): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 201 | the permissions check fails |
+  | 201 | The permissions check fails. |
 
 **示例：**
 
   ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
+import { common } from '@kit.AbilityKit';
 
+// 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 try {
   // 需要手动将url替换为真实服务器的HTTP协议地址
-  request.downloadFile(getContext(), { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
+  request.downloadFile(context, { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
     let downloadTask: request.DownloadTask = data;
     downloadTask.restore((err: BusinessError, result: boolean) => {
       if (err) {
@@ -1938,7 +1998,7 @@ remove(): Promise&lt;boolean&gt;
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 201 | the permissions check fails |
+  | 201 | The permissions check fails. |
 
 **示例：**
 
@@ -1977,7 +2037,7 @@ remove(callback: AsyncCallback&lt;boolean&gt;): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 201 | the permissions check fails |
+  | 201 | The permissions check fails. |
 
 **示例：**
 
@@ -2018,7 +2078,7 @@ query(): Promise&lt;DownloadInfo&gt;
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 201 | the permissions check fails |
+  | 201 | The permissions check fails. |
 
 **示例：**
 
@@ -2057,7 +2117,7 @@ query(callback: AsyncCallback&lt;DownloadInfo&gt;): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 201 | the permissions check fails |
+  | 201 | The permissions check fails. |
 
 **示例：**
 
@@ -2098,7 +2158,7 @@ queryMimeType(): Promise&lt;string&gt;
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 201 | the permissions check fails |
+  | 201 | The permissions check fails. |
 
 **示例：**
 
@@ -2137,7 +2197,7 @@ queryMimeType(callback: AsyncCallback&lt;string&gt;): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 201 | the permissions check fails |
+  | 201 | The permissions check fails. |
 
 **示例：**
 
@@ -2178,7 +2238,7 @@ pause(): Promise&lt;void&gt;
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 201 | the permissions check fails |
+  | 201 | The permissions check fails. |
 
 **示例：**
 
@@ -2217,7 +2277,7 @@ pause(callback: AsyncCallback&lt;void&gt;): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 201 | the permissions check fails |
+  | 201 | The permissions check fails. |
 
 **示例：**
 
@@ -2258,7 +2318,7 @@ resume(): Promise&lt;void&gt;
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 201 | the permissions check fails |
+  | 201 | The permissions check fails. |
 
 **示例：**
 
@@ -2297,7 +2357,7 @@ resume(callback: AsyncCallback&lt;void&gt;): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 201 | the permissions check fails |
+  | 201 | The permissions check fails. |
 
 **示例：**
 
@@ -2319,7 +2379,7 @@ resume(callback: AsyncCallback&lt;void&gt;): void
 
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| url | string | 是 | 资源地址。从API 6到API 14，最大长度为2048个字符；从API 15开始，最大长度为8192个字符。 |
+| url | string | 是 | 资源地址。从API 6到API 14，最大长度为2048个字符；从API 15开始，最大长度为8192个字符。支持HTTP拦截功能。 |
 | header | Object | 否 | 添加要包含在下载请求中的HTTPS标志头。|
 | enableMetered | boolean | 否 | 表示设置是否允许在按流量计费的连接下下载任务的配置信息。true表示允许，false表示不允许。默认值为false。<br/>**说明：** Wi-Fi为非计费网络，数据流量为计费网络。 |
 | enableRoaming | boolean | 否 | 表示设置是否允许在漫游网络中下载任务的配置信息。true表示允许，false表示不允许。默认值为false。|
@@ -2410,16 +2470,15 @@ resume(callback: AsyncCallback&lt;void&gt;): void
 ## FileSpec<sup>10+</sup> 
 表单项的文件信息。
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
-
 **系统能力**：SystemCapability.Request.FileTransferAgent
 
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| path | string | 是 | 文件路径。<br/>- 相对路径，位于调用方的缓存路径下。<br/>例如："./xxx/yyy/zzz.html"、"xxx/yyy/zzz.html"。<br/>- internal协议路径，支持"internal://"及其子路径。internal为调用方（即传入的context）对应路径，"internal://cache"对应context.cacheDir。<br/>例如："internal://cache/path/to/file.txt"。<br/>- 应用沙箱目录，只支持到base及其子目录下。<br/>例如："/data/storage/el1/base/path/to/file.txt"。<br/>- file协议路径，必须匹配应用包名，只支持到base及其子目录下。<br/>例如："file://com.example.test/data/storage/el2/base/file.txt"。<br/>- 用户公共文件，仅支持上传任务。<br/>例如："file://media/Photo/path/to/file.img"。仅支持前台任务。 |
-| mimeType | string | 否 | 文件的mimetype，通过文件名获取，默认值为文件名后缀。|
-| filename | string | 否 | 文件名，默认值通过路径获取。 |
-| extras | object | 否 | 文件信息的附加内容，该参数不会体现在HTTP请求中。 |
+| path | string | 是 | 文件路径。<br/>- 相对路径，位于调用方的缓存路径下。<br/>例如："./xxx/yyy/zzz.html"、"xxx/yyy/zzz.html"。<br/>- internal协议路径，支持"internal://"及其子路径。internal为调用方（即传入的context）对应路径，"internal://cache"对应context.cacheDir。<br/>例如："internal://cache/path/to/file.txt"。<br/>- 应用沙箱目录，只支持到base及其子目录下。<br/>例如："/data/storage/el1/base/path/to/file.txt"。<br/>- file协议路径，必须匹配应用包名，只支持到base及其子目录下。<br/>例如："file://com.example.test/data/storage/el2/base/file.txt"。<br/>- 用户公共文件，仅支持上传任务。<br/>例如："file://media/Photo/path/to/file.img"。仅支持前台任务。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| mimeType<sup>(deprecated)</sup> | string | 否 | 文件的mimetype，通过文件名获取，默认值为文件名后缀。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 <br/> 从 API Version 18 开始废弃，建议使用contentType替代。 |
+| contentType<sup>18+</sup> | string | 否 | 文件内容类型，默认值为文件名后缀。该选项会被填写到HTTP表单指定的Content-Type字段中。 |
+| filename | string | 否 | 文件名，默认值通过路径获取。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| extras | object | 否 | 文件信息的附加内容，该参数不会体现在HTTP请求中。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 
 
 ## FormItem<sup>10+</sup> 
@@ -2443,7 +2502,7 @@ resume(callback: AsyncCallback&lt;void&gt;): void
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | action | [Action](#action10) | 是 | 任务操作选项。<br/>- UPLOAD表示上传任务。<br/>- DOWNLOAD表示下载任务。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| url | string | 是 | 资源地址。从API 6到API 14，最大长度为2048个字符；从API 15开始，最大长度为8192个字符。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| url | string | 是 | 资源地址。从API 6到API 14，最大长度为2048个字符；从API 15开始，最大长度为8192个字符。支持HTTP拦截功能。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | title | string | 否 | 任务标题，其最大长度为256个字符，默认值为小写的 upload 或 download，与上面的 action 保持一致。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | description | string | 否 | 任务的详细信息，其最大长度为1024个字符，默认值为空字符串。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | mode | [Mode](#mode10) | 否 | 任务模式，默认为后台任务。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
@@ -2661,12 +2720,14 @@ on(event: 'progress', callback: (progress: [Progress](#progress10)) =&gt; void):
 
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
+  import { common } from '@kit.AbilityKit';
 
+  // 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   let attachments: Array<request.agent.FormItem> = [{
     name: "taskOnTest",
     value: {
       filename: "taskOnTest.avi",
-      mimeType: "application/octet-stream",
       path: "./taskOnTest.avi",
     }
   }];
@@ -2695,7 +2756,7 @@ on(event: 'progress', callback: (progress: [Progress](#progress10)) =&gt; void):
   let createOnCallback = (progress: request.agent.Progress) => {
     console.info('upload task progress.');
   };
-  request.agent.create(getContext(), config).then((task: request.agent.Task) => {
+  request.agent.create(context, config).then((task: request.agent.Task) => {
     task.on('progress', createOnCallback);
     console.info(`Succeeded in creating a upload task. result: ${task.tid}`);
     task.start();
@@ -2743,12 +2804,14 @@ on(event: 'completed', callback: (progress: [Progress](#progress10)) =&gt; void)
 
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
+  import { common } from '@kit.AbilityKit';
 
+  // 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   let attachments: Array<request.agent.FormItem> = [{
     name: "taskOnTest",
     value: {
       filename: "taskOnTest.avi",
-      mimeType: "application/octet-stream",
       path: "./taskOnTest.avi",
     }
   }];
@@ -2777,7 +2840,7 @@ on(event: 'completed', callback: (progress: [Progress](#progress10)) =&gt; void)
   let createOnCallback = (progress: request.agent.Progress) => {
     console.info('upload task completed.');
   };
-  request.agent.create(getContext(), config).then((task: request.agent.Task) => {
+  request.agent.create(context, config).then((task: request.agent.Task) => {
     task.on('completed', createOnCallback);
     console.info(`Succeeded in creating a upload task. result: ${task.tid}`);
     task.start();
@@ -2825,12 +2888,14 @@ on(event: 'failed', callback: (progress: [Progress](#progress10)) =&gt; void): v
 
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
+  import { common } from '@kit.AbilityKit';
 
+  // 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   let attachments: Array<request.agent.FormItem> = [{
     name: "taskOnTest",
     value: {
       filename: "taskOnTest.avi",
-      mimeType: "application/octet-stream",
       path: "./taskOnTest.avi",
     }
   }];
@@ -2859,7 +2924,7 @@ on(event: 'failed', callback: (progress: [Progress](#progress10)) =&gt; void): v
   let createOnCallback = (progress: request.agent.Progress) => {
     console.info('upload task failed.');
   };
-  request.agent.create(getContext(), config).then((task: request.agent.Task) => {
+  request.agent.create(context, config).then((task: request.agent.Task) => {
     task.on('failed', createOnCallback);
     console.info(`Succeeded in creating a upload task. result: ${task.tid}`);
     task.start();
@@ -2905,12 +2970,14 @@ on(event: 'pause', callback: (progress: [Progress](#progress10)) =&gt; void): vo
 
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
+  import { common } from '@kit.AbilityKit';
 
+  // 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   let attachments: Array<request.agent.FormItem> = [{
     name: "taskOnTest",
     value: {
       filename: "taskOnTest.avi",
-      mimeType: "application/octet-stream",
       path: "./taskOnTest.avi",
     }
   }];
@@ -2939,10 +3006,12 @@ on(event: 'pause', callback: (progress: [Progress](#progress10)) =&gt; void): vo
   let createOnCallback = (progress: request.agent.Progress) => {
     console.info('upload task pause.');
   };
-  request.agent.create(getContext(), config).then((task: request.agent.Task) => {
+  request.agent.create(context, config).then((task: request.agent.Task) => {
     task.on('pause', createOnCallback);
     console.info(`Succeeded in creating a upload task. result: ${task.tid}`);
     task.start();
+    for(let t = Date.now(); Date.now() - t <= 1000;); // 等待1秒再执行下一步操作，以防异步乱序
+    task.pause();
   }).catch((err: BusinessError) => {
     console.error(`Failed to create a upload task, Code: ${err.code}, message: ${err.message}`);
   });
@@ -2985,12 +3054,14 @@ on(event: 'resume', callback: (progress: [Progress](#progress10)) =&gt; void): v
 
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
+  import { common } from '@kit.AbilityKit';
 
+  // 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   let attachments: Array<request.agent.FormItem> = [{
     name: "taskOnTest",
     value: {
       filename: "taskOnTest.avi",
-      mimeType: "application/octet-stream",
       path: "./taskOnTest.avi",
     }
   }];
@@ -3019,10 +3090,14 @@ on(event: 'resume', callback: (progress: [Progress](#progress10)) =&gt; void): v
   let createOnCallback = (progress: request.agent.Progress) => {
     console.info('upload task resume.');
   };
-  request.agent.create(getContext(), config).then((task: request.agent.Task) => {
+  request.agent.create(context, config).then((task: request.agent.Task) => {
     task.on('resume', createOnCallback);
     console.info(`Succeeded in creating a upload task. result: ${task.tid}`);
     task.start();
+    for(let t = Date.now(); Date.now() - t <= 1000;); // 等待1秒再执行下一步操作，以防异步乱序
+    task.pause();
+    for(let t = Date.now(); Date.now() - t <= 1000;); // 等待1秒再执行下一步操作，以防异步乱序
+    task.resume();
   }).catch((err: BusinessError) => {
     console.error(`Failed to create a upload task, Code: ${err.code}, message: ${err.message}`);
   });
@@ -3065,12 +3140,14 @@ on(event: 'remove', callback: (progress: [Progress](#progress10)) =&gt; void): v
 
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
+  import { common } from '@kit.AbilityKit';
 
+  // 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   let attachments: Array<request.agent.FormItem> = [{
     name: "taskOnTest",
     value: {
       filename: "taskOnTest.avi",
-      mimeType: "application/octet-stream",
       path: "./taskOnTest.avi",
     }
   }];
@@ -3099,10 +3176,12 @@ on(event: 'remove', callback: (progress: [Progress](#progress10)) =&gt; void): v
   let createOnCallback = (progress: request.agent.Progress) => {
     console.info('upload task remove.');
   };
-  request.agent.create(getContext(), config).then((task: request.agent.Task) => {
+  request.agent.create(context, config).then((task: request.agent.Task) => {
     task.on('remove', createOnCallback);
     console.info(`Succeeded in creating a upload task. result: ${task.tid}`);
     task.start();
+    for(let t = Date.now(); Date.now() - t <= 1000;); // 等待1秒再执行下一步操作，以防异步乱序
+    request.agent.remove(task.tid);
   }).catch((err: BusinessError) => {
     console.error(`Failed to create a upload task, Code: ${err.code}, message: ${err.message}`);
   });
@@ -3141,12 +3220,14 @@ on(event: 'response', callback: Callback&lt;HttpResponse&gt;): void
 
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
+  import { common } from '@kit.AbilityKit';
 
+  // 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   let attachments: Array<request.agent.FormItem> = [{
     name: "taskOnTest",
     value: {
       filename: "taskOnTest.avi",
-      mimeType: "application/octet-stream",
       path: "./taskOnTest.avi",
     }
   }];
@@ -3175,7 +3256,7 @@ on(event: 'response', callback: Callback&lt;HttpResponse&gt;): void
   let createOnCallback = (response: request.agent.HttpResponse) => {
     console.info('upload task response.');
   };
-  request.agent.create(getContext(), config).then((task: request.agent.Task) => {
+  request.agent.create(context, config).then((task: request.agent.Task) => {
     task.on('response', createOnCallback);
     console.info(`Succeeded in creating a upload task. result: ${task.tid}`);
     task.start();
@@ -3203,7 +3284,7 @@ off(event: 'progress', callback?: (progress: [Progress](#progress10)) =&gt; void
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | event | string | 是 | 取消订阅的事件类型。<br>- 取值为'progress'，表示任务进度。 |
-  | callback | function | 是 | 回调函数，发生相关的事件时触发该回调方法。 |
+  | callback | function | 否 | 回调函数，发生相关的事件时触发该回调方法。 |
 
 回调函数的参数：
 
@@ -3224,12 +3305,14 @@ off(event: 'progress', callback?: (progress: [Progress](#progress10)) =&gt; void
 
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
+  import { common } from '@kit.AbilityKit';
 
+  // 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   let attachments: Array<request.agent.FormItem> = [{
     name: "taskOffTest",
     value: {
       filename: "taskOffTest.avi",
-      mimeType: "application/octet-stream",
       path: "./taskOffTest.avi",
     }
   }];
@@ -3261,7 +3344,7 @@ off(event: 'progress', callback?: (progress: [Progress](#progress10)) =&gt; void
   let createOffCallback2 = (progress: request.agent.Progress) => {
     console.info('upload task progress.');
   };
-  request.agent.create(getContext(), config).then((task: request.agent.Task) => {
+  request.agent.create(context, config).then((task: request.agent.Task) => {
     task.on('progress', createOffCallback1);
     task.on('progress', createOffCallback2);
     //表示取消createOffCallback1的订阅
@@ -3294,13 +3377,14 @@ off(event: 'completed', callback?: (progress: [Progress](#progress10)) =&gt; voi
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | event | string | 是 | 取消订阅的事件类型。<br>- 取值为'completed'，表示任务完成。 |
-  | callback | function | 是 | 回调函数，发生相关的事件时触发该回调方法。 |
+  | callback | function | 否 | 回调函数，发生相关的事件时触发该回调方法。 |
 
 回调函数的参数：
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | progress | [Progress](#progress10) | 是 | 表示任务的进度信息。 |
+
 
 **错误码：**
 
@@ -3314,12 +3398,14 @@ off(event: 'completed', callback?: (progress: [Progress](#progress10)) =&gt; voi
 
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
+  import { common } from '@kit.AbilityKit';
 
+  // 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   let attachments: Array<request.agent.FormItem> = [{
     name: "taskOffTest",
     value: {
       filename: "taskOffTest.avi",
-      mimeType: "application/octet-stream",
       path: "./taskOffTest.avi",
     }
   }];
@@ -3351,7 +3437,7 @@ off(event: 'completed', callback?: (progress: [Progress](#progress10)) =&gt; voi
   let createOffCallback2 = (progress: request.agent.Progress) => {
     console.info('upload task completed.');
   };
-  request.agent.create(getContext(), config).then((task: request.agent.Task) => {
+  request.agent.create(context, config).then((task: request.agent.Task) => {
     task.on('completed', createOffCallback1);
     task.on('completed', createOffCallback2);
     //表示取消createOffCallback1的订阅
@@ -3384,7 +3470,7 @@ off(event: 'failed', callback?: (progress: [Progress](#progress10)) =&gt; void):
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | event | string | 是 | 取消订阅的事件类型。<br>- 取值为'failed'，表示任务失败。 |
-  | callback | function | 是 | 回调函数，发生相关的事件时触发该回调方法。 |
+  | callback | function | 否 | 回调函数，发生相关的事件时触发该回调方法。 |
 
 回调函数的参数：
 
@@ -3404,12 +3490,14 @@ off(event: 'failed', callback?: (progress: [Progress](#progress10)) =&gt; void):
 
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
+  import { common } from '@kit.AbilityKit';
 
+  // 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   let attachments: Array<request.agent.FormItem> = [{
     name: "taskOffTest",
     value: {
       filename: "taskOffTest.avi",
-      mimeType: "application/octet-stream",
       path: "./taskOffTest.avi",
     }
   }];
@@ -3441,7 +3529,7 @@ off(event: 'failed', callback?: (progress: [Progress](#progress10)) =&gt; void):
   let createOffCallback2 = (progress: request.agent.Progress) => {
     console.info('upload task failed.');
   };
-  request.agent.create(getContext(), config).then((task: request.agent.Task) => {
+  request.agent.create(context, config).then((task: request.agent.Task) => {
     task.on('failed', createOffCallback1);
     task.on('failed', createOffCallback2);
     //表示取消createOffCallback1的订阅
@@ -3472,7 +3560,7 @@ off(event: 'pause', callback?: (progress: [Progress](#progress10)) =&gt; void): 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | event | string | 是 | 取消订阅的事件类型。<br>- 取值为'pause'，表示任务暂停。 |
-  | callback | function | 是 | 回调函数，发生相关的事件时触发该回调方法。 |
+  | callback | function | 否 | 回调函数，发生相关的事件时触发该回调方法。 |
 
 回调函数的参数：
 
@@ -3492,12 +3580,14 @@ off(event: 'pause', callback?: (progress: [Progress](#progress10)) =&gt; void): 
 
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
+  import { common } from '@kit.AbilityKit';
 
+  // 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   let attachments: Array<request.agent.FormItem> = [{
     name: "taskOffTest",
     value: {
       filename: "taskOffTest.avi",
-      mimeType: "application/octet-stream",
       path: "./taskOffTest.avi",
     }
   }];
@@ -3529,7 +3619,7 @@ off(event: 'pause', callback?: (progress: [Progress](#progress10)) =&gt; void): 
   let createOffCallback2 = (progress: request.agent.Progress) => {
     console.info('upload task pause.');
   };
-  request.agent.create(getContext(), config).then((task: request.agent.Task) => {
+  request.agent.create(context, config).then((task: request.agent.Task) => {
     task.on('pause', createOffCallback1);
     task.on('pause', createOffCallback2);
     //表示取消createOffCallback1的订阅
@@ -3560,7 +3650,7 @@ off(event: 'resume', callback?: (progress: [Progress](#progress10)) =&gt; void):
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | event | string | 是 | 取消订阅的事件类型。<br>- 取值为'resume'，表示任务恢复。 |
-  | callback | function | 是 | 回调函数，发生相关的事件时触发该回调方法。 |
+  | callback | function | 否 | 回调函数，发生相关的事件时触发该回调方法。 |
 
 回调函数的参数：
 
@@ -3580,12 +3670,14 @@ off(event: 'resume', callback?: (progress: [Progress](#progress10)) =&gt; void):
 
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
+  import { common } from '@kit.AbilityKit';
 
+  // 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   let attachments: Array<request.agent.FormItem> = [{
     name: "taskOffTest",
     value: {
       filename: "taskOffTest.avi",
-      mimeType: "application/octet-stream",
       path: "./taskOffTest.avi",
     }
   }];
@@ -3617,7 +3709,7 @@ off(event: 'resume', callback?: (progress: [Progress](#progress10)) =&gt; void):
   let createOffCallback2 = (progress: request.agent.Progress) => {
     console.info('upload task resume.');
   };
-  request.agent.create(getContext(), config).then((task: request.agent.Task) => {
+  request.agent.create(context, config).then((task: request.agent.Task) => {
     task.on('resume', createOffCallback1);
     task.on('resume', createOffCallback2);
     //表示取消createOffCallback1的订阅
@@ -3648,7 +3740,7 @@ off(event: 'remove', callback?: (progress: [Progress](#progress10)) =&gt; void):
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | event | string | 是 | 取消订阅的事件类型。<br>- 取值为'remove'，表示任务被移除。 |
-  | callback | function | 是 | 回调函数，发生相关的事件时触发该回调方法。 |
+  | callback | function | 否 | 回调函数，发生相关的事件时触发该回调方法。 |
 
 回调函数的参数：
 
@@ -3668,12 +3760,14 @@ off(event: 'remove', callback?: (progress: [Progress](#progress10)) =&gt; void):
 
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
+  import { common } from '@kit.AbilityKit';
 
+  // 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   let attachments: Array<request.agent.FormItem> = [{
     name: "taskOffTest",
     value: {
       filename: "taskOffTest.avi",
-      mimeType: "application/octet-stream",
       path: "./taskOffTest.avi",
     }
   }];
@@ -3705,7 +3799,7 @@ off(event: 'remove', callback?: (progress: [Progress](#progress10)) =&gt; void):
   let createOffCallback2 = (progress: request.agent.Progress) => {
     console.info('upload task remove.');
   };
-  request.agent.create(getContext(), config).then((task: request.agent.Task) => {
+  request.agent.create(context, config).then((task: request.agent.Task) => {
     task.on('remove', createOffCallback1);
     task.on('remove', createOffCallback2);
     //表示取消createOffCallback1的订阅
@@ -3752,12 +3846,14 @@ off(event: 'response', callback?: Callback&lt;HttpResponse&gt;): void
 
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
+  import { common } from '@kit.AbilityKit';
 
+  // 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   let attachments: Array<request.agent.FormItem> = [{
     name: "taskOffTest",
     value: {
       filename: "taskOffTest.avi",
-      mimeType: "application/octet-stream",
       path: "./taskOffTest.avi",
     }
   }];
@@ -3789,7 +3885,7 @@ off(event: 'response', callback?: Callback&lt;HttpResponse&gt;): void
   let createOffCallback2 = (progress: request.agent.HttpResponse) => {
     console.info('upload task response.');
   };
-  request.agent.create(getContext(), config).then((task: request.agent.Task) => {
+  request.agent.create(context, config).then((task: request.agent.Task) => {
     task.on('response', createOffCallback1);
     task.on('response', createOffCallback2);
     //表示取消createOffCallback1的订阅
@@ -3835,14 +3931,17 @@ start(callback: AsyncCallback&lt;void&gt;): void
   | 错误码ID | 错误信息 |
   | -------- | -------- |
   | 201 | Permission denied. |
-  | 13400003 | task service ability error. |
-  | 21900007 | task state error. |
+  | 13400003 | Task service ability error. |
+  | 21900007 | Operation with wrong task state. |
 
 **示例：**
 
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
+  import { common } from '@kit.AbilityKit';
 
+  // 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   let config: request.agent.Config = {
     action: request.agent.Action.DOWNLOAD,
     url: 'http://127.0.0.1', // 需要手动将url替换为真实服务器的HTTP协议地址
@@ -3865,7 +3964,7 @@ start(callback: AsyncCallback&lt;void&gt;): void
     precise: false,
     token: "it is a secret"
   };
-  request.agent.create(getContext(), config).then((task: request.agent.Task) => {
+  request.agent.create(context, config).then((task: request.agent.Task) => {
     task.start((err: BusinessError) => {
       if (err) {
         console.error(`Failed to start the download task, Code: ${err.code}, message: ${err.message}`);
@@ -3911,14 +4010,17 @@ start(): Promise&lt;void&gt;
   | 错误码ID | 错误信息 |
   | -------- | -------- |
   | 201 | Permission denied. |
-  | 13400003 | task service ability error. |
-  | 21900007 | task state error. |
+  | 13400003 | Task service ability error. |
+  | 21900007 | Operation with wrong task state. |
 
 **示例：**
 
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
+  import { common } from '@kit.AbilityKit';
 
+  // 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   let config: request.agent.Config = {
     action: request.agent.Action.DOWNLOAD,
     url: 'http://127.0.0.1', // 需要手动将url替换为真实服务器的HTTP协议地址
@@ -3941,7 +4043,7 @@ start(): Promise&lt;void&gt;
     precise: false,
     token: "it is a secret"
   };
-  request.agent.create(getContext(), config).then((task: request.agent.Task) => {
+  request.agent.create(context, config).then((task: request.agent.Task) => {
     task.start().then(() => {
       console.info(`Succeeded in starting a download task.`);
     }).catch((err: BusinessError) => {
@@ -3977,14 +4079,17 @@ pause(callback: AsyncCallback&lt;void&gt;): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 13400003 | task service ability error. |
-  | 21900007 | task state error. |
+  | 13400003 | Task service ability error. |
+  | 21900007 | Operation with wrong task state. |
 
 **示例：**
 
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
+  import { common } from '@kit.AbilityKit';
 
+  // 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   let config: request.agent.Config = {
     action: request.agent.Action.DOWNLOAD,
     url: 'http://127.0.0.1', // 需要手动将url替换为真实服务器的HTTP协议地址
@@ -4007,7 +4112,7 @@ pause(callback: AsyncCallback&lt;void&gt;): void
     precise: false,
     token: "it is a secret"
   };
-  request.agent.create(getContext(), config).then((task: request.agent.Task) => {
+  request.agent.create(context, config).then((task: request.agent.Task) => {
     task.start();
     for(let t = Date.now(); Date.now() - t <= 1000;); // 等待1秒再执行下一步操作，以防异步乱序
     task.pause((err: BusinessError) => {
@@ -4043,14 +4148,17 @@ pause(): Promise&lt;void&gt;
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 13400003 | task service ability error. |
-  | 21900007 | task state error. |
+  | 13400003 | Task service ability error. |
+  | 21900007 | Operation with wrong task state. |
 
 **示例：**
 
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
+  import { common } from '@kit.AbilityKit';
 
+  // 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   let config: request.agent.Config = {
     action: request.agent.Action.DOWNLOAD,
     url: 'http://127.0.0.1', // 需要手动将url替换为真实服务器的HTTP协议地址
@@ -4073,7 +4181,7 @@ pause(): Promise&lt;void&gt;
     precise: false,
     token: "it is a secret"
   };
-  request.agent.create(getContext(), config).then((task: request.agent.Task) => {
+  request.agent.create(context, config).then((task: request.agent.Task) => {
     task.start();
     for(let t = Date.now(); Date.now() - t <= 1000;); // 等待1秒再执行下一步操作，以防异步乱序
     task.pause().then(() => {
@@ -4110,14 +4218,17 @@ resume(callback: AsyncCallback&lt;void&gt;): void
   | 错误码ID | 错误信息 |
   | -------- | -------- |
   | 201 | Permission denied. |
-  | 13400003 | task service ability error. |
-  | 21900007 | task state error. |
+  | 13400003 | Task service ability error. |
+  | 21900007 | Operation with wrong task state. |
 
 **示例：**
 
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
+  import { common } from '@kit.AbilityKit';
 
+  // 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   let config: request.agent.Config = {
     action: request.agent.Action.DOWNLOAD,
     url: 'http://127.0.0.1', // 需要手动将url替换为真实服务器的HTTP协议地址
@@ -4140,7 +4251,7 @@ resume(callback: AsyncCallback&lt;void&gt;): void
     precise: false,
     token: "it is a secret"
   };
-  request.agent.create(getContext(), config).then((task: request.agent.Task) => {
+  request.agent.create(context, config).then((task: request.agent.Task) => {
     task.start();
     for(let t = Date.now(); Date.now() - t <= 1000;); // 等待1秒再执行下一步操作，以防异步乱序
     task.pause();
@@ -4181,14 +4292,17 @@ resume(): Promise&lt;void&gt;
   | 错误码ID | 错误信息 |
   | -------- | -------- |
   | 201 | Permission denied. |
-  | 13400003 | task service ability error. |
-  | 21900007 | task state error. |
+  | 13400003 | Task service ability error. |
+  | 21900007 | Operation with wrong task state. |
 
 **示例：**
 
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
+  import { common } from '@kit.AbilityKit';
 
+  // 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   let config: request.agent.Config = {
     action: request.agent.Action.DOWNLOAD,
     url: 'http://127.0.0.1', // 需要手动将url替换为真实服务器的HTTP协议地址
@@ -4211,7 +4325,7 @@ resume(): Promise&lt;void&gt;
     precise: false,
     token: "it is a secret"
   };
-  request.agent.create(getContext(), config).then((task: request.agent.Task) => {
+  request.agent.create(context, config).then((task: request.agent.Task) => {
     task.start();
     for(let t = Date.now(); Date.now() - t <= 1000;); // 等待1秒再执行下一步操作，以防异步乱序
     task.pause();
@@ -4249,14 +4363,17 @@ stop(callback: AsyncCallback&lt;void&gt;): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 13400003 | task service ability error. |
-  | 21900007 | task state error. |
+  | 13400003 | Task service ability error. |
+  | 21900007 | Operation with wrong task state. |
 
 **示例：**
 
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
+  import { common } from '@kit.AbilityKit';
 
+  // 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   let config: request.agent.Config = {
     action: request.agent.Action.DOWNLOAD,
     url: 'http://127.0.0.1', // 需要手动将url替换为真实服务器的HTTP协议地址
@@ -4279,7 +4396,7 @@ stop(callback: AsyncCallback&lt;void&gt;): void
     precise: false,
     token: "it is a secret"
   };
-  request.agent.create(getContext(), config).then((task: request.agent.Task) => {
+  request.agent.create(context, config).then((task: request.agent.Task) => {
     task.start();
     for(let t = Date.now(); Date.now() - t <= 1000;); // 等待1秒再执行下一步操作，以防异步乱序
     task.stop((err: BusinessError) => {
@@ -4318,14 +4435,17 @@ stop(): Promise&lt;void&gt;
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 13400003 | task service ability error. |
-  | 21900007 | task state error. |
+  | 13400003 | Task service ability error. |
+  | 21900007 | Operation with wrong task state. |
 
 **示例：**
 
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
+  import { common } from '@kit.AbilityKit';
 
+  // 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   let config: request.agent.Config = {
     action: request.agent.Action.DOWNLOAD,
     url: 'http://127.0.0.1', // 需要手动将url替换为真实服务器的HTTP协议地址
@@ -4348,7 +4468,7 @@ stop(): Promise&lt;void&gt;
     precise: false,
     token: "it is a secret"
   };
-  request.agent.create(getContext(), config).then((task: request.agent.Task) => {
+  request.agent.create(context, config).then((task: request.agent.Task) => {
     task.start();
     for(let t = Date.now(); Date.now() - t <= 1000;); // 等待1秒再执行下一步操作，以防异步乱序
     task.stop().then(() => {
@@ -4357,6 +4477,60 @@ stop(): Promise&lt;void&gt;
       console.error(`Failed to stop the download task, Code: ${err.code}, message: ${err.message}`);
     });
     console.info(`Succeeded in creating a download task. result: ${task.tid}`);
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to create a download task, Code: ${err.code}, message: ${err.message}`);
+  });
+  ```
+
+### setMaxSpeed<sup>18+</sup>
+
+setMaxSpeed(speed: number): Promise\<void\>
+
+设置任务每秒能传输的字节数上限。使用Promise异步回调。
+
+**系统能力**：SystemCapability.Request.FileTransferAgent
+
+**参数：**
+
+| 参数名   | 类型     | 必填 | 说明                                 |
+|-------|--------|----|------------------------------------|
+| speed | number | 是  | 设置任务每秒能传输的字节数上限，单位为字节（B），最小值为16384字节。 |
+
+**返回值：**
+
+| 类型              | 说明                         |
+|-----------------|----------------------------|
+| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[上传下载错误码](errorcode-request.md)与[通用错误码说明文档](../errorcode-universal.md)。
+
+| 错误码ID    | 错误信息                 |
+|----------|------------------------------------------------------------------------------------------------------|
+| 401      | Parameter error. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
+| 13400003 | Task service ability error.     |
+
+**示例：**
+
+  ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { common } from '@kit.AbilityKit';
+
+  // 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+  let config: request.agent.Config = {
+    action: request.agent.Action.DOWNLOAD,
+    url: 'http://127.0.0.1', // 需要手动将url替换为真实服务器的HTTP协议地址
+    saveas: "./",
+  };
+  request.agent.create(context, config).then((task: request.agent.Task) => {
+    // 设置任务速度上限。
+    task.setMaxSpeed(10 * 1024 * 1024).then(() => {
+      console.info(`Succeeded in setting the max speed of the task. result: ${task.tid}`);
+    }).catch((err: BusinessError) => {
+      console.error(`Failed to set the max speed of the task. result: ${task.tid}`);
+    });
   }).catch((err: BusinessError) => {
     console.error(`Failed to create a download task, Code: ${err.code}, message: ${err.message}`);
   });
@@ -4389,23 +4563,25 @@ create(context: BaseContext, config: Config, callback: AsyncCallback&lt;Task&gt;
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 201 | permission denied. |
-  | 401 | parameter error. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
-  | 13400001 | file operation error. |
-  | 13400003 | task service ability error. |
-  | 21900004 | the application task queue is full. |
-  | 21900005 | task mode error. |
+  | 201 | Permission denied. |
+  | 401 | Parameter error. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
+  | 13400001 | Invalid file or file system error. |
+  | 13400003 | Task service ability error.    |
+  | 21900004 | The application task queue is full. |
+  | 21900005 | Operation with wrong task mode. |
 
 **示例：**
 
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
+  import { common } from '@kit.AbilityKit';
 
+  // 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   let attachments: Array<request.agent.FormItem> = [{
     name: "createTest",
     value: {
       filename: "createTest.avi",
-      mimeType: "application/octet-stream",
       path: "./createTest.avi",
     }
   }];
@@ -4431,7 +4607,7 @@ create(context: BaseContext, config: Config, callback: AsyncCallback&lt;Task&gt;
     precise: false,
     token: "it is a secret"
   };
-  request.agent.create(getContext(), config, async (err: BusinessError, task: request.agent.Task) => {
+  request.agent.create(context, config, async (err: BusinessError, task: request.agent.Task) => {
     if (err) {
       console.error(`Failed to create a download task, Code: ${err.code}, message: ${err.message}`);
       return;
@@ -4479,23 +4655,25 @@ create(context: BaseContext, config: Config): Promise&lt;Task&gt;
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 201 | permission denied. |
-  | 401 | parameter error. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
-  | 13400001 | file operation error. |
-  | 13400003 | task service ability error. |
-  | 21900004 | the application task queue is full. |
-  | 21900005 | task mode error. |
+  | 201 | Permission denied. |
+  | 401 | Parameter error. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
+  | 13400001 | Invalid file or file system error. |
+  | 13400003 | Task service ability error. |
+  | 21900004 | The application task queue is full. |
+  | 21900005 | Operation with wrong task mode. |
 
 **示例：**
 
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
+  import { common } from '@kit.AbilityKit';
 
+  // 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   let attachments: Array<request.agent.FormItem> = [{
     name: "createTest",
     value: {
       filename: "createTest.avi",
-      mimeType: "application/octet-stream",
       path: "./createTest.avi",
     }
   }];
@@ -4521,7 +4699,7 @@ create(context: BaseContext, config: Config): Promise&lt;Task&gt;
     precise: false,
     token: "it is a secret"
   };
-  request.agent.create(getContext(), config).then(async (task: request.agent.Task) => {
+  request.agent.create(context, config).then(async (task: request.agent.Task) => {
     console.info(`Succeeded in creating a download task. result: ${task.config}`);
     await task.start();
     //用户需要手动调用remove从而结束task对象的生命周期
@@ -4563,16 +4741,19 @@ getTask(context: BaseContext, id: string, token?: string): Promise&lt;Task&gt;
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401 | parameter error. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
-  | 13400003 | task service ability error. |
-  | 21900006 | task not found. |
+  | 401 | Parameter error. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
+  | 13400003 | Task service ability error. |
+  | 21900006 | Task removed or not found. |
 
 **示例：**
 
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
+  import { common } from '@kit.AbilityKit';
 
-  request.agent.getTask(getContext(), "123456").then((task: request.agent.Task) => {
+  // 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+  request.agent.getTask(context, "123456").then((task: request.agent.Task) => {
     console.info(`Succeeded in querying a task. result: ${task.tid}`);
   }).catch((err: BusinessError) => {
     console.error(`Failed to query a task, Code: ${err.code}, message: ${err.message}`);
@@ -4602,9 +4783,9 @@ remove(id: string, callback: AsyncCallback&lt;void&gt;): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401 | parameter error. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. |
-  | 13400003 | task service ability error. |
-  | 21900006 | task not found. |
+  | 401 | Parameter error. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. |
+  | 13400003 | Task service ability error. |
+  | 21900006 | Task removed or not found. |
 
 **示例：**
 
@@ -4649,9 +4830,9 @@ remove(id: string): Promise&lt;void&gt;
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401 | parameter error. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. |
-  | 13400003 | task service ability error. |
-  | 21900006 | task not found. |
+  | 401 | Parameter error. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. |
+  | 13400003 | Task service ability error. |
+  | 21900006 | Task removed or not found. |
 
 **示例：**
 
@@ -4687,9 +4868,9 @@ show(id: string, callback: AsyncCallback&lt;TaskInfo&gt;): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401 | parameter error. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. |
-  | 13400003 | task service ability error. |
-  | 21900006 | task not found. |
+  | 401 | Parameter error. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. |
+  | 13400003 | Task service ability error. |
+  | 21900006 | Task removed or not found. |
 
 **示例：**
 
@@ -4732,9 +4913,9 @@ show(id: string): Promise&lt;TaskInfo&gt;
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401 | parameter error. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. |
-  | 13400003 | task service ability error. |
-  | 21900006 | task not found. |
+  | 401 | Parameter error. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. |
+  | 13400003 | Task service ability error. |
+  | 21900006 | Task removed or not found. |
 
 **示例：**
 
@@ -4771,9 +4952,9 @@ touch(id: string, token: string, callback: AsyncCallback&lt;TaskInfo&gt;): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401 | parameter error. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
-  | 13400003 | task service ability error. |
-  | 21900006 | task not found. |
+  | 401 | Parameter error. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
+  | 13400003 | Task service ability error. |
+  | 21900006 | Task removed or not found.  |
 
 **示例：**
 
@@ -4817,9 +4998,9 @@ touch(id: string, token: string): Promise&lt;TaskInfo&gt;
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401 | parameter error. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
-  | 13400003 | task service ability error. |
-  | 21900006 | task not found. |
+  | 401 | Parameter error. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
+  | 13400003 | Task service ability error. |
+  | 21900006 | Task removed or not found. |
 
 **示例：**
 
@@ -4853,8 +5034,8 @@ search(callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401 | parameter error. Possible causes: 1. Incorrect parameter type. 2. Parameter verification failed. |
-  | 13400003 | task service ability error. |
+  | 401 | Parameter error. Possible causes: 1. Incorrect parameter type. 2. Parameter verification failed. |
+  | 13400003 | Task service ability error. |
 
 **示例：**
 
@@ -4891,8 +5072,8 @@ search(filter: Filter, callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401 | parameter error. Possible causes: 1. Incorrect parameter type. 2. Parameter verification failed. |
-  | 13400003 | task service ability error. |
+  | 401 | Parameter error. Possible causes: 1. Incorrect parameter type. 2. Parameter verification failed. |
+  | 13400003 | Task service ability error. |
 
 **示例：**
 
@@ -4939,8 +5120,8 @@ search(filter?: Filter): Promise&lt;Array&lt;string&gt;&gt;
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401 | parameter error. Possible causes: 1. Incorrect parameter type. 2. Parameter verification failed. |
-  | 13400003 | task service ability error. |
+  | 401 | Parameter error. Possible causes: 1. Incorrect parameter type. 2. Parameter verification failed. |
+  | 13400003 | Task service ability error. |
 
 **示例：**
 
@@ -4984,8 +5165,8 @@ createGroup(config: GroupConfig): Promise\<string\>
 
 | 错误码ID    | 错误信息                                                                                           |
 |----------|------------------------------------------------------------------------------------------------|
-| 401      | parameter error. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
-| 13400003 | task service ability error.             |
+| 401      | Parameter error. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
+| 13400003 | Task service ability error.             |
 
 **示例：**
 
@@ -5033,12 +5214,12 @@ attachGroup(gid: string, tids: string[]): Promise\<void\>
 
 | 错误码ID    | 错误信息                                                                                           |
 |----------|------------------------------------------------------------------------------------------------|
-| 401      | parameter error. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
-| 13400003 | task service ability error                 |
-| 21900005 | task mode error                     |
-| 21900006 | task not found                   |
-| 21900007 | task state error                 |
-| 21900008 | group deleted or not found                          |
+| 401      | Parameter error. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
+| 13400003 | Task service ability error.               |
+| 21900005 | Operation with wrong task mode.           |
+| 21900006 | Task removed or not found.                |
+| 21900007 | Operation with wrong task state.          |
+| 21900008 | Group deleted or not found.               |
 
 **示例：**
 
@@ -5084,9 +5265,9 @@ deleteGroup(gid: string): Promise\<void\>
 
 | 错误码ID    | 错误信息                                                                                           |
 |----------|------------------------------------------------------------------------------------------------|
-| 401      | parameter error. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
-| 13400003 | task service ability error           |
-| 21900008 | group deleted or not found           |
+| 401      | Parameter error. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
+| 13400003 | Task service ability error.           |
+| 21900008 | Group deleted or not found.           |
 
 **示例：**
 
