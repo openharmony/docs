@@ -187,7 +187,7 @@ const char *srcCallNative = R"JS(wasmDemo())JS";
 预期输出
 ```
 JSVM IsWasmModuleObject: 1 
-JSVM1 resultInt32: 3 
+JSVM resultInt32: 3 
 JSVM cacheRejected: 1 
 JSVM IsWasmModuleObject2: 1
 JSVM resultInt32: 3 
