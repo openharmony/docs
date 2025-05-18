@@ -55,8 +55,11 @@ import { common } from '@kit.AbilityKit';
 @Entry
 @Component
 struct Index {
-  @State message: string = 'Hello World';
-  @State contentForms: uniformDataStruct.ContentForm[] = [];
+  @State contentForm: uniformDataStruct.ContentForm = {
+    uniformDataType: 'general.content-form',
+    title: ''
+  };
+  @State startToShow: boolean = false;
 
   aboutToAppear(): void {
     this.initData();
@@ -65,16 +68,16 @@ struct Index {
   async initData() {
     let context = getContext(this) as common.UIAbilityContext;
     try {
-      let appIcon = await context.resourceManager.getMediaContent($r('app.media.appIcon').id);
-      let thumbImage = await context.resourceManager.getMediaContent($r('app.media.thumbImage').id);
-      this.contentForms.push({
+      let appIcon = await context.resourceManager.getMediaContent($r('app.media.startIcon').id);
+      let thumbImage = await context.resourceManager.getMediaContent($r('app.media.foreground').id);
+      this.contentForm = {
         uniformDataType: 'general.content-form',
         title: "Content form title",
         thumbData: appIcon,
         description: "Content form description",
         appIcon: thumbImage,
         appName: "com.test.demo"
-      });
+      };
     } catch (err) {
       console.info("Init data error");
     }
@@ -82,9 +85,13 @@ struct Index {
 
   build() {
     Column() {
-      if (this.contentForms.length > 0) {
+      Button('show card')
+        .onClick(() => {
+          this.startToShow = true;
+        })
+      if (this.startToShow) {
         ContentFormCard({
-          contentFormData: this.contentForms[0],
+          contentFormData: this.contentForm,
           formType: FormType.TYPE_SMALL,
           formWidth: 110,
           formHeight: 50,
