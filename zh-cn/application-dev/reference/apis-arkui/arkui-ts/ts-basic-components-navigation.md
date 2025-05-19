@@ -2993,23 +2993,23 @@ export struct PageTwo {
 该示例主要演示设置Navigation主页的标题栏、工具栏和NavDestination页面的标题栏的背景颜色和背景模糊效果。
 
 ```ts
-let COLOR1: string = "#80004AAF";
-let COLOR2: string = "#802787D9";
-let BLUR_STYLE_1: BlurStyle = BlurStyle.BACKGROUND_THIN;
-let BLUR_STYLE_2: BlurStyle = BlurStyle.BACKGROUND_THICK;
-let BLUR_STYLE_OPTION_1: BackgroundBlurStyleOptions = {
+const COLOR1: string = "#80004AAF";
+const COLOR2: string = "#802787D9";
+const BLUR_STYLE_1: BlurStyle = BlurStyle.BACKGROUND_THIN;
+const BLUR_STYLE_2: BlurStyle = BlurStyle.BACKGROUND_THICK;
+const BLUR_STYLE_OPTION_1: BackgroundBlurStyleOptions = {
   colorMode: ThemeColorMode.DARK,
   adaptiveColor: AdaptiveColor.DEFAULT,
   blurOptions: { grayscale: [20, 20] },
   scale: 1
 };
-let BLUR_STYLE_OPTION_2: BackgroundBlurStyleOptions = {
+const BLUR_STYLE_OPTION_2: BackgroundBlurStyleOptions = {
   colorMode: ThemeColorMode.LIGHT,
   adaptiveColor: AdaptiveColor.AVERAGE,
   blurOptions: { grayscale: [20, 20] },
   scale: 1
 };
-let EFFECT_OPTION_1: BackgroundEffectOptions = {
+const EFFECT_OPTION_1: BackgroundEffectOptions = {
   radius: 20,
   saturation: 10,
   brightness: 0,
@@ -3017,7 +3017,7 @@ let EFFECT_OPTION_1: BackgroundEffectOptions = {
   adaptiveColor: AdaptiveColor.DEFAULT,
   blurOptions: { grayscale: [0, 0] },
 };
-let EFFECT_OPTION_2: BackgroundEffectOptions = {
+const EFFECT_OPTION_2: BackgroundEffectOptions = {
   radius: 60,
   saturation: 40,
   brightness: 1,

@@ -428,7 +428,7 @@ Router和Navigation都提供了系统的转场动画也提供了自定义转场�
 
 其中Router自定义页面转场通过通用方法`pageTransition()`实现，具体可参考Router[页面转场动画](arkts-page-transition-animation.md)。
 
-Navigation作为路由容器组件，其内部的页面切换动画本质上属于组件跟组件之间的属性动画，可以通过Navigation中的[customNavContentTransition](../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md#customnavcontenttransition11)事件提供自定义转场动画的能力，具体实现可以参考Navigation[自定义转场](arkts-navigation-navigation.md#自定义转场)。（注意：Dialog类型的页面当前没有转场动画）
+Navigation作为路由容器组件，其内部的页面切换动画本质上属于组件跟组件之间的属性动画，可以通过Navigation中的[customNavContentTransition](../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md#customnavcontenttransition11)事件提供自定义转场动画的能力，具体实现可以参考Navigation[自定义转场](arkts-navigation-navigation.md#自定义转场)。（注意：API version 13之前，Dialog类型的页面默认无转场动画。从API version13开始，Dialog类型的页面支持系统转场动画。）
 
 ## 共享元素转场
 
