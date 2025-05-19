@@ -345,7 +345,7 @@
       - UI开发 (ArkTS声明式开发范式)<!--arkts-ui-development-->
         - [UI开发（ArkTS声明式开发范式）概述](ui/arkts-ui-development-overview.md)
         - 学习UI范式基本语法<!--arkts-ui-paradigm-basic-syntax-->
-          - [基本语法概述](ui/state-management/arkts-basic-syntax-overview.md) 
+          - [基本语法概述](ui/state-management/arkts-basic-syntax-overview.md)
           - [声明式UI描述](ui/state-management/arkts-declarative-ui-description.md)
           - 自定义组件<!--arkts-custom-components-->
             - [创建自定义组件](ui/state-management/arkts-create-custom-components.md)
@@ -471,7 +471,7 @@
              - [不依赖UI组件的全局菜单 (openMenu)](ui/arkts-popup-and-menu-components-uicontext-menu.md)
            - 气泡提示<!--arkts-use-popup-->
              - [气泡提示概述](ui/arkts-popup-overview.md)
-             - [气泡提示 (Popup)](ui/arkts-popup-and-menu-components-popup.md)            
+             - [气泡提示 (Popup)](ui/arkts-popup-and-menu-components-popup.md)
              - [不依赖UI组件的全局气泡提示 (openPopup)](ui/arkts-popup-and-menu-components-uicontext-popup.md)
           - 绑定模态页面<!--arkts-bind-modal-->
             - [绑定模态页面概述](ui/arkts-modal-overview.md)
@@ -846,6 +846,7 @@
               - [创建索引](internationalization/i18n-sorting-index.md)
           - [字符处理](internationalization/i18n-character-processing.md)
           - 本地化名称<!--i18n-name-localization-->
+              - [概述](internationalization/i18n-display-overview.md)
               - [本地化语言与地区名称](internationalization/i18n-language-region-display.md)
               - [本地化时区名称](internationalization/i18n-time-zone-display.md)
       - 应用本地化<!--i10n-->
@@ -952,7 +953,7 @@
             - [使用AES对称密钥（ECB模式）加解密(C/C++)](security/CryptoArchitectureKit/crypto-aes-sym-encrypt-decrypt-ecb-ndk.md)
             - [使用AES对称密钥（GCM模式）分段加解密(ArkTS)](security/CryptoArchitectureKit/crypto-aes-sym-encrypt-decrypt-gcm-by-segment.md)
             - [使用AES对称密钥（GCM模式）分段加解密(C/C++)](security/CryptoArchitectureKit/crypto-aes-sym-encrypt-decrypt-gcm-by-segment-ndk.md)
-            - [使用DES对称密钥（ECB模式）加解密(ArkTS)](security/CryptoArchitectureKit/crypto-des-sym-encrypt-decrypt-ecb.md) 
+            - [使用DES对称密钥（ECB模式）加解密(ArkTS)](security/CryptoArchitectureKit/crypto-des-sym-encrypt-decrypt-ecb.md)
             - [使用DES对称密钥（ECB模式）加解密(C/C++)](security/CryptoArchitectureKit/crypto-des-sym-encrypt-decrypt-ecb-ndk.md)
             - [使用3DES对称密钥（ECB模式）加解密(ArkTS)](security/CryptoArchitectureKit/crypto-3des-sym-encrypt-decrypt-ecb.md)
             - [使用3DES对称密钥（ECB模式）加解密(C/C++)](security/CryptoArchitectureKit/crypto-3des-sym-encrypt-decrypt-ecb-ndk.md)
@@ -984,7 +985,7 @@
             - [使用ECDSA密钥对验签(C/C++)](security/CryptoArchitectureKit/crypto-ecdsa-sign-sig-verify-ndk.md)
             - [使用SM2密钥对签名验签(ArkTS)](security/CryptoArchitectureKit/crypto-sm2-sign-sig-verify-pkcs1.md)
             - [使用SM2密钥对验签(C/C++)](security/CryptoArchitectureKit/crypto-sm2-sign-sig-verify-pkcs1-ndk.md)
-            - [SM2签名数据格式转换(ArkTS)](security/CryptoArchitectureKit/crypto-sm2-sign-data-format-conversion.md) 
+            - [SM2签名数据格式转换(ArkTS)](security/CryptoArchitectureKit/crypto-sm2-sign-data-format-conversion.md)
         - 密钥协商<!--crypto-key-agreement-->
           - [密钥协商介绍及算法规格](security/CryptoArchitectureKit/crypto-key-agreement-overview.md)
           - 密钥协商开发指导<!--crypto-key-agreement-dev-->
@@ -1429,7 +1430,7 @@
         - [音频录制流管理](media/audio/audio-recording-stream-management.md)
         - [管理全局音频输入设备](media/audio/audio-input-device-management.md)
         - [共享音频输入](media/audio/audio-recording-concurrency.md)
-        - [实现音频耳返](media/audio/audio-ear-monitor.md) 
+        - [实现音频耳返](media/audio/audio-ear-monitor.md)
       - 音频通话<!--audio-call-->
         - [音频通话开发概述](media/audio/audio-call-overview.md)
         - [开发音频通话功能](media/audio/audio-call-development.md)
@@ -3959,8 +3960,8 @@
             - [scsi_peripheral_types.h](reference/apis-driverdevelopment-kit/scsi__peripheral__types_8h.md)
             - [usb_ddk_api.h](reference/apis-driverdevelopment-kit/usb__ddk__api_8h.md)
             - [usb_ddk_types.h](reference/apis-driverdevelopment-kit/usb__ddk__types_8h.md)
-            - [usb_serial_api.h](reference/apis-driverdevelopment-kit/usb__serial__ddk__api_8h.md) 
-            - [usb_serial_types.h](reference/apis-driverdevelopment-kit/usb__serial__ddk__types_8h.md) 
+            - [usb_serial_api.h](reference/apis-driverdevelopment-kit/usb__serial__ddk__api_8h.md)
+            - [usb_serial_types.h](reference/apis-driverdevelopment-kit/usb__serial__ddk__types_8h.md)
           - 结构体<!--driver-development-struct-->
             - [DDK_Ashmem](reference/apis-driverdevelopment-kit/_ddk_ashmem.md)
             - [Hid_AbsAxesArray](reference/apis-driverdevelopment-kit/_hid___abs_axes_array.md)
