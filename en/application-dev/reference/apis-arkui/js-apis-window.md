@@ -3323,7 +3323,7 @@ Loads the content of a page, with its path in the current project specified, to 
 | Name  | Type                                           | Mandatory| Description                                                        |
 | -------- | ----------------------------------------------- | ---- | ------------------------------------------------------------ |
 | path     | string                                          | Yes  | Path of the page from which the content will be loaded. The path is configured in the **main_pages.json** file of the project.|
-| storage  | [LocalStorage](../../quick-start/arkts-localstorage.md) | Yes  | Page-level UI state storage unit, which is used to transfer the state attribute for the page.|
+| storage  | [LocalStorage](../../ui/state-management/arkts-localstorage.md) | Yes  | Page-level UI state storage unit, which is used to transfer the state attribute for the page.|
 | callback | AsyncCallback&lt;void&gt;                       | Yes  | Callback used to return the result.                                                  |
 
 **Error codes**
@@ -3370,7 +3370,7 @@ Loads the content of a page, with its path in the current project specified, to 
 | Name | Type                                           | Mandatory| Description                                                        |
 | ------- | ----------------------------------------------- | ---- | ------------------------------------------------------------ |
 | path    | string                                          | Yes  | Path of the page from which the content will be loaded. The path is configured in the **main_pages.json** file of the project.|
-| storage | [LocalStorage](../../quick-start/arkts-localstorage.md) | Yes  | Page-level UI state storage unit, which is used to transfer the state attribute for the page.|
+| storage | [LocalStorage](../../ui/state-management/arkts-localstorage.md) | Yes  | Page-level UI state storage unit, which is used to transfer the state attribute for the page.|
 
 **Return value**
 
@@ -3420,7 +3420,7 @@ Loads the content of a [named route](../../ui/arkts-routing.md#named-route) page
 | Name  | Type                                                   | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | name     | string                                                  | Yes  | Name of the named route page.                                            |
-| storage  | [LocalStorage](../../quick-start/arkts-localstorage.md) | Yes  | Page-level UI state storage unit, which is used to transfer the state attribute for the page.|
+| storage  | [LocalStorage](../../ui/state-management/arkts-localstorage.md) | Yes  | Page-level UI state storage unit, which is used to transfer the state attribute for the page.|
 | callback | AsyncCallback&lt;void&gt;                               | Yes  | Callback used to return the result.                                                  |
 
 **Error codes**
@@ -3564,7 +3564,7 @@ Loads the content of a [named route](../../ui/arkts-routing.md#named-route) page
 | Name | Type                                                   | Mandatory| Description                                                        |
 | ------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | name    | string                                                  | Yes  | Name of the named route page.                                            |
-| storage | [LocalStorage](../../quick-start/arkts-localstorage.md) | No  | Page-level UI state storage unit, which is used to transfer the state attribute for the page.|
+| storage | [LocalStorage](../../ui/state-management/arkts-localstorage.md) | No  | Page-level UI state storage unit, which is used to transfer the state attribute for the page.|
 
 **Return value**
 
@@ -11263,7 +11263,7 @@ Loads the content of a page, with its path in the current project specified, to 
 | Name     | Type                                                    | Mandatory | Description                                                  |
 | -------- | ------------------------------------------------------- | --------- | ------------------------------------------------------------ |
 | path     | string                                                  | Yes       | Path of the page from which the content will be loaded. The path is configured in the **main_pages.json** file of the project. |
-| storage  | [LocalStorage](../../quick-start/arkts-localstorage.md) | Yes       | Page-level UI state storage unit, which is used to transfer the state attribute for the page. |
+| storage  | [LocalStorage](../../ui/state-management/arkts-localstorage.md) | Yes       | Page-level UI state storage unit, which is used to transfer the state attribute for the page. |
 | callback | AsyncCallback&lt;void&gt;                               | Yes       | Callback used to return the result.                          |
 
 **Error codes**
@@ -11324,7 +11324,7 @@ Loads the content of a page, with its path in the current project specified, to 
 | Name    | Type                                                    | Mandatory | Description                                                  |
 | ------- | ------------------------------------------------------- | --------- | ------------------------------------------------------------ |
 | path    | string                                                  | Yes       | Path of the page from which the content will be loaded. The path is configured in the **main_pages.json** file of the project. |
-| storage | [LocalStorage](../../quick-start/arkts-localstorage.md) | No        | Page-level UI state storage unit, which is used to transfer the state attribute for the page. |
+| storage | [LocalStorage](../../ui/state-management/arkts-localstorage.md) | No        | Page-level UI state storage unit, which is used to transfer the state attribute for the page. |
 
 **Return value**
 
@@ -11446,7 +11446,7 @@ Loads the content of a [named route](../../ui/arkts-routing.md#named-route) page
 | Name     | Type                                                    | Mandatory | Description                                                  |
 | -------- | ------------------------------------------------------- | --------- | ------------------------------------------------------------ |
 | name     | string                                                  | Yes       | Name of the named route page.                                |
-| storage  | [LocalStorage](../../quick-start/arkts-localstorage.md) | Yes       | Page-level UI state storage unit, which is used to transfer the state attribute for the page. |
+| storage  | [LocalStorage](../../ui/state-management/arkts-localstorage.md) | Yes       | Page-level UI state storage unit, which is used to transfer the state attribute for the page. |
 | callback | AsyncCallback&lt;void&gt;                               | Yes       | Callback used to return the result.                          |
 
 **Error codes**
