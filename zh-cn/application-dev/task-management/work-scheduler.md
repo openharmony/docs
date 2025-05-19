@@ -215,7 +215,7 @@ WorkInfo参数用于设置应用条件，参数设置时需遵循以下规则：
 ### 延迟任务调度功能验证
 1. 确认延时任务是否申请成功
 
-   startWork成功之后，可以通过以下命令验证延迟任务是否申请成功。如果[hidumper命令](../dfx/hidumper.md)返回结果中包含对应应用的bundleName、abilityName、workId，说明对应workId的延迟任务申请成功。
+   startWork接口调用成功之后，可以通过以下命令验证延迟任务是否申请成功。如果[hidumper命令](../dfx/hidumper.md)返回结果中包含对应应用的bundleName、abilityName、workId，说明对应workId的延迟任务申请成功。
 
    ```ts
    $ hidumper -s 1904 -a '-a'
