@@ -464,7 +464,7 @@ ws.close((err: BusinessError) => {
 
 close(options: WebSocketCloseOptions, callback: AsyncCallback\<boolean\>): void
 
-根据可选参数code和reason，关闭WebSocket连接，使用callback方式作为异步方法。
+根据参数options，关闭WebSocket连接，使用callback方式作为异步方法。
 
 **需要权限**：ohos.permission.INTERNET
 
@@ -512,7 +512,7 @@ ws.close(options, (err: BusinessError) => {
 
 close(options?: WebSocketCloseOptions): Promise\<boolean\>
 
-根据可选参数code和reason，关闭WebSocket连接，使用callback方式作为异步方法。
+根据可选参数options，关闭WebSocket连接，使用Promise方式作为异步方法。
 
 **需要权限**：ohos.permission.INTERNET
 
