@@ -2165,7 +2165,7 @@ V2:
 封装Env类型来传递多个系统环境变量。
 
 ```
-// Env.ts
+// Env.ets
 import { ConfigurationConstant } from '@kit.AbilityKit';
 
 export class Env {
