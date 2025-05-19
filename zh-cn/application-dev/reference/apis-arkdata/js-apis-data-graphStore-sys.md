@@ -55,7 +55,7 @@ getStore(context: Context, config: StoreConfig): Promise&lt;GraphStore&gt;
 | 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 31300000  | Inner error. |
 | 31300001  | Database corrupted. |
-| 31300014  | Failed to open or delete database with an invalid database path. |
+| 31300014  | Failed to open or delete the database with an invalid database path. |
 | 31300015  | StoreConfig, for example, securityLevel or encrypt, is changed. |
 
 **示例：**
@@ -116,7 +116,7 @@ deleteStore(context: Context, config: StoreConfig): Promise&lt;void&gt;
 | 202  | Permission verification failed, application which is not a system application uses system API. |
 | 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 31300000  | Inner error. |
-| 31300014  | Failed to open or delete database with an invalid database path. |
+| 31300014  | Failed to open or delete the database with an invalid database path. |
 
 **示例：**
 

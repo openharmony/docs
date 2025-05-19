@@ -257,7 +257,7 @@ A conflicting constraint already exists.
 
 **错误信息**
 
-Failed to open or delete database with an invalid database path.
+Failed to open or delete the database with an invalid database path.
 
 **错误描述**
 
