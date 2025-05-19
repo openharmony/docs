@@ -1354,7 +1354,7 @@ server端添加服务。
 
 | 参数名     | 类型                          | 必填   | 说明                       |
 | ------- | --------------------------- | ---- | ------------------------ |
-| service | [GattService](#gattservice) | 是    | 服务端的service数据。BLE广播的相关参数 |
+| service | [GattService](#gattservice) | 是    | 服务端的service数据。BLE广播的相关参数。 |
 
 **错误码**：
 
