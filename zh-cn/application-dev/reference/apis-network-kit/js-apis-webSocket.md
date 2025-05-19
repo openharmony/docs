@@ -1409,7 +1409,7 @@ on(type: 'messageReceive', callback: Callback\<WebSocketMessage\>): void
 | 参数名   | 类型                    | 必填 | 说明                          |
 | -------- | ----------------------- | ---- | ----------------------------- |
 | type     | string                  | 是   | 'messageReceive'：WebSocketServer的接收到客户端消息事件。 |
-| callback | Callback\<[WebSocketMessage](#webSocketmessage)\> | 是   | 回调函数。<br>clientconnection:客户端信息，data:客户端发送的数据消息。|
+| callback | Callback\<[WebSocketMessage](#websocketmessage)\> | 是   | 回调函数。<br>clientconnection:客户端信息，data:客户端发送的数据消息。|
 
 **示例：**
 
@@ -1439,7 +1439,7 @@ off(type: 'messageReceive', callback?: Callback\<WebSocketMessage\>): void
 | 参数名   | 类型                                                | 必填 | 说明                                         |
 | -------- | --------------------------------------------------- | ---- | -------------------------------------------- |
 | type     | string                  | 是   | 'messageReceive'：WebSocketServer的接收到客户端消息事件。 |
-| callback | Callback\<[WebSocketMessage](#webSocketmessage)\> | 是   | 回调函数。<br>clientconnection:客户端信息，data:客户端发送的数据消息。|
+| callback | Callback\<[WebSocketMessage](#websocketmessage)\> | 是   | 回调函数。<br>clientconnection:客户端信息，data:客户端发送的数据消息。|
 
 **示例：**
 
