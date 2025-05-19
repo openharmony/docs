@@ -1572,7 +1572,7 @@ async function demo() {
 
 ### inputText<sup>20+</sup>
 
-inputText(text: string, mode: InputTextMode): Promise</void>
+inputText(text: string, mode: InputTextMode): Promise\<void>
 
 向控件中输入文本（适用于文本框控件），支持指定文本输入方式，使用Promise异步回调。
 
@@ -3435,7 +3435,7 @@ async function demo() {
 
 ### inputText<sup>20+</sup>
 
-inputText(p: Point, text: string, mode: InputTextMode): Promise</void>
+inputText(p: Point, text: string, mode: InputTextMode): Promise\<void>
 
 在指定坐标点输入文本，支持指定文本输入方式，使用Promise异步回调。
 
@@ -3755,7 +3755,7 @@ async function demo() {
 
 ### crownRotate<sup>20+</sup>
 
-crownRotate(d: number, speed?: number): Promise</void>
+crownRotate(d: number, speed?: number): Promise\<void>
 
 注入手表表冠旋转事件，可指定旋转速度，使用Promise异步回调。
 
