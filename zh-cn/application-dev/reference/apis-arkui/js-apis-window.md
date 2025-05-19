@@ -268,7 +268,7 @@ import { window } from '@kit.ArkUI';
 | spacingBetweenButtons  | number        | 是   | 是   | 按钮间距，取值范围8vp-24vp，默认值12vp。 |
 | closeButtonRightMargin | number        | 是   | 是   | 关闭按钮右侧距窗口边距，取值范围6vp-22vp，默认值20vp。 |
 | buttonIconSize<sup>20+</sup> | number        | 是   | 是   | 按键icon的大小，取值范围16vp-24vp，默认值20vp。 |
-| buttonBackgroundCornerRadius<sup>20+</sup> | number        | 是   | 是   | 按键背板圆角半径，取值范围4-8vp，默认值4vp。 |
+| buttonBackgroundCornerRadius<sup>20+</sup> | number        | 是   | 是   | 按键背板圆角半径，取值范围4vp-8vp，默认值4vp。 |
 
 ## ColorSpace<sup>8+</sup>
 
