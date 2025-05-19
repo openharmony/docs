@@ -6789,8 +6789,6 @@ setResizeByDragEnabled(enable: boolean, callback: AsyncCallback&lt;void&gt;): vo
 **示例：**
 
 ```ts
-import { BusinessError } from '@kit.BasicServicesKit';
-
 try {
   let enabled = false;
   windowClass.setResizeByDragEnabled(enabled, (err) => {
