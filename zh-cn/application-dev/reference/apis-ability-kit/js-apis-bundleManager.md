@@ -205,6 +205,25 @@ import { bundleManager } from '@kit.AbilityKit';
 | MULTI_INSTANCE |  1  | 多实例模式。常驻进程不支持该字段。  |
 | APP_CLONE |  2  |  分身模式。  |
 
+## AbilityFlag<sup>20+</sup>
+
+Ability组件信息标志，指示需要获取的Ability组件信息的内容。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Core
+
+| 名称                              | 值         | 说明                                                         |
+| --------------------------------- | ---------- | ------------------------------------------------------------ |
+| GET_ABILITY_INFO_DEFAULT          | 0x00000000 | 获取默认[AbilityInfo](js-apis-bundleManager-abilityInfo.md)，获取的AbilityInfo不包含permissions、metadata、被禁用Ability对应的AbilityInfo。<!--Del-->通过[setAbilityEnabled接口](./js-apis-bundleManager-sys.md#bundlemanagersetabilityenabled)可设置Ability禁用状态、通过[isAbilityEnabled接口](./js-apis-bundleManager-sys.md#bundlemanagerisabilityenabled-1)可获取Ability禁用状态。<!--DelEnd-->|
+| GET_ABILITY_INFO_WITH_PERMISSION  | 0x00000001 | 获取包含permissions的AbilityInfo。                         |
+| GET_ABILITY_INFO_WITH_APPLICATION | 0x00000002 | 获取包含applicationInfo的AbilityInfo。                     |
+| GET_ABILITY_INFO_WITH_METADATA    | 0x00000004 | 获取包含metadata的AbilityInfo。                            |
+| GET_ABILITY_INFO_WITH_DISABLE     | 0x00000008 | 获取被禁用Ability对应的AbilityInfo。                   |
+| GET_ABILITY_INFO_ONLY_SYSTEM_APP  | 0x00000010 | 获取系统应用对应的AbilityInfo。                           |
+| GET_ABILITY_INFO_WITH_APP_LINKING | 0x00000040 | 获取通过[域名校验](../../quick-start/module-configuration-file.md#skills标签)筛选的AbilityInfo。          |
+| GET_ABILITY_INFO_WITH_SKILL       | 0x00000080 | 获取包含skills的AbilityInfo。                    |
+
 ## bundleManager.getBundleInfoForSelf
 
 getBundleInfoForSelf(bundleFlags: number): Promise\<BundleInfo>
@@ -1437,9 +1456,9 @@ try {
 
 ## bundleManager.getAbilityInfo<sup>20+</sup>
 
-getAbilityInfo(uri: string, abilityFlags: number):  Promise<Array\<AbilityInfo>>
+getAbilityInfo(uri: string, abilityFlags: number): Promise\<Array\<AbilityInfo>>
 
-根据给定的uri、abilityFlags和userId获取一个或多个AbilityInfo，使用Promise异步回调。
+获取指定资源标识符和组件信息标志对应的Ability信息，使用Promise异步回调。
 
 **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
@@ -1451,14 +1470,14 @@ getAbilityInfo(uri: string, abilityFlags: number):  Promise<Array\<AbilityInfo>>
 
 | 参数名      | 类型   | 必填 | 说明                                                  |
 | ------------ | ------ | ---- | ------------------------------------------------------- |
-| uri         | string   | 是   | 表示用于匹配能力的uri。                 |
-| abilityFlags | [number](#abilityflag) | 是   | 表示指定返回的AbilityInfo所包含的信息。 |                     |
+| uri         | string   | 是   | 表示统一资源标识符URI，取值与[module.json5配置文件中skills下的uris字段](../../quick-start/module-configuration-file.md#skills标签)相对应。                   |
+| abilityFlags  | number | 是   | 表示[Ability组件信息标志](js-apis-bundleManager.md#abilityflag20)，指示需要获取的Ability组件信息的内容。 |
 
 **返回值：**
 
 | 类型                                                         | 说明                                 |
 | ------------------------------------------------------------ | ------------------------------------ |
-| Promise<Array\<[AbilityInfo](js-apis-bundleManager-abilityInfo.md)>> | Promise对象，返回Array\<AbilityInfo>。 |
+| Promise<Array\<[AbilityInfo](js-apis-bundleManager-abilityInfo.md)>> | 返回获取到的Ability信息数组。 |
 
 **错误码：**
 
@@ -1467,21 +1486,21 @@ getAbilityInfo(uri: string, abilityFlags: number):  Promise<Array\<AbilityInfo>>
 | 错误码ID | 错误信息                             |
 | -------- | ------------------------------------- |
 | 201 | Permission denied. |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. At least one parameter(action, entity, uri or type) is required for implicit query.  |
-| 17700003 | The specified ability is not found.    |
+| 17700003 | The ability is not found.    |
 
 **示例：**
 
 ```ts
 import { bundleManager } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
-let abilityFlags = bundleManager.AbilityFlag.GET_ABILITY_INFO_DEFAULT;
-let uri = "https://www.example.com";
+
+let abilityFlags = bundleManager.AbilityFlag.GET_ABILITY_INFO_WITH_APPLICATION;
+let uri = "https://www.example.com"; 
 
 try {
     bundleManager.getAbilityInfo(uri, abilityFlags).then((data) => {
         console.info('getAbilityInfo successfully. Data: ' + JSON.stringify(data));
-    }).catch((err) => {
+    }).catch((err: BusinessError) => {
         let message = (err as BusinessError).message;
         console.error('getAbilityInfo failed. Cause: ' + message);
     });
