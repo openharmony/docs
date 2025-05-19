@@ -514,7 +514,9 @@
     - [半模态错误码](errorcode-bindSheet.md)
     - [滚动类组件错误码](errorcode-scroll.md)
     - [截图错误码](errorcode-snapshot.md)
+    - [属性字符串错误码](errorcode-styled-string.md)
     - [UI上下文错误码](errorcode-uicontext.md)
+    - [交互事件错误码](errorcode-event.md)
     <!--Del-->
     - [UIExtension错误码](errorcode-uiextension.md)
     <!--DelEnd-->

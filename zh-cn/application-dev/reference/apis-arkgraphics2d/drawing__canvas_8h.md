@@ -9,6 +9,9 @@
 
 非录制类型画布会将绘制指令直接绘制到绑定的位图中，录制类型画布会将绘制指令录制下来用于后续的回放。
 
+<!--RP1-->
+**相关示例：**[NDKAPIDrawing (API14)](https://gitee.com/openharmony/applications_app_samples/tree/master/code/DocsSample/Drawing/NDKAPIDrawing)<!--RP1End-->
+
 **引用文件：**&lt;native_drawing/drawing_canvas.h&gt;
 
 **库：** libnative_drawing.so
@@ -106,11 +109,3 @@
 | [OH_Drawing_ErrorCode](_drawing.md#oh_drawing_errorcode) [OH_Drawing_CanvasQuickRejectPath](_drawing.md#oh_drawing_canvasquickrejectpath) ([OH_Drawing_Canvas](_drawing.md#oh_drawing_canvas) \*canvas, const [OH_Drawing_Path](_drawing.md#oh_drawing_path) \*path, bool \*quickReject) | 判断路径与画布区域是否不相交。画布区域包含边界。  | 
 | [OH_Drawing_ErrorCode](_drawing.md#oh_drawing_errorcode) [OH_Drawing_CanvasQuickRejectRect](_drawing.md#oh_drawing_canvasquickrejectrect) ([OH_Drawing_Canvas](_drawing.md#oh_drawing_canvas) \*canvas, const [OH_Drawing_Rect](_drawing.md#oh_drawing_rect) \*rect, bool \*quickReject) | 判断矩形和画布区域是否不相交。画布区域包含边界。  | 
 | [OH_Drawing_ErrorCode](_drawing.md#oh_drawing_errorcode) [OH_Drawing_CanvasDrawPixelMapNine](_drawing.md#oh_drawing_canvasdrawpixelmapnine) ([OH_Drawing_Canvas](_drawing.md#oh_drawing_canvas) \*canvas, [OH_Drawing_PixelMap](_drawing.md#oh_drawing_pixelmap) \*pixelMap, const [OH_Drawing_Rect](_drawing.md#oh_drawing_rect) \*center, const [OH_Drawing_Rect](_drawing.md#oh_drawing_rect) \*dst, [OH_Drawing_FilterMode](_drawing.md#oh_drawing_filtermode) mode) | 通过绘制两条水平线和两条垂直线将像素图分割成9个部分：四个边，四个角和中心。 若角落的4个区域尺寸不超过目标矩形，则会在不缩放的情况下被绘制在目标矩形，反之则会按比例缩放绘制在目标矩形。 如果还有剩余空间，剩下的5个区域会通过拉伸或压缩来绘制，以便能够完全覆盖目标矩形。  | 
-
-<!--RP1-->
-## 相关实例
-
-针对Drawing(C/C++)的开发，有以下相关实例可供参考：
-
-- [NDKAPIDrawing (API14)](https://gitee.com/openharmony/applications_app_samples/tree/master/code/DocsSample/Drawing/NDKAPIDrawing)
-<!--RP1End-->

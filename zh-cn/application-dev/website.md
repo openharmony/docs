@@ -564,10 +564,14 @@
           - 构建布局<!--arkts-build-layout-ndk-->
             - [使用列表](ui/ndk-loading-long-list.md)
             - [使用瀑布流](ui/ndk-waterflow.md)
+          - 使用文本<!--arkts-build-text-ndk-->
+            - [Text组件的文本绘制与显示](ui/ndk-styled-string.md)
+            - [输入框文本事件监听](ui/ndk-textarea-event.md)
           - [构建弹窗](ui/ndk-build-pop-up-window.md)
           - [构建自定义组件](ui/ndk-build-custom-components.md)
           - [嵌入ArkTS组件](ui/ndk-embed-arkts-components.md)
           - [通过XComponent接入无障碍](ui/ndk-accessibility-xcomponent.md)
+          - [自定义绘制](ui/arkts-user-defined-draw.md)
       - UI开发 (兼容JS的类Web开发范式)<!--ui-js-dev-->
         - [UI开发 (兼容JS的类Web开发范式)概述](ui/ui-js-overview.md)
         - 框架说明<!--js-framework-overview-->
@@ -710,6 +714,7 @@
         - [使用Web组件打印前端页面](web/web-print.md)
         - [使用Web组件的PDF文档预览能力](web/web-pdf-preview.md)
         - [网页中安全区域计算和避让适配](web/web-safe-area-insets.md)
+        - [Web组件的菜单功能](web/web_menu.md)
       - [同层渲染](web/web-same-layer.md)
       - [使用离线Web组件](web/web-offline-mode.md)
       - Web调试维测<!--web-debugging-->
@@ -1694,6 +1699,9 @@
         <!--DelEnd-->
         - [为通知添加行为意图](notification/notification-with-wantagent.md)
         - [为跨设备协同通知添加快捷回复](notification/notification-quickreply.md)
+        <!--Del-->
+        - [通知消息跨设备协同管理（仅对系统应用开放）](notification/notification-distributed-notdistributed.md)
+        <!--DelEnd-->
       - [更新通知](notification/notification-update.md)
       - [取消通知](notification/notification-cancel.md)
       <!--Del-->
@@ -3049,7 +3057,6 @@
           - [动画错误码](reference/apis-arkui/errorcode-animator.md)
           - [弹窗错误码](reference/apis-arkui/errorcode-promptAction.md)
           - [页面路由错误码](reference/apis-arkui/errorcode-router.md)
-          - [用户界面外观服务错误码](reference/apis-arkui/errorcode-uiappearance.md)
           - [拖拽事件错误码](reference/apis-arkui/errorcode-drag-event.md)
           - [图像AI分析错误码](reference/apis-arkui/errorcode-image-analyzer.md)
           - [焦点错误码](reference/apis-arkui/errorcode-focus.md)
@@ -3058,6 +3065,10 @@
           - [滚动类组件错误码](reference/apis-arkui/errorcode-scroll.md)
           - [截图错误码](reference/apis-arkui/errorcode-snapshot.md)
           - [UI上下文错误码](reference/apis-arkui/errorcode-uicontext.md)
+          - [交互事件错误码](reference/apis-arkui/errorcode-event.md)
+          <!--Del-->
+          - [用户界面外观服务错误码](reference/apis-arkui/errorcode-uiappearance.md)
+          <!--DelEnd-->
         - 图形图像<!--arkui-graphics-images-arkts-errcode-->
           - [屏幕错误码](reference/apis-arkui/errorcode-display.md)
           - [窗口错误码](reference/apis-arkui/errorcode-window.md)
@@ -3330,21 +3341,32 @@
             - [@system.cipher (加密算法)](reference/apis-crypto-architecture-kit/js-apis-system-cipher.md)
         - C API<!--crypto-architecture-c-->
           - 模块<!--crypto-architecture-module-->
-            - [CryptoAsymKeyApi](reference/apis-crypto-architecture-kit/_crypto_asym_key_api.md)
-            - [CryptoCommonApi](reference/apis-crypto-architecture-kit/_crypto_common_api.md)
-            - [CryptoDigestApi](reference/apis-crypto-architecture-kit/_crypto_digest_api.md)
-            - [CryptoSignatureApi](reference/apis-crypto-architecture-kit/_crypto_signature_api.md)
-            - [CryptoSymCipherApi](reference/apis-crypto-architecture-kit/_crypto_sym_cipher_api.md)
-            - [CryptoSymKeyApi](reference/apis-crypto-architecture-kit/_crypto_sym_key_api.md)
+            - [CryptoArchitectureKit](reference/apis-crypto-architecture-kit/capi-cryptoarchitecturekit.md)
+            - [CryptoAsymKeyApi](reference/apis-crypto-architecture-kit/capi-cryptoasymkeyapi.md)
+            - [CryptoCommonApi](reference/apis-crypto-architecture-kit/capi-cryptocommonapi.md)
+            - [CryptoDigestApi](reference/apis-crypto-architecture-kit/capi-cryptodigestapi.md)
+            - [CryptoSignatureApi](reference/apis-crypto-architecture-kit/capi-cryptosignatureapi.md)
+            - [CryptoSymCipherApi](reference/apis-crypto-architecture-kit/capi-cryptosymcipherapi.md)
+            - [CryptoSymKeyApi](reference/apis-crypto-architecture-kit/capi-cryptosymkeyapi.md)
           - 头文件<!--crypto-architecture-headerfile-->
-            - [crypto_asym_key.h](reference/apis-crypto-architecture-kit/crypto__asym__key_8h.md)
-            - [crypto_common.h](reference/apis-crypto-architecture-kit/crypto__common_8h.md)
-            - [crypto_digest.h](reference/apis-crypto-architecture-kit/crypto__digest_8h.md)
-            - [crypto_signature.h](reference/apis-crypto-architecture-kit/crypto__signature_8h.md)
-            - [crypto_sym_cipher.h](reference/apis-crypto-architecture-kit/crypto__sym__cipher_8h.md)
-            - [crypto_sym_key.h](reference/apis-crypto-architecture-kit/crypto__sym__key_8h.md)
+            - [crypto_architecture_kit.h](reference/apis-crypto-architecture-kit/capi-crypto-architecture-kit-h.md)
+            - [crypto_asym_key.h](reference/apis-crypto-architecture-kit/capi-crypto-asym-key-h.md)
+            - [crypto_common.h](reference/apis-crypto-architecture-kit/capi-crypto-common-h.md)
+            - [crypto_digest.h](reference/apis-crypto-architecture-kit/capi-crypto-digest-h.md)
+            - [crypto_signature.h](reference/apis-crypto-architecture-kit/capi-crypto-signature-h.md)
+            - [crypto_sym_cipher.h](reference/apis-crypto-architecture-kit/capi-crypto-sym-cipher-h.md)
+            - [crypto_sym_key.h](reference/apis-crypto-architecture-kit/capi-crypto-sym-key-h.md)
           - 结构体<!--crypto-architecture-struct-->
-            - [Crypto_DataBlob](reference/apis-crypto-architecture-kit/_crypto___data_blob.md)
+            - [Crypto_DataBlob](reference/apis-crypto-architecture-kit/capi-crypto-datablob.md)
+            - [OH_CryptoKeyPair](reference/apis-crypto-architecture-kit/capi-oh-cryptokeypair.md)
+            - [OH_CryptoPubKey](reference/apis-crypto-architecture-kit/capi-oh-cryptopubkey.md)
+            - [OH_CryptoAsymKeyGenerator](reference/apis-crypto-architecture-kit/capi-oh-cryptoasymkeygenerator.md)
+            - [OH_CryptoDigest](reference/apis-crypto-architecture-kit/capi-oh-cryptodigest.md)
+            - [OH_CryptoVerify](reference/apis-crypto-architecture-kit/capi-oh-cryptoverify.md)
+            - [OH_CryptoSymCipher](reference/apis-crypto-architecture-kit/capi-oh-cryptosymcipher.md)
+            - [OH_CryptoSymCipherParams](reference/apis-crypto-architecture-kit/capi-oh-cryptosymcipherparams.md)
+            - [OH_CryptoSymKey](reference/apis-crypto-architecture-kit/capi-oh-cryptosymkey.md)
+            - [OH_CryptoSymKeyGenerator](reference/apis-crypto-architecture-kit/capi-oh-cryptosymkeygenerator.md)
         - 错误码<!--crypto-architecture-arkts-errcode-->
           - [crypto framework错误码](reference/apis-crypto-architecture-kit/errorcode-crypto-framework.md)
       - Data Protection Kit（数据保护服务）<!--data-protection-api-->
@@ -3483,11 +3505,11 @@
       - Distributed Service Kit（分布式管理服务）<!--distributed-service-api-->
         - ArkTS API<!--distributed-service-arkts-->
           - [@ohos.distributedDeviceManager (设备管理)](reference/apis-distributedservice-kit/js-apis-distributedDeviceManager.md)
-          - [@ohos.abilityConnectionManager (应用多端协同管理)](reference/apis-distributedservice-kit/js-apis-distributed-abilityConnectionManager.md)
+          - [@ohos.distributedsched.abilityConnectionManager (应用多端协同管理)](reference/apis-distributedservice-kit/js-apis-distributed-abilityConnectionManager.md)
           <!--Del-->
           - [@ohos.distributedHardware.hardwareManager (分布式硬件管理)(系统接口)](reference/apis-distributedservice-kit/js-apis-distributedHardwareManager-sys.md)
           - [@ohos.distributedDeviceManager (设备管理)(系统接口)](reference/apis-distributedservice-kit/js-apis-distributedDeviceManager-sys.md)
-          - [@ohos.abilityConnectionManager (应用多端协同管理)(系统接口)](reference/apis-distributedservice-kit/js-apis-distributed-abilityConnectionManager-sys.md)
+          - [@ohos.distributedsched.abilityConnectionManager (应用多端协同管理)(系统接口)](reference/apis-distributedservice-kit/js-apis-distributed-abilityConnectionManager-sys.md)
           - [@ohos.cooperate (键鼠穿越)（系统接口）](reference/apis-distributedservice-kit/js-apis-devicestatus-cooperate-sys.md)
           - 已停止维护的接口<!--distributed-service-dep-->
             - [@ohos.distributedHardware.deviceManager (设备管理)(系统接口)(待删除)](reference/apis-distributedservice-kit/js-apis-device-manager-sys.md)
@@ -3803,14 +3825,22 @@
           <!--DelEnd-->
         - C API<!--input-c-->
           - 模块<!--input-module-->
-            - [Input](reference/apis-input-kit/input.md)
+            - [Input](reference/apis-input-kit/capi-input.md)
           - 头文件<!--input-headerfile-->
-            - [oh_axis_type.h](reference/apis-input-kit/oh__axis__type_8h.md)
-            - [oh_input_manager.h](reference/apis-input-kit/oh__input__manager_8h.md)
-            - [oh_key_code.h](reference/apis-input-kit/oh__key__code_8h.md)
+            - [oh_axis_type.h](reference/apis-input-kit/capi-oh-axis-type-h.md)
+            - [oh_input_manager.h](reference/apis-input-kit/capi-oh-input-manager-h.md)
+            - [oh_key_code.h](reference/apis-input-kit/capi-oh-key-code-h.md)
           - 结构体<!--input-struct-->
-            - [Input_DeviceListener](reference/apis-input-kit/_input___device_listener.md)
-            - [Input_InterceptorEventCallback](reference/apis-input-kit/_input___interceptor_event_callback.md)
+            - [Input_InterceptorEventCallback](reference/apis-input-kit/capi-input-interceptoreventcallback.md)
+            - [Input_DeviceListener](reference/apis-input-kit/capi-input-devicelistener.md)
+            - [Input_KeyState](reference/apis-input-kit/capi-input-keystate.md)
+            - [Input_KeyEvent](reference/apis-input-kit/capi-input-keyevent.md)
+            - [Input_MouseEvent](reference/apis-input-kit/capi-input-mouseevent.md)
+            - [Input_TouchEvent](reference/apis-input-kit/capi-input-touchevent.md)
+            - [Input_AxisEvent](reference/apis-input-kit/capi-input-axisevent.md)
+            - [Input_Hotkey](reference/apis-input-kit/capi-input-hotkey.md)
+            - [Input_DeviceInfo](reference/apis-input-kit/capi-input-deviceinfo.md)
+            - [Input_InterceptorOptions](reference/apis-input-kit/capi-input-interceptoroptions.md)
         - 错误码<!--input-arkts-errcode-->
           - [键鼠穿越管理错误码](reference/apis-input-kit/errorcode-multimodalinput.md)
           - [全局快捷键管理错误码](reference/apis-input-kit/errorcode-inputconsumer.md)

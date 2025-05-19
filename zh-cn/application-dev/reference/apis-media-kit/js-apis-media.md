@@ -7998,6 +7998,50 @@ let mimeType : media.AVMimeTypes = media.AVMimeTypes.APPLICATION_M3U8;
 mediaSource.setMimeType(mimeType);
 
 ```
+## media.createMediaSourceWithStreamData<sup>19+</sup>
+
+createMediaSourceWithStreamData(streams: Array\<MediaStream>): MediaSource
+
+创建流媒体多码率媒体来源实例方法，当前仅支持HTTP-FLV协议格式多码率。
+
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.Media.Core
+
+**参数：**
+
+| 参数名  | 类型                                 | 只读 | 可选 | 说明                                                  |
+| ------- | ------------------------------------ | --- | ---- | ----------------------------------------------------- |
+| streams | Array<[MediaStream](#mediastream19)> | 否 | 否   | 可设置MediaStream数组，支持的流媒体格式：HTTP-FLV。 |
+
+**返回值：**
+
+| 类型                          | 说明                |
+| ----------------------------- | ------------------- |
+| [MediaSource](#mediasource12) | 返回MediaSource，用于媒体资源设置。 |
+
+**示例1：**
+
+```ts
+let streams : Array<media.MediaStream> = [];
+streams.push({url: "http://xxx/480p.flv", width: 854, height: 480, bitrate: 800000});
+streams.push({url: "http:/xxx/720p.flv", width: 1280, height: 720, bitrate: 2000000});
+streams.push({url: "http:/xxx/1080p.flv", width: 1280, height: 720, bitrate: 2000000});
+let mediaSource : media.MediaSource = media.createMediaSourceWithStreamData(streams);
+```
+
+## MediaStream<sup>19+</sup>
+
+媒体流数据信息。
+
+**系统能力：** SystemCapability.Multimedia.Media.Core
+
+| 参数名  | 类型   | 只读 | 可选 | 说明                                                         |
+| ------- | ------ | ---- | ---- | ------------------------------------------------------------ |
+| url     | string | 否   | 否   | 媒体资源链接，当前仅支持http或者https。                                                 |
+| width   | number | 否   | 否   | 媒体资源视频宽像素值。未知时可以填0，此时将无法通过[PlaybackStrategy](#playbackstrategy12)优选匹配。 |
+| height  | number | 否   | 否   | 媒体资源视频高像素值。未知时可以填0，此时将无法通过[PlaybackStrategy](#playbackstrategy12)优选匹配。 |
+| bitrate | number | 否   | 否   | 媒体资源码率值，单位bps。                                        |
 
 ## MediaSource<sup>12+</sup>
 

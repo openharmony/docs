@@ -2527,86 +2527,6 @@ function setExposure(nightPhotoSession: camera.NightPhotoSession): void {
 }
 ```
 
-## MacroQuery<sup>12+</sup>
-
-提供用于查询设备是否支持相机微距拍摄的方法。
-
-### isMacroSupported<sup>11+</sup>
-
-isMacroSupported(): boolean
-
-检测当前状态下是否支持微距能力，需要在CaptureSession调用[commitConfig](js-apis-camera.md#commitconfig11-1)之后进行调用。
-
-**系统接口：** 此接口为系统接口。
-
-**系统能力：** SystemCapability.Multimedia.Camera.Core
-
-**返回值：**
-
-| 类型        | 说明                          |
-| ---------- | ----------------------------- |
-|   boolean  | 返回是否支持微距能力，返回true为支持，返回false为不支持。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)。
-
-| 错误码ID   | 错误信息                     |
-|---------|--------------------------|
-| 202     | Not System Application.  |
-
-**示例：**
-
-```ts
-function isMacroSupported(photoSession: camera.PhotoSessionForSys): boolean {
-  let isSupported: boolean = photoSession.isMacroSupported();
-  return isSupported;
-}
-```
-
-## Macro<sup>11+</sup>
-
-Macro extends [MacroQuery](#macroquery12)
-
-提供了使能微距能力的接口。
-
-### enableMacro<sup>11+</sup>
-
-enableMacro(enabled: boolean): void
-
-使能当前的微距能力，需要在支持微距能力的情况下进行调用。
-
-**系统接口：** 此接口为系统接口。
-
-**系统能力：** SystemCapability.Multimedia.Camera.Core
-
-**参数：**
-
-| 参数名     | 类型                   | 必填 | 说明                  |
-| -------- | -------------------- | ---- | -------------------- |
-| enabled | boolean | 是   | true：开启微距能力，false：关闭微距能力。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)。
-
-| 错误码ID    | 错误信息                     |
-|----------|--------------------------|
-| 202      | Not System Application.  |
-| 7400102  | Operation not allowed.   |
-| 7400103  | Session not config.      |
-
-**示例：**
-
-```ts
-function enableMacro(photoSession: camera.PhotoSessionForSys): void {
-  let isSupported: boolean = photoSession.isMacroSupported();
-  if (isSupported) {
-    photoSession.enableMacro(true);
-  }
-}
-```
-
 ## TripodStatus<sup>13+</sup>
 
 枚举，脚架状态枚举。
@@ -3655,7 +3575,7 @@ function getBeauty(captureSession: camera.CaptureSession): number {
 
 ## PhotoSessionForSys<sup>11+</sup>
 
-PhotoSessionForSys extends PhotoSession, Beauty, ColorEffect, ColorManagement, Macro, SceneDetection
+PhotoSessionForSys extends PhotoSession, Beauty, ColorEffect, ColorManagement, SceneDetection
 
 提供给系统应用的PhotoSession，普通拍照模式会话类，继承自[Session](js-apis-camera.md#session11)，用于设置普通拍照模式的参数以及保存所需要的所有资源[CameraInput](js-apis-camera.md#camerainput)、[CameraOutput](js-apis-camera.md#cameraoutput)。
 
@@ -3937,7 +3857,7 @@ function unregisterLcdFlashStatus(photoSession: camera.PhotoSession): void {
 
 ## VideoSessionForSys<sup>11+</sup>
 
-VideoSessionForSys extends VideoSession, Beauty, ColorEffect, ColorManagement, Macro, Aperture, ColorReservation
+VideoSessionForSys extends VideoSession, Beauty, ColorEffect, ColorManagement, Aperture, ColorReservation
 
 提供给系统应用的VideoSession，普通录像模式会话类，继承自[Session](js-apis-camera.md#session11)，用于设置普通录像模式的参数以及保存所需要的所有资源[CameraInput](js-apis-camera.md#camerainput)、[CameraOutput](js-apis-camera.md#cameraoutput)。
 
@@ -5286,7 +5206,6 @@ isSlowMotionDetectionSupported(): boolean
 | 错误码ID   | 错误信息        |
 |---------| --------------- |
 | 202     |  Not System Application.                               |
-| 7400103 |  Session not config.                                   |
 
 **示例：**
 
@@ -5333,8 +5252,6 @@ setSlowMotionDetectionArea(area: Rect): void
 | 错误码ID   | 错误信息        |
 |---------| --------------- |
 | 202     |  Not System Application.                            |
-| 7400101 |  Parameter missing or parameter type incorrect.     |
-| 7400103 |  Session not config.                                |
 
 **示例：**
 
