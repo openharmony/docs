@@ -776,7 +776,7 @@ import { hilog } from '@kit.PerformanceAnalysisKit';
 import { bundleManager } from '@kit.AbilityKit';
 try {
   let accList: usbManager.USBAccessory[] = usbManager.getAccessoryList()
-  let flags = bundleManager.BundleFlah.GET_BUNDLE_INFO_WITH_APPLICATION | bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_EXTENSION_ABILITY
+  let flags = bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_APPLICATION | bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_EXTENSION_ABILITY
   let bundleInfo = await bundleManager.getBundleInfoForSelf(flags)
   let tokenId: number = bundleInfo.appInfo.accessTokenId
   usbManager.addAccessoryRight(tokenId, accList[0])

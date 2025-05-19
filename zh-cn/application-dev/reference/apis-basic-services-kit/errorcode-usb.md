@@ -8,7 +8,7 @@
 
 **错误信息**
 
-Permission denied. Call requestRight or requestAccessoryRight to get the permission or USBDevicePipe access right first.
+Access right denied. Call requestRight to get the USBDevicePipe access right first.
 
 **错误描述**
 
@@ -164,7 +164,6 @@ Resource busy. Possible causes: 1. The transfer has already been submitted. 2. T
 
 1. 传输任务已提交。
 
-
 2. 该接口已被另一个程序或驱动程序占用。
 
 **处理步骤**
@@ -221,7 +220,7 @@ Other USB error. Possible causes:Unrecognized discard error code.
 
 **错误信息**
 
-If the transfer is not in progress, already complete, or already cancelled. 
+The transfer is not in progress, or is already complete or cancelled.
 
 **错误描述**
 
