@@ -72,3 +72,10 @@ canOpenLink是[bundleManager](../reference/apis-ability-kit/js-apis-bundleManage
   } 
 }
 ```
+
+## FAQ
+1. 为什么querySchemes中最多允许配置50个URL scheme？
+
+   canOpenLink()接口提供了判断应用是否可以访问的能力。通过该能力，应用可以间接获取到指定应用是否安装等信息。
+
+   为了保护系统安全和用户隐私，避免恶意应用扫描应用安装列表等行为，要求开发者在使用canOpenLink()接口时必须配置querySchemes属性，且最多允许配置50个URL scheme。

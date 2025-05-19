@@ -119,6 +119,7 @@
       - [悬浮态效果](arkui-ts/ts-universal-attributes-hover-effect.md)
       - [组件标识](arkui-ts/ts-universal-attributes-component-id.md)
       - [复用标识](arkui-ts/ts-universal-attributes-reuse-id.md)
+      - [复用选项](arkui-ts/ts-universal-attributes-reuse.md)
       - [多态样式](arkui-ts/ts-universal-attributes-polymorphic-style.md)
       - [分布式迁移标识](arkui-ts/ts-universal-attributes-restoreId.md)
       - [前景色设置](arkui-ts/ts-universal-attributes-foreground-color.md)
@@ -396,6 +397,7 @@
     - [TreeView](arkui-ts/ohos-arkui-advanced-TreeView.md)
   - 状态管理与渲染控制<!--state-management-and-rendering-control-->
     - [应用级变量的状态管理](arkui-ts/ts-state-management.md)
+    - [状态变量变化监听](arkui-ts/ts-state-management-watch-monitor.md)
     - [ForEach](arkui-ts/ts-rendering-control-foreach.md)
     - [LazyForEach](arkui-ts/ts-rendering-control-lazyforeach.md)
     - [Repeat](arkui-ts/ts-rendering-control-repeat.md)
@@ -523,6 +525,7 @@
     - [属性字符串错误码](errorcode-styled-string.md)
     - [UI上下文错误码](errorcode-uicontext.md)
     - [交互事件错误码](errorcode-event.md)
+    - [Canvas错误码](errorcode-canvas.md)
     <!--Del-->
     - [UIExtension错误码](errorcode-uiextension.md)
     <!--DelEnd-->
