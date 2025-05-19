@@ -37,7 +37,7 @@ EmbeddedComponent组件主要用于实现跨模块、跨进程的嵌入式界面
 
   与屏幕坐标相关的事件信息会基于EmbeddedComponent的位置宽高进行坐标转换后传递给被拉起的EmbeddedUIExtensionAbility处理。
 
-  EmbeddedComponent组件不支持[点击](../reference/apis-arkui/arkui-ts/ts-universal-events-click.md)等通用事件<!--Del-->，仅支持[onTerminated](../reference/apis-arkui/arkui-ts/ts-container-embedded-component.md#onterminated)事件和[onError](../reference/apis-arkui/arkui-ts/ts-container-embedded-component.md#onerror)事件<!--DelEnd-->。
+  EmbeddedComponent组件不支持[点击](../reference/apis-arkui/arkui-ts/ts-universal-events-click.md)等通用事件，仅支持[onTerminated](../reference/apis-arkui/arkui-ts/ts-container-embedded-component.md#onterminated)事件和[onError](../reference/apis-arkui/arkui-ts/ts-container-embedded-component.md#onerror)事件。
 
 ## 场景示例
 
