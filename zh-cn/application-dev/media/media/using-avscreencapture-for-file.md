@@ -159,6 +159,22 @@ void OnDisplaySelected(struct OH_AVScreenCapture *capture, uint64_t displayId, v
     (void)userData;
 }
 
+// 录屏内容状态变更回调函数OnCaptureContentChanged()。
+void OnCaptureContentChanged(struct OH_AVScreenCapture *capture, OH_AVScreenCaptureContentChangedEvent event, OH_Rect *area, void *userData) {
+    (void)capture;
+    if (event == OH_SCREEN_CAPTURE_CONTENT_HIDE) {
+        // 处理录屏内容状态变化为隐藏。
+    }
+    if (event == OH_SCREEN_CAPTURE_CONTENT_VISIBLE) {
+        // 处理录屏内容状态变化为可见。
+    }
+    if (event == OH_SCREEN_CAPTURE_CONTENT_UNAVAILABLE) {
+        // 处理录屏内容状态变化为不可用。
+    }
+    (void)area;
+    (void)userData;
+}
+
 struct OH_AVScreenCapture *capture;
 // 开始录屏时调用StartScreenCapture。
 static napi_value StartScreenCapture(napi_env env, napi_callback_info info) {
@@ -224,6 +240,9 @@ static napi_value StartScreenCapture(napi_env env, napi_callback_info info) {
 
     //设置状态回调。
     OH_AVScreenCapture_SetStateCallback(capture, OnStateChange, nullptr);
+
+    // 可选 设置录屏内容状态变化回调
+    OH_AVScreenCapture_SetCaptureContentChangedCallback(capture, OnCaptureContentChanged, nullptr);
 
     // 可选 设置录屏屏幕Id回调，必须在开始录屏前调用。
     OH_AVScreenCapture_SetDisplayCallback(capture, OnDisplaySelected, nullptr);
