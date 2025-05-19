@@ -5,7 +5,7 @@
 > The initial APIs of this module are supported since API version 12. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 **Repeat** is used to perform repeated rendering based on array data. Generally, it is used together with container components.
-This document provides API parameter descriptions. For details about the development, see [Repeat: Reusing Child Components](../../../quick-start/arkts-new-rendering-control-repeat.md).
+This document provides API parameter descriptions. For details about the development, see [Repeat: Reusing Child Components](../../../ui/state-management/arkts-new-rendering-control-repeat.md).
 
 ## APIs
 
