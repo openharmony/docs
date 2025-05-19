@@ -4,10 +4,11 @@
 >
 > 本模块首批接口从API version 6开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
+提供webSocket客户端和服务端服务器，实现客户端与服务端的双向连接。
+客户端：使用WebSocket建立服务器与客户端的双向连接，需要先通过[createWebSocket](#websocketcreatewebsocket6)方法创建[WebSocket](#websocket6)对象，然后通过[connect](#connect6)方法连接到服务器。当连接成功后，客户端会收到[open](#onopen6)事件的回调，之后客户端就可以通过[send](#send6)方法与服务器进行通信。当服务器发信息给客户端时，客户端会收到[message](#onmessage6)事件的回调。当客户端不要此连接时，可以通过调用[close](#close6)方法主动断开连接，之后客户端会收到[close](#onclose6)事件的回调。若在上述任一过程中发生错误，客户端会收到[error](#onerror6)事件的回调。
 
-使用WebSocket建立服务器与客户端的双向连接，需要先通过[createWebSocket](#websocketcreatewebsocket6)方法创建[WebSocket](#websocket6)对象，然后通过[connect](#connect6)方法连接到服务器。当连接成功后，客户端会收到[open](#onopen6)事件的回调，之后客户端就可以通过[send](#send6)方法与服务器进行通信。当服务器发信息给客户端时，客户端会收到[message](#onmessage6)事件的回调。当客户端不要此连接时，可以通过调用[close](#close6)方法主动断开连接，之后客户端会收到[close](#onclose6)事件的回调。
+服务端：使用WebSocket建立服务器与客户端的双向连接，需要先通过[createWebSocketServer](#websocketcreatewebsocketserver)方法创建[WebSocketServer](#websocketserver)对象，然后通过[start](#start)方法启动服务器，监听客户端的申请建链的消息。当连接成功后，服务端会收到[connect](#onconnect)事件的回调，之后服务端可以通过[send](#send)方法与客户端进行通信，可以通过[listAllConnections](#listallconnections)方法列举出当前与服务端建链的所有客户端信息。当客户端给服务端发消息时，服务端会收到[messageReceive](#onmessagereceive)事件回调。当服务端想断开某个与客户端的连接，可以通过调用[close](#close)方法主动断开与某个客户端的连接，之前服务端会收到[close](#onclose)事件的回调。当服务端想停止服务器，可以通过调用[stop](#stop)方法。若在上述任一过程中发生错误，服务端会收到[error](#onerror)事件的回调。
 
-若在上述任一过程中发生错误，客户端会收到[error](#onerror6)事件的回调。
 
 ## 导入模块
 
@@ -15,7 +16,7 @@
 import { webSocket } from '@kit.NetworkKit';
 ```
 
-## 完整示例
+## client端完整示例
 
 ```ts
 import { webSocket } from '@kit.NetworkKit';
@@ -914,6 +915,652 @@ let ws = webSocket.createWebSocket();
 ws.off('headerReceive');
 ```
 
+## server端完整示例
+
+```ts
+import { webSocket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let connections: webSocket.WebSocketConnection[] = [];
+let localServer: webSocket.WebSocketServer;
+let config: webSocket.WebSocketServerConfig = {
+  serverPort: 8080, //监听端口
+  maxConcurrentClientsNumber: 10,
+  maxConnectionsForOneClient: 10,
+}
+
+localServer = webSocket.createWebSocketServer();
+
+localServer.on('connect', async (connection: webSocket.WebSocketConnection) => {
+  console.log("New client connected! Client:" + JSON.stringify(connection));
+  // 当收到on('connect')事件时，可以通过send()方法与客户端进行通信
+  localServer.send("Hello, I'm server!", connection).then((success: boolean) => {
+    if (success) {
+      console.log("message send successfully");
+    } else {
+      console.log("message send failed");
+    }
+  }).catch((error: BusinessError) => {
+    console.log("message send failed, Err:" + JSON.stringify(error));
+  });
+
+  try {
+    connections = await localServer.listAllConnections();
+    if (connections.length === 0) {
+      console.log("client list is empty");
+    } else {
+      console.log("client list cnt :" + connections.length + "client connections are: " + JSON.stringify(connections));
+    }
+  } catch (error) {
+    console.log("Err: " + JSON.stringify(error));
+  }
+});
+
+localServer.on('messageReceive', (message: webSocket.WebSocketMessage) => {
+  try{
+    console.log("on message received: " + JSON.stringify(message));
+    // 当收到客户端的"bye"消息时（此消息字段仅为示意，具体字段需要与客户端协商），主动断开连接
+    if (message.data === 'bye') {
+      localServer.close(message.clientConnection).then((success: boolean) => {
+        if (success) {
+          console.log("close client successfully");
+        } else {
+          console.log("close client failed");
+        }
+      });
+    }
+  } catch (error) {
+    console.log("Err: " + JSON.stringify(error));
+  }
+});
+
+localServer.on('close', (clientConnection: webSocket.WebSocketConnection, closeReason: webSocket.CloseResult) => {
+  console.log("client close, client: " + JSON.stringify(clientConnection) + "closeReason: " + JSON.stringify(closeReason));
+  localServer.stop().then((success: boolean) => {
+    if (success) {
+      console.log("server stop service successfully");
+    } else {
+      console.log("server stop service failed");
+    }
+  });
+});
+
+localServer.on('error', (err: BusinessError) => {
+  console.log("error: " + JSON.stringify(err));
+});
+
+localServer.start(config).then((success: boolean) => {
+  if (success) {
+    console.log("webSocket server start success");
+  } else {
+    console.log("websocket server start failed");
+  }
+}).catch((error: BusinessError) => {
+  console.log("Err: " + JSON.stringify(error));
+});
+```
+
+## webSocket.createWebSocketServer
+
+createWebSocketServer(): WebSocketServer
+
+创建一个WebSocketServer对象，包括启动服务、发送数据、关闭连接、列出客户端信息、停止服务，订阅/取消订阅webSocket连接的连接事件、接收到客户端消息事件、关闭事件和错误事件。
+
+**系统能力**: SystemCapability.Communication.NetStack
+
+**返回值：**
+
+| 类型                                | 说明                                                         |
+| :---------------------------------- | :----------------------------------------------------------- |
+| [WebSocketServer](#websocketserver) | 返回一个WebSocketServer对象，里面包括start、listAllConnections、send、close、stop、on和off方法。 |
+
+**示例：**
+
+```ts
+let ws: webSocket.WebSocketServer = webSocket.createWebSocketServer();
+```
+
+## WebSocketServer
+
+在调用WebSocketServer的方法之前，需要先通过[webSocket.createWebSocketServer](#websocketcreatewebsocketserver)创建一个WebSocketServer。
+
+### start
+
+start(config: WebSocketServerConfig): Promise\<boolean\>;
+
+配置config参数，拉起服务端service，使用Promise方式作为异步方法。
+
+> **说明：**
+> 可通过监听error事件获得该接口的执行结果，错误发生时会得到错误码：200
+
+**需要权限**: ohos.permission.INTERNET
+
+**系统能力**: SystemCapability.Communication.NetStack
+
+**参数：**
+
+| 参数名  | 类型                    | 必填 | 说明                                                    |
+| ------- | ----------------------- | ---- | ------------------------------------------------------- |
+| config  | WebSocketServerConfig   | 是   | 拉起websocketServer服务，参考[WebSocketServerConfig](#websocketserverconfig)。|
+
+**返回值：**
+
+| 类型               | 说明                              |
+| :----------------- | :-------------------------------- |
+| Promise\<boolean\> | 以Promise形式返回启动服务器的结果。true:服务启动成功；false:服务启动失败。 |
+
+**错误码：**
+
+| 错误码ID   | 错误信息                                   |
+| -------   | ------------------------------------------ |
+| 201       | Permission denied.                         |
+| 2302002   | Websocket certificate file does not exist. |
+| 2302004   | Cant't listen on the given NIC.            |
+| 2302005   | Cant't listen on the given Port.           |
+| 2302999   | Internal error.                            |
+
+> **错误码说明：**
+> 以上错误码的详细介绍参见[webSocket错误码](errorcode-net-webSocket.md)。
+
+**示例：**
+
+```ts
+import { webSocket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let localServer: webSocket.WebSocketServer;
+let config: webSocket.WebSocketServerConfig = {
+  serverPort: 8080, //监听端口
+  maxConcurrentClientsNumber: 10,
+  maxConnectionsForOneClient: 10,
+}
+
+localServer = webSocket.createWebSocketServer();
+localServer.start(config).then((success: boolean) => {
+  if (success) {
+    console.log("webSocket server start success");
+  } else {
+    console.log("websocket server start failed");
+  }
+}).catch((error: BusinessError) => {
+  console.log("Err: " + JSON.stringify(error));
+});
+```
+
+### send
+
+send(data: string | ArrayBuffer, connection: WebSocketConnection): Promise\<boolean\>;
+
+通过WebSocket连接发送数据，使用Promise方式作为异步方法。
+
+**需要权限**: ohos.permission.INTERNET
+
+**系统能力**: SystemCapability.Communication.NetStack
+
+**参数：**
+
+| 参数名      | 类型                                        | 必填 | 说明                                        |
+| ---------- | ------------------------------------------- | ---- | ------------------------------------------ |
+| data       | string \| ArrayBuffer                       | 是   | 发送的数据，同时支持string和ArrayBuffer类型。 |
+| connection | [WebSocketConnection](#websocketconnection) | 是   | 发送的客户端信息。                           |
+
+**返回值：**
+
+| 类型               | 说明                              |
+| :----------------- | :-------------------------------- |
+| Promise\<boolean\> | 以Promise形式返回发送数据的结果。true:发送请求创建成功；false:发送请求创建失败。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                 |
+| ------- | ----------------------- |
+| 201     | Permission denied.      |
+| 2302006 | websocket connection does not exist.        |
+
+**示例：**
+
+```ts
+import { webSocket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let localServer: webSocket.WebSocketServer;
+let config: webSocket.WebSocketServerConfig = {
+  serverPort: 8080, //监听端口
+  maxConcurrentClientsNumber: 10,
+  maxConnectionsForOneClient: 10,
+}
+
+localServer = webSocket.createWebSocketServer();
+localServer.start(config).then((success: boolean) => {
+  if (success) {
+    console.log("webSocket server start success");
+  } else {
+    console.log("websocket server start failed");
+  }
+}).catch((error: BusinessError) => {
+  console.log("Err: " + JSON.stringify(error));
+});
+
+localServer.on('connect', (connection: webSocket.WebSocketConnection) => {
+  console.log("New client connected! Client:" + JSON.stringify(connection));
+  // 当收到on('connect')事件时，可以通过send()方法与客户端进行通信
+  localServer.send("Hello, I'm server!", connection).then((success: boolean) => {
+    if (success) {
+      console.log("message send successfully");
+    } else {
+      console.log("message send failed");
+    }
+  }).catch((error: BusinessError) => {
+    console.log("message send failed, Err:" + JSON.stringify(error));
+  });
+});
+```
+
+> **说明**
+>
+> send接口必须在监听到connect事件后才可以调用。
+
+### listAllConnections
+
+listAllConnections(): WebSocketConnection[];
+
+获取与服务端连接的所有客户端信息。
+
+**需要权限**: ohos.permission.INTERNET
+
+**系统能力**：SystemCapability.Communication.NetStack 
+
+**返回值：**
+| 类型                                        | 说明                         |
+| ------------------------------------------- | ---------------------------- |
+| [WebSocketConnection[]](#websocketconnection) | 以数组形式返回所有客户端的信息。|
+
+**错误码：**
+
+| 错误码ID | 错误信息                 |
+| ------- | ----------------------- |
+| 201     | Permission denied.      |
+
+**示例：**
+```ts
+import { webSocket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let connections: webSocket.WebSocketConnection[] = [];
+let localServer: webSocket.WebSocketServer;
+let config: webSocket.WebSocketServerConfig = {
+  serverPort: 8080, //监听端口
+  maxConcurrentClientsNumber: 10,
+  maxConnectionsForOneClient: 10,
+}
+
+localServer = webSocket.createWebSocketServer();
+localServer.start(config).then((success: boolean) => {
+  if (success) {
+    console.log("webSocket server start success");
+  } else {
+    console.log("websocket server start failed");
+  }
+}).catch((error: BusinessError) => {
+  console.log("Err: " + JSON.stringify(error));
+});
+
+localServer.on('connect', async (connection: webSocket.WebSocketConnection) => {
+  console.log("New client connected! Client:" + JSON.stringify(connection));
+  try {
+    connections = await localServer.listAllConnections();
+    if (connections.length === 0) {
+      console.log("client list is empty");
+    } else {
+      console.log("client list cnt :" + connections.length + "client connections are: " + JSON.stringify(connections));
+    }
+  } catch (error) {
+    console.log("Err: " + JSON.stringify(error));
+  }
+});
+```
+
+### close
+
+close(connection: WebSocketConnection, options?: webSocket.WebSocketCloseOptions): Promise\<boolean\>
+
+根据必选参数客户端信息connection和可选参数WebSocketCloseOptions，关闭连接，使用Promise方式作为异步方法。
+
+**需要权限**：ohos.permission.INTERNET
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+**参数：**
+
+| 参数名      | 类型                  | 必填 | 说明                                                  |
+| ---------- | --------------------- | ---- | ----------------------------------------------------- |
+| connection | [WebSocketConnection[]](#websocketconnection) | 是   | 客户端信息。                   |
+| options    | WebSocketCloseOptions | 否   | 参考[WebSocketCloseOptions](#websocketcloseoptions)。 |
+
+**返回值：**
+
+| 类型               | 说明                                                                       |
+| :----------------- | :------------------------------------------------------------------------- |
+| Promise\<boolean\> | 以Promise形式返回关闭连接的结果。true:关闭请求创建成功；false:关闭请求创建失败。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                 |
+| ------- | ----------------------- |
+| 201     | Permission denied.      |
+| 2302006 | websocket connection does not exist.|
+
+**示例：**
+
+```ts
+import { webSocket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let localServer: webSocket.WebSocketServer;
+let config: webSocket.WebSocketServerConfig = {
+  serverPort: 8080, //监听端口
+  maxConcurrentClientsNumber: 10,
+  maxConnectionsForOneClient: 10,
+}
+
+localServer = webSocket.createWebSocketServer();
+localServer.start(config).then((success: boolean) => {
+  if (success) {
+    console.log("webSocket server start success");
+  } else {
+    console.log("websocket server start failed");
+  }
+}).catch((error: BusinessError) => {
+  console.log("Err: " + JSON.stringify(error));
+});
+
+localServer.on('connect', (connection: webSocket.WebSocketConnection) => {
+  console.log("New client connected! Client:" + JSON.stringify(connection));
+  localServer.close(connection).then((success: boolean) => {
+    if (success) {
+      console.log("close client successfully");
+    } else {
+      console.log("close client failed");
+    }
+  });
+});
+```
+
+### stop
+
+stop(): Promise\<boolean\>
+
+停止服务端服务，使用Promise方式作为异步方法。
+
+**需要权限**：ohos.permission.INTERNET
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+**返回值：**
+
+| 类型               | 说明                                                                       |
+| :----------------- | :------------------------------------------------------------------------- |
+| Promise\<boolean\> | 以Promise形式返回停止服务端service的结果。true:停止请求创建成功；false:停止请求创建失败。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                 |
+| ------- | ----------------------- |
+| 201     | Permission denied.      |
+
+**示例：**
+
+```ts
+import { webSocket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let localServer: webSocket.WebSocketServer;
+let config: webSocket.WebSocketServerConfig = {
+  serverPort: 8080, //监听端口
+  maxConcurrentClientsNumber: 10,
+  maxConnectionsForOneClient: 10,
+}
+
+localServer = webSocket.createWebSocketServer();
+localServer.start(config).then((success: boolean) => {
+  if (success) {
+    console.log("webSocket server start success");
+  } else {
+    console.log("websocket server start failed");
+  }
+}).catch((error: BusinessError) => {
+  console.log("Err: " + JSON.stringify(error));
+});
+
+localServer.stop().then((success: boolean) => {
+  if (success) {
+    console.log("server stop service successfully");
+  } else {
+    console.log("server stop service failed");
+  }
+});
+```
+
+### on('connect')
+
+on(type: 'connect', callback: Callback\<WebSocketConnection\>): void
+
+订阅WebSocketServer的连接事件(客户端与服务端建链成功)，使用callback方式作为异步方法。
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+**参数：**
+
+| 参数名   | 类型                    | 必填 | 说明                                                     |
+| -------- | ----------------------- | ---- | ------------------------------------------------------ |
+| type     | string                  | 是   | 'connect'：WebSocketServer的连接事件。                   |
+| callback | Callback\<[WebSocketConnection](#websocketconnection)\> | 是 | 回调函数。连接的客户端信息。|
+
+**示例：**
+
+```ts
+import { webSocket } from '@kit.NetworkKit';
+import { BusinessError, Callback } from '@kit.BasicServicesKit';
+
+let localServer = webSocket.createWebSocketServer();
+localServer.on('connect', (connection: webSocket.WebSocketConnection) => {
+  console.log("New client connected! Client:" + JSON.stringify(connection));
+});
+```
+
+### off('connect')
+
+off(type: 'connect', callback?: Callback\<WebSocketConnection\>): void
+
+取消订阅WebSocketServer的连接事件(客户端与服务端建链成功)，使用callback方式作为异步方法。
+
+> **说明：**
+> 可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+**参数：**
+
+| 参数名   | 类型                    | 必填 | 说明                          |
+| -------- | ----------------------- | ---- | ----------------------------- |
+| type     | string                  | 是   | 'connect'：WebSocketServer的连接事件。 |
+| callback | Callback\<[WebSocketConnection](#websocketconnection)\> | 否   | 回调函数。连接的客户端信息。 |
+
+**示例：**
+
+```ts
+import { webSocket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let localServer = webSocket.createWebSocketServer();
+localServer.off('connect');
+```
+
+### on('messageReceive')
+
+on(type: 'messageReceive', callback: Callback\<WebSocketMessage\>): void
+
+订阅WebSocketServer的接收到客户端消息事件，使用callback方式作为异步方法。
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+**参数：**
+
+| 参数名   | 类型                    | 必填 | 说明                          |
+| -------- | ----------------------- | ---- | ----------------------------- |
+| type     | string                  | 是   | 'messageReceive'：WebSocketServer的接收到客户端消息事件。 |
+| callback | Callback\<[WebSocketMessage](#webSocketmessage)\> | 是   | 回调函数。<br>clientconnection:客户端信息，data:客户端发送的数据消息。|
+
+**示例：**
+
+```ts
+import { webSocket } from '@kit.NetworkKit';
+import { BusinessError, Callback } from '@kit.BasicServicesKit';
+
+let localServer = webSocket.createWebSocketServer();
+localServer.on('messageReceive', (message: webSocket.WebSocketMessage) => {
+  console.log("on message received: " + JSON.stringify(message));
+});
+```
+
+### off('messageReceive')
+
+off(type: 'messageReceive', callback?: Callback\<WebSocketMessage\>): void
+
+取消订阅WebSocketServer的接收到客户端消息事件，使用callback方式作为异步方法。
+
+> **说明：**
+> 可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+**参数：**
+
+| 参数名   | 类型                                                | 必填 | 说明                                         |
+| -------- | --------------------------------------------------- | ---- | -------------------------------------------- |
+| type     | string                  | 是   | 'messageReceive'：WebSocketServer的接收到客户端消息事件。 |
+| callback | Callback\<[WebSocketMessage](#webSocketmessage)\> | 是   | 回调函数。<br>clientconnection:客户端信息，data:客户端发送的数据消息。|
+
+**示例：**
+
+```ts
+import { webSocket } from '@kit.NetworkKit';
+import { BusinessError, Callback } from '@kit.BasicServicesKit';
+
+let localServer = webSocket.createWebSocketServer();
+localServer.off('messageReceive');
+```
+
+### on('close')
+
+on(type: 'close', callback: Callback\<ClientConnectionCloseCallback\>): void
+
+订阅WebSocketServer的关闭事件，使用callback方式作为异步方法。
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+**参数：**
+
+| 参数名   | 类型                                            | 必填 | 说明                           |
+| -------- | ----------------------------------------------- | ---- | ------------------------------ |
+| type     | string                                          | 是   | 'close'：WebSocketServer的关闭事件。 |
+| callback | Callback\<[ClientConnectionCloseCallback](#clientconnectionclosecallback)\> | 是   | 回调函数。<br>close：close错误码，reason：错误码说明 |
+
+**示例：**
+
+```ts
+import { webSocket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let localServer = webSocket.createWebSocketServer();
+localServer.on('close', (clientConnection: webSocket.WebSocketConnection, closeReason: webSocket.CloseResult) => {
+  console.log("client close, client: " + JSON.stringify(clientConnection) + "closeReason: " + JSON.stringify(closeReason));
+});
+```
+
+### off('close')
+
+off(type: 'close', callback?: Callback\<ClientConnectionCloseCallback\>): void
+
+取消订阅WebSocketServer的关闭事件，使用callback方式作为异步方法。
+
+> **说明：**
+> 可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+**参数：**
+
+| 参数名   | 类型                                            | 必填 | 说明                           |
+| -------- | ----------------------------------------------- | ---- | ------------------------------ |
+| type     | string                                          | 是   | 'close'：WebSocketServer的关闭事件。 |
+| callback | Callback\<[ClientConnectionCloseCallback](#clientconnectionclosecallback)\> | 是   | 回调函数。<br>close：close错误码，reason：错误码说明 |
+
+**示例：**
+
+```ts
+import { webSocket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let localServer = webSocket.createWebSocketServer();
+localServer.off('close');
+```
+
+### on('error')
+
+on(type: 'error', callback: ErrorCallback): void
+
+订阅WebSocketServer的Error事件，使用callback方式作为异步方法。
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+**参数：**
+
+| 参数名   | 类型          | 必填 | 说明                            |
+| -------- | ------------- | ---- | ------------------------------- |
+| type     | string        | 是   | 'error'：WebSocketServer的Error事件。 |
+| callback | ErrorCallback | 是   | 回调函数。<br>常见错误码：200 |
+
+**示例：**
+
+```ts
+import { webSocket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let localServer = webSocket.createWebSocketServer();
+localServer.on('error', (err: BusinessError) => {
+  console.log("error: " + JSON.stringify(err));
+});
+```
+
+### off('error')
+
+off(type: 'error', callback?: ErrorCallback): void
+
+取消订阅WebSocketServer的Error事件，使用callback方式作为异步方法。
+
+> **说明：**
+> 可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+**参数：**
+
+| 参数名   | 类型          | 必填 | 说明                            |
+| -------- | ------------- | ---- | ------------------------------- |
+| type     | string        | 是   | 'error'：WebSocketServer的Error事件。 |
+| callback | ErrorCallback | 否   | 回调函数。                      |
+
+**示例：**
+
+```ts
+import { webSocket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let localServer = webSocket.createWebSocketServer();
+localServer.off('error');
+```
+
 ## WebSocketRequestOptions
 
 建立WebSocket连接时，可选参数的类型和说明。
@@ -1017,3 +1664,62 @@ type HttpProxy = connection.HttpProxy
 |       类型       |            说明             |
 | ---------------- | --------------------------- |
 | connection.HttpProxy | 使用指定的网络代理。    |
+
+## WebSocketServerConfig
+
+期待服务端的service时，需要输入的配置信息和说明。
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+| 名称 | 类型   | 必填 | 说明                                                         |
+| ------ | ------ | ---- | ------------------------------------------------------------ |
+| serverIP   | string | 否   | 服务端监听特定ip地址，默认是"0.0.0.0"。 |
+| serverPort | number | 是   | 服务端监听的端口号。                   |
+| serverCert | [ServerCert](#servercert) | 否   | 服务端证书。 |
+| protocol   | string | 否   | 自定义协议。 |
+| maxConcurrentClientsNumber | number | 是   | 最大并发客户端数量，当到达最大数时，服务端拒绝新连接。默认最大数量为10。 |
+| maxConnectionsForOneClient | number | 是   | 单个客户端的最大连接数。默认最大数量为10。 |
+
+## ServerCert
+
+指定服务端证书的信息，包括服务端证书文件路径和服务端证书的私钥文件路径。
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+| 名称 | 类型   | 必填 | 说明                           |
+| ------ | ------ | ---- | --------------------------- |
+| certPath   | string | 是   | 服务端证书文件路径。      |
+| keyPath    | string | 是   | 服务端证书的私钥文件路径。|
+
+## WebSocketMessage
+
+从指定客户端接收到的消息，包括客户端的信息和数据。
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+| 名称 | 类型   | 必填 | 说明                                                         |
+| ------ | ------ | ---- | ------------------------------------------------------------ |
+| data   | string \|ArrayBuffer  | 是   | 接收到的客户端发的消息数据。 |
+| clientConnection | [WebSocketConnection](#websocketconnection) | 是   | 连接的客户端的信息。|
+
+## WebSocketConnection
+
+客户端信息，包括客户端的ip地址和端口号port 。
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+| 名称 | 类型   | 必填 | 说明                       |
+| ------ | ------ | ---- | ---------------------- |
+| clientIP   | string | 是   | 客户端的ip地址。     |
+| clientPort | number | 是   | 客户端的端口号port。 |
+
+## ClientConnectionCloseCallback
+
+关闭WebSocketServer连接时，订阅close事件得到的指定客户端的关闭结果。
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+| 名称 | 类型   | 必填 | 说明                                                         |
+| ---------------- | ------------------- | ---- | ---------------------------------------------------- |
+| clientConnection | [WebSocketConnection](#websocketconnection) | 是 | 连接的客户端的信息。             |
+| closeReason | [CloseResult](#closeresult10) | 是 | 回调函数。<br>close：close错误码，reason：错误码说明 |
