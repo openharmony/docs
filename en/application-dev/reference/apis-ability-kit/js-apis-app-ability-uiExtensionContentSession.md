@@ -27,7 +27,7 @@ Loads content from a page associated with a local storage to the window correspo
 | Name | Type                                           | Mandatory| Description                                                        |
 | ------- | ----------------------------------------------- | ---- | ------------------------------------------------------------ |
 | path    | string                                          | Yes  | Path of the page from which the content will be loaded.                                        |
-| storage | [LocalStorage](../../quick-start/arkts-localstorage.md) | No  | A storage unit, which provides storage for variable state properties and non-variable state properties of an application. This parameter is left blank by default.|
+| storage | [LocalStorage](../../ui/state-management/arkts-localstorage.md) | No  | A storage unit, which provides storage for variable state properties and non-variable state properties of an application. This parameter is left blank by default.|
 
 **Error codes**
 
@@ -60,7 +60,7 @@ export default class UIExtAbility extends UIExtensionAbility {
 
 loadContentByName(name: string, storage?: LocalStorage): void
 
-Loads a [named route](../../ui/arkts-routing.md#named-route) page for a [UIExtensionAbility](./js-apis-app-ability-uiExtensionAbility.md), with state properties passed to the page through [LocalStorage](../../quick-start/arkts-localstorage.md). This API is used to load a named route page in the [onSessionCreate](./js-apis-app-ability-uiExtensionAbility.md#uiextensionabilityonsessioncreate) lifecycle of the UIExtensionAbility.
+Loads a [named route](../../ui/arkts-routing.md#named-route) page for a [UIExtensionAbility](./js-apis-app-ability-uiExtensionAbility.md), with state properties passed to the page through [LocalStorage](../../ui/state-management/arkts-localstorage.md). This API is used to load a named route page in the [onSessionCreate](./js-apis-app-ability-uiExtensionAbility.md#uiextensionabilityonsessioncreate) lifecycle of the UIExtensionAbility.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -69,7 +69,7 @@ Loads a [named route](../../ui/arkts-routing.md#named-route) page for a [UIExten
 | Name| Type| Mandatory| Description|
 | ------ | ------ | ------ | ------ |
 | name | string | Yes| Name of the named route page.|
-| storage | [LocalStorage](../../quick-start/arkts-localstorage.md) | No| A page-level UI state storage unit, which is used to pass state properties to the page. The default value is null.|
+| storage | [LocalStorage](../../ui/state-management/arkts-localstorage.md) | No| A page-level UI state storage unit, which is used to pass state properties to the page. The default value is null.|
 
 **Error codes**
 
