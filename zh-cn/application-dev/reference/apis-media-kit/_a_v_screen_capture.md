@@ -1817,6 +1817,8 @@ OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_SetCaptureStrategy(struct OH_AVSc
 **描述**
 向OH_AVScreenCapture实例设置录屏策略CaptureStrategy。
 
+该接口应在录屏启动之前被调用。
+
 **系统能力：** SystemCapability.Multimedia.Media.AVScreenCapture
 
 **起始版本：** 20
@@ -1836,7 +1838,7 @@ AV_SCREEN_CAPTURE_ERR_OK：执行成功。
 
 AV_SCREEN_CAPTURE_ERR_INVALID_VAL：输入参数capture为空指针或输入参数strategy为空指针。
 
-AV_SCREEN_CAPTURE_ERR_UNSUPPORT：操作不支持，录屏策略设置失败，建议重试。
+AV_SCREEN_CAPTURE_ERR_UNSUPPORT：操作不支持，录屏策略设置失败，例如：在录屏启动之后调用该接口。
 
 ### OH_AVScreenCapture_StrategyForKeepCaptureDuringCall()
 ```
