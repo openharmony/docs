@@ -9711,7 +9711,7 @@ setWindowTransitionAnimation(transitionType: WindowTransitionType, animation: Tr
 
 当前只支持在应用主窗下使用。
 
-<!--RP6-->此接口仅可在2in1设备或pad的自由多窗模式下使用。<!--RP6End-->
+<!--RP6-->此接口仅可在2in1设备下使用。<!--RP6End-->
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
@@ -9795,7 +9795,7 @@ getWindowTransitionAnimation(transitionType: WindowTransitionType): TransitionAn
 
 当前只支持在应用主窗下使用。
 
-<!--RP6-->此接口仅可在2in1设备或pad的自由多窗模式下使用。<!--RP6End-->
+<!--RP6-->此接口仅可在2in1设备下使用。<!--RP6End-->
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
