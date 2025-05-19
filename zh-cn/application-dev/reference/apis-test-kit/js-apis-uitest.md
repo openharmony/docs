@@ -1591,7 +1591,7 @@ inputText(text: string, mode: InputTextMode): Promise\<void>
 
 | 类型             | 说明              |
 |----------------|-----------------|
-| Promise\<void> | 无返回值的Promise对象。 |
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -3455,7 +3455,7 @@ inputText(p: Point, text: string, mode: InputTextMode): Promise\<void>
 
 | 类型             | 说明              |
 |----------------|-----------------|
-| Promise\<void> | 无返回值的Promise对象。 |
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -3776,7 +3776,7 @@ crownRotate(d: number, speed?: number): Promise</void>
 
 | 类型             | 说明              |
 |----------------|-----------------|
-| Promise\<void> | 无返回值的Promise对象。 |
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 
