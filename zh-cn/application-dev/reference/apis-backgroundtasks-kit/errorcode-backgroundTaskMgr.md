@@ -36,7 +36,7 @@ Parcel operation failed.
 
 **可能原因**
 
-调用[MessageParcel](../apis-ipc-kit/js-apis-rpc.md#messageparceldeprecated)。对象读取或写入对象异常。
+调用[MessageParcel](../apis-ipc-kit/js-apis-rpc.md#messageparceldeprecated)对象读取或写入对象异常。
 
 **处理步骤**
 
@@ -201,7 +201,7 @@ Parcel operation failed.
 
 **可能原因**
 
-调用MessageParcel对象读取或写入对象异常。
+调用[MessageParcel](../apis-ipc-kit/js-apis-rpc.md#messageparceldeprecated)对象读取或写入对象异常。
 
 **处理步骤**
 
@@ -257,7 +257,7 @@ Parcel operation failed.
 
 **可能原因**
 
-调用MessageParcel对象读取或写入对象异常。
+调用[MessageParcel](../apis-ipc-kit/js-apis-rpc.md#messageparceldeprecated)对象读取或写入对象异常。
 
 **处理步骤**
 
