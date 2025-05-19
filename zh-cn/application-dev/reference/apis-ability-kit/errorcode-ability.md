@@ -71,7 +71,7 @@ The specified ID does not exist.
 
 **错误信息**
 
-Failed to start the invisible ability.
+Cannot start an invisible component.
 
 **错误描述**
 
@@ -180,7 +180,7 @@ wukong模式，不允许启动/停止ability。
 
 **错误信息**
 
-The call with the continuation flag is forbidden.
+The call with the continuation and prepare continuation flag is forbidden.
 
 **错误描述**
 
@@ -220,11 +220,11 @@ The application is controlled.
 
 **错误描述**
 
-当应用受到应用市场管控时，方法将返回该错误码。
+当应用受到管控时，将返回该错误码。
 
 **可能原因**
 
-应用疑似存在恶意行为，受到应用市场管控不允许启动。
+应用被系统管控模块管控，不允许启动。
 
 **处理步骤**
 
@@ -786,7 +786,7 @@ The caller does not exist.
 
 **错误信息**
 
-Not support back to caller.
+BackToCaller is not supported.
 
 **错误描述**
 
@@ -805,7 +805,7 @@ Not support back to caller.
 
 **错误信息**
 
-The APP_INSTANCE_KEY is invalid.
+The app instance key is invalid.
 
 **错误描述**
 
@@ -879,7 +879,7 @@ The APP_INSTANCE_KEY cannot be specified.
 
 **错误信息**
 
-Creating an instance is not supported.
+Creating a new instance is not supported.
 
 **错误描述**
 
@@ -897,7 +897,7 @@ Creating an instance is not supported.
 
 **错误信息**
 
-Get target application info failed.
+Failed to obtain the target application information.
 
 **错误描述**
 
@@ -955,7 +955,7 @@ The extension can not start the ability due to extension control.
 
 **错误信息**
 
-Only allow DelegatorAbility to call the method once.
+Only DelegatorAbility is allowed to call this API, and only once.
 
 **错误描述**
 
@@ -975,7 +975,7 @@ Only allow DelegatorAbility to call the method once.
 
 **错误信息**
 
-The interaction process between Ability and Window encountered an error.
+An error occurred during the interaction between the ability and window.
 
 **错误描述**
 
@@ -1482,7 +1482,7 @@ The application has an ongoing quick fix task.
 
 **错误信息**
 
-observer not found.
+The observer does not exist.
 
 **错误描述**
 
@@ -1518,7 +1518,7 @@ The target bundle does not exist.
 
 **错误信息**
 
-The target bundle has no main uiability.
+The target bundle has no MainAbility.
 
 **错误描述**
 
@@ -1554,7 +1554,7 @@ The target bundle has no status-bar ability.
 
 **错误信息**
 
-The target application is not attached to status bar.
+The target application is not attached to the status bar.
 
 **错误描述**
 
@@ -1605,7 +1605,7 @@ uri不存在或uri非图片类型文件。
 
 检查文件是否存在以及文件类型是否为图片。
 
-## 29600002 图片大小过大
+## 29600003 图片大小过大
 
 **错误信息**
 
@@ -1628,7 +1628,7 @@ Image too big.
 
 **错误信息**
 
-The target free install task does not exist.
+The target free-installation task does not exist.
 
 **错误描述**
 
@@ -1636,7 +1636,7 @@ The target free install task does not exist.
 
 **可能原因**
 
-传入的bundleName、moduleName、abilityName或startTime错误，导致查询不到相关原子化服务原子化服务的下载安装任务信息。
+传入的bundleName、moduleName、abilityName或startTime错误，导致查询不到相关原子化服务的下载安装任务信息。
 
 **处理步骤**
 
