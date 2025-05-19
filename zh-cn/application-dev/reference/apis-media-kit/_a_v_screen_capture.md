@@ -1827,7 +1827,7 @@ OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_SetCaptureContentChangedCallback(
 | 名称 | 描述 | 
 | -------- | -------- |
 | capture | 指向[OH_AVScreenCapture](#oh_avscreencapture)实例的指针。 | 
-| callback | 指向录屏内容变更回调方法实例的指针[OH_AVScreenCapture_OnCaptureContentChanged](#oh_avscreencapture_oncapturecontentchanged) | 
+| callback | 指向录屏内容变更回调方法实例的指针[OH_AVScreenCapture_OnCaptureContentChanged](#oh_avscreencapture_oncapturecontentchanged)。 | 
 | userData | 指向应用提供的自定义数据的指针，在回调方法被调用时作为入参回传。 | 
 
 **返回：**
@@ -1836,6 +1836,6 @@ OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_SetCaptureContentChangedCallback(
 
 AV_SCREEN_CAPTURE_ERR_OK：执行成功。
 
-AV_SCREEN_CAPTURE_ERR_INVALID_VAL：输入参数capture为空指针。
+AV_SCREEN_CAPTURE_ERR_INVALID_VAL：输入参数capture为空指针，或者输入参数callback为空指针。
 
-AV_SCREEN_CAPTURE_ERR_OPERATE_NOT_PERMIT：不允许操作。
+AV_SCREEN_CAPTURE_ERR_OPERATE_NOT_PERMIT：不允许操作，设置录屏内容回调失败。
