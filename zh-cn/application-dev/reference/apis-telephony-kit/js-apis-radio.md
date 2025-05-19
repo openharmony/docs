@@ -112,7 +112,7 @@ radio.getRadioTech(slotId).then((data: radio.NetworkRadioTech) => {
 
 getRadioTechSync\(slotId: number\): [NetworkRadioTech](#networkradiotech11)
 
-获取当前接入的CS域和PS域无线接入技术。
+获取当前接入的CS域和PS域无线接入技术
 
 **需要权限**：ohos.permission.GET_NETWORK_INFO
 
