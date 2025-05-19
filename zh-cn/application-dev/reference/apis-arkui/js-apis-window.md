@@ -1199,7 +1199,7 @@ try {
   let displayId = 0;
   let promise = window.getGlobalWindowMode(displayId);
   promise.then((data) => {
-    console.info('Succeeded in obtaining global window mode. Data: ' + data);
+    console.info(`Succeeded in obtaining global window mode. Data: ${data}`);
   }).catch((err: BusinessError) => {
     console.error(`Failed to obtain global window mode. Cause code: ${err.code}, message: ${err.message}`);
   });
