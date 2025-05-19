@@ -50,7 +50,7 @@ Websocket 连接已经存在。
 
 Websocket 连接已经建立。
 
-## 2302004 websocket 无法在指定的NIC(网络接口)上进行网络监听
+## 2302004 WebsocketServer 无法在指定的NIC（网络接口）上进行网络监听
 
 **错误信息**
 
@@ -58,13 +58,13 @@ Can't listen to the given NIC.
 
 **错误描述**
 
-websocket 无法在指定的NIC上进行网络监听
+WebsocketServer无法在指定的NIC上进行网络监听
 
 **可能原因**
 
-Websocket 服务器配置文件中的ip地址无效。
+WebsocketServer服务器配置文件中的ip地址无效。
 
-## 2302005 websocket 无法在指定的端口上进行网络监听
+## 2302005 WebsocketServer 无法在指定的端口上进行网络监听
 
 **错误信息**
 
@@ -72,11 +72,11 @@ Can't listen to the given Port.
 
 **错误描述**
 
-websocket 无法在指定的端口上进行网络监听
+WebsocketServer无法在指定的端口上进行网络监听
 
 **可能原因**
 
-Websocket 服务器配置文件中的端口号无效。
+WebsocketServer服务器配置文件中的端口号无效。
 
 ## 2302998 不允许访问域名
 
