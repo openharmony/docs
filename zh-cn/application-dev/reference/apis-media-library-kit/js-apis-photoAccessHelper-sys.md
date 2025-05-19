@@ -4933,6 +4933,74 @@ struct Index {
 }
 ```
 
+### deleteLocalAssetsPermanentlyWithUri<sup>19+</sup>
+
+static deleteLocalAssetsPermanentlyWithUri(context: Context, assetUris: Array&lt;String&gt;): Promise&lt;void&gt;
+
+通过资产Uri批量彻底删除照片或者视频。使用promise异步回调。
+
+>**注意**：
+> 此操作不可逆，执行此操作后文件资源将被彻底删除，请谨慎操作。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**需要权限**：ohos.permission.WRITE_IMAGEVIDEO
+
+**参数：**
+
+| 参数名  | 类型             | 必填   | 说明    |
+| ---- | -------------- | ---- | ----- |
+| context | [Context](../apis-ability-kit/js-apis-inner-application-context.md) | 是    | 传入Ability实例的Context。 |
+| assetUris | Array&lt;String&gt; | 是    | 待彻底删除的图片或者视频Uri数组。 |
+
+**返回值：**
+
+| 类型                  | 说明         |
+| ------------------- | ---------- |
+| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[文件管理错误码](../apis-core-file-kit/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 201   | Permission denied.       |
+| 202   | Called by non-system application.       |
+| 13900020 | Invalid argument. | 
+| 14000011 | Internal system error. It is recommended to retry and check the logs.<br>Possible causes: 1. Database corrupted; 2. The file system is abnormal; 3. The IPC request timed out.  |     
+
+**示例：**
+
+```ts
+import { dataSharePredicates } from '@kit.ArkData';
+
+async function example() {
+    console.info('deleteLocalAssetsPermanentlyWithUriDemo');
+    let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+    let fetchOptions: photoAccessHelper.FetchOptions = {
+    fetchColumns: [],
+    predicates: predicates
+    };
+    try {
+        let  photoUris: Array<string> = [];
+        let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOptions);
+        let assets: Array<photoAccessHelper.PhotoAsset> = await fetchResult.getAllObjects();
+        for (const asset of assets) {
+            if (!asset?.uri) {
+                continue; 
+            }
+            let uri:string = asset.uri.trim();
+            photoUris.push(uri);
+        }
+        await photoAccessHelper.MediaAssetChangeRequest.deleteLocalAssetsPermanentlyWithUri(context, photoUris);
+    } catch (err) {
+    console.error(`deleteLocalAssetsPermanentlyWithUriDemo failed with error: ${err.code}, ${err.message}`);
+}
+```
+
 ## MediaAssetsChangeRequest<sup>11+</sup>
 
 批量资产变更请求。
