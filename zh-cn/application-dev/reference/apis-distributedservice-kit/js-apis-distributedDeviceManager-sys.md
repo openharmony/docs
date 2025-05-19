@@ -33,6 +33,32 @@ import { distributedDeviceManager } from '@kit.DistributedServiceKit';
 | TEMP_STOP_HEARTBEAT      | 100    | 临时停止心跳广播，超时后自动恢复。             |
 | START_HEARTBEAT          | 101    | 开始心跳广播。                               |
 
+## DeviceProfileInfoFilterOptions<sup>15+</sup>
+
+设备配置文件信息过滤器选项。
+
+**系统能力**：SystemCapability.DistributedHardware.DeviceManager
+
+**系统API**： 此接口为系统接口。
+
+| 名称         | 类型  | 必填              |  说明
+| ----------- | ---- | --------------- |
+| isCloud      | boolean    |   是           | 是否向云端请求数据。       |
+| deviceIdList  | Array&lt;string&gt;  | 否    | 设备Id列表。       |
+
+## DeviceProfileInfo<sup>15+</sup>
+
+
+
+**系统能力**：SystemCapability.DistributedHardware.DeviceManager
+
+**系统API**： 此接口为系统接口。
+
+| 名称         | 类型  | 必填              |  说明
+| ----------- | ---- | --------------- |
+|             |      |                 |        |
+|             |      |                 |        |
+
 ## DeviceManager
 
 设备管理实例，用于获取可信设备和本地设备的相关信息。在调用DeviceManager的方法前，需要先通过createDeviceManager构建一个DeviceManager实例dmInstance。
@@ -238,4 +264,49 @@ setHeartbeatPolicy(policy: StrategyForHeartbeat, delayTime: number): void
     let e: BusinessError = err as BusinessError;
     console.error('setHeartbeatPolicy errCode:' + e.code + ',errMessage:' + e.message);
   }
+  ```
+
+### getDeviceProfileInfoList<sup>15+</sup>
+
+getDeviceProfileInfoList(filterOptions: DeviceProfileInfoFilterOptions): Promise&lt;Array&lt;DeviceProfileInfo&gt;&gt;
+
+获取同一账号下的设备列表。
+
+**需要权限**：ohos.permission.ACCESS_SERVICE_DM
+
+**系统能力**：SystemCapability.DistributedHardware.DeviceManager
+
+**系统API**： 此接口为系统接口。
+
+**参数：**
+
+  | 参数名       | 类型            | 必填  | 说明                |
+  | ------------- | --------------- | ---- | ------------------- |
+  | filterOptions        |  &nbsp;[DeviceProfileInfoFilterOptions](#deviceprofileinfofilteroptions15)&nbsp;         | 是    |        |
+
+**返回值：**
+
+  | 类型                                                       | 说明                               |
+  | ---------------------------------------------------------- | ---------------------------------- |
+  | Promise&lt;Array&lt;[DeviceProfileInfo](#devicefrofileinfo)&gt;&gt; | Promise实例，返回设备列表。 |
+
+**错误码：**
+
+以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[设备管理错误码](errorcode-device-manager.md)。
+
+| 错误码ID | 错误信息                                                        |
+| -------- | --------------------------------------------------------------- |
+| 201 | Permission verification failed. The application does not have the permission required to call the API.                                            |
+| 202 | Permission verification failed. A non-system application calls a system API.                              |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 11600102 | Failed to obtain service.                                 |
+
+**示例：**
+
+<!--code_no_check-->
+  ```ts
+  import { distributedDeviceManager } from '@kit.DistributedServiceKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
+
+
   ```
