@@ -1439,3 +1439,15 @@ screenCaptureMonitor.off('systemScreenRecorder');
 | SCREENCAPTURE_STARTED       | 0   | 表示系统录屏应用开始录屏。                       |
 | SCREENCAPTURE_STOPPED        | 1    | 表示系统录屏应用停止录屏。 |
 
+## enableDeviceLevelCapture<sup>20+</sup>
+
+用于指定折叠屏PC在折叠状态下录制半块屏幕还是整块屏幕。
+
+**系统能力：** SystemCapability.Multimedia.Media.AVScreenCapture
+
+**系统接口：** enableDeviceLevelCapture是AVScreenCaptureStrategy接口中的一个可选参数，默认值为false。
+
+| 值              | 说明                                                          |
+| --------------- | ------------------------------------------------------------ |
+| true   | 录制折叠屏PC在折叠状态下的整块屏幕。 |
+| false  | 录制折叠屏PC在折叠状态下的半块屏幕。 |
