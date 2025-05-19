@@ -855,7 +855,7 @@ Tabs组件动画相关信息集合。
 | ------------- | ---------- | ---- | ---- | ------------------------ |
 | currentOffset | number | 否 | 否 | Tabs当前显示元素在主轴方向上，相对于Tabs起始位置的位移。单位vp，默认值为0。|
 | targetOffset | number | 否 | 否 | Tabs动画目标元素在主轴方向上，相对于Tabs起始位置的位移。单位vp，默认值为0。|
-| velocity | number | 否 | 否 | Tabs离手动画开始时的离手速度。单位vp/S，默认值为0。|
+| velocity | number | 否 | 否 | Tabs离手动画开始时的离手速度。单位vp/s，默认值为0。|
 
 ## TabContentAnimatedTransition<sup>11+</sup>
 
