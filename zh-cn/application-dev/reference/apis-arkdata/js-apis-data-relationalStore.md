@@ -635,6 +635,7 @@ console.info("custom tokenizer supported on current platform: " + customTypeSupp
 | vector<sup>18+</sup> | boolean | 否 | 指定数据库是否是向量数据库，true表示向量数据库，false表示关系型数据库，默认为false。<br/>向量数据库适用于存储和处理高维向量数据，关系型数据库适用于存储和处理结构化数据。<br/>向量数据库目前支持[execute](#execute12-1)，[querySql](#querysql-1)，[beginTrans](#begintrans12)，[commit](#commit12)，[rollback](#rollback12)，[backup](#backup)，[restore](#restore)以及[ResultSet](#resultset)类型操作接口。当使用向量数据库时，在调用deleteRdbStore接口前，应当确保向量数据库已经被正确关闭。<br/>**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core |
 | tokenizer<sup>17+</sup> | [Tokenizer](#tokenizer17) | 否 | 指定用户在fts场景下使用哪种分词器。<br/>当此参数不填时，则在fts下不支持中文以及多国语言分词，但仍可支持英文分词。<br/>**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core |
 | persist<sup>18+</sup> | boolean | 否 | 指定数据库是否需要持久化。true表示持久化，false表示不持久化，即内存数据库。默认为true。<br/>内存数据库不支持加密、backup、restore、跨进程访问及分布式能力，securityLevel属性会被忽略。<br/>**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core |
+| enableSemanticIndex<sup>20+</sup> | boolean | 否 | 指定数据库是否启用语义索引处理功能。true表示启用语义索引处理功能，false表示不启用。默认为false。<br/>**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core |
 
 ## SecurityLevel
 
