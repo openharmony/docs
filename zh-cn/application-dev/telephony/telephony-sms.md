@@ -176,7 +176,6 @@ sms:106XXXXXXXXXX?body=发送短信内容
 
 实际开发时，需要将收件人号码替换为真实的号码，短信内容可以根据需要进行配置。
 
-
 #### 从应用拉起
 
 保证sms字符串传入uri参数即可，在应用中page页面可通过 this.getUIContext().getHostContext() 获取context，在ability中可通过this.context获取context。
