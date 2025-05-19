@@ -556,7 +556,7 @@ on(type: 'gestureNavigationEnabledChange', callback: Callback&lt;boolean&gt;): v
 ```ts
 try {
   window.on('gestureNavigationEnabledChange', (data) => {
-    console.info('Succeeded in enabling the listener for gesture navigation status changes. Data: ' + data);
+    console.info('Succeeded in enabling the listener for gesture navigation status changes. Data: ${data}');
   });
 } catch (exception) {
   console.error(`Failed to enable the listener for gesture navigation status changes. Cause code: ${exception.code}, message: ${exception.message}`);
@@ -639,7 +639,7 @@ on(type: 'waterMarkFlagChange', callback: Callback&lt;boolean&gt;): void
 ```ts
 try {
   window.on('waterMarkFlagChange', (data) => {
-    console.info('Succeeded in enabling the listener for watermark flag changes. Data: ' + data);
+    console.info('Succeeded in enabling the listener for watermark flag changes. Data: ${data}');
   });
 } catch (exception) {
   console.error(`Failed to enable the listener for watermark flag changes. Cause code: ${exception.code}, message: ${exception.message}`);
