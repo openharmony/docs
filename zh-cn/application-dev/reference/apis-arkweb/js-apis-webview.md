@@ -7529,7 +7529,7 @@ startCamera(): void
 
 **需要权限：**
 
-使用摄像头功能前请在module.json5中添加权限: ohos.permission.CAMERA，具体权限的添加方法请参考[在配置文件中声明权限](../security/AccessToken/declare-permissions.md)。
+使用摄像头功能前请在module.json5中添加权限: ohos.permission.CAMERA，具体权限的添加方法请参考[在配置文件中声明权限](../../security/AccessToken/declare-permissions.md)。
 
 **错误码：**
 
