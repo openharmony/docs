@@ -71,7 +71,7 @@ hasSerialRight(portId: number): boolean
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 14400005 | Database operation exception. |
 | 31400001 | Serial port management exception. |
-| 31400003 | Device does not exist. |
+| 31400003 | PortId does not exist. |
 
 **示例：**
 
@@ -125,7 +125,7 @@ requestSerialRight(portId: number): Promise&lt;boolean&gt;
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 14400005 | Database operation exception. |
 | 31400001 | Serial port management exception. |
-| 31400003 | Device does not exist. |
+| 31400003 | PortId does not exist. |
 
 **示例：**
 
@@ -179,7 +179,7 @@ open(portId: number): void
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 31400001 | Serial port management exception. |
 | 31400002 | Access denied. Call requestSerialRight to request user authorization first. |
-| 31400003 | Device does not exist. |
+| 31400003 | PortId does not exist. |
 | 31400004 | The serial port device is occupied. |
 
 **示例：**
@@ -247,7 +247,7 @@ getAttribute(portId: number): Readonly&lt;[SerialAttribute](#serialattribute)&gt
 | -------- | ------------------------------------------------------------ |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 31400001 | Serial port management exception. |
-| 31400003 | Device does not exist. |
+| 31400003 | PortId does not exist. |
 | 31400005 | The serial port device is not opened. Call the open API first. |
 
 **示例：**
@@ -322,7 +322,7 @@ setAttribute(portId: number, attribute: [SerialAttribute](#serialattribute)): vo
 | -------- | ------------------------------------------------------------ |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 31400001 | Serial port management exception. |
-| 31400003 | Device does not exist. |
+| 31400003 | PortId does not exist. |
 | 31400005 | The serial port device is not opened. Call the open API first. |
 
 **示例：**
@@ -406,7 +406,7 @@ read(portId: number, buffer: Uint8Array, timeout?: number): Promise&lt;number&gt
 | -------- | ------------------------------------------------------------ |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 31400001 | Serial port management exception. |
-| 31400003 | Device does not exist. |
+| 31400003 | PortId does not exist. |
 | 31400005 | The serial port device is not opened. Call the open API first. |
 | 31400006 | Data transfer timed out. |
 | 31400007 | I/O exception. Possible causes: 1. The transfer was canceled. 2. The device offered more data than allowed. |
@@ -486,7 +486,7 @@ readSync(portId: number, buffer: Uint8Array, timeout?: number): number
 | -------- | ------------------------------------------------------------ |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 31400001 | Serial port management exception. |
-| 31400003 | Device does not exist. |
+| 31400003 | PortId does not exist. |
 | 31400005 | The serial port device is not opened. Call the open API first. |
 | 31400006 | Data transfer timed out. |
 | 31400007 | I/O exception. Possible causes: 1. The transfer was canceled. 2. The device offered more data than allowed. |
@@ -567,7 +567,7 @@ write(portId: number, buffer: Uint8Array, timeout?: number): Promise&lt;number&g
 | -------- | ------------------------------------------------------------ |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 31400001 | Serial port management exception. |
-| 31400003 | Device does not exist. |
+| 31400003 | PortId does not exist. |
 | 31400005 | The serial port device is not opened. Call the open API first. |
 | 31400006 | Data transfer timed out. |
 | 31400007 | I/O exception. Possible causes: 1. The transfer was canceled. 2. The device offered more data than allowed. |
@@ -647,7 +647,7 @@ writeSync(portId: number, buffer: Uint8Array, timeout?: number): number
 | -------- | ------------------------------------------------------------ |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 31400001 | Serial port management exception. |
-| 31400003 | Device does not exist. |
+| 31400003 | PortId does not exist. |
 | 31400005 | The serial port device is not opened. Call the open API first. |
 | 31400006 | Data transfer timed out. |
 | 31400007 | I/O exception. Possible causes: 1. The transfer was canceled. 2. The device offered more data than allowed. |
@@ -720,7 +720,7 @@ close(portId: number): void
 | -------- | ------------------------------------------------------------ |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 31400001 | Serial port management exception. |
-| 31400003 | Device does not exist. |
+| 31400003 | PortId does not exist. |
 | 31400005 | The serial port device is not opened. Call the open API first. |
 
 **示例：**
@@ -792,7 +792,7 @@ cancelSerialRight(portId: number): void
 | 14400005 | Database operation exception.                                |
 | 31400001 | Serial port management exception. |
 | 31400002 | Access denied. Call requestSerialRight to request user authorization first. |
-| 31400003 | Device does not exist. |
+| 31400003 | PortId does not exist. |
 
 **示例：**
 
@@ -840,9 +840,9 @@ try {
 | 名称       | 类型     | 必填 | 说明        |
 |----------|--------|----|-----------|
 | baudrate | number | 是  | 串口波特率。  |
-| dataBits | number | 否  | 串口数据位，默认值由具体的串口设备和通信协议来确定。  |
-| parity   | number | 否  | 串口奇偶校验，默认值由具体的串口设备和通信协议来确定。 |
-| stopBits | number | 否  | 串口停止位，默认值由具体的串口设备和通信协议来确定。  |
+| dataBits | number | 否  | 串口数据位，默认值为8位。  |
+| parity   | number | 否  | 串口奇偶校验，默认值为None，无奇偶校验。 |
+| stopBits | number | 否  | 串口停止位，默认值为1位。  |
 
 ## SerialPort
 
