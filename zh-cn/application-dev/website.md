@@ -538,6 +538,9 @@
           - 构建布局<!--arkts-build-layout-ndk-->
             - [使用列表](ui/ndk-loading-long-list.md)
             - [使用瀑布流](ui/ndk-waterflow.md)
+          - 使用文本<!--arkts-build-text-ndk-->
+            - [Text组件的文本绘制与显示](ui/ndk-styled-string.md)
+            - [输入框文本事件监听](ui/ndk-textarea-event.md)
           - [构建弹窗](ui/ndk-build-pop-up-window.md)
           - [构建自定义组件](ui/ndk-build-custom-components.md)
           - [嵌入ArkTS组件](ui/ndk-embed-arkts-components.md)
@@ -2908,7 +2911,6 @@
           - [动画错误码](reference/apis-arkui/errorcode-animator.md)
           - [弹窗错误码](reference/apis-arkui/errorcode-promptAction.md)
           - [页面路由错误码](reference/apis-arkui/errorcode-router.md)
-          - [用户界面外观服务错误码](reference/apis-arkui/errorcode-uiappearance.md)
           - [拖拽事件错误码](reference/apis-arkui/errorcode-drag-event.md)
           - [图像AI分析错误码](reference/apis-arkui/errorcode-image-analyzer.md)
           - [焦点错误码](reference/apis-arkui/errorcode-focus.md)
@@ -2916,7 +2918,9 @@
           - [半模态错误码](reference/apis-arkui/errorcode-bindSheet.md)
           - [滚动类组件错误码](reference/apis-arkui/errorcode-scroll.md)
           - [UI上下文错误码](reference/apis-arkui/errorcode-uicontext.md)
+          - [交互事件错误码](reference/apis-arkui/errorcode-event.md)
           <!--Del-->
+          - [用户界面外观服务错误码](reference/apis-arkui/errorcode-uiappearance.md)
           - [UIExtension错误码](reference/apis-arkui/errorcode-uiextension.md)
           <!--DelEnd-->
         - 图形图像<!--arkui-graphics-images-arkts-errcode-->
