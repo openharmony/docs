@@ -1354,7 +1354,7 @@ server端添加服务。
 
 | 参数名     | 类型                          | 必填   | 说明                       |
 | ------- | --------------------------- | ---- | ------------------------ |
-| service | [GattService](#gattservice) | 是    | 服务端的service数据。BLE广播的相关参数 |
+| service | [GattService](#gattservice) | 是    | 服务端的service数据。BLE广播的相关参数。 |
 
 **错误码**：
 
@@ -3958,6 +3958,7 @@ try {
 | characteristicValue | ArrayBuffer                              | 是    | 是    | 特征对应的二进制值。                      |
 | descriptors         | Array&lt;[BLEDescriptor](#bledescriptor)&gt; | 是    | 是    | 特定特征的描述符列表。                |
 | properties  | [GattProperties](#gattproperties) |   是   | 是     | 特定特征的属性描述。     |
+| characteristicValueHandle<sup>18+</sup> | number                           | 否    | 是    | 特征值的唯一标识句柄。当对端BLE蓝牙设备提供了多个相同UUID特征值时，可以通过此句柄区分不同的特征值。                      |
 
 
 ## BLEDescriptor
@@ -3974,7 +3975,7 @@ try {
 | characteristicUuid | string      | 是    | 是    | 特定特征(characteristic)的UUID。例如：00002a11-0000-1000-8000-00805f9b34fb。 |
 | descriptorUuid     | string      | 是    | 是    | 描述符(descriptor)的UUID。例如：00002902-0000-1000-8000-00805f9b34fb。 |
 | descriptorValue    | ArrayBuffer | 是    | 是    | 描述符对应的二进制值。                              |
-
+| descriptorHandle<sup>18+</sup> | number        | 否    | 是    | 描述符的唯一标识句柄。当对端BLE蓝牙设备提供了多个相同UUID描述符时，可以通过此句柄区分不同的描述符。                      |
 
 ## NotifyCharacteristic
 
@@ -3990,7 +3991,7 @@ try {
 | characteristicUuid  | string      | 是    | 是    | 特定特征(characteristic)的UUID。例如：00002a11-0000-1000-8000-00805f9b34fb。 |
 | characteristicValue | ArrayBuffer | 是    | 是    | 特征对应的二进制值。                               |
 | confirm             | boolean     | 是    | 是    | 如果是indication，对端需要回复确认，则设置为true。<br>如果是notification，对端不需要回复确认，则设置为false。 |
-
+| includeTxPower<sup>18+</sup> | boolean     | 否    | 是    | 是否携带广播发送功率。<br>true表示携带广播发送功率，false表示不携带广播发送功率，默认值为false。<br>携带该值后，广播报文长度将多占用3个字节。      |
 
 ## CharacteristicReadRequest
 
