@@ -42,7 +42,7 @@ import { inputConsumer, KeyEvent } from '@kit.InputKit';
 
 getAllSystemHotkeys(): Promise&lt;Array&lt;HotkeyOptions&gt;&gt;
 
-获取所有全局快捷键，使用Promise异步回调。
+获取所有系统快捷键，使用Promise异步回调。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.InputConsumer
 
@@ -50,7 +50,7 @@ getAllSystemHotkeys(): Promise&lt;Array&lt;HotkeyOptions&gt;&gt;
 
 | 类型         |  说明                                       |
 | ---------- |  ---------------------------------------- |
-| Promise&lt;Array&lt;HotkeyOptions&gt;&gt;                    | Promise对象，返回所有全局快捷键的列表。 |
+| Promise&lt;Array&lt;HotkeyOptions&gt;&gt;                    | Promise对象，返回所有系统快捷键的列表。 |
 
 **错误码**：
 
