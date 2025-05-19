@@ -2343,7 +2343,7 @@ export default class EntryAbility extends UIAbility {
         return;
       }
       subWindow.showWindow().then(() => {
-        windowClass.raiseToAppTop((err: BusinessError) => {
+        subWindow.raiseToAppTop((err: BusinessError) => {
           const errCode: number = err.code;
           if (errCode) {
             console.error(`Failed to raise the window to app top. Cause code: ${err.code}, message: ${err.message}`);
@@ -2514,7 +2514,9 @@ try {
 
 raiseAboveTarget(windowId: number, callback: AsyncCallback&lt;void&gt;): void
 
-将同一个主窗口下的子窗口提升到目标子窗口之上。使用callback异步回调。
+将同一个主窗口下的子窗口抬升到目标子窗口之上。使用callback异步回调。
+
+使用该接口需要确保要抬升的子窗口和目标子窗口都已创建完成，分别调用[showWindow()](js-apis-window.md#showwindow9)并执行完毕。
 
 **系统接口：** 此接口为系统接口。
 
@@ -2588,6 +2590,8 @@ export default class EntryAbility extends UIAbility {
 raiseAboveTarget(windowId: number): Promise&lt;void&gt;
 
 将同一个主窗下的子窗口提升到目标子窗口之上。使用Promise异步回调。
+
+使用该接口需要确保要抬升的子窗口和目标子窗口都已创建完成，分别调用[showWindow()](js-apis-window.md#showwindow9)并执行完毕。
 
 **系统接口：** 此接口为系统接口。
 
