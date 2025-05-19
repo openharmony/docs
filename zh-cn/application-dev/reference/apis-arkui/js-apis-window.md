@@ -420,7 +420,7 @@ import { window } from '@kit.ArkUI';
 
 | 名称   | 类型   | 必填 | 说明                                       |
 | ------ | ------ | ---- | ------------------------------------------ |
-| focusableOnShow | boolean  | 否 | 窗口调用[showWindow()](#showwindow20)显示时是否自动获焦，默认为true。该参数对主窗、模态窗、dialog窗口不生效。|
+| focusOnShow | boolean  | 否 | 窗口调用[showWindow()](#showwindow20)显示时是否自动获焦，默认为true。该参数对主窗、模态窗、dialog窗口不生效。|
 
 ## WindowAnimationCurve<sup>20+</sup>
 
@@ -1741,7 +1741,7 @@ showWindow(options: ShowWindowOptions): Promise&lt;void&gt;
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 let options : window.ShowWindowOptions = {
-  focusableOnShow: false,
+  focusOnShow: false,
 };
 windowClass.showWindow(options).then(() => {
   console.info('Succeeded in showing the window.');
