@@ -74,14 +74,14 @@
 | typedef struct [OH_AudioBuffer](_o_h___audio_buffer.md) [OH_AudioBuffer](#oh_audiobuffer) | 定义了音频数据的大小，类型，时间戳等配置信息。 | 
 | typedef enum [OH_AVScreenCaptureStateCode](#oh_avscreencapturestatecode-1) [OH_AVScreenCaptureStateCode](#oh_avscreencapturestatecode) | 枚举，表示状态码。 | 
 | typedef enum [OH_AVScreenCaptureBufferType](#oh_avscreencapturebuffertype-1) [OH_AVScreenCaptureBufferType](#oh_avscreencapturebuffertype) | 枚举，表示buffer类型。 | 
-| typedef enum [OH_AVScreenCaptureContentChangedEvent](#oh_avscreencapturecontentchangedevent-1) [OH_AVScreenCaptureContentChangedEvent](#oh_avscreencapturecontentchangedevent) | 枚举，表示录屏内容状态变化事件。 | 
+| typedef enum [OH_AVScreenCaptureContentChangedEvent](#oh_avscreencapturecontentchangedevent-1) [OH_AVScreenCaptureContentChangedEvent](#oh_avscreencapturecontentchangedevent) | 枚举，表示录屏内容变化事件。 | 
 | typedef enum [OH_AVScreenCaptureFilterableAudioContent](#oh_avscreencapturefilterableaudiocontent-1) [OH_AVScreenCaptureFilterableAudioContent](#oh_avscreencapturefilterableaudiocontent) | 枚举，表示可过滤的音频类型。 | 
 | typedef void(\* [OH_AVScreenCapture_OnStateChange](#oh_avscreencapture_onstatechange)) (struct [OH_AVScreenCapture](#oh_avscreencapture) \*capture, [OH_AVScreenCaptureStateCode](#oh_avscreencapturestatecode) stateCode, void \*userData) | 当OH_AVScreenCapture实例操作期间发生状态变更时，将调用函数指针。 | 
 | typedef void(\* [OH_AVScreenCapture_OnError](#oh_avscreencapture_onerror)) ([OH_AVScreenCapture](#oh_avscreencapture) \*capture, int32_t errorCode, void \*userData) | 当OH_AVScreenCapture实例操作期间发生错误时，将调用函数指针。 | 
 | typedef void(\* [OH_AVScreenCapture_OnBufferAvailable](#oh_avscreencapture_onbufferavailable)) ([OH_AVScreenCapture](#oh_avscreencapture) \*capture, [OH_AVBuffer](../apis-avcodec-kit/_core.md#oh_avbuffer) \*buffer, [OH_AVScreenCaptureBufferType](#oh_avscreencapturebuffertype) bufferType, int64_t timestamp, void \*userData) | 当OH_AVScreenCapture实例操作期间音频或视频缓存区可用时，将调用该函数指针。 | 
 | typedef enum [OH_AVSCREEN_CAPTURE_ErrCode](#oh_avscreen_capture_errcode-1) [OH_AVSCREEN_CAPTURE_ErrCode](#oh_avscreen_capture_errcode) | 屏幕录制过程中产生的不同结果码。 | 
 | typedef void(\* [OH_AVScreenCapture_OnDisplaySelected](#oh_avscreencapture_ondisplayselected)) ([OH_AVScreenCapture](#oh_avscreencapture) \*capture, uint64_t displayId, void \*userData) | 当录屏事件开始时，将调用函数指针。 | 
-| typedef void(\* [OH_AVScreenCapture_OnCaptureContentChanged](#oh_avscreencapture_oncapturecontentchanged)) ([OH_AVScreenCapture](#oh_avscreencapture) \*capture, [OH_AVScreenCaptureContentChangedEvent](#oh_avscreencapturecontentchangedevent) event, [OH_Rect](#oh_rect) \*area, void \*userData) | 当录屏内容状态变化时，将调用函数指针。 | 
+| typedef void(\* [OH_AVScreenCapture_OnCaptureContentChanged](#oh_avscreencapture_oncapturecontentchanged)) ([OH_AVScreenCapture](#oh_avscreencapture) \*capture, [OH_AVScreenCaptureContentChangedEvent](#oh_avscreencapturecontentchangedevent) event, [OH_Rect](#oh_rect) \*area, void \*userData) | 当录屏内容变化时，将调用函数指针。 | 
 
 
 ### 枚举
@@ -99,7 +99,7 @@
 | [OH_AVScreenCaptureBufferType](#oh_avscreencapturebuffertype-1) {<br/>OH_SCREEN_CAPTURE_BUFFERTYPE_VIDEO = 0,<br/>OH_SCREEN_CAPTURE_BUFFERTYPE_AUDIO_INNER = 1,<br/>OH_SCREEN_CAPTURE_BUFFERTYPE_AUDIO_MIC = 2<br/>} | 枚举，表示buffer类型。 | 
 | [OH_AVScreenCaptureFilterableAudioContent](#oh_avscreencapturefilterableaudiocontent-1) {<br/>OH_SCREEN_CAPTURE_NOTIFICATION_AUDIO = 0, <br/>OH_SCREEN_CAPTURE_CURRENT_APP_AUDIO = 1 <br/>} | 枚举，表示可过滤的音频类型。  | 
 | [OH_AVSCREEN_CAPTURE_ErrCode](#oh_avscreen_capture_errcode-1) {<br/>AV_SCREEN_CAPTURE_ERR_BASE = 0,<br/>AV_SCREEN_CAPTURE_ERR_OK = AV_SCREEN_CAPTURE_ERR_BASE,<br/>AV_SCREEN_CAPTURE_ERR_NO_MEMORY = AV_SCREEN_CAPTURE_ERR_BASE + 1,<br/>AV_SCREEN_CAPTURE_ERR_OPERATE_NOT_PERMIT = AV_SCREEN_CAPTURE_ERR_BASE + 2,<br/>AV_SCREEN_CAPTURE_ERR_INVALID_VAL = AV_SCREEN_CAPTURE_ERR_BASE + 3,<br/>AV_SCREEN_CAPTURE_ERR_IO = AV_SCREEN_CAPTURE_ERR_BASE + 4,<br/>AV_SCREEN_CAPTURE_ERR_TIMEOUT = AV_SCREEN_CAPTURE_ERR_BASE + 5,<br/>AV_SCREEN_CAPTURE_ERR_UNKNOWN = AV_SCREEN_CAPTURE_ERR_BASE + 6,<br/>AV_SCREEN_CAPTURE_ERR_SERVICE_DIED = AV_SCREEN_CAPTURE_ERR_BASE + 7,<br/>AV_SCREEN_CAPTURE_ERR_INVALID_STATE = AV_SCREEN_CAPTURE_ERR_BASE + 8,<br/>AV_SCREEN_CAPTURE_ERR_UNSUPPORT = AV_SCREEN_CAPTURE_ERR_BASE + 9,<br/>AV_SCREEN_CAPTURE_ERR_EXTEND_START = AV_SCREEN_CAPTURE_ERR_BASE + 100<br/>} | 屏幕录制过程中产生的不同结果码。 | 
-| [OH_AVScreenCaptureContentChangedEvent](#oh_avscreencapturecontentchangedevent-1) {<br/>OH_SCREEN_CAPTURE_CONTENT_HIDE = 0，<br/>OH_SCREEN_CAPTURE_CONTENT_VISIBLE = 1,<br/>OH_SCREEN_CAPTURE_CONTENT_UNAVAILABLE = 2 <br/>} | 枚举，表示录屏内容状态变化事件。 | 
+| [OH_AVScreenCaptureContentChangedEvent](#oh_avscreencapturecontentchangedevent-1) {<br/>OH_SCREEN_CAPTURE_CONTENT_HIDE = 0，<br/>OH_SCREEN_CAPTURE_CONTENT_VISIBLE = 1,<br/>OH_SCREEN_CAPTURE_CONTENT_UNAVAILABLE = 2 <br/>} | 枚举，表示录屏内容变化事件。 | 
 
 
 ### 函数
@@ -134,7 +134,7 @@
 | [OH_AVSCREEN_CAPTURE_ErrCode](#oh_avscreen_capture_errcode) [OH_AVScreenCapture_SetMaxVideoFrameRate](#oh_avscreencapture_setmaxvideoframerate) (struct [OH_AVScreenCapture](#oh_avscreencapture) \*capture, int32_t frameRate) | 设置录屏的最大帧率。  | 
 | [OH_AVSCREEN_CAPTURE_ErrCode](#oh_avscreen_capture_errcode) [OH_AVScreenCapture_ShowCursor](#oh_avscreencapture_showcursor) (struct [OH_AVScreenCapture](#oh_avscreencapture) \*capture, bool showCursor) | 设置光标显示开关。 | 
 | [OH_AVSCREEN_CAPTURE_ErrCode](#oh_avscreen_capture_errcode) [OH_AVScreenCapture_SetDisplayCallback](#oh_avscreencapture_setdisplaycallback) (struct [OH_AVScreenCapture](#oh_avscreencapture) \*capture, [OH_AVScreenCapture_OnDisplaySelected](#oh_avscreencapture_ondisplayselected) callback, void \*userData) | 设置获取录屏屏幕Id的回调。 | 
-| [OH_AVSCREEN_CAPTURE_ErrCode](#oh_avscreen_capture_errcode) [OH_AVScreenCapture_SetCaptureContentChangedCallback](#oh_avscreencapture_setcapturecontentchangedcallback) (struct [OH_AVScreenCapture](#oh_avscreencapture) \*capture, [OH_AVScreenCapture_OnCaptureContentChanged](#oh_avscreencapture_oncapturecontentchanged) callback, void \*userData) | 设置录屏内容状态变化的回调。 | 
+| [OH_AVSCREEN_CAPTURE_ErrCode](#oh_avscreen_capture_errcode) [OH_AVScreenCapture_SetCaptureContentChangedCallback](#oh_avscreencapture_setcapturecontentchangedcallback) (struct [OH_AVScreenCapture](#oh_avscreencapture) \*capture, [OH_AVScreenCapture_OnCaptureContentChanged](#oh_avscreencapture_oncapturecontentchanged) callback, void \*userData) | 设置录屏内容变化的回调。 | 
 
 
 ## 类型定义说明
@@ -355,7 +355,7 @@ typedef void(* OH_AVScreenCapture_OnStateChange) (struct OH_AVScreenCapture *cap
 typedef void (*OH_AVScreenCapture_OnCaptureContentChanged)(OH_AVScreenCapture* capture, OH_AVScreenCaptureContentChangedEvent event, OH_Rect* area, void *userData)
 ```
 **描述**
-当OH_AVScreenCapture实例操作期间录屏内容状态变化时，将调用函数指针。
+当OH_AVScreenCapture实例操作期间录屏内容变化时，将调用函数指针。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVScreenCapture
 
@@ -366,7 +366,7 @@ typedef void (*OH_AVScreenCapture_OnCaptureContentChanged)(OH_AVScreenCapture* c
 | 名称 | 描述 | 
 | -------- | -------- |
 | capture | 指向OH_AVScreenCapture实例的指针。  | 
-| event | 指定录屏内容状态变更事件。  | 
+| event | 指定录屏内容变更事件。  | 
 | area | 指定录屏区域。  |
 | userData | 指向应用设置该回调处理方法时提供的自定义数据的指针。 | 
 
@@ -663,7 +663,7 @@ typedef enum OH_VideoSourceType OH_VideoSourceType
 typedef enum OH_AVScreenCaptureContentChangedEvent OH_AVScreenCaptureContentChangedEvent
 ```
 **描述**
-枚举，表示录屏内容状态变化事件。
+枚举，表示录屏内容变化事件。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVScreenCapture
 
@@ -914,7 +914,7 @@ enum OH_VideoSourceType
 enum OH_AVScreenCaptureContentChangedEvent
 ```
 **描述**
-枚举，表示录屏内容状态变化事件。
+枚举，表示录屏内容变化事件。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVScreenCapture
 
@@ -922,9 +922,9 @@ enum OH_AVScreenCaptureContentChangedEvent
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| OH_SCREEN_CAPTURE_CONTENT_HIDE  |  录屏内容状态变化为隐藏。  |
-| OH_SCREEN_CAPTURE_CONTENT_VISIBLE  |  录屏内容状态变化为可见。  |
-| OH_SCREEN_CAPTURE_CONTENT_UNAVAILABLE  |  录屏内容状态变化为不可用。 |
+| OH_SCREEN_CAPTURE_CONTENT_HIDE  |  录屏内容变为隐藏。  |
+| OH_SCREEN_CAPTURE_CONTENT_VISIBLE  |  录屏内容变为可见。  |
+| OH_SCREEN_CAPTURE_CONTENT_UNAVAILABLE  |  录屏内容状态变化为不可用，如录屏窗口关闭。 |
 
 
 ## 函数说明
@@ -1827,8 +1827,8 @@ OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_SetCaptureContentChangedCallback(
 | 名称 | 描述 | 
 | -------- | -------- |
 | capture | 指向[OH_AVScreenCapture](#oh_avscreencapture)实例的指针。 | 
-| callback | 指向录屏内容状态变更回调方法实例的指针[OH_AVScreenCapture_OnCaptureContentChanged](#oh_avscreencapture_oncapturecontentchanged) | 
-| userData | 指向应用提供的自定义数据的指针，在状态处理回调方法被调用时作为入参回传。 | 
+| callback | 指向录屏内容变更回调方法实例的指针[OH_AVScreenCapture_OnCaptureContentChanged](#oh_avscreencapture_oncapturecontentchanged) | 
+| userData | 指向应用提供的自定义数据的指针，在回调方法被调用时作为入参回传。 | 
 
 **返回：**
 
