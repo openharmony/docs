@@ -88,7 +88,7 @@ ws.connect(defaultIpAddress, {
 
 createWebSocket(): WebSocket
 
-创建一个WebSocket，里面包括建立连接、关闭连接、发送数据和订阅/取消订阅WebSocket连接的打开事件、接收到服务器消息事件、关闭事件和错误事件。
+创建一个WebSocket对象，里面包括建立连接、关闭连接、发送数据和订阅/取消订阅WebSocket连接的打开事件、接收到服务器消息事件、关闭事件和错误事件。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -170,7 +170,7 @@ ws.connect(url, (err: BusinessError, value: boolean) => {
 
 connect(url: string, options: WebSocketRequestOptions, callback: AsyncCallback\<boolean\>): void
 
-根据URL地址和header，建立一个WebSocket连接，使用callback方式作为异步方法。
+根据URL地址，建立一个WebSocket连接，使用callback方式作为异步方法。
 
 > **说明：**
 > 可通过监听error事件获得该接口的执行结果，错误发生时会得到错误码：200。
@@ -236,7 +236,7 @@ ws.connect(url, options, (err: BusinessError, value: Object) => {
 
 connect(url: string, options?: WebSocketRequestOptions): Promise\<boolean\>
 
-根据URL地址和header，建立一个WebSocket连接，使用Promise方式作为异步方法。
+根据URL地址，建立一个WebSocket连接，使用Promise方式作为异步方法。
 
 > **说明：**
 > 可通过监听error事件获得该接口的执行结果，错误发生时会得到错误码：200。
