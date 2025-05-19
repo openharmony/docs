@@ -44,11 +44,11 @@ Socket 连接主要由 socket 模块提供。具体接口说明如下表。
 | constructLocalSocketInstance()       | 创建一个 LocalSocket 对象。                                                  |
 | constructLocalSocketServerInstance() | 创建一个 LocalSocketServer 对象。                                            |
 | listen()                           | 绑定、监听并启动服务，接收客户端的连接请求。（仅 TCP/LocalSocket 支持）。             |
-| bind()                             | 绑定 IP 地址和端口，或是绑定本地套接字路径。                                        |
+| bind()                             | 绑定 IP 地址和端口，或是绑定LocalSocket路径。                                        |
 | send()                             | 发送数据。                                                                     |
 | close()                            | 关闭连接。                                                                     |
 | getState()                         | 获取 Socket 状态。                                                             |
-| connect()                          | 连接到指定的 IP 地址和端口，或是连接到本地套接字（仅 TCP/LocalSocket 支持）。          |
+| connect()                          | 连接到指定的 IP 地址和端口，或是连接到LocalSocket（仅 TCP/LocalSocket 支持）。          |
 | getRemoteAddress()                 | 获取对端 Socket 地址（仅 TCP 支持，需要先调用 connect 方法）。                   |
 | setExtraOptions()                  | 设置 Socket 连接的其他属性。                                                   |
 | getExtraOptions()                  | 获取 Socket 连接的其他属性（仅 LocalSocket 支持）。                            |
@@ -69,7 +69,7 @@ Socket 连接主要由 socket 模块提供。具体接口说明如下表。
 | on(type:&nbsp;'connect')           | 订阅 Socket 的连接事件（仅 TCP/LocalSocket 支持）。                            |
 | off(type:&nbsp;'connect')          | 取消订阅 Socket 的连接事件（仅 TCP/LocalSocket 支持）。                         |
 
-TLS Socket 连接主要由 tls_socket 模块提供。具体接口说明如下表。
+TLS Socket 连接主要由 socket 模块提供。具体接口说明如下表。
 
 | 接口名                       | 功能描述                                                   |
 | ---------------------------- | ---------------------------------------------------------- |
@@ -97,7 +97,7 @@ TLS Socket 连接主要由 tls_socket 模块提供。具体接口说明如下表
 
 UDP 与 TCP 流程大体类似，下面以 TCP 为例：
 
-1. import 需要的 socket 模块。
+1. 导入所需的 socket 模块。
 
 2. 创建一个 TCPSocket 连接，返回一个 TCPSocket 对象。
 
@@ -189,7 +189,7 @@ setTimeout(() => {
 
 服务端 TCP Socket 流程：
 
-1. import 需要的 socket 模块。
+1. 导入所需的 socket 模块。
 2. 创建一个 TCPSocketServer 连接，返回一个 TCPSocketServer 对象。
 3. 绑定本地 IP 地址和端口，监听并接受与此套接字建立的客户端 TCPSocket 连接。
 4. 订阅 TCPSocketServer 的 connect 事件，用于监听客户端的连接状态。
@@ -270,7 +270,7 @@ setTimeout(() => {
 
 ## 应用通过 Multicast Socket 进行数据传输
 
-1. import 需要的 socket 模块。
+1. 导入所需的 socket 模块。
 
 2. 创建 multicastSocket 多播对象。
 
@@ -338,7 +338,7 @@ multicast.dropMembership(addr).then(() => {
 
 ## 应用通过 LocalSocket 进行数据传输
 
-1. import 需要的 socket 模块。
+1. 导入所需的 socket 模块。
 
 2. 使用 constructLocalSocketInstance 接口，创建一个 LocalSocket 客户端对象。
 
@@ -413,15 +413,15 @@ client.close().then(() => {
 
 ## 应用通过 Local Socket Server 进行数据传输
 
-服务端 LocalSocket Server 流程：
+服务端 LocalSocket Server 的主要流程包括：
 
-1. import 需要的 socket 模块。
+1. 导入所需的 socket 模块。
 
 2. 使用 constructLocalSocketServerInstance 接口，创建一个 LocalSocketServer 服务端对象。
 
 3. 启动服务，绑定本地套接字路径，创建出本地套接字文件，监听客户端的连接请求。
 
-4. 注册 LocalSocket 的客户端连接(connect)事件，以及一些其它事件(可选)。
+4. 注册 LocalSocket 的客户端连接事件，以及一些其它事件(可选)。
 
 5. 在客户端连接上来时，通过连接事件的回调函数，获取连接会话对象。
 
@@ -504,11 +504,11 @@ server.off('error');
 
 ## 应用通过 TLS Socket 进行加密数据传输
 
-客户端 TLS Socket 流程：
+客户端 TLS Socket 流程包括：
 
-1. import 需要的 socket 模块。
+1. 导入所需的 socket 模块。
 
-2. 绑定服务器 IP 和端口号。
+2. 绑定服务器 IP地址和端口。
 
 3. 双向认证上传客户端 CA 证书及数字证书；单向认证上传客户端 CA 证书。
 
@@ -664,7 +664,7 @@ tlsTwoWay.close((err: BusinessError) => {
 
 客户端 TCP Socket 升级为 TLS Socket 流程：
 
-1. import 需要的 socket 模块。
+1. 导入所需的 socket 模块。
 
 2. 参考[应用 TCP/UDP 协议进行通信](#应用-tcpudp-协议进行通信)，创建一个 TCPSocket 连接。
 
@@ -793,7 +793,7 @@ tcp.bind(ipAddress, (err: BusinessError) => {
 
 服务端 TLS Socket Server 流程：
 
-1. import 需要的 socket 模块。
+1. 导入所需的 socket 模块。
 
 2. 启动服务，绑定 IP 和端口号，监听客户端连接，创建并初始化 TLS 会话，加载证书密钥并验证。
 
