@@ -5759,6 +5759,30 @@ imageSourceApi.release().then(() => {
 })
 ```
 
+## image.getImageSourceSupportedFormats<sup>20+</sup>
+
+getImageSourceSupportedFormats(): string[]
+
+获取支持解码的图片格式，图片格式以mime type表示。
+
+**系统能力：** SystemCapability.Multimedia.Image.Core
+
+**返回值：**
+
+| 类型     | 说明                                       |
+| -------- | ------------------------------------------ |
+| string[] | 支持解码的图片格式（mime type）列表。 |
+
+**示例：**
+
+```ts
+import image from '@kit.ImageKit';
+GetImageSourceSupportedFormats() {
+    let formats = image.getImageSourceSupportedFormats();
+    console.info('formats:', formats);
+}
+```
+
 ## image.createImagePacker
 
 createImagePacker(): ImagePacker
@@ -6659,6 +6683,30 @@ Packer.packToFileFromPixelmapSequence(pixelMapList, file.fd, ops)
   }).catch((error: BusinessError) => {
   console.error('Failed to packToFileMultiFrames.');
   })
+```
+
+## image.getImagePackerSupportedFormats<sup>20+</sup>
+
+getImagePackerSupportedFormats(): string[]
+
+获取支持编码的图片格式，图片格式以mime type表示。
+
+**系统能力：** SystemCapability.Multimedia.Image.Core
+
+**返回值：**
+
+| 类型     | 说明                                       |
+| -------- | ------------------------------------------ |
+| string[] | 支持解码的图片格式（mime type）列表。 |
+
+**示例：**
+
+```ts
+import image from '@kit.ImageKit';
+GetImagePackerSupportedFormats() {
+    let formats = image.getImagePackerSupportedFormats();
+    console.info('formats:', formats);
+}
 ```
 
 ## image.createAuxiliaryPicture<sup>13+</sup>

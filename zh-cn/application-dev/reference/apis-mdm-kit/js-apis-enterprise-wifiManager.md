@@ -131,7 +131,7 @@ addAllowedWifiList(admin: Want, list: Array&lt;WifiAccessInfo&gt;): void
 
 以下情况下，调用本接口会报策略冲突：
 
-1. 已经通过[setWifiDisabled](js-apis-enterprise-wifiManager-sys.md#wifimanagersetwifidisabled11)接口禁用了设备WLAN能力。通过[setWifiDisabled](js-apis-enterprise-wifiManager-sys.md#wifimanagersetwifidisabled11)解除WLAN禁用后，可解除冲突。
+1. 已经通过[setDisallowedPolicy](js-apis-enterprise-restrictions.md#restrictionssetdisallowedpolicy)接口禁用了设备WLAN能力。通过[setDisallowedPolicy](js-apis-enterprise-restrictions.md#restrictionssetdisallowedpolicy)解除WLAN禁用后，可解除冲突。
 2. 已经通过[addDisallowedWifiList](#wifimanageradddisallowedwifilist19)接口添加了WLAN黑名单。通过[removeDisallowedWifiList](#wifimanagerremovedisallowedwifilist19)移除WLAN黑名单后，可解除冲突。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_WIFI
@@ -293,7 +293,7 @@ addDisallowedWifiList(admin: Want, list: Array&lt;WifiAccessInfo&gt;): void
 
 以下情况下，调用本接口会报策略冲突：
 
-1. 已经通过[setWifiDisabled](js-apis-enterprise-wifiManager-sys.md#wifimanagersetwifidisabled11)接口禁用了设备WLAN能力。通过[setWifiDisabled](js-apis-enterprise-wifiManager-sys.md#wifimanagersetwifidisabled11)解除WLAN禁用后，可解除冲突。
+1. 已经通过[setDisallowedPolicy](js-apis-enterprise-restrictions.md#restrictionssetdisallowedpolicy)接口禁用了设备WLAN能力。通过[setDisallowedPolicy](js-apis-enterprise-restrictions.md#restrictionssetdisallowedpolicy)解除WLAN禁用后，可解除冲突。
 2. 已经通过[addAllowedWifiList](#wifimanageraddallowedwifilist19)接口添加了WLAN白名单。通过[removeAllowedWifiList](#wifimanagerremoveallowedwifilist19)移除WLAN白名单后，可解除冲突。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_WIFI

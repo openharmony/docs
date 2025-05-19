@@ -391,6 +391,22 @@ stopBackPress(isStopped: Optional&lt;boolean&gt;)
 | ------ | --------------------------------------------- |-----|-------------------------------------------------------------------------------------|
 | isStopped  | Optional&lt;boolean&gt; | 否   | 是否阻止返回键。<br/>默认值：true，表示阻止返回键。<br/>**说明：** <br/>当不设置该属性或设置异常值时，取默认值。|
 
+### undoStyle<sup>20+</sup>
+
+undoStyle(style: Optional&lt;UndoStyle&gt;)
+
+设置撤销还原时是否保留原内容的样式。
+
+使用[RichEditorStyledStringOptions](#richeditorstyledstringoptions12)构建RichEditor组件时，撤销还原时默认保留原内容样式，不受该接口设置的属性影响。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 参数名 | 类型                                          | 必填  | 说明                                                                                  |
+| ------ | --------------------------------------------- |-----|-------------------------------------------------------------------------------------|
+| style  | [Optional](ts-universal-attributes-custom-property.md#optional12)&lt;[UndoStyle](#undostyle20-1)&gt; | 否   | 撤销还原是否保留原样式选项。默认值：UndoStyle.CLEAR_STYLE |
+
 ## 事件
 
 除支持[通用事件](ts-component-general-events.md)外，还支持[OnDidChangeCallback](ts-text-common.md#ondidchangecallback12)、[StyledStringChangedListener](ts-text-common.md#styledstringchangedlistener12)、[StyledStringChangeValue](ts-text-common.md#styledstringchangevalue12)和以下事件：
@@ -757,6 +773,19 @@ Span类型信息。
 | LONG_PRESS | 1 | 通过长按触发菜单弹出。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。   |
 | SELECT | 2 | 通过鼠标选中触发菜单弹出。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。  |
 | DEFAULT<sup>15+</sup> | 3 | 默认类型，不指定响应类型时生效。 <br/>**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。  |
+
+## UndoStyle<sup>20+</sup>
+
+撤销还原是否保留原样式选项。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称    | 值     | 说明         |
+| ----- | ---- | ------------ |
+| CLEAR_STYLE  | 0 | 撤销还原内容不保留原样式。   |
+| KEEP_STYLE | 1 | 撤销还原内容保留原样式。   |
 
 ## RichEditorTextStyleResult
 
@@ -5068,3 +5097,139 @@ struct RichEditorExample {
   }
 }
 ```
+
+### 示例28（开启带样式的撤销还原能力）
+对于不使用属性字符串的富文本组件，可以通过配置[undoStyle](#undostyle20)属性为UndoStyle.KEEP_STYLE，以支持撤销还原时保留原内容的样式。
+
+```ts
+// xxx.ets
+
+@Entry
+@Component
+struct StyledUndo {
+  controller: RichEditorController = new RichEditorController();
+  options: RichEditorOptions = { controller: this.controller };
+  private start: number = 0;
+  private end: number = 0;
+  @State undoStyle: UndoStyle = UndoStyle.KEEP_STYLE;
+  build() {
+    Column() {
+      Column() {
+        Row({space:2}) {
+          Button("插入文本").onClick(() => {
+            this.controller.addTextSpan("插入文本",
+              {
+                style:
+                {
+                  fontColor: Color.Orange,
+                  fontSize: 32
+                }
+              })
+          })
+          Button("插入图片").onClick(() => {
+            this.controller.addImageSpan($r("app.media.icon"),
+              {
+                imageStyle:
+                {
+                  size: ["100px", "100px"]
+                }
+              });
+          })
+          Button("插入Symbol").onClick(() => {
+            this.controller.addSymbolSpan($r("sys.symbol.ohos_trash"),
+              {
+                style:
+                {
+                  fontSize: 32
+                }
+              });
+          })
+        }
+        .borderWidth(1)
+        .borderColor(Color.Red)
+        .justifyContent(FlexAlign.Center)
+        .width("100%")
+        .height("10%")
+        Row({space:2}) {
+          Button("更新选中范围样式").onClick(() => {
+            if (this.start < this.end) {
+              this.controller.updateSpanStyle({
+                start: this.start,
+                end: this.end,
+                textStyle:
+                {
+                  fontColor: Color.Red,
+                  fontWeight: FontWeight.Bolder
+                }
+              });
+            }
+          })
+          Button("删除选中范围内容").onClick(() => {
+            if (this.start < this.end) {
+              this.controller.deleteSpans({
+                start: this.start,
+                end: this.end
+              })
+            }
+          })
+        }
+        .borderWidth(1)
+        .borderColor(Color.Red)
+        .justifyContent(FlexAlign.Center)
+        .width("100%")
+        .height("10%")
+        Row({space:2}) {
+          Button("撤销时不还原样式").onClick(() => {
+            this.undoStyle = UndoStyle.CLEAR_STYLE;
+          })
+          Button("撤销时还原样式").onClick(() => {
+            this.undoStyle = UndoStyle.KEEP_STYLE;
+          })
+        }
+        .borderWidth(1)
+        .borderColor(Color.Red)
+        .justifyContent(FlexAlign.Center)
+        .width("100%")
+        .height("10%")
+      }
+      Column() {
+        RichEditor(this.options)
+          .onReady(()=>{
+            this.controller.addImageSpan($r("app.media.icon"),
+            {
+              imageStyle:
+              {
+                size: ["100px", "100px"]
+              }
+            });
+            this.controller.addTextSpan("初始化图文混排内容",
+              {
+                style:
+                {
+                  fontColor: Color.Orange,
+                  fontSize: 32
+                }
+              })
+            this.controller.addSymbolSpan($r("sys.symbol.ohos_trash"),
+              {
+                style:
+                {
+                  fontSize: 32
+                }
+              });
+          })
+          .undoStyle(this.undoStyle)
+          .onSelect((value: RichEditorSelection) => {
+            this.start = value.selection[0];
+            this.end = value.selection[1];
+          })
+          .borderWidth(1)
+          .borderColor(Color.Green)
+          .width("100%")
+          .height("50%")
+      }
+    }
+  }
+}
+```
+![UndoStyle](figures/richEditorStyledUndo.gif)

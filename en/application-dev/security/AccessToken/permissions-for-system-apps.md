@@ -4764,3 +4764,17 @@ Allows a system application to call io_uring to perform async IO operations.
 **Supported devices**: General
 
 **Valid since**：20
+
+## ohos.permission.NFC_NOTIFICATION
+
+Allows an application to publish common events related to NFC notifications.
+
+**Permission level**：system_basic
+
+**Authorization mode**：system_grant
+
+**Enable via ACL**：true
+
+**Supported devices**: Phone
+
+**Valid since**：20

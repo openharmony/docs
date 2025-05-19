@@ -949,7 +949,7 @@ void OH_HiTrace_StartAsyncTraceEx (HiTrace_Output_Level level, const char * name
 | level | 跟踪输出优先级。  | 
 | name | 异步跟踪的名字。  | 
 | taskId | 异步跟踪的ID。  | 
-| customCategory | 用于聚合异步跟踪的标签。  | 
+| customCategory | 自定义聚类名称，用于聚合同一类异步跟踪打点。  |
 | customArgs | 键值对，多个键值对使用逗号分隔，例"key1=value1,key2=value2"。 | 
 
 

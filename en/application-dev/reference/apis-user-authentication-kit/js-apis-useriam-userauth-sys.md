@@ -310,17 +310,17 @@ try {
 
 ## UserAuthType<sup>8+</sup>
 
-Enumerates the types of credentials for identity authentication.
+Enumerates the identity authentication types.
 
 **System capability**: SystemCapability.UserIAM.UserAuth.Core
 
 | Name       | Value  | Description      |
 | ----------- | ---- | ---------- |
-| PRIVATE_PIN<sup>14+</sup>  | 16   | Privacy password.|
+| PRIVATE_PIN<sup>14+</sup>  | 16   | Private password authentication. |
 
 **Example**
 
-Initiate privacy PIN authentication with the authentication trust level greater than or equal to ATL3.
+Initiate private password authentication with the authentication trust level greater than or equal to ATL3.
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';

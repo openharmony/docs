@@ -1079,7 +1079,7 @@ compress(dest: ArrayBuffer, source: ArrayBuffer, sourceLen?: number): Promise&lt
 | --------- | ----------- | ---- | -------------- |
 | dest      | ArrayBuffer | 是   | 目标缓冲区。   |
 | source    | ArrayBuffer | 是   | 源数据缓冲区。 |
-| sourceLen | number      | 否   | 源数据长度。   |
+| sourceLen | number      | 否   | 源数据长度。默认值为0。   |
 
 **返回值：**
 
@@ -1136,7 +1136,7 @@ compress2(dest: ArrayBuffer, source: ArrayBuffer, level: CompressLevel, sourceLe
 | dest      | ArrayBuffer   | 是   | 目标缓冲区。                                  |
 | source    | ArrayBuffer   | 是   | 源数据缓冲区。                                |
 | level     | CompressLevel | 是   | 参考[CompressLevel枚举定义](#compresslevel)。 |
-| sourceLen | number        | 否   | 源数据长度。                                  |
+| sourceLen | number        | 否   | 源数据长度。默认值为0。                                  |
 
 **返回值：**
 
@@ -1193,7 +1193,7 @@ uncompress(dest:ArrayBuffer, source: ArrayBuffer, sourceLen?: number): Promise&l
 | --------- | ----------- | ---- | -------------- |
 | dest      | ArrayBuffer | 是   | 目标缓冲区。   |
 | source    | ArrayBuffer | 是   | 源数据缓冲区。 |
-| sourceLen | number      | 否   | 源数据长度。   |
+| sourceLen | number      | 否   | 源数据长度。默认值为0。   |
 
 **返回值：**
 
@@ -1254,7 +1254,7 @@ uncompress2(dest: ArrayBuffer, source: ArrayBuffer, sourceLen?: number): Promise
 | --------- | ----------- | ---- | -------------- |
 | dest      | ArrayBuffer | 是   | 目标缓冲区。   |
 | source    | ArrayBuffer | 是   | 源数据缓冲区。 |
-| sourceLen | number      | 否   | 源数据长度。   |
+| sourceLen | number      | 否   | 源数据长度。默认值为0。   |
 
 **返回值：**
 

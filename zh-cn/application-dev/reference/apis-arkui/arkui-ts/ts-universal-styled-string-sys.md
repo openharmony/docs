@@ -83,6 +83,14 @@ static unmarshalling(buffer: ArrayBuffer): Promise\<StyledString>
 | -------------------------------- | --------------------- |
 | Promise\<[StyledString](ts-universal-styled-string.md)> |Promise对象，返回属性字符串。 |
 
+**错误码**：
+
+以下错误码详细介绍请参考[通用错误码](../../errorcode-universal.md)和[属性字符串错误码](../errorcode-styled-string.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
+| 170002 | Styled string decode error. |
 
 ### unmarshalling<sup>18+</sup>
 
@@ -111,11 +119,12 @@ static unmarshalling(buffer: ArrayBuffer, callback: StyledStringUnmarshallCallba
 
 **错误码**：
 
-以下错误码详细介绍请参考[通用错误码](../../errorcode-universal.md)。
+以下错误码详细介绍请参考[通用错误码](../../errorcode-universal.md)和[属性字符串错误码](../errorcode-styled-string.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
+| 170002 | Styled string decode error. |
 
 ## StyledStringMarshallingValue<sup>18+</sup>
 
