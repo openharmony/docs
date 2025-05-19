@@ -149,6 +149,36 @@ close()
 
 关闭显示的自定义弹窗，若已关闭，则不生效。
 
+### getState<sup>20+</sup>
+
+getState(): PromptActionCommonState
+
+获取自定义弹窗的状态。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| [PromptActionCommonState](#promptactioncommonstate20) | 返回对应的弹窗状态。 |
+
+## PromptActionCommonState<sup>20+</sup>
+
+type PromptActionCommonState = CommonState
+
+自定义弹窗的状态。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 类型 | 说明 |
+| -------- | -------- |
+| [CommonState](../js-apis-promptAction.md#commonstate20枚举说明) | 返回对应的弹窗状态。 |
+
 ## 示例
 
 ### 示例1（弹出嵌套弹窗）
@@ -575,3 +605,62 @@ struct CustomDialogUser {
 ```
 
 ![zh-cn_image_custom](figures/zh-cn_image_custom_hovermode.gif)
+
+### 示例5（获取弹窗的状态）
+
+该示例实现了在CustomDialogController中调用getState获取弹窗当前状态。
+
+```ts
+// xxx.ets
+@CustomDialog
+struct CustomDialogExample {
+  controller?: CustomDialogController
+
+  build() {
+    Column() {
+      Button("点我查询弹窗状态:通过自定义组件自带controller")
+        .onClick(() => {
+          if (this.getDialogController() != undefined) {
+            console.info('state:' + this.getDialogController().getState())
+          } else {
+            console.info('state: no exist')
+          }
+        }).margin(20)
+      Button('点我查询弹窗状态:通过CustomDialogController ')
+        .onClick(() => {
+          console.info('state:' + this.controller?.getState())
+        }).margin(20)
+      Button('点我关闭弹窗')
+        .onClick(() => {
+          if (this.getDialogController() != undefined) {
+            this.getDialogController().close()
+          }
+        }).margin(20)
+      
+    }
+  }
+}
+
+@Entry
+@Component
+struct CustomDialogUser {
+  @State bg: ResourceColor = Color.Green
+  dialogController: CustomDialogController | null = new CustomDialogController({
+    builder: CustomDialogExample({
+    }),
+    autoCancel: false
+  })
+
+  build() {
+    Column() {
+      Button('click me')
+        .onClick(() => {
+          if (this.dialogController != null) {
+            this.dialogController.open()
+          }
+        }).backgroundColor(0x317aff)
+    }.width('100%').margin({ top: 5 })
+    .backgroundColor(this.bg)
+  }
+}
+```
