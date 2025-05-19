@@ -1285,7 +1285,7 @@ struct GridExample {
 
 ### 示例6（自适应Grid）
 
-layoutDirection、maxcount、minCount、cellLength的使用。
+layoutDirection、maxCount、minCount、cellLength的使用。
 
 ```ts
 @Entry
@@ -1303,7 +1303,7 @@ struct GridExample {
     Scroll() {
       Column({ space: 5 }) {
         Blank()
-        Text('rowsTemplate、columnsTemplate都不设置layoutDirection、maxcount、minCount、cellLength才生效')
+        Text('rowsTemplate、columnsTemplate都不设置layoutDirection、maxCount、minCount、cellLength才生效')
           .fontSize(15).fontColor(0xCCCCCC).width('90%')
         Grid() {
           ForEach(this.numbers, (day: string) => {
