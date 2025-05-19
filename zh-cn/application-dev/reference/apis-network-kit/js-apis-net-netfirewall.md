@@ -479,8 +479,8 @@ let dnsRule: netFirewall.NetFirewallRule = {
   isEnabled: true,
   appUid: 20003,
  dns:{
-  primaryDns: "4.4.4.4",
-  standbyDns: "8.8.8.8",
+   primaryDns: "4.4.4.4",
+   standbyDns: "8.8.8.8",
  },
   userId: 100
 };
