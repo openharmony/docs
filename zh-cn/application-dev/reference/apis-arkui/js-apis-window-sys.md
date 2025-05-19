@@ -3364,7 +3364,7 @@ completeTransition(isCompleted: boolean): void
 ```ts
 (context: window.TransitionContext) => {
   let toWindow: window.Window = context.toWindow;
-  animateTo({
+  this.getUIContext()?.animateTo({
     duration: 1000, // 动画时长
     tempo: 0.5, // 播放速率
     curve: Curve.EaseInOut, // 动画曲线
@@ -3472,7 +3472,7 @@ try {
   animationConfig?.ShowWindowWithCustomAnimation(systemTypeWindow, (context : window.TransitionContext)=>{
     console.info('complete transition end');
     let toWindow = context.toWindow;
-    animateTo({
+    this.getUIContext()?.animateTo({
       duration: 1000, // 动画时长
       tempo: 0.5, // 播放速率
       curve: Curve.EaseInOut, // 动画曲线
@@ -3555,7 +3555,7 @@ try {
   animationConfig?.HideWindowWithCustomAnimation(systemTypeWindow, (context : window.TransitionContext)=>{
     console.info('complete transition end');
     let toWindow = context.toWindow;
-    animateTo({
+    this.getUIContext()?.animateTo({
       duration: 1000, // 动画时长
       tempo: 0.5, // 播放速率
       curve: Curve.EaseInOut, // 动画曲线
