@@ -10,7 +10,7 @@ A custom component has the **inherit-class** attribute, which is defined in the 
 | ------------- | ------ | ---- | ---- | -------------------------------- |
 | inherit-class | string | -    | No   | Class styles inherited from the parent component, separated by spaces.|
 
-To enable a custom component to inherit the styles of its parent component, set the **inherit-calss** attribute for the custom component.
+To enable a custom component to inherit the styles of its parent component, set the **inherit-class** attribute for the custom component.
 
 The example below is a code snippet in the HML file of the parent component that references a custom component named **comp**. This component uses the **inherit-class** attribute to inherit the styles of its parent component: **parent-class1** and **parent-class2**.
 

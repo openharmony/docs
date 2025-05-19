@@ -11,13 +11,13 @@
 ServiceId invalid. The system ability does not exist.
 
 **Description**
-This error code is reported if a system service cannot be obtained based on the specified service ID.
+The system service cannot be obtained based on the specified service ID.
 
 **Possible Causes**
 
-The specified service ID is incorrect.
+The specified service ID is incorrect or the corresponding service is not started.
 
-**Procedure**
+**Solution**
 
 Specify a correct system service ID.
 
@@ -28,15 +28,15 @@ Specify a correct system service ID.
 Capture trace already enabled.
 
 **Description**
-This error code is reported if capture trace has already been enabled for the current process.
+The trace collection has been enabled for the process.
 
 **Possible Causes**
 
-The trace function enabled previously is not disabled.
+The trace collection is in progress.
 
-**Procedure**
+**Solution**
 
-Disable the previously enabled trace.
+Wait until the trace collection is complete or call **OH_HiDebug_StopAppTraceCapture** to stop the trace collection.
 
 ## 11400103 Permission Verification Failed
 
@@ -45,15 +45,15 @@ Disable the previously enabled trace.
 No write permission on the file.
 
 **Description**
-This error code is reported if you do not have the permission to write the trace file in the current directory.
+You do not have the permission to write the trace file in the current directory.
 
 **Possible Causes**
 
-The current directory does not exist or is deleted by mistake.
+The directory does not exist or is deleted by mistake.
 
-**Procedure**
+**Solution**
 
-Run the trace again to generate a correct trace file in the current directory.
+Run the trace collection again to generate a correct trace file in the current directory.
 
 ## 11400104 Internal Error
 
@@ -66,13 +66,13 @@ This error code is reported if the current trace encounters an internal error.
 
 **Possible Causes**
 
-This issue is probably caused by a system kernel breakdown or application process crash.
+The system kernel crashes or the application process freezes.
 
-**Procedure**
+**Solution**
 
 Restart the application or system.
 
-## 11400105 Trace Not Enabled
+## 11400105 Trace Collection Is Not Enabled
 
 **Error Message**
 
@@ -83,11 +83,11 @@ This error code is reported if no trace is in progress.
 
 **Possible Causes**
 
-Trace has not been enabled.
+Trace collection is not enabled.
 
-**Procedure**
+**Solution**
 
-Start a trace.
+Enable trace collection and then stop it.
 
 ## 11400106 The API Call Quota Has Been Exceeded
 
@@ -100,64 +100,64 @@ The API call quota has been exceeded.
 
 **Possible Causes**
 
-1. This API is called by a process for more than one time per day.
+1. This API is called by a process more than once per day.
 
-2. This API is called by the system for more than five times per week.
+2. This API is called by the system more than five times per week.
 
-**Procedure**
+**Solution**
 
 Wait for the update of the API call quota.
 
-## 11400107 Failed to Fork The Dump Child process
+## 11400107 Failed to Fork The Child Dump Process
 
 **Error Message**
 
 Fork operation failed.
 
 **Description**
-Failed to fork the dump child process.
+Failed to fork the child dump process.
 
 **Possible Causes**
 
-The system resource is insufficient.
+The system resources are insufficient. You are advised to check the system load.
 
-**Procedure**
+**Solution**
 
-Fork the dump child process again. If the fork still fails, filter **Error** logs to locate the fault. For details, see [Log Analysis](https://developer.huawei.com/consumer/en/doc/harmonyos-guides-V5/ide-setup-hilog-V5#section2114542680). If the problem persists, <!--RP1-->contact us.<!--RP1End-->
+Fork the child dump process again. If it still fails, filter **Error** logs to locate the fault. For details, see [Log Analysis](https://developer.huawei.com/consumer/en/doc/harmonyos-guides/ide-setup-hilog#section2114542680). If the problem persists, <!--RP1-->contact us.<!--RP1End-->
 
-## 11400108 Failed to Wait for the Dump Child Process to Finish
+## 11400108 Failed to Wait for the Child Dump Process to Finish
 
 **Error Message**
 
 Failed to wait for the child process to finish.
 
 **Description**
-Failed to wait for the dump child process to finish.
+Failed to wait for the child dump process to finish.
 
 **Possible Causes**
 
-The system resource is insufficient.
+The system resources are insufficient. You are advised to check the system load.
 
-**Procedure**
+**Solution**
 
-Wait for the dump child process to finish again. If it still fails, filter **Error** logs to locate the fault. For details, see [Log Analysis](https://developer.huawei.com/consumer/en/doc/harmonyos-guides-V5/ide-setup-hilog-V5#section2114542680). If the problem persists, <!--RP1-->contact us.<!--RP1End-->
+Wait for the child dump process to finish again. If it still fails, filter **Error** logs to locate the fault. For details, see [Log Analysis](https://developer.huawei.com/consumer/en/doc/harmonyos-guides/ide-setup-hilog#section2114542680). If the problem persists, <!--RP1-->contact us.<!--RP1End-->
 
-## 11400109 The Dump Child Process Times Out
+## 11400109 The Child Dump Process Times Out
 
 **Error Message**
 
 Timeout while waiting for the child process to finish.
 
 **Description**
-The dump child process times out.
+The child dump process times out.
 
 **Possible Causes**
 
-The system load is high, and the dump process takes a long time.
+The dump process takes a long time. You are advised to check the system load.
 
-**Procedure**
+**Solution**
 
-Wait for the dump child process to finish again. If it still fails, filter **Error** logs to locate the fault. For details, see [Log Analysis](https://developer.huawei.com/consumer/en/doc/harmonyos-guides-V5/ide-setup-hilog-V5#section2114542680). If the problem persists, <!--RP1-->contact us.<!--RP1End-->
+Wait for the child dump process to finish again. If it still fails, filter **Error** logs to locate the fault. For details, see [Log Analysis](https://developer.huawei.com/consumer/en/doc/harmonyos-guides/ide-setup-hilog#section2114542680). If the problem persists, <!--RP1-->contact us.<!--RP1End-->
 
 ## 11400110 The Disk Space Is Insufficient
 
@@ -170,9 +170,9 @@ The disk space is insufficient.
 
 **Possible Causes**
 
-The free disk space is less than 30 GB.
+The available disk space is less than 30 GB.
 
-**Procedure**
+**Solution**
 
 Release the disk space to ensure that the available space is greater than 30 GB.
 
@@ -183,32 +183,32 @@ Release the disk space to ensure that the available space is greater than 30 GB.
 Napi interface call exception.
 
 **Description**
-Failed to call the Node-API.
+An exception occurs when the Node-API is called.
 
 **Possible Causes**
 
-The JavaScript VM is abnormal.
+The VM is abnormal.
 
-**Procedure**
+**Solution**
 
-Call the Node-API again. If it still fails, filter **Error** logs to locate the fault. For details, see [Log Analysis](https://developer.huawei.com/consumer/en/doc/harmonyos-guides-V5/ide-setup-hilog-V5#section2114542680). If the problem persists, <!--RP1-->contact us.<!--RP1End-->
+Call the Node-API again. If it still fails, filter **Error** logs to locate the fault. For details, see [Log Analysis](https://developer.huawei.com/consumer/en/doc/harmonyos-guides/ide-setup-hilog#section2114542680). If the problem persists, <!--RP1-->contact us.<!--RP1End-->
 
-## 11400112 The Data Dump Is Repeated
+## 11400112 Repeat Data Dump
 
 **Error Message**
 
 Repeated data dump.
 
 **Description**
-The data dump is repeated.
+Dump data is collected repeatedly.
 
 **Possible Causes**
 
 This API has been called and is called repeatedly before the calling is complete.
 
-**Procedure**
+**Solution**
 
-Optimize the code logic to ensure that a new dump is started after the previous dump is complete.
+Optimize the code logic to ensure that the next dump task starts after the previous dump task is complete.
 
 ## 11400113 Failed to Create a Dump File
 
@@ -217,7 +217,7 @@ Optimize the code logic to ensure that a new dump is started after the previous 
 Failed to create dump file.
 **Description**
 
-Failed to create a dump file.
+Failed to create the dump file.
 
 **Possible Causes**
 
@@ -225,6 +225,6 @@ Failed to create a dump file.
 
 2. System resources are insufficient.
 
-**Procedure**
+**Solution**
 
-Create a dump file again. If it still fails, filter **Error** logs to locate the fault. For details, see [Log Analysis](https://developer.huawei.com/consumer/en/doc/harmonyos-guides-V5/ide-setup-hilog-V5#section2114542680). If the problem persists, <!--RP1-->contact us.<!--RP1End-->
+Create the dump file again. If it still fails, filter **Error** logs to locate the fault. For details, see [Log Analysis](https://developer.huawei.com/consumer/en/doc/harmonyos-guides/ide-setup-hilog#section2114542680). If the problem persists, <!--RP1-->contact us.<!--RP1End-->

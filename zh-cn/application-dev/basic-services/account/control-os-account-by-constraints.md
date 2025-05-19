@@ -42,7 +42,7 @@
      accountManager.setOsAccountConstraints(localId, constraint, true);
      console.log('setOsAccountConstraints successfully');
    } catch (err) {
-     console.log('setOsAccountConstraints failed, error: ' + JSON.stringify(err));
+     console.error('setOsAccountConstraints failed, error: ' + JSON.stringify(err));
    }
    ```
 
@@ -63,8 +63,9 @@
 2. 调用[isOsAccountConstraintEnabled](../../reference/apis-basic-services-kit/js-apis-osAccount-sys.md#isosaccountconstraintenabled11)接口，判断指定约束是否使能。
 
    ```ts
-   let isEnabled: boolean = await accountManager.isOsAccountConstraintEnabled(localId, constraint);
-   if (isEnabled) {
-     // your business logic
-   }
+   accountManager.isOsAccountConstraintEnabled(localId, constraint).then((isEnabled: boolean) => {
+     if (isEnabled) {
+        // your business logic
+     }
+   });
    ```

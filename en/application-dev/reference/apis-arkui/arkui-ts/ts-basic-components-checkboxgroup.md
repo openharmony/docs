@@ -52,8 +52,8 @@ selectAll(value: boolean)
 
 Sets whether to select all. If the **select** attribute is set for a [Checkbox](ts-basic-components-checkbox.md) component in the same group, the setting of the **Checkbox** has a higher priority.
 
-Since API version 10, this attribute supports two-way binding through [$$](../../../quick-start/arkts-two-way-sync.md).
-Since API version 18, this attribute supports two-way binding through [!!](../../../quick-start/arkts-new-binding.md#two-way-binding-between-built-in-component-parameters).
+Since API version 10, this attribute supports two-way binding through [$$](../../../ui/state-management/arkts-two-way-sync.md).
+Since API version 18, this attribute supports two-way binding through [!!](../../../ui/state-management/arkts-new-binding.md#two-way-binding-between-built-in-component-parameters).
 
 **Widget capability**: Since API version 9, this feature is supported in ArkTS widgets.
 
@@ -73,7 +73,7 @@ selectAll(isAllSelected: Optional\<boolean>)
 
 Sets whether to select all. If the **select** attribute is set for a [Checkbox](ts-basic-components-checkbox.md) component in the same group, the setting of the **Checkbox** has a higher priority. Compared to [selectAll](#selectall), this API supports the **undefined** type for the **isAllSelected** parameter.
 
-This attribute supports two-way binding through [$$](../../../quick-start/arkts-two-way-sync.md) or [!!](../../../quick-start/arkts-new-binding.md).
+This attribute supports two-way binding through [$$](../../../ui/state-management/arkts-two-way-sync.md) or [!!](../../../ui/state-management/arkts-new-binding.md).
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 18.
 

@@ -51,7 +51,7 @@ Image加载成功且组件不设置宽高时，其显示大小自适应父组件
 
 >**说明：**
 >
-> Image直接传入URL可能会带来的潜在性能问题，例如：(1) 大图加载时无法提前下载，白块显示的时间较长；(2) 小图设置同步加载，在弱网环境下，可能会阻塞UI线程造成冻屏问题；(3) 在快速滑动的瀑布流中，无法提前对即将要显示的图片进行下载，导致滑动白块较多；不同场景下，性能问题会有不同的表现，建议将网络下载部分与Image的显示剥离，可提前下载或者异步下载。如果图片加载过程中出现白色块，请参考[Image白块问题解决方案](https://developer.huawei.com/consumer/cn/doc/best-practices/bpta-image-white-lump-solution)。如果图片加载时间过长，请参考按照步骤[优化应用预置图片资源加载耗时问题](https://developer.huawei.com/consumer/cn/doc/best-practices/bpta-texture-compression-improve-performance)。
+> Image直接传入URL可能会带来的潜在性能问题，例如：(1) 大图加载时无法提前下载，白块显示的时间较长；(2) 小图设置同步加载，在弱网环境下，可能会阻塞UI线程造成冻屏问题；(3) 在快速滑动的瀑布流中，无法提前对即将要显示的图片进行下载，导致滑动白块较多。不同场景下，性能问题会有不同的表现，建议将网络下载部分与Image的显示剥离，可提前下载或者异步下载。如果图片加载过程中出现白色块，请参考[Image白块问题解决方案](https://developer.huawei.com/consumer/cn/doc/best-practices/bpta-image-white-lump-solution)。如果图片加载时间过长，请参考按照步骤[优化应用预置图片资源加载耗时问题](https://developer.huawei.com/consumer/cn/doc/best-practices/bpta-texture-compression-improve-performance)。
 >
 > src由有效切换为无效时，图片保持不动。
 >
@@ -489,7 +489,7 @@ privacySensitive(supported: boolean)
 
 | 参数名    | 类型    | 必填 | 说明                     |
 | --------- | ------- | ---- | ------------------------ |
-| supported | boolean | 是   | 是否支持卡片敏感隐私信息。<br/>默认值为false，当设置为true时，隐私模式下图片将显示为半透明底板样式。<br/>**说明：** <br/>设置null则不敏感。<br/>进入隐私模式需要[卡片框架支持](./ts-universal-attributes-obscured.md)。 |
+| supported | boolean | 是   | 是否支持卡片敏感隐私信息。<br/>默认值为false，表示不支持卡片敏感隐私信息，当设置为true时，隐私模式下图片将显示为半透明底板样式。<br/>**说明：** <br/>设置null则不敏感。<br/>进入隐私模式需要[卡片框架支持](./ts-universal-attributes-obscured.md)。 |
 
 ### dynamicRangeMode<sup>12+</sup>
 
@@ -523,7 +523,7 @@ orientation(orientation: ImageRotateOrientation)
 
 | 参数名 | 类型                                    | 必填 | 说明                             |
 | ------ | --------------------------------------- | ---- | -------------------------------- |
-| orientation  | [ImageRotateOrientation](#imagerotateorientation14) | 是   | 图像内容的显示方向。<br/>如果需要显示携带旋转角度信息的图片，建议使用ImageRotateOrientation.AUTO进行设置。<br/>默认值：ImageRotateOrientation.UP |
+| orientation  | [ImageRotateOrientation](#imagerotateorientation14) | 是   | 图像内容的显示方向。<br/>不支持gif和svg类型的图片。<br/>如果需要显示携带旋转角度信息或翻转信息的图片，建议使用ImageRotateOrientation.AUTO进行设置。<br/>默认值：ImageRotateOrientation.UP |
 
 ## ImageContent<sup>12+</sup>
 
@@ -638,7 +638,7 @@ orientation(orientation: ImageRotateOrientation)
 | width<sup>7+</sup>  | number | 是   | 图片解码尺寸宽度。<br/>单位：vp<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | height<sup>7+</sup>  | number | 是   | 图片解码尺寸高度。<br/>单位：vp<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 
-## DrawableDescriptor<sup>10+<sup>
+## DrawableDescriptor<sup>10+</sup>
 
 type DrawableDescriptor = DrawableDescriptor
 
@@ -652,7 +652,7 @@ type DrawableDescriptor = DrawableDescriptor
 | ------ | ---------- |
 | [DrawableDescriptor](../js-apis-arkui-drawableDescriptor.md#drawabledescriptor)  | 返回一个DrawableDescriptor对象。 |
 
-## DrawingColorFilter<sup>12+<sup>
+## DrawingColorFilter<sup>12+</sup>
 
 type DrawingColorFilter = ColorFilter
 
@@ -702,9 +702,9 @@ type ImageMatrix = Matrix4Transit
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称 | 类型       | 必填 | 说明           |
-| ------ | --------- | --- | ------------- |
-| ORIGIN  | ColorContent | 是 | 重置[fillColor](#fillcolor)接口，效果上与不设置[fillColor](#fillcolor)一致。 |
+| 名称 | 类型       | 只读 | 可选 | 说明           |
+| ------ | --------- | --- | --- | ------------- |
+| ORIGIN  | ColorContent | 是 | 否 | 重置[fillColor](#fillcolor)接口，效果上与不设置[fillColor](#fillcolor)一致。 |
 
 ## 事件
 
@@ -776,7 +776,7 @@ onFinish(event: () =&gt; void)
 
 type ImageErrorCallback = (error: ImageError) => void
 
-图片加载异常时触发的回调。
+图片加载异常时触发此回调。
 
 当组件的参数类型为[AnimatedDrawableDescriptor](../js-apis-arkui-drawableDescriptor.md#animateddrawabledescriptor12)时该事件不触发。
 
@@ -795,6 +795,8 @@ type ImageErrorCallback = (error: ImageError) => void
 图片加载异常时触发回调的返回对象。
 
 当组件的参数类型为[AnimatedDrawableDescriptor](../js-apis-arkui-drawableDescriptor.md#animateddrawabledescriptor12)时该事件不触发。
+
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -1122,13 +1124,13 @@ import { image } from '@kit.ImageKit';
 @Entry
 @Component
 struct ImageExample {
-  pixelmaps: Array<PixelMap>  = [];
+  pixelMaps: Array<PixelMap>  = [];
   options: AnimationOptions = { iterations: 1 };
   @State animated: AnimatedDrawableDescriptor | undefined = undefined;
 
   async aboutToAppear() {
-    this.pixelmaps = await this.getPixelMaps();
-    this.animated = new AnimatedDrawableDescriptor(this.pixelmaps, this.options);
+    this.pixelMaps = await this.getPixelMaps();
+    this.animated = new AnimatedDrawableDescriptor(this.pixelMaps, this.options);
   }
 
   build() {
@@ -1143,11 +1145,11 @@ struct ImageExample {
       Row() {
         Button('once').width(100).padding(5).onClick(() => {
           this.options = { iterations: 1 };
-          this.animated = new AnimatedDrawableDescriptor(this.pixelmaps, this.options);
+          this.animated = new AnimatedDrawableDescriptor(this.pixelMaps, this.options);
         }).margin(5)
         Button('infinite').width(100).padding(5).onClick(() => {
           this.options = { iterations: -1 };
-          this.animated = new AnimatedDrawableDescriptor(this.pixelmaps, this.options);
+          this.animated = new AnimatedDrawableDescriptor(this.pixelMaps, this.options);
         }).margin(5)
       }
     }.width('50%')
@@ -1182,11 +1184,11 @@ struct ImageExample {
   }
 
   private async getPixelMaps() {
-    let Mypixelmaps:Array<PixelMap> = await this.getPixmapListFromMedia($r('app.media.mountain')); //添加图片
-    Mypixelmaps.push(await this.getPixmapFromMedia($r('app.media.sky')));
-    Mypixelmaps.push(await this.getPixmapFromMedia($r('app.media.clouds')));
-    Mypixelmaps.push(await this.getPixmapFromMedia($r('app.media.landscape')));
-    return Mypixelmaps;
+    let myPixelMaps:Array<PixelMap> = await this.getPixmapListFromMedia($r('app.media.mountain')); //添加图片
+    myPixelMaps.push(await this.getPixmapFromMedia($r('app.media.sky')));
+    myPixelMaps.push(await this.getPixmapFromMedia($r('app.media.clouds')));
+    myPixelMaps.push(await this.getPixmapFromMedia($r('app.media.landscape')));
+    return myPixelMaps;
   }
 }
 ```

@@ -9,7 +9,6 @@
     - [构建第一个ArkTS应用（Stage模型）](quick-start/start-with-ets-stage.md)
   <!--DelEnd-->
   - 开发基础知识<!--development-fundamentals-->
-    - [应用程序包术语](quick-start/application-package-glossary.md)
     - 应用程序包基础知识<!--application-package-fundamentals-->
       - [应用程序包概述](quick-start/application-package-overview.md)
       - 应用程序包结构<!--application-package-structure-->
@@ -37,6 +36,7 @@
       - [创建应用分身](quick-start/app-clone.md)
       - [创建应用多实例](quick-start/multiInstance.md)
       - [配置分层图标](quick-start/layered-image.md)
+    - [应用程序包术语](quick-start/application-package-glossary.md)
   - [资源分类与访问](quick-start/resource-categories-and-access.md)
   - 学习ArkTS语言<!--learning-arkts-->
     - [初识ArkTS语言](quick-start/arkts-get-started.md)
@@ -568,6 +568,7 @@
           - [构建自定义组件](ui/ndk-build-custom-components.md)
           - [嵌入ArkTS组件](ui/ndk-embed-arkts-components.md)
           - [通过XComponent接入无障碍](ui/ndk-accessibility-xcomponent.md)
+          - [自定义绘制](ui/arkts-user-defined-draw.md)
       - UI开发 (兼容JS的类Web开发范式)<!--ui-js-dev-->
         - [UI开发 (兼容JS的类Web开发范式)概述](ui/ui-js-overview.md)
         - 框架说明<!--js-framework-overview-->
@@ -710,6 +711,7 @@
         - [使用Web组件打印前端页面](web/web-print.md)
         - [使用Web组件的PDF文档预览能力](web/web-pdf-preview.md)
         - [网页中安全区域计算和避让适配](web/web-safe-area-insets.md)
+        - [Web组件的菜单功能](web/web_menu.md)
       - [同层渲染](web/web-same-layer.md)
       - [使用离线Web组件](web/web-offline-mode.md)
       - Web调试维测<!--web-debugging-->
@@ -1694,6 +1696,9 @@
         <!--DelEnd-->
         - [为通知添加行为意图](notification/notification-with-wantagent.md)
         - [为跨设备协同通知添加快捷回复](notification/notification-quickreply.md)
+        <!--Del-->
+        - [通知消息跨设备协同管理（仅对系统应用开放）](notification/notification-distributed-notdistributed.md)
+        <!--DelEnd-->
       - [更新通知](notification/notification-update.md)
       - [取消通知](notification/notification-cancel.md)
       <!--Del-->
@@ -3483,11 +3488,11 @@
       - Distributed Service Kit（分布式管理服务）<!--distributed-service-api-->
         - ArkTS API<!--distributed-service-arkts-->
           - [@ohos.distributedDeviceManager (设备管理)](reference/apis-distributedservice-kit/js-apis-distributedDeviceManager.md)
-          - [@ohos.abilityConnectionManager (应用多端协同管理)](reference/apis-distributedservice-kit/js-apis-distributed-abilityConnectionManager.md)
+          - [@ohos.distributedsched.abilityConnectionManager (应用多端协同管理)](reference/apis-distributedservice-kit/js-apis-distributed-abilityConnectionManager.md)
           <!--Del-->
           - [@ohos.distributedHardware.hardwareManager (分布式硬件管理)(系统接口)](reference/apis-distributedservice-kit/js-apis-distributedHardwareManager-sys.md)
           - [@ohos.distributedDeviceManager (设备管理)(系统接口)](reference/apis-distributedservice-kit/js-apis-distributedDeviceManager-sys.md)
-          - [@ohos.abilityConnectionManager (应用多端协同管理)(系统接口)](reference/apis-distributedservice-kit/js-apis-distributed-abilityConnectionManager-sys.md)
+          - [@ohos.distributedsched.abilityConnectionManager (应用多端协同管理)(系统接口)](reference/apis-distributedservice-kit/js-apis-distributed-abilityConnectionManager-sys.md)
           - [@ohos.cooperate (键鼠穿越)（系统接口）](reference/apis-distributedservice-kit/js-apis-devicestatus-cooperate-sys.md)
           - 已停止维护的接口<!--distributed-service-dep-->
             - [@ohos.distributedHardware.deviceManager (设备管理)(系统接口)(待删除)](reference/apis-distributedservice-kit/js-apis-device-manager-sys.md)

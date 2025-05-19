@@ -37,7 +37,7 @@ Defines the options of the **AlphabetIndexer** component.
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | arrayValue<sup>7+</sup> | Array&lt;string&gt; | Yes| Array of index items.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| selected<sup>7+</sup>   | number              | Yes   | Index of the initially selected item. If the value exceeds the value range, the default value 0 is used.<br>This parameter supports two-way binding through [$$](../../../quick-start/arkts-two-way-sync.md).<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| selected<sup>7+</sup>   | number              | Yes   | Index of the initially selected item. If the value exceeds the value range, the default value 0 is used.<br>This parameter supports two-way binding through [$$](../../../ui/state-management/arkts-two-way-sync.md).<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 
 ## Attributes
 
@@ -232,7 +232,7 @@ selected(index: number)
 
 Sets the index of the selected item.
 
-Since API version 10, this attribute supports two-way binding through [$$](../../../quick-start/arkts-two-way-sync.md).
+Since API version 10, this attribute supports two-way binding through [$$](../../../ui/state-management/arkts-two-way-sync.md).
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 

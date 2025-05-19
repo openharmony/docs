@@ -14,7 +14,7 @@ This component can contain child components.
 
 >  **NOTE**
 >
->  - Child components can consist of both built-in components and custom components, and their rendering can be controlled with [if/else](../../../quick-start/arkts-rendering-control-ifelse.md), [ForEach](../../../quick-start/arkts-rendering-control-foreach.md), [LazyForEach](../../../quick-start/arkts-rendering-control-lazyforeach.md), and [Repeat](../../../quick-start/arkts-new-rendering-control-repeat.md). To maximize the benefits of lazy loading, avoid mixing lazy loading components (including **LazyForEach** and **Repeat**) and non-lazy loading components, and exercise caution when using multiple lazy loading components. Avoid modifying the data source while an animation is in progress, as doing so can lead to layout issues.
+>  - Child components can consist of both built-in components and custom components, and their rendering can be controlled with [if/else](../../../ui/state-management/arkts-rendering-control-ifelse.md), [ForEach](../../../ui/state-management/arkts-rendering-control-foreach.md), [LazyForEach](../../../ui/state-management/arkts-rendering-control-lazyforeach.md), and [Repeat](../../../ui/state-management/arkts-new-rendering-control-repeat.md). To maximize the benefits of lazy loading, avoid mixing lazy loading components (including **LazyForEach** and **Repeat**) and non-lazy loading components, and exercise caution when using multiple lazy loading components. Avoid modifying the data source while an animation is in progress, as doing so can lead to layout issues.
 >
 >  - If a child component has its [visibility](ts-universal-attributes-visibility.md#visibility) attribute set to **Visibility.None** and the **Swiper** component has its **displayCount** attribute set to **'auto'**, the child component does not take up space in the viewport, but does not affect the number of navigation points. If a child component has its **visibility** attribute set to **Visibility.None** or **Visibility.Hidden**, it takes up space in the viewport, but is not displayed.
 >
@@ -55,7 +55,7 @@ index(value: number)
 
 Sets the index of the child component currently displayed in the container. If the value is less than 0 or greater than or equal to the number of child components, the default value **0** is used.
 
-Since API version 10, this attribute supports two-way binding through [$$](../../../quick-start/arkts-two-way-sync.md).
+Since API version 10, this attribute supports two-way binding through [$$](../../../ui/state-management/arkts-two-way-sync.md).
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 10.
 
@@ -674,7 +674,7 @@ Preloads child nodes. After this API is called, all specified child nodes will b
 
 If the **SwiperController** object is not bound to any **Swiper** component, any attempt to call APIs on it will result in a JavaScript exception, together with the error code 100004. Therefore, you are advised to use **try-catch** to handle potential exceptions when calling APIs on **SwiperController**.
 
-When combining **SwiperController** with [LazyForEach](../../../quick-start/arkts-rendering-control-lazyforeach.md) and custom components, be aware that **LazyForEach** only retains custom components within the cache range. Components outside this range are removed. Therefore, make sure the nodes to preload are within the cache range of **LazyForEach** to avoid issues.
+When combining **SwiperController** with [LazyForEach](../../../ui/state-management/arkts-rendering-control-lazyforeach.md) and custom components, be aware that **LazyForEach** only retains custom components within the cache range. Components outside this range are removed. Therefore, make sure the nodes to preload are within the cache range of **LazyForEach** to avoid issues.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 18.
 

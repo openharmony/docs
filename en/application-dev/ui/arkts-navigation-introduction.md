@@ -14,7 +14,7 @@ In the ArkUI component tree hierarchy, pages that were originally managed by the
 
 3. Integrates UX design and one-time development for multi-device deployment capabilities, with default capabilities for unified title display, page switching, and single or double column adaptation.
 
-4. Enables flexible page configuration by allowing you to determine the relationship between page aliases and UI through [UIBuilder](../quick-start/arkts-builder.md).
+4. Enables flexible page configuration by allowing you to determine the relationship between page aliases and UI through [UIBuilder](../ui/state-management/arkts-builder.md).
 
 5. Transforms page transition animations into component property animations, offering a wider and more flexible range of transition effects.
 

@@ -18,13 +18,15 @@ addGesture(gesture: GestureHandler\<T>, priority?: GesturePriority, mask?: Gestu
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **参数：**
 
 | 参数名 | 类型   | 必填 | 说明                       |
 | ------ | ------ | ---- | -------------------------- |
 | gesture  |  [GestureHandler\<T>](#gesturehandlert) | 是   | 手势处理器对象。 |
-| priority  |  [GesturePriority](#gesturepriority枚举说明) | 否   | 绑定手势的优先级。 |
-| mask  |  [GestureMask](./ts-gesture-settings.md#gesturemask枚举说明) | 否   | 事件响应设置。 |
+| priority  |  [GesturePriority](#gesturepriority枚举说明) | 否   | 绑定手势的优先级。<br>默认值：GesturePriority.NORMAL |
+| mask  |  [GestureMask](./ts-gesture-settings.md#gesturemask枚举说明) | 否   | 事件响应设置。<br>默认值：GestureMask.Normal |
 
 ### addParallelGesture
 
@@ -34,12 +36,14 @@ addParallelGesture(gesture: GestureHandler\<T>, mask?: GestureMask): void
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **参数：**
 
 | 参数名 | 类型   | 必填 | 说明                       |
 | ------ | ------ | ---- | -------------------------- |
 | gesture  |  [GestureHandler\<T>](#gesturehandlert) | 是   | 手势处理器对象。 |
-| mask  |  [GestureMask](./ts-gesture-settings.md#gesturemask枚举说明) | 否   | 事件响应设置。 |
+| mask  |  [GestureMask](./ts-gesture-settings.md#gesturemask枚举说明) | 否   | 事件响应设置。<br>默认值：GestureMask.Normal |
 
 ### removeGestureByTag
 
@@ -48,6 +52,8 @@ removeGestureByTag(tag: string): void
 移除该组件上通过modifier绑定的设置为指定标志的手势。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
 
@@ -63,6 +69,8 @@ clearGestures(): void
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 ## GestureHandler\<T>
 
 手势对象的基础类型。
@@ -74,6 +82,8 @@ tag(tag: string): T
 设置手势处理器的标志。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
 
@@ -108,6 +118,8 @@ constructor(options?: TapGestureHandlerOptions)
 构造函数。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
 
@@ -163,6 +175,8 @@ constructor(options?: LongPressGestureHandlerOptions)
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **参数：**
 
 
@@ -190,7 +204,7 @@ LongPress手势识别成功回调。
 
 | 类型 | 说明 |
 | -------- | -------- |
-| LongPressGestureHandler | 返回当前长按手势处理器对象。 |
+| [LongPressGestureHandler](#longpressgesturehandler) | 返回当前长按手势处理器对象。 |
 
 ### onActionEnd
 
@@ -212,13 +226,13 @@ LongPress手势识别成功，最后一根手指抬起后触发回调。
 
 | 类型 | 说明 |
 | -------- | -------- |
-| LongPressGestureHandler | 返回当前长按手势处理器对象。 |
+| [LongPressGestureHandler](#longpressgesturehandler) | 返回当前长按手势处理器对象。 |
 
 ### onActionCancel
 
 onActionCancel(event: Callback\<void>): LongPressGestureHandler
 
-LongPress手势识别成功，接收到触摸取消事件触发回调。
+LongPress手势识别成功，接收到触摸取消事件触发回调。不返回手势事件信息。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -228,13 +242,35 @@ LongPress手势识别成功，接收到触摸取消事件触发回调。
 
 | 参数名 | 类型                              | 必填 | 说明                 |
 | ------ | --------------------------------- | ---- | -------------------- |
-| event  | [Callback](./ts-types.md#callback12)\<void> | 是 | LongPress手势识别成功，接收到触摸取消事件触发回调。 |
+| event  | [Callback](./ts-types.md#callback12)\<void> | 是 | LongPress手势识别成功，接收到触摸取消事件触发回调。不返回手势事件信息。 |
 
 **返回值：**
 
 | 类型 | 说明 |
 | -------- | -------- |
-| LongPressGestureHandler | 返回当前长按手势处理器对象。 |
+| [LongPressGestureHandler](#longpressgesturehandler) | 返回当前长按手势处理器对象。 |
+
+### onActionCancel<sup>18+</sup>
+
+onActionCancel(event: Callback\<GestureEvent>): LongPressGestureHandler
+
+LongPress手势识别成功，接收到触摸取消事件触发回调。与[onActionCancel](#onactioncancel)接口相比，此接口返回手势事件信息。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                              | 必填 | 说明                 |
+| ------ | --------------------------------- | ---- | -------------------- |
+| event  | [Callback](./ts-types.md#callback12)<[GestureEvent](ts-gesture-settings.md#gestureevent对象说明)> | 是 | LongPress手势识别成功，接收到触摸取消事件触发回调。返回手势事件信息。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| [LongPressGestureHandler](#longpressgesturehandler) | 返回当前长按手势处理器对象。 |
 
 ## LongPressGestureHandlerOptions
 
@@ -263,6 +299,8 @@ constructor(options?: PanGestureHandlerOptions)
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **参数：**
 
 
@@ -290,7 +328,7 @@ Pan手势识别成功回调。
 
 | 类型 | 说明 |
 | -------- | -------- |
-| PanGestureHandler | 返回当前拖动手势处理器对象。 |
+| [PanGestureHandler](#pangesturehandler) | 返回当前拖动手势处理器对象。 |
 
 ### onActionUpdate
 
@@ -312,7 +350,7 @@ Pan手势移动过程中回调。
 
 | 类型 | 说明 |
 | -------- | -------- |
-| PanGestureHandler | 返回当前拖动手势处理器对象。 |
+| [PanGestureHandler](#pangesturehandler) | 返回当前拖动手势处理器对象。 |
 
 ### onActionEnd
 
@@ -334,13 +372,13 @@ Pan手势识别成功，手指抬起后触发回调。
 
 | 类型 | 说明 |
 | -------- | -------- |
-| PanGestureHandler | 返回当前拖动手势处理器对象。 |
+| [PanGestureHandler](#pangesturehandler) | 返回当前拖动手势处理器对象。 |
 
 ### onActionCancel
 
 onActionCancel(event: Callback\<void>): PanGestureHandler
 
-Pan手势识别成功，接收到触摸取消事件触发回调。
+Pan手势识别成功，接收到触摸取消事件触发回调。不返回手势事件信息。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -350,13 +388,35 @@ Pan手势识别成功，接收到触摸取消事件触发回调。
 
 | 参数名 | 类型                              | 必填 | 说明                 |
 | ------ | --------------------------------- | ---- | -------------------- |
-| event  | [Callback](./ts-types.md#callback12)\<void> | 是 | Pan手势识别成功，接收到触摸取消事件触发回调。 |
+| event  | [Callback](./ts-types.md#callback12)\<void> | 是 | Pan手势识别成功，接收到触摸取消事件触发回调。不返回手势事件信息。 |
 
 **返回值：**
 
 | 类型 | 说明 |
 | -------- | -------- |
-| PanGestureHandler | 返回当前拖动手势处理器对象。 |
+| [PanGestureHandler](#pangesturehandler) | 返回当前拖动手势处理器对象。 |
+
+### onActionCancel<sup>18+</sup>
+
+onActionCancel(event: Callback\<GestureEvent>): PanGestureHandler
+
+Pan手势识别成功，接收到触摸取消事件触发回调。与[onActionCancel](#onactioncancel-1)接口相比，此接口返回手势事件信息。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                              | 必填 | 说明                 |
+| ------ | --------------------------------- | ---- | -------------------- |
+| event  | [Callback](./ts-types.md#callback12)<[GestureEvent](ts-gesture-settings.md#gestureevent对象说明)> | 是 | Pan手势识别成功，接收到触摸取消事件触发回调。返回手势事件信息。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| [PanGestureHandler](#pangesturehandler) | 返回当前拖动手势处理器对象。 |
 
 ## PanGestureHandlerOptions
 
@@ -384,6 +444,8 @@ constructor(options?: SwipeGestureHandlerOptions)
 构造函数。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
 
@@ -440,6 +502,8 @@ constructor(options?: PinchGestureHandlerOptions)
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **参数：**
 
 
@@ -467,7 +531,7 @@ Pinch手势识别成功回调。
 
 | 类型 | 说明 |
 | -------- | -------- |
-| PinchGestureHandler | 返回当前拖动手势处理器对象。 |
+| [PinchGestureHandler](#pinchgesturehandler) | 返回当前拖动手势处理器对象。 |
 
 ### onActionUpdate
 
@@ -489,7 +553,7 @@ Pinch手势移动过程中回调。
 
 | 类型 | 说明 |
 | -------- | -------- |
-| PinchGestureHandler | 返回当前拖动手势处理器对象。 |
+| [PinchGestureHandler](#pinchgesturehandler) | 返回当前拖动手势处理器对象。 |
 
 ### onActionEnd
 
@@ -511,13 +575,13 @@ Pinch手势识别成功，手指抬起后触发回调。
 
 | 类型 | 说明 |
 | -------- | -------- |
-| PinchGestureHandler | 返回当前拖动手势处理器对象。 |
+| [PinchGestureHandler](#pinchgesturehandler) | 返回当前拖动手势处理器对象。 |
 
 ### onActionCancel
 
 onActionCancel(event: Callback\<void>): PinchGestureHandler
 
-Pinch手势识别成功，接收到触摸取消事件触发回调。
+Pinch手势识别成功，接收到触摸取消事件触发回调。不返回手势事件信息。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -527,13 +591,35 @@ Pinch手势识别成功，接收到触摸取消事件触发回调。
 
 | 参数名 | 类型                              | 必填 | 说明                 |
 | ------ | --------------------------------- | ---- | -------------------- |
-| event  | [Callback](./ts-types.md#callback12)\<void> | 是 | Pinch手势识别成功，接收到触摸取消事件触发回调。 |
+| event  | [Callback](./ts-types.md#callback12)\<void> | 是 | Pinch手势识别成功，接收到触摸取消事件触发回调。不返回手势事件信息。 |
 
 **返回值：**
 
 | 类型 | 说明 |
 | -------- | -------- |
-| PinchGestureHandler | 返回当前拖动手势处理器对象。 |
+| [PinchGestureHandler](#pinchgesturehandler) | 返回当前拖动手势处理器对象。 |
+
+### onActionCancel<sup>18+</sup>
+
+onActionCancel(event: Callback\<GestureEvent>): PinchGestureHandler
+
+Pinch手势识别成功，接收到触摸取消事件触发回调。与[onActionCancel](#onactioncancel-2)接口相比，此接口返回手势事件信息。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                              | 必填 | 说明                 |
+| ------ | --------------------------------- | ---- | -------------------- |
+| event  | [Callback](./ts-types.md#callback12)<[GestureEvent](ts-gesture-settings.md#gestureevent对象说明)> | 是 | Pinch手势识别成功，接收到触摸取消事件触发回调。返回手势事件信息。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| [PinchGestureHandler](#pinchgesturehandler) | 返回当前拖动手势处理器对象。 |
 
 ## PinchGestureHandlerOptions
 
@@ -560,6 +646,8 @@ constructor(options?: RotationGestureHandlerOptions)
 构造函数。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
 
@@ -588,7 +676,7 @@ Rotation手势识别成功回调。
 
 | 类型 | 说明 |
 | -------- | -------- |
-| RotationGestureHandler | 返回当前拖动手势处理器对象。 |
+| [RotationGestureHandler](#rotationgesturehandler) | 返回当前拖动手势处理器对象。 |
 
 ### onActionUpdate
 
@@ -610,7 +698,7 @@ Rotation手势移动过程中回调。
 
 | 类型 | 说明 |
 | -------- | -------- |
-| RotationGestureHandler | 返回当前拖动手势处理器对象。 |
+| [RotationGestureHandler](#rotationgesturehandler) | 返回当前拖动手势处理器对象。 |
 
 ### onActionEnd
 
@@ -632,13 +720,13 @@ Rotation手势识别成功，手指抬起后触发回调。
 
 | 类型 | 说明 |
 | -------- | -------- |
-| RotationGestureHandler | 返回当前拖动手势处理器对象。 |
+| [RotationGestureHandler](#rotationgesturehandler) | 返回当前拖动手势处理器对象。 |
 
 ### onActionCancel
 
 onActionCancel(event: Callback\<void>): RotationGestureHandler
 
-Rotation手势识别成功，接收到触摸取消事件触发回调。
+Rotation手势识别成功，接收到触摸取消事件触发回调。不返回手势事件信息。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -648,13 +736,35 @@ Rotation手势识别成功，接收到触摸取消事件触发回调。
 
 | 参数名 | 类型                              | 必填 | 说明                 |
 | ------ | --------------------------------- | ---- | -------------------- |
-| event  | [Callback](./ts-types.md#callback12)\<void> | 是 | Rotation手势识别成功，接收到触摸取消事件触发回调。 |
+| event  | [Callback](./ts-types.md#callback12)\<void> | 是 | Rotation手势识别成功，接收到触摸取消事件触发回调。不返回手势事件信息。 |
 
 **返回值：**
 
 | 类型 | 说明 |
 | -------- | -------- |
-| RotationGestureHandler | 返回当前拖动手势处理器对象。 |
+| [RotationGestureHandler](#rotationgesturehandler) | 返回当前拖动手势处理器对象。 |
+
+### onActionCancel<sup>18+</sup>
+
+onActionCancel(event: Callback\<GestureEvent>): RotationGestureHandler
+
+Rotation手势识别成功，接收到触摸取消事件触发回调。与[onActionCancel](#onactioncancel-3)相比，此接口返回手势事件信息。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                              | 必填 | 说明                 |
+| ------ | --------------------------------- | ---- | -------------------- |
+| event  | [Callback](./ts-types.md#callback12)<[GestureEvent](ts-gesture-settings.md#gestureevent对象说明)> | 是 | Rotation手势识别成功，接收到触摸取消事件触发回调。返回手势事件信息。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| [RotationGestureHandler](#rotationgesturehandler) | 返回当前拖动手势处理器对象。 |
 
 ## RotationGestureHandlerOptions
 
@@ -666,7 +776,7 @@ Rotation手势识别成功，接收到触摸取消事件触发回调。
 
 | 属性         | 类型                                   | 必填 | 描述                 |
 | ------------ | -------------------------------------- | ---- | -------------------- |
-| fingers | number | 否 | 触发旋转的最少手指数,&nbsp;最小为2指，最大为5指。<br/>默认值：2 <br/>触发手势手指可以多于fingers数目，但只有先落下的两指参与手势计算。|
+| fingers | number | 否 | 触发旋转的最少手指数,&nbsp;最小为2指，最大为5指。<br/>默认值：2 <br/>触发手势时手指数量可以多于fingers参数值，但仅最先落下的两指参与手势计算。|
 | angle | number | 否 | 触发旋转手势的最小改变度数，单位为deg。<br/>默认值：1 <br/>**说明：** <br/>当改变度数的值小于等于0或大于360时，会被转化为默认值。|
 | isFingerCountLimited<sup>15+</sup> | boolean | 否 | 是否检查触摸屏幕的手指数量。true表示检查触摸屏幕的手指数量，false表示不检查触摸屏幕的手指数量。若触摸屏幕的手指数量不等于设置的触发旋转的最少手指数（即上述fingers参数），手势将不会被识别。只有当触摸屏幕的手指数等于设置的触发旋转的最少手指数，并且滑动距离达到阈值时，手势才能被成功识别（只有先落下的两根手指参与手势计算，若抬起其中的一个，手势识别失败）。<br>对于已成功识别的手势，后续改变触摸屏幕的手指数量，不会触发[onActionUpdate](ts-basic-gestures-rotationgesture.md#事件)事件，但可以触发[onActionEnd](ts-basic-gestures-rotationgesture.md#事件)事件。<br>默认值：false |
 
@@ -681,6 +791,8 @@ constructor(options?: GestureGroupGestureHandlerOptions)
 构造函数。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
 
@@ -726,6 +838,8 @@ Rotation手势识别成功，接收到触摸取消事件触发回调。
 ## GesturePriority枚举说明
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称 | 描述 |
 | -------- | -------- |

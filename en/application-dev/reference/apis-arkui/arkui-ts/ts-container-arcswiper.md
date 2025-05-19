@@ -24,7 +24,7 @@ This component can contain child components.
 
 >  **NOTE**
 >
->  - Built-in components and custom components are allowed, with support for ([if/else](../../../quick-start/arkts-rendering-control-ifelse.md), [ForEach](../../../quick-start/arkts-rendering-control-foreach.md), and [LazyForEach](../../../quick-start/arkts-rendering-control-lazyforeach.md)) rendering control.
+>  - Built-in components and custom components are allowed, with support for ([if/else](../../../ui/state-management/arkts-rendering-control-ifelse.md), [ForEach](../../../ui/state-management/arkts-rendering-control-foreach.md), and [LazyForEach](../../../ui/state-management/arkts-rendering-control-lazyforeach.md)) rendering control.
 >- Do not add or delete child components during a page turning animation. Doing so may result in child components not yet animated entering the viewport in advance and causing display exceptions.
 
 ## APIs

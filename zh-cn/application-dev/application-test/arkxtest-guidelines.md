@@ -446,16 +446,16 @@ hdc shell uitest uiRecord read
 | 命令   | 必填 | 描述              | 
 |------|------|-----------------|
 | help   | 是    | uiInput命令相关帮助信息。 |
-| click   | 是    | 模拟单击操作。      | 
-| doubleClick   | 是    | 模拟双击操作。      | 
-| longClick   | 是    | 模拟长按操作。     | 
-| fling   | 是    | 模拟快滑操作。   | 
-| swipe   | 是    | 模拟慢滑操作。     | 
-| drag   | 是    | 模拟拖拽操作。     | 
-| dircFling   | 是    | 模拟指定方向滑动操作。     |
-| inputText   | 是    | 指定坐标点，模拟输入框输入文本操作。                   |
-| text   | 是    | 无需指定坐标点，在当前获焦处，模拟输入框输入文本操作。                           |
-| keyEvent   | 是    | 模拟实体按键事件（如：键盘，电源键，返回上一级，返回桌面等），以及组合按键操作。     | 
+| click   | 是    | 模拟单击操作。具体请参考下方**uiInput click/doubleClick/longClick使用示例**。      | 
+| doubleClick   | 是    | 模拟双击操作。具体请参考下方**uiInput click/doubleClick/longClick使用示例**。      | 
+| longClick   | 是    | 模拟长按操作。具体请参考下方**uiInput click/doubleClick/longClick使用示例**。     | 
+| fling   | 是    | 模拟快滑操作。具体请参考下方**uiInput fling使用示例使用示例**。   | 
+| swipe   | 是    | 模拟慢滑操作。具体请参考下方**uiInput swipe/drag使用示例**。     | 
+| drag   | 是    | 模拟拖拽操作。具体请参考下方**uiInput swipe/drag使用示例**。     | 
+| dircFling   | 是    | 模拟指定方向滑动操作。具体请参考下方**uiInput dircFling使用示例**。     |
+| inputText   | 是    | 指定坐标点，模拟输入框输入文本操作。具体请参考下方**uiInput inputText使用示例**。                   |
+| text   | 是    | 无需指定坐标点，在当前获焦处，模拟输入框输入文本操作。具体请参考下方**uiInput text使用示例**。                           |
+| keyEvent   | 是    | 模拟实体按键事件（如：键盘，电源键，返回上一级，返回桌面等），以及组合按键操作。具体请参考下方**uiInput keyEvent使用示例**。     | 
 
 
 #### uiInput click/doubleClick/longClick使用示例
@@ -556,15 +556,11 @@ hdc shell uitest uiInput text hello
 
 #### uiInput keyEvent使用示例
 
-| 配置参数             | 必填       | 描述 |                
-|------|------|----------|
-| keyID1   | 是    | 实体按键对应ID，取值范围：KeyCode/Back/Home/Power。<br>当取Back/Home/Power时，不支持输入组合键。 | 
-| keyID2    | 否    | 实体按键对应ID。 |
-| keyID3    | 否    | 实体按键对应ID。 |
-
->**说明**
->
-> 最多支持传入是三个键值，<!--RP3-->键值的具体取值请参考[KeyCode](../reference/apis-input-kit/js-apis-keycode.md)<!--RP3End-->。
+| 配置参数             | 必填       | 描述                                                                                                                              |                
+|------|------|---------------------------------------------------------------------------------------------------------------------------------|
+| keyID1   | 是    | 实体按键对应ID，取值范围：Back、Home、Power、或[KeyCode键码值](../reference/apis-input-kit/js-apis-keycode.md#keycode)。<br>当取值为Back、Home或Power时，不支持输入组合键。 <br>当前注入大写锁定键（KeyCode=2074）无效，请使用组合键实现大写字母输入。如“按键shift+按键V”输入大写字母V。 | 
+| keyID2    | 否    | 实体按键对应ID，取值范围：[KeyCode键码值](../reference/apis-input-kit/js-apis-keycode.md#keycode)，默认值为空。                                               |
+| keyID3    | 否    | 实体按键对应ID，取值范围：[KeyCode键码值](../reference/apis-input-kit/js-apis-keycode.md#keycode)，默认值为空。                                               |
 
 ```shell  
 # 返回主页。
@@ -573,6 +569,10 @@ hdc shell uitest uiInput keyEvent Home
 hdc shell uitest uiInput keyEvent Back
 # 组合键粘贴。
 hdc shell uitest uiInput keyEvent 2072 2038
+# 输入小写字母v。
+hdc shell uitest uiInput keyEvent 2038
+# 输入大写字母V。
+hdc shell uitest uiInput keyEvent 2047 2038
 ```
 
 ### 获取版本信息
