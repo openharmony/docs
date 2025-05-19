@@ -167,6 +167,7 @@ void OnCaptureContentChanged(struct OH_AVScreenCapture *capture, OH_AVScreenCapt
     }
     if (event == OH_SCREEN_CAPTURE_CONTENT_VISIBLE) {
         // 处理录屏内容状态变化为可见。
+        // 录屏内容状态变化为可见时，可通过回调回传的area参数，获取窗口的位置信息。
     }
     if (event == OH_SCREEN_CAPTURE_CONTENT_UNAVAILABLE) {
         // 处理录屏内容状态变化为不可用。
@@ -242,7 +243,8 @@ static napi_value StartScreenCapture(napi_env env, napi_callback_info info) {
     OH_AVScreenCapture_SetStateCallback(capture, OnStateChange, nullptr);
 
     // 可选 设置录屏内容状态变化回调
-    OH_AVScreenCapture_SetCaptureContentChangedCallback(capture, OnCaptureContentChanged, nullptr);
+    OH_Rect* area = nullptr;
+    OH_AVScreenCapture_SetCaptureContentChangedCallback(capture, OnCaptureContentChanged, area);
 
     // 可选 设置录屏屏幕Id回调，必须在开始录屏前调用。
     OH_AVScreenCapture_SetDisplayCallback(capture, OnDisplaySelected, nullptr);
