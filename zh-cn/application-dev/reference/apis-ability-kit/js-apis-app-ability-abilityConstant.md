@@ -178,7 +178,7 @@ class MyAbility extends UIAbility {
 | MEMORY_LEVEL_LOW            | 1   | 内存占用低。   |
 | MEMORY_LEVEL_CRITICAL       | 2   | 内存占用高。   |
 
-**说明**
+**说明：**
 
 不同产品的触发条件可能存在差异。以12G内存的标准设备为例：
 
