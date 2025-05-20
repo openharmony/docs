@@ -1013,7 +1013,6 @@
           - [Certificate Chain Development](security/DeviceCertificateKit/create-verify-certchain-object.md)
         - Certificate Management<!--certmanager-->
           - [Certificate Management Overview](security/DeviceCertificateKit/certManager-overview.md)
-          - [Application Certificate Credential Development Guide] (security/DeviceCertificateKit/certManager-private-credential-guidelines.md)
           - [Certificate Management Dialog Box Development](security/DeviceCertificateKit/certManagerDialog-guidelines.md)
       - Universal Keystore Kit<!--huks-kit-->
         - [Introduction to Universal Keystore Kit](security/UniversalKeystoreKit/huks-overview.md)
