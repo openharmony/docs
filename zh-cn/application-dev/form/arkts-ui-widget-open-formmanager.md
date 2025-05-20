@@ -1,26 +1,15 @@
-# 应用内拉起卡片管理加桌概述
+# 应用内拉起卡片管理加桌
 
 卡片开发服务支持将应用的ArkTS卡片添加到桌面。
 
-桌面提供统一的卡片管理页。应用通过[formProvider](../reference/apis-form-kit/js-apis-app-form-formProvider.md)模块提供的[openFormManager](../reference/apis-form-kit/js-apis-app-form-formProvider.md#formprovideropenformmanager18)接口，能够拉起桌面卡片管理页，实现卡片添加至桌面的功能。
-
-1. 用户在应用内触发[openFormManager](../reference/apis-form-kit/js-apis-app-form-formProvider.md#formprovideropenformmanager18)方法。
-
-2. 卡片提供方将拉起桌面卡片管理页。
-
-3. 用户在桌面卡片管理页，添加到桌面。
-
-
-# 应用内拉起卡片管理加桌
-
-卡片开发服务支持将应用的ArkTS卡片添加到桌面。桌面提供统一的卡片管理页，应用通过[formProvider](../reference/apis-form-kit/js-apis-app-form-formProvider.md)模块提供的[openFormManager](../reference/apis-form-kit/js-apis-app-form-formProvider.md#formprovideropenformmanager18)接口，能够拉起桌面卡片管理页，实现卡片添加到桌面的功能。
+桌面提供统一的卡片管理页面。应用通过[formProvider](../reference/apis-form-kit/js-apis-app-form-formProvider.md)模块提供的[openFormManager](../reference/apis-form-kit/js-apis-app-form-formProvider.md#formprovideropenformmanager18)接口，能够拉起卡片管理页面，触发卡片添加至桌面操作，点击“添加至桌面”，实现卡片添加至桌面的功能。
 
 ## 开发步骤
 
-1. 在工程的entry模块中，新建名为Index的代码文件。在Index文件中，实现[formProvider](../reference/apis-form-kit/js-apis-app-form-formProvider.md)接口提供的[openFormManager](../reference/apis-form-kit/js-apis-app-form-formProvider.md#formprovideropenformmanager18)方法。
+实现[formProvider](../reference/apis-form-kit/js-apis-app-form-formProvider.md)接口提供的[openFormManager](../reference/apis-form-kit/js-apis-app-form-formProvider.md#formprovideropenformmanager18)方法。
 
 ```ts
-// entry\src\main\ets\pages\Index.ets
+// entry/src/main/ets/pages/Index.ets
 
 import { formProvider } from '@kit.FormKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -33,6 +22,7 @@ struct Index {
   build() {
     Row() {
       Column() {
+        //添加拉起卡片管理页面按钮，点击按钮后调用openFormManager方法，拉起卡片管理页面
         Button('拉起卡片管理页面')
           .onClick(() => {
             const want: Want = {
@@ -55,20 +45,6 @@ struct Index {
       .width('100%')
     }
     .height('100%')
-  }
-}
-```
-
-2. 在应用的[app.json5](../quick-start/app-configuration-file.md)配置文件中添加卡片编辑配置信息。
-```json
-{
-  "app": {
-    "bundleName": "com.example.formbutton",
-    "vendor": "example",
-    "versionCode": 1000000,
-    "versionName": "1.0.0",
-    "icon": "$media:app_icon",
-    "label": "$string:app_name"
   }
 }
 ```
