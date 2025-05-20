@@ -904,7 +904,7 @@ on(type: 'continuousTaskSuspend', callback: Callback&lt;ContinuousTaskSuspendInf
 
 | 参数名       | 类型                                 | 必填   | 说明                                       |
 | --------- | ---------------------------------- | ---- | ---------------------------------------- |
-| type   | continuousTaskSuspend                            | 是    | 固定取值为'continuousTaskSuspend'，表示长时任务暂停回调类型。 |
+| type   | string                            | 是    | 事件回调类型，固定取值为'continuousTaskSuspend'，表示长时任务暂停。 |
 | callback   | Callback\<[ContinuousTaskSuspendInfo](#continuoustasksuspendinfo20)>       | 是    | 回调函数，返回长时任务暂停原因等信息。 |
 
 **错误码**：
@@ -943,7 +943,7 @@ export default class EntryAbility extends UIAbility {
 
 off(type: 'continuousTaskSuspend', callback?: Callback&lt;ContinuousTaskSuspendInfo&gt;): void
 
-解除长时任务暂停的监听，使用callback异步回调。
+取消长时任务暂停的监听，使用callback异步回调。
 
 **需要权限:** ohos.permission.KEEP_BACKGROUND_RUNNING
 
@@ -953,7 +953,7 @@ off(type: 'continuousTaskSuspend', callback?: Callback&lt;ContinuousTaskSuspendI
 
 | 参数名       | 类型                                 | 必填   | 说明                                       |
 | --------- | ---------------------------------- | ---- | ---------------------------------------- |
-| type   | continuousTaskSuspend                            | 是    | 固定取值为'continuousTaskSuspend'表示长时任务暂停回调类型。 |
+| type   | string                            | 是    | 事件回调类型，固定取值为'continuousTaskSuspend'，表示长时任务暂停。 |
 | callback   | Callback\<[ContinuousTaskSuspendInfo](#continuoustasksuspendinfo20)>       | 否    | 需要取消监听的回调函数，未传入则取消所有注册的暂停回调。 |
 
 **错误码**：
@@ -992,7 +992,7 @@ export default class EntryAbility extends UIAbility {
 
 on(type: 'continuousTaskActive', callback: Callback&lt;ContinuousTaskActiveInfo&gt;): void
 
-注册长时任务激活的监听，使用callback异步回调。
+注册长时任务激活的监听，使用callback异步回调。应用回前台激活暂停的长时任务。
 
 **需要权限:** ohos.permission.KEEP_BACKGROUND_RUNNING
 
@@ -1002,7 +1002,7 @@ on(type: 'continuousTaskActive', callback: Callback&lt;ContinuousTaskActiveInfo&
 
 | 参数名       | 类型                                 | 必填   | 说明                                       |
 | --------- | ---------------------------------- | ---- | ---------------------------------------- |
-| type   | continuousTaskActive                            | 是    | 固定取值为'continuousTaskActive'，表示长时任务激活回调类型。 |
+| type   | string                            | 是    | 事件回调类型，固定取值为'continuousTaskActive'，表示长时任务激活。 |
 | callback   | Callback\<[ContinuousTaskActiveInfo](#continuoustaskactiveinfo20)>       | 是    | 回调函数，返回长时任务激活相关信息。 |
 
 **错误码**：
@@ -1039,7 +1039,7 @@ export default class EntryAbility extends UIAbility {
 
 off(type: 'continuousTaskActive', callback?: Callback&lt;ContinuousTaskActiveInfo&gt;): void
 
-解除长时任务激活的监听，使用callback异步回调。
+取消长时任务激活的监听，使用callback异步回调。
 
 **需要权限:** ohos.permission.KEEP_BACKGROUND_RUNNING
 
@@ -1049,7 +1049,7 @@ off(type: 'continuousTaskActive', callback?: Callback&lt;ContinuousTaskActiveInf
 
 | 参数名       | 类型                                 | 必填   | 说明                                       |
 | --------- | ---------------------------------- | ---- | ---------------------------------------- |
-| type   | continuousTaskActive                            | 是    | 固定取值为'continuousTaskActive'表示长时任务激活回调类型。 |
+| type   | string                            | 是    | 事件回调类型，固定取值为'continuousTaskActive'，表示长时任务激活。 |
 | callback   | Callback\<[ContinuousTaskActiveInfo](#continuoustaskactiveinfo20)>       | 否    | 需要取消监听的回调函数，未传入则取消所有注册的激活回调。 |
 
 **错误码**：
@@ -1207,7 +1207,7 @@ export default class EntryAbility extends UIAbility {
 
 ## ContinuousTaskSuspendInfo<sup>20+</sup>
 
-长时任务取消信息。
+长时任务暂停信息。
 
 **系统能力:** SystemCapability.ResourceSchedule.BackgroundTaskManager.ContinuousTask
 
@@ -1219,7 +1219,7 @@ export default class EntryAbility extends UIAbility {
 
 ## ContinuousTaskSuspendReason<sup>20+</sup>
 
-长时任务取消原因。
+长时任务暂停原因。
 
 **系统能力:** SystemCapability.ResourceSchedule.BackgroundTaskManager.ContinuousTask
 
