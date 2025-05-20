@@ -75,7 +75,7 @@ target_link_libraries(sample PUBLIC libhilog_ndk.z.so)
 
 ## 完整示例
 运行示例步骤：
-1. 新建工程，下载示例工程，将示例工程的以下资源复制到对应目录：
+1. 新建工程，下载[示例工程](https://gitee.com/openharmony/applications_app_samples/tree/master/code/DocsSample/Media/AVPlayer/AVPlayerNDKVideo)，将示例工程的以下资源复制到对应目录：
 ```
 AVPlayerNDKVideo
 entry/src/main/ets/
