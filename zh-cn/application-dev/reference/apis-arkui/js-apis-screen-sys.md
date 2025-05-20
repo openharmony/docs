@@ -1031,7 +1031,7 @@ screen.setScreenRotationLocked(isLocked).then(() => {
 
 setScreenRotationLocked(isLocked: boolean, callback: AsyncCallback&lt;void&gt;): void
 
-设置自动转屏开关是否锁定，使用callback异步回调。
+设置自动转屏开关是否锁定，使用callback异步回调，不适用于2in1设备。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
