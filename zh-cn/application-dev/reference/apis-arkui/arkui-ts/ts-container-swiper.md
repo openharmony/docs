@@ -536,6 +536,26 @@ pageFlipMode(mode: Optional\<PageFlipMode>)
 | ------ | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | mode  | Optional\<[PageFlipMode](ts-appendix-enums.md#pageflipmode15)> | 是   | 鼠标滚轮翻页模式。<br/>默认值：PageFlipMode.CONTINUOUS |
 
+### maintainVisibleContentPosition<sup>20+</sup>
+
+maintainVisibleContentPosition(enabled: boolean)
+
+设置显示区域上方或前方插入或删除数据时是否要保持可见内容位置不变。
+
+在displayCount属性的swipeByGroup参数设置为true，生效按组翻页时，一次在显示区域上方或前方插入或删除和一组节点数量倍数的数据量时才能保持可见内容位置不变，否则可见内容位置可能会随每组数据重新分组改变。
+
+**卡片能力：** 从API version 20开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型                                                        | 必填 | 说明                                                         |
+| ------ | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| enabled  | boolean | 是   | 设置显示区域上方或前方插入或删除数据时是否要保持可见内容位置不变。<br/>默认值：false，显示区域上方或前方插入或删除数据时可见内容位置会跟随变化。 true：显示区域上方或前方插入或删除数据时可见内容位置不变。 |
+
 ## IndicatorStyle<sup>(deprecated)</sup>对象说明
 
 从API version 8开始支持，从API version 10开始不再维护，建议使用[indicator](#indicator10)代替。
