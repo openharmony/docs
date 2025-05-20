@@ -1,6 +1,6 @@
 # AbilityDelegator
 
-AbilityDelegator提供添加用于监视指定Ability的生命周期状态更改的[AbilityMonitor](../apis-ability-kit/js-apis-inner-application-abilityMonitor.md#abilitymonitor-1)对象的能力，包括对AbilityMonitor实例的添加、删除、等待Ability到达OnCreate生命周期、设置等待时间等、获取指定Ability的生命周期状态、获取当前应用顶部Ability、启动指定Ability等。
+AbilityDelegator提供对[UIAbility](../apis-ability-kit/js-apis-app-ability-uiAbility.md)生命周期的监控与管理能力。开发者通过[AbilityMonitor](../apis-ability-kit/js-apis-inner-application-abilityMonitor.md#abilitymonitor-1)实例，可以实现获取UIAbility当前状态（如是否已创建/是否在前台等）、查询当前获焦的UIAbility、等待UIAbility进入某个生命周期节点（如等待UIAbility进入onForeground）、启动指定UIAbility、设置超时机制等功能。
 
 > **说明：**
 > 
