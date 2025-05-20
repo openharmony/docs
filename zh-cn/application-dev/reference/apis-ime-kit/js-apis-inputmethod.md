@@ -43,16 +43,16 @@ import { inputMethod } from '@kit.IMEKit';
 
 ## CapitalizeMode<sup>20+</sup>
 
-枚举，大小写模式类型。
+枚举，定义了文本首字母大写的不同模式。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
 | 名称 | 值 | 描述 |
 | -------- | -- | -------- |
-| NONE | 0 | 大小写模式，不区分大小写。|
-| SENTENCES | 1 | 大小写模式，句子开头首字母大写。|
-| WORDS | 2 |大小写模式，每个单词首字母大写。|
-| CHARACTERS | 3 | 大小写模式，每个字母都大写。|
+| NONE | 0 | 不进行任何首字母大写处理。|
+| SENTENCES | 1 | 每个句子的首字母大写。|
+| WORDS | 2 | 每个单词首字母大写。|
+| CHARACTERS | 3 | 每个字母都大写。|
 
 ## inputMethod.getController<sup>9+</sup>
 
@@ -731,7 +731,7 @@ Enter键的功能类型。
 | -------- | -------- | -------- | -------- | -------- |
 | textInputType<sup>10+</sup>  | [TextInputType](#textinputtype10) | 否 | 否 | 文本输入类型。|
 | enterKeyType<sup>10+</sup>  | [EnterKeyType](#enterkeytype10) | 否 | 否 | Enter键功能类型。|
-| capitalizeMode<sup>20+</sup> | [CapitalizeMode](#capitalizemode20) | 否 | 是 | 编辑框设置大小写模式。如果没有设置或设置非法值，默认为无大小写。|
+| capitalizeMode<sup>20+</sup> | [CapitalizeMode](#capitalizemode20) | 否 | 是 | 编辑框设置大小写模式。如果没有设置或设置非法值，默认不进行任何首字母大写处理。|
 
 ## TextConfig<sup>10+</sup>
 

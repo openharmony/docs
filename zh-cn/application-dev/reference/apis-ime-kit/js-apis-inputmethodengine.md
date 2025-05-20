@@ -4703,16 +4703,16 @@ try {
 
 ### CapitalizeMode<sup>20+</sup>
 
-枚举，大小写模式类型。
+枚举，定义了文本首字母大写的不同模式。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
 | 名称 | 值 | 描述 |
 | -------- | -- | -------- |
-| NONE | 0 | 大小写模式，不区分大小写。|
-| SENTENCES | 1 | 大小写模式，句子开头首字母大写。|
-| WORDS | 2 |大小写模式，每个单词首字母大写。|
-| CHARACTERS | 3 | 大小写模式，每个字母都大写。|
+| NONE | 0 | 不进行任何首字母大写处理。|
+| SENTENCES | 1 | 每个句子的首字母大写。|
+| WORDS | 2 | 每个单词的首字母大写。|
+| CHARACTERS | 3 | 每个字母都大写。|
 
 ### EditorAttribute
 
@@ -4729,7 +4729,7 @@ try {
 | immersiveMode<sup>15+</sup> | number | 是   | 是   | 输入法沉浸模式。 |
 | windowId<sup>18+</sup> | number | 是 | 是 | 编辑框设置所属窗口ID。 |
 | displayId<sup>18+</sup> | number | 是   | 是   | 编辑框设置窗口对应的屏幕ID。如果没有设置windowId，取当前焦点窗口屏幕ID。|
-| capitalizeMode<sup>20+</sup> | [CapitalizeMode](#capitalizemode20) | 是 | 是 | 编辑框设置大小写模式。如果没有设置或设置非法值，默认为无大小写。|
+| capitalizeMode<sup>20+</sup> | [CapitalizeMode](#capitalizemode20) | 是 | 是 | 编辑框设置大小写模式。如果没有设置或设置非法值，默认不进行任何首字母大写处理。|
 
 ## KeyEvent
 
