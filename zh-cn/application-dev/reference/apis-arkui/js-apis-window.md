@@ -1163,7 +1163,7 @@ try {
 
 getGlobalWindowMode(displayId?: number): Promise&lt;number&gt;
 
-获取指定屏幕上除SCB系统窗外所有的前台窗口模式，包括不可见但生命周期位于前台的窗口，使用Promise异步回调。
+获取指定屏幕上生命周期位于前台的窗口对应的窗口模式，使用Promise异步回调。
 
 **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
