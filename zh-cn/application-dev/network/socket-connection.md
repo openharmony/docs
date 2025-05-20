@@ -69,7 +69,7 @@ Socket连接主要由socket模块提供。具体接口说明如下表。
 | on(type:&nbsp;'connect')           | 订阅 Socket 的连接事件（仅 TCP/LocalSocket 支持）。                            |
 | off(type:&nbsp;'connect')          | 取消订阅 Socket 的连接事件（仅 TCP/LocalSocket 支持）。                         |
 
-TLS Socket 连接主要由 socket 模块提供。具体接口说明如下表。
+TLS Socket连接主要由socket模块提供。具体接口说明如下表。
 
 | 接口名                       | 功能描述                                                   |
 | ---------------------------- | ---------------------------------------------------------- |
