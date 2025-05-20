@@ -40,7 +40,7 @@ createHfpAgProfile(): HandsFreeAudioGatewayProfile
 
 | 类型                            | 说明         |
 | ----------------------------- | ---------- |
-| HandsFreeAudioGatewayProfile | 返回该profile的实例。 |
+| [HandsFreeAudioGatewayProfile](#handsfreeaudiogatewayprofile) | 返回该profile的实例。 |
 
 **错误码**：
 
