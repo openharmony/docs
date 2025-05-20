@@ -784,7 +784,9 @@ try {
 
 getLastWindow(ctx: BaseContext, callback: AsyncCallback&lt;Window&gt;): void
 
-获取当前应用内最上层的子窗口，若无应用子窗口，则返回应用主窗口，使用callback异步回调。
+获取当前应用内最上层显示的子窗口，使用callback异步回调。
+
+若无应用子窗口或子窗口未调用[showWindow()](#showwindow9)进行显示，则返回应用主窗口。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -810,29 +812,32 @@ getLastWindow(ctx: BaseContext, callback: AsyncCallback&lt;Window&gt;): void
 **示例：**
 
 ```ts
-// EntryAbility.ets
 import { UIAbility } from '@kit.AbilityKit';
+import { window } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends UIAbility {
   // ...
-  onWindowStageCreate(windowStage: window.WindowStage) {
+  onWindowStageCreate(windowStage: window.WindowStage): void {
     console.info('onWindowStageCreate');
-    let windowClass: window.Window | undefined = undefined;
-    try {
-      window.getLastWindow(this.context, (err: BusinessError, data) => {
-        const errCode: number = err.code;
-        if (errCode) {
-          console.error(`Failed to obtain the top window. Cause code: ${err.code}, message: ${err.message}`);
-          return;
+    windowStage.createSubWindow('TestSubWindow').then((subWindow) => {
+      subWindow.showWindow().then(() => {
+        try {
+          window.getLastWindow(this.context, (err: BusinessError, topWindow) => {
+            const errCode: number = err.code;
+            if (errCode) {
+              console.error(`Failed to obtain the top window. Cause code: ${err.code}, message: ${err.message}`);
+              return;
+            }
+            console.info(`Succeeded in obtaining the top window. Window id: ${topWindow.getWindowProperties().id}`);
+          });
+        } catch (exception) {
+          console.error(`Failed to obtain the top window. Cause code: ${exception.code}, message: ${exception.message}`);
         }
-        windowClass = data;
-        console.info('Succeeded in obtaining the top window. Data: ' + JSON.stringify(data));
       });
-    } catch (exception) {
-      console.error(`Failed to obtain the top window. Cause code: ${exception.code}, message: ${exception.message}`);
-    }
+    });
   }
+  //...
 }
 ```
 
@@ -840,7 +845,9 @@ export default class EntryAbility extends UIAbility {
 
 getLastWindow(ctx: BaseContext): Promise&lt;Window&gt;
 
-获取当前应用内最上层的子窗口，若无应用子窗口，则返回应用主窗口，使用Promise异步回调。
+获取当前应用内最上层显示的子窗口，使用Promise异步回调。
+
+若无应用子窗口或子窗口未调用[showWindow()](#showwindow9)进行显示，则返回应用主窗口。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -873,25 +880,28 @@ getLastWindow(ctx: BaseContext): Promise&lt;Window&gt;
 ```ts
 // EntryAbility.ets
 import { UIAbility } from '@kit.AbilityKit';
+import { window } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends UIAbility {
   // ...
-  onWindowStageCreate(windowStage: window.WindowStage) {
+  onWindowStageCreate(windowStage: window.WindowStage): void {
     console.info('onWindowStageCreate');
-    let windowClass: window.Window | undefined = undefined;
-    try {
-      let promise = window.getLastWindow(this.context);
-      promise.then((data) => {
-        windowClass = data;
-        console.info('Succeeded in obtaining the top window. Data: ' + JSON.stringify(data));
-      }).catch((err: BusinessError) => {
-        console.error(`Failed to obtain the top window. Cause code: ${err.code}, message: ${err.message}`);
+    windowStage.createSubWindow('TestSubWindow').then((subWindow) => {
+      subWindow.showWindow().then(() => {
+        try {
+          window.getLastWindow(this.context).then((topWindow) => {
+            console.info(`Succeeded in obtaining the top window. Window id: ${topWindow.getWindowProperties().id}`);
+          }).catch((err: BusinessError) => {
+            console.error(`Failed to obtain the top window. Cause code: ${err.code}, message: ${err.message}`);
+          });
+        } catch (exception) {
+          console.error(`Failed to obtain the top window. Cause code: ${exception.code}, message: ${exception.message}`);
+        }
       });
-    } catch (exception) {
-      console.error(`Failed to obtain the top window. Cause code: ${exception.code}, message: ${exception.message}`);
-    }
+    });
   }
+  //...
 }
 ```
 
@@ -899,6 +909,8 @@ export default class EntryAbility extends UIAbility {
 shiftAppWindowFocus(sourceWindowId: number, targetWindowId: number): Promise&lt;void&gt;
 
 在同应用内将窗口焦点从源窗口转移到目标窗口，仅支持应用主窗和子窗的焦点转移。
+
+目标窗口需确保可获焦属性为true（见[setWindowFocusable()](#setwindowfocusable9)）,并确保调用[showWindow()](#showwindow9)成功并执行完毕。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -934,52 +946,48 @@ shiftAppWindowFocus(sourceWindowId: number, targetWindowId: number): Promise&lt;
 ```ts
 // EntryAbility.ets
 import { UIAbility } from '@kit.AbilityKit';
+import { window } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage) {
     // ...
     console.info('onWindowStageCreate');
-    let windowClass: window.Window | undefined = undefined;
-    let subWindowClass: window.Window | undefined = undefined;
-    let windowClassId: number = -1;
-    let subWindowClassId: number = -1;
+    let mainWindow: window.Window | undefined = undefined;
+    let subWindow: window.Window | undefined = undefined;
+    let mainWindowId: number = -1;
+    let subWindowId: number = -1;
 
     try {
       // 获取应用主窗及ID
-      let promise = windowStage.getMainWindow();
-      promise.then((data) => {
+      windowStage.getMainWindow().then((data) => {
         if (data == null) {
-          console.error("Failed to obtaining the window. Cause: The data is empty");
+          console.error('Failed to obtain the main window. Cause: The data is empty');
           return;
         }
-        windowClass = data;
-        windowClass.setUIContent("pages/Index");
-        windowClassId = windowClass.getWindowProperties().id;
-        console.info('Succeeded in obtaining the window')
+        mainWindow = data;
+        mainWindowId = mainWindow.getWindowProperties().id;
+        console.info('Succeeded in obtaining the main window');
       }).catch((err: BusinessError) => {
-        console.error(`Failed to obtaining the window. Cause code: ${err.code}, message: ${err.message}`);
+        console.error(`Failed to obtain the main window. Cause code: ${err.code}, message: ${err.message}`);
       });
 
       // 创建或获取子窗及ID，此时子窗口获焦
-      let promiseSub = windowStage.createSubWindow("testSubWindow");
-      promiseSub.then((data) => {
+      windowStage.createSubWindow('testSubWindow').then((data) => {
         if (data == null) {
-          console.error("Failed to obtaining the window. Cause: The data is empty");
+          console.error('Failed to obtain the sub window. Cause: The data is empty');
           return;
         }
-        subWindowClass = data;
-        subWindowClassId = subWindowClass.getWindowProperties().id;
-        subWindowClass.resize(500, 500);
-        subWindowClass.setUIContent("pages/Index2");
-        subWindowClass.showWindow();
+        subWindow = data;
+        subWindowId = subWindow.getWindowProperties().id;
+        subWindow.resize(500, 500);
+        subWindow.showWindow();
 
         // 监听Window状态，确保已经就绪
-        subWindowClass.on("windowEvent", (windowEvent) => {
+        subWindow.on("windowEvent", (windowEvent) => {
           if (windowEvent == window.WindowEventType.WINDOW_ACTIVE) {
             // 切换焦点
-            let promise = window.shiftAppWindowFocus(subWindowClassId, windowClassId);
-            promise.then(() => {
+            window.shiftAppWindowFocus(subWindowId, mainWindowId).then(() => {
               console.info('Succeeded in shifting app window focus');
             }).catch((err: BusinessError) => {
               console.error(`Failed to shift app window focus. Cause code: ${err.code}, message: ${err.message}`);
@@ -8773,26 +8781,19 @@ export default class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage): void {
     console.info('onWindowStageCreate');
     // 创建子窗
-    try {
-      let subWindowPromise = windowStage.createSubWindow("testSubWindow");
-      subWindowPromise.then((data) => {
-        if (data == null) {
-          console.error("Failed to create the subWindow. Cause: The data is empty");
-          return;
-        }
-        let showWindowPromise = data.showWindow();
-        showWindowPromise.then(() => {
-          let raiseToTopPromise = data.raiseToAppTop();
-          raiseToTopPromise.then(() => {
-            console.info('Succeeded in raising window to app top.');
-          }).catch((err: BusinessError)=>{
-            console.error(`Failed to raise window to app top. Cause code: ${err.code}, message: ${err.message}`);
-          });
+    windowStage.createSubWindow('testSubWindow').then((subWindow) => {
+      if (subWindow == null) {
+        console.error('Failed to create the subWindow. Cause: The data is empty');
+        return;
+      }
+      subWindow.showWindow().then(() => {
+        subWindow.raiseToAppTop().then(() => {
+          console.info('Succeeded in raising window to app top');
+        }).catch((err: BusinessError)=>{
+          console.error(`Failed to raise window to app top. Cause code: ${err.code}, message: ${err.message}`);
         });
       });
-    } catch (exception) {
-      console.error(`Failed to create the subWindow. Cause code: ${exception.code}, message: ${exception.message}`);
-    }
+    });
   }
 }
 ```
@@ -8847,27 +8848,24 @@ export default class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage): void {
     console.info('onWindowStageCreate');
     // 创建子窗
-    try {
-      let subWindowPromise = windowStage.createSubWindow("testSubWindow");
-      subWindowPromise.then((data) => {
-        if (data == null) {
-          console.error("Failed to create the subWindow. Cause: The data is empty");
-          return;
-        }
-        let showWindowPromise = data.showWindow();
-        showWindowPromise.then(() => {
+    windowStage.createSubWindow("testSubWindow").then((subWindow) => {
+      if (subWindow == null) {
+        console.error('Failed to create the subWindow. Cause: The data is empty');
+        return;
+      }
+      subWindow.showWindow().then(() => {
+        try {
           let enabled = false;
-          let setRaisePromise = data.setRaiseByClickEnabled(enabled);
-          setRaisePromise.then(() => {
+          subWindow.setRaiseByClickEnabled(enabled).then(() => {
             console.info('Succeeded in disabling the raise-by-click function.');
-          }).catch((err: BusinessError)=>{
+          }).catch((err: BusinessError) => {
             console.error(`Failed to disable the raise-by-click function. Cause code: ${err.code}, message: ${err.message}`);
           });
-        });
+        } catch (err) {
+          console.error(`Failed to disable the raise-by-click function. Cause code: ${err.code}, message: ${err.message}`);
+        }
       });
-    } catch (exception) {
-      console.error(`Failed to create the subWindow. Cause code: ${exception.code}, message: ${exception.message}`);
-    }
+    });
   }
 }
 ```
@@ -10067,23 +10065,22 @@ export default class EntryAbility extends UIAbility {
   // ...
   onWindowStageCreate(windowStage: window.WindowStage): void {
     console.info('onWindowStageCreate');
+    let zLevel: number = 1;
     // 创建子窗
     try {
-      let subWindowPromise = windowStage.createSubWindow('testSubWindow');
-      subWindowPromise.then((subWindow) => {
+      windowStage.createSubWindow('testSubWindow').then((subWindow) => {
         if (subWindow == null) {
           console.error('Failed to create the sub window. Cause: The sub window is null');
           return;
         }
-        let zLevelPromise = subWindow.setSubWindowZLevel(1);
-        zLevelPromise.then(() => {
+        subWindow.setSubWindowZLevel(zLevel).then(() => {
           console.info('Succeeded in setting sub window zLevel.');
         }).catch((err: BusinessError) => {
           console.error(`Failed to set sub window zLevel. Cause code: ${err.code}, message: ${err.message}`);
         });
       });
     } catch (err) {
-      console.error(`Failed to create the sub window. Cause code: ${err.code}, message: ${err.message}`);
+      console.error(`Failed to create the sub window or set zLevel. Cause code: ${err.code}, message: ${err.message}`);
     }
   }
 }
@@ -10126,24 +10123,20 @@ export default class EntryAbility extends UIAbility {
   // ...
   onWindowStageCreate(windowStage: window.WindowStage): void {
     console.info('onWindowStageCreate');
+    let subWindowZLevel = -1;
     // 创建子窗
-    try {
-      let subWindowPromise = windowStage.createSubWindow('testSubWindow');
-      subWindowPromise.then((subWindow) => {
-        if (subWindow == null) {
-          console.error('Failed to create the sub window. Cause: The sub window is null');
-          return;
-        }
-        try {
-          let subWindowZLevel = subWindow.getSubWindowZLevel();
-          console.info(`Succeeded in getting sub window zLevel: ${subWindowZLevel}`);
-        } catch (err) {
-          console.error(`Failed to get sub window zLevel. Cause code: ${err.code}, message: ${err.message}`);
-        }
-      });
-    } catch (err) {
-      console.error(`Failed to create the sub window. Cause code: ${err.code}, message: ${err.message}`);
-    }
+    windowStage.createSubWindow('testSubWindow').then((subWindow) => {
+      if (subWindow == null) {
+        console.error('Failed to create the sub window. Cause: The sub window is null');
+        return;
+      }
+      try {
+        subWindowZLevel = subWindow.getSubWindowZLevel();
+        console.info(`Succeeded in obtaining sub window zLevel: ${subWindowZLevel}`);
+      } catch (err) {
+        console.error(`Failed to obtain the sub window zLevel. Cause code: ${err.code}, message: ${err.message}`);
+      }
+    });
   }
 }
 ```

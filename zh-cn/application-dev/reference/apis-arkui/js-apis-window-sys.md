@@ -2309,6 +2309,8 @@ raiseToAppTop(callback: AsyncCallback&lt;void&gt;): void
 
 提升应用子窗口到应用顶层。使用callback异步回调。
 
+使用该接口需要先创建子窗口，并确保该子窗口调用[showWindow()](js-apis-window.md#showwindow9)并执行完毕。
+
 **系统接口：** 此接口为系统接口。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
@@ -2334,16 +2336,34 @@ raiseToAppTop(callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```ts
+// EntryAbility.ets
+import { window } from '@kit.ArkUI';
+import { UIAbility } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-windowClass.raiseToAppTop((err: BusinessError) => {
-  const errCode: number = err.code;
-  if (errCode) {
-    console.error(`Failed to raise the window to app top. Cause code: ${err.code}, message: ${err.message}`);
-    return;
+export default class EntryAbility extends UIAbility {
+  // ...
+  onWindowStageCreate(windowStage: window.WindowStage): void {
+    console.info('onWindowStageCreate');
+    // 创建子窗
+    windowStage.createSubWindow('testSubWindow').then((subWindow) => {
+      if (subWindow == null) {
+        console.error('Failed to create the subWindow. Cause: The data is empty');
+        return;
+      }
+      subWindow.showWindow().then(() => {
+        subWindow.raiseToAppTop((err: BusinessError) => {
+          const errCode: number = err.code;
+          if (errCode) {
+            console.error(`Failed to raise the window to app top. Cause code: ${err.code}, message: ${err.message}`);
+            return;
+          }
+          console.info('Succeeded in raising the window to app top.');
+        });
+      });
+    });
   }
-  console.info('Succeeded in raising the window to app top.');
-});
+}
 ```
 
 ### setWaterMarkFlag<sup>10+</sup>
@@ -2503,7 +2523,9 @@ try {
 
 raiseAboveTarget(windowId: number, callback: AsyncCallback&lt;void&gt;): void
 
-将同一个主窗口下的子窗口提升到目标子窗口之上。使用callback异步回调。
+将同一个主窗口下的子窗口抬升到目标子窗口之上。使用callback异步回调。
+
+使用该接口需要确保要抬升的子窗口和目标子窗口都已创建完成，分别调用[showWindow()](js-apis-window.md#showwindow9)并执行完毕。
 
 **系统接口：** 此接口为系统接口。
 
@@ -2534,6 +2556,7 @@ raiseAboveTarget(windowId: number, callback: AsyncCallback&lt;void&gt;): void
 
 ```ts
 // EntryAbility.ets
+import { window } from '@kit.ArkUI';
 import { UIAbility } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -2541,26 +2564,27 @@ export default class EntryAbility extends UIAbility {
   // ...
   onWindowStageCreate(windowStage: window.WindowStage): void {
     console.info('onWindowStageCreate');
-    let windowClass: window.Window | undefined = undefined;
+    let windowClass: window.Window;
     // 创建子窗
     try {
-      let subWindow = windowStage.createSubWindow("testSubWindow");
-      subWindow.then((data) => {
+      windowStage.createSubWindow("testSubWindow").then((data) => {
         if (data == null) {
           console.error("Failed to create the subWindow. Cause: The data is empty");
           return;
         }
         windowClass = data;
-        // windowClass的获取需放在targetWindow之上
-        let targetWindow: window.Window = windowClass;
-        let properties = targetWindow.getWindowProperties();
-        let targetId = properties.id;
-        windowClass.raiseAboveTarget(targetId, (err) => {
-          if (err.code) {
-            console.error(`Failed to raise the subWindow to target subWindow top. Cause code: ${err.code}, message: ${err.message}`);
-            return;
-          }
-          console.info('Succeeded in raising the subWindow to target subWindow top.');
+        windowClass.showWindow().then(() => {
+          // windowClass的获取需放在targetWindow之上
+          let targetWindow: window.Window = windowClass;
+          let properties = targetWindow.getWindowProperties();
+          let targetId = properties.id;
+          windowClass.raiseAboveTarget(targetId, (err: BusinessError) => {
+            if (err.code) {
+              console.error(`Failed to raise the subWindow to target subWindow top. Cause code: ${err.code}, message: ${err.message}`);
+              return;
+            }
+            console.info('Succeeded in raising the subWindow to target subWindow top.');
+          });
         });
       });
     } catch (exception) {
@@ -2575,6 +2599,8 @@ export default class EntryAbility extends UIAbility {
 raiseAboveTarget(windowId: number): Promise&lt;void&gt;
 
 将同一个主窗下的子窗口提升到目标子窗口之上。使用Promise异步回调。
+
+使用该接口需要确保要抬升的子窗口和目标子窗口都已创建完成，分别调用[showWindow()](js-apis-window.md#showwindow9)并执行完毕。
 
 **系统接口：** 此接口为系统接口。
 
@@ -2610,6 +2636,7 @@ raiseAboveTarget(windowId: number): Promise&lt;void&gt;
 
 ```ts
 // EntryAbility.ets
+import { window } from '@kit.ArkUI';
 import { UIAbility } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -2617,25 +2644,25 @@ export default class EntryAbility extends UIAbility {
   // ...
   onWindowStageCreate(windowStage: window.WindowStage): void {
     console.info('onWindowStageCreate');
-    let windowClass: window.Window | undefined = undefined;
+    let windowClass: window.Window;
     // 创建子窗
     try {
-      let subWindow = windowStage.createSubWindow("testSubWindow");
-      subWindow.then((data) => {
+      windowStage.createSubWindow("testSubWindow").then((data) => {
         if (data == null) {
           console.error("Failed to create the subWindow. Cause: The data is empty");
           return;
         }
         windowClass = data;
-        // windowClass的获取需放在targetWindow之上
-        let targetWindow: window.Window = windowClass;
-        let properties = targetWindow.getWindowProperties();
-        let targetId = properties.id;
-        let promise = windowClass.raiseAboveTarget(targetId);
-        promise.then(()=> {
-          console.info('Succeeded in raising the subWindow to target subWindow top.');
-        }).catch((err: BusinessError)=>{
-          console.error(`Failed to raise the subWindow to target subWindow top. Cause code: ${err.code}, message: ${err.message}`);
+        windowClass.showWindow().then(() => {
+          // windowClass的获取需放在targetWindow之上
+          let targetWindow: window.Window = windowClass;
+          let properties = targetWindow.getWindowProperties();
+          let targetId = properties.id;
+          windowClass.raiseAboveTarget(targetId).then(()=> {
+            console.info('Succeeded in raising the subWindow to target subWindow top.');
+          }).catch((err: BusinessError)=>{
+            console.error(`Failed to raise the subWindow to target subWindow top. Cause code: ${err.code}, message: ${err.message}`);
+          });
         });
       });
     } catch (exception) {
@@ -2652,6 +2679,8 @@ setRaiseByClickEnabled(enable: boolean, callback: AsyncCallback&lt;void&gt;): vo
 禁止/使能子窗口点击抬升功能。使用callback异步回调。
 
 通常来说，点击一个子窗口，会将该子窗口显示到最上方，如果设置为false，那么点击子窗口的时候，不会将该子窗口显示到最上方，而是保持不变。
+
+使用该接口需要先创建子窗口，并确保该子窗口调用[showWindow()](js-apis-window.md#showwindow9)并执行完毕。
 
 **系统接口：** 此接口为系统接口。
 
@@ -2682,6 +2711,7 @@ setRaiseByClickEnabled(enable: boolean, callback: AsyncCallback&lt;void&gt;): vo
 
 ```ts
 // EntryAbility.ets
+import { window } from '@kit.ArkUI';
 import { UIAbility } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -2689,28 +2719,27 @@ export default class EntryAbility extends UIAbility {
   // ...
   onWindowStageCreate(windowStage: window.WindowStage): void {
     console.info('onWindowStageCreate');
-    let windowClass: window.Window | undefined = undefined;
     // 创建子窗
-    try {
-      let subWindow = windowStage.createSubWindow("testSubWindow");
-      subWindow.then((data) => {
-        if (data == null) {
-          console.error("Failed to create the subWindow. Cause: The data is empty");
-          return;
-        }
-        windowClass = data;
-        let enabled = false;
-        windowClass.setRaiseByClickEnabled(enabled, (err) => {
+    windowStage.createSubWindow("testSubWindow").then((subWindow) => {
+      if (subWindow == null) {
+        console.error('Failed to create the subWindow. Cause: The data is empty');
+        return;
+      }
+      subWindow.showWindow().then(() => {
+        try {
+          let enabled = false;
+          subWindow.setRaiseByClickEnabled(enabled, (err) => {
           if (err.code) {
             console.error(`Failed to disable the raise-by-click function. Cause code: ${err.code}, message: ${err.message}`);
             return;
           }
           console.info('Succeeded in disabling the raise-by-click function.');
-        });
+          });
+        } catch (err) {
+          console.error(`Failed to disable the raise-by-click function. Cause code: ${err.code}, message: ${err.message}`);
+        }
       });
-    } catch (exception) {
-      console.error(`Failed to create the subWindow. Cause code: ${exception.code}, message: ${exception.message}`);
-    }
+    });
   }
 }
 ```
@@ -2969,10 +2998,9 @@ export default class EntryAbility extends UIAbility {
   // ...
   onWindowStageCreate(windowStage: window.WindowStage): void {
     // ...
-    windowStage.getMainWindow().then((window) => {
+    windowStage.getMainWindow().then((mainWindow) => {
       let isTopmost: boolean = true;
-      let promise = window.setTopmost(isTopmost);
-      promise.then(() => {
+      mainWindow.setTopmost(isTopmost).then(() => {
         console.info('Succeeded in setting the main window to be topmost.');
       }).catch((err: BusinessError) => {
         console.error(`Failed to set the main window to be topmost. Cause code: ${err.code}, message: ${err.message}`);
