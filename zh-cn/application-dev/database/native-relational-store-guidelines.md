@@ -22,9 +22,6 @@ RelationalStore提供了一套完整的对本地数据库进行管理的机制�
 
 - 当应用被卸载完成后，设备上的相关数据库文件及临时文件会被自动清除。
 
-- 使用API11新增的端云同步等接口时，需要确保已实现云服务功能。
-
-
 ## 接口说明
 
 详细的接口说明请参考[RDB](../reference/apis-arkdata/_r_d_b.md)。
@@ -111,7 +108,7 @@ libnative_rdb_ndk.z.so
 
 **头文件**
 
-```c++
+```c
 #include <database/data/data_asset.h>
 #include <database/rdb/oh_cursor.h>
 #include <database/rdb/oh_predicates.h>
@@ -147,7 +144,7 @@ libnative_rdb_ndk.z.so
    OH_Rdb_Store *store_ = OH_Rdb_CreateOrOpen(config, &errCode);
    ```
 
-   ```cpp
+   ```c
     // 可设置自定义数据库路径
     // 数据库文件创建位置将位于沙箱路径 /data/storeage/el2/database/a/b/RdbTest.db
     OH_Rdb_SetCustomDir(config, "../a/b");
@@ -276,7 +273,7 @@ libnative_rdb_ndk.z.so
    
    配置谓词以LIKE模式或NOTLIKE模式匹配进行数据查询。示例代码如下：
 
-   ```cpp
+   ```c
    OH_Predicates *likePredicates = OH_Rdb_CreatePredicates("EMPLOYEE");
    
    OH_VObject *likePatten = OH_Rdb_CreateValueObject();
@@ -317,7 +314,7 @@ libnative_rdb_ndk.z.so
 
    配置谓词以GLOB模式或NOTGLOB模式匹配进行数据查询。示例代码如下：
 
-   ```cpp
+   ```c
    OH_Predicates *globPredicates = OH_Rdb_CreatePredicates("EMPLOYEE");
    // 配置谓词以GLOB模式匹配
    OH_Predicates_Glob(globPredicates, "NAME", "zh*");
@@ -351,6 +348,24 @@ libnative_rdb_ndk.z.so
    notGlobPredicates->destroy(notGlobPredicates);
    ```
 
+   如需指定排序时使用的语言规则，例如zh_CN表示中文，tr_TR表示土耳其语等。可调用OH_Rdb_SetLocale配置相应规则。
+
+    ```c
+    OH_Rdb_SetLocale(store_, "zh_CN");
+    ```
+
+    如需配置fts（Full-Text Search，即全文搜索引擎）动态库，可使用OH_Rdb_SetPlugins接口进行配置。
+    
+    使用约束详见[StoreConfig](../reference/apis-arkdata/js-apis-data-relationalStore.md#storeconfig)中pluginLibs配置项。
+
+    ```c
+    const char *plugins[] = {
+        "/data/storage/el1/bundle/libs/arm64/libtokenizer.so"
+    };
+    
+    int32_t count = sizeof(plugins) / sizeof(plugins[0]);
+    auto setResult = OH_Rdb_SetPlugins(config, plugins, count);
+    ```
 5. 使用事务对象进行插入、删除或更新数据操作。
 
    调用OH_RdbTransOption_SetType方法，配置要创建的事务类型，
@@ -358,7 +373,7 @@ libnative_rdb_ndk.z.so
 
    调用OH_Rdb_CreateTransaction方法创建事务对象，使用该事务对象执行相应事务操作。
 
-    ```cpp
+    ```c
     OH_RDB_TransOptions *options;
     options = OH_RdbTrans_CreateOptions();
     // 配置事务类型
@@ -479,7 +494,7 @@ libnative_rdb_ndk.z.so
     OH_RdbTrans_Destroy(trans);
     ```
 
-    ```cpp
+    ```c
     OH_RDB_TransOptions *options2;
     options2 = OH_RdbTrans_CreateOptions();
     OH_RdbTransOption_SetType(options, RDB_TRANS_DEFERRED);
@@ -493,9 +508,18 @@ libnative_rdb_ndk.z.so
 
     ```
 
-6. 附加数据库。调用OH_Rdb_Attach将一个数据库文件附加到当前数据库中，以便在SQL语句中可以直接访问附加数据库中的数据。此API不支持附加加密数据库。调用attach接口后，数据库切换为非WAL模式，性能会存在一定的劣化。attach的时候，数据库会切换为非WAL模式，切换模式需要确保所有的ResultSet都已经Close，所有的写操作已经结束，否则会报错14800015。attach不能并发调用，可能出现未响应情况，报错14800015，需要重试。调用OH_Rdb_Detach分离附加数据库。
+6. 附加数据库。
+   
+    调用OH_Rdb_Attach将一个数据库文件附加到当前数据库中，以便在SQL语句中可以直接访问附加数据库中的数据。
+    此API不支持附加加密数据库。
 
-    ```cpp
+    调用attach接口后，数据库切换为非WAL模式，性能会存在一定的劣化。切换模式需要确保所有的OH_Cursor都已经销毁，所有的写操作已经结束，否则会报错14800015。
+    
+    attach不能并发调用，可能出现未响应情况，报错14800015，需要重试。
+    
+    当不再使用附加数据时，可调用OH_Rdb_Detach分离附加数据库。
+
+    ```c
     char attachStoreTableCreateSql[] = "CREATE TABLE IF NOT EXISTS EMPLOYEE (ID INTEGER PRIMARY KEY AUTOINCREMENT, NAME TEXT NOT NULL, "
                            "AGE INTEGER, SALARY REAL, CODES BLOB)";
     OH_Rdb_ConfigV2* configAttach = OH_Rdb_CreateConfig();
@@ -633,148 +657,11 @@ libnative_rdb_ndk.z.so
    cursor = OH_Rdb_FindModifyTime(store_, "EMPLOYEE", "ROWID", values);
    ```
 
-10. 创建分布式表。调用OH_Rdb_Execute接口创建表之后，可以将已创建的表设置成分布式表，并配置相关的分布式选项。使用该接口需要实现云服务功能。示例代码如下所示：
-
-    ```c
-    constexpr int TABLE_COUNT = 1;
-    const char *table[TABLE_COUNT];
-    table[0] = "EMPLOYEE";
-    int errcode = OH_Rdb_SetDistributedTables(store_, table, TABLE_COUNT,  Rdb_DistributedType::DISTRIBUTED_CLOUD, &config);
-    ```
-
-11. 对分布式表手动执行端云同步。调用OH_Rdb_SetDistributedTables创建分布式表之后，可以对该表进行手动端云同步。使用该接口需要实现云服务功能。示例代码如下所示：
-   
-    ```c
-    // 定义回调函数
-    void CloudSyncObserverCallback(void *context, Rdb_ProgressDetails *progressDetails)
-    {
-     // do something
-    }
-    const Rdb_ProgressObserver observer = { .context = nullptr, .callback = CloudSyncObserverCallback };
-    OH_Rdb_CloudSync(store_, Rdb_SyncMode::SYNC_MODE_TIME_FIRST, table, TABLE_COUNT, &observer);
-    ```
-
-12. 将数据观察者注册到指定的存储对象（store）上，并订阅指定类型（type）的事件。在数据发生变化时，系统会调用相应的回调函数来处理进度观察。调用OH_Rdb_Subscribe接口订阅数据变化事件。使用该接口需要实现云服务功能。示例代码如下所示：
-    
-    ```c
-    // 定义回调函数
-    void RdbSubscribeBriefCallback(void *context, const char *values[], uint32_t count)
-    {
-    // do something
-    }
-    Rdb_BriefObserver briefObserver;
-    const Rdb_BriefObserver briefObserver = { .context = nullptr, .callback = RdbSubscribeBriefCallback };
-    // 订阅数据变化
-    OH_Rdb_Subscribe(store_, Rdb_SubscribeType::RDB_SUBSCRIBE_TYPE_CLOUD, &briefObserver);
-    ```
-
-    调用OH_Rdb_Subscribe接口订阅本地数据库数据变更的事件。示例代码如下所示：
-
-    ```c
-    // 定义回调函数
-    void LocalDataChangeObserverCallback1(void *context, const Rdb_ChangeInfo **changeInfo, uint32_t count)
-    {
-       for (uint32_t i = 0; i < count; i++) {
-          EXPECT_EQ(DISTRIBUTED_CHANGE_INFO_VERSION, changeInfo[i]->version);
-          // 表名为employee
-          changeInfo[i]->tableName;
-          changeInfo[i]->ChangeType;
-          // 添加行数为1
-          changeInfo[i]->inserted.count;
-          // 修改行数为0
-          changeInfo[i]->updated.count;
-          // 删除行数为0
-          changeInfo[i]->deleted.count;
-       }
-    }
-    Rdb_DetailsObserver callback = LocalDataChangeObserverCallback1;
-    Rdb_DataObserver observer = { nullptr, { callback } };
-    // 订阅本地数据库数据变更的事件
-    OH_Rdb_Subscribe(store_, Rdb_SubscribeType::RDB_SUBSCRIBE_TYPE_LOCAL_DETAILS, &observer);
- 
-    OH_VBucket* valueBucket = OH_Rdb_CreateValuesBucket();
-    valueBucket->putText(valueBucket, "NAME", "Lisa");
-    valueBucket->putInt64(valueBucket, "AGE", 18);
-    valueBucket->putReal(valueBucket, "SALARY", 100.5);
-    uint8_t arr[] = {1, 2, 3, 4, 5};
-    int len = sizeof(arr) / sizeof(arr[0]);
-    valueBucket->putBlob(valueBucket, "CODES", arr, len);
-    // 插入数据
-    int rowId = OH_Rdb_Insert(store_, "EMPLOYEE", valueBucket);
-    // 销毁键值对实例
-    valueBucket->destroy(valueBucket);
-    ```
-
-13. 从指定的存储对象（store）中取消对指定类型（type）的事件的订阅。取消后，系统将不再调用相应的回调函数来处理进度观察。调用OH_Rdb_Unsubscribe接口取消订阅数据变化事件。使用该接口需要实现云服务功能。示例代码如下所示：
-    ```c
-    // 定义回调函数
-    void RdbSubscribeBriefCallback(void *context, const char *values[], uint32_t count)
-    {
-    // do something
-    }
-    Rdb_BriefObserver briefObserver = RdbSubscribeBriefCallback;
-    const Rdb_DataObserver briefObs = { .context = nullptr, .callback.briefObserver = briefObserver };
-    // 取消订阅数据变化事件
-    OH_Rdb_Unsubscribe(store_, Rdb_SubscribeType::RDB_SUBSCRIBE_TYPE_CLOUD, &briefObs);
-    ```
-    调用OH_Rdb_Unsubscribe接口取消订阅本地数据库数据变更的事件。示例代码如下所示：
-    ```c
-    // 定义回调函数
-    void LocalDataChangeObserverCallback1(void *context, const Rdb_ChangeInfo **changeInfo, uint32_t count)
-    {
-    // do something
-    }
-    Rdb_DetailsObserver callback = LocalDataChangeObserverCallback1;
-    Rdb_DataObserver observer = { nullptr, { callback } };
-    // 取消订阅本地数据库数据变更的事件
-    OH_Rdb_Unsubscribe(store_, Rdb_SubscribeType::RDB_SUBSCRIBE_TYPE_LOCAL_DETAILS, &observer);
-    ```
-14. 将进度观察者注册到指定的存储对象（store）上，以便订阅自动同步进度的事件。当存储对象进行自动同步时，系统会调用相应的回调函数处理进度观察。调用OH_Rdb_SubscribeAutoSyncProgress接口订阅自动同步进度事件。使用该接口需要实现云服务功能。示例代码如下所示：
-    
-    ```c
-    // 定义回调函数
-    void RdbProgressObserverCallback(void *context, Rdb_ProgressDetails *progressDetails)
-    {
-    // do something
-    }
-    const Rdb_ProgressObserver observer = { .context = nullptr, .callback = RdbProgressObserverCallback };
-    OH_Rdb_SubscribeAutoSyncProgress(store_, &observer);
-    ```
-
-15. 从指定的存储对象（store）中取消订阅自动同步进度的事件。取消后，系统将不再调用相应的回调函数来处理进度观察。调用OH_Rdb_UnsubscribeAutoSyncProgress接口取消订阅自动同步进度事件。使用该接口需要实现云服务功能。示例代码如下所示：
-    
-    ```c
-    // 定义回调函数
-    void RdbProgressObserverCallback(void *context, Rdb_ProgressDetails *progressDetails)
-    {
-    // do something
-    }
-    const Rdb_ProgressObserver observer = { .context = nullptr, .callback = RdbProgressObserverCallback };
-    OH_Rdb_UnsubscribeAutoSyncProgress(store_, &observer);
-    ```
-
-16. 删除数据库。调用OH_Rdb_DeleteStore方法，删除数据库及数据库相关文件。示例代码如下：
+10. 删除数据库。调用OH_Rdb_DeleteStore方法，删除数据库及数据库相关文件。示例代码如下：
     
     ```c
     // 释放数据库实例
     OH_Rdb_CloseStore(store_);
     // 删除数据库文件
     OH_Rdb_DeleteStoreV2(config);
-    ```
-
-17. 指定排序时使用的语言规则，例如zh_CN表示中文，tr_TR表示土耳其语等。详细的语言缩写，请查阅该目录（[ICU支持的语言缩写](https://gitee.com/openharmony/third_party_icu/tree/master/icu4c/source/data/locales)）下的文件名。
-
-    ```cpp
-    OH_Rdb_SetLocale(store_, "zh_CN");
-    ```
-
-18. 配置具有特定功能（如全文检索）的动态库。使用约束详见[StoreConfig](../reference/apis-arkdata/js-apis-data-relationalStore.md#storeconfig)中pluginLibs配置项。
-
-    ```cpp
-    const char *plugins[] = {
-        "/data/storage/el1/bundle/libs/arm64/libtokenizer.so"
-    };
-    
-    int32_t count = sizeof(plugins) / sizeof(plugins[0]);
-    auto setResult = OH_Rdb_SetPlugins(config, plugins, count);
     ```

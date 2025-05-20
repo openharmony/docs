@@ -11,7 +11,7 @@
   - [通过用户首选项实现数据持久化 (ArkTS)](data-persistence-by-preferences.md)
   - [通过用户首选项实现数据持久化 (C/C++)](preferences-guidelines.md)
   - [通过键值型数据库实现数据持久化](data-persistence-by-kv-store.md)
-  - [通过关系型数据库实现数据持久化](data-persistence-by-rdb-store.md)
+  - [通过关系型数据库实现数据持久化（ArkTS）](data-persistence-by-rdb-store.md)
   - [通过关系型数据库实现数据持久化（C/C++）](native-relational-store-guidelines.md)
   - [通过向量数据库实现数据持久化 (ArkTS)](data-persistence-by-vector-store.md)
   - [通过向量数据库实现数据持久化 (C/C++)](native-vector-store-guidelines.md)
@@ -25,11 +25,11 @@
   - [分布式数据对象跨设备数据同步](data-sync-of-distributed-data-object.md)
 - 数据可靠性与安全性<!--data-reliability-security-->
   - [数据可靠性与安全性概述](data-reliability-security-overview.md)
-  - [数据库备份与恢复](data-backup-and-restore.md)
+  - [数据库备份与恢复（ArkTS）](data-backup-and-restore.md)
   - [数据库备份与恢复（C/C++）](native-backup-and-restore.md)
-  - [数据库加密](data-encryption.md)
+  - [数据库加密（ArkTS）](data-encryption.md)
   - [数据库加密（C/C++）](native-data-encryption.md)
-  - [基于设备分类和数据分级的访问控制](access-control-by-device-and-data-level.md)
+  - [基于设备分类和数据分级的访问控制（ArkTS）](access-control-by-device-and-data-level.md)
   - [基于设备分类和数据分级的访问控制（C/C++）](native-access-control-by-device-and-data-level.md)
   - [E类加密数据库的使用](encrypted_estore_guidelines.md)
 - 跨应用数据共享<!--cross-app-data-share-->

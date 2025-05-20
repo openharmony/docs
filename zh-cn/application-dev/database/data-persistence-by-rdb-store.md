@@ -1,4 +1,4 @@
-# 通过关系型数据库实现数据持久化
+# 通过关系型数据库实现数据持久化（ArkTS）
 
 
 ## 场景介绍
@@ -454,9 +454,10 @@
      (store as relationalStore.RdbStore).createTransaction()
        .then((transaction: relationalStore.Transaction) => {
          // 使用事务对象删除数据
-         transaction.execute("DELETE FROM test WHERE age = ? OR age = ?", [21, 20]).then(() => {
+         transaction.execute("DELETE FROM EMPLOYEE WHERE age = ? OR age = ?", [21, 20]).then(() => {
            // 删除成功提交事务
            transaction.commit();
+           console.log(`execute delete success`);
          }).catch((e: BusinessError) => {
            // 删除失败回滚事务
            transaction.rollback();

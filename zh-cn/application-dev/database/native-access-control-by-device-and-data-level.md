@@ -1,10 +1,10 @@
 # 基于设备分类和数据分级的访问控制（C/C++）
 
-**头文件**
+## 场景介绍
 
-```c++
-#include "database/rdb/relational_store.h"
-```
+分布式数据库的访问控制机制确保了数据存储和同步时的安全能力。在创建数据库时，应当基于数据分类分级规范合理地设置数据库的安全标签，确保数据库内容和数据标签的一致性。
+
+当前仅支持使用关系型数据库（C/C++）进行分级访问控制。
 
 ## 基本概念
 
@@ -50,29 +50,26 @@
 对于类似rk3568、hi3516的开发板设备，设备安全等级为SL1。若创建数据安全标签为S1的数据库，则数据库数据可以在这些设备间同步；若创建的数据库安全标签为S2至S4，则不能在这些设备间同步。
 <!--RP2End-->
 
-## 场景介绍
-
-分布式数据库的访问控制机制确保了数据存储和同步时的安全能力。在创建数据库时，应当基于数据分类分级规范合理地设置数据库的安全标签，确保数据库内容和数据标签的一致性。
-
-
-## 使用关系型数据库实现数据分级
+## 开发步骤
 
 关系型数据库，通过OH_Rdb_SetSecurityLevel接口设置数据库的安全等级。此处以创建安全等级为S3的数据库为例。
 
 具体接口及功能，可见[关系型数据库](../reference/apis-arkdata/js-apis-data-relationalStore.md)。
-  
-```ts
-OH_Rdb_ConfigV2 *config = OH_Rdb_CreateConfig();
-OH_Rdb_SetDatabaseDir(config, "/data/storage/el2/database");
-OH_Rdb_SetStoreName(config, "RdbTest.db");
-OH_Rdb_SetBundleName(config, "com.example.nativedemo");
-OH_Rdb_SetModuleName(config, "entry");
-// 数据库文件安全等级
-OH_Rdb_SetSecurityLevel(config, OH_Rdb_SecurityLevel::S3);
-OH_Rdb_SetEncrypted(config, false);
-OH_Rdb_SetArea(config, RDB_SECURITY_AREA_EL2);
 
-int errCode = 0;
-OH_Rdb_Store *store_ = OH_Rdb_CreateOrOpen(config, &errCode);
-OH_Rdb_CloseStore(store_);
-```
+1. 调用OH_Rdb_SetSecurityLevel接口设置数据库的安全等级。
+
+    ```ts
+    OH_Rdb_ConfigV2 *config = OH_Rdb_CreateConfig();
+    OH_Rdb_SetDatabaseDir(config, "/data/storage/el2/database");
+    OH_Rdb_SetStoreName(config, "RdbTest.db");
+    OH_Rdb_SetBundleName(config, "com.example.nativedemo");
+    OH_Rdb_SetModuleName(config, "entry");
+    // 数据库文件安全等级
+    OH_Rdb_SetSecurityLevel(config, OH_Rdb_SecurityLevel::S3);
+    OH_Rdb_SetEncrypted(config, false);
+    OH_Rdb_SetArea(config, RDB_SECURITY_AREA_EL2);
+    
+    int errCode = 0;
+    OH_Rdb_Store *store_ = OH_Rdb_CreateOrOpen(config, &errCode);
+    OH_Rdb_CloseStore(store_);
+    ```
