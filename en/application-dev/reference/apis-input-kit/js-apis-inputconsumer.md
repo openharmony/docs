@@ -11,7 +11,7 @@ The **inputConsumer** module implements listening for combination key events.
 
 
 ```js
-import { inputConsumer } from '@kit.InputKit';
+import { inputConsumer, KeyEvent } from '@kit.InputKit';
 ```
 
 ## HotkeyOptions<sup>14+</sup>
@@ -34,8 +34,8 @@ Sets the key event consumption configuration.
 
 | Name       | Type  | Readable  | Writable  | Description     |
 | --------- | ------ | ------- | ------- | ------- |
-| key       | number  | Yes     | No     | Key value.<br>Currently, only the [KEYCODE_VOLUME_UP](js-apis-keycode.md#keycode) and [KEYCODE_VOLUME_DOWN](js-apis-keycode.md#keycode) keys are supported.|  
-| action    | number  | Yes     | No     | Key event type. Currently, the value can only be **1**.<br>- **1**: Key press.<br>- **2**: Key release.|  
+| key       | number  | Yes     | No     | Key value.<br>Currently, only the [KEYCODE_VOLUME_UP](js-apis-keycode.md#keycode) and [KEYCODE_VOLUME_DOWN](js-apis-keycode.md#keycode) keys are supported.|
+| action    | number  | Yes     | No     | Key event type. Currently, the value can only be **1**.<br>- **1**: Key press.<br>- **2**: Key release.|
 | isRepeat  | boolean  | Yes     | No     | Whether to report repeated key events.|
 
 ## inputConsumer.getAllSystemHotkeys<sup>14+</sup>
@@ -68,7 +68,7 @@ inputConsumer.getAllSystemHotkeys().then((data: Array<inputConsumer.HotkeyOption
 });
 ```
 
-## inputConsumer.on('hotkeyOptions')<sup>14+</sup>
+## inputConsumer.on('hotkeyChange')<sup>14+</sup>
 
 on(type: 'hotkeyChange', hotkeyOptions: HotkeyOptions, callback: Callback&lt;HotkeyOptions&gt;): void
 
@@ -111,11 +111,11 @@ let hotkeyCallback = (hotkeyOptions: inputConsumer.HotkeyOptions) => {
 try {
   inputConsumer.on("hotkeyChange", hotkeyOptions, hotkeyCallback);
 } catch (error) {
-  console.log(`Subscribe failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Subscribe failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
-## inputConsumer.off('hotkeyOptions')<sup>14+</sup>
+## inputConsumer.off('hotkeyChange')<sup>14+</sup>
 
 off(type: 'hotkeyChange', hotkeyOptions: HotkeyOptions, callback?: Callback&lt;HotkeyOptions&gt;): void
 
@@ -155,7 +155,7 @@ try {
   inputConsumer.off("hotkeyChange", hotkeyOption, hotkeyCallback);
   console.log(`Unsubscribe success`);
 } catch (error) {
-  console.log(`Execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -172,7 +172,7 @@ try {
   inputConsumer.off("hotkeyChange", hotkeyOption);
   console.log(`Unsubscribe success`);
 } catch (error) {
-  console.log(`Execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -214,7 +214,7 @@ try {
     console.log(`Subscribe success ${JSON.stringify(event)}`);
   });
 } catch (error) {
-  console.log(`Subscribe execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Subscribe execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -253,6 +253,6 @@ try {
   // Disable listening for all callbacks.
   inputConsumer.off("keyPressed");
 } catch (error) {
-  console.log(`Unsubscribe execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Unsubscribe execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```

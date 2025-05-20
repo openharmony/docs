@@ -44,13 +44,13 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 try {
   inputDevice.getDeviceList((error: Error, ids: Array<Number>) => {
     if (error) {
-      console.log(`Failed to get device id list, error: ${JSON.stringify(error, [`code`, `message`])}`);
+      console.error(`Failed to get device id list, error: ${JSON.stringify(error, [`code`, `message`])}`);
       return;
     }
     console.log(`Device id list: ${JSON.stringify(ids)}`);
   });
 } catch (error) {
-  console.log(`Failed to get device id list, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Failed to get device id list, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -76,7 +76,7 @@ try {
     console.log(`Device id list: ${JSON.stringify(ids)}`);
   });
 } catch (error) {
-  console.log(`Failed to get device id list, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Failed to get device id list, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -110,13 +110,13 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 try {
   inputDevice.getDeviceInfo(1, (error: Error, deviceData: inputDevice.InputDeviceData) => {
     if (error) {
-      console.log(`Failed to get device info, error: ${JSON.stringify(error, [`code`, `message`])}`);
+      console.error(`Failed to get device info, error: ${JSON.stringify(error, [`code`, `message`])}`);
       return;
     }
     console.log(`Device info: ${JSON.stringify(deviceData)}`);
   });
 } catch (error) {
-  console.log(`Failed to get device info, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Failed to get device info, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -157,7 +157,7 @@ try {
     console.log(`Device info: ${JSON.stringify(deviceData)}`);
   });
 } catch (error) {
-  console.log(`Failed to get device info, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Failed to get device info, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -194,10 +194,10 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 ```js
 // Obtain the name of the device whose ID is 1.
 try {
-  let deviceData: inputDevice.InputDeviceData = inputDevice.getDeviceInfoSync(1)
-  console.log(`Device info: ${JSON.stringify(deviceData)}`)
+  let deviceData: inputDevice.InputDeviceData = inputDevice.getDeviceInfoSync(1);
+  console.log(`Device info: ${JSON.stringify(deviceData)}`);
 } catch (error) {
-  console.log(`Failed to get device info, error: ${JSON.stringify(error, [`code`, `message`])}`)
+  console.error(`Failed to get device info, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -244,7 +244,7 @@ try {
   });
   // Check whether the soft keyboard is open based on the value of isPhysicalKeyboardExist.
 } catch (error) {
-  console.log(`Get device info failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Get device info failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -281,21 +281,21 @@ let callback = (data: inputDevice.DeviceListener) => {
 try {
   inputDevice.on("change", callback);
 } catch (error) {
-  console.log(`Listen device event failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Listen device event failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 
 // Disable this listener.
 try {
   inputDevice.off("change", callback);
 } catch (error) {
-  console.log(`Cancel listening device event failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Cancel listening device event failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 
 // Disable all listeners.
 try {
   inputDevice.off("change");
 } catch (error) {
-  console.log(`Cancel all listening device event failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Cancel all listening device event failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -320,7 +320,7 @@ Obtains the IDs of all input devices. This API uses an asynchronous callback to 
 ```js
 inputDevice.getDeviceIds((error: Error, ids: Array<Number>) => {
   if (error) {
-    console.log(`Failed to get device id list, error: ${JSON.stringify(error, [`code`, `message`])}`);
+    console.error(`Failed to get device id list, error: ${JSON.stringify(error, [`code`, `message`])}`);
     return;
   }
   console.log(`Device id list: ${JSON.stringify(ids)}`);
@@ -374,7 +374,7 @@ Obtains the information about the input device with the specified ID. This API u
 // Obtain the name of the device whose ID is 1.
 inputDevice.getDevice(1, (error: Error, deviceData: inputDevice.InputDeviceData) => {
   if (error) {
-    console.log(`Failed to get device info, error: ${JSON.stringify(error, [`code`, `message`])}`);
+    console.error(`Failed to get device info, error: ${JSON.stringify(error, [`code`, `message`])}`);
     return;
   }
   console.log(`Device info: ${JSON.stringify(deviceData)}`);
@@ -445,7 +445,7 @@ try {
     console.log(`Query result: ${JSON.stringify(supportResult)}`);
   });
 } catch (error) {
-  console.log(`Query failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Query failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -487,7 +487,7 @@ try {
     console.log(`Query result: ${JSON.stringify(supportResult)}`);
   });
 } catch (error) {
-  console.log(`Query failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Query failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -528,7 +528,7 @@ try {
   let supportResult: Array<Boolean> = inputDevice.supportKeysSync(1, [17, 22, 2055])
   console.log(`Query result: ${JSON.stringify(supportResult)}`)
 } catch (error) {
-  console.log(`Query failed, error: ${JSON.stringify(error, [`code`, `message`])}`)
+  console.error(`Query failed, error: ${JSON.stringify(error, [`code`, `message`])}`)
 }
 ```
 
@@ -562,13 +562,13 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 try {
   inputDevice.getKeyboardType(1, (error: Error, type: Number) => {
     if (error) {
-      console.log(`Failed to get keyboard type, error: ${JSON.stringify(error, [`code`, `message`])}`);
+      console.error(`Failed to get keyboard type, error: ${JSON.stringify(error, [`code`, `message`])}`);
       return;
     }
     console.log(`Keyboard type: ${JSON.stringify(type)}`);
   });
 } catch (error) {
-  console.log(`Failed to get keyboard type, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Failed to get keyboard type, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -609,7 +609,7 @@ try {
     console.log(`Keyboard type: ${JSON.stringify(type)}`);
   });
 } catch (error) {
-  console.log(`Failed to get keyboard type, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Failed to get keyboard type, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -649,7 +649,7 @@ try {
   let type: number = inputDevice.getKeyboardTypeSync(1)
   console.log(`Keyboard type: ${JSON.stringify(type)}`)
 } catch (error) {
-  console.log(`Failed to get keyboard type, error: ${JSON.stringify(error, [`code`, `message`])}`)
+  console.error(`Failed to get keyboard type, error: ${JSON.stringify(error, [`code`, `message`])}`)
 }
 ```
 
@@ -692,7 +692,7 @@ try {
     console.log(`capslock state: ${JSON.stringify(state)}`);
   });
 } catch (error) {
-  console.log(`Failed to get capslock state, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Failed to get capslock state, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -735,10 +735,10 @@ try {
   inputDevice.setFunctionKeyEnabled(inputDevice.FunctionKey.CAPS_LOCK, true).then(() => {
     console.info(`Set capslock state success`);
   }).catch((error: BusinessError) => {
-    console.info(`Set capslock state failed, error=${JSON.stringify(error)}`);
+    console.error(`Set capslock state failed, error=${JSON.stringify(error)}`);
   });
 } catch (error) {
-    console.info(`Set capslock enable error`);
+    console.error(`Set capslock enable error`);
 }
 ```
 
@@ -787,7 +787,7 @@ Provides information about an input device.
 | name                 | string                                 | Yes| No| Name of the input device.                                            |
 | sources              | Array&lt;[SourceType](#sourcetype9)&gt; | Yes| No| Source type of the input device. For example, if a keyboard is attached with a touchpad, the device has two input sources: keyboard and touchpad.|
 | axisRanges           | Array&lt;[AxisRange](#axisrange)&gt;  | Yes| No| Axis information of the input device.                                          |
-| bus<sup>9+</sup>     | number                                 | Yes| No| Bus type of the input device.                                        |
+| bus<sup>9+</sup>     | number                                 | Yes| No| Bus type of the input device. By default, the bus type reported by the input device prevails.            |
 | product<sup>9+</sup> | number                                 | Yes| No| Product information of the input device.                                        |
 | vendor<sup>9+</sup>  | number                                 | Yes| No| Vendor information of the input device.                                        |
 | version<sup>9+</sup> | number                                 | Yes| No| Version information of the input device.                                        |
