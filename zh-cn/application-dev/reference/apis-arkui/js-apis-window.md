@@ -410,6 +410,18 @@ import { window } from '@kit.ArkUI';
 | animated<sup>20+</sup> | boolean  | 否 | 当前是否有显示/隐藏动画，true表示有动画，false表示没有。 |
 | config<sup>20+</sup> | [WindowAnimationConfig](#windowanimationconfig20)  | 否 | 动画配置信息。 |
 
+## ShowWindowOptions<sup>20+</sup>
+
+显示子窗口或系统窗口时的参数。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+| 名称   | 类型   | 必填 | 说明                                       |
+| ------ | ------ | ---- | ------------------------------------------ |
+| focusOnShow | boolean  | 否 | 窗口调用[showWindow()](#showwindow20)显示时是否自动获焦，默认为true。该参数对主窗、模态窗、dialog窗口不生效。|
+
 ## WindowAnimationCurve<sup>20+</sup>
 
 窗口动画曲线类型。
@@ -1792,6 +1804,71 @@ promise.then(() => {
 }).catch((err: BusinessError) => {
   console.error(`Failed to show the window. Cause code: ${err.code}, message: ${err.message}`);
 });
+```
+
+### showWindow<sup>20+</sup>
+
+showWindow(options: ShowWindowOptions): Promise&lt;void&gt;
+
+显示当前窗口，使用Promise异步回调，仅支持系统窗口及应用子窗口，或将已显示的应用主窗口的层级提升至顶部。支持传入参数来控制窗口显示的行为。
+
+**系统能力：** SystemCapability.WindowManager.WindowManager
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**返回值：**
+
+| 类型 | 说明 |
+| ------------------- | ----------------------- |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[窗口错误码](errorcode-window.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ------------------------------ |
+| 801     | Capability not supported. Function showWindow can not work correctly due to limited device capabilities. |
+| 1300002 | This window state is abnormal. |
+| 1300004 | Unauthorized operation. |
+| 1300016     | Parameter validation error. Possible cause: 1. The value of the parameter is out of the allowed range; 2. The length of the parameter exceeds the allowed length; 3. The parameter format is incorrect. |
+
+**示例：**
+
+```ts
+// EntryAbility.ets
+import { window } from '@kit.ArkUI';
+import { UIAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+export default class EntryAbility extends UIAbility {
+  onWindowStageCreate(windowStage: window.WindowStage): void {
+    console.info('onWindowStageCreate');
+    // 创建子窗
+    try {
+      windowStage.createSubWindow('subWindow').then((data) => {
+        if (data == null) {
+          console.error('Failed to create the sub window. Cause: The data is empty');
+          return;
+        }
+        let options: window.ShowWindowOptions = {
+          focusOnShow: false
+        };
+        try {
+          data.showWindow(options).then(() => {
+            console.info('Succeeded in showing window');
+          }).catch((err: BusinessError) => {
+            console.error(`Failed to show window. Cause code: ${err.code}, message: ${err.message}`);
+          });
+        } catch (exception) {
+          console.error(`Failed to show window. Cause code: ${exception.code}, message: ${exception.message}`);
+        }
+      });
+    } catch (exception) {
+      console.error(`Failed to create the sub window. Cause code: ${exception.code}, message: ${exception.message}`);
+    }
+  }
+}
 ```
 
 ### destroyWindow<sup>9+</sup>
