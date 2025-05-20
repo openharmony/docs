@@ -512,7 +512,7 @@ struct Index {
 当再次赋值list[0]时，dataObjFromList已经是一个Proxy类型，而list[0]是Array类型，判断是不相等的，因此会触发赋值和刷新。  
 为了避免这种不必要的赋值和刷新，可以使用[UIUtils.getTarget()](./arkts-new-getTarget.md)获取原始对象提前进行新旧值的判断，当两者相同时不执行赋值。
 
-使用UIUtils.getTarget()方法示例
+使用UIUtils.getTarget()方法示例。
 
 ```ts
 import { UIUtils } from '@ohos.arkui.StateManagement';
