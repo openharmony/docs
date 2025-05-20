@@ -26,6 +26,7 @@ HiTrace提供业务流程调用链跟踪的维测接口，帮助开发者迅速�
 | --start_bgsrv         | 开启快照模式trace捕获。                                       |
 | --dump_bgsrv          | 触发快照模式trace输出到文件。                                 |
 | --stop_bgsrv          | 关闭快照模式trace捕获。                                       |
+| --trace_level         | 设置trace输出级别阈值，输出级别可以是Debug、Info、Critical、Commercial或其对应缩写D、I、C、M。 |
 
 > **说明**
 >
@@ -51,7 +52,7 @@ $ hitrace -l
        animation - Animation
              app - APP Module
              ark - ARK Module
-       bluetooth - communicatio bluetooth
+       bluetooth - communication bluetooth
            cloud - Cloud subsystem tag
        cloudfile - Cloud file system
       commercial - Commercial version tag
@@ -64,7 +65,7 @@ $ hitrace -l
            dhfwk - Distributed Hardware FWK
           dinput - Distributed Input
             disk - Disk I/O
-istributeddatamgr - Distributed Data Manager
+distributeddatamgr - Distributed Data Manager
           dlpcre - Dlp Credential Service
              drm - Digital Rights Management
           dsched - Distributed Schedule
@@ -183,7 +184,7 @@ $ hitrace -b 10240 -t 10 -o /data/local/tmp/test2.ftrace app ability
 
 ### 导出trace信息
 
-默认将信息显示在命令行窗口。
+默认在命令行窗口显示信息。
 
 ```shell
 hitrace --trace_dump
@@ -208,7 +209,7 @@ $ hitrace --trace_dump
            <...>-21829   (  19280) [003] .... 3011033.731865: tracing_mark_write: trace_event_clock_sync: parent_ts=3011033.750000
 #
 ```
-添加输出路径，trace信息将导出至对应的文件中。
+添加输出路径，trace信息将导出到对应文件。
 
 ```shell
 hitrace --trace_dump -o /data/local/tmp/test3.ftrace
@@ -305,4 +306,28 @@ hitrace --trace_finish_nodump
 $ hitrace --trace_finish_nodump
 2024/11/14 12:03:07 hitrace enter, running_state is RECORDING_LONG_FINISH_NODUMP
 2024/11/14 12:03:07 end capture trace.
+```
+
+### 查看和设置trace输出级别阈值
+
+打点级别优先级从高到低分别为 `M`(commercial)、`C`（critical）、`I`（info）、`D`（debug），低于trace输出级别阈值的打点将不会生效。
+
+开发者可使用带trace级别的打点接口（参考[js-apis-hitracemeter](../reference/apis-performance-analysis-kit/js-apis-hitracemeter.md)和[_hitrace](../reference/apis-performance-analysis-kit/_hitrace.md)中的API version 19的trace打点接口），测试不同阈值下的trace输出是否符合预期。
+
+```shell
+// 查看trace输出级别阈值，打印的为数值，0表示Debug，1表示Info，2表示Critical，3表示Commercial
+param get persist.hitrace.level.threshold
+
+// 设置trace输出级别阈值
+hitrace --trace_level D/I/C/M
+hitrace --trace_level Debug/Info/Critical/Commercial
+```
+**使用样例：**
+
+```shell
+$ hitrace --trace_level Info
+2024/11/14 12:05:07 hitrace enter, running_state is SET_TRACE_LEVEL
+2024/11/14 12:05:07 success to set trace level.
+$ param get persist.hitrace.level.threshold
+1
 ```
