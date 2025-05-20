@@ -55,6 +55,10 @@ onAcceptWant(want: Want): string
 
 启动一个specified ability时触发的事件。同步接口，不支持异步回调。
 
+> **说明：**
+>
+> 从API version 20开始，当[AbilityStage.onAcceptWantAsync](#abilitystageonacceptwantasync20)实现时，本回调函数将不执行。
+
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
@@ -89,6 +93,10 @@ class MyAbilityStage extends AbilityStage {
 onNewProcessRequest(want: Want): string
 
 在指定进程中启动UIAbility时回调。同步接口，不支持异步回调。
+
+> **说明：**
+>
+> 从API version 20开始，当[AbilityStage.onNewProcessRequestAsync](#abilitystageonnewprocessrequestasync20)实现时，本回调函数将不执行。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -298,6 +306,84 @@ class MyAbilityStage extends AbilityStage {
       setTimeout(res, 3000); // 延时3秒后执行
     });
     return AbilityConstant.PrepareTermination.CANCEL;
+  }
+}
+```
+
+## AbilityStage.onAcceptWantAsync<sup>20+</sup>
+
+onAcceptWantAsync(want: Want): Promise\<string\>
+
+当启动模式配置为specified的UIAbility被拉起时，会触发该回调，并返回一个string作为待启动的UIAbility实例的唯一标志。使用Promise异步回调。
+
+如果系统中已经有相同标记的UIAbility实例存在，则复用已有实例，否则创建新的实例。详见：[specified启动模式](../../application-models/uiability-launch-type.md#specified启动模式)。
+
+**原子化服务API**：从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| want | [Want](js-apis-app-ability-want.md) | 是 | Want类型参数，传入需要启动的UIAbility的信息，如UIAbility名称、Bundle名称等。 |
+
+**返回值：**
+
+  | 类型 | 说明 | 
+  | -------- | -------- |
+  | Promise\<string\> | Promise对象，返回一个string作为待启动的UIAbility实例的唯一标志。如果系统中已经有该标志的UIAbility实例存在，则复用已有实例，否则创建新的实例。 |
+
+**示例：**
+    
+```ts
+import { AbilityStage } from '@kit.AbilityKit';
+
+class MyAbilityStage extends AbilityStage {
+  async onAcceptWantAsync(): Promise<string> {
+    await new Promise<string>((res, rej) => {
+      setTimeout(res, 1000); // 延时1秒后执行
+    });
+    return 'default';
+  }
+}
+```
+
+## AbilityStage.onNewProcessRequestAsync<sup>20+</sup>
+
+onNewProcessRequestAsync(want: Want): Promise\<string\>
+
+如果UIAbility配置了在独立进程中运行（即[module.json5配置文件](../../quick-start/module-configuration-file.md)中UIAbility的isolationProcess字段取值为true），当该UIAbility被拉起时，会触发该回调，并返回一个string作为进程唯一标志。使用Promise异步回调。
+
+如果该应用已有相同标志的进程存在，则待启动的UIAbility运行在此进程中，否则创建新的进程。
+
+该接口仅在2in1和tablet设备上生效。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| want | [Want](js-apis-app-ability-want.md) | 是 | Want类型参数，传入需要启动的UIAbility的信息，如UIAbility名称、Bundle名称等。 |
+
+**返回值：**
+
+| 类型 | 说明 | 
+| -------- | -------- |
+| Promise\<string\> | Promise对象，返回一个由开发者自定义的进程字符串标识。如果该应用已有相同标志的进程存在，则UIAbility在此进程中运行，否则创建新的进程。 |
+
+**示例：**
+    
+```ts
+import { AbilityStage } from '@kit.AbilityKit';
+
+class MyAbilityStage extends AbilityStage {
+  async onNewProcessRequestAsync(): Promise<string> {
+    await new Promise<string>((res, rej) => {
+      setTimeout(res, 1000); // 延时1秒后执行
+    });
+    return '';
   }
 }
 ```

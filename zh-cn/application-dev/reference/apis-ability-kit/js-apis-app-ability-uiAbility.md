@@ -589,6 +589,10 @@ onSaveState(reason: AbilityConstant.StateType, wantParam: Record&lt;string, Obje
 
 该API配合[appRecovery](js-apis-app-ability-appRecovery.md)使用。当应用出现故障时，如果已启用自动保存状态，框架将调用onSaveState来保存UIAbility的状态。
 
+> **说明：**
+>
+> 从API version 20开始，当[UIAbility.onSaveStateAsync](#uiabilityonsavestateasync20)实现时，本回调函数将不执行。
+
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
@@ -615,6 +619,44 @@ class MyUIAbility extends UIAbility {
   onSaveState(reason: AbilityConstant.StateType, wantParam: Record<string, Object>) {
     console.log('onSaveState');
     wantParam['myData'] = 'my1234567';
+    return AbilityConstant.OnSaveResult.RECOVERY_AGREE;
+  }
+}
+```
+
+## UIAbility.onSaveStateAsync<sup>20+</sup>
+
+onSaveStateAsync(stateType: AbilityConstant.StateType, wantParam: Record&lt;string, Object&gt;): Promise\<AbilityConstant.OnSaveResult>
+
+如果应用已使能故障恢复功能（即[enableAppRecovery](js-apis-app-ability-appRecovery.md#apprecoveryenableapprecovery)接口中的saveOccasion参数设置为SAVE_WHEN_ERROR），当应用出现故障时，将触发该回调来保存UIAbility的数据。使用Promise异步回调。
+
+**原子化服务API**：从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| stateType | [AbilityConstant.StateType](js-apis-app-ability-abilityConstant.md#statetype) | 是 | 触发应用保存状态的原因，当前仅支持`APP_RECOVERY`（即应用故障恢复场景）。 |
+| wantParam | Record&lt;string,&nbsp;Object&gt; | 是 | 用户自定义的应用状态数据，应用再启动时被保存在Want.parameters中。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| Promise\<[AbilityConstant.OnSaveResult](js-apis-app-ability-abilityConstant.md#onsaveresult)> | Promise对象。返回一个数据保存策略的对象（如全部拒绝、全部允许、只允许故障恢复场景等）。 |
+
+**示例：**
+
+```ts
+import { UIAbility, AbilityConstant } from '@kit.AbilityKit';
+
+class MyUIAbility extends UIAbility {
+  async onSaveStateAsync(reason: AbilityConstant.StateType, wantParam: Record<string, Object>) : Promise<AbilityConstant.OnSaveResult> {
+    await new Promise<string>((res, rej) => {
+      setTimeout(res, 1000); // 延时1秒后执行
+    });
     return AbilityConstant.OnSaveResult.RECOVERY_AGREE;
   }
 }
