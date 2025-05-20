@@ -15275,7 +15275,7 @@ isMainFrame(): boolean
 
 | 类型     | 说明            |
 | ------ | ------------- |
-| boolean | 判断资源请求是否为主frame。 |
+| boolean | 判断资源请求是否为主frame，true表示是主frame，false表示不是主frame。 |
 
 **示例：**
 
