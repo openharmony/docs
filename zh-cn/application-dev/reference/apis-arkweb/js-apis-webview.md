@@ -75,9 +75,9 @@ struct WebComponent {
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
-| 名称         | 类型   | 可读 | 可写 | 说明                                              |
+| 名称         | 类型   | 只读 | 可选 | 说明                                              |
 | ------------ | ------ | ---- | ---- | ------------------------------------------------|
-| isExtentionType<sup>10+</sup> | boolean | 是   | 是 | 创建WebMessagePort时是否指定使用扩展增强接口，[postMessageEventExt](#postmessageeventext10)、[onMessageEventExt](#onmessageeventext10)。<br>true表示使用扩展增强接口，false表示不使用扩展增强接口。<br>默认值：false。   |
+| isExtentionType<sup>10+</sup> | boolean | 否   | 是 | 创建WebMessagePort时是否指定使用扩展增强接口，[postMessageEventExt](#postmessageeventext10)、[onMessageEventExt](#onmessageeventext10)。<br>true表示使用扩展增强接口，false表示不使用扩展增强接口。<br>默认值：false。   |
 
 ### postMessageEvent
 
@@ -11875,10 +11875,10 @@ Web组件返回的请求/响应头对象。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
-| 名称        | 类型   | 可读 | 可写 |说明                 |
+| 名称        | 类型   | 只读 | 可选 |说明                 |
 | ----------- | ------ | -----|------|------------------- |
-| headerKey   | string | 是 | 是 | 请求/响应头的key。   |
-| headerValue | string | 是 | 是 | 请求/响应头的value。 |
+| headerKey   | string | 否 | 否 | 请求/响应头的key。   |
+| headerValue | string | 否 | 否 | 请求/响应头的value。 |
 
 ## RequestInfo<sup>12+</sup>
 
@@ -11886,11 +11886,11 @@ Web组件发送的资源请求信息。
 
 **系统能力：**: SystemCapability.Web.Webview.Core
 
-| 名称      | 类型   | 可读 | 可写 |说明        |
+| 名称      | 类型   | 只读 | 可选 |说明        |
 | ---------| ------ | -----|------|--------  |
-| url      | string | 是 | 是 | 请求的链接。    |
-| method   | string | 是 | 是 | 请求的方法。    |
-| formData | string | 是 | 是 | 请求的表单数据。 |
+| url      | string | 否 | 否 | 请求的链接。    |
+| method   | string | 否 | 否 | 请求的方法。    |
+| formData | string | 否 | 否 | 请求的表单数据。 |
 
 ## WebHitTestType
 
@@ -11928,10 +11928,10 @@ Web组件发送的资源请求信息。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
-| 名称 | 类型 | 可读 | 可写 | 说明|
+| 名称 | 类型 | 只读 | 可选 | 说明|
 | ---- | ---- | ---- | ---- |---- |
-| type | [WebHitTestType](#webhittesttype) | 是 | 是 | 当前被点击区域的元素类型。|
-| extra | string        | 是 | 是 |点击区域的附加参数信息。若被点击区域为图片或链接，则附加参数信息为其url地址。 |
+| type | [WebHitTestType](#webhittesttype) | 否 | 否 | 当前被点击区域的元素类型。|
+| extra | string        | 否 | 否 |点击区域的附加参数信息。若被点击区域为图片或链接，则附加参数信息为其url地址。 |
 
 ## WebMessage
 
@@ -12439,11 +12439,11 @@ setError(message: Error): void
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
-| 名称   | 类型   | 可读 | 可写 | 说明 |
+| 名称   | 类型   | 只读 | 可选 | 说明 |
 | ------ | ------ | ---- | ---- | ---- |
-| origin | string | 是  | 是 | 指定源的字符串索引。 |
-| usage  | number | 是  | 是 | 指定源的存储量。     |
-| quota  | number | 是  | 是 | 指定源的存储配额。   |
+| origin | string | 否  | 否 | 指定源的字符串索引。 |
+| usage  | number | 否  | 否 | 指定源的存储量。     |
+| quota  | number | 否  | 否 | 指定源的存储配额。   |
 
 ## BackForwardList
 
@@ -12451,10 +12451,10 @@ setError(message: Error): void
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
-| 名称         | 类型   | 可读 | 可写 | 说明                                                         |
+| 名称         | 类型   | 只读 | 可选 | 说明                                                         |
 | ------------ | ------ | ---- | ---- | ------------------------------------------------------------ |
-| currentIndex | number | 是   | 是   | 当前在页面历史列表中的索引。                                 |
-| size         | number | 是   | 是   | 历史列表中索引的数量，最多保存50条，超过时起始记录会被覆盖。 |
+| currentIndex | number | 否   | 否   | 当前在页面历史列表中的索引。                                 |
+| size         | number | 否   | 否   | 历史列表中索引的数量，最多保存50条，超过时起始记录会被覆盖。 |
 
 ### getItemAtIndex
 
