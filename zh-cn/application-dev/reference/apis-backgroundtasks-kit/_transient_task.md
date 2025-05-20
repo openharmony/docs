@@ -56,7 +56,7 @@
 ### TRANSIENT_TASK_MAX_NUM
 
 ```
-typedef struct TransientTask_DelaySuspendInfo TransientTask_DelaySuspendInfo
+#define TRANSIENT_TASK_MAX_NUM 3
 ```
 **描述**
 
