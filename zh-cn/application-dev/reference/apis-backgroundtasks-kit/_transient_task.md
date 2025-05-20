@@ -22,7 +22,7 @@
 | 名称 | 描述 | 
 | -------- | -------- |
 | struct&nbsp;&nbsp;[TransientTask_DelaySuspendInfo](_transient_task___delay_suspend_info.md) | 定义短时任务返回信息结构体。  |
-| struct&nbsp;&nbsp;[TransientTask_TransientTaskInfo](_transient_task___transient_task_info.md) | 定义所有短时任务返回信息结构体。 |
+| struct&nbsp;&nbsp;[TransientTask_TransientTaskInfo](_transient_task___transient_task_info.md) | 定义所有短时任务信息结构体。 |
 
 
 ### 类型定义
@@ -32,7 +32,7 @@
 | typedef enum [TransientTask_ErrorCode](#transienttask_errorcode) [TransientTask_ErrorCode](#transienttask_errorcode) | 定义短时任务错误码。  | 
 | typedef struct [TransientTask_DelaySuspendInfo](_transient_task___delay_suspend_info.md) [TransientTask_DelaySuspendInfo](_transient_task___delay_suspend_info.md)| 定义短时任务返回信息结构体。  | 
 | typedef void(\* [TransientTask_Callback](#transienttask_callback)) (void) | 定义短时任务超时回调类型。  |
-| typedef struct [TransientTask_TransientTaskInfo](_transient_task___transient_task_info.md) [TransientTask_TransientTaskInfo](_transient_task___transient_task_info.md)| 定义所有短时任务返回信息结构体。 | 
+| typedef struct [TransientTask_TransientTaskInfo](_transient_task___transient_task_info.md) [TransientTask_TransientTaskInfo](_transient_task___transient_task_info.md)| 定义所有短时任务信息结构体。 | 
 
 
 ### 枚举
@@ -122,6 +122,8 @@ enum TransientTask_ErrorCode
 | ERR_TRANSIENT_TASK_SYS_NOT_READY  | \@error 系统服务失败。&nbsp;&nbsp; | 
 | ERR_TRANSIENT_TASK_CLIENT_INFO_VERIFICATION_FAILED  | \@error 短时任务客户端信息校验失败。&nbsp;&nbsp; | 
 | ERR_TRANSIENT_TASK_SERVICE_VERIFICATION_FAILED  | \@error 短时任务服务端校验失败。&nbsp;&nbsp; | 
+| ERR_TRANSIENT_TASK_PARCELABLE_FAILED | \@error 短时任务Parcel读写操作失败。可能原因：1.参数非法。2.申请内存失败。&nbsp;&nbsp; | 
+| ERR_TRANSIENT_TASK_SERVICE_NOT_READY | \@error 短时任务系统服务失败。&nbsp;&nbsp; | 
 
 
 ## 函数说明
@@ -220,4 +222,4 @@ int32_t OH_BackgroundTaskManager_GetAllTransientTasks (TransientTask_TransientTa
 
 **返回：**
 
-返回0，表示申请成功。 </br>返回401，表示入参错误。 </br>返回9800001，表示内存操作失败。 </br>返回9800002，表示Parcel读写操作失败。 </br>返回9800004，表示系统服务失败。</br>错误码的具体信息请参考[TransientTask_ErrorCode](#transienttask_errorcode)。
+返回0，表示申请成功。 </br>返回9900001，表示短时任务客户端信息校验失败。 </br>返回9900003，表示短时任务Parcel读写操作失败。 </br>返回9900004，表示短时任务系统服务失败。</br>错误码的具体信息请参考[TransientTask_ErrorCode](#transienttask_errorcode)。
