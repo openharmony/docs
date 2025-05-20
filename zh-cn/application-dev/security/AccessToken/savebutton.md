@@ -20,6 +20,17 @@
 
 - 为了保障用户的隐私不被恶意应用获取，应用需确保安全控件是可见的且用户能够识别的。开发者需要合理的配置控件的尺寸、颜色等属性，避免视觉混淆的情况，如果发生因控件的样式不合法导致授权失败的情况，请检查设备错误日志。
 
+- 当开发者需要自定义保存控件的图标和文本时，需要向应用市场申请ohos.permission.CUSTOMIZE_SAVE_BUTTON权限，此时点击保存控件时会弹出系统提示弹框。
+  此外，当应用具有ohos.permission.CUSTOMIZE_SAVE_BUTTON权限，且保存控件不满足[约束与限制](security-component-overview.md#约束与限制)时，也会弹出保存控件系统提示弹框。
+
+  应用处于前台时系统提示弹框仅弹一次，应用从后台或者死亡等状态重新拉起进入前台后，点击保存控件，系统提示弹框会再次弹出。
+  > **注意：**
+  > ohos.permission.CUSTOMIZE_SAVE_BUTTON受限开放，仅默认样式无法满足业务场景时可申请，申请方式请参考<!--RP1-->[申请使用受限权限](declare-permissions-in-acl.md)<!--RP1End-->。
+
+  保存控件系统提示弹框：
+
+  ![savebutton_tip](figures/savebutton_tip.png)
+
 ## 开发步骤
 
 以保存对话中图片为例，应用仅需要在前台期间，短暂使用保存图片的特性，不需要长时间使用。此时，可以直接使用安全控件中的保存控件，免去权限申请和权限请求等环节，获得临时授权，保存对应图片。
@@ -33,7 +44,7 @@
 
 2. 设置图片资源，并添加保存控件。
    
-   保存控件是一种类似于按钮的安全控件，由图标、文本和背景组成。其中，图标和文本至少需要有一个，背景是必选的。图标和文本不能自定义，只能从已有的选项中选择。在声明安全控件的接口时，有传参和不传参两种方式。不传参将默认创建一个包含图标、文字和背景的按钮，传参则根据参数创建，不包含未配置的元素。
+   保存控件是一种类似于按钮的安全控件，由图标、文本和背景组成。其中，背景是必选的，图标和文本至少选择一个。图标和文本可以从已有的选项中选择，也可以通过[setIcon](../../reference/apis-arkui/arkui-ts/ts-security-components-savebutton.md#seticon20)和[setText](../../reference/apis-arkui/arkui-ts/ts-security-components-savebutton.md#settext20)自定义。在声明安全控件的接口时，有传参和不传参两种方式。不传参将默认创建一个包含图标、文字和背景的按钮；传参则根据参数创建，不包含未配置的元素。
 
    当前示例使用默认参数。具体请参见[SaveButton控件](../../reference/apis-arkui/arkui-ts/ts-security-components-savebutton.md)。此外，所有安全控件都继承[安全控件通用属性](../../reference/apis-arkui/arkui-ts/ts-securitycomponent-attributes.md)，可用于定制样式。
    
