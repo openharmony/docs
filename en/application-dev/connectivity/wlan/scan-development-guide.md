@@ -34,6 +34,7 @@ The following table describes the related APIs.
 Sample code:
 
 > **NOTE**
+> 
 > The Wi-Fi scan API is deprecated since API version 10. The substitute API is available only for system applications.
 
 ```ts
@@ -78,7 +79,7 @@ Sample code:
   }
 ```
 
- 5. For details about error codes, see [Wi-Fi Error Codes](../../reference/apis-connectivity-kit/errorcode-wifi.md).
+For details about error codes, see [Wi-Fi Error Codes](../../reference/apis-connectivity-kit/errorcode-wifi.md).
 
 ### PNO Scan
 
