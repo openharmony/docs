@@ -6825,6 +6825,12 @@ getLastJavascriptProxyCallingFrameUrl(): string
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
+**返回值：**
+
+| 类型     | 说明           |
+| ------ | ------------ |
+| string | 最后一次调用注入的对象的frame的url。 |
+
 **错误码：**
 
 以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
