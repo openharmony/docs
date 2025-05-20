@@ -5325,6 +5325,58 @@ async function example() {
 }
 ```
 
+### deleteAlbumsWithUri<sup>19+</sup>
+
+static deleteAlbumsWithUri(context: Context, albumUris: Array&lt;string&gt;): Promise&lt;void&gt;
+
+删除已存在的用户相册。使用promise异步回调。
+
+**系统接口**：此接口为系统接口。
+
+**需要权限**：ohos.permission.WRITE_IMAGEVIDEO
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**参数：**
+
+| 参数名  | 类型    | 必填 | 说明                       |
+| ------- | ------- | ---- | -------------------------- |
+| context | [Context](../apis-ability-kit/js-apis-inner-application-context.md) | 是   | 传入Ability实例的Context。 |
+| albumUris  |  Array&lt;string&gt;          | 是   | 待删除相册Uri的数组。         |
+
+**返回值：**
+
+| 类型                                    | 说明              |
+| --------------------------------------- | ----------------- |
+| Promise&lt;void&gt;| Promise对象。无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[文件管理错误码](../apis-core-file-kit/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 201      |  Permission denied.         |
+| 202      |  Called by non-system application.  |
+| 13900020 |  Invalid argument. | 
+| 14000011 |  Internal system error. It is recommended to retry and check the logs. Possible causes: 1. Database corrupted; 2.The file System is abnormal; 3. The IPC request timed out;  |
+
+**示例：**
+
+```ts
+import { photoAccessHelper } from '@kit.MediaLibraryKit';
+
+async function example(albumUri: string) {
+  console.info('deleteAlbumsWithUriDemo');
+  try {
+    await photoAccessHelper.MediaAlbumChangeRequest.deleteAlbumsWithUri(context, [albumUri]);
+    console.info('deleteAlbums successfully');
+  } catch (err) {
+    console.error('deleteAlbumsWithUriDemo failed with error: ${err.code}, ${err.message}');
+  }
+}
+```
+
 ### setCoverUri<sup>11+</sup>
 
 setCoverUri(coverUri: string): void
