@@ -744,7 +744,9 @@ try {
 
 getLastWindow(ctx: BaseContext, callback: AsyncCallback&lt;Window&gt;): void
 
-获取当前应用内最上层的子窗口，若无应用子窗口，则返回应用主窗口，使用callback异步回调。
+获取当前应用内最上层显示的子窗口，使用callback异步回调。
+
+若无应用子窗口或子窗口未调用[showWindow()](#showwindow9)进行显示，则返回应用主窗口。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -803,7 +805,9 @@ export default class EntryAbility extends UIAbility {
 
 getLastWindow(ctx: BaseContext): Promise&lt;Window&gt;
 
-获取当前应用内最上层的子窗口，若无应用子窗口，则返回应用主窗口，使用Promise异步回调。
+获取当前应用内最上层显示的子窗口，使用Promise异步回调。
+
+若无应用子窗口或子窗口未调用[showWindow()](#showwindow9)进行显示，则返回应用主窗口。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
