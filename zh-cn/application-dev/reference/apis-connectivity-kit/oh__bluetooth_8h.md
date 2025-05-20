@@ -29,9 +29,8 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [Bluetooth_SwitchState](_bluetooth.md#bluetooth_switchstate) {<br/>[BLUETOOTH_STATE_OFF](_bluetooth.md) = 0,<br/>[BLUETOOTH_STATE_TURNING_ON](_bluetooth.md) = 1,<br/>[BLUETOOTH_STATE_ON](_bluetooth.md) = 2,<br/>[BLUETOOTH_STATE_TURNING_OFF](_bluetooth.md) = 3,<br/>[BLUETOOTH_STATE_BLE_TURNING_ON](_bluetooth.md) = 4,<br/>[BLUETOOTH_STATE_BLE_ON](_bluetooth.md) = 5,<br/>[BLUETOOTH_STATE_BLE_TURNING_OFF](_bluetooth.md) = 6<br/>} | 定义蓝牙开关状态的枚举值。 | 
-| [Bluetooth_ResultCode](_bluetooth.md#bluetooth_resultcode) {<br/>[BLUETOOTH_SUCCESS](_bluetooth.md) = 0,<br/>[BLUETOOTH_INVALID_PARAM](_bluetooth.md) = 401<br/>} | 定义蓝牙返回值的错误码。 | 
-
+| [Bluetooth_SwitchState](_bluetooth.md#bluetooth_switchstate) {<br/>BLUETOOTH_STATE_OFF = 0,<br/>BLUETOOTH_STATE_TURNING_ON = 1,<br/>BLUETOOTH_STATE_ON = 2,<br/>BLUETOOTH_STATE_TURNING_OFF = 3,<br/>BLUETOOTH_STATE_BLE_TURNING_ON = 4,<br/>BLUETOOTH_STATE_BLE_ON = 5,<br/>BLUETOOTH_STATE_BLE_TURNING_OFF = 6<br/>} | 定义蓝牙开关状态的枚举值。 | 
+| [Bluetooth_ResultCode](_bluetooth.md#bluetooth_resultcode) {<br/>BLUETOOTH_SUCCESS = 0,<br/>BLUETOOTH_INVALID_PARAM = 401<br/>} | 定义蓝牙返回值的错误码。 | 
 
 ### 函数
 
