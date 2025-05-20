@@ -9,7 +9,7 @@ ArkUI在Native侧提供的能力是ArkTS的子集，某些能力不会在Native�
 
 > **说明：**
 >
-> - 使用[OH_ArkUI_EmbeddedComponentOption_Create](../reference/apis-arkui/_ark_u_i___native_module.md#arkui_embeddedcomponentoption)获取[ArkUI_EmbeddedComponentOption](../reference/apis-arkui/_ark_u_i___native_module.md#oh_arkui_embeddedcomponentoption_create)后，可以使用[OH_ArkUI_EmbeddedComponentOption_SetOnError](../reference/apis-arkui/_ark_u_i___native_module.md#oh_arkui_embeddedcomponentoption_setonerror)设置onError回调，使用[OH_ArkUI_EmbeddedComponentOption_SetOnTerminated](../reference/apis-arkui/_ark_u_i___native_module.md#oh_arkui_embeddedcomponentoption_setonterminated)设置onTerminated回调。
+> - 使用[OH_ArkUI_EmbeddedComponentOption_Create](../reference/apis-arkui/_ark_u_i___native_module.md#arkui_embeddedcomponentoption)获取[ArkUI_EmbeddedComponentOption](../reference/apis-arkui/_ark_u_i___native_module.md#oh_arkui_embeddedcomponentoption_create)后，可以使用[OH_ArkUI_EmbeddedComponentOption_SetOnError](../reference/apis-arkui/_ark_u_i___native_module.md#oh_arkui_embeddedcomponentoption_setonerror)设置onError回调，使用[OH_ArkUI_EmbeddedComponentOption_SetOnTerminated](../reference/apis-arkui/_ark_u_i___native_module.md#oh_arkui_embeddedcomponentoption_setonterminated)设置onTerminated回调。可以使用[OH_ArkUI_NodeUtils_MoveTo](../reference/apis-arkui/_ark_u_i___native_module.md#oh_arkui_nodeutils_moveto)迁移节点。
 >
 > - 使用[OH_ArkUI_EmbeddedComponentOption_SetOnTerminated](../reference/apis-arkui/_ark_u_i___native_module.md#oh_arkui_embeddedcomponentoption_setonterminated)设置onTerminated回调时，返回的want参数，只支持提供方返回的want参数的key，value解析，不支持嵌套解析。
 
