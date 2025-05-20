@@ -62,7 +62,6 @@ SysCap，全称SystemCapability，即系统能力，指操作系统中每一个�
 - SystemCapability.Applications.CalendarData
 - SystemCapability.Applications.Contacts
 - SystemCapability.Telephony.CallManager
-- SystemCapability.Telephony.CellularCall
 - SystemCapability.Telephony.CellularData
 - SystemCapability.Security.Cert
 - SystemCapability.Notification.CommonEvent
