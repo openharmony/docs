@@ -57,6 +57,8 @@ type(value: InputType)
 
 设置输入框类型。
 
+InputType设置为Password后，设置placeholderColor不生效。
+
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -72,6 +74,8 @@ type(value: InputType)
 placeholderColor(value: ResourceColor)
 
 设置placeholder文本颜色。
+
+InputType设置为Password后，设置placeholderColor不生效。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -333,7 +337,7 @@ selectedBackgroundColor(value: ResourceColor)
 
 | 参数名 | 类型                                       | 必填 | 说明                                       |
 | ------ | ------------------------------------------ | ---- | ------------------------------------------ |
-| value  | [ResourceColor](ts-types.md#resourcecolor) | 是   | 文本选中底板颜色。<br/>默认为20%不透明度。 |
+| value  | [ResourceColor](ts-types.md#resourcecolor) | 是   | 文本选中底板颜色。 |
 
 ### caretStyle<sup>10+</sup>
 
@@ -771,7 +775,7 @@ textOverflow(value: TextOverflow)
 | value  | [TextOverflow](ts-appendix-enums.md#textoverflow)            | 是   | 文本超长时的显示方式。<br/>内联模式非编辑态下默认值：TextOverflow.Ellipsis <br/>内联模式编辑态下默认值：TextOverflow.Clip                     |
 
 >  **说明：**  
->   TextInput组件不支持设置TextOverflow.MARQUEE模式,当设置为TextOverflow.MARQUEE模式时 内联模式非编辑态下显示为TextOverflow.Ellipsis，内联模式编辑态下以及非内联模式下显示为TextOverflow.Clip
+>   TextInput组件不支持设置TextOverflow.MARQUEE模式，当设置为TextOverflow.MARQUEE模式时，内联模式非编辑态下显示为TextOverflow.Ellipsis，内联模式编辑态下以及非内联模式下显示为TextOverflow.Clip。
 
 ### textIndent<sup>12+</sup>
 
@@ -1088,7 +1092,7 @@ ellipsisMode(mode: Optional\<EllipsisMode>)
 
 设置省略位置。ellipsisMode属性仅在内联模式下生效，需要配合overflow设置为TextOverflow.Ellipsis使用，单独设置ellipsisMode属性不生效。
 
-非编辑态时正常生效，编辑态时EllipsisMode.START和EllipsisMode.CENTER仅在maxline设置为1时生效，EllipsisMode.END正常生效。
+非编辑态时正常生效，编辑态时EllipsisMode.START和EllipsisMode.CENTER仅在maxLines设置为1时生效，EllipsisMode.END正常生效。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
@@ -1120,19 +1124,19 @@ enableAutoFillAnimation(enabled: Optional\<boolean>)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称                          | 说明                                                     |
-| ----------------------------- | ------------------------------------------------------------ |
-| Normal                        | 基本输入模式，无特殊限制。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| Password                      | 密码输入模式。<br/>密码显示小眼睛图标，默认输入文字短暂显示后变成圆点，从API version 12开始，特定设备上输入文字直接显示为圆点。密码输入模式不支持下划线样式。在已启用密码保险箱的情况下，支持用户名、密码的自动保存和自动填充。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| Email                         | 邮箱地址输入模式。<br/>支持数字、字母、下划线、小数点、!、#、$、%、&、'、"、*、+、-、/、=、?、^、`、\{、\|、\}、~，以及@字符（只能存在一个@字符）。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| Number                        | 纯数字输入模式。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| PhoneNumber<sup>9+</sup>      | 电话号码输入模式。<br/>支持输入数字、空格、+ 、-、*、#、(、)，长度不限。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| USER_NAME<sup>11+</sup>       | 用户名输入模式。<br/>在已启用密码保险箱的情况下，支持用户名、密码的自动保存和自动填充。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| NEW_PASSWORD<sup>11+</sup>    | 新密码输入模式。<br/>密码显示小眼睛图标，默认输入文字短暂显示后变成圆点，从API version 12开始，特定设备上输入文字直接显示为圆点。在已启用密码保险箱的情况下，支持自动生成新密码。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| NUMBER_PASSWORD<sup>11+</sup> | 纯数字密码输入模式。<br/>密码显示小眼睛图标，默认输入文字短暂显示后变成圆点，从API version 12开始，特定设备上输入文字直接显示为圆点。密码输入模式不支持下划线样式。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| NUMBER_DECIMAL<sup>11+</sup>  | 带小数点的数字输入模式。<br/>支持数字，小数点（只能存在一个小数点）。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| URL<sup>12+</sup>  | 带URL的输入模式。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| ONE_TIME_CODE<sup>20+</sup>  | 验证码输入模式。<br/>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
+| 名称                          |  值   | 说明                       |
+| ----------------------------- | ----- | --------------------------- |
+| Normal                        | - | 基本输入模式，无特殊限制。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| Password                      | - | 密码输入模式。<br/>密码显示小眼睛图标，默认输入文字短暂显示后变成圆点，从API version 12开始，特定设备上输入文字直接显示为圆点。密码输入模式不支持下划线样式。在已启用密码保险箱的情况下，支持用户名、密码的自动保存和自动填充。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| Email                         | - | 邮箱地址输入模式。<br/>支持数字、字母、下划线、小数点、!、#、$、%、&、'、"、*、+、-、/、=、?、^、`、\{、\|、\}、~，以及@字符（只能存在一个@字符）。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| Number                        | - | 纯数字输入模式。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| PhoneNumber<sup>9+</sup>      | - | 电话号码输入模式。<br/>支持输入数字、空格、+ 、-、*、#、(、)，长度不限。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| NUMBER_PASSWORD<sup>11+</sup> | 8 | 纯数字密码输入模式。<br/>密码显示小眼睛图标，默认输入文字短暂显示后变成圆点，从API version 12开始，特定设备上输入文字直接显示为圆点。密码输入模式不支持下划线样式。在已启用密码保险箱的情况下，支持用户名、密码的自动保存和自动填充。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| USER_NAME<sup>11+</sup>       | 10 | 用户名输入模式。<br/>在已启用密码保险箱的情况下，支持用户名、密码的自动保存和自动填充。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| NEW_PASSWORD<sup>11+</sup>    | 11 | 新密码输入模式。<br/>密码显示小眼睛图标，默认输入文字短暂显示后变成圆点，从API version 12开始，特定设备上输入文字直接显示为圆点。在已启用密码保险箱的情况下，支持自动生成新密码。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| NUMBER_DECIMAL<sup>11+</sup>  | 12 | 带小数点的数字输入模式。<br/>支持数字，小数点（只能存在一个小数点）。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| URL<sup>12+</sup>  | 13 | 带URL的输入模式。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| ONE_TIME_CODE<sup>20+</sup>  | 14 | 验证码输入模式。<br/>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
 
 ## ContentType<sup>12+</sup>枚举说明
 
@@ -2039,12 +2043,12 @@ struct TextInputExample {
     Column() {
       Row() {
         TextInput({ text: `${this.text}`, controller: this.controller }).type(InputType.PhoneNumber).height('48vp')
-          .onChange((number: string) => {
-            this.teleNumberNoSpace = this.removeSpace(number);
+          .onChange((value: string) => {
+            this.teleNumberNoSpace = this.removeSpace(value);
             let nextText: string = "";
             if (this.teleNumberNoSpace.length > this.NUM_TEXT_MAXSIZE_LENGTH - 2) {
               nextText = this.teleNumberNoSpace;
-            } else if (this.checkNeedNumberSpace(number)) {
+            } else if (this.checkNeedNumberSpace(value)) {
               if (this.teleNumberNoSpace.length <= 3) {
                 nextText = this.teleNumberNoSpace;
               } else {
@@ -2058,10 +2062,10 @@ struct TextInputExample {
                 }
               }
             } else {
-              nextText = number;
+              nextText = value;
             }
-            console.log("onChange Triggered:" + this.text + "|" + nextText + "|" + number);
-            if (this.text === nextText && nextText === number) {
+            console.log("onChange Triggered:" + this.text + "|" + nextText + "|" + value);
+            if (this.text === nextText && nextText === value) {
               // 此时说明数字已经格式化完成了 在这个时候改变光标位置不会被重置掉
               this.setCaret();
             } else {
