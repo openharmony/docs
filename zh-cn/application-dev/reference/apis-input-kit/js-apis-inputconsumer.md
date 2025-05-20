@@ -1,10 +1,16 @@
-# @ohos.multimodalInput.inputConsumer (组合按键)
+# @ohos.multimodalInput.inputConsumer (全局快捷键)
 
-组合按键订阅模块，用于处理全局快捷键的订阅。
+全局快捷键订阅模块，用于处理组合按键的订阅。
 
 > **说明：**
 >
 > - 本模块首批接口从API version 14开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+>
+> - 全局快捷键指由系统或应用定义的组合按键
+>
+> - 由系统定义的全局快捷键相关资料也会描述为系统快捷键或系统定义的全局快捷键
+>
+> - 文档中系统快捷键指由系统定义的全局快捷键
 
 
 ## 导入模块
@@ -72,7 +78,7 @@ inputConsumer.getAllSystemHotkeys().then((data: Array<inputConsumer.HotkeyOption
 
 on(type: 'hotkeyChange', hotkeyOptions: HotkeyOptions, callback: Callback&lt;HotkeyOptions&gt;): void
 
-订阅全局快捷键，当满足条件的快捷键输入事件发生时上报快捷键选项，使用Callback异步回调。
+订阅全局快捷键，当满足条件的组合按键输入事件发生时上报快捷键选项，使用Callback异步回调。该接口只允许订阅应用设置的自定义快捷键。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.InputConsumer
 
@@ -82,7 +88,7 @@ on(type: 'hotkeyChange', hotkeyOptions: HotkeyOptions, callback: Callback&lt;Hot
 | ---------- | -------------------------- | ---- | ---------- |
 | type       | string                     | 是    | 事件类型，固定取值为'hotkeyChange'。                   |
 | hotkeyOptions | [HotkeyOptions](#hotkeyoptions) | 是    | 快捷键选项。                 |
-| callback   | Callback&lt;HotkeyOptions&gt; | 是    | 回调函数，当满足条件的全局快捷键输入事件发生时，上报快捷键选项。 |
+| callback   | Callback&lt;HotkeyOptions&gt; | 是    | 回调函数，当满足条件的组合按键输入事件发生时，上报快捷键选项。 |
 
 **错误码**：
 
@@ -119,7 +125,7 @@ try {
 
 off(type: 'hotkeyChange', hotkeyOptions: HotkeyOptions, callback?: Callback&lt;HotkeyOptions&gt;): void
 
-取消订阅全局快捷键。
+取消订阅全局快捷键。该接口只允许取消应用设置的自定义快捷键。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.InputConsumer
 
@@ -129,7 +135,7 @@ off(type: 'hotkeyChange', hotkeyOptions: HotkeyOptions, callback?: Callback&lt;H
 | ---------- | -------------------------- | ---- | ---------- |
 | type       | string                     | 是    | 事件类型，固定取值为'hotkeyChange'。        |
 | hotkeyOptions | [HotkeyOptions](#hotkeyoptions) | 是    | 快捷键选项。             |
-| callback   | Callback&lt;HotkeyOptions&gt; | 否    | 需要取消订阅的回调函数。若缺省，则取消当前应用全局快捷键选项已订阅的所有回调函数。 |
+| callback   | Callback&lt;HotkeyOptions&gt; | 否    | 需要取消订阅的回调函数。若缺省，则取消当前应用快捷键选项已订阅的所有回调函数。 |
 
 **错误码**：
 
