@@ -203,8 +203,10 @@
       - [ArkData简介](database/data-mgmt-overview.md)
       - 标准化数据定义<!--uniform-data-definition-->
         - [标准化数据定义概述](database/unified-data-definition-overview.md)
-        - [标准化数据类型](database/uniform-data-type-descriptors.md)
-        - [标准化数据结构](database/uniform-data-structure.md)
+        - [标准化数据类型 (ArkTS)](database/uniform-data-type-descriptors.md)
+        - [标准化数据类型 (C/C++)](database/uniform-data-type-descriptors-c.md)
+        - [标准化数据结构 (ArkTS)](database/uniform-data-structure.md)
+        - [标准化数据结构 (C/C++)](database/uniform-data-structure-c.md)
         - [基于标准化数据结构的控件（ArkTS）](database/components-based-on-uniform-data-structure.md)
         - [Uniform Type Descriptor(UTD)预置类型列表](database/uniform-data-type-list.md)
       - 应用数据持久化<!--app-data-persistence-->
@@ -237,10 +239,10 @@
           - [通过数据管理服务实现数据共享静默访问](database/share-data-by-silent-access.md)
         <!--DelEnd-->
         - 多对多跨应用数据共享<!--many-to-many-data-share-->
-          - [通过标准化数据通路实现数据共享](database/unified-data-channels.md)
-      - [应用数据向量化](database/aip-data-intelligence-embedding.md)
+          - [通过标准化数据通路实现数据共享 (ArkTS)](database/unified-data-channels.md)
+          - [通过标准化数据通路实现数据共享 (C/C++)](database/unified-data-channels-c.md)
+      - [应用数据向量化](database/aip-data-intelligence-embedding.md) 
       - [RelationalStore开发指导 (C/C++)](database/native-relational-store-guidelines.md)
-      - [UDMF开发指导 (C/C++)](database/native-unified-data-management-framework-guidelines.md)
       - [ArkData术语](database/data-terminology.md)
     - ArkTS（方舟编程语言）<!--arkts-->
       - [ArkTS简介](arkts-utils/arkts-overview.md)
