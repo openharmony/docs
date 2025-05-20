@@ -5,6 +5,8 @@ Counter是用于精确调节数值的组件。
 >  **说明：**
 >
 >  该组件从API Version 11开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>
+>  如果Counter设置[通用属性](ts-component-general-attributes.md)和[通用事件](ts-component-general-events.md)，编译工具链会额外生成节点__common__，并将通用属性或通用事件挂载在__common__上，而不是直接应用到Counter本身。这可能导致开发者设置的通用属性或通用事件的效果不生效或不符合预期，因此，Counter不支持通用属性和通用事件。
 
 ## 导入模块
 
