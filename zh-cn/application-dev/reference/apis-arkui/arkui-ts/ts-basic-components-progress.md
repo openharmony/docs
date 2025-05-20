@@ -189,7 +189,7 @@ privacySensitive(isPrivacySensitiveMode: Optional\<boolean\>)
 | 名称 | 类型  | 必填 |说明         |
 | ------ | ------ | ------- |------------|
 | value  | number | 是 | 当前进度值。当设置的数值小于0时，将其置为0。当设置的数值大于total时，将其置为total。<br/>默认值：0<br/>取值范围：[0, total] |
-| total  | number | 是 | 进度总长。<br/>取值范围：[0, +∞)   |
+| total  | number | 是 | 进度总长。<br/>取值范围：[0, 2147483647)   |
 
 ## CommonProgressStyleOptions<sup>10+</sup>
 
