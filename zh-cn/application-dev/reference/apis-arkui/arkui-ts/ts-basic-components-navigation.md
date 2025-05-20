@@ -2845,10 +2845,10 @@ export struct PageTwo {
 该示例主要演示设置Navigation主页的标题栏、工具栏和NavDestination页面的标题栏的背景颜色和背景模糊效果。
 
 ```ts
-let COLOR1: string = "#80004AAF";
-let COLOR2: string = "#802787D9";
-let BLUR_STYLE_1: BlurStyle = BlurStyle.BACKGROUND_THIN;
-let BLUR_STYLE_2: BlurStyle = BlurStyle.BACKGROUND_THICK;
+const COLOR1: string = "#80004AAF";
+const COLOR2: string = "#802787D9";
+const BLUR_STYLE_1: BlurStyle = BlurStyle.BACKGROUND_THIN;
+const BLUR_STYLE_2: BlurStyle = BlurStyle.BACKGROUND_THICK;
 
 @Component
 struct BackComponent {
