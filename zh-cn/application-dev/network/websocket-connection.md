@@ -2,17 +2,17 @@
 
 ## 场景介绍
 
-给三方应用提供webSocket客户端和服务端的服务器，实现客户端与服务端的双向连接。
+给第三方应用提供webSocket客户端和服务端的服务器，实现客户端与服务端的双向连接，目前服务端仅支持智慧屏使用。
 
-客户端：使用WebSocket建立服务器与客户端的双向连接，需要先通过[createWebSocket()](../reference/apis-network-kit/js-apis-webSocket.md/#websocketcreatewebsocket6)方法创建[WebSocket](../reference/apis-network-kit/js-apis-webSocket.md/#websocket6)对象，然后通过[connect()](../reference/apis-network-kit/js-apis-webSocket.md/#connect6)方法连接到服务器。当连接成功后，客户端会收到[open](../reference/apis-network-kit/js-apis-webSocket.md/#onopen6)事件的回调，之后客户端就可以通过[send()](../reference/apis-network-kit/js-apis-webSocket.md/#send6)方法与服务器进行通信。当服务器发信息给客户端时，客户端会收到[message](../reference/apis-network-kit/js-apis-webSocket.md/#onmessage6)事件的回调。当客户端想要取消此连接时，通过调用[close()](../reference/apis-network-kit/js-apis-webSocket.md/#close6)方法主动断开连接后，客户端会收到[close](../reference/apis-network-kit/js-apis-webSocket.md/#onclose6)事件的回调。若在上述任一过程中发生错误，客户端会收到[error](../reference/apis-network-kit/js-apis-webSocket.md/#onerror6)事件的回调。
+客户端：使用WebSocket建立服务器与客户端的双向连接，需要先通过[createWebSocket()](../reference/apis-network-kit/js-apis-webSocket.md#websocketcreatewebsocket6)方法创建[WebSocket](../reference/apis-network-kit/js-apis-webSocket.md#websocket6)对象，然后通过[connect()](../reference/apis-network-kit/js-apis-webSocket.md#connect6)方法连接到服务器。当连接成功后，客户端会收到[open](../reference/apis-network-kit/js-apis-webSocket.md#onopen6)事件的回调，之后客户端就可以通过[send()](../reference/apis-network-kit/js-apis-webSocket.md#send6)方法与服务器进行通信。当服务器发信息给客户端时，客户端会收到[message](../reference/apis-network-kit/js-apis-webSocket.md#onmessage6)事件的回调。当客户端想要取消此连接时，通过调用[close()](../reference/apis-network-kit/js-apis-webSocket.md#close6)方法主动断开连接后，客户端会收到[close](../reference/apis-network-kit/js-apis-webSocket.md#onclose6)事件的回调。若在上述任一过程中发生错误，客户端会收到[error](../reference/apis-network-kit/js-apis-webSocket.md#onerror6)事件的回调。
 
-服务端：使用WebSocket建立服务器与客户端的双向连接，需要先通过[createWebSocketServer()](../reference/apis-network-kit/js-apis-webSocket.md/#websocketcreatewebsocketserver19)方法创建[WebSocketServer](../reference/apis-network-kit/js-apis-webSocket.md/#websocketserver19)对象，然后通过[start()](../reference/apis-network-kit/js-apis-webSocket.md/#start19)方法启动服务器，监听客户端的申请建链的消息。当连接成功后，服务端会收到[connect](../reference/apis-network-kit/js-apis-webSocket.md/#onconnect19)事件的回调，之后服务端可以通过[send()](../reference/apis-network-kit/js-apis-webSocket.md/#send19)方法与客户端进行通信，可以通过[listAllConnections()](../reference/apis-network-kit/js-apis-webSocket.md/#listallconnections19)方法列举出当前与服务端建链的所有客户端信息。当客户端给服务端发消息时，服务端会收到[messageReceive](../reference/apis-network-kit/js-apis-webSocket.md/#onmessagereceive19)事件回调。当服务端想断开某个与客户端的连接时，可以通过调用[close()](../reference/apis-network-kit/js-apis-webSocket.md/#close19)方法主动断开与某个客户端的连接，之后服务端会收到[close](../reference/apis-network-kit/js-apis-webSocket.md/#onclose19)事件的回调。当服务端想停止service时，可以调用[stop()](../reference/apis-network-kit/js-apis-webSocket.md/#stop19)方法。若在上述任一过程中发生错误，服务端会收到[error](../reference/apis-network-kit/js-apis-webSocket.md/#onerror19)事件的回调。
+服务端：（目前服务端仅支持智慧屏使用）使用WebSocket建立服务器与客户端的双向连接，需要先通过[createWebSocketServer()](../reference/apis-network-kit/js-apis-webSocket.md#websocketcreatewebsocketserver19)方法创建[WebSocketServer](../reference/apis-network-kit/js-apis-webSocket.md#websocketserver19)对象，然后通过[start()](../reference/apis-network-kit/js-apis-webSocket.md#start19)方法启动服务器，监听客户端申请建链的消息。当连接成功后，服务端会收到[connect](../reference/apis-network-kit/js-apis-webSocket.md#onconnect19)事件的回调，之后服务端可以通过[send()](../reference/apis-network-kit/js-apis-webSocket.md#send19)方法与客户端进行通信，可以通过[listAllConnections()](../reference/apis-network-kit/js-apis-webSocket.md#listallconnections19)方法列举出当前与服务端建链的所有客户端信息。当客户端给服务端发消息时，服务端会收到[messageReceive](../reference/apis-network-kit/js-apis-webSocket.md#onmessagereceive19)事件回调。当服务端想断开某个与客户端的连接时，可以通过调用[close()](../reference/apis-network-kit/js-apis-webSocket.md#close19)方法主动断开与某个客户端的连接，之后服务端会收到[close](../reference/apis-network-kit/js-apis-webSocket.md#onclose19)事件的回调。当服务端想停止service时，可以调用[stop()](../reference/apis-network-kit/js-apis-webSocket.md#stop19)方法。若在上述任一过程中发生错误，服务端会收到[error](../reference/apis-network-kit/js-apis-webSocket.md#onerror19)事件的回调。
 
 websocket支持心跳检测机制，在客户端和服务端建立WebSocket连接之后，每间隔30秒客户端会发送Ping帧给服务器，服务器收到后应立即回复Pong帧，且不支持开发者关闭该机制。
 
 ## 接口说明
 
-WebSocket连接功能主要由[webSocket模块](../reference/apis-network-kit/js-apis-webSocket.md)提供。使用该功能需要申请ohos.permission.INTERNET权限。具体接口说明如下表。
+WebSocket连接功能主要由[webSocket](../reference/apis-network-kit/js-apis-webSocket.md)模块提供。使用该功能需要申请ohos.permission.INTERNET权限。具体接口说明如下表。
 
 **client端：**
 | 接口名              | 描述                                      |
@@ -49,8 +49,8 @@ WebSocket连接功能主要由[webSocket模块](../reference/apis-network-kit/js
 | off(type: 'error')           | 取消订阅WebSocketServer的Error事件。                    |
 
 
-## 开发步骤
-**client端：**
+## client端开发步骤
+
 1. 导入需要的webSocket模块。
 
 2. 创建一个WebSocket连接，返回一个WebSocket对象。
@@ -108,7 +108,8 @@ ws.connect(defaultIpAddress, (err: BusinessError, value: boolean) => {
 });
 ```
 
-**server端：**
+## server端开发步骤
+
 1. 导入需要的webSocket模块。
 
 2. 创建一个WebSocketServer对象。

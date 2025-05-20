@@ -4,86 +4,17 @@
 >
 > 本模块首批接口从API version 6开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
-给三方应用提供webSocket客户端和服务端服务器，实现客户端与服务端的双向连接。
+给第三方应用提供webSocket客户端和服务端服务器，实现客户端与服务端的双向连接，目前服务端仅支持智慧屏使用。
 
 客户端：使用WebSocket建立服务器与客户端的双向连接，需要先通过[createWebSocket](#websocketcreatewebsocket6)方法创建[WebSocket](#websocket6)对象，然后通过[connect](#connect6)方法连接到服务器。当连接成功后，客户端会收到[open](#onopen6)事件的回调，之后客户端就可以通过[send](#send6)方法与服务器进行通信。当服务器发信息给客户端时，客户端会收到[message](#onmessage6)事件的回调。当客户端想要取消此连接时，通过调用[close](#close6)方法主动断开连接后，客户端会收到[close](#onclose6)事件的回调。若在上述任一过程中发生错误，客户端会收到[error](#onerror6)事件的回调。
 
-服务端：使用WebSocket建立服务器与客户端的双向连接，需要先通过[createWebSocketServer](#websocketcreatewebsocketserver19)方法创建[WebSocketServer](#websocketserver19)对象，然后通过[start](#start19)方法启动服务器，监听客户端的申请建链的消息。当连接成功后，服务端会收到[connect](#onconnect19)事件的回调，之后服务端可以通过[send](#send19)方法与客户端进行通信，或者通过[listAllConnections](#listallconnections19)方法列举出当前与服务端建链的所有客户端信息。当客户端给服务端发消息时，服务端会收到[messageReceive](#onmessagereceive19)事件回调。当服务端想断开与某个客户端的连接，可以通过调用[close](#close19)方法主动断开连接，之后服务端会收到[close](#onclose19)事件的回调。当服务端想停止service时，可以调用[stop](#stop19)方法。若在上述任一过程中发生错误，服务端会收到[error](#onerror19)事件的回调。
+服务端：（目前服务端仅支持智慧屏使用）使用WebSocket建立服务器与客户端的双向连接，需要先通过[createWebSocketServer](#websocketcreatewebsocketserver19)方法创建[WebSocketServer](#websocketserver19)对象，然后通过[start](#start19)方法启动服务器，监听客户端的申请建链的消息。当连接成功后，服务端会收到[connect](#onconnect19)事件的回调，之后服务端可以通过[send](#send19)方法与客户端进行通信，或者通过[listAllConnections](#listallconnections19)方法列举出当前与服务端建链的所有客户端信息。当客户端给服务端发消息时，服务端会收到[messageReceive](#onmessagereceive19)事件回调。当服务端想断开与某个客户端的连接时，可以通过调用[close](#close19)方法主动断开与某个客户端的连接，之后服务端会收到[close](#onclose19)事件的回调。当服务端想停止service时，可以调用[stop](#stop19)方法。若在上述任一过程中发生错误，服务端会收到[error](#onerror19)事件的回调。
 
 
 ## 导入模块
 
 ```ts
 import { webSocket } from '@kit.NetworkKit';
-```
-
-## client端完整示例
-
-```ts
-import { webSocket } from '@kit.NetworkKit';
-import { BusinessError } from '@kit.BasicServicesKit';
-
-let defaultIpAddress = "ws://";
-let ws = webSocket.createWebSocket();
-ws.on('open', (err:BusinessError, value: Object) => {
-  if (err != undefined) {
-    console.log(JSON.stringify(err));
-    return;
-  }
-  // 当收到on('open')事件时，可以通过send()方法与服务器进行通信
-  ws.send("Hello, server!", (err: BusinessError, value: boolean) => {
-    if (!err) {
-      console.log("send success");
-    } else {
-      console.log("send fail, err:" + JSON.stringify(err));
-    }
-  });
-});
-ws.on('message',(error: BusinessError, value: string | ArrayBuffer) => {
-  console.log("on message, message:" + value);
-  // 当收到服务器的`bye`消息时（此消息字段仅为示意，具体字段需要与服务器协商），主动断开连接
-  if (value === 'bye') {
-    ws.close((err: BusinessError, value: boolean) => {
-      if (!err) {
-        console.log("close success");
-      } else {
-        console.log("close fail, err is " + JSON.stringify(err));
-      }
-    });
-  }
-});
-ws.on('close', (err: BusinessError, value: webSocket.CloseResult) => {
-  console.log("on close, code is " + value.code + ", reason is " + value.reason);
-});
-ws.on('error', (err: BusinessError) => {
-  console.log("on error, error:" + JSON.stringify(err));
-});
-ws.connect(defaultIpAddress, {
-  header:{
-      name1: 'value1',
-      name2: 'value2',
-      name3: 'value3'
-  },
-  proxy: {
-      host: '192.168.0.150',
-      port: 8888,
-      exclusionList: []
-  },
-  protocol: 'my-protocol',
-  }, (err: BusinessError, value: boolean) => {
-  if (!err) {
-    console.log("connect success");
-  } else {
-    console.log("connect fail, err:" + JSON.stringify(err));
-  }
-  ws.close((err: BusinessError) => {
-    if (!err) {
-      console.log("close success");
-    } else {
-      console.log("close fail, err is " + JSON.stringify(err));
-    }
-  });
-});
 ```
 
 ## webSocket.createWebSocket<sup>6+</sup>
@@ -351,7 +282,7 @@ ws.on('open', (err: BusinessError, value: Object) => {
 });
 ```
 
-> **说明**
+> **说明：**
 >
 > send接口必须在监听到open事件后才可以调用。
 
@@ -417,7 +348,7 @@ ws.on('open', (err: BusinessError, value: Object) => {
 });
 ```
 
-> **说明**
+> **说明：**
 >
 > send接口必须在监听到open事件后才可以调用。
 
@@ -799,7 +730,7 @@ off(type: 'error', callback?: ErrorCallback): void
 | 参数名   | 类型          | 必填 | 说明                            |
 | -------- | ------------- | ---- | ------------------------------- |
 | type     | string        | 是   | 'error'：WebSocket的Error事件。 |
-| callback | ErrorCallback | 否   | 回调函数。                      |
+| callback | ErrorCallback | 否   | 回调函数。默认值：200。                      |
 
 **示例：**
 
@@ -916,92 +847,7 @@ let ws = webSocket.createWebSocket();
 ws.off('headerReceive');
 ```
 
-## server端完整示例
-
-```ts
-import { webSocket } from '@kit.NetworkKit';
-import { BusinessError } from '@kit.BasicServicesKit';
-
-let connections: webSocket.WebSocketConnection[] = [];
-let localServer: webSocket.WebSocketServer;
-let config: webSocket.WebSocketServerConfig = {
-  serverPort: 8080, // 监听端口
-  maxConcurrentClientsNumber: 10,
-  maxConnectionsForOneClient: 10,
-}
-
-localServer = webSocket.createWebSocketServer();
-
-localServer.on('connect', async (connection: webSocket.WebSocketConnection) => {
-  console.info(`New client connected! Client ip: ${connection.clientIP}, Client port: ${connection.clientPort}`);
-  // 当收到on('connect')事件时，可以通过send()方法与客户端进行通信
-  localServer.send("Hello, I'm server!", connection).then((success: boolean) => {
-    if (success) {
-      console.info('message send successfully');
-    } else {
-      console.info('message send failed');
-    }
-  }).catch((error: BusinessError) => {
-    console.error(`message send failed, Code: ${error.code}, message: ${error.message}`);
-  });
-
-  try {
-    connections = await localServer.listAllConnections();
-    if (connections.length === 0) {
-      console.info('client list is empty');
-    } else {
-      console.info(`client list cnt: ${connections.length}, client connections list is: ${connections}`);
-    }
-  } catch (error) {
-    console.error(`Failed to listAllConnections. Code: ${error.code}, message: ${error.message}`);
-  }
-});
-
-localServer.on('messageReceive', (message: webSocket.WebSocketMessage) => {
-  try{
-    console.info(`on message received, client: ${message.clientConnection}, data: ${message.data}`);
-    // 当收到客户端的"bye"消息时（此消息字段仅为示意，具体字段需要与客户端协商），主动断开连接
-    if (message.data === 'bye') {
-      localServer.close(message.clientConnection).then((success: boolean) => {
-        if (success) {
-          console.info('close client successfully');
-        } else {
-          console.info('close client failed');
-        }
-      });
-    }
-  } catch (error) {
-    console.error(`on messageReceive failed. Code: ${error.code}, message: ${error.message}`);
-  }
-});
-
-localServer.on('close', (clientConnection: webSocket.WebSocketConnection, closeReason: webSocket.CloseResult) => {
-  console.info(`client close, client: ${clientConnection}, closeReason: Code: ${closeReason.code}, reason: ${closeReason.reason}`);
-  localServer.stop().then((success: boolean) => {
-    if (success) {
-      console.info('server stop service successfully');
-    } else {
-      console.info('server stop service failed');
-    }
-  });
-});
-
-localServer.on('error', (error: BusinessError) => {
-  console.info(`error. Code: ${error.code}, message: ${error.message}`);
-});
-
-localServer.start(config).then((success: boolean) => {
-  if (success) {
-    console.info('webSocket server start success');
-  } else {
-    console.info('websocket server start failed');
-  }
-}).catch((error: BusinessError) => {
-  console.error(`Failed to start. Code: ${error.code}, message: ${error.message}`);
-});
-```
-
-## webSocket.createWebSocketServer<sup>19+<sup>
+## webSocket.createWebSocketServer<sup>19+</sup>
 
 createWebSocketServer(): WebSocketServer
 
@@ -1021,15 +867,15 @@ createWebSocketServer(): WebSocketServer
 let ws: webSocket.WebSocketServer = webSocket.createWebSocketServer();
 ```
 
-## WebSocketServer<sup>19+<sup>
+## WebSocketServer<sup>19+</sup>
 
 在调用WebSocketServer方法前，需要先通过[webSocket.createWebSocketServer](#websocketcreatewebsocketserver19)创建一个WebSocketServer。
 
-### start<sup>19+<sup>
+### start<sup>19+</sup>
 
 start(config: WebSocketServerConfig): Promise\<boolean\>
 
-配置config参数，拉起服务端service。使用Promise异步回调。
+配置config参数，启动服务端service。使用Promise异步回调。
 
 > **说明：**
 >
@@ -1052,6 +898,8 @@ start(config: WebSocketServerConfig): Promise\<boolean\>
 | Promise\<boolean\> | promise对象。返回true表示服务器启动成功；返回false表示服务启动失败。 |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[webSocket错误码](errorcode-net-webSocket.md)。
 
 | 错误码ID   | 错误信息                                   |
 | -------   | ------------------------------------------ |
@@ -1086,11 +934,15 @@ localServer.start(config).then((success: boolean) => {
 });
 ```
 
-### send<sup>19+<sup>
+### send<sup>19+</sup>
 
-send(data: string | ArrayBuffer, connection: WebSocketConnection): Promise\<boolean\>
+send(data: string \| ArrayBuffer, connection: WebSocketConnection): Promise\<boolean\>
 
 通过WebSocket连接发送数据。使用Promise异步回调。
+
+> **说明：**
+>
+> send接口必须在监听到connect事件后才可以调用。
 
 **需要权限**: ohos.permission.INTERNET
 
@@ -1098,10 +950,10 @@ send(data: string | ArrayBuffer, connection: WebSocketConnection): Promise\<bool
 
 **参数：**
 
-| 名称 | 类型   | 只读 | 可选 | 说明                            |
-| ---------- | ------------------------------------------- | ---- | -------- |--------------------------------- |
-| data       | string | ArrayBuffer                       | 否 | 否   | 服务端发送消息的数据，同时支持string和ArrayBuffer类型。 |
-| connection | [WebSocketConnection](#websocketconnection19) | 否 | 否   | 发送的客户端信息。                           |
+| 参数名  | 类型                    | 必填 | 说明                                                     |
+| ---------- | ---------------------- | --------------------- | ------------------------------------------------ |
+| data       | string \| ArrayBuffer                       | 是  | 服务端发送消息的数据，同时支持string（字符串）和ArrayBuffer（二进制）类型。 |
+| connection | [WebSocketConnection](#websocketconnection19) | 是  | 发送的客户端信息。                              |
 
 **返回值：**
 
@@ -1110,6 +962,8 @@ send(data: string | ArrayBuffer, connection: WebSocketConnection): Promise\<bool
 | Promise\<boolean\> | promise对象。返回true表示发送请求创建成功；返回false表示发送请求创建失败。 |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[webSocket错误码](errorcode-net-webSocket.md)。
 
 | 错误码ID | 错误信息                 |
 | ------- | ----------------------- |
@@ -1155,11 +1009,7 @@ localServer.on('connect', async (connection: webSocket.WebSocketConnection) => {
 });
 ```
 
-> **说明**
->
-> send接口必须在监听到connect事件后才可以调用。
-
-### listAllConnections<sup>19+<sup>
+### listAllConnections<sup>19+</sup>
 
 listAllConnections(): WebSocketConnection[]
 
@@ -1172,9 +1022,11 @@ listAllConnections(): WebSocketConnection[]
 **返回值：**
 | 类型                                        | 说明                         |
 | ------------------------------------------- | ---------------------------- |
-| [WebSocketConnection[]](#websocketconnection19) | 以数组形式返回所有客户端的信息。|
+| [WebSocketConnection[]](#websocketconnection19) | 以字符串数组形式返回所有客户端的信息。|
 
 **错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                 |
 | ------- | ----------------------- |
@@ -1219,7 +1071,7 @@ localServer.on('connect', async (connection: webSocket.WebSocketConnection) => {
 });
 ```
 
-### close<sup>19+<sup>
+### close<sup>19+</sup>
 
 close(connection: WebSocketConnection, options?: webSocket.WebSocketCloseOptions): Promise\<boolean\>
 
@@ -1231,10 +1083,10 @@ close(connection: WebSocketConnection, options?: webSocket.WebSocketCloseOptions
 
 **参数：**
 
-| 名称 | 类型   | 只读 | 可选 | 说明                            |
-| ---------- | --------------------- | ---- | ------ |---------------------------------------------- |
-| connection | [WebSocketConnection[]](#websocketconnection19) | 否 | 否   | 客户端信息。                   |
-| options    | [WebSocketCloseOptions](#websocketcloseoptions) | 否 | 是   | 默认值code：200；reason:Websocket connect failed。 |
+| 参数名  | 类型                    | 必填 | 说明                                                     |
+| ---------- | --------------------- | ---- | ----------------------------------------------------- |
+| connection | [WebSocketConnection](#websocketconnection19) | 是  | 客户端信息，包括客户端的ip地址和端口号port。                   |
+| options    | [WebSocketCloseOptions](#websocketcloseoptions) | 否  | 关闭WebSocket连接时，可选参数的类型和说明。<br>- 错误码默认：200。原因值默认：Websocket connect failed。 |
 
 **返回值：**
 
@@ -1243,6 +1095,8 @@ close(connection: WebSocketConnection, options?: webSocket.WebSocketCloseOptions
 | Promise\<boolean\> | promise对象。返回true表示关闭请求创建成功；返回false表示关闭请求创建失败。      |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[webSocket错误码](errorcode-net-webSocket.md)。
 
 | 错误码ID | 错误信息                 |
 | ------- | ----------------------- |
@@ -1285,7 +1139,7 @@ localServer.on('connect', (connection: webSocket.WebSocketConnection) => {
 });
 ```
 
-### stop<sup>19+<sup>
+### stop<sup>19+</sup>
 
 stop(): Promise\<boolean\>
 
@@ -1302,6 +1156,8 @@ stop(): Promise\<boolean\>
 | Promise\<boolean\> | promise对象。返回true表示停止服务端service请求创建成功；返回false表示停止服务端service请求创建失败。 |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                 |
 | ------- | ----------------------- |
@@ -1340,7 +1196,7 @@ localServer.stop().then((success: boolean) => {
 });
 ```
 
-### on('connect')<sup>19+<sup>
+### on('connect')<sup>19+</sup>
 
 on(type: 'connect', callback: Callback\<WebSocketConnection\>): void
 
@@ -1350,10 +1206,10 @@ on(type: 'connect', callback: Callback\<WebSocketConnection\>): void
 
 **参数：**
 
-| 名称 | 类型   | 只读 | 可选 | 说明                            |
-| -------- | ----------------------- | ---- | ----- |------------------------------------------------ |
-| type     | string                  | 是 | 否   | 事件回调类型，支持的事件为'connect'，当onconnect()调用完成，客户端与服务端建链成功。 |
-| callback | Callback\<[WebSocketConnection](#websocketconnection19)\> | 是 | 否 | 回调函数。连接的客户端信息。|
+| 参数名  | 类型                    | 必填 | 说明                                                     |
+| -------- | ----------------------- | ---- | ------------------------------------------------------- |
+| type     | string                  | 是  | 事件回调类型，支持的事件为'connect'，当onconnect()调用完成，客户端与服务端建链成功。 |
+| callback | Callback\<[WebSocketConnection](#websocketconnection19)\> | 是 | 回调函数。连接的客户端信息。|
 
 **示例：**
 
@@ -1367,23 +1223,24 @@ localServer.on('connect', (connection: webSocket.WebSocketConnection) => {
 });
 ```
 
-### off('connect')<sup>19+<sup>
+### off('connect')<sup>19+</sup>
 
 off(type: 'connect', callback?: Callback\<WebSocketConnection\>): void
 
-取消订阅WebSocketServer的连接事件(客户端与服务端建链成功)，使用callback方式作为异步方法。
+取消订阅WebSocketServer的连接事件（客户端与服务端建链成功），使用callback方式作为异步方法。
 
 > **说明：**
+>
 > 可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
 
 **系统能力**：SystemCapability.Communication.NetStack
 
 **参数：**
 
-| 名称 | 类型   | 只读 | 可选 | 说明                            |
-| -------- | ----------------------- | ---- | ---- |------------------------ |
-| type     | string                  | 是  | 否   | 'connect'：WebSocketServer的连接事件。 |
-| callback | Callback\<[WebSocketConnection](#websocketconnection19)\> | 是 | 是   | 回调函数。连接的客户端信息。 |
+| 参数名  | 类型                    | 必填 | 说明                                                     |
+| -------- | ----------------------- | ---- | ------------------------------------------- |
+| type     | string                  | 是  | 事件回调类型，支持的事件为'connect'，当offconnect()调用完成，取消监听连接事件成功。 |
+| callback | Callback\<[WebSocketConnection](#websocketconnection19)\> | 否  | 回调函数。连接的客户端信息。 |
 
 **示例：**
 
@@ -1395,20 +1252,20 @@ let localServer = webSocket.createWebSocketServer();
 localServer.off('connect');
 ```
 
-### on('messageReceive')<sup>19+<sup>
+### on('messageReceive')<sup>19+</sup>
 
 on(type: 'messageReceive', callback: Callback\<WebSocketMessage\>): void
 
-订阅WebSocketServer的接收到客户端消息事件，使用callback方式作为异步方法。
+订阅WebSocketServer的接收客户端消息的事件，使用callback方式作为异步方法。
 
 **系统能力**：SystemCapability.Communication.NetStack
 
 **参数：**
 
-| 名称 | 类型   | 只读 | 可选 | 说明                            |
-| -------- | ----------------------- | ---- | ----------------------------- |
-| type     | string                  | 是 | 否   | 'messageReceive'：WebSocketServer的接收到客户端消息事件。 |
-| callback | Callback\<[WebSocketMessage](#websocketmessage19)\> | 是 | 否   | 回调函数。<br>clientconnection:客户端信息，data:客户端发送的数据消息。|
+| 参数名  | 类型                    | 必填 | 说明                                                     |
+| -------- | ----------------------- | ---- | -------------------------------- |
+| type     | string                  | 是  | 事件回调类型，支持的事件为'messageReceive'，当onmessageReceive()调用完成，接收到客户端消息成功。 |
+| callback | Callback\<[WebSocketMessage](#websocketmessage19)\> | 是  | 回调函数。<br>clientconnection:客户端信息，data:客户端发送的数据消息。|
 
 **示例：**
 
@@ -1422,23 +1279,24 @@ localServer.on('messageReceive', (message: webSocket.WebSocketMessage) => {
 });
 ```
 
-### off('messageReceive')<sup>19+<sup>
+### off('messageReceive')<sup>19+</sup>
 
 off(type: 'messageReceive', callback?: Callback\<WebSocketMessage\>): void
 
 取消订阅WebSocketServer的接收到客户端消息事件，使用callback方式作为异步方法。
 
 > **说明：**
+>
 > 可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
 
 **系统能力**：SystemCapability.Communication.NetStack
 
 **参数：**
 
-| 名称 | 类型   | 只读 | 可选 | 说明                            |
+| 参数名  | 类型                    | 必填 | 说明                                                     |
 | -------- | --------------------------------------------------- | ---- | -------------------------------------------- |
-| type     | string                  | 是 | 否   | 'messageReceive'：WebSocketServer的接收到客户端消息事件。 |
-| callback | Callback\<[WebSocketMessage](#websocketmessage19)\> |  是 | 是   | 回调函数。<br>clientconnection:客户端信息，data:客户端发送的数据消息。|
+| type     | string                  | 是  | 事件回调类型，支持的事件为'messageReceive'，当offmessageReceive()调用完成，取消订阅接收客户端消息成功。 |
+| callback | Callback\<[WebSocketMessage](#websocketmessage19)\> |  否 | 从指定客户端接收到的消息，包括客户端的信息和数据。<br>- clientconnection：客户端信息。<br>- data：客户端发送的消息。|
 
 **示例：**
 
@@ -1450,7 +1308,7 @@ let localServer = webSocket.createWebSocketServer();
 localServer.off('messageReceive');
 ```
 
-### on('close')<sup>19+<sup>
+### on('close')<sup>19+</sup>
 
 on(type: 'close', callback: Callback\<ClientConnectionCloseCallback\>): void
 
@@ -1460,10 +1318,10 @@ on(type: 'close', callback: Callback\<ClientConnectionCloseCallback\>): void
 
 **参数：**
 
-| 名称 | 类型   | 只读 | 可选 | 说明                            |
-| -------- | ----------------------------------------------- | ---- | --- |-------------------------- |
-| type     | string                                          | 是 | 否   | 'close'：WebSocketServer的关闭事件。 |
-| callback | Callback\<[ClientConnectionCloseCallback](#clientconnectionclosecallback19)\> | 是 | 否  | 回调函数。<br>close：close错误码，reason：错误码说明 |
+| 参数名  | 类型                    | 必填 | 说明                                                     |
+| -------- | ----------------------------------------------- | ---- | ----------------------------------- |
+| type     | string                                          | 是  | 事件回调类型，支持的事件为'close'，当onclose()调用完成，连接关闭成功。 |
+| callback | Callback\<[ClientConnectionCloseCallback](#clientconnectionclosecallback19)\> | 是  | 回调函数。<br>close：close错误码；reason：错误码说明。 |
 
 **示例：**
 
@@ -1477,23 +1335,24 @@ localServer.on('close', (clientConnection: webSocket.WebSocketConnection, closeR
 });
 ```
 
-### off('close')<sup>19+<sup>
+### off('close')<sup>19+</sup>
 
 off(type: 'close', callback?: Callback\<ClientConnectionCloseCallback\>): void
 
 取消订阅WebSocketServer的关闭事件，使用callback方式作为异步方法。
 
 > **说明：**
+>
 > 可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
 
 **系统能力**：SystemCapability.Communication.NetStack
 
 **参数：**
 
-| 名称 | 类型   | 只读 | 可选 | 说明                            |
-| -------- | ----------------------------------------------- | ---- | ------- |---------------------- |
-| type     | string                                          | 是  | 否   | 'close'：WebSocketServer的关闭事件。 |
-| callback | Callback\<[ClientConnectionCloseCallback](#clientconnectionclosecallback19)\> | 是 | 是   | 回调函数。<br>close：close错误码，reason：错误码说明 |
+| 参数名  | 类型                    | 必填 | 说明                                                     |
+| -------- | ----------------------------------------------- | ---- | ---------------------------------- |
+| type     | string                                          | 是  | 事件回调类型，支持的事件为'close'，当offclose()调用完成，取消订阅连接关闭事件成功。 |
+| callback | Callback\<[ClientConnectionCloseCallback](#clientconnectionclosecallback19)\> | 否  | 回调函数。<br>close：close错误码；reason：错误码说明。 |
 
 **示例：**
 
@@ -1505,7 +1364,7 @@ let localServer = webSocket.createWebSocketServer();
 localServer.off('close');
 ```
 
-### on('error')<sup>19+<sup>
+### on('error')<sup>19+</sup>
 
 on(type: 'error', callback: ErrorCallback): void
 
@@ -1515,10 +1374,10 @@ on(type: 'error', callback: ErrorCallback): void
 
 **参数：**
 
-| 名称 | 类型   | 只读 | 可选 | 说明                            |
-| -------- | ------------- | ---- | --- |--------------------------- |
-| type     | string        | 是 | 否   | 'error'：WebSocketServer的Error事件。 |
-| callback | ErrorCallback | 是 | 否   | 回调函数。<br>错误码说明参见[webSocket错误码](errorcode-net-webSocket.md) |
+| 参数名  | 类型                    | 必填 | 说明                                                     |
+| -------- | ------------- | ---- | ------------------------------------ |
+| type     | string        | 是  | 事件回调类型，支持的事件为'error'，当onerror()调用完成，error事件发生。 |
+| callback | [ErrorCallback](../apis-basic-services-kit/js-apis-base.md#errorcallback) | 是  | 回调函数。|
 
 **示例：**
 
@@ -1532,23 +1391,24 @@ localServer.on('error', (err: BusinessError) => {
 });
 ```
 
-### off('error')<sup>19+<sup>
+### off('error')<sup>19+</sup>
 
 off(type: 'error', callback?: ErrorCallback): void
 
 取消订阅WebSocketServer的Error事件，使用callback方式作为异步方法。
 
 > **说明：**
+>
 > 可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
 
 **系统能力**：SystemCapability.Communication.NetStack
 
 **参数：**
 
-| 名称 | 类型   | 只读 | 可选 | 说明                            |
-| -------- | ------------- | ---- | ------ |------------------------ |
-| type     | string        | 是 | 否   | 'error'：WebSocketServer的Error事件。 |
-| callback | ErrorCallback | 是 | 是   | 回调函数。                      |
+| 参数名  | 类型                    | 必填 | 说明                           |
+| -------- | ------------- | ---- | --------------------------------- |
+| type     | string        | 是 |  事件回调类型，支持的事件为'error'，当offerror()调用完成，取消订阅error事件成功。 |
+| callback | [ErrorCallback](../apis-basic-services-kit/js-apis-base.md#errorcallback) | 否 | 回调函数。默认值：200。                         |
 
 **示例：**
 
@@ -1664,61 +1524,61 @@ type HttpProxy = connection.HttpProxy
 | ---------------- | --------------------------- |
 | connection.HttpProxy | 使用指定的网络代理。    |
 
-## WebSocketServerConfig<sup>19+<sup>
+## WebSocketServerConfig<sup>19+</sup>
 
-期待服务端的service时，需要输入的配置信息和说明。
+启动服务端的service时，需要输入的配置信息和说明。
 
 **系统能力**：SystemCapability.Communication.NetStack
 
 | 名称 | 类型   | 只读 | 可选 | 说明                                                         |
-| ---------- | ------ | ---- | ---- |----------------------------------------------------- |
+| ---------- | ------ | ---- | ---- | ----------------------------------------------------- |
 | serverIP   | string | 否   | 是   |  服务端监听特定ip地址，默认是"0.0.0.0"。 |
 | serverPort | number | 否   | 否   | 服务端监听的端口号。                   |
-| serverCert | [ServerCert](#servercert19) | 否  | 是   | 服务端证书。 |
+| serverCert | [ServerCert](#servercert19) | 否  | 是   | 指定服务端证书的信息，包括服务端证书文件路径和服务端证书的私钥文件路径。 |
 | protocol   | string | 否   | 是   | 自定义协议。 |
 | maxConcurrentClientsNumber | number | 否 | 否   | 最大并发客户端数量，当到达最大数时，服务端拒绝新连接。默认最大数量为10。 |
-| maxConnectionsForOneClient | number |    | 否   | 单个客户端的最大连接数。默认最大数量为10。 |
+| maxConnectionsForOneClient | number | 否 | 否   | 单个客户端的最大连接数。默认最大数量为10。 |
 
-## ServerCert<sup>19+<sup>
+## ServerCert<sup>19+</sup>
 
 指定服务端证书的信息，包括服务端证书文件路径和服务端证书的私钥文件路径。
 
 **系统能力**：SystemCapability.Communication.NetStack
 
 | 名称 | 类型   | 只读 | 可选 | 说明                            |
-| ------ | ------ | ---- | --- |----------------------- |
-| certPath   | string |      | 是   | 服务端证书文件路径。      |
-| keyPath    | string |      | 是   | 服务端证书的私钥文件路径。|
+| ------ | ------ | ---- | --- | ----------------------- |
+| certPath   | string |  否    | 否   | 服务端证书文件路径。      |
+| keyPath    | string |  否    | 否   | 服务端证书的私钥文件路径。|
 
-## WebSocketMessage<sup>19+<sup>
+## WebSocketMessage<sup>19+</sup>
 
 从指定客户端接收到的消息，包括客户端的信息和数据。
 
 **系统能力**：SystemCapability.Communication.NetStack
 
 | 名称 | 类型   | 只读 | 可选 | 说明                                      |
-| ------ | ------ | ---- | ---- |------------------------------------------------------- |
-| data   | string |ArrayBuffer  | 是  | 否   | 接收到的客户端发的消息数据。 |
-| clientConnection | [WebSocketConnection](#websocketconnection19) | 是  | 否   | 连接的客户端的信息。|
+| ------ | ------ | ---- | ---- | ------------------------------------------------------- |
+| data   | string \|ArrayBuffer  | 否  | 否   | 接收到的客户端发的消息数据。 |
+| clientConnection | [WebSocketConnection](#websocketconnection19) | 否  | 否   | 客户端信息，包括客户端的ip地址和端口号port。|
 
-## WebSocketConnection<sup>19+<sup>
+## WebSocketConnection<sup>19+</sup>
 
-客户端信息，包括客户端的ip地址和端口号port 。
+客户端信息，包括客户端的ip地址和端口号port。
 
 **系统能力**：SystemCapability.Communication.NetStack
 
 | 名称 | 类型   | 只读 | 可选 | 说明                            |
 | ------ | ------ | ---- | --- |------------------ |
-| clientIP   | string | 是   | 否   | 客户端的ip地址。     |
-| clientPort | number | 是   | 否   | 客户端的端口号port。 |
+| clientIP   | string | 否   | 否   | 客户端的ip地址。     |
+| clientPort | number | 否   | 否   | 客户端的端口号port。 |
 
-## ClientConnectionCloseCallback<sup>19+<sup>
+## ClientConnectionCloseCallback<sup>19+</sup>
 
 关闭WebSocketServer连接时，订阅close事件得到的指定客户端的关闭结果。
 
 **系统能力**：SystemCapability.Communication.NetStack
 
-| 名称 | 类型   | 必填 | 说明                                                         |
-| ---------------- | ------------------- | ---- | ---------------------------------------------------- |
-| clientConnection | [WebSocketConnection](#websocketconnection19) | 是 | 连接的客户端的信息。             |
-| closeReason | [CloseResult](#closeresult10) | 是 | 回调函数。<br>close：close错误码，reason：错误码说明 |
+| 名称 | 类型   | 只读 | 可选 | 说明                            |
+| ---------------- | ------------------- | ---- | ------ | --------------------------------------------- |
+| clientConnection | [WebSocketConnection](#websocketconnection19) | 否 | 否 | 客户端信息，包括客户端的ip地址和端口号port。             |
+| closeReason | [CloseResult](#closeresult10) | 否 | 否 | 关闭WebSocket连接时，订阅close事件得到的关闭结果。 |
