@@ -2712,7 +2712,7 @@ enableDrag(enable: boolean): Promise&lt;void&gt;
 
 使能/禁止拖拽窗口。使用Promise异步回调。
 
-使能后，将允许通过鼠标对窗口进行拉伸操作。
+使能后，将允许通过鼠标操作或触摸对窗口进行拉伸操作。
 
 仅对2in1设备的系统窗口生效，其它设备类型调用此接口会报错。
 
@@ -3364,7 +3364,7 @@ completeTransition(isCompleted: boolean): void
 ```ts
 (context: window.TransitionContext) => {
   let toWindow: window.Window = context.toWindow;
-  animateTo({
+  this.getUIContext()?.animateTo({
     duration: 1000, // 动画时长
     tempo: 0.5, // 播放速率
     curve: Curve.EaseInOut, // 动画曲线
@@ -3472,7 +3472,7 @@ try {
   animationConfig?.ShowWindowWithCustomAnimation(systemTypeWindow, (context : window.TransitionContext)=>{
     console.info('complete transition end');
     let toWindow = context.toWindow;
-    animateTo({
+    this.getUIContext()?.animateTo({
       duration: 1000, // 动画时长
       tempo: 0.5, // 播放速率
       curve: Curve.EaseInOut, // 动画曲线
@@ -3555,7 +3555,7 @@ try {
   animationConfig?.HideWindowWithCustomAnimation(systemTypeWindow, (context : window.TransitionContext)=>{
     console.info('complete transition end');
     let toWindow = context.toWindow;
-    animateTo({
+    this.getUIContext()?.animateTo({
       duration: 1000, // 动画时长
       tempo: 0.5, // 播放速率
       curve: Curve.EaseInOut, // 动画曲线
