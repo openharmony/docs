@@ -42,15 +42,13 @@ For details, see the following.
 Page 1
 
 ```ts
-import { router } from '@kit.ArkUI';
-
 @Entry
 @Component({ freezeWhenInactive: true })
 struct Page1 {
   @StorageLink('PropA') @Watch("first") storageLink: number = 47;
 
   first() {
-    console.info("first page " + `${this.storageLink}`)
+    console.info("first page " + `${this.storageLink}`);
   }
 
   build() {
@@ -58,11 +56,11 @@ struct Page1 {
       Text(`From first Page ${this.storageLink}`).fontSize(50)
       Button('first page storageLink + 1').fontSize(30)
         .onClick(() => {
-          this.storageLink += 1
+          this.storageLink += 1;
         })
       Button('go to next page').fontSize(30)
         .onClick(() => {
-          router.pushUrl({ url: 'pages/Page2' })
+          this.getUIContext().getRouter().pushUrl({ url: 'pages/Page2' });
         })
     }
   }
@@ -72,15 +70,13 @@ struct Page1 {
 Page 2
 
 ```ts
-import { router } from '@kit.ArkUI';
-
 @Entry
 @Component({ freezeWhenInactive: true })
 struct Page2 {
   @StorageLink('PropA') @Watch("second") storageLink2: number = 1;
 
   second() {
-    console.info("second page: " + `${this.storageLink2}`)
+    console.info("second page: " + `${this.storageLink2}`);
   }
 
   build() {
@@ -89,12 +85,12 @@ struct Page2 {
       Text(`second Page ${this.storageLink2}`).fontSize(50)
       Button('Change Divider.strokeWidth')
         .onClick(() => {
-          router.back()
+          this.getUIContext().getRouter().back();
         })
 
       Button('second page storageLink2 + 2').fontSize(30)
         .onClick(() => {
-          this.storageLink2 += 2
+          this.storageLink2 += 2;
         })
 
     }
@@ -127,17 +123,17 @@ For details, see the following.
 @Component
 struct TabContentTest {
   @State @Watch("onMessageUpdated") message: number = 0;
-  private data: number[] = [0, 1]
+  private data: number[] = [0, 1];
 
   onMessageUpdated() {
-    console.info(`TabContent message callback func ${this.message}`)
+    console.info(`TabContent message callback func ${this.message}`);
   }
 
   build() {
     Row() {
       Column() {
         Button('change message').onClick(() => {
-          this.message++
+          this.message++;
         })
 
         Tabs() {
@@ -156,11 +152,11 @@ struct TabContentTest {
 
 @Component({ freezeWhenInactive: true })
 struct FreezeChild {
-  @Link @Watch("onMessageUpdated") message: number
-  private index: number = 0
+  @Link @Watch("onMessageUpdated") message: number;
+  index: number = 0;
 
   onMessageUpdated() {
-    console.info(`FreezeChild message callback func ${this.message}, index: ${this.index}`)
+    console.info(`FreezeChild message callback func ${this.message}, index: ${this.index}`);
   }
 
   build() {
@@ -275,19 +271,19 @@ struct LforEachTest {
   @State @Watch("onMessageUpdated") message: number = 0;
 
   onMessageUpdated() {
-    console.info(`LazyforEach message callback func ${this.message}`)
+    console.info(`LazyforEach message callback func ${this.message}`);
   }
 
   aboutToAppear() {
     for (let i = 0; i <= 20; i++) {
-      this.data.pushData(`Hello ${i}`)
+      this.data.pushData(`Hello ${i}`);
     }
   }
 
   build() {
     Column() {
       Button('change message').onClick(() => {
-        this.message++
+        this.message++;
       })
       List({ space: 3 }) {
         LazyForEach(this.data, (item: string) => {
@@ -304,14 +300,14 @@ struct LforEachTest {
 @Component({ freezeWhenInactive: true })
 struct FreezeChild {
   @Link @Watch("onMessageUpdated") message: number;
-  private index: string = "";
+  index: string = "";
 
   aboutToAppear() {
-    console.info(`FreezeChild aboutToAppear index: ${this.index}`)
+    console.info(`FreezeChild aboutToAppear index: ${this.index}`);
   }
 
   onMessageUpdated() {
-    console.info(`FreezeChild message callback func ${this.message}, index: ${this.index}`)
+    console.info(`FreezeChild message callback func ${this.message}, index: ${this.index}`);
   }
 
   build() {

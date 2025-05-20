@@ -35,9 +35,9 @@ AVCastPicker({
 
 Implements an **AVCastPicker** component, which can be used to cast audio and video onto other devices.
 
-This component is a custom component. Some basic knowledge of [@Component](../../quick-start/arkts-create-custom-components.md#component) will be helpful in using the component.
+This component is a custom component. Some basic knowledge of [@Component](../../ui/state-management/arkts-create-custom-components.md#component) will be helpful in using the component.
 
-**Decorator**: [@Component](../../quick-start/arkts-create-custom-components.md)
+**Decorator**: [@Component](../../ui/state-management/arkts-create-custom-components.md)
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -103,5 +103,3 @@ struct Index {
   }
 }
 ```
-
- <!--no_check--> 

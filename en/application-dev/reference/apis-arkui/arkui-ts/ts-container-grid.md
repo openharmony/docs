@@ -9,7 +9,7 @@ The **Grid** component consists of cells formed by rows and columns. You can spe
 
 ## Child Components
 
-Only the [GridItem](ts-container-griditem.md) child component is allowed, with support for [if/else](../../../quick-start/arkts-rendering-control-ifelse.md), [ForEach](../../../quick-start/arkts-rendering-control-foreach.md), [LazyForEach](../../../quick-start/arkts-rendering-control-lazyforeach.md), and [Repeat](../../../quick-start/arkts-new-rendering-control-repeat.md) rendering control.
+Only the [GridItem](ts-container-griditem.md) child component is allowed, with support for [if/else](../../../ui/state-management/arkts-rendering-control-ifelse.md), [ForEach](../../../ui/state-management/arkts-rendering-control-foreach.md), [LazyForEach](../../../ui/state-management/arkts-rendering-control-lazyforeach.md), and [Repeat](../../../ui/state-management/arkts-new-rendering-control-repeat.md) rendering control.
 
 >  **NOTE**
 >
@@ -21,7 +21,7 @@ Only the [GridItem](ts-container-griditem.md) child component is allowed, with s
 >
 >  In the **ForEach**, **LazyForEach**, or **Repeat** statement, the indexes of all expanded child nodes are calculated.
 >
->  After changes occur in [if/else](../../../quick-start/arkts-rendering-control-ifelse.md), [ForEach](../../../quick-start/arkts-rendering-control-foreach.md), [LazyForEach](../../../quick-start/arkts-rendering-control-lazyforeach.md), or [Repeat](../../../quick-start/arkts-new-rendering-control-repeat.md), the indexes of the child nodes are updated.
+>  After changes occur in [if/else](../../../ui/state-management/arkts-rendering-control-ifelse.md), [ForEach](../../../ui/state-management/arkts-rendering-control-foreach.md), [LazyForEach](../../../ui/state-management/arkts-rendering-control-lazyforeach.md), or [Repeat](../../../ui/state-management/arkts-new-rendering-control-repeat.md), the indexes of the child nodes are updated.
 >
 >  The child component that has the **visibility** attribute set to **Hidden** or **None** is included in the index calculation.
 >
@@ -240,11 +240,11 @@ Sets the scrollbar width. This attribute cannot be set in percentage. After the 
 
 cachedCount(value: number)
 
-Sets the number of grid items to be cached (preloaded). It works only in [LazyForEach](../../../quick-start/arkts-rendering-control-lazyforeach.md) and [Repeat](../../../quick-start/arkts-new-rendering-control-repeat.md) with the **virtualScroll** option enabled. <!--Del-->For details, see [Minimizing White Blocks During Swiping](../../../performance/arkts-performance-improvement-recommendation.md#minimizing-white-blocks-during-swiping).<!--DelEnd-->
+Sets the number of grid items to be cached (preloaded). It works only in [LazyForEach](../../../ui/state-management/arkts-rendering-control-lazyforeach.md) and [Repeat](../../../ui/state-management/arkts-new-rendering-control-repeat.md) with the **virtualScroll** option enabled. <!--Del-->For details, see [Minimizing White Blocks During Swiping](../../../performance/arkts-performance-improvement-recommendation.md#minimizing-white-blocks-during-swiping).<!--DelEnd-->
 
 The number of the grid items to be cached before and after the currently displayed one equals the value of **cachedCount** multiplied by the number of columns.
 
-In [LazyForEach](../../../quick-start/arkts-rendering-control-lazyforeach.md) and [Repeat](../../../quick-start/arkts-new-rendering-control-repeat.md) with the **virtualScroll** option enabled, grid items that are outside the display and cache range will be released.
+In [LazyForEach](../../../ui/state-management/arkts-rendering-control-lazyforeach.md) and [Repeat](../../../ui/state-management/arkts-new-rendering-control-repeat.md) with the **virtualScroll** option enabled, grid items that are outside the display and cache range will be released.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
