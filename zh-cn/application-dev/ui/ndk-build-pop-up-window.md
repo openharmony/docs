@@ -166,3 +166,70 @@
    ```
 
    ![zh-cn_image_0000001902966196](figures/zh-cn_image_0000001902966196.gif)
+
+
+## 弹窗的生命周期
+
+在弹窗显示前后和弹窗关闭前后，存在registerOnWillAppear、registerOnDidAppear、registerOnWillDisappear、registerOnDidDisappear这四个生命周期。
+这些生命周期方法需要在调用show方法之前调用，生命周期的时序如下：
+registerOnWillAppear -> 弹窗显示动画开始 -> 弹窗显示动画结束 ->registerOnDidAppear -> 弹窗显示完成 ->
+registerOnWillDisappear -> 弹窗关闭动画开始 ->  弹窗关闭动画结束 -> registerOnDidDisappear -> 弹窗关闭完成。
+
+创建一个弹窗，弹窗显示和关闭时会触发生命周期的回调函数。其中 ArkUI_NodeContentHandle 类型节点的获取与使用可参考[接入ArkTS页面](ndk-access-the-arkts-page.md)。
+   ```
+    ArkUI_NodeHandle CreateDialogContent() {
+        ArkUI_NativeNodeAPI_1 *nodeAPI = reinterpret_cast<ArkUI_NativeNodeAPI_1 *>(
+            OH_ArkUI_QueryModuleInterfaceByName(ARKUI_NATIVE_NODE, "ArkUI_NativeNodeAPI_1"));
+        ArkUI_NodeHandle text = nodeAPI->createNode(ARKUI_NODE_TEXT);
+        ArkUI_NumberValue textWidthValue[] = {{.f32 = 300}};
+        ArkUI_AttributeItem textWidthItem = {.value = textWidthValue,
+                                             .size = sizeof(textWidthValue) / sizeof(ArkUI_NumberValue)};
+        nodeAPI->setAttribute(text, NODE_WIDTH, &textWidthItem);
+        ArkUI_NumberValue textHeightValue[] = {{.f32 = 300}};
+        ArkUI_AttributeItem textHeightItem = {.value = textHeightValue,
+                                              .size = sizeof(textWidthValue) / sizeof(ArkUI_NumberValue)};
+        nodeAPI->setAttribute(text, NODE_HEIGHT, &textHeightItem);
+        ArkUI_NodeHandle span = nodeAPI->createNode(ARKUI_NODE_SPAN);
+        ArkUI_AttributeItem spanItem = {.string = "这是一个弹窗"};
+        nodeAPI->setAttribute(span, NODE_SPAN_CONTENT, &spanItem);
+        ArkUI_NodeHandle imageSpan = nodeAPI->createNode(ARKUI_NODE_IMAGE_SPAN);
+        ArkUI_AttributeItem imageSpanItem = {.string = "/pages/common/sky.jpg"};
+        nodeAPI->setAttribute(imageSpan, NODE_IMAGE_SPAN_SRC, &imageSpanItem);
+        ArkUI_NumberValue imageSpanWidthValue[] = {{.f32 = 300}};
+        ArkUI_AttributeItem imageSpanWidthItem = {.value = imageSpanWidthValue,
+                                                  .size = sizeof(textWidthValue) / sizeof(ArkUI_NumberValue)};
+        nodeAPI->setAttribute(imageSpan, NODE_WIDTH, &imageSpanWidthItem);
+        ArkUI_NumberValue imageSpanHeightValue[] = {{.f32 = 200}};
+        ArkUI_AttributeItem imageSpanHeightItem = {.value = imageSpanHeightValue,
+                                                   .size = sizeof(textWidthValue) / sizeof(ArkUI_NumberValue)};
+        nodeAPI->setAttribute(imageSpan, NODE_HEIGHT, &imageSpanHeightItem);
+        nodeAPI->addChild(text, span);
+        nodeAPI->addChild(text, imageSpan);
+        return text;
+    }
+    void OnWillAppearCallBack(void* userdata) {
+        OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "CustomDialogContentTest", "OnWillAppearCallBack");
+    }
+    void OnDidAppearCallBack(void* userdata) {
+        OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "CustomDialogContentTest", "OnDidAppearCallBack");
+    }
+    void OnWillDisappearCallBack(void* userdata) {
+        OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "CustomDialogContentTest", "OnWillDisappearCallBack");
+    }
+    void OnDidDisappearCallBack(void* userdata) {
+        OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "CustomDialogContentTest", "OnDidDisappearCallBack");
+    }
+    void ShowDialog() {
+        ArkUI_NativeDialogAPI_3 *dialogAPI = reinterpret_cast<ArkUI_NativeDialogAPI_3 *>(
+            OH_ArkUI_QueryModuleInterfaceByName(ARKUI_NATIVE_DIALOG, "ArkUI_NativeDialogAPI_3"));
+        auto customDialog = dialogAPI->nativeDialogAPI1.create();
+        auto contentNode = CreateDialogContent();
+        dialogAPI->nativeDialogAPI1.setContent(customDialog, contentNode);
+        dialogAPI->nativeDialogAPI1.setAutoCancel(customDialog, true);
+        dialogAPI->registerOnWillAppear(customDialog, nullptr, OnWillAppearCallBack);
+        dialogAPI->registerOnDidAppear(customDialog, nullptr, OnDidAppearCallBack);
+        dialogAPI->registerOnWillDisappear(customDialog, nullptr, OnWillDisappearCallBack);
+        dialogAPI->registerOnDidDisappear(customDialog, nullptr, OnDidDisappearCallBack);
+        dialogAPI->nativeDialogAPI1.show(customDialog, false);
+    }
+   ```
