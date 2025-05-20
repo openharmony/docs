@@ -48,16 +48,43 @@ import { distributedDeviceManager } from '@kit.DistributedServiceKit';
 
 ## DeviceProfileInfo<sup>15+</sup>
 
-
+设备配置文件信息。
 
 **系统能力**：SystemCapability.DistributedHardware.DeviceManager
 
 **系统API**： 此接口为系统接口。
 
-| 名称         | 类型  | 必填              |  说明
-| ----------- | ---- | --------------- |
-|             |      |                 |        |
-|             |      |                 |        |
+| 名称           | 类型  | 必填              |  说明
+| -------------- | ---- | --------------- |
+|  deviceId      | string  | 是   |  设备ID。          |
+|  deviceSn      | string  | 是   |  设备序列号。      |
+|  mac           | string  | 是   |  MAC地址。         |
+|  model         | string  | 是   |  设备型号。         |
+|  deviceType    | string  | 是   |  设备类型。         |
+|  manufacturer  | string  | 是   |  制造商。           |
+|  deviceName    | string  | 是   |  设备名称。         |
+|  productId     | string  | 是   |  产品ID。           |
+|  subProductId  | string  | 否   |  产品子ID。         |
+|  sdkVersion    | string  | 是   |  SDK版本。          |
+|  bleMac        | string  | 是   |  蓝牙BLE的MAC地址。  |
+|  brMac         | string  | 是   |  蓝牙BR的MAC地址。  |
+|  sleMac        | string  | 是   |  Startflash的MAC地址。 |
+|  firmwareVersion | string | 是  |
+|  hardwareVersion | string | 是  |
+|  softwareVersion | string | 是  |
+|  protocolType    | number | 是  |
+|  setupType       | number | 是  |
+|  wiseDeviceId    | string | 是  |
+|  wiseUserId      | string | 是  |
+|  registerTime    | string | 是  |
+|  modifyTime      | string | 是  |
+|  shareTime       | string | 是  |
+|  isLocalDevice   | boolean | 是 |
+|  services        | Array&lt;ServiceProfileInfo&gt; | 否  |
+|  productName     | string  | 否 |
+|  internalModel   | string  | 否 |
+
+
 
 ## DeviceManager
 
