@@ -62,6 +62,27 @@ OpenHarmony的窗口模块将窗口界面分为系统窗口、应用窗口两种
 
 针对窗口开发，推荐使用Stage模型进行相关开发。
 
+### Stage模型下主窗口的生命周期
+
+在Stage模型下，由UIAbility通过WindowStage管理主窗口并维护其生命周期，可以通过`onWindowStageCreate`和`onWindowStageDestroy`接收主窗口创建和销毁的通知。详见：[UIAbility生命周期](../application-models/uiability-lifecycle.md#windowstagecreate和windowstagedestroy状态)。
+
+此外，WindowStage也提供了[on('windowStageEvent')](../reference/apis-arkui/js-apis-window.md#onwindowstageevent9)接口用于监听其生命周期变化。
+
+在Stage模型下，应用主窗口从前台进入后台状态也会驱动UIAbility的生命周期。在该模型下，需要额外关注这个机制在不同类型产品的差异化行为。
+
+- **phone类型设备上**：窗口从前台进入后台状态，会驱动Ability到后台状态。
+
+- **tablet类型设备上：**
+
+  - 针对不支持在2in1设备上运行的应用，或可同时支持在phone和2in1上运行的应用，窗口从前台进入后台状态，会驱动UIAbility为后台状态。
+
+  - 针对不支持在phone设备上运行且支持在2in1设备上运行的应用，窗口从前台进入后台状态，不会驱动UIAbility为后台状态。
+
+- **2in1类型设备上：**
+
+  - 针对支持在phone设备运行的应用，窗口从前台进入后台状态，会驱动UIAbility为后台状态。
+
+  - 针对不支持在phone设备运行的应用，窗口从前台进入后台状态，不会驱动UIAbility为后台状态。
 
 ## 约束与限制
 
