@@ -92,7 +92,7 @@ queryNavDestinationInfo(): NavDestinationInfo | undefined;
 **示例：**
 
 ```ts
-import { uiObserver } from '@kit.ArkUI'
+import { uiObserver } from '@kit.ArkUI';
 
 @Component
 export struct NavDestinationExample {
@@ -139,7 +139,7 @@ queryNavigationInfo(): NavigationInfo | undefined
 
 ```ts
 // index.ets
-import { uiObserver } from '@kit.ArkUI'
+import { uiObserver } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -156,7 +156,7 @@ struct MainPage {
 
 @Component
 export struct PageOne {
-  pathStack: NavPathStack = new NavPathStack()
+  pathStack: NavPathStack = new NavPathStack();
 
   aboutToAppear() {
     // this指代PageOne自定义节点，并从该节点向上查找其最近的一个类型为Navigation的父亲节点
@@ -194,7 +194,7 @@ queryRouterPageInfo(): RouterPageInfo | undefined;
 **示例：**
 
 ```ts
-import { uiObserver } from '@kit.ArkUI'
+import { uiObserver } from '@kit.ArkUI';
 
 @Entry
 @Component
