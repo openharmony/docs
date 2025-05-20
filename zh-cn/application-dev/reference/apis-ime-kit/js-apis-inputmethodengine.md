@@ -807,7 +807,7 @@ try {
 
 on(type: 'discardTypingText', callback: Callback\<void>): void
 
-订阅编辑框应用发送“清空候选词”命令到输入法。使用callback异步回调。
+订阅编辑框应用发送“清空候选词”事件到输入法。使用callback异步回调。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -815,13 +815,14 @@ on(type: 'discardTypingText', callback: Callback\<void>): void
 
 | 参数名   | 类型                                          | 必填 | 说明                                       |
 | -------- | --------------------------------------------- | ---- | ------------------------------------------ |
-| type     | string                                        | 是   | 设置监听类型，固定取值为'discardTypingText'。<br/> - 'discardTypingText'：表示订阅编辑框应用发送“清空候选词”命令到输入法。 |
+| type     | string                                        | 是   | 设置监听类型，固定取值为'discardTypingText'。<br/> - 'discardTypingText'：表示订阅编辑框应用发送“清空候选词”事件到输入法。 |
 | callback |  Callback\<void> | 是   | 回调函数。当命令发送成功，err为undefined，否则为错误对象。 |
 
 **示例：**
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
+import inputMethodEngine from '@ohos.inputMethodEngine';
 
 try {
   console.info(`discard the typing text`);
@@ -838,7 +839,7 @@ try {
 
 off(type: 'discardTypingText', callback?: Callback\<void>): void
 
-取消订阅编辑框应用发送“清空候选词”命令到输入法。使用callback异步回调。
+取消订阅编辑框应用发送“清空候选词”事件到输入法。使用callback异步回调。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -846,13 +847,14 @@ off(type: 'discardTypingText', callback?: Callback\<void>): void
 
 | 参数名   | 类型                                        | 必填 | 说明                                                         |
 | -------- | ------------------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | string                                      | 是   | 设置监听类型，固定取值为'discardTypingText'。<br/> - 'discardTypingText'：表示取消订阅编辑框应用发送“清空候选词”命令到输入法。 |
+| type     | string                                      | 是   | 设置监听类型，固定取值为'discardTypingText'。<br/> - 'discardTypingText'：表示取消订阅编辑框应用发送“清空候选词”事件到输入法。 |
 | callback | Callback\<void>  | 否   | 取消订阅的回调函数。参数不填写时，取消订阅type对应的所有回调事件。 |
 
 **示例：**
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
+import inputMethodEngine from '@ohos.inputMethodEngine';
 
 try {
   console.info(`discard the typing text`);
