@@ -666,7 +666,7 @@ tlsTwoWay.close((err: BusinessError) => {
 
 1. 导入所需的socket模块。
 
-2. 参考[应用 TCP/UDP 协议进行通信](#应用-tcpudp-协议进行通信)，创建一个TCPSocket连接。
+2. 参考[应用 TCP/UDP 协议进行通信](#应用tcpudp协议进行通信)，创建一个TCPSocket连接。
 
 3. 确保TCPSocket已连接后，使用该TCPSocket对象创建TLSSocket连接，返回一个TLSSocket对象。
 
