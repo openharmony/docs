@@ -8,7 +8,7 @@
 
 客户端：使用WebSocket建立服务器与客户端的双向连接，需要先通过[createWebSocket](#websocketcreatewebsocket6)方法创建[WebSocket](#websocket6)对象，然后通过[connect](#connect6)方法连接到服务器。当连接成功后，客户端会收到[open](#onopen6)事件的回调，之后客户端就可以通过[send](#send6)方法与服务器进行通信。当服务器发信息给客户端时，客户端会收到[message](#onmessage6)事件的回调。当客户端想要取消此连接时，通过调用[close](#close6)方法主动断开连接后，客户端会收到[close](#onclose6)事件的回调。若在上述任一过程中发生错误，客户端会收到[error](#onerror6)事件的回调。
 
-服务端：使用WebSocket建立服务器与客户端的双向连接，需要先通过[createWebSocketServer](#websocketcreatewebsocketserver)方法创建[WebSocketServer](#websocketserver)对象，然后通过[start](#start)方法启动服务器，监听客户端的申请建链的消息。当连接成功后，服务端会收到[connect](#onconnect)事件的回调，之后服务端可以通过[send](#send)方法与客户端进行通信，或者通过[listAllConnections](#listallconnections)方法列举出当前与服务端建链的所有客户端信息。当客户端给服务端发消息时，服务端会收到[messageReceive](#onmessagereceive)事件回调。当服务端想断开与某个客户端的连接，可以通过调用[close](#close)方法主动断开连接，之后服务端会收到[close](#onclose)事件的回调。当服务端想停止service时，可以调用[stop](#stop)方法。若在上述任一过程中发生错误，服务端会收到[error](#onerror)事件的回调。
+服务端：使用WebSocket建立服务器与客户端的双向连接，需要先通过[createWebSocketServer](#websocketcreatewebsocketserver19)方法创建[WebSocketServer](#websocketserver19)对象，然后通过[start](#start19)方法启动服务器，监听客户端的申请建链的消息。当连接成功后，服务端会收到[connect](#onconnect19)事件的回调，之后服务端可以通过[send](#send19)方法与客户端进行通信，或者通过[listAllConnections](#listallconnections19)方法列举出当前与服务端建链的所有客户端信息。当客户端给服务端发消息时，服务端会收到[messageReceive](#onmessagereceive19)事件回调。当服务端想断开与某个客户端的连接，可以通过调用[close](#close19)方法主动断开连接，之后服务端会收到[close](#onclose19)事件的回调。当服务端想停止service时，可以调用[stop](#stop19)方法。若在上述任一过程中发生错误，服务端会收到[error](#onerror19)事件的回调。
 
 
 ## 导入模块
