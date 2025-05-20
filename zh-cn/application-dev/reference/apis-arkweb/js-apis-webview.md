@@ -4691,7 +4691,7 @@ struct WebComponent {
               let buf = new ArrayBuffer(size);
               fileIo.read(file.fd, buf, (err, readLen) => {
                 if (err) {
-                  console.info("console error with error message: " + err.message + ", error code: " + err.code);
+                  console.error("console error with error message: " + err.message + ", error code: " + err.code);
                 } else {
                   console.info("read file data succeed");
                   this.controller.restoreWebState(new Uint8Array(buf.slice(0, readLen)));
