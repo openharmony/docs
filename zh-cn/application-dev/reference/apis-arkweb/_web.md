@@ -1330,7 +1330,7 @@ uint64_t OH_ArkWebHttpBodyStream_GetPosition (const ArkWeb_HttpBodyStream * http
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| httpBodyStream | [ArkWeb_HttpBodyStream](arkweb_httpbodystream)。  | 
+| httpBodyStream | [ArkWeb_HttpBodyStream](#arkweb_httpbodystream)。  | 
 
 **返回：**
 
@@ -1356,7 +1356,7 @@ uint64_t OH_ArkWebHttpBodyStream_GetSize (const ArkWeb_HttpBodyStream * httpBody
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| httpBodyStream | [ArkWeb_HttpBodyStream](arkweb_httpbodystream)。  | 
+| httpBodyStream | [ArkWeb_HttpBodyStream](#arkweb_httpbodystream)。  | 
 
 **返回：**
 
@@ -1380,7 +1380,7 @@ void* OH_ArkWebHttpBodyStream_GetUserData (const ArkWeb_HttpBodyStream * httpBod
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| httpBodyStream | [ArkWeb_HttpBodyStream](arkweb_httpbodystream)。  | 
+| httpBodyStream | [ArkWeb_HttpBodyStream](#arkweb_httpbodystream)。  | 
 
 **返回：**
 
@@ -1406,7 +1406,7 @@ int32_t OH_ArkWebHttpBodyStream_Init (ArkWeb_HttpBodyStream * httpBodyStream, Ar
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| httpBodyStream | [ArkWeb_HttpBodyStream](arkweb_httpbodystream)。  | 
+| httpBodyStream | [ArkWeb_HttpBodyStream](#arkweb_httpbodystream)。  | 
 | initCallback | 初始化的回调函数。  | 
 
 **返回：**
@@ -1431,7 +1431,7 @@ bool OH_ArkWebHttpBodyStream_IsChunked (const ArkWeb_HttpBodyStream * httpBodySt
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| httpBodyStream | [ArkWeb_HttpBodyStream](arkweb_httpbodystream)。  | 
+| httpBodyStream | [ArkWeb_HttpBodyStream](#arkweb_httpbodystream)。  | 
 
 **返回：**
 
@@ -1457,7 +1457,7 @@ bool OH_ArkWebHttpBodyStream_IsEof (const ArkWeb_HttpBodyStream * httpBodyStream
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| httpBodyStream | [ArkWeb_HttpBodyStream](arkweb_httpbodystream)。  | 
+| httpBodyStream | [ArkWeb_HttpBodyStream](#arkweb_httpbodystream)。  | 
 
 **返回：**
 
@@ -1483,7 +1483,7 @@ bool OH_ArkWebHttpBodyStream_IsInMemory (const ArkWeb_HttpBodyStream * httpBodyS
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| httpBodyStream | [ArkWeb_HttpBodyStream](arkweb_httpbodystream)。  | 
+| httpBodyStream | [ArkWeb_HttpBodyStream](#arkweb_httpbodystream)。  | 
 
 **返回：**
 
@@ -1509,7 +1509,7 @@ buffer的大小必须大于bufLen。我们将从工作线程读取数据到buffe
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| httpBodyStream | [ArkWeb_HttpBodyStream](arkweb_httpbodystream)。  | 
+| httpBodyStream | [ArkWeb_HttpBodyStream](#arkweb_httpbodystream)。  | 
 | buffer | 接收数据的buffer。  | 
 | bufLen | 要读取的字节的大小。 | 
 
@@ -1535,7 +1535,7 @@ OH_ArkWebHttpBodyStream_Read的结果将通过readCallback通知给调用者。
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| httpBodyStream | [ArkWeb_HttpBodyStream](arkweb_httpbodystream)。  | 
+| httpBodyStream | [ArkWeb_HttpBodyStream](#arkweb_httpbodystream)。  | 
 | readCallback | OH_ArkWebHttpBodyStream_Read的回调函数。  | 
 
 **返回：**
@@ -1560,7 +1560,7 @@ int32_t OH_ArkWebHttpBodyStream_SetUserData (ArkWeb_HttpBodyStream * httpBodyStr
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| httpBodyStream | [ArkWeb_HttpBodyStream](arkweb_httpbodystream)。  | 
+| httpBodyStream | [ArkWeb_HttpBodyStream](#arkweb_httpbodystream)。  | 
 | userData | 要设置的用户数据。  | 
 
 **返回：**
