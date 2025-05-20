@@ -15145,7 +15145,7 @@ WebHttpBodyStream是否采用分块传输。
 
 | 类型   | 说明                      |
 | ------ | ------------------------- |
-| boolean | WebHttpBodyStream是否采用分块传输。 |
+| boolean | WebHttpBodyStream是否采用分块传输，true表示采用分块传输，false表示不采用分块传输。 |
 
 **示例：**
 
@@ -15293,7 +15293,7 @@ hasGesture(): boolean
 
 | 类型     | 说明            |
 | ------ | ------------- |
-| boolean | 返回资源请求是否与手势（如点击）相关联。 |
+| boolean | 返回资源请求是否与手势（如点击）相关联，true表示与手势相关联，false表示与手势无关联。 |
 
 **示例：**
 
