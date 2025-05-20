@@ -2545,3 +2545,71 @@ getDistanceBetweenLocations(location1: Location, location2: Location): number
     console.error("getDistanceBetweenLocations: errCode" + error.code + ", errMessage" + error.message);
   }
   ```
+
+
+## geoLocationManager.isPoiServiceSupported<sup>20+</sup>
+
+isPoiServiceSupported(): boolean
+
+查询系统（即软件）是否支持POI服务。
+
+**系统能力**：SystemCapability.Location.Location.Core
+
+
+**返回值**：
+
+  | 类型 | 说明 |
+  | -------- | -------- |
+  | boolean | true:POI服务可用。 <br/>false:POI服务不可用。 |
+
+
+**示例**
+
+  ```ts
+  import { geoLocationManager } from '@kit.LocationKit';
+  let poiServiceState = geoLocationManager.isPoiServiceSupported();
+  console.info("poiServiceState:" + poiServiceState);
+  ```
+  
+
+## geoLocationManager.getPoiInfo<sup>20+</sup>
+
+getPoiInfo(): Promise&lt;PoiInfo&gt;
+
+获取当前位置附近的POI信息。
+
+**系统能力**：SystemCapability.Location.Location.Core
+
+
+**返回值**：
+
+  | 类型 | 说明 |
+  | -------- | -------- |
+  | Promise&lt;[PoiInfo](#poiinfo19)&gt;| 当前位置附近的POI信息。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[位置服务子系统错误码](errorcode-geoLocationManager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+|201 | Permission verification failed. The application does not have the permission required to call the API.                 |
+|801 | Capability not supported. Failed to call ${geoLocationManager.getPoiInfo()} due to limited device capabilities.          |
+|3301000 | The location service is unavailable.                                           |
+|3301100 | The location switch is off.                                                 |
+
+**示例**
+
+  ```ts
+  import { geoLocationManager } from '@kit.LocationKit';
+  try {
+    if (geoLocationManager.isPoiServiceSupported()) {
+      let poiInfo = await geoLocationManager.getPoiInfo();
+      if (poiInfo !== undefined) {
+        console.info("get PoiInfo:" + json.stringify(poiInfo));
+      }
+    }
+  } catch(error) {
+    console.error("getPoiInfo errCode:" + error.code + ", errMessage:" + error.message);
+  }
+  ```
