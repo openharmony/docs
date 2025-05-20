@@ -589,6 +589,21 @@ type WindowAnimationCurveParam = Array&lt;number&gt;
 | rectType | [RectType](#recttype19) | 否 | 是 | 窗口矩形区域坐标系类型。 |
 | windowRect | [Rect](#rect7) | 否 | 是 | 相对于屏幕或父窗坐标系的窗口矩形区域信息。|
 
+## GlobalWindowMode<sup>20+</sup>
+
+窗口模式。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：**  SystemCapability.Window.SessionManager
+
+| 名称   | 值 | 类型  | 说明                    |
+| ------ | --- | --- | ------------------------ |
+| FULLSCREEN | 1 | number | 全屏窗口。 |
+| SPLIT  | 1 << 1 | number | 分屏窗口。 |
+| FLOAT   | 1 << 2  | number | 悬浮窗。 |
+| PIP   | 1 << 3  | number | 画中画。 |
+
 ## window.createWindow<sup>9+</sup>
 
 createWindow(config: Configuration, callback: AsyncCallback&lt;Window&gt;): void
@@ -1166,6 +1181,55 @@ try {
   });
 } catch (exception) {
   console.error(`Failed to obtain all window layout info. Cause code: ${exception.code}, message: ${exception.message}`);
+}
+```
+
+## window.getGlobalWindowMode<sup>20+</sup>
+
+getGlobalWindowMode(displayId?: number): Promise&lt;number&gt;
+
+获取指定屏幕上生命周期位于前台的窗口对应的窗口模式，使用Promise异步回调。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                                                                        |
+| ------ | ---------- |----|---------------------------------------------------------------------------|
+| displayId   | number| 否  | 可选的屏幕ID，用于获取对应屏幕上的窗口模式信息，该参数应为大于等于0的整数，小于0时会返回错误码1300016，不传则代表查询所有屏幕，如果指定的屏幕不存在，返回值为0。|
+
+**返回值：**
+
+| 类型                             | 说明                      |
+| -------------------------------- |-------------------------|
+| Promise&lt;number&gt; | Promise对象。返回获取到的窗口模式。每一个二进制位代表一种窗口模式，当前支持的窗口模式见[GlobalWindowMode](#globalwindowmode20)，返回值为对应窗口模式值按位进行或运算的结果，比如，当前屏幕上存在全屏窗口、悬浮窗和画中画三种窗口，则返回值为`0b1\|0b100\|0b1000 = 13`。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[窗口错误码](errorcode-window.md)。
+
+| 错误码ID    | 错误信息 |
+|----------| ------------------------------ |
+| 801      | Capability not supported. function getGlobalWindowMode can not work correctly due to limited device capabilities. |
+| 1300003 | This window manager service works abnormally. |
+| 1300016 | Parameter error. Possible cause: 1. Invalid parameter range. |
+
+```ts
+import { window } from '@ohos.window';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+  let displayId = 0;
+  let promise = window.getGlobalWindowMode(displayId);
+  promise.then((data) => {
+    console.info(`Succeeded in obtaining global window mode. Data: ${data}`);
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to obtain global window mode. Cause code: ${err.code}, message: ${err.message}`);
+  });
+} catch (exception) {
+  console.error(`Failed to obtain global window mode. Cause code: ${exception.code}, message: ${exception.message}`);
 }
 ```
 
