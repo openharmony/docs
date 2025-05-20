@@ -187,6 +187,21 @@ UI事件的相关信息。
 | stay | boolean | 否  | 是  | 触摸板多指滑动结束是否停留1s后再抬起，默认为false（不停留1s），true：停留，false：不停留。 |
 | speed       | number | 否  | 是  | 滑动速率，取值范围为200-40000，默认值为2000，不在范围内设为默认值为2000，单位：px/s。  |
 
+
+## InputTextMode<sup>20+</sup>
+
+输入文本的方式。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Test.UiTest
+
+| 名称       | 类型   | 可读 | 可写 | 说明                                                       |
+| ---------- | ------ |----|----|----------------------------------------------------------|
+| paste | boolean | 是  | 是  | 输入文本时是否指定以复制粘贴方式输入。true：指定以复制粘贴方式输入。false：指定以逐字键入方式输入。默认为false。<br /> **说明：** <br>1.当输入文本中包含中文、特殊字符或文本长度超过200字符时，无论该参数取值为何，均以复制粘贴方式输入。<br>2.在智能穿戴设备中，该接口不支持以复制粘贴方式输入。|
+| addition       | boolean | 是  | 是  | 输入文本时是否以追加的方式进行输入。true：以追加方式输入。false：不以追加方式输入。默认为false。|
+
+
 ## On<sup>9+</sup>
 
 UiTest框架在API 9中，通过On类提供了丰富的控件特征描述API，用于进行控件筛选来匹配/查找出目标控件。<br>
@@ -1554,6 +1569,52 @@ async function demo() {
   await text.inputText('123');
 }
 ```
+
+### inputText<sup>20+</sup>
+
+inputText(text: string, mode: InputTextMode): Promise\<void>
+
+向控件中输入文本（适用于文本框控件），支持指定文本输入方式，使用Promise异步回调。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Test.UiTest
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                                     |
+| ------ | ------ | ---- | ---------------------------------------- |
+| text   | string | 是   | 输入的文本信息，当前支持英文、中文和特殊字符。 <br> **说明：** 在智能穿戴设备中，该接口不支持输入包含中文的文本。 |
+| mode | [InputTextMode](#inputtextmode20)  | 否   | 输入文本的方式，取值请参考[InputTextMode](#inputtextmode20)。<br> **说明：** InputTextMode.addition取值为ture时，在控件已有文本末尾后追加指定文本。取值为false时，指定文本将覆盖控件已有文本。|
+
+**返回值：**
+
+| 类型             | 说明              |
+|----------------|-----------------|
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[uitest测试框架错误码](errorcode-uitest.md)。
+
+| 错误码ID | 错误信息                               |
+| -------- | ---------------------------------------- |
+| 17000002 | The async function is not called with await. |
+| 17000004 | The window or component is invisible or destroyed.           |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
+| 801      | Capability not support, function can not work correctly due to limited device capabilities.|
+
+**示例：**
+```ts
+import { Component, Driver, ON } from '@kit.TestKit';
+
+async function mode_demo() {
+  let driver: Driver = Driver.create();
+  let text: Component = await driver.findComponent(ON.text('hello world'));
+  await text.inputText('123', { paste: true, addition: false });
+}
+```
+
 
 ### clearText<sup>9+</sup>
 
@@ -3370,6 +3431,61 @@ async function demo() {
 }
 ```
 
+### inputText<sup>20+</sup>
+
+inputText(p: Point, text: string, mode: InputTextMode): Promise\<void>
+
+在指定坐标点输入文本，支持指定文本输入方式，使用Promise异步回调。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Test.UiTest
+
+**参数：**
+
+| 参数名 | 类型             | 必填 | 说明               |
+| ------ | ---------------- | ---- | ------------------ |
+| p      | [Point](#point9) | 是   | 输入文本的坐标点。 |
+| text   | string           | 是   |输入的文本信息，当前支持英文、中文和特殊字符。 <br> **说明：** 在智能穿戴设备中，该接口不支持输入包含中文的文本。 |
+| mode | [InputTextMode](#inputtextmode20) | 否   | 输入文本的方式，取值请参考[InputTextMode](#inputtextmode20)。 <br> **说明：** InputTextMode.addition取值为ture时，将光标移动至文本末尾后输入指定文本。取值为false时，将在坐标点位置输入指定文本。 |
+
+**返回值：**
+
+| 类型             | 说明              |
+|----------------|-----------------|
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[uitest测试框架错误码](errorcode-uitest.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 17000002 | The async function is not called with await.             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
+| 801      | Capability not support, function can not work correctly due to limited device capabilities.|
+
+**示例：**
+
+```ts
+import { Component, Driver, ON } from '@kit.TestKit';
+
+async function demo() {
+  let driver: Driver = Driver.create();
+  let text: Component = await driver.findComponent(ON.type('TextInput'));
+  let point = await text.getBoundsCenter();
+  await driver.inputText(point, '123', {paste: true, addition: false});
+}
+
+async function demo_Chinese() {
+  let driver: Driver = Driver.create();
+  let text: Component = await driver.findComponent(ON.type('TextInput'));
+  let point = await text.getBoundsCenter();
+  await driver.inputText(point, '中文&', { paste: false, addition: true });
+  // 以复制粘贴方式输入中文、特殊符号， 指定文本追加到指定坐标所在文本段的末尾。
+}
+```
+
 ### touchPadMultiFingerSwipe<sup>18+</sup>
 
 touchPadMultiFingerSwipe(fingers: number, direction: UiDirection, options?: TouchPadSwipeOptions): Promise\<void>
@@ -3632,6 +3748,55 @@ async function demo() {
     pointer.setPoint(0, step, {x: 500, y: 1100 - 100 *step});
   }
   await driver.injectPenPointerAction(pointer, 600, 0.5);
+}
+```
+
+### crownRotate<sup>20+</sup>
+
+crownRotate(d: number, speed?: number): Promise\<void>
+
+注入手表表冠旋转事件，可指定旋转速度，使用Promise异步回调。
+
+该接口仅在智能穿戴设备上生效。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Test.UiTest
+
+**参数：**
+
+| 参数名 | 类型                                         | 必填 | 说明                                                             |
+| ------ |-----------------------------------------------|----|-------------------------------------------------------------------|
+| d      | number   | 是   | 手表表冠旋转的格数，正值表示顺时针旋转，负值表示逆时针旋转，取值需为整数。         |
+| speed  | number   | 否   | 手表表冠旋转的速度，取值范围：1-500的整数，默认值为20，单位：格/秒。<br> **说明：** 参数取值超出合法范围时，设为默认值20。 |
+
+**返回值：**
+
+| 类型             | 说明              |
+|----------------|-----------------|
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[uitest测试框架错误码](errorcode-uitest.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 17000002 | The async function is not called with await.             |
+| 17000007 |  Parameter verification failed. |
+| 801 | Capability not support, function can not work correctly due to limited device capabilities. |
+
+**示例：**
+
+```ts
+import { Driver } from '@kit.TestKit';
+
+async function demo() {
+  let driver: Driver = Driver.create();
+  // 顺时针旋转50格，旋转速度为30格/秒
+  await driver.crownRotate(50, 30);
+  // 逆时针旋转20格，旋转速度为30格/秒
+  await driver.crownRotate(-20, 30);
 }
 ```
 
