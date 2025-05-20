@@ -1739,15 +1739,39 @@ showWindow(options: ShowWindowOptions): Promise&lt;void&gt;
 **示例：**
 
 ```ts
+// EntryAbility.ets
+import { window } from '@kit.ArkUI';
+import { UIAbility } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
-let options : window.ShowWindowOptions = {
-  focusOnShow: false,
-};
-windowClass.showWindow(options).then(() => {
-  console.info('Succeeded in showing the window.');
-}).catch((err: BusinessError) => {
-  console.error(`Failed to show the window. Cause code: ${err.code}, message: ${err.message}`);
-});
+
+export default class EntryAbility extends UIAbility {
+  onWindowStageCreate(windowStage: window.WindowStage): void {
+    console.info('onWindowStageCreate');
+    // 创建子窗
+    try {
+      windowStage.createSubWindow('subWindow').then((data) => {
+        if (data == null) {
+          console.error('Failed to create the sub window. Cause: The data is empty');
+          return;
+        }
+        let options: window.ShowWindowOptions = {
+          focusOnShow: false
+        };
+        try {
+          data.showWindow(options).then(() => {
+            console.info('Succeeded in showing window');
+          }).catch((err: BusinessError) => {
+            console.error(`Failed to show window. Cause code: ${err.code}, message: ${err.message}`);
+          });
+        } catch (exception) {
+          console.error(`Failed to show window. Cause code: ${exception.code}, message: ${exception.message}`);
+        }
+      });
+    } catch (exception) {
+      console.error(`Failed to create the sub window. Cause code: ${exception.code}, message: ${exception.message}`);
+    }
+  }
+}
 ```
 
 ### destroyWindow<sup>9+</sup>
