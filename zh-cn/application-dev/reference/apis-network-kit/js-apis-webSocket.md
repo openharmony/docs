@@ -1234,7 +1234,7 @@ close(connection: WebSocketConnection, options?: webSocket.WebSocketCloseOptions
 | 名称 | 类型   | 只读 | 可选 | 说明                            |
 | ---------- | --------------------- | ---- | ------ |---------------------------------------------- |
 | connection | [WebSocketConnection[]](#websocketconnection19) | 否 | 否   | 客户端信息。                   |
-| options    | [WebSocketCloseOptions](#websocketcloseoptions) | 否 | 是   |   。 |
+| options    | [WebSocketCloseOptions](#websocketcloseoptions) | 否 | 是   | 默认值code：200；reason:Websocket connect failed。 |
 
 **返回值：**
 
@@ -1518,7 +1518,7 @@ on(type: 'error', callback: ErrorCallback): void
 | 名称 | 类型   | 只读 | 可选 | 说明                            |
 | -------- | ------------- | ---- | --- |--------------------------- |
 | type     | string        | 是 | 否   | 'error'：WebSocketServer的Error事件。 |
-| callback | ErrorCallback | 是 | 否   | 回调函数。<br>常见错误码：200 |
+| callback | ErrorCallback | 是 | 否   | 回调函数。<br>错误码说明参见[webSocket错误码](errorcode-net-webSocket.md) |
 
 **示例：**
 
