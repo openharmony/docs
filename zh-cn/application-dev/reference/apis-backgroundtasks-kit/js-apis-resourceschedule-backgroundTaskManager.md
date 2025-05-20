@@ -551,7 +551,7 @@ export default class EntryAbility extends UIAbility {
 
 startBackgroundRunning(context: Context, bgModes: string[], wantAgent: WantAgent): Promise&lt;ContinuousTaskNotification&gt;
 
-申请长时任务，支持申请多种类型，使用promise异步回调。
+申请长时任务，支持申请多种类型，使用promise异步回调。长时任务申请成功后，会有通知栏消息，没有提示音。
 
 **需要权限:** ohos.permission.KEEP_BACKGROUND_RUNNING
 
@@ -682,7 +682,7 @@ export default class EntryAbility extends UIAbility {
 
 updateBackgroundRunning(context: Context, bgModes: string[]): Promise&lt;ContinuousTaskNotification&gt;
 
-更新长时任务类型，使用promise异步回调。
+更新长时任务类型，使用promise异步回调。长时任务更新成功后，会有通知栏消息，没有提示音。
 
 **需要权限:** ohos.permission.KEEP_BACKGROUND_RUNNING
 
@@ -821,7 +821,7 @@ on(type: 'continuousTaskCancel', callback: Callback&lt;ContinuousTaskCancelInfo&
 | 参数名       | 类型                                 | 必填   | 说明                                       |
 | --------- | ---------------------------------- | ---- | ---------------------------------------- |
 | type   | string                            | 是    | 取消长时任务，固定取值为'continuousTaskCancel'。 |
-| callback   | Callback\<[ContinuousTaskCancelReason](#continuoustaskcancelreason15)>       | 是    | 回调函数，返回长时任务取消原因。 |
+| callback   | Callback\<[ContinuousTaskCancelInfo](#continuoustaskcancelinfo15)>       | 是    | 回调函数，返回长时任务取消原因等信息。 |
 
 **错误码**：
 
@@ -869,7 +869,7 @@ off(type: 'continuousTaskCancel', callback?: Callback&lt;ContinuousTaskCancelInf
 | 参数名       | 类型                                 | 必填   | 说明                                       |
 | --------- | ---------------------------------- | ---- | ---------------------------------------- |
 | type   | string                            | 是    | 取消长时任务，固定取值为'continuousTaskCancel'。 |
-| callback   | Callback\<[ContinuousTaskCancelReason](#continuoustaskcancelreason15)>       | 否    | 需要取消监听的回调函数，未传入则取消所有注册回调。 |
+| callback   | Callback\<[ContinuousTaskCancelInfo](#continuoustaskcancelinfo15)>       | 否    | 需要取消监听的回调函数，未传入则取消所有注册回调。 |
 
 **错误码**：
 
@@ -903,6 +903,198 @@ export default class EntryAbility extends UIAbility {
 };
 ```
 
+## backgroundTaskManager.on('continuousTaskSuspend')<sup>20+</sup>
+
+on(type: 'continuousTaskSuspend', callback: Callback&lt;ContinuousTaskSuspendInfo&gt;): void
+
+注册长时任务暂停的监听，使用callback异步回调。
+
+**需要权限:** ohos.permission.KEEP_BACKGROUND_RUNNING
+
+**系统能力:** SystemCapability.ResourceSchedule.BackgroundTaskManager.ContinuousTask
+
+**参数**：
+
+| 参数名       | 类型                                 | 必填   | 说明                                       |
+| --------- | ---------------------------------- | ---- | ---------------------------------------- |
+| type   | string                            | 是    | 事件回调类型，固定取值为'continuousTaskSuspend'，表示长时任务暂停。 |
+| callback   | Callback\<[ContinuousTaskSuspendInfo](#continuoustasksuspendinfo20)>       | 是    | 回调函数，返回长时任务暂停原因等信息。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[backgroundTaskManager错误码](errorcode-backgroundTaskMgr.md)。
+
+| 错误码ID  | 错误信息             |
+| ---- | --------------------- |
+| 201 | Permission denied. |
+| 9800005 | Continuous task verification failed. |
+
+**示例**：
+
+```js
+import { backgroundTaskManager } from '@kit.BackgroundTasksKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
+
+function callback(info: backgroundTaskManager.ContinuousTaskSuspendInfo) {
+  console.info('continuousTaskSuspend callback continuousTaskId: ' + info.continuousTaskId);
+  console.info('continuousTaskSuspend callback suspendState: ' + info.suspendState);
+  console.info('continuousTaskSuspend callback suspendReason: ' + info.suspendReason);
+}
+
+export default class EntryAbility extends UIAbility {
+    onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
+        try {
+            backgroundTaskManager.on("continuousTaskSuspend", callback);
+        } catch (error) {
+            console.error(`Operation onContinuousTaskSuspend failed. code is ${(error as BusinessError).code} message is ${(error as BusinessError).message}`);
+        }
+    }
+};
+```
+## backgroundTaskManager.off('continuousTaskSuspend')<sup>20+</sup>
+
+off(type: 'continuousTaskSuspend', callback?: Callback&lt;ContinuousTaskSuspendInfo&gt;): void
+
+取消长时任务暂停的监听，使用callback异步回调。
+
+**需要权限:** ohos.permission.KEEP_BACKGROUND_RUNNING
+
+**系统能力:** SystemCapability.ResourceSchedule.BackgroundTaskManager.ContinuousTask
+
+**参数**：
+
+| 参数名       | 类型                                 | 必填   | 说明                                       |
+| --------- | ---------------------------------- | ---- | ---------------------------------------- |
+| type   | string                            | 是    | 事件回调类型，固定取值为'continuousTaskSuspend'，表示长时任务暂停。 |
+| callback   | Callback\<[ContinuousTaskSuspendInfo](#continuoustasksuspendinfo20)>       | 否    | 需要取消监听的回调函数，未传入则取消所有注册的暂停回调。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[backgroundTaskManager错误码](errorcode-backgroundTaskMgr.md)。
+
+| 错误码ID  | 错误信息             |
+| ---- | --------------------- |
+| 201 | Permission denied. |
+| 9800005 | Continuous task verification failed. |
+
+**示例**：
+
+```js
+import { backgroundTaskManager } from '@kit.BackgroundTasksKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
+
+function callback(info: backgroundTaskManager.ContinuousTaskSuspendInfo) {
+  console.info('continuousTaskSuspend callback continuousTaskId: ' + info.continuousTaskId);
+  console.info('continuousTaskSuspend callback suspendState: ' + info.suspendState);
+  console.info('continuousTaskSuspend callback suspendReason: ' + info.suspendReason);
+}
+
+export default class EntryAbility extends UIAbility {
+    onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
+        try {
+            backgroundTaskManager.off("continuousTaskSuspend", callback);
+        } catch (error) {
+            console.error(`Operation offContinuousTaskSuspend failed. code is ${(error as BusinessError).code} message is ${(error as BusinessError).message}`);
+        }
+    }
+};
+```
+## backgroundTaskManager.on('continuousTaskActive')<sup>20+</sup>
+
+on(type: 'continuousTaskActive', callback: Callback&lt;ContinuousTaskActiveInfo&gt;): void
+
+注册长时任务激活的监听，使用callback异步回调。应用回前台激活暂停的长时任务。
+
+**需要权限:** ohos.permission.KEEP_BACKGROUND_RUNNING
+
+**系统能力:** SystemCapability.ResourceSchedule.BackgroundTaskManager.ContinuousTask
+
+**参数**：
+
+| 参数名       | 类型                                 | 必填   | 说明                                       |
+| --------- | ---------------------------------- | ---- | ---------------------------------------- |
+| type   | string                            | 是    | 事件回调类型，固定取值为'continuousTaskActive'，表示长时任务激活。 |
+| callback   | Callback\<[ContinuousTaskActiveInfo](#continuoustaskactiveinfo20)>       | 是    | 回调函数，返回长时任务激活相关信息。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[backgroundTaskManager错误码](errorcode-backgroundTaskMgr.md)。
+
+| 错误码ID  | 错误信息             |
+| ---- | --------------------- |
+| 201 | Permission denied. |
+| 9800005 | Continuous task verification failed. |
+
+**示例**：
+
+```js
+import { backgroundTaskManager } from '@kit.BackgroundTasksKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
+
+function callback(info: backgroundTaskManager.ContinuousTaskActiveInfo) {
+  console.info('continuousTaskActive callback id: ' + info.id);
+}
+
+export default class EntryAbility extends UIAbility {
+    onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
+        try {
+            backgroundTaskManager.on("continuousTaskActive", callback);
+        } catch (error) {
+            console.error(`Operation onContinuousTaskActive failed. code is ${(error as BusinessError).code} message is ${(error as BusinessError).message}`);
+        }
+    }
+};
+```
+## backgroundTaskManager.off('continuousTaskActive')<sup>20+</sup>
+
+off(type: 'continuousTaskActive', callback?: Callback&lt;ContinuousTaskActiveInfo&gt;): void
+
+取消长时任务激活的监听，使用callback异步回调。
+
+**需要权限:** ohos.permission.KEEP_BACKGROUND_RUNNING
+
+**系统能力:** SystemCapability.ResourceSchedule.BackgroundTaskManager.ContinuousTask
+
+**参数**：
+
+| 参数名       | 类型                                 | 必填   | 说明                                       |
+| --------- | ---------------------------------- | ---- | ---------------------------------------- |
+| type   | string                            | 是    | 事件回调类型，固定取值为'continuousTaskActive'，表示长时任务激活。 |
+| callback   | Callback\<[ContinuousTaskActiveInfo](#continuoustaskactiveinfo20)>       | 否    | 需要取消监听的回调函数，未传入则取消所有注册的激活回调。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[backgroundTaskManager错误码](errorcode-backgroundTaskMgr.md)。
+
+| 错误码ID  | 错误信息             |
+| ---- | --------------------- |
+| 201 | Permission denied. |
+| 9800005 | Continuous task verification failed. |
+
+**示例**：
+
+```js
+import { backgroundTaskManager } from '@kit.BackgroundTasksKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
+
+function callback(info: backgroundTaskManager.ContinuousTaskActiveInfo) {
+  console.info('continuousTaskActive callback id: ' + info.id);
+}
+
+export default class EntryAbility extends UIAbility {
+    onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
+        try {
+            backgroundTaskManager.off("continuousTaskActive", callback);
+        } catch (error) {
+            console.error(`Operation offContinuousTaskActive failed. code is ${(error as BusinessError).code} message is ${(error as BusinessError).message}`);
+        }
+    }
+};
+```
 ## DelaySuspendInfo
 
 短时任务信息。
@@ -950,7 +1142,7 @@ export default class EntryAbility extends UIAbility {
 
 | 名称             | 类型     | 只读     | 可选   | 说明                                       |
 | --------------- | ------ | ---- | ---- | ---------------------------------------- |
-| slotType       | [notificationManager.SlotType](../apis-notification-kit/js-apis-notificationManager.md#slottype) | 否    | 否    | 长时任务通知的渠道类型。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| slotType       | [notificationManager.SlotType](../apis-notification-kit/js-apis-notificationManager.md#slottype) | 否    | 否    | 长时任务通知的渠道类型。<br/>**说明：** 长时任务申请或更新成功后不支持提示音。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | contentType | [notificationManager.ContentType](../apis-notification-kit/js-apis-notificationManager.md#contenttype) | 否    | 否    | 长时任务通知的内容类型。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | notificationId | number | 否    | 否    | 长时任务通知 Id。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | continuousTaskId<sup>15+</sup> | number | 否    | 是    | 长时任务 Id。|
@@ -1025,3 +1217,43 @@ export default class EntryAbility extends UIAbility {
 | abilityId | number   | 是    | UIAbility Id。         |
 | wantAgentBundleName | string   | 是    | WantAgent配置的包名。WantAgent为通知参数，用于指定点击长时任务通知后跳转的界面，在申请长时任务时作为参数传入。        |
 | wantAgentAbilityName | string   | 是    | WantAgent配置的ability名称。WantAgent为通知参数，用于指定点击长时任务通知后跳转的界面，在申请长时任务时作为参数传入。 |
+
+## ContinuousTaskSuspendInfo<sup>20+</sup>
+
+长时任务暂停信息。
+
+**系统能力:** SystemCapability.ResourceSchedule.BackgroundTaskManager.ContinuousTask
+
+| 名称             | 类型     | 必填   | 说明                                       |
+| --------------- | ------ | ---- | ---------------------------------------- |
+| continuousTaskId | number | 是    | 被暂停的长时任务 Id。|
+| suspendState | boolean | 是    | 长时任务状态，false表示激活，true表示暂停。|
+| reason | [ContinuousTaskSuspendReason](#continuoustasksuspendreason20) | 是    | 长时任务暂停原因。|
+
+## ContinuousTaskSuspendReason<sup>20+</sup>
+
+长时任务暂停原因。
+
+**系统能力:** SystemCapability.ResourceSchedule.BackgroundTaskManager.ContinuousTask
+
+| 名称                     | 值  | 说明                    |
+| ----------------------- | ---- | --------------------- |
+| SYSTEM_SUSPEND_DATA_TRANSFER_LOW_SPEED     | 4    | 申请DATA_TRANSFER类型长时任务，但是数据传输速率低。                 |
+| SYSTEM_SUSPEND_AUDIO_PLAYBACK_NOT_USE_AVSESSION   | 5    | 申请AUDIO_PLAYBACK类型长时任务，但是未接入[AVSession](../../media/avsession/avsession-overview.md)。                  |
+| SYSTEM_SUSPEND_AUDIO_PLAYBACK_NOT_RUNNING  | 6    | 申请AUDIO_PLAYBACK类型长时任务，但是未播放音视频。  |
+| SYSTEM_SUSPEND_AUDIO_RECORDING_NOT_RUNNING | 7    | 申请AUDIO_RECORDING类型长时任务，但是未录制。  |
+| SYSTEM_SUSPEND_LOCATION_NOT_USED           | 8    | 申请LOCATION类型长时任务，但是未使用定位导航。 |
+| SYSTEM_SUSPEND_BLUETOOTH_NOT_USED          | 9    | 申请BLUETOOTH_INTERACTION类型长时任务，但是未使用蓝牙相关业务。 |
+| SYSTEM_SUSPEND_MULTI_DEVICE_NOT_USED       | 10   | 申请MULTI_DEVICE_CONNECTION类型长时任务，但是未使用多设备互联。  |
+| SYSTEM_SUSPEND_USED_ILLEGALLY              | 11    | 使用非法类型的长时任务，如申请AUDIO_PLAYBACK类型长时任务，但是使用音视频播放及定位导航业务。预留接口，暂未启用。        |
+| SYSTEM_SUSPEND_SYSTEM_LOAD_WARNING         | 12    | 系统高负载暂停长时任务。预留接口，暂未启用。        |
+
+## ContinuousTaskActiveInfo<sup>20+</sup>
+
+长时任务激活信息。
+
+**系统能力:** SystemCapability.ResourceSchedule.BackgroundTaskManager.ContinuousTask
+
+| 名称             | 类型     | 必填   | 说明                                       |
+| --------------- | ------ | ---- | ---------------------------------------- |
+| id | number | 是    | 被激活的长时任务 Id。|
