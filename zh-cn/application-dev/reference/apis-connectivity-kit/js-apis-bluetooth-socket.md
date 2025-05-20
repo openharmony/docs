@@ -110,7 +110,7 @@ let acceptClientSocket = (code: BusinessError, number: number) => {
     return;
   } else {
     clientNumber = number; // 获取的clientNumber用作客户端后续读/写操作socket的id。
-    console.info('sppListen success, serverNumber = ' + clientNumber);
+    console.info('sppListen success, clientNumber = ' + clientNumber);
   }
 }
 try {
@@ -156,7 +156,7 @@ sppConnect(deviceId: string, options: SppOptions, callback: AsyncCallback&lt;num
 **示例：**
 
 ```js
-import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let clientSocket = (code: BusinessError, number: number) => {
   if (code) {
@@ -461,13 +461,15 @@ sppWriteAsync(clientSocket: number, data: ArrayBuffer): Promise&lt;void&gt;
 **示例：**
 
 ```js
-import { socket } from '@kit.ConnectivityKit'
+import { socket } from '@kit.ConnectivityKit';
 import { AsyncCallback,BusinessError } from '@kit.BasicServicesKit';
 let clientNumber = -1; // 入参clientNumber由sppAccept或sppConnect接口获取。
 let arrayBuffer = new ArrayBuffer(8);
 let data = new Uint8Array(arrayBuffer);
 try {
-    await socket.sppWriteAsync(clientNumber, arrayBuffer);
+    socket.sppWriteAsync(clientNumber, arrayBuffer).then(() => {
+      console.info("sppWrite success");
+    });
 } catch (err) {
     console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
 }
@@ -513,18 +515,19 @@ sppReadAsync(clientSocket: number): Promise&lt;ArrayBuffer&gt;
 **示例：**
 
 ```js
-import { socket } from '@kit.ConnectivityKit'
+import { socket } from '@kit.ConnectivityKit';
 import { AsyncCallback,BusinessError } from '@kit.BasicServicesKit';
 let clientNumber = -1; // 入参clientNumber由sppAccept或sppConnect接口获取。
 let buffer = new ArrayBuffer(1024);
-let data = new Uint8Array(arrayBuffer);
+let data = new Uint8Array(buffer);
 let flag = 1;
 while (flag) {
   try {
-    buffer = await socket.sppReadAsync(this.clientNumber);
+    buffer = socket.sppReadAsync(this.clientNumber).then(outBuffer => {
+      buffer = outBuffer;
+    });
     if (buffer != null) {
       console.info('sppRead success, data = ' + JSON.stringify(buffer));
-      printArrayBuffer(buffer);
     } else {
       console.error('sppRead error, data is null');
     }
