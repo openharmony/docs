@@ -2917,6 +2917,7 @@
           - [系统资源错误码](reference/apis-arkui/errorcode-system-resource.md)
           - [半模态错误码](reference/apis-arkui/errorcode-bindSheet.md)
           - [滚动类组件错误码](reference/apis-arkui/errorcode-scroll.md)
+          - [截图错误码](reference/apis-arkui/errorcode-snapshot.md)
           - [UI上下文错误码](reference/apis-arkui/errorcode-uicontext.md)
           - [交互事件错误码](reference/apis-arkui/errorcode-event.md)
           <!--Del-->
