@@ -4,6 +4,10 @@
 
 应用通过HTTP发起一个数据请求，支持常见的GET、POST、OPTIONS、HEAD、PUT、DELETE、TRACE、CONNECT方法。
 
+<!--RP1-->
+
+<!--RP1End-->
+
 ## 接口说明
 
 HTTP数据请求功能主要由http模块提供。
