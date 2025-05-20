@@ -316,7 +316,7 @@ struct ReusableV2Component {
     this.info.age++;
   }
   onRender(): string {
-    console.log('info.age onRender')
+    console.log('info.age onRender');
     return this.info.age.toString();
   }
   build() {
@@ -845,16 +845,16 @@ struct Index {
 struct ChildComponent {
   @Param @Require data: string;
   aboutToAppear(): void {
-    console.log('ChildComponent aboutToAppear', this.data)
+    console.log('ChildComponent aboutToAppear', this.data);
   }
   aboutToDisappear(): void {
-    console.log('ChildComponent aboutToDisappear', this.data)
+    console.log('ChildComponent aboutToDisappear', this.data);
   }
   aboutToReuse(): void {
-    console.log('ChildComponent aboutToReuse', this.data) // 复用时触发
+    console.log('ChildComponent aboutToReuse', this.data); // 复用时触发
   }
   aboutToRecycle(): void {
-    console.log('ChildComponent aboutToRecycle', this.data) // 回收时触发
+    console.log('ChildComponent aboutToRecycle', this.data); // 回收时触发
   }
   build() {
     Row() {

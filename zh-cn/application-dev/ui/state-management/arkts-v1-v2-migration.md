@@ -218,7 +218,7 @@ struct Parent {
 }
 ```
 
-V2迁移策略：使用@Param和@Event
+V2迁移策略：使用@Param和@Event。
 
 ```ts
 @ComponentV2
@@ -287,7 +287,7 @@ struct Parent {
 }
 ```
 
-V2迁移策略：直接替换
+V2迁移策略：直接替换。
 
 ```ts
 @ComponentV2
@@ -354,7 +354,7 @@ struct Parent {
 }
 ```
 
-V2迁移策略：使用深拷贝
+V2迁移策略：使用深拷贝。
 
 ```ts
 @ObservedV2
@@ -438,7 +438,7 @@ struct Parent {
 }
 ```
 
-V2迁移策略：使用@Param和@Once
+V2迁移策略：使用@Param和@Once。
 
 ```ts
 @ComponentV2
@@ -623,7 +623,7 @@ struct UserProfile {
 }
 ```
 
-V2迁移策略：使用@ObservedV2和@Trace
+V2迁移策略：使用@ObservedV2和@Trace。
 
 ```ts
 @ObservedV2
@@ -700,7 +700,7 @@ struct UserProfile {
 }
 ```
 
-V2迁移策略：使用@ObservedV2和@Trace
+V2迁移策略：使用@ObservedV2和@Trace。
 
 ```ts
 @ObservedV2
@@ -775,7 +775,7 @@ struct Parent {
 }
 ```
 
-V2迁移策略：确保alias一致，没有指定alias的情况下，依赖属性名进行匹配
+V2迁移策略：确保alias一致，没有指定alias的情况下，依赖属性名进行匹配。
 
 ```ts
 @ComponentV2
@@ -831,7 +831,7 @@ struct Parent {
 }
 ```
 
-V2迁移策略：@Consumer可以本地初始化
+V2迁移策略：@Consumer可以本地初始化。
 
 ```ts
 @ComponentV2
@@ -884,7 +884,7 @@ struct Child {
 }
 ```
 
-V2迁移策略：使用@Param接受初始值，再赋值给@Provider
+V2迁移策略：使用@Param接受初始值，再赋值给@Provider。
 
 ```ts
 @Entry
@@ -947,7 +947,7 @@ struct Child {
 }
 ```
 
-V2迁移策略：去掉allowOverride
+V2迁移策略：去掉allowOverride。
 
 ```ts
 @Entry
@@ -1013,7 +1013,7 @@ struct watchExample {
 }
 ```
 
-V2迁移策略：直接替换
+V2迁移策略：直接替换。
 
 ```ts
 @Entry
@@ -1074,7 +1074,7 @@ struct watchExample {
 }
 ```
 
-V2迁移策略：同时监听多个变量，以及获取变化前的值
+V2迁移策略：同时监听多个变量，以及获取变化前的值。
 
 ```ts
 @Entry
@@ -1354,7 +1354,7 @@ struct Page2 {
 }
 ```
 
-如果开发者需要实现类似于\@LocalStorageProp的效果，希望本地的修改不要同步回LocalStorage中，如以下示例:
+如果开发者需要实现类似于\@LocalStorageProp的效果，希望本地的修改不要同步回LocalStorage中，如以下示例：
 - 在`Page1`中改变`count`值，因为count是\@LocalStorageProp装饰的，所以其改变只会在本地生效，并不会同步回LocalStorage。
 - 点击`push to Page2`，跳转到`Page2`中。因为在`Page1`中改变`count`值并不会同步会LocalStorage，所以在`Page2`中Text组件依旧显示原本的值47。
 - 点击`change Storage Count`，调用LocalStorage的setOrCreate，改变`count`对应的值，并通知所有绑定该key的变量。
