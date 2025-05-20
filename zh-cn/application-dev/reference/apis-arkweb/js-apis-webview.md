@@ -15145,7 +15145,7 @@ WebHttpBodyStream是否采用分块传输。
 
 | 类型   | 说明                      |
 | ------ | ------------------------- |
-| boolean | WebHttpBodyStream是否采用分块传输，true表示采用分块传输，false表示不采用分块传输。 |
+| boolean | WebHttpBodyStream是否采用分块传输，如果采用分块传输则返回true，否则返回false。 |
 
 **示例：**
 
@@ -15275,7 +15275,7 @@ isMainFrame(): boolean
 
 | 类型     | 说明            |
 | ------ | ------------- |
-| boolean | 判断资源请求是否为主frame，true表示是主frame，false表示不是主frame。 |
+| boolean | 判断资源请求是否为主frame，如果资源请求是主frame则返回true，否则返回false。 |
 
 **示例：**
 
@@ -15293,7 +15293,7 @@ hasGesture(): boolean
 
 | 类型     | 说明            |
 | ------ | ------------- |
-| boolean | 返回资源请求是否与手势（如点击）相关联，true表示与手势相关联，false表示与手势无关联。 |
+| boolean | 返回资源请求是否与手势（如点击）相关联，如果返回资源请求与手势相关联则返回true，否则返回false。 |
 
 **示例：**
 
