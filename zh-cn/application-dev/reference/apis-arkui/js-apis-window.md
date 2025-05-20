@@ -536,7 +536,7 @@ type WindowAnimationCurveParam = Array&lt;number&gt;
 
 ## RotationChangeType<sup>19+</sup>
 
-窗口旋转类型。
+窗口旋转事件类型。
 
 **原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
@@ -570,8 +570,8 @@ type WindowAnimationCurveParam = Array&lt;number&gt;
 
 | 名称   | 类型 | 只读  | 可写 | 说明                    |
 | ------ | ---- | ----- | ---- | ----------------------- |
-| type | [RotationChangeType](#rotationchangetype19) | 是 | 否 | 窗口旋转类型。 |
-| orientation | number | 是 | 否 | 窗口旋转方向。<br>- 0表示竖屏。<br>- 1表示横屏。<br>- 2表示反向竖屏。<br>- 3表示反向竖屏。 |
+| type | [RotationChangeType](#rotationchangetype19) | 是 | 否 | 窗口旋转事件类型。 |
+| orientation | number | 是 | 否 | 窗口显示方向。<br>- 0表示竖屏。<br>- 1表示反向横屏。<br>- 2表示反向竖屏。<br>- 3表示横屏。<br>开发者在使用时，需要注意该方向与display对象的属性orientation含义不一致。 |
 | displayId | number | 是 | 否 | 窗口所在屏幕Id。 |
 | displayRect | [Rect](#rect7) | 是 | 否 | 窗口所在屏幕旋转后的矩形区域大小。 |
 
@@ -5869,7 +5869,7 @@ try {
 
 on(type: 'rotationChange', callback: RotationChangeCallback&lt;info: RotationChangeInfo, RotationChangeResult | void&gt;): void
 
-开启窗口旋转变化的监听。[RotationChangeInfo](#rotationchangeinfo19)中窗口旋转类型为窗口即将旋转时，必须返回[RotationChangeResult](#rotationchangeresult19)。窗口旋转类型为窗口旋转结束时返回[RotationChangeResult](#rotationchangeresult19)不生效。
+开启窗口旋转变化的监听。[RotationChangeInfo](#rotationchangeinfo19)中窗口旋转事件类型为窗口即将旋转时，必须返回[RotationChangeResult](#rotationchangeresult19)。窗口旋转事件类型为窗口旋转结束时返回[RotationChangeResult](#rotationchangeresult19)不生效。
 
 同一个窗口多次注册同类型回调函数，只生效最新注册的同类型回调函数返回值。系统提供了超时保护机制，若20ms内窗口未返回[RotationChangeResult](#rotationchangeresult19)，系统不处理该返回值。
 
