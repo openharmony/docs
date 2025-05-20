@@ -7855,6 +7855,7 @@ fetchScaledFrameByTime(timeUs: **number**, queryMode: AVImageQueryOptions, outpu
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 import { image } from '@kit.ImageKit';
+import { media } from '@kit.MediaKit';
 let avImageGenerator: media.AVImageGenerator | undefined = undefined;
 let pixel_map : image.PixelMap | undefined = undefined;
 // 初始化入参。
