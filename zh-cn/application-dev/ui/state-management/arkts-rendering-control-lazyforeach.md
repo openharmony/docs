@@ -1910,7 +1910,7 @@ class BasicDataSource implements IDataSource {
   private originDataArray: string[] = [];
 
   public totalCount(): number {
-    return 0;
+    return this.originDataArray.length;
   }
 
   public getData(index: number): string {
@@ -1990,7 +1990,7 @@ class BasicDataSource implements IDataSource {
   private originDataArray: StringData[] = [];
 
   public totalCount(): number {
-    return 0;
+    return this.originDataArray.length;
   }
 
   public getData(index: number): StringData {
