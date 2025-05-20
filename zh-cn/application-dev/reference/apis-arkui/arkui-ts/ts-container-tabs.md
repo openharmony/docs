@@ -429,13 +429,13 @@ pageFlipMode(mode: Optional\<PageFlipMode>)
 | ------ | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | mode  | Optional\<[PageFlipMode](ts-appendix-enums.md#pageflipmode15)> | 是   | 鼠标滚轮翻页模式。<br/>默认值：PageFlipMode.CONTINUOUS |
 
-### cachedMaxCount<sup>18+</sup>
+### cachedMaxCount<sup>19+</sup>
 
 cachedMaxCount(count: number, mode: TabsCacheMode)
 
 设置子组件的最大缓存个数和缓存模式。设置该属性后，不会对缓存范围内的子组件进行预加载，仅对缓存范围外的子组件进行释放。
 
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -444,7 +444,7 @@ cachedMaxCount(count: number, mode: TabsCacheMode)
 | 参数名 | 类型                                                        | 必填 | 说明                                                         |
 | ------ | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | count  | number                                                      | 是   | 子组件的最大缓存个数。默认所有子组件加载后都不再释放。<br/>取值范围：[0, +∞)。|
-| mode   | [TabsCacheMode](#tabscachemode18枚举说明)                   | 是   | 子组件的缓存模式。<br/>默认值：TabsCacheMode.CACHE_BOTH_SIDE   |
+| mode   | [TabsCacheMode](#tabscachemode19枚举说明)                   | 是   | 子组件的缓存模式。<br/>默认值：TabsCacheMode.CACHE_BOTH_SIDE   |
 
 ## DividerStyle<sup>10+</sup>对象说明
 
@@ -545,11 +545,11 @@ type CommonModifier = CommonModifier
 | ---------- | ---------------------------------------- |
 | [CommonModifier](ts-universal-attributes-attribute-modifier.md#attributemodifier) | 设置TabBar的通用属性。 |
 
-## TabsCacheMode<sup>18+</sup>枚举说明
+## TabsCacheMode<sup>19+</sup>枚举说明
 
 子组件的缓存模式。
 
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 

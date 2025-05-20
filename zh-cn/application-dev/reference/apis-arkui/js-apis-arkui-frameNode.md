@@ -2155,12 +2155,12 @@ getAttribute(node: FrameNode, nodeType: 'Scroll'): ScrollAttribute | undefined
 typeNode.getAttribute(node, 'Scroll');
 ```
 
-### getEvent('Scroll')<sup>18+</sup>
+### getEvent('Scroll')<sup>19+</sup>
 getEvent(node: FrameNode, nodeType: 'Scroll'): UIScrollEvent | undefined
 
 获取Scroll节点中持有的UIScrollEvent对象，用于设置滚动事件。设置的滚动事件与声明式定义的事件平行；设置的滚动事件不覆盖原有的声明式事件。同时设置两个事件回调的时候，优先回调声明式事件。
 
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -2175,7 +2175,7 @@ getEvent(node: FrameNode, nodeType: 'Scroll'): UIScrollEvent | undefined
 
 | 类型                  | 说明      |
 | ------------------ | ------------------ |
-| [UIScrollEvent](./arkui-ts/ts-container-scroll.md#uiscrollevent18)&nbsp;\|&nbsp;undefined | Scroll节点类型的滚动事件，若获取失败，则返回undefined。 |
+| [UIScrollEvent](./arkui-ts/ts-container-scroll.md#uiscrollevent19)&nbsp;\|&nbsp;undefined | Scroll节点类型的滚动事件，若获取失败，则返回undefined。 |
 
 **示例：** 
 
@@ -2511,12 +2511,12 @@ createNode(context: UIContext, nodeType: 'List'): List
 typeNode.createNode(uiContext, 'List');
 ```
 
-### getEvent('List')<sup>18+</sup>
+### getEvent('List')<sup>19+</sup>
 getEvent(node: FrameNode, nodeType: 'List'): UIListEvent | undefined
 
 获取List节点中持有的UIListEvent对象，用于设置滚动事件。设置的滚动事件与声明式定义的事件平行；设置的滚动事件不覆盖原有的声明式事件。同时设置两个事件回调的时候，优先回调声明式事件。
 
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -2531,7 +2531,7 @@ getEvent(node: FrameNode, nodeType: 'List'): UIListEvent | undefined
 
 | 类型                  | 说明      |
 | ------------------ | ------------------ |
-| [UIListEvent](./arkui-ts/ts-container-list.md#uilistevent18)&nbsp;\|&nbsp;undefined | List节点类型的滚动事件，若获取失败，则返回undefined。 |
+| [UIListEvent](./arkui-ts/ts-container-list.md#uilistevent19)&nbsp;\|&nbsp;undefined | List节点类型的滚动事件，若获取失败，则返回undefined。 |
 
 **示例：** 
 
@@ -2756,12 +2756,12 @@ createNode(context: UIContext, nodeType: 'WaterFlow'): WaterFlow
 typeNode.createNode(uiContext, 'WaterFlow');
 ```
 
-### getEvent('WaterFlow')<sup>18+</sup>
+### getEvent('WaterFlow')<sup>19+</sup>
 getEvent(node: FrameNode, nodeType: 'WaterFlow'): UIWaterFlowEvent | undefined
 
 获取WaterFlow节点中持有的UIWaterFlowEvent对象，用于设置滚动事件。设置的滚动事件与声明式定义的事件平行；设置的滚动事件不覆盖原有的声明式事件。同时设置两个事件回调的时候，优先回调声明式事件。
 
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -2776,7 +2776,7 @@ getEvent(node: FrameNode, nodeType: 'WaterFlow'): UIWaterFlowEvent | undefined
 
 | 类型                  | 说明      |
 | ------------------ | ------------------ |
-| [UIWaterFlowEvent](./arkui-ts/ts-container-waterflow.md#uiwaterflowevent18)&nbsp;\|&nbsp;undefined | WaterFlow节点类型的滚动事件，若获取失败，则返回undefined。 |
+| [UIWaterFlowEvent](./arkui-ts/ts-container-waterflow.md#uiwaterflowevent19)&nbsp;\|&nbsp;undefined | WaterFlow节点类型的滚动事件，若获取失败，则返回undefined。 |
 
 **示例：** 
 
@@ -3071,12 +3071,12 @@ createNode(context: UIContext, nodeType: 'Grid'): Grid
 typeNode.createNode(uiContext, 'Grid');
 ```
 
-### getEvent('Grid')<sup>18+</sup>
+### getEvent('Grid')<sup>19+</sup>
 getEvent(node: FrameNode, nodeType: 'Grid'): UIGridEvent | undefined
 
 获取Grid节点中持有的UIGridEvent对象，用于设置滚动事件。设置的滚动事件与声明式定义的事件平行；设置的滚动事件不覆盖原有的声明式事件。同时设置两个事件回调的时候，优先回调声明式事件。
 
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -3091,7 +3091,7 @@ getEvent(node: FrameNode, nodeType: 'Grid'): UIGridEvent | undefined
 
 | 类型                  | 说明      |
 | ------------------ | ------------------ |
-| [UIGridEvent](./arkui-ts/ts-container-grid.md#uigridevent18)&nbsp;\|&nbsp;undefined | Grid节点类型的滚动事件，若获取失败，则返回undefined。 |
+| [UIGridEvent](./arkui-ts/ts-container-grid.md#uigridevent19)&nbsp;\|&nbsp;undefined | Grid节点类型的滚动事件，若获取失败，则返回undefined。 |
 
 **示例：** 
 
