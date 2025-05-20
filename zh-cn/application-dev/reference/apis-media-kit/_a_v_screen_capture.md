@@ -1800,7 +1800,7 @@ OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_ReleaseCaptureStrategy(OH_AVScree
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| filter | 指向[OH_AVScreenCapture_CaptureStrategy](#oh_avscreencapture_capturestrategy)实例的指针。 | 
+| strategy | 指向[OH_AVScreenCapture_CaptureStrategy](#oh_avscreencapture_capturestrategy)实例的指针。 | 
 
 **返回：**
 
@@ -1808,7 +1808,7 @@ OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_ReleaseCaptureStrategy(OH_AVScree
 
 AV_SCREEN_CAPTURE_ERR_OK：执行成功。
 
-AV_SCREEN_CAPTURE_ERR_INVALID_VAL：输入参数filter为空指针。
+AV_SCREEN_CAPTURE_ERR_INVALID_VAL：输入参数strategy为空指针。
 
 ### OH_AVScreenCapture_SetCaptureStrategy()
 ```
