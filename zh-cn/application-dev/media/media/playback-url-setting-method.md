@@ -29,7 +29,8 @@
   // 设置对应的播放url。
   let url = 'https://xxx.xxx.xxx.xxx:xx/xx/index.m3u8';
   // 创建mediaSource实例对象，设置媒体来源，定制HTTP请求，如需要，可以键值对的形式设置User-Agent、Cookie、Referer等字段。
-  let mediaSource : media.MediaSource = media.createMediaSourceWithUrl(url,  {'aa' : 'bb', 'cc' : 'dd'});
+  let mediaSource : media.MediaSource = media.createMediaSourceWithUrl(url,
+    {"User-Agent" : "User-Agent-Value", "Cookie" : "Cookie-Value", "Referer" : "Referer-Value"});
   // 设置播放策略，设置缓冲区数据量为20s。
   let playbackStrategy : media.PlaybackStrategy =
     {preferredWidth: 1, preferredHeight: 2, preferredBufferDuration: 3, preferredHdr: false};
