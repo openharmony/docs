@@ -14,7 +14,7 @@ HTTP数据请求功能主要由http模块提供。
 
 使用该功能需要申请ohos.permission.INTERNET权限。
 
-权限申请请参考[声明权限](../security/AccessToken/declare-permissions.md)。
+权限申请参考[声明权限](../security/AccessToken/declare-permissions.md)。
 
 涉及的接口如下表，具体的接口说明请参考[API文档](../reference/apis-network-kit/js-apis-http.md)。
 
@@ -39,12 +39,12 @@ HTTP数据请求功能主要由http模块提供。
 ## 发起HTTP一般数据请求
 
 1. 从@kit.NetworkKit中导入http命名空间。
-2. 调用createHttp()方法，创建一个HttpRequest对象。
+2. 调用createHttp()方法，创建HttpRequest对象。
 3. 调用该对象的on()方法，订阅http响应头事件，此接口会比request请求先返回。可以根据业务需要订阅此消息。
 4. 调用该对象的request()方法，传入http请求的url地址和可选参数，发起网络请求。
 5. 按照实际业务需要，解析返回结果。
 6. 调用该对象的off()方法，取消订阅http响应头事件。
-7. 当该请求使用完毕时，调用destroy()方法主动销毁。
+7. 当该请求使用完毕时，调用destroy()方法销毁。
 
 >**说明：** 
 >
@@ -127,12 +127,12 @@ httpRequest.request(
 ## 发起HTTP流式传输请求
 
 1. 从@kit.NetworkKit中导入http命名空间。
-2. 调用createHttp()方法，创建一个HttpRequest对象。
+2. 调用createHttp()方法，创建HttpRequest对象。
 3. 调用该对象的on()方法，可以根据业务需要订阅HTTP响应头事件、HTTP流式响应数据接收事件、HTTP流式响应数据接收进度事件和HTTP流式响应数据接收完毕事件。
 4. 调用该对象的requestInStream()方法，传入http请求的url地址和可选参数，发起网络请求。
 5. 按照实际业务需要，可以解析返回的响应码。
 6. 调用该对象的off()方法，取消订阅响应事件。
-7. 当该请求使用完毕时，调用destroy()方法主动销毁。
+7. 当该请求使用完毕时，调用destroy()方法销毁。
 
 ```ts
 // 引入包名
@@ -232,9 +232,9 @@ openssl s_client -servername www.example.com -connect www.example.com:443 \
 
 ### 预置证书公钥哈希值
 
-通过在配置中指定域名证书公钥的哈希值来只允许使用公钥哈希值匹配的域名证书访问此域名。
+通过在配置中指定域名证书公钥的哈希值，只允许使用公钥哈希值匹配的域名证书访问此域名。
 
-域名证书的公钥哈希值可以用如下的命令计算，这里假设域名证书是通过上面的OpenSSL命令获得的，并保存在`www.example.com.pem`文件。#开头的行是注释，可以不用输入：
+域名证书的公钥哈希值可以用如下的命令计算。假设域名证书是通过上面的OpenSSL命令获得的，并保存在`www.example.com.pem`文件。#开头的行是注释，可以不用输入：
 
 ```
 # 从证书中提取出公钥
