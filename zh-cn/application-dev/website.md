@@ -2485,6 +2485,7 @@
             - [形状裁剪](reference/apis-arkui/arkui-ts/ts-universal-attributes-sharp-clipping.md)
             - [颜色渐变](reference/apis-arkui/arkui-ts/ts-universal-attributes-gradient-color.md)
             - [Popup控制](reference/apis-arkui/arkui-ts/ts-universal-attributes-popup.md)
+            - [Tips控制](reference/apis-arkui/arkui-ts/ts-universal-attributes-tips.md)
             - [菜单控制](reference/apis-arkui/arkui-ts/ts-universal-attributes-menu.md)
             - [焦点控制](reference/apis-arkui/arkui-ts/ts-universal-attributes-focus.md)
             - [悬浮态效果](reference/apis-arkui/arkui-ts/ts-universal-attributes-hover-effect.md)
