@@ -560,11 +560,15 @@
           - 构建布局<!--arkts-build-layout-ndk-->
             - [使用列表](ui/ndk-loading-long-list.md)
             - [使用瀑布流](ui/ndk-waterflow.md)
+          - 使用文本<!--arkts-build-text-ndk-->
+            - [Text组件的文本绘制与显示](ui/ndk-styled-string.md)
+            - [输入框文本事件监听](ui/ndk-textarea-event.md)
           - [构建弹窗](ui/ndk-build-pop-up-window.md)
           - [构建自定义组件](ui/ndk-build-custom-components.md)
           - [嵌入ArkTS组件](ui/ndk-embed-arkts-components.md)
           - [通过XComponent接入无障碍](ui/ndk-accessibility-xcomponent.md)
           - [自定义绘制](ui/arkts-user-defined-draw.md)
+          - [通过EmbeddedComponent拉起EmbeddedUIExtensionAbility](ui/ndk-embedded-component.md)
       - UI开发 (兼容JS的类Web开发范式)<!--ui-js-dev-->
         - [UI开发 (兼容JS的类Web开发范式)概述](ui/ui-js-overview.md)
         - 框架说明<!--js-framework-overview-->
@@ -1845,6 +1849,7 @@
             - [JSVM-API调试&定位](napi/jsvm-debugger-cpuprofiler-heapsnapshot.md)
             - [JSVM-API Tracing](napi/use-jsvm-about-trace.md)
             - [JSVM 申请JIT权限指导](napi/jsvm-apply-jit-profile.md)
+            - [JSVM 定位内存泄漏问题指导](napi/jsvm-locate-memory-leak.md)
             - JSVM-API调优&高性能使用示例<!--jsvm-usage-examples-->
               - [使用JSVM-API接口创建多个引擎执行JS代码并销毁](napi/use-jsvm-runtime-task.md)
               - [使用 code cache 加速编译](napi/use-jsvm-about-code-cache.md)
@@ -3073,7 +3078,6 @@
           - [动画错误码](reference/apis-arkui/errorcode-animator.md)
           - [弹窗错误码](reference/apis-arkui/errorcode-promptAction.md)
           - [页面路由错误码](reference/apis-arkui/errorcode-router.md)
-          - [用户界面外观服务错误码](reference/apis-arkui/errorcode-uiappearance.md)
           - [拖拽事件错误码](reference/apis-arkui/errorcode-drag-event.md)
           - [图像AI分析错误码](reference/apis-arkui/errorcode-image-analyzer.md)
           - [焦点错误码](reference/apis-arkui/errorcode-focus.md)
@@ -3083,7 +3087,10 @@
           - [截图错误码](reference/apis-arkui/errorcode-snapshot.md)
           - [属性字符串错误码](reference/apis-arkui/errorcode-styled-string.md)
           - [UI上下文错误码](reference/apis-arkui/errorcode-uicontext.md)
+          - [交互事件错误码](reference/apis-arkui/errorcode-event.md)
+          - [Canvas错误码](reference/apis-arkui/errorcode-canvas.md)
           <!--Del-->
+          - [用户界面外观服务错误码](reference/apis-arkui/errorcode-uiappearance.md)
           - [UIExtension错误码](reference/apis-arkui/errorcode-uiextension.md)
           <!--DelEnd-->
         - UI编译<!--arkui-compile-arkts-errcode-->
@@ -3549,12 +3556,12 @@
       - Distributed Service Kit（分布式管理服务）<!--distributed-service-api-->
         - ArkTS API<!--distributed-service-arkts-->
           - [@ohos.distributedDeviceManager (设备管理)](reference/apis-distributedservice-kit/js-apis-distributedDeviceManager.md)
-          - [@ohos.abilityConnectionManager (应用多端协同管理)](reference/apis-distributedservice-kit/js-apis-distributed-abilityConnectionManager.md)
+          - [@ohos.distributedsched.abilityConnectionManager (应用多端协同管理)](reference/apis-distributedservice-kit/js-apis-distributed-abilityConnectionManager.md)
           - [@ohos.application.DistributedExtensionAbility (协同Extension)](reference/apis-distributedservice-kit/js-apis-distributedExtensionAbility.md)
           <!--Del-->
           - [@ohos.distributedHardware.hardwareManager (分布式硬件管理)(系统接口)](reference/apis-distributedservice-kit/js-apis-distributedHardwareManager-sys.md)
           - [@ohos.distributedDeviceManager (设备管理)(系统接口)](reference/apis-distributedservice-kit/js-apis-distributedDeviceManager-sys.md)
-          - [@ohos.abilityConnectionManager (应用多端协同管理)(系统接口)](reference/apis-distributedservice-kit/js-apis-distributed-abilityConnectionManager-sys.md)
+          - [@ohos.distributedsched.abilityConnectionManager (应用多端协同管理)(系统接口)](reference/apis-distributedservice-kit/js-apis-distributed-abilityConnectionManager-sys.md)
           - [@ohos.cooperate (键鼠穿越)（系统接口）](reference/apis-distributedservice-kit/js-apis-devicestatus-cooperate-sys.md)
           - 已停止维护的接口<!--distributed-service-dep-->
             - [@ohos.distributedHardware.deviceManager (设备管理)(系统接口)(待删除)](reference/apis-distributedservice-kit/js-apis-device-manager-sys.md)

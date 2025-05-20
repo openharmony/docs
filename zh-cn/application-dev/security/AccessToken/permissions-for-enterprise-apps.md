@@ -317,3 +317,20 @@
 **ACL使能**：true<!--DelEnd-->
 
 **起始版本**：18
+
+## ohos.permission.SUPPORT_APP_SERVICE_EXTENSION
+
+允许应用的AppServiceExtension组件被拉起。
+
+获取此权限后，应用可作为AppServiceExtension被同应用或同在"appidentifierAllowList"配置中的应用拉起或连接。
+
+**权限级别**：system_basic
+
+**授权方式**：系统授权（system_grant）
+
+<!--Del-->
+**ACL使能**：true<!--DelEnd-->
+
+**支持设备**：PC/2in1
+
+**起始版本**：20

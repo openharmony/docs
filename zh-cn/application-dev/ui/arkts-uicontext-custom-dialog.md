@@ -99,6 +99,81 @@ PromptActionClass.ctx.getPromptAction().updateCustomDialog(PromptActionClass.con
   })
 ```
 
+## 为弹出框内容和蒙层设置不同的动画效果
+
+当弹出框出现时，内容与蒙层显示动效一致。若开发者希望为弹出框内容及蒙层设定不同动画效果，可通过dialogTransition和maskTransition属性单独配置弹窗内容与蒙层的动画。具体的动画效果请参考[组件内转场 (transition)](../reference/apis-arkui/arkui-ts/ts-transition-animation-component.md)。
+
+> **说明：** 
+>
+> 当isModal为true时，蒙层将显示，此时可以设置蒙层的动画效果；否则，maskTransition将不生效。
+
+```ts
+dialogTransition:
+  TransitionEffect.translate({ x: 0, y: 290, z: 0 }).animation({ duration: 4000, curve: Curve.Smooth }),
+
+maskTransition:
+  TransitionEffect.asymmetric(
+    TransitionEffect.OPACITY.animation({ duration: 1000 }).combine(
+      TransitionEffect.rotate({ z: 1, angle: 180 }).animation({ duration: 1000 })),
+
+    TransitionEffect.OPACITY.animation({ delay: 3000, duration: 3000 }).combine(
+      TransitionEffect.rotate({ z: 1, angle: 180 }).animation({ duration: 3000 }))),
+```
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+@Entry
+@Component
+struct Index {
+  private customDialogComponentId: number = 0
+  @Builder
+  customDialogComponent() {
+    Row({ space: 50 }) {
+      Button("这是一个弹窗")
+    }.height(200).padding(5)
+  }
+
+  build() {
+    Row() {
+      Row({ space: 20 }) {
+        Text('打开弹窗')
+          .fontSize(30)
+          .onClick(() => {
+            this.getUIContext().getPromptAction().openCustomDialog({
+              builder: () => {
+                this.customDialogComponent()
+              },
+              isModal:true,
+              showInSubWindow:false,
+              maskColor: Color.Pink,
+              maskRect:{ x: 20, y: 20, width: '90%', height: '90%' },
+
+              dialogTransition:
+              TransitionEffect.translate({ x: 0, y: 290, z: 0 })
+                .animation({ duration: 4000, curve: Curve.Smooth }),// 四秒钟的偏移渐变动画
+
+              maskTransition:
+              TransitionEffect.opacity(0)
+                .animation({ duration: 4000, curve: Curve.Smooth }) // 四秒钟的透明渐变动画
+
+            }).then((dialogId: number) => {
+              this.customDialogComponentId = dialogId
+            })
+              .catch((error: BusinessError) => {
+                console.error(`openCustomDialog error code is ${error.code}, message is ${error.message}`)
+              })
+          })
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+```
+
+ ![UIContextPromptAction](figures/UIContextPromptActionDialogMask.gif)
+
 ## 完整示例
 
 ```ts

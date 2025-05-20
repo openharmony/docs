@@ -5,6 +5,9 @@
 
 定义获取和使用NativeWindow的相关函数。
 
+<!--RP1-->
+**相关示例：** [NDKNativeWindow](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Native/NdkNativeWindow)<!--RP1End-->
+
 **引用文件：**&lt;native_window/external_window.h&gt;
 
 **库：** libnative_window.so

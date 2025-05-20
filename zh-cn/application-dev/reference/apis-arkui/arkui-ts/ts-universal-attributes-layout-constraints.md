@@ -114,7 +114,7 @@ struct AspectRatioExample {
 
 ### 示例2（设置组件显示优先级）
 
-使用displayPriority给子组件绑定显示优先级。
+使用displayPriority为子组件设置显示优先级。
 
 ```ts
 class ContainerInfo {
