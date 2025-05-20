@@ -30,7 +30,7 @@ class A {
 }
 
 @Sendable
-class B extends A {
+class B extends A { // A不是sendable class，B不能继承它，编译报错
   constructor() {
     super()
   }
@@ -66,7 +66,7 @@ class A {
   }
 }
 
-class B extends A {
+class B extends A { // A是sendable class，B不能继承它，编译报错
   constructor() {
     super()
   }
@@ -95,7 +95,7 @@ type ISendable = lang.ISendable;
 
 interface I extends ISendable {};
 
-class B implements I {};
+class B implements I {}; // I是sendable interface，B不能实现，编译报错
 ```
 
 
@@ -121,7 +121,7 @@ class A {
 class A {
   constructor() {
   }
-  b: Array<number> = [1, 2, 3] // 需使用collections.Array
+  b: Array<number> = [1, 2, 3] // 编译报错，需使用collections.Array
 }
 ```
 
@@ -148,7 +148,7 @@ class A {
 class A {
   constructor() {
   }
-  a!: number;
+  a!: number; // 编译报错，不支持使用“!”
 }
 ```
 
@@ -178,8 +178,8 @@ enum B {
 }
 @Sendable
 class A {
-    ["aaa"]: number = 1; // ["aaa"] is allowed in other classes in ets files
-    [B.b1]: number = 2; // [B.b1] is allowed in other classes in ets files
+    ["aaa"]: number = 1; // 编译报错，不支持["aaa"]
+    [B.b1]: number = 2; // 编译报错，不支持[B.b1]
 }
 ```
 
@@ -208,7 +208,7 @@ try {
 import { collections } from '@kit.ArkTS';
 
 try {
-  let arr1: collections.Array<Array<number>> = new collections.Array<Array<number>>();
+  let arr1: collections.Array<Array<number>> = new collections.Array<Array<number>>(); // 编译报错，模板类型必须是Sendable类型
   let arr2: Array<number> = new Array<number>();
   arr2.push(1);
   arr1.push(arr2);
@@ -306,7 +306,7 @@ class A {
 
 ```ts
 @Sendable
-@Observed
+@Observed // 编译报错
 class C {
   num: number = 1;
 }
@@ -338,7 +338,7 @@ let arr4: number[] = new collections.Array<number>(1, 2, 3); // 编译报错
 
 ## 非Sendable类型不可以as成Sendable类型
 
-除了Object类型，非Sendable类型不可以as成Sendable类型。非Sendable类型通过as强转成Sendable类型后，实际数据仍为非Sendable类型，会导致错误使用。Sendable类型在不违反Sendable规则的前提下需要和非Sendable类型行为兼容，因此Sendable类型可以as成非Sendable类型。
+除了Object类型，非Sendable类型不可以as成Sendable类型。非Sendable类型通过as强转成Sendable类型后，实际数据仍为非Sendable类型，会导致错误使用。Sendable类型在不违反Sendable规则的前提下需要和非Sendable类型行为兼容，因此Sendable类型可以as强转成非Sendable类型。
 
 **正例：**
 
@@ -367,7 +367,7 @@ class SendableA {
   state: number = 0;
 }
 
-let a2: SendableA = new A() as SendableA;
+let a2: SendableA = new A() as SendableA; // 编译报错
 ```
 
 
@@ -439,7 +439,7 @@ type D = C; // 编译报错
 ## 注意事项
 
 
-在HAR中使用Sendable时，需开启编译生成TS文件的配置。详情可查[编译生成TS文件](../quick-start/har-package.md#编译生成ts文件)。
+在HAR中使用Sendable时，需开启编译生成TS文件的配置。具体使用请参考[编译生成TS文件](../quick-start/har-package.md#编译生成ts文件)。
 
 
 ## 与TS/JS交互的规则

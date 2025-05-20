@@ -2,11 +2,11 @@
 
 ## ArkTS容器集
 
-ArkTS共享容器（[@arkts.collections (ArkTS容器集)](../reference/apis-arkts/js-apis-arkts-collections.md)）是一种在并发任务间共享传输的容器类，可以用于并发场景下的高性能数据传递。功能与Ecmascript262规范定义的容器类似，但仍然有部分差异，具体可见[共享容器与原生API方法的行为差异对比](#共享容器与原生api方法的行为差异对比)。
+ArkTS共享容器（[@arkts.collections (ArkTS容器集)](../reference/apis-arkts/js-apis-arkts-collections.md)）是一种在并发实例间共享传输的容器类，可以用于并发场景下的高性能数据传递。功能与Ecmascript262规范定义的容器类似，但仍然有部分差异，具体可见[共享容器与原生API方法的行为差异对比](#共享容器与原生api方法的行为差异对比)。
 
-ArkTS共享容器在多个并发任务间传递时，默认采用引用传递，允许多个并发任务操作同一个容器实例。此外，还支持拷贝传递，即每个并发任务拥有一个独立的ArkTS容器实例。
+ArkTS共享容器在多个并发实例间传递时，默认采用引用传递，允许多个并发实例操作同一个容器实例。此外，还支持拷贝传递，即每个并发实例拥有一个独立的ArkTS容器实例。
 
-ArkTS共享容器不是线程安全的，内部使用了fail-fast（快速失败）机制，即当检测到多个并发实例同时对容器进行结构性修改时，会触发异常。因此，在容器内修改属性的场景下，开发者需要使用ArkTS提供的[异步锁](arkts-async-lock-introduction.md)机制保证ArkTS容器的安全访问。
+ArkTS共享容器不是线程安全的，内部使用了fail-fast（快速失败）机制，即当检测到多个并发实例同时对容器进行结构性修改时，会触发异常。因此，在多线程场景下修改容器内属性时，开发者需要使用ArkTS提供的[异步锁](arkts-async-lock-introduction.md)机制保证ArkTS容器的安全访问。
 
 ArkTS共享容器包含如下几种：[Array](../reference/apis-arkts/js-apis-arkts-collections.md#collectionsarray)、[Map](../reference/apis-arkts/js-apis-arkts-collections.md#collectionsmap)、[Set](../reference/apis-arkts/js-apis-arkts-collections.md#collectionsset)、[TypedArray](../reference/apis-arkts/js-apis-arkts-collections.md#collectionstypedarray)（Int8Array、Uint8Array、Int16Array、Uint16Array、Int32Array、Uint32Array、Uint8ClampedArray、Float32Array）、[ArrayBuffer](../reference/apis-arkts/js-apis-arkts-collections.md#collectionsarraybuffer)等，具体可见[@arkts.collections (ArkTS容器集)](../reference/apis-arkts/js-apis-arkts-collections.md)。
 
