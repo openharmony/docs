@@ -349,6 +349,12 @@ typedef void(* ArkWeb_OnComponentCallback) (const char *webTag, void *userData)
 
 **起始版本：** 12
 
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| webTag | Web组件名称。  | 
+| userData | 用户自定义的数据。 | 
 
 ### ArkWeb_OnJavaScriptCallback
 
@@ -361,6 +367,13 @@ typedef void(* ArkWeb_OnJavaScriptCallback) (const char *webTag, const ArkWeb_Ja
 
 **起始版本：** 12
 
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| webTag | Web组件名称。  | 
+| data | 数据。  | 
+| userData | 用户自定义的数据。 | 
 
 ### ArkWeb_OnJavaScriptProxyCallback
 
@@ -373,6 +386,14 @@ Proxy方法被执行的回调。
 
 **起始版本：** 12
 
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| webTag | Web组件名称。  | 
+| dataArray | 数组数据。  | 
+| arraySize | 数组大小。  | 
+| userData | 用户自定义的数据。 | 
 
 ### ArkWeb_OnJavaScriptProxyCallbackWithResult
 
