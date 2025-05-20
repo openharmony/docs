@@ -181,9 +181,9 @@ class MyAbility extends UIAbility {
 > **说明：**
 > 
 > 不同产品的触发条件可能存在差异。以12G内存的标准设备为例：
-> - 当可用内存下降至1700M~1800M时，会触发值为0的onMemoryLevel回调。
-> - 当可用内存下降至1600M~1700M时，会触发值为1的onMemoryLevel回调。
-> - 当可用内存下降至1600M以下时，会触发值为2的onMemoryLevel回调。
+> - 当可用内存下降至1700M~1800M时，会触发取值为0的onMemoryLevel回调。
+> - 当可用内存下降至1600M~1700M时，会触发取值为1的onMemoryLevel回调。
+> - 当可用内存下降至1600M以下时，会触发取值为2的onMemoryLevel回调。
 
 **示例：**
 
