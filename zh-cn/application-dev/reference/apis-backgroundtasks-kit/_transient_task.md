@@ -51,6 +51,18 @@
 | int32_t [OH_BackgroundTaskManager_CancelSuspendDelay](#oh_backgroundtaskmanager_cancelsuspenddelay) (int32_t requestId) | 取消短时任务。  |
 | int32_t [OH_BackgroundTaskManager_GetAllTransientTasks](#oh_backgroundtaskmanager_getalltransienttasks) ([TransientTask_TransientTaskInfo](_transient_task___transient_task_info.md) \*transientTaskInfo)                                                                  | 获取所有短时任务信息。    | 
 
+## 宏定义说明
+
+### TRANSIENT_TASK_MAX_NUM
+
+```
+typedef struct TransientTask_DelaySuspendInfo TransientTask_DelaySuspendInfo
+```
+**描述**
+
+同一时刻最大短时任务数量。
+
+**起始版本：** 20
 
 ## 类型定义说明
 
@@ -218,7 +230,7 @@ int32_t OH_BackgroundTaskManager_GetAllTransientTasks (TransientTask_TransientTa
 
 | 名称 | 描述          | 
 | -------- |-------------|
-| transientTaskInfo | 返回所有短时任务信息。 | 
+| transientTaskInfo | 返回所有短时任务信息，具体请参考[TransientTask_TransientTaskInfo](_transient_task___transient_task_info.md)。 | 
 
 **返回：**
 
