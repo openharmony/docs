@@ -31,7 +31,7 @@ hdc分为三部分：
 
 ### （可选）hdc server配置
 
-通过配置对应的系统环境变量，可以修改hdc server的监听端口，日志打印级别或特性开关等，详细介绍请查看[可选配置项](#可选配置项)章节。
+通过配置对应的系统环境变量，可以修改hdc server的监听端口，日志打印级别，特性开关或命令录制等，详细介绍请查看[可选配置项](#可选配置项)章节。
 
 > **说明：**
 >
@@ -1124,15 +1124,6 @@ hdc -l5 start
 |--------------------|-----|--------------------------------|
 | OHOS_HDC_LOG_LEVEL | 5   | 用于配置服务进程日志记录级别，日志级别详情参考：<br>[server端日志](#server端日志)指定运行时日志等级章节。  |
 
-环境变量配置方法：
-
-以下通过配置OHOS_HDC_LOG_LEVEL环境变量为例，配置环境变量值为：5，介绍环境变量配置方法。
-
-| 操作系统 | 配置方法 |
-|---|---|
-| Windows  | 在**此电脑 &gt; 属性 &gt; 高级系统设置 &gt; 高级 &gt; 环境变量**中，添加环境变量名称为OHOS_HDC_LOG_LEVEL，变量值为5。配置完毕后点击确认。环境变量配置完成后，关闭并重启命令行或其他使用到OpenHarmony SDK的软件，以生效新配置的环境变量。  |
-| Linux  | 在~/.bash_profile文件末尾追加内容export OHOS_HDC_LOG_LEVEL=5并保存后，执行`source ~/.bash_profile`生效当前环境变量。 |
-| MacOS  | 在~/.zshrc文件末尾追加内容export OHOS_HDC_LOG_LEVEL=5并保存后，执行`source ~/.zshrc`生效当前环境变量。环境变量配置完成后，关闭并重启命令行或其他使用到OpenHarmony SDK的软件，以生效新配置的环境变量。 |
 
 ### 设备端日志
 
@@ -1173,6 +1164,33 @@ hdc server和hdc daemon启动后，默认会互相发送心跳数据包，收到
 当hdc server对应的电脑中配置环境变量OHOS_HDC_HEARTBEAT为“1”后，hdc server会关闭心跳特性；当设备连接这台电脑后，hdc server会给hdc daemon发送心跳特性关闭的信息，双方不再互相发送心跳数据包。
 
 设置为"1"表示关闭心跳功能；设置为其它数字表示开启心跳功能。
+
+### OHOS_HDC_CMD_RECORD
+默认：hdc命令录制关闭。
+
+用于设置hdc命令录制功能的开关。此功能仅记录执行的hdc命令，不记录命令的执行结果。
+
+设置为"1"表示开启命令录制功能；不设置或者设置为其它数字表示关闭命令录制功能。
+
+从API version 20开始，支持该参数。
+
+录制日志存放路径：
+
+| 平台 | 路径 | 备注 |
+| -------- | -------- | -------- |
+| Windows | %temp%\hdc_cmd\ | 实际路径参考：`C:\Users\用户名\AppData\Local\Temp\hdc_cmd\` <br/>（实际使用请替换用户名变量）。 |
+| Linux | /tmp/hdc_cmd/ | - |
+| MacOS | $TMPDIR/hdc_cmd/ | - |
+
+### 环境变量配置方法
+
+以配置OHOS_HDC_CMD_RECORD环境变量为例，将其值设为 1，介绍环境变量配置方法。
+
+| 操作系统 | 配置方法 |
+|---|---|
+| Windows  | 在**此电脑 &gt; 属性 &gt; 高级系统设置 &gt; 高级 &gt; 环境变量**中，添加环境变量名称为OHOS_HDC_CMD_RECORD，变量值为1。配置完毕后点击确认。环境变量配置完成后，关闭并重启命令行或其他使用到OpenHarmony SDK的软件，以生效新配置的环境变量。  |
+| Linux  | 在~/.bash_profile文件末尾追加内容export OHOS_HDC_CMD_RECORD=1并保存后，执行`source ~/.bash_profile`生效当前环境变量。 |
+| MacOS  | 在~/.zshrc文件末尾追加内容export OHOS_HDC_CMD_RECORD=1并保存后，执行`source ~/.zshrc`生效当前环境变量。环境变量配置完成后，关闭并重启命令行或其他使用到OpenHarmony SDK的软件，以生效新配置的环境变量。 |
 
 ## 常见问题
 

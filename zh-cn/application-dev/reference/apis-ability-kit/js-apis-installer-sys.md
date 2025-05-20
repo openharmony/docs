@@ -1470,7 +1470,7 @@ destroyAppClone(bundleName: string, appIndex: number, userId?: number): Promise\
 | ------------ | ----------------------------- | ---- | ------------------------------------------------------------ |
 | bundleName   | string                        | 是   | 待删除应用分身的包名。                                         |
 | appIndex     | number                        | 是   | 待删除应用分身的索引。                                         |
-| userId       | number                        | 否   | 待删除应用分身所属用户id。默认值：调用方所在用户。                |
+| userId       | number                        | 否   | 待删除应用分身所属用户ID，可以通过[getOsAccountLocalId接口](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9)获取。默认值：调用方所在用户。                |
 
 **返回值：**
 
@@ -1608,7 +1608,7 @@ installPreexistingApp(bundleName: string, userId?: number): Promise\<void\>;
 | 参数名        | 类型                          | 必填 | 说明                                                          |
 | ------------ | ----------------------------- | ---- | ------------------------------------------------------------ |
 | bundleName   | string                        | 是   | 需要安装应用的包名。                                           |
-| userId       | number                        | 否   | 需要安装应用的用户id，userId需要大于0。默认值：调用方所在用户。   |
+| userId       | number                        | 否   | 需要安装应用的用户ID，可以通过[getOsAccountLocalId接口](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9)获取，userId需要大于0。默认值：调用方所在用户。   |
 
 **返回值：**
 
@@ -1804,9 +1804,9 @@ try {
 
 应用程序安装卸载哈希参数信息。
 
- **系统能力：** SystemCapability.BundleManager.BundleFramework.Core
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Core
 
- **系统接口：** 此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 | 名称     | 类型   | 必填 | 说明             |
 | ---------- | ------ | ---------------- | ---------------- |
@@ -1817,9 +1817,9 @@ try {
 
 应用程序安装、卸载或恢复需指定的参数信息。
 
- **系统能力：** SystemCapability.BundleManager.BundleFramework.Core
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Core
 
- **系统接口：** 此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 | 名称                        | 类型                           | 必填                         | 说明               |
 | ------------------------------ | ------------------------------ | ------------------ | ------------------ |
@@ -1838,9 +1838,9 @@ try {
 
 共享包卸载需指定的参数信息。
 
- **系统能力：** SystemCapability.BundleManager.BundleFramework.Core
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Core
 
- **系统接口：** 此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 | 名称        | 类型   | 必填 | 说明                                                         |
 | ----------- | ------ | ---- | ------------------------------------------------------------ |
@@ -1853,9 +1853,9 @@ try {
 
 应用程序代码签名文件信息。
 
- **系统能力：** SystemCapability.BundleManager.BundleFramework.Core
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Core
 
- **系统接口：** 此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 | 名称     | 类型   | 必填 | 说明             |
 | ---------- | ------ | ---------------- | ---------------- |
@@ -1866,9 +1866,9 @@ try {
 
 PGO（Profile-guided Optimization）配置文件参数信息。
 
- **系统能力：** SystemCapability.BundleManager.BundleFramework.Core
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Core
 
- **系统接口：** 此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 | 名称     | 类型   | 必填 | 说明             |
 | ---------- | ------ | ---------------- | ---------------- |
@@ -1879,9 +1879,9 @@ PGO（Profile-guided Optimization）配置文件参数信息。
 
 扩展参数信息。
 
- **系统能力：** SystemCapability.BundleManager.BundleFramework.Core
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Core
 
- **系统接口：** 此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 | 名称     | 类型   | 必填 | 说明             |
 | ---------- | ------ | ---------------- | ---------------- |
@@ -1892,37 +1892,37 @@ PGO（Profile-guided Optimization）配置文件参数信息。
 
 创建分身应用可指定的参数信息。
 
- **系统能力：** SystemCapability.BundleManager.BundleFramework.Core
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Core
 
- **系统接口：** 此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 | 名称        | 类型   | 必填 | 说明                                                          |
 | ----------- | ------ | ---- | ------------------------------------------------------------ |
-| userId      | number | 否   | 指定创建分身应用所在的用户id。默认值：调用方所在用户。            |
+| userId      | number | 否   | 指定创建分身应用所在的用户ID，可以通过[getOsAccountLocalId接口](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9)获取。默认值：调用方所在用户。            |
 | appIndex    | number | 否   | 指定创建分身应用的索引值。默认值：当前可用的最小索引值。           |
 
 ## DestroyAppCloneParam<sup>15+</sup>
 
 删除分身应用可指定的参数信息。
 
- **系统能力：** SystemCapability.BundleManager.BundleFramework.Core
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Core
 
- **系统接口：** 此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 | 名称        | 类型   | 必填 | 说明                                                          |
 | ----------- | ------ | ---- | ------------------------------------------------------------ |
-| userId      | number | 否   | 指定删除分身应用所在的用户id。默认值：调用方所在用户。            |
+| userId      | number | 否   | 指定删除分身应用所在的用户ID，可以通过[getOsAccountLocalId接口](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9)获取。默认值：调用方所在用户。            |
 | parameters  | Array<[Parameters](#parameters15)> | 否   | 指定删除分身应用扩展参数，默认值为空。            |
 
 ## PluginParam<sup>19+</sup>
 
 插件应用安装、卸载的参数信息。
 
- **系统能力：** SystemCapability.BundleManager.BundleFramework.Core
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Core
 
- **系统接口：** 此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 | 名称        | 类型   | 必填 | 说明                                                          |
 | ----------- | ------ | ---- | ------------------------------------------------------------ |
-| userId      | number | 否   | 指定安装、卸载插件程序所在的用户id。默认值：调用方所在用户。            |
+| userId      | number | 否   | 指定安装、卸载插件程序所在的用户ID，可以通过[getOsAccountLocalId接口](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9)获取。默认值：调用方所在用户。            |
 | parameters  | Array<[Parameters](#parameters15)> | 否   | 指定安装、卸载插件程序的扩展参数，默认值为空。            |

@@ -31,6 +31,8 @@ equalTo(field: string, value: ValueType): DataSharePredicates
 
 **系统能力：**  SystemCapability.DistributedDataManager.DataShare.Core
 
+**原子化服务API：**  从API version 20开始，该接口支持在原子化服务中使用。
+
 **参数：**
 
 | 参数名 | 类型                                                | 必填 | 说明                   |
@@ -62,6 +64,8 @@ and(): DataSharePredicates
 
 **系统能力：**  SystemCapability.DistributedDataManager.DataShare.Core
 
+**原子化服务API：**  从API version 20开始，该接口支持在原子化服务中使用。
+
 **返回值：**
 
 | 类型                                        | 说明                   |
@@ -86,6 +90,8 @@ orderByAsc(field: string): DataSharePredicates
 目前仅RDB及KVDB(schema)支持该谓词。
 
 **系统能力：**  SystemCapability.DistributedDataManager.DataShare.Core
+
+**原子化服务API：**  从API version 20开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -116,6 +122,8 @@ orderByDesc(field: string): DataSharePredicates
 
 **系统能力：**  SystemCapability.DistributedDataManager.DataShare.Core
 
+**原子化服务API：**  从API version 20开始，该接口支持在原子化服务中使用。
+
 **参数：**
 
 | 参数名 | 类型   | 必填 | 说明               |
@@ -144,6 +152,8 @@ limit(total: number, offset: number): DataSharePredicates
 目前仅RDB及KVDB(schema)支持该谓词。
 
 **系统能力：**  SystemCapability.DistributedDataManager.DataShare.Core
+
+**原子化服务API：**  从API version 20开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -174,6 +184,8 @@ in(field: string, value: Array&lt;ValueType&gt;): DataSharePredicates
 目前仅RDB及KVDB(schema)支持该谓词。
 
 **系统能力：**  SystemCapability.DistributedDataManager.DataShare.Core
+
+**原子化服务API：**  从API version 20开始，该接口支持在原子化服务中使用。
 
 **参数：**
 

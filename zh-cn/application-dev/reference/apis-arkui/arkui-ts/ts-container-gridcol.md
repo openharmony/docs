@@ -87,7 +87,7 @@ gridColOffset(value: number | GridColColumnOption)
 
 order(value: number | GridColColumnOption)
 
-设置元素的序号，根据栅格子组件的序号，从小到大对栅格子组件做排序。
+设置栅格子组件的序号，根据序号从小到大对栅格子组件进行排序。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -132,6 +132,9 @@ order(value: number | GridColColumnOption)
   span: {md:4, lg:8} // 等于配置 span: {xs:4, sm:4, md:4, lg:8, xl:8, xxl:8}
   ```
 - 建议手动配置不同断点下GridCol组件所占列数，避免默认补全列数的布局效果不符合预期。
+
+## 事件
+支持[通用事件](ts-component-general-events.md)。
 
 ## 示例
 GridCol的基本用法示例。

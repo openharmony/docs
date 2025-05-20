@@ -22,7 +22,7 @@
 
 >  **说明：**
 >
-> - 该组件从API Version 8开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+> - 该组件从API version 8开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 > - 该组件无法根据内容自适应设置宽高属性，需要开发者设置显示布局。
 > - **该组件不再更新和维护，推荐使用[RichEditor组件](../arkui-ts/ts-basic-components-richeditor.md#richeditor)或[Web组件](../../apis-arkweb/ts-basic-components-web.md#web)。**
 
