@@ -162,6 +162,14 @@ onMemoryLevel(level: AbilityConstant.MemoryLevel): void
   | -------- | -------- | -------- | -------- |
   | level | [AbilityConstant.MemoryLevel](js-apis-app-ability-abilityConstant.md#memorylevel) | 是 | 回调返回内存微调级别，显示当前内存使用状态。| 
 
+**补充：**
+
+不同产品的触发条件可能存在差异。以12G内存的标准设备为例：
+
+- 当可以内存下降至1700M~1800M时，会触发值为0的onMemoryLevel回调。
+- 当可以内存下降至1600M~1700M时，会触发值为1的onMemoryLevel回调。
+- 当可以内存下降至1600M以下时，会触发值为2的onMemoryLevel回调。
+
 **示例：**
     
 ```ts
