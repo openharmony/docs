@@ -564,6 +564,9 @@
           - 构建布局<!--arkts-build-layout-ndk-->
             - [使用列表](ui/ndk-loading-long-list.md)
             - [使用瀑布流](ui/ndk-waterflow.md)
+          - 使用文本<!--arkts-build-text-ndk-->
+            - [Text组件的文本绘制与显示](ui/ndk-styled-string.md)
+            - [输入框文本事件监听](ui/ndk-textarea-event.md)
           - [构建弹窗](ui/ndk-build-pop-up-window.md)
           - [构建自定义组件](ui/ndk-build-custom-components.md)
           - [嵌入ArkTS组件](ui/ndk-embed-arkts-components.md)
@@ -3054,7 +3057,6 @@
           - [动画错误码](reference/apis-arkui/errorcode-animator.md)
           - [弹窗错误码](reference/apis-arkui/errorcode-promptAction.md)
           - [页面路由错误码](reference/apis-arkui/errorcode-router.md)
-          - [用户界面外观服务错误码](reference/apis-arkui/errorcode-uiappearance.md)
           - [拖拽事件错误码](reference/apis-arkui/errorcode-drag-event.md)
           - [图像AI分析错误码](reference/apis-arkui/errorcode-image-analyzer.md)
           - [焦点错误码](reference/apis-arkui/errorcode-focus.md)
@@ -3063,6 +3065,10 @@
           - [滚动类组件错误码](reference/apis-arkui/errorcode-scroll.md)
           - [截图错误码](reference/apis-arkui/errorcode-snapshot.md)
           - [UI上下文错误码](reference/apis-arkui/errorcode-uicontext.md)
+          - [交互事件错误码](reference/apis-arkui/errorcode-event.md)
+          <!--Del-->
+          - [用户界面外观服务错误码](reference/apis-arkui/errorcode-uiappearance.md)
+          <!--DelEnd-->
         - 图形图像<!--arkui-graphics-images-arkts-errcode-->
           - [屏幕错误码](reference/apis-arkui/errorcode-display.md)
           - [窗口错误码](reference/apis-arkui/errorcode-window.md)
@@ -3335,21 +3341,32 @@
             - [@system.cipher (加密算法)](reference/apis-crypto-architecture-kit/js-apis-system-cipher.md)
         - C API<!--crypto-architecture-c-->
           - 模块<!--crypto-architecture-module-->
-            - [CryptoAsymKeyApi](reference/apis-crypto-architecture-kit/_crypto_asym_key_api.md)
-            - [CryptoCommonApi](reference/apis-crypto-architecture-kit/_crypto_common_api.md)
-            - [CryptoDigestApi](reference/apis-crypto-architecture-kit/_crypto_digest_api.md)
-            - [CryptoSignatureApi](reference/apis-crypto-architecture-kit/_crypto_signature_api.md)
-            - [CryptoSymCipherApi](reference/apis-crypto-architecture-kit/_crypto_sym_cipher_api.md)
-            - [CryptoSymKeyApi](reference/apis-crypto-architecture-kit/_crypto_sym_key_api.md)
+            - [CryptoArchitectureKit](reference/apis-crypto-architecture-kit/capi-cryptoarchitecturekit.md)
+            - [CryptoAsymKeyApi](reference/apis-crypto-architecture-kit/capi-cryptoasymkeyapi.md)
+            - [CryptoCommonApi](reference/apis-crypto-architecture-kit/capi-cryptocommonapi.md)
+            - [CryptoDigestApi](reference/apis-crypto-architecture-kit/capi-cryptodigestapi.md)
+            - [CryptoSignatureApi](reference/apis-crypto-architecture-kit/capi-cryptosignatureapi.md)
+            - [CryptoSymCipherApi](reference/apis-crypto-architecture-kit/capi-cryptosymcipherapi.md)
+            - [CryptoSymKeyApi](reference/apis-crypto-architecture-kit/capi-cryptosymkeyapi.md)
           - 头文件<!--crypto-architecture-headerfile-->
-            - [crypto_asym_key.h](reference/apis-crypto-architecture-kit/crypto__asym__key_8h.md)
-            - [crypto_common.h](reference/apis-crypto-architecture-kit/crypto__common_8h.md)
-            - [crypto_digest.h](reference/apis-crypto-architecture-kit/crypto__digest_8h.md)
-            - [crypto_signature.h](reference/apis-crypto-architecture-kit/crypto__signature_8h.md)
-            - [crypto_sym_cipher.h](reference/apis-crypto-architecture-kit/crypto__sym__cipher_8h.md)
-            - [crypto_sym_key.h](reference/apis-crypto-architecture-kit/crypto__sym__key_8h.md)
+            - [crypto_architecture_kit.h](reference/apis-crypto-architecture-kit/capi-crypto-architecture-kit-h.md)
+            - [crypto_asym_key.h](reference/apis-crypto-architecture-kit/capi-crypto-asym-key-h.md)
+            - [crypto_common.h](reference/apis-crypto-architecture-kit/capi-crypto-common-h.md)
+            - [crypto_digest.h](reference/apis-crypto-architecture-kit/capi-crypto-digest-h.md)
+            - [crypto_signature.h](reference/apis-crypto-architecture-kit/capi-crypto-signature-h.md)
+            - [crypto_sym_cipher.h](reference/apis-crypto-architecture-kit/capi-crypto-sym-cipher-h.md)
+            - [crypto_sym_key.h](reference/apis-crypto-architecture-kit/capi-crypto-sym-key-h.md)
           - 结构体<!--crypto-architecture-struct-->
-            - [Crypto_DataBlob](reference/apis-crypto-architecture-kit/_crypto___data_blob.md)
+            - [Crypto_DataBlob](reference/apis-crypto-architecture-kit/capi-crypto-datablob.md)
+            - [OH_CryptoKeyPair](reference/apis-crypto-architecture-kit/capi-oh-cryptokeypair.md)
+            - [OH_CryptoPubKey](reference/apis-crypto-architecture-kit/capi-oh-cryptopubkey.md)
+            - [OH_CryptoAsymKeyGenerator](reference/apis-crypto-architecture-kit/capi-oh-cryptoasymkeygenerator.md)
+            - [OH_CryptoDigest](reference/apis-crypto-architecture-kit/capi-oh-cryptodigest.md)
+            - [OH_CryptoVerify](reference/apis-crypto-architecture-kit/capi-oh-cryptoverify.md)
+            - [OH_CryptoSymCipher](reference/apis-crypto-architecture-kit/capi-oh-cryptosymcipher.md)
+            - [OH_CryptoSymCipherParams](reference/apis-crypto-architecture-kit/capi-oh-cryptosymcipherparams.md)
+            - [OH_CryptoSymKey](reference/apis-crypto-architecture-kit/capi-oh-cryptosymkey.md)
+            - [OH_CryptoSymKeyGenerator](reference/apis-crypto-architecture-kit/capi-oh-cryptosymkeygenerator.md)
         - 错误码<!--crypto-architecture-arkts-errcode-->
           - [crypto framework错误码](reference/apis-crypto-architecture-kit/errorcode-crypto-framework.md)
       - Data Protection Kit（数据保护服务）<!--data-protection-api-->

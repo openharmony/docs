@@ -23,7 +23,7 @@ border(value: BorderOptions)
 
 | 参数名 | 类型                                    | 必填 | 说明                                                         |
 | ------ | --------------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [BorderOptions](#borderoptions对象说明) | 是   | 统一边框样式设置接口。<br/>**说明：** <br/>边框宽度默认值为0，即不显示边框。<br/>从API Version 9开始，父节点的border显示在子节点内容之上。 |
+| value  | [BorderOptions](#borderoptions对象说明) | 是   | 统一边框样式设置接口。<br/>**说明：** <br/>边框宽度默认值为0，即不显示边框。<br/>从API version 9开始，父节点的border显示在子节点内容之上。 |
 
 ## borderStyle
 

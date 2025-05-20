@@ -645,7 +645,7 @@ zoomAccess(zoomAccess: boolean)
 
 overviewModeAccess(overviewModeAccess: boolean)
 
-设置是否使用概览模式加载网页。当前仅支持移动设备。
+设置是否使用概览模式加载网页，即缩小内容以适应屏幕宽度。当前仅支持移动设备。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -747,7 +747,7 @@ geolocationAccess(geolocationAccess: boolean)
 
 mediaPlayGestureAccess(access: boolean)
 
-设置有声视频播放是否需要用户手动点击，静音视频播放不受该接口管控。
+设置有声视频的自动播放是否需要用户手动点击，静音视频播放不受该接口管控。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -755,7 +755,7 @@ mediaPlayGestureAccess(access: boolean)
 
 | 参数名    | 类型    | 必填   | 说明                |
 | ------ | ------- | ---- | ------------------- |
-| access | boolean | 是    | 设置有声视频播放是否需要用户手动点击。<br>true表示设置有声视频播放需要用户手动点击，false表示设置有声视频播放不需要用户手动点击。<br>默认值：true。 |
+| access | boolean | 是    | 设置有声视频的自动播放是否需要用户手动点击。<br>true表示设置有声视频的自动播放需要用户手动点击，false表示设置有声视频的自动播放不需要用户手动点击，能自动播放。<br>默认值：true。 |
 
 **示例：**
 
@@ -1227,7 +1227,7 @@ defaultFixedFontSize(size: number)
 
 | 参数名  | 类型   | 必填   | 说明                                     |
 | ---- | ------ | ---- | ---------------------------------------- |
-| size | number | 是    | 设置网页的默认等宽字体大小，单位px。<br>输入值的范围为-2^31到2^31-1，实际渲染时超过72的值按照72进行渲染，低于1的值按照1进行渲染。<br>默认值：13。 |
+| size | number | 是    | 设置网页的默认等宽字体大小，单位px。<br>输入值的范围为-2^31到2^31-1，实际渲染时超过72px的值按照72px进行渲染，低于1px的值按照1px进行渲染。<br>默认值：13。 |
 
 **示例：**
 
@@ -1262,7 +1262,7 @@ defaultFontSize(size: number)
 
 | 参数名  | 类型   | 必填   | 说明                                     |
 | ---- | ------ | ---- | ---------------------------------------- |
-| size | number | 是    | 设置网页的默认字体大小，单位px。<br>输入值的范围为-2^31到2^31-1，实际渲染时超过72的值按照72进行渲染，低于1的值按照1进行渲染。<br>默认值：16。 |
+| size | number | 是    | 设置网页的默认字体大小，单位px。<br>输入值的范围为-2^31到2^31-1，实际渲染时超过72px的值按照72px进行渲染，低于1px的值按照1px进行渲染。<br>默认值：16。 |
 
 **示例：**
 
@@ -1297,7 +1297,7 @@ minFontSize(size: number)
 
 | 参数名  | 类型   | 必填   | 说明                                     |
 | ---- | ------ | ---- | ---------------------------------------- |
-| size | number | 是    | 设置网页字体大小最小值，单位px。<br>输入值的范围为-2^31到2^31-1，实际渲染时超过72的值按照72进行渲染，低于1的值按照1进行渲染。<br>默认值：8。 |
+| size | number | 是    | 设置网页字体大小最小值，单位px。<br>输入值的范围为-2^31到2^31-1，实际渲染时超过72px的值按照72px进行渲染，低于1px的值按照1px进行渲染。<br>默认值：8。 |
 
 **示例：**
 
@@ -1332,7 +1332,7 @@ minLogicalFontSize(size: number)
 
 | 参数名  | 类型   | 必填   | 说明                                     |
 | ---- | ------ | ---- | ---------------------------------------- |
-| size | number | 是    | 设置网页逻辑字体大小最小值，单位px。<br>输入值的范围为-2^31到2^31-1，实际渲染时超过72的值按照72进行渲染，低于1的值按照1进行渲染。<br>默认值：8。 |
+| size | number | 是    | 设置网页逻辑字体大小最小值，单位px。<br>输入值的范围为-2^31到2^31-1，实际渲染时超过72px的值按照72px进行渲染，低于1px的值按照1px进行渲染。<br>默认值：8。 |
 
 **示例：**
 
@@ -1568,7 +1568,7 @@ webCursiveFont(family: string)
 
 darkMode(mode: WebDarkMode)
 
-设置Web深色模式。当深色模式开启时，Web将启用媒体查询prefers-color-scheme中网页所定义的深色样式，若网页未定义深色样式，则保持原状。如需开启强制深色模式，建议配合[forceDarkAccess](#forcedarkaccess9)使用。
+设置Web深色模式。当深色模式开启时，Web将启用媒体查询prefers-color-scheme中网页所定义的深色样式，若网页未定义深色样式，则保持原状。如需开启强制深色模式，建议配合[forceDarkAccess](#forcedarkaccess9)使用。深色模式具体用法可参考[Web深色模式适配](../../web/web-set-dark-mode.md)。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -2428,7 +2428,7 @@ forceDisplayScrollBar(enabled: boolean)
 
 registerNativeEmbedRule(tag: string, type: string)
 
-注册使用同层渲染的HTML标签名和类型。标签名仅支持使用object和embed。标签类型只能使用ASCII可显示字符。
+注册使用同层渲染的HTML标签名和类型。标签名仅支持使用"object"和"embed"。标签类型只能使用ASCII可显示字符。
 
 若指定类型与W3C定义的object或embed标准类型重合，ArkWeb内核将其识别为非同层标签。
 
@@ -2521,9 +2521,6 @@ metaViewport(enabled: boolean)
 
 > **说明：**
 >
-> - 设置false不支持meta标签viewport属性，将不解析viewport属性，进行默认布局。
-> - 设置true支持meta标签viewport属性，将解析viewport属性，并根据viewport属性布局。
-> - 如果设置为异常值将无效。
 > - 如果设备为2in1，不支持viewport属性。设置为true或者false均不会解析viewport属性，进行默认布局。
 > - 如果设备为Tablet，设置为true或false均会解析meta标签viewport-fit属性。当`viewport-fit=cover`时，可通过CSS属性获取安全区域大小。
 > - 当前通过User-Agent中是否含有"Mobile"字段来判断是否开启前端HTML页面中meta标签的viewport属性。当User-Agent中不含有"Mobile"字段时，meta标签中viewport属性默认关闭，此时可通过显性设置metaViewport属性为true来覆盖关闭状态。
@@ -2534,7 +2531,7 @@ metaViewport(enabled: boolean)
 
 | 参数名 | 类型 | 必填 | 说明                         |
 | ------ | -------- | ---- | -------------------------------- |
-| enabled | boolean  | 是   | 是否支持meta标签的viewport属性。<br>true表示支持meta标签的viewport属性，false表示不支持meta标签的viewport属性。<br>默认值：true。 |
+| enabled | boolean  | 是   | 是否支持meta标签的viewport属性。<br>true表示支持meta标签的viewport属性，将解析viewport属性，并根据viewport属性布局。<br>false表示不支持meta标签的viewport属性，将不解析viewport属性，进行默认布局。<br>默认值：true。 |
 
 **示例：**
 
@@ -8705,6 +8702,8 @@ onSslErrorEventReceive接口返回的SSL错误的具体原因。
 
 ## WebDarkMode<sup>9+</sup>枚举说明
 
+Web深色模式的配置。
+
 **系统能力：** SystemCapability.Web.Webview.Core
 
 | 名称   | 值 | 说明           |
@@ -8729,7 +8728,7 @@ Web媒体策略的配置。
 
 | 名称             | 类型      | 必填   | 说明                                       |
 | -------------- | ------- | ---- | ---------------------------------------- |
-| resumeInterval | number  | 否    | 被暂停的Web音频能够自动续播的有效期，单位：秒。有效期范围0~60秒，如若超过60秒，按照60s处理，由于近似值原因，该有效期可能存在一秒内的误差。 |
+| resumeInterval | number  | 否    | 被其他应用暂停的Web音视频能够自动续播的有效期，单位：秒。有效期范围0~60秒，如若超过60秒，按照60s处理，由于近似值原因，该有效期可能存在一秒内的误差。 |
 | audioExclusive | boolean | 否    | 应用内多个Web实例的音频是否独占。<br>true表示应用内多个Web实例的音频独占，false表示应用内多个Web实例的音频不独占。                       |
 
 ## ScreenCaptureConfig<sup>10+</sup>
@@ -8743,6 +8742,8 @@ Web屏幕捕获的配置。
 | captureMode | [WebCaptureMode](#webcapturemode10枚举说明) | 是    | Web屏幕捕获模式。 |
 
 ## WebLayoutMode<sup>11+</sup>枚举说明
+
+Web布局模式的配置。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -10433,8 +10434,8 @@ type OnViewportFitChangedCallback = (viewportFit: ViewportFit) => void
 
 | 名称             | 类型      | 必填   | 说明                                       |
 | -------------- | ---- | ---- | ---------------------------------------- |
-| navigationStartTick    | number | 是 | navigation开始的时间，单位以微秒表示。          |
-| firstContentfulPaintMs | number | 是 | 从navigation开始第一次绘制内容的时间，单位是以毫秒表示。 |
+| navigationStartTick    | number | 是 | 启动页面加载开始的时间，单位以微秒表示。          |
+| firstContentfulPaintMs | number | 是 | 从启动页面加载开始到第一次绘制内容的时间，单位是以毫秒表示。 |
 
 ## OnLoadInterceptEvent<sup>12+</sup>
 

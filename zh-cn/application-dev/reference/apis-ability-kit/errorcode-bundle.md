@@ -432,7 +432,7 @@ Failed to install the HAP because the overlay check of the HAP failed.
 The specified bundle does not contain any overlay module.
 
 **错误描述**<br/>
-查询指定应用中overlay特征module的overlayModuleInfo时, 指定的应用不包含overlay特征module。
+查询指定应用中overlay特征module的overlayModuleInfo时，指定的应用不包含overlay特征module。
 
 **可能原因**<br/>
 指定的应用不包含overlay特征module。
@@ -446,7 +446,7 @@ The specified bundle does not contain any overlay module.
 The specified module is not an overlay module.
 
 **错误描述**<br/>
-查询指定的overlay特征module的overlayModuleInfo时, 指定的module不是overlay特征module。
+查询指定的overlay特征module的overlayModuleInfo时，指定的module不是overlay特征module。
 
 **可能原因**<br/>
 指定的module不是overlay特征的module。
@@ -460,7 +460,7 @@ The specified module is not an overlay module.
 The specified module is an overlay module.
 
 **错误描述**<br/>
-查询指定的目标module所关联的overlayModuleInfo时, 指定的module是overlay特征module。
+查询指定的目标module所关联的overlayModuleInfo时，指定的module是overlay特征module。
 
 **可能原因**<br/>
 指定的module是overlay特征的module。
@@ -474,7 +474,7 @@ The specified module is an overlay module.
 The specified bundle is an overlay bundle.
 
 **错误描述**<br/>
-查询指定应用的目标module所关联的overlayModuleInfo时, 指定的应用只包含overlay特征的module。
+查询指定应用的目标module所关联的overlayModuleInfo时，指定的应用只包含overlay特征的module。
 
 **可能原因**<br/>
 指定的应用只包含overlay特征的module。
