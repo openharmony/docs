@@ -32,7 +32,7 @@ setAlwaysOnVpnEnabled(enable: boolean, bundleName: string): Promise\<void>
 
 | 参数名     | 类型    | 必填 | 说明                                                    |
 | ---------- | ------- | ---- | ------------------------------------------------------- |
-| enable     | boolean | 是   | always on启用或禁用。                                   |
+| enable     | boolean | 是   | always on启用或禁用。true：always on启用；false：always on禁用。                                   |
 | bundleName | string  | 是   | 设置了always on vpn的包名，通常指三方应用的bundleName。 |
 
 **返回值：**
@@ -149,7 +149,7 @@ updateVpnAuthorizedState(bundleName: string): boolean
 
 | 类型    | 说明                                        |
 | ------- | ------------------------------------------- |
-| boolean | 返回值用来判断是否成功更新vpn弹框授权状态。 |
+| boolean | 返回值用来判断是否成功更新vpn弹框授权状态。true：成功更新vpn弹框授权状态；false：没有成功更新vpn弹框授权状态。 |
 
 **错误码：**
 
