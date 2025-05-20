@@ -99,8 +99,8 @@ struct Index {
           .fontWeight(FontWeight.Bold)
           .onClick(() => {
             // 建议使用this.getUIContext().getHostContext()
-            let context : Context = getContext(this) as Context
-            console.info("CacheDir:" + context.cacheDir)
+            let context: Context = getContext(this) as Context;
+            console.info("CacheDir:" + context.cacheDir);
           })
       }
       .width('100%')
