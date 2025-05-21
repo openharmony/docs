@@ -542,18 +542,15 @@ libnative_rdb_ndk.z.so
     // 附加数据库
     size_t attachedCount = 0;
     int result = OH_Rdb_Attach(store_, configAttach, "attach", 10, &attachedCount);
-    OH_LOG_ERROR(LOG_APP, "attach result: %{public}d, attachedCount: %{public}ld", result, attachedCount);
     auto predicates = OH_Rdb_CreatePredicates("attach.EMPLOYEE");
     char *colName[] = {};
     auto cursor = OH_Rdb_Query(store_, predicates, colName, 0);
     int rowCount = -1;
     result = cursor->getRowCount(cursor, &rowCount);
-    OH_LOG_ERROR(LOG_APP, "attachQueryCount: %{public}d, result: %{public}d", rowCount, result);
     cursor->destroy(cursor);
     
     // 分离数据库
     result = OH_Rdb_Detach(store_, "attach", 10, &attachedCount);
-    OH_LOG_ERROR(LOG_APP, "detach result: %{public}d, attachedCount: %{public}ld", result, attachedCount);
     ```
 
 7. 向数据库表中插入资产类型数据。
