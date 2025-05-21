@@ -10,7 +10,7 @@
 ## 导入模块
 
 ```ts
-import { netfirewall } from '@kit.NetworkKit';
+import { netFirewall } from '@kit.NetworkKit';
 ```
 
 
@@ -53,7 +53,7 @@ getNetFirewallPolicy(userId: number): Promise\<NetFirewallPolicy>
 **示例：**
 
 ```ts
-import { netFirewall } '@kit.NetworkKit';
+import { netFirewall } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 netFirewall.getNetFirewallPolicy(100).then((result: netFirewall.NetFirewallPolicy) => {
@@ -108,7 +108,7 @@ updateNetFirewallRule(rule: NetFirewallRule): Promise\<void>
 **示例：**
 
 ```ts
-import { netFirewall } '@kit.NetworkKit';
+import { netFirewall } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let ipRuleUpd: netFirewall.NetFirewallRule = {
@@ -116,7 +116,7 @@ let ipRuleUpd: netFirewall.NetFirewallRule = {
   name: "rule1",
   description: "rule1 description update",
   direction: netFirewall.NetFirewallRuleDirection.RULE_IN,
-  action:netFirewall.NetFirewallRuleDirection.RULE_DENY,
+  action:netFirewall.FirewallRuleAction.RULE_DENY,
   type: netFirewall.NetFirewallRuleType.RULE_IP,
   isEnabled: false,
   appUid: 20001,
@@ -181,7 +181,7 @@ removeNetFirewallRule(userId: number, ruleId: number): Promise\<void>
 **示例：**
 
 ```ts
-import { netFirewall } '@kit.NetworkKit';
+import { netFirewall } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 netFirewall.removeNetFirewallRule(100, 1).then(() => {
@@ -230,7 +230,7 @@ getNetFirewallRules(userId: number, requestParam: RequestParam): Promise\<Firewa
 **示例：**
 
 ```ts
-import { netFirewall } '@kit.NetworkKit';
+import { netFirewall } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let ruleParam: netFirewall.RequestParam = {
@@ -286,7 +286,7 @@ getNetFirewallRule(userId: number, ruleId: number): Promise\<NetFirewallRule>
 **示例：**
 
 ```ts
-import { netFirewall } '@kit.NetworkKit';
+import { netFirewall } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 netFirewall.getNetFirewallRule(100, 1).then((rule: netFirewall.NetFirewallRule) => {
@@ -335,7 +335,7 @@ setNetFirewallPolicy(userId: number, policy: NetFirewallPolicy): Promise\<void>
 **示例：**
 
 ```ts
-import { netFirewall } '@kit.NetworkKit';
+import { netFirewall } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let policy: netFirewall.NetFirewallPolicy = {
@@ -394,14 +394,14 @@ addNetFirewallRule(rule: NetFirewallRule): Promise\<number>
 **示例：**
 
 ```ts
-import { netFirewall } '@kit.NetworkKit';
+import { netFirewall } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let ipRule: netFirewall.NetFirewallRule = {
   name: "rule1",
   description: "rule1 description",
   direction: netFirewall.NetFirewallRuleDirection.RULE_IN,
-  action:netFirewall.NetFirewallRuleDirection.RULE_DENY,
+  action:netFirewall.FirewallRuleAction.RULE_DENY,
   type: netFirewall.NetFirewallRuleType.RULE_IP,
   isEnabled: true,
   appUid: 20001,
@@ -455,7 +455,7 @@ let domainRule: netFirewall.NetFirewallRule = {
   name: "rule2",
   description: "rule2 description",
   direction: netFirewall.NetFirewallRuleDirection.RULE_IN,
-  action:netFirewall.NetFirewallRuleDirection.RULE_DENY,
+  action:netFirewall.FirewallRuleAction.RULE_DENY,
   type: netFirewall.NetFirewallRuleType.RULE_DOMAIN,
   isEnabled: true,
   appUid: 20002,
@@ -479,12 +479,14 @@ let dnsRule: netFirewall.NetFirewallRule = {
   name: "rule3",
   description: "rule3 description",
   direction: netFirewall.NetFirewallRuleDirection.RULE_IN,
-  action:netFirewall.NetFirewallRuleDirection.RULE_DENY,
+  action:netFirewall.FirewallRuleAction.RULE_DENY,
   type: netFirewall.NetFirewallRuleType.RULE_DNS,
   isEnabled: true,
   appUid: 20003,
-  primaryDns: "4.4.4.4",
-  standbyDns: "8.8.8.8",
+ dns:{
+   primaryDns: "4.4.4.4",
+   standbyDns: "8.8.8.8",
+ },
   userId: 100
 };
 netFirewall.addNetFirewallRule(dnsRule).then((result: number) => {
