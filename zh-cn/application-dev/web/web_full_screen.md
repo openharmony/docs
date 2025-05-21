@@ -7,7 +7,7 @@ Web组件引用第三方H5页面加载的视频，当点击视频全屏时，视
 
 | 图1 退出全屏模式</div> | 图2 非沉浸式全屏模式</div> | 图3 沉浸式全屏模式</div> |
 | :--------------------------------------------------------------------: | :-----------------------------------------------------------------------: | :--------------------------------------------------------------------: |
-| ![arkweb_fullscreen1](figures/arkweb_fullscreen1.png)| ![arkweb_fullscreen2](figures/arkweb_fullscreen2.png) | ![arkweb_fullscreen3](figures/arkweb_fullscreen3.png) |
+| ![web_fullscreen1](figures/web_fullscreen1.png)| ![web_fullscreen2](figures/web_fullscreen2.png) | ![web_fullscreen3](figures/web_fullscreen3.png) |
 
 
 
