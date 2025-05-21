@@ -152,7 +152,7 @@ module.json5配置文件包含以下标签。
 | [hnpPackages](#hnppackages标签) | 标识当前应用包含的Native软件包信息。只允许entry类型模块配置。 | 对象数组 | 该标签可缺省，缺省值为空。 |
 | abilitySrcEntryDelegator | 标识当前Module需要重定向到的UIAbility的名称，与abilityStageSrcEntryDelegator字段组合使用，共同指定重定向的目标对象。<br/>**说明：**<br/>1.从API version 17开始，支持该字段。<br/>2.当UIAbility是通过[startAbilityByCall](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartabilitybycall)接口启动时，该字段不生效。<br/>3.不支持在HAR的配置文件中配置该字段，也不支持重定向到HAR的UIAbility。 | 字符串 | 该标签可缺省，缺省值为空。 |
 | abilityStageSrcEntryDelegator | 标识当前Module需要重定向到的UIAbility对应的Module名称（不可为当前Module名称），与abilitySrcEntryDelegator字段组合使用，共同指定重定向的目标对象。<br/>**说明：**<br/>1.从API version 17开始，支持该字段。<br/>2.当UIAbility是通过[startAbilityByCall](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartabilitybycall)接口启动时，该字段不生效。<br/>3.不支持在HAR的配置文件中配置该字段，也不支持重定向到HAR的UIAbility。 | 字符串 | 该标签可缺省，缺省值为空。 |
-| deviceFeatures | 标识当前Module需要的特定的设备能力，应用市场可以根据此配置，将应用分发给支持该能力的设备。该字段支持配置0-3个枚举值，无顺序要求，枚举值取值如下：<br/>-&nbsp;multi_process：多进程能力，表示设备支持创建子进程的能力。<br/>-&nbsp;free_multi_window：自由多窗能力，表示设备支持窗口最大化、最小化、悬浮、矩形区域变化的能力。<br/>-&nbsp;directory_permission：公共目录授权能力，表示当前Module需要被设备系统授权，能够访问文档、图片等公共目录。<br/>**说明：**<br/>1.从API version 19开始，支持该字段。<br/>2.不支持插件应用配置。 | 字符串数组 | 该标签可缺省，缺省值为空。
+| deviceFeatures | 标识当前Module需要的特定的设备能力，应用市场可以根据此配置，将应用分发给支持该能力的设备。该字段支持配置0-3个枚举值，无顺序要求，枚举值取值如下：<br/>-&nbsp;multi_process：多进程能力，表示设备支持创建子进程的能力。<br/>-&nbsp;free_multi_window：自由多窗能力，表示设备支持窗口最大化、最小化、悬浮、矩形区域变化的能力。<br/>-&nbsp;directory_permission：公共目录授权能力，表示当前Module需要被设备授权，能够访问文档、图片等公共目录。<br/>**说明：**<br/>1.从API version 19开始，支持该字段。<br/>2.不支持插件应用配置。 | 字符串数组 | 该标签可缺省，缺省值为空。
  |
 
 ## deviceTypes标签
