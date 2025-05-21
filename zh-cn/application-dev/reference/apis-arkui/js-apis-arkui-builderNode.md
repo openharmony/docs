@@ -1147,6 +1147,12 @@ postInputEvent(event: InputEventType): boolean
 >
 > 传入的坐标值需要转换为px。
 >
+> 鼠标左键点击事件会转换成触摸事件，转发时需注意不要在外层同时绑定触摸事件和鼠标事件，规格可查看[onTouch](arkui-ts/ts-universal-events-touch.md#ontouch)。
+>
+> 转发的事件会在被分发到的目标组件所在的子树里做touchtest，并触发对应手势，原始事件也会触发当前组件所在组件树中的手势。不保证两类手势的竞争结果。
+>
+> 针对同一个事件，在事件分发流程中不可以转发多次。
+>
 > [Webview](../apis-arkweb/js-apis-webview.md)已经处理过坐标系变换，可以将事件直接下发。
 >
 > 不建议同一个事件转发多次。<!--Del-->不支持[UIExtensionComponent](arkui-ts/ts-container-ui-extension-component-sys.md)。<!--DelEnd-->
@@ -1159,13 +1165,13 @@ postInputEvent(event: InputEventType): boolean
 
 | 参数名 | 类型                                                                      | 必填 | 说明       |
 | ------ | ------------------------------------------------------------------------- | ---- | ---------- |
-| event  | [InputEventType](#inputeventtype20) | 是   | 触摸事件。 |
+| event  | [InputEventType](#inputeventtype20) | 是   | 用于透传的输入事件。 |
 
 **返回值：**
 
 | 类型    | 说明               |
 | ------- | ------------------ |
-| boolean | 触摸事件和鼠标事件只有命中且阻止冒泡返回时true，其他情况均返回false。<br/>**说明：** <br/>轴事件默认返回true。 |
+| boolean | 事件是否被消费。 |
 
 ## 示例
 
@@ -1312,6 +1318,7 @@ class MyNodeController extends NodeController {
     let offsetX: number | null | undefined = node?.getPositionToParent().x;
     let offsetY: number | null | undefined = node?.getPositionToParent().y;
 
+    // 只转发原始事件，不转发鼠标模拟的触摸事件
     if (event.source == SourceType.TouchScreen) {
       let touchevent = event as TouchEvent;
       let changedTouchLen = touchevent.changedTouches.length;
