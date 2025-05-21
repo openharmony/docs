@@ -115,6 +115,7 @@ class MyAbility extends UIAbility {
 | rss | number | 否 | 否 | Ability上次退出时所在进程的rss值。 |
 | pss | number | 否 | 否 | Ability上次退出时所在进程的pss值。 |
 | timestamp | number | 否 | 否 | Ability上次退出时的时间戳。 |
+| processState<sup>20+</sup> | [appManager.ProcessState](js-apis-app-ability-appManager.md#processstate10) | 否 | 是 | Ability上次退出时的进程状态。 |
 
 **示例**:
 
@@ -131,7 +132,8 @@ class MyAbility extends UIAbility {
         '\n exitMsg: ' + launchParam.lastExitDetailInfo.exitMsg +
         '\n rss: ' + launchParam.lastExitDetailInfo.rss +
         '\n pss: ' + launchParam.lastExitDetailInfo.pss +
-        '\n timestamp: ' + launchParam.lastExitDetailInfo.timestamp
+        '\n timestamp: ' + launchParam.lastExitDetailInfo.timestamp +
+        '\n processState: ' + launchParam.lastExitDetailInfo.processState
       );
     }
   }
