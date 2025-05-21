@@ -10,7 +10,7 @@
 
 2. 调用[OH_CryptoSm2CiphertextSpec_SetItem](../../reference/apis-crypto-architecture-kit/capi-crypto-asym-cipher-h.md#oh_cryptosm2ciphertextspec_setitem)，设置密文的各个参数（C1.x、C1.y、C2、C3）。
 
-3. 调用[OH_CryptoSm2CiphertextSpec_Encode](../../reference/apis-crypto-architecture-kit/capi-crypto-asym-cipher-h.md#oh_cryptosm2ciphertextspec_encode)，生成ASN.1格式的密文（当前密文转换只支持SM3，实现中只校验了hash长度是否为32字节）。
+3. 调用[OH_CryptoSm2CiphertextSpec_Encode](../../reference/apis-crypto-architecture-kit/capi-crypto-asym-cipher-h.md#oh_cryptosm2ciphertextspec_encode)，生成ASN.1格式的密文（当前密文转换仅支持SM3，实现中只校验hash长度是否为32字节）。
 
 4. 使用完毕后，调用[OH_CryptoSm2CiphertextSpec_Destroy](../../reference/apis-crypto-architecture-kit/capi-crypto-asym-cipher-h.md#oh_cryptosm2ciphertextspec_destroy)销毁SM2密文规格对象。
 

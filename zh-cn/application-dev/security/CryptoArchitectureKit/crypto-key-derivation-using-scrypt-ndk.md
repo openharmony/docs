@@ -8,7 +8,7 @@
 
 2. 调用[OH_CryptoKdfParams_SetParam](../../reference/apis-crypto-architecture-kit/capi-crypto-kdf-h.md#oh_cryptokdfparams_setparam)，设置Scrypt所需的参数。
 
-密钥派生失败原因：下列参数未设置：
+密钥派生失败原因：下列参数未设置。
    - CRYPTO_KDF_KEY_DATABLOB：用于生成派生密钥的原始密码。
    - CRYPTO_KDF_SALT_DATABLOB：盐值。
    - CRYPTO_KDF_SCRYPT_N_UINT64：CPU/内存开销参数，必须是2的幂次方。
