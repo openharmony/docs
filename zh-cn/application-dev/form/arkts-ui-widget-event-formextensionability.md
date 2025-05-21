@@ -74,7 +74,7 @@
   
   export default class EntryFormAbility extends FormExtensionAbility {
     onFormEvent(formId: string, message: string): void {
-      // Called when a specified message event defined by the form provider is triggered.
+      // 当卡片提供方的postCardAction接口的message事件被触发时调用
       hilog.info(DOMAIN_NUMBER, TAG, `FormAbility onFormEvent, formId = ${formId}, message: ${JSON.stringify(message)}`);
   
       class FormDataClass {
@@ -82,6 +82,7 @@
         detail: string = 'Description update success.'; // 和卡片布局中对应
       }
   
+      // 请根据业务替换为实际刷新的卡片数据
       let formData = new FormDataClass();
       let formInfo: formBindingData.FormBindingData = formBindingData.createFormBindingData(formData);
       formProvider.updateForm(formId, formInfo).then(() => {

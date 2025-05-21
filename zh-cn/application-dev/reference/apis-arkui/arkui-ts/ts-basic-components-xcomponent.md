@@ -269,7 +269,7 @@ constructor()
 XComponentController的构造函数。
 
 ```ts
-xcomponentController: XComponentController = new XComponentController()
+xcomponentController: XComponentController = new XComponentController();
 ```
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
@@ -573,7 +573,7 @@ getXComponentSurfaceRotation(): Required\<SurfaceRotationOptions>
 ```ts
 // xxx.ets
 import { BusinessError } from '@kit.BasicServicesKit';
-import nativeRender from 'libnativerender.so';
+import nativeRender from 'libnativerender.so';// 开发者自己实现的so，详见上述说明。
 
 class CustomXComponentController extends XComponentController {
   onSurfaceCreated(surfaceId: string): void {

@@ -173,9 +173,9 @@ Sets the transformation matrix of the component. Compared to [transform](#transf
 
 | Name| Type                      | Mandatory| Description           |
 | ---- | -------------------------- | ---- | --------------- |
-| x    | number \| string | No  | Translation distance along the x-axis.<br>For the number type, the unit is VP, and the value range is (-∞, +∞).<br>For the string type, the value follows the format of [Length](ts-types.md#length) string type.|
-| y    | number \| string | No  | Translation distance along the y-axis.<br>For the number type, the unit is VP, and the value range is (-∞, +∞).<br>For the string type, the value follows the format of [Length](ts-types.md#length) string type.|
-| z    | number \| string | No  | Translation distance along the z-axis.<br>For the number type, the unit is VP, and the value range is (-∞, +∞).<br>For the string type, the value follows the format of [Length](ts-types.md#length) string type.|
+| x    | number \| string | No  | Translation distance along the x-axis.<br>For the number type, the unit is vp, and the value range is (-∞, +∞).<br>For the string type, the value follows the format of [Length](ts-types.md#length) string type.|
+| y    | number \| string | No  | Translation distance along the y-axis.<br>For the number type, the unit is vp, and the value range is (-∞, +∞).<br>For the string type, the value follows the format of [Length](ts-types.md#length) string type.|
+| z    | number \| string | No  | Translation distance along the z-axis.<br>For the number type, the unit is vp, and the value range is (-∞, +∞).<br>For the string type, the value follows the format of [Length](ts-types.md#length) string type.|
 
 ## ScaleOptions
 
@@ -275,7 +275,7 @@ struct Index {
         Button('change prep')
           .margin({ top: 100 })
           .onClick(() => {
-            animateTo({
+            this.getUIContext()?.animateTo({
               duration: 2000,
               curve: Curve.EaseIn,
               iterations: 1,
@@ -340,8 +340,8 @@ struct MatrixExample {
             // This transformation is equivalent to rotating around (100 vp, 60 vp), achieving the same rotation effect as "Hello2."
             z: 1,
             angle: 90,
-            centerX: vp2px(50),
-            centerY: vp2px(30)
+            centerX: this.getUIContext().vp2px(50),
+            centerY: this.getUIContext().vp2px(30)
           }))
 
       Text('Hello4')

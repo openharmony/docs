@@ -24,6 +24,19 @@ AES（Advanced Encryption Standard），最常见的对称加密算法。
 | AES | 192 | AES192 | 9+ | 
 | AES | 256 | AES256 | 9+ | 
 
+## DES
+DES（Data Encryption Standard）算法。
+
+基本特点：
+
+DES是一种分组加密算法，它将明文分成64位的块，然后对每个块进行加密操作。
+
+当前支持以字符串参数生成DES密钥，具体的“字符串参数”由“对称密钥算法”和“密钥长度”拼接而成，用于在创建对称密钥生成器时，指定密钥规格。
+
+| 对称密钥算法 | 密钥长度（bit） | 字符串参数 | API版本 | 
+| -------- | -------- | -------- | -------- |
+| DES | 64 | DES64 | 20+ | 
+
 ## 3DES
 
 3DES（Triple Data Encryption Algorithm），也称为3DESede或TripleDES。

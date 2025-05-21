@@ -1,8 +1,6 @@
 # Converting Binary Data into an Asymmetric Key Pair (ArkTS)
 
-
 This topic uses RSA, ECC, and SM2 as an example to describe how to convert binary data into an asymmetric key pair (**KeyPair**). That is, convert a piece of external or internal binary data into a **KeyPair** object for subsequent operations, such as encryption and decryption.
-
 
 > **NOTE**
 >
@@ -11,7 +9,6 @@ This topic uses RSA, ECC, and SM2 as an example to describe how to convert binar
 > - The public key must use the ASN.1 syntax and DER encoding format and comply with X.509 specifications.
 >
 > - The private key must use the ASN.1 syntax and DER encoding format and comply with PKCS\#8 specifications.
-
 
 ## Converting Binary Data into an RSA Key Pair
 
@@ -63,7 +60,6 @@ For details about the algorithm specifications, see [RSA](crypto-asym-key-genera
     }
   }
   ```
-
 
 ## Converting Binary Data into an ECC Key Pair
 
@@ -118,7 +114,7 @@ For details about the algorithm specifications, see [ECC](crypto-asym-key-genera
   }
   ```
 
-## Converting PKCS #8 Binary Data into an ECC Private Key
+## Converting PKCS#8 Binary Data into an ECC Private Key
 
 For details about the algorithm specifications, see [ECC](crypto-asym-key-generation-conversion-spec.md#ecc).
 

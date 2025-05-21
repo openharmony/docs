@@ -45,13 +45,13 @@ setKeyDownDuration(businessKey: string, delay: number, callback: AsyncCallback&l
 try {
   shortKey.setKeyDownDuration("businessId", 500, (error) => {
     if (error) {
-      console.log(`Set key down duration failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+      console.error(`Set key down duration failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
       return;
     }
     console.log(`Set key down duration success`);
   });
 } catch (error) {
-  console.log(`Set key down duration failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Set key down duration failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -93,7 +93,7 @@ try {
     console.log(`Set key down duration success`);
   });
 } catch (error) {
-  console.log(`Set key down duration failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Set key down duration failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 

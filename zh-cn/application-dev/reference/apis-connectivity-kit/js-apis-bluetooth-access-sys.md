@@ -139,6 +139,7 @@ getLocalAddress(): string;
 **示例：**
 
 ```js
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 try {
     let localAddr = access.getLocalAddress();
 } catch (err) {

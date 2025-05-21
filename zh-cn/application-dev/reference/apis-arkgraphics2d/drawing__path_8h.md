@@ -5,6 +5,9 @@
 
 文件中定义了与自定义路径相关的功能函数。
 
+<!--RP1-->
+**相关示例：**[NDKAPIDrawing (API14)](https://gitee.com/openharmony/applications_app_samples/tree/master/code/DocsSample/Drawing/NDKAPIDrawing)<!--RP1End-->
+
 **引用文件：**&lt;native_drawing/drawing_path.h&gt;
 
 **库：** libnative_drawing.so
@@ -83,11 +86,3 @@
 | bool [OH_Drawing_PathGetPositionTangent](_drawing.md#oh_drawing_pathgetpositiontangent) ([OH_Drawing_Path](_drawing.md#oh_drawing_path) \*path, bool forceClosed, float distance, [OH_Drawing_Point2D](_o_h___drawing___point2_d.md) \*position, [OH_Drawing_Point2D](_o_h___drawing___point2_d.md) \*tangent) | 获取距路径起始点指定距离的坐标点和切线值。 | 
 | bool [OH_Drawing_PathOp](_drawing.md#oh_drawing_pathop) ([OH_Drawing_Path](_drawing.md#oh_drawing_path) \*path, const [OH_Drawing_Path](_drawing.md#oh_drawing_path) \*other, [OH_Drawing_PathOpMode](_drawing.md#oh_drawing_pathopmode) op) | 将两个路径按照指定的路径操作类型合并。 | 
 | bool [OH_Drawing_PathGetMatrix](_drawing.md#oh_drawing_pathgetmatrix) ([OH_Drawing_Path](_drawing.md#oh_drawing_path) \*path, bool forceClosed, float distance, [OH_Drawing_Matrix](_drawing.md#oh_drawing_matrix) \*matrix, [OH_Drawing_PathMeasureMatrixFlags](_drawing.md#oh_drawing_pathmeasurematrixflags) flag) | 获取距路径起始点指定距离的相应变换矩阵。 | 
-
-<!--RP1-->
-## 相关实例
-
-针对Drawing(C/C++)的开发，有以下相关实例可供参考：
-
-- [NDKAPIDrawing (API14)](https://gitee.com/openharmony/applications_app_samples/tree/master/code/DocsSample/Drawing/NDKAPIDrawing)
-<!--RP1End-->

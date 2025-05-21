@@ -107,7 +107,7 @@
    function onPhotoOutputPhotoAssetAvailable(photoOutput: camera.PhotoOutput, context: Context): void {
      photoOutput.on('photoAssetAvailable', (err: BusinessError, photoAsset: photoAccessHelper.PhotoAsset): void => {
        if (err) {
-         console.info(`photoAssetAvailable error: ${err}.`);
+         console.error(`photoAssetAvailable error: ${err}.`);
          return;
        }
        console.info('photoOutPutCallBack photoAssetAvailable');

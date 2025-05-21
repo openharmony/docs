@@ -301,7 +301,7 @@ Implements file uploads. Before using any APIs of this class, you must obtain an
 
 ### on('progress')
 
-on(type: 'progress', callback:(uploadedSize: number, totalSize: number) =&gt; void): void
+on(type: 'progress', callback: (uploadedSize: number, totalSize: number) =&gt; void): void
 
 Subscribes to upload progress events. This API uses an asynchronous callback to return the result.
 
@@ -386,7 +386,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 ### on('complete' | 'fail')<sup>9+</sup>
 
- on(type:'complete' | 'fail', callback: Callback&lt;Array&lt;TaskState&gt;&gt;): void
+ on(type: 'complete' | 'fail', callback: Callback&lt;Array&lt;TaskState&gt;&gt;): void
 
 Subscribes to upload completion or failure events. This API uses an asynchronous callback to return the result.
 
@@ -526,7 +526,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 ### off('complete' | 'fail')<sup>9+</sup>
 
- off(type:'complete' | 'fail', callback?: Callback&lt;Array&lt;TaskState&gt;&gt;): void
+ off(type: 'complete' | 'fail', callback?: Callback&lt;Array&lt;TaskState&gt;&gt;): void
 
 Unsubscribes from upload completion or failure events.
 
@@ -1043,7 +1043,7 @@ Implements file downloads. Before using any APIs of this class, you must obtain 
 
 ### on('progress')
 
-on(type: 'progress', callback:(receivedSize: number, totalSize: number) =&gt; void): void
+on(type: 'progress', callback: (receivedSize: number, totalSize: number) =&gt; void): void
 
 Subscribes to download progress events. This API uses an asynchronous callback to return the result.
 
@@ -1166,7 +1166,7 @@ try {
 
 ### on('complete'|'pause'|'remove')<sup>7+</sup>
 
-on(type: 'complete'|'pause'|'remove', callback:() =&gt; void): void
+on(type: 'complete'|'pause'|'remove', callback: () =&gt; void): void
 
 Subscribes to download events. This API uses an asynchronous callback to return the result.
 
@@ -3282,7 +3282,7 @@ Unsubscribes from task progress events.
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | event | string | Yes| Type of the event to unsubscribe from.<br>- **'progress'**: task progress.|
-| callback | function | Yes| Callback used to return the data structure of the task progress.|
+| callback | function | No| Callback used to return the data structure of the task progress.|
 
 Parameters of the callback function
 
@@ -3375,7 +3375,7 @@ Unsubscribes from task completion events.
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | event | string | Yes| Type of the event to unsubscribe from.<br>- **'completed'**: task completion.|
-| callback | function | Yes| Callback used to return the data structure of the task progress.|
+| callback | function | No| Callback used to return the data structure of the task progress.|
 
 Parameters of the callback function
 
@@ -3468,7 +3468,7 @@ Unsubscribes from task failure events.
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | event | string | Yes| Type of the event to unsubscribe from.<br>- **'failed'**: task failure.|
-| callback | function | Yes| Callback used to return the data structure of the task progress.|
+| callback | function | No| Callback used to return the data structure of the task progress.|
 
 Parameters of the callback function
 
@@ -3558,7 +3558,7 @@ Unsubscribes from the foreground task pause event.
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | event | string | Yes| Type of the event to unsubscribe from.<br>- **'pause'**: task pause.|
-| callback | function | Yes| Callback used to return the data structure of the task progress.|
+| callback | function | No| Callback used to return the data structure of the task progress.|
 
 Parameters of the callback function
 
@@ -3648,7 +3648,7 @@ Unsubscribes from the foreground task resume event.
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | event | string | Yes| Type of the event to unsubscribe from.<br>- **'resume'**: task resume.|
-| callback | function | Yes| Callback used to return the data structure of the task progress.|
+| callback | function | No| Callback used to return the data structure of the task progress.|
 
 Parameters of the callback function
 
@@ -3738,7 +3738,7 @@ Unsubscribes from the task removal event.
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | event | string | Yes| Type of the event to unsubscribe from.<br>- **'remove'**: task removal.|
-| callback | function | Yes| Callback used to return the data structure of the task progress.|
+| callback | function | No| Callback used to return the data structure of the task progress.|
 
 Parameters of the callback function
 

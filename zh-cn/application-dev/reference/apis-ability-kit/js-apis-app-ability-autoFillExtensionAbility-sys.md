@@ -84,7 +84,7 @@ class MyAutoFillExtensionAbility extends AutoFillExtensionAbility {
         'message': 'AutoFill Page',
         'fillCallback': callback,
         'viewData': request.viewData,
-        'context': this.context,
+        'context': this.context
       };
       let storage_fill = new LocalStorage(localStorageData);
       if (session) {

@@ -5,7 +5,6 @@ Currently, only the compressed/uncompressed public key data that complies with t
 <br>For details about the ECC algorithm specifications, see [ECC](crypto-asym-key-generation-conversion-spec.md#ecc). 
 <br>You can specify the string parameter **format** to set the format of the ECC public key to obtain. To obtain a compressed public key that complies with the X.509 standard, set **format** to **X509|COMPRESSED**. To obtain an uncompressed public key, set **format** to **X509|UNCOMPRESSED**.
 
-
 ##  Converting Uncompressed Public Key Data to Compressed Public Key Data
 
 1. Encapsulate uncompressed ECC public key data of the Uint8Array type into a **DataBlob** object.
@@ -23,6 +22,6 @@ async function eccPubUncompressedToCompressed() {
   let generator = cryptoFramework.createAsyKeyGenerator('ECC_BrainPoolP256r1');
   let keyPair = await generator.convertKey(pubKeyBlob, null);
   let returnBlob = keyPair.pubKey.getEncodedDer('X509|COMPRESSED');
-  console.info('returnBlob data: ' + returnBlob.data);
+  console.info('returnBlob data:' + returnBlob.data);
 }
 ```

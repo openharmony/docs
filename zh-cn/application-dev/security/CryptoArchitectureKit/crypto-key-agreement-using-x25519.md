@@ -1,4 +1,4 @@
-# 使用X25519进行密钥协商
+# 使用X25519进行密钥协商(ArkTS)
 
 对应的算法规格请查看[密钥协商算法规格：X25519](crypto-key-agreement-overview.md#x25519)。
 

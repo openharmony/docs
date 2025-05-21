@@ -16,6 +16,7 @@
     - [@ohos.app.ability.ChildProcessArgs (ChildProcessArgs)](js-apis-app-ability-childProcessArgs.md)
     - [@ohos.app.ability.ChildProcessOptions (ChildProcessOptions)](js-apis-app-ability-childProcessOptions.md)
     - [@ohos.app.ability.common (应用上下文Context)](js-apis-app-ability-common.md)
+    - [@ohos.app.ability.CompletionHandler (拉端结果操作类)](js-apis-app-ability-completionHandler.md)
     - [@ohos.app.ability.contextConstant (ContextConstant)](js-apis-app-ability-contextConstant.md)
     - [@ohos.app.ability.EmbeddableUIAbility (可嵌入式UIAbility)](js-apis-app-ability-embeddableUIAbility.md)
     - [@ohos.app.ability.EmbeddedUIExtensionAbility (跨进程界面嵌入扩展能力)](js-apis-app-ability-embeddedUIExtensionAbility.md)
@@ -89,6 +90,7 @@
     - [@ohos.bundle.defaultAppManager (默认应用管理)](js-apis-defaultAppManager.md)
     - [@ohos.bundle.launcherBundleManager (launcherBundleManager模块)](js-apis-launcherBundleManager.md)
     - [@ohos.bundle.overlay (overlay模块)](js-apis-overlay.md)
+    - [@ohos.bundle.shortcutManager (shortcutManager模块)](js-apis-shortcutManager.md)
     <!--Del-->
     - [@ohos.bundle.appControl (appControl模块)(系统接口)](js-apis-appControl-sys.md)
     - [@ohos.bundle.appDomainVerify (应用域名校验)(系统接口)](js-apis-appDomainVerify-sys.md)
@@ -279,6 +281,8 @@
     - [AbilityBase_Element](_ability_base_element.md)
     - [OH_NativeBundle_ApplicationInfo](_o_h___native_bundle_application_info.md)
     - [OH_NativeBundle_ElementName](_o_h___native_bundle_element_name.md)
+    - [OH_NativeBundle_Metadata](native_interface_bundle_metadata.md)
+    - [OH_NativeBundle_ModuleMetadata](native_interface_bundle_module_metadata.md)
 - 错误码<!--ability-arkts-errcode-->
   - [元能力子系统错误码](errorcode-ability.md)
   - [DistributedSchedule错误码](errorcode-DistributedSchedule.md)

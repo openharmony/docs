@@ -29,7 +29,7 @@ AVVolumePanel({volumeLevel?: number, volumeParameter?: AVVolumePanelParameter})
 
 Volume panel, which can be used to display the volume adjustment panel in your application.
 
-**Decorator**: [@Component](../../quick-start/arkts-create-custom-components.md)
+**Decorator**: [@Component](../../ui/state-management/arkts-create-custom-components.md)
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -48,7 +48,7 @@ Describes the volume panel parameters.
 
 **System capability**: SystemCapability.Multimedia.Audio.Volume
 
-| Name| Type| Mandatory| Description
+| Name| Type| Mandatory| Description |
 | -------- | -------- | -------- | -------- |
 |position | [Position](../apis-arkui/arkui-ts/ts-types.md#position) | No| Position of the volume panel.|
 

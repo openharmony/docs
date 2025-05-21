@@ -43,8 +43,8 @@ type Content = Content
 下面的示例展示了ContentSlot的基本用法。
 
 ```ts
-import { nativeNode } from 'libNativeNode.so' // 开发者自己实现的so
-import { NodeContent } from '@kit.ArkUI'
+import { nativeNode } from 'libNativeNode.so'; // 开发者自己实现的so
+import { NodeContent } from '@kit.ArkUI';
 
 @Entry
 @Component

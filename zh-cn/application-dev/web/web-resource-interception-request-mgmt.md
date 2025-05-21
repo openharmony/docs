@@ -71,6 +71,10 @@ Web网页上发起资源加载请求，应用层收到资源请求消息。应�
   }
   ```
 
+- 被拦截后的页面
+
+  ![输入图片说明](figures/web-rescource-interception-request-1.PNG)
+
 为自定义的JavaScript请求响应生成 CodeCache：自定义请求响应的资源类型如果是JavaScript脚本，可以在响应头中添加“ResponseDataID”字段，Web内核读取到该字段后会在为该JS资源生成CodeCache，加速JS执行，并且ResponseData如果有更新时必须更新该字段。不添加“ResponseDataID”字段的情况下默认不生成CodeCache。
 
 在下面的示例中，Web组件通过拦截页面请求“https://www.example.com/test.js”， 应用侧代码构建响应资源，在响应头中添加“ResponseDataID”字段，开启生成CodeCache的功能。
@@ -164,3 +168,7 @@ Web网页上发起资源加载请求，应用层收到资源请求消息。应�
     }
   }
   ```
+
+- 被拦截后的页面
+
+  ![输入图片说明](figures/web-rescource-intercption-request-2.PNG)

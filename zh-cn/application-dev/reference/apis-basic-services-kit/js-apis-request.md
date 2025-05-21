@@ -303,7 +303,7 @@ upload(config: UploadConfig, callback: AsyncCallback&lt;UploadTask&gt;): void
 
 ### on('progress')
 
-on(type: 'progress', callback:(uploadedSize: number, totalSize: number) =&gt; void): void
+on(type: 'progress', callback: (uploadedSize: number, totalSize: number) =&gt; void): void
 
 订阅上传任务进度事件，使用callback异步回调。
 
@@ -388,7 +388,7 @@ on(type: 'headerReceive', callback:  (header: object) =&gt; void): void
 
 ### on('complete' | 'fail')<sup>9+</sup>
 
- on(type:'complete' | 'fail', callback: Callback&lt;Array&lt;TaskState&gt;&gt;): void
+ on(type: 'complete' | 'fail', callback: Callback&lt;Array&lt;TaskState&gt;&gt;): void
 
 订阅上传任务完成或失败事件，使用callback异步回调。
 
@@ -528,7 +528,7 @@ off(type: 'headerReceive', callback?: (header: object) =&gt; void): void
 
 ### off('complete' | 'fail')<sup>9+</sup>
 
- off(type:'complete' | 'fail', callback?: Callback&lt;Array&lt;TaskState&gt;&gt;): void
+ off(type: 'complete' | 'fail', callback?: Callback&lt;Array&lt;TaskState&gt;&gt;): void
 
 取消订阅上传任务的完成或失败事件。
 
@@ -1045,7 +1045,7 @@ download(config: DownloadConfig, callback: AsyncCallback&lt;DownloadTask&gt;): v
 
 ### on('progress')
 
-on(type: 'progress', callback:(receivedSize: number, totalSize: number) =&gt; void): void
+on(type: 'progress', callback: (receivedSize: number, totalSize: number) =&gt; void): void
 
 订阅下载任务进度事件，使用callback异步回调。
 
@@ -1168,7 +1168,7 @@ try {
 
 ### on('complete'|'pause'|'remove')<sup>7+</sup>
 
-on(type: 'complete'|'pause'|'remove', callback:() =&gt; void): void
+on(type: 'complete'|'pause'|'remove', callback: () =&gt; void): void
 
 订阅下载任务相关的事件，使用callback异步回调。
 
@@ -3284,7 +3284,7 @@ off(event: 'progress', callback?: (progress: [Progress](#progress10)) =&gt; void
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | event | string | 是 | 取消订阅的事件类型。<br>- 取值为'progress'，表示任务进度。 |
-  | callback | function | 是 | 回调函数，发生相关的事件时触发该回调方法。 |
+  | callback | function | 否 | 回调函数，发生相关的事件时触发该回调方法。 |
 
 回调函数的参数：
 
@@ -3377,7 +3377,7 @@ off(event: 'completed', callback?: (progress: [Progress](#progress10)) =&gt; voi
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | event | string | 是 | 取消订阅的事件类型。<br>- 取值为'completed'，表示任务完成。 |
-  | callback | function | 是 | 回调函数，发生相关的事件时触发该回调方法。 |
+  | callback | function | 否 | 回调函数，发生相关的事件时触发该回调方法。 |
 
 回调函数的参数：
 
@@ -3470,7 +3470,7 @@ off(event: 'failed', callback?: (progress: [Progress](#progress10)) =&gt; void):
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | event | string | 是 | 取消订阅的事件类型。<br>- 取值为'failed'，表示任务失败。 |
-  | callback | function | 是 | 回调函数，发生相关的事件时触发该回调方法。 |
+  | callback | function | 否 | 回调函数，发生相关的事件时触发该回调方法。 |
 
 回调函数的参数：
 
@@ -3560,7 +3560,7 @@ off(event: 'pause', callback?: (progress: [Progress](#progress10)) =&gt; void): 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | event | string | 是 | 取消订阅的事件类型。<br>- 取值为'pause'，表示任务暂停。 |
-  | callback | function | 是 | 回调函数，发生相关的事件时触发该回调方法。 |
+  | callback | function | 否 | 回调函数，发生相关的事件时触发该回调方法。 |
 
 回调函数的参数：
 
@@ -3650,7 +3650,7 @@ off(event: 'resume', callback?: (progress: [Progress](#progress10)) =&gt; void):
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | event | string | 是 | 取消订阅的事件类型。<br>- 取值为'resume'，表示任务恢复。 |
-  | callback | function | 是 | 回调函数，发生相关的事件时触发该回调方法。 |
+  | callback | function | 否 | 回调函数，发生相关的事件时触发该回调方法。 |
 
 回调函数的参数：
 
@@ -3740,7 +3740,7 @@ off(event: 'remove', callback?: (progress: [Progress](#progress10)) =&gt; void):
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | event | string | 是 | 取消订阅的事件类型。<br>- 取值为'remove'，表示任务被移除。 |
-  | callback | function | 是 | 回调函数，发生相关的事件时触发该回调方法。 |
+  | callback | function | 否 | 回调函数，发生相关的事件时触发该回调方法。 |
 
 回调函数的参数：
 

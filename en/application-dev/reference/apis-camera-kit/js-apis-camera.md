@@ -143,7 +143,7 @@ Enumerates the camera statuses.
 
 ## FoldStatus<sup>12+</sup>
 
-Enumerates the folding statuses available for a fordable device.
+Enumerates the fold states available for a fordable device.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
@@ -166,14 +166,14 @@ Describes the camera status information.
 
 ## FoldStatusInfo<sup>12+</sup>
 
-Describes the folding status information about a foldable device.
+Describes the fold state information about a foldable device.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
 | Name  | Type                          |    Read-only  |     Optional    | Description      |
 | ------ | ----------------------------- | --------- |------------ | ---------- |
-| supportedCameras | [Array<CameraDevice\>](#cameradevice) |     No   |       No    | List of cameras supported in the current folding status.|
-| foldStatus | [FoldStatus](#foldstatus12) |     No   |       No    | Folding status.|
+| supportedCameras | [Array<CameraDevice\>](#cameradevice) |     No   |       No    | List of cameras supported in the current fold state.|
+| foldStatus | [FoldStatus](#foldstatus12) |     No   |       No    | Fold state.|
 
 ## Profile
 
@@ -1008,7 +1008,7 @@ function unregisterCameraStatus(cameraManager: camera.CameraManager): void {
 
 on(type: 'foldStatusChange', callback: AsyncCallback\<FoldStatusInfo\>): void
 
-Subscribes to folding status change events of the foldable device. This API uses an asynchronous callback to return the result.
+Subscribes to fold status change events of the foldable device. This API uses an asynchronous callback to return the result.
 
 > **NOTE**
 >
@@ -1020,8 +1020,8 @@ Subscribes to folding status change events of the foldable device. This API uses
 
 | Name    | Type           | Mandatory| Description      |
 | -------- | -----------------| ---- | --------- |
-| type     | string           | Yes  | Event type. The value is fixed at **'foldStatusChange'**. The event is triggered when the folding status of the foldable device changes.|
-| callback | AsyncCallback\<[FoldStatusInfo](#foldstatusinfo12)\> | Yes  | Callback used to return the folding status information about the foldable device.|
+| type     | string           | Yes  | Event type. The value is fixed at **'foldStatusChange'**. The event is triggered when the fold state of the foldable device changes.|
+| callback | AsyncCallback\<[FoldStatusInfo](#foldstatusinfo12)\> | Yes  | Callback used to return the fold state information about the foldable device.|
 
 **Example**
 
@@ -1046,7 +1046,7 @@ function registerFoldStatusChange(cameraManager: camera.CameraManager): void {
 
 off(type: 'foldStatusChange', callback?: AsyncCallback\<FoldStatusInfo\>): void
 
-Unsubscribes from folding status change events of the foldable device.
+Unsubscribes from fold state change events of the foldable device.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
@@ -1054,8 +1054,8 @@ Unsubscribes from folding status change events of the foldable device.
 
 | Name    | Type           | Mandatory| Description      |
 | -------- | -----------------| ---- | --------- |
-| type     | string           | Yes  | Event type. The value is fixed at **'foldStatusChange'**. The event is triggered when the folding status of the foldable device changes.|
-| callback | AsyncCallback\<[FoldStatusInfo](#foldstatusinfo12)\> | No  | Callback used to return the folding status information about the foldable device. If this parameter is specified, the subscription to the specified event with the specified callback is canceled. (The callback object cannot be an anonymous function.) Otherwise, the subscriptions to the specified event with all the callbacks are canceled.|
+| type     | string           | Yes  | Event type. The value is fixed at **'foldStatusChange'**. The event is triggered when the fold state of the foldable device changes.|
+| callback | AsyncCallback\<[FoldStatusInfo](#foldstatusinfo12)\> | No  | Callback used to return the fold state information about the foldable device. If this parameter is specified, the subscription to the specified event with the specified callback is canceled. (The callback object cannot be an anonymous function.) Otherwise, the subscriptions to the specified event with all the callbacks are canceled.|
 
 **Example**
 
@@ -1352,8 +1352,8 @@ Defines the flashlight status information.
 | Name             | Type      | Read-only| Optional| Description       |
 | ---------------- | ---------- | ---- | ---- | ----------- |
 | isTorchAvailable | boolean    | Yes  | No  | Whether the flashlight is available. The value **true** means that the flashlight is available, and **false** means the opposite.|
-| isTorchActive    | boolean    | Yes  | No  | Whether the flashlight is activated. The value **true** means that the flashlight is activated, and **false** means the opposite.  |
-| torchLevel       | number     | Yes  | No  | Flashlight level. The value range is [0, 1]. A larger value indicates a greater luminance.   |
+| isTorchActive    | boolean    | Yes  | No  | Whether the flashlight is activated. The value **true** means that the flashlight is activated, and **false** means the opposite.|
+| torchLevel       | number     | Yes  | No  | Flashlight brightness level. The value range is [0, 1]. A larger value indicates a greater luminance. |
 
 ## Size
 
@@ -2328,6 +2328,7 @@ function testGetPreviewRotation(previewOutput: camera.PreviewOutput, imageRotati
 }
 ```
 ### setPreviewRotation<sup>12+</sup>
+
 setPreviewRotation(previewRotation: ImageRotation, isDisplayLocked?: boolean): void
 
 Sets the preview rotation degree.
@@ -5791,7 +5792,7 @@ function setFocusPoint(photoSession: camera.PhotoSession): void {
 
 getFocusPoint(): Point
 
-Obtains the focal point of the camera device.
+Obtains the focal point in use.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
@@ -5831,7 +5832,7 @@ function getFocusPoint(photoSession: camera.PhotoSession): camera.Point | undefi
 
 getFocalLength(): number
 
-Obtains the focal length of the camera device.
+Obtains the focal length in use.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
@@ -7072,7 +7073,7 @@ Sets an exposure mode. Before the setting, call [isExposureModeSupported](#isexp
 
 > **NOTE**
 >
->This API is supported since API version 10 and deprecated since API version 11. You are advised to use [AutoExposure.setExposureMode](#setexposuremode11) instead.
+> This API is supported since API version 10 and deprecated since API version 11. You are advised to use [AutoExposure.setExposureMode](#setexposuremode11) instead.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
@@ -7883,6 +7884,7 @@ on(type: 'focusStateChange', callback: AsyncCallback\<FocusState\>): void
 Subscribes to focus state change events. This API uses an asynchronous callback to return the result.
 
 > **NOTE**
+>
 > This API is supported since API version 10 and deprecated since API version 11. You are advised to use [VideoSession.on('focusStateChange')](#onfocusstatechange11-1) instead.
 >
 > Currently, you cannot use **off()** to unregister the callback in the callback method of **on()**.
@@ -8063,7 +8065,7 @@ For details about how to enable the HDR effect and set the color space in differ
 
 | SDR/HRD Photo Capture       | ColorSpace |
 |--------------------|------------|
-| SDR(Default)       | SRGB       |
+| SDR (Default)       | SRGB       |
 | HDR                | DISPLAY_P3 |
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
@@ -8190,7 +8192,7 @@ Enables or disables automatic camera switch. You can use [isAutoDeviceSwitchSupp
 
 > **NOTE**
 >
-> This API is used only for foldable devices with multiple front cameras. In different folding states, the system can automatically switch to an available front camera. It does not enable automatic switching between front and rear cameras.
+> This API is used only for foldable devices with multiple front cameras. In different fold states, the system can automatically switch to an available front camera. It does not enable automatic switching between front and rear cameras.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 

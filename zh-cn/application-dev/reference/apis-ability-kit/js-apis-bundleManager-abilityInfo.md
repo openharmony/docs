@@ -1,18 +1,18 @@
 # AbilityInfo
 
-Ability信息，三方应用可以通过[bundleManager.getBundleInfoForSelf](js-apis-bundleManager.md#bundlemanagergetbundleinfoforself)获取Ability信息，其中入参[bundleFlags](js-apis-bundleManager.md#bundleflag)至少包含GET_BUNDLE_INFO_WITH_HAP_MODULE和GET_BUNDLE_INFO_WITH_ABILITY。
+Ability信息，三方应用可以通过[bundleManager.getBundleInfoForSelf](js-apis-bundleManager.md#bundlemanagergetbundleinfoforself)获取Ability信息，其中参数[bundleFlags](js-apis-bundleManager.md#bundleflag)至少包含GET_BUNDLE_INFO_WITH_HAP_MODULE和GET_BUNDLE_INFO_WITH_ABILITY。
 
 > **说明：**
 > 本模块首批接口从API version 9 开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 ## AbilityInfo
 
- **系统能力:** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework.Core
+ **系统能力：** SystemCapability.BundleManager.BundleFramework.Core
 
 | 名称                  | 类型                                                     | 只读 | 可选 | 说明                                      |
 | --------------------- | -------------------------------------------------------- | ---- | ---- | ------------------------------------------ |
 | bundleName            | string                                                   | 是   | 否   | 应用Bundle名称。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| moduleName            | string                                                   | 是   | 否   | Ability所属的HAP的名称。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| moduleName            | string                                                   | 是   | 否   | Ability所属的模块名称。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | name                  | string                                                   | 是   | 否   | Ability名称。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | label                 | string                                                   | 是   | 否   | Ability对用户显示的名称的资源描述符，如："label": "$string: mainability_description"。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | labelId               | number                                                   | 是   | 否   | Ability的标签资源id。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
@@ -37,8 +37,8 @@ Ability信息，三方应用可以通过[bundleManager.getBundleInfoForSelf](js-
 | windowSize|[WindowSize](#windowsize)                                            |    是   | 否   | Ability窗口尺寸。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | excludeFromDock<sup>12+</sup>             | boolean                                                  | 是   | 否   | 判断Ability是否可以在dock区域隐藏图标，取值为true表示可以隐藏，取值为false不可以隐藏。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | skills<sup>12+</sup>             | Array\<[Skill](js-apis-bundleManager-skill.md)>                                                 | 是   | 否   | Ability的Skills信息。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。   |
-| appIndex<sup>12+</sup>    | number    | 是   | 否   | 应用包的分身索引标识，仅在分身应用中生效。 |
-| orientationId<sup>14+</sup>    | number      | 是   | 否   | Ability的显示模式资源id。当orientationId不为0时表示当前显示模式为自定义配置，需要使用orientationId去资源管理获取对应的资源。<br>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。 |
+| appIndex<sup>12+</sup>    | number    | 是   | 否   | 应用包的分身索引标识，仅在[分身应用](../../quick-start/app-clone.md)中生效。 |
+| orientationId<sup>14+</sup>    | number      | 是   | 否   | Ability的显示模式资源id。当orientationId不为0时表示当前显示模式为自定义配置，需要使用orientationId去资源管理获取对应的资源，当orientationId为0时表示未配置资源。<br>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。 |
 
 ## WindowSize
 
@@ -46,12 +46,12 @@ Ability信息，三方应用可以通过[bundleManager.getBundleInfoForSelf](js-
 
  <br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
- **系统能力:** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework.Core
+ **系统能力：** SystemCapability.BundleManager.BundleFramework.Core
 
 | 名称               | 类型    | 只读 | 可选 | 说明                               |
 | -------------------| ------- | ---- | ---- | ---------------------------------- |
-| maxWindowRatio     | number  | 是   | 否   | 表示自由窗口状态下窗口的最大宽高比；取值范围0-1。 |
-| minWindowRatio     | number  | 是   | 否   | 表示自由窗口状态下窗口的最小宽高比；取值范围0-1。 |
+| maxWindowRatio     | number  | 是   | 否   | 表示自由窗口状态下窗口的最大宽高比；取值范围0-1，例如：0.12。 |
+| minWindowRatio     | number  | 是   | 否   | 表示自由窗口状态下窗口的最小宽高比；取值范围0-1，例如：0.5。 |
 | maxWindowWidth     | number  | 是   | 否   | 表示自由窗口状态下窗口的最大宽度，宽度单位为vp。 |
 | minWindowWidth     | number  | 是   | 否   | 表示自由窗口状态下窗口的最小宽度，宽度单位为vp。 |
 | maxWindowHeight    | number  | 是   | 否   | 表示自由窗口状态下窗口的最大高度，宽度单位为vp。 |

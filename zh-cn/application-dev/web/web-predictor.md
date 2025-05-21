@@ -5,7 +5,7 @@
 
 ## 预解析和预连接
 
-可以通过[prepareForPageLoad()](../reference/apis-arkweb/js-apis-webview.md#prepareforpageload10)来预解析或者预连接将要加载的页面。
+此方法可以针对域名级进行优化，通过[prepareForPageLoad()](../reference/apis-arkweb/js-apis-webview.md#prepareforpageload10)来预解析或者预连接将要加载的页面。该方式仅对url进行DNS解析以及建立tcp连接，但不会获取主资源子资源。
 
   在下面的示例中，在Web组件的onAppear中对要加载的页面进行预连接。
 
@@ -62,9 +62,9 @@ export default class EntryAbility extends UIAbility {
 
 ## 预加载
 
-如果能够预测到Web组件将要加载的页面或者即将要跳转的页面。可以通过[prefetchPage()](../reference/apis-arkweb/js-apis-webview.md#prefetchpage10)来预加载即将要加载页面。
+此方法可针对资源级进行优化。如果能够预测到Web组件将要加载的页面或者即将要跳转的页面。可以通过[prefetchPage()](../reference/apis-arkweb/js-apis-webview.md#prefetchpage10)来预加载即将要加载页面。
 
-预加载会提前下载页面所需的资源，包括主资源子资源，但不会执行网页JavaScript代码。预加载是WebviewController的实例方法，需要一个已经关联好Web组件的WebviewController实例。
+预加载会提前下载页面所需的资源，包括主资源子资源，避免阻塞页面渲染。但不会执行网页JavaScript代码。预加载是WebviewController的实例方法，需要一个已经关联好Web组件的WebviewController实例。
 
 在下面的示例中，在onPageEnd的时候触发下一个要访问的页面的预加载。
   
@@ -91,7 +91,7 @@ struct WebComponent {
 
 ## 预获取post请求
 
-可以通过[prefetchResource()](../reference/apis-arkweb/js-apis-webview.md#prefetchresource12)预获取将要加载页面中的post请求。在页面加载结束时，可以通过[clearPrefetchedResource()](../reference/apis-arkweb/js-apis-webview.md#clearprefetchedresource12)清除后续不再使用的预获取资源缓存。
+此方法可以针对请求级进行优化。可以通过[prefetchResource()](../reference/apis-arkweb/js-apis-webview.md#prefetchresource12)预获取将要加载页面中的post请求。在页面加载结束时，可以通过[clearPrefetchedResource()](../reference/apis-arkweb/js-apis-webview.md#clearprefetchedresource12)清除后续不再使用的预获取资源缓存。
 
   以下示例，在Web组件onAppear中，对要加载页面中的post请求进行预获取。在onPageEnd中，可以清除预获取的post请求缓存。
 

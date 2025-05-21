@@ -198,7 +198,7 @@ AppStorage.setOrCreate('PropA', 47);
 
 let storage: LocalStorage = new LocalStorage();
 storage.setOrCreate('PropA',17);
-let propA: number | undefined = AppStorage.get('PropA') // propA in AppStorage == 47, propA in LocalStorage == 17
+let propA: number | undefined = AppStorage.get('PropA'); // propA in AppStorage == 47, propA in LocalStorage == 17
 let link1: SubscribedAbstractProperty<number> = AppStorage.link('PropA'); // link1.get() == 47
 let link2: SubscribedAbstractProperty<number> = AppStorage.link('PropA'); // link2.get() == 47
 let prop: SubscribedAbstractProperty<number> = AppStorage.prop('PropA'); // prop.get() == 47
@@ -336,10 +336,10 @@ export struct TapImage {
   // 判断是否被选中
   onTapIndexChange() {
     if (this.tapIndex >= 0 && this.index === this.tapIndex) {
-      console.info(`tapindex: ${this.tapIndex}, index: ${this.index}, red`)
+      console.info(`tapindex: ${this.tapIndex}, index: ${this.index}, red`);
       this.tapColor = Color.Red;
     } else {
-      console.info(`tapindex: ${this.tapIndex}, index: ${this.index}, black`)
+      console.info(`tapindex: ${this.tapIndex}, index: ${this.index}, black`);
       this.tapColor = Color.Black;
     }
   }
@@ -379,7 +379,7 @@ class ViewData {
 
   constructor(title: string, uri: Resource) {
     this.title = title;
-    this.uri = uri
+    this.uri = uri;
     this.id = NextID++;
   }
 }
@@ -389,8 +389,8 @@ class ViewData {
 struct Gallery {
   // 此处'app.media.icon'仅作示例，请开发者自行替换，否则imageSource创建失败会导致后续无法正常执行。
   dataList: Array<ViewData> = [new ViewData('flower', $r('app.media.icon')), new ViewData('OMG', $r('app.media.icon')), new ViewData('OMG', $r('app.media.icon'))]
-  scroller: Scroller = new Scroller()
-  private preIndex: number = -1
+  scroller: Scroller = new Scroller();
+  private preIndex: number = -1;
 
   build() {
     Column() {
@@ -404,29 +404,29 @@ struct Gallery {
           }.aspectRatio(1)
           .onClick(() => {
             if (this.preIndex === item.id) {
-              return
+              return;
             }
-            let innerEvent: emitter.InnerEvent = { eventId: item.id }
+            let innerEvent: emitter.InnerEvent = { eventId: item.id };
             // 选中态：黑变红
             let eventData: emitter.EventData = {
               data: {
-                "colorTag": 1
+                "colorTag": 1;
               }
-            }
-            emitter.emit(innerEvent, eventData)
+            };
+            emitter.emit(innerEvent, eventData);
 
             if (this.preIndex != -1) {
-              console.info(`preIndex: ${this.preIndex}, index: ${item.id}, black`)
-              let innerEvent: emitter.InnerEvent = { eventId: this.preIndex }
+              console.info(`preIndex: ${this.preIndex}, index: ${item.id}, black`);
+              let innerEvent: emitter.InnerEvent = { eventId: this.preIndex };
               // 取消选中态：红变黑
               let eventData: emitter.EventData = {
                 data: {
                   "colorTag": 0
                 }
-              }
-              emitter.emit(innerEvent, eventData)
+              };
+              emitter.emit(innerEvent, eventData);
             }
-            this.preIndex = item.id
+            this.preIndex = item.id;
           })
         }, (item: ViewData) => JSON.stringify(item))
       }.columnsTemplate('1fr 1fr')
@@ -454,10 +454,10 @@ export struct TapImage {
 
   aboutToAppear() {
     //定义事件ID
-    let innerEvent: emitter.InnerEvent = { eventId: this.index }
+    let innerEvent: emitter.InnerEvent = { eventId: this.index };
     emitter.on(innerEvent, data => {
-    this.onTapIndexChange(data)
-    })
+      this.onTapIndexChange(data);
+    });
   }
 
   build() {
@@ -481,7 +481,7 @@ class ViewData {
 
   constructor(title: string, uri: Resource) {
     this.title = title;
-    this.uri = uri
+    this.uri = uri;
   }
 }
 
@@ -489,8 +489,8 @@ class ViewData {
 @Component
 struct Gallery {
   // 此处'app.media.icon'仅作示例，请开发者自行替换，否则imageSource创建失败会导致后续无法正常执行。
-  dataList: Array<ViewData> = [new ViewData('flower', $r('app.media.icon')), new ViewData('OMG', $r('app.media.icon')), new ViewData('OMG', $r('app.media.icon'))]
-  scroller: Scroller = new Scroller()
+  dataList: Array<ViewData> = [new ViewData('flower', $r('app.media.icon')), new ViewData('OMG', $r('app.media.icon')), new ViewData('OMG', $r('app.media.icon'))];
+  scroller: Scroller = new Scroller();
 
   build() {
     Column() {
