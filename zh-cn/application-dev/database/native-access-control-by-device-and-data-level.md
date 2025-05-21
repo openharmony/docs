@@ -54,8 +54,6 @@
 
 关系型数据库，通过OH_Rdb_SetSecurityLevel接口设置数据库的安全等级。此处以创建安全等级为S3的数据库为例。
 
-具体接口及功能，可见[关系型数据库](../reference/apis-arkdata/js-apis-data-relationalStore.md)。
-
 1. CMakeLists.txt中添加以下lib。
 
     ```txt
