@@ -35,5 +35,5 @@
 | [OH_NativeBundle_GetAppIdentifier](_bundle.md#oh_nativebundle_getappidentifier) | 获取当前应用的appIdentifier信息。 |
 | [OH_NativeBundle_GetMainElementName](_bundle.md#oh_nativebundle_getmainelementname) | 获取当前应用的入口信息。 |
 | [OH_NativeBundle_GetCompatibleDeviceType](_bundle.md#oh_nativebundle_getcompatibledevicetype) | 获取当前应用适用的设备类型。 |
-| [OH_NativeBundle_IsDebugMode](_bundle.md#OH_NativeBundle_IsDebugMode) | 获取当前应用是否处于调试模式。|
-| [OH_NativeBundle_GetModuleMetadata](_bundle.md#OH_NativeBundle_GetModuleMetadata) | 获取当前应用的元数据信息。 |
+| [OH_NativeBundle_IsDebugMode](_bundle.md#oh_nativebundle_isdebugmode) | 获取当前应用是否处于调试模式。|
+| [OH_NativeBundle_GetModuleMetadata](_bundle.md#oh_nativebundle_getmodulemetadata) | 获取当前应用的元数据信息。 |
