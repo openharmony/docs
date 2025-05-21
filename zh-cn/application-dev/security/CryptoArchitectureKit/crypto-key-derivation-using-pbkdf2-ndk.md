@@ -4,16 +4,16 @@
 
 ## 开发步骤
 
-1. 调用[OH_CryptoKdfParams_Create]，指定字符串参数'PBKDF2'，创建密钥派生参数对象。
+1. 调用[OH_CryptoKdfParams_Create](../../reference/apis-crypto-architecture-kit/capi-crypto-kdf-h.md#oh_cryptokdfparams_create)，指定字符串参数'PBKDF2'，创建密钥派生参数对象。
 
-2. 调用[OH_CryptoKdfParams_SetParam]，设置PBKDF2所需的参数：
+2. 调用[OH_CryptoKdfParams_SetParam](../../reference/apis-crypto-architecture-kit/capi-crypto-kdf-h.md#oh_cryptokdfparams_setparam)，设置PBKDF2所需的参数：
    - CRYPTO_KDF_KEY_DATABLOB：用于生成派生密钥的原始密码
    - CRYPTO_KDF_SALT_DATABLOB：盐值
    - CRYPTO_KDF_ITER_COUNT_INT：重复运算的次数，需要为正整数
 
-3. 调用[OH_CryptoKdf_Create]，指定字符串参数'PBKDF2|SHA256'，创建密钥派生函数对象。
+3. 调用[OH_CryptoKdf_Create](../../reference/apis-crypto-architecture-kit/capi-crypto-kdf-h.md#oh_cryptokdf_create)，指定字符串参数'PBKDF2|SHA256'，创建密钥派生函数对象。
 
-4. 调用[OH_CryptoKdf_Derive]，指定目标密钥的字节长度，进行密钥派生。
+4. 调用[OH_CryptoKdf_Derive](../../reference/apis-crypto-architecture-kit/capi-crypto-kdf-h.md#oh_cryptokdf_derive)，指定目标密钥的字节长度，进行密钥派生。
 
 ```C++
 #include "CryptoArchitectureKit/crypto_architecture_kit.h"
