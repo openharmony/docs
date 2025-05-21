@@ -14,7 +14,7 @@
   <html>
   <body>
   <button type="button" onclick="callArkTS()">Click Me!</button>
-  <h1 id="text">这是一个测试信息，默认字体为黑色，调用runJavaScript方法后字体为绿色，调用runJavaScriptCodePassed方法后字体为红色</h1>
+  <h1 id="text">这是一个测试信息，默认字体为黑色，调用runJavaScript方法后字体为黄色、调用runJavaScriptParam方法后字体为绿色、调用runJavaScriptCodePassed方法后字体为红色</h1>
   <script>
       // 有参函数。
       var param = "param: JavaScript Hello World!";
