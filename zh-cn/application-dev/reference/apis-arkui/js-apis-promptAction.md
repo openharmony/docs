@@ -230,6 +230,23 @@ closeToast(toastId: number): void
 | ----- | ------ | ---- | ---------------------------------------- |
 | index | number | 是   | 选中按钮在buttons数组中的索引，从0开始。 |
 
+## CommonState<sup>20+</sup>枚举说明
+
+自定义弹窗的状态。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称          | 值   | 说明                                       |
+| ------------- | ---- | ------------------------------------------ |
+| UNINITIALIZED | 0    | 未初始化，控制器未与dialog绑定时。           |
+| INITIALIZED   | 1    | 已初始化，控制器与dialog绑定后。            |
+| APPEARING     | 2    | 显示中，dialog显示动画过程中。    |
+| APPEARED      | 3    | 已显示，dialog显示动画结束。             |
+| DISAPPEARING  | 4    | 消失中，dialog消失动画过程中。         |
+| DISAPPEARED   | 5    | 已消失，dialog消失动画结束后。         |
+
 ## DialogController<sup>18+</sup>
 
 自定义弹窗控制器，继承自[CommonController](#commoncontroller18)。
@@ -263,6 +280,22 @@ close(): void
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+### getState<sup>20+</sup>
+
+getState(): CommonState
+
+获取自定义弹窗的状态。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：**
+
+| 类型                                              | 说明               |
+| ------------------------------------------------- | ------------------ |
+| [CommonState](#commonstate20枚举说明) | 返回对应的弹窗状态。 |
 
 ## LevelOrder<sup>18+</sup>
 
@@ -523,6 +556,82 @@ Dialog关闭的信息。
 | text  | string&nbsp;\|&nbsp; [Resource](arkui-ts/ts-types.md#resource类型) | 是    | 按钮文本内容。<br />**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | color | string&nbsp;\| &nbsp;[Resource](arkui-ts/ts-types.md#resource类型) | 是    | 按钮文本颜色。<br />**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | primary<sup>12+</sup> | boolean | 否    | 在弹窗获焦且未进行tab键走焦时，按钮是否默认响应Enter键。多个Button时，只允许一个Button的该字段配置为true，否则所有Button均不响应。多重弹窗可自动获焦连续响应。<br />**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+
+## 示例
+
+该示例实现了在promptAction.DialogController中调用getState获取弹窗当前状态。
+
+```ts
+// xxx.ets
+import { BusinessError } from '@kit.BasicServicesKit';
+import { ComponentContent, promptAction } from '@kit.ArkUI';
+
+@Component
+struct CustomDialogExample {
+  build() {
+    Column() {
+      Text('Hello')
+        .fontSize(50)
+        .fontWeight(FontWeight.Bold)
+        .margin({ bottom: 36 })
+      Button('点我关闭弹窗')
+        .onClick(() => {
+          if (this.getDialogController()) {
+            this.getDialogController().close();
+          }
+        })
+      Button('点我获取状态')
+        .onClick(() => {
+          if (this.getDialogController()) {
+            let state: promptAction.CommonState = this.getDialogController().getState();
+            console.info('state:' + state); // 打印弹窗状态
+          }
+        })
+
+    }.backgroundColor('#FFF0F0F0')
+  }
+}
+
+@Builder
+function buildText() {
+   CustomDialogExample()
+}
+
+@Entry
+@Component
+struct Index {
+
+  private dialogController: promptAction.DialogController = new promptAction.DialogController()
+
+  build() {
+    Row() {
+      Column() {
+        Button("click me")
+          .onClick(() => {
+            let uiContext = this.getUIContext();
+            let promptAction = uiContext.getPromptAction();
+            let contentNode = new ComponentContent(uiContext, wrapBuilder(buildText),
+            );
+
+            promptAction.openCustomDialogWithController(contentNode, this.dialogController, {
+
+              transition: TransitionEffect.OPACITY.animation({
+                duration: 3000
+              })
+            }).then(() => {
+              console.info('succeeded')
+            }).catch((error: BusinessError) => {
+              console.error(`OpenCustomDialogWithController args error code is ${error.code}, message is ${error.message}`);
+            })
+          })
+      }
+      .width('100%')
+      .height('100%')
+    }
+    .height('100%')
+  }
+}
+```
 
 ## promptAction.showToast<sup>(deprecated)</sup>
 
