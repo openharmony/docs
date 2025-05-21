@@ -4347,7 +4347,7 @@ addDoNotDisturbProfile(templates: Array\<DoNotDisturbProfile>): Promise\<void\>
 
 添加勿扰模式配置信息。使用Promise异步回调。
 
-该接口不支持wearable设备。
+该接口不支持tv和wearable设备。
 
 **系统能力**：SystemCapability.Notification.Notification
 
