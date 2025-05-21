@@ -1999,6 +1999,91 @@ off(type: 'speedDone', callback?: Callback\<number>): void
 avPlayer.off('speedDone')
 ```
 
+
+### setPlaybackRate<sup>20+</sup>
+
+setPlaybackRate(rate: number): void
+
+设置倍速模式。只能在prepared/playing/paused/completed状态调用，取值范围是[0.125, 4.0]，可以通过[playbackRateDone](#onplaybackratedone20)事件确认是否生效。<br>
+>**注意：**
+>
+>直播场景不支持setPlaybackRate。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.Media.AVPlayer
+
+**参数：**
+
+| 参数名 | 类型                             | 必填 | 说明               |
+| ------ | -------------------------------- | ---- | ------------------ |
+| rate  | number | 是   | 指定播放倍速速率。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[媒体错误码](errorcode-media.md)。
+
+| 错误码ID | 错误信息                                   |
+| -------- | ------------------------------------------ |
+| 5400108  | The parameter check failed, parameter value out of range.      |
+| 5400102  | Operation not allowed，if invalid state or live stream.      |
+
+**示例：**
+
+```ts
+avPlayer.setPlaybackRate(2.0)
+```
+
+
+### on('playbackRateDone')<sup>20+</sup>
+
+on(type: 'playbackRateDone', callback: OnPlaybackRateDone): void
+
+监听[setPlaybackRate](#setplaybackrate20)生效的事件。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.Media.AVPlayer
+
+**参数：**
+
+| 参数名   | 类型     | 必填 | 说明                                                         |
+| -------- | -------- | ---- | ------------------------------------------------------------ |
+| type     | string   | 是   | setPlaybackRate生效的事件回调类型，支持的事件：'playbackRateDone'，每次调用setPlaybackRate后都会回调此事件。 |
+| callback | [OnPlaybackRateDone](#onplaybackratedone20) | 是   | setPlaybackRate生效的事件回调方法，上报设置后的播放速率。<br/>从API version 20开始支持此参数。 |
+
+**示例：**
+
+```ts
+avPlayer.on('playbackRateDone', (rate:number) => {
+  console.info('playbackRateDone called,and rate value is:' + rate)
+})
+```
+
+### off('playbackRateDone')<sup>20+</sup>
+
+off(type: 'playbackRateDone', callback?: OnPlaybackRateDone): void
+
+取消监听[setPlaybackRate](#setplaybackrate20)生效的事件。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.Media.AVPlayer
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                                                      |
+| ------ | ------ | ---- | --------------------------------------------------------- |
+| type   | string | 是   | setPlaybackRate生效的事件回调类型，取消注册的事件：'playbackRateDone'。 |
+| callback | [OnPlaybackRateDone](#onplaybackratedone20) | 否   |  setPlaybackRate生效的事件回调方法，上报设置后的播放速率。如填写该参数，则仅取消注册此回调方法，否则取消注册playbackRateDone事件的所有回调方法。<br/>从API version 20开始支持此参数。 |
+
+**示例：**
+
+```ts
+avPlayer.off('playbackRateDone')
+```
+
+
 ### setBitrate<sup>9+</sup>
 
 setBitrate(bitrate: number): void
@@ -3236,6 +3321,20 @@ type OnSuperResolutionChanged = (enabled: boolean) => void
 | 参数名   | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ------ | ------------------------------------------------------------ |
 | enabled  | boolean | 是 | 表示当前超分是否开启。true表示超分开启，false表示超分关闭。     |
+
+## OnPlaybackRateDone<sup>20+</sup>
+
+type OnPlaybackRateDone = (rate: number) => void
+
+播放速率设置完成事件回调方法。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.Media.AVPlayer
+
+| 参数名   | 类型   | 必填 | 说明                                                         |
+| ------ | ------ | ------ | ------------------------------------------------------------ |
+| rate | number | 是 | 播放速率。 |
 
 ## AVFileDescriptor<sup>9+</sup>
 
