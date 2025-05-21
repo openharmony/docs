@@ -1722,7 +1722,7 @@ try {
   promise.then(() => {
     console.info('Succeeded in moving the window.');
     let rect = windowClass?.getWindowProperties().windowRect;
-    console.info(`Get window rect: ` + JSON.stringify(rect));
+    console.info(`Get window rect:  + ${JSON.stringify(rect)}`);
   }).catch((err: BusinessError) => {
     console.error(`Failed to move the window. Cause code: ${err.code}, message: ${err.message}`);
   });
@@ -1784,7 +1784,7 @@ try {
   promise.then(() => {
     console.info('Succeeded in moving the window.');
     let rect = windowClass?.getWindowProperties().windowRect;
-    console.info(`Get window rect: ` + JSON.stringify(rect));
+    console.info(`Get window rect:  + ${JSON.stringify(rect)}`);
   }).catch((err: BusinessError) => {
     console.error(`Failed to move the window. Cause code: ${err.code}, message: ${err.message}`);
   });
@@ -1842,7 +1842,7 @@ try {
   promise.then(() => {
     console.info('Succeeded in moving the window.');
     let rect = windowClass?.getWindowProperties().windowRect;
-    console.info(`Get window rect: ` + JSON.stringify(rect));
+    console.info(`Get window rect:  + ${JSON.stringify(rect)}`);
   }).catch((err: BusinessError) => {
     console.error(`Failed to move the window. Cause code: ${err.code}, message: ${err.message}`);
   });
@@ -1905,7 +1905,7 @@ try {
   promise.then(() => {
     console.info('Succeeded in moving the window.');
     let rect = windowClass?.getWindowProperties().windowRect;
-    console.info(`Get window rect: ` + JSON.stringify(rect));
+    console.info(`Get window rect:  + ${JSON.stringify(rect)}`);
   }).catch((err: BusinessError) => {
     console.error(`Failed to move the window. Cause code: ${err.code}, message: ${err.message}`);
   });
@@ -2089,7 +2089,7 @@ try {
   promise.then(() => {
     console.info('Succeeded in changing the window size.');
     let rect = windowClass?.getWindowProperties().windowRect;
-    console.info(`Get window rect: ` + JSON.stringify(rect));
+    console.info(`Get window rect:  + ${JSON.stringify(rect)}`);
   }).catch((err: BusinessError) => {
     console.error(`Failed to change the window size. Cause code: ${err.code}, message: ${err.message}`);
   });
@@ -3583,7 +3583,7 @@ on(type:  'windowSizeChange', callback: Callback&lt;Size&gt;): void
 ```ts
 try {
   windowClass.on('windowSizeChange', (data) => {
-    console.info('Succeeded in enabling the listener for window size changes. Data: ' + JSON.stringify(data));
+    console.info(`Succeeded in enabling the listener for window size changes. Data:  + ${JSON.stringify(data)}`);
   });
 } catch (exception) {
   console.error(`Failed to enable the listener for window size changes. Cause code: ${exception.code}, message: ${exception.message}`);
@@ -4725,7 +4725,7 @@ on(type:  'windowRectChange', callback: Callback&lt;RectChangeOptions&gt;): void
 ```ts
 try {
   windowClass.on('windowRectChange', (data: window.RectChangeOptions) => {
-      console.info(`Succeeded window rect changes. Data: ` + JSON.stringify(data));
+      console.info(`Succeeded window rect changes. Data:  + ${JSON.stringify(data)}`);
   });
 } catch (exception) {
   console.error(`Failed to disable the listener for window rect changes. Cause code: ${exception.code}, message: ${exception.message}`);
@@ -6638,7 +6638,7 @@ try {
   };
   let promise = windowClass.setWindowLimits(windowLimits);
     promise.then((data) => {
-    console.info('Succeeded in changing the window limits. Cause:' + JSON.stringify(data));
+    console.info(`Succeeded in changing the window limits. Cause: + ${JSON.stringify(data)}`);
   }).catch((err: BusinessError) => {
     console.error(`Failed to change the window limits. Cause code: ${err.code}, message: ${err.message}`);
   });
