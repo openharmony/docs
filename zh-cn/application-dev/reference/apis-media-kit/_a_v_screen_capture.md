@@ -135,7 +135,7 @@
 | [OH_AVScreenCapture_CaptureStrategy](#oh_avscreencapture_capturestrategy)  \* [OH_AVScreenCapture_CreateCaptureStrategy](#oh_avscreencapture_createcapturectrategy) (void) | 创建CaptureStrategy。 | 
 | [OH_AVSCREEN_CAPTURE_ErrCode](#oh_avscreen_capture_errcode) [OH_AVScreenCapture_ReleaseCaptureStrategy](#oh_avscreencapture_releasecapturestrategy) ([OH_AVScreenCapture_CaptureStrategy](#oh_avscreencapture_capturestrategy) \*strategy) | 释放CaptureStrategy。 | 
 | [OH_AVSCREEN_CAPTURE_ErrCode](#oh_avscreen_capture_errcode) [OH_AVScreenCapture_SetCaptureStrategy](#oh_avscreencapture_setcapturestrategy) (struct [OH_AVScreenCapture](#oh_avscreencapture) \*capture, [OH_AVScreenCapture_CaptureStrategy](#oh_avscreencapture_capturestrategy) \*strategy) | 向OH_AVScreenCapture实例设置录屏策略CaptureStrategy。 | 
-| [OH_AVSCREEN_CAPTURE_ErrCode](#oh_avscreen_capture_errcode) [OH_AVScreenCapture_StrategyForKeepCaptureDuringCall](#oh_avscreencapture_strategyforkeepcaptureduringcall) ([OH_AVScreenCapture_CaptureStrategy](#oh_avscreencapture_capturestrategy) \*strategy, bool value) | 向CaptureStrategy实例设置运营商通话是否打断录屏 | 
+| [OH_AVSCREEN_CAPTURE_ErrCode](#oh_avscreen_capture_errcode) [OH_AVScreenCapture_StrategyForKeepCaptureDuringCall](#oh_avscreencapture_strategyforkeepcaptureduringcall) ([OH_AVScreenCapture_CaptureStrategy](#oh_avscreencapture_capturestrategy) \*strategy, bool value) | 向CaptureStrategy实例设置蜂窝通话是否打断录屏 | 
 
 
 ## 类型定义说明
@@ -1846,11 +1846,11 @@ OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_StrategyForKeepCaptureDuringCall(
 ```
 **描述**
 
-向CaptureStrategy实例设置运营商通话时是否保持录屏。
+向CaptureStrategy实例设置蜂窝通话时是否保持录屏。
 
-true表示运营商通话时可以录屏，false表示运营商通话时不允许录屏，不设置默认是false
+true表示蜂窝通话时可以录屏，false表示蜂窝通话时不允许录屏，不设置默认是false
 
-设置为true时并且录屏时接听运营商通话的过程中，出于隐私要求，双方通话的声音（本地麦克风和对方说话声音）不会被录制，其他系统音录制正常。电话挂断之后，录屏框架恢复麦克风录制。特别的：如果挂断电话时录屏应用在后台运行，麦克风录制会启动失败，原因是音频模块不允许后台应用启动麦克风录制。
+设置为true时并且录屏时接听蜂窝通话的过程中，出于隐私要求，双方通话的声音（本地麦克风和对方说话声音）不会被录制，其他系统音录制正常。电话挂断之后，录屏框架恢复麦克风录制。特别的：如果挂断电话时录屏应用在后台运行，麦克风录制会启动失败，原因是音频模块不允许后台应用启动麦克风录制。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVScreenCapture
 

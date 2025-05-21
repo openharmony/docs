@@ -8475,7 +8475,7 @@ request.finishLoading(uuid, loadingError);
 
 | 名称                  | 类型    | 必填 | 说明                 |
 | --------------------- | ------- | --- | -------------------- |
-| keepCaptureDuringCall | boolean | 否  | 运营商通话时是否保持录屏 |
+| keepCaptureDuringCall | boolean | 否  | 蜂窝通话时是否保持录屏 |
 
 ## AVScreenCaptureRecordConfig<sup>12+</sup>
 
