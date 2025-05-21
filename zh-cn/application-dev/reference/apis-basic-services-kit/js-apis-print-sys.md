@@ -2454,11 +2454,14 @@ setPrinterPreferences(printerId: string, printerPreferences: PrinterPreferences)
 import { print } from '@kit.BasicServicesKit';
 import { BusinessError } from '@ohos.base';
 
-let printerId : string = '1';
-print.getPrinterInfoById(printerId).then((printerInfo : print.PrinterInfo) => {
-    console.log('getPrinterInfoById data : ' + JSON.stringify(printerInfo));
+let printerId : string = 'testPrinterId';
+let preferences : print.PrinterPreferences = {
+    defaultDuplexMode: print.PrintDuplexMode.DUPLEX_MODE_NONE
+};
+print.setPrinterPreferences(printerId, preferences).then((data : void) => {
+    console.log('setPrinterPreferences data : ' + JSON.stringify(data));
 }).catch((error: BusinessError) => {
-    console.log('getPrinterInfoById error : ' + JSON.stringify(error));
+    console.log('setPrinterPreferences error : ' + JSON.stringify(error));
 })
 ```
 
