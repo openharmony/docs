@@ -2240,6 +2240,8 @@
           - [AbilityBase_Element](reference/apis-ability-kit/_ability_base_element.md)
           - [OH_NativeBundle_ApplicationInfo](reference/apis-ability-kit/_o_h___native_bundle_application_info.md)
           - [OH_NativeBundle_ElementName](reference/apis-ability-kit/_o_h___native_bundle_element_name.md)
+          - [OH_NativeBundle_Metadata](reference/apis-ability-kit/native_interface_bundle_metadata.md)
+          - [OH_NativeBundle_ModuleMetadata](reference/apis-ability-kit/native_interface_bundle_module_metadata.md)
       - 错误码<!--ability-arkts-errcode-->
         - [元能力子系统错误码](reference/apis-ability-kit/errorcode-ability.md)
         - [DistributedSchedule错误码](reference/apis-ability-kit/errorcode-DistributedSchedule.md)

@@ -13,8 +13,8 @@
 | [OH_NativeBundle_GetAppIdentifier](../reference/apis-ability-kit/_bundle.md#oh_nativebundle_getappidentifier) | 获取自身应用的appIdentifier信息。 |
 | [OH_NativeBundle_GetMainElementName](../reference/apis-ability-kit/_bundle.md#oh_nativebundle_getmainelementname) | 获取自身应用入口的信息。 |
 | [OH_NativeBundle_GetCompatibleDeviceType](../reference/apis-ability-kit/_bundle.md#oh_nativebundle_getcompatibledevicetype) | 获取自身应用适用的设备类型。 |
-| OH_NativeBundle_IsDebugMode | 查询当前应用的调试模式。 |
-| OH_NativeBundle_GetModuleMetadata | 获取当前应用程序的模块元数据数组。 |
+| [OH_NativeBundle_IsDebugMode](../reference/apis-ability-kit/_bundle.md#oh_nativebundle_isdebugmode) | 查询当前应用的调试模式。|
+| [OH_NativeBundle_GetModuleMetadata](../reference/apis-ability-kit/_bundle.md#oh_nativebundle_getmodulemetadata) | 获取当前应用的元数据信息。 |
 
 
 ## 开发步骤
