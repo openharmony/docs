@@ -6,7 +6,7 @@
 
 注册应用侧代码有两种方式，一种在Web组件初始化调用，使用[javaScriptProxy()](../reference/apis-arkweb/ts-basic-components-web.md#javascriptproxy)接口。另外一种在Web组件初始化完成后调用，使用[registerJavaScriptProxy()](../reference/apis-arkweb/js-apis-webview.md#registerjavascriptproxy)接口。两种方式都需要和[deleteJavaScriptRegister](../reference/apis-arkweb/js-apis-webview.md#deletejavascriptregister)接口配合使用，防止内存泄漏。
 
-###前端页面调用应用侧函数注册方法
+### 前端页面调用应用侧函数注册方法
 
 在下面的示例中，将test()方法注册在前端页面中， 该函数可以在前端页面触发运行。
 
