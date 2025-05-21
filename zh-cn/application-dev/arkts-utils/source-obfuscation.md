@@ -165,7 +165,7 @@ test(a2);
 
 * 被[保留选项](#-keep-property-name)指定的属性名不会被混淆。
 * SDK API列表中的属性名不会被混淆。SDK API列表是构建时从SDK中自动提取出来的一个名称列表，其缓存文件为systemApiCache.json，路径为工程目录下build/default/cache/{...}/release/obfuscation中。
-* 字符串字面量属性名不会被混淆。例如下面例子中的`"exampleName"`和`"exampleAge"`或者其他不在白名单的内容不会被混淆。
+* 字符串字面量属性名不会被混淆。例如下面例子中的`exampleName`和`exampleAge`。
 
     ```
     let person = {"exampleName": "abc"};
@@ -183,7 +183,7 @@ test(a2);
   -enable-string-property-obfuscation
   ```
 
-根据上述配置，下面例子中的`"exampleName"`和`"exampleAge"`或者其他不在白名单的内容混淆效果如下：
+根据上述配置，下面例子中的`exampleName`和`exampleAge`混淆效果如下：
 
   ```typescript
   // 混淆前：
@@ -356,7 +356,11 @@ let params = obj['ohos.want.action.home'];
 
 若配置该选项，以下场景中的`console.*`语句会被删除：
 
-1. 文件顶层的调用。
+1. 文件顶层的调用。  
+   例如：
+   ```js
+   console.log("in tolevel");
+   ```
 2. 代码块中的调用。  
    例如：
    ```
@@ -371,8 +375,17 @@ let params = obj['ohos.want.action.home'];
     console.log('in ns');
    }
    ```
-4. switch语句中的调用。
-
+4. switch语句中的调用。  
+   例如：
+   ```js
+   switch (value) {
+     case 1:
+       console.log("in switch case");
+       break;
+     default:
+       console.warn("default");
+   }
+   ```
 ### -print-namecache
 
 将名称缓存保存到指定的文件路径*filepath*中，名称缓存包含名称混淆前后的映射。其中，*filepath*为必选参数，支持相对路径和绝对路径，相对路径的起始位置为混淆配置文件的当前目录。*filepath*参数中的文件名请以`.json`为后缀。
