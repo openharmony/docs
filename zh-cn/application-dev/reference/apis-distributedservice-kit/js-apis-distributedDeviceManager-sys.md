@@ -68,23 +68,21 @@ import { distributedDeviceManager } from '@kit.DistributedServiceKit';
 |  sdkVersion    | string  | 是   |  SDK版本。          |
 |  bleMac        | string  | 是   |  蓝牙BLE的MAC地址。  |
 |  brMac         | string  | 是   |  蓝牙BR的MAC地址。  |
-|  sleMac        | string  | 是   |  Startflash的MAC地址。 |
-|  firmwareVersion | string | 是  |
-|  hardwareVersion | string | 是  |
-|  softwareVersion | string | 是  |
-|  protocolType    | number | 是  |
-|  setupType       | number | 是  |
-|  wiseDeviceId    | string | 是  |
-|  wiseUserId      | string | 是  |
-|  registerTime    | string | 是  |
-|  modifyTime      | string | 是  |
-|  shareTime       | string | 是  |
-|  isLocalDevice   | boolean | 是 |
-|  services        | Array&lt;ServiceProfileInfo&gt; | 否  |
-|  productName     | string  | 否 |
-|  internalModel   | string  | 否 |
-
-
+|  sleMac        | string  | 是   |  Starflash的MAC地址。 |
+|  firmwareVersion | string | 是  |  固件版本。          |
+|  hardwareVersion | string | 是  |  硬件版本。          |
+|  softwareVersion | string | 是  |  软件版本。          |
+|  protocolType    | number | 是  |  协议类型。          |
+|  setupType       | number | 是  |  设备类型。          |
+|  wiseDeviceId    | string | 是  |  智能设备ID。        |
+|  wiseUserId      | string | 是  |  智能用户ID。        |
+|  registerTime    | string | 是  |  注册时间。          |
+|  modifyTime      | string | 是  |  修改时间。          |
+|  shareTime       | string | 是  |  分享时间。          |
+|  isLocalDevice   | boolean | 是 |  是否为本地设备。     |
+|  services        | Array&lt;ServiceProfileInfo&gt; | 否  | 业务模板信息列表。 |
+|  productName     | string  | 否 |  设备所属的产品名称。    |
+|  internalModel   | string  | 否 |  设备所属产品的内部型号。 |
 
 ## DeviceManager
 
