@@ -4,7 +4,7 @@
 
 > **说明：**
 >
-> - 本模块接口从API Version 9开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+> - 本模块接口从API version 9开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 >
 > - 示例效果请以真机运行为准，当前IDE预览器不支持。
 
@@ -5800,7 +5800,7 @@ enableIntelligentTrackingPrevention(enable: boolean): void
 
 > **说明：**
 >
-> 从API Version 18开始，在不支持智能防跟踪功能的设备上调用该API会抛出801异常。
+> 从API version 18开始，在不支持智能防跟踪功能的设备上调用该API会抛出801异常。
 
 以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
 
@@ -5857,7 +5857,7 @@ isIntelligentTrackingPreventionEnabled(): boolean
 
 > **说明：**
 >
-> 从API Version 18开始，在不支持智能防跟踪功能的设备上调用该API会抛出801异常。
+> 从API version 18开始，在不支持智能防跟踪功能的设备上调用该API会抛出801异常。
 
 以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
 
@@ -5913,7 +5913,7 @@ static addIntelligentTrackingPreventionBypassingList(hostList: Array\<string>): 
 
 > **说明：**
 >
-> 从API Version 18开始，在不支持智能防跟踪功能的设备上调用该API会抛出801异常。
+> 从API version 18开始，在不支持智能防跟踪功能的设备上调用该API会抛出801异常。
 
 以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
 
@@ -5969,7 +5969,7 @@ static removeIntelligentTrackingPreventionBypassingList(hostList: Array\<string>
 
 > **说明：**
 >
-> 从API Version 18开始，在不支持智能防跟踪功能的设备上调用该API会抛出801异常。
+> 从API version 18开始，在不支持智能防跟踪功能的设备上调用该API会抛出801异常。
 
 以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
 
@@ -6019,7 +6019,7 @@ static clearIntelligentTrackingPreventionBypassingList(): void
 
 > **说明：**
 >
-> 从API Version 18开始，在不支持智能防跟踪功能的设备上调用该API会抛出801异常。
+> 从API version 18开始，在不支持智能防跟踪功能的设备上调用该API会抛出801异常。
 
 以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
 
@@ -6103,7 +6103,7 @@ enableAdsBlock(enable: boolean): void
 
 > **说明：**
 >
-> 从API Version 18开始，在不支持广告过滤功能的设备上调用该API会抛出801异常。
+> 从API version 18开始，在不支持广告过滤功能的设备上调用该API会抛出801异常。
 
 以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
 
@@ -6160,7 +6160,7 @@ isAdsBlockEnabled() : boolean
 
 > **说明：**
 >
-> 从API Version 18开始，在不支持广告过滤功能的设备上调用该API会抛出801异常。
+> 从API version 18开始，在不支持广告过滤功能的设备上调用该API会抛出801异常。
 
 以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
 
@@ -6216,7 +6216,7 @@ isAdsBlockEnabledForCurPage() : boolean
 
 > **说明：**
 >
-> 从API Version 18开始，在不支持广告过滤功能的设备上调用该API会抛出801异常。
+> 从API version 18开始，在不支持广告过滤功能的设备上调用该API会抛出801异常。
 
 以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
 
@@ -16740,7 +16740,7 @@ static setAdsBlockRules(rulesFile: string, replace: boolean): void
 
 > **说明：**
 >
-> 从API Version 18开始，在不支持广告过滤功能的设备上调用该API会抛出801异常。
+> 从API version 18开始，在不支持广告过滤功能的设备上调用该API会抛出801异常。
 
 以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
 
@@ -16813,7 +16813,7 @@ static addAdsBlockDisallowedList(domainSuffixes: Array\<string\>): void
 
 > **说明：**
 >
-> 从API Version 18开始，在不支持广告过滤功能的设备上调用该API会抛出801异常。
+> 从API version 18开始，在不支持广告过滤功能的设备上调用该API会抛出801异常。
 
 以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
 
@@ -16895,7 +16895,7 @@ static removeAdsBlockDisallowedList(domainSuffixes: Array\<string\>): void
 
 > **说明：**
 >
-> 从API Version 18开始，在不支持广告过滤功能的设备上调用该API会抛出801异常。
+> 从API version 18开始，在不支持广告过滤功能的设备上调用该API会抛出801异常。
 
 以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
 
@@ -16967,7 +16967,7 @@ static clearAdsBlockDisallowedList(): void
 
 > **说明：**
 >
-> 从API Version 18开始，在不支持广告过滤功能的设备上调用该API会抛出801异常。
+> 从API version 18开始，在不支持广告过滤功能的设备上调用该API会抛出801异常。
 
 以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
 
@@ -17046,7 +17046,7 @@ static addAdsBlockAllowedList(domainSuffixes: Array\<string\>): void
 
 > **说明：**
 >
-> 从API Version 18开始，在不支持广告过滤功能的设备上调用该API会抛出801异常。
+> 从API version 18开始，在不支持广告过滤功能的设备上调用该API会抛出801异常。
 
 以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
 
@@ -17131,7 +17131,7 @@ static removeAdsBlockAllowedList(domainSuffixes: Array\<string\>): void
 
 > **说明：**
 >
-> 从API Version 18开始，在不支持广告过滤功能的设备上调用该API会抛出801异常。
+> 从API version 18开始，在不支持广告过滤功能的设备上调用该API会抛出801异常。
 
 以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
 
@@ -17203,7 +17203,7 @@ static clearAdsBlockAllowedList(): void
 
 > **说明：**
 >
-> 从API Version 18开始，在不支持广告过滤功能的设备上调用该API会抛出801异常。
+> 从API version 18开始，在不支持广告过滤功能的设备上调用该API会抛出801异常。
 
 以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
 
