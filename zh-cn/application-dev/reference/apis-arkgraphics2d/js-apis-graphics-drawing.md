@@ -4197,6 +4197,48 @@ const textBlob = drawing.TextBlob.makeFromString("drawing", font, drawing.TextEn
 let bounds = textBlob.bounds();
 ```
 
+## TypefaceArguments<sup>20+</sup>
+
+提供字体属性配置的结构体。
+
+### constructor<sup>20+</sup>
+
+constructor()
+
+字体属性的构造函数。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**示例：**
+
+```ts
+import { drawing } from '@kit.ArkGraphics2D';
+let typeFaceArgument = new drawing.TypefaceArguments();
+```
+
+### addVariation<sup>20+</sup>
+
+addVariation(axis: string, value: number)
+
+给字体属性设置字重值。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**参数：**
+| 参数名         | 类型                                       | 必填   | 说明             |
+| ----------- | ---------------------------------------- | ---- | -------------------   |
+| axis  | string           | 是   | 字体属性对象可变维度字重的标签'wght'。具体是否支持的该标签取决于加载的字体文件。请打开对应的字体文件具体查看支持的属性。   |
+| value | number           | 是   | 字体属性对象可变维度字重的标签'wght'对应的属性值，需要在字体文件支持的范围内，否则不会生效。如果属性值小于支持的最小值，则默认和最小值一致。如果属性值大于支持的最大值，则默认和最大值效果一致。请打开对应的字体文件具体查看支持的属性值。    |
+
+**示例：**
+
+```ts
+import { drawing } from '@kit.ArkGraphics2D';
+
+let typeFaceArgument = new drawing.TypefaceArguments();
+typeFaceArgument.addVariation('wght', 10);
+```
+
 ## Typeface
 
 字体，如宋体、楷体等。
@@ -4223,6 +4265,46 @@ import { drawing } from '@kit.ArkGraphics2D';
 const font = new drawing.Font();
 let typeface = font.getTypeface();
 let familyName = typeface.getFamilyName();
+```
+
+### makeFromCurrent<sup>20+</sup>
+
+makeFromCurrent(typefaceArguments: TypefaceArguments): Typeface
+
+基于当前字体结合字体属性构造新的字体对象。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**参数：**
+| 参数名         | 类型                                       | 必填   | 说明                  |
+| ----------- | ---------------------------------------- | ---- | ------------------- |
+| typefaceArguments | [TypefaceArguments](#typefacearguments20)           | 是   | 字体属性。 |
+
+**返回值：**
+
+| 类型   | 说明                  |
+| ------ | -------------------- |
+| [Typeface](#typeface) | 返回字体对象（异常情况下会返回空指针）。 |
+
+**示例：**
+
+```ts
+import { RenderNode } from '@kit.ArkUI';
+import { drawing } from '@kit.ArkGraphics2D';
+
+class TextRenderNode extends RenderNode {
+  async draw(context: DrawContext) {
+    const canvas = context.canvas;
+    let typeArguments = new drawing.TypefaceArguments();
+    typeArguments.addVariation("wght", 100);
+    const myTypeFace = drawing.Typeface.makeFromFile("/system/fonts/HarmonyOS_Sans_SC.ttf");
+    const typeFace1 = myTypeFace.makeFromCurrent(typeArguments);
+    let font = new drawing.Font();
+    font.setTypeface(typeFace1);
+    const textBlob = drawing.TextBlob.makeFromString("Hello World", font, drawing.TextEncoding.TEXT_ENCODING_UTF8);
+    canvas.drawTextBlob(textBlob, 60, 100);
+  }
+}
 ```
 
 ### makeFromFile<sup>12+</sup>
@@ -4302,8 +4384,89 @@ class TextRenderNode extends RenderNode {
   async draw(context: DrawContext) {
     const canvas = context.canvas;
     let font = new drawing.Font();
-    const mytypeface = drawing.Typeface.makeFromRawFile($rawfile('HarmonyOS_Sans_Bold.ttf'));
-    font.setTypeface(mytypeface);
+    const myTypeFace = drawing.Typeface.makeFromRawFile($rawfile('HarmonyOS_Sans_Bold.ttf'));
+    font.setTypeface(myTypeFace);
+    const textBlob = drawing.TextBlob.makeFromString("Hello World", font, drawing.TextEncoding.TEXT_ENCODING_UTF8);
+    canvas.drawTextBlob(textBlob, 60, 100);
+  }
+}
+
+```
+### makeFromFileWithArguments<sup>20+</sup>
+
+static makeFromFileWithArguments(filePath: string, typefaceArguments: TypefaceArguments): Typeface
+
+根据字体文件路径和字体属性构造新的字体。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名         | 类型                                       | 必填   | 说明                  |
+| ----------- | ---------------------------------------- | ---- | ------------------- |
+| filePath | string           | 是   | 表示字体资源存放的路径。应用沙箱路径和真实物理路径的对应关系请参考[应用沙箱路径和真实物理路径的对应关系](../../file-management/app-sandbox-directory.md#应用沙箱路径和真实物理路径的对应关系)。 |
+| typefaceArguments | [TypefaceArguments](#typefacearguments20) | 是  | 表示字体属性。 |
+
+**返回值：**
+
+| 类型   | 说明                  |
+| ------ | -------------------- |
+| [Typeface](#typeface) | 返回字体对象（异常情况下会返回空指针）。 |
+
+**示例：**
+
+```ts
+import { RenderNode } from '@kit.ArkUI';
+import { drawing } from '@kit.ArkGraphics2D';
+
+class TextRenderNode extends RenderNode {
+  async draw(context: DrawContext) {
+    const canvas = context.canvas;
+    let font = new drawing.Font();
+    let str = "/system/fonts/HarmonyOS_Sans_Italic.ttf";
+    let typeFaceArgument = new drawing.TypefaceArguments();
+    const myTypeFace = drawing.Typeface.makeFromFileWithArguments(str, typeFaceArgument);
+    font.setTypeface(myTypeFace);
+    const textBlob = drawing.TextBlob.makeFromString("Hello World", font, drawing.TextEncoding.TEXT_ENCODING_UTF8);
+    canvas.drawTextBlob(textBlob, 60, 100);
+  }
+}
+```
+
+### makeFromRawFileWithArguments<sup>20+</sup>
+
+static makeFromRawFileWithArguments(rawfile: Resource, typefaceArguments: TypefaceArguments): Typeface
+
+使用指定的字体文件和字体属性构造字体，其中要求指定的字体文件需保存在应用资源文件夹的rawfile路径下。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名         | 类型                                       | 必填   | 说明                  |
+| ----------- | ---------------------------------------- | ---- | ------------------- |
+| rawfile | [Resource](../apis-arkui/arkui-ts/ts-types.md#resource)           | 是   | 指定字体文件对应的资源对象。当前只支持``$rawfile``格式引用的资源对象，对应格式写为``$rawfile('filePath')``，其中filePath为指定字体文件相对于工程中resources/rawfile目录的相对路径。 |
+| typefaceArguments | [TypefaceArguments](#typefacearguments20) | 是 | 表示字体属性。 |
+
+**返回值：**
+
+| 类型   | 说明                 |
+| ------ | ------------------- |
+| [Typeface](#typeface) | 返回字体对象（异常情况下会返回空指针）。 |
+
+**示例：**
+
+```ts
+import { RenderNode } from '@kit.ArkUI';
+import { drawing } from '@kit.ArkGraphics2D';
+
+class TextRenderNode extends RenderNode {
+  async draw(context: DrawContext) {
+    const canvas = context.canvas;
+    let font = new drawing.Font();
+    let typeFaceArgument = new drawing.TypefaceArguments();
+    const myTypeFace = drawing.Typeface.makeFromRawFileWithArguments($rawfile('HarmonyOS_Sans_Bold.ttf'), typeFaceArgument);
+    font.setTypeface(myTypeFace);
     const textBlob = drawing.TextBlob.makeFromString("Hello World", font, drawing.TextEncoding.TEXT_ENCODING_UTF8);
     canvas.drawTextBlob(textBlob, 60, 100);
   }
