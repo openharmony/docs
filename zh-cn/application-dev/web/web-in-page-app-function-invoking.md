@@ -214,6 +214,9 @@
   </html>
   ```
 ## 复杂类型使用方法
+
+### 传递Array
+
 - 应用侧和前端页面之间传递Array。
   ```ts
   // xxx.ets
@@ -286,6 +289,9 @@
   </body>
   </html>
   ```
+
+### 非Function等复杂类型使用
+
 - 应用侧和前端页面之间传递基础类型，非Function等复杂类型。
   ```ts
   // xxx.ets
@@ -365,6 +371,7 @@
   </body>
   </html>
   ```
+### 应用侧调用前端页面的Callback
 
 - 应用侧调用前端页面的Callback。
   ```ts
@@ -438,6 +445,7 @@
   </body>
   </html>
   ```
+### 应用侧调用前端页面Object里的Function
 
 - 应用侧调用前端页面Object里的Function。
   ```ts
@@ -536,6 +544,8 @@
   </html>
   ```
 
+### 前端页面调用应用侧Object里的Function
+
 - 前端页面调用应用侧Object里的Function。
   ```ts
   // xxx.ets
@@ -624,7 +634,8 @@
   </html>
   ```
 
-- Promise场景。<br>
+### Promise场景
+
   第一种使用方法，在应用侧new Promise。
   ```ts
   // xxx.ets
