@@ -87,8 +87,8 @@
 
      off() {
        this.isAttach = false;
-       this.inputController.off('insertText')
-       this.inputController.off('deleteLeft')
+       this.inputController.off('insertText');
+       this.inputController.off('deleteLeft');
      }
    }
    ```

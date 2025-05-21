@@ -57,7 +57,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 let currentIme = inputMethod.getCurrentInputMethod();
 try {
   inputMethod.switchInputMethod(currentIme.name).then(() => {
-    console.log('Succeeded in switching inputmethod.');
+    console.info('Succeeded in switching inputmethod.');
   }).catch((err: BusinessError) => {
     console.error(`Failed to switchInputMethod: ${JSON.stringify(err)}`);
   })
@@ -67,7 +67,7 @@ try {
 let currentImeSubType = inputMethod.getCurrentInputMethodSubtype();
 try {
   inputMethod.switchInputMethod(currentIme.name, currentImeSubType.id).then(() => {
-    console.log('Succeeded in switching inputmethod.');
+    console.info('Succeeded in switching inputmethod.');
   }).catch((err: BusinessError) => {
     console.error(`Failed to switchInputMethod: ${JSON.stringify(err)}`);
   })
@@ -252,7 +252,7 @@ let info: PanelInfo = {
 }
 try {
   let result = inputMethodSetting.isPanelShown(info);
-  console.log('Succeeded in querying isPanelShown, result: ' + result);
+  console.info('Succeeded in querying isPanelShown, result: ' + result);
 } catch (err) {
   console.error(`Failed to query isPanelShown: ${JSON.stringify(err)}`);
 }
