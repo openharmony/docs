@@ -49,6 +49,7 @@
   - [使用WebRTC进行Web视频会议](web-rtc.md)
   - [托管网页中的媒体播放](app-takeovers-web-media.md)
   - [使用Web组件支持画中画](web-picture-in-picture.md)
+  - [Web组件支持视频沉浸式全屏播放](web_full_screen.md)
 - 处理网页内容<!--web-process-page-content-->
   - [使用Web组件打印前端页面](web-print.md)
   - [使用Web组件的PDF文档预览能力](web-pdf-preview.md)
