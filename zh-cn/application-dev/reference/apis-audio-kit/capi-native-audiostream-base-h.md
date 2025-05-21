@@ -263,6 +263,7 @@ enum OH_AudioStream_SourceType
 | AUDIOSTREAM_SOURCE_TYPE_VOICE_MESSAGE = 10      | 语音消息。<br/>**起始版本：** 12     |
 | AUDIOSTREAM_SOURCE_TYPE_CAMCORDER = 13          | 录像。<br/>**起始版本：** 13       |
 | AUDIOSTREAM_SOURCE_TYPE_UNPROCESSED = 14        | 麦克风纯净录音（系统不做任何算法处理）。<br/>**起始版本：** 14 |
+| AUDIOSTREAM_SOURCE_TYPE_LIVE = 17        | 直播。<br/>**起始版本：** 20 |
 
 ### OH_AudioStream_Event
 

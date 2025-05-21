@@ -28,6 +28,7 @@
 | -- | -- |
 | [OH_AudioCommon_Result OH_AudioManager_GetAudioStreamManager(OH_AudioStreamManager **streamManager)](#oh_audiomanager_getaudiostreammanager) | 获取音频流管理器句柄。 |
 | [OH_AudioCommon_Result OH_AudioStreamManager_GetDirectPlaybackSupport(OH_AudioStreamManager *audioStreamManager, OH_AudioStreamInfo *streamInfo,OH_AudioStream_Usage usage, OH_AudioStream_DirectPlaybackMode *directPlaybackMode)](#oh_audiostreammanager_getdirectplaybacksupport) | 获取当前音频流支持的direct通路播放模式。 |
+| [OH_AudioCommon_Result OH_AudioStreamManager_IsAcousticEchoCancelerSupported(OH_AudioStreamManager *streamManager,OH_AudioStream_SourceType sourceType,bool *supported)](#oh_audiostreammanager_isacousticechocancelersupported) | 查询指定的source type是否支持回声消除。 |
 
 ## 函数说明
 
@@ -82,5 +83,32 @@ OH_AudioCommon_Result OH_AudioStreamManager_GetDirectPlaybackSupport(OH_AudioStr
 | 类型 | 说明 |
 | -- | -- |
 | [OH_AudioCommon_Result](capi-native-audio-common-h.md#oh_audiocommon_result) | [OH_AudioCommon_Result](capi-native-audio-common-h.md#oh_audiocommon_result)：<br>         AUDIOCOMMON_RESULT_SUCCESS = 0：函数执行成功。<br>         AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM = 6800101：<br>                                                        1. 参数audioStreamManager为nullptr；<br>                                                        2. 参数streamInfo为nullptr；<br>                                                        3. 参数usage无效；<br>                                                        4. 参数directPlaybackMode为nullptr。 |
+
+### OH_AudioStreamManager_IsAcousticEchoCancelerSupported()
+
+```
+OH_AudioCommon_Result OH_AudioStreamManager_IsAcousticEchoCancelerSupported(OH_AudioStreamManager *streamManager,OH_AudioStream_SourceType sourceType,bool *supported)
+```
+
+**描述**
+
+查询指定的source type是否支持回声消除。
+
+**起始版本：** 20
+
+
+**参数：**
+
+| 参数项 | 描述 |
+| -- | -- |
+| [OH_AudioStreamManager](capi-oh-audiostreammanager.md) *audioStreamManager | 音频流管理器句柄。通过 [OH_AudioManager_GetAudioStreamManager](capi-native-audio-stream-manager-h.md#oh_audiomanager_getaudiostreammanager)获取句柄。 |
+| [OH_AudioStream_SourceType](capi-native-audiostream-base-h.md#oh_audiostream_sourcetype) sourceType | 指向[OH_AudioStream_SourceType](capi-native-audiostream-base-h.md#oh_audiostream_sourcetype)，用于设置音频输入流的使用场景。 |
+| bool *supported | 查询结果。 |
+
+**返回：**
+
+| 类型 | 说明 |
+| -- | -- |
+| [OH_AudioCommon_Result](capi-native-audio-common-h.md#oh_audiocommon_result) | AAUDIOCOMMON_RESULT_SUCCESS = 0 ：函数执行成功。<br>     AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM = 6800101 ：<br>                                                    1.参数audioStreamManager为nullptr；<br>                                                    2.参数sourceType无效；<br>                                                    3.参数supported为nullptr。 |
 
 
