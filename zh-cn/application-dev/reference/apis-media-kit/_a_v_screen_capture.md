@@ -366,8 +366,8 @@ typedef void (*OH_AVScreenCapture_OnCaptureContentChanged)(OH_AVScreenCapture* c
 | 名称 | 描述 | 
 | -------- | -------- |
 | capture | 指向OH_AVScreenCapture实例的指针。  | 
-| event | 指定录屏内容变更事件。  | 
-| area | 指定录屏区域。  |
+| event | 录屏内容变更事件。  | 
+| area | 录屏内容可见时，对应位置信息。  |
 | userData | 指向应用设置该回调处理方法时提供的自定义数据的指针。 | 
 
 
@@ -1828,14 +1828,14 @@ OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_SetCaptureContentChangedCallback(
 | -------- | -------- |
 | capture | 指向[OH_AVScreenCapture](#oh_avscreencapture)实例的指针。 | 
 | callback | 指向录屏内容变更回调方法实例的指针[OH_AVScreenCapture_OnCaptureContentChanged](#oh_avscreencapture_oncapturecontentchanged)。 | 
-| userData | 指向应用提供的自定义数据的指针，在回调方法被调用时作为入参回传。 | 
+| userData | 指向应用提供的自定义数据的指针，在错误处理回调方法被调用时作为入参回传。 | 
 
 **返回：**
 
 函数结果代码[OH_AVSCREEN_CAPTURE_ErrCode](#oh_avscreen_capture_errcode-1)：
 
-AV_SCREEN_CAPTURE_ERR_OK：执行成功。
+AV_SCREEN_CAPTURE_ERR_OK：操作成功。
 
-AV_SCREEN_CAPTURE_ERR_INVALID_VAL：输入参数capture为空指针，或者输入参数callback为空指针。
+AV_SCREEN_CAPTURE_ERR_INVALID_VAL：参数无效，输入参数capture或callback为空指针。
 
 AV_SCREEN_CAPTURE_ERR_OPERATE_NOT_PERMIT：不允许操作，设置录屏内容回调失败。
