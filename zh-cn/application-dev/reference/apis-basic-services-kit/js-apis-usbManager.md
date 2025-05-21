@@ -118,7 +118,7 @@ connectDevice(device: USBDevice): Readonly&lt;USBDevicePipe&gt;
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
-| 14400001 | Permission denied. Call requestRight to get the permission first. |
+| 14400001 | Access right denied. Call requestRight to get the USBDevicePipe access right first. |
 
 **示例：**
 
@@ -1000,7 +1000,7 @@ openAccessory(accessory: USBAccessory): USBAccessoryHandle;
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
-| 14400001 | Permission denied. Call requestAccessoryRight to get the right first. |
+| 14400001 | Access right denied. Call requestRight to get the USBDevicePipe access right first. |
 | 14400004 | Service exception. Possible causes: 1. No accessory is plugged in. |
 | 14401001 | The target USBAccessory not matched.                         |
 | 14401002 | Failed to open the native accessory node.                    |

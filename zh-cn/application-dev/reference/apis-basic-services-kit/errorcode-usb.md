@@ -8,7 +8,7 @@
 
 **错误信息**
 
-Permission denied. Call requestRight to get the permission first.
+Access right denied. Call requestRight to get the USBDevicePipe access right first.
 
 **错误描述**
 
