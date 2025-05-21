@@ -738,6 +738,7 @@ Enter键的功能类型。
 | cursorInfo<sup>10+</sup>  | [CursorInfo](#cursorinfo10) | 否 | 是 | 光标信息。|
 | selection<sup>10+</sup>  | [Range](#range10) | 否 | 是 | 文本选中的范围。|
 | windowId<sup>10+</sup>  | number | 否 | 是 | 编辑框所在的窗口Id。|
+| newEditBox<sup>20+</sup> | boolean | 否 | 是 | 表示是否为新编辑框。true表示新编辑框，false表示非新编辑框。 |
 
 ## CursorInfo<sup>10+</sup>
 
