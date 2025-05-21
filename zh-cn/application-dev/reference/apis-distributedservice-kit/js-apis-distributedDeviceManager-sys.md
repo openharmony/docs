@@ -386,7 +386,7 @@ getDeviceProfileInfoList(filterOptions: DeviceProfileInfoFilterOptions): Promise
   try {
     let dmInstance = distributedDeviceManager.createDeviceManager('ohos.samples.jsHelloWorld');
     dmInstance.getDeviceProfileInfoList({"isCloud": false}).then((data: Array<distributedDeviceManager.DeviceProfileInfo>) => {
-      this.deviceProfileInfos = data;
+      console.log('getDeviceProfileInfoList' + JSON.stringify(data));
     }).catch((err: BusinessError) => {
       console.error('getDeviceProfileInfoList errCode:' + e.code + ',errMessage:' + e.message);
     });
@@ -394,7 +394,6 @@ getDeviceProfileInfoList(filterOptions: DeviceProfileInfoFilterOptions): Promise
     let e: BusinessError = err as BusinessError;
     console.error('getDeviceProfileInfoList errCode:' + e.code + ',errMessage:' + e.message);
   }
-
   ```
 
 ### putDeviceProfileInfoList<sup>18+</sup>
@@ -451,7 +450,6 @@ putDeviceProfileInfoList(deviceProfileInfoList: Array<DeviceProfileInfo>): Promi
     let e: BusinessError = err as BusinessError;
     console.error('putDeviceProfileInfoList errCode:' + e.code + ',errMessage:' + e.message);
   }
-
   ```
 
 ### getDeviceIconInfo<sup>18+</sup>
@@ -786,5 +784,4 @@ getDeviceNetworkIdList(filterOptions: NetworkIdQueryFilter): Promise<Array<strin
     let e: BusinessError = err as BusinessError;
     console.error('getDeviceNetworkIdList errCode:' + e.code + ',errMessage:' + e.message);
   }
-
   ```
