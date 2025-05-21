@@ -67,7 +67,7 @@ import { InputMethodListDialog, Pattern, PatternOptions } from '@kit.IMEKit';
 @Entry
 // 设置组件
 @Component
-export struct settingsItem {
+struct settingsItem {
   @State defaultPattern: number = 1;
   private oneHandAction: PatternOptions = {
     defaultSelected: this.defaultPattern,
