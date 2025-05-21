@@ -3215,7 +3215,7 @@ onAlert(callback: Callback\<OnAlertEvent, boolean\>)
 
 | 参数名     | 类型                   | 必填   | 说明            |
 | ------- | --------------------- | ---- | --------------- |
-| callback     | Callback\<[OnAlertEvent](#onalertevent12), boolean\>                | 是    | 网页触发alert()告警弹窗时触发<br>返回值boolean。当回调返回true时，应用可以调用自定义弹窗能力（包括确认和取消），并且需要根据用户的确认或取消操作调用JsResult通知Web组件最终是否离开当前页面。当回调返回false时，函数中绘制的自定义弹窗无效。 |
+| callback     | Callback\<[OnAlertEvent](#onalertevent12), boolean\>                | 是    | 网页触发alert()告警弹窗时触发。<br>返回值boolean。当回调返回true时，应用可以调用自定义弹窗能力（包括确认和取消），并且需要根据用户的确认或取消操作调用JsResult通知Web组件最终确认结果。当回调返回false时，弹窗的处理结果会被视为取消。 |
 
 **示例：**
 
@@ -3240,12 +3240,6 @@ onAlert(callback: Callback\<OnAlertEvent, boolean\>)
                 title: 'onAlert',
                 message: 'text',
                 primaryButton: {
-                  value: 'cancel',
-                  action: () => {
-                    event.result.handleCancel();
-                  }
-                },
-                secondaryButton: {
                   value: 'ok',
                   action: () => {
                     event.result.handleConfirm();
@@ -3375,7 +3369,7 @@ onConfirm(callback: Callback\<OnConfirmEvent, boolean\>)
 
 | 参数名     | 类型                  | 必填   | 说明            |
 | ------- | --------------------- | ---- | --------------- |
-| callback     | Callback\<[OnConfirmEvent](#onconfirmevent12), boolean\>                | 是    | 网页调用confirm()告警时触发<br>返回值boolean。当回调返回true时，应用可以调用自定义弹窗能力（包括确认和取消），并且需要根据用户的确认或取消操作调用JsResult通知Web组件最终是否离开当前页面。当回调返回false时，函数中绘制的自定义弹窗无效。 |
+| callback     | Callback\<[OnConfirmEvent](#onconfirmevent12), boolean\>                | 是    | 网页调用confirm()告警时触发。<br>返回值boolean。当回调返回true时，应用可以调用自定义弹窗能力（包括确认和取消），并且需要根据用户的确认或取消操作调用JsResult通知Web组件最终确认结果。当回调返回false时，弹窗的处理结果会被视为取消。 |
 
 **示例：**
 
@@ -3464,47 +3458,80 @@ onPrompt(callback: Callback\<OnPromptEvent, boolean\>)
 
 | 参数名     | 类型                  | 必填   | 说明            |
 | ------- | --------------------- | ---- | --------------- |
-| callback     | Callback\<[OnPromptEvent](#onpromptevent12), boolean\>                | 是    | 网页调用prompt()告警时触发。<br>返回值boolean。当回调返回true时，应用可以调用自定义弹窗能力（包括确认和取消），并且需要根据用户的确认或取消操作调用JsResult通知Web组件最终是否离开当前页面。当回调返回false时，函数中绘制的自定义弹窗无效。 |
+| callback     | Callback\<[OnPromptEvent](#onpromptevent12), boolean\>                | 是    | 网页调用prompt()告警时触发。<br>返回值boolean。当回调返回true时，应用可以调用自定义弹窗能力（包括确认、取消和输入），并且需要根据用户的确认或取消操作调用JsResult通知Web组件最终处理结果。当回调返回false时，弹窗的处理结果会被视为取消。 |
 
 **示例：**
 
   ```ts
   // xxx.ets
+  import { CustomContentDialog } from '@kit.ArkUI';
   import { webview } from '@kit.ArkWeb';
 
   @Entry
   @Component
   struct WebComponent {
-    controller: webview.WebviewController = new webview.WebviewController();
-    uiContext: UIContext = this.getUIContext();
+    @State message: string = 'Hello World';
+    @State title: string = 'Hello World';
+    @State result: JsResult | null = null;
+    promptResult: string = '';
+    webviewController: webview.WebviewController = new webview.WebviewController();
+    dialogController: CustomDialogController = new CustomDialogController({
+      builder: CustomContentDialog({
+        primaryTitle: this.title,
+        contentBuilder: () => {
+          this.buildContent();
+        },
+        buttons: [
+          {
+            value: '取消',
+            buttonStyle: ButtonStyleMode.TEXTUAL,
+            action: () => {
+              console.info('Callback when the button is clicked');
+              this.result?.handleCancel()
+            }
+          },
+          {
+            value: '确认',
+            buttonStyle: ButtonStyleMode.TEXTUAL,
+            action: () => {
+              this.result?.handlePromptConfirm(this.promptResult);
+            }
+          }
+        ],
+      }),
+      onWillDismiss: () => {
+        this.result?.handleCancel();
+        this.dialogController.close();
+      }
+    });
+
+    // 自定义弹出框的内容区
+    @Builder
+    buildContent(): void {
+      Column() {
+        Text(this.message)
+        TextInput()
+          .onChange((value) => {
+            this.promptResult = value;
+          })
+          .defaultFocus(true)
+      }
+      .width('100%')
+    }
 
     build() {
       Column() {
-        Web({ src: $rawfile("index.html"), controller: this.controller })
+        Web({ src: $rawfile('index.html'), controller: this.webviewController })
           .onPrompt((event) => {
             if (event) {
-              console.log("url:" + event.url);
-              console.log("message:" + event.message);
-              console.log("value:" + event.value);
-              this.uiContext.showAlertDialog({
-                title: 'onPrompt',
-                message: 'text',
-                primaryButton: {
-                  value: 'cancel',
-                  action: () => {
-                    event.result.handleCancel();
-                  }
-                },
-                secondaryButton: {
-                  value: 'ok',
-                  action: () => {
-                    event.result.handlePromptConfirm(event.value);
-                  }
-                },
-                cancel: () => {
-                  event.result.handleCancel();
-                }
-              })
+              console.log("event.url:" + event.url);
+              console.log("event.message:" + event.message);
+              console.log("event.value:" + event.value);
+              this.title = "来自" + event.url + "的消息";
+              this.message = event.message;
+              this.promptResult = event.value;
+              this.result = event.result;
+              this.dialogController.open();
             }
             return true;
           })
