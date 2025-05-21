@@ -1,6 +1,6 @@
 # @ohos.vibrator (振动)
 
-vibrator模块提供控制马达振动启、停的能力。
+vibrator模块提供控制设备马达振动的能力。包括启动指定时长、预置效果、自定义文件等模式的振动；停止指定时长、预置效果或所有模式的振动。
 
 > **说明：**
 >
@@ -21,7 +21,7 @@ startVibration(effect: VibrateEffect, attribute: VibrateAttribute, callback: Asy
 
 **需要权限**：ohos.permission.VIBRATE
 
-**原子化服务API**：从API Version 11开始，该接口支持在原子化服务中使用。
+**元服务API**：从API Version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Sensors.MiscDevice
 
@@ -29,9 +29,9 @@ startVibration(effect: VibrateEffect, attribute: VibrateAttribute, callback: Asy
 
 | 参数名    | 类型                                   | 必填 | 说明                                                         |
 | --------- | -------------------------------------- | ---- | :----------------------------------------------------------- |
-| effect    | [VibrateEffect](#vibrateeffect9)       | 是   | 马达振动效果，支持四种：<br>1、[VibrateTime](#vibratetime9)：按照指定持续时间触发马达振动；<br>2、[VibratePreset](#vibratepreset9)：按照预置振动效果触发马达振动；<br>3、[VibrateFromFile](#vibratefromfile10)：按照自定义振动配置文件触发马达振动；<br/>4、[VibrateFromPattern<sup>18+</sup>](#vibratefrompattern18)：按照自定义振动效果触发马达振动。 |
+| effect    | [VibrateEffect](#vibrateeffect9)       | 是   | 马达振动效果，支持四种：<br>1、[VibratePreset](#vibratepreset9)：按照预置振动效果触发马达振动，适用于交互反馈类的短振场景（如点击长按，滑动，拖拽等），为确保与系统整体振感反馈体验风格一致，推荐使用此接口；<br>2、[VibrateFromFile](#vibratefromfile10)：按照文件形式定制自定义振动效果触发马达振动，适用于匹配复杂场景效果的交互反馈（如表情包触发的拟真效果、游戏场景/操作反馈）；<br>3、[VibrateTime](#vibratetime9)：按照指定时长触发马达振动，仅对振动时长进行启动或停止控制，满足基础功能，无法对振动强度、频率等维度进行个性化设置，此种振动调节不够细腻，无法满足精致体验；<br/>4、[VibrateFromPattern<sup>18+</sup>](#vibratefrompattern18)：按照自定义振动效果触发马达振动。使用场景和VibrateFromFile一致。VibrateFromFile是面向文件中提前定制好的效果，将具体的振动事件以文件描述符形式传递到接口中；VibrateFromPattern提供更加灵活的振动事件排列组合，将振动事件以振动事件数组的形式传递到接口中。<br/> |
 | attribute | [VibrateAttribute](#vibrateattribute9) | 是   | 马达振动属性。                                               |
-| callback  | AsyncCallback&lt;void&gt;              | 是   | 回调函数，当马达振动成功，err为undefined，否则为错误对象。   |
+| callback  | AsyncCallback&lt;void&gt;              | 是   | 回调函数。当马达振动成功，err为undefined；否则为错误对象，包含错误码和错误信息。 |
 
 **错误码**：
 
@@ -46,108 +46,123 @@ startVibration(effect: VibrateEffect, attribute: VibrateAttribute, callback: Asy
 
 **示例**：
 
-按照指定持续时间触发马达振动：
+1.按照预置振动效果触发马达振动：
 
-```ts
-import { vibrator } from '@kit.SensorServiceKit';
-import { BusinessError } from '@kit.BasicServicesKit';
+   ```ts
+   import { vibrator } from '@kit.SensorServiceKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
 
-try {
-  vibrator.startVibration({
-    type: 'time',
-    duration: 1000,
-  }, {
-    id: 0,
-    usage: 'alarm' // 根据实际选择类型归属不同的开关管控
-  }, (error: BusinessError) => {
-    if (error) {
-      console.error(`Failed to start vibration. Code: ${error.code}, message: ${error.message}`);
-      return;
-    }
-    console.info('Succeed in starting vibration');
-  });
-} catch (err) {
-  let e: BusinessError = err as BusinessError;
-  console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
-}
-```
+   try {
+     // 查询是否支持'haptic.clock.timer'
+     vibrator.isSupportEffect('haptic.clock.timer', (err: BusinessError, state: boolean) => {
+       if (err) {
+         console.error(`Failed to query effect. Code: ${err.code}, message: ${err.message}`);
+         return;
+       }
+       console.info('Succeed in querying effect');
+       if (state) {
+         try {
+           vibrator.startVibration({
+             type: 'preset',
+             effectId: 'haptic.clock.timer',
+             count: 1,
+           }, {
+             usage: 'alarm' // 根据实际选择类型归属不同的开关管控
+           }, (error: BusinessError) => {
+             if (error) {
+               console.error(`Failed to start vibration. Code: ${error.code}, message: ${error.message}`);
+			   return;
+             }
+             console.info('Succeed in starting vibration');
+          
+           });
+         } catch (err) {
+           let e: BusinessError = err as BusinessError;
+		   console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
+         }
+       }
+     })
+   } catch (error) {
+     let e: BusinessError = error as BusinessError;
+     console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
+   }
+   ```
 
-按照预置振动效果触发马达振动：
+2.按照自定义振动配置文件触发马达振动：
 
-```ts
-import { vibrator } from '@kit.SensorServiceKit';
-import { BusinessError } from '@kit.BasicServicesKit';
+   ```ts
+   import { vibrator } from '@kit.SensorServiceKit';
+   import { resourceManager } from '@kit.LocalizationKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
 
-try {
-  vibrator.startVibration({
-    type: 'preset',
-    effectId: 'haptic.clock.timer',
-    count: 1,
-  }, {
-    id: 0,
-    usage: 'alarm' // 根据实际选择类型归属不同的开关管控
-  }, (error: BusinessError) => {
-    if (error) {
-      console.error(`Failed to start vibration. Code: ${error.code}, message: ${error.message}`);
-      return;
-    }
-    console.info('Succeed in starting vibration');
-  });
-} catch (err) {
-  let e: BusinessError = err as BusinessError;
-  console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
-}
-```
+   const fileName: string = 'xxx.json';
 
-按照自定义振动配置文件触发马达振动：
+   @Entry
+   @Component
+   struct Index {
+     uiContext = this.getUIContext();
 
-```ts
-import { vibrator } from '@kit.SensorServiceKit';
-import { resourceManager } from '@kit.LocalizationKit';
-import { BusinessError } from '@kit.BasicServicesKit';
+     build() {
+       Row() {
+         Column() {
+           Button('alarm-file')
+             .onClick(() => {
+               let rawFd: resourceManager.RawFileDescriptor | undefined = this.uiContext.getHostContext()?.resourceManager.getRawFdSync(fileName);
+               if (rawFd != undefined) {
+                 try {
+                   vibrator.startVibration({
+                     type: "file",
+                     hapticFd: { fd: rawFd.fd, offset: rawFd.offset, length: rawFd.length }
+                   }, {
+                     id: 0,
+                     usage: 'alarm' // 根据实际选择类型归属不同的开关管控
+                   }, (error: BusinessError) => {
+                     if (error) {
+                       console.error(`Failed to start vibration. Code: ${error.code}, message: ${error.message}`);
+                       return;
+                     }
+                     console.info('Succeed in starting vibration');
+                   });
+                 } catch (err) {
+                   let e: BusinessError = err as BusinessError;
+                   console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
+                 }
+               }
+               this.uiContext.getHostContext()?.resourceManager.closeRawFdSync(fileName);
+             })
+         }
+         .width('100%')
+       }
+       .height('100%')
+     }
+   }
+   ```
 
-const fileName: string = 'xxx.json';
+3.按照指定时长触发马达振动：
 
-@Entry
-@Component
-struct Index {
-  uiContext = this.getUIContext();
+   ```ts
+   import { vibrator } from '@kit.SensorServiceKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
 
-  build() {
-    Row() {
-      Column() {
-        Button('alarm-file')
-          .onClick(() => {
-            let rawFd: resourceManager.RawFileDescriptor | undefined = this.uiContext.getHostContext()?.resourceManager.getRawFdSync(fileName);
-            if (rawFd != undefined) {
-              try {
-                vibrator.startVibration({
-                  type: "file",
-                  hapticFd: { fd: rawFd.fd, offset: rawFd.offset, length: rawFd.length }
-                }, {
-                  id: 0,
-                  usage: 'alarm' // 根据实际选择类型归属不同的开关管控
-                }, (error: BusinessError) => {
-                  if (error) {
-                    console.error(`Failed to start vibration. Code: ${error.code}, message: ${error.message}`);
-                    return;
-                  }
-                  console.info('Succeed in starting vibration');
-                });
-              } catch (err) {
-                let e: BusinessError = err as BusinessError;
-                console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
-              }
-            }
-            this.uiContext.getHostContext()?.resourceManager.closeRawFdSync(fileName);
-          })
-      }
-      .width('100%')
-    }
-    .height('100%')
-  }
-}
-```
+   try {
+     vibrator.startVibration({
+       type: 'time',
+       duration: 1000,
+     }, {
+       id: 0,
+       usage: 'alarm' // 根据实际选择类型归属不同的开关管控
+     }, (error: BusinessError) => {
+       if (error) {
+         console.error(`Failed to start vibration. Code: ${error.code}, message: ${error.message}`);
+         return;
+       }
+       console.info('Succeed in starting vibration');
+     });
+   } catch (err) {
+     let e: BusinessError = err as BusinessError;
+     console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
+   }
+   ```
 
 ## vibrator.startVibration<sup>9+</sup>
 
@@ -157,7 +172,7 @@ startVibration(effect: VibrateEffect, attribute: VibrateAttribute): Promise&lt;v
 
 **需要权限**：ohos.permission.VIBRATE
 
-**原子化服务API**：从API Version 11开始，该接口支持在原子化服务中使用。
+**元服务API**：从API Version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Sensors.MiscDevice
 
@@ -165,13 +180,13 @@ startVibration(effect: VibrateEffect, attribute: VibrateAttribute): Promise&lt;v
 
 | 参数名    | 类型                                   | 必填 | 说明                                                         |
 | --------- | -------------------------------------- | ---- | ------------------------------------------------------------ |
-| effect    | [VibrateEffect](#vibrateeffect9)       | 是   | 马达振动效果，支持四种：<br>1、[VibrateTime](#vibratetime9)：按照指定持续时间触发马达振动；<br>2、[VibratePreset](#vibratepreset9)：按照预置振动效果触发马达振动；<br>3、[VibrateFromFile](#vibratefromfile10)：按照自定义振动配置文件触发马达振动；<br/>4、[VibrateFromPattern<sup>18+</sup>](#vibratefrompattern18)：按照自定义振动效果触发马达振动。 |
+| effect    | [VibrateEffect](#vibrateeffect9)       | 是   | 马达振动效果，支持四种：<br/>1、[VibrateTime](#vibratetime9)：按照预置振动效果触发马达振动，适用于交互反馈类的短振场景（如点击长按，滑动，拖拽等），为确保与系统整体振感反馈体验风格一致，推荐使用此接口；<br/>2、[VibratePreset](#vibratepreset9)：按照文件形式定制自定义振动效果触发马达振动，适用于匹配复杂场景效果的交互反馈（如表情包触发的拟真效果、游戏场景/操作反馈）；<br/>3、[VibrateFromFile](#vibratefromfile10)：按照指定时长触发马达振动，仅对振动时长进行启动或停止控制，满足基础功能，无法对振动强度、频率等维度进行个性化设置，此种振动调节不够细腻，无法满足精致体验；<br/>4、[VibrateFromPattern<sup>18+</sup>](#vibratefrompattern18)：按照自定义振动效果触发马达振动。使用场景和VibrateFromFile一致。VibrateFromFile是面向文件中提前定制好的效果，将具体的振动事件以文件描述符形式传递到接口中；VibrateFromPattern提供更加灵活的振动事件排列组合，将振动事件以振动事件数组的形式传递到接口中。 |
 | attribute | [VibrateAttribute](#vibrateattribute9) | 是   | 马达振动属性。                                               |
 
 **返回值**：
 
-| 类型                | 说明                                   |
-| ------------------- | -------------------------------------- |
+| 类型                | 说明                      |
+| ------------------- | ------------------------- |
 | Promise&lt;void&gt; | 无返回结果的Promise对象。 |
 
 **错误码**：
@@ -187,104 +202,121 @@ startVibration(effect: VibrateEffect, attribute: VibrateAttribute): Promise&lt;v
 
 **示例**：
 
-按照指定持续时间触发马达振动：
+1.按照预置振动效果触发马达振动：
 
-```ts
-import { vibrator } from '@kit.SensorServiceKit';
-import { BusinessError } from '@kit.BasicServicesKit';
+   ```ts
+   import { vibrator } from '@kit.SensorServiceKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
 
-try {
-  vibrator.startVibration({
-    type: 'time',
-    duration: 1000
-  }, {
-    id: 0,
-    usage: 'alarm' // 根据实际选择类型归属不同的开关管控
-  }).then(() => {
-    console.info('Succeed in starting vibration');
-  }, (error: BusinessError) => {
-    console.error(`Failed to start vibration. Code: ${error.code}, message: ${error.message}`);
-  });
-} catch (err) {
-  let e: BusinessError = err as BusinessError;
-  console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
-}
-```
+   try {
+     // 查询是否支持'haptic.clock.timer'
+     vibrator.isSupportEffect('haptic.clock.timer', (err: BusinessError, state: boolean) => {
+       if (err) {
+         console.error(`Failed to query effect. Code: ${err.code}, message: ${err.message}`);
+         return;
+       }
+       console.info('Succeed in querying effect');
+       if (state) {
+         try {
+           vibrator.startVibration({
+             type: 'preset',
+             effectId: 'haptic.clock.timer',
+             count: 1,
+           }, {
+             usage: 'alarm' // 根据实际选择类型归属不同的开关管控
+           }, (error: BusinessError) => {
+             if (error) {
+               console.error(`Failed to start vibration. Code: ${error.code}, message: ${error.message}`);
+			         return;
+             }
+             console.info('Succeed in starting vibration');
+          
+           });
+         } catch (err) {
+           let e: BusinessError = err as BusinessError;
+		       console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
+         }
+       }
+     })
+   } catch (error) {
+     let e: BusinessError = error as BusinessError;
+     console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
+   }
+   ```
 
-按照预置振动效果触发马达振动：
+2.按照自定义振动配置文件触发马达振动：
 
-```ts
-import { vibrator } from '@kit.SensorServiceKit';
-import { BusinessError } from '@kit.BasicServicesKit';
+   ```ts
+   import { vibrator } from '@kit.SensorServiceKit';
+   import { resourceManager } from '@kit.LocalizationKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
 
-try {
-  vibrator.startVibration({
-    type: 'preset',
-    effectId: 'haptic.clock.timer',
-    count: 1,
-  }, {
-    id: 0,
-    usage: 'alarm' // 根据实际选择类型归属不同的开关管控
-  }).then(() => {
-    console.info('Succeed in starting vibration');
-  }, (error: BusinessError) => {
-    console.error(`Failed to start vibration. Code: ${error.code}, message: ${error.message}`);
-  });
-} catch (err) {
-  let e: BusinessError = err as BusinessError;
-  console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
-}
-```
+   const fileName: string = 'xxx.json';
 
-按照自定义振动配置文件触发马达振动：
+   @Entry
+   @Component
+   struct Index {
+     uiContext = this.getUIContext();
 
-```ts
-import { vibrator } from '@kit.SensorServiceKit';
-import { resourceManager } from '@kit.LocalizationKit';
-import { BusinessError } from '@kit.BasicServicesKit';
+     build() {
+       Row() {
+         Column() {
+           Button('alarm-file')
+             .onClick(() => {
+               let rawFd: resourceManager.RawFileDescriptor | undefined = this.uiContext.getHostContext()?.resourceManager.getRawFdSync(fileName);
+               if (rawFd != undefined) {
+                 try {
+                   vibrator.startVibration({
+                     type: "file",
+                     hapticFd: { fd: rawFd.fd, offset: rawFd.offset, length: rawFd.length }
+                   }, {
+                     id: 0,
+                     usage: 'alarm' // 根据实际选择类型归属不同的开关管控
+                   }, (error: BusinessError) => {
+                     if (error) {
+                       console.error(`Failed to start vibration. Code: ${error.code}, message: ${error.message}`);
+                       return;
+                     }
+                     console.info('Succeed in starting vibration');
+                   });
+                 } catch (err) {
+                   let e: BusinessError = err as BusinessError;
+                   console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
+                 }
+               }
+               this.uiContext.getHostContext()?.resourceManager.closeRawFdSync(fileName);
+             })
+         }
+         .width('100%')
+       }
+       .height('100%')
+     }
+   }
+   ```
 
-const fileName: string = 'xxx.json';
+3.按照指定时长触发马达振动：
 
-@Entry
-@Component
-struct Index {
-  uiContext = this.getUIContext();
+   ```ts
+   import { vibrator } from '@kit.SensorServiceKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
 
-  build() {
-    Row() {
-      Column() {
-        Button('alarm-file')
-          .onClick(() => {
-            let rawFd: resourceManager.RawFileDescriptor | undefined = this.uiContext.getHostContext()?.resourceManager.getRawFdSync(fileName);
-            if (rawFd != undefined) {
-              try {
-                vibrator.startVibration({
-                  type: "file",
-                  hapticFd: { fd: rawFd.fd, offset: rawFd.offset, length: rawFd.length }
-                }, {
-                  id: 0,
-                  usage: 'alarm' // 根据实际选择类型归属不同的开关管控
-                }, (error: BusinessError) => {
-                  if (error) {
-                    console.error(`Failed to start vibration. Code: ${error.code}, message: ${error.message}`);
-                    return;
-                  }
-                  console.info('Succeed in starting vibration');
-                });
-              } catch (err) {
-                let e: BusinessError = err as BusinessError;
-                console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
-              }
-            }
-            this.uiContext.getHostContext()?.resourceManager.closeRawFdSync(fileName);
-          })
-      }
-      .width('100%')
-    }
-    .height('100%')
-  }
-}
-```
+   try {
+     vibrator.startVibration({
+       type: 'time',
+       duration: 1000
+     }, {
+       id: 0,
+       usage: 'alarm' // 根据实际选择类型归属不同的开关管控
+     }).then(() => {
+       console.info('Succeed in starting vibration');
+     }, (error: BusinessError) => {
+       console.error(`Failed to start vibration. Code: ${error.code}, message: ${error.message}`);
+     });
+   } catch (err) {
+     let e: BusinessError = err as BusinessError;
+     console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
+   }
+   ```
 
 ## vibrator.stopVibration<sup>9+</sup>
 
@@ -314,88 +346,88 @@ stopVibration(stopMode: VibratorStopMode, callback: AsyncCallback&lt;void&gt;): 
 
 **示例**：
 
-停止固定时长振动：
+1.停止指定时长振动：
 
-```ts
-import { vibrator } from '@kit.SensorServiceKit';
-import { BusinessError } from '@kit.BasicServicesKit';
+   ```ts
+   import { vibrator } from '@kit.SensorServiceKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
 
-try {
-  // 按照固定时长振动
-  vibrator.startVibration({
-    type: 'time',
-    duration: 1000,
-  }, {
-    id: 0,
-    usage: 'alarm' // 根据实际选择类型归属不同的开关管控
-  }, (error: BusinessError) => {
-    if (error) {
-      console.error(`Failed to start vibration. Code: ${error.code}, message: ${error.message}`);
-      return;
-    }
-    console.info('Succeed in starting vibration');
-  });
-} catch (err) {
-  let e: BusinessError = err as BusinessError;
-  console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
-}
+   try {
+     // 按照指定时长振动
+     vibrator.startVibration({
+       type: 'time',
+       duration: 1000,
+     }, {
+       id: 0,
+       usage: 'alarm' // 根据实际选择类型归属不同的开关管控
+     }, (error: BusinessError) => {
+       if (error) {
+         console.error(`Failed to start vibration. Code: ${error.code}, message: ${error.message}`);
+         return;
+       }
+       console.info('Succeed in starting vibration');
+     });
+   } catch (err) {
+     let e: BusinessError = err as BusinessError;
+     console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
+   }
 
-try {
-  // 按照VIBRATOR_STOP_MODE_TIME模式停止振动
-  vibrator.stopVibration(vibrator.VibratorStopMode.VIBRATOR_STOP_MODE_TIME, (error: BusinessError) => {
-    if (error) {
-      console.error(`Failed to stop vibration. Code: ${error.code}, message: ${error.message}`);
-      return;
-    }
-    console.info('Succeed in stopping vibration');
-  })
-} catch (err) {
-  let e: BusinessError = err as BusinessError;
-  console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
-}
-```
+   try {
+     // 按照VIBRATOR_STOP_MODE_TIME模式停止振动
+     vibrator.stopVibration(vibrator.VibratorStopMode.VIBRATOR_STOP_MODE_TIME, (error: BusinessError) => {
+       if (error) {
+         console.error(`Failed to stop vibration. Code: ${error.code}, message: ${error.message}`);
+         return;
+       }
+       console.info('Succeed in stopping vibration');
+     })
+   } catch (err) {
+     let e: BusinessError = err as BusinessError;
+     console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
+   }
+   ```
 
-停止预置振动：
+2.停止预置振动：
 
-```ts
-import { vibrator } from '@kit.SensorServiceKit';
-import { BusinessError } from '@kit.BasicServicesKit';
+   ```ts
+   import { vibrator } from '@kit.SensorServiceKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
 
-try {
-  // 按照预置效果振动
-  vibrator.startVibration({
-    type: 'preset',
-    effectId: 'haptic.clock.timer',
-    count: 1,
-  }, {
-    id: 0,
-    usage: 'alarm' // 根据实际选择类型归属不同的开关管控
-  }, (error: BusinessError) => {
-    if (error) {
-      console.error(`Failed to start vibration. Code: ${error.code}, message: ${error.message}`);
-      return;
-    }
-    console.info('Succeed in starting vibration');
-  });
-} catch (err) {
-  let e: BusinessError = err as BusinessError;
-  console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
-}
+   try {
+     // 按照预置效果振动
+     vibrator.startVibration({
+       type: 'preset',
+       effectId: 'haptic.clock.timer',
+       count: 1,
+     }, {
+       id: 0,
+       usage: 'alarm' // 根据实际选择类型归属不同的开关管控
+     }, (error: BusinessError) => {
+       if (error) {
+         console.error(`Failed to start vibration. Code: ${error.code}, message: ${error.message}`);
+         return;
+       }
+       console.info('Succeed in starting vibration');
+     });
+   } catch (err) {
+     let e: BusinessError = err as BusinessError;
+     console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
+   }
 
-try {
-  // 按照VIBRATOR_STOP_MODE_PRESET模式停止振动
-  vibrator.stopVibration(vibrator.VibratorStopMode.VIBRATOR_STOP_MODE_PRESET, (error: BusinessError) => {
-    if (error) {
-      console.error(`Failed to stop vibration. Code: ${error.code}, message: ${error.message}`);
-      return;
-    }
-    console.info('Succeed in stopping vibration');
-  })
-} catch (err) {
-  let e: BusinessError = err as BusinessError;
-  console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
-}
-```
+   try {
+     // 按照VIBRATOR_STOP_MODE_PRESET模式停止振动
+     vibrator.stopVibration(vibrator.VibratorStopMode.VIBRATOR_STOP_MODE_PRESET, (error: BusinessError) => {
+       if (error) {
+         console.error(`Failed to stop vibration. Code: ${error.code}, message: ${error.message}`);
+         return;
+       }
+       console.info('Succeed in stopping vibration');
+     })
+   } catch (err) {
+     let e: BusinessError = err as BusinessError;
+     console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
+   }
+   ```
 
 ## vibrator.stopVibration<sup>9+</sup>
 
@@ -409,14 +441,14 @@ stopVibration(stopMode: VibratorStopMode): Promise&lt;void&gt;
 
 **参数**：
 
-| 参数名   | 类型                                  | 必填 | 说明                     |
-| -------- | ------------------------------------- | ---- | ------------------------ |
-| stopMode | [VibratorStopMode](#vibratorstopmode) | 是   | 指定的停止振动模式，支持两种：<br>VIBRATOR_STOP_MODE_TIME：停止固定时长振动；<br>VIBRATOR_STOP_MODE_PRESET：停止预置振动。<br>此接口无法停止自定义振动，请使用[vibrator.stopVibration<sup>10+</sup>](#vibratorstopvibration10-1)。 |
+| 参数名   | 类型                                  | 必填 | 说明                                                         |
+| -------- | ------------------------------------- | ---- | ------------------------------------------------------------ |
+| stopMode | [VibratorStopMode](#vibratorstopmode) | 是   | 支持停止两种指定的振动模式：<br>VIBRATOR_STOP_MODE_TIME：停止指定时长振动；<br>VIBRATOR_STOP_MODE_PRESET：停止预置振动。<br>此接口无法停止自定义振动，请使用[vibrator.stopVibration<sup>10+</sup>](#vibratorstopvibration10-1)。 |
 
 **返回值**：
 
-| 类型                | 说明                                   |
-| ------------------- | -------------------------------------- |
+| 类型                | 说明          |
+| ------------------- | ------------- |
 | Promise&lt;void&gt; | Promise对象。 |
 
 **错误码**：
@@ -430,80 +462,80 @@ stopVibration(stopMode: VibratorStopMode): Promise&lt;void&gt;
 
 **示例**：
 
-停止固定时长振动：
+1.停止指定时长振动：
 
-```ts
-import { vibrator } from '@kit.SensorServiceKit';
-import { BusinessError } from '@kit.BasicServicesKit';
+   ```ts
+   import { vibrator } from '@kit.SensorServiceKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
 
-try {
-  // 按照固定时长振动
-  vibrator.startVibration({
-    type: 'time',
-    duration: 1000,
-  }, {
-    id: 0,
-    usage: 'alarm' // 根据实际选择类型归属不同的开关管控
-  }).then(() => {
-    console.info('Succeed in starting vibration');
-  }, (error: BusinessError) => {
-    console.error(`Failed to start vibration. Code: ${error.code}, message: ${error.message}`);
-  });
-} catch (err) {
-  let e: BusinessError = err as BusinessError;
-  console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
-}
+   try {
+     // 按照指定时长振动
+     vibrator.startVibration({
+       type: 'time',
+       duration: 1000,
+     }, {
+       id: 0,
+       usage: 'alarm' // 根据实际选择类型归属不同的开关管控
+     }).then(() => {
+       console.info('Succeed in starting vibration');
+     }, (error: BusinessError) => {
+       console.error(`Failed to start vibration. Code: ${error.code}, message: ${error.message}`);
+     });
+   } catch (err) {
+     let e: BusinessError = err as BusinessError;
+     console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
+   }
 
-try {
-  // 按照VIBRATOR_STOP_MODE_TIME模式停止振动
-  vibrator.stopVibration(vibrator.VibratorStopMode.VIBRATOR_STOP_MODE_TIME).then(() => {
-    console.info('Succeed in stopping vibration');
-  }, (error: BusinessError) => {
-    console.error(`Failed to stop vibration. Code: ${error.code}, message: ${error.message}`);
-  });
-} catch (err) {
-  let e: BusinessError = err as BusinessError;
-  console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
-}
-```
+   try {
+     // 按照VIBRATOR_STOP_MODE_TIME模式停止振动
+     vibrator.stopVibration(vibrator.VibratorStopMode.VIBRATOR_STOP_MODE_TIME).then(() => {
+       console.info('Succeed in stopping vibration');
+     }, (error: BusinessError) => {
+       console.error(`Failed to stop vibration. Code: ${error.code}, message: ${error.message}`);
+     });
+   } catch (err) {
+     let e: BusinessError = err as BusinessError;
+     console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
+   }
+   ```
 
-停止预置振动：
+2.停止预置振动：
 
-```ts
-import { vibrator } from '@kit.SensorServiceKit';
-import { BusinessError } from '@kit.BasicServicesKit';
+   ```ts
+   import { vibrator } from '@kit.SensorServiceKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
+  
+   try {
+     // 按照预置效果振动
+     vibrator.startVibration({
+       type: 'preset',
+       effectId: 'haptic.clock.timer',
+       count: 1,
+     }, {
+       id: 0,
+       usage: 'alarm' // 根据实际选择类型归属不同的开关管控
+     }).then(() => {
+       console.info('Succeed in starting vibration');
+     }, (error: BusinessError) => {
+       console.error(`Failed to start vibration. Code: ${error.code}, message: ${error.message}`);
+     });
+   } catch (err) {
+     let e: BusinessError = err as BusinessError;
+     console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
+   }
 
-try {
-  // 按照预置效果振动
-  vibrator.startVibration({
-    type: 'preset',
-    effectId: 'haptic.clock.timer',
-    count: 1,
-  }, {
-    id: 0,
-    usage: 'alarm' // 根据实际选择类型归属不同的开关管控
-  }).then(() => {
-    console.info('Succeed in starting vibration');
-  }, (error: BusinessError) => {
-    console.error(`Failed to start vibration. Code: ${error.code}, message: ${error.message}`);
-  });
-} catch (err) {
-  let e: BusinessError = err as BusinessError;
-  console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
-}
-
-try {
-  // 按照VIBRATOR_STOP_MODE_PRESET模式停止振动
-  vibrator.stopVibration(vibrator.VibratorStopMode.VIBRATOR_STOP_MODE_PRESET).then(() => {
-    console.info('Succeed in stopping vibration');
-  }, (error: BusinessError) => {
-    console.error(`Failed to stop vibration. Code: ${error.code}, message: ${error.message}`);
-  });
-} catch (err) {
-  let e: BusinessError = err as BusinessError;
-  console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
-}
-```
+   try {
+     // 按照VIBRATOR_STOP_MODE_PRESET模式停止振动
+     vibrator.stopVibration(vibrator.VibratorStopMode.VIBRATOR_STOP_MODE_PRESET).then(() => {
+       console.info('Succeed in stopping vibration');
+     }, (error: BusinessError) => {
+       console.error(`Failed to stop vibration. Code: ${error.code}, message: ${error.message}`);
+     });
+   } catch (err) {
+     let e: BusinessError = err as BusinessError;
+     console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
+   }
+   ```
 
 ## vibrator.stopVibration<sup>10+</sup>
 
@@ -513,7 +545,7 @@ stopVibration(callback: AsyncCallback&lt;void&gt;): void
 
 **需要权限**：ohos.permission.VIBRATE
 
-**原子化服务API**：从API Version 11开始，该接口支持在原子化服务中使用。
+**元服务API**：从API Version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Sensors.MiscDevice
 
@@ -533,24 +565,24 @@ stopVibration(callback: AsyncCallback&lt;void&gt;): void
 
 **示例**：
 
-```ts
-import { vibrator } from '@kit.SensorServiceKit';
-import { BusinessError } from '@kit.BasicServicesKit';
-
-try {
-  // 停止所有模式的马达振动
-  vibrator.stopVibration((error: BusinessError) => {
-    if (error) {
-      console.error(`Failed to stop vibration. Code: ${error.code}, message: ${error.message}`);
-      return;
-    }
-    console.info('Succeed in stopping vibration');
-  })
-} catch (error) {
-  let e: BusinessError = error as BusinessError;
-  console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
-}
-```
+   ```ts
+   import { vibrator } from '@kit.SensorServiceKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
+  
+   try {
+     // 停止所有模式的马达振动
+     vibrator.stopVibration((error: BusinessError) => {
+       if (error) {
+         console.error(`Failed to stop vibration. Code: ${error.code}, message: ${error.message}`);
+         return;
+       }
+       console.info('Succeed in stopping vibration');
+     })
+   } catch (error) {
+     let e: BusinessError = error as BusinessError;
+     console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
+   }
+   ```
 
 ## vibrator.stopVibration<sup>10+</sup>
 
@@ -560,7 +592,7 @@ stopVibration(): Promise&lt;void&gt;
 
 **需要权限**：ohos.permission.VIBRATE
 
-**原子化服务API**：从API Version 11开始，该接口支持在原子化服务中使用。
+**元服务API**：从API Version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Sensors.MiscDevice
 
@@ -580,22 +612,22 @@ stopVibration(): Promise&lt;void&gt;
 
 **示例**：
 
-```ts
-import { vibrator } from '@kit.SensorServiceKit';
-import { BusinessError } from '@kit.BasicServicesKit';
-
-try {
-  // 停止所有模式的马达振动
-  vibrator.stopVibration().then(() => {
-    console.info('Succeed in stopping vibration');
-  }, (error: BusinessError) => {
-    console.error(`Failed to stop vibration. Code: ${error.code}, message: ${error.message}`);
-  });
-} catch (error) {
-  let e: BusinessError = error as BusinessError;
-  console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
-}
-```
+   ```ts
+   import { vibrator } from '@kit.SensorServiceKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
+  
+   try {
+     // 停止所有模式的马达振动
+     vibrator.stopVibration().then(() => {
+       console.info('Succeed in stopping vibration');
+     }, (error: BusinessError) => {
+       console.error(`Failed to stop vibration. Code: ${error.code}, message: ${error.message}`);
+     });
+   } catch (error) {
+     let e: BusinessError = error as BusinessError;
+     console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
+   }
+   ```
 
 ## vibrator.stopVibrationSync<sup>12+</sup>
 
@@ -605,7 +637,7 @@ stopVibrationSync(): void
 
 **需要权限**：ohos.permission.VIBRATE
 
-**原子化服务API**：从API Version 12开始，该接口支持在原子化服务中使用。
+**元服务API**：从API Version 12开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Sensors.MiscDevice
 
@@ -620,19 +652,19 @@ stopVibrationSync(): void
 
 **示例**：
 
-```ts
-import { vibrator } from '@kit.SensorServiceKit';
-import { BusinessError } from '@kit.BasicServicesKit';
-
-try {
-  // 停止任何形式的马达振动
-    vibrator.stopVibrationSync()
-    console.info('Succeed in stopping vibration');
-} catch (error) {
-  let e: BusinessError = error as BusinessError;
-  console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
-}
-```
+   ```ts
+   import { vibrator } from '@kit.SensorServiceKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
+  
+   try {
+     // 停止任何形式的马达振动
+     vibrator.stopVibrationSync()
+     console.info('Succeed in stopping vibration');
+   } catch (error) {
+     let e: BusinessError = error as BusinessError;
+     console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
+   }
+   ```
 
 ## vibrator.isSupportEffect<sup>10+</sup>
 
@@ -644,10 +676,10 @@ isSupportEffect(effectId: string, callback: AsyncCallback&lt;boolean&gt;): void
 
 **参数**：
 
-| 参数名   | 类型                         | 必填 | 说明                                                   |
-| -------- | ---------------------------- | ---- | ------------------------------------------------------ |
-| effectId | string                       | 是   | 预置的振动效果。                                           |
-| callback | AsyncCallback&lt;boolean&gt; | 是   | 回调函数，当返回true则表示支持该effectId，否则不支持。 |
+| 参数名   | 类型                         | 必填 | 说明                                                        |
+| -------- | ---------------------------- | ---- | ----------------------------------------------------------- |
+| effectId | string                       | 是   | 待确认的预置振动效果。                                      |
+| callback | AsyncCallback&lt;boolean&gt; | 是   | 回调函数，当返回true则表示支持该effectId，返回false不支持。 |
 
 **错误码**：
 
@@ -660,45 +692,45 @@ isSupportEffect(effectId: string, callback: AsyncCallback&lt;boolean&gt;): void
 
 **示例**：
 
-```ts
-import { vibrator } from '@kit.SensorServiceKit';
-import { BusinessError } from '@kit.BasicServicesKit';
-
-try {
-  // 查询是否支持'haptic.clock.timer'
-  vibrator.isSupportEffect('haptic.clock.timer', (err: BusinessError, state: boolean) => {
-    if (err) {
-      console.error(`Failed to query effect. Code: ${err.code}, message: ${err.message}`);
-      return;
-    }
-    console.info('Succeed in querying effect');
-    if (state) {
-      try {
-        // 使用startVibration需要添加ohos.permission.VIBRATE权限
-        vibrator.startVibration({
-          type: 'preset',
-          effectId: 'haptic.clock.timer',
-          count: 1,
-        }, {
-          usage: 'unknown' // 根据实际选择类型归属不同的开关管控
-        }, (error: BusinessError) => {
-          if (error) {
-            console.error(`Failed to start vibration. Code: ${error.code}, message: ${error.message}`);
-          } else {
-            console.info('Succeed in starting vibration');
-          }
-        });
-      } catch (error) {
-        let e: BusinessError = error as BusinessError;
-        console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
-      }
-    }
-  })
-} catch (error) {
-  let e: BusinessError = error as BusinessError;
-  console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
-}
-```
+   ```ts
+   import { vibrator } from '@kit.SensorServiceKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
+  
+   try {
+     // 查询是否支持'haptic.clock.timer'
+     vibrator.isSupportEffect('haptic.clock.timer', (err: BusinessError, state: boolean) => {
+       if (err) {
+         console.error(`Failed to query effect. Code: ${err.code}, message: ${err.message}`);
+         return;
+       }
+       console.info('Succeed in querying effect');
+       if (state) {
+         try {
+           // 使用startVibration需要添加ohos.permission.VIBRATE权限
+           vibrator.startVibration({
+             type: 'preset',
+             effectId: 'haptic.clock.timer',
+             count: 1,
+           }, {
+             usage: 'unknown' // 根据实际选择类型归属不同的开关管控
+           }, (error: BusinessError) => {
+             if (error) {
+               console.error(`Failed to start vibration. Code: ${error.code}, message: ${error.message}`);
+             } else {
+               console.info('Succeed in starting vibration');
+             }
+           });
+         } catch (error) {
+           let e: BusinessError = error as BusinessError;
+           console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
+         }
+       }
+     })
+   } catch (error) {
+     let e: BusinessError = error as BusinessError;
+     console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
+   }
+   ```
 
 ## vibrator.isSupportEffect<sup>10+</sup>
 
@@ -710,15 +742,15 @@ isSupportEffect(effectId: string): Promise&lt;boolean&gt;
 
 **参数**：
 
-| 参数名   | 类型   | 必填 | 说明         |
-| -------- | ------ | ---- | ------------ |
-| effectId | string | 是   | 预置的振动效果。 |
+| 参数名   | 类型   | 必填 | 说明                   |
+| -------- | ------ | ---- | ---------------------- |
+| effectId | string | 是   | 待确认的预置振动效果。 |
 
 **返回值**： 
 
-| 类型                   | 说明                                                      |
-| ---------------------- | --------------------------------------------------------- |
-| Promise&lt;boolean&gt; | Promise对象。当返回true则表示支持该effectId，否则不支持。 |
+| 类型                   | 说明                                                         |
+| ---------------------- | ------------------------------------------------------------ |
+| Promise&lt;boolean&gt; | Promise对象。当返回true则表示支持该effectId，返回false不支持。 |
 
 **错误码**：
 
@@ -731,40 +763,40 @@ isSupportEffect(effectId: string): Promise&lt;boolean&gt;
 
 **示例**：
 
-```ts
-import { vibrator } from '@kit.SensorServiceKit';
-import { BusinessError } from '@kit.BasicServicesKit';
+   ```ts
+   import { vibrator } from '@kit.SensorServiceKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
 
-try {
-  // 查询是否支持'haptic.clock.timer'
-  vibrator.isSupportEffect('haptic.clock.timer').then((state: boolean) => {
-    console.info(`The query result is ${state}`);
-    if (state) {
-      try {
-        vibrator.startVibration({
-          type: 'preset',
-          effectId: 'haptic.clock.timer',
-          count: 1,
-        }, {
-          usage: 'unknown' // 根据实际选择类型归属不同的开关管控
-        }).then(() => {
-          console.info('Succeed in starting vibration');
-        }).catch((error: BusinessError) => {
-          console.error(`Failed to start vibration. Code: ${error.code}, message: ${error.message}`);
-        });
-      } catch (error) {
-        let e: BusinessError = error as BusinessError;
-        console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
-      }
-    }
-  }, (error: BusinessError) => {
-    console.error(`Failed to query effect. Code: ${error.code}, message: ${error.message}`);
-  })
-} catch (error) {
-  let e: BusinessError = error as BusinessError;
-  console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
-}
-```
+   try {
+     // 查询是否支持'haptic.clock.timer'
+     vibrator.isSupportEffect('haptic.clock.timer').then((state: boolean) => {
+       console.info(`The query result is ${state}`);
+       if (state) {
+         try {
+           vibrator.startVibration({
+             type: 'preset',
+             effectId: 'haptic.clock.timer',
+             count: 1,
+           }, {
+             usage: 'unknown' // 根据实际选择类型归属不同的开关管控
+           }).then(() => {
+             console.info('Succeed in starting vibration');
+           }).catch((error: BusinessError) => {
+             console.error(`Failed to start vibration. Code: ${error.code}, message: ${error.message}`);
+           });
+         } catch (error) {
+           let e: BusinessError = error as BusinessError;
+           console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
+         }
+       }
+     }, (error: BusinessError) => {
+       console.error(`Failed to query effect. Code: ${error.code}, message: ${error.message}`);
+     })
+   } catch (error) {
+     let e: BusinessError = error as BusinessError;
+     console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
+   }
+   ```
 
 ## vibrator.isSupportEffectSync<sup>12+</sup>
 
@@ -776,15 +808,15 @@ isSupportEffectSync(effectId: string): boolean
 
 **参数**：
 
-| 参数名   | 类型   | 必填 | 说明                 |
-| -------- | ------ | ---- | -------------------- |
-| effectId | string | 是   | 是否预设的振动效果。 |
+| 参数名   | 类型   | 必填 | 说明                   |
+| -------- | ------ | ---- | ---------------------- |
+| effectId | string | 是   | 待确认的预置振动效果。 |
 
 **返回值**：
 
-| 类型    | 说明                                                   |
-| ------- | ------------------------------------------------------ |
-| boolean | 返回对象。当返回true则表示支持该effectId，否则不支持。 |
+| 类型    | 说明                                                        |
+| ------- | ----------------------------------------------------------- |
+| boolean | 返回对象。当返回true则表示支持该effectId，返回false不支持。 |
 
 **错误码**：
 
@@ -797,19 +829,19 @@ isSupportEffectSync(effectId: string): boolean
 
 **示例**：
 
-```ts
-import { vibrator } from '@kit.SensorServiceKit';
-import { BusinessError } from '@kit.BasicServicesKit';
+   ```ts
+   import { vibrator } from '@kit.SensorServiceKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
 
-try {
-    // 查询是否支持预设'haptic.clock.timer'
-    let ret = vibrator.isSupportEffectSync('haptic.clock.timer');
-    console.info(`The query result is ${ret}`);
-} catch (error) {
-    let e: BusinessError = error as BusinessError;
-    console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
-}
-```
+   try {
+     // 查询是否支持预设'haptic.clock.timer'
+     let ret = vibrator.isSupportEffectSync('haptic.clock.timer');
+     console.info(`The query result is ${ret}`);
+   } catch (error) {
+     let e: BusinessError = error as BusinessError;
+     console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
+   }
+   ```
 
 ## vibrator.isHdHapticSupported<sup>12+</sup>
 
@@ -821,9 +853,9 @@ isHdHapticSupported(): boolean
 
 **返回值**：
 
-| 类型    | 说明                                               |
-| ------- | -------------------------------------------------- |
-| boolean | 返回对象，当返回true表示支持高清振动，否则不支持。 |
+| 类型    | 说明                                                      |
+| ------- | --------------------------------------------------------- |
+| boolean | 返回对象，当返回true表示支持高清振动，返回false不支持。。 |
 
 **错误码**：
 
@@ -835,19 +867,19 @@ isHdHapticSupported(): boolean
 
 **示例**：
 
-```ts
-import { vibrator } from '@kit.SensorServiceKit';
-import { BusinessError } from '@kit.BasicServicesKit';
+   ```ts
+   import { vibrator } from '@kit.SensorServiceKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
 
-try {
-    // 查询是否支持高清振动
-    let ret = vibrator.isHdHapticSupported();
-    console.info(`The query result is ${ret}`);
-} catch (error) {
-    let e: BusinessError = error as BusinessError;
-    console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
-}
-```
+   try {
+     // 查询是否支持高清振动
+     let ret = vibrator.isHdHapticSupported();
+     console.info(`The query result is ${ret}`);
+   } catch (error) {
+     let e: BusinessError = error as BusinessError;
+     console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
+   }
+   ```
 
 ## VibratorPatternBuilder<sup>18+</sup>
 
@@ -861,11 +893,11 @@ addContinuousEvent(time: number, duration: number, options?: ContinuousParam): V
 
 **参数**：
 
-| 参数名   | 类型                                  | 必填 | 说明                     |
-| -------- | ------------------------------------- | ---- | ------------------------ |
-| time     | number                                | 是   | 长期振动的起始时间。     |
-| duration | number                                | 是   | 长期振动的持续时间。     |
-| options  | [ContinuousParam](#continuousparam18) | 否   | 可选参数，可选参数对象。 |
+| 参数名   | 类型                                  | 必填 | 说明                                                         |
+| -------- | ------------------------------------- | ---- | ------------------------------------------------------------ |
+| time     | number                                | 是   | 长期振动的起始时间。单位ms，取值范围(0,1800000)区间内所有整数。 |
+| duration | number                                | 是   | 长期振动的持续时间。单位ms，取值范围(0,5000]区间内所有整数。 |
+| options  | [ContinuousParam](#continuousparam18) | 否   | 可选参数，可选参数对象。                                     |
 
 **返回值**：
 
@@ -883,38 +915,38 @@ addContinuousEvent(time: number, duration: number, options?: ContinuousParam): V
 
 **示例**：
 
-```ts
-import { vibrator } from '@kit.SensorServiceKit';
-import { BusinessError } from '@kit.BasicServicesKit';
+   ```ts
+   import { vibrator } from '@kit.SensorServiceKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
 
-let builder = new vibrator.VibratorPatternBuilder();
-try {
-  let pointsMe: vibrator.VibratorCurvePoint[] = [
-	{ time: 0, intensity: 0, frequency: -7 },
-	{ time: 42, intensity: 1, frequency: -6 },
-	{ time: 128, intensity: 0.94, frequency: -4 },
-	{ time: 217, intensity: 0.63, frequency: -14 },
-	{ time: 763, intensity: 0.48, frequency: -14 },
-	{ time: 1125, intensity: 0.53, frequency: -10 },
-	{ time: 1503, intensity: 0.42, frequency: -14 },
-	{ time: 1858, intensity: 0.39, frequency: -14 },
-	{ time: 2295, intensity: 0.34, frequency: -17 },
-	{ time: 2448, intensity: 0.21, frequency: -14 },
-	{ time: 2468, intensity: 0, frequency: -21 }
-  ] // VibratorCurvePoint参数最少设置4个，最大设置16个
-  let param: vibrator.ContinuousParam = {
-	intensity: 97,
-	frequency: 34,
-	points:pointsMe,
-	index: 0
-  }
-  builder.addContinuousEvent(0, 2468, param);
-  console.info(`addContinuousEvent builder is ${builder.build()}`);
-} catch(error) {
-  let e: BusinessError = error as BusinessError;
-  console.error(`Exception. Code ${e.code}`);
-}
-```
+   let builder = new vibrator.VibratorPatternBuilder();
+   try {
+     let pointsMe: vibrator.VibratorCurvePoint[] = [
+	     { time: 0, intensity: 0, frequency: -7 },
+	     { time: 42, intensity: 1, frequency: -6 },
+	     { time: 128, intensity: 0.94, frequency: -4 },
+	     { time: 217, intensity: 0.63, frequency: -14 },
+	     { time: 763, intensity: 0.48, frequency: -14 },
+	     { time: 1125, intensity: 0.53, frequency: -10 },
+	     { time: 1503, intensity: 0.42, frequency: -14 },
+	     { time: 1858, intensity: 0.39, frequency: -14 },
+	     { time: 2295, intensity: 0.34, frequency: -17 },
+	     { time: 2448, intensity: 0.21, frequency: -14 },
+	     { time: 2468, intensity: 0, frequency: -21 }
+     ] // VibratorCurvePoint参数最少设置4个，最大设置16个
+     let param: vibrator.ContinuousParam = {
+	     intensity: 97,
+	     frequency: 34,
+	     points:pointsMe,
+	     index: 0
+     }
+     builder.addContinuousEvent(0, 2468, param);
+     console.info(`addContinuousEvent builder is ${builder.build()}`);
+   } catch(error) {
+     let e: BusinessError = error as BusinessError;
+     console.error(`Exception. Code ${e.code}`);
+   }
+   ```
 
 ### vibrator('addTransientEvent')<sup>18+</sup>
 
@@ -926,10 +958,10 @@ addTransientEvent(time: number, options?: TransientParam): VibratorPatternBuilde
 
 **参数**：
 
-| 参数名  | 类型                                | 必填 | 说明                     |
-| ------- | ----------------------------------- | ---- | ------------------------ |
-| time    | number                              | 是   | 长期振动的起始时间。     |
-| options | [TransientParam](#transientparam18) | 否   | 可选参数，可选参数对象。 |
+| 参数名  | 类型                                | 必填 | 说明                                                         |
+| ------- | ----------------------------------- | ---- | ------------------------------------------------------------ |
+| time    | number                              | 是   | 长期振动的起始时间。单位ms，取值范围(0,1800000)区间内所有整数。 |
+| options | [TransientParam](#transientparam18) | 否   | 可选参数，可选参数对象。                                     |
 
 **返回值**：
 
@@ -947,24 +979,24 @@ addTransientEvent(time: number, options?: TransientParam): VibratorPatternBuilde
 
 **示例**：
 
-```ts
-import { vibrator } from '@kit.SensorServiceKit';
-import { BusinessError } from '@kit.BasicServicesKit';
+   ```ts
+   import { vibrator } from '@kit.SensorServiceKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
 
-let builder = new vibrator.VibratorPatternBuilder();
-try {
-  let param: vibrator.TransientParam = {
-	intensity: 80,
-	frequency: 70,
-	index: 0
-  }
-  builder.addTransientEvent(0, param);
-  console.log(`addTransientEvent builder is ${builder.build()}`);
-} catch(error) {
-  let e: BusinessError = error as BusinessError;
-  console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
-}
-```
+   let builder = new vibrator.VibratorPatternBuilder();
+   try {
+     let param: vibrator.TransientParam = {
+	     intensity: 80,
+	     frequency: 70,
+	     index: 0
+     }
+     builder.addTransientEvent(0, param);
+     console.log(`addTransientEvent builder is ${builder.build()}`);
+   } catch(error) {
+     let e: BusinessError = error as BusinessError;
+     console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
+   }
+   ```
 
 ### vibrator('build')<sup>18+</sup>
 
@@ -982,56 +1014,58 @@ build(): VibratorPattern;
 
 **示例**：
 
-```ts
-import { vibrator } from '@kit.SensorServiceKit';
-import { BusinessError } from '@kit.BasicServicesKit';
+   ```ts
+   import { vibrator } from '@kit.SensorServiceKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
 
-let builder = new vibrator.VibratorPatternBuilder();
-try {
-  let param: vibrator.TransientParam = {
-	intensity: 80,
-	frequency: 70,
-	index: 0
-  }
-  builder.addTransientEvent(0, param);
-  console.log(`addTransientEvent builder is ${builder.build()}`);
-} catch(error) {
-  let e: BusinessError = error as BusinessError;
-  console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
-}
-try {
-  vibrator.startVibration({
-	type: "pattern",
-	pattern: builder.build()
-  }, {
-	usage: "alarm", // 根据实际选择类型归属不同的开关管控
-  }, (error) => {
-	if (error) {
-	  let e: BusinessError = error as BusinessError;
-	  console.error(`Vibrate fail. Code: ${e.code}, message: ${e.message}`);
-	} else {
-	  console.info(`vibrate success`);
-	}
-  });
-} catch(error) {
-  let e: BusinessError = error as BusinessError;
-  console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
-}
-```
+   let builder = new vibrator.VibratorPatternBuilder();
+   try {
+     let param: vibrator.TransientParam = {
+	     intensity: 80,
+	     frequency: 70,
+	     index: 0
+     }
+     builder.addTransientEvent(0, param);
+     console.log(`addTransientEvent builder is ${builder.build()}`);
+   } catch(error) {
+     let e: BusinessError = error as BusinessError;
+     console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
+   }
+   try {
+     vibrator.startVibration({
+	     type: "pattern",
+	     pattern: builder.build()
+     }, {
+	   usage: "alarm", // 根据实际选择类型归属不同的开关管控
+     }, (error) => {
+	   if (error) {
+	     let e: BusinessError = error as BusinessError;
+	     console.error(`Vibrate fail. Code: ${e.code}, message: ${e.message}`);
+	   } else {
+	     console.info(`vibrate success`);
+	   }
+     });
+   } catch(error) {
+     let e: BusinessError = error as BusinessError;
+     console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
+   }
+   ```
 
 ## EffectId
 
-预置的振动效果。
+预置的振动效果。在调用[vibrator.startVibration9+](#vibratorstartvibration9)或[vibrator.stopVibration9+](#vibratorstopvibration9-1)接口下发[VibratePreset](#vibratepreset9)形式振动的时候需要使用此参数类型。此参数值种类多样，'haptic.effect.soft'为其中一种。
+
+注意：由于设备存在多样性，不同的设备可能预置不同的效果，建议使用预置效果前先使用[vibrator.isSupportEffect](#vibratorissupporteffect10-1)<sup>10+</sup>接口查询当前设备是否支持该预置效果。
 
 **系统能力**：SystemCapability.Sensors.MiscDevice
 
-| 名称               | 值                   | 说明                             |
-| ------------------ | -------------------- | -------------------------------- |
-| EFFECT_CLOCK_TIMER | 'haptic.clock.timer' | 描述用户调整计时器时的振动效果。|
+| 名称        | 值                   | 说明                         |
+| ----------- | -------------------- | ---------------------------- |
+| EFFECT_SOFT | 'haptic.effect.soft' | 较松散的振动效果，频率偏低。 |
 
 ## HapticFeedback<sup>12+</sup>
 
-简单而通用的振动效果。
+简单而通用的振动效果。根据各设备的马达器件不同，同一振动效果的频率会有差异，但效果的频率趋向是统一的。这几种振动效果是EffectId参数的具体值，使用方法参考[vibrator.startVibration9+](#vibratorstartvibration9)或[vibrator.stopVibration9+](#vibratorstopvibration9-1)接口下发[VibratePreset](#vibratepreset9)形式振动的示例代码。
 
 **系统能力**：SystemCapability.Sensors.MiscDevice
 
@@ -1040,70 +1074,70 @@ try {
 | EFFECT_SOFT                         | 'haptic.effect.soft'    | 较松散的振动效果，频率偏低。 |
 | EFFECT_HARD                         | 'haptic.effect.hard'    | 较沉重的振动效果，频率居中。 |
 | EFFECT_SHARP                        | 'haptic.effect.sharp'   | 较尖锐的振动效果，频率偏高。 |
-| EFFECT_NOTICE_SUCCESS<sup>18+</sup> | 'haptic.notice.success' | 描述成功通知的振动效果。     |
-| EFFECT_NOTICE_FAILURE<sup>18+</sup> | 'haptic.notice.fail'    | 描述失败通知的振动效果。     |
-| EFFECT_NOTICE_WARNING<sup>18+</sup> | 'haptic.notice.warning' | 描述警告通知的振动效果。     |
+| EFFECT_NOTICE_SUCCESS<sup>18+</sup> | 'haptic.notice.success' | 表达成功通知的振动效果。     |
+| EFFECT_NOTICE_FAILURE<sup>18+</sup> | 'haptic.notice.fail'    | 表达失败通知的振动效果。     |
+| EFFECT_NOTICE_WARNING<sup>18+</sup> | 'haptic.notice.warning' | 表达警告通知的振动效果。     |
 
 ## VibratorStopMode
 
-停止振动的模式。
+停止振动的模式。在调用[vibrator.stopVibration9+](#vibratorstopvibration9)或[vibrator.stopVibration9+](#vibratorstopvibration9-1)接口时，需要使用此参数类型指定停止的振动模式。停止模式和[VibrateEffect9+](#vibrateeffect9)中下发的模式为对应关系。
 
 **系统能力**：SystemCapability.Sensors.MiscDevice
 
-| 名称                      | 值       | 说明                           |
-| ------------------------- | -------- | ------------------------------ |
+| 名称                      | 值       | 说明                     |
+| ------------------------- | -------- | ------------------------ |
 | VIBRATOR_STOP_MODE_TIME   | 'time'   | 停止duration模式的振动。 |
-| VIBRATOR_STOP_MODE_PRESET | 'preset' | 停止预置EffectId的振动。|
+| VIBRATOR_STOP_MODE_PRESET | 'preset' | 停止预置EffectId的振动。 |
 
 ## VibrateEffect<sup>9+</sup>
 
-马达振动效果，支持以下三种。
+马达振动效果，支持以下三种。在调用[vibrator.startVibration9+](#vibratorstartvibration9)或[vibrator.startVibration9+](#vibratorstartvibration9-1)接口时，此参数的三种类型表示以三种不同的形式触发振动。
 
 **系统能力**：SystemCapability.Sensors.MiscDevice
 
-| 类型                             | 说明                           |
-| -------------------------------- | ------------------------------ |
-| [VibrateTime](#vibratetime9) | 按照指定持续时间触发马达振动。<br/>**原子化服务API：** 从API Version 11开始，该接口支持在原子化服务中使用。 |
-| [VibratePreset](#vibratepreset9) | 按照预置振动类型触发马达振动。 |
-| [VibrateFromFile](#vibratefromfile10) | 按照自定义振动配置文件触发马达振动。 |
-| VibrateFromPattern<sup>18+</sup> | 按照自定义振动效果触发马达振动。 |
+| 类型                                  | 说明                                                         |
+| ------------------------------------- | ------------------------------------------------------------ |
+| [VibrateTime](#vibratetime9)          | 按照指定时长触发马达振动。<br/>**元服务API：** 从API Version 11开始，该接口支持在元服务中使用。 |
+| [VibratePreset](#vibratepreset9)      | 按照预置振动类型触发马达振动。                               |
+| [VibrateFromFile](#vibratefromfile10) | 按照自定义振动配置文件触发马达振动。                         |
+| VibrateFromPattern<sup>18+</sup>      | 按照自定义振动效果触发马达振动。                             |
 
 ## VibrateTime<sup>9+</sup>
 
-固定时长振动类型。
+指定时长振动类型。
 
-**原子化服务API**：从API Version 11开始，该接口在支持原子化服务中使用。
+**元服务API**：从API Version 11开始，该接口在支持元服务中使用。
 
 **系统能力**：SystemCapability.Sensors.MiscDevice
 
-| 名称     | 类型    | 必填 | 说明                           |
-| -------- | ------ | ----- | ------------------------------ |
-| type     | 'time' |  是   | 值为'time'，按照指定持续时间触发马达振动。 |
-| duration | number |  是   | 马达持续振动时长, 单位ms。         |
+| 名称     | 类型   | 必填 | 说明                                                        |
+| -------- | ------ | ---- | ----------------------------------------------------------- |
+| type     | 'time' | 是   | 值为'time'，按照指定时长触发马达振动。                      |
+| duration | number | 是   | 马达持续振动时长, 单位ms。取值范围(0,1800000]区间内所有整数 |
 
 ## VibratePreset<sup>9+</sup>
 
-预置振动类型。
+预置振动类型。当调用[vibrator.startVibration9+](#vibratorstartvibration9)或[vibrator.startVibration9+](#vibratorstartvibration9-1)时，[VibrateEffect9+](#vibrateeffect9)参数的值可以为VibratePreset，表示触发预置振动类型。
 
 **系统能力**：SystemCapability.Sensors.MiscDevice
 
-| 名称     | 类型      | 必填 | 说明                           |
-| -------- | -------- | ---- |------------------------------ |
-| type     | 'preset' |  是  | 值为'preset'，按照预置振动效果触发马达振动。 |
-| effectId | string   |  是  | 预置的振动效果ID。             |
-| count    | number   |  否  | 可选参数，振动的重复次数，默认值为1。 |
-| intensity<sup>12+</sup> | number | 否 | 可选参数，振动调节强度，范围为0到100，默认值为100。若振动效果不支持强度调节或设备不支持时，则按默认强度振动。 |
+| 名称                    | 类型     | 必填 | 说明                                                         |
+| ----------------------- | -------- | ---- | ------------------------------------------------------------ |
+| type                    | 'preset' | 是   | 值为'preset'，按照预置振动效果触发马达振动。                 |
+| effectId                | string   | 是   | 预置的振动效果ID。                                           |
+| count                   | number   | 否   | 可选参数，振动的重复次数，默认值为1。                        |
+| intensity<sup>12+</sup> | number   | 否   | 可选参数，振动调节强度，取值范围(0,100]内所有整数，默认值为100。若振动效果不支持强度调节或设备不支持时，则按默认强度振动。 |
 
 ## VibrateFromFile<sup>10+</sup>
 
-自定义振动类型，仅部分设备支持，当设备不支持此振动类型时，返回[设备不支持错误码](../errorcode-universal.md)。
+自定义振动类型。仅部分设备支持。当设备不支持此振动类型时，返回设备不支持错误码。当调用[vibrator.startVibration9+](#vibratorstartvibration9)或[vibrator.startVibration9+](#vibratorstartvibration9-1)时，[VibrateEffect9+](#vibrateeffect9)参数的值可以为VibrateFromFile，表示触发自定义振动类型。
 
 **系统能力**：SystemCapability.Sensors.MiscDevice
 
-| 名称     | 类型       | 必填 | 说明                           |
-| -------- | --------  | ---- | ------------------------------ |
-| type     | 'file' |  是  | 值为'file'，按照振动配置文件触发马达振动。 |
-| hapticFd | [HapticFileDescriptor](#hapticfiledescriptor10)<sup>10+</sup> | 是 | 振动配置文件的描述符。|
+| 名称     | 类型                                                         | 必填 | 说明                                       |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------ |
+| type     | 'file'                                                       | 是   | 值为'file'，按照振动配置文件触发马达振动。 |
+| hapticFd | [HapticFileDescriptor](#hapticfiledescriptor10)<sup>10+</sup> | 是   | 振动配置文件的描述符。                     |
 
 ## HapticFileDescriptor<sup>10+</sup>
 
@@ -1111,11 +1145,11 @@ try {
 
 **系统能力**：SystemCapability.Sensors.MiscDevice
 
-| 名称     | 类型      |  必填  | 说明                           |
-| -------- | -------- |--------| ------------------------------|
-| fd       | number   |  是    | 资源文件描述符。                |
-| offset   | number   |  否    | 距文件起始位置的偏移量，单位为字节，默认为文件起始位置，不可超出文件有效范围。|
-| length   | number   |  否    | 资源长度，单位为字节，默认值为从偏移位置至文件结尾的长度，不可超出文件有效范围。|
+| 名称   | 类型   | 必填 | 说明                                                         |
+| ------ | ------ | ---- | ------------------------------------------------------------ |
+| fd     | number | 是   | 资源文件描述符。                                             |
+| offset | number | 否   | 距文件起始位置的偏移量，单位为字节，默认为文件起始位置，不可超出文件有效范围。 |
+| length | number | 否   | 资源长度，单位为字节，默认值为从偏移位置至文件结尾的长度，不可超出文件有效范围。 |
 
 ## VibratorEventType<sup>18+</sup>
 
@@ -1137,8 +1171,8 @@ try {
 | 名称      | 类型   | 必填 | 说明                                                         |
 | --------- | ------ | ---- | ------------------------------------------------------------ |
 | time      | number | 是   | 起始时间偏移。                                               |
-| intensity | number | 否   | 可选参数，相对事件振动强度增益，取值范围为0-1，省略时默认值为1。 |
-| frequency | number | 否   | 可选参数，相对事件振动频率变化，取值范围为-100-100，省略时默认值为0。 |
+| intensity | number | 否   | 可选参数，相对事件振动强度增益，取值范围[0,100%]，省略时默认值为1。 |
+| frequency | number | 否   | 可选参数，相对事件振动频率变化，取值范围[-100,100]内所有整数，省略时默认值为0。 |
 
 ## VibratorEvent<sup>18+</sup>
 
@@ -1149,12 +1183,12 @@ try {
 | 名称      | 类型                            | 必填 | 说明                                                         |
 | --------- | ------------------------------- | ---- | ------------------------------------------------------------ |
 | eventType | VibratorEventType               | 是   | 振动事件类型。                                               |
-| time      | number                          | 是   | 振动起始时间。                                               |
-| duration  | number                          | 否   | 可选参数，表示振动持续时间，取值范围为0-5000，短振默认值为48，长振默认值为1000。 |
-| intensity | number                          | 否   | 可选参数，表示振动强度，取值范围为0-100，省略时默认值为100。 |
-| frequency | number                          | 否   | 可选参数，表示振动频率，取值范围为0-100，省略时默认值为50。  |
-| index     | number                          | 否   | 可选参数，表示通道编号，省略时默认值为0。                    |
-| points    | Array&lt;VibratorCurvePoint&gt; | 否   | 可选参数，表示振动调节曲线数组。                             |
+| time      | number                          | 是   | 振动起始时间，单位ms。取值范围[0,1800000]区间内所有整数。    |
+| duration  | number                          | 否   | 可选参数，表示振动持续时间，取值范围（0,5000]区间所有整数，短振默认值为48，长振默认值为1000 |
+| intensity | number                          | 否   | 可选参数，表示振动强度，取值范围[0,100]区间所有整数，省略时默认值为100。 |
+| frequency | number                          | 否   | 可选参数，表示振动频率，取值范围[0,100]区间内所有整数，省略时默认值为50。 |
+| index     | number                          | 否   | 可选参数，表示通道编号，取值范围[0,2]区间内所有整数，        |
+| points    | Array&lt;[VibratorCurvePoint](#vibratorcurvepoint18)&gt; | 否   | 可选参数，表示振动调节曲线数组。                             |
 
 ## VibratorPattern<sup>18+</sup>
 
@@ -1165,7 +1199,7 @@ try {
 | 名称   | 类型                       | 必填 | 说明                                                 |
 | ------ | -------------------------- | ---- | ---------------------------------------------------- |
 | time   | number                     | 是   | 振动绝对起始时间。                                   |
-| events | Array&lt;VibratorEvent&gt; | 是   | 振动事件数组，build()方法返回的VibratorPattern对象。 |
+| events | Array&lt;[VibratorEvent](#vibratorevent18)&gt; | 是   | 振动事件数组，build()方法返回的VibratorPattern对象。 |
 
 ## ContinuousParam<sup>18+</sup>
 
@@ -1173,12 +1207,12 @@ try {
 
 **系统能力**：SystemCapability.Sensors.MiscDevice
 
-| 名称      | 类型                 | 必填 | 说明                                                         |
-| --------- | -------------------- | ---- | ------------------------------------------------------------ |
-| intensity | number               | 否   | 可选参数，表示振动强度，取值范围为0-100，省略时默认值为100。 |
-| frequency | number               | 否   | 可选参数，表示振动频率，取值范围为0-100，省略时默认值为50。  |
-| points    | VibratorCurvePoint[] | 否   | 可选参数，表示振动调节曲线数组。                             |
-| index     | number               | 否   | 可选参数，表示通道编号，省略时默认值为0。                    |
+| 名称      | 类型                                                     | 必填 | 说明                                                         |
+| --------- | -------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| intensity | number                                                   | 否   | 可选参数，表示振动强度，取值范围[0,100]内所有整数，省略时默认值为100。 |
+| frequency | number                                                   | 否   | 可选参数，表示振动频率，取值范围[0,100]内所有整数，省略时默认值为50。 |
+| points    | Array&lt;[VibratorCurvePoint](#vibratorcurvepoint18)&gt; | 否   | 可选参数，表示振动调节曲线数组。                             |
+| index     | number                                                   | 否   | 可选参数，表示通道编号，省略时默认值为0。                    |
 
 ## TransientParam<sup>18+</sup>
 
@@ -1186,11 +1220,11 @@ try {
 
 **系统能力**：SystemCapability.Sensors.MiscDevice
 
-| 名称      | 类型   | 必填 | 说明                                        |
-| --------- | ------ | ---- | ------------------------------------------- |
-| intensity | number | 否   | 可选参数，表示振动强度，省略时默认值为100。 |
-| frequency | number | 否   | 可选参数，表示振动频率，省略时默认值为50。  |
-| index     | number | 否   | 可选参数，表示通道编号，省略时默认值为0。   |
+| 名称      | 类型   | 必填 | 说明                                                         |
+| --------- | ------ | ---- | ------------------------------------------------------------ |
+| intensity | number | 否   | 可选参数，表示振动强度，取值范围[0,100]内所有整数，省略时默认值为100。 |
+| frequency | number | 否   | 可选参数，表示振动频率，取值范围[0,100]内所有整数，省略时默认值为50。 |
+| index     | number | 否   | 可选参数，表示通道编号，省略时默认值为0。                    |
 
 ## VibrateFromPattern<sup>18+</sup>
 
@@ -1207,14 +1241,14 @@ try {
 
 马达振动属性。
 
-**原子化服务API**：从API Version 11开始，该接口支持在原子化服务中使用。
+**元服务API**：从API Version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Sensors.MiscDevice
 
-| 名称  | 类型 | 必填 | 说明           |
-| ----- | ------ | ---- | -------------- |
-| id    | number      |  否 | 振动器id， 默认值为0。    |
-| usage | [Usage](#usage9) | 是 | 马达振动的使用场景。 |
+| 名称  | 类型             | 必填 | 说明                                                         |
+| ----- | ---------------- | ---- | ------------------------------------------------------------ |
+| id    | number           | 否   | 振动器ID， 默认值为0。                                       |
+| usage | [Usage](#usage9) | 是   | 马达振动的使用场景。默认值为'unknown'，取值范围只允许在[Usage](#usage9)提供的类型中选取。 |
 
 ## Usage<sup>9+</sup>
 
@@ -1222,22 +1256,23 @@ type Usage = 'unknown' | 'alarm' | 'ring' | 'notification' | 'communication' | '
 
 振动使用场景。
 
-**原子化服务API**：从API Version 11开始，该接口支持在原子化服务中使用。
+**元服务API**：从API Version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Sensors.MiscDevice
 <!--RP1-->
 
-| 类型     | 说明                           |
-| ---------------- | ------------------------------ |
-| 'unknown'     | 没有明确使用场景，最低优先级，值固定为'unknown'字符串。 |
-| 'alarm'      | 用于警报场景，值固定为'alarm'字符串。 |
-| 'ring'         | 用于铃声场景，值固定为'ring'字符串。 |
-| 'notification' | 用于通知场景，值固定为'notification'字符串。 |
-| 'communication' | 用于通信场景，值固定为'communication'字符串。 |
-| 'touch'        | 用于触摸场景，值固定为'touch'字符串。 |
-| 'media'        | 用于多媒体场景，值固定为'media'字符串。 |
-| 'physicalFeedback' | 用于物理反馈场景，值固定为'physicalFeedback'字符串。 |
-| 'simulateReality' | 用于模拟现实场景，值固定为'simulateReality'字符串。 |
+| 类型               | 说明                                                    |
+| ------------------ | ------------------------------------------------------- |
+| 'unknown'          | 没有明确使用场景，最低优先级，值固定为'unknown'字符串。 |
+| 'alarm'            | 用于警报场景，值固定为'alarm'字符串。                   |
+| 'ring'             | 用于铃声场景，值固定为'ring'字符串。                    |
+| 'notification'     | 用于通知场景，值固定为'notification'字符串。            |
+| 'communication'    | 用于通信场景，值固定为'communication'字符串。           |
+| 'touch'            | 用于触摸场景，值固定为'touch'字符串。                   |
+| 'media'            | 用于多媒体场景，值固定为'media'字符串。                 |
+| 'physicalFeedback' | 用于物理反馈场景，值固定为'physicalFeedback'字符串。    |
+| 'simulateReality'  | 用于模拟现实场景，值固定为'simulateReality'字符串。     |
+
 <!--RP1End-->
 
 ## vibrator.vibrate<sup>(deprecated)</sup>
@@ -1254,28 +1289,28 @@ vibrate(duration: number): Promise&lt;void&gt;
 
 **参数**：
 
-| 参数名   | 类型   | 必填 | 说明                   |
-| -------- | ------ | ---- | ---------------------- |
-| duration | number | 是   | 马达振动时长, 单位ms。 |
+| 参数名   | 类型   | 必填 | 说明                                                         |
+| -------- | ------ | ---- | ------------------------------------------------------------ |
+| duration | number | 是   | 马达振动时长, 单位ms；取值范围是（0,1800000]区间的所有整数。 |
 
 **返回值**： 
 
-| 类型                | 说明                                   |
-| ------------------- | -------------------------------------- |
+| 类型                | 说明          |
+| ------------------- | ------------- |
 | Promise&lt;void&gt; | Promise对象。 |
 
 **示例**：
 
-```ts
-import { vibrator } from '@kit.SensorServiceKit';
-import { BusinessError } from '@kit.BasicServicesKit';
+   ```ts
+   import { vibrator } from '@kit.SensorServiceKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
 
-vibrator.vibrate(1000).then(() => {
-  console.info('Succeed in vibrating');
-}, (error: BusinessError) => {
-  console.error(`Failed to vibrate. Code: ${error.code}, message: ${error.message}`);
-});
-```
+   vibrator.vibrate(1000).then(() => {
+     console.info('Succeed in vibrating');
+   }, (error: BusinessError) => {
+     console.error(`Failed to vibrate. Code: ${error.code}, message: ${error.message}`);
+   });
+   ```
 
 ## vibrator.vibrate<sup>(deprecated)</sup>
 
@@ -1291,25 +1326,25 @@ vibrate(duration: number, callback?: AsyncCallback&lt;void&gt;): void
 
 **参数**：
 
-| 参数名   | 类型                      | 必填 | 说明                                                       |
-| -------- | ------------------------- | ---- | ---------------------------------------------------------- |
-| duration | number                    | 是   | 马达振动时长, 单位ms。                                     |
-| callback | AsyncCallback&lt;void&gt; | 否   | 回调函数，当马达振动成功，err为undefined，否则为错误对象。 |
+| 参数名   | 类型                      | 必填 | 说明                                                         |
+| -------- | ------------------------- | ---- | ------------------------------------------------------------ |
+| duration | number                    | 是   | 马达振动时长, 单位ms。取值范围是（0,1800000]区间的所有整数。 |
+| callback | AsyncCallback&lt;void&gt; | 否   | 回调函数，当马达振动成功，err为undefined，否则为错误对象。   |
 
 **示例**：
 
-```ts
-import { vibrator } from '@kit.SensorServiceKit';
-import { BusinessError } from '@kit.BasicServicesKit';
+   ```ts
+   import { vibrator } from '@kit.SensorServiceKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
 
-vibrator.vibrate(1000, (error: BusinessError) => {
-  if (error) {
-    console.error(`Failed to vibrate. Code: ${error.code}, message: ${error.message}`);
-  } else {
-    console.info('Succeed in vibrating');
-  }
-})
-```
+   vibrator.vibrate(1000, (error: BusinessError) => {
+     if (error) {
+       console.error(`Failed to vibrate. Code: ${error.code}, message: ${error.message}`);
+     } else {
+       console.info('Succeed in vibrating');
+     }
+   })
+   ```
 
 
 ## vibrator.vibrate<sup>(deprecated)</sup>
@@ -1332,22 +1367,22 @@ vibrate(effectId: EffectId): Promise&lt;void&gt;
 
 **返回值**：
 
-| 类型                | 说明                                   |
-| ------------------- | -------------------------------------- |
+| 类型                | 说明          |
+| ------------------- | ------------- |
 | Promise&lt;void&gt; | Promise对象。 |
 
 **示例**：
 
-```ts
-import { vibrator } from '@kit.SensorServiceKit';
-import { BusinessError } from '@kit.BasicServicesKit';
+   ```ts
+   import { vibrator } from '@kit.SensorServiceKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
 
-vibrator.vibrate(vibrator.EffectId.EFFECT_CLOCK_TIMER).then(() => {
-  console.info('Succeed in vibrating');
-}, (error: BusinessError) => {
-  console.error(`Failed to vibrate. Code: ${error.code}, message: ${error.message}`);
-});
-```
+   vibrator.vibrate(vibrator.EffectId.EFFECT_CLOCK_TIMER).then(() => {
+     console.info('Succeed in vibrating');
+   }, (error: BusinessError) => {
+     console.error(`Failed to vibrate. Code: ${error.code}, message: ${error.message}`);
+   });
+   ```
 
 
 ## vibrator.vibrate<sup>(deprecated)</sup>
@@ -1371,18 +1406,18 @@ vibrate(effectId: EffectId, callback?: AsyncCallback&lt;void&gt;): void
 
 **示例**：
 
-```ts
-import { vibrator } from '@kit.SensorServiceKit';
-import { BusinessError } from '@kit.BasicServicesKit';
+   ```ts
+   import { vibrator } from '@kit.SensorServiceKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
 
-vibrator.vibrate(vibrator.EffectId.EFFECT_CLOCK_TIMER, (error: BusinessError) => {
-  if (error) {
-    console.error(`Failed to vibrate. Code: ${error.code}, message: ${error.message}`);
-  } else {
-    console.info('Succeed in vibrating');
-  }
-})
-```
+   vibrator.vibrate(vibrator.EffectId.EFFECT_CLOCK_TIMER, (error: BusinessError) => {
+     if (error) {
+       console.error(`Failed to vibrate. Code: ${error.code}, message: ${error.message}`);
+     } else {
+       console.info('Succeed in vibrating');
+     }
+   })
+   ```
 
 ## vibrator.stop<sup>(deprecated)</sup>
 
@@ -1404,31 +1439,31 @@ stop(stopMode: VibratorStopMode): Promise&lt;void&gt;
 
 **返回值**：
 
-| 类型                | 说明                                   |
-| ------------------- | -------------------------------------- |
+| 类型                | 说明          |
+| ------------------- | ------------- |
 | Promise&lt;void&gt; | Promise对象。 |
 
 **示例**：
 
-```ts
-import { vibrator } from '@kit.SensorServiceKit';
-import { BusinessError } from '@kit.BasicServicesKit';
+   ```ts
+   import { vibrator } from '@kit.SensorServiceKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
 
-// 按照effectId类型启动振动
-vibrator.vibrate(vibrator.EffectId.EFFECT_CLOCK_TIMER, (error: BusinessError) => {
-  if (error) {
-    console.error(`Failed to vibrate. Code: ${error.code}, message: ${error.message}`);
-  } else {
-    console.info('Succeed in vibrating');
-  }
-})
-// 使用VIBRATOR_STOP_MODE_PRESET模式停止振动
-vibrator.stop(vibrator.VibratorStopMode.VIBRATOR_STOP_MODE_PRESET).then(() => {
-  console.info('Succeed in stopping');
-}, (error: BusinessError) => {
-  console.error(`Failed to stop. Code: ${error.code}, message: ${error.message}`);
-});
-```
+   // 按照effectId类型启动振动
+   vibrator.vibrate(vibrator.EffectId.EFFECT_CLOCK_TIMER, (error: BusinessError) => {
+     if (error) {
+       console.error(`Failed to vibrate. Code: ${error.code}, message: ${error.message}`);
+     } else {
+       console.info('Succeed in vibrating');
+     }
+   })
+   // 使用VIBRATOR_STOP_MODE_PRESET模式停止振动
+   vibrator.stop(vibrator.VibratorStopMode.VIBRATOR_STOP_MODE_PRESET).then(() => {
+     console.info('Succeed in stopping');
+   }, (error: BusinessError) => {
+     console.error(`Failed to stop. Code: ${error.code}, message: ${error.message}`);
+   });
+   ```
 
 
 ## vibrator.stop<sup>(deprecated)</sup>
@@ -1452,24 +1487,24 @@ stop(stopMode: VibratorStopMode, callback?: AsyncCallback&lt;void&gt;): void
 
 **示例**：
 
-```ts
-import { vibrator } from '@kit.SensorServiceKit';
-import { BusinessError } from '@kit.BasicServicesKit';
+   ```ts
+   import { vibrator } from '@kit.SensorServiceKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
 
-// 按照effectId类型启动振动
-vibrator.vibrate(vibrator.EffectId.EFFECT_CLOCK_TIMER, (error: BusinessError) => {
-  if (error) {
-    console.error(`Failed to vibrate. Code: ${error.code}, message: ${error.message}`);
-  } else {
-    console.info('Succeed in vibrating');
-  }
-})
-// 使用VIBRATOR_STOP_MODE_PRESET模式停止振动
-vibrator.stop(vibrator.VibratorStopMode.VIBRATOR_STOP_MODE_PRESET, (error: BusinessError) => {
-  if (error) {
-    console.error(`Failed to stop. Code: ${error.code}, message: ${error.message}`);
-  } else {
-    console.info('Succeed in stopping');
-  }
-})
-```
+   // 按照effectId类型启动振动
+   vibrator.vibrate(vibrator.EffectId.EFFECT_CLOCK_TIMER, (error: BusinessError) => {
+     if (error) {
+       console.error(`Failed to vibrate. Code: ${error.code}, message: ${error.message}`);
+     } else {
+       console.info('Succeed in vibrating');
+     }
+   })
+   // 使用VIBRATOR_STOP_MODE_PRESET模式停止振动
+   vibrator.stop(vibrator.VibratorStopMode.VIBRATOR_STOP_MODE_PRESET, (error: BusinessError) => {
+     if (error) {
+       console.error(`Failed to stop. Code: ${error.code}, message: ${error.message}`);
+     } else {
+       console.info('Succeed in stopping');
+     }
+   })
+   ```

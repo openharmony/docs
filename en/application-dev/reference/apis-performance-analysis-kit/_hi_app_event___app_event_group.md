@@ -3,7 +3,7 @@
 
 ## Overview
 
-Defines an array of events with the same event name. 
+Defines the information of an event group, including its name, the array of event information grouped by name, and the length of the event array.
 
 **System capability**: SystemCapability.HiviewDFX.HiAppEvent
 
@@ -11,6 +11,7 @@ Defines an array of events with the same event name.
 
 **Related module**: [HiAppEvent](_hi_app_event.md)
 
+**Header file**: [hiappevent.h](hiappevent_8h.md)
 
 ## Summary
 

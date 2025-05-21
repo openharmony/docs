@@ -44,13 +44,13 @@ stat(file: string | number): Promise&lt;Stat&gt;
 
 | 参数名 | 类型   | 必填 | 说明                       |
 | ------ | ------ | ---- | -------------------------- |
-| file   | string \| number | 是   | 文件应用沙箱路径path或已打开的文件描述符fd。 |
+| file   | string \| number | 是   | 文件或目录应用沙箱路径path或已打开的文件描述符fd。 |
 
 **返回值：**
 
   | 类型                           | 说明         |
   | ---------------------------- | ---------- |
-  | Promise&lt;[Stat](#stat)&gt; | Promise对象。返回文件的具体信息。 |
+  | Promise&lt;[Stat](#stat)&gt; | Promise对象。返回文件或目录的具体信息。 |
 
 **错误码：**
 
@@ -72,7 +72,7 @@ stat(file: string | number): Promise&lt;Stat&gt;
 
 stat(file: string | number, callback: AsyncCallback&lt;Stat&gt;): void
 
-获取文件或目录详细属性信息，使用callback异步回调。
+获取文件或目录的详细属性信息，使用callback异步回调。
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -82,8 +82,8 @@ stat(file: string | number, callback: AsyncCallback&lt;Stat&gt;): void
 
 | 参数名   | 类型                               | 必填 | 说明                           |
 | -------- | ---------------------------------- | ---- | ------------------------------ |
-| file     | string \| number                   | 是   | 文件应用沙箱路径path或已打开的文件描述符fd。     |
-| callback | AsyncCallback&lt;[Stat](#stat)&gt; | 是   | 异步获取文件的信息之后的回调。 |
+| file     | string \| number                   | 是   | 文件或目录的应用沙箱路径path或已打开的文件描述符fd。     |
+| callback | AsyncCallback&lt;[Stat](#stat)&gt; | 是   | 异步获取文件或目录的信息之后的回调。 |
 
 **错误码：**
 
@@ -116,13 +116,13 @@ statSync(file: string | number): Stat
 
 | 参数名 | 类型   | 必填 | 说明                       |
 | ------ | ------ | ---- | -------------------------- |
-| file   | string \| number | 是   | 文件应用沙箱路径path或已打开的文件描述符fd。 |
+| file   | string \| number | 是   | 文件或目录应用沙箱路径path或已打开的文件描述符fd。 |
 
 **返回值：**
 
   | 类型            | 说明         |
   | ------------- | ---------- |
-  | [Stat](#stat) | 表示文件的具体信息。 |
+  | [Stat](#stat) | 表示文件或目录的具体信息。 |
 
 **错误码：**
 
@@ -149,8 +149,8 @@ access(path: string, mode?: AccessModeType): Promise&lt;boolean&gt;
 
 | 参数名 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| path   | string | 是   | 文件应用沙箱路径。                                   |
-| mode<sup>12+</sup>   | [AccessModeType](#accessmodetype12) | 否   | 文件校验的权限。不填该参数则默认校验文件是否存在。|
+| path   | string | 是   | 文件或目录应用沙箱路径。                                   |
+| mode<sup>12+</sup>   | [AccessModeType](#accessmodetype12) | 否   | 文件或目录校验的权限。不填该参数则默认校验文件是否存在。|
 
 **返回值：**
 
@@ -195,15 +195,15 @@ access(path: string, mode: AccessModeType, flag: AccessFlagType): Promise&lt;boo
 
 | 参数名 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| path   | string | 是   | 文件应用沙箱路径。                                   |
-| mode<sup>12+</sup>   | [AccessModeType](#accessmodetype12) | 是   | 文件校验的权限。|
-| flag<sup>12+</sup>  | [AccessFlagType](#accessflagtype12) | 是| 文件校验的位置。 |
+| path   | string | 是   | 文件或目录应用沙箱路径。                                   |
+| mode<sup>12+</sup>   | [AccessModeType](#accessmodetype12) | 是   | 文件或目录校验的权限。|
+| flag<sup>12+</sup>  | [AccessFlagType](#accessflagtype12) | 是| 文件或目录校验的位置。 |
 
 **返回值：**
 
   | 类型                  | 说明                           |
   | ------------------- | ---------------------------- |
-  | Promise&lt;boolean&gt; | Promise对象。返回布尔值。返回true，表示文件在本地且校验权限存在；返回false，表示文件不存在或者文件在云端或其他分布式设备上。 |
+  | Promise&lt;boolean&gt; | Promise对象。返回布尔值。返回true，表示文件或目录在本地且校验权限存在；返回false，表示文件或目录不存在或者文件或目录在云端或其他分布式设备上。 |
 
 **错误码：**
 
@@ -244,8 +244,8 @@ access(path: string, callback: AsyncCallback&lt;boolean&gt;): void
 
 | 参数名   | 类型                      | 必填 | 说明                                                         |
 | -------- | ------------------------- | ---- | ------------------------------------------------------------ |
-| path     | string                    | 是   | 文件应用沙箱路径。                                   |
-| callback | AsyncCallback&lt;boolean&gt; | 是   | 异步检查文件是否存在的回调。如果存在，回调返回true；否则返回false。 |
+| path     | string                    | 是   | 文件或目录应用沙箱路径。                                   |
+| callback | AsyncCallback&lt;boolean&gt; | 是   | 异步检查文件或目录是否存在的回调。如果存在，回调返回true；否则返回false。 |
 
 **错误码：**
 
@@ -288,8 +288,8 @@ accessSync(path: string, mode?: AccessModeType): boolean
 
 | 参数名 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| path   | string | 是   | 文件应用沙箱路径。                                   |
-| mode<sup>12+</sup>   | [AccessModeType](#accessmodetype12) | 否   | 文件校验的权限。不填该参数则默认校验文件是否存在。 |
+| path   | string | 是   | 文件或目录应用沙箱路径。                                   |
+| mode<sup>12+</sup>   | [AccessModeType](#accessmodetype12) | 否   | 文件或目录校验的权限。不填该参数则默认校验文件或目录是否存在。 |
 
 **返回值：**
 
@@ -337,8 +337,8 @@ accessSync(path: string, mode: AccessModeType, flag: AccessFlagType): boolean
 | 参数名 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
 | path   | string | 是   | 文件应用沙箱路径。                                   |
-| mode<sup>12+</sup>   | [AccessModeType](#accessmodetype12) | 是   | 文件校验的权限。|
-| flag<sup>12+</sup>  | [AccessFlagType](#accessflagtype12) | 是   | 文件校验的位置。 |
+| mode<sup>12+</sup>   | [AccessModeType](#accessmodetype12) | 是   | 文件或目录校验的权限。|
+| flag<sup>12+</sup>  | [AccessFlagType](#accessflagtype12) | 是   | 文件或目录校验的位置。 |
 
 **返回值：**
 
@@ -427,7 +427,7 @@ close(file: number | File, callback: AsyncCallback&lt;void&gt;): void
   | 参数名      | 类型                        | 必填   | 说明           |
   | -------- | ------------------------- | ---- | ------------ |
   | file       | number \| [File](#file)        | 是    | 已打开的File对象或已打开的文件描述符fd。关闭后file对象或文件描述符fd不再具备实际意义，不可再用于进行读写等操作。 |
-  | callback | AsyncCallback&lt;void&gt; | 是    | 异步关闭文件之后的回调。 |
+  | callback | AsyncCallback&lt;void&gt; | 是    | 异步关闭文件或目录之后的回调。 |
 
 **错误码：**
 
@@ -790,7 +790,7 @@ copyFileSync(src: string | number, dest: string | number, mode?: number): void
 
 copyDir(src: string, dest: string, mode?: number): Promise\<void>
 
-复制源文件夹至目标路径下，使用promise异步回调。
+复制源目录至目标路径下，使用promise异步回调。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -798,9 +798,9 @@ copyDir(src: string, dest: string, mode?: number): Promise\<void>
 
   | 参数名    | 类型     | 必填   | 说明                          |
   | ------ | ------ | ---- | --------------------------- |
-  | src | string | 是    | 源文件夹的应用沙箱路径。 |
-  | dest | string | 是    | 目标文件夹的应用沙箱路径。 |
-  | mode | number | 否    | 复制模式，默认值为0。<br/>-&nbsp; mode为0，文件级别抛异常。目标文件夹下存在与源文件夹名冲突的文件夹，若冲突文件夹下存在同名文件，则抛出异常。源文件夹下未冲突的文件全部移动至目标文件夹下，目标文件夹下未冲突文件将继续保留，且冲突文件信息将在抛出异常的data属性中以Array\<[ConflictFiles](#conflictfiles10)>形式提供。<br/>-&nbsp; mode为1，文件级别强制覆盖。目标文件夹下存在与源文件夹名冲突的文件夹，若冲突文件夹下存在同名文件，则强制覆盖冲突文件夹下所有同名文件，未冲突文件将继续保留。|
+  | src | string | 是    | 源目录的应用沙箱路径。 |
+  | dest | string | 是    | 目标目录的应用沙箱路径。 |
+  | mode | number | 否    | 复制模式，默认值为0。<br/>-&nbsp; mode为0，文件级别抛异常。目标目录下存在与源目录名冲突的目录，若冲突目录下存在同名文件，则抛出异常。源目录下未冲突的文件全部移动至目标目录下，目标目录下未冲突文件将继续保留，且冲突文件信息将在抛出异常的data属性中以Array\<[ConflictFiles](#conflictfiles10)>形式提供。<br/>-&nbsp; mode为1，文件级别强制覆盖。目标目录下存在与源目录名冲突的目录，若冲突目录下存在同名文件，则强制覆盖冲突目录下所有同名文件，未冲突文件将继续保留。|
 
 **返回值：**
 
@@ -830,7 +830,7 @@ copyDir(src: string, dest: string, mode?: number): Promise\<void>
 
 copyDir(src: string, dest: string, mode: number, callback: AsyncCallback\<void, Array\<ConflictFiles>>): void
 
-复制源文件夹至目标路径下，可设置复制模式。使用callback异步回调。
+复制源目录至目标路径下，可设置复制模式。使用callback异步回调。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -838,10 +838,10 @@ copyDir(src: string, dest: string, mode: number, callback: AsyncCallback\<void, 
 
   | 参数名    | 类型     | 必填   | 说明                          |
   | ------ | ------ | ---- | --------------------------- |
-  | src | string | 是    | 源文件夹的应用沙箱路径。 |
-  | dest | string | 是    | 目标文件夹的应用沙箱路径。 |
-  | mode | number | 是    | 复制模式，默认值为0。<br/>-&nbsp; mode为0，文件级别抛异常。目标文件夹下存在与源文件夹名冲突的文件夹，若冲突文件夹下存在同名文件，则抛出异常。源文件夹下未冲突的文件全部移动至目标文件夹下，目标文件夹下未冲突文件将继续保留，且冲突文件信息将在抛出异常的data属性中以Array\<[ConflictFiles](#conflictfiles10)>形式提供。<br/>-&nbsp; mode为1，文件级别强制覆盖。目标文件夹下存在与源文件夹名冲突的文件夹，若冲突文件夹下存在同名文件，则强制覆盖冲突文件夹下所有同名文件，未冲突文件将继续保留。|
-  | callback | AsyncCallback&lt;void, Array&lt;[ConflictFiles](#conflictfiles10)&gt;&gt; | 是    | 异步复制文件夹之后的回调。              |
+  | src | string | 是    | 源目录的应用沙箱路径。 |
+  | dest | string | 是    | 目标目录的应用沙箱路径。 |
+  | mode | number | 是    | 复制模式，默认值为0。<br/>-&nbsp; mode为0，文件级别抛异常。目标目录下存在与源目录名冲突的目录，若冲突目录下存在同名文件，则抛出异常。源目录下未冲突的文件全部移动至目标目录下，目标目录下未冲突文件将继续保留，且冲突文件信息将在抛出异常的data属性中以Array\<[ConflictFiles](#conflictfiles10)>形式提供。<br/>-&nbsp; mode为1，文件级别强制覆盖。目标目录下存在与源目录名冲突的目录，若冲突目录下存在同名文件，则强制覆盖冲突目录下所有同名文件，未冲突文件将继续保留。|
+  | callback | AsyncCallback&lt;void, Array&lt;[ConflictFiles](#conflictfiles10)&gt;&gt; | 是    | 异步复制目录之后的回调。              |
 
 **错误码：**
 
@@ -872,9 +872,9 @@ copyDir(src: string, dest: string, mode: number, callback: AsyncCallback\<void, 
 
 copyDir(src: string, dest: string, callback: AsyncCallback\<void, Array\<ConflictFiles>>): void
 
-复制源文件夹至目标路径下，使用callback异步回调。
+复制源目录至目标路径下，使用callback异步回调。
 
-如果目标文件夹下有与源文件夹名冲突的文件夹，且冲突文件夹下有同名文件，则抛出异常。源文件夹下未冲突的文件全部移动至目标文件夹下，目标文件夹下未冲突文件将继续保留，且冲突文件信息将在抛出异常的data属性中以Array\<[ConflictFiles](#conflictfiles10)>形式提供。
+如果目标目录下有与源目录名冲突的目录，且冲突目录下有同名文件，则抛出异常。源目录下未冲突的文件全部移动至目标目录下，目标目录下未冲突文件将继续保留，且冲突文件信息将在抛出异常的data属性中以Array\<[ConflictFiles](#conflictfiles10)>形式提供。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -882,9 +882,9 @@ copyDir(src: string, dest: string, callback: AsyncCallback\<void, Array\<Conflic
 
   | 参数名    | 类型     | 必填   | 说明                          |
   | ------ | ------ | ---- | --------------------------- |
-  | src | string | 是    | 源文件夹的应用沙箱路径。 |
-  | dest | string | 是    | 目标文件夹的应用沙箱路径。 |
-  | callback | AsyncCallback&lt;void, Array&lt;[ConflictFiles](#conflictfiles10)&gt;&gt; | 是    | 异步复制文件夹之后的回调。              |
+  | src | string | 是    | 源目录的应用沙箱路径。 |
+  | dest | string | 是    | 目标目录的应用沙箱路径。 |
+  | callback | AsyncCallback&lt;void, Array&lt;[ConflictFiles](#conflictfiles10)&gt;&gt; | 是    | 异步复制目录之后的回调。              |
 
 **错误码：**
 
@@ -915,7 +915,7 @@ copyDir(src: string, dest: string, callback: AsyncCallback\<void, Array\<Conflic
 
 copyDirSync(src: string, dest: string, mode?: number): void
 
-以同步方法复制源文件夹至目标路径下。
+以同步方法复制源目录至目标路径下。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -923,9 +923,9 @@ copyDirSync(src: string, dest: string, mode?: number): void
 
   | 参数名    | 类型     | 必填   | 说明                          |
   | ------ | ------ | ---- | --------------------------- |
-  | src | string | 是    | 源文件夹的应用沙箱路径。 |
-  | dest | string | 是    | 目标文件夹的应用沙箱路径。 |
-  | mode | number | 否    | 复制模式，默认值为0。<br/>-&nbsp; mode为0，文件级别抛异常。目标文件夹下存在与源文件夹名冲突的文件夹，若冲突文件夹下存在同名文件，则抛出异常。源文件夹下未冲突的文件全部移动至目标文件夹下，目标文件夹下未冲突文件将继续保留，且冲突文件信息将在抛出异常的data属性中以Array\<[ConflictFiles](#conflictfiles10)>形式提供。<br/>-&nbsp; mode为1，文件级别强制覆盖。目标文件夹下存在与源文件夹名冲突的文件夹，若冲突文件夹下存在同名文件，则强制覆盖冲突文件夹下所有同名文件，未冲突文件将继续保留。|
+  | src | string | 是    | 源目录的应用沙箱路径。 |
+  | dest | string | 是    | 目标目录的应用沙箱路径。 |
+  | mode | number | 否    | 复制模式，默认值为0。<br/>-&nbsp; mode为0，文件级别抛异常。目标目录下存在与源目录名冲突的目录，若冲突目录下存在同名文件，则抛出异常。源目录下未冲突的文件全部移动至目标目录下，目标目录下未冲突文件将继续保留，且冲突文件信息将在抛出异常的data属性中以Array\<[ConflictFiles](#conflictfiles10)>形式提供。<br/>-&nbsp; mode为1，文件级别强制覆盖。目标目录下存在与源目录名冲突的目录，若冲突目录下存在同名文件，则强制覆盖冲突目录下所有同名文件，未冲突文件将继续保留。|
 
 **错误码：**
 
@@ -1091,7 +1091,7 @@ setxattr(path: string, key: string, value: string): Promise&lt;void&gt;
 
 | 参数名 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| path   | string | 是   | 目录的应用沙箱路径。                                   |
+| path   | string | 是   | 文件或目录的应用沙箱路径。                                   |
 | key   | string | 是   | 扩展属性的key。仅支持前缀为“user.”的字符串，且长度需小于256字节。  |
 | value   | string | 是   | 扩展属性的value。                                   |
 
@@ -1133,7 +1133,7 @@ setxattrSync(path: string, key: string, value: string): void
 
 | 参数名 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| path   | string | 是   | 目录的应用沙箱路径。                                   |
+| path   | string | 是   | 文件或目录的应用沙箱路径。                                   |
 | key   | string | 是   | 扩展属性的key。仅支持前缀为“user.”的字符串，且长度需小于256字节。   |
 | value   | string | 是   | 扩展属性的value。                                   |
 
@@ -1171,7 +1171,7 @@ getxattr(path: string, key: string): Promise&lt;string&gt;
 
 | 参数名 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| path   | string | 是   | 目录的应用沙箱路径。                                   |
+| path   | string | 是   | 文件或目录的应用沙箱路径。                                   |
 | key   | string | 是   | 扩展属性的key。                                   |
 
 **返回值：**
@@ -1212,7 +1212,7 @@ getxattrSync(path: string, key: string): string
 
 | 参数名 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| path   | string | 是   | 目录的应用沙箱路径。                                   |
+| path   | string | 是   | 文件或目录的应用沙箱路径。                                   |
 | key   | string | 是   | 扩展属性的key。                                   |
 
 **返回值：**
@@ -1459,8 +1459,8 @@ open(path: string, mode?: number): Promise&lt;File&gt;
 
 | 参数名 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| path   | string | 是   | 文件的应用沙箱路径或文件URI。                                   |
-| mode  | number | 否   | 打开文件的[选项](#openmode)，必须指定如下选项中的一个，默认以只读方式打开：<br/>-&nbsp;OpenMode.READ_ONLY(0o0)：只读打开。<br/>-&nbsp;OpenMode.WRITE_ONLY(0o1)：只写打开。<br/>-&nbsp;OpenMode.READ_WRITE(0o2)：读写打开。<br/>可以追加以下功能选项，以按位或的方式组合，默认情况下不追加任何额外选项。：<br/>-&nbsp;OpenMode.CREATE(0o100)：如果文件不存在，则创建文件。<br/>-&nbsp;OpenMode.TRUNC(0o1000)：如果文件存在且文件具有写权限，则将其长度裁剪为零。<br/>-&nbsp;OpenMode.APPEND(0o2000)：以追加方式打开，后续写将追加到文件末尾。<br/>-&nbsp;OpenMode.NONBLOCK(0o4000)：如果path指向FIFO、块特殊文件或字符特殊文件，则本次打开及后续&nbsp;IO&nbsp;进行非阻塞操作。<br/>-&nbsp;OpenMode.DIR(0o200000)：如果path不指向目录，则出错。不允许附加写权限。<br/>-&nbsp;OpenMode.NOFOLLOW(0o400000)：如果path指向符号链接，则出错。<br/>-&nbsp;OpenMode.SYNC(0o4010000)：以同步IO方式打开文件。 |
+| path   | string | 是   | 文件或目录的应用沙箱路径或文件URI。                                   |
+| mode  | number | 否   | 打开文件或目录的[选项](#openmode)，必须指定如下选项中的一个，默认以只读方式打开：<br/>-&nbsp;OpenMode.READ_ONLY(0o0)：只读打开。<br/>-&nbsp;OpenMode.WRITE_ONLY(0o1)：只写打开。<br/>-&nbsp;OpenMode.READ_WRITE(0o2)：读写打开。<br/>可以追加以下功能选项，以按位或的方式组合，默认情况下不追加任何额外选项。：<br/>-&nbsp;OpenMode.CREATE(0o100)：如果文件不存在，则创建文件。<br/>-&nbsp;OpenMode.TRUNC(0o1000)：如果文件存在且文件具有写权限，则将其长度裁剪为零。<br/>-&nbsp;OpenMode.APPEND(0o2000)：以追加方式打开，后续写将追加到文件末尾。<br/>-&nbsp;OpenMode.NONBLOCK(0o4000)：如果path指向FIFO、块特殊文件或字符特殊文件，则本次打开及后续&nbsp;IO&nbsp;进行非阻塞操作。<br/>-&nbsp;OpenMode.DIR(0o200000)：如果path不指向目录，则出错。不允许附加写权限。<br/>-&nbsp;OpenMode.NOFOLLOW(0o400000)：如果path指向符号链接，则出错。<br/>-&nbsp;OpenMode.SYNC(0o4010000)：以同步IO方式打开文件。 |
 
 **返回值：**
 
@@ -1502,8 +1502,8 @@ open(path: string, mode: number, callback: AsyncCallback&lt;File&gt;): void
 
 | 参数名   | 类型                            | 必填 | 说明                                                         |
 | -------- | ------------------------------- | ---- | ------------------------------------------------------------ |
-| path     | string                          | 是   | 文件的应用沙箱路径或URI。                                   |
-| mode  | number | 是   | 打开文件的[选项](#openmode)，必须指定如下选项中的一个，默认以只读方式打开：<br/>-&nbsp;OpenMode.READ_ONLY(0o0)：只读打开。<br/>-&nbsp;OpenMode.WRITE_ONLY(0o1)：只写打开。<br/>-&nbsp;OpenMode.READ_WRITE(0o2)：读写打开。<br/>给定如下功能选项，以按位或的方式追加，默认不给定任何额外选项：<br/>-&nbsp;OpenMode.CREATE(0o100)：若文件不存在，则创建文件。<br/>-&nbsp;OpenMode.TRUNC(0o1000)：如果文件存在且文件具有写权限，则将其长度裁剪为零。<br/>-&nbsp;OpenMode.APPEND(0o2000)：以追加方式打开，后续写将追加到文件末尾。<br/>-&nbsp;OpenMode.NONBLOCK(0o4000)：如果path指向FIFO、块特殊文件或字符特殊文件，则本次打开及后续&nbsp;IO&nbsp;进行非阻塞操作。<br/>-&nbsp;OpenMode.DIR(0o200000)：如果path不指向目录，则出错。不允许附加写权限。<br/>-&nbsp;OpenMode.NOFOLLOW(0o400000)：如果path指向符号链接，则出错。<br/>-&nbsp;OpenMode.SYNC(0o4010000)：以同步IO的方式打开文件。 |
+| path     | string                          | 是   | 文件或目录的应用沙箱路径或URI。                                   |
+| mode  | number | 是   | 打开文件或目录的[选项](#openmode)，必须指定如下选项中的一个，默认以只读方式打开：<br/>-&nbsp;OpenMode.READ_ONLY(0o0)：只读打开。<br/>-&nbsp;OpenMode.WRITE_ONLY(0o1)：只写打开。<br/>-&nbsp;OpenMode.READ_WRITE(0o2)：读写打开。<br/>给定如下功能选项，以按位或的方式追加，默认不给定任何额外选项：<br/>-&nbsp;OpenMode.CREATE(0o100)：若文件不存在，则创建文件。<br/>-&nbsp;OpenMode.TRUNC(0o1000)：如果文件存在且文件具有写权限，则将其长度裁剪为零。<br/>-&nbsp;OpenMode.APPEND(0o2000)：以追加方式打开，后续写将追加到文件末尾。<br/>-&nbsp;OpenMode.NONBLOCK(0o4000)：如果path指向FIFO、块特殊文件或字符特殊文件，则本次打开及后续&nbsp;IO&nbsp;进行非阻塞操作。<br/>-&nbsp;OpenMode.DIR(0o200000)：如果path不指向目录，则出错。不允许附加写权限。<br/>-&nbsp;OpenMode.NOFOLLOW(0o400000)：如果path指向符号链接，则出错。<br/>-&nbsp;OpenMode.SYNC(0o4010000)：以同步IO的方式打开文件。 |
 | callback     | AsyncCallback&lt;void&gt;                          | 是   | 异步打开文件之后的回调。                                   |
 
 **错误码：**
@@ -1539,7 +1539,7 @@ open(path: string, callback: AsyncCallback&lt;File&gt;): void
 
 | 参数名   | 类型                            | 必填 | 说明                                                         |
 | -------- | ------------------------------- | ---- | ------------------------------------------------------------ |
-| path     | string                          | 是   | 文件的应用沙箱路径或URI。                                   |
+| path     | string                          | 是   | 文件或目录的应用沙箱路径或URI。                                   |
 | callback     | AsyncCallback&lt;void&gt;                          | 是   | 异步打开文件之后的回调。                                   |
 
 **错误码：**
@@ -1575,8 +1575,8 @@ openSync(path: string, mode?: number): File
 
 | 参数名 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| path   | string | 是   | 打开文件的应用沙箱路径或URI。                                   |
-| mode  | number | 否   | 打开文件的[选项](#openmode)，必须指定如下选项中的一个，默认以只读方式打开：<br/>-&nbsp;OpenMode.READ_ONLY(0o0)：只读打开。<br/>-&nbsp;OpenMode.WRITE_ONLY(0o1)：只写打开。<br/>-&nbsp;OpenMode.READ_WRITE(0o2)：读写打开。<br/>给定如下功能选项，以按位或的方式追加，默认不给定任何额外选项：<br/>-&nbsp;OpenMode.CREATE(0o100)：若文件不存在，则创建文件。<br/>-&nbsp;OpenMode.TRUNC(0o1000)：如果文件存在且文件具有写权限，则将其长度裁剪为零。<br/>-&nbsp;OpenMode.APPEND(0o2000)：以追加方式打开，后续写将追加到文件末尾。<br/>-&nbsp;OpenMode.NONBLOCK(0o4000)：如果path指向FIFO、块特殊文件或字符特殊文件，则本次打开及后续&nbsp;IO&nbsp;进行非阻塞操作。<br/>-&nbsp;OpenMode.DIR(0o200000)：如果path不指向目录，则出错。不允许附加写权限。<br/>-&nbsp;OpenMode.NOFOLLOW(0o400000)：如果path指向符号链接，则出错。<br/>-&nbsp;OpenMode.SYNC(0o4010000)：以同步IO的方式打开文件。 |
+| path   | string | 是   | 打开文件或目录的应用沙箱路径或URI。                                   |
+| mode  | number | 否   | 打开文件或目录的[选项](#openmode)，必须指定如下选项中的一个，默认以只读方式打开：<br/>-&nbsp;OpenMode.READ_ONLY(0o0)：只读打开。<br/>-&nbsp;OpenMode.WRITE_ONLY(0o1)：只写打开。<br/>-&nbsp;OpenMode.READ_WRITE(0o2)：读写打开。<br/>给定如下功能选项，以按位或的方式追加，默认不给定任何额外选项：<br/>-&nbsp;OpenMode.CREATE(0o100)：若文件不存在，则创建文件。<br/>-&nbsp;OpenMode.TRUNC(0o1000)：如果文件存在且文件具有写权限，则将其长度裁剪为零。<br/>-&nbsp;OpenMode.APPEND(0o2000)：以追加方式打开，后续写将追加到文件末尾。<br/>-&nbsp;OpenMode.NONBLOCK(0o4000)：如果path指向FIFO、块特殊文件或字符特殊文件，则本次打开及后续&nbsp;IO&nbsp;进行非阻塞操作。<br/>-&nbsp;OpenMode.DIR(0o200000)：如果path不指向目录，则出错。不允许附加写权限。<br/>-&nbsp;OpenMode.NOFOLLOW(0o400000)：如果path指向符号链接，则出错。<br/>-&nbsp;OpenMode.SYNC(0o4010000)：以同步IO的方式打开文件。 |
 
 **返回值：**
 
@@ -2563,7 +2563,7 @@ lstatSync(path: string): Stat
 
 rename(oldPath: string, newPath: string): Promise&lt;void&gt;
 
-重命名文件或文件夹，使用promise异步回调。
+重命名文件或目录，使用promise异步回调。
 
 > **说明：**
 > 
@@ -2607,7 +2607,7 @@ rename(oldPath: string, newPath: string): Promise&lt;void&gt;
 
 rename(oldPath: string, newPath: string, callback: AsyncCallback&lt;void&gt;): void
 
-重命名文件或文件夹，使用callback异步回调。
+重命名文件或目录，使用callback异步回调。
 
 > **说明：**
 > 
@@ -2648,7 +2648,7 @@ rename(oldPath: string, newPath: string, callback: AsyncCallback&lt;void&gt;): v
 
 renameSync(oldPath: string, newPath: string): void
 
-以同步方法重命名文件或文件夹。
+以同步方法重命名文件或目录。
 
 > **说明：**
 >
@@ -2983,7 +2983,7 @@ symlinkSync(target: string, srcPath: string): void
 ## fs.listFile
 listFile(path: string, options?: ListFileOptions): Promise<string[]>
 
-列出文件夹下的所有文件名。支持递归列出所有文件名，支持文件过滤，返回结果以“/”开头且包含子目录路径。使用promise异步回调。
+列出目录下的所有文件名。支持递归列出所有文件名，支持文件过滤，返回结果以“/”开头且包含子目录路径。使用promise异步回调。
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -2993,7 +2993,7 @@ listFile(path: string, options?: ListFileOptions): Promise<string[]>
 
   | 参数名    | 类型     | 必填   | 说明                          |
   | ------ | ------ | ---- | --------------------------- |
-  | path | string | 是    | 文件夹的应用沙箱路径。 |
+  | path | string | 是    | 目录的应用沙箱路径。 |
   | options | [ListFileOptions](#listfileoptions11) | 否    | 文件过滤选项。默认不进行过滤。 |
 
 
@@ -3034,7 +3034,7 @@ listFile(path: string, options?: ListFileOptions): Promise<string[]>
 ## fs.listFile
 listFile(path: string, options?: ListFileOptions, callback: AsyncCallback<string[]>): void
 
-列出文件夹下的所有文件名。支持递归列出所有文件名，支持文件过滤，返回结果以“/”开头且包含子目录路径。使用callback异步回调。
+列出目录下的所有文件名。支持递归列出所有文件名，支持文件过滤，返回结果以“/”开头且包含子目录路径。使用callback异步回调。
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -3044,7 +3044,7 @@ listFile(path: string, options?: ListFileOptions, callback: AsyncCallback<string
 
   | 参数名    | 类型     | 必填   | 说明                          |
   | ------ | ------ | ---- | --------------------------- |
-  | path | string | 是    | 文件夹的应用沙箱路径。 |
+  | path | string | 是    | 目录的应用沙箱路径。 |
   | options | [ListFileOptions](#listfileoptions11) | 否    | 文件过滤选项。默认不进行过滤。 |
   | callback | AsyncCallback&lt;string[]&gt; | 是    | 异步列出文件名数组之后的回调。              |
 
@@ -3083,7 +3083,7 @@ listFile(path: string, options?: ListFileOptions, callback: AsyncCallback<string
 
 listFileSync(path: string, options?: ListFileOptions): string[]
 
-以同步方式列出文件夹下所有文件名。支持递归列出所有文件名，支持文件过滤，返回结果以“/”开头且包含子目录路径。
+以同步方式列出目录下所有文件名。支持递归列出所有文件名，支持文件过滤，返回结果以“/”开头且包含子目录路径。
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -3093,7 +3093,7 @@ listFileSync(path: string, options?: ListFileOptions): string[]
 
   | 参数名    | 类型     | 必填   | 说明                          |
   | ------ | ------ | ---- | --------------------------- |
-  | path | string | 是    | 文件夹的应用沙箱路径。 |
+  | path | string | 是    | 目录的应用沙箱路径。 |
   | options | [ListFileOptions](#listfileoptions11) | 否    | 文件过滤选项。默认不进行过滤。 |
 
 
@@ -3166,7 +3166,7 @@ lseek(fd: number, offset: number, whence?: WhenceType): number
 
 moveDir(src: string, dest: string, mode?: number): Promise\<void>
 
-移动源文件夹至目标路径下，使用promise异步回调。
+移动源目录至目标路径下，使用promise异步回调。
 
 > **说明：**
 >
@@ -3178,9 +3178,9 @@ moveDir(src: string, dest: string, mode?: number): Promise\<void>
 
   | 参数名    | 类型     | 必填   | 说明                          |
   | ------ | ------ | ---- | --------------------------- |
-  | src | string | 是    | 源文件夹的应用沙箱路径。 |
-  | dest | string | 是    | 目标文件夹的应用沙箱路径。 |
-  | mode | number | 否    | 移动模式，默认值为0。<br/>-&nbsp;mode为0，文件夹级别抛异常。若目标文件夹下存在与源文件夹名冲突的非空文件夹，则抛出异常。<br/>-&nbsp;mode为1，文件级别抛异常。目标文件夹下存在与源文件夹名冲突的文件夹，若冲突文件夹下存在同名文件，则抛出异常。源文件夹下未冲突的文件全部移动至目标文件夹下，目标文件夹下未冲突文件将继续保留，且冲突文件信息将在抛出异常的data属性中以Array\<[ConflictFiles](#conflictfiles10)>形式提供。<br/>-&nbsp; mode为2，文件级别强制覆盖。目标文件夹下存在与源文件夹名冲突的文件夹，若冲突文件夹下存在同名文件，则强制覆盖冲突文件夹下所有同名文件，未冲突文件将继续保留。<br/>-&nbsp; mode为3，文件夹级别强制覆盖。移动源文件夹至目标文件夹下，目标文件夹下移动的文件夹内容与源文件夹完全一致。若目标文件夹下存在与源文件夹名冲突的文件夹，该文件夹下的所有原始文件将被删除。|
+  | src | string | 是    | 源目录的应用沙箱路径。 |
+  | dest | string | 是    | 目标目录的应用沙箱路径。 |
+  | mode | number | 否    | 移动模式，默认值为0。<br/>-&nbsp;mode为0，目录级别抛异常。若目标目录下存在与源目录名冲突的非空目录，则抛出异常。<br/>-&nbsp;mode为1，文件级别抛异常。目标目录下存在与源目录名冲突的目录，若冲突目录下存在同名文件，则抛出异常。源目录下未冲突的文件全部移动至目标目录下，目标目录下未冲突文件将继续保留，且冲突文件信息将在抛出异常的data属性中以Array\<[ConflictFiles](#conflictfiles10)>形式提供。<br/>-&nbsp; mode为2，文件级别强制覆盖。目标目录下存在与源目录名冲突的目录，若冲突目录下存在同名文件，则强制覆盖冲突目录下所有同名文件，未冲突文件将继续保留。<br/>-&nbsp; mode为3，目录级别强制覆盖。移动源目录至目标目录下，目标目录下移动的目录内容与源目录完全一致。若目标目录下存在与源目录名冲突的目录，该目录下的所有原始文件将被删除。|
 
 **返回值：**
 
@@ -3210,7 +3210,7 @@ moveDir(src: string, dest: string, mode?: number): Promise\<void>
 
 moveDir(src: string, dest: string, mode: number, callback: AsyncCallback\<void, Array\<ConflictFiles>>): void
 
-移动源文件夹至目标路径下，支持设置移动模式。使用callback异步回调。
+移动源目录至目标路径下，支持设置移动模式。使用callback异步回调。
 
 > **说明：**
 >
@@ -3222,10 +3222,10 @@ moveDir(src: string, dest: string, mode: number, callback: AsyncCallback\<void, 
 
   | 参数名    | 类型     | 必填   | 说明                          |
   | ------ | ------ | ---- | --------------------------- |
-  | src | string | 是    | 源文件夹的应用沙箱路径。 |
-  | dest | string | 是    | 目标文件夹的应用沙箱路径。 |
-  | mode | number | 是    | 移动模式，默认值为0。<br/>-&nbsp;mode为0，文件夹级别抛异常。若目标文件夹下存在与源文件夹名冲突的文件夹，则抛出异常。<br/>-&nbsp;mode为1，文件级别抛异常。目标文件夹下存在与源文件夹名冲突的文件夹，若冲突文件夹下存在同名文件，则抛出异常。源文件夹下未冲突的文件全部移动至目标文件夹下，目标文件夹下未冲突文件将继续保留，且冲突文件信息将在抛出异常的data属性中以Array\<[ConflictFiles](#conflictfiles10)>形式提供。<br/>-&nbsp; mode为2，文件级别强制覆盖。目标文件夹下存在与源文件夹名冲突的文件夹，若冲突文件夹下存在同名文件，则强制覆盖冲突文件夹下所有同名文件，未冲突文件将继续保留。<br/>-&nbsp; mode为3，文件夹级别强制覆盖。移动源文件夹至目标文件夹下，目标文件夹下移动的文件夹内容与源文件夹完全一致。若目标文件夹下存在与源文件夹名冲突的文件夹，该文件夹下所有原始文件将被删除。|
-  | callback | AsyncCallback&lt;void, Array&lt;[ConflictFiles](#conflictfiles10)&gt;&gt; | 是    | 异步移动文件夹之后的回调。              |
+  | src | string | 是    | 源目录的应用沙箱路径。 |
+  | dest | string | 是    | 目标目录的应用沙箱路径。 |
+  | mode | number | 是    | 移动模式，默认值为0。<br/>-&nbsp;mode为0，目录级别抛异常。若目标目录下存在与源目录名冲突的目录，则抛出异常。<br/>-&nbsp;mode为1，文件级别抛异常。目标目录下存在与源目录名冲突的目录，若冲突目录下存在同名文件，则抛出异常。源目录下未冲突的文件全部移动至目标目录下，目标目录下未冲突文件将继续保留，且冲突文件信息将在抛出异常的data属性中以Array\<[ConflictFiles](#conflictfiles10)>形式提供。<br/>-&nbsp; mode为2，文件级别强制覆盖。目标目录下存在与源目录名冲突的目录，若冲突目录下存在同名文件，则强制覆盖冲突目录下所有同名文件，未冲突文件将继续保留。<br/>-&nbsp; mode为3，目录级别强制覆盖。移动源目录至目标目录下，目标目录下移动的目录内容与源目录完全一致。若目标目录下存在与源目录名冲突的目录，该目录下所有原始文件将被删除。|
+  | callback | AsyncCallback&lt;void, Array&lt;[ConflictFiles](#conflictfiles10)&gt;&gt; | 是    | 异步移动目录之后的回调。              |
 
 **错误码：**
 
@@ -3256,9 +3256,9 @@ moveDir(src: string, dest: string, mode: number, callback: AsyncCallback\<void, 
 
 moveDir(src: string, dest: string, callback: AsyncCallback\<void, Array\<ConflictFiles>>): void
 
-移动源文件夹至目标路径下。使用callback异步回调。
+移动源目录至目标路径下。使用callback异步回调。
 
-移动模式为文件夹级别抛异常。当目标文件夹下存在与源文件夹名冲突的文件夹，则抛出异常。
+移动模式为目录级别抛异常。当目标目录下存在与源目录名冲突的目录，则抛出异常。
 
 > **说明：**
 >
@@ -3270,9 +3270,9 @@ moveDir(src: string, dest: string, callback: AsyncCallback\<void, Array\<Conflic
 
   | 参数名    | 类型     | 必填   | 说明                          |
   | ------ | ------ | ---- | --------------------------- |
-  | src | string | 是    | 源文件夹的应用沙箱路径。 |
-  | dest | string | 是    | 目标文件夹的应用沙箱路径。 |
-  | callback | AsyncCallback&lt;void, Array&lt;[ConflictFiles](#conflictfiles10)&gt;&gt; | 是    | 异步移动文件夹之后的回调。              |
+  | src | string | 是    | 源目录的应用沙箱路径。 |
+  | dest | string | 是    | 目标目录的应用沙箱路径。 |
+  | callback | AsyncCallback&lt;void, Array&lt;[ConflictFiles](#conflictfiles10)&gt;&gt; | 是    | 异步移动目录之后的回调。              |
 
 **错误码：**
 
@@ -3303,7 +3303,7 @@ moveDir(src: string, dest: string, callback: AsyncCallback\<void, Array\<Conflic
 
 moveDirSync(src: string, dest: string, mode?: number): void
 
-以同步方法移动源文件夹至目标路径下。
+以同步方法移动源目录至目标路径下。
 
 > **说明：**
 >
@@ -3315,9 +3315,9 @@ moveDirSync(src: string, dest: string, mode?: number): void
 
   | 参数名    | 类型     | 必填   | 说明                          |
   | ------ | ------ | ---- | --------------------------- |
-  | src | string | 是    | 源文件夹的应用沙箱路径。 |
-  | dest | string | 是    | 目标文件夹的应用沙箱路径。 |
-  | mode | number | 否    | 移动模式，默认值为0。<br/>-&nbsp;mode为0，文件夹级别抛异常。若目标文件夹下存在与源文件夹名冲突的文件夹，则抛出异常。<br/>-&nbsp;mode为1，文件级别抛异常。目标文件夹下存在与源文件夹名冲突的文件夹，若冲突文件夹下存在同名文件，则抛出异常。源文件夹下未冲突的文件全部移动至目标文件夹下，目标文件夹下未冲突文件将继续保留，且冲突文件信息将在抛出异常的data属性中以Array\<[ConflictFiles](#conflictfiles10)>形式提供。<br/>-&nbsp; mode为2，文件级别强制覆盖。目标文件夹下存在与源文件夹名冲突的文件夹，若冲突文件夹下存在同名文件，则强制覆盖冲突文件夹下所有同名文件，未冲突文件将继续保留。<br/>-&nbsp; mode为3，文件夹级别强制覆盖。移动源文件夹至目标文件夹下，目标文件夹下移动的文件夹内容与源文件夹完全一致。若目标文件夹下存在与源文件夹名冲突的文件夹，该文件夹下所有原始文件将被删除。|
+  | src | string | 是    | 源目录的应用沙箱路径。 |
+  | dest | string | 是    | 目标目录的应用沙箱路径。 |
+  | mode | number | 否    | 移动模式，默认值为0。<br/>-&nbsp;mode为0，目录级别抛异常。若目标目录下存在与源目录名冲突的目录，则抛出异常。<br/>-&nbsp;mode为1，文件级别抛异常。目标目录下存在与源目录名冲突的目录，若冲突目录下存在同名文件，则抛出异常。源目录下未冲突的文件全部移动至目标目录下，目标目录下未冲突文件将继续保留，且冲突文件信息将在抛出异常的data属性中以Array\<[ConflictFiles](#conflictfiles10)>形式提供。<br/>-&nbsp; mode为2，文件级别强制覆盖。目标目录下存在与源目录名冲突的目录，若冲突目录下存在同名文件，则强制覆盖冲突目录下所有同名文件，未冲突文件将继续保留。<br/>-&nbsp; mode为3，目录级别强制覆盖。移动源目录至目标目录下，目标目录下移动的目录内容与源目录完全一致。若目标目录下存在与源目录名冲突的目录，该目录下所有原始文件将被删除。|
 
 **错误码：**
 
@@ -3853,6 +3853,8 @@ createStream(path: string, mode: string): Promise&lt;Stream&gt;
 
 基于文件路径创建文件流，使用promise异步回调。需要配合[Stream](#stream)中的close()函数关闭文件流。
 
+**原子化服务API**：从API version 20开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
 **参数：**
@@ -3892,6 +3894,8 @@ createStream(path: string, mode: string, callback: AsyncCallback&lt;Stream&gt;):
 
 基于文件路径创建文件流，使用callback异步回调。需要配合[Stream](#stream)中的close()函数关闭文件流。
 
+**原子化服务API**：从API version 20开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
 **参数：**
@@ -3927,6 +3931,8 @@ createStreamSync(path: string, mode: string): Stream
 
 以同步方法基于文件路径创建文件流。需要配合[Stream](#stream)中的close()函数关闭文件流。
 
+**原子化服务API**：从API version 20开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
 **参数：**
@@ -3961,6 +3967,8 @@ createStreamSync(path: string, mode: string): Stream
 fdopenStream(fd: number, mode: string): Promise&lt;Stream&gt;
 
 基于文件描述符打开文件流，使用promise异步回调。需要配合[Stream](#stream)中的close()函数关闭文件流。
+
+**原子化服务API**：从API version 20开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -4007,6 +4015,8 @@ fdopenStream(fd: number, mode: string, callback: AsyncCallback&lt;Stream&gt;): v
 
 基于文件描述符打开文件流，使用callback异步回调。需要配合[Stream](#stream)中的close()函数关闭文件流。
 
+**原子化服务API**：从API version 20开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
 **参数：**
@@ -4048,6 +4058,8 @@ fdopenStream(fd: number, mode: string, callback: AsyncCallback&lt;Stream&gt;): v
 fdopenStreamSync(fd: number, mode: string): Stream
 
 以同步方法基于文件描述符打开文件流。需要配合[Stream](#stream)中的close()函数关闭文件流。
+
+**原子化服务API**：从API version 20开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -4907,6 +4919,8 @@ close(): Promise&lt;void&gt;
 
 关闭文件流，使用promise异步回调。
 
+**原子化服务API**：从API version 20开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
 **返回值：**
@@ -4937,6 +4951,8 @@ close(): Promise&lt;void&gt;
 close(callback: AsyncCallback&lt;void&gt;): void
 
 异步关闭文件流，使用callback异步回调。
+
+**原子化服务API**：从API version 20开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -4971,6 +4987,8 @@ closeSync(): void
 
 同步关闭文件流。
 
+**原子化服务API**：从API version 20开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
 **错误码：**
@@ -4990,6 +5008,8 @@ closeSync(): void
 flush(): Promise&lt;void&gt;
 
 刷新文件流，使用promise异步回调。
+
+**原子化服务API**：从API version 20开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -5022,6 +5042,8 @@ flush(): Promise&lt;void&gt;
 flush(callback: AsyncCallback&lt;void&gt;): void
 
 异步刷新文件流，使用callback异步回调。
+
+**原子化服务API**：从API version 20开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -5057,6 +5079,8 @@ flushSync(): void
 
 同步刷新文件流。
 
+**原子化服务API**：从API version 20开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
 **错误码：**
@@ -5077,6 +5101,8 @@ flushSync(): void
 write(buffer: ArrayBuffer | string, options?: WriteOptions): Promise&lt;number&gt;
 
 将数据写入流文件，使用promise异步回调。
+
+**原子化服务API**：从API version 20开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -5123,6 +5149,8 @@ write(buffer: ArrayBuffer | string, options?: WriteOptions, callback: AsyncCallb
 
 将数据写入流文件，使用callback异步回调。
 
+**原子化服务API**：从API version 20开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
 **参数：**
@@ -5167,6 +5195,8 @@ writeSync(buffer: ArrayBuffer | string, options?: WriteOptions): number
 
 以同步方法将数据写入流文件。
 
+**原子化服务API**：从API version 20开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
 **参数：**
@@ -5206,6 +5236,8 @@ writeSync(buffer: ArrayBuffer | string, options?: WriteOptions): number
 read(buffer: ArrayBuffer, options?: ReadOptions): Promise&lt;number&gt;
 
 从流文件读取数据，使用promise异步回调。
+
+**原子化服务API**：从API version 20开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -5255,6 +5287,8 @@ read(buffer: ArrayBuffer, options?: ReadOptions, callback: AsyncCallback&lt;numb
 
 从流文件读取数据，使用callback异步回调。
 
+**原子化服务API**：从API version 20开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
 **参数：**
@@ -5299,6 +5333,8 @@ read(buffer: ArrayBuffer, options?: ReadOptions, callback: AsyncCallback&lt;numb
 readSync(buffer: ArrayBuffer, options?: ReadOptions): number
 
 以同步方法从流文件读取数据。
+
+**原子化服务API**：从API version 20开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -5986,7 +6022,7 @@ open接口flags参数常量。文件打开标签。
 | ----------- | --------------- | ------------------ | ------------------ |
 | suffix | Array&lt;string&gt;     | 否 | 文件后缀名完全匹配，各个关键词OR关系。           |
 | displayName    | Array&lt;string&gt;     | 否 | 文件名模糊匹配，各个关键词OR关系。当前仅支持通配符*。 |
-| mimeType    | Array&lt;string&gt; | 否 | mime类型完全匹配，各个关键词OR关系。       |
+| mimeType    | Array&lt;string&gt; | 否 | mime类型完全匹配，各个关键词OR关系。预留字段，暂不支持使用。      |
 | fileSizeOver    | number | 否 | 文件大小匹配，大于等于指定大小的文件。       |
 | lastModifiedAfter    | number | 否 | 文件最近修改时间匹配，在指定时间点及之后的文件。       |
 | excludeMedia    | boolean | 否 | 是否排除Media中已有的文件。true：排除Media中已有的文件；false：不排除Media中已有的文件。    |
@@ -6107,7 +6143,7 @@ open接口flags参数常量。文件打开标签。
 
 | 名称        | 类型       | 必选       |  说明                |
 | ----------- | --------------- | ------------------ | ------------------ |
-| recursion | boolean     | 否 | 是否递归子目录下文件名。可选，默认为false。当recursion为false时，返回当前目录下满足过滤要求的文件名及文件夹名。当recursion为true时，返回此目录下所有满足过滤要求的文件的相对路径（以/开头）。           |
+| recursion | boolean     | 否 | 是否递归子目录下文件名。可选，默认为false。当recursion为false时，返回当前目录下满足过滤要求的文件名及目录名。当recursion为true时，返回此目录下所有满足过滤要求的文件的相对路径（以/开头）。           |
 |  listNum    | number     | 否 | 列出文件名数量。可选，当设置0时，列出所有文件，默认为0。 |
 | filter    | [Filter](#filter10) | 否 | 文件过滤配置项。 可选，设置过滤条件。 |
 

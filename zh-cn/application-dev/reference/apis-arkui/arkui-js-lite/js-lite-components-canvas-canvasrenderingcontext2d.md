@@ -322,14 +322,14 @@ export default {
 
 **参数：**
 
-| 参数 | 类型 | 描述 |
-| -------- | -------- | -------- |
-| x | number | 弧线圆心的x坐标值。 |
-| y | number | 弧线圆心的y坐标值。 |
-| radius | number | 弧线的圆半径。 |
-| startAngle | number | 弧线的起始弧度。 |
-| endAngle | number | 弧线的终止弧度。 |
-| anticlockwise | boolean | 是否逆时针绘制圆弧。 |
+| 参数 | 类型 | 必填    | 描述 |
+| -------- | -------- | -------- | -------- |
+| x | number | 是 | 弧线圆心的x坐标值，单位：vp。 |
+| y | number | 是 | 弧线圆心的y坐标值，单位：vp。 |
+| radius | number | 是 | 弧线的圆半径，单位：vp。 |
+| startAngle | number | 是 | 弧线的起始弧度，单位：弧度。 |
+| endAngle | number | 是 | 弧线的终止弧度，单位：弧度。 |
+| anticlockwise | boolean | 否 | 是否逆时针绘制圆弧。<br/>true：逆时针方向绘制弧线。<br/>false：顺时针方向绘制弧线。<br/>默认值：false。  |
 
 **示例：**
 
@@ -348,12 +348,12 @@ export default {
 
 **参数：**
 
-| 参数 | 类型 | 描述 |
-| -------- | -------- | -------- |
-| x | number | 指定矩形的左上角x坐标值。 |
-| y | number | 指定矩形的左上角y坐标值。 |
-| width | number | 指定矩形的宽度。 |
-| height | number | 指定矩形的高度。 |
+| 参数 | 类型 | 必填 | 描述 |
+| -------- | -------- | -------- | -------- |
+| x | number | 是 | 指定矩形的左上角x坐标值，单位：vp。 |
+| y | number | 是 | 指定矩形的左上角y坐标值，单位：vp。 |
+| width | number | 是 | 指定矩形的宽度，单位：vp。 |
+| height | number | 是 | 指定矩形的高度，单位：vp。 |
 
 **示例：**
 

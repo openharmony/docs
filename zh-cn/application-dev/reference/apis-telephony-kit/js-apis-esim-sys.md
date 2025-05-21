@@ -35,7 +35,7 @@ getEid\(slotId: number\): Promise\<string\>
 
 | 类型                  | 说明                                |
 | --------------------- | ---------------------------------- |
-| string | 返回指定卡槽标识eUICC硬件的EID。 |
+| Promise\<string\> | 返回指定卡槽标识eUICC硬件的EID。 |
 
 **错误码：**
 

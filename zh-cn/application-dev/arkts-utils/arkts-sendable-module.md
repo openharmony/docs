@@ -27,7 +27,7 @@
 
 - 共享模块导出的变量必须是可共享对象。
 
-  共享模块在并发实例间可共享，因此模块导出的所有对象必须是可共享的，可共享对象参考[Sendable规格](sendable-constraints.md)。
+  共享模块在并发实例间可共享，因此共享模块导出的所有对象必须是可共享的，可共享对象参考[Sendable支持的数据类型](arkts-sendable.md#sendable支持的数据类型)。
 
 - 共享模块不允许直接导出模块。
 
@@ -35,10 +35,12 @@
   // test.ets
   export let num = 1;
   export let str = 'aaa';
-  
+  ```
+
+  ```ts
+  // share.ets
   // 共享模块
   'use shared'
-  
   export * from './test'; // 编译报错，不允许直接导出模块
   export {num, str} from './test'; // 正确示例，导出对象合集
   ```

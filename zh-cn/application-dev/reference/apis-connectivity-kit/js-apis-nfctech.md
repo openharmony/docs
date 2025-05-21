@@ -6,6 +6,10 @@
 >
 > 本模块首批接口从API version 7开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
+> **注意：**
+>
+> 导入tag模块编辑器报错，在某个具体设备型号上能力可能超出工程默认设备定义的能力集范围，如需要使用此部分能力需额外配置自定义syscap，参考[syscap开发指南](https://developer.huawei.com/consumer/cn/doc/harmonyos-references/syscap#syscap开发指导)。
+
 ## 导入模块
 
 ```js
@@ -765,7 +769,7 @@ writeNdef(msg: [NdefMessage](#ndefmessage9), callback: AsyncCallback\<void>): vo
 | 参数名   | 类型                    | 必填 | 说明                                   |
 | -------- | ----------------------- | ---- | -------------------------------------- |
 | msg | [NdefMessage](#ndefmessage9) | 是   | NDEF Message数据对象。 |
-| callback | AsyncCallback\<void> | 是   | 回调函数。 |
+| callback | AsyncCallback\<void> | 是   | 回调函数。当NDEF Message数据对象写入成功时，err为undefined，否则为错误对象。|
 
 **错误码：**
 
@@ -926,7 +930,7 @@ setReadOnly(callback: AsyncCallback\<void>): void
 
 | 参数名   | 类型                    | 必填 | 说明                                   |
 | -------- | ----------------------- | ---- | -------------------------------------- |
-| callback | AsyncCallback\<void> | 是   | 回调函数。 |
+| callback | AsyncCallback\<void> | 是   | 回调函数。当NDEF标签设置为只读成功时，err为undefined，否则为错误对象。 |
 
 **错误码：**
 
@@ -1116,7 +1120,7 @@ authenticateSector(sectorIndex: number, key: number[], isKeyA: boolean, callback
 | sectorIndex | number | 是   | 待验证的扇区索引，从0开始。 |
 | key | number[]| 是   | 用于扇区验证的密钥（6字节）。 |
 | isKeyA | boolean | 是   | isKeyA标志。true 表示KeyA，false 表示KeyB。|
-| callback | AsyncCallback\<void> | 是   | 以callback形式异步返回扇区验证结果。|
+| callback | AsyncCallback\<void> | 是   | 回调函数。当身份验证成功时，err为undefined，否则为错误对象。|
 
 **错误码：**
 
@@ -1378,7 +1382,7 @@ writeSingleBlock(blockIndex: number, data: number[], callback: AsyncCallback\<vo
 | -------- | ----------------------- | ---- | -------------------------------------- |
 | blockIndex | number | 是   | 要写入的块索引，从0开始。 |
 | data | number[] | 是   | 要写入的数据，大小必须是16个字节。 |
-| callback | AsyncCallback\<void> | 是   | 以callback形式异步返回块操作结果。 |
+| callback | AsyncCallback\<void> | 是   | 回调函数。当向块存储写入内容成功时，err为undefined，否则为错误对象。 |
 
 **错误码：**
 
@@ -1513,7 +1517,7 @@ incrementBlock(blockIndex: number, value: number, callback: AsyncCallback\<void>
 | -------- | ----------------------- | ---- | -------------------------------------- |
 | blockIndex | number | 是   | 要被运算的块索引，从0开始。 |
 | value | number | 是   | 要增加的数值，非负数。 |
-| callback | AsyncCallback\<void> | 是   | 以callback形式异步返回块操作结果。。 |
+| callback | AsyncCallback\<void> | 是   | 回调函数。当对块增加指定数值成功时，err为undefined，否则为错误对象。|
 
 **错误码：**
 
@@ -1646,7 +1650,7 @@ decrementBlock(blockIndex: number, value: number, callback: AsyncCallback\<void>
 | -------- | ----------------------- | ---- | -------------------------------------- |
 | blockIndex | number | 是   | 要被运算的块索引，从0开始。 |
 | value | number | 是   | 要减少的数值，非负数。 |
-| callback | AsyncCallback\<void> | 是   | 以callback形式异步返回块操作结果。 |
+| callback | AsyncCallback\<void> | 是   | 回调函数。当对块减少指定数值成功时，err为undefined，否则为错误对象。 |
 
 **错误码：**
 
@@ -1777,7 +1781,7 @@ transferToBlock(blockIndex: number, callback: AsyncCallback\<void>): void
 | 参数名   | 类型                    | 必填 | 说明                                   |
 | -------- | ----------------------- | ---- | -------------------------------------- |
 | blockIndex | number | 是   | 被操作的块的索引，从0开始。 |
-| callback | AsyncCallback\<void> | 是   | 以callback形式异步返回块操作结果。 |
+| callback | AsyncCallback\<void> | 是   | 回调函数。当临时寄存器的值转移到指定块成功时，err为undefined，否则为错误对象。|
 
 **错误码：**
 
@@ -1907,7 +1911,7 @@ restoreFromBlock(blockIndex: number, callback: AsyncCallback\<void>): void
 | 参数名   | 类型                    | 必填 | 说明                                   |
 | -------- | ----------------------- | ---- | -------------------------------------- |
 | blockIndex | number | 是   | 被操作的块的索引，从0开始。 |
-| callback | AsyncCallback\<void> | 是   | 以callback形式异步返回块操作结果。|
+| callback | AsyncCallback\<void> | 是   | 回调函数。当复制指定块内容到临时寄存器成功时，err为undefined，否则为错误对象。|
 
 **错误码：**
 
@@ -2431,7 +2435,7 @@ writeSinglePage(pageIndex: number, data: number[], callback: AsyncCallback\<void
 | -------- | ----------------------- | ---- | ------------------------ |
 | pageIndex | number | 是   | 要写入页面的索引，从0开始。 |
 | data | number[] | 是   | 要写入页面的数据内容，必须是4个字节大小。 |
-| callback|AsyncCallback\<void> |是| 以callback形式异步返回页操作结果。 |
+| callback|AsyncCallback\<void> |是| 回调函数。当写入数据成功时，err为undefined，否则为错误对象。 |
 
 **错误码：**
 
@@ -2607,7 +2611,7 @@ format(message: [NdefMessage](#ndefmessage9), callback: AsyncCallback\<void>): v
 
 | **类型** | **说明**                             |
 | ------------------ | --------------------------|
-| callback: AsyncCallback\<void> | 以callback形式异步返回格式化操作结果。 |
+| callback: AsyncCallback\<void> | 回调函数。当NDEF消息写入标签成功时，err为undefined，否则为错误对象。 |
 
 **错误码：**
 
@@ -2748,7 +2752,7 @@ formatReadOnly(message: [NdefMessage](#ndefmessage9), callback: AsyncCallback\<v
 
 | **类型** | **说明**                             |
 | ------------------ | --------------------------|
-| callback: AsyncCallback\<void> | 以callback形式异步返回格式化操作结果。 |
+| callback: AsyncCallback\<void> | 回调函数。当NDEF消息写入NDEF标签成功时，err为undefined，否则为错误对象。 |
 
 **错误码：**
 

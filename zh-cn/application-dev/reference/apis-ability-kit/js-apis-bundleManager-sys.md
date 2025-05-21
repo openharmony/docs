@@ -30,7 +30,7 @@ import { bundleManager } from '@kit.AbilityKit';
 
 包信息标志，指示需要获取的包信息的内容。
 
- **系统能力：** SystemCapability.BundleManager.BundleFramework.Core
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Core
 
 | 名称                                          | 值         | 说明                                                         |
 | --------------------------------------------- | ---------- | ------------------------------------------------------------ |
@@ -54,9 +54,9 @@ import { bundleManager } from '@kit.AbilityKit';
 
 应用信息标志，指示需要获取的应用信息的内容。
 
- **系统能力：** SystemCapability.BundleManager.BundleFramework.Core
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Core
 
- **系统接口：** 此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 | 名称                                 | 值         | 说明                                                         |
 | ------------------------------------ | ---------- | ------------------------------------------------------------ |
@@ -69,9 +69,9 @@ import { bundleManager } from '@kit.AbilityKit';
 
 Ability组件信息标志，指示需要获取的Ability组件信息的内容。
 
- **系统能力：** SystemCapability.BundleManager.BundleFramework.Core
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Core
 
- **系统接口：** 此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 | 名称                              | 值         | 说明                                                         |
 | --------------------------------- | ---------- | ------------------------------------------------------------ |
@@ -88,9 +88,9 @@ Ability组件信息标志，指示需要获取的Ability组件信息的内容。
 
 扩展组件信息标志，指示需要获取的扩展组件信息的内容。
 
- **系统能力：** SystemCapability.BundleManager.BundleFramework.Core
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Core
 
- **系统接口：** 此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 | 名称                                        | 值         | 说明                                                         |
 | ------------------------------------------- | ---------- | ------------------------------------------------------------ |
@@ -104,7 +104,7 @@ Ability组件信息标志，指示需要获取的Ability组件信息的内容。
 
 标识配置文件类型。
 
- **系统能力:** SystemCapability.BundleManager.BundleFramework.Core
+ **系统能力：** SystemCapability.BundleManager.BundleFramework.Core
 
  **系统接口：** 此接口为系统接口。
 
@@ -116,7 +116,7 @@ Ability组件信息标志，指示需要获取的Ability组件信息的内容。
 
 标识应用[分发类型](../../security/app-provision-structure.md)。
 
- **系统能力:** SystemCapability.BundleManager.BundleFramework.Core
+ **系统能力：** SystemCapability.BundleManager.BundleFramework.Core
 
  **系统接口：** 此接口为系统接口。
 
@@ -133,9 +133,9 @@ Ability组件信息标志，指示需要获取的Ability组件信息的内容。
 ## ApplicationInfoFlag<sup>12+</sup>
 标识应用和用户之间的各种状态类型。
 
- **系统能力：** SystemCapability.BundleManager.BundleFramework.Core
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Core
 
- **系统接口：** 此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 | 名称 | 值 | 说明 |
 |----------------|---|---|
@@ -162,7 +162,7 @@ getBundleInfo(bundleName: string, bundleFlags: number, userId: number, callback:
 | ----------- | ------ | ---- | ---------------------------- |
 | bundleName  | string | 是   | 表示要查询的应用Bundle名称。 |
 | [bundleFlags](js-apis-bundleManager.md#bundleflag) | number | 是   | 指定返回的BundleInfo所包含的信息。|
-| userId      | number | 是   | 表示用户ID。  |
+| userId      | number | 是   | 表示用户ID，可以通过[getOsAccountLocalId接口](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9)获取。  |
 | callback | AsyncCallback\<[BundleInfo](js-apis-bundleManager-bundleInfo.md)> | 是 | 回调函数，当获取成功时，err为null，data为获取到的bundleInfo；否则为错误对象。 |
 
 **错误码：**
@@ -298,7 +298,7 @@ getBundleInfo(bundleName: string, bundleFlags: number, userId?: number): Promise
 | ----------- | ------ | ---- | ---------------------------- |
 | bundleName  | string | 是   | 表示要查询的应用Bundle名称。 |
 | [bundleFlags](js-apis-bundleManager.md#bundleflag) | number | 是   | 指定返回的BundleInfo所包含的信息。       |
-| userId      | number | 否   | 表示用户ID，默认值：调用方所在用户，取值范围：大于等于0。  |
+| userId      | number | 否   | 表示用户ID，可以通过[getOsAccountLocalId接口](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9)获取，默认值：调用方所在用户，取值范围：大于等于0。  |
 
 **返回值：**
 
@@ -381,7 +381,7 @@ getApplicationInfo(bundleName: string, appFlags: number, userId: number, callbac
 | ---------- | ------ | ---- | ---------------------------- |
 | bundleName | string | 是   | 表示要查询的应用Bundle名称。 |
 | appFlags   | [number](#applicationflag) | 是   | 指定返回的ApplicationInfo所包含的信息。    |
-| userId     | number | 是   | 表示用户ID。  |
+| userId     | number | 是   | 表示用户ID，可以通过[getOsAccountLocalId接口](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9)获取。  |
 | callback | AsyncCallback\<[ApplicationInfo](js-apis-bundleManager-applicationInfo.md)> | 是 | 回调函数，当获取成功时，err为null，data为获取到的ApplicationInfo；否则为错误对象。 |
 
 **错误码：**
@@ -498,7 +498,7 @@ getApplicationInfo(bundleName: string, appFlags: number, userId?: number): Promi
 | ---------- | ------ | ---- | ---------------------------- |
 | bundleName | string | 是   | 表示要查询的应用Bundle名称。 |
 | appFlags   | [number](#applicationflag) | 是   | 指定返回的ApplicationInfo所包含的信息。    |
-| userId     | number | 否   | 表示用户ID，默认值：调用方所在用户，取值范围：大于等于0。 |
+| userId     | number | 否   | 表示用户ID，可以通过[getOsAccountLocalId接口](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9)获取，默认值：调用方所在用户，取值范围：大于等于0。 |
 
 **返回值：**
 
@@ -558,7 +558,7 @@ getAllBundleInfo(bundleFlags: number, userId: number, callback: AsyncCallback<Ar
 | 参数名     | 类型   | 必填 | 说明                                             |
 | ----------- | ------ | ---- | -------------------------------------------------- |
 | [bundleFlags](js-apis-bundleManager.md#bundleflag) | number | 是   | 指定返回的BundleInfo所包含的信息。                    |
-| userId      | number | 是   | 表示用户ID。                      |
+| userId      | number | 是   | 表示用户ID，可以通过[getOsAccountLocalId接口](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9)获取。                      |
 | callback | AsyncCallback<Array\<[BundleInfo](js-apis-bundleManager-bundleInfo.md)>> | 是 | 回调函数，当获取成功时，err为null，data为获取到的Array\<BundleInfo>；否则为错误对象。 |
 
 **错误码：**
@@ -663,7 +663,7 @@ getAllBundleInfo(bundleFlags: number, userId?: number): Promise<Array\<BundleInf
 | 参数名     | 类型   | 必填 | 说明                                             |
 | ----------- | ------ | ---- | -------------------------------------------------- |
 | [bundleFlags](js-apis-bundleManager.md#bundleflag) | number | 是   | 指定返回的BundleInfo所包含的信息。                   |
-| userId      | number | 否   | 表示用户ID，默认值：调用方所在用户，取值范围：大于等于0。                      |
+| userId      | number | 否   | 表示用户ID，可以通过[getOsAccountLocalId接口](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9)获取，默认值：调用方所在用户，取值范围：大于等于0。                      |
 
 **返回值：**
 
@@ -719,7 +719,7 @@ getAllApplicationInfo(appFlags: number, userId: number, callback: AsyncCallback<
 | 参数名  | 类型   | 必填 | 说明                                                      |
 | -------- | ------ | ---- | ----------------------------------------------------------- |
 | appFlags | [number](#applicationflag) | 是   | 指定返回的ApplicationInfo所包含的信息。                       |
-| userId   | number | 是   | 表示用户ID。         |
+| userId   | number | 是   | 表示用户ID，可以通过[getOsAccountLocalId接口](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9)获取。         |
 | callback | AsyncCallback<Array\<[ApplicationInfo](js-apis-bundleManager-applicationInfo.md)>> | 是 | 回调函数，当获取成功时，err为null，data为获取到的Array\<ApplicationInfo>；否则为错误对象。 |
 
 **错误码：**
@@ -824,7 +824,7 @@ getAllApplicationInfo(appFlags: number, userId?: number): Promise<Array\<Applica
 | 参数名  | 类型   | 必填 | 说明                                                      |
 | -------- | ------ | ---- | ---------------------------------------------------------- |
 | appFlags | [number](#applicationflag) | 是   | 指定返回的ApplicationInfo所包含的信息。                       |
-| userId   | number | 否   | 表示用户ID，默认值：调用方所在用户，取值范围：大于等于0。                        |
+| userId   | number | 否   | 表示用户ID，可以通过[getOsAccountLocalId接口](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9)获取，默认值：调用方所在用户，取值范围：大于等于0。                        |
 
 **返回值：**
 
@@ -882,7 +882,7 @@ queryAbilityInfo(want: Want, abilityFlags: number, userId: number, callback: Asy
 | ------------ | ------ | ---- | ------------------------------------------------------- |
 | want         | Want   | 是   | 表示包含要查询的应用Bundle名称的Want。                 |
 | abilityFlags | [number](#abilityflag) | 是   | 指定返回的AbilityInfo所包含的信息。                       |
-| userId       | number | 是   | 表示用户ID。                               |
+| userId       | number | 是   | 表示用户ID，可以通过[getOsAccountLocalId接口](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9)获取。                               |
 | callback | AsyncCallback<Array\<[AbilityInfo](js-apis-bundleManager-abilityInfo.md)>> | 是 | 回调函数，当获取成功时，err为null，data为获取到的Array\<AbilityInfo>；否则为错误对象。 |
 
 **错误码：**
@@ -1007,7 +1007,7 @@ queryAbilityInfo(want: Want, abilityFlags: number, userId?: number): Promise<Arr
 | ------------ | ------ | ---- | ------------------------------------------------------- |
 | want         | Want   | 是   | 表示包含要查询的应用Bundle名称的Want。                 |
 | abilityFlags | [number](#abilityflag) | 是   | 表示指定返回的AbilityInfo所包含的信息。 |
-| userId       | number | 否   | 表示用户ID，默认值：调用方所在用户，取值范围：大于等于0。                       |
+| userId       | number | 否   | 表示用户ID，可以通过[getOsAccountLocalId接口](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9)获取，默认值：调用方所在用户，取值范围：大于等于0。                       |
 
 **返回值：**
 
@@ -1097,7 +1097,7 @@ queryAbilityInfoSync(want: Want, abilityFlags: number, userId?: number): Array\<
 | ------------ | ------ | ---- | ------------------------------------------------------- |
 | want         | Want   | 是   | 表示包含要查询的应用Bundle名称的Want。                 |
 | abilityFlags | [number](#abilityflag) | 是   | 表示指定返回的AbilityInfo所包含的信息。 |
-| userId       | number | 否   | 表示用户ID，默认值：调用方所在用户，取值范围：大于等于0。                       |
+| userId       | number | 否   | 表示用户ID，可以通过[getOsAccountLocalId接口](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9)获取，默认值：调用方所在用户，取值范围：大于等于0。                       |
 
 **返回值：**
 
@@ -1182,13 +1182,13 @@ queryAbilityInfo(wants: Array\<Want>, abilityFlags: number, userId?: number): Pr
 | ------------ | ------ | ---- | ------------------------------------------------------- |
 | want         | Array\<Want>   | 是   | 表示包含要查询的应用Bundle名称的Want集合。                 |
 | abilityFlags | [number](#abilityflag) | 是   | 表示指定返回的AbilityInfo所包含的信息。 |
-| userId       | number | 否   | 表示用户ID，默认值：调用方所在用户，取值范围：大于等于0。                       |
+| userId       | number | 否   | 表示用户ID，可以通过[getOsAccountLocalId接口](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9)获取，默认值：调用方所在用户，取值范围：大于等于0。                       |
 
 **返回值：**
 
 | 类型                                                         | 说明                                 |
 | ------------------------------------------------------------ | ------------------------------------ |
-| Array\<[AbilityInfo](js-apis-bundleManager-abilityInfo.md)> | Array\<AbilityInfo>信息。 |
+| Promise<Array\<[AbilityInfo](js-apis-bundleManager-abilityInfo.md)>> | Promise对象，返回Array\<[AbilityInfo](js-apis-bundleManager-abilityInfo.md)>信息。 |
 
 **错误码：**
 
@@ -1252,9 +1252,9 @@ queryExtensionAbilityInfo(want: Want, extensionAbilityType: ExtensionAbilityType
 | 参数名                | 类型                                                         | 必填 | 说明                                                         |
 | --------------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | want                  | Want                                                         | 是   | 表示包含要查询的应用Bundle名称的Want。                       |
-| extensionAbilityType  | [ExtensionAbilityType](js-apis-bundleManager-sys.md#extensionabilitytype)                | 是   | 标识extensionAbility的类型。                                 |
+| extensionAbilityType  | [ExtensionAbilityType](js-apis-bundleManager.md#extensionabilitytype)                | 是   | 标识extensionAbility的类型。                                 |
 | extensionAbilityFlags | [number](#extensionabilityflag)                              | 是   | 表示用于指定将返回的ExtensionInfo对象中包含的信息的标志。    |
-| userId                | number                                                       | 是   | 表示用户ID。                                                 |
+| userId                | number                                                       | 是   | 表示用户ID，可以通过[getOsAccountLocalId接口](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9)获取。                                                 |
 | callback              | AsyncCallback<Array\<[ExtensionAbilityInfo](js-apis-bundleManager-extensionAbilityInfo.md)>> | 是   | 回调函数，当获取成功时，err为null，data为获取到Array\<ExtensionAbilityInfo>；否则为错误对象。 |
 
 **错误码：**
@@ -1317,7 +1317,7 @@ queryExtensionAbilityInfo(want: Want, extensionAbilityType: ExtensionAbilityType
 | 参数名                | 类型                                                         | 必填 | 说明                                                         |
 | --------------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | want                  | Want                                                         | 是   | 表示包含要查询的应用Bundle名称的Want。                       |
-| extensionAbilityType  | [ExtensionAbilityType](js-apis-bundleManager-sys.md#extensionabilitytype)                | 是   | 标识extensionAbility的类型。                                 |
+| extensionAbilityType  | [ExtensionAbilityType](js-apis-bundleManager.md#extensionabilitytype)                | 是   | 标识extensionAbility的类型。                                 |
 | extensionAbilityFlags | [number](#extensionabilityflag)                              | 是   | 表示用于指定将返回的ExtensionInfo对象中包含的信息的标志。    |
 | callback              | AsyncCallback<Array\<[ExtensionAbilityInfo](js-apis-bundleManager-extensionAbilityInfo.md)>> | 是   | 回调函数，当获取成功时，err为null，data为获取到Array\<ExtensionAbilityInfo>；否则为错误对象。 |
 
@@ -1379,9 +1379,9 @@ queryExtensionAbilityInfo(want: Want, extensionAbilityType: ExtensionAbilityType
 | 参数名                | 类型                                          | 必填 | 说明                                                      |
 | --------------------- | --------------------------------------------- | ---- | --------------------------------------------------------- |
 | want                  | Want                                          | 是   | 表示包含要查询的应用Bundle名称的Want。                    |
-| extensionAbilityType  | [ExtensionAbilityType](js-apis-bundleManager-sys.md#extensionabilitytype) | 是   | 标识extensionAbility的类型。                              |
+| extensionAbilityType  | [ExtensionAbilityType](js-apis-bundleManager.md#extensionabilitytype) | 是   | 标识extensionAbility的类型。                              |
 | extensionAbilityFlags | [number](#extensionabilityflag)               | 是   | 表示用于指定将返回的ExtensionInfo对象中包含的信息的标志。 |
-| userId                | number                                        | 否   | 表示用户ID，默认值：调用方所在用户，取值范围：大于等于0。                                              |
+| userId                | number                                        | 否   | 表示用户ID，可以通过[getOsAccountLocalId接口](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9)获取，默认值：调用方所在用户，取值范围：大于等于0。                                              |
 
 **返回值：**
 
@@ -1472,9 +1472,9 @@ queryExtensionAbilityInfoSync(want: Want, extensionAbilityType: ExtensionAbility
 | 参数名                | 类型                                          | 必填 | 说明                                                      |
 | --------------------- | --------------------------------------------- | ---- | --------------------------------------------------------- |
 | want                  | Want                                          | 是   | 表示包含要查询的应用Bundle名称的Want。                    |
-| extensionAbilityType  | [ExtensionAbilityType](js-apis-bundleManager-sys.md#extensionabilitytype) | 是   | 标识extensionAbility的类型。                              |
+| extensionAbilityType  | [ExtensionAbilityType](js-apis-bundleManager.md#extensionabilitytype) | 是   | 标识extensionAbility的类型。                              |
 | extensionAbilityFlags | [number](#extensionabilityflag)               | 是   | 表示用于指定将返回的ExtensionInfo对象中包含的信息的标志。 |
-| userId                | number                                        | 否   | 表示用户ID，默认值：调用方所在用户，取值范围：大于等于0。                                              |
+| userId                | number                                        | 否   | 表示用户ID，可以通过[getOsAccountLocalId接口](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9)获取，默认值：调用方所在用户，取值范围：大于等于0。                                              |
 
 **返回值：**
 
@@ -3095,7 +3095,7 @@ getLaunchWantForBundle(bundleName: string, userId: number, callback: AsyncCallba
 | 参数名     | 类型                 | 必填 | 说明                                                         |
 | ---------- | -------------------- | ---- | ------------------------------------------------------------ |
 | bundleName | string               | 是   | 表示应用程序的bundleName。                                     |
-| userId     | number               | 是   | 表示用户ID。                                                   |
+| userId     | number               | 是   | 表示用户ID，可以通过[getOsAccountLocalId接口](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9)获取。                                                   |
 | callback   | AsyncCallback\<Want> | 是   | 回调函数，当获取成功时，err为null，data为获取到的Want；否则为错误对象。 |
 
 **错误码：**
@@ -3204,7 +3204,7 @@ getLaunchWantForBundle(bundleName: string, userId?: number): Promise\<Want>
 | 参数名     | 类型   | 必填 | 说明                       |
 | ---------- | ------ | ---- | ------------------------- |
 | bundleName | string | 是   | 表示应用程序的bundleName。 |
-| userId     | number | 否   | 表示用户ID，默认值：调用方所在用户，取值范围：大于等于0。  |
+| userId     | number | 否   | 表示用户ID，可以通过[getOsAccountLocalId接口](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9)获取，默认值：调用方所在用户，取值范围：大于等于0。  |
 
 **返回值：**
 
@@ -3264,7 +3264,7 @@ getLaunchWantForBundleSync(bundleName: string, userId?: number): Want
 | 参数名     | 类型   | 必填 | 说明                       |
 | ---------- | ------ | ---- | ------------------------- |
 | bundleName | string | 是   | 表示应用程序的bundleName。 |
-| userId     | number | 否   | 表示用户ID，默认值：调用方所在用户，取值范围：大于等于0。  |
+| userId     | number | 否   | 表示用户ID，可以通过[getOsAccountLocalId接口](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9)获取，默认值：调用方所在用户，取值范围：大于等于0。  |
 
 **返回值：**
 
@@ -3681,7 +3681,7 @@ getApplicationInfoSync(bundleName: string, applicationFlags: number, userId: num
 | ----------- | ------ | ---- | ----------------------------------------------------------|
 | bundleName  | string | 是   | 表示应用程序的bundleName。                                  |
 | applicationFlags | [number](#applicationflag) | 是   | 表示用于指定将返回的ApplicationInfo对象中包含的信息。       |
-| userId      | number | 是   | 表示用户ID。                                         |
+| userId      | number | 是   | 表示用户ID，可以通过[getOsAccountLocalId接口](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9)获取。                                         |
 
 **返回值：**
 
@@ -3794,7 +3794,7 @@ getBundleInfoSync(bundleName: string, bundleFlags: number, userId: number): Bund
 | ----------- | ------ | ---- | -------------------------------------------------------- |
 | bundleName  | string | 是   | 表示应用程序的bundleName。                                 |
 | [bundleFlags](js-apis-bundleManager.md#bundleflag) | number | 是   | 表示用于指定将返回的BundleInfo对象中包含的信息的标志。 |
-| userId      | number | 是   | 表示用户ID。                                             |
+| userId      | number | 是   | 表示用户ID，可以通过[getOsAccountLocalId接口](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9)获取。                                             |
 
 **返回值：**
 
@@ -4162,7 +4162,7 @@ getAppProvisionInfo(bundleName: string, userId: number, callback: AsyncCallback\
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | bundleName | string | 是   | 指定应用的bundleName。 |
-| userId | number | 是 | 指定用户ID, 可以通过接口[getOsAccountLocalId](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9)获取当前设备上的用户ID。 |
+| userId | number | 是 | 指定表示用户ID，可以通过[getOsAccountLocalId接口](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9)获取。 |
 | callback | AsyncCallback\<[AppProvisionInfo](js-apis-bundleManager-AppProvisionInfo-sys.md)\> | 是   | 回调函数，当获取成功时，err为null，data为指定bundleName的provision配置文件信息。 |
 
 
@@ -4218,7 +4218,7 @@ getAppProvisionInfo(bundleName: string, userId?: number): Promise\<AppProvisionI
 | 参数名   | 类型         | 必填 | 说明          |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | bundleName | string | 是 | 指定的bundleName。 |
-| userId | number | 否 | 表示用户ID，默认值：调用方所在用户，取值范围：大于等于0，可以通过接口[getOsAccountLocalId](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9)获取当前设备上的用户ID。 |
+| userId | number | 否 | 表示用户ID，可以通过[getOsAccountLocalId接口](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9)获取，默认值：调用方所在用户，取值范围：大于等于0。 |
 
 
 **返回值：**
@@ -4288,7 +4288,7 @@ getAppProvisionInfoSync(bundleName: string, userId?: number): AppProvisionInfo
 | 参数名   | 类型         | 必填 | 说明          |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | bundleName | string | 是 | 指定的bundleName。 |
-| userId | number | 否 | 表示用户ID，默认值：调用方所在用户，取值范围：大于等于0，可以通过接口[getOsAccountLocalId](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9)获取当前设备上的用户ID。 |
+| userId | number | 否 | 表示用户ID，可以通过[getOsAccountLocalId接口](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9)获取，默认值：调用方所在用户，取值范围：大于等于0。 |
 
 
 **返回值：**
@@ -4455,7 +4455,7 @@ queryExtensionAbilityInfoSync(want: Want, extensionAbilityType: string, extensio
 | want                  | Want                            | 是   | 表示包含要查询的应用Bundle名称的Want。                    |
 | extensionAbilityType  | string                          | 是   | 表示自定义extensionAbility的类型。                        |
 | extensionAbilityFlags | [number](#extensionabilityflag) | 是   | 表示返回的ExtensionInfo对象中需要包含的信息标志。 |
-| userId                | number                          | 否   | 表示用户ID，默认值：调用方所在用户，取值范围：大于等于0。 |
+| userId                | number                          | 否   | 表示用户ID，可以通过[getOsAccountLocalId接口](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9)获取，默认值：调用方所在用户，取值范围：大于等于0。 |
 
 **返回值：**
 
@@ -4547,7 +4547,7 @@ getJsonProfile(profileType: ProfileType, bundleName: string, moduleName?: string
 | profileType           | [ProfileType](#profiletype11)     | 是   | 表示要查询的配置文件类型。                                   |
 | bundleName            | string                          | 是   | 表示要查询应用程序的bundleName。                                  |
 | moduleName            | string                          | 否   | 表示要查询应用程序的module的名称，缺省时在入口模块中查找。            |
-| userId<sup>12+</sup>  | number                          | 否   | 表示用户ID，默认值：调用方所在用户，取值范围：大于等于0。  |
+| userId<sup>12+</sup>  | number                          | 否   | 表示用户ID，可以通过[getOsAccountLocalId接口](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9)获取，默认值：调用方所在用户，取值范围：大于等于0。  |
 
 **返回值：**
 
@@ -4795,7 +4795,7 @@ queryExtensionAbilityInfoSync(extensionAbilityType: string, extensionAbilityFlag
 | --------------------- | ------------------------------- | ---- | --------------------------------------------------------- |
 | extensionAbilityType  | string                          | 是   | 表示自定义extensionAbility的类型。                        |
 | extensionAbilityFlags | [number](#extensionabilityflag) | 是   | 表示返回的ExtensionInfo对象中需要包含的信息标志。 |
-| userId                | number                          | 否   | 表示用户ID，默认值：调用方所在用户ID。取值范围：大于等于0。 |
+| userId                | number                          | 否   | 表示用户ID，可以通过[getOsAccountLocalId接口](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9)获取，默认值：调用方所在用户ID。取值范围：大于等于0。 |
 
 **返回值：**
 
@@ -5007,7 +5007,7 @@ try {
 
 ## bundleManager.getAllPluginInfo<sup>19+</sup>
 
-function getAllPluginInfo(hostBundleName: string, userId?: number): Promise<Array\<PluginBundleInfo>>
+getAllPluginInfo(hostBundleName: string, userId?: number): Promise<Array\<PluginBundleInfo>>
 
 根据给定的hostBundleName和userId获取所有的PluginBundleInfo，使用Promise异步回调。
 
@@ -5022,7 +5022,7 @@ function getAllPluginInfo(hostBundleName: string, userId?: number): Promise<Arra
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | hostBundleName | string | 是   | 表示安装插件的应用包名。 |
-| userId         | number   | 否   | 表示用户ID，默认值：调用方所在用户ID。取值范围：大于等于0。 |
+| userId         | number   | 否   | 表示用户ID，可以通过[getOsAccountLocalId接口](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9)获取，默认值：调用方所在用户ID。取值范围：大于等于0。 |
 
 **返回值：**
 
@@ -5361,6 +5361,119 @@ try {
 }
 ```
 
+## bundleManager.getAppCloneIdentityBySandboxDataDir<sup>20+</sup>
+
+getAppCloneIdentityBySandboxDataDir(sandboxDataDir: string): AppCloneIdentity
+
+根据应用的沙箱目录获取应用的身份信息，包括应用包名和分身索引信息。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Core
+
+**参数：**
+
+| 参数名     | 类型   | 必填 | 说明                       |
+| ---------- | ------ | ---- | ---------------------------|
+| sandboxDataDir | string |  是  |     表示[应用的沙箱目录](../../file-management/app-sandbox-directory.md)。      |
+
+**返回值：**
+
+| 类型                                                        | 说明                        |
+| ----------------------------------------------------------- | --------------------------- |
+| [AppCloneIdentity](js-apis-bundleManager-bundleInfo.md#appcloneidentity14) | 返回应用包名和分身索引信息。 |
+
+
+**示例：**
+
+```ts
+import { bundleManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+//主应用
+let dataDir = 'com.example.myapplication';
+try {
+    let res = bundleManager.getAppCloneIdentityBySandboxDataDir(dataDir);
+    console.info('getAppCloneIdentityBySandboxDataDir successfully. res = ' + JSON.stringify(res));
+} catch (err) {
+    let message = (err as BusinessError).message;
+    console.error('getAppCloneIdentityBySandboxDataDir failed. Cause = ' + message);
+}
+
+//分身应用
+let cloneDataDir = '+clone-1+com.example.myapplication';
+try {
+    let res = bundleManager.getAppCloneIdentityBySandboxDataDir(cloneDataDir);
+    console.info('getAppCloneIdentityBySandboxDataDir successfully. res = ' + JSON.stringify(res));
+} catch (err) {
+    let message = (err as BusinessError).message;
+    console.error('getAppCloneIdentityBySandboxDataDir failed. Cause = ' + message);
+}
+
+//元服务
+let atomicDataDir = '+auid-20000000+com.example.myapplication';
+try {
+    let res = bundleManager.getAppCloneIdentityBySandboxDataDir(atomicDataDir);
+    console.info('getAppCloneIdentityBySandboxDataDir successfully. res = ' + JSON.stringify(res));
+} catch (err) {
+    let message = (err as BusinessError).message;
+    console.error('getAppCloneIdentityBySandboxDataDir failed. Cause = ' + message);
+}
+```
+
+## bundleManager.getSandboxDataDir<sup>20+</sup>
+
+getSandboxDataDir(bundleName: string, appIndex: number): string
+
+根据应用包名和分身索引获取对应的沙箱目录。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限：** ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
+
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Core
+
+**参数：**
+
+| 参数名     | 类型   | 必填 | 说明                       |
+| ---------- | ------ | ---- | ---------------------------|
+| bundleName | string |  是  |   表示要查询的应用包名。   |
+| appIndex | number |  是  |   表示分身索引。取值范围0~5，取值为0表示主应用。当查询的应用是元服务时，该参数无效。   |
+
+**返回值：**
+
+| 类型                                                        | 说明                        |
+| ----------------------------------------------------------- | --------------------------- |
+| string | 返回应用的沙箱目录。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。
+
+| 错误码ID | 错误信息                            |
+| -------- | --------------------------------------|
+| 201 | Permission denied. |
+| 202 | Permission denied, non-system app called system api. |
+| 17700061 | The appIndex is invalid. |
+
+**示例：**
+
+```ts
+import { bundleManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let bundleName = 'com.example.myapplication';
+let appIndex = 1;
+
+try {
+    let dataDir = bundleManager.getSandboxDataDir(bundleName, appIndex);
+    console.info('getSandboxDataDir successfully. dataDir = ' + dataDir);
+} catch (err) {
+    let message = (err as BusinessError).message;
+    console.error('getSandboxDataDir failed. Cause = ' + message);
+}
+```
+
 ## bundleManager.getAppCloneBundleInfo<sup>12+</sup>
 
 getAppCloneBundleInfo(bundleName: string, appIndex: number, bundleFlags: number, userId?: number): Promise\<BundleInfo>;
@@ -5377,10 +5490,10 @@ getAppCloneBundleInfo(bundleName: string, appIndex: number, bundleFlags: number,
 
 | 参数名     | 类型   | 必填 | 说明                       |
 | ---------- | ------ | ---- | ---------------------------|
-|    bundleName     | number |  是  |       表示要查询的应用Bundle名称。      |
+|    bundleName     | string |  是  |       表示要查询的应用Bundle名称。      |
 |    appIndex     | number |  是  |       表示要查询的分身应用索引。<br>appIndex为0时，表示查询主应用信息。appIndex大于0时，表示查询指定分身应用信息。      |
 |    [bundleFlags](js-apis-bundleManager.md#bundleflag)     | number |  是  |       表示用于指定要返回的BundleInfo对象中包含的信息的标志。    |
-|    userId     | number |  否  |       表示用户ID，默认值：调用方所在用户，取值范围：大于等于0。      |
+|    userId     | number |  否  |       表示用户ID，可以通过[getOsAccountLocalId接口](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9)获取，默认值：调用方所在用户，取值范围：大于等于0。      |
 
 **返回值：**
 
@@ -5440,9 +5553,9 @@ getAllAppCloneBundleInfo(bundleName: string, bundleFlags: number, userId?: numbe
 
 | 参数名     | 类型   | 必填 | 说明                       |
 | ---------- | ------ | ---- | ---------------------------|
-|    bundleName     | number |  是  |       表示要查询的应用Bundle名称。      |
+|    bundleName     | string |  是  |       表示要查询的应用Bundle名称。      |
 |    [bundleFlags](js-apis-bundleManager.md#bundleflag)     | number |  是  |       表示用于指定要返回的BundleInfo对象中包含的信息的标志。    |
-|    userId     | number |  否  |       表示用户ID，默认值：调用方所在用户，取值范围：大于等于0。      |
+|    userId     | number |  否  |       表示用户ID，可以通过[getOsAccountLocalId接口](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9)获取，默认值：调用方所在用户，取值范围：大于等于0。      |
 
 **返回值：**
 

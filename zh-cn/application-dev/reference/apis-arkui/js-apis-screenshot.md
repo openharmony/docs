@@ -56,7 +56,7 @@ import { screenshot } from '@kit.ArkUI';
 
 pick(): Promise&lt;PickInfo&gt;
 
-获取屏幕截图。此接口仅可在2in1设备上使用。
+获取屏幕截图。此接口仅可在2in1设备上使用。当前仅支持获取displayId为0的屏幕截图。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 

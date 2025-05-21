@@ -204,9 +204,9 @@ canvas.detachBrush();
 
 | 接口 | 描述 |
 | -------- | -------- |
-| save(): void; | 用于保存当前画布的状态（画布矩阵）到一个栈顶。 |
-| restore(): void; | 用于恢复保存在栈顶的画布状态（画布矩阵）。 |
-| restoreToCount(count: number): void; | 用于恢复到指定数量的画布状态（画布矩阵）。 |
+| save(): void | 用于保存当前画布的状态（画布矩阵）到一个栈顶。 |
+| restore(): void | 用于恢复保存在栈顶的画布状态（画布矩阵）。 |
+| restoreToCount(count: number): void | 用于恢复到指定数量的画布状态（画布矩阵）。 |
 
 简单示例和示意图如下所示：
 

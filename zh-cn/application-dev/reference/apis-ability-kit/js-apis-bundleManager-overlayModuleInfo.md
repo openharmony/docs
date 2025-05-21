@@ -7,7 +7,7 @@ OverlayModuleInfo信息，三方应用可以通过[overlay.getOverlayModuleInfo]
 
 ## OverlayModuleInfo
 
- **系统能力：**以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework.Core
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Core
 
 | 名称                  | 类型                                                | 只读 | 可选 | 说明                                            |
 | --------------------- | ---------------------------------------------------| ---- | ---- | ---------------------------------------------- |
@@ -15,4 +15,4 @@ OverlayModuleInfo信息，三方应用可以通过[overlay.getOverlayModuleInfo]
 | moduleName            | string                                             | 是   | 否   | overlay特征module的名称。                       |
 | targetModuleName      | string                                             | 是   | 否   | overlay特征module指定的目标module的名称。        |
 | priority              | number                                             | 是   | 否   | overlay特征module的优先级。取值为整数，取值范围1 ~ 100，数值越大优先级越高。    |
-| state                 | number                                             | 是   | 否   | overlay特征module的禁用使能状态。0代表禁用状态; 1代表使能状态。                       |
+| state                 | number                                             | 是   | 否   | overlay特征module的[禁用使能状态](js-apis-overlay.md#overlaysetoverlayenabled)。0代表禁用状态，1代表使能状态。                       |

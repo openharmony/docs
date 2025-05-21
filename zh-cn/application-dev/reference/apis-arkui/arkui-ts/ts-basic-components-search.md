@@ -5,6 +5,8 @@
 > **说明：**
 >
 > 该组件从API Version 8开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>
+> 该组件仅支持单文本样式，若需实现富文本样式，建议使用[RichEditor](ts-basic-components-richeditor.md)组件。
 
 ## 子组件
 
@@ -585,7 +587,7 @@ enablePreviewText(enable: boolean)
 
 | 参数名 | 类型    | 必填 | 说明                               |
 | ------ | ------- | ---- | ---------------------------------- |
-| enable | boolean | 是   | 是否开启输入预上屏。<br/>默认值：true |
+| enable | boolean | 是   | 是否开启输入预上屏。<br/>true表示开启输入预上屏，false表示不开启输入预上屏。<br/>默认值：true |
 
 ### enableHapticFeedback<sup>13+</sup>
 
@@ -601,7 +603,7 @@ enableHapticFeedback(isEnabled: boolean)
 
 | 参数名 | 类型    | 必填 | 说明                               |
 | ------ | ------- | ---- | ---------------------------------- |
-| isEnabled | boolean | 是   | 是否开启触控反馈。<br/>默认值：true |
+| isEnabled | boolean | 是   | 是否开启触控反馈。<br/>true表示开启触控反馈，false表示不开启触控反馈。<br/>默认值：true |
 
 >  **说明：**
 >
@@ -630,6 +632,38 @@ keyboardAppearance(appearance: Optional\<KeyboardAppearance>)
 | ------ | ----------------------------------------- | ---- | ------------------------------------------------------ |
 | appearance | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[KeyboardAppearance](ts-text-common.md#keyboardappearance15枚举说明)> | 是   | 键盘样式。<br/>默认值：KeyboardAppearance.NONE_IMMERSIVE |
 
+### strokeWidth<sup>20+</sup>
+
+strokeWidth(width: Optional\<LengthMetrics>)
+
+设置文本描边的宽度。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型                                                         | 必填 | 说明             |
+| ------ | ------------------------------------------------------------ | ---- | ---------------- |
+| width  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)> | 是   | 文本描边的宽度。当LengthMetrics的单位为px时，<br/>若设置值小于0，显示实心字；若大于0，显示空心字。<br/>默认值为0，不做描边处理。 |
+
+### strokeColor<sup>20+</sup>
+
+strokeColor(color: Optional\<ResourceColor>)
+
+设置文本描边的颜色。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型                                       | 必填 | 说明       |
+| ------ | ------------------------------------------ | ---- | ---------- |
+| color  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[ResourceColor](ts-types.md#resourcecolor)> | 是   | 描边颜色。 |
+
 ### stopBackPress<sup>15+</sup>
 
 stopBackPress(isStopped: Optional\<boolean>)
@@ -644,7 +678,7 @@ stopBackPress(isStopped: Optional\<boolean>)
 
 | 参数名 | 类型    | 必填 | 说明                               |
 | ------ | ------- | ---- | ---------------------------------- |
-| isStopped | [Optional](ts-universal-attributes-custom-property.md#optional12)\<boolean> | 是   | 是否消费返回键。 <br />默认值：true |
+| isStopped | [Optional](ts-universal-attributes-custom-property.md#optional12)\<boolean> | 是   | 是否阻止返回键。<br/>true表示阻止返回键向其它组件或应用侧传递，false表示不阻止。<br />默认值：true |
 
 ## IconOptions<sup>10+</sup>对象说明
 
@@ -952,8 +986,8 @@ onWillChange的回调时序晚于onWillInsert、onWillDelete，早于onDidInsert
 Search组件的控制器继承自[TextContentControllerBase](ts-types.md#textcontentcontrollerbase10)。
 
 ### 导入对象
-```
-controller: SearchController = new SearchController()
+```ts
+controller: SearchController = new SearchController();
 ```
 
 ### constructor<sup>8+</sup>
@@ -1046,10 +1080,10 @@ type SearchSubmitCallback = (searchContent: string, event?: SubmitEvent) => void
 @Entry
 @Component
 struct SearchExample {
-  @State changeValue: string = ''
-  @State submitValue: string = ''
-  @State positionInfo: CaretOffset = { index: 0, x: 0, y: 0 }
-  controller: SearchController = new SearchController()
+  @State changeValue: string = '';
+  @State submitValue: string = '';
+  @State positionInfo: CaretOffset = { index: 0, x: 0, y: 0 };
+  controller: SearchController = new SearchController();
 
   build() {
     Column({space: 10}) {
@@ -1064,20 +1098,20 @@ struct SearchExample {
         .placeholderFont({ size: 14, weight: 400 })
         .textFont({ size: 14, weight: 400 })
         .onSubmit((value: string) => {
-          this.submitValue = value
+          this.submitValue = value;
         })
         .onChange((value: string) => {
-          this.changeValue = value
+          this.changeValue = value;
         })
         .margin(20)
       Button('Set caretPosition 1')
         .onClick(() => {
           // 设置光标位置到输入的第一个字符后
-          this.controller.caretPosition(1)
+          this.controller.caretPosition(1);
         })
       Button('Get CaretOffset')
         .onClick(() => {
-          this.positionInfo = this.controller.getCaretOffset()
+          this.positionInfo = this.controller.getCaretOffset();
         })
     }.width('100%')
   }
@@ -1095,8 +1129,8 @@ struct SearchExample {
 @Entry
 @Component
 struct SearchExample {
-  @State changeValue: string = ''
-  @State submitValue: string = ''
+  @State changeValue: string = '';
+  @State submitValue: string = '';
 
   build() {
     Column() {
@@ -1120,10 +1154,10 @@ struct SearchExample {
         .placeholderFont({ size: 14, weight: 400 })
         .textFont({ size: 14, weight: 400 })
         .onSubmit((value: string) => {
-          this.submitValue = value
+          this.submitValue = value;
         })
         .onChange((value: string) => {
-          this.changeValue = value
+          this.changeValue = value;
         })
         .margin(20)
     }.width('100%')
@@ -1143,22 +1177,22 @@ struct SearchExample {
 @Entry
 @Component
 struct SearchExample {
-  controller: SearchController = new SearchController()
-  @State inputValue: string = ""
+  controller: SearchController = new SearchController();
+  @State inputValue: string = "";
 
   // 自定义键盘组件
   @Builder CustomKeyboardBuilder() {
     Column() {
       Button('x').onClick(() => {
         // 关闭自定义键盘
-        this.controller.stopEditing()
+        this.controller.stopEditing();
       })
       Grid() {
         ForEach([1, 2, 3, 4, 5, 6, 7, 8, 9, '*', 0, '#'], (item: number | string) => {
           GridItem() {
             Button(item + "")
               .width(110).onClick(() => {
-              this.inputValue += item
+              this.inputValue += item;
             })
           }
         })
@@ -1187,16 +1221,16 @@ struct SearchExample {
 @Entry
 @Component
 struct SearchExample {
-  @State text: string = ''
-  @State enterTypes: Array<EnterKeyType> = [EnterKeyType.Go, EnterKeyType.Search, EnterKeyType.Send, EnterKeyType.Done, EnterKeyType.Next, EnterKeyType.PREVIOUS, EnterKeyType.NEW_LINE]
-  @State index: number = 0
+  @State text: string = '';
+  @State enterTypes: Array<EnterKeyType> = [EnterKeyType.Go, EnterKeyType.Search, EnterKeyType.Send, EnterKeyType.Done, EnterKeyType.Next, EnterKeyType.PREVIOUS, EnterKeyType.NEW_LINE];
+  @State index: number = 0;
   build() {
     Column({ space: 20 }) {
       Search({ placeholder: '请输入文本', value: this.text })
         .width(380)
         .enterKeyType(this.enterTypes[this.index])
         .onChange((value: string) => {
-          this.text = value
+          this.text = value;
         })
         .onSubmit((value: String) => {
           console.log("trigger search onsubmit" + value);
@@ -1270,8 +1304,8 @@ struct SearchExample {
 @Entry
 @Component
 struct SearchExample {
-  @State text1: string = 'This is ss01 on : 0123456789'
-  @State text2: string = 'This is ss01 off: 0123456789'
+  @State text1: string = 'This is ss01 on : 0123456789';
+  @State text2: string = 'This is ss01 off: 0123456789';
 
   build() {
     Column(){
@@ -1298,10 +1332,10 @@ struct SearchExample {
 @Entry
 @Component
 struct SearchExample {
-  controller: SearchController = new SearchController()
-  @State inputValue: string = ""
-  @State height1: string | number = '80%'
-  @State supportAvoidance: boolean = true
+  controller: SearchController = new SearchController();
+  @State inputValue: string = "";
+  @State height1: string | number = '80%';
+  @State supportAvoidance: boolean = true;
 
   // 自定义键盘组件
   @Builder
@@ -1310,7 +1344,7 @@ struct SearchExample {
       Row() {
         Button('x').onClick(() => {
           // 关闭自定义键盘
-          this.controller.stopEditing()
+          this.controller.stopEditing();
         }).margin(10)
       }
 
@@ -1319,7 +1353,7 @@ struct SearchExample {
           GridItem() {
             Button(item + "")
               .width(110).onClick(() => {
-              this.inputValue += item
+              this.inputValue += item;
             })
           }
         })
@@ -1334,13 +1368,13 @@ struct SearchExample {
         Button("20%")
           .fontSize(24)
           .onClick(() => {
-            this.height1 = "20%"
+            this.height1 = "20%";
           })
         Button("80%")
           .fontSize(24)
           .margin({ left: 20 })
           .onClick(() => {
-            this.height1 = "80%"
+            this.height1 = "80%";
           })
       }
       .justifyContent(FlexAlign.Center)
@@ -1354,7 +1388,7 @@ struct SearchExample {
         .margin(10)
         .border({ width: 1 })
         .onChange((value: string) => {
-          this.inputValue = value
+          this.inputValue = value;
         })
     }
   }
@@ -1402,11 +1436,11 @@ struct SearchExample {
 @Entry
 @Component
 struct SearchExample {
-  @State insertValue: string = ""
-  @State deleteValue: string = ""
-  @State insertOffset: number = 0
-  @State deleteOffset: number = 0
-  @State deleteDirection: number = 0
+  @State insertValue: string = "";
+  @State deleteValue: string = "";
+  @State insertOffset: number = 0;
+  @State deleteOffset: number = 0;
+  @State deleteDirection: number = 0;
 
   build() {
     Row() {
@@ -1414,11 +1448,11 @@ struct SearchExample {
         Search({ value: "Search支持插入回调文本" })
           .height(60)
           .onWillInsert((info: InsertValue) => {
-            this.insertValue = info.insertValue
+            this.insertValue = info.insertValue;
             return true;
           })
           .onDidInsert((info: InsertValue) => {
-            this.insertOffset = info.insertOffset
+            this.insertOffset = info.insertOffset;
           })
 
         Text("insertValue:" + this.insertValue + "  insertOffset:" + this.insertOffset).height(30)
@@ -1426,13 +1460,13 @@ struct SearchExample {
         Search({ value: "Search支持删除回调文本b" })
           .height(60)
           .onWillDelete((info: DeleteValue) => {
-            this.deleteValue = info.deleteValue
-            info.direction
+            this.deleteValue = info.deleteValue;
+            info.direction;
             return true;
           })
           .onDidDelete((info: DeleteValue) => {
-            this.deleteOffset = info.deleteOffset
-            this.deleteDirection = info.direction
+            this.deleteOffset = info.deleteOffset;
+            this.deleteDirection = info.direction;
           })
 
         Text("deleteValue:" + this.deleteValue + "  deleteOffset:" + this.deleteOffset).height(30)
@@ -1456,40 +1490,40 @@ struct SearchExample {
 @Entry
 @Component
 struct SearchExample {
-  @State text: string = 'Search editMenuOptions'
+  @State text: string = 'Search editMenuOptions';
   onCreateMenu = (menuItems: Array<TextMenuItem>) => {
     let item1: TextMenuItem = {
       content: 'custom1',
       icon: $r('app.media.startIcon'),
       id: TextMenuItemId.of('custom1'),
-    }
+    };
     let item2: TextMenuItem = {
       content: 'custom2',
       id: TextMenuItemId.of('custom2'),
       icon: $r('app.media.startIcon'),
-    }
-    menuItems.push(item1)
-    menuItems.unshift(item2)
-    return menuItems
+    };
+    menuItems.push(item1);
+    menuItems.unshift(item2);
+    return menuItems;
   }
   onMenuItemClick = (menuItem: TextMenuItem, textRange: TextRange) => {
     if (menuItem.id.equals(TextMenuItemId.of("custom2"))) {
-      console.log("拦截 id: custom2 start:" + textRange.start + "; end:" + textRange.end)
-      return true
+      console.log("拦截 id: custom2 start:" + textRange.start + "; end:" + textRange.end);
+      return true;
     }
     if (menuItem.id.equals(TextMenuItemId.COPY)) {
-      console.log("拦截 COPY start:" + textRange.start + "; end:" + textRange.end)
-      return true
+      console.log("拦截 COPY start:" + textRange.start + "; end:" + textRange.end);
+      return true;
     }
     if (menuItem.id.equals(TextMenuItemId.SELECT_ALL)) {
-      console.log("不拦截 SELECT_ALL start:" + textRange.start + "; end:" + textRange.end)
-      return false
+      console.log("不拦截 SELECT_ALL start:" + textRange.start + "; end:" + textRange.end);
+      return false;
     }
-    return false
+    return false;
   }
   @State editMenuOptions: EditMenuOptions = {
     onCreateMenu: this.onCreateMenu, onMenuItemClick: this.onMenuItemClick
-  }
+  };
 
   build() {
     Column() {
@@ -1512,14 +1546,14 @@ struct SearchExample {
 
 ```ts
 // xxx.ets
-import { SymbolGlyphModifier } from '@kit.ArkUI'
+import { SymbolGlyphModifier } from '@kit.ArkUI';
 
 @Entry
 @Component
 struct SearchExample {
-  controller: SearchController = new SearchController()
-  @State changeValue: string = ''
-  @State submitValue: string = ''
+  controller: SearchController = new SearchController();
+  @State changeValue: string = '';
+  @State submitValue: string = '';
 
   build() {
     Column() {
@@ -1556,9 +1590,9 @@ struct SearchExample {
 @Entry
 @Component
 struct SearchExample {
-  controller: SearchController = new SearchController()
-  @State copyValue: string = ''
-  @State cutValue: string = ''
+  controller: SearchController = new SearchController();
+  @State copyValue: string = '';
+  @State cutValue: string = '';
 
   build() {
     Column({ space: 3 }) {
@@ -1613,7 +1647,7 @@ struct SearchExample {
 @Entry
 @Component
 struct SearchExample {
-  controller: SearchController = new SearchController()
+  controller: SearchController = new SearchController();
 
   build() {
     Column({ space: 3 }) {
@@ -1643,8 +1677,8 @@ struct SearchExample {
 @Entry
 @Component
 struct SearchExample {
-  controller: SearchController = new SearchController()
-  @State value: string = 'false'
+  controller: SearchController = new SearchController();
+  @State value: string = 'false';
 
   build() {
     Column({ space: 3 }) {
@@ -1657,7 +1691,7 @@ struct SearchExample {
         .enablePreviewText(true)
         .enableHapticFeedback(true)
         .onEditChange((data: boolean) => {
-          this.value = data ? 'true' : 'false'
+          this.value = data ? 'true' : 'false';
         })
     }
     .width('100%')
@@ -1678,7 +1712,7 @@ struct SearchExample {
 @Entry
 @Component
 struct SearchExample {
-  controller: SearchController = new SearchController()
+  controller: SearchController = new SearchController();
 
   build() {
     Column({ space: 3 }) {
@@ -1706,8 +1740,8 @@ struct SearchExample {
 @Entry
 @Component
 struct SearchExample {
-  controller: SearchController = new SearchController()
-  @State filterValue: string = ''
+  controller: SearchController = new SearchController();
+  @State filterValue: string = '';
 
   build() {
     Column({ space: 3 }) {
@@ -1718,7 +1752,7 @@ struct SearchExample {
         .textIndent(5)
         .halfLeading(true)
         .inputFilter('[a-z]', (filterValue: string) => {
-          this.filterValue = filterValue
+          this.filterValue = filterValue;
         })
     }
     .width('100%')
@@ -1739,9 +1773,9 @@ struct SearchExample {
 @Entry
 @Component
 struct SearchExample {
-  controller: SearchController = new SearchController()
-  @State startIndex: number = 0
-  @State endIndex: number = 0
+  controller: SearchController = new SearchController();
+  @State startIndex: number = 0;
+  @State endIndex: number = 0;
 
   build() {
     Column({ space: 3 }) {
@@ -1753,13 +1787,13 @@ struct SearchExample {
         .maxFontScale(1.5)
         .defaultFocus(true)
         .onTextSelectionChange((selectionStart: number, selectionEnd: number) => {
-          this.startIndex = selectionStart
-          this.endIndex = selectionEnd
+          this.startIndex = selectionStart;
+          this.endIndex = selectionEnd;
         })
 
       Button('Selection [0,3]')
         .onClick(() => {
-          this.controller.setTextSelection(0, 3, { menuPolicy: MenuPolicy.SHOW })
+          this.controller.setTextSelection(0, 3, { menuPolicy: MenuPolicy.SHOW });
         })
     }
     .width('100%')
@@ -1780,9 +1814,9 @@ struct SearchExample {
 @Entry
 @Component
 struct SearchExample {
-  controller: SearchController = new SearchController()
-  @State offsetX: number = 0
-  @State offsetY: number = 0
+  controller: SearchController = new SearchController();
+  @State offsetX: number = 0;
+  @State offsetY: number = 0;
 
   build() {
     Column({ space: 3 }) {
@@ -1791,8 +1825,8 @@ struct SearchExample {
         .width(200)
         .height(40)
         .onContentScroll((totalOffsetX: number, totalOffsetY: number) => {
-          this.offsetX = totalOffsetX
-          this.offsetY = totalOffsetY
+          this.offsetX = totalOffsetX;
+          this.offsetY = totalOffsetY;
         })
     }
     .width('100%')

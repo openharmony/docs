@@ -3376,7 +3376,6 @@ readAshmem(): Ashmem
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401      | check param failed |
   | 1900010  | Failed to read data from the message sequence. |
 
 **示例：**

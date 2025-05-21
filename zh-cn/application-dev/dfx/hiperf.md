@@ -6,7 +6,7 @@ hiperf为开发人员提供用于调试的命令行工具，用于抓取特定�
 
 - 根据hdc命令行工具指导，完成[环境准备](hdc.md#环境准备)。
 
-- 正常连接设备。
+- 确保设备已正常连接，并执行hdc shell。
 
 ## hiperf命令行说明
 
@@ -163,6 +163,8 @@ hiperf record -p 267 -d 10 -s dwarf
 | --restart | 收集应用启动的性能指标信息，如果进程在30秒内未启动，记录将退出。 |
 | --verbose | 输出更详细的报告。 |
 | --dumpoptions | dump命令选项。 |
+| --control [command]| 采集命令控制参数。命令包括prepare/start/stop。</br>**说明**：从API version 20开始，支持该参数。 |
+| -o | 设置输出文件路径，必须和--control prepare一起使用。</br>**说明**：从API version 20开始，支持该参数。 |
 
 ```
 Usage: hiperf stat [options] [command [command-args]]

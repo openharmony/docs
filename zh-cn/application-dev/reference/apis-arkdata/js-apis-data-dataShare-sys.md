@@ -10,7 +10,7 @@
 >
 > - 本模块接口仅可在Stage模型下使用。
 >
-> - 本模块订阅RDB数据变更的接口on('rdbDataChange')的回调支持不大于200KB数据的传输。
+> - 本模块订阅RDB数据变更的接口on('rdbDataChange')的回调支持不大于10M数据的传输。
 
 
 ## 导入模块
@@ -340,7 +340,7 @@ export default class EntryAbility extends UIAbility {
 
 ## RdbDataChangeNode<sup>10+</sup>
 
-订阅/取消订阅RDB数据变更的结果，回调支持传输不大于200KB的数据。
+订阅/取消订阅RDB数据变更的结果，回调支持传输不大于10M的数据。
 
 **系统能力：**  SystemCapability.DistributedDataManager.DataShare.Consumer
 

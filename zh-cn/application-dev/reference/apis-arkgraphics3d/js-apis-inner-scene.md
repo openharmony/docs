@@ -6,7 +6,7 @@
 
 ## 导入模块
 ```ts
-import { SceneResourceParameters, SceneNodeParameters, SceneResourceFactory, Scene } from '@kit.ArkGraphics3D';
+import { SceneResourceParameters, SceneNodeParameters, RaycastResult, RaycastParameters, SceneResourceFactory, RenderParameters, Scene } from '@kit.ArkGraphics3D';
 ```
 
 ## SceneResourceParameters
@@ -68,6 +68,27 @@ function createNodePromise() : Promise<Node> {
   });
 }
 ```
+
+## RaycastResult<sup>20+</sup>
+射线检测命中结果对象，包含被射线击中的3D物体详细信息。
+
+**系统能力：** SystemCapability.ArkUi.Graphics3D
+| 名称 | 类型 | 只读 | 可选 | 说明 |
+| ---- | ---- | ---- | ---- | ---- |
+| node | [Node](js-apis-inner-scene-nodes.md#node) | 是 | 否 | 被射线击中的3D场景节点，可通过该节点操作目标物体（如移动、旋转、隐藏）。 |
+| centerDistance | number | 是 | 否 | 命中物体包围盒中心到摄像机中心的距离，取值范围大于0。 |
+| hitPosition | [Position3](js-apis-inner-scene-types.md#position3) | 是 | 否 | 射线与物体碰撞点的精确世界坐标（{x: number, y: number, z: number}）。 |
+
+
+## RaycastParameters<sup>20+</sup>
+射线检测参数配置，用于定义射线检测的行为。
+
+**系统能力：** SystemCapability.ArkUi.Graphics3D
+| 名称 | 类型 | 只读 | 可选 | 说明 |
+| ---- | ---- | ---- | ---- | ---- |
+| rootNode | [Node](js-apis-inner-scene-nodes.md#node) | 否 | 是 | 限定检测范围：仅检测该节点及其子节点。未设置时检测全场景。 |
+
+
 ## SceneResourceFactory
 用于创建3D场景中资源的接口，例如相机、光源等。
 
@@ -254,7 +275,6 @@ function createShaderPromise() : Promise<Shader> {
   });
 }
 ```
-
 
 ### createImage
 createImage(params: SceneResourceParameters): Promise\<Image>
@@ -454,7 +474,7 @@ function createScenePromise() : Promise<Scene> {
 **系统能力：** SystemCapability.ArkUi.Graphics3D
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | ---- | ---- | ---- | ---- | ---- |
-| alwaysRender | boolean | 否 | 是 | 表示是否每一帧都渲染。true表示每一帧都渲染，false表示按需渲染。默认值为true。 |
+| alwaysRender<sup>15+</sup> | boolean | 否 | 是 | 表示是否每一帧都渲染。true表示每一帧都渲染，false表示按需渲染。默认值为true。 |
 
 
 ## Scene

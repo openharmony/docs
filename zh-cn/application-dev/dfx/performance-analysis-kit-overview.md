@@ -20,7 +20,7 @@ Performance Analysis Kit（性能分析服务）为开发者提供应用事件�
 
 **便捷的构建APM系统**
 
-- 提供接口（HiDebug、HiAppEvent、HiLog）可自建端侧APM SDK，与厂商自研APM对接。
+- 提供接口（HiDebug、HiAppEvent、HiLog）可自建端侧APM（Application Performance Management，应用性能管理平台）SDK，与厂商自研APM对接。
 - 基于HiAppEvent自定义事件、订阅系统事件功能，快捷记录和收集运营和运维所需事件。
 
 **强悍的异常处理机制**

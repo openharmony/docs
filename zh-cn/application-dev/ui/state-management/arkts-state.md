@@ -87,7 +87,7 @@
   }
   ```
 
-  \@State装饰的类型是Model
+  \@State装饰的类型是Model。
 
   ```ts
   // class类型

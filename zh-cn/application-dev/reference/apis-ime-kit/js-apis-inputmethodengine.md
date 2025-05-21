@@ -4596,7 +4596,7 @@ try {
 }
 ```
 
-### getAttachOptions<sup>17+</sup>
+### getAttachOptions<sup>19+</sup>
 
 getAttachOptions(): AttachOptions
 
@@ -4608,7 +4608,7 @@ getAttachOptions(): AttachOptions
 
 | 类型 | 说明         |
 | ---- | ------------ |
-| [AttachOptions](#attachoptions17) | 返回绑定输入法时的附加选项内容。 |
+| [AttachOptions](#attachoptions19) | 返回绑定输入法时的附加选项内容。 |
 
 **错误码：**
 
@@ -4629,7 +4629,7 @@ try {
 }
 ```
 
-### on('attachOptionsDidChange')<sup>17+</sup>
+### on('attachOptionsDidChange')<sup>19+</sup>
 
 on(type: 'attachOptionsDidChange', callback: Callback\<AttachOptions>): void
 
@@ -4642,7 +4642,7 @@ on(type: 'attachOptionsDidChange', callback: Callback\<AttachOptions>): void
 | 参数名   | 类型                                        | 必填 | 说明                                           |
 | -------- | ------------------------------------------- | ---- | ---------------------------------------------- |
 | type     | string                                      | 是   | 绑定输入法时的附加选项变更事件，固定取值为'attachOptionsDidChange'。 |
-| callback | Callback\<[AttachOptions](#attachoptions17)> | 是   | 回调函数，返回绑定输入法时的附加选项。       |
+| callback | Callback\<[AttachOptions](#attachoptions19)> | 是   | 回调函数，返回绑定输入法时的附加选项。       |
 
 **错误码：**
 
@@ -4669,7 +4669,7 @@ try {
 }
 ```
 
-### off('attachOptionsDidChange')<sup>17+</sup>
+### off('attachOptionsDidChange')<sup>19+</sup>
 
 off(type: 'attachOptionsDidChange', callback?: Callback\<AttachOptions>): void
 
@@ -4682,7 +4682,7 @@ off(type: 'attachOptionsDidChange', callback?: Callback\<AttachOptions>): void
 | 参数名   | 类型                                        | 必填 | 说明                                                         |
 | -------- | ------------------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | string                                      | 是   | 绑定输入法时的附加选项变更事件，固定取值为'attachOptionsDidChange'。               |
-| callback | Callback\<[AttachOptions](#attachoptions17)> | 否   | 取消订阅的回调函数。参数不填写时，默认取消订阅type对应的所有回调事件。 |
+| callback | Callback\<[AttachOptions](#attachoptions19)> | 否   | 取消订阅的回调函数。参数不填写时，默认取消订阅type对应的所有回调事件。 |
 
 **示例：**
 
@@ -4802,7 +4802,7 @@ try {
 | left   | number | 是   | 否   | 键盘区域的左边界到面板区域左边界的距离，单位为px，该参数为整数。 |
 | right  | number | 是   | 否   | 键盘区域的右边界到面板区域右边界的距离，单位为px，该参数为整数。 |
 
-## AttachOptions<sup>17+</sup>
+## AttachOptions<sup>19+</sup>
 
 绑定输入法时的附加选项。
 
@@ -4810,7 +4810,7 @@ try {
 
 | 名称   | 类型   | 只读 | 可选 | 说明                                                         |
 | ------ | ------ | ---- | ---- | ---------------------------------------------------------- |
-| requestKeyboardReason    | [RequestKeyboardReason](#requestkeyboardreason17) | 否   | 是   | 请求键盘输入原因。 |
+| requestKeyboardReason    | [RequestKeyboardReason](#requestkeyboardreason19) | 否   | 是   | 请求键盘输入原因。 |
 
 ## WindowInfo<sup>12+</sup>
 
@@ -4836,7 +4836,7 @@ try {
 | LIGHT_IMMERSIVE  | 2 | 浅色沉浸模式。 |
 | DARK_IMMERSIVE   | 3 | 深色沉浸模式。 |
 
-## RequestKeyboardReason<sup>17+</sup>
+## RequestKeyboardReason<sup>19+</sup>
 
 枚举，请求键盘输入原因。
 

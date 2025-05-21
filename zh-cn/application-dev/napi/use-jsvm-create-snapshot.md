@@ -322,4 +322,3 @@ Test JSVM RunVMSnapshot read file blobSize = : 300176
 Test JSVM RunVMSnapshot read file blobSize = : 300048
 ```
 这是因为，在读取快照文件时，blobSize 是通过 file.tellg() 获取的文件大小。因此，快照文件的大小直接决定了 blobSize 的值。
-

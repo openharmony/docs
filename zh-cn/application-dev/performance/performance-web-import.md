@@ -1560,7 +1560,7 @@ export default class EntryAbility extends UIAbility {
 4. 正常情况下，资源的有效期由提供的Cache-Control或Expires响应头控制其有效期，默认的有效期为86400秒，即1天。
 5. 资源的MIMEType通过提供的参数中的Content-Type响应头配置，Content-Type需符合标准，否则无法正常使用，MODULE_JS必须提供有效的MIMEType，其他类型可不提供。
 6. 仅支持通过HTML中的标签加载。
-7. 如果业务网页中的script标签使用了crossorigin属性，则必须在接口的responseHeaders参数中设置Cross-Origin响应头的值为anoymous或use-credentials。
+7. 如果业务网页中的script标签使用了crossorigin属性，则必须在接口的responseHeaders参数中设置Cross-Origin响应头的值为anonymous或use-credentials。
 8. 当调用web_webview.WebviewController.SetRenderProcessMode(web_webview.RenderProcessMode.MULTIPLE)接口后，应用会启动多渲染进程模式，此方案在此场景下不会生效。
 9. 单次调用最大支持注入30个资源，单个资源最大支持10Mb。
 

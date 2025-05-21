@@ -74,6 +74,7 @@ r0:00000000 r1:ffc09854 r2:00000000 r3:00000008
 r4:00000000 r5:fffff000 r6:0000000a r7:000000af
 r8:ffc09919 r9:ffc09930 r10:00000000
 fp:ffc098e8 ip:005b76e4 sp:ffbe8daa lr:005ade99 pc:f7bb0400
+cpsr:20870010  <- 状态寄存器（arm32架构为cpsr，aarch64架构为pstate和esr）
 ...
 Maps:
 ...
@@ -503,6 +504,8 @@ Pid:10208 <- 进程号
 Uid:0     <- 用户ID
 Process name:./crasher_cpp <- 进程名称
 Process life time:1s  <- 进程存活时间
+Process Memory(kB): 11902(Rss)     <- 进程占用内存
+Device Memory(kB): Total 1935820, Free 516244, Available 1205608 <- 整机内存状态（非必选）
 Reason:Signal:SIGSEGV(SI_TKILL)@0x000027e0 from:10208:0 <- 故障原因，详见信号值说明
 Fault thread info:
 Tid:10208, Name:crasher_cpp  <- 故障线程号，线程名
@@ -518,6 +521,7 @@ r0:00000000 r1:ffc09854 r2:00000000 r3:00000008
 r4:00000000 r5:fffff000 r6:0000000a r7:000000af
 r8:ffc09919 r9:ffc09930 r10:00000000
 fp:ffc098e8 ip:005b76e4 sp:ffc09850 lr:005ade99 pc:f7bb0400
+cpsr:20870010           <-  状态寄存器值（arm32架构为cpsr，aarch64架构为pstate和esr）
 Memory near registers:  <-  故障现场寄存器的地址（地址必须在有效内存中）附近内存值，括号表示寄存器里的地址是在哪一段内存中
 r1([stack]):          <- 故障现场r1寄存器的地址附近内存值
     ffc0984c f7bd8348
@@ -678,6 +682,8 @@ Pid:9623   <- 进程号
 Uid:0         <- 用户ID
 Process name:./crasher_cpp         <- 进程名称
 Process life time:1s               <- 进程存活时间
+Process Memory(kB): 11902(Rss)     <- 进程占用内存
+Device Memory(kB): Total 1935820, Free 516244, Available 1205608 <- 整机内存状态（非必选）
 Reason:Signal:SIGSEGV(SEGV_MAPERR)@0x00000004  probably caused by NULL pointer dereference   <- 故障原因和空指针提示
 Fault thread info:
 Tid:9623, Name:crasher_cpp         <- 故障线程号，线程名
@@ -692,6 +698,7 @@ r0:ffffafd2 r1:00000004 r2:00000001 r3:00000000
 r4:ffd27e39 r5:0096e000 r6:00000a40 r7:0096fdfc
 r8:f7ba58d5 r9:f7baea86 r10:f7cadd38
 fp:ffd27308 ip:f7cb2078 sp:ffd272a0 lr:f7c7ab98 pc:0096ad22
+cpsr:20870010           <-  状态寄存器值（arm32架构为cpsr，aarch64架构为pstate和esr）
 ...
 ```
 
@@ -733,6 +740,8 @@ Pid:9838                               <- 进程号
 Uid:0                                  <- 用户ID
 Process name:./crasher_cpp             <- 进程名称
 Process life time:2s                   <- 进程存活时间
+Process Memory(kB): 11902(Rss)     <- 进程占用内存
+Device Memory(kB): Total 1935820, Free 516244, Available 1205608 <- 整机内存状态（非必选）
 Reason:Signal:SIGSEGV(SEGV_ACCERR)@0xf76b7ffc  current thread stack low address = 0xf76b8000, probably caused by stack-buffer-overflow    <- 故障原因和栈溢出提示
 Tid:10343, Name:crasher_cpp
 #00 pc 000072e6 /data/crasher_cpp(DoStackOverflow(void*)+30)(d6cead5be17c9bb7eee2a9b4df4b7626)
@@ -762,6 +771,8 @@ Pid:10026                                 <- 进程号
 Uid:0                                     <- 用户ID
 Process name:./crasher_cpp                <- 进程名称
 Process life time:1s                      <- 进程存活时间
+Process Memory(kB): 11902(Rss)            <- 进程占用内存
+Device Memory(kB): Total 1935820, Free 516244, Available 1205608 <- 整机内存状态（非必选）
 Reason:Signal:SIGSEGV(SEGV_MAPERR)@0000000000  probably caused by NULL pointer dereference      <- 故障原因
 LastFatalMessage:Failed to unwind stack, try to get unreliable call stack from #02 by reparsing thread stack <- #00和#01一般认为是可信的，从#02开始尝试从线程栈内存里解析不可靠的调用栈
 Fault thread info:
@@ -778,6 +789,7 @@ r0:00000000 r1:c2085db0 r2:00000000 r3:ff8970c8
 r4:0000003f r5:00000000 r6:f755c0e0 r7:00000000
 r8:ff8975c9 r9:ff8975e0 r10:00000001
 fp:008de1a4 ip:f76b5c48 sp:ff896fd0 lr:f76abcdf pc:00000000
+cpsr:20870010
 ...
 ```
 
@@ -797,6 +809,8 @@ Pid:9838                                    <- 进程号
 Uid:0                                       <- 用户ID
 Process name:./crasher_cpp                  <- 进程名称
 Process life time:2s                        <- 进程存活时间
+Process Memory(kB): 11902(Rss)            <- 进程占用内存
+Device Memory(kB): Total 1935820, Free 516244, Available 1205608 <- 整机内存状态（非必选）
 Reason:Signal:SIGSEGV(SI_TKILL)@0x000000000004750  from:18256:0  <- 故障原因
 Fault thread info:
 Tid:18257, Name:crasher_cpp                 <- 故障线程号，线程名
@@ -830,6 +844,8 @@ CppCrash日志核心内容如下：
 ```text
 Process name:com.ohos.medialibrary.medialibrarydata
 Process life time:13402s
+Process Memory(kB): 11902(Rss)
+Device Memory(kB): Total 1935820, Free 516244, Available 1205608
 Reason:SIGSEGV(SEGV_MAPERR)@0x0000005b3b46c000
 Fault thread info:
 Tid:48552, Name:UpradeTask

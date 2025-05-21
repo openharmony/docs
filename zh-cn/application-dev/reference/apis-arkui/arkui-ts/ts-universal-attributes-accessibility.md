@@ -1,18 +1,18 @@
 # 无障碍属性
 
-组件可以设置相应的无障碍属性和事件来更好地使用无障碍能力。
+设置组件的无障碍属性和事件，以充分利用无障碍功能。
 
 >  **说明：**
 >
->  从API Version 10 开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>  从API version 10 开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 ## accessibilityGroup
 
 accessibilityGroup(value: boolean)
 
-设置是否启用无障碍分组。启用无障碍分组后该组件及其所有子组件将作为一整个可以选中的组件，无障碍服务将不再关注其子组件内容。
+设置是否启用无障碍分组。启用无障碍分组后，组件及其子组件作为一整个可选组件，无障碍服务不再关注子组件内容。
 
-若组件启用无障碍分组，当组件不包含通用文本属性，同时未设置[无障碍文本](#accessibilitytext)时，将默认拼接其子组件的通用文本属性作为组件的合并文本，若某一子组件没有通用文本属性，则忽略该子组件不进行拼接。此时合并文本不使用子组件的无障碍文本。
+若组件启用无障碍分组，当组件不包含通用文本属性，同时未设置[无障碍文本](#accessibilitytext)时，将默认拼接其子组件的通用文本属性作为组件的合并文本。若某一子组件没有通用文本属性，则忽略该子组件不进行拼接，此时合并文本不使用子组件的无障碍文本。
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
@@ -30,11 +30,11 @@ accessibilityGroup(value: boolean)
 
 accessibilityGroup(isGroup: boolean, accessibilityOptions: AccessibilityOptions)
 
-设置是否启用无障碍分组，支持优先拼接无障碍文本进行朗读。启用无障碍分组后该组件及其所有子组件将作为一整个可以选中的组件，无障碍服务将不再关注其子组件内容。
+设置是否启用无障碍分组。启用无障碍分组后，组件及其子组件作为一整个可选组件，无障碍服务不再关注子组件内容。
 
-若组件启用无障碍分组，当组件不包含通用文本属性，同时未设置[无障碍文本](#accessibilitytext)时，将默认拼接其子组件的通用文本属性作为组件的合并文本，若某一子组件没有通用文本属性，则忽略该子组件不进行拼接。
+若组件启用无障碍分组，当组件不包含通用文本属性，同时未设置[无障碍文本](#accessibilitytext)时，将默认拼接其子组件的通用文本属性作为组件的合并文本。若某一子组件没有通用文本属性，则忽略该子组件不进行拼接。
 
-通过accessibilityPreferred启用优先拼接无障碍文本进行朗读后，将优先拼接其子组件的无障碍文本属性作为组件的合并文本，若某一子组件未设置无障碍文本，则继续拼接该子组件的通用文本属性，若该子组件没有通用文本属性，则忽略该子组件不进行拼接。
+通过accessibilityPreferred启用优先拼接无障碍文本进行朗读后，将优先拼接其子组件的无障碍文本属性作为组件的合并文本。若某一子组件未设置无障碍文本，则继续拼接该子组件的通用文本属性，若该子组件没有通用文本属性，则忽略该子组件不进行拼接。
 
 **卡片能力：** 从API version 14开始，该接口支持在ArkTS卡片中使用。
 
@@ -146,7 +146,7 @@ accessibilityLevel(value: string)
 
 | 参数名 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| value  | string | 是   | 无障碍重要性，用于控制某个组件是否可被无障碍辅助服务所识别。<br/>支持的值为:<br/>"auto"：当前组件由无障碍分组服务和ArkUl进行综合判断组件是否可被无障碍辅助服务所识别。<br/>"yes"：当前组件可被无障碍辅助服务所识别。<br/>"no"：当前组件不可被无障碍辅助服务所识别。<br/>"no-hide-descendants"：当前组件及其所有子组件不可被无障碍辅助服务所识别。<br/>默认值："auto"<br/>**说明：**<br/>当accessibilityLevel设置成"auto"时，组件是否可被无障碍辅助服务所识别取决于以下多方面因素：<br/>1. 组件是否可被识别由无障碍辅助服务内部判断，自行选择。<br/>2. 若组件的父组件accessibilityGroup属性中isGroup设置为true，无障碍服务将不再关注其子组件内容，组件不可被无障碍辅助服务所识别。<br/>3. 若组件的父组件accessibilityLevel属性设置为"no-hide-descendants"，组件不可被无障碍辅助服务所识别。 |
+| value  | string | 是   | 无障碍重要性，用于控制某个组件是否可被无障碍辅助服务所识别。<br/>支持的值为：<br/>"auto"：当前组件由无障碍分组服务和ArkUl进行综合判断组件是否可被无障碍辅助服务所识别。<br/>"yes"：当前组件可被无障碍辅助服务所识别。<br/>"no"：当前组件不可被无障碍辅助服务所识别。<br/>"no-hide-descendants"：当前组件及其所有子组件不可被无障碍辅助服务所识别。<br/>默认值："auto"<br/>**说明：**<br/>当accessibilityLevel设置成"auto"时，组件是否可被无障碍辅助服务所识别取决于以下多方面因素：<br/>1. 组件是否可被识别由无障碍辅助服务内部判断，自行选择。<br/>2. 若组件的父组件accessibilityGroup属性中isGroup设置为true，无障碍服务将不再关注其子组件内容，组件不可被无障碍辅助服务所识别。<br/>3. 若组件的父组件accessibilityLevel属性设置为"no-hide-descendants"，组件不可被无障碍辅助服务所识别。 |
 
 ## accessibilityVirtualNode<sup>11+</sup>
 
@@ -288,7 +288,7 @@ type AccessibilityFocusCallback = (isFocus: boolean) => void
 | CONTAINER_MODAL | 21 | 模态容器。 |
 | DATA_PANEL | 22 | 数据面板组件。 |
 | DATE_PICKER | 23 | 选择日期的滑动选择器组件。 |
-| DIALOG | 24 | 弹出框 。 |
+| DIALOG | 24 | 弹出框。 |
 | DIVIDER | 25 | 提供分隔器组件。 |
 | DRAG_BAR | 26 | 拖拽条。 |
 | EFFECT_COMPONENT | 27 | 特效合并容器组件。 |
@@ -455,13 +455,13 @@ accessibilityUseSamePage(pageMode: AccessibilitySamePageMode)
 | 名称        | 值   | 说明                                                         |
 | ----------- | ---- | ------------------------------------------------------------ |
 | SEMI_SILENT | 0    | UEA（由UIExtensionComponent拉起来的进程的page事件）中如果是首次加载页面或者UEA页面的根节点发送的page事件会被忽略。 |
-| FULL_SILENT | 1    | UEA忽略所有的page事件。                                      |
+| FULL_SILENT | 1    | UEA将忽略所有的page事件。                                      |
 
 ## accessibilityScrollTriggerable<sup>18+</sup>
 
 accessibilityScrollTriggerable(isTriggerable: boolean)
 
-无障碍节点是否需要支持屏幕朗读滚动操作，即屏幕朗读在焦点切换时，若容器内当前页面无可聚焦的组件时，会发起一次自动滚动的操作。
+设置无障碍节点是否支持屏幕朗读滚动操作。当屏幕朗读在焦点切换时，若容器内当前页面无可聚焦的组件，会发起一次自动滚动操作。
 
 **卡片能力：** 从API version 18开始，该接口支持在ArkTS卡片中使用。
 
@@ -493,21 +493,22 @@ accessibilityTextHint(value: string)
 | -------------- | ------- | ---- | ------------------------------------------------------------ |
 | value  | string | 是   | 组件的文本提示信息，供无障碍辅助应用查询。 |
 
-## accessibilityFocusDrawLevel<sup>18+</sup>
+## accessibilityFocusDrawLevel<sup>19+</sup>
 
 accessibilityFocusDrawLevel(drawLevel: FocusDrawLevel)
 
-无障碍获焦绿框绘制层级设置能力。
+无障碍焦点绿框的绘制层级设置功能。
+
 > **说明：**
 >
-> 1、在聚焦节点层级绘制获焦无障碍绿框，默认使用这个层级绘制，由于绘制组件数顺序以及图形绘制顺序，绘制绿框会被父组件或者z序更高的兄弟组件遮挡裁切。
+> 1. 在聚焦节点层级绘制获焦无障碍绿框，默认使用该层级绘制，由于绘制组件数顺序以及图形绘制顺序，绘制绿框会被父组件或者z序更高的兄弟组件遮挡裁切。
 >
-> 2、在Z序顶层绘制绿框情况下，可以避免由于组件遮挡、裁切导致无障碍绿框被裁切遮挡。但由于具备较高的绘制层级，如果需要交互过程中，需要遮挡当前获焦的组件，并且不希望显示无障碍绿框则不适合使用这种配置。
+> 2. 在Z序顶层绘制绿框情况下，可以避免由于组件遮挡、裁切导致无障碍绿框被裁切遮挡。但由于具备较高的绘制层级，如果需要交互过程中，需要遮挡当前获焦的组件，并且不希望显示无障碍绿框则不适合使用这种配置。
 
 
-**卡片能力：** 从API version 18开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 19开始，该接口支持在ArkTS卡片中使用。
 
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -515,9 +516,11 @@ accessibilityFocusDrawLevel(drawLevel: FocusDrawLevel)
 
 | 参数名   | 类型    | 必填 | 说明                                                         |
 | -------- | ------- | ---- | ------------------------------------------------------------ |
-| drawLevel | [FocusDrawLevel](ts-appendix-enums.md#focusdrawlevel18) | 是   | 无障碍绘制能力，默认绘制聚焦节点本身。 |
+| drawLevel | [FocusDrawLevel](ts-appendix-enums.md#focusdrawlevel19) | 是   | 无障碍绘制能力，默认情况下绘制聚焦节点本身。 |
 
-## 示例1（设置无障碍文本和无障碍说明）
+## 示例
+
+### 示例1（设置无障碍文本和无障碍说明）
 
 该示例主要演示accessibilityText无障碍文本和accessibilityDescription无障碍说明的播报内容。
 
@@ -559,7 +562,7 @@ struct Index {
 }
 ```
 
-## 示例2（设置无障碍组）
+### 示例2（设置无障碍组）
 
 该示例主要演示优先使用子组件的无障碍文本进行朗读。
 
@@ -582,7 +585,6 @@ struct Focus {
       Button('btn123').accessibilityLevel("yes")
     }
     .accessibilityGroup(true, { accessibilityPreferred: true })
-    //.accessibilityGroup(true)
     .borderWidth(5)
     .width('100%')
     .height('100%')
@@ -590,4 +592,76 @@ struct Focus {
 }
 ```
 
-##
+### 示例3（设置首焦点和组件的下一个焦点）
+
+该示例主要演示accessibilityDefaultFocus屏幕朗读当前页默认首焦点和accessibilityNextFocusId走焦过程中组件的下一个焦点。
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct Index {
+  build() {
+    Column({ space: 20 }) {
+      Text('Text Demo 1')
+        .fontSize(50)
+        .accessibilityLevel('yes')
+        .accessibilityNextFocusId('text3')
+      Text('Text Demo 2')
+        .id('text2')
+        .fontSize(50)
+        .accessibilityLevel('yes')
+        .accessibilityDefaultFocus(true)  // 设置该组件为屏幕朗读当前页默认首焦点
+        .accessibilityNextFocusId('text4')
+      Text('Text Demo 3')
+        .id('text3')
+        .fontSize(50)
+        .accessibilityLevel('yes')
+        .accessibilityNextFocusId('text2')
+      Text('Text Demo 4')
+        .id('text4')
+        .fontSize(50)
+        .accessibilityLevel('yes')
+    }
+    .height('100%')
+    .width('100%')
+  }
+}
+```
+
+### 示例4（设置无障碍组件类型和文本提示信息）
+
+该示例主要演示accessibilityRole无障碍组件类型和accessibilityTextHint供无障碍辅助应用查询的组件的文本提示信息。
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct Index {
+  @State isDownloading: boolean = false;
+  @State hintStr: string = '点击开始下载';
+
+  build() {
+    Column({ space: 20 }) {
+      Button(this.isDownloading ? '下载中' : '点击下载')
+        .accessibilityLevel('yes')
+        .accessibilityTextHint(this.hintStr)
+        .onClick(() => {
+          this.isDownloading = !this.isDownloading;
+          this.hintStr = this.isDownloading ? '状态变为下载中' : '状态变为暂停下载';
+        })
+      TextInput({ placeholder: '请输入手机号码' })
+        .accessibilityLevel('yes')
+        .accessibilityTextHint('请输入11位手机号码')
+        .width('80%')
+      Text('按照按钮类型播报')
+        .accessibilityLevel('yes')
+        .accessibilityRole(AccessibilityRoleType.BUTTON)
+        .accessibilityTextHint('屏幕朗读播报时，该组件将按照按钮类型进行播报')
+        .fontSize(30)
+    }
+    .height('100%')
+    .width('100%')
+  }
+}
+```

@@ -89,7 +89,9 @@ export class AVPlayerDemo {
   private fd: number = 0;
   private context: Context | undefined;
   constructor(context: Context) {
-    this.context = context; // this.getUIContext().getHostContext();
+    if (context != undefined) {
+      this.context = context; // this.getUIContext().getHostContext();
+    }
   }
 
   constructor(surfaceID: string) {
@@ -175,12 +177,12 @@ export class AVPlayerDemo {
     if (this.context != undefined) {
       let pathDir = this.context.filesDir;
       let path = pathDir + '/H264_AAC.mp4';
+      // 打开相应的资源文件地址获取fd，并为url赋值触发initialized状态机上报。
+      let file = await fs.open(path);
+      fdPath = fdPath + '' + file.fd;
+      this.isSeek = true; // 支持seek操作。
+      avPlayer.url = fdPath;
     }
-    // 打开相应的资源文件地址获取fd，并为url赋值触发initialized状态机上报。
-    let file = await fs.open(path);
-    fdPath = fdPath + '' + file.fd;
-    this.isSeek = true; // 支持seek操作。
-    avPlayer.url = fdPath;
   }
 
   // 以下demo为使用资源管理接口获取打包在HAP内的媒体资源文件并通过fdSrc属性进行播放示例。
@@ -229,12 +231,12 @@ export class AVPlayerDemo {
       await fs.open(path).then((file: fs.File) => {
         this.fd = file.fd;
       });
+      // 获取播放文件的大小。
+      this.fileSize = fs.statSync(path).size;
+      src.fileSize = this.fileSize;
+      this.isSeek = true; // 支持seek操作。
+      avPlayer.dataSrc = src;
     }
-    // 获取播放文件的大小。
-    this.fileSize = fs.statSync(path).size;
-    src.fileSize = this.fileSize;
-    this.isSeek = true; // 支持seek操作。
-    avPlayer.dataSrc = src;
   }
 
   // 以下demo为使用fs文件系统打开沙箱地址获取媒体文件地址并通过dataSrc属性进行播放(No seek模式)示例。
@@ -264,9 +266,9 @@ export class AVPlayerDemo {
       await fs.open(path).then((file: fs.File) => {
         this.fd = file.fd;
       });
-      this.isSeek = false; // 不支持seek操作。
-      avPlayer.dataSrc = src;
     }
+    this.isSeek = false; // 不支持seek操作。
+    avPlayer.dataSrc = src;
   }
 
   // 以下demo为通过url设置网络地址来实现播放直播码流的demo。

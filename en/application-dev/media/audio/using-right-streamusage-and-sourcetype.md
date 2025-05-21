@@ -1,4 +1,4 @@
-# Selecting an Appropriate Audio Stream Type
+# Selecting the Appropriate Audio Stream Types
 
 [Audio stream](audio-kit-intro.md#introduction-to-audio-streams) types are crucial for determining the mode of audio playback and recording. For audio playback streams, the stream type is determined by [StreamUsage](../../reference/apis-audio-kit/js-apis-audio.md#streamusage). For audio recording streams, the stream type is determined by [SourceType](../../reference/apis-audio-kit/js-apis-audio.md#sourcetype8). These types pose a significant impact on volume control, audio focus management, and input/output device selection.
 
@@ -32,12 +32,16 @@ The following table describes the typical stream types used for audio recording.
 | Stream Type| Use Case|
 | ---------- | ---------- |
 | SOURCE_TYPE_MIC | Common audio recording.|
+| SOURCE_TYPE_RECOGNITION<sup>9+</sup> | Voice recognition.|
+| SOURCE_TYPE_PLAYBACK_CAPTURE | (Deprecated in API version 12) Recording raw audio data sent by other applications to the system for playback.<br>Audio Kit does not provide APIs for internal recording. You can use [AVScreenCapture](../../reference/apis-media-kit/_a_v_screen_capture.md) to perform internal recording.|
 | SOURCE_TYPE_VOICE_COMMUNICATION | VoIP voice calls.|
 | SOURCE_TYPE_VOICE_MESSAGE | Recording voice short messages.|
+| SOURCE_TYPE_CAMCORDER<sup>13+</sup> | Camera recording.|
+| SOURCE_TYPE_UNPROCESSD<sup>14+</sup> | Obtaining pure audio data captured by the microphone (without any system processing).|
 
 ## Effects of Audio Stream Types on Audio Services
 
-Different stream types affect user experience in volume control and system performance in adjusting the audio focus and selecting input/output devices.
+Different stream types affect user experience in volume control and system performance in adjusting the audio focus and selecting input/output devices. In addition, the system configures corresponding optimization processing strategies for the captured audio data based on the recording stream type. Therefore, the recording stream type affects the audio recording quality. For example, using **SOURCE_TYPE_MIC** instead of **SOURCE_TYPE_VOICE_COMMUNICATION** in a VoIP call scenario may disable noise reduction and ambient sound elimination optimizations, leading to a poor VoIP call experience. You are advised to select the appropriate audio stream type based on the service scenario.
 
 ### Volume Control
 
