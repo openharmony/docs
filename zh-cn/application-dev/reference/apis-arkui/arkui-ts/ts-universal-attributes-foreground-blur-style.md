@@ -25,7 +25,7 @@ foregroundBlurStyle(value: BlurStyle, options?: ForegroundBlurStyleOptions)
 
 ## foregroundBlurStyle<sup>18+</sup>
 
-foregroundBlurStyle(style: Optional\<BlurStyle>, options?: ForegroundBlurStyleOptions, sysOptions?: [SystemAdaptiveOptions](ts-universal-attributes-background.md#systemadaptiveoptions18))
+foregroundBlurStyle(style: Optional\<BlurStyle>, options?: ForegroundBlurStyleOptions)
 
 为当前组件提供内容模糊能力。与[foregroundBlurStyle](#foregroundblurstyle)相比，style参数新增了对undefined类型的支持。
 
@@ -39,7 +39,6 @@ foregroundBlurStyle(style: Optional\<BlurStyle>, options?: ForegroundBlurStyleOp
 | ------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | style   | Optional\<[BlurStyle](ts-universal-attributes-background.md#blurstyle9)> | 是   | 内容模糊样式。<br/>当style的值为undefined时，恢复为无模糊的内容。 |
 | options | [ForegroundBlurStyleOptions](#foregroundblurstyleoptions对象说明) | 否   | 可选参数，内容模糊选项。                                     |
-| sysOptions<sup>18+</sup>   |  [SystemAdaptiveOptions](ts-universal-attributes-background.md#systemadaptiveoptions18)    |   否   |  系统自适应调节参数。<br/>默认值：{ disableSystemAdaptation: false }    |
 
 ## ForegroundBlurStyleOptions对象说明
 继承自[BlurStyleOptions](#blurstyleoptions)
