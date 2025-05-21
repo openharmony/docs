@@ -2033,6 +2033,118 @@ static getTimezonesByLocation(longitude: number, latitude: number): Array&lt;Tim
   }
   ```
 
+### getZoneRules<sup>20+</sup>
+
+public getZoneRules(): ZoneRules
+
+获取时区偏移量变更规则。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Global.I18n
+
+**返回值：**
+
+| 类型     | 说明                 |
+| ------ | ------------------ |
+| [ZoneRules](#zonerules) | 时区偏移量变更规则。 |
+
+**示例：**
+```ts
+  let timeZone: i18n.TimeZone = i18n.getTimeZone("America/Tijuana")
+  let zoneRules: i18n.ZoneRules = timeZone.getZoneRules()
+  let date = new Date(2025, 4, 13)
+  let zoneOffsetTransition: i18n.ZoneOffsetTransition =
+      zoneRules.nextTransition(date.getTime()) //获取2025年5月13日以后的下一个时间跳变点
+  zoneOffsetTransition.getMilliseconds(); // 跳变点的时间戳: 1762074000000
+  zoneOffsetTransition.getOffsetAfter(); // 跳变后的偏移量: -28800000
+  zoneOffsetTransition.getOffsetBefore(); // 跳变前的偏移量: -25200000
+```
+
+## ZoneRules<sup>20+</sup>
+
+
+### nextTransition<sup>20+</sup>
+
+public nextTransition(date?: number): ZoneOffsetTransition
+
+获取指定时间的下一个时间跳变点。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Global.I18n
+
+**参数：**
+
+| 参数名    | 类型     | 必填   | 说明     |
+| ------ | ------ | ---- | ------ |
+| date | number | 否    | 指定时间的时间戳，默认当前时间。 |
+
+**返回值：**
+
+| 类型       | 说明         |
+| -------- | ---------- |
+| [ZoneOffsetTransition](#zoneoffsettransition) | 时间跳变对象。 |
+
+**示例：**
+```ts
+  let timeZone: i18n.TimeZone = i18n.getTimeZone("America/Tijuana")
+  let zoneRules: i18n.ZoneRules = timeZone.getZoneRules()
+  let date = new Date(2025, 4, 13)
+  let zoneOffsetTransition: i18n.ZoneOffsetTransition = zoneRules.nextTransition(date.getTime())
+```
+
+## ZoneOffsetTransition<sup>20+</sup>
+
+
+### getMilliseconds<sup>20+</sup>
+
+public getMilliseconds(): number
+
+获取时间跳变点的时间戳。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Global.I18n
+
+**返回值：**
+
+| 类型       | 说明         |
+| -------- | ---------- |
+| number | 时间跳变点的时间戳。 |
+
+### getOffsetAfter<sup>20+</sup>
+
+public getOffsetAfter(): number
+
+获取时间跳变后的时间偏移量。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Global.I18n
+
+**返回值：**
+
+| 类型       | 说明         |
+| -------- | ---------- |
+| number | 时间跳变后的时间偏移量。 |
+
+### getOffsetBefore<sup>20+</sup>
+
+public getOffsetBefore(): number
+
+获取时间跳变前的时间偏移量。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Global.I18n
+
+**返回值：**
+
+| 类型       | 说明         |
+| -------- | ---------- |
+| number | 时间跳变前的时间偏移量。 |
+
 
 ## Transliterator<sup>9+</sup>
 
