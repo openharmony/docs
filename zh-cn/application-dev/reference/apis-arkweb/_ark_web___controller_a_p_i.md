@@ -70,7 +70,7 @@ void(* ArkWeb_ControllerAPI::deleteJavaScriptRegister) (const char *webTag, cons
 | 名称 | 描述 | 
 | -------- | -------- |
 | webTag | Web组件名称。  | 
-| objName | 对象名称。  | 
+| objName | JavaScript对象名称。  | 
 
 
 ### destroyWebMessagePorts
