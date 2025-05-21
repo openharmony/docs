@@ -638,7 +638,7 @@
 
 ### Promise场景
 
-  第一种使用方法，在应用侧new Promise。
+  第一种使用方法，在应用侧new Promise，将Promise作为对象方法的参数或返回值，向前端页面传递。
   ```ts
   // xxx.ets
   import { webview } from '@kit.ArkWeb';
@@ -716,7 +716,7 @@
   </body>
   </html>
   ```
-  第二种使用方法，在前端页面new Promise。
+  第二种使用方法，在前端页面new Promise，将Promise作为对象方法的参数或返回值，向应用侧传递。
   ```ts
   // xxx.ets
   import { webview } from '@kit.ArkWeb';
