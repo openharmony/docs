@@ -6,8 +6,6 @@
 
 注册应用侧代码有两种方式，一种在Web组件初始化调用，使用[javaScriptProxy()](../reference/apis-arkweb/ts-basic-components-web.md#javascriptproxy)接口。另外一种在Web组件初始化完成后调用，使用[registerJavaScriptProxy()](../reference/apis-arkweb/js-apis-webview.md#registerjavascriptproxy)接口。两种方式都需要和[deleteJavaScriptRegister](../reference/apis-arkweb/js-apis-webview.md#deletejavascriptregister)接口配合使用，防止内存泄漏。
 
-### 前端页面调用应用侧函数注册方法
-
 在下面的示例中，将test()方法注册在前端页面中， 该函数可以在前端页面触发运行。
 
 
@@ -216,7 +214,8 @@
 
 ### 应用侧和前端页面之间传递Array
 
- 应用侧和前端页面之间传递Array示例如下：
+ Array可以作为注册对象方法的参数或返回值，在应用侧和前端页面之间传递。
+ 示例如下：
   ```ts
   // xxx.ets
   import { webview } from '@kit.ArkWeb';
@@ -291,7 +290,8 @@
 
 ### 非Function等复杂类型使用
 
-  应用侧和前端页面之间传递基础类型，非Function等复杂类型示例如下：
+  非Function等复杂类型作为注册对象方法的参数或返回值，在应用侧和前端页面之间传递。
+  示例如下：
   ```ts
   // xxx.ets
   import { webview } from '@kit.ArkWeb';
@@ -372,7 +372,8 @@
   ```
 ### 应用侧调用前端页面的Callback
 
-  应用侧调用前端页面的Callback示例如下：
+  Callback可以作为注册对象方法的参数或返回值，在应用侧和前端页面之间传递。
+  示例如下：
   ```ts
   // xxx.ets
   import { webview } from '@kit.ArkWeb';
@@ -446,7 +447,8 @@
   ```
 ### 应用侧调用前端页面Object里的Function
 
-  应用侧调用前端页面Object里的Function示例如下：
+  前端页面Object里的Function可以作为注册对象方法的参数或返回值，在应用侧和前端页面之间传递。
+  示例如下：
   ```ts
   // xxx.ets
   import { webview } from '@kit.ArkWeb';
@@ -545,7 +547,8 @@
 
 ### 前端页面调用应用侧Object里的Function
 
-  前端页面调用应用侧Object里的Function示例如下：
+  应用侧Object里的Function可以作为注册对象方法的参数或返回值，在应用侧和前端页面之间传递。
+  示例如下：
   ```ts
   // xxx.ets
   import { webview } from '@kit.ArkWeb';
