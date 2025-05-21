@@ -48,7 +48,7 @@ import { inputConsumer, KeyEvent } from '@kit.InputKit';
 
 getAllSystemHotkeys(): Promise&lt;Array&lt;HotkeyOptions&gt;&gt;
 
-获取所有系统快捷键，使用Promise异步回调。
+全局快捷键-系统定义。获取所有系统快捷键，使用Promise异步回调。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.InputConsumer
 
@@ -78,7 +78,7 @@ inputConsumer.getAllSystemHotkeys().then((data: Array<inputConsumer.HotkeyOption
 
 on(type: 'hotkeyChange', hotkeyOptions: HotkeyOptions, callback: Callback&lt;HotkeyOptions&gt;): void
 
-订阅全局快捷键，当满足条件的组合按键输入事件发生时上报快捷键选项，使用Callback异步回调。该接口只允许订阅应用设置的自定义快捷键。
+全局快捷键-应用定义。订阅全局快捷键，当满足条件的组合按键输入事件发生时上报快捷键选项，使用Callback异步回调。该接口只允许订阅应用设置的自定义快捷键。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.InputConsumer
 
@@ -125,7 +125,7 @@ try {
 
 off(type: 'hotkeyChange', hotkeyOptions: HotkeyOptions, callback?: Callback&lt;HotkeyOptions&gt;): void
 
-取消订阅全局快捷键。该接口只允许取消应用设置的自定义快捷键。
+全局快捷键-应用定义。取消订阅全局快捷键。该接口只允许取消应用设置的自定义快捷键。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.InputConsumer
 
