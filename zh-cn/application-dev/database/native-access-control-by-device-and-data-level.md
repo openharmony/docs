@@ -56,7 +56,19 @@
 
 具体接口及功能，可见[关系型数据库](../reference/apis-arkdata/js-apis-data-relationalStore.md)。
 
-1. 调用OH_Rdb_SetSecurityLevel接口设置数据库的安全等级。
+1. CMakeLists.txt中添加以下lib。
+
+    ```txt
+    libnative_rdb_ndk.z.so
+    ```
+
+2. 导入头文件。
+
+    ```c
+    #include "database/rdb/relational_store.h"
+    ```
+
+3. 调用OH_Rdb_SetSecurityLevel接口设置数据库的安全等级。
 
     ```ts
     OH_Rdb_ConfigV2 *config = OH_Rdb_CreateConfig();

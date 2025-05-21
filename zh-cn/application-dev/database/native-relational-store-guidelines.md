@@ -50,9 +50,7 @@ RelationalStore提供了一套完整的对本地数据库进行管理的机制�
 | OH_Rdb_DeleteStore(const OH_Rdb_Config *config) | 删除数据库。 |
 | OH_VBucket_PutAsset(OH_VBucket *bucket, const char *field, Rdb_Asset *value) | 把Rdb_Asset类型的数据放到指定的OH_VBucket对象中。 |
 | OH_VBucket_PutAssets(OH_VBucket *bucket, const char *field, Rdb_Asset *value, uint32_t count) | 把Rdb_Asset数组类型的数据放到指定的OH_VBucket对象中。 |
-| OH_Rdb_SetDistributedTables(OH_Rdb_Store *store, const char *tables[], uint32_t count, Rdb_DistributedType type, const Rdb_DistributedConfig *config) | 设置分布式数据库表。 |
 | OH_Rdb_FindModifyTime(OH_Rdb_Store *store, const char *tableName, const char *columnName, OH_VObject *values) | 获取数据库指定表中指定列的数据的最后修改时间。 |
-| OH_Rdb_CloudSync(OH_Rdb_Store *store, Rdb_SyncMode mode, const char *tables[], uint32_t count, const Rdb_ProgressObserver *observer) | 手动执行对指定表的端云同步，使用该接口需要实现云服务功能。 |
 | OH_RDB_TransOptions *OH_RdbTrans_CreateOptions(void) | 创建一个OH_RDB_TransOptions实例，配置事务对象。 |
 | OH_Cursor *OH_RdbTrans_Query(OH_Rdb_Transaction *trans, const OH_Predicates *predicates, const char *columns[], int len) | 根据指定的条件查询数据库中的数据。 |
 | OH_Data_Values *OH_Values_Create(void) | 创建OH_Data_Values实例。 |
@@ -74,10 +72,6 @@ RelationalStore提供了一套完整的对本地数据库进行管理的机制�
 | int OH_Data_Asset_DestroyOne(Data_Asset *asset) | 销毁一个资产类型实例并回收内存。 |
 | Data_Asset **OH_Data_Asset_CreateMultiple(uint32_t count) | 创造指定数量的资产类型实例。使用完毕后需要调用OH_Data_Asset_DestroyMultiple释放内存。 |
 | int OH_Data_Asset_DestroyMultiple(Data_Asset **assets, uint32_t count) | 销毁指定数量的资产类型实例并回收内存。 |
-| int OH_Rdb_Subscribe(OH_Rdb_Store *store, Rdb_SubscribeType type, const Rdb_DataObserver *observer) | 为数据库注册观察者, 当分布式数据库中的数据发生更改时，将调用回调。 |
-| int OH_Rdb_Unsubscribe(OH_Rdb_Store *store, Rdb_SubscribeType type, const Rdb_DataObserver *observer) | 从数据库中删除指定类型的指定观察者。 |
-| int OH_Rdb_SubscribeAutoSyncProgress(OH_Rdb_Store *store, const Rdb_ProgressObserver *observer) | 订阅RDB存储的自动同步进程，当收到自动同步进度的通知时，将调用回调。 |
-| int OH_Rdb_UnsubscribeAutoSyncProgress(OH_Rdb_Store *store, const Rdb_ProgressObserver *observer) | 取消订阅RDB存储的自动同步进程。 |
 | int OH_Rdb_CreateTransaction(OH_Rdb_Store *store, const OH_RDB_TransOptions *options, OH_Rdb_Transaction **trans) | 创建一个相关的OH_Rdb_Transaction实例，开启事务。 |
 | int OH_RdbTransOption_SetType(OH_RDB_TransOptions *opitons, OH_RDB_TransType type) | 设置事务对象类型。 |
 | int OH_RdbTrans_Insert(OH_Rdb_Transaction *trans, const char *table, const OH_VBucket *row, int64_t *rowId) | 向目标表中插入一行数据。 |

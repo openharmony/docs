@@ -14,7 +14,19 @@
 
 数据库操作或者存储过程中，有可能会因为各种原因发生非预期的数据库异常的情况，可以根据需要使用关系型数据库的备份能力，以便在数据库异常时，可靠高效地恢复数据保证业务数据正常使用。
 
-1. 调用OH_Rdb_Backup接口实现数据库备份。
+1. CMakeLists.txt中添加以下lib。
+
+    ```txt
+    libnative_rdb_ndk.z.so
+    ```
+
+2. 导入头文件。
+
+    ```c
+    #include "database/rdb/relational_store.h"
+    ```
+
+3. 调用OH_Rdb_Backup接口实现数据库备份。
 
     ```c
     OH_Rdb_ConfigV2* config = OH_Rdb_CreateConfig();
@@ -32,7 +44,7 @@
     OH_Rdb_CloseStore(store);
     ```
 
-2. 调用OH_Rdb_Restore接口实现数据库恢复。
+4. 调用OH_Rdb_Restore接口实现数据库恢复。
 
     ```c
     OH_Rdb_ConfigV2* config2 = OH_Rdb_CreateConfig();
