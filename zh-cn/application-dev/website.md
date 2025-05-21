@@ -1215,6 +1215,10 @@
               - [USB中断传输](basic-services/usb/usbManager/usbHost/interruptTransfer.md)
               - [USB批量传输](basic-services/usb/usbManager/usbHost/bulkTransfer.md)
               - [USB同步传输](basic-services/usb/usbManager/usbHost/isochronousTransfer.md)
+          - 开发USB串口通信服务<!--usb-serial-dev-->
+            - [USB串口通信服务开发概述](basic-services/usb/usbSerial/usbSerial-overview.md)
+            - [USB串口配置管理](basic-services/usb/usbSerial/usbSerial-configuration.md)
+            - [USB串口通信管理](basic-services/usb/usbSerial/usbSerial-communication.md)
           - [常见问题](basic-services/usb/faqs-usb.md)
           - [术语](basic-services/usb/usb-glossary.md)
         <!--Del-->
