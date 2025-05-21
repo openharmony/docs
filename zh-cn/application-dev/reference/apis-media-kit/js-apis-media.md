@@ -2026,7 +2026,7 @@ setPlaybackRate(rate: number): void
 | 错误码ID | 错误信息                                   |
 | -------- | ------------------------------------------ |
 | 5400108  | The parameter check failed, parameter value out of range.      |
-| 5400102  | Operation not allowed.      |
+| 5400102  | Operation not allowed，if invalid state or live stream      |
 
 **示例：**
 
