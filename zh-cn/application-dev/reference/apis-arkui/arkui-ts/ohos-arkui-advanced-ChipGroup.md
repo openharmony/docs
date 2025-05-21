@@ -9,7 +9,7 @@ ChipGroup高级组件，提供操作块群组，用于对文件或者资源内�
 ## 导入模块
 
 ```typescript
-import { ChipSize, ChipGroup } from '@kit.ArkUI'
+import { ChipSize, ChipGroup } from '@kit.ArkUI';
 ```
 
 ## 子组件
@@ -69,7 +69,7 @@ ChipGroupItemOptions定义每个chip的非共通属性。
 | label        | [LabelOptions](#labeloptions) | 是   | 文本属性。<br> **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                            |
 | suffixIcon<sup>(deprecated)</sup>   | [IconOptions](#iconoptions) | 否   | 后缀Image图标属性。<br/> **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 **说明：** 从API version 12开始支持，从API version 14开始废弃，建议使用suffixImageIcon替代。|
 | suffixSymbol | [ChipSymbolGlyphOptions](ohos-arkui-advanced-Chip.md#chipsymbolglyphoptions12) | 否   | 后缀SymbolGlyph图标属性。<br> **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。             |
-| allowClose   | boolean                       | 否   | 删除图标是否显示。<br/>默认值：false。<br> **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。  |
+| allowClose   | boolean                       | 否   | 是否显示删除图标。true表示显示删除图标，false表示不显示删除图标。默认为false。<br> **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。  |
 | suffixImageIcon<sup>14+</sup> | [SuffixImageIconOptions](#suffiximageiconoptions14) | 否 | 后缀Image图标属性。<br> **原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。 |
 | suffixSymbolOptions<sup>14+</sup> | [ChipSuffixSymbolGlyphOptions](ohos-arkui-advanced-Chip.md#chipsuffixsymbolglyphoptions14) | 否 | 后缀Symbol图标属性。<br> **原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。|
 | closeOptions<sup>14+</sup> | [CloseOptions](ohos-arkui-advanced-Chip.md#closeoptions14) | 否 | 默认删除图标的无障碍朗读功能属性。 <br> **原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。|
@@ -226,7 +226,7 @@ Label定义图标的共通属性。
 该示例实现了无最右侧的builder时效果。
 
 ```typescript
-import { ChipSize, ChipGroup } from '@kit.ArkUI'
+import { ChipSize, ChipGroup } from '@kit.ArkUI';
 
 @Entry
 @Preview
@@ -297,7 +297,7 @@ struct Index {
 该示例通过配置suffix实现最右侧的自定义组件效果。
 
 ```typescript
-import { ChipSize, ChipGroup, IconGroupSuffix  } from '@kit.ArkUI'
+import { ChipSize, ChipGroup, IconGroupSuffix  } from '@kit.ArkUI';
 
 @Entry
 @Preview
@@ -387,7 +387,7 @@ struct Index {
 ### 示例3（设置Symbol类型图标）
 该示例实现了IconGroupSuffix及ChipGroup传入SymbolGlyph资源。
 ```typescript
-import { ChipSize, ChipGroup, IconGroupSuffix, SymbolGlyphModifier } from '@kit.ArkUI'
+import { ChipSize, ChipGroup, IconGroupSuffix, SymbolGlyphModifier } from '@kit.ArkUI';
 
 @Entry
 @Preview
