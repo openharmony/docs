@@ -215,7 +215,6 @@
 ### 应用侧和前端页面之间传递Array
 
  Array可以作为注册对象方法的参数或返回值，在应用侧和前端页面之间传递。
- 示例如下：
   ```ts
   // xxx.ets
   import { webview } from '@kit.ArkWeb';
@@ -291,7 +290,6 @@
 ### 非Function等复杂类型使用
 
   非Function等复杂类型作为注册对象方法的参数或返回值，在应用侧和前端页面之间传递。
-  示例如下：
   ```ts
   // xxx.ets
   import { webview } from '@kit.ArkWeb';
@@ -373,7 +371,6 @@
 ### 应用侧调用前端页面的Callback
 
   Callback可以作为注册对象方法的参数或返回值，在应用侧和前端页面之间传递。
-  示例如下：
   ```ts
   // xxx.ets
   import { webview } from '@kit.ArkWeb';
@@ -448,7 +445,6 @@
 ### 应用侧调用前端页面Object里的Function
 
   前端页面Object里的Function可以作为注册对象方法的参数或返回值，在应用侧和前端页面之间传递。
-  示例如下：
   ```ts
   // xxx.ets
   import { webview } from '@kit.ArkWeb';
@@ -548,7 +544,6 @@
 ### 前端页面调用应用侧Object里的Function
 
   应用侧Object里的Function可以作为注册对象方法的参数或返回值，在应用侧和前端页面之间传递。
-  示例如下：
   ```ts
   // xxx.ets
   import { webview } from '@kit.ArkWeb';
