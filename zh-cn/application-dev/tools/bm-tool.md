@@ -2263,15 +2263,16 @@ error: bundle cannot be installed because the appId is not same with preinstalle
 
 **错误描述**
 
-签名校验失败。
+预置应用卸载后安装同bundleName的应用，由于应用的签名信息不一致禁止安装。
 
 **可能原因**
 
-安装的应用与已经预置的同包名应用签名不一致。
+安装应用签名信息中的[密钥](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-signing#section462703710326)和[APP ID](https://developer.huawei.com/consumer/cn/doc/app/agc-help-createharmonyapp-0000001945392297)与已卸载的预置应用都不一致。
 
 **处理步骤**
 
-1. 如果安装的应用是预置应用，需要保证安装应用的签名与预置应用的一致。
+1. 重新签名，保证应用签名信息中的[密钥](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-signing#section462703710326)和[APP ID](https://developer.huawei.com/consumer/cn/doc/app/agc-help-createharmonyapp-0000001945392297)任意一个与预置应用的一致。
+2. 修改安装应用的[bundleName](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/quick-start/app-configuration-file.md)，确保与预置应用的不一致。
 
 ### 9568418 应用设置了卸载处置规则，不允许直接卸载
 **错误信息**
