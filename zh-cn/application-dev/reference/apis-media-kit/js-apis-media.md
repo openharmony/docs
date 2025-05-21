@@ -2004,7 +2004,7 @@ avPlayer.off('speedDone')
 
 setPlaybackRate(rate: number): void
 
-设置倍速模式。只能在prepared/playing/paused/completed状态调用，建议精度不超过0.01，取值范围是[0.125, 4.0]，可以通过[playbackRateDone](#onplaybackratedone20)事件确认是否生效。<br>
+设置倍速模式。只能在prepared/playing/paused/completed状态调用，取值范围是[0.125, 4.0]，可以通过[playbackRateDone](#onplaybackratedone20)事件确认是否生效。<br>
 >**注意：**
 >
 >直播场景不支持setPlaybackRate。
