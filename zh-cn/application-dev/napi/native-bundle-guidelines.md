@@ -66,11 +66,11 @@
 2. 在src/main/cpp/napi_init.cpp文件中，增加对应的方法，如下所示：
 
     ```c++
-    static napi_value GetCurrentApplicationInfo(napi_env env, napi_callback_info info)
-    static napi_value GetAppId(napi_env env, napi_callback_info info)
-    static napi_value GetAppIdentifier(napi_env env, napi_callback_info info)
-    static napi_value GetMainElementName(napi_env env, napi_callback_info info)
-    static napi_value GetCompatibleDeviceType(napi_env env, napi_callback_info info)
+    static napi_value GetCurrentApplicationInfo(napi_env env, napi_callback_info info);
+    static napi_value GetAppId(napi_env env, napi_callback_info info);
+    static napi_value GetAppIdentifier(napi_env env, napi_callback_info info);
+    static napi_value GetMainElementName(napi_env env, napi_callback_info info);
+    static napi_value GetCompatibleDeviceType(napi_env env, napi_callback_info info);
     ```
 
 3. 在src/main/cpp/napi_init.cpp文件中获取Native的包信息对象，并转为js的包信息对象，即可在js测获取应用的信息：
@@ -90,13 +90,13 @@
         napi_value fingerprint;
         napi_create_string_utf8(env, nativeApplicationInfo.fingerprint, NAPI_AUTO_LENGTH, &fingerprint);
         napi_set_named_property(env, result, "fingerprint", fingerprint);
-
+    
         // 最后为了防止内存泄漏，手动释放
         free(nativeApplicationInfo.bundleName);
         free(nativeApplicationInfo.fingerprint);
         return result;
     }
-
+    
     static napi_value GetAppId(napi_env env, napi_callback_info info)
     {
         // 调用Native接口获取应用appId
@@ -108,7 +108,7 @@
         free(appId);
         return nAppId;
     }
-
+    
     static napi_value GetAppIdentifier(napi_env env, napi_callback_info info)
     {
         // 调用Native接口获取应用appIdentifier
@@ -120,7 +120,7 @@
         free(appIdentifier);
         return nAppIdentifier;
     }
-
+    
     static napi_value GetMainElementName(napi_env env, napi_callback_info info)
     {
         // 调用Native接口获取应用入口的信息
@@ -145,7 +145,7 @@
         free(elementName.abilityName);
         return result;
     }
-
+    
     static napi_value GetCompatibleDeviceType(napi_env env, napi_callback_info info)
     {
         // 调用Native接口获取应用deviceType
@@ -182,21 +182,21 @@ export const getCompatibleDeviceType: () => string;     // 新增暴露方法 ge
     ```js
     import { hilog } from '@kit.PerformanceAnalysisKit';
     import testNapi from 'libentry.so';
-
+    
     const DOMAIN = 0x0000;
-
+    
     @Entry
     @Component
     struct Index {
-    @State message: string = 'Hello World';
-
-    build() {
+      @State message: string = 'Hello World';
+    
+      build() {
         Row() {
-        Column() {
+          Column() {
             Text(this.message)
-            .fontSize($r('app.float.page_text_font_size'))
-            .fontWeight(FontWeight.Bold)
-            .onClick(() => {
+              .fontSize($r('app.float.page_text_font_size'))
+              .fontWeight(FontWeight.Bold)
+              .onClick(() => {
                 this.message = 'Welcome';
                 hilog.info(DOMAIN, 'testTag', 'Test NAPI 2 + 3 = %{public}d', testNapi.add(2, 3));
                 let appInfo = testNapi.getCurrentApplicationInfo();
@@ -209,12 +209,12 @@ export const getCompatibleDeviceType: () => string;     // 新增暴露方法 ge
                 console.info("bundleNDK getMainElementName success, data is " + JSON.stringify(mainElement));
                 let deviceType = testNapi.getCompatibleDeviceType();
                 console.info("bundleNDK getCompatibleDeviceType success, deviceType is " + deviceType);
-            })
-        }
-        .width('100%')
+              })
+          }
+          .width('100%')
         }
         .height('100%')
-    }
+      }
     }
     ```
 
