@@ -15,7 +15,7 @@
   <!--Del-->
   - [@ohos.multimodalInput.pointer (鼠标指针)(系统接口)](js-apis-pointer-sys.md)
   - [@ohos.multimodalInput.shortKey(快捷键)(系统接口)](js-apis-shortKey-sys.md)
-  - [@ohos.multimodalInput.inputConsumer-sys (组合按键)(系统接口)](js-apis-inputconsumer-sys.md)
+  - [@ohos.multimodalInput.inputConsumer (组合按键)(系统接口)](js-apis-inputconsumer-sys.md)
   - [@ohos.multimodalInput.inputDevice (输入设备)(系统接口)](js-apis-inputdevice-sys.md)
   - [@ohos.multimodalInput.inputEventClient (输入事件注入)(系统接口)](js-apis-inputeventclient-sys.md)
   - [@ohos.multimodalInput.inputMonitor (输入监听)(系统接口)](js-apis-inputmonitor-sys.md)
@@ -25,14 +25,22 @@
   <!--DelEnd-->
 - C API<!--input-c-->
   - 模块<!--input-module-->
-    - [Input](input.md)
+    - [input](capi-input.md)
   - 头文件<!--input-headerfile-->
-    - [oh_axis_type.h](oh__axis__type_8h.md)
-    - [oh_input_manager.h](oh__input__manager_8h.md)
-    - [oh_key_code.h](oh__key__code_8h.md)
+    - [oh_axis_type.h](capi-oh-axis-type-h.md)
+    - [oh_input_manager.h](capi-oh-input-manager-h.md)
+    - [oh_key_code.h](capi-oh-key-code-h.md)
   - 结构体<!--input-struct-->
-    - [Input_DeviceListener](_input___device_listener.md)
-    - [Input_InterceptorEventCallback](_input___interceptor_event_callback.md)
+    - [Input_InterceptorEventCallback](capi-input-interceptoreventcallback.md)
+    - [Input_DeviceListener](capi-input-devicelistener.md)
+    - [Input_KeyState](capi-input-keystate.md)
+    - [Input_KeyEvent](capi-input-keyevent.md)
+    - [Input_MouseEvent](capi-input-mouseevent.md)
+    - [Input_TouchEvent](capi-input-touchevent.md)
+    - [Input_AxisEvent](capi-input-axisevent.md)
+    - [Input_Hotkey](capi-input-hotkey.md)
+    - [Input_DeviceInfo](capi-input-deviceinfo.md)
+    - [Input_InterceptorOptions](capi-input-interceptoroptions.md)
 - 错误码<!--input-arkts-errcode-->
   - [键鼠穿越管理错误码](errorcode-multimodalinput.md)
   - [全局快捷键管理错误码](errorcode-inputconsumer.md)

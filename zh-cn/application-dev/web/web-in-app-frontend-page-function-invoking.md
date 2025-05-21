@@ -16,15 +16,15 @@
   <button type="button" onclick="callArkTS()">Click Me!</button>
   <h1 id="text">这是一个测试信息，默认字体为黑色，调用runJavaScript方法后字体为绿色，调用runJavaScriptCodePassed方法后字体为红色</h1>
   <script>
-      // 调用有参函数时，实现如下：
+      // 有参函数。
       var param = "param: JavaScript Hello World!";
-      function htmlTest(param) {
+      function htmlTestParam(param) {
           document.getElementById('text').style.color = 'green';
           console.log(param);
       }
-      // 调用无参函数时，实现如下：
+      // 无参函数。
       function htmlTest() {
-          document.getElementById('text').style.color = 'green';
+          document.getElementById('text').style.color = 'yellow';
       }
       // 点击“Click Me！”按钮，触发前端页面callArkTS()函数执行JavaScript传递的代码。
       function callArkTS() {
@@ -54,10 +54,15 @@
 
     build() {
       Column() {
+        Button('runJavaScriptParam')
+          .onClick(() => {
+            // 调用前端页面有参函数。
+            this.webviewController.runJavaScript('htmlTestParam(param)');
+          })
         Button('runJavaScript')
           .onClick(() => {
-            // 如果前端页面函数无参，删除param。
-            this.webviewController.runJavaScript('htmlTest(param)');
+            // 调用前端页面无参函数。
+            this.webviewController.runJavaScript('htmlTest()');
           })
         Button('runJavaScriptCodePassed')
           .onClick(() => {

@@ -6,6 +6,12 @@ ArkUI提供轻量的UI元素复用机制\@Builder，其内部UI结构固定，�
 
 在阅读本文档前，建议提前阅读：[基本语法概述](./arkts-basic-syntax-overview.md)、[声明式UI描述](./arkts-declarative-ui-description.md)、[自定义组件-创建自定义组件](./arkts-create-custom-components.md)。
 
+@Builder装饰器和@Component装饰器的区别：
+
+1. @Builder装饰器用于封装可复用的UI结构，通过提取重复的布局代码提高开发效率。该装饰器严格禁止在其内部定义状态变量或使用生命周期方法，必须通过参数传递的方式与调用方完成数据交互。
+
+2. 在ArkUI框架中，@Component装饰器作为封装复杂UI组件的核心机制，允许开发者通过组合多个基础组件来构建可复用的复合界面。该装饰器不仅支持内部状态变量的定义，还能完整管理组件的生命周期。
+
 > **说明：**
 >
 > 从API version 9开始，该装饰器支持在ArkTS卡片中使用。
@@ -15,7 +21,7 @@ ArkUI提供轻量的UI元素复用机制\@Builder，其内部UI结构固定，�
 
 ## 装饰器使用说明
 
-\@Builder装饰器有两种使用方式，分别是定义在自定义组件内部的私有自定义构建函数和定义在全局的全局自定义构建函数。
+\@Builder装饰器有两种使用方式，分别是定义在自定义组件内部的[私有自定义构建函数](#私有自定义构建函数)和定义在全局的[全局自定义构建函数](#全局自定义构建函数)。
 
 ### 私有自定义构建函数
 
@@ -48,17 +54,11 @@ struct BuilderDemo {
 }
 ```
 
-使用方法：
-
-```ts
-this.showTextBuilder()
-```
-
 - 允许在自定义组件内定义一个或多个@Builder方法，该方法被认为是该组件的私有、特殊类型的成员函数。
 
 - 私有自定义构建函数允许在自定义组件内、build方法和其他自定义构建函数中调用。
 
-- 在自定义函数体中，`this`指代当前所属组件，组件的状态变量可在自定义构建函数内访问。建议通过`this`访问组件的状态变量，而不是通过参数传递。
+- 在自定义组件中，`this`指代当前所属组件，组件的状态变量可在自定义构建函数内访问。建议通过`this`访问组件的状态变量，而不是通过参数传递。
 
 ### 全局自定义构建函数
 
@@ -80,12 +80,6 @@ struct BuilderDemo {
     }
   }
 }
-```
-
-使用方法：
-
-```ts
-showTextBuilder()
 ```
 
 - 如果不涉及组件状态变化，建议使用全局的自定义构建函数。
@@ -184,36 +178,49 @@ struct Parent {
 struct PrivateBuilder {
   @State builder_value: string = 'Hello';
 
-  @Builder builder() {
-    Column(){
+  @Builder
+  builder() {
+    Column() {
       Text(this.builder_value)
-        .fontSize(30)
-        .fontWeight(FontWeight.Bold)
+        .width(230)
+        .height(40)
+        .backgroundColor('#ffeae5e5')
+        .borderRadius(20)
+        .margin(12)
+        .textAlign(TextAlign.Center)
     }
   }
 
   aboutToAppear(): void {
     setTimeout(() => {
       this.builder_value = 'Hello World';
-    },3000)
+    }, 2000);
   }
 
   build() {
     Row() {
       Column() {
         Text(this.builder_value)
-          .fontSize(30)
-          .fontWeight(FontWeight.Bold)
+          .width(230)
+          .height(40)
+          .backgroundColor('#ffeae5e5')
+          .borderRadius(20)
+          .textAlign(TextAlign.Center)
         this.builder()
         Button('点击改变builder_value内容')
           .onClick(() => {
-            this.builder_value ='builder_value被点击了';
+            this.builder_value = 'builder_value被点击了';
           })
       }
+      .height('100%')
+      .width('100%')
     }
   }
 }
 ```
+**图1** 示例效果图
+
+![arkts-builder-usage-scenario1](figures/arkts-builder-usage-scenario1.gif)
 
 ### 使用全局自定义构建函数
 
@@ -231,13 +238,44 @@ class Tmp {
   arrayTmp_value: Array<ChildTmp> = [];
 }
 
-@Builder function overBuilder(param: Tmp) {
+@Builder
+function overBuilder(param: Tmp) {
   Column() {
     Text(`str_value: ${param.str_value}`)
+      .width(230)
+      .height(40)
+      .margin(12)
+      .backgroundColor('#0d000000')
+      .fontColor('#e6000000')
+      .borderRadius(20)
+      .textAlign(TextAlign.Center)
     Text(`num_value: ${param.num_value}`)
+      .width(230)
+      .height(40)
+      .margin(12)
+      .backgroundColor('#0d000000')
+      .fontColor('#e6000000')
+      .borderRadius(20)
+      .textAlign(TextAlign.Center)
     Text(`tmp_value: ${param.tmp_value.val}`)
+      .width(230)
+      .height(40)
+      .margin(12)
+      .backgroundColor('#0d000000')
+      .fontColor('#e6000000')
+      .borderRadius(20)
+      .textAlign(TextAlign.Center)
     ForEach(param.arrayTmp_value, (item: ChildTmp) => {
-      Text(`arrayTmp_value: ${item.val}`)
+      ListItem() {
+        Text(`arrayTmp_value: ${item.val}`)
+          .width(230)
+          .height(40)
+          .margin(12)
+          .backgroundColor('#0d000000')
+          .fontColor('#e6000000')
+          .borderRadius(20)
+          .textAlign(TextAlign.Center)
+      }
     }, (item: ChildTmp) => JSON.stringify(item))
   }
 }
@@ -246,16 +284,18 @@ class Tmp {
 @Component
 struct Parent {
   @State objParam: Tmp = new Tmp();
+
   build() {
     Column() {
       Text('通过调用@Builder渲染UI界面')
         .fontSize(20)
-      overBuilder({str_value: this.objParam.str_value, num_value: this.objParam.num_value,
-       tmp_value: this.objParam.tmp_value, arrayTmp_value: this.objParam.arrayTmp_value})
-      Line()
-        .width('100%')
-        .height(10)
-        .backgroundColor('#000000').margin(10)
+        .margin(12)
+      overBuilder({
+        str_value: this.objParam.str_value,
+        num_value: this.objParam.num_value,
+        tmp_value: this.objParam.tmp_value,
+        arrayTmp_value: this.objParam.arrayTmp_value
+      })
       Button('点击改变参数值').onClick(() => {
         this.objParam.str_value = 'Hello World';
         this.objParam.num_value = 1;
@@ -266,9 +306,14 @@ struct Parent {
         this.objParam.arrayTmp_value.push(child_value);
       })
     }
+    .height('100%')
+    .width('100%')
   }
 }
 ```
+**图2** 示例效果图
+
+![arkts-builder-usage-scenario2](figures/arkts-builder-usage-scenario2.gif)
 
 ### 修改装饰器修饰的变量触发UI刷新
 
@@ -285,10 +330,25 @@ struct Parent {
   @State objParam: Tmp = new Tmp();
   @State label: string = 'World';
 
-  @Builder privateBuilder() {
+  @Builder
+  privateBuilder() {
     Column() {
       Text(`wrapBuilder str_value: ${this.objParam.str_value}`)
+        .width(350)
+        .height(40)
+        .margin(12)
+        .backgroundColor('#0d000000')
+        .fontColor('#e6000000')
+        .borderRadius(20)
+        .textAlign(TextAlign.Center)
       Text(`wrapBuilder num: ${this.label}`)
+        .width(350)
+        .height(40)
+        .margin(12)
+        .backgroundColor('#0d000000')
+        .fontColor('#e6000000')
+        .borderRadius(20)
+        .textAlign(TextAlign.Center)
     }
   }
 
@@ -297,18 +357,19 @@ struct Parent {
       Text('通过调用@Builder渲染UI界面')
         .fontSize(20)
       this.privateBuilder()
-      Line()
-        .width('100%')
-        .height(10)
-        .backgroundColor('#000000').margin(10)
       Button('点击改变参数值').onClick(() => {
         this.objParam.str_value = 'str_value Hello World';
         this.label = 'label Hello World';
       })
     }
+    .height('100%')
+    .width('100%')
   }
 }
 ```
+**图3** 示例效果图
+
+![arkts-builder-usage-scenario3](figures/arkts-builder-usage-scenario3.gif)
 
 ### 使用全局和局部的@Builder传入customBuilder类型
 
@@ -367,6 +428,9 @@ struct customBuilderDemo {
   }
 }
 ```
+**图4** 示例效果图
+
+![arkts-builder-usage-scenario4](figures/arkts-builder-usage-scenario4.gif)
 
 ### 多层\@Builder方法嵌套使用
 
@@ -377,14 +441,20 @@ class Tmp {
   paramA1: string = '';
 }
 
-@Builder function parentBuilder($$: Tmp) {
+@Builder
+function parentBuilder($$: Tmp) {
   Row() {
     Column() {
       Text(`parentBuilder===${$$.paramA1}`)
-        .fontSize(30)
-        .fontWeight(FontWeight.Bold)
-      HelloComponent({message: $$.paramA1})
-      childBuilder({paramA1: $$.paramA1})
+        .width(300)
+        .height(40)
+        .margin(10)
+        .backgroundColor('#0d000000')
+        .fontColor('#e6000000')
+        .borderRadius(20)
+        .textAlign(TextAlign.Center)
+      HelloComponent({ message: $$.paramA1 })
+      childBuilder({ paramA1: $$.paramA1 })
     }
   }
 }
@@ -396,8 +466,13 @@ struct HelloComponent {
   build() {
     Row() {
       Text(`HelloComponent===${this.message}`)
-        .fontSize(30)
-        .fontWeight(FontWeight.Bold)
+        .width(300)
+        .height(40)
+        .margin(10)
+        .backgroundColor('#0d000000')
+        .fontColor('#e6000000')
+        .borderRadius(20)
+        .textAlign(TextAlign.Center)
     }
   }
 }
@@ -407,10 +482,15 @@ function childBuilder($$: Tmp) {
   Row() {
     Column() {
       Text(`childBuilder===${$$.paramA1}`)
-        .fontSize(30)
-        .fontWeight(FontWeight.Bold)
-      HelloChildComponent({message: $$.paramA1})
-      grandsonBuilder({paramA1: $$.paramA1})
+        .width(300)
+        .height(40)
+        .margin(10)
+        .backgroundColor('#0d000000')
+        .fontColor('#e6000000')
+        .borderRadius(20)
+        .textAlign(TextAlign.Center)
+      HelloChildComponent({ message: $$.paramA1 })
+      grandsonBuilder({ paramA1: $$.paramA1 })
     }
   }
 }
@@ -418,22 +498,34 @@ function childBuilder($$: Tmp) {
 @Component
 struct HelloChildComponent {
   @Prop message: string = '';
+
   build() {
     Row() {
       Text(`HelloChildComponent===${this.message}`)
-        .fontSize(30)
-        .fontWeight(FontWeight.Bold)
+        .width(300)
+        .height(40)
+        .margin(10)
+        .backgroundColor('#0d000000')
+        .fontColor('#e6000000')
+        .borderRadius(20)
+        .textAlign(TextAlign.Center)
     }
   }
 }
 
-@Builder function grandsonBuilder($$: Tmp) {
+@Builder
+function grandsonBuilder($$: Tmp) {
   Row() {
     Column() {
       Text(`grandsonBuilder===${$$.paramA1}`)
-        .fontSize(30)
-        .fontWeight(FontWeight.Bold)
-      HelloGrandsonComponent({message: $$.paramA1})
+        .width(300)
+        .height(40)
+        .margin(10)
+        .backgroundColor('#0d000000')
+        .fontColor('#e6000000')
+        .borderRadius(20)
+        .textAlign(TextAlign.Center)
+      HelloGrandsonComponent({ message: $$.paramA1 })
     }
   }
 }
@@ -441,11 +533,17 @@ struct HelloChildComponent {
 @Component
 struct HelloGrandsonComponent {
   @Prop message: string;
+
   build() {
     Row() {
       Text(`HelloGrandsonComponent===${this.message}`)
-        .fontSize(30)
-        .fontWeight(FontWeight.Bold)
+        .width(300)
+        .height(40)
+        .margin(10)
+        .backgroundColor('#0d000000')
+        .fontColor('#e6000000')
+        .borderRadius(20)
+        .textAlign(TextAlign.Center)
     }
   }
 }
@@ -454,16 +552,22 @@ struct HelloGrandsonComponent {
 @Component
 struct Parent {
   @State label: string = 'Hello';
+
   build() {
     Column() {
-      parentBuilder({paramA1: this.label})
+      parentBuilder({ paramA1: this.label })
       Button('Click me').onClick(() => {
         this.label = 'ArkUI';
       })
     }
+    .height('100%')
+    .width('100%')
   }
 }
 ```
+**图5** 示例效果图
+
+![arkts-builder-usage-scenario5](figures/arkts-builder-usage-scenario5.gif)
 
 ### \@Builder函数联合V2装饰器使用
 
@@ -480,19 +584,24 @@ class Info {
 function overBuilder(param: Info) {
   Column() {
     Text(`全局@Builder name :${param.name}`)
-      .fontSize(30)
-      .fontWeight(FontWeight.Bold)
     Text(`全局@Builder age :${param.age}`)
-      .fontSize(30)
-      .fontWeight(FontWeight.Bold)
   }
+  .width(230)
+  .height(40)
+  .margin(10)
+  .padding({ left: 20 })
+  .backgroundColor('#0d000000')
+  .borderRadius(20)
 }
 
 @ComponentV2
 struct ChildPage {
   @Require @Param childInfo: Info;
+
   build() {
-    overBuilder({name: this.childInfo.name, age: this.childInfo.age})
+    Column() {
+      overBuilder({ name: this.childInfo.name, age: this.childInfo.age })
+    }
   }
 }
 
@@ -506,57 +615,147 @@ struct ParentPage {
   privateBuilder() {
     Column() {
       Text(`局部@Builder name :${this.info1.name}`)
-        .fontSize(30)
-        .fontWeight(FontWeight.Bold)
       Text(`局部@Builder age :${this.info1.age}`)
-        .fontSize(30)
-        .fontWeight(FontWeight.Bold)
     }
+    .width(230)
+    .height(40)
+    .margin(10)
+    .backgroundColor('#0d000000')
+    .borderRadius(20)
   }
 
   build() {
     Column() {
-      Text(`info1: ${this.info1.name}  ${this.info1.age}`) // Text1
-        .fontSize(30)
-        .fontWeight(FontWeight.Bold)
+      Flex() {
+        Column() {
+          Text(`info1: ${this.info1.name}  ${this.info1.age}`) // Text1
+          Text(`info2: ${this.info2.name}  ${this.info2.age}`) // Text2
+        }
+      }
+      .width(230)
+      .height(40)
+      .margin(10)
+      .padding({ left: 60 })
+      .backgroundColor('#0d000000')
+      .borderRadius(20)
+
       this.privateBuilder() // 调用局部@Builder
-      Line()
-        .width('100%')
-        .height(10)
-        .backgroundColor('#000000').margin(10)
-      Text(`info2: ${this.info2.name}  ${this.info2.age}`) // Text2
-        .fontSize(30)
-        .fontWeight(FontWeight.Bold)
-      overBuilder({ name: this.info2.name, age: this.info2.age}) // 调用全局@Builder
-      Line()
-        .width('100%')
-        .height(10)
-        .backgroundColor('#000000').margin(10)
-      Text(`info1: ${this.info1.name}  ${this.info1.age}`) // Text1
-        .fontSize(30)
-        .fontWeight(FontWeight.Bold)
-      ChildPage({ childInfo: this.info1}) // 调用自定义组件
-      Line()
-        .width('100%')
-        .height(10)
-        .backgroundColor('#000000').margin(10)
-      Text(`info2: ${this.info2.name}  ${this.info2.age}`) // Text2
-        .fontSize(30)
-        .fontWeight(FontWeight.Bold)
-      ChildPage({ childInfo: this.info2}) // 调用自定义组件
-      Line()
-        .width('100%')
-        .height(10)
-        .backgroundColor('#000000').margin(10)
+      overBuilder({ name: this.info2.name, age: this.info2.age }) // 调用全局@Builder
+      ChildPage({ childInfo: this.info1 }) // 调用自定义组件
+      ChildPage({ childInfo: this.info2 }) // 调用自定义组件
       Button("change info1&info2")
         .onClick(() => {
-          this.info1 = { name: "Cat", age: 18}; // Text1不会刷新，原因是没有装饰器修饰监听不到值的改变。
-          this.info2 = { name: "Cat", age: 18}; // Text2会刷新，原因是有装饰器修饰，可以监听到值的改变。
+          this.info1 = { name: "Cat", age: 18 }; // Text1不会刷新，原因是没有装饰器修饰监听不到值的改变。
+          this.info2 = { name: "Cat", age: 18 }; // Text2会刷新，原因是有装饰器修饰，可以监听到值的改变。
         })
+    }
+    .height('100%')
+    .width('100%')
+  }
+}
+```
+**图6** 示例效果图
+
+![arkts-builder-usage-scenario6](figures/arkts-builder-usage-scenario6.gif)
+
+### 跨组件复用的全局\@Builder
+
+在跨组件的场景中调用全局\@Builder，通过按引用传递的方式传递参数，可以实现UI的动态刷新功能。
+
+```ts
+class Tmp {
+  componentName: string = 'Child';
+}
+
+@Builder
+function itemBuilder(params: Tmp) {
+  Column() {
+    Text(`Builder ===${params.componentName}`)
+      .width(300)
+      .height(40)
+      .margin(10)
+      .backgroundColor('#0d000000')
+      .fontColor('#e6000000')
+      .borderRadius(20)
+      .textAlign(TextAlign.Center)
+  }
+}
+
+@Entry
+@Component
+struct ReusablePage {
+  @State switchFlag: boolean = true;
+
+  build() {
+    Column() {
+      if (this.switchFlag) {
+        ReusableChildPage({ message: 'Child' })
+      } else {
+        ReusableChildTwoPage({ message: 'ChildTwo' })
+      }
+      Button('Click me')
+        .onClick(() => {
+          this.switchFlag = !this.switchFlag;
+        })
+    }
+    .height('100%')
+    .width('100%')
+  }
+}
+
+@Reusable
+@Component
+struct ReusableChildPage {
+  @State message: string = 'Child';
+
+  aboutToReuse(params: Record<string, ESObject>): void {
+    console.info('Recycle ====Child');
+    this.message = params.message;
+  }
+
+  build() {
+    Column() {
+      Text(`ReusableChildPage ===${this.message}`)
+        .width(300)
+        .height(40)
+        .margin(10)
+        .backgroundColor('#0d000000')
+        .fontColor('#e6000000')
+        .borderRadius(20)
+        .textAlign(TextAlign.Center)
+      itemBuilder({ componentName: this.message })
+    }
+  }
+}
+
+@Reusable
+@Component
+struct ReusableChildTwoPage {
+  @State message: string = 'ChildTwo';
+
+  aboutToReuse(params: Record<string, ESObject>): void {
+    console.info('Recycle ====ChildTwo');
+    this.message = params.message;
+  }
+
+  build() {
+    Column() {
+      Text(`ReusableChildTwoPage ===${this.message}`)
+        .width(300)
+        .height(40)
+        .margin(10)
+        .backgroundColor('#0d000000')
+        .fontColor('#e6000000')
+        .borderRadius(20)
+        .textAlign(TextAlign.Center)
+      itemBuilder({ componentName: this.message })
     }
   }
 }
 ```
+**图7** 示例效果图
+
+![arkts-builder-usage-scenario7](figures/arkts-builder-usage-scenario7.gif)
 
 ## 常见问题
 
@@ -886,6 +1085,125 @@ struct Parent {
           this.label = 'ArkUI';
         })
     }
+  }
+}
+```
+
+### 在\@Builder内创建自定义组件传递参数不刷新问题
+
+在parentBuilder方法中创建自定义组件HelloComponent，传递参数为class对象并修改对象内的值时，UI不会触发刷新功能。
+
+【反例】
+
+```ts
+class Tmp {
+  name: string = 'Hello';
+  age: number = 16;
+}
+
+@Builder
+function parentBuilder(params: Tmp) {
+  Row() {
+    Column() {
+      Text(`parentBuilder===${params.name}===${params.age}`)
+        .fontSize(20)
+        .fontWeight(FontWeight.Bold)
+      // 此写法不属于按引用传递方式，用法错误导致UI不刷新。
+      HelloComponent({ info: params })
+    }
+  }
+}
+
+@Component
+struct HelloComponent {
+  @Prop info: Tmp = new Tmp();
+
+  build() {
+    Row() {
+      Text(`HelloComponent===${this.info.name}===${this.info.age}`)
+        .fontSize(20)
+        .fontWeight(FontWeight.Bold)
+    }
+  }
+}
+
+@Entry
+@Component
+struct ParentPage {
+  @State nameValue: string = '张三';
+  @State ageValue: number = 18;
+
+  build() {
+    Column() {
+      parentBuilder({ name: this.nameValue, age: this.ageValue })
+      Button('Click me')
+        .onClick(() => {
+          // 此处修改内容时，不会引起HelloComponent处的变化
+          this.nameValue = '李四';
+          this.ageValue = 20;
+        })
+    }
+    .height('100%')
+    .width('100%')
+  }
+}
+```
+
+在parentBuilder方法中创建自定义组件HelloComponent，传递参数为对象字面量形式并修改对象内的值时，UI触发刷新功能。
+
+【正例】
+
+```ts
+class Tmp {
+  name: string = 'Hello';
+  age: number = 16;
+}
+
+@Builder
+function parentBuilder(params: Tmp) {
+  Row() {
+    Column() {
+      Text(`parentBuilder===${params.name}===${params.age}`)
+        .fontSize(20)
+        .fontWeight(FontWeight.Bold)
+      // 将整个对象拆分开变成简单类型，属于按引用传递方式，更改属性能够触发UI刷新。
+      HelloComponent({ childName: params.name, childAge: params.age })
+    }
+  }
+}
+
+@Component
+struct HelloComponent {
+  @Prop childName: string = '';
+  @Prop childAge: number = 0;
+
+  build() {
+    Row() {
+      Text(`HelloComponent===${this.childName}===${this.childAge}`)
+        .fontSize(20)
+        .fontWeight(FontWeight.Bold)
+    }
+  }
+}
+
+@Entry
+@Component
+struct ParentPage {
+  @State nameValue: string = '张三';
+  @State ageValue: number = 18;
+
+  build() {
+    Column() {
+      parentBuilder({ name: this.nameValue, age: this.ageValue })
+      Button('Click me')
+        .onClick(() => {
+          // 此处修改内容时，会引起HelloComponent处的变化
+          this.nameValue = '李四';
+          this.ageValue = 20;
+        })
+    }
+    .height('100%')
+    .width('100%')
   }
 }
 ```

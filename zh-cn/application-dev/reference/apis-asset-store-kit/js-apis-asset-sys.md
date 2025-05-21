@@ -19,7 +19,7 @@ addAsUser(userId: number, attributes: AssetMap): Promise\<void>
 
 在指定用户空间中新增一条关键资产，使用Promise方式异步返回结果。
 
-如果要设置[IS_PERSISTENT](js-apis-asset.md#tag)属性，需要申请ohos.permission.STORE_PERSISTENT_DATA权限。
+设置[IS_PERSISTENT](js-apis-asset.md#tag)属性，需申请ohos.permission.STORE_PERSISTENT_DATA权限。
 
 **需要权限：** ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
@@ -177,7 +177,7 @@ updateAsUser(userId: number, query: AssetMap, attributesToUpdate: AssetMap): Pro
 | ------------------ | -------- | ---- | ------------------------------------------------------------ |
 | userId             | number                                | 是   | 用户ID。取值范围大于等于100。                              |
 | query              | [AssetMap](js-apis-asset.md#assetmap) | 是   | 待更新关键资产的搜索条件，如关键资产别名、访问控制属性、自定义数据等。 |
-| attributesToUpdate | [AssetMap](js-apis-asset.md#assetmap) | 是   | 待更新关键资产的属性集合，如关键资产明文、自定义数据等。              |
+| attributesToUpdate | [AssetMap](js-apis-asset.md#assetmap) | 是   | 待更新关键资产的属性集合，如关键资产明文和自定义数据等。              |
 
 **返回值：**
 

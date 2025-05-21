@@ -1,4 +1,4 @@
-# Camera Recording Practices (C/C++)
+# Video Recording Practices (C/C++)
 
 Before developing a camera application, request permissions by following the instructions provided in [Requesting Camera Development Permissions](camera-preparation.md).
 

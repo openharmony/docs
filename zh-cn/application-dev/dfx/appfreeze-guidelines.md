@@ -622,6 +622,13 @@ Tid:3025, Name: xxx
 
 so明确等锁卡死，通过反编译获取对应代码行，排查代码上下文解决bug。
 
+故障调用栈支持Native栈帧和JS栈帧，以上堆栈中第10、11层堆栈是JS栈帧。具体格式如下：
+ ```text
+# 10 at parseResultSet (entry/build/default/cache/default/default@CompileArkTS/esmodule/release/datamanager/datawrapper/src/main/ets/database/RdbManager.ts:266:1)
+            ^                                                                                                                                       ^
+          函数名                                                                                                                                文件行列号位置
+ ```
+
 2、卡在ipc请求。
 
 ```

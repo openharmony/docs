@@ -215,7 +215,7 @@ let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboa
 | ---------------------------------- | --- | ------------------------------------------------------------------------------------- |
 | INAPP                              | 0   | 表示仅允许同应用内粘贴。                                                              |
 | LOCALDEVICE                        | 1   | 表示允许在任何应用内粘贴。<!--RP1--><!--RP1End-->  |
-| CROSSDEVICE<sup>(deprecated)</sup> | 2   | 表示允许跨设备在任何应用内粘贴。<br/>从API Version 12开始废弃，无替代接口和替代方法<!--RP2--><!--RP2End-->。 |
+| CROSSDEVICE<sup>(deprecated)</sup> | 2   | 表示允许跨设备在任何应用内粘贴。<br/>从API version 12开始废弃，无替代接口和替代方法<!--RP2--><!--RP2End-->。 |
 
 ## pasteboard.createHtmlData<sup>(deprecated)</sup>
 
@@ -224,7 +224,7 @@ createHtmlData(htmlText: string): PasteData
 构建一个HTML剪贴板内容对象。
 > **说明：**
 >
-> 从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用[pasteboard.createData](#pasteboardcreatedata9)替代。
+> 从 API version 7 开始支持，从 API version 9 开始废弃，建议使用[pasteboard.createData](#pasteboardcreatedata9)替代。
 
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
@@ -254,7 +254,7 @@ createWantData(want: Want): PasteData
 构建一个Want剪贴板内容对象。
 > **说明：**
 >
-> 从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用[pasteboard.createData](#pasteboardcreatedata9)替代。
+> 从 API version 7 开始支持，从 API version 9 开始废弃，建议使用[pasteboard.createData](#pasteboardcreatedata9)替代。
 
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
@@ -289,7 +289,7 @@ createPlainTextData(text: string): PasteData
 构建一个纯文本剪贴板内容对象。
 > **说明：**
 >
-> 从 API Version 6 开始支持，从 API Version 9 开始废弃，建议使用[pasteboard.createData](#pasteboardcreatedata9)替代。
+> 从 API version 6 开始支持，从 API version 9 开始废弃，建议使用[pasteboard.createData](#pasteboardcreatedata9)替代。
 
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
@@ -318,7 +318,7 @@ createUriData(uri: string): PasteData
 构建一个URI剪贴板内容对象。
 > **说明：**
 >
-> 从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用[pasteboard.createData](#pasteboardcreatedata9)替代。
+> 从 API version 7 开始支持，从 API version 9 开始废弃，建议使用[pasteboard.createData](#pasteboardcreatedata9)替代。
 
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
@@ -346,7 +346,7 @@ createHtmlTextRecord(htmlText: string): PasteDataRecord
 创建一条HTML内容的条目。
 > **说明：**
 >
-> 从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用[pasteboard.createRecord](#pasteboardcreaterecord9)替代。
+> 从 API version 7 开始支持，从 API version 9 开始废弃，建议使用[pasteboard.createRecord](#pasteboardcreaterecord9)替代。
 
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
@@ -376,7 +376,7 @@ createWantRecord(want: Want): PasteDataRecord
 创建一条Want内容条目。
 > **说明：**
 >
-> 从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用[pasteboard.createRecord](#pasteboardcreaterecord9)替代。
+> 从 API version 7 开始支持，从 API version 9 开始废弃，建议使用[pasteboard.createRecord](#pasteboardcreaterecord9)替代。
 
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
@@ -411,7 +411,7 @@ createPlainTextRecord(text: string): PasteDataRecord
 创建一条纯文本内容条目。
 > **说明：**
 >
-> 从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用[pasteboard.createRecord](#pasteboardcreaterecord9)替代。
+> 从 API version 7 开始支持，从 API version 9 开始废弃，建议使用[pasteboard.createRecord](#pasteboardcreaterecord9)替代。
 
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
@@ -440,7 +440,7 @@ createUriRecord(uri: string): PasteDataRecord
 创建一条URI内容的条目。
 > **说明：**
 >
-> 从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用[pasteboard.createRecord](#pasteboardcreaterecord9)替代。
+> 从 API version 7 开始支持，从 API version 9 开始废弃，建议使用[pasteboard.createRecord](#pasteboardcreaterecord9)替代。
 
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
@@ -783,7 +783,7 @@ convertToText(callback: AsyncCallback&lt;string&gt;): void
 将一个PasteData中的内容强制转换为文本内容，使用callback异步回调。
 > **说明：**
 >
-> 从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用[toPlainText](#toplaintext9)替代。
+> 从 API version 7 开始支持，从 API version 9 开始废弃，建议使用[toPlainText](#toplaintext9)替代。
 
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
@@ -823,7 +823,7 @@ convertToText(): Promise&lt;string&gt;
 将一个PasteData中的内容强制转换为文本内容，使用Promise异步回调。
 > **说明：**
 >
-> 从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用[toPlainText](#toplaintext9)替代。
+> 从 API version 7 开始支持，从 API version 9 开始废弃，建议使用[toPlainText](#toplaintext9)替代。
 
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
@@ -1449,7 +1449,7 @@ addHtmlRecord(htmlText: string): void
 
 > **说明：**
 >
-> 从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用[addRecord](#addrecord9)替代。
+> 从 API version 7 开始支持，从 API version 9 开始废弃，建议使用[addRecord](#addrecord9)替代。
 
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
@@ -1475,7 +1475,7 @@ addWantRecord(want: Want): void
 
 > **说明：**
 >
-> 从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用[addRecord](#addrecord9)替代。
+> 从 API version 7 开始支持，从 API version 9 开始废弃，建议使用[addRecord](#addrecord9)替代。
 
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
@@ -1506,7 +1506,7 @@ addTextRecord(text: string): void
 
 > **说明：**
 >
-> 从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用[addRecord](#addrecord9)替代。
+> 从 API version 7 开始支持，从 API version 9 开始废弃，建议使用[addRecord](#addrecord9)替代。
 
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
@@ -1531,7 +1531,7 @@ addUriRecord(uri: string): void
 
 > **说明：**
 >
-> 从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用[addRecord](#addrecord9)替代。
+> 从 API version 7 开始支持，从 API version 9 开始废弃，建议使用[addRecord](#addrecord9)替代。
 
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
@@ -1554,7 +1554,7 @@ getRecordAt(index: number): PasteDataRecord
 获取剪贴板内容中指定下标的条目。
 > **说明：**
 >
-> 从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用[getRecord](#getrecord9)替代。
+> 从 API version 7 开始支持，从 API version 9 开始废弃，建议使用[getRecord](#getrecord9)替代。
 
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
@@ -1592,7 +1592,7 @@ hasMimeType(mimeType: string): boolean
 检查剪贴板内容中是否有指定的数据类型。
 > **说明：**
 >
-> 从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用[hasType](#hastype9)替代。
+> 从 API version 7 开始支持，从 API version 9 开始废弃，建议使用[hasType](#hastype9)替代。
 
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
@@ -1629,7 +1629,7 @@ removeRecordAt(index: number): boolean
 移除剪贴板内容中指定下标的条目。
 > **说明：**
 >
-> 从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用[removeRecord](#removerecord9)替代。
+> 从 API version 7 开始支持，从 API version 9 开始废弃，建议使用[removeRecord](#removerecord9)替代。
 
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
@@ -1666,7 +1666,7 @@ replaceRecordAt(index: number, record: PasteDataRecord): boolean
 替换剪贴板内容中指定下标的条目。
 > **说明：**
 >
-> 从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用[replaceRecord](#replacerecord9)替代。
+> 从 API version 7 开始支持，从 API version 9 开始废弃，建议使用[replaceRecord](#replacerecord9)替代。
 
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
@@ -2078,7 +2078,7 @@ clear(callback: AsyncCallback&lt;void&gt;): void
 清空系统剪贴板内容，使用callback异步回调。
 > **说明：**
 >
-> 从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用[pasteboard.clearData](#cleardata9)替代。
+> 从 API version 7 开始支持，从 API version 9 开始废弃，建议使用[pasteboard.clearData](#cleardata9)替代。
 
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
@@ -2116,7 +2116,7 @@ clear(): Promise&lt;void&gt;
 清空系统剪贴板内容，使用Promise异步回调。
 > **说明：**
 >
-> 从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用[pasteboard.clearData](#cleardata9-1)替代。
+> 从 API version 7 开始支持，从 API version 9 开始废弃，建议使用[pasteboard.clearData](#cleardata9-1)替代。
 
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
@@ -2146,7 +2146,7 @@ getPasteData( callback: AsyncCallback&lt;PasteData&gt;): void
 读取系统剪贴板内容，使用callback异步回调。
 > **说明：**
 >
-> 从 API Version 6 开始支持，从 API Version 9 开始废弃，建议使用[getData](#getdata9)替代。
+> 从 API version 6 开始支持，从 API version 9 开始废弃，建议使用[getData](#getdata9)替代。
 
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
@@ -2186,7 +2186,7 @@ getPasteData(): Promise&lt;PasteData&gt;
 读取系统剪贴板内容，使用Promise异步回调。
 > **说明：**
 >
-> 从 API Version 6 开始支持，从 API Version 9 开始废弃，建议使用[getData](#getdata9-1)替代。
+> 从 API version 6 开始支持，从 API version 9 开始废弃，建议使用[getData](#getdata9-1)替代。
 
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
@@ -2216,7 +2216,7 @@ hasPasteData(callback:  AsyncCallback&lt;boolean&gt;): void
 判断系统剪贴板中是否有内容，使用callback异步回调。
 > **说明：**
 >
-> 从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用[hasData](#hasdata9)替代。
+> 从 API version 7 开始支持，从 API version 9 开始废弃，建议使用[hasData](#hasdata9)替代。
 
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
@@ -2256,7 +2256,7 @@ hasPasteData(): Promise&lt;boolean&gt;
 判断系统剪贴板中是否有内容，使用Promise异步回调。
 > **说明：**
 >
-> 从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用[hasData](#hasdata9-1)替代。
+> 从 API version 7 开始支持，从 API version 9 开始废弃，建议使用[hasData](#hasdata9-1)替代。
 
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
@@ -2286,7 +2286,7 @@ setPasteData(data: PasteData, callback: AsyncCallback&lt;void&gt;): void
 将数据写入系统剪贴板，使用callback异步回调。
 > **说明：**
 >
-> 从 API Version 6 开始支持，从 API Version 9 开始废弃，建议使用[setData](#setdata9)替代。
+> 从 API version 6 开始支持，从 API version 9 开始废弃，建议使用[setData](#setdata9)替代。
 
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
@@ -2325,7 +2325,7 @@ setPasteData(data: PasteData): Promise&lt;void&gt;
 将数据写入系统剪贴板，使用Promise异步回调。
 > **说明：**
 >
-> 从 API Version 6 开始支持，从 API Version 9 开始废弃，建议使用[setData](#setdata9-1)替代。
+> 从 API version 6 开始支持，从 API version 9 开始废弃，建议使用[setData](#setdata9-1)替代。
 
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
@@ -2827,7 +2827,7 @@ setAppShareOptions(shareOptions: ShareOption): void
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 201 | Permission verification failed. The application does not have the permission required to call the API. |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed. |
 | 12900006 | Settings already exist. |
 
 **示例：**
@@ -2915,7 +2915,7 @@ detectPatterns(patterns: Array&lt;Pattern&gt;): Promise&lt;Array&lt;Pattern&gt;&
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. 3. Parameter verification failed. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types. 3. Parameter verification failed. |
 
 **示例：**
 
@@ -3050,11 +3050,11 @@ struct PasteboardTest {
 
 getChangeCount(): number
 
-获取剪切板内容的变化次数。
+获取剪贴板内容的变化次数。
 
-执行成功时返回剪切板内容的变化次数，否则返回0。
+执行成功时返回剪贴板内容的变化次数，否则返回0。
 
-当剪切板内容过期或调用[clearDataSync](#cleardatasync11)等接口导致剪切板内容为空时，内容变化次数不会因此改变。
+当剪贴板内容过期或调用[clearDataSync](#cleardatasync11)等接口导致剪贴板内容为空时，内容变化次数不会因此改变。
 
 系统重启或剪贴板服务异常重启时，剪贴板内容变化次数重新从0开始计数。对同一内容连续多次复制会被视作多次更改，每次复制均会导致内容变化次数增加。
 
@@ -3066,7 +3066,7 @@ getChangeCount(): number
 
 | 类型 | 说明 |
 | -------- | -------- |
-| number | 返回读取到的剪切板内容变化次数。 |
+| number | 返回读取到的剪贴板内容变化次数。 |
 
 **示例：**
 

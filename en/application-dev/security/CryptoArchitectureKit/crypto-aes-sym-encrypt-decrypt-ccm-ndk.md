@@ -1,8 +1,6 @@
 # Encryption and Decryption with an AES Symmetric Key (CCM Mode) (C/C++)
 
-
 For details about the algorithm specifications, see [AES](crypto-sym-encrypt-decrypt-spec.md#aes).
-
 
 ## Adding the Dynamic Library in the CMake Script
 ```txt
@@ -41,9 +39,6 @@ In addition to the example in this topic, [AES](crypto-sym-key-generation-conver
    
    In CCM mode, **authTag** must be of 12 bytes. It is used as the authentication information during decryption. In the example, **authTag** is of 12 bytes.
 
-
-
-
 **Decrypting a Message**
 
 1. Call [OH_CryptoSymCipher_Create](../../reference/apis-crypto-architecture-kit/_crypto_sym_cipher_api.md#oh_cryptosymcipher_create) with the string parameter **'AES128|CCM'** to create a **Cipher** instance for decryption. The key type is AES128, and the block cipher mode is CCM.
@@ -66,7 +61,7 @@ In addition to the example in this topic, [AES](crypto-sym-key-generation-conver
 
 Call [OH_CryptoSymKeyGenerator_Destroy](../../reference/apis-crypto-architecture-kit/_crypto_sym_key_api.md#oh_cryptosymkeygenerator_destroy), [OH_CryptoSymCipher_Destroy](../../reference/apis-crypto-architecture-kit/_crypto_sym_cipher_api.md#oh_cryptosymcipher_destroy), [OH_CryptoSymKey_Destroy](../../reference/apis-crypto-architecture-kit/_crypto_sym_key_api.md#oh_cryptosymkey_destroy) and [OH_Crypto_FreeDataBlob](../../reference/apis-crypto-architecture-kit/_crypto_common_api.md#oh_crypto_freedatablob) to release the allocated memory and destroy the symmetric key, **Cipher** instance, and **Params**.
 
-**Example **
+**Example**
 
 ```c++
 #include "CryptoArchitectureKit/crypto_common.h"
@@ -84,9 +79,9 @@ static OH_Crypto_ErrCode doTestAesCcm()
     Crypto_DataBlob encData = {.data = nullptr, .len = 0};
     Crypto_DataBlob decData = {.data = nullptr, .len = 0};
 
-    uint8_t aad[8] = {1, 2, 3, 4, 5, 6, 7, 8}; // The aad value in the sample code is for reference only.
+    uint8_t aad[8] = {1, 2, 3, 4, 5, 6, 7, 8}; // The aad value here is for reference only.
     uint8_t tag[12] = {0};
-    uint8_t iv[7] = {1, 2, 4, 12, 3, 4, 2}; // The iv value in the sample code is for reference only.
+    uint8_t iv[7] = {1, 2, 4, 12, 3, 4, 2}; // The iv value here is for reference only.
     Crypto_DataBlob ivData = {.data = iv, .len = sizeof(iv)};
     Crypto_DataBlob aadData = {.data = aad, .len = sizeof(aad)};
     Crypto_DataBlob tagData = {.data = tag, .len = sizeof(tag)};
@@ -122,7 +117,7 @@ static OH_Crypto_ErrCode doTestAesCcm()
         goto end;
     }
 
-    // Encrypt data.
+    // Encrypt the message.
     ret = OH_CryptoSymCipher_Create("AES128|CCM", &encCtx);
     if (ret != CRYPTO_SUCCESS) {
         goto end;
@@ -140,7 +135,7 @@ static OH_Crypto_ErrCode doTestAesCcm()
         goto end;
     }
 
-    // Decrypt data.
+    // Decrypt the message.
     ret = OH_CryptoSymCipher_Create("AES128|CCM", &decCtx);
     if (ret != CRYPTO_SUCCESS) {
         goto end;

@@ -127,8 +127,6 @@ In a distributed object, [asset](../reference/apis-arkdata/js-apis-data-commonTy
 
 Most of the APIs for cross-device sync of distributed data objects are executed asynchronously in callback or promise mode. The following table uses the callback-based APIs as an example. For more information about the APIs, see [Distributed Data Object](../reference/apis-arkdata/js-apis-data-distributedobject.md).
 
-
-
 | API| Description|
 | -------- | -------- |
 | create(context: Context, source: object): DataObject | Creates a distributed data object instance.|
@@ -166,7 +164,7 @@ Most of the APIs for cross-device sync of distributed data objects are executed 
 
 > **NOTE**
 >
-> - In cross-device migration, after **setsessionId()** is called on the source device to set **sessionId**, call **save()** to save data to the target device.
+> - In cross-device migration, after **setSessionId()** is called on the source device to set **sessionId**, call **save()** to save data to the target device.
 >
 <!--RP1-->
 > - The **continuable** tag must be set for cross-device migration. For details, see [How to Develop](../application-models/hop-cross-device-migration.md#how-to-develop).<!--RP1End-->

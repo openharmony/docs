@@ -5,6 +5,8 @@
 >  **说明：**
 >
 >  该组件从API version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>
+>  该组件从API version 20开始支持使用[AttributeUpdater](../js-apis-arkui-AttributeUpdater.md)类的[updateConstructorParams](../js-apis-arkui-AttributeUpdater.md#updateconstructorparams)接口更新构造参数。
 
 
 ## 子组件
@@ -37,8 +39,8 @@ Polyline(options?: PolylineOptions)
 
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| width | string \| number | 否 | 宽度，取值范围≥0。<br/>默认值：0<br/>默认单位：vp<br/>异常值按照默认值处理。 |
-| height | string \| number | 否 | 高度，取值范围≥0。<br/>默认值：0<br/>默认单位：vp<br/>异常值按照默认值处理。 |
+| width | [Length](ts-types.md#length) | 否 | 宽度，取值范围≥0。<br/>默认值：0<br/>默认单位：vp<br/>异常值按照默认值处理。 |
+| height | [Length](ts-types.md#length) | 否 | 高度，取值范围≥0。<br/>默认值：0<br/>默认单位：vp<br/>异常值按照默认值处理。 |
 
 ## 属性
 
@@ -274,7 +276,9 @@ antiAlias(value: boolean)
 
 ## 示例
 
-使用points、fillOpacity、stroke、strokeLineJoin、strokeLineCap属性分别绘制折线的经过坐标、透明度、边框颜色、拐角样式、端点样式。
+### 示例1（组件属性绘制）
+
+通过points、fillOpacity、stroke、strokeLineJoin、strokeLineCap属性分别绘制折线的经过坐标、透明度、边框颜色、拐角样式、端点样式。
 
 ```ts
 // xxx.ets
@@ -307,3 +311,37 @@ struct PolylineExample {
 ```
 
 ![zh-cn_image_0000001219744185](figures/zh-cn_image_0000001219744185.png)
+
+### 示例2（宽和高使用不同参数类型绘制折线）
+
+width、height属性分别使用不同的长度类型绘制图形。
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct PolylineTypeExample {
+  build() {
+    Column({ space: 10 }) {
+      // 在 100 * 100 的矩形框中绘制一段折线，起点(0, 0)，经过(20,60)，到达终点(100, 100)
+      Polyline({ width: '100', height: '100' })//使用string类型
+        .points([[0, 0], [20, 60], [100, 100]])
+        .fillOpacity(0)
+        .stroke(Color.Blue)
+        .strokeWidth(3)
+      Polyline({ width: 100, height: 100 })// 使用number类型
+        .points([[0, 0], [20, 60], [100, 100]])
+        .fillOpacity(0)
+        .stroke(Color.Blue)
+        .strokeWidth(3)
+      Polyline({ width: $r('app.string.PolylineWidth'), height: $r('app.string.PolylineHeight') })// 使用Resource类型，需用户自定义
+        .points([[0, 0], [20, 60], [100, 100]])
+        .fillOpacity(0)
+        .stroke(Color.Blue)
+        .strokeWidth(3)
+    }.width('100%')
+  }
+}
+```
+
+![polylineDemo2](figures/polylineDemo2.png)

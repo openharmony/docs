@@ -36,6 +36,7 @@ cpp部分代码
 ```cpp
 // hello.cpp
 #include <string.h>
+#include <fstream>
 
 std::string ToString(JSVM_Env env, JSVM_Value val) {
     JSVM_Value jsonString;

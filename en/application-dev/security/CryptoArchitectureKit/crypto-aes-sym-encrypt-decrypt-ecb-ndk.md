@@ -1,8 +1,6 @@
 # Encryption and Decryption with an AES Symmetric Key (ECB Mode) (C/C++)
 
-
 For details about the algorithm specifications, see [AES](crypto-sym-encrypt-decrypt-spec.md#aes).
-
 
 ## Adding the Dynamic Library in the CMake Script
 ```txt
@@ -14,12 +12,12 @@ target_link_libraries(entry PUBLIC libohcrypto.so)
 **Creating an Object**
 
 Call [OH_CryptoSymKeyGenerator_Create](../../reference/apis-crypto-architecture-kit/_crypto_sym_key_api.md#oh_cryptosymkeygenerator_create) and [OH_CryptoSymKeyGenerator_Generate](../../reference/apis-crypto-architecture-kit/_crypto_sym_key_api.md#oh_cryptosymkeygenerator_generate) to generate a 128-bit AES symmetric key (**OH_CryptoSymKey**).
-
-In addition to the example in this topic, [AES](crypto-sym-key-generation-conversion-spec.md#aes) and [Randomly Generating a Symmetric Key](crypto-generate-sym-key-randomly-ndk.md) may help you better understand how to generate an AES symmetric key. Note that the input parameters in the reference documents may be different from those in the example below.
+   
+   In addition to the example in this topic, [AES](crypto-sym-key-generation-conversion-spec.md#aes) and [Randomly Generating a Symmetric Key](crypto-generate-sym-key-randomly-ndk.md) may help you better understand how to generate an AES symmetric key. Note that the input parameters in the reference documents may be different from those in the example below.
 
 **Encrypting a Message**
 
-1. Call [OH_CryptoSymCipher_Create](../../reference/apis-crypto-architecture-kit/_crypto_sym_cipher_api.md#oh_cryptosymcipher_create) with the string parameter **'AES128|ECB|PKCS7'** to create a **Cipher** instance for encryption. The key type is **AES128**, block cipher mode is **ECB**, and the padding mode is **PKCS7**.
+1. Call [OH_CryptoSymCipher_Create](../../reference/apis-crypto-architecture-kit/_crypto_sym_cipher_api.md#oh_cryptosymcipher_create) with the string parameter **'AES128|ECB|PKCS7'** to create a **Cipher** instance. The key type is **AES128**, block cipher mode is **ECB**, and the padding mode is **PKCS7**.
 
 2. Call [OH_CryptoSymCipher_Init](../../reference/apis-crypto-architecture-kit/_crypto_sym_cipher_api.md#oh_cryptosymcipher_init) to initialize the **Cipher** instance. Specifically, set **mode** to **CRYPTO_ENCRYPT_MODE**, and specify the key for encryption (**OH_CryptoSymKey**).
 
@@ -36,7 +34,6 @@ In addition to the example in this topic, [AES](crypto-sym-key-generation-conver
 **Destroying Objects**
 
 Call [OH_CryptoSymKeyGenerator_Destroy](../../reference/apis-crypto-architecture-kit/_crypto_sym_key_api.md#oh_cryptosymkeygenerator_destroy) and [OH_CryptoSymCipher_Destroy](../../reference/apis-crypto-architecture-kit/_crypto_sym_cipher_api.md#oh_cryptosymcipher_destroy) to destroy the instances created.
-
 
 ```c++
 #include "CryptoArchitectureKit/crypto_common.h"
@@ -65,7 +62,7 @@ static OH_Crypto_ErrCode doTestAesEcb()
         goto end;
     }
 
-    // Encrypt data.
+    // Encrypt the message.
     ret = OH_CryptoSymCipher_Create("AES128|ECB|PKCS7", &encCtx);
     if (ret != CRYPTO_SUCCESS) {
         goto end;
@@ -79,7 +76,7 @@ static OH_Crypto_ErrCode doTestAesEcb()
         goto end;
     }
 
-    // Decrypt data.
+    // Decrypt the message.
     ret = OH_CryptoSymCipher_Create("AES128|ECB|PKCS7", &decCtx);
     if (ret != CRYPTO_SUCCESS) {
         goto end;

@@ -5,7 +5,6 @@
   - [构建第一个ArkTS应用（Stage模型）](start-with-ets-stage.md)
 <!--DelEnd-->
 - 开发基础知识<!--development-fundamentals-->
-  - [应用程序包术语](application-package-glossary.md)
   - 应用程序包基础知识<!--application-package-fundamentals-->
     - [应用程序包概述](application-package-overview.md)
     - 应用程序包结构<!--application-package-structure-->
@@ -33,6 +32,7 @@
     - [创建应用分身](app-clone.md)
     - [创建应用多实例](multiInstance.md)
     - [配置分层图标](layered-image.md)
+  - [应用程序包术语](application-package-glossary.md)
 - [资源分类与访问](resource-categories-and-access.md)
 - 学习ArkTS语言<!--learning-arkts-->
   - [初识ArkTS语言](arkts-get-started.md)

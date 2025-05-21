@@ -44,7 +44,7 @@
        photoOutput = cameraManager.createPhotoOutput(photoProfilesArray[0]);
      } catch (error) {
        let err = error as BusinessError;
-       console.error(`Failed to createPhotoOutput. error: ${JSON.stringify(err)}`);
+       console.error(`Failed to createPhotoOutput. error: ${err}`);
      }
      return photoOutput;
    }
@@ -96,7 +96,7 @@
    function onPhotoOutputDeferredPhotoProxyAvailable(photoOutput: camera.PhotoOutput, context: Context): void {
      photoOutput.on('deferredPhotoProxyAvailable', (err: BusinessError, proxyObj: camera.DeferredPhotoProxy): void => {
        if (err) {
-         console.info(`deferredPhotoProxyAvailable error: ${JSON.stringify(err)}.`);
+         console.error(`deferredPhotoProxyAvailable error: ${err}.`);
          return;
        }
        console.info('photoOutPutCallBack deferredPhotoProxyAvailable');
@@ -129,7 +129,7 @@
        let res = await accessHelper.applyChanges(mediaRequest);
        console.info('saveDeferredPhoto success.');
      } catch (err) {
-       console.error(`Failed to saveDeferredPhoto. error: ${JSON.stringify(err)}`);
+       console.error(`Failed to saveDeferredPhoto. error: ${err}`);
      }
    }
    ```

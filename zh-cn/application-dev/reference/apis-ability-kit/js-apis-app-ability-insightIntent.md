@@ -39,7 +39,7 @@ import { insightIntent } from '@kit.AbilityKit';
 | uris<sup>18+</sup> | Array&lt;string&gt; | 否 | 是 | 意图调用时，意图执行方给意图调用方授权的URI列表。<br/>**原子化服务API**：从API version 18开始，该接口支持在原子化服务中使用。 |
 | flags<sup>18+</sup> | number | 否 | 是 | 意图调用时，意图执行方给意图调用方授权的uris的[flags](js-apis-app-ability-wantConstant.md#flags)。<br/>**原子化服务API**：从API version 18开始，该接口支持在原子化服务中使用。 <br/>**说明：**<br/>该参数仅支持FLAG_AUTH_READ_URI_PERMISSION、FLAG_AUTH_WRITE_URI_PERMISSION、FLAG_AUTH_READ_URI_PERMISSION\|FLAG_AUTH_WRITE_URI_PERMISSION。|
 
-## IntentResult<sup>20+<sup>
+## IntentResult\<T><sup>20+<sup>
 
 用于定义意图执行返回结果。
 

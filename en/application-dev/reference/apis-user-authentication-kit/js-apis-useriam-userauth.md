@@ -1028,7 +1028,7 @@ Obtains an **AuthInstance** instance for user authentication.
 > **NOTE**<br>
 >
 > - This API is supported since API version 9 and deprecated since API version 10. Use [getUserAuthInstance](#userauthgetuserauthinstance10) instead.
-> - An **AuthInstance** instance can be used for an authentication only once.
+> - An **AuthInstance** instance can be used for authentication only once.
 
 
 **System capability**: SystemCapability.UserIAM.UserAuth.Core
@@ -1477,7 +1477,7 @@ Enumerates the authentication result codes.
 | BUSY                    | 7      | Indicates the busy state.          |
 | INVALID_PARAMETERS      | 8      | Invalid parameters are detected.          |
 | LOCKED                  | 9      | The authentication executor is locked.      |
-| NOT_ENROLLED            | 10     | The user has not entered the authentication information.|
+| NOT_ENROLLED            | 10     | The user has not enrolled the authentication information.|
 
 ## FaceTips<sup>(deprecated)</sup>
 
@@ -1532,7 +1532,7 @@ Enumerates the identity authentication types.
 
 | Name       | Value  | Description      |
 | ----------- | ---- | ---------- |
-| PIN<sup>10+</sup>         | 1    | PIN authentication.|
+| PIN<sup>10+</sup>         | 1    | Password authentication. |
 | FACE        | 2    | Facial authentication.|
 | FINGERPRINT | 4    | Fingerprint authentication.|
 

@@ -738,7 +738,7 @@ function getBlendColor(baseColor: ResourceColor): ColorMetrics {
     //可能返回的arkui子系统错误码有401和180003
     sourceColor = ColorMetrics.resourceColor(baseColor).blendColor(ColorMetrics.resourceColor("#19000000"));
   } catch (error) {
-    console.log("getBlendColor failed, code = " + (error as BusinessError).code + ", message = " +
+    console.error("getBlendColor failed, code = " + (error as BusinessError).code + ", message = " +
     (error as BusinessError).message);
     sourceColor = ColorMetrics.resourceColor("#19000000");
   }
@@ -772,7 +772,7 @@ struct ColorMetricsSample {
 | 名称        | 类型 | 可读 | 可写 | 说明                   |
 | ----------- | ---- | ---- | ---- | ---------------------- |
 | topLeft     | T    | 是   | 是   | 左上边框的圆角属性。   |
-| topRight    | T    | 是   | 是   | 右上上边框的圆角属性。 |
+| topRight    | T    | 是   | 是   | 右上边框的圆角属性。 |
 | bottomLeft  | T    | 是   | 是   | 左下边框的圆角属性。   |
 | bottomRight | T    | 是   | 是   | 右下边框的圆角属性。   |
 
@@ -1906,7 +1906,7 @@ borderRadiuses(all: number): BorderRadiuses
 
 | 参数名 | 类型   | 必填 | 说明       |
 | ------ | ------ | ---- | ---------- |
-| all    | number | 是   | 边框圆角。<br/>单位：vp<br/>取值范围：[0, +∞)] |
+| all    | number | 是   | 边框圆角。<br/>单位：vp<br/>取值范围：[0, +∞) |
 
 **返回值：**
 

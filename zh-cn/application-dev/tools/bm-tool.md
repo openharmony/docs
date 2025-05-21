@@ -972,7 +972,7 @@ error: signature verification failed due to not trusted app source.
 
         3. 在UnsgnedDebugProfileTemplate.json文件的device-ids字段中，添加当前设备的UDID。
 
-  3. 查看签名中是否包含调试设备的UDID，可以使用文本编辑器打开已签名的HAP搜索device-ids。
+  3. 使用文本编辑器打开已签名的HAP，检查签名中是否包含调试设备的UDID，搜索device-ids。
 * 场景二：使用[调试证书和调试profile文件](https://developer.huawei.com/consumer/cn/doc/app/agc-help-debug-app-0000001914423098)重新签名应用。
 
 ### 9568286 安装应用的签名证书profile文件中的类型与已安装应用的不相同
@@ -2308,15 +2308,16 @@ error: bundle cannot be installed because the appId is not same with preinstalle
 
 **错误描述**
 
-签名校验失败。
+预置应用卸载后安装同bundleName的应用，由于应用的签名信息不一致禁止安装。
 
 **可能原因**
 
-安装的应用与已经预置的同包名应用签名不一致。
+安装应用签名信息中的[密钥](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-signing#section462703710326)和[APP ID](https://developer.huawei.com/consumer/cn/doc/app/agc-help-createharmonyapp-0000001945392297)与已卸载的预置应用都不一致。
 
 **处理步骤**
 
-1. 如果安装的应用是预置应用，需要保证安装应用的签名与预置应用的一致。
+1. 重新签名，保证应用签名信息中的[密钥](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-signing#section462703710326)和[APP ID](https://developer.huawei.com/consumer/cn/doc/app/agc-help-createharmonyapp-0000001945392297)任意一个与预置应用的一致。
+2. 修改安装应用的[bundleName](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/quick-start/app-configuration-file.md)，确保与预置应用的不一致。
 
 ### 9568418 应用设置了卸载处置规则，不允许直接卸载
 **错误信息**
@@ -2381,6 +2382,23 @@ error: Failed to install the HAP or HSP because the app distribution type is not
 **处理步骤**
 
 更换签名证书profile文件中的类型。
+
+### 9568423 签名证书profile文件中缺少当前设备的udid配置，不允许安装到当前设备中
+**错误信息**
+
+error: Failed to install the HAP because the device is unauthorized, make sure the UDID of your device is configured in the signing profile.
+
+**错误描述**
+
+签名证书profile文件中缺少当前设备的UDID配置，不允许安装到当前设备中。
+
+**可能原因**
+
+该应用的[签名证书profile文件](https://developer.huawei.com/consumer/cn/doc/app/agc-help-add-debugcert-0000001914263178)为调试类型，且未配置当前设备的UDID。
+
+**处理步骤**
+
+根据[指导](https://developer.huawei.com/consumer/cn/doc/app/agc-help-add-device-0000001946142249)将当前设备UDID添加到调试类型证书或使用[发布类型证书](https://developer.huawei.com/consumer/cn/doc/app/agc-help-add-releasecert-0000001946273961)重新签名。
 
 ### 9568380 卸载系统应用失败
 **错误信息**
@@ -2448,7 +2466,8 @@ error: Failed to install the plugin because host application check permission fa
 **处理步骤**
 
 1. 参考[权限申请指导](../security/AccessToken/declare-permissions.md)申请[ohos.permission.kernel.SUPPORT_PLUGIN权限](../security/AccessToken/restricted-permissions.md#ohospermissionkernelsupport_plugin)。
-2. 该权限等级为system_basic，若[应用APL等级](../security/AccessToken/app-permission-mgmt-overview.md#权限机制)低于system_basic，请[申请受限权限](../security/AccessToken/declare-permissions-in-acl.md)。
+<!--Del-->2. 该权限等级为system_basic，若[应用APL等级](../security/AccessToken/app-permission-mgmt-overview.md#权限机制)低于system_basic，请[申请受限权限](../security/AccessToken/declare-permissions-in-acl.md)。
+<!--DelEnd-->
 
 
 ### 9568333 模块名称为空

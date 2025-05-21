@@ -57,6 +57,7 @@ NativeWindow模块提供图像buffer轮转功能，可用来和egl对接。开�
 
 | 名称 | 描述 | 
 | -------- | -------- |
+| int32_t [OH_NativeWindow_CleanCache](#oh_nativewindow_cleancache) ([OHNativeWindow](#ohnativewindow) \*window) | 清理OHNativeWindow中的OHNativeWindowBuffer缓存。<br/>使用该接口清理缓存前，需确保已通过[OH_NativeWindow_NativeWindowRequestBuffer](#oh_nativewindow_nativewindowrequestbuffer)接口成功申请OHNativeWindowBuffer。<br/>本接口为非线程安全类型接口。 | 
 | [OHNativeWindow](#ohnativewindow) \* [OH_NativeWindow_CreateNativeWindow](#oh_nativewindow_createnativewindow) (void \*pSurface) | 创建OHNativeWindow实例，每次调用都会产生一个新的OHNativeWindow实例。 说明：此接口不可用，可通过**OH_NativeImage_AcquireNativeWindow**创建，或通过XComponent创建。 | 
 | void [OH_NativeWindow_DestroyNativeWindow](#oh_nativewindow_destroynativewindow) ([OHNativeWindow](#ohnativewindow) \*window) | 将OHNativeWindow对象的引用计数减1，当引用计数为0的时候，该OHNativeWindow对象会被析构掉。 | 
 | [OHNativeWindowBuffer](#ohnativewindowbuffer) \* [OH_NativeWindow_CreateNativeWindowBufferFromSurfaceBuffer](#oh_nativewindow_createnativewindowbufferfromsurfacebuffer) (void \*pSurfaceBuffer) | 创建OHNativeWindowBuffer实例，每次调用都会产生一个新的OHNativeWindowBuffer实例。 此接口从API version 12开始废弃，使用[OH_NativeWindow_CreateNativeWindowBufferFromNativeBuffer](#oh_nativewindow_createnativewindowbufferfromnativebuffer)替代。 | 
@@ -362,6 +363,35 @@ enum OHScalingModeV2
 
 
 ## 函数说明
+
+### OH_NativeWindow_CleanCache()
+
+```
+int32_t OH_NativeWindow_CleanCache (OHNativeWindow *window)
+```
+
+**描述**
+
+清理OHNativeWindow中的OHNativeWindowBuffer缓存。
+
+使用该接口清理缓存前，需确保已通过[OH_NativeWindow_NativeWindowRequestBuffer](#oh_nativewindow_nativewindowrequestbuffer)接口成功申请OHNativeWindowBuffer。
+
+本接口为非线程安全类型接口。
+
+**系统能力：** SystemCapability.Graphic.Graphic2D.NativeWindow
+
+**起始版本：** 19
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| window | 一个指向[OHNativeWindow](#ohnativewindow)的结构体实例的指针。 | 
+
+**返回：**
+
+返回值为0表示执行成功，其他返回值可参考[OHNativeErrorCode](#ohnativeerrorcode)。
+
 
 ### OH_NativeWindow_SetColorSpace()
 

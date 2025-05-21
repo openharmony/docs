@@ -34,15 +34,15 @@ static marshalling(styledString: StyledString): ArrayBuffer
 | ------- | --------------------------------- | 
 | ArrayBuffer | 序列化后的buffer信息。<br/>**说明：** <br/>目前支持文本和图片。 |
 
-### marshalling<sup>18+</sup>
+### marshalling<sup>19+</sup>
 
 static marshalling(styledString: StyledString, callback: StyledStringMarshallCallback): ArrayBuffer
 
-序列化属性字符串，通过定义回调来序列化属性字符串的[StyledStringMarshallingValue](#styledstringmarshallingvalue18)。
+序列化属性字符串，通过定义回调来序列化属性字符串的[StyledStringMarshallingValue](#styledstringmarshallingvalue19)。
 
 **系统接口：** 此接口为系统接口。
 
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -51,7 +51,7 @@ static marshalling(styledString: StyledString, callback: StyledStringMarshallCal
 | 参数名 | 类型 | 必填 | 说明 |
 | ----- | ----- | ---- | ---- |
 | styledString | [StyledString](ts-universal-styled-string.md) | 是  | 属性字符串参数。 |
-| callback | [StyledStringMarshallCallback](#styledstringmarshallcallback18) | 是 | 如何序列化[StyledStringMarshallingValue](#styledstringmarshallingvalue18)的回调。 |
+| callback | [StyledStringMarshallCallback](#styledstringmarshallcallback19) | 是 | 如何序列化[StyledStringMarshallingValue](#styledstringmarshallingvalue19)的回调。 |
 
 **返回值：**
 
@@ -83,16 +83,24 @@ static unmarshalling(buffer: ArrayBuffer): Promise\<StyledString>
 | -------------------------------- | --------------------- |
 | Promise\<[StyledString](ts-universal-styled-string.md)> |Promise对象，返回属性字符串。 |
 
+**错误码**：
 
-### unmarshalling<sup>18+</sup>
+以下错误码详细介绍请参考[通用错误码](../../errorcode-universal.md)和[属性字符串错误码](../errorcode-styled-string.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
+| 170002 | Styled string decode error. |
+
+### unmarshalling<sup>19+</sup>
 
 static unmarshalling(buffer: ArrayBuffer, callback: StyledStringUnmarshallCallback): Promise\<StyledString>
 
-反序列化后得到属性字符串，通过定义回调来反序列化[StyledStringMarshallingValue](#styledstringmarshallingvalue18)。
+反序列化后得到属性字符串，通过定义回调来反序列化[StyledStringMarshallingValue](#styledstringmarshallingvalue19)。
 
 **系统接口：** 此接口为系统接口。
 
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -101,7 +109,7 @@ static unmarshalling(buffer: ArrayBuffer, callback: StyledStringUnmarshallCallba
 | 参数名 | 类型 | 必填 | 说明 |
 | ----- | ----- | ---- | ---- |
 | buffer | ArrayBuffer | 是  | 属性字符串序列化后的数据。 |
-| callback | [StyledStringUnmarshallCallback](#styledstringunmarshallcallback18) | 是 | 如何反序列化ArrayBuffer的回调。 |
+| callback | [StyledStringUnmarshallCallback](#styledstringunmarshallcallback19) | 是 | 如何反序列化ArrayBuffer的回调。 |
 
 **返回值：**
 
@@ -111,13 +119,14 @@ static unmarshalling(buffer: ArrayBuffer, callback: StyledStringUnmarshallCallba
 
 **错误码**：
 
-以下错误码详细介绍请参考[通用错误码](../../errorcode-universal.md)。
+以下错误码详细介绍请参考[通用错误码](../../errorcode-universal.md)和[属性字符串错误码](../errorcode-styled-string.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
+| 170002 | Styled string decode error. |
 
-## StyledStringMarshallingValue<sup>18+</sup>
+## StyledStringMarshallingValue<sup>19+</sup>
 
 type StyledStringMarshallingValue = UserDataSpan
 
@@ -125,7 +134,7 @@ type StyledStringMarshallingValue = UserDataSpan
 
 **系统接口：** 此接口为系统接口。
 
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -133,15 +142,15 @@ type StyledStringMarshallingValue = UserDataSpan
 | ------ | ---------- |
 | [UserDataSpan](ts-universal-styled-string.md#userdataspan) | UserDataSpan样式。 |
 
-## StyledStringMarshallCallback<sup>18+</sup>
+## StyledStringMarshallCallback<sup>19+</sup>
 
 type StyledStringMarshallCallback = (marshallableVal: StyledStringMarshallingValue) => ArrayBuffer
 
-属性字符串[StyledStringMarshallingValue](#styledstringmarshallingvalue18)序列化回调类型。
+属性字符串[StyledStringMarshallingValue](#styledstringmarshallingvalue19)序列化回调类型。
 
 **系统接口：** 此接口为系统接口。
 
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -149,23 +158,23 @@ type StyledStringMarshallCallback = (marshallableVal: StyledStringMarshallingVal
 
 | 参数名  | 类型   | 必填 | 说明                          |
 | ------- | ------ | ---- | --------------------------- |
-| marshallableVal | [StyledStringMarshallingValue](#styledstringmarshallingvalue18)| 是 | 属性字符串序列化对象。 |
+| marshallableVal | [StyledStringMarshallingValue](#styledstringmarshallingvalue19)| 是 | 属性字符串序列化对象。 |
 
 **返回值：**
 
 | 类型                             | 说明                  |
 | -------------------------------- | --------------------- |
-| ArrayBuffer | [StyledStringMarshallingValue](#styledstringmarshallingvalue18)序列化后的数据。|
+| ArrayBuffer | [StyledStringMarshallingValue](#styledstringmarshallingvalue19)序列化后的数据。|
 
-## StyledStringUnmarshallCallback<sup>18+</sup>
+## StyledStringUnmarshallCallback<sup>19+</sup>
 
 type StyledStringUnmarshallCallback = (buf: ArrayBuffer) => StyledStringMarshallingValue
 
-属性字符串反序列化ArrayBuffer得到[StyledStringMarshallingValue](#styledstringmarshallingvalue18)回调类型。
+属性字符串反序列化ArrayBuffer得到[StyledStringMarshallingValue](#styledstringmarshallingvalue19)回调类型。
 
 **系统接口：** 此接口为系统接口。
 
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -173,13 +182,13 @@ type StyledStringUnmarshallCallback = (buf: ArrayBuffer) => StyledStringMarshall
 
 | 参数名  | 类型   | 必填 | 说明                          |
 | ------- | ------ | ---- | --------------------------- |
-| buf | ArrayBuffer | 是 | [StyledStringMarshallingValue](#styledstringmarshallingvalue18)序列化后的数据。 |
+| buf | ArrayBuffer | 是 | [StyledStringMarshallingValue](#styledstringmarshallingvalue19)序列化后的数据。 |
 
 **返回值：**
 
 | 类型                             | 说明                  |
 | -------------------------------- | --------------------- |
-| [StyledStringMarshallingValue](#styledstringmarshallingvalue18) | 反序列化得到的[StyledStringMarshallingValue](#styledstringmarshallingvalue18) 。|
+| [StyledStringMarshallingValue](#styledstringmarshallingvalue19) | 反序列化得到的[StyledStringMarshallingValue](#styledstringmarshallingvalue19) 。|
 
 ## 示例
 

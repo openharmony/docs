@@ -8,7 +8,7 @@
 
 **错误信息**
 
-Permission denied. Call requestRight or requestAccessoryRight to get the permission or USBDevicePipe access right first.
+Access right denied. Call requestRight to get the USBDevicePipe access right first.
 
 **错误描述**
 
@@ -188,7 +188,7 @@ No such device (it may have been disconnected).
 
 **错误信息**
 
-Insufficient memory. Possible causes: 1. Malloc allocation failed.
+Insufficient memory. Possible causes: 1. Memory allocation failed.
 
 **错误描述**
 
@@ -220,7 +220,7 @@ Other USB error. Possible causes:Unrecognized discard error code.
 
 **错误信息**
 
-If the transfer is not in progress, already complete, or already cancelled. 
+The transfer is not in progress, or is already complete or cancelled.
 
 **错误描述**
 

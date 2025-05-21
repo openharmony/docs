@@ -39,7 +39,7 @@ import { distributedDeviceManager } from '@kit.DistributedServiceKit';
 
 ### replyUiAction
 
-replyUiAction(action: number, actionResult: string): void;
+replyUiAction(action: number, actionResult: string): void
 
 回复用户UI操作行为。此接口只能被devicemanager的PIN码hap使用。
 
@@ -68,9 +68,9 @@ replyUiAction(action: number, actionResult: string): void;
 
 **示例：**
 
-示例中`dmInstance`的初始化请参见[创建一个设备管理实例](js-apis-distributedDeviceManager.md#distributeddevicemanagercreatedevicemanager)。
 <!--code_no_check-->
   ```ts
+  import { distributedDeviceManager } from '@kit.DistributedServiceKit';
   import { BusinessError } from '@kit.BasicServicesKit';
 
  try {
@@ -83,6 +83,7 @@ replyUiAction(action: number, actionResult: string): void;
       action = 5 - pin码输入框确定操作
     */
     let operation = 0;
+    let dmInstance = distributedDeviceManager.createDeviceManager('ohos.samples.jsHelloWorld');
     dmInstance.replyUiAction(operation, 'extra');
   } catch (err) {
     let e: BusinessError = err as BusinessError;
@@ -92,7 +93,7 @@ replyUiAction(action: number, actionResult: string): void;
 
 ### on('replyResult')
 
-on(type: 'replyResult', callback: Callback&lt;{ param: string;}&gt;): void;
+on(type: 'replyResult', callback: Callback&lt;{ param: string;}&gt;): void
 
 回复UI操作结果回调。
 
@@ -120,9 +121,9 @@ on(type: 'replyResult', callback: Callback&lt;{ param: string;}&gt;): void;
 
 **示例：**
 
-示例中`dmInstance`的初始化请参见[创建一个设备管理实例](js-apis-distributedDeviceManager.md#distributeddevicemanagercreatedevicemanager)。
 <!--code_no_check-->
   ```ts
+  import { distributedDeviceManager } from '@kit.DistributedServiceKit';
   import { BusinessError } from '@kit.BasicServicesKit';
 
   class Data {
@@ -134,6 +135,7 @@ on(type: 'replyResult', callback: Callback&lt;{ param: string;}&gt;): void;
   }
 
   try {
+    let dmInstance = distributedDeviceManager.createDeviceManager('ohos.samples.jsHelloWorld');
     dmInstance.on('replyResult', (data: Data) => {
       console.log('replyResult executed, dialog closed' + JSON.stringify(data));
       let tmpStr: TmpStr = JSON.parse(data.param);
@@ -148,7 +150,7 @@ on(type: 'replyResult', callback: Callback&lt;{ param: string;}&gt;): void;
 
 ### off('replyResult')
 
-off(type: 'replyResult', callback?: Callback&lt;{ param: string;}&gt;): void;
+off(type: 'replyResult', callback?: Callback&lt;{ param: string;}&gt;): void
 
 取消回复UI操作结果回调。
 
@@ -176,12 +178,13 @@ off(type: 'replyResult', callback?: Callback&lt;{ param: string;}&gt;): void;
 
 **示例：**
 
-示例中`dmInstance`的初始化请参见[创建一个设备管理实例](js-apis-distributedDeviceManager.md#distributeddevicemanagercreatedevicemanager)。
 <!--code_no_check-->
   ```ts
+  import { distributedDeviceManager } from '@kit.DistributedServiceKit';
   import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
+    let dmInstance = distributedDeviceManager.createDeviceManager('ohos.samples.jsHelloWorld');
     dmInstance.off('replyResult');
   } catch (err) {
     let e: BusinessError = err as BusinessError;
@@ -191,7 +194,7 @@ off(type: 'replyResult', callback?: Callback&lt;{ param: string;}&gt;): void;
 
 ### setHeartbeatPolicy<sup>15+</sup>
 
-setHeartbeatPolicy(policy: StrategyForHeartbeat, delayTime: number): void;
+setHeartbeatPolicy(policy: StrategyForHeartbeat, delayTime: number): void
 
 设置心跳广播策略。
 
@@ -221,14 +224,15 @@ setHeartbeatPolicy(policy: StrategyForHeartbeat, delayTime: number): void;
 
 **示例：**
 
-示例中`dmInstance`的初始化请参见[创建一个设备管理实例](js-apis-distributedDeviceManager.md#distributeddevicemanagercreatedevicemanager)。
 <!--code_no_check-->
   ```ts
+  import { distributedDeviceManager } from '@kit.DistributedServiceKit';
   import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     let policy = distributedDeviceManager.StrategyForHeartbeat.TEMP_STOP_HEARTBEAT;
     let delayTime = 1000;
+    let dmInstance = distributedDeviceManager.createDeviceManager('ohos.samples.jsHelloWorld');
     dmInstance.setHeartbeatPolicy(policy, delayTime);
   } catch (err) {
     let e: BusinessError = err as BusinessError;

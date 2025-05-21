@@ -5,6 +5,9 @@
 
 文件中定义了与矩形相关的功能函数。
 
+<!--RP1-->
+**相关示例：**[NDKAPIDrawing (API14)](https://gitee.com/openharmony/applications_app_samples/tree/master/code/DocsSample/Drawing/NDKAPIDrawing)<!--RP1End-->
+
 **引用文件：** <native_drawing/drawing_rect.h>
 
 **库：** libnative_drawing.so
@@ -40,11 +43,3 @@
 | [OH_Drawing_ErrorCode](_drawing.md#oh_drawing_errorcode) [OH_Drawing_RectGetArraySize](_drawing.md#oh_drawing_rectgetarraysize) ([OH_Drawing_Array](_drawing.md#oh_drawing_array) \*rectArray, size_t \*pSize) | 用于获取矩形数组对象[OH_Drawing_Array](_drawing.md#oh_drawing_array)的大小。  | 
 | [OH_Drawing_ErrorCode](_drawing.md#oh_drawing_errorcode) [OH_Drawing_RectGetArrayElement](_drawing.md#oh_drawing_rectgetarrayelement) ([OH_Drawing_Array](_drawing.md#oh_drawing_array) \*rectArray, size_t index, [OH_Drawing_Rect](_drawing.md#oh_drawing_rect) \*\*rect) | 用于获取矩形数组对象中指定索引的矩形对象。  | 
 | [OH_Drawing_ErrorCode](_drawing.md#oh_drawing_errorcode) [OH_Drawing_RectDestroyArray](_drawing.md#oh_drawing_rectdestroyarray) ([OH_Drawing_Array](_drawing.md#oh_drawing_array) \*rectArray) | 用于销毁矩形数组对象并回收该对象占有的内存。  | 
-
-<!--RP1-->
-## 相关实例
-
-针对Drawing(C/C++)的开发，有以下相关实例可供参考：
-
-- [NDKAPIDrawing (API14)](https://gitee.com/openharmony/applications_app_samples/tree/master/code/DocsSample/Drawing/NDKAPIDrawing)
-<!--RP1End-->

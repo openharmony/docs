@@ -15,7 +15,7 @@
   - [Video Recording Practices (ArkTS)](camera-recording-case.md)
   - [Camera Metadata (ArkTS)](camera-metadata.md)
   - [Using the Flashlight (ArkTS)](camera-torch-use.md)
-  - [Adapting to Camera Changes in Different Folding States (ArkTS)](camera-foldable-display.md)
+  - [Adapting Camera Changes in Different Fold States (ArkTS)](camera-foldable-display.md)
   - [Deferred Photo Delivery (ArkTS)](camera-deferred-capture.md)
   - [Deferred Photo Delivery Practices (ArkTS)](camera-deferred-capture-case.md)
   - [Moving Photos (ArkTS)](camera-moving-photo.md)

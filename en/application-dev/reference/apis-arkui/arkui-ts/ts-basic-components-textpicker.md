@@ -37,9 +37,9 @@ Creates a text picker based on the selection range specified by **range**.
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | range | string[] \| string[] []<sup>10+</sup> \| [Resource](ts-types.md#resource) \|<br>[TextPickerRangeContent](#textpickerrangecontent10)[]<sup>10+</sup> \| [TextCascadePickerRangeContent](#textcascadepickerrangecontent10)[]<sup>10+</sup> | Yes| Data selection range of the picker. This parameter cannot be set to an empty array. If set to an empty array, it will not be displayed. If it is dynamically changed to an empty array, the current value remains displayed.<br>**NOTE**<br>For a single-column picker, use a value of the string[], Resource, or TextPickerRangeContent[] type.<br>For a multi-column picker, use a value of the string[] type.<br>For a multi-column linked picker, use a value of the TextCascadePickerRangeContent[] type.<br>The Resource type supports only [strarray.json](../../../quick-start/resource-categories-and-access.md#resource-group-directories).<br>The type and number of columns in the range cannot be dynamically modified.|
-| selected | number \| number[]<sup>10+</sup> | No| Index of the default selected item in the array. The index is zero-based.<br>Default value: **0**<br>**NOTE**<br>For a single-column picker, use a value of the number type.<br>For a multi-column (linked) picker, use a value of the number[] type.<br>Since API version 10, this attribute supports two-way binding through [$$](../../../quick-start/arkts-two-way-sync.md).|
-| value | string \| string[]<sup>10+</sup> | No| Value of the default item in the range. The priority of this parameter is lower than that of **selected**.<br>Default value: value of the first item<br>**NOTE**<br>This parameter works only when the picker contains text only.  <br>For a single-column picker, use a value of the string type.<br>For a multi-column (linked) picker, use a value of the string[] type.<br>Since API version 10, this parameter supports two-way binding through [$$](../../../quick-start/arkts-two-way-sync.md).|
-| columnWidths<sup>18+</sup> | LengthMetrics[] | No| Width of each column in the picker.<br>Default value: All columns have equal widths.<br>**NOTE**<br>If the text length exceeds the column width, the text will be truncated.|
+| selected | number \| number[]<sup>10+</sup> | No| Index of the default selected item in the array. The index is zero-based.<br>Default value: **0**<br>**NOTE**<br>For a single-column picker, use a value of the number type.<br>For a multi-column (linked) picker, use a value of the number[] type.<br>Since API version 10, this parameter supports two-way binding through [$$](../../../ui/state-management/arkts-two-way-sync.md).|
+| value | string \| string[]<sup>10+</sup> | No| Value of the default item in the range. The priority of this parameter is lower than that of **selected**.<br>Default value: value of the first item<br>**NOTE**<br>This parameter works only when the picker contains text only.  <br>For a single-column picker, use a value of the string type.<br>For a multi-column (linked) picker, use a value of the string[] type.<br>Since API version 10, this parameter supports two-way binding through [$$](../../../ui/state-management/arkts-two-way-sync.md).|
+| columnWidths<sup>18+</sup> | LengthMetrics[] | No| Width of each column in the picker.<br>Default value: All columns have equal widths.<br>**NOTE**<br>If the text is longer than the column width, it will be truncated.|
 
 ## TextPickerRangeContent<sup>10+</sup>
 
@@ -50,7 +50,7 @@ Creates a text picker based on the selection range specified by **range**.
 | Name| Type                                                | Mandatory| Description      |
 | ---- | ---------------------------------------------------- | ---- | ---------- |
 | icon | string \| [Resource](ts-types.md#resource) | Yes  | Image resource. If the value is a string, such as **"/common/hello.png"**, it represents the path to the image.|
-| text | string \| [Resource](ts-types.md#resource) | No  | Text information.<br>An empty character string is used by default.<br>**NOTE**<br>If the text length exceeds the column width, the text will be truncated.|
+| text | string \| [Resource](ts-types.md#resource) | No  | Text information.<br>An empty character string is used by default.<br>**NOTE**<br>If the text is longer than the column width, it will be truncated.|
 
 ## TextCascadePickerRangeContent<sup>10+</sup>
 
@@ -60,7 +60,7 @@ Creates a text picker based on the selection range specified by **range**.
 
 | Name| Type                                                | Mandatory| Description  |
 | ------ | -------------------------------------------------------- | ---- | ---------- |
-| text   | string \| [Resource](ts-types.md#resource) | Yes  | Text information.<br>**NOTE**<br>If the text length exceeds the column width, the text will be truncated.|
+| text   | string \| [Resource](ts-types.md#resource) | Yes  | Text information.<br>**NOTE**<br>If the text is longer than the column width, it will be truncated.|
 | children   | [TextCascadePickerRangeContent](#textcascadepickerrangecontent10)[] | No  | Linkage data.|
 ## DividerOptions<sup>12+</sup>
 
@@ -93,7 +93,7 @@ Sets the height of each item in the picker.
 
 | Name| Type                      | Mandatory| Description                  |
 | ------ | -------------------------- | ---- | ---------------------- |
-| value  | number \| string | Yes  | Height of each item in the picker. For the number type, the value range is [0, +∞]. For the string type, only numeric string values, for example, **"56"**, are supported.<br>Default value: 56 vp (selected) and 36 vp (unselected).<br>**NOTE**<br>The set value applies to both selected and unselected items.|
+| value  | number \| string | Yes  | Height of each item in the picker. For the number type, the value range is [0, +∞). For the string type, only numeric string values, for example, **"56"**, are supported.<br>Default value: 56 vp (selected) and 36 vp (unselected).<br>**NOTE**<br>The set value applies to both selected and unselected items.|
 
 ### defaultPickerItemHeight<sup>18+</sup>
 
@@ -109,7 +109,7 @@ Sets the height of each item in the picker. Compared to [defaultPickerItemHeight
 
 | Name| Type                      | Mandatory| Description                  |
 | ------ | -------------------------- | ---- | ---------------------- |
-| height  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<number \| string> | Yes  | Height of each item in the picker. For the number type, the value range is [0, +∞]. For the string type, only numeric string values, for example, **"56"**, are supported.<br>Default value: 56 vp (selected) and 36 vp (unselected).<br>**NOTE**<br>The set value applies to both selected and unselected items.<br>If **height** is set to **undefined**, the previous value is retained.|
+| height  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<number \| string> | Yes  | Height of each item in the picker. For the number type, the value range is [0, +∞). For the string type, only numeric string values, for example, **"56"**, are supported.<br>Default value: 56 vp (selected) and 36 vp (unselected).<br>**NOTE**<br>The set value applies to both selected and unselected items.<br>If **height** is set to **undefined**, the previous value is retained.|
 
 ### disappearTextStyle<sup>10+</sup>
 
@@ -189,7 +189,7 @@ Sets the font color, font size, and font weight for the selected item.
 
 | Name| Type                                                        | Mandatory| Description                                                        |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | [PickerTextStyle](ts-basic-components-datepicker.md#pickertextstyle10) | Yes  | Font color, font size, and font weight of the selected item.<br>Default value:<br>{<br>color: '#ff007dff',<br>font: {<br>size: '20vp', <br>weight: FontWeight.Medium<br>}<br>} |
+| value  | [PickerTextStyle](ts-basic-components-datepicker.md#pickertextstyle10) | Yes  | Font color, font size, and font weight of the selected item.<br>Default value:<br>{<br>color: '#ff007dff',<br>font: {<br>size: '20fp', <br>weight: FontWeight.Medium<br>}<br>} |
 
 ### selectedTextStyle<sup>18+</sup>
 
@@ -205,7 +205,7 @@ Sets the font color, font size, and font weight for the selected item. Compared 
 
 | Name| Type                                                        | Mandatory| Description                                                        |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| style  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[PickerTextStyle](ts-basic-components-datepicker.md#pickertextstyle10)> | Yes  | Font color, font size, and font weight of the selected item.<br>If **style** is set to **undefined**, the default value is used:<br>{<br>color: '#ff007dff',<br>font: {<br>size: '20vp', <br>weight: FontWeight.Medium<br>}<br>} |
+| style  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[PickerTextStyle](ts-basic-components-datepicker.md#pickertextstyle10)> | Yes  | Font color, font size, and font weight of the selected item.<br>If **style** is set to **undefined**, the default value is used:<br>{<br>color: '#ff007dff',<br>font: {<br>size: '20fp', <br>weight: FontWeight.Medium<br>}<br>} |
 
 ### selectedIndex<sup>10+</sup>
 
@@ -221,7 +221,7 @@ Sets the index of the default selected item in the array. Its priority is higher
 
 | Name| Type                        | Mandatory| Description                        |
 | ------ | ---------------------------- | ---- | ---------------------------- |
-| value  | number \| number[] | Yes  | Index of the default selected item in the array. The index is zero-based.<br>Default value: **0**<br>|
+| value  | number \| number[] | Yes  | Index of the default selected item in the array. The index is zero-based.<br>Default value: **0**<br>If the value of **value** is **undefined**, the default value is the same as the value of **selected** in [options](#textpickeroptions). If the value of **selected** in [options](#textpickeroptions) is also **undefined**, the default value is **0**.<br>|
 
 ### selectedIndex<sup>18+</sup>
 
@@ -237,7 +237,7 @@ Sets the index of the default selected item in the array. Its priority is higher
 
 | Name| Type                                                        | Mandatory| Description                                                        |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| index  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<number \| number[]> | Yes  | Index of the default selected item in the array. The index is zero-based.<br>If **index** is set to **undefined**, the default value **0** is used.<br>|
+| index  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<number \| number[]> | Yes  | Index of the default selected item in the array. The index is zero-based.<br>Default value: **0**<br>If the value of **index** is **undefined**, the default value is the same as the value of **selected** in [options](#textpickeroptions). If the value of **selected** in [options](#textpickeroptions) is also **undefined**, the default value is **0**.<br>|
 
 ### canLoop<sup>10+</sup>
 
@@ -401,7 +401,6 @@ Specifies whether to enable haptic feedback.
 >   "name": "ohos.permission.VIBRATE",
 >  }
 >  ]
->  ``
 >  ```
 
 ### digitalCrownSensitivity<sup>18+</sup>

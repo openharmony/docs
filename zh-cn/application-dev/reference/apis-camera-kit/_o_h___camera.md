@@ -291,7 +291,9 @@
 | [Camera_ErrorCode](#camera_errorcode) [OH_CaptureSession_GetSupportedColorSpaces](#oh_capturesession_getsupportedcolorspaces) ([Camera_CaptureSession](#camera_capturesession) \*session, OH_NativeBuffer_ColorSpace \*\*colorSpace, uint32_t \*size) | 获取支持的色彩空间列表。 | 
 | [Camera_ErrorCode](#camera_errorcode) [OH_CaptureSession_DeleteColorSpaces](#oh_capturesession_deletecolorspaces) ([Camera_CaptureSession](#camera_capturesession) \*session, OH_NativeBuffer_ColorSpace \*colorSpace) | 删除色彩空间列表。 | 
 | [Camera_ErrorCode](#camera_errorcode) [OH_CaptureSession_GetActiveColorSpace](#oh_capturesession_getactivecolorspace) ([Camera_CaptureSession](#camera_capturesession) \*session, OH_NativeBuffer_ColorSpace \*colorSpace) | 获取当前色彩空间。 | 
-| [Camera_ErrorCode](#camera_errorcode) [OH_CaptureSession_SetActiveColorSpace](#oh_capturesession_setactivecolorspace) ([Camera_CaptureSession](#camera_capturesession) \*session, OH_NativeBuffer_ColorSpace colorSpace) | 设置当前色彩空间。 | 
+| [Camera_ErrorCode](#camera_errorcode) [OH_CaptureSession_SetActiveColorSpace](#oh_capturesession_setactivecolorspace) ([Camera_CaptureSession](#camera_capturesession) \*session, OH_NativeBuffer_ColorSpace colorSpace) | 设置当前色彩空间。 |
+| [Camera_ErrorCode](#camera_errorcode) [OH_CaptureSession_IsMacroSupported](#oh_capturesession_ismacrosupported) ([Camera_CaptureSession](#camera_capturesession) \*session, bool \*isSupported) | 检查是否支持微距能力。 |
+| [Camera_ErrorCode](#camera_errorcode) [OH_CaptureSession_EnableMacro](#oh_capturesession_enablemacro) ([Camera_CaptureSession](#camera_capturesession) \*session, bool enabled) | 启用/不启用相机设备的微距能力。 |
 | [Camera_ErrorCode](#camera_errorcode) [OH_MetadataOutput_RegisterCallback](#oh_metadataoutput_registercallback) ([Camera_MetadataOutput](#camera_metadataoutput) \*metadataOutput, [MetadataOutput_Callbacks](_metadata_output___callbacks.md) \*callback) | 注册元数据输出更改事件回调。 | 
 | [Camera_ErrorCode](#camera_errorcode) [OH_MetadataOutput_UnregisterCallback](#oh_metadataoutput_unregistercallback) ([Camera_MetadataOutput](#camera_metadataoutput) \*metadataOutput, [MetadataOutput_Callbacks](_metadata_output___callbacks.md) \*callback) | 注销元数据输出更改事件回调。 | 
 | [Camera_ErrorCode](#camera_errorcode) [OH_MetadataOutput_Start](#oh_metadataoutput_start) ([Camera_MetadataOutput](#camera_metadataoutput) \*metadataOutput) | 启动元数据输出。 | 
@@ -4271,6 +4273,67 @@ Camera_ErrorCode OH_CaptureSession_IsVideoStabilizationModeSupported(Camera_Capt
 - CAMERA_INVALID_ARGUMENT：参数丢失或参数类型不正确。
 
 - CAMERA_SESSION_NOT_CONFIG：捕获会话未配置。
+
+
+### OH_CaptureSession_IsMacroSupported()
+
+```
+Camera_ErrorCode OH_CaptureSession_IsMacroSupported(Camera_CaptureSession* session, bool* isSupported)
+```
+
+**描述：**
+
+检查是否支持微距能力。
+
+**起始版本：** 19
+
+**参数:**
+
+| 名称 | 描述 |
+| -------- | -------- |
+| session | [Camera_CaptureSession](#camera_capturesession)实例。 |
+| isSupported | 是否支持微距能力的结果。 |
+
+**返回：**
+
+错误码[Camera_ErrorCode](#camera_errorcode-1)：
+
+- CAMERA_OK：方法调用成功。
+
+- CAMERA_INVALID_ARGUMENT：参数丢失或参数类型不正确。
+
+- CAMERA_SESSION_NOT_CONFIG：捕获会话未配置。
+
+
+### OH_CaptureSession_EnableMacro()
+
+```
+Camera_ErrorCode OH_CaptureSession_EnableMacro(Camera_CaptureSession* session, bool enabled)
+```
+
+**描述：**
+
+启用/不启用相机设备的微距能力。
+
+**起始版本：** 19
+
+**参数:**
+
+| 名称 | 描述 |
+| -------- | -------- |
+| session | [Camera_CaptureSession](#camera_capturesession)实例。 |
+| enabled | 是否启用微距能力的标志。 |
+
+**返回：**
+
+错误码[Camera_ErrorCode](#camera_errorcode-1)：
+- CAMERA_OK：方法调用成功。
+
+- CAMERA_INVALID_ARGUMENT：参数丢失或参数类型不正确。
+
+- CAMERA_SESSION_NOT_CONFIG：捕获会话未配置。
+
+- CAMERA_OPERATION_NOT_ALLOWED：不允许操作。
 
 
 ### OH_CaptureSession_Preconfig()

@@ -2287,7 +2287,51 @@ let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.notLike("NAME", "os");
 ```
 
+### having<sup>20+</sup>
 
+having(conditions:string, args?: Array\<ValueType>): RdbPredicates
+
+筛选符合条件的分组数据。
+
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                   |
+| ------ | ------ | ---- | ---------------------- |
+| conditions  | string | 是   | 用于过滤使用[groupBy](#groupby)获得的数据，不能为空且必须与[groupBy](#groupby)配合使用。
+| args  | Array<[ValueType](#valuetype)> | 否   | 条件中使用的参数，用来替换条件语句中的占位符，不传时默认为空数组。 |
+
+**返回值**：
+
+| 类型                            | 说明                       |
+| ------------------------------- | -------------------------- |
+| [RdbPredicates](#rdbpredicates) | 返回与指定字段匹配的谓词。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[关系型数据库错误码](errorcode-data-rdb.md)。
+
+| **错误码ID** | **错误信息**                                                                                                       |
+| --------- |----------------------------------------------------------------------------------------------------------------|
+| 14800001       | Invalid args. Possible causes: 1. conditions are empty;  2. missing GROUP BY clause. |
+
+**示例1：**
+
+```ts
+// 传递完整的条件
+let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
+predicates.groupBy(["AGE"]);
+predicates.having("NAME = zhangsan");
+```
+**示例2：**
+
+```ts
+// 条件中使用占位符替代，args参数传入替换占位符的值
+let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
+predicates.groupBy(["AGE"]);
+predicates.having("NAME = ?", ["zhangsan"]);
+```
 
 ## RdbStore
 
