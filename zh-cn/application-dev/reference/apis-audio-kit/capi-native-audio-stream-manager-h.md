@@ -2,7 +2,9 @@
 
 ## 概述
 
-声明与音频流管理器相关的接口。该文件接口用于创建audioStreamManager以及音频流设置和管理。
+声明与音频流管理器相关的接口。
+
+该文件接口用于创建audioStreamManager以及音频流设置和管理。
 
 **库：** libohaudio.so
 
@@ -41,18 +43,17 @@ OH_AudioCommon_Result OH_AudioManager_GetAudioStreamManager(OH_AudioStreamManage
 
 **起始版本：** 19
 
-
 **参数：**
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_AudioStreamManager](capi-oh-audiostreammanager.md) **streamManager | streamManager 音频流管理器句柄 [OH_AudioStreamManager](capi-oh-audiostreammanager.md)。 |
+| [OH_AudioStreamManager](capi-oh-audiostreammanager.md) **streamManager | 音频流管理器句柄。 |
 
 **返回：**
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_AudioCommon_Result](capi-native-audio-common-h.md#oh_audiocommon_result) | [OH_AudioCommon_Result](capi-native-audio-common-h.md#oh_audiocommon_result)：<br>         AUDIOCOMMON_RESULT_SUCCESS = 0：函数执行成功。<br>         AUDIOCOMMON_RESULT_ERROR_SYSTEM = 6800301：系统状态错误。 |
+| [OH_AudioCommon_Result](capi-native-audio-common-h.md#oh_audiocommon_result) | AUDIOCOMMON_RESULT_SUCCESS = 0：函数执行成功。<br>         AUDIOCOMMON_RESULT_ERROR_SYSTEM = 6800301：系统状态错误。 |
 
 ### OH_AudioStreamManager_GetDirectPlaybackSupport()
 
@@ -71,10 +72,10 @@ OH_AudioCommon_Result OH_AudioStreamManager_GetDirectPlaybackSupport(OH_AudioStr
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_AudioStreamManager](capi-oh-audiostreammanager.md) *audioStreamManager | audioStreamManager 音频流管理器句柄 [OH_AudioStreamManager](capi-oh-audiostreammanager.md)。通过 [OH_AudioManager_GetAudioStreamManager](capi-native-audio-stream-manager-h.md#oh_audiomanager_getaudiostreammanager) 获取句柄。 |
-| [OH_AudioStreamInfo](capi-oh-audiostreaminfo.md) *streamInfo | streamInfo 音频流信息指针 [OH_AudioStreamInfo](capi-oh-audiostreaminfo.md)。                                                                                                                                             |
-| [OH_AudioStream_Usage](capi-native-audiostream-base-h.md#oh_audiostream_usage) usage | 音频流使用场景 [OH_AudioStream_Usage](capi-native-audiostream-base-h.md#oh_audiostream_usage)。                                                                                                                          |
-| [OH_AudioStream_DirectPlaybackMode](capi-native-audiostream-base-h.md#oh_audiostream_directplaybackmode) *directPlaybackMode | directPlaybackMode 指向 [OH_AudioStream_DirectPlaybackMode](capi-native-audiostream-base-h.md#oh_audiostream_directplaybackmode)，用于获取当前音频流支持的direct通路播放模式。                                                         |
+| [OH_AudioStreamManager](capi-oh-audiostreammanager.md) *audioStreamManager | 音频流管理器句柄。通过 [OH_AudioManager_GetAudioStreamManager](capi-native-audio-stream-manager-h.md#oh_audiomanager_getaudiostreammanager)获取句柄。 |
+| [OH_AudioStreamInfo](capi-oh-audiostreaminfo.md) *streamInfo | 音频流信息指针。  |
+| [OH_AudioStream_Usage](capi-native-audiostream-base-h.md#oh_audiostream_usage) usage | 音频流使用场景。    |
+| [OH_AudioStream_DirectPlaybackMode](capi-native-audiostream-base-h.md#oh_audiostream_directplaybackmode) *directPlaybackMode | 指向 [OH_AudioStream_DirectPlaybackMode](capi-native-audiostream-base-h.md#oh_audiostream_directplaybackmode)，用于获取当前音频流支持的direct通路播放模式。    |
 
 **返回：**
 

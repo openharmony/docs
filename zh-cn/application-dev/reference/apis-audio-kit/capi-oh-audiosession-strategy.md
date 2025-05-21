@@ -16,6 +16,6 @@
 
 | 名称 | 描述 |
 | -- | -- |
-| OH_AudioSession_ConcurrencyMode concurrencyMode | 音频并发模式。 |
+| [OH_AudioSession_ConcurrencyMode](capi-native-audio-session-manager-h.md#oh_audiosession_concurrencymode) concurrencyMode | 音频并发模式。 |
 
 

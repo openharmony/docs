@@ -37,22 +37,23 @@ OH_AudioCommon_Result OH_GetAudioManager(OH_AudioManager **audioManager)
 
 **描述**
 
-获取音频管理器。使用音频管理器相关功能，首先需要获取音频管理器实例。
+获取音频管理器。
+
+使用音频管理器相关功能，首先需要获取音频管理器实例。
 
 **起始版本：** 12
-
 
 **参数：**
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_AudioManager](capi-oh-audiomanager.md) **audioManager | audioManager 指向[OH_AudioManager](capi-oh-audiomanager.md)用于接收创建的音频管理器实例。 |
+| [OH_AudioManager](capi-oh-audiomanager.md) **audioManager | 指向[OH_AudioManager](capi-oh-audiomanager.md)用于接收创建的音频管理器实例。 |
 
 **返回：**
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_AudioCommon_Result](capi-native-audio-common-h.md#oh_audiocommon_result) | 函数返回值:<br>         [AUDIOCOMMON_RESULT_SUCCESS](capi-native-audio-common-h.md#oh_audiocommon_result) 函数执行成功。<br>         [AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM](capi-native-audio-common-h.md#oh_audiocommon_result):<br>                                                        参数audioManager为nullptr。 |
+| [OH_AudioCommon_Result](capi-native-audio-common-h.md#oh_audiocommon_result) | AUDIOCOMMON_RESULT_SUCCESS：函数执行成功。<br>         AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM：参数audioManager为nullptr。 |
 
 ### OH_GetAudioScene()
 
@@ -72,12 +73,10 @@ OH_AudioCommon_Result OH_GetAudioScene(OH_AudioManager* manager, OH_AudioScene *
 | 参数项 | 描述 |
 | -- | -- |
 | [OH_AudioManager](capi-oh-audiomanager.md)* manager | 指向[OH_GetAudioManager](capi-native-audio-manager-h.md#oh_getaudiomanager)创建的音频管理器实例：[OH_AudioManager](capi-oh-audiomanager.md)。 |
-| [OH_AudioScene](capi-native-audio-common-h.md#oh_audioscene) *scene | scene 指向[OH_AudioScene](capi-native-audio-common-h.md#oh_audioscene)用于接收返回的音频场景模式。 |
+| [OH_AudioScene](capi-native-audio-common-h.md#oh_audioscene) *scene | 指向[OH_AudioScene](capi-native-audio-common-h.md#oh_audioscene)用于接收返回的音频场景模式。 |
 
 **返回：**
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_AudioCommon_Result](capi-native-audio-common-h.md#oh_audiocommon_result) | 函数返回值:<br>         [AUDIOCOMMON_RESULT_SUCCESS](capi-native-audio-common-h.md#oh_audiocommon_result) 函数执行成功。<br>         [AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM](capi-native-audio-common-h.md#oh_audiocommon_result):<br>                                                        1.参数audioManager为nullptr;<br>                                                        2.参数scene为nullptr。 |
-
-
+| [OH_AudioCommon_Result](capi-native-audio-common-h.md#oh_audiocommon_result) | AUDIOCOMMON_RESULT_SUCCESS：函数执行成功。<br>         AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM：<br>1.参数audioManager为nullptr;<br>2.参数scene为nullptr。 |

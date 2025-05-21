@@ -2,7 +2,9 @@
 
 ## 概述
 
-声明音频公共基础数据结构。定义音频接口的公共返回值的类型。
+声明音频公共基础数据结构。
+
+定义音频接口的公共返回值的类型。
 
 **库：** libohaudio.so
 
@@ -60,9 +62,7 @@ enum OH_AudioScene
 
 | 枚举项 | 描述 |
 | -- | -- |
-| AUDIO_SCENE_DEFAULT = 0 |  |
-| AUDIO_SCENE_RINGING = 1 |  |
-| AUDIO_SCENE_PHONE_CALL = 2 |  |
-| AUDIO_SCENE_VOICE_CHAT = 3 |  |
-
-
+| AUDIO_SCENE_DEFAULT = 0 | 默认音频场景。 |
+| AUDIO_SCENE_RINGING = 1 | 响铃场景。 |
+| AUDIO_SCENE_PHONE_CALL = 2 | 电话场景。 |
+| AUDIO_SCENE_VOICE_CHAT = 3 | 语音聊天场景。 |

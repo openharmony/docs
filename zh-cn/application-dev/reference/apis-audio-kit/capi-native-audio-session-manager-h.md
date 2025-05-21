@@ -2,7 +2,9 @@
 
 ## 概述
 
-声明音频会话管理相关的接口。包含创建音频会话管理器、激活/停用音频会话、检查音频会话是否已激活，以及监听音频会话停用事件。
+声明音频会话管理相关的接口。
+
+包含创建音频会话管理器、激活/停用音频会话、检查音频会话是否已激活，以及监听音频会话停用事件。
 
 **库：** libohaudio.so
 
@@ -20,7 +22,7 @@
 | -- | -- | -- |
 | [OH_AudioSession_Strategy](capi-oh-audiosession-strategy.md) | OH_AudioSession_Strategy | 音频会话策略。 |
 | [OH_AudioSession_DeactivatedEvent](capi-oh-audiosession-deactivatedevent.md) | OH_AudioSession_DeactivatedEvent | 音频会话已停用事件。 |
-| [OH_AudioSessionManager](capi-oh-audiosessionmanager.md) | OH_AudioSessionManager | 声明音频会话管理器。用于管理音频会话相关功能。 |
+| [OH_AudioSessionManager](capi-oh-audiosessionmanager.md) | OH_AudioSessionManager | 声明音频会话管理器。<br>用于管理音频会话相关功能。 |
 
 ### 枚举
 
@@ -94,7 +96,6 @@ typedef int32_t (*OH_AudioSession_DeactivatedCallback)(OH_AudioSession_Deactivat
 
 **起始版本：** 12
 
-
 **参数：**
 
 | 参数项 | 描述 |
@@ -109,22 +110,23 @@ OH_AudioCommon_Result OH_AudioManager_GetAudioSessionManager(OH_AudioSessionMana
 
 **描述**
 
-获取音频会话管理器。使用音频会话管理器相关功能，首先需要获取音频会话管理器实例。
+获取音频会话管理器。
+
+使用音频会话管理器相关功能，首先需要获取音频会话管理器实例。
 
 **起始版本：** 12
-
 
 **参数：**
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_AudioSessionManager](capi-oh-audiosessionmanager.md) **audioSessionManager | audioSessionManager 指向[OH_AudioSessionManager](capi-oh-audiosessionmanager.md)音频会话管理器实例。 |
+| [OH_AudioSessionManager](capi-oh-audiosessionmanager.md) **audioSessionManager | 指向OH_AudioSessionManager音频会话管理器实例。 |
 
 **返回：**
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_AudioCommon_Result](capi-native-audio-common-h.md#oh_audiocommon_result) | 函数返回值：<br>         [AUDIOCOMMON_RESULT_SUCCESS]() 函数执行成功。<br>        [AUDIOCOMMON_RESULT_ERROR_SYSTEM](capi-native-audio-common-h.md#oh_audiocommon_result) 系统错误。 |
+| [OH_AudioCommon_Result](capi-native-audio-common-h.md#oh_audiocommon_result) | AUDIOCOMMON_RESULT_SUCCESS： 函数执行成功。<br>        AUDIOCOMMON_RESULT_ERROR_SYSTEM：系统错误。 |
 
 ### OH_AudioSessionManager_ActivateAudioSession()
 
@@ -143,14 +145,14 @@ OH_AudioCommon_Result OH_AudioSessionManager_ActivateAudioSession(OH_AudioSessio
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_AudioSessionManager](capi-oh-audiosessionmanager.md) *audioSessionManager | audioSessionManager 指向[OH_AudioManager_GetAudioSessionManager](#oh_audiomanager_getaudiosessionmanager)创建的音频会话管理实例：[OH_AudioSessionManager](capi-oh-audiosessionmanager.md)。 |
-| const [OH_AudioSession_Strategy](capi-oh-audiosession-strategy.md) *strategy | strategy 指向[OH_AudioSession_Strategy](capi-oh-audiosession-strategy.md)用于设置音频会话策略。                                                                                                                           |
+| [OH_AudioSessionManager](capi-oh-audiosessionmanager.md) *audioSessionManager | 指向[OH_AudioManager_GetAudioSessionManager](#oh_audiomanager_getaudiosessionmanager)创建的音频会话管理实例。 |
+| const [OH_AudioSession_Strategy](capi-oh-audiosession-strategy.md) *strategy | 指向[OH_AudioSession_Strategy](capi-oh-audiosession-strategy.md)，用于设置音频会话策略。                                                                                                                           |
 
 **返回：**
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_AudioCommon_Result](capi-native-audio-common-h.md#oh_audiocommon_result) | 函数返回值：<br>         [AUDIOCOMMON_RESULT_SUCCESS](capi-native-audio-common-h.md#oh_audiocommon_result) 函数执行成功。<br>         [AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM](capi-native-audio-common-h.md#oh_audiocommon_result)：<br>                                                        1. 参数audioSessionManager为nullptr；<br>                                                        2. 参数strategy无效。<br>         [AUDIOCOMMON_RESULT_ERROR_ILLEGAL_STATE](capi-native-audio-common-h.md#oh_audiocommon_result) 非法状态。 |
+| [OH_AudioCommon_Result](capi-native-audio-common-h.md#oh_audiocommon_result) |         AUDIOCOMMON_RESULT_SUCCESS：函数执行成功。<br>         AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM：<br>                                                        1. 参数audioSessionManager为nullptr；<br>                                                        2. 参数strategy无效。<br>         AUDIOCOMMON_RESULT_ERROR_ILLEGAL_STATE：非法状态。 |
 
 ### OH_AudioSessionManager_DeactivateAudioSession()
 
@@ -169,13 +171,13 @@ OH_AudioCommon_Result OH_AudioSessionManager_DeactivateAudioSession(OH_AudioSess
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_AudioSessionManager](capi-oh-audiosessionmanager.md) *audioSessionManager | audioSessionManager 指向[OH_AudioManager_GetAudioSessionManager](#oh_audiomanager_getaudiosessionmanager)创建的音频会话管理实例：[OH_AudioSessionManager](capi-oh-audiosessionmanager.md)。 |
+| [OH_AudioSessionManager](capi-oh-audiosessionmanager.md) *audioSessionManager | 指向[OH_AudioManager_GetAudioSessionManager](#oh_audiomanager_getaudiosessionmanager)创建的音频会话管理实例。 |
 
 **返回：**
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_AudioCommon_Result](capi-native-audio-common-h.md#oh_audiocommon_result) | 函数返回值：<br>         [AUDIOCOMMON_RESULT_SUCCESS](capi-native-audio-common-h.md#oh_audiocommon_result) 函数执行成功。<br>         [AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM](capi-native-audio-common-h.md#oh_audiocommon_result)：参数audioSessionManager为nullptr。<br>         [AUDIOCOMMON_RESULT_ERROR_ILLEGAL_STATE](capi-native-audio-common-h.md#oh_audiocommon_result) 非法状态。 |
+| [OH_AudioCommon_Result](capi-native-audio-common-h.md#oh_audiocommon_result) |         AUDIOCOMMON_RESULT_SUCCESS：函数执行成功。<br>         AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM：参数audioSessionManager为nullptr。<br>         AUDIOCOMMON_RESULT_ERROR_ILLEGAL_STATE：非法状态。 |
 
 ### OH_AudioSessionManager_IsAudioSessionActivated()
 
@@ -194,7 +196,7 @@ bool OH_AudioSessionManager_IsAudioSessionActivated(OH_AudioSessionManager *audi
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_AudioSessionManager](capi-oh-audiosessionmanager.md) *audioSessionManager | audioSessionManager 指向[OH_AudioManager_GetAudioSessionManager](#oh_audiomanager_getaudiosessionmanager)创建的音频会话管理实例：[OH_AudioSessionManager](capi-oh-audiosessionmanager.md)。 |
+| [OH_AudioSessionManager](capi-oh-audiosessionmanager.md) *audioSessionManager | 指向[OH_AudioManager_GetAudioSessionManager](#oh_audiomanager_getaudiosessionmanager)创建的音频会话管理实例。 |
 
 **返回：**
 
@@ -214,19 +216,18 @@ OH_AudioCommon_Result OH_AudioSessionManager_RegisterSessionDeactivatedCallback(
 
 **起始版本：** 12
 
-
 **参数：**
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_AudioSessionManager](capi-oh-audiosessionmanager.md) *audioSessionManager | audioSessionManager 指向[OH_AudioManager_GetAudioSessionManager](#oh_audiomanager_getaudiosessionmanager)创建的音频会话管理实例[OH_AudioSessionManager](capi-oh-audiosessionmanager.md)。 |
-| [OH_AudioSession_DeactivatedCallback](#oh_audiosession_deactivatedcallback) callback | 指向OH_AudioSessionDeactivatedCallback用于接收音频会话已停用事件。 |
+| [OH_AudioSessionManager](capi-oh-audiosessionmanager.md) *audioSessionManager | 指向[OH_AudioManager_GetAudioSessionManager](#oh_audiomanager_getaudiosessionmanager)创建的音频会话管理实例。 |
+| [OH_AudioSession_DeactivatedCallback](#oh_audiosession_deactivatedcallback) callback | 指向OH_AudioSessionDeactivatedCallback，用于接收音频会话已停用事件。 |
 
 **返回：**
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_AudioCommon_Result](capi-native-audio-common-h.md#oh_audiocommon_result) | 函数返回值：<br>         [AUDIOCOMMON_RESULT_SUCCESS](capi-native-audio-common-h.md#oh_audiocommon_result) 函数执行成功。<br>         [AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM](capi-native-audio-common-h.md#oh_audiocommon_result)：<br>                                                        1. 参数audioSessionManager为nullptr；<br>                                                        2. 参数callback为nullptr。 |
+| [OH_AudioCommon_Result](capi-native-audio-common-h.md#oh_audiocommon_result) |         AUDIOCOMMON_RESULT_SUCCESS：函数执行成功。<br>         AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM：<br>                                                        1. 参数audioSessionManager为nullptr；<br>                                                        2. 参数callback为nullptr。 |
 
 ### OH_AudioSessionManager_UnregisterSessionDeactivatedCallback()
 
@@ -245,13 +246,13 @@ OH_AudioCommon_Result OH_AudioSessionManager_UnregisterSessionDeactivatedCallbac
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_AudioSessionManager](capi-oh-audiosessionmanager.md) *audioSessionManager | audioSessionManager 指向[OH_AudioManager_GetAudioSessionManager](#oh_audiomanager_getaudiosessionmanager)创建的音频会话管理实例[OH_AudioSessionManager](capi-oh-audiosessionmanager.md)。 |
-| [OH_AudioSession_DeactivatedCallback](#oh_audiosession_deactivatedcallback) callback | 指向OH_AudioSessionDeactivatedCallback 用于接收音频会话已停用事件。 |
+| [OH_AudioSessionManager](capi-oh-audiosessionmanager.md) *audioSessionManager | 指向[OH_AudioManager_GetAudioSessionManager](#oh_audiomanager_getaudiosessionmanager)创建的音频会话管理实例。 |
+| [OH_AudioSession_DeactivatedCallback](#oh_audiosession_deactivatedcallback) callback | 指向OH_AudioSessionDeactivatedCallback，用于接收音频会话已停用事件。 |
 
 **返回：**
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_AudioCommon_Result](capi-native-audio-common-h.md#oh_audiocommon_result) | 函数返回值：<br>         [AUDIOCOMMON_RESULT_SUCCESS](capi-native-audio-common-h.md#oh_audiocommon_result) 函数执行成功。<br>         [AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM](capi-native-audio-common-h.md#oh_audiocommon_result)：<br>                                                        1. 参数audioSessionManager为nullptr；<br>                                                        2. 参数callback为nullptr。 |
+| [OH_AudioCommon_Result](capi-native-audio-common-h.md#oh_audiocommon_result) |         AUDIOCOMMON_RESULT_SUCCESS：函数执行成功。<br>         AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM：<br>                                                        1. 参数audioSessionManager为nullptr；<br>                                                        2. 参数callback为nullptr。 |
 
 
