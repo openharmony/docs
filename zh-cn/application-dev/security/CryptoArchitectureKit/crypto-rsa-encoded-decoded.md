@@ -1,4 +1,4 @@
-# RSA支持私钥的编码解码(ArkTS)
+# 使用RSA私钥进行编码解码(ArkTS)
 
 **编码**
 
@@ -14,8 +14,8 @@
 
    如何生成RSA非对称密钥对，开发者可参考下文示例，并结合[非对称密钥生成和转换规格：RSA](crypto-asym-key-generation-conversion-spec.md#rsa)。
 
-   **注意：**
-   解码应该与编码传入的算法一致。
+   > **注意：**
+   > 解码应该与编码传入的算法一致。
 
 2. 调用异步[asyKeyGenerator.convertPemKey](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#convertpemkey18)或者同步方法[asyKeyGenerator.convertPemKeySync](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#convertpemkeysync18)，传入编码后的私钥字符串与编码口令。最后返回编码前的私钥字符串。
 

@@ -10,7 +10,7 @@
 
 2. 调用[OH_CryptoSm2CiphertextSpec_SetItem](../../reference/apis-crypto-architecture-kit/capi-crypto-asym-cipher-h.md#oh_cryptosm2ciphertextspec_setitem)，设置密文的各个参数（C1.x、C1.y、C2、C3）。
 
-3. 调用[OH_CryptoSm2CiphertextSpec_Encode](../../reference/apis-crypto-architecture-kit/capi-crypto-asym-cipher-h.md#oh_cryptosm2ciphertextspec_encode)，生成ASN.1格式的密文（当前密文转换只支持SM3，实现中只校验了hash长度是否为32）。
+3. 调用[OH_CryptoSm2CiphertextSpec_Encode](../../reference/apis-crypto-architecture-kit/capi-crypto-asym-cipher-h.md#oh_cryptosm2ciphertextspec_encode)，生成ASN.1格式的密文（当前密文转换只支持SM3，实现中只校验了hash长度是否为32字节）。
 
 4. 使用完毕后，调用[OH_CryptoSm2CiphertextSpec_Destroy](../../reference/apis-crypto-architecture-kit/capi-crypto-asym-cipher-h.md#oh_cryptosm2ciphertextspec_destroy)销毁SM2密文规格对象。
 
@@ -19,7 +19,7 @@
 
 static OH_Crypto_ErrCode doTestGenCipherTextBySpec()
 {
-    // 准备SM2密文参数
+    // 准备SM2密文参数。
     uint8_t c1x[] = {45, 153, 88, 82, 104, 221, 226, 43, 174, 21, 122, 248, 5, 232, 105, 41, 92, 95, 102, 224,
                      216, 149, 85, 236, 110, 6, 64, 188, 149, 70, 70, 183};
     uint8_t c1y[] = {107, 93, 198, 247, 119, 18, 40, 110, 90, 156, 193, 158, 205, 113, 170, 128, 146, 109, 75,
@@ -28,14 +28,14 @@ static OH_Crypto_ErrCode doTestGenCipherTextBySpec()
     uint8_t c3[] = {87, 167, 167, 247, 88, 146, 203, 234, 83, 126, 117, 129, 52, 142, 82, 54, 152, 226, 201, 111,
                     143, 115, 169, 125, 128, 42, 157, 31, 114, 198, 109, 244};
 
-    // 创建空的SM2密文规格对象
+    // 创建空的SM2密文规格对象。
     OH_CryptoSm2CiphertextSpec *sm2CipherSpec = nullptr;
     OH_Crypto_ErrCode ret = OH_CryptoSm2CiphertextSpec_Create(nullptr, &sm2CipherSpec);
     if (ret != CRYPTO_SUCCESS) {
         return ret;
     }
 
-    // 设置各个参数
+    // 设置各个参数。
     Crypto_DataBlob c1xBlob = {c1x, sizeof(c1x)};
     Crypto_DataBlob c1yBlob = {c1y, sizeof(c1y)};
     Crypto_DataBlob c2Blob = {c2, sizeof(c2)};
@@ -62,7 +62,7 @@ static OH_Crypto_ErrCode doTestGenCipherTextBySpec()
         return ret;
     }
 
-    // 编码为ASN.1格式
+    // 编码为ASN.1格式。
     Crypto_DataBlob encoded = { 0 };
     ret = OH_CryptoSm2CiphertextSpec_Encode(sm2CipherSpec, &encoded);
     if (ret != CRYPTO_SUCCESS) {
@@ -70,7 +70,7 @@ static OH_Crypto_ErrCode doTestGenCipherTextBySpec()
         return ret;
     }
 
-    // 清理资源
+    // 清理资源。
     OH_Crypto_FreeDataBlob(&encoded);
     OH_CryptoSm2CiphertextSpec_Destroy(sm2CipherSpec);
     return ret;
@@ -88,7 +88,7 @@ static OH_Crypto_ErrCode doTestGenCipherTextBySpec()
 ```C++
 static OH_Crypto_ErrCode doTestGetCipherTextSpec()
 {
-    // 准备标准ASN.1格式密文
+    // 准备标准ASN.1格式密文。
     uint8_t cipherTextArray[] = {48, 118, 2, 32, 45, 153, 88, 82, 104, 221, 226, 43, 174, 21, 122, 248, 5, 232, 105,
                                 41, 92, 95, 102, 224, 216, 149, 85, 236, 110, 6, 64, 188, 149, 70, 70, 183, 2, 32, 107,
                                 93, 198, 247, 119, 18, 40, 110, 90, 156, 193, 158, 205, 113, 170, 128, 146, 109, 75, 17,
@@ -98,14 +98,14 @@ static OH_Crypto_ErrCode doTestGetCipherTextSpec()
                                 10, 65, 123};
     Crypto_DataBlob cipherText = {cipherTextArray, sizeof(cipherTextArray)};
 
-    // 从ASN.1格式密文创建SM2密文规格对象
+    // 从ASN.1格式密文创建SM2密文规格对象。
     OH_CryptoSm2CiphertextSpec *sm2CipherSpec = nullptr;
     OH_Crypto_ErrCode ret = OH_CryptoSm2CiphertextSpec_Create(&cipherText, &sm2CipherSpec);
     if (ret != CRYPTO_SUCCESS) {
         return ret;
     }
 
-    // 获取各个参数
+    // 获取各个参数。
     Crypto_DataBlob c1x = { 0 };
     Crypto_DataBlob c1y = { 0 };
     Crypto_DataBlob c2 = { 0 };

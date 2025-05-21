@@ -6,10 +6,10 @@
 
 1. 调用[OH_CryptoKdfParams_Create](../../reference/apis-crypto-architecture-kit/capi-crypto-kdf-h.md#oh_cryptokdfparams_create)，指定字符串参数'PBKDF2'，创建密钥派生参数对象。
 
-2. 调用[OH_CryptoKdfParams_SetParam](../../reference/apis-crypto-architecture-kit/capi-crypto-kdf-h.md#oh_cryptokdfparams_setparam)，设置PBKDF2所需的参数：
-   - CRYPTO_KDF_KEY_DATABLOB：用于生成派生密钥的原始密码
-   - CRYPTO_KDF_SALT_DATABLOB：盐值
-   - CRYPTO_KDF_ITER_COUNT_INT：重复运算的次数，需要为正整数
+2. 调用[OH_CryptoKdfParams_SetParam](../../reference/apis-crypto-architecture-kit/capi-crypto-kdf-h.md#oh_cryptokdfparams_setparam)，设置PBKDF2所需的参数。示例如下：
+   - CRYPTO_KDF_KEY_DATABLOB：用于生成派生密钥的原始密码。
+   - CRYPTO_KDF_SALT_DATABLOB：盐值。
+   - CRYPTO_KDF_ITER_COUNT_INT：重复运算的次数，需要为正整数。
 
 3. 调用[OH_CryptoKdf_Create](../../reference/apis-crypto-architecture-kit/capi-crypto-kdf-h.md#oh_cryptokdf_create)，指定字符串参数'PBKDF2|SHA256'，创建密钥派生函数对象。
 
@@ -22,14 +22,14 @@
 
 static OH_Crypto_ErrCode doTestPbkdf2()
 {
-    // 创建PBKDF2参数对象
+    // 创建PBKDF2参数对象。
     OH_CryptoKdfParams *params = nullptr;
     OH_Crypto_ErrCode ret = OH_CryptoKdfParams_Create("PBKDF2", &params);
     if (ret != CRYPTO_SUCCESS) {
         return ret;
     }
 
-    // 设置密码
+    // 设置密码。
     const char *password = "123456";
     Crypto_DataBlob passwordBlob = {
         .data = reinterpret_cast<uint8_t *>(const_cast<char *>(password)),
@@ -41,7 +41,7 @@ static OH_Crypto_ErrCode doTestPbkdf2()
         return ret;
     }
 
-    // 设置盐值
+    // 设置盐值。
     const char *salt = "saltstring";
     Crypto_DataBlob saltBlob = {
         .data = reinterpret_cast<uint8_t *>(const_cast<char *>(salt)),
@@ -53,7 +53,7 @@ static OH_Crypto_ErrCode doTestPbkdf2()
         return ret;
     }
 
-    // 设置迭代次数
+    // 设置迭代次数。
     int iterations = 10000;
     Crypto_DataBlob iterationsBlob = {
         .data = reinterpret_cast<uint8_t *>(&iterations),
@@ -65,7 +65,7 @@ static OH_Crypto_ErrCode doTestPbkdf2()
         return ret;
     }
 
-    // 创建密钥派生函数对象
+    // 创建密钥派生函数对象。
     OH_CryptoKdf *kdfCtx = nullptr;
     ret = OH_CryptoKdf_Create("PBKDF2|SHA256", &kdfCtx);
     if (ret != CRYPTO_SUCCESS) {
@@ -73,9 +73,9 @@ static OH_Crypto_ErrCode doTestPbkdf2()
         return ret;
     }
 
-    // 派生密钥
+    // 派生密钥。
     Crypto_DataBlob out = {0};
-    uint32_t keyLength = 32; // 生成32字节的密钥
+    uint32_t keyLength = 32; // 生成32字节的密钥。
     ret = OH_CryptoKdf_Derive(kdfCtx, params, keyLength, &out);
     if (ret != CRYPTO_SUCCESS) {
         OH_CryptoKdf_Destroy(kdfCtx);
@@ -85,7 +85,7 @@ static OH_Crypto_ErrCode doTestPbkdf2()
 
     printf("Derived key length: %u\n", out.len);
 
-    // 清理资源
+    // 清理资源。
     OH_Crypto_FreeDataBlob(&out);
     OH_CryptoKdf_Destroy(kdfCtx);
     OH_CryptoKdfParams_Destroy(params);

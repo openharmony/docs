@@ -26,9 +26,9 @@
 
    | 接口名 | 返回方式 |
    | -------- | -------- |
-   | generateSecret(params: KdfSpec, callback: AsyncCallback&lt;DataBlob&gt;): void | callback异步生成 |
-   | generateSecret(params: KdfSpec): Promise&lt;DataBlob&gt; | Promise异步生成 |
-   | generateSecretSync(params: KdfSpec): DataBlob | 同步生成 |
+   | generateSecret(params: KdfSpec, callback: AsyncCallback&lt;DataBlob&gt;): void | callback异步生成。 |
+   | generateSecret(params: KdfSpec): Promise&lt;DataBlob&gt; | Promise异步生成。 |
+   | generateSecretSync(params: KdfSpec): DataBlob | 同步生成。 |
 
 - 通过await返回结果：
 

@@ -30,7 +30,7 @@ HKDF包含三个模式，提取（EXTRACT_ONLY）、拓展（EXPAND_ONLY）、�
 
 当前支持以字符串参数进行密钥派生，具体的“字符串参数”由“密钥派生函数”、“HMAC函数摘要算法”和“模式”使用符号“|”拼接而成，用于在创建密钥派生函数生成器时，指定算法规格。
 
-如表所示，各取值范围（即[]中的内容）中，最多选取一项完成字符串拼接，其中“模式”为可选项，未指定时默认为EXTRACT_AND_EXPAND，举例说明，当需要密钥派生算法为HKDF、HMAC函数摘要算法为SHA1、模式为EXTRACT_AND_EXPAND时，其字符串参数为"HKDF|SHA1"或"HKDF|SHA1|EXTRACT_AND_EXPAND"。
+如下表所示，各取值范围（即[]中的内容）中，最多选取一项完成字符串拼接，其中“模式”为可选项，未指定时默认为EXTRACT_AND_EXPAND。例如：当需要密钥派生算法为HKDF、HMAC，函数摘要算法为SHA1、模式为EXTRACT_AND_EXPAND时，其字符串参数为"HKDF|SHA1"或"HKDF|SHA1|EXTRACT_AND_EXPAND"。
 | 密钥派生算法 | HMAC函数摘要算法 | 模式 | API版本 | 
 | -------- | -------- | -------- | -------- |
 | HKDF | SHA1 | [EXPAND_ONLY\|EXTRACT_ONLY\|EXTRACT_AND_EXPAND] | 12+ | 
