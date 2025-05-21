@@ -2037,7 +2037,7 @@ static getTimezonesByLocation(longitude: number, latitude: number): Array&lt;Tim
 
 public getZoneRules(): ZoneRules
 
-获取时区偏移量变更规则。
+获取时区跳变规则。
 
 **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
@@ -2047,7 +2047,7 @@ public getZoneRules(): ZoneRules
 
 | 类型     | 说明                 |
 | ------ | ------------------ |
-| [ZoneRules](#zonerules) | 时区偏移量变更规则。 |
+| [ZoneRules](#zonerules) | 时区跳变规则。 |
 
 **示例：**
 ```ts
