@@ -12,7 +12,7 @@ Video通过调用接口来创建，接口调用形式如下：
 
 ## 加载视频资源
 
-Video组件支持加载本地视频和网络视频。
+Video组件支持加载本地视频和网络视频。视频的数据源具体请参考[VideoOptions对象说明](../reference/apis-arkui/arkui-ts/ts-media-components-video.md#videooptions对象说明)。
 
 
 ### 加载本地视频
@@ -36,9 +36,9 @@ Video组件支持加载本地视频和网络视频。
     build() {
       Column() {
         Video({
-          src: this.innerResource,
-          previewUri: this.previewUris,
-          controller: this.controller
+          src: this.innerResource,  // 设置视频源
+          previewUri: this.previewUris, // 设置预览图
+          controller: this.controller //设置视频控制器，可以控制视频的播放状态
         })
       }
     }
@@ -137,7 +137,7 @@ export struct VideoPlayer {
         .controls(false) // 设置是否显示默认控制条
         .autoPlay(false) // 设置是否自动播放
         .loop(false) // 设置是否循环播放
-        .objectFit(ImageFit.Contain) // 设置视频适配模式
+        .objectFit(ImageFit.Contain) // 设置视频填充模式
     }
   }
 }
@@ -205,7 +205,7 @@ Video控制器主要用于控制视频的状态，包括播放、暂停、停止
           Video({
             src: this.videoSrc,
             previewUri: this.previewUri,
-            currentProgressRate: this.curRate
+            currentProgressRate: this.curRate // 设置视频播放倍速
           })
         }
         .width('100%')
@@ -264,7 +264,7 @@ Video控制器主要用于控制视频的状态，包括播放、暂停、停止
               max: this.durationTime
             })
               .onChange((value: number, mode: SliderChangeMode) => {
-                this.controller.setCurrentTime(value);
+                this.controller.setCurrentTime(value); // 设置视频播放的进度跳转到value处
               })
               .width("90%")
             Text(JSON.stringify(this.durationTime) + 's')
