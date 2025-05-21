@@ -1,10 +1,10 @@
 # 不依赖UI组件的全局菜单 (openMenu)
 
-[菜单控制 (Menu)](arkts-popup-and-menu-components-menu.md)在使用时依赖绑定UI组件，否则无法使用。从API version 19开始，可以通过使用全局接口[openMenu](../reference/apis-arkui/js-apis-arkui-UIContext.md#openmenu19)的方式，在无UI组件的场景下直接或封装使用，例如在事件回调中使用或封装后对外提供能力。
+[菜单控制 (Menu)](arkts-popup-and-menu-components-menu.md)在使用时依赖绑定UI组件，否则无法使用。从API version 18开始，可以通过使用全局接口[openMenu](../reference/apis-arkui/js-apis-arkui-UIContext.md#openmenu18)的方式，在无UI组件的场景下直接或封装使用，例如在事件回调中使用或封装后对外提供能力。
 
 ## 弹出菜单
 
-通过[openMenu](../reference/apis-arkui/js-apis-arkui-UIContext.md#openmenu19)可以弹出菜单。
+通过[openMenu](../reference/apis-arkui/js-apis-arkui-UIContext.md#openmenu18)可以弹出菜单。
    
    ```ts
    promptAction.openMenu(contentNode, { id: targetId }, {
@@ -96,7 +96,7 @@
 
 ## 更新菜单样式
 
-通过[updateMenu](../reference/apis-arkui/js-apis-arkui-UIContext.md#updatemenu19)可以更新菜单的样式。支持全量更新和增量更新其菜单样式，不支持更新showInSubWindow、preview、previewAnimationOptions、transition、onAppear、aboutToAppear、onDisappear和aboutToDisappear。
+通过[updateMenu](../reference/apis-arkui/js-apis-arkui-UIContext.md#updatemenu18)可以更新菜单的样式。支持全量更新和增量更新其菜单样式，不支持更新showInSubWindow、preview、previewAnimationOptions、transition、onAppear、aboutToAppear、onDisappear和aboutToDisappear。
    
    ```ts
    promptAction.updateMenu(contentNode, {
@@ -112,7 +112,7 @@
 
 ## 关闭菜单
 
-通过调用[closeMenu](../reference/apis-arkui/js-apis-arkui-UIContext.md#closemenu19)可以关闭菜单。
+通过调用[closeMenu](../reference/apis-arkui/js-apis-arkui-UIContext.md#closemenu18)可以关闭菜单。
    
    ```ts
    promptAction.closeMenu(contentNode)
@@ -126,7 +126,7 @@
 
 > **说明：**
 >
-> 由于[updateMenu](../reference/apis-arkui/js-apis-arkui-UIContext.md#updatemenu19)和[closeMenu](../reference/apis-arkui/js-apis-arkui-UIContext.md#closemenu19)依赖content来更新或者关闭指定的菜单，开发者需自行维护传入的content。
+> 由于[updateMenu](../reference/apis-arkui/js-apis-arkui-UIContext.md#updatemenu18)和[closeMenu](../reference/apis-arkui/js-apis-arkui-UIContext.md#closemenu18)依赖content来更新或者关闭指定的菜单，开发者需自行维护传入的content。
 
 ## 在HAR包中使用全局菜单
 
