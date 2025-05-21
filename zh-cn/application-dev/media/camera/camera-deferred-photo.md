@@ -96,7 +96,7 @@
    function onPhotoOutputDeferredPhotoProxyAvailable(photoOutput: camera.PhotoOutput, context: Context): void {
      photoOutput.on('deferredPhotoProxyAvailable', (err: BusinessError, proxyObj: camera.DeferredPhotoProxy): void => {
        if (err) {
-         console.info(`deferredPhotoProxyAvailable error: ${err}.`);
+         console.error(`deferredPhotoProxyAvailable error: ${err}.`);
          return;
        }
        console.info('photoOutPutCallBack deferredPhotoProxyAvailable');
