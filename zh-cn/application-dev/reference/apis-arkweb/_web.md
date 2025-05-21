@@ -372,7 +372,7 @@ typedef void(* ArkWeb_OnJavaScriptCallback) (const char *webTag, const ArkWeb_Ja
 | 名称 | 描述 | 
 | -------- | -------- |
 | webTag | Web组件名称。  | 
-| data | 数据。  | 
+| data | JavaScriptBridge数据。  | 
 | userData | 用户自定义的数据。 | 
 
 ### ArkWeb_OnJavaScriptProxyCallback
