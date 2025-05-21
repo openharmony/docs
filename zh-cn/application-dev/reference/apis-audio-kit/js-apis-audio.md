@@ -2603,7 +2603,7 @@ audioVolumeGroupManager.getVolume(audio.AudioVolumeType.MEDIA).then((value: numb
 
 ### getVolumeSync<sup>10+</sup>
 
-getVolumeSync(volumeType: AudioVolumeType): number;
+getVolumeSync(volumeType: AudioVolumeType): number
 
 获取指定流的音量，同步返回结果。
 
@@ -2703,7 +2703,7 @@ audioVolumeGroupManager.getMinVolume(audio.AudioVolumeType.MEDIA).then((value: n
 
 ### getMinVolumeSync<sup>10+</sup>
 
-getMinVolumeSync(volumeType: AudioVolumeType): number;
+getMinVolumeSync(volumeType: AudioVolumeType): number
 
 获取指定流的最小音量，同步返回结果。
 
@@ -2803,7 +2803,7 @@ audioVolumeGroupManager.getMaxVolume(audio.AudioVolumeType.MEDIA).then((data: nu
 
 ### getMaxVolumeSync<sup>10+</sup>
 
-getMaxVolumeSync(volumeType: AudioVolumeType): number;
+getMaxVolumeSync(volumeType: AudioVolumeType): number
 
 获取指定流的最大音量，同步返回结果。
 
