@@ -188,6 +188,22 @@ backToTop(backToTop: boolean)
 | ------ | ------- | ---- | ---------------------------------------------- |
 | backToTop  | boolean | 是   | 设置滚动组件是否支持点击状态栏回到顶部。设置为true支持点击状态栏回到顶部，设置为false不支持点击状态栏回到顶部。<br/>默认值：<br/>API version 18之前：false。 <br/>API version 18及以后：滚动方向是水平方向时为false，是垂直方向时为true。 |
 
+### scrollBarMargin<sup>20+</sup>
+
+scrollBarMargin(margin: ScrollBarMargin): T
+
+设置滚动条的边距。边距是在滚动条避让圆角距离的基础上计算的，如果滚动条区域小于滚动条的最小长度，则不显示滚动条。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型    | 必填 | 说明                                  |
+| ------ | ------- | ---- | ------------------------------------- |
+| margin  | [ScrollBarMargin](#scrollbarmargin20对象说明)  | 是   |滚动条起始、末尾边距。 |
+
 ### digitalCrownSensitivity<sup>18+</sup>
 
 digitalCrownSensitivity(sensitivity: Optional\<CrownSensitivity>)
@@ -390,6 +406,19 @@ onScroll(event: (scrollOffset: number, scrollState: ScrollState) => void): T
 | ----- | ---- | ------------ |
 | START | 1    | 起始边生效。 |
 | END   | 2    | 末尾边生效。 |
+
+## ScrollBarMargin<sup>20+</sup>对象说明
+
+滚动条边距。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称  | 类型                                                         | 必填 | 说明                                   |
+| ----- | ------------------------------------------------------------ | ---- | -------------------------------------- |
+| start | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | 否   | 滚动条起始边距。<br/>默认值：0，单位：vp |
+| end   | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | 否   | 滚动条末尾边距。<br/>默认值：0，单位：vp |
 
 ## ContentClipMode<sup>14+</sup>枚举说明
 
