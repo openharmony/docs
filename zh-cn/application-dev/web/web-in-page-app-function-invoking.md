@@ -64,7 +64,7 @@
     }
   }
   ```
- - 应用侧使用[registerJavaScriptProxy()](../reference/apis-arkweb/js-apis-webview.md#registerjavascriptproxy)接口注册示例如下。
+- 应用侧使用[registerJavaScriptProxy()](../reference/apis-arkweb/js-apis-webview.md#registerjavascriptproxy)接口注册示例如下。
 
   ```ts
   // xxx.ets
@@ -135,7 +135,7 @@
   >
   > - 使用[registerJavaScriptProxy()](../reference/apis-arkweb/js-apis-webview.md#registerjavascriptproxy)方法注册时，注册后需调用[refresh()](../reference/apis-arkweb/js-apis-webview.md#refresh)方法生效。
 
- - 可选参数permission是一个json字符串，示例如下：
+- 可选参数permission是一个json字符串，示例如下：
   ```json
   {
     "javascriptProxyPermission": {
@@ -193,7 +193,7 @@
   }
   ```
 
- - index.html前端页面触发应用侧代码。
+- index.html前端页面触发应用侧代码。
 
   ```html
   <!-- index.html -->
