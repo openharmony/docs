@@ -210,7 +210,7 @@ start(): Promise&lt;void&gt;
 
 start(callback: AsyncCallback&lt;void&gt;): void
 
-异步方法启动端云同步, 以callback形式返回结果。
+异步方法启动端云同步，以callback形式返回结果。
 
 **需要权限**：ohos.permission.CLOUDFILE_SYNC
 
@@ -421,7 +421,7 @@ off(evt: 'progress', callback: (pg: DownloadProgress) => void): void
 | 参数名     | 类型   | 必填 | 说明 |
 | ---------- | ------ | ---- | ---- |
 | evt | string | 是   | 取消订阅的事件类型，取值为'progress'（同步过程事件）。|
-| callback | (pg: DownloadProgress) => void | 是   | 云文件下载过程事件回调，回调入参为[DownloadProgress](js-apis-file-cloudsync.md#downloadprogress11), 返回值为void。|
+| callback | (pg: DownloadProgress) => void | 是   | 云文件下载过程事件回调，回调入参为[DownloadProgress](js-apis-file-cloudsync.md#downloadprogress11)，返回值为void。|
 
 **错误码：**
 
@@ -929,8 +929,8 @@ getFileSyncState(uri: string): FileSyncState
   let path = "/data/storage/el2/cloud/1.txt";
   let uri = fileUri.getUriFromPath(path);
   try {
-    let state = fileSync.getFileSyncState(uri)
-  }.catch(err) {
+    let state = cloudSync.getFileSyncState(uri);
+  } catch (err) {
     let error:BusinessError = err as BusinessError;
     console.error("getFileSyncStatefailed with error:" + JSON.stringify(error));
   }
@@ -997,7 +997,7 @@ optimizeStorage(): Promise&lt;void&gt;
 
 ## cloudSync.startOptimizeSpace<sup>17+</sup>
 
-startOptimizeSpace(optimizePara: OptimizeSpacePara, callback?: Callback\<OptimizeSpaceProgress>): Promise&lt;void&gt;
+startOptimizeSpace(optimizePara: OptimizeSpaceParam, callback?: Callback\<OptimizeSpaceProgress>): Promise&lt;void&gt;
 
 优化图库已同步云空间的本地资源，执行立即优化空间策略，对老化天数前未访问的本地图片/视频进行优化。使用Promise异步回调。
 
@@ -1013,7 +1013,7 @@ startOptimizeSpace的使用和stopOptimizeSpace方法调用一一对应，重复
 
 | 参数名     | 类型   | 必填 | 说明 |
 | ---------- | ------ | ---- | ---- |
-| para | [OptimizeSpacePara](#optimizespacepara17) | 是   | 优化参数。 |
+| optimizePara | [OptimizeSpaceParam](#optimizespaceparam17) | 是   | 优化参数。 |
 | callback | Callback&lt;[OptimizeSpaceProgress](#optimizespaceprogress17)&gt; | 否   | 返回优化进度。缺省情况下返回401错误，不执行清理任务 |
 
 **返回值：**
@@ -1039,7 +1039,7 @@ startOptimizeSpace的使用和stopOptimizeSpace方法调用一一对应，重复
 
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
-  let para:cloudSync.OptimizeSpacePara = {totalSize: 1073741824, agingDays: 30};
+  let para:cloudSync.OptimizeSpaceParam = {totalSize: 1073741824, agingDays: 30};
   let callback = (data:cloudSync.OptimizeSpaceProgress) => {
     if (data.state == cloudSync.OptimizeState.FAILED) {
       console.info("optimize space failed");
@@ -1083,7 +1083,7 @@ stopOptimizeSpace(): void
 
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
-  let para:cloudSync.OptimizeSpacePara = {totalSize: 1073741824, agingDays: 30};
+  let para:cloudSync.OptimizeSpaceParam = {totalSize: 1073741824, agingDays: 30};
   let callback = (data:cloudSync.OptimizeSpaceProgress) => {
     if (data.state == cloudSync.OptimizeState.FAILED) {
       console.info("optimize space failed");
@@ -1123,7 +1123,7 @@ stopOptimizeSpace(): void
 | state | [OptimizeState](#optimizestate17) | 是   | 枚举值，优化空间状态。|
 | progress | number | 是   | 优化进度百分比，范围[0,100]。|
 
-## OptimizeSpacePara<sup>17+</sup>
+## OptimizeSpaceParam<sup>17+</sup>
 
 立即优化空间设置参数，设置优化总空间和老化天数。
 
