@@ -41,18 +41,17 @@
 
     混淆选项的配置推荐参考[混淆选项配置指导](#混淆选项配置指导)，混淆过程中涉及的所有配置文件的详情介绍请参考[三种混淆配置文件](#三种混淆配置文件)。
 
+    > **说明：**
+    >
+    > 1. 在DevEco Studio5.0.3.600之前，新建工程的默认设置是开启代码混淆，自动对API 10及更高版本的Stage模型进行混淆。
+    > 2. 在DevEco Studio5.0.3.600及之后，新建工程的默认设置为关闭代码混淆。若需开启混淆，需将模块的`build-profile.json5`文件的`ruleOptions.enable`字段设置为true。同时混淆规则配置文件`obfuscation-rules.txt`默认开启了四项推荐的混淆选项：`-enable-property-obfuscation`、`-enable-toplevel-obfuscation`、`-enable-filename-obfuscation`和`-enable-export-obfuscation`，开发者可以根据需要进一步修改混淆配置。
+
 * 指定release编译  
     源码混淆仅支持release编译，不支持debug编译。开启混淆开关后，release编译会进行混淆，debug编译则不会。开发者可参考[指定构建模式](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-hvigor-compilation-options-customizing-guide-V5#section192461528194916)查看和修改构建模式。
 
     > **注意：**
     >
     > release编译与debug编译的区别不仅限于混淆。若要明确应用行为差异是否由混淆引起，应通过开启或关闭混淆开关进行排查，而不是仅通过切换编译模式。
-
-> **说明：**
->
-> 1. 在DevEco Studio5.0.3.600之前，新建工程的默认设置是开启代码混淆，自动对API 10及更高版本的Stage模型进行混淆。
-> 2. 在DevEco Studio5.0.3.600及之后，新建工程的默认设置为关闭代码混淆。若需开启混淆，需将模块的`build-profile.json5`文件的`ruleOptions.enable`字段设置为true。
-> 3. 混淆规则配置文件`obfuscation-rules.txt`默认开启了四项推荐的混淆选项：`-enable-property-obfuscation`、`-enable-toplevel-obfuscation`、`-enable-filename-obfuscation`和`-enable-export-obfuscation`，开发者可以根据需要进一步修改混淆配置。
 
 ### 三种混淆配置文件
 * `obfuscation-rules.txt`  
@@ -71,6 +70,10 @@
       }
     }
     ```
+
+    > **说明**：
+    >
+    > 如果在`consumer-rules.txt`文件中配置了[混淆选项](source-obfuscation.md#混淆选项)，可能会对主模块产生影响。因此，建议仅在该文件中配置[保留选项](source-obfuscation.md#保留选项)。
 
 * `obfuscation.txt`  
     不同于以上两种开发者可自行修改的配置文件，`obfuscation.txt`是在编译构建HAR时根据`consumer-rules.txt`和依赖模块的混淆规则文件自动生成的文件，它作为一种编译产物存在于发布的HAR包中。在其他应用依赖该发布包时，会合并其中的混淆规则应用于当前编译流程。`obfuscation.txt`内容的生成及合并逻辑请参考[混淆规则合并策略](source-obfuscation.md#混淆规则合并策略)。
