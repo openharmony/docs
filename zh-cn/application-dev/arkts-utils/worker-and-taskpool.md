@@ -7,7 +7,7 @@ ArkTS应用开发过程中，可以选择TaskPool或Worker线程进行多任务�
 1. 在主线程中创建Worker线程并发送消息。
 
    ```ts
-   // index.ets
+   // Index.ets
    import { worker } from '@kit.ArkTS';
    
    @Entry
@@ -48,6 +48,7 @@ ArkTS应用开发过程中，可以选择TaskPool或Worker线程进行多任务�
 2. 在Worker线程中创建TaskPool线程，并在TaskPool线程中执行并发任务。
 
    ```ts
+   // Worker.ets
    import { ErrorEvent, MessageEvents, ThreadWorkerGlobalScope, worker } from '@kit.ArkTS';
    import { taskpool } from '@kit.ArkTS';
    
