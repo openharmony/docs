@@ -774,6 +774,7 @@
       - [Form Kit简介](form/formkit-overview.md)
       - 服务卡片开发指导（Stage模型）<!--arkts-ui-widget-stage-->
         - 开发基于ArkTS UI的卡片<!--arkts-ui-widget-->
+          - [ArkTS卡片概述](arkts-form-overview.md)
           - [ArkTS卡片运行机制](form/arkts-ui-widget-working-principles.md)
           - [ArkTS卡片相关模块](form/arkts-ui-widget-modules.md)
           - ArkTS卡片开发指导<!--arkts-ui-widget-dev-->
