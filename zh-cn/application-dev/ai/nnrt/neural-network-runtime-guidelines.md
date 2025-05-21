@@ -44,7 +44,7 @@ Neural Network Runtime部件的环境要求如下：
     ```
 ## 接口说明
 
-这里给出Neural Network Runtime开发流程中通用的接口，具体请见下列表格。
+以下为Neural Network Runtime开发流程中的常用接口，具体可见[NeuralNetworkRuntime](../../reference/apis-neural-network-runtime-kit/_neural_network_runtime.md)。
 
 ### 结构体
 
