@@ -42,7 +42,7 @@ import { InputMethodExtensionAbility } from '@kit.IMEKit';
 import { Want } from '@kit.AbilityKit';
 class InputMethodExt extends InputMethodExtensionAbility {
   onCreate(want: Want): void {
-    console.log('onCreate, want:' + want.abilityName);
+    console.info('onCreate, want:' + want.abilityName);
   }
 }
 ```
@@ -61,7 +61,7 @@ Extension生命周期回调，在销毁输入法应用时回调，执行资源�
 import { InputMethodExtensionAbility } from '@kit.IMEKit';
 class InputMethodExt extends InputMethodExtensionAbility {
   onDestroy(): void {
-    console.log('onDestroy');
+    console.info('onDestroy');
   }
 }
 ```
