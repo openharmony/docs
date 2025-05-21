@@ -1511,6 +1511,8 @@ wrapKeyItem(keyAlias: string, params: HuksOptions): Promise\<HuksReturnResult>;
 
 加密导出密钥，与unwrapKeyItem对应，导出的密钥要有允许导出的Tag，使用Promise方式回调异步返回的结果。
 
+<!--Del-->该功能当前暂时无法使用，调用接口将返回错误码12000001。<!--DelEnd-->
+
 **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Security.Huks.Core
@@ -1623,6 +1625,8 @@ async function testWrapKey(){
 unwrapKeyItem(keyAlias: string, params: HuksOptions, wrappedKey: Uint8Array): Promise\<HuksReturnResult>;
 
 加密导入密钥，与wrapKeyItem对应，使用Promise方式回调异步返回的结果。
+
+<!--Del-->该功能当前暂时无法使用，调用接口将返回错误码12000001。<!--DelEnd-->
 
 **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
