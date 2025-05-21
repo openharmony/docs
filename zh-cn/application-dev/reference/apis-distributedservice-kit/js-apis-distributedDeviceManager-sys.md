@@ -41,8 +41,8 @@ import { distributedDeviceManager } from '@kit.DistributedServiceKit';
 
 **系统API**： 此接口为系统接口。
 
-| 名称         | 类型  | 必填              |  说明
-| ----------- | ---- | --------------- |
+| 名称         | 类型  | 必填              |  说明    |
+| ----------- | ---- | --------------- | ------- |
 | isCloud      | boolean    |   是           | 是否向云端请求数据。       |
 | deviceIdList  | Array&lt;string&gt;  | 否    | 设备Id列表。       |
 
@@ -54,8 +54,8 @@ import { distributedDeviceManager } from '@kit.DistributedServiceKit';
 
 **系统API**： 此接口为系统接口。
 
-| 名称           | 类型  | 必填              |  说明
-| -------------- | ---- | --------------- |
+| 名称           | 类型  | 必填              |  说明    |
+| -------------- | ---- | --------------- | --------|
 |  deviceId      | string  | 是   |  设备ID。          |
 |  deviceSn      | string  | 是   |  设备序列号。      |
 |  mac           | string  | 是   |  MAC地址。         |
