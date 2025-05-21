@@ -26,7 +26,7 @@ HiTrace提供业务流程调用链跟踪的维测接口，帮助开发者迅速�
 | --start_bgsrv         | 开启快照模式trace捕获。                                       |
 | --dump_bgsrv          | 触发快照模式trace输出到文件。                                 |
 | --stop_bgsrv          | 关闭快照模式trace捕获。                                       |
-| --trace_level         | 设置trace输出级别阈值，输出级别可以是Debug、Info、Critical、Commercial或其对应缩写D、I、C、M。 |
+| --trace_level         | 设置trace输出级别阈值，输出级别可以是Debug、Info、Critical、Commercial或其对应缩写D、I、C、M。<br>**说明**：从API version 19开始，支持该命令。 |
 
 > **说明**
 >
