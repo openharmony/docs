@@ -387,7 +387,7 @@ getDeviceProfileInfoList(filterOptions: DeviceProfileInfoFilterOptions): Promise
     let dmInstance = distributedDeviceManager.createDeviceManager('ohos.samples.jsHelloWorld');
     dmInstance.getDeviceProfileInfoList({"isCloud": false}).then((data: Array<distributedDeviceManager.DeviceProfileInfo>) => {
       console.log('getDeviceProfileInfoList' + JSON.stringify(data));
-    }).catch((err: BusinessError) => {
+    }).catch((e: BusinessError) => {
       console.error('getDeviceProfileInfoList errCode:' + e.code + ',errMessage:' + e.message);
     });
   } catch (err) {
@@ -443,7 +443,7 @@ putDeviceProfileInfoList(deviceProfileInfoList: Array<DeviceProfileInfo>): Promi
     let deviceProfileInfoList:Array<DeviceProfileInfo> = [];
     dmInstance.putDeviceProfileInfoList(deviceProfileInfoList).then((data:number) => {
       console.log('put device profile info:' + JSON.stringify(data));
-    }).catch((err: BusinessError) => {
+    }).catch((e: BusinessError) => {
       console.error('putDeviceProfileInfoList errCode:' + e.code + ',errMessage:' + e.message);
     });
   } catch (err) {
@@ -510,7 +510,7 @@ getDeviceIconInfo(filterOptions: DeviceIconInfoFilterOptions): Promise<DeviceIco
     }
     dmInstance.getDeviceIconInfo(options).then((data: distributedDeviceManager.DeviceIconInfo) => {
       console.log('getDeviceIconInfo' + JSON.stringify(data));
-    }).catch((err : BusinessError) => {
+    }).catch((e : BusinessError) => {
       console.error('getDeviceIconInfo errCode:' + e.code + ',errMessage:' + e.message);
     });
   } catch (err) {
@@ -566,7 +566,7 @@ getLocalDisplayDeviceName(maxNameLength: number): Promise<string>
     let maxNameLength:number = 21;
     dmInstance.getLocalDisplayDeviceName(maxNameLength).then((data:string)=>{
       console.log('getLocalDisplayDeviceName name:' + JSON.stringify(data));
-    }).catch((err: BusinessError)=>{
+    }).catch((e: BusinessError)=>{
       console.error('getLocalDisplayDeviceName errCode:' + e.code + ',errMessage:' + e.message);
     });
   } catch (err) {
@@ -622,7 +622,7 @@ setLocalDeviceName(deviceName: string): Promise<number>
     let deviceName:string = 'xxx';
     dmInstance.setLocalDeviceName(deviceName).then((data:number)=>{
       console.log('setLocalDeviceName name:' + JSON.stringify(data));
-    }).catch((err: BusinessError)=>{
+    }).catch((e: BusinessError)=>{
       console.error('setLocalDeviceName errCode:' + e.code + ',errMessage:' + e.message);
     });
   } catch (err) {
@@ -681,7 +681,7 @@ setRemoteDeviceName(deviceId: string, deviceName: string): Promise<number>
     let deviceName:string = 'xxx';
     dmInstance.setRemoteDeviceName(deviceId, deviceName).then((data:number)=>{
       console.log('setRemoteDeviceName name:' + JSON.stringify(data));
-    }).catch((err: BusinessError)=>{
+    }).catch((e: BusinessError)=>{
       console.error('setRemoteDeviceName errCode:' + e.code + ',errMessage:' + e.message);
     });
   } catch (err) {
@@ -777,7 +777,7 @@ getDeviceNetworkIdList(filterOptions: NetworkIdQueryFilter): Promise<Array<strin
     let dmInstance = distributedDeviceManager.createDeviceManager('ohos.samples.jsHelloWorld');
     dmInstance.getDeviceNetworkIdList(queryFiler).then((data:Array<string>) => {
       console.log('getDeviceNetworkIdList name:' + JSON.stringify(data));
-    }).catch((err: BussinessError) => {
+    }).catch((e: BussinessError) => {
       console.error('getDeviceNetworkIdList errCode:' + e.code + ',errMessage:' + e.message);
     })
   } catch (err) {
