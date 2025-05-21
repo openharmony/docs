@@ -210,7 +210,7 @@ activateCooperate(targetNetworkId: string, inputDeviceId: number, callback: Asyn
 | 201 | Permission denied. |
 | 202 | Not system application. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified.2.Incorrect parameter types.3.Parameter verification failed. |
-| 20900001 | Service Exception. Possible causes:  1. A system error, such as null pointer, container-related exception, IPC exception. 2. N-API invocation exception, invalid N-API status. |
+| 20900001 | Service exception. Possible causes: 1. A system error, such as null pointer, container-related exception, or IPC exception. 2. N-API invocation exception or invalid N-API status. |
 
 **示例：**
 
@@ -263,7 +263,7 @@ activateCooperate(targetNetworkId: string, inputDeviceId: number): Promise&lt;vo
 | 201 | Permission denied. |
 | 202 | Not system application. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified.2.Incorrect parameter types.3.Parameter verification failed. |
-| 20900001 | Service Exception. Possible causes:  1. A system error, such as null pointer, container-related exception, IPC exception. 2. N-API invocation exception, invalid N-API status. |
+| 20900001 | Service exception. Possible causes: 1. A system error, such as null pointer, container-related exception, or IPC exception. 2. N-API invocation exception or invalid N-API status. |
 
 **示例：**
 
@@ -945,7 +945,7 @@ activate(targetNetworkId: string, inputDeviceId: number, callback: AsyncCallback
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 20900001 | Service Exception. Possible causes:  1. A system error, such as null pointer, container-related exception, IPC exception. 2. N-API invocation exception, invalid N-API status. |
+| 20900001 | Service exception. Possible causes: 1. A system error, such as null pointer, container-related exception, or IPC exception. 2. N-API invocation exception or invalid N-API status. |
 | 202 | Not system application. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified.2.Incorrect parameter types.3.Parameter verification failed. |
 
@@ -1001,7 +1001,7 @@ activate(targetNetworkId: string, inputDeviceId: number): Promise&lt;void&gt;;
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 20900001 | Service Exception. Possible causes:  1. A system error, such as null pointer, container-related exception, IPC exception. 2. N-API invocation exception, invalid N-API status. |
+| 20900001 | Service exception. Possible causes: 1. A system error, such as null pointer, container-related exception, or IPC exception. 2. N-API invocation exception or invalid N-API status.|
 | 202 | Not system application. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified.2.Incorrect parameter types.3.Parameter verification failed. |
 
