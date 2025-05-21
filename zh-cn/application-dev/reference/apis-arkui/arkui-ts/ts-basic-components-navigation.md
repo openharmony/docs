@@ -1309,6 +1309,46 @@ setInterception(interception: NavigationInterception): void
 | ---- | ---- | --- | ---|
 |interception| [NavigationInterception](#navigationinterception12)| 是 | 设置Navigation跳转拦截对象。|
 
+### getPathStack<sup>19+</sup>
+
+getPathStack(): Array\<NavPathInfo\>
+
+获取当前路由栈中的路由页面信息数组。
+
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：**
+
+| 类型     | 说明     |
+| ------ | ------ |
+| Array\<[NavPathInfo](#navpathinfo10)\> | 当前路由栈中的路由页面信息数组。 |
+
+### setPathStack<sup>19+</sup>
+
+setPathStack(pathStack: Array\<NavPathInfo\>, animated?: boolean): void
+
+将当前路由栈中的路由页面信息数组更新为指定内容，并实现路由转场。
+
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名    | 类型     | 必填   | 说明                     |
+| ---- | ---- | --- | ---|
+|pathStack| Array\<[NavPathInfo](#navpathinfo10)\>| 是 | 设置当前路由栈中的路由页面信息数组。|
+|animated| boolean | 否 | 是否开启转场动画。 <br /> 默认值：true|
+
+>  **说明：**
+>
+> 1. 开发者可以在原有栈的基础上批量添加或删除页面。批量入栈的页面中，只有可见的页面会触发创建，其他页面虽已入栈但不会立即创建，当这些页面变为可见时，才会触发创建。
+> 2. 通过批量入栈功能更新的页面栈，各页面的生命周期事件触发顺序为从栈顶到底部依次触发，这与其它入栈接口从栈底到顶部的触发顺序不同。
+> 3. 开发者可以通过[NavPathInfo](#navpathinfo10)中的页面唯一标识符navDestinationId来操作已有页面，该id由系统默认生成且全局唯一（可以通过[getPathStack](#getpathstack19)接口获取，不可主动赋新值）。若该id在当前页面栈中不存在，则表示新增页面，若在当前页面栈中存在，同时对应的name相同，则表示复用已有页面。
+
+
 ## NavPathInfo<sup>10+</sup>
 
 路由页面信息。
@@ -1342,6 +1382,7 @@ NavPathInfo参数信息。
 | param | unknown | 否    | 开发者设置的NavDestination页面详细参数。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | onPop<sup>11+</sup> | Callback\<[PopInfo](#popinfo11)> | 否 | NavDestination页面触发[pop](#pop11)、[popToName](#poptoname11)、[popToIndex](#poptoindex11)时返回的回调。仅[pop](#pop11)、[popToName](#poptoname11)、[popToIndex](#poptoindex11)时返回的回调。仅[pop](#pop11)、[popToName](#poptoname11)、[popToIndex](#poptoindex11)时返回的回调。仅[pop](#pop11)、[popToName](#poptoname11)、[popToIndex](#poptoindex11)中设置result参数后触发。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | isEntry<sup>12+</sup> | boolean | 否 | 标记NavDestination是否为入口页面。<br/>默认值：false。<br/>true：NavDestination是入口页面。<br/>false：NavDestination不是入口页面。 <br/>标记清理时机：1、在当前navDestination页面触发一次全局back事件。2、应用退至后台。<br/>**说明**：<br/>入口NavDestination不响应应用内的全局back事件，直接触发应用间的全局back事件。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| navDestinationId<sup>19+</sup>  | string  | 否    | NavDestination页面唯一标识符，该id由系统默认生成且全局唯一，通过[getPathStack](#getpathstack19)接口可读取，但不可以主动赋新值。 <br/>**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。   |
 
 ## PopInfo<sup>11+</sup>
 
