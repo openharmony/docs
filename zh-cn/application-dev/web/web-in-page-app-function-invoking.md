@@ -216,7 +216,10 @@
   </html>
   ```
 ## 复杂类型使用方法
-- 应用侧和前端页面之间传递Array。
+
+### 应用侧和前端页面之间传递Array
+
+ Array可以作为注册对象方法的参数或返回值，在应用侧和前端页面之间传递。
   ```ts
   // xxx.ets
   import { webview } from '@kit.ArkWeb';
@@ -288,7 +291,10 @@
   </body>
   </html>
   ```
-- 应用侧和前端页面之间传递基础类型，非Function等复杂类型。
+
+### 非Function等复杂类型使用
+
+  非Function等复杂类型作为注册对象方法的参数或返回值，在应用侧和前端页面之间传递。
   ```ts
   // xxx.ets
   import { webview } from '@kit.ArkWeb';
@@ -368,7 +374,9 @@
   </html>
   ```
 
-- 应用侧调用前端页面的Callback。
+### 应用侧调用前端页面的Callback
+
+  Callback可以作为注册对象方法的参数或返回值，在应用侧和前端页面之间传递。
   ```ts
   // xxx.ets
   import { webview } from '@kit.ArkWeb';
@@ -441,7 +449,9 @@
   </html>
   ```
 
-- 应用侧调用前端页面Object里的Function。
+### 应用侧调用前端页面Object里的Function
+
+  前端页面Object里的Function可以作为注册对象方法的参数或返回值，在应用侧和前端页面之间传递。
   ```ts
   // xxx.ets
   import { webview } from '@kit.ArkWeb';
@@ -538,7 +548,9 @@
   </html>
   ```
 
-- 前端页面调用应用侧Object里的Function。
+### 前端页面调用应用侧Object里的Function
+
+  应用侧Object里的Function可以作为注册对象方法的参数或返回值，在应用侧和前端页面之间传递。
   ```ts
   // xxx.ets
   import { webview } from '@kit.ArkWeb';
@@ -626,8 +638,9 @@
   </html>
   ```
 
-- Promise场景。<br>
-  第一种使用方法，在应用侧new Promise。
+### Promise场景
+
+  第一种使用方法，在应用侧new Promise，将Promise作为对象方法的参数或返回值，向前端页面传递。
   ```ts
   // xxx.ets
   import { webview } from '@kit.ArkWeb';
@@ -705,7 +718,7 @@
   </body>
   </html>
   ```
-  第二种使用方法，在前端页面new Promise。
+  第二种使用方法，在前端页面new Promise，将Promise作为对象方法的参数或返回值，向应用侧传递。
   ```ts
   // xxx.ets
   import { webview } from '@kit.ArkWeb';
