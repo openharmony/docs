@@ -51,7 +51,7 @@ $ hitrace -l
        animation - Animation
              app - APP Module
              ark - ARK Module
-       bluetooth - communicatio bluetooth
+       bluetooth - communication bluetooth
            cloud - Cloud subsystem tag
        cloudfile - Cloud file system
       commercial - Commercial version tag
@@ -64,7 +64,7 @@ $ hitrace -l
            dhfwk - Distributed Hardware FWK
           dinput - Distributed Input
             disk - Disk I/O
-istributeddatamgr - Distributed Data Manager
+distributeddatamgr - Distributed Data Manager
           dlpcre - Dlp Credential Service
              drm - Digital Rights Management
           dsched - Distributed Schedule
