@@ -20,7 +20,7 @@ ContainerSpan()
 
 ## 属性
 
-仅支持以下属性:
+仅支持以下属性：
 
 ### textBackgroundStyle
 
