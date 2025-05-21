@@ -918,6 +918,7 @@ print.print(jobName, printAdapter, printAttributes, context).then((printTask: pr
 | PRINT_JOB_BLOCK_SLOW_FILE_CONVERSION | 25 | 表示文件转换太慢。 |
 | PRINT_JOB_RUNNING_UPLOADING_FILES | 26 | 表示正在上传文件。 |
 | PRINT_JOB_RUNNING_CONVERTING_FILES | 27 | 表示正在转换文件。 |
+| PRINT_JOB_BLOCK_FILE_UPLOADING_ERROR<sup>18+</sup> | 30 | 表示文件上传失败。 |
 | PRINT_JOB_BLOCK_UNKNOWN | 99 | 表示打印未知问题。 |
 
 ## PrintErrorCode<sup>14+</sup>
@@ -938,6 +939,7 @@ print.print(jobName, printAdapter, printAttributes, context).then((printTask: pr
 | E_PRINT_INVALID_PRINTER | 13100005 | 表示打印机无效。 |
 | E_PRINT_INVALID_PRINT_JOB | 13100006 | 表示打印任务无效。 |
 | E_PRINT_FILE_IO | 13100007 | 表示文件输入/输出错误。 |
+| E_PRINT_TOO_MANY_FILES<sup>18+</sup> | 13100010 | 表示文件数量超过上限，当前上限99个。 |
 
 ## ApplicationEvent<sup>14+</sup>
 
@@ -1173,6 +1175,8 @@ print.getPrinterInformationById(printerId).then((printerInformation : print.Prin
 | capability | [PrinterCapabilities](#printercapabilities14) | 否 | 表示打印机能力。 |
 | uri | string | 否 | 表示打印机uri。 |
 | printerMake | string | 否 | 表示打印机型号。 |
+| preferences<sup>18+</sup> | [PrinterPreferences](#printerpreferences18) | 否 | 表示打印机首选项。 |
+| alias<sup>18+</sup> | string | 否 | 表示打印机别名。 |
 | options | string | 否 | 表示打印机详细信息。 |
 
 ## PrinterCapabilities<sup>14+</sup>
@@ -1229,3 +1233,173 @@ print.getPrinterInformationById(printerId).then((printerInformation : print.Prin
 | PRINTER_IDLE | 0 | 表示打印机空闲状态。 |
 | PRINTER_BUSY | 1 | 表示打印机忙碌状态。 |
 | PRINTER_UNAVAILABLE | 2 | 表示打印机脱机状态。 |
+
+## PrinterPreferences<sup>18+</sup>
+
+定义打印机首选项的接口。
+
+**系统能力：** SystemCapability.Print.PrintFramework
+
+**属性：**
+| **名称** | **类型** | **必填** | **说明** |
+| -------- | -------- | -------- | -------- |
+| defaultDuplexMode | [PrintDuplexMode](#printduplexmode11) | 否 | 表示默认单双面模式。 |
+| defaultPrintQuality | [PrintQuality](#printquality14) | 否 | 表示默认打印质量。 |
+| defaultMediaType | string | 否 | 表示默认纸张类型。 |
+| defaultPageSizeId | string | 否 | 表示默认纸张尺寸的ID。 |
+| defaultOrientation | [PrintOrientationMode](#printorientationmode14) | 否 | 表示默认打印方向。 |
+| borderless | boolean | 否 | 表示是否无边距打印，默认值为false，表示有边距。 |
+| options | string | 否 | 表示打印机首选项中的高级选项。 |
+
+## PrinterEvent<sup>18+</sup>
+
+打印机相关事件的枚举。
+
+**系统能力：** SystemCapability.Print.PrintFramework
+
+| **名称** | **值** | **说明** |
+| -------- | -------- | -------- |
+| PRINTER_EVENT_ADDED | 0 | 表示打印机添加事件。 |
+| PRINTER_EVENT_DELETED | 1 | 表示打印机删除事件。 |
+| PRINTER_EVENT_STATE_CHANGED | 2 | 表示打印机状态变化事件。 |
+| PRINTER_EVENT_INFO_CHANGED | 3 | 表示打印机信息变化事件。 |
+| PRINTER_EVENT_PREFERENCE_CHANGED | 4 | 表示打印机首选项变化事件。 |
+| PRINTER_EVENT_LAST_USED_PRINTER_CHANGED | 5 | 表示上次使用的打印机的变化事件。 |
+
+## DefaultPrinterType<sup>18+</sup>
+
+默认打印类型的枚举。
+
+**系统能力：** SystemCapability.Print.PrintFramework
+
+| **名称** | **值** | **说明** |
+| -------- | -------- | -------- |
+| DEFAULT_PRINTER_TYPE_SET_BY_USER | 0 | 表示用户选择某台打印机为默认打印机。 |
+| DEFAULT_PRINTER_TYPE_LAST_USED_PRINTER | 1 | 表示将上次使用的打印机作为默认打印机。 |
+
+## print.getAddedPrinters<sup>18+</sup>
+
+getAddedPrinters(): Promise&lt;Array&lt;string&gt;&gt;
+
+获取cups已添加打印机列表，使用Promise异步回调。
+
+**需要权限：** ohos.permission.MANAGE_PRINT_JOB or ohos.permission.PRINT
+
+**系统能力：** SystemCapability.Print.PrintFramework
+
+**返回值：**
+| **类型** | **说明** |
+| -------- | -------- |
+| Promise&lt;Array&lt;string&gt;&gt; | 获取cups已添加打印机列表的完成结果回调。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[打印服务错误码](./errorcode-print.md)。
+
+| 错误码ID | 错误信息                                    |
+| -------- | ------------------------------------------- |
+| 201 | the application does not have permission to call this function. |
+| 202 | not system application |
+
+**示例：**
+
+```ts
+import { print } from '@kit.BasicServicesKit';
+import { BusinessError } from '@ohos.base';
+
+print.getAddedPrinters().then((printers: string[]) => {
+    console.log('getAddedPrinters success ' + JSON.stringify(printers));
+    // ...
+}).catch((error: BusinessError) => {
+    console.log('failed to getAddedPrinters because ' + JSON.stringify(error));
+})
+```
+
+## PrinterChangeCallback<sup>18+</sup>
+
+type PrinterChangeCallback = (event: PrinterEvent, printerInformation: PrinterInformation) => void
+
+将打印机事件和打印机信息作为参数的回调方法。
+
+**系统能力：** SystemCapability.Print.PrintFramework
+
+**参数：**
+| **参数名** | **类型** | **必填** | **说明** |
+| -------- | -------- | -------- | -------- |
+| event | [PrinterEvent](#printerevent18) | 是 | 表示打印机事件。 |
+| printerInformation | PrinterInformation | 是 | 表示打印机信息。 |
+
+## print.on<sup>18+</sup>
+
+on(type: 'printerChange', callback: PrinterChangeCallback): void
+
+注册打印机变动事件回调，使用callback回调。
+
+**需要权限：** ohos.permission.PRINT
+
+**系统能力：** SystemCapability.Print.PrintFramework
+
+**参数：**
+| **参数名** | **类型** | **必填** | **说明** |
+| -------- | -------- | -------- | -------- |
+| type | 'printerChange' | 是 | 表示打印机变动事件。 |
+| callback | [PrinterChangeCallback](#printerchangecallback18) | 是 | 打印机变动之后的回调。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[打印服务错误码](./errorcode-print.md)。
+
+| 错误码ID | 错误信息                                    |
+| -------- | ------------------------------------------- |
+| 201 | the application does not have permission to call this function. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+
+**示例：**
+
+```ts
+import { print } from '@kit.BasicServicesKit';
+
+let onPrinterChange =
+    (event: print.PrinterEvent, printerInformation: print.PrinterInformation) => {
+        console.log('printerChange, event: ' + event + ', printerInformation: ' + JSON.stringify(printerInformation));
+    };
+print.on('printerChange', onPrinterChange);
+```
+
+## print.off<sup>18+</sup>
+
+off(type: 'printerChange', callback?: PrinterChangeCallback): void
+
+取消注册打印机变动事件回调，使用callback回调。
+
+**需要权限：** ohos.permission.PRINT
+
+**系统能力：** SystemCapability.Print.PrintFramework
+
+**参数：**
+| **参数名** | **类型** | **必填** | **说明** |
+| -------- | -------- | -------- | -------- |
+| type | 'printerChange' | 是 | 表示打印机变动事件。 |
+| callback | [PrinterChangeCallback](#printerchangecallback18) | 否 | 表示取消注册打印机变动事件后的回调。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[打印服务错误码](./errorcode-print.md)。
+
+| 错误码ID | 错误信息                                    |
+| -------- | ------------------------------------------- |
+| 201 | the application does not have permission to call this function. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+
+**示例：**
+
+```ts
+import { print } from '@kit.BasicServicesKit';
+
+let onPrinterChange =
+    (event: print.PrinterEvent, printerInformation: print.PrinterInformation) => {
+        console.log('printerChange, event: ' + event + ', printerInformation: ' + JSON.stringify(printerInformation));
+    };
+print.on('printerChange', onPrinterChange);
+print.off('printerChange');
+```

@@ -233,7 +233,7 @@ print.queryAllPrinterExtensionInfos().then((extensionInfos: print.PrinterExtensi
     console.log('queryAllPrinterExtensionInfos success ' + JSON.stringify(extensionInfos));
     // ...
 }).catch((error: BusinessError) => {
-    console.log('failed to get AllPrinterExtension bacause ' + JSON.stringify(error));
+    console.log('failed to get AllPrinterExtension because ' + JSON.stringify(error));
 })
 ```
 
@@ -2251,46 +2251,6 @@ print.notifyPrintService(jobId, 'spooler_closed_for_started').then((data : void)
 })
 ```
 
-## print.getAddedPrinters<sup>12+</sup>
-
-getAddedPrinters(): Promise&lt;Array&lt;string&gt;&gt;
-
-获取cups已添加打印机列表，使用Promise异步回调。
-
-**需要权限：** ohos.permission.MANAGE_PRINT_JOB
-
-**系统接口：** 此接口为系统接口。
-
-**系统能力：** SystemCapability.Print.PrintFramework
-
-**返回值：**
-| **类型** | **说明** |
-| -------- | -------- |
-| Promise&lt;Array&lt;string&gt;&gt; | 获取cups已添加打印机列表的完成结果回调。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[打印服务错误码](./errorcode-print.md)。
-
-| 错误码ID | 错误信息                                    |
-| -------- | ------------------------------------------- |
-| 201 | the application does not have permission to call this function. |
-| 202 | not system application |
-
-**示例：**
-
-```ts
-import { print } from '@kit.BasicServicesKit';
-import { BusinessError } from '@ohos.base';
-
-print.getAddedPrinters().then((printers: string[]) => {
-    console.log('getAddedPrinters success ' + JSON.stringify(printers));
-    // ...
-}).catch((error: BusinessError) => {
-    console.log('failed to getAddedPrinters bacause ' + JSON.stringify(error));
-})
-```
-
 ## print.getPrinterInfoById<sup>12+</sup>
 
 getPrinterInfoById(printerId: string): Promise&lt;PrinterInfo&gt;
@@ -2377,6 +2337,260 @@ import { BusinessError } from '@ohos.base';
 
 let event : print.ApplicationEvent = print.ApplicationEvent.APPLICATION_CREATED;
 print.notifyPrintServiceEvent(event).then((data : void) => {
+    console.log('notifyPrintServiceEvent data : ' + JSON.stringify(data));
+}).catch((error: BusinessError) => {
+    console.log('notifyPrintServiceEvent error : ' + JSON.stringify(error));
+})
+```
+
+## print.updatePrinterInformation<sup>18+</sup>
+
+updatePrinterInformation(printerInformation: PrinterInformation): Promise&lt;void&gt;
+
+更新系统中打印机的部分信息，使用Promise异步回调。
+
+**需要权限：** ohos.permission.MANAGE_PRINT_JOB
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Print.PrintFramework
+
+**参数：**
+| **参数名** | **类型** | **必填** | **说明** |
+| -------- | -------- | -------- | -------- |
+| printerInformation | [PrinterInformation](./js-apis-print.md#printerinformation14) | 是 | 表示待更新信息的打印机。 |
+
+**返回值：**
+| **类型** | **说明** |
+| -------- | -------- |
+| Promise&lt;void&gt; | 更新打印机信息到系统打印机发现列表完成结果。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[打印服务错误码](./errorcode-print.md)。
+
+| 错误码ID | 错误信息                                    |
+| -------- | ------------------------------------------- |
+| 201 | the application does not have permission to call this function. |
+| 202 | not system application |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+
+**示例：**
+
+```ts
+import { print } from '@kit.BasicServicesKit';
+import { BusinessError } from '@ohos.base';
+
+let testPageSize : print.PrintPageSize = {
+    id : 'ISO_A4',
+    name : 'iso_a4_210x297mm',
+    width : 8268,
+    height : 11692
+};
+
+let testCapability : print.PrinterCapabilities = {
+    supportedPageSizes : [testPageSize],
+    supportedColorModes : [print.PrintColorMode.COLOR_MODE_MONOCHROME],
+    supportedDuplexModes : [print.PrintDuplexMode.DUPLEX_MODE_NONE],
+    supportedMediaTypes : ['stationery'],
+    supportedQualities : [print.PrintQuality.QUALITY_NORMAL],
+    supportedOrientations : [print.PrintOrientationMode.ORIENTATION_MODE_PORTRAIT],
+    options : 'testOptions'
+};
+
+let printerInformation : print.PrinterInformation = {
+    printerId : 'testPrinterId',
+    printerName : 'testPrinterName',
+    printerStatus : 0,
+    description : 'testDesc',
+    capability : testCapability,
+    uri : 'testUri',
+    printerMake : 'testPrinterMake',
+    options : 'testOptions'
+};
+print.updatePrinterInformation(printerInformation).then((data : void) => {
+    console.log('updatePrinterInformation data : ' + JSON.stringify(data));
+}).catch((error: BusinessError) => {
+    console.log('updatePrinterInformation error : ' + JSON.stringify(error));
+})
+```
+
+## print.setPrinterPreferences<sup>18+</sup>
+
+setPrinterPreferences(printerId: string, printerPreferences: PrinterPreferences): Promise&lt;void&gt;
+
+设置打印机首选项，使用Promise异步回调。
+
+**需要权限：** ohos.permission.MANAGE_PRINT_JOB
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Print.PrintFramework
+
+**参数：**
+| **参数名** | **类型** | **必填** | **说明** |
+| -------- | -------- | -------- | -------- |
+| printerId | string | 是 | 表示打印机ID。 |
+| printerPreferences | [PrinterPreferences](./js-apis-print.md#printerpreferences18) | 是 | 表示打印机首选项。 |
+
+**返回值：**
+| **类型** | **说明** |
+| -------- | -------- |
+| Promise&lt;void&gt; | 设置打印机首选项后的完成结果回调。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[打印服务错误码](./errorcode-print.md)。
+
+| 错误码ID | 错误信息                                    |
+| -------- | ------------------------------------------- |
+| 201 | the application does not have permission to call this function. |
+| 202 | not system application |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+
+**示例：**
+
+```ts
+import { print } from '@kit.BasicServicesKit';
+import { BusinessError } from '@ohos.base';
+
+let printerId : string = '1';
+print.getPrinterInfoById(printerId).then((printerInfo : print.PrinterInfo) => {
+    console.log('getPrinterInfoById data : ' + JSON.stringify(printerInfo));
+}).catch((error: BusinessError) => {
+    console.log('getPrinterInfoById error : ' + JSON.stringify(error));
+})
+```
+
+## print.discoverUsbPrinters<sup>18+</sup>
+
+discoverUsbPrinters(): Promise&lt;Array&lt;PrinterInformation&gt;&gt;
+
+发现usb打印机，使用Promise异步回调。
+
+**需要权限：** ohos.permission.MANAGE_PRINT_JOB
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Print.PrintFramework
+
+**返回值：**
+| **类型** | **说明** |
+| -------- | -------- |
+| Promise&lt;Array&lt;[PrinterInformation](./js-apis-print.md#printerinformation14)&gt;&gt; | 发现的usb打印机列表。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[打印服务错误码](./errorcode-print.md)。
+
+| 错误码ID | 错误信息                                    |
+| -------- | ------------------------------------------- |
+| 201 | the application does not have permission to call this function. |
+| 202 | not system application |
+
+**示例：**
+
+```ts
+import { print } from '@kit.BasicServicesKit';
+import { BusinessError } from '@ohos.base';
+
+print.discoverUsbPrinters().then((printers : print.PrinterInformation[]) => {
+    console.log('discoverUsbPrinters data : ' + JSON.stringify(printers));
+}).catch((error: BusinessError) => {
+    console.log('discoverUsbPrinters error : ' + JSON.stringify(error));
+})
+```
+
+## print.setDefaultPrinter<sup>18+</sup>
+
+setDefaultPrinter(printerId: string, type: DefaultPrinterType): Promise&lt;void&gt;
+
+设置默认打印机，使用Promise异步回调。
+
+**需要权限：** ohos.permission.MANAGE_PRINT_JOB
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Print.PrintFramework
+
+**参数：**
+| **参数名** | **类型** | **必填** | **说明** |
+| -------- | -------- | -------- | -------- |
+| printerId | string | 是 | 表示打印机ID。 |
+| type | [DefaultPrinterType](./js-apis-print.md#defaultprintertype18) | 是 | 表示默认打印机类型。 |
+
+**返回值：**
+| **类型** | **说明** |
+| -------- | -------- |
+| Promise&lt;void&gt; | 设置默认打印机后的完成结果回调。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[打印服务错误码](./errorcode-print.md)。
+
+| 错误码ID | 错误信息                                    |
+| -------- | ------------------------------------------- |
+| 201 | the application does not have permission to call this function. |
+| 202 | not system application |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+
+**示例：**
+
+```ts
+import { print } from '@kit.BasicServicesKit';
+import { BusinessError } from '@ohos.base';
+
+let printerId : string = '1';
+let type : print.DefaultPrinterType = print.DefaultPrinterType.DEFAULT_PRINTER_TYPE_SET_BY_USER;
+print.setDefaultPrinter(printerId, type).then((data : void) => {
+    console.log('setDefaultPrinter data : ' + JSON.stringify(data));
+}).catch((error: BusinessError) => {
+    console.log('setDefaultPrinter error : ' + JSON.stringify(error));
+})
+```
+
+## print.notifyPrintServiceEvent<sup>18+</sup>
+
+notifyPrintServiceEvent(event: ApplicationEvent, jobId: string): Promise&lt;void&gt;
+
+将打印应用相关事件通知打印服务，使用Promise异步回调。
+
+**需要权限：** ohos.permission.MANAGE_PRINT_JOB
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Print.PrintFramework
+
+**参数：**
+| **参数名** | **类型** | **必填** | **说明** |
+| -------- | -------- | -------- | -------- |
+| event | [ApplicationEvent](./js-apis-print.md#applicationevent14) | 是 | 表示打印应用事件。 |
+| jobId | string | 是 | 表示打印任务ID。 |
+
+**返回值：**
+| **类型** | **说明** |
+| -------- | -------- |
+| Promise&lt;void&gt; | 将打印应用相关事件通知打印服务后的完成结果回调。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[打印服务错误码](./errorcode-print.md)。
+
+| 错误码ID | 错误信息                                    |
+| -------- | ------------------------------------------- |
+| 201 | the application does not have permission to call this function. |
+| 202 | not system application |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+
+**示例：**
+
+```ts
+import { print } from '@kit.BasicServicesKit';
+import { BusinessError } from '@ohos.base';
+
+let event : print.ApplicationEvent = print.ApplicationEvent.APPLICATION_CREATED;
+let jobId : string = '1';
+print.notifyPrintServiceEvent(event, jobId).then((data : void) => {
     console.log('notifyPrintServiceEvent data : ' + JSON.stringify(data));
 }).catch((error: BusinessError) => {
     console.log('notifyPrintServiceEvent error : ' + JSON.stringify(error));
