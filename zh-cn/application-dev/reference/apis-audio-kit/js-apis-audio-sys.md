@@ -102,13 +102,19 @@ async function createTonePlayerBefore(){
 
 ## audio.createAsrProcessingController<sup>12+</sup>
 
-createAsrProcessingController(audioCapturer: AudioCapturer): AsrProcessingController;
+createAsrProcessingController(audioCapturer: AudioCapturer): AsrProcessingController
 
 获取ASR处理控制器
 
 **系统接口：** 该接口为系统接口
 
 **系统能力：** SystemCapability.Multimedia.Audio.Capturer
+
+**参数：**
+
+| 参数名  | 类型                                           | 必填 | 说明       |
+| :------ | :---------------------------------------------| :--- |:---------|
+| audioCapturer | [AudioCapturer](js-apis-audio.md#audiocapturer8)      | 是   | 音频采集器对象。 |
 
 **返回值：**
 
@@ -3377,7 +3383,7 @@ try {
 
 ### isHeadTrackingEnabled<sup>12+</sup>
 
-isHeadTrackingEnabled(): boolean
+isHeadTrackingEnabled(deviceDescriptor: AudioDeviceDescriptor): boolean
 
 获取指定设备的头动跟踪是否开启，同步返回结果。
 
@@ -4094,7 +4100,7 @@ ASR处理控制器
 
 ### setAsrAecMode<sup>12+</sup>
 
-setAsrAecMode(mode: AsrAecMode): boolean;
+setAsrAecMode(mode: AsrAecMode): boolean
 
 设置ASR AEC模式，同步返回结果。
 
@@ -4133,7 +4139,7 @@ let flag = asrProcessingController.setAsrAecMode(audio.AsrAecMode.BYPASS);
 
 ### getAsrAecMode<sup>12+</sup>
 
-getAsrAecMode(): AsrAecMode;
+getAsrAecMode(): AsrAecMode
 
 获取ASR AEC模式，同步返回结果。
 
@@ -4165,7 +4171,7 @@ let mode = asrProcessingController.getAsrAecMode();
 
 ### setAsrNoiseSuppressionMode<sup>12+</sup>
 
-setAsrNoiseSuppressionMode(mode: AsrNoiseSuppressionMode): boolean;
+setAsrNoiseSuppressionMode(mode: AsrNoiseSuppressionMode): boolean
 
 设置ASR 噪音抑制模式，同步返回结果。
 
@@ -4235,7 +4241,7 @@ let mode = asrProcessingController.getAsrNoiseSuppressionMode();
 
 ### isWhispering<sup>12+</sup>
 
-isWhispering(): boolean;
+isWhispering(): boolean
 
 查询耳语状态。
 
