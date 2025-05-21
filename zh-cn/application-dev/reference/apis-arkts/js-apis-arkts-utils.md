@@ -153,15 +153,15 @@ static query(name: string): AsyncLockState
 
 **参数：**
 
-| 名称 | 类型   | 必填 | 说明       |
-| ---- | ------ | ---- | ---------- |
-| name | string | 是   | 锁的名称。 |
+| 名称 | 类型   | 必填 | 说明                                                                                                                     |
+| ---- | ------ | ---- | ------------------------------------------------------------------------------------------------------------------------ |
+| name | string | 是   | 要查询的锁的名称，仅可查询通过[request接口](#request)获取的锁（即与[request接口](#request)入参锁名称保持一致）。 |
 
 **返回值：**
 
 | 类型                              | 说明                               |
 | --------------------------------- | ---------------------------------- |
-| [AsyncLockState](#asynclockstate) | 一个包含状态描述的异步锁状态实例。 |
+| [AsyncLockState](#asynclockstate) | 包含状态描述的异步锁状态实例。 |
 
 **错误码：**
 
@@ -224,7 +224,7 @@ lockAsync\<T>(callback: AsyncLockCallback\<T>): Promise\<T>
 
 | 名称     | 类型                                    | 必填 | 说明                   |
 | -------- | --------------------------------------- | ---- | ---------------------- |
-| callback | [AsyncLockCallback](#asynclockcallback) | 是   | 获取锁后要调用的函数。 |
+| callback | [AsyncLockCallback\<T>](#asynclockcallback) | 是   | 获取锁后要调用的函数。 |
 
 **返回值：**
 
@@ -264,7 +264,7 @@ lockAsync\<T>(callback: AsyncLockCallback\<T>, mode: AsyncLockMode): Promise\<T>
 
 | 名称     | 类型                                    | 必填 | 说明                   |
 | -------- | --------------------------------------- | ---- | ---------------------- |
-| callback | [AsyncLockCallback](#asynclockcallback) | 是   | 获取锁后要调用的函数。 |
+| callback | [AsyncLockCallback\<T>](#asynclockcallback) | 是   | 获取锁后要调用的函数。 |
 | mode     | [AsyncLockMode](#asynclockmode)         | 是   | 锁的操作模式。         |
 
 **返回值：**
@@ -305,7 +305,7 @@ lockAsync\<T, U>(callback: AsyncLockCallback\<T>, mode: AsyncLockMode, options: 
 
 | 名称     | 类型                                      | 必填 | 说明                   |
 | -------- | ----------------------------------------- | ---- | ---------------------- |
-| callback | [AsyncLockCallback](#asynclockcallback)   | 是   | 获取锁后要调用的函数。 |
+| callback | [AsyncLockCallback\<T>](#asynclockcallback)   | 是   | 获取锁后要调用的函数。 |
 | mode     | [AsyncLockMode](#asynclockmode)           | 是   | 锁的操作模式。         |
 | options  | [AsyncLockOptions\<U>](#asynclockoptions) | 是   | 锁的操作选项。         |
 
@@ -425,7 +425,7 @@ options.signal = s;
 | ----------- | ------------------------------------- | ---- | ---- | ------------------------------------------------------------------------------------------------------------------------- |
 | isAvailable | boolean                               | 是   | 是   | 当前锁是否可用。取值为true，则只有在尚未持有锁定请求时才会授予该锁定请求；为false则表示将等待当前锁被释放。默认为 false。 |
 | signal      | [AbortSignal\<T>](#abortsignal)\|null | 是   | 是   | 用于中止异步操作的对象。当signal.aborted为true时，锁请求将被丢弃；当signal.aborted为false时，请求会继续等待获取锁；当signal为null时，请求正常排队运行。默认为 null。               |
-| timeout     | number                                | 是   | 是   | 锁操作的超时时间（毫秒）。如果该值大于零，且运行超过该时间，[lockAsync](#lockasync)将返回被拒绝的Promise。默认为 0。      |
+| timeout     | number                                | 是   | 是   | 锁操作的超时时间，单位为毫秒。若该值大于零，且操作运行时间超过该时间，[lockAsync](#lockasync)将返回被拒绝的Promise。默认为 0。      |
 
 ### AsyncLockState
 
@@ -475,7 +475,7 @@ options.signal = s;
 
 ## ArkTSUtils.ASON
 
-为支持将JSON字符串解析成共享数据，即[Sendable支持的数据类型](../../arkts-utils/arkts-sendable.md#sendable支持的数据类型)，ArkTS语言基础库新增了ASON工具。ASON支持开发者解析JSON字符串，并生成共享数据进行跨并发域传输，同时ASON也支持将共享数据转换成JSON字符串。
+为支持将JSON字符串解析为共享数据，即[Sendable支持的数据类型](../../arkts-utils/arkts-sendable.md#sendable支持的数据类型)，ArkTS语言基础库新增了ASON工具。ASON工具支持解析JSON字符串并生成共享数据，用于跨并发域传输，同时也支持将共享数据转换为JSON字符串。
 
 ### ISendable
 
@@ -507,7 +507,7 @@ type Transformer = (this: ISendable, key: string, value: ISendable | undefined |
 | ------ | ------ | ---- | --------------- |
 | this   | [ISendable](#isendable) | 是 | 在解析的键值对所属的对象。|
 | key  | string | 是 | 属性名。|
-| value  | [ISendable](#isendable) | 是 | 在解析的键值对的值。|
+| value  | [ISendable](#isendable) \| undefined \| null| 是 | 在解析的键值对的值。|
 
 **返回值：**
 
@@ -542,7 +542,7 @@ type Transformer = (this: ISendable, key: string, value: ISendable | undefined |
 
 ### ParseOptions
 
-解析的选项，可定义处理BigInt的模式与解析结果的返回类型。
+解析的选项，可定义处理BigInt的模式和解析结果的返回类型。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -575,7 +575,7 @@ parse(text: string, reviver?: Transformer, options?: ParseOptions): ISendable | 
 
 | 类型 | 说明 |
 | -------- | -------- |
-| [ISendable](#isendable) \| null | 返回ISendable数据或null。当入参是null时，返回null。|
+| [ISendable](#isendable) \| null | 返回ISendable数据或null。入参为null时，返回null。|
 
 **示例：**
 
@@ -690,11 +690,11 @@ isSendable(value: Object | null | undefined): boolean
 **示例：**
 
 ```ts
-import { ArkTSUtils } from '@kit.ArkTS'
+import { ArkTSUtils } from '@kit.ArkTS';
 
 @Sendable
 function sendableFunc() {
-  console.info("sendableFunc")
+  console.info("sendableFunc");
 }
 
 if (ArkTSUtils.isSendable(sendableFunc)) {

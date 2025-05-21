@@ -10,13 +10,12 @@
 ## 开发步骤
 1. 创建动态卡片
 
-   新建一个名为WidgetEventCall的ArkTs动态卡片。
+    新建一个名为WidgetEventCall的ArkTs动态卡片。
 
 2. 页面布局代码实现
 
-   在卡片页面中布局两个按钮，点击按钮A或按钮B，会调用postCardAction向指定UIAbility发送call事件，在call事件内定义了需要调用的方法。按钮A和按钮B分别对应调用funA、funB方法，其中funA携带了formID参数，funB携带了formID和num参数，开发过程中请根据实际需要传参。
-注意：postCardAction中的method参数为必填参数，用于标识需要调用的方法名称，与步骤3中UIAbility监听的方法一致，其他参数为非必填。
-   ```ts
+    在卡片页面中布局两个按钮，点击按钮A或按钮B，会调用postCardAction向指定UIAbility发送call事件，在call事件内定义了需要调用的方法。按钮A和按钮B分别对应调用funA、funB方法，其中funA携带了formID参数，funB携带了formID和num参数，开发过程中请根据实际需要传参。postCardAction中的method参数为必填参数，用于标识需要调用的方法名称，与步骤3中UIAbility监听的方法一致，其他参数为非必填。
+    ```ts
     //src/main/ets/widgeteventcallcard/pages/WidgetEventCall.ets
     @Entry
     @Component
@@ -76,7 +75,7 @@
     ```
 3. 创建指定的UIAbility
     
-   在UIAbility中监听call事件，根据监听到的method参数中的方法名称调用对应方法，并通过[rpc.Parcelable](../reference/apis-ipc-kit/js-apis-rpc.md#parcelable9)获取参数。注意：UIAbility中监听的方法与步骤2中调用的方法需保持一致。
+    在UIAbility中监听call事件，根据监听到的method参数中的方法名称调用对应方法，并通过[rpc.Parcelable](../reference/apis-ipc-kit/js-apis-rpc.md#parcelable9)获取参数。UIAbility中监听的方法与步骤2中调用的方法需保持一致。
     ```ts
     //src/main/ets/widgeteventcallcard/WidgetEventCallEntryAbility/WidgetEventCallEntryAbility.ets
     import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
@@ -145,7 +144,7 @@
     ```
 4. 配置后台运行权限
 
-   call事件存在约束限制，卡片提供方应用需要在module.json5下添加后台运行权限([ohos.permission.KEEP_BACKGROUND_RUNNING](../security/AccessToken/permissions-for-all.md#ohospermissionkeep_background_running))。
+    call事件存在约束限制，卡片提供方应用需要在module.json5下添加后台运行权限([ohos.permission.KEEP_BACKGROUND_RUNNING](../security/AccessToken/permissions-for-all.md#ohospermissionkeep_background_running))。
     ```ts
     //src/main/module.json5
     "requestPermissions"：[
@@ -156,7 +155,7 @@
     ```
 5. 配置指定的UIAbility
 
-   在module.json5的abilities数组内添加WidgetEventCallEntryAbility对应的配置信息。
+    在module.json5的abilities数组内添加WidgetEventCallEntryAbility对应的配置信息。
     ```ts
     //src/main/module.json5
    "abilities": [

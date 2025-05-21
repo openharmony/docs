@@ -72,6 +72,8 @@ getPhotoAssets(options: FetchOptions, callback: AsyncCallback&lt;FetchResult&lt;
 
 **示例：**
 
+mgr的创建请参考[userFileManager.getUserFileMgr](#userfilemanagergetuserfilemgr)的示例使用。
+
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
@@ -129,6 +131,8 @@ getPhotoAssets(options: FetchOptions): Promise&lt;FetchResult&lt;FileAsset&gt;&g
 
 **示例：**
 
+mgr的创建请参考[userFileManager.getUserFileMgr](#userfilemanagergetuserfilemgr)的示例使用。
+
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
@@ -182,6 +186,8 @@ createPhotoAsset(displayName: string, albumUri: string, callback: AsyncCallback&
 
 **示例：**
 
+mgr的创建请参考[userFileManager.getUserFileMgr](#userfilemanagergetuserfilemgr)的示例使用。
+
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
@@ -233,6 +239,8 @@ createPhotoAsset(displayName: string, callback: AsyncCallback&lt;FileAsset&gt;):
 
 **示例：**
 
+mgr的创建请参考[userFileManager.getUserFileMgr](#userfilemanagergetuserfilemgr)的示例使用。
+
 ```ts
 async function example() {
   console.info('createPhotoAssetDemo');
@@ -281,6 +289,8 @@ createPhotoAsset(displayName: string, albumUri?: string): Promise&lt;FileAsset&g
 
 **示例：**
 
+mgr的创建请参考[userFileManager.getUserFileMgr](#userfilemanagergetuserfilemgr)的示例使用。
+
 ```ts
 async function example() {
   console.info('createPhotoAssetDemo');
@@ -323,6 +333,8 @@ createPhotoAsset(displayName: string, createOption: PhotoCreateOptions, callback
 | 14000001   | if type displayName invalid.         |
 
 **示例：**
+
+mgr的创建请参考[userFileManager.getUserFileMgr](#userfilemanagergetuserfilemgr)的示例使用。
 
 ```ts
 async function example() {
@@ -375,6 +387,8 @@ createPhotoAsset(displayName: string, createOption: PhotoCreateOptions): Promise
 
 **示例：**
 
+mgr的创建请参考[userFileManager.getUserFileMgr](#userfilemanagergetuserfilemgr)的示例使用。
+
 ```ts
 async function example() {
   console.info('createPhotoAssetDemo');
@@ -419,6 +433,8 @@ createAudioAsset(displayName: string, callback: AsyncCallback&lt;FileAsset&gt;):
 | 14000001   | if type displayName invalid.         |
 
 **示例：**
+
+mgr的创建请参考[userFileManager.getUserFileMgr](#userfilemanagergetuserfilemgr)的示例使用。
 
 ```ts
 async function example() {
@@ -467,6 +483,8 @@ createAudioAsset(displayName: string): Promise&lt;FileAsset&gt;
 
 **示例：**
 
+mgr的创建请参考[userFileManager.getUserFileMgr](#userfilemanagergetuserfilemgr)的示例使用。
+
 ```ts
 async function example() {
   console.info('createAudioAssetDemo');
@@ -505,6 +523,8 @@ createAlbum(name: string, callback: AsyncCallback&lt;Album&gt;): void
 | callback |  AsyncCallback&lt;[Album](#album)&gt; | 是   | callback返回创建的相册实例。 |
 
 **示例：**
+
+mgr的创建请参考[userFileManager.getUserFileMgr](#userfilemanagergetuserfilemgr)的示例使用。
 
 ```ts
 async function example() {
@@ -550,6 +570,8 @@ createAlbum(name: string): Promise&lt;Album&gt;
 
 **示例：**
 
+mgr的创建请参考[userFileManager.getUserFileMgr](#userfilemanagergetuserfilemgr)的示例使用。
+
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -584,6 +606,8 @@ deleteAlbums(albums: Array&lt;Album&gt;, callback: AsyncCallback&lt;void&gt;): v
 | callback |  AsyncCallback&lt;void&gt; | 是   | callback返回void。 |
 
 **示例：**
+
+mgr的创建请参考[userFileManager.getUserFileMgr](#userfilemanagergetuserfilemgr)的示例使用。
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -635,6 +659,8 @@ deleteAlbums(albums: Array&lt;Album&gt;): Promise&lt;void&gt;
 | Promise&lt;void&gt; | Promise对象，返回void。 |
 
 **示例：**
+
+mgr的创建请参考[userFileManager.getUserFileMgr](#userfilemanagergetuserfilemgr)的示例使用。
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -692,6 +718,8 @@ getAlbums(type: AlbumType, subType: AlbumSubType, options: FetchOptions, callbac
 | 13900020   | if type options is not FetchOption.         |
 
 **示例：**
+
+mgr的创建请参考[userFileManager.getUserFileMgr](#userfilemanagergetuserfilemgr)的示例使用。
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -753,6 +781,8 @@ getAlbums(type: AlbumType, subType: AlbumSubType, callback: AsyncCallback&lt;Fet
 
 **示例：**
 
+mgr的创建请参考[userFileManager.getUserFileMgr](#userfilemanagergetuserfilemgr)的示例使用。
+
 ```ts
 async function example() {
   // 示例代码中为获取统相册VIDEO，默认已预置。
@@ -811,6 +841,8 @@ getAlbums(type: AlbumType, subType: AlbumSubType, options?: FetchOptions): Promi
 
 **示例：**
 
+mgr的创建请参考[userFileManager.getUserFileMgr](#userfilemanagergetuserfilemgr)的示例使用。
+
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -868,6 +900,8 @@ getPhotoAlbums(options: AlbumFetchOptions, callback: AsyncCallback&lt;FetchResul
 | 13900020   | if type options is not AlbumFetchOptions.         |
 
 **示例：**
+
+mgr的创建请参考[userFileManager.getUserFileMgr](#userfilemanagergetuserfilemgr)的示例使用。
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -932,6 +966,8 @@ getPhotoAlbums(options: AlbumFetchOptions): Promise&lt;FetchResult&lt;Album&gt;&
 
 **示例：**
 
+mgr的创建请参考[userFileManager.getUserFileMgr](#userfilemanagergetuserfilemgr)的示例使用。
+
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
@@ -981,6 +1017,8 @@ getPrivateAlbum(type: PrivateAlbumType, callback: AsyncCallback&lt;FetchResult&l
 
 **示例：**
 
+mgr的创建请参考[userFileManager.getUserFileMgr](#userfilemanagergetuserfilemgr)的示例使用。
+
 ```ts
 async function example() {
   console.info('getPrivateAlbumDemo');
@@ -1029,6 +1067,8 @@ getPrivateAlbum(type: PrivateAlbumType): Promise&lt;FetchResult&lt;PrivateAlbum&
 
 **示例：**
 
+mgr的创建请参考[userFileManager.getUserFileMgr](#userfilemanagergetuserfilemgr)的示例使用。
+
 ```ts
 async function example() {
   console.info('getPrivateAlbumDemo');
@@ -1068,6 +1108,8 @@ getAudioAssets(options: FetchOptions, callback: AsyncCallback&lt;FetchResult&lt;
 | 13900020   | if type options is not FetchOptions.         |
 
 **示例：**
+
+mgr的创建请参考[userFileManager.getUserFileMgr](#userfilemanagergetuserfilemgr)的示例使用。
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -1127,6 +1169,8 @@ getAudioAssets(options: FetchOptions): Promise&lt;FetchResult&lt;FileAsset&gt;&g
 
 **示例：**
 
+mgr的创建请参考[userFileManager.getUserFileMgr](#userfilemanagergetuserfilemgr)的示例使用。
+
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
@@ -1178,6 +1222,8 @@ delete(uri: string, callback: AsyncCallback&lt;void&gt;): void
 | 13900020   | if type uri is not string.         |
 
 **示例：**
+
+mgr的创建请参考[userFileManager.getUserFileMgr](#userfilemanagergetuserfilemgr)的示例使用。
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -1243,6 +1289,8 @@ delete(uri: string): Promise&lt;void&gt;
 
 **示例：**
 
+mgr的创建请参考[userFileManager.getUserFileMgr](#userfilemanagergetuserfilemgr)的示例使用。
+
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
@@ -1284,6 +1332,8 @@ getActivePeers(callback: AsyncCallback&lt;Array&lt;PeerInfo&gt;&gt;): void
 
 **示例：**
 
+mgr的创建请参考[userFileManager.getUserFileMgr](#userfilemanagergetuserfilemgr)的示例使用。
+
 ```ts
 async function example() {
   console.info('getActivePeersDemo');
@@ -1315,6 +1365,8 @@ getActivePeers(): Promise&lt;Array&lt;PeerInfo&gt;&gt;
 | Promise&lt;Array&lt;[PeerInfo](#peerinfo)&gt;&gt; | Promise对象，返回在线设备列表。 |
 
 **示例：**
+
+mgr的创建请参考[userFileManager.getUserFileMgr](#userfilemanagergetuserfilemgr)的示例使用。
 
 ```ts
 async function example() {
@@ -1351,6 +1403,8 @@ getAllPeers(callback: AsyncCallback&lt;Array&lt;PeerInfo&gt;&gt;): void
 
 **示例：**
 
+mgr的创建请参考[userFileManager.getUserFileMgr](#userfilemanagergetuserfilemgr)的示例使用。
+
 ```ts
 async function example() {
   console.info('getAllPeersDemo');
@@ -1382,6 +1436,8 @@ getAllPeers(): Promise&lt;Array&lt;PeerInfo&gt;&gt;
 | Promise&lt;Array&lt;[PeerInfo](#peerinfo)&gt;&gt; | Promise对象，返回所有设备列表。 |
 
 **示例：**
+
+mgr的创建请参考[userFileManager.getUserFileMgr](#userfilemanagergetuserfilemgr)的示例使用。
 
 ```ts
 async function example() {
@@ -1433,6 +1489,8 @@ getPhotoIndex(photoUri: string, albumUri: string, options: FetchOptions, callbac
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
 
 **示例：**
+
+mgr的创建请参考[userFileManager.getUserFileMgr](#userfilemanagergetuserfilemgr)的示例使用。
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -1507,6 +1565,8 @@ getPhotoIndex(photoUri: string, albumUri: string, options: FetchOptions): Promis
 
 **示例：**
 
+mgr的创建请参考[userFileManager.getUserFileMgr](#userfilemanagergetuserfilemgr)的示例使用。
+
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -1560,6 +1620,8 @@ release(callback: AsyncCallback&lt;void&gt;): void
 
 **示例：**
 
+mgr的创建请参考[userFileManager.getUserFileMgr](#userfilemanagergetuserfilemgr)的示例使用。
+
 ```ts
 async function example() {
   console.info('releaseDemo');
@@ -1589,6 +1651,8 @@ release(): Promise&lt;void&gt;
 | Promise&lt;void&gt; | Promise对象，返回void。 |
 
 **示例：**
+
+mgr的创建请参考[userFileManager.getUserFileMgr](#userfilemanagergetuserfilemgr)的示例使用。
 
 ```ts
 async function example() {
@@ -1627,6 +1691,8 @@ on(uri: string, forSubUri: boolean, callback: Callback&lt;ChangeData&gt;) : void
 | 13900020   | if parameter is invalid.         |
 
 **示例：**
+
+mgr的创建请参考[userFileManager.getUserFileMgr](#userfilemanagergetuserfilemgr)的示例使用。
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -1691,6 +1757,8 @@ async function example() {
 
 **示例：**
 
+mgr的创建请参考[userFileManager.getUserFileMgr](#userfilemanagergetuserfilemgr)的示例使用。
+
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
@@ -1747,6 +1815,8 @@ on(type: ChangeEvent, callback: Callback&lt;void&gt;): void
 
 **示例：**
 
+mgr的创建请参考[userFileManager.getUserFileMgr](#userfilemanagergetuserfilemgr)的示例使用。
+
 ```ts
 async function example() {
   console.info('onDemo');
@@ -1793,6 +1863,8 @@ off(type: ChangeEvent, callback?: Callback&lt;void&gt;): void
 | callback | Callback&lt;void&gt; | 否   | callback返回void。                                                   |
 
 **示例：**
+
+mgr的创建请参考[userFileManager.getUserFileMgr](#userfilemanagergetuserfilemgr)的示例使用。
 
 ```ts
 async function example() {
@@ -1852,7 +1924,15 @@ get(member: string): MemberType
 | -------- | ------------------------- | ---- | ----- |
 | member | string | 是    | 成员参数名称例如：ImageVideoKey.DISPLAY_NAME。在get时，除了uri、photoType和displayName三个属性之外，其他的属性都需要在fetchColumns中填入需要get的PhotoKeys。例如：get title属性fetchColumns: ['title']。 |
 
+**返回值：**
+
+| 类型                    | 说明            |
+| --------------------- | ------------- |
+| MemberType | 返回成员参数。 |
+
 **示例：**
+
+mgr的创建请参考[userFileManager.getUserFileMgr](#userfilemanagergetuserfilemgr)的示例使用。
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -1893,6 +1973,8 @@ set(member: string, value: string): void
 
 **示例：**
 
+mgr的创建请参考[userFileManager.getUserFileMgr](#userfilemanagergetuserfilemgr)的示例使用。
+
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
@@ -1931,6 +2013,8 @@ commitModify(callback: AsyncCallback&lt;void&gt;): void
 | callback | AsyncCallback&lt;void&gt; | 是    | callback返回void。 |
 
 **示例：**
+
+mgr的创建请参考[userFileManager.getUserFileMgr](#userfilemanagergetuserfilemgr)的示例使用。
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -1978,6 +2062,8 @@ commitModify(): Promise&lt;void&gt;
 | Promise&lt;void&gt; | Promise对象，返回void。 |
 
 **示例：**
+
+mgr的创建请参考[userFileManager.getUserFileMgr](#userfilemanagergetuserfilemgr)的示例使用。
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -2028,6 +2114,8 @@ open(mode: string, callback: AsyncCallback&lt;number&gt;): void
 
 **示例：**
 
+mgr的创建请参考[userFileManager.getUserFileMgr](#userfilemanagergetuserfilemgr)的示例使用。
+
 ```ts
 async function example() {
   console.info('openDemo');
@@ -2070,6 +2158,8 @@ open(mode: string): Promise&lt;number&gt;
 
 **示例：**
 
+mgr的创建请参考[userFileManager.getUserFileMgr](#userfilemanagergetuserfilemgr)的示例使用。
+
 ```ts
 async function example() {
   console.info('openDemo');
@@ -2105,6 +2195,8 @@ close(fd: number, callback: AsyncCallback&lt;void&gt;): void
 | callback | AsyncCallback&lt;void&gt; | 是    | callback返回void。 |
 
 **示例：**
+
+mgr的创建请参考[userFileManager.getUserFileMgr](#userfilemanagergetuserfilemgr)的示例使用。
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -2156,6 +2248,8 @@ close(fd: number): Promise&lt;void&gt;
 
 **示例：**
 
+mgr的创建请参考[userFileManager.getUserFileMgr](#userfilemanagergetuserfilemgr)的示例使用。
+
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
@@ -2196,6 +2290,8 @@ getThumbnail(callback: AsyncCallback&lt;image.PixelMap&gt;): void
 | callback | AsyncCallback&lt;[image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)&gt; | 是    | callback返回缩略图的PixelMap。 |
 
 **示例：**
+
+mgr的创建请参考[userFileManager.getUserFileMgr](#userfilemanagergetuserfilemgr)的示例使用。
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -2238,6 +2334,8 @@ getThumbnail(size: image.Size, callback: AsyncCallback&lt;image.PixelMap&gt;): v
 | callback | AsyncCallback&lt;[image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)&gt; | 是    | callback返回缩略图的PixelMap。 |
 
 **示例：**
+
+mgr的创建请参考[userFileManager.getUserFileMgr](#userfilemanagergetuserfilemgr)的示例使用。
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -2288,6 +2386,8 @@ getThumbnail(size?: image.Size): Promise&lt;image.PixelMap&gt;
 
 **示例：**
 
+mgr的创建请参考[userFileManager.getUserFileMgr](#userfilemanagergetuserfilemgr)的示例使用。
+
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 import { image } from '@kit.ImageKit';
@@ -2330,6 +2430,8 @@ favorite(isFavorite: boolean, callback: AsyncCallback&lt;void&gt;): void
 | callback   | AsyncCallback&lt;void&gt; | 是    | callback返回void。                              |
 
 **示例：**
+
+mgr的创建请参考[userFileManager.getUserFileMgr](#userfilemanagergetuserfilemgr)的示例使用。
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -2376,6 +2478,8 @@ favorite(isFavorite: boolean): Promise&lt;void&gt;
 | Promise&lt;void&gt; | Promise对象，返回void。 |
 
 **示例：**
+
+mgr的创建请参考[userFileManager.getUserFileMgr](#userfilemanagergetuserfilemgr)的示例使用。
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -2427,6 +2531,8 @@ setHidden(hiddenState: boolean, callback: AsyncCallback&lt;void&gt;): void
 | 13900020   | if parameter is invalid.         |
 
 **示例：**
+
+mgr的创建请参考[userFileManager.getUserFileMgr](#userfilemanagergetuserfilemgr)的示例使用。
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -2484,6 +2590,8 @@ setHidden(hiddenState: boolean): Promise&lt;void&gt;
 | 13900020   | if parameter is invalid.         |
 
 **示例：**
+
+mgr的创建请参考[userFileManager.getUserFileMgr](#userfilemanagergetuserfilemgr)的示例使用。
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -2572,6 +2680,8 @@ Exif标签的详细信息请参考[image.PropertyKey](../apis-image-kit/js-apis-
 | ExposureBiasValue | 曝光补偿。 |
 
 **示例：**
+
+mgr的创建请参考[userFileManager.getUserFileMgr](#userfilemanagergetuserfilemgr)的示例使用。
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -2663,6 +2773,8 @@ Exif标签的详细信息请参考[image.PropertyKey](../apis-image-kit/js-apis-
 
 **示例：**
 
+mgr的创建请参考[userFileManager.getUserFileMgr](#userfilemanagergetuserfilemgr)的示例使用。
+
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
@@ -2731,6 +2843,8 @@ setUserComment(userComment: string): Promise&lt;void&gt;
 
 **示例：**
 
+mgr的创建请参考[userFileManager.getUserFileMgr](#userfilemanagergetuserfilemgr)的示例使用。
+
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
@@ -2784,6 +2898,8 @@ setUserComment(userComment: string, callback: AsyncCallback&lt;void&gt;): void
 
 **示例：**
 
+mgr的创建请参考[userFileManager.getUserFileMgr](#userfilemanagergetuserfilemgr)的示例使用。
+
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
@@ -2831,6 +2947,8 @@ getCount(): number
 
 **示例：**
 
+mgr的创建请参考[userFileManager.getUserFileMgr](#userfilemanagergetuserfilemgr)的示例使用。
+
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
@@ -2863,6 +2981,8 @@ isAfterLast(): boolean
 
 **示例：**
 
+mgr的创建请参考[userFileManager.getUserFileMgr](#userfilemanagergetuserfilemgr)的示例使用。
+
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
@@ -2893,6 +3013,8 @@ close(): void
 **系统能力**：SystemCapability.FileManagement.UserFileManager.Core
 
 **示例：**
+
+mgr的创建请参考[userFileManager.getUserFileMgr](#userfilemanagergetuserfilemgr)的示例使用。
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -2929,6 +3051,8 @@ getFirstObject(callback: AsyncCallback&lt;T&gt;): void
 | callback | AsyncCallback&lt;T&gt; | 是   | 异步获取结果集中的第一个完成后的回调。 |
 
 **示例：**
+
+mgr的创建请参考[userFileManager.getUserFileMgr](#userfilemanagergetuserfilemgr)的示例使用。
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -2967,6 +3091,8 @@ getFirstObject(): Promise&lt;T&gt;
 
 **示例：**
 
+mgr的创建请参考[userFileManager.getUserFileMgr](#userfilemanagergetuserfilemgr)的示例使用。
+
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
@@ -2999,6 +3125,8 @@ getNextObject(callback: AsyncCallback&lt;T&gt;): void
 | callback | AsyncCallback&lt;T&gt; | 是   | 异步返回结果集中下一个之后的回调。 |
 
 **示例：**
+
+mgr的创建请参考[userFileManager.getUserFileMgr](#userfilemanagergetuserfilemgr)的示例使用。
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -3041,6 +3169,8 @@ getNextObject(): Promise&lt;T&gt;
 
 **示例：**
 
+mgr的创建请参考[userFileManager.getUserFileMgr](#userfilemanagergetuserfilemgr)的示例使用。
+
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
@@ -3075,6 +3205,8 @@ getLastObject(callback: AsyncCallback&lt;T&gt;): void
 | callback | AsyncCallback&lt;T&gt; | 是   | 异步返回结果集中最后一个的回调。 |
 
 **示例：**
+
+mgr的创建请参考[userFileManager.getUserFileMgr](#userfilemanagergetuserfilemgr)的示例使用。
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -3112,6 +3244,8 @@ getLastObject(): Promise&lt;T&gt;
 | Promise&lt;T&gt; | Promise对象，返回结果集中最后一个对象。 |
 
 **示例：**
+
+mgr的创建请参考[userFileManager.getUserFileMgr](#userfilemanagergetuserfilemgr)的示例使用。
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -3153,6 +3287,8 @@ getPositionObject(index: number, callback: AsyncCallback&lt;T&gt;): void
 | 13900020   | if type index is not number.         |
 
 **示例：**
+
+mgr的创建请参考[userFileManager.getUserFileMgr](#userfilemanagergetuserfilemgr)的示例使用。
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -3205,6 +3341,8 @@ getPositionObject(index: number): Promise&lt;T&gt;
 
 **示例：**
 
+mgr的创建请参考[userFileManager.getUserFileMgr](#userfilemanagergetuserfilemgr)的示例使用。
+
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
@@ -3236,6 +3374,8 @@ getAllObject(callback: AsyncCallback&lt;Array&lt;T&gt;&gt;): void
 | callback | AsyncCallback&lt;Array&lt;T&gt;&gt; | 是   | 异步获取结果集中的所有文件资产完成后的回调。 |
 
 **示例：**
+
+mgr的创建请参考[userFileManager.getUserFileMgr](#userfilemanagergetuserfilemgr)的示例使用。
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -3273,6 +3413,8 @@ getAllObject(): Promise&lt;Array&lt;T&gt;&gt;
 | Promise&lt;Array&lt;T&gt;&gt; | Promise对象，返回结果集中所有文件资产数组。 |
 
 **示例：**
+
+mgr的创建请参考[userFileManager.getUserFileMgr](#userfilemanagergetuserfilemgr)的示例使用。
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -3334,6 +3476,8 @@ getPhotoAssets(options: FetchOptions, callback: AsyncCallback&lt;FetchResult&lt;
 
 **示例：**
 
+mgr的创建请参考[userFileManager.getUserFileMgr](#userfilemanagergetuserfilemgr)的示例使用。
+
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
@@ -3392,6 +3536,8 @@ getPhotoAssets(options: FetchOptions): Promise&lt;FetchResult&lt;FileAsset&gt;&g
 
 **示例：**
 
+mgr的创建请参考[userFileManager.getUserFileMgr](#userfilemanagergetuserfilemgr)的示例使用。
+
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -3435,6 +3581,8 @@ commitModify(callback: AsyncCallback&lt;void&gt;): void
 
 **示例：**
 
+mgr的创建请参考[userFileManager.getUserFileMgr](#userfilemanagergetuserfilemgr)的示例使用。
+
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
@@ -3474,6 +3622,8 @@ commitModify(): Promise&lt;void&gt;
 | Promise&lt;void&gt; | Promise对象，返回void。 |
 
 **示例：**
+
+mgr的创建请参考[userFileManager.getUserFileMgr](#userfilemanagergetuserfilemgr)的示例使用。
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -3526,6 +3676,8 @@ addPhotoAssets(assets: Array&lt;FileAsset&gt;, callback: AsyncCallback&lt;void&g
 | 13900020   | if PhotoAssets is invalid.         |
 
 **示例：**
+
+mgr的创建请参考[userFileManager.getUserFileMgr](#userfilemanagergetuserfilemgr)的示例使用。
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -3587,6 +3739,8 @@ addPhotoAssets(assets: Array&lt;FileAsset&gt;): Promise&lt;void&gt;
 
 **示例：**
 
+mgr的创建请参考[userFileManager.getUserFileMgr](#userfilemanagergetuserfilemgr)的示例使用。
+
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -3640,6 +3794,8 @@ removePhotoAssets(assets: Array&lt;FileAsset&gt;, callback: AsyncCallback&lt;voi
 | 13900020   | if PhotoAssets is invalid.         |
 
 **示例：**
+
+mgr的创建请参考[userFileManager.getUserFileMgr](#userfilemanagergetuserfilemgr)的示例使用。
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -3701,6 +3857,8 @@ removePhotoAssets(assets: Array&lt;FileAsset&gt;): Promise&lt;void&gt;
 
 **示例：**
 
+mgr的创建请参考[userFileManager.getUserFileMgr](#userfilemanagergetuserfilemgr)的示例使用。
+
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -3754,6 +3912,8 @@ recoverPhotoAssets(assets: Array&lt;FileAsset&gt;, callback: AsyncCallback&lt;vo
 | 13900020   | if PhotoAssets is invalid.         |
 
 **示例：**
+
+mgr的创建请参考[userFileManager.getUserFileMgr](#userfilemanagergetuserfilemgr)的示例使用。
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -3815,6 +3975,8 @@ recoverPhotoAssets(assets: Array&lt;FileAsset&gt;): Promise&lt;void&gt;
 
 **示例：**
 
+mgr的创建请参考[userFileManager.getUserFileMgr](#userfilemanagergetuserfilemgr)的示例使用。
+
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -3870,6 +4032,8 @@ deletePhotoAssets(assets: Array&lt;FileAsset&gt;, callback: AsyncCallback&lt;voi
 | 13900020   | if PhotoAssets is invalid.         |
 
 **示例：**
+
+mgr的创建请参考[userFileManager.getUserFileMgr](#userfilemanagergetuserfilemgr)的示例使用。
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -3932,6 +4096,8 @@ deletePhotoAssets(assets: Array&lt;FileAsset&gt;): Promise&lt;void&gt;
 | 13900020   | if PhotoAssets is invalid.         |
 
 **示例：**
+
+mgr的创建请参考[userFileManager.getUserFileMgr](#userfilemanagergetuserfilemgr)的示例使用。
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -4007,6 +4173,8 @@ getPhotoAssets(options: FetchOptions, callback: AsyncCallback&lt;FetchResult&lt;
 
 **示例：**
 
+mgr的创建请参考[userFileManager.getUserFileMgr](#userfilemanagergetuserfilemgr)的示例使用。
+
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
@@ -4065,6 +4233,8 @@ getPhotoAssets(options: FetchOptions): Promise&lt;FetchResult&lt;FileAsset&gt;&g
 
 **示例：**
 
+mgr的创建请参考[userFileManager.getUserFileMgr](#userfilemanagergetuserfilemgr)的示例使用。
+
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
@@ -4103,6 +4273,8 @@ delete(uri: string, callback: AsyncCallback&lt;void&gt;): void
 | callback | AsyncCallback&lt;void&gt; | 是   | callback返回void。 |
 
 **示例：**
+
+mgr的创建请参考[userFileManager.getUserFileMgr](#userfilemanagergetuserfilemgr)的示例使用。
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -4155,6 +4327,8 @@ delete(uri: string): Promise&lt;void&gt;
 
 **示例：**
 
+mgr的创建请参考[userFileManager.getUserFileMgr](#userfilemanagergetuserfilemgr)的示例使用。
+
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -4199,6 +4373,8 @@ recover(uri: string, callback: AsyncCallback&lt;void&gt;): void
 | callback | AsyncCallback&lt;void&gt; | 是   | callback返回void。 |
 
 **示例：**
+
+mgr的创建请参考[userFileManager.getUserFileMgr](#userfilemanagergetuserfilemgr)的示例使用。
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -4250,6 +4426,8 @@ recover(uri: string): Promise&lt;void&gt;
 | Promise&lt;void&gt;| Promise对象，返回void。 |
 
 **示例：**
+
+mgr的创建请参考[userFileManager.getUserFileMgr](#userfilemanagergetuserfilemgr)的示例使用。
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';

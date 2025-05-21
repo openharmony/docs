@@ -18,7 +18,7 @@ Not supported
 
 ## Attributes
 
-The [universal attributes](ts-universal-attributes-size.md) are not supported.
+The [universal attributes](ts-component-general-attributes.md) are not supported.
 
 ## NavPushPathHelper
 
@@ -417,7 +417,7 @@ For details about the error codes, see [Router Error Codes](../errorcode-router.
 
 ## Events
 
-The [universal events](ts-universal-events-click.md) are not supported.
+The [universal events](ts-component-general-events.md) are not supported.
 
 ## Example
 

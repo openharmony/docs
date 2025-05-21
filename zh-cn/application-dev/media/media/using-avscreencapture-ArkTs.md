@@ -34,6 +34,7 @@
 
     ```javascript
     import media from '@ohos.multimedia.media';
+    import fs from '@ohos.file.fs';
     ```
 
 2. 创建AVScreenCaptureRecorder类型的成员变量screenCapture。
@@ -103,15 +104,23 @@
 
     ​参数videoBitrate、audioSampleRate、audioChannelCount、audioBitrate、preset、displayId为可选参数，若不设置则可按默认值进行设置，如下示例中提供了可选参数的默认值。麦克风和系统音的音频流共用一套音频参数，分别是音频采样率、音频通道数和音频比特率，对应audioSampleRate、audioChannelCount和audioBitrate参数。
 
+    参数fd可以参考应用文件访问与管理的开发实例[新建并读写一个文件fd](../../file-management/app-file-access.md)。本示例中提供的getFileFd()仅作为参考。
+
     2in1设备配置displayId为扩展屏Id，可拉起录屏窗口选择界面，用户在界面上选择录屏内容，最终录屏内容以用户在弹窗界面上的选择为准。
 
     ```javascript
+    public getFileFd(): number {
+      let filesDir = '/data/storage/el2/base/haps';
+      let file = fs.openSync(filesDir + '/screenCapture.mp4', fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
+      return file.fd;
+    }
+
     captureConfig: media.AVScreenCaptureRecordConfig = {
         // 开发者可以根据自身的需要设置宽高。
         frameWidth: 768,
         frameHeight: 1280,
         // 参考应用文件访问与管理开发示例新建并读写一个文件fd。
-        fd: 0,
+        fd: this.getFileFd(),
         // 可选参数及其默认值。
         videoBitrate: 10000000,
         audioSampleRate: 48000,
@@ -163,6 +172,7 @@
 
 ```javascript
 import media from '@ohos.multimedia.media';
+import fs from '@ohos.file.fs';
 
 export class AVScreenCaptureDemo {
   private screenCapture?: media.AVScreenCaptureRecorder;
@@ -171,7 +181,7 @@ export class AVScreenCaptureDemo {
     frameWidth: 768,
     frameHeight: 1280,
     // 参考应用文件访问与管理开发示例新建并读写一个文件fd。
-    fd: 0,
+    fd: this.getFileFd(),
     // 可选参数及其默认值。
     videoBitrate: 10000000,
     audioSampleRate: 48000,
@@ -180,6 +190,12 @@ export class AVScreenCaptureDemo {
     displayId: 0,
     preset: media.AVScreenCaptureRecordPreset.SCREEN_RECORD_PRESET_H264_AAC_MP4
   };
+  
+  public getFileFd(): number {
+    let filesDir = '/data/storage/el2/base/haps';
+    let file = fs.openSync(filesDir + '/screenCapture.mp4', fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
+    return file.fd;
+  }
 
   // 调用startRecording方法可以开始一次录屏存文件的流程，结束录屏可以通过点击录屏胶囊停止按钮进行操作。
   public async startRecording() {

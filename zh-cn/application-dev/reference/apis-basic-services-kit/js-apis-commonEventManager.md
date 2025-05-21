@@ -50,17 +50,15 @@ publish(event: string, callback: AsyncCallback\<void>): void
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// 发布公共事件回调
-function publishCB(err: BusinessError) {
-  if (err) {
-    console.error(`Failed to publish common event. Code is ${err.code}, message is ${err.message}`);
-    return;
-  }
-  console.info(`Succeeded in publishing common event.`);
-}
 // 发布公共事件
 try {
-  commonEventManager.publish('event', publishCB);
+  commonEventManager.publish('event', (err: BusinessError) => {
+    if (err) {
+      console.error(`Failed to publish common event. Code is ${err.code}, message is ${err.message}`);
+      return;
+    }
+    console.info(`Succeeded in publishing common event.`);
+  });
 } catch (error) {
   let err: BusinessError = error as BusinessError;
   console.error(`Failed to publish common event. Code is ${err.code}, message is ${err.message}`);
@@ -108,17 +106,16 @@ let options: commonEventManager.CommonEventPublishData = {
   data: 'initial data',
   isOrdered: true // 有序公共事件
 }
-// 发布公共事件回调
-function publishCB(err: BusinessError) {
-  if (err) {
-    console.error(`Failed to publish common event. Code is ${err.code}, message is ${err.message}`);
-    return;
-  }
-  console.info(`Succeeded in publishing common event.`);
-}
+
 // 发布公共事件
 try {
-  commonEventManager.publish('event', options, publishCB);
+  commonEventManager.publish('event', options, (err: BusinessError) => {
+    if (err) {
+      console.error(`Failed to publish common event. Code is ${err.code}, message is ${err.message}`);
+      return;
+    }
+    console.info(`Succeeded in publishing common event.`);
+  });
 } catch (error) {
   let err: BusinessError = error as BusinessError;
   console.error(`Failed to publish common event. Code is ${err.code}, message is ${err.message}`);
@@ -161,18 +158,18 @@ let subscriber: commonEventManager.CommonEventSubscriber;
 let subscribeInfo: commonEventManager.CommonEventSubscribeInfo = {
   events: ['event']
 };
-// 创建订阅者回调
-function createCB(err: BusinessError, commonEventSubscriber: commonEventManager.CommonEventSubscriber) {
-  if(!err) {
-    console.info(`Succeeded in creating subscriber.`);
-    subscriber = commonEventSubscriber;
-    return;
-  }
-  console.error(`Failed to create subscriber. Code is ${err.code}, message is ${err.message}`);
-}
+
 // 创建订阅者
 try {
-  commonEventManager.createSubscriber(subscribeInfo, createCB);
+  commonEventManager.createSubscriber(subscribeInfo,
+    (err: BusinessError, commonEventSubscriber: commonEventManager.CommonEventSubscriber) => {
+      if(!err) {
+        console.info(`Succeeded in creating subscriber.`);
+        subscriber = commonEventSubscriber;
+        return;
+      }
+      console.error(`Failed to create subscriber. Code is ${err.code}, message is ${err.message}`);
+    });
 } catch (error) {
   let err: BusinessError = error as BusinessError;
   console.error(`Failed to create subscriber. Code is ${err.code}, message is ${err.message}`);
@@ -206,7 +203,7 @@ createSubscriber(subscribeInfo: CommonEventSubscribeInfo): Promise\<CommonEventS
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
-| 401     | PParameter error. Possible causes:<br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types.<br>3. Parameter verification failed.      | 
+| 401     | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types.<br>3. Parameter verification failed.      | 
 
 **示例：**
 
@@ -255,7 +252,7 @@ createSubscriber的同步接口。
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
-| 401     | PParameter error. Possible causes:<br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types.<br>3. Parameter verification failed.      | 
+| 401     | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types.<br>3. Parameter verification failed.      | 
 
 **示例：**
 
@@ -300,7 +297,7 @@ subscribe(subscriber: CommonEventSubscriber, callback: AsyncCallback\<CommonEven
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
-| 401     | PParameter error. Possible causes:<br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types.<br>3. Parameter verification failed.      | 
+| 401     | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types.<br>3. Parameter verification failed.      | 
 | 801  | capability not supported.               |
 | 1500007  | Failed to send the message to the common event service. |
 | 1500008  | Failed to initialize the common event service. |
@@ -316,33 +313,31 @@ let subscriber: commonEventManager.CommonEventSubscriber;
 let subscribeInfo: commonEventManager.CommonEventSubscribeInfo = {
   events: ['event']
 };
-// 订阅公共事件回调
-function SubscribeCB(err: BusinessError, data: commonEventManager.CommonEventData) {
-  if (err) {
-    console.error(`Failed to subscribe. Code is ${err.code}, message is ${err.message}`);
-    return;
-  }
-  console.info(`Succeeded in subscribing, data is ${JSON.stringify(data)}`);
-}
-// 创建订阅者回调
-function createCB(err: BusinessError, commonEventSubscriber: commonEventManager.CommonEventSubscriber) {
-  if(!err) {
-    console.info(`Succeeded in creating subscriber.`);
-    subscriber = commonEventSubscriber;
-    // 订阅公共事件
-    try {
-      commonEventManager.subscribe(subscriber, SubscribeCB);
-    } catch (error) {
-      let err: BusinessError = error as BusinessError;
-      console.error(`Failed to subscribe. Code is ${err.code}, message is ${err.message}`);
-    }
-    return;
-  }
-  console.error(`Failed to create subscriber. Code is ${err.code}, message is ${err.message}`);
-}
+
 // 创建订阅者
 try {
-  commonEventManager.createSubscriber(subscribeInfo, createCB);
+  commonEventManager.createSubscriber(subscribeInfo,
+    (err: BusinessError, commonEventSubscriber: commonEventManager.CommonEventSubscriber) => {
+      if(!err) {
+        console.info(`Succeeded in creating subscriber.`);
+        subscriber = commonEventSubscriber;
+        // 订阅公共事件
+        try {
+          commonEventManager.subscribe(subscriber, (err: BusinessError, data: commonEventManager.CommonEventData) => {
+            if (err) {
+              console.error(`Failed to subscribe. Code is ${err.code}, message is ${err.message}`);
+              return;
+            }
+            console.info(`Succeeded in subscribing, data is ${JSON.stringify(data)}`);
+          });
+        } catch (error) {
+          let err: BusinessError = error as BusinessError;
+          console.error(`Failed to subscribe. Code is ${err.code}, message is ${err.message}`);
+        }
+        return;
+      }
+      console.error(`Failed to create subscriber. Code is ${err.code}, message is ${err.message}`);
+    });
 } catch (error) {
   let err: BusinessError = error as BusinessError;
   console.error(`Failed to create subscriber. Code is ${err.code}, message is ${err.message}`);
@@ -388,43 +383,31 @@ let subscriber: commonEventManager.CommonEventSubscriber | undefined;
 let subscribeInfo: commonEventManager.CommonEventSubscribeInfo = {
   events: ['event']
 };
-// 订阅公共事件回调
-function subscribeCB(err: BusinessError, data: commonEventManager.CommonEventData) {
-  if (err) {
-    console.error(`Failed to subscribe. Code is ${err.code}, message is ${err.message}`);
-    return;
-  }
-  console.info(`Succeeded in subscribing, data is ${JSON.stringify(data)}`);
-}
-// 创建订阅者回调
-function createCB(err: BusinessError, commonEventSubscriber: commonEventManager.CommonEventSubscriber) {
-  if (err) {
-    console.error(`Failed to create subscriber. Code is ${err.code}, message is ${err.message}`);
-    return;
-  }
-  console.info(`Succeeded in creating subscriber.`);
-  subscriber = commonEventSubscriber;
-  // 订阅公共事件
-  try {
-    commonEventManager.subscribe(subscriber, subscribeCB);
-  } catch (error) {
-    let err: BusinessError = error as BusinessError;
-    console.error(`Failed to subscribe. Code is ${err.code}, message is ${err.message}`);
-  }
-}
-// 取消订阅公共事件回调
-function unsubscribeCB(err: BusinessError) {
-  if (err) {
-    console.error(`Failed to unsubscribe. Code is ${err.code}, message is ${err.message}`);
-    return;
-  }
-  // subscriber不再使用时需要将其置为undefined，避免内存泄露
-  subscriber = undefined;
-  console.info(`Succeeded in unsubscribing.`);
-}
+
 // 创建订阅者
 try {
-  commonEventManager.createSubscriber(subscribeInfo, createCB);
+  commonEventManager.createSubscriber(subscribeInfo,
+    (err: BusinessError, commonEventSubscriber: commonEventManager.CommonEventSubscriber) => {
+      if(!err) {
+        console.info(`Succeeded in creating subscriber.`);
+        subscriber = commonEventSubscriber;
+        // 订阅公共事件
+        try {
+          commonEventManager.subscribe(subscriber, (err: BusinessError, data: commonEventManager.CommonEventData) => {
+            if (err) {
+              console.error(`Failed to subscribe. Code is ${err.code}, message is ${err.message}`);
+              return;
+            }
+            console.info(`Succeeded in subscribing, data is ${JSON.stringify(data)}`);
+          });
+        } catch (error) {
+          let err: BusinessError = error as BusinessError;
+          console.error(`Failed to subscribe. Code is ${err.code}, message is ${err.message}`);
+        }
+        return;
+      }
+      console.error(`Failed to create subscriber. Code is ${err.code}, message is ${err.message}`);
+    });
 } catch (error) {
   let err: BusinessError = error as BusinessError;
   console.error(`Failed to create subscriber. Code is ${err.code}, message is ${err.message}`);
@@ -434,7 +417,15 @@ try {
 // 等待异步接口subscribe执行完毕，开发者根据实际业务选择是否需要添加setTimeout
 setTimeout(() => {
   try {
-    commonEventManager.unsubscribe(subscriber, unsubscribeCB);
+    commonEventManager.unsubscribe(subscriber, (err: BusinessError) => {
+      if (err) {
+        console.error(`Failed to unsubscribe. Code is ${err.code}, message is ${err.message}`);
+        return;
+      }
+      // subscriber不再使用时需要将其置为undefined，避免内存泄露
+      subscriber = undefined;
+      console.info(`Succeeded in unsubscribing.`);
+    });
   } catch (error) {
     let err: BusinessError = error as BusinessError;
     console.error(`Failed to unsubscribe. Code is ${err.code}, message is ${err.message}`);
@@ -442,11 +433,11 @@ setTimeout(() => {
 }, 500);
 ```
 
-## CommonEventData
+## CommonEventData<sup>10+</sup>
 
 type CommonEventData = _CommonEventData
 
-公共事件的数据。
+表示公共事件的数据。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -456,7 +447,7 @@ type CommonEventData = _CommonEventData
 | --- | --- |
 | [_CommonEventData](js-apis-inner-commonEvent-commonEventData.md) | 表示公共事件的数据。 |
 
-## CommonEventSubscriber
+## CommonEventSubscriber<sup>10+</sup>
 
 type CommonEventSubscriber = _CommonEventSubscriber
 
@@ -470,7 +461,7 @@ type CommonEventSubscriber = _CommonEventSubscriber
 | --- | --- |
 | [_CommonEventSubscriber](js-apis-inner-commonEvent-commonEventSubscriber.md) | 描述公共事件的订阅者。 |
 
-## CommonEventSubscribeInfo
+## CommonEventSubscribeInfo<sup>10+</sup>
 
 type CommonEventSubscribeInfo = _CommonEventSubscribeInfo
 
@@ -484,7 +475,7 @@ type CommonEventSubscribeInfo = _CommonEventSubscribeInfo
 | --- | --- |
 | [_CommonEventSubscribeInfo](js-apis-inner-commonEvent-commonEventSubscribeInfo.md) | 用于表示订阅者的信息。 |
 
-## CommonEventPublishData
+## CommonEventPublishData<sup>10+</sup>
 
 type CommonEventPublishData = _CommonEventPublishData
 

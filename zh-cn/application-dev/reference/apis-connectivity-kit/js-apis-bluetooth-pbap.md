@@ -19,7 +19,7 @@ import { pbap } from '@kit.ConnectivityKit';
 
 type BaseProfile = baseProfile.BaseProfile
 
-基础Profile接口定义
+基础Profile接口定义。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 

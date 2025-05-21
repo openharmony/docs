@@ -1,8 +1,8 @@
 # Audio Kit
 
 - [Introduction to Audio Kit](audio-kit-intro.md)
-- [Selecting an Appropriate Audio Stream Type](using-right-streamusage-and-sourcetype.md)
-- [Introduction to Audio Focus and Audio Session](audio-playback-concurrency.md)
+- [Selecting the Appropriate Audio Stream Types](using-right-streamusage-and-sourcetype.md)
+- [Introduction to Audio Focus and Audio Sessions](audio-playback-concurrency.md)
 - Audio Focus Management<!--audio-session-->
   - [Using AudioSession to Manage Audio Focus (ArkTS)](audio-session-management.md)
   - [Using AudioSession to Manage Audio Focus (C/C++)](using-ohaudio-for-session.md)
@@ -21,7 +21,7 @@
   - [Spatial Audio Management (for System Applications Only)](audio-spatialization-management.md)
   <!--DelEnd-->
   - [Audio Playback Stream Management](audio-playback-stream-management.md)
-  - [Managing Global Audio Output Devices](audio-output-device-management.md)
+  - [Global Audio Output Device Management](audio-output-device-management.md)
   <!--Del-->
   - [Distributed Audio Playback (for System Applications Only)](distributed-audio-playback.md)
   <!--DelEnd-->
@@ -31,7 +31,7 @@
   - [Using OHAudio for Audio Recording (C/C++)](using-ohaudio-for-recording.md)
   - [Microphone Management](mic-management.md)
   - [Audio Recording Stream Management](audio-recording-stream-management.md)
-  - [Managing Global Audio Input Devices](audio-input-device-management.md)
+  - [Global Audio Input Device Management](audio-input-device-management.md)
 - Audio Call<!--audio-call-->
   - [Audio Call Overview](audio-call-overview.md)
   - [Developing Audio Call](audio-call-development.md)

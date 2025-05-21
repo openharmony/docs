@@ -263,7 +263,7 @@ EGL初始化成功之后，需要确定可用渲染表面的类型和配置，�
 
     ```cpp
     // 如以上代码所示这里指定所需配置的属性为
-    EGLint attribs[] = {EGL_RENDERABLE_TYPE, EGL_OPENGL_ES3_BIT,  -// 指定了渲染类型为 OpenGL ES 3
+    EGLint attribs[] = {EGL_RENDERABLE_TYPE, EGL_OPENGL_ES3_BIT,  // 指定了渲染类型为 OpenGL ES 3
                         EGL_BLUE_SIZE, 6,   // 指定蓝色缓冲区的位数是6位
                         EGL_GREEN_SIZE, 8,  // 指定绿色缓冲区的位数是8位
                         EGL_RED_SIZE, 8,    // 指定红色缓冲区的位数是8位
@@ -811,6 +811,8 @@ EGLBoolean eglSwapBuffers(EGLDisplay dpy, // EGL显示连接
 ```
 
 eglSwapBuffers函数用于交换前后缓冲区的内容，并将渲染结果显示在屏幕上。
+
+<!--RP1--><!--RP1End-->
 
 ## 相关实例
 

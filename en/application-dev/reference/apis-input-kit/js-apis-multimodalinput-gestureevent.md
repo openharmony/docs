@@ -20,7 +20,7 @@ Defines a pinch event.
 
 | Name            | Type       | Readable  | Writable  | Description                                      |
 | -------------- | ----------- | ---- | ---- | ---------------------------------------- |
-| type         | [ActionType](#actiontype)   | Yes   | No   | Pinch event type.                                  |
+| type         | [ActionType](#actiontype)   | Yes   | No   | Pinch event.                                  |
 | scale        | number      | Yes   | No   | Pinch scale factor. The value is greater than or equal to 0.                            |
 
 ## Rotate<sup>11+</sup>
@@ -31,7 +31,7 @@ Defines a rotate event.
 
 | Name            | Type       | Readable  | Writable  | Description                                      |
 | -------------- | ----------- | ---- | ---- | ---------------------------------------- |
-| type | [ActionType](#actiontype)   | Yes   | No   | Rotate event type.                                  |
+| type | [ActionType](#actiontype)   | Yes   | No   | Rotation event.                                  |
 | angle | number      | Yes   | No   | Angle to rotate.                            |
 
 ## ThreeFingersSwipe
@@ -42,7 +42,7 @@ Defines a three-finger swipe event.
 
 | Name            | Type       | Readable  | Writable  | Description                                      |
 | -------------- | ----------- | ---- | ---- | ---------------------------------------- |
-| type         | [ActionType](#actiontype)   | Yes   | No   | Three-finger swipe event type.                                  |
+| type         | [ActionType](#actiontype)   | Yes   | No   | Three-finger swipe event.                                  |
 | x        | number      | Yes   | No   | X coordinate.                            |
 | y        | number      | Yes   | No   | Y coordinate.                            |
 
@@ -54,7 +54,7 @@ Defines a four-finger swipe event.
 
 | Name            | Type       | Readable  | Writable  | Description                                      |
 | -------------- | ----------- | ---- | ---- | ---------------------------------------- |
-| type         | [ActionType](#actiontype)   | Yes   | No   | Four-finger swipe event type.                                  |
+| type         | [ActionType](#actiontype)   | Yes   | No   | Four-finger swipe event.                                  |
 | x        | number      | Yes   | No   | X coordinate.                            |
 | y        | number      | Yes   | No   | Y coordinate.                            |
 
@@ -66,7 +66,7 @@ Defines a three-finger tap event.
 
 | Name              | Type                     | Readable| Writable| Description            |
 | ------------------ | ------------------------- | ---- | ---- | ---------------- |
-| type | [ActionType](#actiontype) | Yes  | No  | Three-finger tap event type.|
+| type | [ActionType](#actiontype) | Yes  | No  | Three-finger tap event.|
 
 ## ActionType
 

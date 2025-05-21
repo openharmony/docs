@@ -102,8 +102,8 @@ enableNestedScroll(enabled: Optional\<boolean>)
 @Entry
 @Component
 struct ScrollBarExample {
-  private scroller: Scroller = new Scroller()
-  private arr: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
+  private scroller: Scroller = new Scroller();
+  private arr: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];
 
   build() {
     Column() {
@@ -151,8 +151,8 @@ struct ScrollBarExample {
 @Entry
 @Component
 struct ScrollBarExample {
-  private scroller: Scroller = new Scroller()
-  private arr: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
+  private scroller: Scroller = new Scroller();
+  private arr: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];
 
   build() {
     Column() {
@@ -194,13 +194,13 @@ struct ScrollBarExample {
 @Component
 struct StickyNestedScroll {
   listScroller: Scroller = new Scroller();
-  @State array: number[] = []
+  @State array: number[] = [];
 
   @Styles
   listCard() {
     .backgroundColor(Color.White)
     .height(72)
-    .width("100%")
+    .width('100%')
     .borderRadius(12)
   }
 
@@ -209,8 +209,8 @@ struct StickyNestedScroll {
       Scroll() {
         Column() {
           Text('Scroll Area')
-            .width("100%")
-            .height("40%")
+            .width('100%')
+            .height('40%')
             .backgroundColor('#0080DC')
             .textAlign(TextAlign.Center)
           List({ space: 10, scroller: this.listScroller }) {
@@ -227,9 +227,9 @@ struct StickyNestedScroll {
             scrollForward: NestedScrollMode.PARENT_FIRST,
             scrollBackward: NestedScrollMode.SELF_FIRST
           })
-          .height("100%")
+          .height('100%')
         }
-        .width("100%")
+        .width('100%')
       }
       .edgeEffect(EdgeEffect.Spring)
       .backgroundColor('#DCDCDC')
@@ -244,7 +244,7 @@ struct StickyNestedScroll {
 
   aboutToAppear() {
     for (let i = 0; i < 15; i++) {
-      this.array.push(i)
+      this.array.push(i);
     }
   }
 }

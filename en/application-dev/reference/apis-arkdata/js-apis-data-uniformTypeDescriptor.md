@@ -414,7 +414,7 @@ Obtains the **TypeDescriptor** object based on the uniform data type ID.
 
 | Name | Type| Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
-| typeId    | string  | Yes   |ID of the uniform data type.  |
+| typeId    | string  | Yes   |[Uniform data type ID](../../database/uniform-data-type-list.md#generic-utds).  |
 
 **Return value**
 
@@ -469,7 +469,7 @@ Obtains the uniform data type ID based on the given file name extension and data
 | Name | Type| Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
 | filenameExtension    | string  | Yes   |File name extension.  |
-| belongsTo    | string  | No   |ID of the uniform data type to which the target data type belongs. If this parameter is not specified, the uniform data type ID is obtained based on the file name extension.  |
+| belongsTo    | string  | No   |ID of the uniform data type, to which the data type to be obtained belongs. If this parameter is not specified, the [uniform data type ID](../../database/uniform-data-type-list.md#generic-utds) is queried based on the file name extension.  |
 
 **Return value**
 
@@ -526,7 +526,7 @@ Obtains the uniform data type ID based on the given MIME type and data type. If 
 | Name | Type| Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
 | mimeType    | string  | Yes   |MIME type.  |
-| belongsTo    | string  | No   |ID of the uniform data type to which the target data type belongs. If this parameter is not specified, the uniform data type ID is queried based on the MIME type.  |
+| belongsTo    | string  | No   |ID of the uniform data type, to which the data type to be obtained belongs. This parameter has no default value. If it is not specified, the uniform data type ID (../../database/uniform-data-type-list.md#generic-utds) is queried based on the specified MIME type.  |
 
 **Return value**
 
@@ -583,7 +583,7 @@ Obtains the uniform data type IDs based on the given file name extension and dat
 | Name | Type| Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
 | filenameExtension    | string  | Yes   |File name extension.  |
-| belongsTo    | string  | No   |ID of the uniform data type to which the target data type belongs. If this parameter is not specified, the uniform data type ID is queried based on the file name extension.  |
+| belongsTo    | string  | No   |ID of the uniform data type, to which the data type to be obtained belongs. If this parameter is not specified, the [uniform data type ID](../../database/uniform-data-type-list.md#generic-utds) is queried based on the file name extension.  |
 
 **Return value**
 
@@ -640,7 +640,7 @@ Obtains the uniform data type IDs based on the given MIME type and data type.
 | Name | Type| Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
 | mimeType    | string  | Yes   |MIME type.  |
-| belongsTo    | string  | No   |ID of the uniform data type to which the target data type belongs. If this parameter is not specified, the uniform data type ID is queried based on the MIME type.  |
+| belongsTo    | string  | No   |ID of the uniform data type, to which the data type to be obtained belongs. This parameter has no default value. If it is not specified, the uniform data type ID (../../database/uniform-data-type-list.md#generic-utds) is queried based on the specified MIME type.  |
 
 **Return value**
 

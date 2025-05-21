@@ -1,6 +1,6 @@
 # 保存媒体库资源
 
-当用户需要保存图片、视频等用户文件到图库时，无需在应用中申请相册管理模块权限'ohos.permission.WRITE_IMAGEVIDEO'，应用可以通过[安全控件](#使用安全控件保存媒体库资源)或[授权弹窗](#使用弹窗授权保存媒体库资源)的方式，将用户指定的媒体资源保存到图库中。
+保存图片、视频等用户文件到图库时，无需申请相册管理模块权限'ohos.permission.WRITE_IMAGEVIDEO'，应用可以通过[安全控件](#使用安全控件保存媒体库资源)或[授权弹窗](#使用弹窗授权保存媒体库资源)的方式，将用户指定的媒体资源保存到图库中。
 
 ## 使用安全控件保存媒体库资源
 
@@ -63,10 +63,10 @@ struct Index {
 
 **开发步骤**
 
-1. 指定待保存到媒体库的位于应用沙箱的[应用文件](../../file-management/app-file-access.md)图片uri。
+1. 指定待保存到媒体库的[应用文件](../../file-management/app-file-access.md)uri（需为应用沙箱路径）。
 2. 指定待保存照片的创建选项，包括文件后缀和照片类型，标题和照片子类型可选。
 3. 调用[showAssetsCreationDialog](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#showassetscreationdialog12)，基于弹窗授权的方式获取的目标[媒体文件](../../file-management/user-file-uri-intro.md#媒体文件uri)uri。
-4. 将来源于应用沙箱的照片内容写入媒体库的目标uri。
+4. 将应用沙箱的照片内容写入媒体库的目标uri。
 
 ```ts
 import { photoAccessHelper } from '@kit.MediaLibraryKit';

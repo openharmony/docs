@@ -6,13 +6,13 @@
 
 > **说明：**
 >
-> 该组件从API Version 11开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+> 该组件从API version 11开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 
 ## 导入模块
 
 ```ts
-import { ExceptionPrompt, PromptOptions, MarginType } from '@kit.ArkUI'
+import { ExceptionPrompt, PromptOptions, MarginType } from '@kit.ArkUI';
 ```
 
 
@@ -51,14 +51,14 @@ PromptOptions定义options的类型。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| icon | [ResourceStr](ts-types.md#resourcestr) | 否 | 指定当前异常提示的异常图标式样。 |
+| 名称 | 类型 | 必填 | 说明                                                                                                                                                                                                                                                                                              |
+| -------- | -------- | -------- |-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| icon | [ResourceStr](ts-types.md#resourcestr) | 否 | 指定当前异常提示的异常图标式样。                                                                                                                                                                                                                                                                                |
 | tip | [ResourceStr](ts-types.md#resourcestr) | 否 | 指定当前异常提示的文字提示内容。<br />支持默认内置四种状态文字资源如下：<br />1.无网络状态：显示网络未连接：引用ohos_network_not_connected。<br />2.网络差状态：显示网络连接不稳定，请点击重试：引用ohos_network_connected_unstable。<br />3.连不上服务器状态：显示无法连接到服务器，请点击重试：引用ohos_unstable_connect_server。<br />4.有网但是获取不到内容状态：显示无法获取位置，请点击重试：引用ohos_custom_network_tips_left。 |
-| marginType | [MarginType](#margintype) | 是 | 指定当前异常提示的边距样式 。 |
-| actionText | [ResourceStr](ts-types.md#resourcestr) | 否 | 指定当前异常提示的右侧图标按钮的文字内容。 |
-| marginTop | [Dimension](ts-types.md#dimension10) | 是 | 指定当前异常提示的距离顶部的位置。 |
-| isShown | boolean | 否 | 指定当前异常提示的显隐状态。<br />true:显示状态。<br />false：隐藏状态。 |
+| marginType | [MarginType](#margintype) | 是 | 指定当前异常提示的边距样式 。                                                                                                                                                                                                                                                                                 |
+| actionText | [ResourceStr](ts-types.md#resourcestr) | 否 | 指定当前异常提示的右侧图标按钮的文字内容。                                                                                                                                                                                                                                                                           |
+| marginTop | [Dimension](ts-types.md#dimension10) | 是 | 指定当前异常提示的距离顶部的位置。                                                                                                                                                                                                                                                                               |
+| isShown | boolean | 否 | 指定当前异常提示的显隐状态。<br />true：显示状态。<br />false：隐藏状态。                                                                                                                                                                                                                                                 |
 
 ## MarginType
 
@@ -82,7 +82,7 @@ MarginType定义marginType的类型。
 该示例展示了如何设置异常提示的异常图标、异常提示的文字、边距样式和右侧图标按钮的文字内容。
 
 ```ts
-import { ExceptionPrompt, PromptOptions, MarginType } from '@kit.ArkUI'
+import { ExceptionPrompt, PromptOptions, MarginType } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -119,7 +119,7 @@ struct Index {
 该示例使用自定义弹窗设置弹窗类型的异常提示。
 
 ```ts
-import { ExceptionPrompt, PromptOptions, MarginType } from '@kit.ArkUI'
+import { ExceptionPrompt, PromptOptions, MarginType } from '@kit.ArkUI';
 
 @CustomDialog
 struct CustomDialogExample {

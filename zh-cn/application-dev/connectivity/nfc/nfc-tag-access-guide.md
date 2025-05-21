@@ -176,7 +176,7 @@ export default class EntryAbility extends UIAbility {
   }
 
   onForeground() {
-    // 应用到前台
+    // 应用进入前台
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onForeground');
     if (nfcTagElementName != undefined) {
       // 调用tag模块中前台优先的接口，使能前台应用程序优先处理所发现的NFC标签功能

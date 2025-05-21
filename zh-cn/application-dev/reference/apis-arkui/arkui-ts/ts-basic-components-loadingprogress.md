@@ -101,9 +101,9 @@ contentModifier(modifier: ContentModifier\<LoadingProgressConfiguration>)
 | ------ | ------ | ------ |-------------------------------- |-------------------------------- |
 | enableLoading | boolean | 否 | 否 |LoadingProgress动画是否显示。<br/>默认值：true，true表示显示LoadingProgress动画，false表示不显示LoadingProgress动画。 |
 
-## LoadingProgressStyle<sup>(deprecated)</sup>枚举说明
+## LoadingProgressStyle枚举说明
 
-从API version 8开始废弃。
+表示LoadingProgress的样式类型，不推荐使用。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -147,23 +147,23 @@ struct LoadingProgressExample {
 
 ```ts
 // xxx.ets
-import { promptAction } from '@kit.ArkUI'
+import { promptAction } from '@kit.ArkUI';
 
 class MyLoadingProgressStyle implements ContentModifier<LoadingProgressConfiguration> {
-  enableLoading: boolean = false
+  enableLoading: boolean = false;
 
   constructor(enableLoading: boolean) {
-    this.enableLoading = enableLoading
+    this.enableLoading = enableLoading;
   }
 
   applyContent(): WrappedBuilder<[LoadingProgressConfiguration]> {
-    return wrapBuilder(buildLoadingProgress)
+    return wrapBuilder(buildLoadingProgress);
   }
 }
 
 let arr1: string[] =
-  ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19"]
-let arr2: string[] = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
+  ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19"];
+let arr2: string[] = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
 
 @Builder
 function buildLoadingProgress(config: LoadingProgressConfiguration) {
@@ -182,7 +182,7 @@ function buildLoadingProgress(config: LoadingProgressConfiguration) {
           .onClick((event: ClickEvent) => {
             promptAction.showToast({
               message: ((config.contentModifier as MyLoadingProgressStyle).enableLoading) + ''
-            })
+            });
           })
           .fontColor(Color.White)
           .backgroundColor(((config.contentModifier as MyLoadingProgressStyle).enableLoading) ? Color.Grey : 0x2577e3)
@@ -256,11 +256,11 @@ function buildLoadingProgress(config: LoadingProgressConfiguration) {
 @Entry
 @Component
 struct LoadingProgressDemoExample {
-  @State loadingProgressList: (boolean | undefined | null)[] = [undefined, true, null, false]
-  @State widthList: (number | string)[] = ['110%', 220, '40%', 80]
-  @State loadingProgressIndex: number = 0
-  @State clickFlag: number = 0
-  scroller: Scroller = new Scroller()
+  @State loadingProgressList: (boolean | undefined | null)[] = [undefined, true, null, false];
+  @State widthList: (number | string)[] = ['110%', 220, '40%', 80];
+  @State loadingProgressIndex: number = 0;
+  @State clickFlag: number = 0;
+  scroller: Scroller = new Scroller();
 
   build() {
     Column() {
@@ -276,9 +276,9 @@ struct LoadingProgressDemoExample {
       }.height('85%')
 
       Button('点击切换config.enableloading').onClick(() => {
-        this.clickFlag++
-        this.loadingProgressIndex = (this.loadingProgressIndex + 1) % this.loadingProgressList.length
-        console.log('enableLoading:' + this.loadingProgressList[this.loadingProgressIndex])
+        this.clickFlag++;
+        this.loadingProgressIndex = (this.loadingProgressIndex + 1) % this.loadingProgressList.length;
+        console.log('enableLoading:' + this.loadingProgressList[this.loadingProgressIndex]);
       }).margin(20)
     }
 

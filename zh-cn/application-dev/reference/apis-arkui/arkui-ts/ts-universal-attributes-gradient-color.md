@@ -4,7 +4,7 @@
 
 >  **说明：**
 >
-> 从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+> 从API version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 >
 > 颜色渐变属于组件内容，绘制在背景上方。
 >
@@ -76,7 +76,7 @@ radialGradient(value: { center: [Length, Length]; radius: number | string; color
 
 ### 示例1（颜色从右向左线性渐变）
 
-该示例通过linearGradient来实现组件颜色线性渐变。
+该示例通过linearGradient来实现组件的颜色线性渐变。
 
 ```ts
 // xxx.ets
@@ -132,7 +132,7 @@ struct ColorGradientExample {
           colors: [[0xff0000, 0.0], [0x0000ff, 0.3], [0xffff00, 1.0]]
         })
       
-      Text('sweepGradient Reapeat').fontSize(12).width('90%').fontColor(0xCCCCCC)
+      Text('sweepGradient Repeat').fontSize(12).width('90%').fontColor(0xCCCCCC)
       Row()
         .width(100)
         .height(100)

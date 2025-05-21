@@ -4,8 +4,8 @@ The **hfp** module provides APIs for using the Bluetooth Hands-Free Profile (HFP
 
 > **NOTE**
 >
-> - The initial APIs of this module are supported since API version 10. Newly added APIs will be marked with a superscript to indicate their earliest API version.
-> - This topic describes only the system APIs provided by the module. For details about its public APIs, see [@ohos.bluetooth.hfp (Bluetooth HFP Module)](js-apis-bluetooth-hfp.md).
+> The initial APIs of this module are supported since API version 10. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> This topic describes only the system APIs provided by the module. For details about its public APIs, see [@ohos.bluetooth.hfp (Bluetooth HFP Module)](js-apis-bluetooth-hfp.md).
 
 
 ## Modules to Import
@@ -19,7 +19,7 @@ import { hfp } from '@kit.ConnectivityKit';
 
 connect(deviceId: string): void
 
-Connects to a hands-free device.
+Connects to the HFP service of a device.
 
 **System API**: This is a system API.
 
@@ -35,7 +35,7 @@ Connects to a hands-free device.
 
 **Error codes**
 
-For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bluetooth Error Codes](errorcode-bluetoothManager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------- |
@@ -65,7 +65,7 @@ try {
 
 disconnect(deviceId: string): void
 
-Disconnects from a hands-free device.
+Disconnects the HFP service of a device.
 
 **System API**: This is a system API.
 
@@ -81,7 +81,7 @@ Disconnects from a hands-free device.
 
 **Error codes**
 
-For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bluetooth Error Codes](errorcode-bluetoothManager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------- |

@@ -6,13 +6,13 @@
 
 > **说明：**
 >
-> 该组件从API Version 10开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+> 该组件从API version 10开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 
 ## 导入模块
 
 ```
-import { SelectTitleBar } from '@kit.ArkUI'
+import { SelectTitleBar } from '@kit.ArkUI';
 ```
 
 
@@ -66,7 +66,7 @@ SelectTitleBar({selected: number, options: Array&lt;SelectOption&gt;, menuItems?
 该示例实现了简单的下拉菜单标题栏，带有返回箭头的下拉菜单标题栏和带有右侧菜单项目列表的下拉菜单标题栏。
 
 ```ts
-import { SelectTitleBar, promptAction, SelectTitleBarMenuItem } from '@kit.ArkUI'
+import { SelectTitleBar, promptAction, SelectTitleBarMenuItem } from '@kit.ArkUI';
 
 
 @Entry

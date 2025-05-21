@@ -25,7 +25,7 @@ Creates a **PixelMap** object with the default BGRA_8888 format and specified pi
 | Name | Type                                            | Mandatory| Description                                                            |
 | ------- | ------------------------------------------------ | ---- | ---------------------------------------------------------------- |
 | colors  | ArrayBuffer                                      | Yes  | Color array in BGRA_8888 format.                                       |
-| options | [InitializationOptions](js-apis-image.md#initializationoptions8) | Yes  | Pixel properties, including the alpha type, size, scale mode, pixel format, and editable.|
+| options | [image.InitializationOptions](js-apis-image.md#initializationoptions8) | Yes  | Pixel properties, including the alpha type, size, scale mode, pixel format, and editable.|
 
 **Return value**
 
@@ -159,7 +159,7 @@ Creates a **PixelMap** object from a surface ID.
 | Name                | Type                | Mandatory| Description                                    |
 | ---------------------- | -------------       | ---- | ---------------------------------------- |
 | surfaceId              | string              | Yes  | Surface ID, which is obtained from [XComponent](../apis-arkui/arkui-ts/ts-basic-components-xcomponent.md).|
-| region                 | [Region](../apis-image-kit/js-apis-image.md#region8)  | Yes  | Size of the image after cropping.                        |
+| region                 | [image.Region](../apis-image-kit/js-apis-image.md#region8)  | Yes  | Size of the image after cropping.                        |
 
 **Return value**
 | Type                            | Description                 |
@@ -205,7 +205,7 @@ Creates a **PixelMap** object with the specified pixel properties. This API retu
 | Name | Type                                            | Mandatory| Description                                                            |
 | ------- | ------------------------------------------------ | ---- | ---------------------------------------------------------------- |
 | colors  | ArrayBuffer                                      | Yes  | Color array in BGRA_8888 format.                                       |
-| options | [InitializationOptions](js-apis-image.md#initializationoptions8) | Yes  | Pixel properties, including the alpha type, size, scale mode, pixel format, and editable.|
+| options | [image.InitializationOptions](js-apis-image.md#initializationoptions8) | Yes  | Pixel properties, including the alpha type, size, scale mode, pixel format, and editable.|
 
 **Return value**
 | Type                            | Description                 |
@@ -218,7 +218,7 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
-|  401    | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed|
+|  401    | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed.|
 
 **Example**
 
@@ -259,7 +259,8 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
-|  401    | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed|
+|  401    | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed.|
+| 62980104 | Failed to initialize the internal object.|
 
 **Example**
 
@@ -302,6 +303,7 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 | ID| Error Message|
 | ------- | --------------------------------------------|
 |  401    | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed.|
+| 62980104 | Failed to initialize the internal object.|
 
 **Example**
 
@@ -332,8 +334,8 @@ Before calling any API in **PixelMap**, you must use [sendableImage.createPixelM
 
 | Name             | Type   | Readable| Writable| Description                      |
 | -----------------| ------- | ---- | ---- | -------------------------- |
-| isEditable        | boolean | Yes  | No  | Whether the pixels of an image are editable.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
-| isStrideAlignment | boolean | Yes  | No  | Whether the image memory is the DMA memory. In the case of DMA, a 256-byte alignment is carried out, which means that a padding area exists at the end of the line.|
+| isEditable        | boolean | Yes  | No  | Whether the PixelMap is editable. The value **true** means that the PixelMap is editable, and **false** means the opposite.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| isStrideAlignment | boolean | Yes  | No  | Whether the PixelMap uses DMA memory. The value** true** means that the PixelMap uses DMA memory, and **false** means the opposite. The PixelMap in DMA memory is aligned to 256-byte boundaries, with padding areas at the end of each row.|
 
 ### readPixelsToBuffer
 
@@ -361,8 +363,9 @@ Reads the pixels of this image and writes the data to an ArrayBuffer. This API u
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
+import { sendableImage } from '@kit.ImageKit';
 
-async function Demo() {
+async function Demo(pixelMap : sendableImage.PixelMap) {
     const readBuffer: ArrayBuffer = new ArrayBuffer(96); // 96 is the size of the pixel buffer to create. The value is calculated as follows: height * width *4.
     if (pixelMap != undefined) {
         pixelMap.readPixelsToBuffer(readBuffer).then(() => {
@@ -426,7 +429,7 @@ Reads the pixels in an area. This API uses a promise to return the result.
 
 | Name| Type                          | Mandatory| Description                    |
 | ------ | ------------------------------ | ---- | ------------------------ |
-| area   | [PositionArea](js-apis-image.md#positionarea7) | Yes  | Area from which the pixels will be read.|
+| area   | [image.PositionArea](js-apis-image.md#positionarea7) | Yes  | Area from which the pixels will be read.|
 
 **Return value**
 
@@ -471,7 +474,7 @@ Reads the pixels in an area. This API returns the result synchronously.
 
 | Name| Type                          | Mandatory| Description                    |
 | ------ | ------------------------------ | ---- | ------------------------ |
-| area   | [PositionArea](js-apis-image.md#positionarea7) | Yes  | Area from which the pixels will be read.|
+| area   | [image.PositionArea](js-apis-image.md#positionarea7) | Yes  | Area from which the pixels will be read.|
 
 **Error codes**
 
@@ -479,8 +482,8 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
-|  401    | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed |
-|  501    | Resource Unavailable |
+|  401    | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed. |
+|  501    | Resource Unavailable. |
 
 **Example**
 
@@ -515,7 +518,7 @@ Writes the pixels to an area. This API uses a promise to return the result.
 
 | Name| Type                          | Mandatory| Description                |
 | ------ | ------------------------------ | ---- | -------------------- |
-| area   | [PositionArea](js-apis-image.md#positionarea7) | Yes  | Area to which the pixels will be written.|
+| area   | [image.PositionArea](js-apis-image.md#positionarea7) | Yes  | Area to which the pixels will be written.|
 
 **Return value**
 
@@ -564,7 +567,7 @@ Writes the pixels to an area. This API returns the result synchronously.
 
 | Name| Type                          | Mandatory| Description                |
 | ------ | ------------------------------ | ---- | -------------------- |
-| area   | [PositionArea](js-apis-image.md#positionarea7) | Yes  | Area to which the pixels will be written.|
+| area   | [image.PositionArea](js-apis-image.md#positionarea7) | Yes  | Area to which the pixels will be written.|
 
 **Error codes**
 
@@ -572,8 +575,8 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
-|  401    | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed |
-|  501    | Resource Unavailable |
+|  401    | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed. |
+|  501    | Resource Unavailable. |
 
 **Example**
 
@@ -663,8 +666,8 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
-|  401    | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed |
-|  501    | Resource Unavailable |
+|  401    | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed. |
+|  501    | Resource Unavailable. |
 
 **Example**
 
@@ -740,7 +743,7 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
-|  501    | Resource Unavailable |
+|  501    | Resource Unavailable. |
 
 **Example**
  
@@ -803,7 +806,7 @@ let pixelBytesNumber: number = pixelMap.getPixelBytesNumber();
 
 getDensity():number
 
-Obtains the density of this image.
+Obtains the pixel density of this image.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -813,7 +816,7 @@ Obtains the density of this image.
 
 | Type  | Description           |
 | ------ | --------------- |
-| number | Density of the image.|
+| number | Pixel density, in ppi.|
 
 **Example**
 
@@ -835,7 +838,7 @@ Sets an opacity rate for this image. This API uses a promise to return the resul
 
 | Name| Type  | Mandatory| Description                       |
 | ------ | ------ | ---- | --------------------------- |
-| rate   | number | Yes  | Opacity rate.|
+| rate   | number | Yes  | Opacity rate. The value range is (0,1].|
 
 **Return value**
 
@@ -874,7 +877,7 @@ Sets the opacity rate for this PixelMap and initializes the PixelMap.
 
 | Name  | Type                | Mandatory| Description                          |
 | -------- | -------------------- | ---- | ------------------------------ |
-| rate     | number               | Yes  | Opacity rate.  |
+| rate     | number               | Yes  | Opacity rate. The value range is (0,1].  |
 
 **Error codes**
 
@@ -882,8 +885,8 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
-|  401    | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed |
-|  501    | Resource Unavailable |
+|  401    | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed. |
+|  501    | Resource Unavailable. |
 
 **Example**
 
@@ -952,8 +955,8 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
-|  401    | Parameter error. Possible causes: 1.Parameter verification failed |
-|  501    | Resource Unavailable |
+|  401    | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed. |
+|  501    | Resource Unavailable. |
 
 **Example**
 
@@ -1031,8 +1034,8 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
-|  401    | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed |
-|  501    | Resource Unavailable |
+|  401    | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed. |
+|  501    | Resource Unavailable. |
 
 **Example**
 
@@ -1062,8 +1065,8 @@ Translates this image based on given coordinates. This API uses a promise to ret
 
 | Name| Type  | Mandatory| Description       |
 | ------ | ------ | ---- | ----------- |
-| x      | number | Yes  | X coordinate to translate.|
-| y      | number | Yes  | Y coordinate to translate.|
+| x      | number | Yes  | X coordinate to translate, in px.|
+| y      | number | Yes  | Y coordinate to translate, in px.|
 
 **Return value**
 
@@ -1112,8 +1115,8 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
-|  401    | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed |
-|  501    | Resource Unavailable |
+|  401    | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed. |
+|  501    | Resource Unavailable. |
 
 **Example**
 
@@ -1190,8 +1193,8 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
-|  401    | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed |
-|  501    | Resource Unavailable |
+|  401    | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed. |
+|  501    | Resource Unavailable. |
 
 **Example**
 
@@ -1220,8 +1223,8 @@ Flips this image horizontally or vertically, or both. This API uses a promise to
 
 | Name    | Type   | Mandatory| Description     |
 | ---------- | ------- | ---- | --------- |
-| horizontal | boolean | Yes  | Whether to flip the image horizontally.|
-| vertical   | boolean | Yes  | Whether to flip the image vertically.|
+| horizontal | boolean              | Yes  | Whether to flip the image horizontally. The value **true** means to flip the image horizontally, and **false** means the opposite.           |
+| vertical   | boolean              | Yes  | Whether to flip the image vertically. The value **true** means to flip the image vertically, and **false** means the opposite.           |
 
 **Return value**
 
@@ -1262,8 +1265,8 @@ Flips this image horizontally or vertically, or both. This API returns the resul
 
 | Name    | Type                | Mandatory| Description                         |
 | ---------- | -------------------- | ---- | ----------------------------- |
-| horizontal | boolean              | Yes  | Whether to flip the image horizontally.                   |
-| vertical   | boolean              | Yes  | Whether to flip the image vertically.                   |
+| horizontal | boolean              | Yes  | Whether to flip the image horizontally. The value **true** means to flip the image horizontally, and **false** means the opposite.           |
+| vertical   | boolean              | Yes  | Whether to flip the image vertically. The value **true** means to flip the image vertically, and **false** means the opposite.           |
 
 **Error codes**
 
@@ -1271,8 +1274,8 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
-|  401    | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed |
-|  501    | Resource Unavailable |
+|  401    | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed. |
+|  501    | Resource Unavailable. |
 
 **Example**
 
@@ -1351,8 +1354,8 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
-|  401    | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed |
-|  501    | Resource Unavailable |
+|  401    | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed. |
+|  501    | Resource Unavailable. |
 
 **Example**
 
@@ -1472,10 +1475,11 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 **Example**
 
 ```ts
+import { sendableImage } from '@kit.ImageKit';
 import { colorSpaceManager } from '@kit.ArkGraphics2D';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function Demo() {
+async function Demo(pixelMap : sendableImage.PixelMap) {
     let colorSpaceName = colorSpaceManager.ColorSpace.SRGB;
     let targetColorSpace: colorSpaceManager.ColorSpaceManager = colorSpaceManager.create(colorSpaceName);
     pixelMap.applyColorSpace(targetColorSpace).then(() => {
@@ -1717,8 +1721,8 @@ It inherits from [lang.ISendable](../../arkts-utils/arkts-sendable.md#isendable)
 | Name| Type         | Read Only| Optional| Description        |
 | ---- | ------------- | ---- | ---- | ------------ |
 | size | [Size](#size) | No  | No  | Region size.  |
-| x    | number        | No  | No  | X coordinate.|
-| y    | number        | No  | No  | Y coordinate.|
+| x    | number        | No  | No  | X coordinate, in px.|
+| y    | number        | No  | No  | Y coordinate, in px.|
 
 ## sendableImage.createImageSource
 
@@ -1844,7 +1848,7 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
-| 401| Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types;   |
+|  401    | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed. |
 
 **Example**
 
@@ -1907,6 +1911,7 @@ sendableImageSourceApi.createPixelMap().then((pixelMap: sendableImage.PixelMap) 
 release(): Promise\<void>
 
 Releases this **ImageSource** instance. This API uses a promise to return the result.
+
 The thread that runs **release** is insecure.
 
 **System capability**: SystemCapability.Multimedia.Image.ImageSource
@@ -1935,6 +1940,7 @@ sendableImageSourceApi.release().then(() => {
 ## Image
 
 Provides APIs for basic image operations, including obtaining image information and reading and writing image data. An **Image** instance is returned when [readNextImage](#readnextimage) and [readLatestImage](#readlatestimage) are called.
+
 This class inherits from [lang.ISendable](../../arkts-utils/arkts-sendable.md#isendable).
 
 ### Attributes
@@ -1953,6 +1959,7 @@ This class inherits from [lang.ISendable](../../arkts-utils/arkts-sendable.md#is
 getComponent(componentType: image.ComponentType): Promise\<image.Component>
 
 Obtains the component buffer from the **Image** instance based on the color component type. This API uses a promise to return the result.
+
 The thread that runs **getComponent** is insecure.
 
 **System capability**: SystemCapability.Multimedia.Image.Core
@@ -2180,6 +2187,7 @@ receiver.on('imageArrival', () => {
 release(): Promise\<void>
 
 Releases this **ImageReceiver** instance. This API uses a promise to return the result.
+
 The thread that runs **release** is insecure.
 
 **System capability**: SystemCapability.Multimedia.Image.ImageReceiver

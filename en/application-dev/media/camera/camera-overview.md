@@ -4,7 +4,7 @@ With the APIs provided by Camera Kit, you can develop a camera application. The 
 
 ## When to Use
 
-When you want to develop a camera application or develop a camera module in an application, you can refer to the development model described below to understand the working process of the camera before the development. For details, see [Camera Development Preparations](camera-preparation.md).
+When you want to develop a camera application or develop a camera module in an application, you can refer to the development model described below to understand the working process of the camera before the development. For details, see [Requesting Camera Development Permissions](camera-preparation.md).
 
 If you only need to start the system camera to take a photo or record a video, you can directly use the CameraPicker module, without applying for the camera permission. For details, see [Camera Picker](../../reference/apis-camera-kit/js-apis-cameraPicker.md).
 

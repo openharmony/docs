@@ -61,12 +61,12 @@ export default {
       begin: 0,
       end: 180
     };//设置参数
-    this.animation = animator.createAnimator(options)//创建动画
+    this.animation = animator.createAnimator(options);//创建动画
   },
   playAnimation() {
     var _this = this;
     this.animation.onframe = function(value) {
-      _this.translateVal= value
+      _this.translateVal= value;
     };
     this.animation.play();
   }
@@ -216,7 +216,7 @@ export default {
     this.animation.onfinish = function() {
       promptAction.showToast({
         message: 'finish'
-      })
+      });
     };
     this.animation.finish(); //调用动画完成接口
   },

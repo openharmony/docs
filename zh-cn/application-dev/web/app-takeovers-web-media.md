@@ -4,9 +4,9 @@ Web组件提供了应用接管网页中媒体播放的能力，用来支持应�
 
 ## 使用场景
 
-网页播放媒体时，存在着网页视频不够清晰、网页的播放器界面简陋功能少、一些视频不能播放的问题。
+网页播放媒体时，存在以下问题：网页清晰度低、网页播放器播放控件功能有限、某些视频无法播放。
 
-此时，应用开发者可以使用该功能，通过自己或者第三方的播放器，接管网页媒体播放来改善网页的媒体播放体验。
+应用开发者可以使用该功能，通过自己或者第三方播放器接管网页媒体播放，从而改善播放体验。
 
 ## 实现原理
 
@@ -47,7 +47,7 @@ Web组件提供了应用接管网页中媒体播放的能力，用来支持应�
 
 ### 开启接管网页媒体播放
 
-需要先通过[enableNativeMediaPlayer](../reference/apis-arkweb/ts-basic-components-web.md#enablenativemediaplayer12)接口，开启接管网页媒体播放的功能。
+需要先通过[enableNativeMediaPlayer](../reference/apis-arkweb/ts-basic-components-web.md#enablenativemediaplayer12)接口开启接管网页媒体播放的功能。
 
   ```ts
   // xxx.ets
@@ -69,14 +69,14 @@ Web组件提供了应用接管网页中媒体播放的能力，用来支持应�
 
 ### 创建本地播放器(NativeMediaPlayer)
 
-该功能开启后，每当网页中有媒体需要播放时，ArkWeb内核会触发由[onCreateNativeMediaPlayer](../reference/apis-arkweb/js-apis-webview.md#oncreatenativemediaplayer12)注册的回调函数。
+该功能开启后，网页中有媒体需要播放时，ArkWeb内核会触发[onCreateNativeMediaPlayer](../reference/apis-arkweb/js-apis-webview.md#oncreatenativemediaplayer12)注册的回调函数。
 
-开发者则需要调用 `onCreateNativeMediaPlayer` 来注册一个创建本地播放器的回调函数。
+应用则需要调用 `onCreateNativeMediaPlayer` 来注册一个创建本地播放器的回调函数。
 
 该回调函数需要根据媒体信息来判断是否要创建一个本地播放器来接管当前的网页媒体资源。
 
-  * 如果应用不接管当前的为网页媒体资源， 需要在回调函数里返回 `null` 。
-  * 如果应用接管当前的为网页媒体资源， 需要在回调函数里返回一个本地播放器实例。
+  * 如果应用不接管当前的网页媒体资源， 需在回调函数里返回 `null` 。
+  * 如果应用接管当前的网页媒体资源， 需在回调函数里返回一个本地播放器实例。
 
 本地播放器需要实现[NativeMediaPlayerBridge](../reference/apis-arkweb/js-apis-webview.md#nativemediaplayerbridge12)接口，以便ArkWeb内核对本地播放器进行播控操作。
 
@@ -136,11 +136,11 @@ Web组件提供了应用接管网页中媒体播放的能力，用来支持应�
 
 ### 绘制本地播放器组件
 
-应用接管网页的媒体后，开发者需要将本地播放器组件及视频画面绘制到ArkWeb内核提供的Surface上。ArkWeb内核再将Surface与网页进行合成，最后上屏显示。
+应用接管网页媒体后，应用需要将本地播放器组件及视频画面绘制到ArkWeb内核提供的Surface上。ArkWeb内核再将Surface与网页进行合成并显示。
 
-该流程与[同层渲染绘制](web-same-layer.md)相同。
+该流程与[同层渲染绘制](web-same-layer.md)一致。
 
-1. 在应用启动阶段，应保存UIContext，以便后续的同层渲染绘制流程能够使用该UIContext。
+1. 在应用启动阶段，应用应保存UIContext，以便后续的同层渲染绘制流程能够使用该UIContext。
 
    ```ts
    // xxxAbility.ets
@@ -163,7 +163,7 @@ Web组件提供了应用接管网页中媒体播放的能力，用来支持应�
    }
    ```
 
-2. 使用ArkWeb内核创建的Surface进行同层渲染绘制。
+2. 应用使用ArkWeb内核创建的Surface进行同层渲染绘制。
 
    ```ts
    // xxx.ets
@@ -239,7 +239,7 @@ Web组件提供了应用接管网页中媒体播放的能力，用来支持应�
 
 ### 执行ArkWeb内核发送给本地播放器的播控指令
 
-为了方便ArkWeb内核对本地播放器进行播控操作，应用开发者需要令本地播放器实现[NativeMediaPlayerBridge](../reference/apis-arkweb/js-apis-webview.md#nativemediaplayerbridge12)接口，并根据每个接口方法的功能对本地播放器进行相应操作。
+为了方便ArkWeb内核对本地播放器进行播控操作，应用需要令本地播放器实现[NativeMediaPlayerBridge](../reference/apis-arkweb/js-apis-webview.md#nativemediaplayerbridge12)接口，并根据每个接口方法的功能对本地播放器进行相应操作。
 
   ```ts
   // xxx.ets
@@ -304,9 +304,9 @@ Web组件提供了应用接管网页中媒体播放的能力，用来支持应�
 
 ### 将本地播放器的状态信息通知给ArkWeb内核
 
-ArkWeb内核需要本地播放器的状态信息来更新到网页（例如：视频的宽高、播放时间、缓存时间等），因此，应用开发者需要将本地播放器的状态信息通知给ArkWeb内核。
+ArkWeb内核需要本地播放器的状态信息来更新到网页（例如：视频的宽高、播放时间、缓存时间等），因此，应用需要将本地播放器的状态信息通知给ArkWeb内核。
 
-在[onCreateNativeMediaPlayer](../reference/apis-arkweb/js-apis-webview.md#oncreatenativemediaplayer12)接口中， ArkWeb内核传递给应用一个[NativeMediaPlayerHandler](../reference/apis-arkweb/js-apis-webview.md#nativemediaplayerhandler12)对象。应用开发者需要通过该对象，将本地播放器的最新状态信息通知给ArkWeb内核。
+在[onCreateNativeMediaPlayer](../reference/apis-arkweb/js-apis-webview.md#oncreatenativemediaplayer12)接口中， ArkWeb内核传递一个[NativeMediaPlayerHandler](../reference/apis-arkweb/js-apis-webview.md#nativemediaplayerhandler12)对象给应用。应用需要通过该对象，将本地播放器的最新状态信息通知给ArkWeb内核。
 
   ```ts
   // xxx.ets
@@ -458,13 +458,13 @@ ArkWeb内核需要本地播放器的状态信息来更新到网页（例如：�
 
 ## 完整示例
 
-- 使用前请在module.json5添加如下权限。
+- 使用前在module.json5中添加如下权限。
 
   ```ts
   "ohos.permission.INTERNET"
   ```
 
-- 应用侧代码，在应用启动阶段保存UIContext。
+- 在应用启动阶段保存UIContext。
 
   ```ts
   // xxxAbility.ets
@@ -739,7 +739,7 @@ ArkWeb内核需要本地播放器的状态信息来更新到网页（例如：�
       .height('100%')
   }
 
-  // 通过 NodeController 来动态创建自定义的播放器组件， 并将组件内容绘制到 surfaceId 指定的 surface 上。
+  // 通过 NodeController 动态创建自定义的播放器组件， 并将组件内容绘制到 surface 上。
   class MyNodeController extends NodeController {
     private rootNode: BuilderNode<[ComponentParams]> | undefined;
     playerInfo: NativePlayerInfo;
@@ -1056,7 +1056,7 @@ ArkWeb内核需要本地播放器的状态信息来更新到网页（例如：�
       })
     }
 
-    // 以下demo为通过url设置网络地址来实现播放直播码流的demo
+    // 以下示例通过URL设置网络地址来播放直播码流
     async avPlayerLiveDemo(playerParam: PlayerParam) {
       // 创建avPlayer实例对象
       this.avPlayer = await media.createAVPlayer();

@@ -14,7 +14,7 @@
 ## 导入模块
 
 ```typescript
-import { calendarManager } from '@kit.CalendarKit'
+import { calendarManager } from '@kit.CalendarKit';
 ```
 
 ## calendarManager.getCalendarManager

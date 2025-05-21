@@ -61,12 +61,13 @@ ArkUI NDK接口能力主要包括：
 | [接入ArkTS页面](ndk-access-the-arkts-page.md) | 介绍了如何将NDK接口开发的UI界面挂载到ArkTS主页面上进行渲染显示。 |
 | [监听组件事件](ndk-listen-to-component-events.md) | 介绍了如何注册组件的事件监听和添加手势交互。 |
 | [使用动画](ndk-use-animation.md) | 介绍了如何在Native侧添加动画。 |
-| [使用列表](ndk-loading-long-list.md) | 介绍了如何使用懒加载能力在Native侧开发高性能长列表界面。 |
+| [构建布局](ndk-loading-long-list.md) | 介绍了如何在Native侧使用容器组件构建布局。 |
 | [构建弹窗](ndk-build-pop-up-window.md) | 介绍了如何使用弹窗接口构建UI界面进行弹窗显示。 |
 | [构建自定义组件](ndk-build-custom-components.md) | 介绍了如何使用NDK接口能力构建自定义组件，实现差异化UI组件。 |
 | [嵌入ArkTS组件](ndk-embed-arkts-components.md) | 介绍了如何在Native侧构建带有ArkTS组件的界面。 |
 | [通过XComponent接入无障碍](ndk-accessibility-xcomponent.md) | 介绍了通过XComponent接入UI平台的三方系统如何对接无障碍。 |
-
+| [自定义绘制](arkts-user-defined-draw.md) | 介绍了如何使用自定义绘制能力，实现自定义内容的绘制。 |
+| [使用文本](ndk-styled-string.md) | 介绍了Text组件对字体引擎文本的渲染显示和如何监听输入框文本相关的事件。 |
 
 ## 注意事项
 

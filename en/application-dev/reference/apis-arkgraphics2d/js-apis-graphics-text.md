@@ -1,16 +1,17 @@
 # @ohos.graphics.text (Text)
 
-The Text module allows you to create complex text paragraphs, with various text styles, paragraph styles, and line break rules. It then converts the information into layout data that can be efficiently rendered on the screen. This module uses the physical pixel unit, px.
+The Text module provides a set of APIs for text layout and font management. It aims to deliver high-quality typesetting through features like character-to-glyph conversion, kerning, line breaking, alignment, and text measurement. Additionally, it provides font management capabilities, including font registration, font descriptors, and font collection management.
 
-This module provides the following classes:
+This module provides the following classes for creating complex text paragraphs:
 
-- [TextStyle](#textstyle): text style, which controls the font type, size, and spacing of the text.
-- [FontCollection](#fontcollection): font manager, which controls various fonts.
-- [ParagraphStyle](#paragraphstyle): paragraph style, which controls the display style of a paragraph.
-- [Paragraph](#paragraph): paragraph, which is constructed by calling [build()](#build) in the **ParagraphBuilder** class.
-- [ParagraphBuilder](#paragraphbuilder): paragraph builder, which controls the generation of different paragraph objects.
-- [TextLine](#textline): carrier of the paragraph text in lines. It is obtained by calling [getTextLines()](#gettextlines) in the **Paragraph** class.
-- [Run](#run): rendering unit used for text typesetting. It is obtained by calling [getGlyphRuns()](#getglyphruns) in the **TextLine** class.
+- [TextStyle](#textstyle): defines the font type, size, spacing, and other text properties.
+- [FontCollection](#fontcollection): manages a collection of different fonts.
+- [FontDescriptor](#fontdescriptor14): provides information about font descriptors.
+- [ParagraphStyle](#paragraphstyle): controls line break and word break strategies for the entire paragraph.
+- [ParagraphBuilder](#paragraphbuilder): used to create different paragraph objects.
+- [Paragraph](#paragraph): created by calling [build()](#build) of the **ParagraphBuilder** class.
+- [TextLine](#textline): paragraph text on a line-by-line basis, obtained by calling [getTextLines()](#gettextlines) of the **Paragraph** class.
+- [Run](#run): text typesetting unit, obtained by calling [getGlyphRuns()](#getglyphruns) of the **TextLine** class.
 
 > **NOTE**
 >
@@ -26,7 +27,7 @@ import { text } from '@kit.ArkGraphics2D';
 
 getSystemFontFullNamesByType(fontType: SystemFontType): Promise&lt;Array&lt;string&gt;&gt;
 
-Obtains the names of all fonts of the specified type. This API uses a promise to return the result.
+Obtains the full names of all fonts of the specified type. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Graphics.Drawing
 
@@ -40,7 +41,7 @@ Obtains the names of all fonts of the specified type. This API uses a promise to
 
 | Type| Description|
 | - | - |
-| Promise&lt;Array&lt;string&gt;&gt; | Promise used to return the names of all fonts of the specified type.|
+| Promise&lt;Array&lt;string&gt;&gt; | Promise used to return the full names of all fonts of the specified type.|
 
 **Error codes**
 
@@ -101,7 +102,7 @@ A font descriptor is a data structure that describes font features. It contains 
 
 | Name| Type| Mandatory| Description|
 | - | - | - | - |
-| fullName | string | Yes| Font name, which is a field parsed from the **name** table in the font file. You can use [getSystemFontFullNamesByType](#textgetsystemfontfullnamesbytype14) to obtain the names of all fonts of a specified type.|
+| fullName | string | Yes| Font name, corresponding to the value of **fullName** in the **name** table of the corresponding font file. It is obtained by calling [getSystemFontFullNamesByType](#textgetsystemfontfullnamesbytype14).|
 | fontType | [SystemFontType](#systemfonttype14) | Yes| Font type.|
 
 **Return value**
@@ -186,9 +187,9 @@ Enumerates the text break strategies.
 
 | Name         | Value  | Description                                           |
 | ------------- | ---- | ---------------------------------------------- |
-| GREEDY        | 0    | Each line is filled as much as possible during line break. No hyphen is automatically added.          |
-| HIGH_QUALITY  | 1    | Text continuity is preferentially considered during line break. If necessary, hyphens are automatically added.               |
-| BALANCED      | 2    | Each line of a paragraph has the same width. If necessary, hyphens are automatically added.|
+| GREEDY        | 0    | Fills the current line as much as possible without adding hyphens.          |
+| HIGH_QUALITY  | 1    | Optimizes layout and may add hyphens when necessary.               |
+| BALANCED      | 2    | Ensures consistent line width in a paragraph, adding hyphens if needed.|
 
 ## WordBreak
 
@@ -198,9 +199,9 @@ Enumerates the word break types.
 
 | Name                         | Value  | Description                                                                                                                 |
 |-----------------------------| ---- | -------------------------------------------------------------------------------------------------------------------- |
-| NORMAL                      | 0    | Default mode. Word breaks are allowed between words as appropriate to the relevant language writing systems.                                                                 |
-| BREAK_ALL                   | 1    | Word breaks are allowed between any characters for non-CJK text. (CJK means Chinese, Japanese, and Korean.) This value is suitable for Asian text that contains some non-Asian text. For example, it can be used to break consecutive English characters.|
-| BREAK_WORD                  | 2    | Works in the same way as **BREAK_ALL**, except that it does not break unbreakable words.                                  |
+| NORMAL                      | 0    | Default mode that break words based on language-specific conventions.                                                                 |
+| BREAK_ALL                   | 1    | Allows breaks within any character in non-CJK text. (CJK means Chinese, Japanese, and Korean.) This value is suitable for Asian text that contains some non-Asian text. For example, it can be used to break consecutive English characters.|
+| BREAK_WORD                  | 2    | Allows breaks between any two characters in non-CJK text. It prioritizes breaking at whitespace or other natural breakpoints to keep words intact. If no breakpoints are found, it breaks between any two characters. For CJK text, this behaves like **NORMAL**.|
 
 ## Decoration
 
@@ -213,7 +214,7 @@ Describes a text decoration.
 | textDecoration            | [TextDecorationType](#textdecorationtype)           | Yes  | Yes  | Type of the decoration. The default value is **NONE**.                      |
 | color                     | [common2D.Color](js-apis-graphics-common2D.md#color)| Yes  | Yes  | Color of the decoration. The default value is transparent.                      |
 | decorationStyle           | [TextDecorationStyle](#textdecorationstyle)         | Yes  | Yes  | Style of the decoration. The default value is **SOLID**.                     |
-| decorationThicknessScale  | number                                              | Yes  | Yes  | Ratio of the decoration thickness to the default value. The value is a floating point number. The default value is 1.0.|
+| decorationThicknessScale  | number                                              | Yes  | Yes  | Scale factor for the thickness of the decoration line. The value is a floating point number. The default value is **1.0**.|
 
 ## TextDecorationType
 
@@ -226,7 +227,7 @@ Enumerates the text decoration types.
 | NONE           | 0 | No decoration is used.|
 | UNDERLINE      | 1 | An underline is used for decoration.     |
 | OVERLINE       | 2 | An overline is used for decoration.    |
-| LINE_THROUGH   | 3 | A strikethrough is used for decoration.     |
+| LINE_THROUGH   | 4 | A strikethrough is used for decoration.     |
 
 ## TextDecorationStyle
 
@@ -298,10 +299,10 @@ Enumerates the text height modifier patterns.
 
 | Name                 |  Value| Description                                                 |
 | --------------------- | --- | ---------------------------------------------------- |
-| ALL                   | 0x0 | Enables ascent for the first and last rows of a paragraph.           |
-| DISABLE_FIRST_ASCENT  | 0x1 | Disables ascent for the first row of a paragraph.                  |
-| DISABLE_LAST_ASCENT   | 0x2 | Disables ascent for the last row of a paragraph.                |
-| DISABLE_ALL           | 0x3 | Disables ascent for the first and last rows of a paragraph.         |
+| ALL                   | 0x0 | Allows the first line of the paragraph to rise and the last line to drop.           |
+| DISABLE_FIRST_ASCENT  | 0x1 | Prevents the first line of a paragraph from rising.                  |
+| DISABLE_LAST_ASCENT   | 0x2 | Prevents the last line of a paragraph from dropping.                |
+| DISABLE_ALL           | 0x1 \| 0x2 | Combines the effects of disabling the first line from rising and the last line from dropping.         |
 
 ## TextBaseline
 
@@ -324,8 +325,8 @@ Enumerates the ellipsis styles.
 
 | Name  | Value| Description     |
 | ------ | - | --------- |
-| START  | 0 | Places the ellipsis in the text header.|
-| MIDDLE | 1 | Places the ellipsis in the middle of the text.|
+| START  | 0 | Places the ellipsis in the text header. It is valid only when **maxLines** is set to **1** in [ParagraphStyle](#paragraphstyle).|
+| MIDDLE | 1 | Places the ellipsis in the middle of the text. It is valid only when **maxLines** is set to **1** in [ParagraphStyle](#paragraphstyle).|
 | END    | 2 | Places the ellipsis at the end of the text.|
 
 ## TextShadow
@@ -384,12 +385,12 @@ Describes a text style.
 
 | Name                     | Type                                    | Read Only| Optional| Description                                                  |
 | ------------- | ---------------------------------------------------- | -- | -- | --------------------------------------------------------- |
-| decoration    | [Decoration](#decoration)                            | Yes| Yes| Text decoration. The default value is the initial decoration.            |
-| color         | [common2D.Color](js-apis-graphics-common2D.md#color) | Yes| Yes| Font color. The default color is white.                        |
+| decoration    | [Decoration](#decoration)                            | Yes| Yes| Text decoration. By default, no decoration is used.            |
+| color         | [common2D.Color](js-apis-graphics-common2D.md#color) | Yes| Yes| Text color. The default color is white.                        |
 | fontWeight    | [FontWeight](#fontweight)                            | Yes| Yes| Font weight. The default value is **W400**. Currently, only the default system font supports font weight adjustment. For other fonts, if the weight is less than semi-bold (W600), there is no variation in stroke thickness. If the weight is greater than or equal to semi-bold, it might result in a fake bold effect.                        |
 | fontStyle     | [FontStyle](#fontstyle)                              | Yes| Yes| Font style. The default value is **NORMAL**.                         |
 | baseline      | [TextBaseline](#textbaseline)                        | Yes| Yes| Text baseline type. The default value is **ALPHABETIC**.              |
-| fontFamilies  | Array\<string>                                       | Yes| Yes| List of font families. By default, the list corresponds to the system's default fonts.                   |
+| fontFamilies  | Array\<string>                                       | Yes| Yes| Array of font families. By default, the array is empty, indicating that all system fonts are matched.                   |
 | fontSize      | number                                               | Yes| Yes| Font size, in units of px. The value is a floating point number. The default value is **14.0**.  |
 | letterSpacing | number                                               | Yes| Yes| Letter spacing, in units of px. The value is a floating point number. The default value is **0.0**. A positive value causes characters to spread farther apart, and a negative value bring characters closer together.|
 | wordSpacing   | number                                               | Yes| Yes| Word spacing, in units of px. The value is a floating point number. The default value is **0.0**.                |
@@ -397,12 +398,12 @@ Describes a text style.
 | heightOnly    | boolean                                              | Yes| Yes| How the height of the text box is set. The value **true** means that the height of the text box is set based on the font size and the value of **heightScale**, and **false** means that the height is set based on the line height and line spacing. The default value is **false**.|
 | halfLeading   | boolean                                              | Yes| Yes| Whether half leading is enabled. Half leading is the leading split in half and applied equally to the top and bottom edges. The value **true** means that half leading is enabled, and **false** means the opposite. The default value is **false**.|
 | ellipsis      | string                                               | Yes| Yes| Ellipsis content, which will be used to replace the extra content.      |
-| ellipsisMode  | [EllipsisMode](#ellipsismode)                        | Yes| Yes| Ellipsis type. The default value is **END**, indicating that the ellipsis is at the end of a line.                       |
+| ellipsisMode  | [EllipsisMode](#ellipsismode)                        | Yes| Yes| Ellipsis type. The default value is **END**, indicating that the ellipsis is at the end of a line.                      |
 | locale        | string                                               | Yes| Yes| Locale. For example, **'en'** indicates English, **'zh-Hans'** indicates Simplified Chinese, and **'zh-Hant'** indicates Traditional Chinese. For details, see ISO 639-1. The default value is an empty string.|
 | baselineShift | number                                               | Yes| Yes| Shift of the baseline. The value is a floating point number. The default value is **0.0px**.                |
 | fontFeatures  | Array\<[FontFeature](#fontfeature)>                  | Yes| Yes| Array of font features.|
 | fontVariations| Array\<[FontVariation](#fontvariation)>              | Yes| Yes| Array of font variations.|
-| textShadows   | Array\<[TextShadow](#textshadow)>                    | Yes| Yes| Array of text shadows.|
+| textShadows   | Array\<[TextShadow](#textshadow)>                    | Yes| Yes| Array of shadows.|
 | backgroundRect| [RectStyle](#rectstyle)                              | Yes| Yes| Rectangle style.|
 
 ## StrutStyle
@@ -413,10 +414,10 @@ Describes the strut style, which determines the line spacing, baseline alignment
 
 | Name                     | Type                                      | Read Only| Optional| Description                                                                |
 | -------------  | ---------------------------------------------------- | ---- | -- | --------------------------------------------------------------------- |
-| fontFamilies   | Array\<string>                                       | Yes  | Yes| Font families. The default value is the system fonts.                                              |
+| fontFamilies   | Array\<string>                                       | Yes  | Yes| List of font families. By default, the list corresponds to the system's default fonts.                                              |
 | fontStyle      | [FontStyle](#fontstyle)                              | Yes  | Yes| Font style. The default value is **NORMAL**.                                              |
 | fontWidth      | [FontWidth](#fontwidth)                              | Yes  | Yes| Font width. The default value is **NORMAL**.                                               |
-| fontWeight     | [FontWeight](#fontweight)                            | Yes  | Yes| Font weight. The default value is **W400**. Currently, only the default system font supports font weight adjustment. For other fonts, if the weight is less than semi-bold (W600), there is no variation in stroke thickness. If the weight is greater than or equal to semi-bold, it might result in a fake bold effect.                            |
+| fontWeight     | [FontWeight](#fontweight)                            | Yes  | Yes| Font weight. The default value is **W400**. The default system font supports font weight adjustment. For other fonts, if the weight is less than W600, there is no variation in stroke thickness. If the weight is greater than or equal to W600, it might result in a fake bold effect.                            |
 | fontSize       | number                                               | Yes  | Yes| Font size, in units of px. The value is a floating point number. The default value is **14.0**.                             |
 | height         | number                                               | Yes  | Yes| Scale factor of the line height. The value is a floating point number. The default value is **1.0**.                                        |
 | leading        | number                                               | Yes  | Yes| Custom leading to be applied to the strut. The value is a floating point number. The default value is **-1.0**.                         |
@@ -433,12 +434,12 @@ Describes the font descriptor information.
 
 | Name| Type| Read Only| Optional| Description|
 | - | - | -  | - | - |
-| path | string | No| Yes| Absolute path of the font. Any value is acceptable. The default value is an empty string.|
-| postScriptName | string | No| Yes| Unique name of the font. Any value is acceptable. The default value is an empty string.|
-| fullName | string | No| Yes| Font name. Any value is acceptable. The default value is an empty string.|
-| fontFamily | string | No| Yes| Family name of the font. Any value is acceptable. The default value is an empty string.|
-| fontSubfamily | string | No| Yes| Subfamily name of the font. Any value is acceptable. The default value is an empty string.|
-| weight | [FontWeight](#fontweight) | No| Yes| Font weight. The default value is the value of **FontWeight.W100**, that is, **0**. |
+| path | string | No| Yes| Absolute path of the font. Any string is acceptable, but the value must adhere to the system's path constraints. The default value is an empty string.|
+| postScriptName | string | No| Yes| Unique name of the font. Any string is acceptable. The default value is an empty string.|
+| fullName | string | No| Yes| Font name. Any string is acceptable. The default value is an empty string.|
+| fontFamily | string | No| Yes| Family name of the font. Any string is acceptable. The default value is an empty string.|
+| fontSubfamily | string | No| Yes| Subfamily name of the font. Any string is acceptable. The default value is an empty string.|
+| weight | [FontWeight](#fontweight) | No| Yes| Font weight. The default value is **0**.|
 | width | number | No| Yes| Font width. The value is an integer ranging from 1 to 9. The default value is **0**.|
 | italic | number | No| Yes| Whether the font is italic. The value **0** means that the font is not italic, and **1** means the opposite. The default value is **0**.|
 | monoSpace | boolean | No| Yes| Whether the font is monospaced. The value **true** means that the font is monospaced, and **false** means the opposite. The default value is **false**.|
@@ -446,7 +447,7 @@ Describes the font descriptor information.
 
 ## FontCollection
 
-Implements a font manager.
+Implements a collection of fonts.
 
 ### getGlobalInstance
 
@@ -489,7 +490,7 @@ struct Index {
 
 loadFontSync(name: string, path: string | Resource): void
 
-Loads a font from a file in the specified path. This API returns the result synchronously. In this API, **name** specifies the alias of the font, and the custom font effect can be displayed only when the value of **name** is set in **fontFamilies** in **[TextStyle](#textstyle)**. The supported font file formats are .ttf and .otf.
+Loads a custom font. This API returns the result synchronously. In this API, **name** specifies the alias of the font, and the custom font effect can be displayed only when the value of **name** is set in **fontFamilies** in **[TextStyle](#textstyle)**. The supported font file formats are .ttf and .otf.
 
 **System capability**: SystemCapability.Graphics.Drawing
 
@@ -574,7 +575,7 @@ Describes a paragraph style.
 | -------------------- | ------------------------------------------ | ---- | ---- | -------------------------------------------- |
 | textStyle            | [TextStyle](#textstyle)                    | Yes  | Yes  | Text style applied to the paragraph. The default value is the initial text style.|
 | textDirection        | [TextDirection](#textdirection)            | Yes  | Yes  | Text direction. The default value is **LTR**.                         |
-| align                | [TextAlign](#textalign)                    | Yes  | Yes  | Text alignment mode. The default value is **START**. When both the text alignment mode and the tab alignment mode (specified by **tab**) are configured, the tab alignment mode does not take effect.|
+| align                | [TextAlign](#textalign)                    | Yes  | Yes  | Text alignment mode. The default value is **START**. This parameter is invalid when the **tab** parameter is configured.|
 | wordBreak            | [WordBreak](#wordbreak)                    | Yes  | Yes  | Word break type. The default value is **BREAK_WORD**.                   |
 | maxLines             | number                                     | Yes  | Yes  | Maximum number of lines. The value is an integer. The default value is **1e9**.                 |
 | breakStrategy        | [BreakStrategy](#breakstrategy)            | Yes  | Yes  | Text break strategy. The default value is **GREEDY**.                       |
@@ -593,9 +594,9 @@ Enumerates the vertical alignment modes of a placeholder relative to the surroun
 | OFFSET_AT_BASELINE  | 0 | Aligns the baseline of the placeholder to the baseline of the text.    |
 | ABOVE_BASELINE      | 1 | Aligns the bottom edge of the placeholder to the baseline of the text.  |
 | BELOW_BASELINE      | 2 | Aligns the top edge of the placeholder to the baseline of the text.  |
-| TOP_OF_ROW_BOX      | 3 | Aligns the top edge of the placeholder to the bottom edge of the text.  |
+| TOP_OF_ROW_BOX      | 3 | Aligns the top edge of the placeholder to the top edge of the text.  |
 | BOTTOM_OF_ROW_BOX   | 4 | Aligns the bottom edge of the placeholder to the bottom edge of the text.  |
-| CENTER_OF_ROW_BOX   | 5 | Aligns the middle of the placeholder to the middle of the text.|
+| CENTER_OF_ROW_BOX   | 5 | Center-aligned.|
 
 ![image_PlaceholderAlignment.png](figures/image_PlaceholderAlignment.png)
 
@@ -607,7 +608,7 @@ Enumerates the vertical alignment modes of a placeholder relative to the surroun
 
 ## PlaceholderSpan
 
-Describes the carrier of a placeholder style.
+Describes the placeholder style.
 
 **System capability**: SystemCapability.Graphics.Drawing
 
@@ -632,7 +633,7 @@ Describes a left-closed and right-open interval.
 
 ## Paragraph
 
-Implements a carrier that stores the text content and style. You can perform operations such as typography and drawing.
+Implements a carrier that stores the text content and style. You can perform operations such as layout and drawing.
 
 Before calling any of the following APIs, you must use [build()](#build) of the [ParagraphBuilder](#paragraphbuilder) class to create a **Paragraph** object.
 
@@ -640,7 +641,7 @@ Before calling any of the following APIs, you must use [build()](#build) of the 
 
 layoutSync(width: number): void
 
-Performs typography and calculates the positions of all glyphs.
+Performs layout and calculates the positions of all glyphs.
 
 **System capability**: SystemCapability.Graphics.Drawing
 
@@ -775,7 +776,7 @@ let longestLine = paragraph.getLongestLine();
 
 getLongestLineWithIndent(): number
 
-Obtains the width of the longest line, including its indentation, in the text. You are advised to round up the return value in actual use. If the text content is empty, **0** is returned.
+Obtains the width of the longest line, including its indentation, in the text. You are advised to round up the return value. If the text content is empty, **0** is returned.
 
 **System capability**: SystemCapability.Graphics.Drawing
 
@@ -924,7 +925,7 @@ let placeholderRects = paragraph.getRectsForPlaceholders();
 
 getGlyphPositionAtCoordinate(x: number, y: number): PositionWithAffinity
 
-Obtains the position of a glyph close to a given coordinate.
+Obtains the position of a glyph closest to the given coordinates.
 
 **System capability**: SystemCapability.Graphics.Drawing
 
@@ -1005,7 +1006,7 @@ Obtains the height of a given line.
 
 | Name| Type  | Mandatory| Description     |
 | ----- | ------ | ---- | --------- |
-| line  | number | Yes  | Index of the line. The value is an integer.|
+| line  | number | Yes  | Index of the line. The value is an integer ranging from 0 to getLineCount() – 1.|
 
 **Return value**
 
@@ -1031,7 +1032,7 @@ Obtains the width of a given line.
 
 | Name| Type  | Mandatory| Description     |
 | ----- | ------ | ---- | --------- |
-| line  | number | Yes  | Index of the line. The value is an integer.|
+| line  | number | Yes  | Index of the line. The value is an integer ranging from 0 to getLineCount() – 1.|
 
 **Return value**
 
@@ -1057,7 +1058,7 @@ Checks whether the number of lines in the paragraph exceeds the maximum.
 
 | Type   | Description                                                     |
 | ------- | -------------------------------------------------------- |
-| boolean | **true**: The number of lines exceeds the maximum.<br>**false**: The number of lines does not exceed the maximum.|
+| boolean | Check result. The value **true** means that the number of lines exceeds the maximum, and **false** means the opposite.|
 
 **Example**
 
@@ -1089,7 +1090,7 @@ let lines = paragraph.getTextLines();
 
 getActualTextRange(lineNumber: number, includeSpaces: boolean): Range
 
-Obtains the actually visible text range in the specified line, excluding the ellipsis displayed due to text overflow.
+Obtains the actually visible text range in the specified line, excluding any overflow ellipsis.
 
 **System capability**: SystemCapability.Graphics.Drawing
 
@@ -1097,14 +1098,14 @@ Obtains the actually visible text range in the specified line, excluding the ell
 
 | Name| Type  | Mandatory| Description     |
 | ----- | ------ | ---- | --------- |
-| lineNumber  | number | Yes  | Line number of the text range, starting from 0.|
+| lineNumber  | number | Yes  | Line number of the text range, starting from 0. This API can only be used to obtain the bounds of existing lines. That is, the line number must start from 0, and the maximum line number is [getLineCount](#getlinecount) - 1.|
 | includeSpaces  | boolean | Yes  | Whether spaces are included. The value **true** means that spaces are contained, and **false** means the opposite.|
 
 **Return value**
 
 | Type            | Description                                             |
 | ---------------- | ------------------------------------------------ |
-| [Range](#range)  | Text range obtained.                              |
+| [Range](#range)  | Text range obtained. If the line index is invalid, **start** and **end** are both 0.|
 
 **Example**
 
@@ -1220,7 +1221,7 @@ Enumerates the rectangle width styles.
 
 | Name | Value| Description                                  |
 | ----- | - | -------------------------------------- |
-| TIGHT | 0 | If **letterSpacing** is not set, the rectangle conforms tightly to the text it contains. However, if **letterSpacing** is set, a gap is introduced between the rectangle and text.                           |
+| TIGHT | 0 | If **letterSpacing** is not set, the rectangle conforms tightly to the text it contains. However, if **letterSpacing** is set, a gap is introduced between the rectangle and text.|
 | MAX   | 1 | The rectangle's width is extended to align with the widest rectangle across all lines.  |
 
 ## RectHeightStyle
@@ -1266,7 +1267,7 @@ A constructor used to create a **ParagraphBuilder** object.
 | Name        | Type                              | Mandatory| Description       |
 | -------------- | --------------------------------- | ---- | ----------- |
 | paragraphStyle | [ParagraphStyle](#paragraphstyle) | Yes  | Paragraph style.  |
-| fontCollection | [FontCollection](#fontcollection) | Yes  | Font manager.|
+| fontCollection | [FontCollection](#fontcollection) | Yes  | Font collection.|
 
 **Example**
 
@@ -1283,7 +1284,7 @@ function textFunc() {
     align: text.TextAlign.END,
   };
   let fontCollection = new text.FontCollection();
-  let ParagraphGraphBuilder = new text.ParagraphBuilder(myParagraphStyle, fontCollection);
+  let paragraphBuilder = new text.ParagraphBuilder(myParagraphStyle, fontCollection);
 }
 
 @Entry
@@ -1304,11 +1305,11 @@ struct Index {
 
  pushStyle(textStyle: TextStyle): void
 
-Pushes a text style.
+Applies a new style to the current text blob.
 
 > **NOTE**
 >
-> This API pushes the style of the current text blob until [popStyle](#popstyle), which restores to the previous text style, is called.
+> When you update the style of the current text blob, all text added afterward will use this new style.
 
 **System capability**: SystemCapability.Graphics.Drawing
 
@@ -1336,8 +1337,8 @@ function textFunc() {
     align: text.TextAlign.CENTER,
   };
   let fontCollection = new text.FontCollection();
-  let ParagraphGraphBuilder = new text.ParagraphBuilder(myParagraphStyle, fontCollection);
-  ParagraphGraphBuilder.pushStyle(myTextStyle);
+  let paragraphBuilder = new text.ParagraphBuilder(myParagraphStyle, fontCollection);
+  paragraphBuilder.pushStyle(myTextStyle);
 }
 
 @Entry
@@ -1358,7 +1359,7 @@ struct Index {
 
 popStyle(): void
 
-Restores to the previous text style.
+Restores the previous text style.
 
 **System capability**: SystemCapability.Graphics.Drawing
 
@@ -1380,9 +1381,9 @@ function textFunc() {
     align: text.TextAlign.END,
   };
   let fontCollection = new text.FontCollection();
-  let ParagraphGraphBuilder = new text.ParagraphBuilder(myParagraphStyle, fontCollection);
-  ParagraphGraphBuilder.pushStyle(myTextStyle);
-  ParagraphGraphBuilder.popStyle();
+  let paragraphBuilder = new text.ParagraphBuilder(myParagraphStyle, fontCollection);
+  paragraphBuilder.pushStyle(myTextStyle);
+  paragraphBuilder.popStyle();
 }
 
 @Entry
@@ -1411,7 +1412,7 @@ Inserts a text string into the paragraph being built.
 
 | Name  | Type   | Mandatory| Description                      |
 | ------- | ------- | ---- | -------------------------- |
-| text    | string  | Yes  | Text string to insert.|
+| text    | string  | Yes  | Exact text string inserted into the paragraph. If an invalid Unicode character is provided, it is displayed as �.|
 
 **Example**
 
@@ -1431,8 +1432,8 @@ function textFunc() {
     align: text.TextAlign.END,
   };
   let fontCollection = new text.FontCollection();
-  let ParagraphGraphBuilder = new text.ParagraphBuilder(myParagraphStyle, fontCollection);
-  ParagraphGraphBuilder.addText("123666");
+  let paragraphBuilder = new text.ParagraphBuilder(myParagraphStyle, fontCollection);
+  paragraphBuilder.addText("123666");
 }
 
 @Entry
@@ -1483,8 +1484,8 @@ function textFunc() {
     baselineOffset: 100000
   };
   let fontCollection = new text.FontCollection();
-  let ParagraphGraphBuilder = new text.ParagraphBuilder(myParagraphStyle, fontCollection);
-  ParagraphGraphBuilder.addPlaceholder(myPlaceholderSpan);
+  let paragraphBuilder = new text.ParagraphBuilder(myParagraphStyle, fontCollection);
+  paragraphBuilder.addPlaceholder(myPlaceholderSpan);
 }
 
 @Entry
@@ -1505,7 +1506,7 @@ struct Index {
 
 build(): Paragraph
 
-Creates a paragraph object that can be used for subsequent typography and rendering.
+Creates a paragraph object that can be used for subsequent layout and rendering.
 
 **System capability**: SystemCapability.Graphics.Drawing
 
@@ -1513,7 +1514,7 @@ Creates a paragraph object that can be used for subsequent typography and render
 
 | Type                    | Description                          |
 | ------------------------ | ------------------------------ |
-| [Paragraph](#paragraph)  | **Paragraph** object that can be used for subsequent typography and rendering.|
+| [Paragraph](#paragraph)  | **Paragraph** object that can be used for subsequent rendering.|
 
 **Example**
 
@@ -1530,9 +1531,9 @@ function textFunc() {
     textStyle : myTextStyle,
   };
   let fontCollection = new text.FontCollection();
-  let ParagraphGraphBuilder = new text.ParagraphBuilder(myParagraphStyle, fontCollection);
-  ParagraphGraphBuilder.addText("123456789");
-  let paragraph = ParagraphGraphBuilder.build();
+  let paragraphBuilder = new text.ParagraphBuilder(myParagraphStyle, fontCollection);
+  paragraphBuilder.addText("123456789");
+  let paragraph = paragraphBuilder.build();
   paragraph.layoutSync(200);
 }
 
@@ -1562,7 +1563,7 @@ Inserts a symbol into the paragraph being built.
 
 | Name   | Type   | Mandatory| Description                                                       |
 | -------- | ------- | ---- | ----------------------------------------------------------- |
-| symbolId | number  | Yes  | Symbol code to insert. The value is a hexadecimal number in the range 0xF0000-0xF0C97. For details about the configurable symbol codes and symbol names, see the **value** and **name** fields in the [JSON file](https://gitee.com/openharmony/global_system_resources/blob/master/systemres/main/resources/base/element/symbol.json).|
+| symbolId | number  | Yes  | Symbol code to insert. The value is a hexadecimal number in the range 0xF0000-0xF0C97. For details about the configurable symbol codes (unicode values in the list view), see [HarmonyOS Symbol](https://developer.huawei.com/consumer/cn/design/harmonyos-symbol/).|
 
 **Example**
 
@@ -1579,9 +1580,9 @@ function textFunc() {
     align: text.TextAlign.END,
   };
   let fontCollection = new text.FontCollection();
-  let ParagraphGraphBuilder = new text.ParagraphBuilder(myParagraphStyle, fontCollection);
-  ParagraphGraphBuilder.addSymbol(0xF0000);
-  let paragraph = ParagraphGraphBuilder.build();
+  let paragraphBuilder = new text.ParagraphBuilder(myParagraphStyle, fontCollection);
+  paragraphBuilder.addSymbol(0xF0000);
+  let paragraph = paragraphBuilder.build();
 }
 
 @Entry
@@ -1620,24 +1621,7 @@ Obtains the number of glyphs in this text line.
 **Example**
 
 ```ts
-import { text } from "@kit.ArkGraphics2D"
-
-function textFunc() {
-  let GlyphCount = lines[0].getGlyphCount();
-}
-
-@Entry
-@Component
-struct Index {
-  fun: Function = textFunc;
-  build() {
-    Column() {
-      Button().onClick(() => {
-        this.fun();
-      })
-    }
-  }
-}
+let glyphCount = lines[0].getGlyphCount();
 ```
 
 ### getTextRange
@@ -1657,31 +1641,14 @@ Obtains the range of the text in this text line in the entire paragraph.
 **Example**
 
 ```ts
-import { text } from "@kit.ArkGraphics2D"
-
-function textFunc() {
-  let textRange = lines[0].getTextRange();
-}
-
-@Entry
-@Component
-struct Index {
-  fun: Function = textFunc;
-  build() {
-    Column() {
-      Button().onClick(() => {
-        this.fun();
-      })
-    }
-  }
-}
+let textRange = lines[0].getTextRange();
 ```
 
 ### getGlyphRuns
 
 getGlyphRuns(): Array\<Run>
 
-Obtains the runs in this text line.
+Obtains the array of glyph runs in the text line.
 
 **System capability**: SystemCapability.Graphics.Drawing
 
@@ -1694,24 +1661,7 @@ Obtains the runs in this text line.
 **Example**
 
 ```ts
-import { text } from "@kit.ArkGraphics2D"
-
-function textFunc() {
-  let runs = lines[0].getGlyphRuns();
-}
-
-@Entry
-@Component
-struct Index {
-  fun: Function = textFunc;
-  build() {
-    Column() {
-      Button().onClick(() => {
-        this.fun();
-      })
-    }
-  }
-}
+let runs = lines[0].getGlyphRuns();
 ```
 
 ### paint
@@ -1732,6 +1682,7 @@ Paints this text line on the canvas with the coordinate point (x, y) as the uppe
 
 **Example**
 
+<!--code_no_check-->
 ```ts
 import { drawing } from '@kit.ArkGraphics2D'
 import { text } from "@kit.ArkGraphics2D"
@@ -1766,7 +1717,7 @@ struct Index {
 
 ## Run
 
-Implements a rendering unit for text typesetting.
+Implements a unit for text layout.
 
 Before calling any of the following APIs, you must use [getGlyphRuns()](#getglyphruns) of the [TextLine](#textline) class to create a **Run** object.
 
@@ -1787,24 +1738,7 @@ Obtains the number of glyphs in this run.
 **Example**
 
 ```ts
-import { text } from "@kit.ArkGraphics2D"
-
-function textFunc() {
-  let glyphs = runs[0].getGlyphCount();
-}
-
-@Entry
-@Component
-struct Index {
-  fun: Function = textFunc;
-  build() {
-    Column() {
-      Button().onClick(() => {
-        this.fun();
-      })
-    }
-  }
-}
+let glyphs = runs[0].getGlyphCount();
 ```
 
 ### getGlyphs
@@ -1824,24 +1758,7 @@ Obtains the index of each glyph in this run.
 **Example**
 
 ```ts
-import { text } from "@kit.ArkGraphics2D"
-
-function textFunc() {
-  let glyph = runs[0].getGlyphs();
-}
-
-@Entry
-@Component
-struct Index {
-  fun: Function = textFunc;
-  build() {
-    Column() {
-      Button().onClick(() => {
-        this.fun();
-      })
-    }
-  }
-}
+let glyph = runs[0].getGlyphs();
 ```
 
 ### getPositions
@@ -1861,24 +1778,7 @@ Obtains the position of each glyph relative to the respective line in this run.
 **Example**
 
 ```ts
-import { text } from "@kit.ArkGraphics2D";
-
-function textFunc() {
-  let positions = runs[0].getPositions(); // Obtain the positions of all glyphs in the run.
-}
-
-@Entry
-@Component
-struct Index {
-  fun: Function = textFunc;
-  build() {
-    Column() {
-      Button().onClick(() => {
-        this.fun();
-      })
-    }
-  }
-}
+let positions = runs[0].getPositions();
 ```
 
 ### getOffsets
@@ -1898,24 +1798,7 @@ Obtains the offset of each glyph in this run relative to its index.
 **Example**
 
 ```ts
-import { text } from "@kit.ArkGraphics2D";
-
-function textFunc() {
-  let offsets = runs[0].getOffsets();
-}
-
-@Entry
-@Component
-struct Index {
-  fun: Function = textFunc;
-  build() {
-    Column() {
-      Button().onClick(() => {
-        this.fun();
-      })
-    }
-  }
-}
+let offsets = runs[0].getOffsets();
 ```
 
 ### getFont
@@ -1935,25 +1818,7 @@ Obtains the **Font** object of this run.
 **Example**
 
 ```ts
-import { drawing } from '@kit.ArkGraphics2D'
-import { text } from "@kit.ArkGraphics2D";
-
-function textFunc() {
-  let font = runs[0].getFont();
-}
-
-@Entry
-@Component
-struct Index {
-  fun: Function = textFunc;
-  build() {
-    Column() {
-      Button().onClick(() => {
-        this.fun();
-      })
-    }
-  }
-}
+let font = runs[0].getFont();
 ```
 
 ### paint
@@ -1974,6 +1839,7 @@ Paints this run on the canvas with the coordinate point (x, y) as the upper left
 
 **Example**
 
+<!--code_no_check-->
 ```ts
 import { drawing } from '@kit.ArkGraphics2D'
 import { text } from "@kit.ArkGraphics2D"

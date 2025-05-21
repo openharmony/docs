@@ -7,7 +7,9 @@ OpenHarmony支持Stage模型后，存在一个ArkTS引擎里面运行多个ArkUI
 **图1** 多实例关系图  
 ![multi-instance](figures/multi-instance.png)
 
-FA模型默认只支持一个ArkUI实例，没有多实例的场景。当框架切换到Stage模型后，在FA模型下开放的ArkUI全局接口，在调用时无法明确运行在哪个实例里，存在语义不明确的问题。并且，这些接口实现依赖了ArkUI实例相关的信息，如果实例不明确，会导致运行时会出现预期外的行为。
+## UI上下文不明确
+
+UI上下文不明确是指调用ArkUI全局接口时，调用点无法明确指认UI实例的问题。ArkUI全局接口在FA模型中开放，该模型默认支持单个ArkUI实例，不涵盖多实例场景。当框架切换至Stage模型后，原本在FA模型下开放的ArkUI全局接口，在调用时无法确定运行的具体实例。接口仅能依据调用链确认有效的UI实例，若无法追踪到UI实例，则存在UI上下文不明确的问题。因为这些接口的实现依赖于ArkUI实例的相关信息，UI上下文不明确会导致运行时产生非预期行为。
 
 为了解决此类问题，ArkUI针对Stage模型推出了替代接口，以便满足开发者在多实例场景下的诉求。可使用window的接口方法[getUIContext](../reference/apis-arkui/js-apis-window.md#getuicontext10)或者使用组件内置方法[getUIContext](../reference/apis-arkui/arkui-ts/ts-custom-component-api.md#getuicontext)直接获取当前组件所在的UIContext，并使用[UIContext](../reference/apis-arkui/js-apis-arkui-UIContext.md#uicontext)中对应的接口获取与实例绑定的对象。
 
@@ -90,7 +92,7 @@ struct Index {
 }
 ```
 
-针对上述问题，可使用组件内置方法[`getUIContext`](../reference/apis-arkui/arkui-ts/ts-custom-component-api.md#getuicontext)直接获取当前组件所在的UIContext，并使用[UIContext](../reference/apis-arkui/js-apis-arkui-UIContext.md#uicontext)中的的getPromptAction接口获取与实例绑定的对象，使得Toast绑定到具体的实例。
+针对上述问题，可使用组件内置方法[`getUIContext`](../reference/apis-arkui/arkui-ts/ts-custom-component-api.md#getuicontext)直接获取当前组件所在的UIContext，并使用[UIContext](../reference/apis-arkui/js-apis-arkui-UIContext.md#uicontext)中的getPromptAction接口获取与实例绑定的对象，使得Toast绑定到具体的实例。
 ```ts
 @Entry
 @Component

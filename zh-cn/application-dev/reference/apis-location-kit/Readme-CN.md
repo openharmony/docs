@@ -2,10 +2,12 @@
 
 - ArkTS API<!--location-arkts-->
   - [@ohos.geoLocationManager (位置服务)](js-apis-geoLocationManager.md)
-  - [@ohos.geoLocationManager (位置服务)(系统接口)](js-apis-geoLocationManager-sys.md)
   - [@ohos.app.ability.FenceExtensionAbility (FenceExtensionAbility)](js-apis-app-ability-FenceExtensionAbility.md)
   - [@ohos.app.ability.FenceExtensionContext (FenceExtensionContext)](js-apis-app-ability-FenceExtensionContext.md)
+  <!--Del-->
   - [@ohos.app.ability.FenceExtensionContext (FenceExtensionContext)(系统接口)](js-apis-app-ability-FenceExtensionContext-sys.md)
+  - [@ohos.geoLocationManager (位置服务)(系统接口)](js-apis-geoLocationManager-sys.md)
+  <!--EndDel-->
   - 已停止维护的接口<!--location-arkts-dep-->
     - [@ohos.geolocation (位置服务)](js-apis-geolocation.md)
     - [@system.geolocation (地理位置)](js-apis-system-location.md)

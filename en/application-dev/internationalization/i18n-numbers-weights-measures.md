@@ -2,7 +2,7 @@
 
 ## Use Cases
 
-In different countries and cultures, numbers, currencies, and units of measurement are expressed in different ways, including what symbols are used as decimal separators, how many digits are displayed after separators, and what currencies and units of measurement are used. Suppose you want to display the number 1000 on the application UI to indicate the price of a product. If the fixed format **1,000** is used, it may be considered as **1** in some European countries where a comma is used as a decimal point. Formatting is therefore needed to ensure that numbers, currencies, and units of measurement are displayed on the application UI in line with local user habits.
+In different countries and cultures, numbers, currencies, and units of measurement are expressed in different ways, including what symbols are used as decimal separators, how many digits are displayed after separators, and what currencies and units of measurement are used. Suppose you want to display the number 1000 on the application UI to indicate the price of a product. If the fixed format **1,000** is used, it may be considered as 1 in some European countries where a comma is used as a decimal point. Formatting is therefore needed to format numbers, currencies, and units of measurement so that they are displayed on the application UI in line with local user habits.
 
 ## How to Develop
 
@@ -35,7 +35,7 @@ Number formatting is implemented through the [format](../reference/apis-localiza
 
 **Number Formatting Options**
 
-You can use [NumberOptions](../reference/apis-localization-kit/js-apis-intl.md#numberoptions) to configure number formatting options, including minimum number of integer digits, minimum and maximum numbers of fraction digits, minimum and maximum numbers of significant digits, use of grouping for display, number notation, and compact display. Supported number display formats include decimal, percent, currency, and unit.
+You can use [NumberOptions](../reference/apis-localization-kit/js-apis-intl.md#numberoptions) to configure number formatting options, including minimum number of integer digits, minimum and maximum numbers of fraction digits, minimum and maximum numbers of significant digits, use of grouping for display, number notation, compact display, rounding mode, rounding priority, rounding increment, number display format, and numeral system. Supported number display formats include decimal, percent, currency, and unit.
 
 The following uses **123000.123** as an example to show the parameter values and corresponding display effects.
 
@@ -105,20 +105,28 @@ The following uses **123000.123** as an example to show the parameter values and
 import { intl } from '@kit.LocalizationKit';
 
 // Display numbers in scientific notation.
-let numberFormat1 = new intl.NumberFormat('zh-CN', {notation: 'scientific', maximumSignificantDigits: 3});
-let formattedNumber1 = numberFormat1.format(123400); // formattedNumber1: 1.23E5
+let scientificFormat: intl.NumberFormat = new intl.NumberFormat('zh-CN',
+  {
+    notation: 'scientific',
+    maximumSignificantDigits: 3
+  });
+let formattedNumber: string = scientificFormat.format(123400); // formattedNumber = '1.23E5'
 
 // Display numbers in the compact format.
-let numberFormat2 = new intl.NumberFormat('zh-CN', {notation: 'compact', compactDisplay: 'short'});
-let formattedNumber2 = numberFormat2.format(123400); // formattedNumber2: 120 thousand
+let compactFormat: intl.NumberFormat = new intl.NumberFormat('zh-CN',
+  {
+    notation: 'compact',
+    compactDisplay: 'short'
+  });
+formattedNumber = compactFormat.format(123400); // formattedNumber = '12Íò)'
 
 // Display the signs in numbers.
-let numberFormat3 = new intl.NumberFormat('zh-CN', {signDisplay: 'always'});
-let formattedNumber3 = numberFormat3.format(123400); // formattedNumber3: +123,400
+let signFormat: intl.NumberFormat = new intl.NumberFormat('zh-CN', { signDisplay: 'always' });
+formattedNumber = signFormat.format(123400); // formattedNumber = '+123,400'
 
 // Display numbers in the percentage format.
-let numberFormat4 = new intl.NumberFormat('zh-CN', {style: 'percent'});
-let formattedNumber4 = numberFormat4.format(0.25); // formattedNumber4: 25%
+let percentFormat: intl.NumberFormat = new intl.NumberFormat('zh-CN', { style: 'percent' });
+formattedNumber = percentFormat.format(0.25); // formattedNumber = '25%'
 ```
 
 
@@ -148,7 +156,7 @@ Assume that the currency unit is USD and the value is **-12300**.
 
 **Unit Formatting Options**
 
-Assume that the unit name is hectare and the value is **-12300**.
+Assume that the unit name is **hectare** and the value is **-12300**.
 
 **Table 11** Unit display (unitDisplay)
 
@@ -162,7 +170,7 @@ Assume that the unit name is hectare and the value is **-12300**.
 
 | Value| Display Effect| 
 | -------- | -------- |
-| Left unspecified| -12,300 ha | 
+| Unspecified| -12,300 ha | 
 | default | -47.491 sq mi | 
 | area-land-agricult | -30,393.962 ac | 
 
@@ -173,20 +181,30 @@ Assume that the unit name is hectare and the value is **-12300**.
 import { intl } from '@kit.LocalizationKit';
 
 // Format the currency.
-let numberFormat5 = new intl.NumberFormat('zh-CN', {style: 'currency', currency: 'USD'});
-let formattedNumber5 = numberFormat5.format(123400); // formattedNumber5: US$123,400.00
+let currencyFormat: intl.NumberFormat = new intl.NumberFormat('zh-CN', { style: 'currency', currency: 'USD' });
+let formattedNumber: string = currencyFormat.format(123400); // formattedNumber = 'US$123,400.00'
 
 // Display the currency using its name.
-let numberFormat6 = new intl.NumberFormat('zh-CN', {style: 'currency', currency: 'USD', currencyDisplay: 'name'});
-US$ let formattedNumber6 = numberFormat6.format(123400); // formattedNumber6: US$123,400.00
+let currencyNameFormat: intl.NumberFormat = new intl.NumberFormat('zh-CN',
+  {
+    style: 'currency',
+    currency: 'USD',
+    currencyDisplay: 'name'
+  });
+formattedNumber = currencyNameFormat.format(123400); // formattedNumber = '123,400.00ÃÀÔª'
 
 // Format units of measurement.
-let numberFormat7 = new intl.NumberFormat('en-GB', {style: 'unit', unit: 'hectare'});
-let formattedNumber7 = numberFormat7.format(123400); // formattedNumber7: 123,400 ha
+let unitFormat: intl.NumberFormat = new intl.NumberFormat('en-GB', { style: 'unit', unit: 'hectare' });
+formattedNumber = unitFormat.format(123400); // formattedNumber = '123,400 ha'
 
 // Format the units of measurement in the specified scenario, for example, area-land-agricult.
-let numberFormat8 = new intl.NumberFormat('en-GB', {style: 'unit', unit: 'hectare', unitUsage: 'area-land-agricult'});
-let formattedNumber8 = numberFormat8.format(123400); // formattedNumber8: 304,928.041 ac
+let unitUsageFormat: intl.NumberFormat = new intl.NumberFormat('en-GB',
+  {
+    style: 'unit',
+    unit: 'hectare',
+    unitUsage: 'area-land-agricult'
+  });
+formattedNumber = unitUsageFormat.format(123400); // formattedNumber = '304,928.041 ac'
 ```
 
 
@@ -194,12 +212,12 @@ let formattedNumber8 = numberFormat8.format(123400); // formattedNumber8: 304,92
 
 Units of measurement conversion and formatting are implemented by the [unitConvert](../reference/apis-localization-kit/js-apis-i18n.md#unitconvert9) API of the [I18NUtil](../reference/apis-localization-kit/js-apis-i18n.md#i18nutil9) class. The development procedure is as follows:
 
-1. Import the **i18n** module.
+1. Import the **intl** module.
    ```ts
    import { i18n } from '@kit.LocalizationKit';
    ```
 
-2. Convert the unit of measurement.
+2. Change the unit of measurement.
 
    Convert the unit of measurement from **fromUnit** to **toUnit**, and format the unit based on the specified locale and formatting style. The display effect varies according to the style. For details, see Table 13.
    ```ts
@@ -229,8 +247,9 @@ let fromUnit: i18n.UnitInfo = {unit: 'cup', measureSystem: 'US'};
 let toUnit: i18n.UnitInfo = {unit: 'liter', measureSystem: 'SI'};
 
 // Convert the unit based on the locale en-US.
-let convertedUnit1 = i18n.I18NUtil.unitConvert(fromUnit, toUnit, 1000, 'en-US'); // convertedUnit1: 236.588 L
+let convertedUnit: string = i18n.I18NUtil.unitConvert(fromUnit, toUnit, 1000, 'en-US'); // convertedUnit = '236.588 L'
 
 // Display the complete unit.
-let convertedUnit2 = i18n.I18NUtil.unitConvert(fromUnit, toUnit, 1000, 'en-US', 'long'); // convertedUnit2: 236.588 liters
+convertedUnit = i18n.I18NUtil.unitConvert(fromUnit, toUnit, 1000, 'en-US', 'long'); // convertedUnit = '236.588 liters'
 ```
+<!--no_check-->

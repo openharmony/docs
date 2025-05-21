@@ -2,9 +2,9 @@
 
 The **contact** module provides contact management functions, such as adding, deleting, and updating contacts.
 
->**NOTE**
+> **NOTE**
 >
->The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 
 ## Modules to Import
@@ -35,6 +35,8 @@ Adds a contact. This API uses an asynchronous callback to return the result.
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
 | ID| Error Message          |
 | -------- | ------------------ |
 | 201      | Permission denied. |
@@ -44,8 +46,8 @@ Adds a contact. This API uses an asynchronous callback to return the result.
 
 ```js
   import { BusinessError } from '@kit.BasicServicesKit';
-  // Obtain the context.
-  let context = getContext(this) as Context;
+  // Obtain the application context.
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   contact.addContact(
     context,
     {
@@ -66,13 +68,13 @@ Adds a contact. This API uses an asynchronous callback to return the result.
 
 ## contact.addContact<sup>(deprecated)7+</sup>
 
-addContact(contact:Contact, callback:AsyncCallback&lt;number&gt;): void
+addContact(contact: Contact, callback: AsyncCallback&lt;number&gt;): void
 
 Adds a contact. This API uses an asynchronous callback to return the result.
 
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 10. You are advised to use [addContact](#contactaddcontact10).
+> This API is supported since API version 7 and deprecated since API version 10. Use [addContact](#contactaddcontact10) instead.
 
 **Permission required**: ohos.permission.WRITE_CONTACTS
 
@@ -132,6 +134,8 @@ Adds a contact. This API uses a promise to return the result.
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
 | ID| Error Message          |
 | -------- | ------------------ |
 | 201      | Permission denied. |
@@ -141,8 +145,8 @@ Adds a contact. This API uses a promise to return the result.
 
 ```js
   import { BusinessError } from '@kit.BasicServicesKit';
-  // Obtain the context.
-  let context = getContext(this) as Context;
+  // Obtain the application context.
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   let promise = contact.addContact(
     context,
     {
@@ -168,7 +172,7 @@ Adds a contact. This API uses a promise to return the result.
 
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 10. You are advised to use [addContact](#contactaddcontact10-1).
+> This API is supported since API version 7 and deprecated since API version 10. Use [addContact](#contactaddcontact10-1) instead.
 
 **Permission required**: ohos.permission.WRITE_CONTACTS
 
@@ -234,8 +238,8 @@ Deletes a contact based on the specified contact key. This API uses an asynchron
 
 ```js
   import { BusinessError } from '@kit.BasicServicesKit';
-  // Obtain the context.
-  let context = getContext(this) as Context; 
+  // Obtain the application context.
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   contact.deleteContact(context, 'xxx', (err: BusinessError) => {
       if (err) {
           console.error(`Failed to delete Contact. Code: ${err.code}, message: ${err.message}`);
@@ -253,7 +257,7 @@ Deletes a contact based on the specified contact key. This API uses an asynchron
 
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 10. You are advised to use [deleteContact](#contactdeletecontact10).
+> This API is supported since API version 7 and deprecated since API version 10. Use [deleteContact](#contactdeletecontact10) instead.
 
 **Permission required**: ohos.permission.WRITE_CONTACTS
 
@@ -278,7 +282,6 @@ Deletes a contact based on the specified contact key. This API uses an asynchron
       console.info('Succeeded in deleting Contact.');
   });
   ```
-
 
 ## contact.deleteContact<sup>10+</sup>
 
@@ -314,8 +317,8 @@ Deletes a contact based on the specified contact key. This API uses a promise to
 
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
-  // Obtain the context.
-  let context = getContext(this) as Context;
+  // Obtain the application context.
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   let promise = contact.deleteContact(context, 'xxx');
   promise.then(() => {
       console.info(`Succeeded in deleting Contact.`);
@@ -332,7 +335,7 @@ Deletes a contact based on the specified contact key. This API uses a promise to
 
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 10. You are advised to use [deleteContact](#contactdeletecontact10-1).
+> This API is supported since API version 7 and deprecated since API version 10. Use [deleteContact](#contactdeletecontact10-1) instead.
 
 **Permission required**: ohos.permission.WRITE_CONTACTS
 
@@ -361,7 +364,6 @@ Deletes a contact based on the specified contact key. This API uses a promise to
       console.error(`Failed to delete Contact. Code: ${err.code}, message: ${err.message}`);
   });
   ```
-
 
 ## contact.updateContact<sup>10+</sup>
 
@@ -392,8 +394,8 @@ Updates a contact based on the specified contact information. This API uses an a
 
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
-  // Obtain the context.
-  let context = getContext(this) as Context;
+  // Obtain the application context.
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   contact.updateContact(context, {
       id: 1,
       name: {
@@ -419,7 +421,7 @@ Updates a contact based on the specified contact information. This API uses an a
 
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 10. You are advised to use [updateContact](#contactupdatecontact10).
+> This API is supported since API version 7 and deprecated since API version 10. Use [updateContact](#contactupdatecontact10) instead.
 
 **Required permissions**: ohos.permission.WRITE_CONTACTS and ohos.permission.READ_CONTACTS
 
@@ -453,7 +455,6 @@ Updates a contact based on the specified contact information. This API uses an a
   });
   ```
 
-
 ## contact.updateContact<sup>10+</sup>
 
 updateContact(context: Context,  contact: Contact, attrs: ContactAttributes, callback: AsyncCallback&lt;void&gt;): void
@@ -484,8 +485,8 @@ Updates a contact based on the specified contact information. This API uses an a
 
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
-  // Obtain the context.
-  let context = getContext(this) as Context;
+  // Obtain the application context.
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   contact.updateContact(context, {
       id: 1,
       name: {
@@ -513,7 +514,7 @@ Updates a contact based on the specified contact information. This API uses an a
 
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 10. You are advised to use [updateContact](#contactupdatecontact10-1).
+> This API is supported since API version 7 and deprecated since API version 10. Use [updateContact](#contactupdatecontact10-1) instead.
 
 **Required permissions**: ohos.permission.WRITE_CONTACTS and ohos.permission.READ_CONTACTS
 
@@ -550,7 +551,6 @@ Updates a contact based on the specified contact information. This API uses an a
   });
   ```
 
-
 ## contact.updateContact<sup>10+</sup>
 
 updateContact(context: Context,  contact: Contact, attrs?: ContactAttributes): Promise&lt;void&gt;
@@ -586,8 +586,8 @@ Updates a contact based on the specified contact information and attributes. Thi
 
 ```js
   import { BusinessError } from '@kit.BasicServicesKit';
-  // Obtain the context.
-  let context = getContext(this) as Context;
+  // Obtain the application context.
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   let promise = contact.updateContact(context, {
       id: 1,
       name: {
@@ -614,7 +614,7 @@ Updates a contact based on the specified contact information and attributes. Thi
 
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 10. You are advised to use [updateContact](#contactupdatecontact10-2).
+> This API is supported since API version 7 and deprecated since API version 10. Use [updateContact](#contactupdatecontact10-2) instead.
 
 **Required permissions**: ohos.permission.WRITE_CONTACTS and ohos.permission.READ_CONTACTS
 
@@ -628,6 +628,7 @@ Updates a contact based on the specified contact information and attributes. Thi
 | attrs   | [ContactAttributes](#contactattributes) | No  | List of contact attributes.|
 
 **Return Value**
+
 | Type               | Description                                  |
 | ------------------- | -------------------------------------- |
 | Promise&lt;void&gt; | Promise that returns no value.|
@@ -654,7 +655,6 @@ Updates a contact based on the specified contact information and attributes. Thi
   });
   ```
 
-
 ## contact.isLocalContact<sup>10+</sup>
 
 isLocalContact(context: Context,  id: number, callback: AsyncCallback&lt;boolean&gt;): void
@@ -675,6 +675,8 @@ Checks whether the ID of this contact is in the local address book. This API use
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
 | ID| Error Message          |
 | -------- | ------------------ |
 | 201      | Permission denied. |
@@ -684,8 +686,8 @@ Checks whether the ID of this contact is in the local address book. This API use
 
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
-  // Obtain the context.
-  let context = getContext(this) as Context;
+  // Obtain the application context.
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   contact.isLocalContact(context, /*id*/1, (err: BusinessError, data) => {
       if (err) {
           console.error(`Failed to isLocalContact. Code: ${err.code}, message: ${err.message}`);
@@ -703,7 +705,7 @@ Checks whether the ID of this contact is in the local address book. This API use
 
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 10. You are advised to use [isLocalContact](#contactislocalcontact10).
+> This API is supported since API version 7 and deprecated since API version 10. Use [isLocalContact](#contactislocalcontact10) instead.
 
 **Permission required**: ohos.permission.READ_CONTACTS
 
@@ -754,6 +756,8 @@ Checks whether the ID of this contact is in the local address book. This API use
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
 | ID| Error Message          |
 | -------- | ------------------ |
 | 201      | Permission denied. |
@@ -763,8 +767,8 @@ Checks whether the ID of this contact is in the local address book. This API use
 
 ```js
   import { BusinessError } from '@kit.BasicServicesKit';
-  // Obtain the context.
-  let context = getContext(this) as Context;
+  // Obtain the application context.
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   let promise = contact.isLocalContact(context, /*id*/1);
   promise.then((data) => {
       console.info(`Succeeded in isLocalContact. data->${JSON.stringify(data)}`);
@@ -781,7 +785,7 @@ Checks whether the ID of this contact is in the local address book. This API use
 
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 10. You are advised to use [isLocalContact](#contactislocalcontact10-1).
+> This API is supported since API version 7 and deprecated since API version 10. Use [isLocalContact](#contactislocalcontact10-1) instead.[isLocalContact](#contactislocalcontact10-1)
 
 **Permission required**: ohos.permission.READ_CONTACTS
 
@@ -831,6 +835,8 @@ Checks whether a contact is included in my card. This API uses an asynchronous c
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
 | ID| Error Message          |
 | -------- | ------------------ |
 | 201      | Permission denied. |
@@ -840,8 +846,8 @@ Checks whether a contact is included in my card. This API uses an asynchronous c
 
 ```js
   import { BusinessError } from '@kit.BasicServicesKit';
-  // Obtain the context.
-  let context = getContext(this) as Context;
+  // Obtain the application context.
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   contact.isMyCard(context, /*id*/1, (err: BusinessError, data) => {
       if (err) {
           console.error(`Failed to isMyCard. Code: ${err.code}, message: ${err.message}`);
@@ -859,7 +865,7 @@ Checks whether a contact is included in my card. This API uses an asynchronous c
 
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 10. You are advised to use [isMyCard](#contactismycard10).
+> This API is supported since API version 7 and deprecated since API version 10. Use [isMyCard](#contactismycard10) instead.
 
 **Permission required**: ohos.permission.READ_CONTACTS
 
@@ -884,7 +890,6 @@ Checks whether a contact is included in my card. This API uses an asynchronous c
       console.info(`Succeeded in isMyCard. data->${JSON.stringify(data)}`);
   });
   ```
-
 
 ## contact.isMyCard<sup>10+</sup>
 
@@ -911,6 +916,8 @@ Checks whether a contact is included in my card. This API uses a promise to retu
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
 | ID| Error Message          |
 | -------- | ------------------ |
 | 201      | Permission denied. |
@@ -920,8 +927,8 @@ Checks whether a contact is included in my card. This API uses a promise to retu
 
 ```js
   import { BusinessError } from '@kit.BasicServicesKit';
-  // Obtain the context.
-  let context = getContext(this) as Context;
+  // Obtain the application context.
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   let promise = contact.isMyCard(context, /*id*/1);
   promise.then((data) => {
       console.info(`Succeeded in isMyCard. data->${JSON.stringify(data)}`);
@@ -938,7 +945,7 @@ Checks whether a contact is included in my card. This API uses a promise to retu
 
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 10. You are advised to use [isMyCard](#contactismycard10-1).
+> This API is supported since API version 7 and deprecated since API version 10. Use [isMyCard](#contactismycard10-1) instead.
 
 **Permission required**: ohos.permission.READ_CONTACTS
 
@@ -987,6 +994,8 @@ Queries my card. This API uses an asynchronous callback to return the result.
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
 | ID| Error Message          |
 | -------- | ------------------ |
 | 201      | Permission denied. |
@@ -996,8 +1005,8 @@ Queries my card. This API uses an asynchronous callback to return the result.
 
 ```js
   import { BusinessError } from '@kit.BasicServicesKit';
-  // Obtain the context.
-  let context = getContext(this) as Context;
+  // Obtain the application context.
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   contact.queryMyCard(context, (err: BusinessError, data) => {
       if (err) {
           console.error(`Failed to query My Card. Code: ${err.code}, message: ${err.message}`);
@@ -1015,7 +1024,7 @@ Queries my card. This API uses an asynchronous callback to return the result.
 
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 10. You are advised to use [queryMyCard](#contactquerymycard10).
+> This API is supported since API version 7 and deprecated since API version 10. Use [queryMyCard](#contactquerymycard10) instead.
 
 **Permission required**: ohos.permission.READ_CONTACTS
 
@@ -1060,6 +1069,8 @@ Queries my card. This API uses an asynchronous callback to return the result.
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
 | ID| Error Message          |
 | -------- | ------------------ |
 | 201      | Permission denied. |
@@ -1069,8 +1080,8 @@ Queries my card. This API uses an asynchronous callback to return the result.
 
 ```js
   import { BusinessError } from '@kit.BasicServicesKit';
-  // Obtain the context.
-  let context = getContext(this) as Context;
+  // Obtain the application context.
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   contact.queryMyCard(context, {
       attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
   }, (err: BusinessError, data) => {
@@ -1090,7 +1101,7 @@ Queries my card. This API uses an asynchronous callback to return the result.
 
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 10. You are advised to use [queryMyCard](#contactquerymycard10-1).
+> This API is supported since API version 7 and deprecated since API version 10. Use [queryMyCard](#contactquerymycard10-1) instead.
 
 **Permission required**: ohos.permission.READ_CONTACTS
 
@@ -1143,6 +1154,8 @@ Queries my card based on the specified contact attributes. This API uses a promi
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
 | ID| Error Message          |
 | -------- | ------------------ |
 | 201      | Permission denied. |
@@ -1152,8 +1165,8 @@ Queries my card based on the specified contact attributes. This API uses a promi
 
 ```js
   import { BusinessError } from '@kit.BasicServicesKit';
-  // Obtain the context.
-  let context = getContext(this) as Context;
+  // Obtain the application context.
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   let promise = contact.queryMyCard(context, {
       attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
   });
@@ -1172,7 +1185,7 @@ Queries my card based on the specified contact attributes. This API uses a promi
 
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 10. You are advised to use [queryMyCard](#contactquerymycard10-2).
+> This API is supported since API version 7 and deprecated since API version 10. Use [queryMyCard](#contactquerymycard10-2) instead.
 
 **Permission required**: ohos.permission.READ_CONTACTS
 
@@ -1185,6 +1198,7 @@ Queries my card based on the specified contact attributes. This API uses a promi
 | attrs  | [ContactAttributes](#contactattributes) | No  | List of contact attributes.|
 
 **Return Value**
+
 | Type                              | Description                                   |
 | ---------------------------------- | --------------------------------------- |
 | Promise&lt;[Contact](#contact)&gt; | Promise used to return the result, which is a contact in my card.|
@@ -1203,7 +1217,6 @@ Queries my card based on the specified contact attributes. This API uses a promi
   });
   ```
 
-
 ## contact.selectContact<sup>(deprecated)7+</sup>
 
 selectContact(callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
@@ -1212,7 +1225,7 @@ Selects a contact. This API uses an asynchronous callback to return the result.
 
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 10. You are advised to use [selectContacts](#contactselectcontacts10).
+> This API is supported since API version 7 and deprecated since API version 10. Use [selectContacts](#contactselectcontacts10) instead.
 
 **System capability**: SystemCapability.Applications.Contacts
 
@@ -1235,7 +1248,6 @@ Selects a contact. This API uses an asynchronous callback to return the result.
   });
   ```
 
-
 ## contact.selectContact<sup>(deprecated)7+</sup>
 
 selectContact(): Promise&lt;Array&lt;Contact&gt;&gt;
@@ -1244,7 +1256,7 @@ Selects a contact. This API uses a promise to return the result.
 
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 10. You are advised to use [selectContacts](#contactselectcontacts10-1).
+> This API is supported since API version 7 and deprecated since API version 10. Use [selectContacts](#contactselectcontacts10-1) instead.
 
 **System capability**: SystemCapability.Applications.Contacts
 
@@ -1283,6 +1295,8 @@ Selects a contact. This API uses an asynchronous callback to return the result.
 | callback | AsyncCallback&lt;Array&lt;[Contact](#contact)&gt;&gt; | Yes  | Callback used to return the result. If the operation is successful, an array of selected contacts is returned. If the operation fails, an error code is returned.|
 
 **Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message          |
 | -------- | ------------------ |
@@ -1349,6 +1363,8 @@ Selects a contact. This API uses an asynchronous callback to return the result.
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
 | ID| Error Message          |
 | -------- | ------------------ |
 | 401      | Parameter error. Possible causes: Mandatory parameters are left unspecified.  |
@@ -1392,6 +1408,8 @@ Selects a contact. This API uses a promise to return the result.
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
 | ID| Error Message          |
 | -------- | ------------------ |
 | 401      | Parameter error. Possible causes: Mandatory parameters are left unspecified.  |
@@ -1428,6 +1446,8 @@ Queries a contact based on the specified key. This API uses an asynchronous call
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
 | ID| Error Message          |
 | -------- | ------------------ |
 | 201      | Permission denied. |
@@ -1437,8 +1457,8 @@ Queries a contact based on the specified key. This API uses an asynchronous call
 
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
-  // Obtain the context.
-  let context = getContext(this) as Context;
+  // Obtain the application context.
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   contact.queryContact(context, 'xxx', (err: BusinessError, data) => {
       if (err) {
           console.error(`Failed to query Contact. Code: ${err.code}, message: ${err.message}`);
@@ -1456,7 +1476,7 @@ Queries a contact based on the specified key. This API uses an asynchronous call
 
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 10. You are advised to use [queryContact](#contactquerycontact10).
+> This API is supported since API version 7 and deprecated since API version 10. Use [queryContact](#contactquerycontact10) instead.
 
 **Permission required**: ohos.permission.READ_CONTACTS
 
@@ -1482,7 +1502,6 @@ Queries a contact based on the specified key. This API uses an asynchronous call
   });
   ```
 
-
 ## contact.queryContact<sup>10+</sup>
 
 queryContact(context: Context,  key: string, holder: Holder, callback: AsyncCallback&lt;Contact&gt;): void
@@ -1504,6 +1523,8 @@ Queries a contact based on the specified key and holder. This API uses an asynch
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
 | ID| Error Message          |
 | -------- | ------------------ |
 | 201      | Permission denied. |
@@ -1513,8 +1534,8 @@ Queries a contact based on the specified key and holder. This API uses an asynch
 
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
-  // Obtain the context.
-  let context = getContext(this) as Context;
+  // Obtain the application context.
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   contact.queryContact(context, 'xxx', {
       holderId: 1,
       bundleName: "",
@@ -1536,7 +1557,7 @@ Queries a contact based on the specified key and holder. This API uses an asynch
 
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 10. You are advised to use [queryContact](#contactquerycontact10-1).
+> This API is supported since API version 7 and deprecated since API version 10. Use [queryContact](#contactquerycontact10-1) instead.
 
 **Permission required**: ohos.permission.READ_CONTACTS
 
@@ -1588,6 +1609,8 @@ Queries a contact based on the specified key and attributes. This API uses an as
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
 | ID| Error Message          |
 | -------- | ------------------ |
 | 201      | Permission denied. |
@@ -1597,8 +1620,8 @@ Queries a contact based on the specified key and attributes. This API uses an as
 
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
-  // Obtain the context.
-  let context = getContext(this) as Context;
+  // Obtain the application context.
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   contact.queryContact(context, 'xxx', {
       attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
   }, (err: BusinessError, data) => {
@@ -1618,7 +1641,7 @@ Queries a contact based on the specified key and attributes. This API uses an as
 
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 10. You are advised to use [queryContact](#contactquerycontact10-2).
+> This API is supported since API version 7 and deprecated since API version 10. Use [queryContact](#contactquerycontact10-2) instead.
 
 **Permission required**: ohos.permission.READ_CONTACTS
 
@@ -1669,6 +1692,8 @@ Queries a contact based on the specified key, holder, and attributes. This API u
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
 | ID| Error Message          |
 | -------- | ------------------ |
 | 201      | Permission denied. |
@@ -1678,8 +1703,8 @@ Queries a contact based on the specified key, holder, and attributes. This API u
 
 ```js
   import { BusinessError } from '@kit.BasicServicesKit';
-  // Obtain the context.
-  let context = getContext(this) as Context;
+  // Obtain the application context.
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   contact.queryContact(context, 'xxx', {
       holderId: 1,
       bundleName: "",
@@ -1703,7 +1728,7 @@ Queries a contact based on the specified key, holder, and attributes. This API u
 
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 10. You are advised to use [queryContact](#contactquerycontact10-3).
+> This API is supported since API version 7 and deprecated since API version 10. Use [queryContact](#contactquerycontact10-3) instead.
 
 **Permission required**: ohos.permission.READ_CONTACTS
 
@@ -1737,7 +1762,6 @@ Queries a contact based on the specified key, holder, and attributes. This API u
   });
   ```
 
-
 ## contact.queryContact<sup>10+</sup>
 
 queryContact(context: Context,  key: string, holder?: Holder, attrs?: ContactAttributes): Promise&lt;Contact&gt;
@@ -1758,11 +1782,14 @@ Queries a contact based on the specified key, holder, and attributes. This API u
 | attrs   | [ContactAttributes](#contactattributes) | No  | Contact attribute list. If this parameter is not specified, all contact attributes are queried by default.          |
 
 **Return Value**
+
 | Type                              | Description                                 |
 | ---------------------------------- | ------------------------------------- |
-| Promise&lt;[Contact](#contact)&gt; | Promise used to return the result, which is thequeried contact.|
+| Promise&lt;[Contact](#contact)&gt; | Promise used to return the result, which is the queried contact.|
 
 **Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message          |
 | -------- | ------------------ |
@@ -1773,8 +1800,8 @@ Queries a contact based on the specified key, holder, and attributes. This API u
 
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
-  // Obtain the context.
-  let context = getContext(this) as Context;
+  // Obtain the application context.
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   let promise = contact.queryContact(context, 'xxx', {
       holderId: 1,
       bundleName: "",
@@ -1797,7 +1824,7 @@ Queries a contact based on the specified key, holder, and attributes. This API u
 
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 10. You are advised to use [queryContact](#contactquerycontact10-4).
+> This API is supported since API version 7 and deprecated since API version 10. Use [queryContact](#contactquerycontact10-4) instead.
 
 **Permission required**: ohos.permission.READ_CONTACTS
 
@@ -1812,9 +1839,10 @@ Queries a contact based on the specified key, holder, and attributes. This API u
 | attrs  | [ContactAttributes](#contactattributes) | No  | Contact attribute list. If this parameter is not specified, all contact attributes are queried by default.                   |
 
 **Return Value**
+
 | Type                              | Description                                 |
 | ---------------------------------- | ------------------------------------- |
-| Promise&lt;[Contact](#contact)&gt; | Promise used to return the result, which is thequeried contact.|
+| Promise&lt;[Contact](#contact)&gt; | Promise used to return the result, which is the queried contact.|
 
 **Example**
 
@@ -1853,6 +1881,8 @@ Queries all contacts. This API uses an asynchronous callback to return the resul
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
 | ID| Error Message          |
 | -------- | ------------------ |
 | 201      | Permission denied. |
@@ -1862,8 +1892,8 @@ Queries all contacts. This API uses an asynchronous callback to return the resul
 
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
-  // Obtain the context.
-  let context = getContext(this) as Context;
+  // Obtain the application context.
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   contact.queryContacts(context, (err: BusinessError, data) => {
       if (err) {
           console.error(`Failed to query Contacts. Code: ${err.code}, message: ${err.message}`);
@@ -1881,7 +1911,7 @@ Queries all contacts. This API uses an asynchronous callback to return the resul
 
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 10. You are advised to use [queryContacts](#contactquerycontacts10).
+> This API is supported since API version 7 and deprecated since API version 10. Use [queryContacts](#contactquerycontacts10) instead.
 
 **Permission required**: ohos.permission.READ_CONTACTS
 
@@ -1926,6 +1956,8 @@ Queries contacts based on the specified holder. This API uses an asynchronous ca
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
 | ID| Error Message          |
 | -------- | ------------------ |
 | 201      | Permission denied. |
@@ -1935,8 +1967,8 @@ Queries contacts based on the specified holder. This API uses an asynchronous ca
 
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
-  // Obtain the context.
-  let context = getContext(this) as Context;
+  // Obtain the application context.
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   contact.queryContacts(context, {
       holderId: 1,
       bundleName: "",
@@ -1958,7 +1990,7 @@ Queries contacts based on the specified holder. This API uses an asynchronous ca
 
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 10. You are advised to use [queryContacts](#contactquerycontacts10-1).
+> This API is supported since API version 7 and deprecated since API version 10. Use [queryContacts](#contactquerycontacts10) instead.
 
 **Permission required**: ohos.permission.READ_CONTACTS
 
@@ -2008,6 +2040,8 @@ Queries contacts based on the specified attributes. This API uses an asynchronou
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
 | ID| Error Message          |
 | -------- | ------------------ |
 | 201      | Permission denied. |
@@ -2017,8 +2051,8 @@ Queries contacts based on the specified attributes. This API uses an asynchronou
 
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
-  // Obtain the context.
-  let context = getContext(this) as Context;
+  // Obtain the application context.
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   contact.queryContacts(context, {
       attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
   }, (err: BusinessError, data) => {
@@ -2038,7 +2072,7 @@ Queries contacts based on the specified attributes. This API uses an asynchronou
 
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 10. You are advised to use [queryContacts](#contactquerycontacts10-2).
+> This API is supported since API version 7 and deprecated since API version 10. Use [queryContacts](#contactquerycontacts10-2) instead.
 
 **Permission required**: ohos.permission.READ_CONTACTS
 
@@ -2087,6 +2121,8 @@ Queries contacts based on the specified holder and attributes. This API uses an 
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
 | ID| Error Message          |
 | -------- | ------------------ |
 | 201      | Permission denied. |
@@ -2096,8 +2132,8 @@ Queries contacts based on the specified holder and attributes. This API uses an 
 
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
-  // Obtain the context.
-  let context = getContext(this) as Context;
+  // Obtain the application context.
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   contact.queryContacts(context, {
       holderId: 1,
       bundleName: "",
@@ -2121,7 +2157,7 @@ Queries contacts based on the specified holder and attributes. This API uses an 
 
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 10. You are advised to use [queryContacts](#contactquerycontacts10-3).
+> This API is supported since API version 7 and deprecated since API version 10. Use [queryContacts](#contactquerycontacts10-3) instead.
 
 **Permission required**: ohos.permission.READ_CONTACTS
 
@@ -2173,11 +2209,14 @@ Queries contacts based on the specified holder and attributes. This API uses a p
 | attrs   | [ContactAttributes](#contactattributes) | No  | Contact attribute list. If this parameter is not specified, all contact attributes are queried by default.              |
 
 **Return Value**
+
 | Type                                           | Description                                     |
 | ----------------------------------------------- | ----------------------------------------- |
 | Promise&lt;Array&lt;[Contact](#contact)&gt;&gt; | Promise used to return the result, which is an array of queried contacts.|
 
 **Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message          |
 | -------- | ------------------ |
@@ -2188,8 +2227,8 @@ Queries contacts based on the specified holder and attributes. This API uses a p
 
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
-  // Obtain the context.
-  let context = getContext(this) as Context;
+  // Obtain the application context.
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   let promise = contact.queryContacts(context, {
       holderId: 1,
       bundleName: "",
@@ -2212,7 +2251,7 @@ Queries contacts based on the specified holder and attributes. This API uses a p
 
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 10. You are advised to use [queryContacts](#contactquerycontacts10-4).
+> This API is supported since API version 7 and deprecated since API version 10. Use [queryContacts](#contactquerycontacts10-4) instead.
 
 **Permission required**: ohos.permission.READ_CONTACTS
 
@@ -2269,6 +2308,8 @@ Queries contacts based on the specified phone number. This API uses an asynchron
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
 | ID| Error Message          |
 | -------- | ------------------ |
 | 201      | Permission denied. |
@@ -2278,8 +2319,8 @@ Queries contacts based on the specified phone number. This API uses an asynchron
 
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
-  // Obtain the context.
-  let context = getContext(this) as Context;
+  // Obtain the application context.
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   contact.queryContactsByPhoneNumber(context, '138xxxxxxxx', (err: BusinessError, data) => {
       if (err) {
           console.error(`Failed to query Contacts By PhoneNumber. Code: ${err.code}, message: ${err.message}`);
@@ -2297,7 +2338,7 @@ Queries contacts based on the specified phone number. This API uses an asynchron
 
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 10. You are advised to use [queryContactsByPhoneNumber](#contactquerycontactsbyphonenumber10).
+> This API is supported since API version 7 and deprecated since API version 10. Use [queryContactsByPhoneNumber](#contactquerycontactsbyphonenumber10) instead.
 
 **Permission required**: ohos.permission.READ_CONTACTS
 
@@ -2323,7 +2364,6 @@ Queries contacts based on the specified phone number. This API uses an asynchron
   });
   ```
 
-
 ## contact.queryContactsByPhoneNumber<sup>10+</sup>
 
 queryContactsByPhoneNumber(context: Context,  phoneNumber: string, holder: Holder, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
@@ -2345,6 +2385,8 @@ Queries contacts based on the specified phone number and holder. This API uses a
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
 | ID| Error Message          |
 | -------- | ------------------ |
 | 201      | Permission denied. |
@@ -2354,8 +2396,8 @@ Queries contacts based on the specified phone number and holder. This API uses a
 
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
-  // Obtain the context.
-  let context = getContext(this) as Context;
+  // Obtain the application context.
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   contact.queryContactsByPhoneNumber(context, '138xxxxxxxx', {
       holderId: 1,
       bundleName: "",
@@ -2377,7 +2419,7 @@ Queries contacts based on the specified phone number and holder. This API uses a
 
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 10. You are advised to use [queryContactsByPhoneNumber](#contactquerycontactsbyphonenumber10-1).
+> This API is supported since API version 7 and deprecated since API version 10. Use [queryContactsByPhoneNumber](#contactquerycontactsbyphonenumber10-1) instead.
 
 **Permission required**: ohos.permission.READ_CONTACTS
 
@@ -2429,6 +2471,8 @@ Queries contacts based on the specified phone number and attributes. This API us
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
 | ID| Error Message          |
 | -------- | ------------------ |
 | 201      | Permission denied. |
@@ -2438,8 +2482,8 @@ Queries contacts based on the specified phone number and attributes. This API us
 
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
-  // Obtain the context.
-  let context = getContext(this) as Context;
+  // Obtain the application context.
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   contact.queryContactsByPhoneNumber(context, '138xxxxxxxx', {
       attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
   }, (err: BusinessError, data) => {
@@ -2459,7 +2503,7 @@ Queries contacts based on the specified phone number and attributes. This API us
 
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 10. You are advised to use [queryContactsByPhoneNumber](#contactquerycontactsbyphonenumber10-2).
+> This API is supported since API version 7 and deprecated since API version 10. Use [queryContactsByPhoneNumber](#contactquerycontactsbyphonenumber10-2) instead.
 
 **Permission required**: ohos.permission.READ_CONTACTS
 
@@ -2510,6 +2554,8 @@ Queries contacts based on the specified phone number, holder, and attributes. Th
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
 | ID| Error Message          |
 | -------- | ------------------ |
 | 201      | Permission denied. |
@@ -2519,8 +2565,8 @@ Queries contacts based on the specified phone number, holder, and attributes. Th
 
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
-  // Obtain the context.
-  let context = getContext(this) as Context;
+  // Obtain the application context.
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   contact.queryContactsByPhoneNumber(context, '138xxxxxxxx', {
       holderId: 1,
       bundleName: "",
@@ -2544,7 +2590,7 @@ Queries contacts based on the specified phone number, holder, and attributes. Th
 
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 10. You are advised to use [queryContactsByPhoneNumber](#contactquerycontactsbyphonenumber10-3).
+> This API is supported since API version 7 and deprecated since API version 10. Use [queryContactsByPhoneNumber](#contactquerycontactsbyphonenumber10-3) instead.
 
 **Permission required**: ohos.permission.READ_CONTACTS
 
@@ -2605,6 +2651,8 @@ Queries contacts based on the specified phone number, holder, and attributes. Th
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
 | ID| Error Message          |
 | -------- | ------------------ |
 | 201      | Permission denied. |
@@ -2614,8 +2662,8 @@ Queries contacts based on the specified phone number, holder, and attributes. Th
 
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
-  // Obtain the context.
-  let context = getContext(this) as Context;
+  // Obtain the application context.
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   let promise = contact.queryContactsByPhoneNumber(context, '138xxxxxxxx', {
       holderId: 1,
       bundleName: "",
@@ -2638,7 +2686,7 @@ Queries contacts based on the specified phone number, holder, and attributes. Th
 
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 10. You are advised to use [queryContactsByPhoneNumber](#contactquerycontactsbyphonenumber10-4).
+> This API is supported since API version 7 and deprecated since API version 10. Use [queryContactsByPhoneNumber](#contactquerycontactsbyphonenumber10-4) instead.
 
 **Permission required**: ohos.permission.READ_CONTACTS
 
@@ -2696,6 +2744,8 @@ Queries contacts based on the specified email address. This API uses an asynchro
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
 | ID| Error Message          |
 | -------- | ------------------ |
 | 201      | Permission denied. |
@@ -2705,8 +2755,8 @@ Queries contacts based on the specified email address. This API uses an asynchro
 
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
-  // Obtain the context.
-  let context = getContext(this) as Context;
+  // Obtain the application context.
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   contact.queryContactsByEmail(context, 'xxx@email.com', (err: BusinessError, data) => {
       if (err) {
           console.error(`Failed to query Contacts By Email. Code: ${err.code}, message: ${err.message}`);
@@ -2724,7 +2774,7 @@ Queries contacts based on the specified email address. This API uses an asynchro
 
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 10. You are advised to use [queryContactsByEmail](#contactquerycontactsbyemail10).
+> This API is supported since API version 7 and deprecated since API version 10. Use [queryContactsByEmail](#contactquerycontactsbyemail10) instead.
 
 **Permission required**: ohos.permission.READ_CONTACTS
 
@@ -2771,6 +2821,8 @@ Queries a contact based on the specified email and holder. This API uses an asyn
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
 | ID| Error Message          |
 | -------- | ------------------ |
 | 201      | Permission denied. |
@@ -2780,8 +2832,8 @@ Queries a contact based on the specified email and holder. This API uses an asyn
 
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
-  // Obtain the context.
-  let context = getContext(this) as Context;
+  // Obtain the application context.
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   contact.queryContactsByEmail(context, 'xxx@email.com', {
       holderId: 1,
       bundleName: "",
@@ -2803,7 +2855,7 @@ Queries a contact based on the specified email and holder. This API uses an asyn
 
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 10. You are advised to use [queryContactsByEmail](#contactquerycontactsbyemail10-1).
+> This API is supported since API version 7 and deprecated since API version 10. Use [queryContactsByEmail](#contactquerycontactsbyemail10-1) instead.
 
 **Permission required**: ohos.permission.READ_CONTACTS
 
@@ -2855,6 +2907,8 @@ Queries a contact based on the specified email and attributes. This API uses an 
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
 | ID| Error Message          |
 | -------- | ------------------ |
 | 201      | Permission denied. |
@@ -2864,8 +2918,8 @@ Queries a contact based on the specified email and attributes. This API uses an 
 
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
-  // Obtain the context.
-  let context = getContext(this) as Context;
+  // Obtain the application context.
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   contact.queryContactsByEmail(context, 'xxx@email.com', {
       attributes: [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME]
   }, (err: BusinessError, data) => {
@@ -2885,7 +2939,7 @@ Queries a contact based on the specified email and attributes. This API uses an 
 
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 10. You are advised to use [queryContactsByEmail](#contactquerycontactsbyemail10-2).
+> This API is supported since API version 7 and deprecated since API version 10. Use [queryContactsByEmail](#contactquerycontactsbyemail10-2) instead.
 
 **Permission required**: ohos.permission.READ_CONTACTS
 
@@ -2936,6 +2990,8 @@ Queries a contact based on the specified email, holder, and attributes. This API
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
 | ID| Error Message          |
 | -------- | ------------------ |
 | 201      | Permission denied. |
@@ -2945,8 +3001,8 @@ Queries a contact based on the specified email, holder, and attributes. This API
 
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
-  // Obtain the context.
-  let context = getContext(this) as Context;
+  // Obtain the application context.
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   contact.queryContactsByEmail(context, 'xxx@email.com', {
       holderId: 1,
       bundleName: "",
@@ -2970,7 +3026,7 @@ Queries a contact based on the specified email, holder, and attributes. This API
 
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 10. You are advised to use [queryContactsByEmail](#contactquerycontactsbyemail10-3).
+> This API is supported since API version 7 and deprecated since API version 10. Use [queryContactsByEmail](#contactquerycontactsbyemail10-3) instead.
 
 **Permission required**: ohos.permission.READ_CONTACTS
 
@@ -3031,6 +3087,8 @@ Queries a contact based on the specified email, holder, and attributes. This API
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
 | ID| Error Message          |
 | -------- | ------------------ |
 | 201      | Permission denied. |
@@ -3040,8 +3098,8 @@ Queries a contact based on the specified email, holder, and attributes. This API
 
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
-  // Obtain the context.
-  let context = getContext(this) as Context;
+  // Obtain the application context.
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   let promise = contact.queryContactsByEmail(context, 'xxx@email.com', {
       holderId: 1,
       bundleName: "",
@@ -3064,7 +3122,7 @@ Queries a contact based on the specified email, holder, and attributes. This API
 
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 10. You are advised to use [queryContactsByEmail](#contactquerycontactsbyemail10-4).
+> This API is supported since API version 7 and deprecated since API version 10. Use [queryContactsByEmail](#contactquerycontactsbyemail10-4) instead.
 
 **Permission required**: ohos.permission.READ_CONTACTS
 
@@ -3130,8 +3188,8 @@ Queries all groups of this contact. This API uses an asynchronous callback to re
 
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
-  // Obtain the context.
-  let context = getContext(this) as Context;
+  // Obtain the application context.
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   contact.queryGroups(context, (err: BusinessError, data) => {
       if (err) {
           console.error(`Failed to query Groups. Code: ${err.code}, message: ${err.message}`);
@@ -3149,7 +3207,7 @@ Queries all groups of this contact. This API uses an asynchronous callback to re
 
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 10. You are advised to use [queryGroups](#contactquerygroups10).
+> This API is supported since API version 7 and deprecated since API version 10. Use [queryGroups](#contactquerygroups10) instead.
 
 **Permission required**: ohos.permission.READ_CONTACTS
 
@@ -3194,6 +3252,8 @@ Queries all groups of this contact based on the specified holder. This API uses 
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
 | ID| Error Message          |
 | -------- | ------------------ |
 | 201      | Permission denied. |
@@ -3203,8 +3263,8 @@ Queries all groups of this contact based on the specified holder. This API uses 
 
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
-  // Obtain the context.
-  let context = getContext(this) as Context;
+  // Obtain the application context.
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   contact.queryGroups(context, {
       holderId: 1,
       bundleName: "",
@@ -3226,7 +3286,7 @@ Queries all groups of this contact based on the specified holder. This API uses 
 
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 10. You are advised to use [queryGroups](#contactquerygroups10-1).
+> This API is supported since API version 7 and deprecated since API version 10. Use [queryGroups](#contactquerygroups10-1) instead.
 
 **Permission required**: ohos.permission.READ_CONTACTS
 
@@ -3281,6 +3341,8 @@ Queries all groups of this contact based on the specified holder. This API uses 
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
 | ID| Error Message          |
 | -------- | ------------------ |
 | 201      | Permission denied. |
@@ -3290,8 +3352,8 @@ Queries all groups of this contact based on the specified holder. This API uses 
 
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
-  // Obtain the context.
-  let context = getContext(this) as Context;
+  // Obtain the application context.
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   let promise = contact.queryGroups(context, {
       holderId: 1,
       bundleName: "",
@@ -3312,7 +3374,7 @@ Queries all groups of this contact based on the specified holder. This API uses 
 
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 10. You are advised to use [queryGroups](#contactquerygroups10-2).
+> This API is supported since API version 7 and deprecated since API version 10. Use [queryGroups](#contactquerygroups10-2) instead.
 
 **Permission required**: ohos.permission.READ_CONTACTS
 
@@ -3365,6 +3427,8 @@ Queries all applications that have created contacts. This API uses an asynchrono
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
 | ID| Error Message          |
 | -------- | ------------------ |
 | 201      | Permission denied. |
@@ -3374,8 +3438,8 @@ Queries all applications that have created contacts. This API uses an asynchrono
 
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
-  // Obtain the context.
-  let context = getContext(this) as Context;
+  // Obtain the application context.
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   contact.queryHolders(context, (err: BusinessError, data) => {
       if (err) {
           console.error(`Failed to query Holders. Code: ${err.code}, message: ${err.message}`);
@@ -3393,7 +3457,7 @@ Queries all applications that have created contacts. This API uses an asynchrono
 
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 10. You are advised to use [queryHolders](#contactqueryholders10).
+> This API is supported since API version 7 and deprecated since API version 10. Use [queryHolders](#contactqueryholders10) instead.
 
 **Permission required**: ohos.permission.READ_CONTACTS
 
@@ -3442,6 +3506,8 @@ Queries all applications that have created contacts. This API uses a promise to 
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
 | ID| Error Message          |
 | -------- | ------------------ |
 | 201      | Permission denied. |
@@ -3451,8 +3517,8 @@ Queries all applications that have created contacts. This API uses a promise to 
 
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
-  // Obtain the context.
-  let context = getContext(this) as Context;
+  // Obtain the application context.
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   let promise = contact.queryHolders(context);
   promise.then((data) => {
       console.info(`Succeeded in querying Holders. data->${JSON.stringify(data)}`);
@@ -3469,7 +3535,7 @@ Queries all applications that have created contacts. This API uses a promise to 
 
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 10. You are advised to use [queryHolders](#contactqueryholders10-1).
+> This API is supported since API version 7 and deprecated since API version 10. Use [queryHolders](#contactqueryholders10-1) instead.
 
 **Permission required**: ohos.permission.READ_CONTACTS
 
@@ -3513,6 +3579,8 @@ Queries the key of a contact based on the specified contact ID. This API uses an
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
 | ID| Error Message          |
 | -------- | ------------------ |
 | 201      | Permission denied. |
@@ -3522,8 +3590,8 @@ Queries the key of a contact based on the specified contact ID. This API uses an
 
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
-  // Obtain the context.
-  let context = getContext(this) as Context;
+  // Obtain the application context.
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   contact.queryKey(context, /*id*/1, (err: BusinessError, data) => {
       if (err) {
           console.error(`Failed to query Key. Code: ${err.code}, message: ${err.message}`);
@@ -3541,7 +3609,7 @@ Queries the key of a contact based on the specified contact ID. This API uses an
 
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 10. You are advised to use [queryKey](#contactquerykey10).
+> This API is supported since API version 7 and deprecated since API version 10. Use [queryKey](#contactquerykey10) instead.
 
 **Permission required**: ohos.permission.READ_CONTACTS
 
@@ -3588,6 +3656,8 @@ Queries the key of a contact based on the specified contact ID and holder. This 
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
 | ID| Error Message          |
 | -------- | ------------------ |
 | 201      | Permission denied. |
@@ -3597,8 +3667,8 @@ Queries the key of a contact based on the specified contact ID and holder. This 
 
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
-  // Obtain the context.
-  let context = getContext(this) as Context;
+  // Obtain the application context.
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   contact.queryKey(context, /*id*/1, {
       holderId: 1,
       bundleName: "",
@@ -3620,7 +3690,7 @@ Queries the key of a contact based on the specified contact ID and holder. This 
 
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 10. You are advised to use [queryKey](#contactquerykey10-1).
+> This API is supported since API version 7 and deprecated since API version 10. Use [queryKey](#contactquerykey10-1) instead.
 
 **Permission required**: ohos.permission.READ_CONTACTS
 
@@ -3677,6 +3747,8 @@ Queries the key of a contact based on the specified contact ID and holder. This 
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
 | ID| Error Message          |
 | -------- | ------------------ |
 | 201      | Permission denied. |
@@ -3686,8 +3758,8 @@ Queries the key of a contact based on the specified contact ID and holder. This 
 
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
-  // Obtain the context.
-  let context = getContext(this) as Context;
+  // Obtain the application context.
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   let promise = contact.queryKey(context, /*id*/1, {
       holderId: 1,
       bundleName: "",
@@ -3708,7 +3780,7 @@ Queries the key of a contact based on the specified contact ID and holder. This 
 
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 10. You are advised to use [queryKey](#contactquerykey10-2).
+> This API is supported since API version 7 and deprecated since API version 10. Use [queryKey](#contactquerykey10-2) instead.
 
 **Permission required**: ohos.permission.READ_CONTACTS
 
@@ -3743,6 +3815,112 @@ Queries the key of a contact based on the specified contact ID and holder. This 
   });
   ```
 
+## contact.addContactViaUI<sup>15+</sup>
+
+addContactViaUI(context: Context, contact: Contact): Promise&lt;number&gt;
+
+Opens the **Add contact** page to add a contact. This API uses a promise to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 15.
+
+**System capability**: SystemCapability.Applications.Contacts
+
+**Parameters**
+
+| Name| Type             | Mandatory| Description                  |
+| ------ | ----------------- | ---- | ---------------------- |
+| context | Context          | Yes  | Application context. For the application context of the stage model, see [Context](../apis-ability-kit/js-apis-inner-application-context.md).  |
+| contact | [Contact](#contact) | Yes  | Contact information.|
+
+**Return Value**
+
+| Type                 | Description                                      |
+| --------------------- | ------------------------------------------ |
+| Promise&lt;number&gt; | Promise Contact ID.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Contacts Error Codes](../apis-contacts-kit/errorcode-contacts.md).
+
+| ID                | Error Message                                      |
+| --------------------- | ------------------------------------------ |
+| 401       | Parameter error. Possible causes: Mandatory parameters are left unspecified. |
+| 801       | The specified SystemCapability name was not found. |
+| 16700001       | General error. |
+| 16700102       | Failed to set value to contacts data. |
+| 16700103       | User cancel. |
+
+**Example**
+
+```js
+import { BusinessError } from '@kit.BasicServicesKit';
+// // Obtain the application context.
+let contactInfo: contact.Contact = {
+    name: {
+        fullName: 'xxx'
+    },
+    phoneNumbers: [{
+        phoneNumber: '138xxxxxx'
+    }]
+}
+let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+let promise = contact.addContactViaUI(context, contactInfo);
+```
+
+## contact.saveToExistingContactViaUI<sup>15+</sup>
+
+saveToExistingContactViaUI(context: Context, contact: Contact): Promise&lt;number&gt;
+
+Opens the **Save to existing** page to save a contact to an existing one. This API uses a promise to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 15.
+
+**System capability**: SystemCapability.Applications.Contacts
+
+**Parameters**
+
+| Name| Type             | Mandatory| Description                  |
+| ------ | ----------------- | ---- | ---------------------- |
+| context | Context          | Yes  | Application context. For the application context of the stage model, see [Context](../apis-ability-kit/js-apis-inner-application-context.md).  |
+| contact | [Contact](#contact) | Yes  | Contact information.|
+
+**Return Value**
+
+| Type                 | Description                                      |
+| --------------------- | ------------------------------------------ |
+| Promise&lt;number&gt; | Promise Contact ID.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Contacts Error Codes](../apis-contacts-kit/errorcode-contacts.md).
+
+| ID                | Error Message                                      |
+| --------------------- | ------------------------------------------ |
+| 401       | Parameter error. Possible causes: Mandatory parameters are left unspecified. |
+| 801       | The specified SystemCapability name was not found. |
+| 16700001       | General error. |
+| 16700101       | Failed to get value to contacts data. |
+| 16700102       | Failed to set value to contacts data. |
+| 16700103       | User cancel. |
+
+**Example**
+
+```js
+import { BusinessError } from '@kit.BasicServicesKit';
+// Obtain the application context.
+let contactInfo: contact.Contact = {
+    id: 1,
+    name: {
+        fullName: 'xxx'
+    },
+    phoneNumbers: [{
+        phoneNumber: '138xxxxxx'
+    }]
+}
+let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+let promise = contact.saveToExistingContactViaUI(context, contactInfo);
+``` 
+
 ## ContactSelectionOptions<sup>10+</sup>
 
 Defines the contact selection options.
@@ -3751,11 +3929,111 @@ Defines the contact selection options.
 
 **System capability**: SystemCapability.Applications.Contacts
 
+|                Name              |                  Type                | Read-Only | Optional |        Description     |
+| --------------------------------- | ------------------------------------- | ---- | ---- | ---------------- |
+| isMultiSelect<sup>10+</sup>         | boolean | No  | Yes  | Whether multiple contacts can be selected. The default value is **false**. **Atomic service API**: This API can be used in atomic services since API version 11.    |
+| maxSelectable<sup>15+</sup>         | number | No  | Yes  | Maximum number of contacts that can be selected. The default value is **10000**. **Atomic service API**: This API can be used in atomic services since API version 15.    | 
+| isDisplayedByName<sup>15+</sup>         | boolean | No  | Yes  | Whether to display contacts by name. The default value is **false**. **Atomic service API**: This API can be used in atomic services since API version 15.    |
+| filter<sup>15+</sup>         | [ContactSelectionFilter](#contactselectionfilter15) | No  | Yes  | Contact selection filter. **Atomic service API**: This API can be used in atomic services since API version 15.    |
+
+## ContactSelectionFilter<sup>15+</sup>
+
+Defines the contact selection filter.
+
+**Atomic service API**: This API can be used in atomic services since API version 15.
+
+**System capability**: SystemCapability.Applications.Contacts
+
 |                Name              |                  Type                | Mandatory |        Description     |
 | --------------------------------- | ------------------------------------- | ---- | ---------------- |
-| isMultiSelect <sup>10+</sup>         | boolean | No  | Whether multiple contacts can be selected.    |
+| filterClause        | [FilterClause](#filterclause15) | Yes  | Filter criteria.    |
+| filterType        | [FilterType](#filtertype15) | Yes  | Filter type.    |
 
+## FilterType<sup>15+</sup>
 
+Enumerates contact filter types.
+
+**Atomic service API**: This API can be used in atomic services since API version 15.
+
+**System capability**: SystemCapability.Applications.Contacts
+
+| Name                 | Value| Description                              |
+| --------------------- | ---- | ---------------------------------- |
+| SHOW_FILTER    | 0 | Shows only contacts that meet the filter criteria.|
+| DEFAULT_SELECT            | 1 | Selects contacts that meet the filter criteria by default.                |
+| SHOW_FILTER_AND_DEFAULT_SELECT | 2 | Shows only contacts that meet the filter criteria and selects these contacts by default.                    |
+
+## FilterClause<sup>15+</sup>
+
+Defines the contact filter criteria.
+
+**Atomic service API**: This API can be used in atomic services since API version 15.
+
+**System capability**: SystemCapability.Applications.Contacts
+
+|                Name              |                  Type                | Mandatory |        Description     |
+| --------------------------------- | ------------------------------------- | ---- | ---------------- |
+| id         | Array<[FilterOptions](#filteroptions15)> | No  | Contact ID.    |
+| name         | Array<[FilterOptions](#filteroptions15)>  | No  | Contact name.    |
+| dataItem         | [DataFilter](#datafilter15) | No  | Contact data filter item.    |
+| focusModeList        | Array<[FilterOptions](#filteroptions15)>  | No  | Focus mode list.    |
+
+## FilterOptions<sup>15+</sup>
+
+Defines contact filter options.
+
+**Atomic service API**: This API can be used in atomic services since API version 15.
+
+**System capability**: SystemCapability.Applications.Contacts
+
+|                Name              |                  Type                | Mandatory |        Description     |
+| --------------------------------- | ------------------------------------- | ---- | ---------------- |
+| filterCondition         | [FilterCondition](#filtercondition15) | Yes  | Filter criteria.    |
+| value        | string \| ValueType[] | No  | Filter value. The default value is **undefined**.    |
+
+## FilterCondition<sup>15+</sup>
+
+Enumerates filter criteria.
+
+**Atomic service API**: This API can be used in atomic services since API version 15.
+
+**System capability**: SystemCapability.Applications.Contacts
+
+| Name                 | Value| Description                              |
+| --------------------- | ---- | ---------------------------------- |
+| IS_NOT_NULL    | 0 |The corresponding field is not empty.|
+| EQUAL_TO            | 1 | The corresponding field is equal to a value.                |
+| NOT_EQUAL_TO | 2 | The corresponding field is not equal to a value.                    |
+| IN | 3 | The value of the corresponding field is in an array.                    |
+| NOT_IN | 4 | The value of the corresponding field is not in an array.                    |
+| CONTAINS | 5 | The value of the corresponding field contains a certain value.                    |
+
+## DataFilter<sup>15+</sup>
+
+Defines the contact data filter item.
+
+**Atomic service API**: This API can be used in atomic services since API version 15.
+
+**System capability**: SystemCapability.Applications.Contacts
+
+|                Name              |                  Type                | Mandatory |        Description     |
+| --------------------------------- | ------------------------------------- | ---- | ---------------- |
+| field         | [DataField](#datafield15) | Yes  | Contact data field.    |
+| options         | Array<[FilterOptions](#filteroptions15)> | Yes  | Filter options.    |
+
+## DataField<sup>15+</sup>
+
+Enumerates contact data fields.
+
+**Atomic service API**: This API can be used in atomic services since API version 15.
+
+**System capability**: SystemCapability.Applications.Contacts
+
+| Name                 | Value| Description                              |
+| --------------------- | --- | ---------------------------------- |
+| EMAIL    | 0 |Email of the contact.|
+| PHONE            | 1 | Phone number of the contact.                |
+| ORGANIZATION | 2 | Organization of the contact.                    |
 
 ## Contact
 
@@ -3767,38 +4045,35 @@ Defines a contact.
 
 ### Constant
 
-| Name              | Value  |Read-Only  | Description            |
+| Name              | Type  | Value  | Description            |
 | ------------------ | ---- | ---- | ---------------- |
-| INVALID_CONTACT_ID | -1   |Yes  | Default contact ID.|
-
+| INVALID_CONTACT_ID | number   | -1   | Default contact ID.|
 
 ### Attributes
 
-|       Name       |                   Type                 | Readable| Writable| Description                                  |
+|       Name       |                   Type                 | Read-Only| Optional| Description                                  |
 | ----------------- | --------------------------------------- | ---- | ---- | -------------------------------------- |
-| id                | number                                  | Yes  | No  | Contact ID.                          |
-| key               | string                                  | Yes  | No  | Contact key.                         |
-| contactAttributes | [ContactAttributes](#contactattributes) | Yes  | Yes  | List of contact attributes.                    |
-| emails            | [Email](#email)[]                       | Yes  | Yes  | List of email addresses of the contact.                |
-| events            | [Event](#event)[]                       | Yes  | Yes  | List of important dates such as birthdays and anniversaries of the contact.|
-| groups            | [Group](#group)[]                       | Yes  | Yes  | List of groups of the contact.                    |
-| imAddresses       | [ImAddress](#imaddress)[]               | Yes  | Yes  | List of instant message addresses of the contact.            |
-| phoneNumbers      | [PhoneNumber](#phonenumber)[]           | Yes  | Yes  | List of phone numbers of the contact.                |
-| portrait          | [Portrait](#portrait)                   | Yes  | Yes  | Contact portrait.                        |
-| postalAddresses   | [PostalAddress](#postaladdress)[]       | Yes  | Yes  | List of postal addresses of the contact.                |
-| relations         | [Relation](#relation)[]                 | Yes  | Yes  | List of relationships with the contact.                    |
-| sipAddresses      | [SipAddress](#sipaddress)[]             | Yes  | Yes  | List of Session Initiation Protocol (SIP) addresses of the contact. |
-| websites          | [Website](#website)[]                   | Yes  | Yes  | List of websites of the contact.                    |
-| name              | [Name](#name)                           | Yes  | Yes  | Contact name.                        |
-| nickName          | [NickName](#nickname)                   | Yes  | Yes  | Contact nickname.                        |
-| note              | [Note](#note)                           | Yes  | Yes  | Contact notes.                        |
-| organization      | [Organization](#organization)           | Yes  | Yes  | Organization of the contact.                    |
-
+| id                | number                                  | Yes  | Yes  | Contact ID.                          |
+| key               | string                                  | Yes  | Yes  | Contact key.                         |
+| contactAttributes | [ContactAttributes](#contactattributes) | No  | Yes  | List of contact attributes.                    |
+| emails            | [Email](#email)[]                       | No  | Yes  | List of email addresses of the contact.                |
+| events            | [Event](#event)[]                       | No  | Yes  | List of important dates such as birthdays and anniversaries of the contact.|
+| groups            | [Group](#group)[]                       | No  | Yes  | List of groups of the contact.                    |
+| imAddresses       | [ImAddress](#imaddress)[]               | No  | Yes  | List of instant message addresses of the contact.            |
+| phoneNumbers      | [PhoneNumber](#phonenumber)[]           | No  | Yes  | List of phone numbers of the contact.                |
+| portrait          | [Portrait](#portrait)                   | No  | Yes  | Contact portrait.                        |
+| postalAddresses   | [PostalAddress](#postaladdress)[]       | No  | Yes  | List of postal addresses of the contact.                |
+| relations         | [Relation](#relation)[]                 | No  | Yes  | List of relationships with the contact.                    |
+| sipAddresses      | [SipAddress](#sipaddress)[]             | No  | Yes  | List of Session Initiation Protocol (SIP) addresses of the contact. |
+| websites          | [Website](#website)[]                   | No  | Yes  | List of websites of the contact.                    |
+| name              | [Name](#name)                           | No  | Yes  | Contact name.                        |
+| nickName          | [NickName](#nickname)                   | No  | Yes  | Contact nickname.                        |
+| note              | [Note](#note)                           | No  | Yes  | Contact notes.                        |
+| organization      | [Organization](#organization)           | No  | Yes  | Organization of the contact.                    |
 
 **Example**
 
 Create contact data in JSON format:
-
 
 ```js
 let myContact: contact.Contact = {
@@ -3815,8 +4090,6 @@ let myContact: contact.Contact = {
 };
 ```
 
-
-
 ## ContactAttributes
 
 Provides a list of contact attributes, which are generally used as arguments. 
@@ -3826,15 +4099,13 @@ If **null** is passed, all attributes are queried by default.
 
 **System capability**: SystemCapability.Applications.ContactsData
 
-| Name      |            Type          | Readable| Writable| Description            |
+| Name      |            Type          | Read-Only| Optional| Description            |
 | ---------- | ------------------------- | ---- | ---- | ---------------- |
-| attributes | [Attribute](#attribute)[] | Yes  | Yes  | List of contact attributes.|
-
+| attributes | [Attribute](#attribute)[] | No  | No  | List of contact attributes.|
 
 **Example**
 
 Create contact data in JSON format:
-
 
 ```js
 let contactAttributes: contact.ContactAttributes = {
@@ -3845,7 +4116,6 @@ let contactAttributes: contact.ContactAttributes = {
     ]
 };
 ```
-
 
 ## Attribute
 
@@ -3872,7 +4142,6 @@ Enumerates contact attributes.
 | ATTR_SIP_ADDRESS      | SIP addresses of the contact. |
 | ATTR_WEBSITE          | Website that stores the contact information.                    |
 
-
 **Example**
 
 Create contact data in JSON format:
@@ -3880,7 +4149,6 @@ Create contact data in JSON format:
 ```js
 let attributes = [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE];
 ```
-
 
 ## Email
 
@@ -3892,14 +4160,13 @@ Defines a contact's email.
 
 ### Constant
 
-| Name            | Value  | Description            |
-| ---------------- | ---- | ---------------- |
-| CUSTOM_LABEL     | 0    | Custom mailbox type.|
-| EMAIL_HOME       | 1    | Home mailbox.  |
-| EMAIL_WORK       | 2    | Work mailbox.  |
-| EMAIL_OTHER      | 3    | Other mailbox.  |
-| INVALID_LABEL_ID | -1   | Invalid mailbox.  |
-
+| Name            | Type  | Value  | Description            |
+| ---------------- | ---- | ---- | ---------------- |
+| CUSTOM_LABEL     | number    |  0    |Custom mailbox type.|
+| EMAIL_HOME       | number    | 1    | Home mailbox.  |
+| EMAIL_WORK       | number    | 2    | Work mailbox.  |
+| EMAIL_OTHER      | number    | 3    | Other mailbox.  |
+| INVALID_LABEL_ID | number    | -1   | Invalid mailbox.  |
 
 ### Attributes
 
@@ -3909,7 +4176,6 @@ Defines a contact's email.
 | labelName   | string   | Yes  | Yes  | Name of the mailbox type.|
 | displayName | string   | Yes  | Yes  | Displayed name of the mailbox.|
 | labelId     | number   | Yes  | Yes  | Mailbox type.    |
-
 
 **Example**
 
@@ -3930,7 +4196,6 @@ let email = new contact.Email();
 email.email = "xxx@email.com";
 ```
 
-
 ## Holder
 
 Defines an application that creates the contact.
@@ -3943,7 +4208,6 @@ Defines an application that creates the contact.
 | displayName | string | Yes  | No  | Application name.  |
 | holderId    | number | Yes  | Yes  | Application ID.    |
 
-
 **Example**
 
   Create contact data in JSON format:
@@ -3955,7 +4219,6 @@ let holder: contact.Holder = {
   holderId: 1
 };
 ```
-
 
 ## Event
 
@@ -3975,7 +4238,6 @@ Defines a contact's event.
 | EVENT_BIRTHDAY    | 3    | Birthday event.    |
 | INVALID_LABEL_ID  | -1   | Invalid event.    |
 
-
 ### Attributes
 
 |    Name  |   Type  | Readable| Writable| Description          |
@@ -3983,7 +4245,6 @@ Defines a contact's event.
 | eventDate | string   | Yes  | Yes  | Event date.  |
 | labelName | string   | Yes  | Yes  | Event type.|
 | labelId   | number   | Yes  | Yes  | Event type ID.    |
-
 
 **Example**
 
@@ -4002,7 +4263,6 @@ let event = new contact.Event();
 event.eventDate = "xxxxxx";
 ```
 
-
 ## Group
 
 Defines a contact group.
@@ -4016,7 +4276,6 @@ Defines a contact group.
 | groupId | number   | Yes  | Yes  | ID of a contact group.  |
 | title   | string   | Yes  | Yes  | Name of a contact group.|
 
-
 **Example**
 
   Create contact data in JSON format:
@@ -4027,7 +4286,6 @@ let group: contact.Group = {
     title: "title"
 };
 ```
-
 
 ## ImAddress
 
@@ -4051,7 +4309,6 @@ Enumerates IM addresses.
 | IM_JABBER        | 7    | JABBER|
 | INVALID_LABEL_ID | -2   | Invalid IM|
 
-
 ### Attributes
 
 | Name     |   Type  | Readable| Writable| Description              |
@@ -4059,7 +4316,6 @@ Enumerates IM addresses.
 | imAddress | string   | Yes  | Yes  | IM address.    |
 | labelName | string   | Yes  | Yes  | IM name.|
 | labelId   | number   | Yes  | Yes  | IM ID.    |
-
 
 **Example**
 
@@ -4079,7 +4335,6 @@ let imAddress: contact.ImAddress = {
 let imAddress = new contact.ImAddress();
 imAddress.imAddress = "imAddress";
 ```
-
 
 ## Name
 
@@ -4101,7 +4356,6 @@ Defines a contact's name.
 | namePrefix         | string   | Yes  | Yes  | Prefix of the contact name.         |
 | nameSuffix         | string   | Yes  | Yes  | Suffix of the contact name.         |
 
-
 **Example**
 
   Create contact data in JSON format:
@@ -4112,7 +4366,6 @@ let name: contact.Name = {
     fullName: "fullName"
 };
 ```
-
 
 ## NickName
 
@@ -4125,7 +4378,6 @@ Defines a contact's nickname.
 | Name    |   Type  | Readable| Writable| Description          |
 | -------- | -------- | ---- | ---- | -------------- |
 | nickName | string   | Yes  | Yes  | Contact nickname.|
-
 
 **Example**
 
@@ -4149,7 +4401,6 @@ Defines a contact's note.
 | ----------- | -------- | ---- | ---- | ------------------ |
 | noteContent | string   | Yes  | Yes  | Notes of the contact.|
 
-
 **Example**
 
   Create contact data in JSON format:
@@ -4159,7 +4410,6 @@ let note: contact.Note = {
     noteContent: "noteContent"
 };
 ```
-
 
 ## Organization
 
@@ -4174,7 +4424,6 @@ Defines a contact's organization.
 | name  | string   | Yes  | Yes  | Organization name.|
 | title | string   | Yes  | Yes  | Job title.|
 
-
 **Example**
 
   Create contact data in JSON format:
@@ -4185,7 +4434,6 @@ let organization: contact.Organization = {
     title: "title"
 };
 ```
-
 
 ## PhoneNumber
 
@@ -4222,7 +4470,6 @@ Defines a contact's phone number.
 | NUM_MMS          | 20   | MMS phone.                                  |
 | INVALID_LABEL_ID | -1   | Invalid phone type.                                  |
 
-
 ### Attributes
 
 | Name       |   Type  | Readable| Writable| Description              |
@@ -4230,7 +4477,6 @@ Defines a contact's phone number.
 | labelName   | string   | Yes  | Yes  | Phone number type.|
 | phoneNumber | string   | Yes  | Yes  | Phone number.        |
 | labelId     | number   | Yes  | Yes  | Phone number ID.    |
-
 
 **Example**
 
@@ -4250,7 +4496,6 @@ let phoneNumber = new contact.PhoneNumber();
 phoneNumber.phoneNumber = "138xxxxxxxx";
 ```
 
-
 ## Portrait
 
 Defines a contact's portrait.
@@ -4263,7 +4508,6 @@ Defines a contact's portrait.
 | ---- | -------- | ---- | ---- | -------------- |
 | uri  | string   | Yes  | Yes  | Contact portrait.|
 
-
 **Example**
 
   Create contact data in JSON format:
@@ -4273,7 +4517,6 @@ let portrait: contact.Portrait = {
     uri: "uri"
 };
 ```
-
 
 ## PostalAddress
 
@@ -4293,7 +4536,6 @@ Defines a contact's postal address.
 | ADDR_OTHER       | 3    | Other addresses.      |
 | INVALID_LABEL_ID | -1   | Invalid address type.      |
 
-
 ### Attributes
 
 | Name         |   Type  | Readable| Writable| Description                      |
@@ -4308,7 +4550,6 @@ Defines a contact's postal address.
 | region        | string   | Yes  | Yes  | Area where the contact is located.        |
 | street        | string   | Yes  | Yes  | Street where the contact resides.        |
 | labelId       | number   | Yes  | Yes  | Postal address type.            |
-
 
 **Example**
 
@@ -4328,7 +4569,6 @@ let postalAddress = new contact.PostalAddress();
 postalAddress.city = "city";
 postalAddress.postalAddress = "postalAddress";
 ```
-
 
 ## Relation
 
@@ -4359,7 +4599,6 @@ Defines a contact's relationship.
 | RELATION_SPOUSE           | 14   | Spouse.    |
 | INVALID_LABEL_ID          | -1   | Invalid relationship.  |
 
-
 ### Attributes
 
 | Name        |   Type  | Readable| Writable| Description          |
@@ -4367,7 +4606,6 @@ Defines a contact's relationship.
 | labelName    | string   | Yes  | Yes  | Relationship type.|
 | relationName | string   | Yes  | Yes  | Relationship name.    |
 | labelId      | number   | Yes  | Yes  | Relationship ID.    |
-
 
 **Example**
 
@@ -4388,7 +4626,6 @@ relation.relationName = "relationName";
 relation.labelId = contact.Relation.RELATION_ASSISTANT;
 ```
 
-
 ## SipAddress
 
 Defines a contact's SIP address.
@@ -4406,7 +4643,6 @@ Defines a contact's SIP address.
 | SIP_WORK         | 2    | Work SIP address.  |
 | SIP_OTHER        | 3    | Other SIP address.  |
 | INVALID_LABEL_ID | -1   | Invalid SIP address.  |
-
 
 ### Attributes
 
@@ -4433,7 +4669,6 @@ let sipAddress = new contact.SipAddress();
 sipAddress.sipAddress = "sipAddress";
 ```
 
-
 ## Website
 
 Defines a contact's website.
@@ -4445,7 +4680,6 @@ Defines a contact's website.
 | Name   |   Type  | Readable| Writable| Description              |
 | ------- | -------- | ---- | ---- | ------------------ |
 | website | string   | Yes  | Yes  | Website of the contact.|
-
 
 **Example**
 

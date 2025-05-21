@@ -38,12 +38,12 @@ Circle(value?: CircleOptions)
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| width | string \| number| No| Width of the circle.<br>Default value: **0**<br>Default unit: vp<br>An invalid value is handled as the default value.|
-| height | string \| number| No| Height of the circle.<br>Default value: **0**<br>Default unit: vp<br>An invalid value is handled as the default value.|
+| width | string \| number| No| Width of the circle. The value must be greater than or equal to 0.<br>Default value: **0**<br>Default unit: vp<br>An invalid value is handled as the default value.|
+| height | string \| number| No| Height of the circle. The value must be greater than or equal to 0.<br>Default value: **0**<br>Default unit: vp<br>An invalid value is handled as the default value.|
 
 ## Attributes
 
-In addition to the [universal attributes](ts-universal-attributes-size.md), the following attributes are supported.
+In addition to the [universal attributes](ts-component-general-attributes.md), the following attributes are supported.
 
 ### fill
 
@@ -97,7 +97,7 @@ Sets the stroke color. If this attribute is not set, the component does not have
 
 strokeDashArray(value: Array&lt;any&gt;)
 
-Sets stroke dashes. An invalid value is handled as the default value.
+Sets stroke dashes. The value must be greater than or equal to 0. Invalid values are treated as the default value.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
@@ -193,7 +193,7 @@ Sets the stroke opacity. The value range is [0.0, 1.0]. A value less than 0.0 ev
 
 strokeWidth(value: Length)
 
-Sets the stroke width. If of the string type, this attribute cannot be set in percentage. A percentage is processed as 1 px.
+Sets the stroke width. If this attribute is of the string type, percentage values are not supported and will be treated as 1 px.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
@@ -203,7 +203,7 @@ Sets the stroke width. If of the string type, this attribute cannot be set in pe
 
 | Name| Type                        | Mandatory| Description                    |
 | ------ | ---------------------------- | ---- | ------------------------ |
-| value  | [Length](ts-types.md#length) | Yes  | Stroke width.<br>Default value: **1**<br>Default unit: vp|
+| value  | [Length](ts-types.md#length) | Yes  | Stroke width. The value must be greater than or equal to 0.<br>Default value: **1**<br>Default unit: vp<br>An invalid value is handled as the default value.|
 
 ### antiAlias
 
@@ -219,7 +219,7 @@ Specifies whether anti-aliasing is enabled.
 
 | Name| Type   | Mandatory| Description                                 |
 | ------ | ------- | ---- | ------------------------------------- |
-| value  | boolean | Yes  | Whether anti-aliasing is enabled.<br>Default value: **true**|
+| value  | boolean | Yes  | Whether anti-aliasing is enabled.<br>**true**: Anti-aliasing is enabled.<br>**false**: Anti-aliasing is disabled.<br>Default value: **true**|
 
 ## Example
 
