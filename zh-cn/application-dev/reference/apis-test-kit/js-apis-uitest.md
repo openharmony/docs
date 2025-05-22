@@ -68,9 +68,9 @@ import { UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPatter
 
 | 名称 | 类型   | 可读 | 可写 | 必填 | 说明        |
 | ---- | ------ | ---- | ---- | ---- |-----------|
-| x    | number | 是   | 是   | 是   | 坐标点的横坐标，取值大于0的整数。<br> **说明：** 从API20开始可写。 |
-| y    | number | 是   | 是   | 是   | 坐标点的纵坐标，取值大于0的整数。<br> **说明：** 从API20开始可写。 |
-| displayId    | number | 是   | 是   | 否   | 坐标点所属的屏幕ID，取值大于等于0的整数。默认值为设备主屏幕ID。|
+| x    | number | 是   | 是   | 是   | 坐标点的横坐标，取值大于0的整数。<br> **说明：** 从API version 20开始可写。 |
+| y    | number | 是   | 是   | 是   | 坐标点的纵坐标，取值大于0的整数。<br> **说明：** 从API version 20开始可写。 |
+| displayId    | number | 是   | 是   | 否   | 坐标点所属的屏幕ID，取值大于等于0的整数。默认值为设备主屏幕ID。<br> **说明：** 从API version 20开始，该接口支持在原子化服务中使用。|
 
 ## Rect<sup>9+</sup>
 
