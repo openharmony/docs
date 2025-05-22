@@ -2455,7 +2455,7 @@ async function demo() {
 
 triggerKey(keyCode: number, displayId: number): Promise\<void>
 
-Driver对象采取如下操作：在指定屏幕传入key值实现模拟点击对应按键的效果，使用Promise异步回调。
+Driver对象采取如下操作：在指定屏幕，传入key值实现模拟点击对应按键的效果，使用Promise异步回调。
 
 **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
@@ -6229,4 +6229,133 @@ UiDriver对象采取如下操作：在目标坐标点单击。
 | 参数名 | 类型   | 必填 | 说明                                   |
 | ------ | ------ | ---- | -------------------------------------- |
 | x      | number | 是   | 以number的形式传入目标点的横坐标信息，取值大于等于0的整数。 |
-| y      | number | 是   | 以number的形式传入目标点的�
+| y      | number | 是   | 以number的形式传入目标点的纵坐标信息，取值大于等于0的整数。 |
+
+**示例：**
+
+```ts
+import { UiDriver } from '@kit.TestKit';
+
+async function demo() {
+  let driver: UiDriver = UiDriver.create();
+  await driver.click(100, 100);
+}
+```
+
+### doubleClick<sup>(deprecated)</sup>
+
+doubleClick(x: number, y: number): Promise\<void>
+
+UiDriver对象采取如下操作：在目标坐标点双击。
+
+从API version 9开始不再维护，建议使用[doubleClick<sup>9+</sup>](#doubleclick9)。
+
+**系统能力**：SystemCapability.Test.UiTest
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                                   |
+| ------ | ------ | ---- | -------------------------------------- |
+| x      | number | 是   | 以number的形式传入目标点的横坐标信息，取值大于等于0的整数。 |
+| y      | number | 是   | 以number的形式传入目标点的纵坐标信息，取值大于等于0的整数。 |
+
+**示例：**
+
+```ts
+import { UiDriver } from '@kit.TestKit';
+
+async function demo() {
+  let driver: UiDriver = UiDriver.create();
+  await driver.doubleClick(100, 100);
+}
+```
+
+### longClick<sup>(deprecated)</sup>
+
+longClick(x: number, y: number): Promise\<void>
+
+UiDriver对象采取如下操作：在目标坐标点长按下鼠标左键。
+
+从API version 9开始不再维护，建议使用[longClick<sup>9+</sup>](#longclick9)。
+
+**系统能力**：SystemCapability.Test.UiTest
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                                   |
+| ------ | ------ | ---- | -------------------------------------- |
+| x      | number | 是   | 以number的形式传入目标点的横坐标信息，取值大于等于0的整数。 |
+| y      | number | 是   | 以number的形式传入目标点的纵坐标信息，取值大于等于0的整数。 |
+
+**示例：**
+
+```ts
+import { UiDriver } from '@kit.TestKit';
+async function demo() {
+  let driver: UiDriver = UiDriver.create();
+  await driver.longClick(100, 100);
+}
+```
+
+### swipe<sup>(deprecated)</sup>
+
+swipe(startx: number, starty: number, endx: number, endy: number): Promise\<void>
+
+UiDriver对象采取如下操作：从给出的起始坐标点滑向给出的目的坐标点。
+
+从API version 9开始不再维护，建议使用[swipe<sup>9+</sup>](#swipe9)。
+
+**系统能力**：SystemCapability.Test.UiTest
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                                   |
+| ------ | ------ | ---- | -------------------------------------- |
+| startx | number | 是   | 以number的形式传入起始点的横坐标信息，取值大于等于0的整数。 |
+| starty | number | 是   | 以number的形式传入起始点的纵坐标信息，取值大于等于0的整数。 |
+| endx   | number | 是   | 以number的形式传入目的点的横坐标信息，取值大于等于0的整数。 |
+| endy   | number | 是   | 以number的形式传入目的点的纵坐标信息，取值大于等于0的整数。 |
+
+**示例：**
+
+```ts
+import { UiDriver } from '@kit.TestKit';
+
+async function demo() {
+  let driver: UiDriver = UiDriver.create();
+  await driver.swipe(100, 100, 200, 200);
+}
+```
+
+### screenCap<sup>(deprecated)</sup>
+
+screenCap(savePath: string): Promise\<boolean>
+
+UiDriver对象采取如下操作：捕获当前屏幕，并保存为PNG格式的图片至给出的保存路径中。
+
+从API version 9开始不再维护，建议使用[screenCap<sup>9+</sup>](#screencap9)。
+
+**系统能力**：SystemCapability.Test.UiTest
+
+**参数：**
+
+| 参数名   | 类型   | 必填 | 说明           |
+| -------- | ------ | ---- | -------------- |
+| savePath | string | 是   | 文件保存路径。 |
+
+**返回值：**
+
+
+| 类型              | 说明                                            |
+| ----------------- |-----------------------------------------------|
+| Promise\<boolean> | Promise对象，返回截图操作是否成功完成。true：成功完成，false：未成功完成。 |
+
+**示例：**
+
+```ts
+import { UiDriver } from '@kit.TestKit';
+async function demo() {
+  let driver: UiDriver = UiDriver.create();
+  await driver.screenCap('/data/storage/el2/base/cache/1.png');
+}
+```
