@@ -796,42 +796,43 @@
         - [跨设备文件拷贝](file-management/file-copy-across-devices.md)
     - Form Kit（卡片开发服务）<!--form-kit-->
       - [Form Kit简介](form/formkit-overview.md)
-      - 服务卡片开发指导（Stage模型）<!--arkts-ui-widget-stage-->
-        - 开发基于ArkTS UI的卡片<!--arkts-ui-widget-->
-          - [ArkTS卡片概述](form/arkts-form-overview.md)
-          - ArkTS卡片开发指导<!--arkts-ui-widget-dev-->
-            - [创建ArkTS卡片](form/arkts-ui-widget-creation.md)
-            - [配置卡片的配置文件](form/arkts-ui-widget-configuration.md)
-            - [卡片生命周期管理](form/arkts-ui-widget-lifecycle.md)
-            - 开发卡片页面<!--arkts-ui-widget-page-->
-              - [卡片页面能力说明](form/arkts-ui-widget-page-overview.md)
-              - [卡片使用动效能力](form/arkts-ui-widget-page-animation.md)
-              - [卡片使用自定义绘制能力](form/arkts-ui-widget-page-custom-drawing.md)
-            - 开发卡片事件<!--arkts-ui-widget-event-->
-              - [卡片事件能力说明](form/arkts-ui-widget-event-overview.md)
-              - [拉起卡片提供方的UIAbility(router事件)](form/arkts-ui-widget-event-router.md)
-              - [拉起卡片提供方的UIAbility到后台(call事件)](form/arkts-ui-widget-event-call.md)
-              - [通过message事件刷新卡片内容](form/arkts-ui-widget-event-formextensionability.md)
-              - [通过router或call事件刷新卡片内容](form/arkts-ui-widget-event-uiability.md)
-            - ArkTS卡片页面刷新<!--arkts-ui-widget-interaction-->
-              - [ArkTS卡片页面刷新概述](form/arkts-ui-widget-interaction-overview.md)
-              - [ArkTS卡片主动刷新](form/arkts-ui-widget-active-refresh.md)
-              - [ArkTS卡片被动刷新](form/arkts-ui-widget-passive-refresh.md)
-              <!--Del-->
-              - [卡片代理刷新](form/arkts-ui-widget-update-by-proxy.md)
-              <!--DelEnd-->
-              - [刷新本地图片和网络图片](form/arkts-ui-widget-image-update.md)
-              - [根据卡片状态刷新不同内容](form/arkts-ui-widget-update-by-status.md)
-          - ArkTS卡片页面编辑<!--arkts-ui-widget-edit-->
-            - [ArkTS卡片页面编辑交互概述](form/arkts-ui-widget-event-formeditextensionability-overview.md)
-            - [编辑刷新卡片页面内容](form/arkts-ui-widget-event-formeditextensionability.md)
-          - 应用内请求卡片加桌<!--arkts-ui-widget-add-->
-            - [应用内拉起卡片管理加桌](form/arkts-ui-widget-open-formmanager.md)
-          <!--Del-->
-          - [卡片使用方开发指导（仅对系统应用开放）](form/widget-host-development-guide.md)
-          <!--DelEnd-->
-        - [开发基于JS UI的卡片](form/js-ui-widget-development.md)
-      - [JS卡片开发指导（FA模型）](form/widget-development-fa.md)
+      - ArkTS卡片开发（推荐）<!--arkts-ui-widget-->
+        - [ArkTS卡片概述](form/arkts-form-overview.md)
+        - ArkTS卡片开发指导<!--arkts-ui-widget-dev-->
+          - [创建ArkTS卡片](form/arkts-ui-widget-creation.md)
+          - [配置卡片的配置文件](form/arkts-ui-widget-configuration.md)
+          - [卡片生命周期管理](form/arkts-ui-widget-lifecycle.md)
+          - 开发卡片页面<!--arkts-ui-widget-page-->
+            - [卡片页面能力说明](form/arkts-ui-widget-page-overview.md)
+            - [卡片使用动效能力](form/arkts-ui-widget-page-animation.md)
+            - [卡片使用自定义绘制能力](form/arkts-ui-widget-page-custom-drawing.md)
+          - 开发卡片事件<!--arkts-ui-widget-event-->
+            - [卡片事件能力说明](form/arkts-ui-widget-event-overview.md)
+            - [拉起卡片提供方的UIAbility(router事件)](form/arkts-ui-widget-event-router.md)
+            - [拉起卡片提供方的UIAbility到后台(call事件)](form/arkts-ui-widget-event-call.md)
+            - [通过message事件刷新卡片内容](form/arkts-ui-widget-event-formextensionability.md)
+            - [通过router或call事件刷新卡片内容](form/arkts-ui-widget-event-uiability.md)
+          - ArkTS卡片页面刷新<!--arkts-ui-widget-interaction-->
+            - [ArkTS卡片页面刷新概述](form/arkts-ui-widget-interaction-overview.md)
+            - [ArkTS卡片主动刷新](form/arkts-ui-widget-active-refresh.md)
+            - [ArkTS卡片被动刷新](form/arkts-ui-widget-passive-refresh.md)
+            <!--Del-->
+            - [卡片代理刷新](form/arkts-ui-widget-update-by-proxy.md)
+            <!--DelEnd-->
+            - [刷新本地图片和网络图片](form/arkts-ui-widget-image-update.md)
+            - [根据卡片状态刷新不同内容](form/arkts-ui-widget-update-by-status.md)
+        - ArkTS卡片页面编辑<!--arkts-ui-widget-edit-->
+          - [ArkTS卡片页面编辑交互概述](form/arkts-ui-widget-event-formeditextensionability-overview.md)
+          - [编辑刷新卡片页面内容](form/arkts-ui-widget-event-formeditextensionability.md)
+        - 应用内请求卡片加桌<!--arkts-ui-widget-add-->
+          - [应用内拉起卡片管理加桌](form/arkts-ui-widget-open-formmanager.md)
+        <!--Del-->
+        - [卡片使用方开发指导（仅对系统应用开放）](form/widget-host-development-guide.md)
+        <!--DelEnd-->
+      - JS卡片开发
+        - [JS卡片概述](js-ui-widget-overview.md)
+        - [JS卡片开发指导（Stage模型）](js-ui-widget-development.md)
+        - [JS卡片开发指导（FA模型）](widget-development-fa.md)
     - IME Kit（输入法开发服务）<!--ime-kit-->
       - [IME Kit简介](inputmethod/ime-kit-intro.md)
       - [实现一个输入法应用](inputmethod/inputmethod-application-guide.md)
