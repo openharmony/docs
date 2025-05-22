@@ -43,8 +43,8 @@ import { distributedDeviceManager } from '@kit.DistributedServiceKit';
 
 | 名称         | 类型  | 必填              |  说明    |
 | ----------- | ---- | --------------- | ------- |
-| isCloud      | boolean    |   是           | 是否向云端请求数据。       |
-| deviceIdList  | Array&lt;string&gt;  | 否    | 设备Id列表。       |
+| isCloud      | boolean    |   是           | 指示是否需要实时从设备云获取设备列表。       |
+| deviceIdList  | Array&lt;string&gt;  | 否    | 获取指定deviceId的设备信息，deviceId取值端侧udid，无udid类的设备取MAC或者SN。       |
 
 
 ## ServiceProfileInfo<sup>15+</sup>
@@ -79,8 +79,8 @@ import { distributedDeviceManager } from '@kit.DistributedServiceKit';
 |  deviceType    | string  | 是   |  设备类型。         |
 |  manufacturer  | string  | 是   |  制造商。           |
 |  deviceName    | string  | 是   |  设备名称。         |
-|  productId     | string  | 是   |  产品ID。           |
-|  subProductId  | string  | 否   |  产品子ID。         |
+|  productId     | string  | 是   |  设备所属产品ID。           |
+|  subProductId  | string  | 否   |  设备所属产品子ID。         |
 |  sdkVersion    | string  | 是   |  SDK版本。          |
 |  bleMac        | string  | 是   |  蓝牙BLE的MAC地址。  |
 |  brMac         | string  | 是   |  蓝牙BR的MAC地址。  |
@@ -111,10 +111,10 @@ import { distributedDeviceManager } from '@kit.DistributedServiceKit';
 
 | 名称           | 类型  | 必填              |  说明    |
 | -------------- | ---- | --------------- | --------|
-|  productId      | string  | 是   |  产品ID。          |
-|  subProductId   | string  | 否   |  产品子ID。      |
-|  imageType      | string  | 是   |  图片类型。         |
-|  specName       | string  | 是   |  规格名称。         |
+|  productId      | string  | 是   |  设备所属产品ID。          |
+|  subProductId   | string  | 否   |  设备所属产品子ID。      |
+|  imageType      | string  | 是   |  图片类型。约定取值范围：<br />-ID.<br />-ID_Headset_L.<br />-ID_Headset_R.<br />-ID_Headset_B.<br />-ID_Headset_LB.<br />-ID_Headset_RB.         |
+|  specName       | string  | 是   |  图片规格名称。约定取值范围：<br />-lg: 大图。<br />-sm: 小图。         |
 |  internalModel  | string  | 否   |  设备所属产品的内部型号。        |
 
 ## DeviceIconInfo<sup>18+</sup>
@@ -127,10 +127,10 @@ import { distributedDeviceManager } from '@kit.DistributedServiceKit';
 
 | 名称           | 类型  | 必填              |  说明    |
 | -------------- | ---- | --------------- | --------|
-|  productId      | string  | 是   |  产品ID。          |
-|  subProductId   | string  | 否   |  产品子ID。      |
-|  imageType      | string  | 是   |  图片类型。         |
-|  specName       | string  | 是   |  规格名称。         |
+|  productId      | string  | 是   |  设备所属产品ID。          |
+|  subProductId   | string  | 否   |  设备所属产品子ID。     |
+|  imageType      | string  | 是   |  图片类型。约定取值范围：<br />-ID.<br />-ID_Headset_L.<br />-ID_Headset_R.<br />-ID_Headset_B.<br />-ID_Headset_LB.<br />-ID_Headset_RB.         |
+|  specName       | string  | 是   |  图片规格名称。约定取值范围：<br />-lg: 大图。<br />-sm: 小图。         |
 |  url            | string  | 是   |  统一资源定位器。          |
 |  icon           | ArrayBuffer | 是 | 图标。         |
 |  internalModel  | string  | 否   |  设备所属产品的内部型号。         |
@@ -371,13 +371,13 @@ getDeviceProfileInfoList(filterOptions: DeviceProfileInfoFilterOptions): Promise
 
   | 参数名       | 类型            | 必填  | 说明                |
   | ------------- | --------------- | ---- | ------------------- |
-  | filterOptions        |  &nbsp;[DeviceProfileInfoFilterOptions](#deviceprofileinfofilteroptions15)&nbsp;         | 是    | 查询设备列表参数，参数类型为map，例如: <br>isCloud(false, true)<br />-false，表示从设备端获取。<br />-true，表示从云处获取。<br>deviceIdList: 通过指定的设备ID获取。     |
+  | filterOptions        |  &nbsp;[DeviceProfileInfoFilterOptions](#deviceprofileinfofilteroptions15)&nbsp;         | 是    | 查询设备列表参数，参数类型为map，例如: <br>isCloud：指示是否需要实时从设备云获取设备列表。<br />-false：表示从设备端获取。<br />-true：表示从设备云获取。<br>deviceIdList：获取指定deviceId的设备信息，deviceId取值端侧udid，无udid类的设备取MAC或者SN。     |
 
 **返回值：**
 
   | 类型                                                       | 说明                               |
   | ---------------------------------------------------------- | ---------------------------------- |
-  | Promise&lt;Array&lt;[DeviceProfileInfo](#devicefrofileinfo15)&gt;&gt; | Promise实例，返回设备列表。 |
+  | Array&lt;[DeviceProfileInfo](#devicefrofileinfo15)&gt; | Promise实例，返回设备列表。 |
 
 **错误码：**
 
@@ -414,7 +414,7 @@ getDeviceProfileInfoList(filterOptions: DeviceProfileInfoFilterOptions): Promise
 
 ### putDeviceProfileInfoList<sup>18+</sup>
 
-putDeviceProfileInfoList(deviceProfileInfoList: Array<DeviceProfileInfo>): Promise<number>
+putDeviceProfileInfoList(deviceProfileInfoList: Array&lt;DeviceProfileInfo&gt;): Promise&lt;number&gt;
 
 更新设备列表，异步接口。
 
@@ -484,7 +484,7 @@ getDeviceIconInfo(filterOptions: DeviceIconInfoFilterOptions): Promise<DeviceIco
 
   | 参数名       | 类型            | 必填  | 说明                |
   | ------------- | --------------- | ---- | ------------------- |
-  |  filterOptions       | [DeviceIconInfoFilterOptions](#deviceiconinfofilteroptions15)         | 是    |  查询设备列表参数，参数类型为map，会携带以下key值：<br>productId: 设备所属产品ID。 <br>subProductId: 设备所属产品子ID。<br>imageType: 图片类型，例如：<br />-ID.<br />-ID_Headset_L.<br />-ID_Headset_R.<br />-ID_Headset_B.<br />-ID_Headset_LB.<br />-ID_Headset_RB.<br>specName: 图片规格，约定取值范围：<br />-(大图)lg.<br />-(小图)sm.    |
+  |  filterOptions       | [DeviceIconInfoFilterOptions](#deviceiconinfofilteroptions15)         | 是    |  查询设备列表参数，参数类型为map，会携带以下key值：<br>productId: 设备所属产品ID。 <br>subProductId: 设备所属产品子ID。<br>imageType: 图片类型，例如：<br />-ID.<br />-ID_Headset_L.<br />-ID_Headset_R.<br />-ID_Headset_B.<br />-ID_Headset_LB.<br />-ID_Headset_RB.<br>specName: 图片规格，约定取值范围：<br />-lg：大图。<br />-sm: 小图。    |
 
 **返回值：**
 
@@ -551,13 +551,13 @@ getLocalDisplayDeviceName(maxNameLength: number): Promise<string>
 
   | 参数名       | 类型            | 必填  | 说明                |
   | ------------- | --------------- | ---- | ------------------- |
-  |  maxNameLength       |  number        |  是   | 设备显示名最大长度，字节数，传0不截断；取值范围[18,100]。     |
+  |  maxNameLength       |  number        |  否   | 设备显示名最大长度，字节数，传0不截断；取值范围[18,100]。     |
 
 **返回值：**
 
   | 类型                                                       | 说明                               |
   | ---------------------------------------------------------- | ---------------------------------- |
-  | string | 指定名称长度最大字节数，本机设备显示名。 |
+  | string | 指定名称长度最大字节数的本机设备显示名。 |
 
 **错误码：**
 
@@ -649,7 +649,7 @@ setLocalDeviceName(deviceName: string): Promise<number>
 
 ### setRemoteDeviceName<sup>18+</sup>
 
-setRemoteDeviceName(deviceId: string, deviceName: string): Promise<number>
+setRemoteDeviceName(deviceId: string, deviceName: string): Promise&lt;number&gt;
 
 设置配件设备名称，异步接口。
 
@@ -663,7 +663,7 @@ setRemoteDeviceName(deviceId: string, deviceName: string): Promise<number>
 
   | 参数名       | 类型            | 必填  | 说明                |
   | ------------- | --------------- | ---- | ------------------- |
-  |  deviceId       | string         | 是    | 配件设备的udid，没有udid的设备取MAC或SN，优先SN。     |
+  |  deviceId       | string         | 是    | 配件设备的udid，没有udid的设备取MAC或SN，优先取SN。     |
   |  deviceName       | string         | 是    | 自定义设备名称。     |
 
 **返回值：**
@@ -746,7 +746,9 @@ restoreLocalDeivceName(): void
 
 ### getDeviceNetworkIdList<sup>18+</sup>
 
-getDeviceNetworkIdList(filterOptions: NetworkIdQueryFilter): Promise<Array<string>>
+getDeviceNetworkIdList(filterOptions: NetworkIdQueryFilter): Promise&lt;Array&lt;string&gt;&gt;
+
+通过条件获取设备网络ID列表。
 
 **需要权限**：ohos.permission.ACCESS_SERVICE_DM
 
