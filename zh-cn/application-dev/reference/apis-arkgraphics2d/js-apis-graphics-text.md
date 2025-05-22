@@ -24,6 +24,40 @@
 import { text } from '@kit.ArkGraphics2D';
 ```
 
+## text.setTextHighContrast<sup>20+</sup>
+
+setTextHighContrast(action: TextHighContrast): void
+
+用于设置文字渲染高对比度模式。
+
+该接口设置后整个进程都会生效，进程内所有页面共用相同模式。
+
+可调用此接口设置，也可通过系统设置界面中**高对比度文字配置开关**进行开启/关闭。使用此接口设置开启/关闭文字渲染高对比度配置的优先级高于系统开关设置。
+
+该接口针对应用的文字自绘制场景不生效。
+
+**系统能力**：SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名 | 类型               | 必填 | 说明                              |
+| ----- | ------------------ | ---- | --------------------------------------------------------------------------------- |
+| action | [TextHighContrast](#texthighcontrast20)  | 是   | 文字渲染高对比度模式。                                                              |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types;3. Parameter verification failed. |
+
+**示例：**
+
+```ts
+text.setTextHighContrast(text.TEXT_APP_DISABLE_HIGH_CONTRAST)
+```
+
 ## text.matchFontDescriptors<sup>18+</sup>
 
 matchFontDescriptors(desc: FontDescriptor): Promise&lt;Array&lt;FontDescriptor&gt;&gt;
@@ -218,6 +252,18 @@ struct Index {
   }
 }
 ```
+
+## TextHighContrast<sup>20+</sup>
+
+文字渲染高对比度配置类型枚举。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+| 名称                               | 值   | 说明                                            |
+| ---------------------------------- | ---- | ---------------------------------------------- |
+| TEXT_FOLLOW_SYSTEM_HIGH_CONTRAST   | 0    | 跟随系统设置中的高对比度文字配置。                                            |
+| TEXT_APP_DISABLE_HIGH_CONTRAST     | 1    | 关闭APP的文字渲染高对比度配置，该模式的优先级要高于系统设置中的高对比度文字配置。 |
+| TEXT_APP_ENABLE_HIGH_CONTRAST      | 2    | 开启APP的文字渲染高对比度配置，该模式的优先级要高于系统设置中的高对比度文字配置。 |
 
 ## TextAlign
 
