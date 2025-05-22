@@ -470,7 +470,7 @@ putDeviceProfileInfoList(deviceProfileInfoList: Array&lt;DeviceProfileInfo&gt;):
 
 ### getDeviceIconInfo<sup>18+</sup>
 
-getDeviceIconInfo(filterOptions: DeviceIconInfoFilterOptions): Promise<DeviceIconInfo>
+getDeviceIconInfo(filterOptions: DeviceIconInfoFilterOptions): Promise&lt;DeviceIconInfo&gt;
 
 获取设备实物图，异步接口。
 
@@ -537,7 +537,7 @@ getDeviceIconInfo(filterOptions: DeviceIconInfoFilterOptions): Promise<DeviceIco
 
 ### getLocalDisplayDeviceName<sup>18+</sup>
 
-getLocalDisplayDeviceName(maxNameLength: number): Promise<string>
+getLocalDisplayDeviceName(maxNameLength: number): Promise&lt;string&gt;
 
 获取本机指定长度（字节数）的显示名，异步接口。
 
@@ -593,7 +593,7 @@ getLocalDisplayDeviceName(maxNameLength: number): Promise<string>
 
 ### setLocalDeviceName<sup>18+</sup>
 
-setLocalDeviceName(deviceName: string): Promise<number>
+setLocalDeviceName(deviceName: string): Promise&lt;number&gt;
 
 修改本机设备名称，异步接口。
 
