@@ -85,7 +85,7 @@
 | [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode) [OH_AVPlayer_SetPlaybackSpeed](#oh_avplayer_setplaybackspeed) (OH_AVPlayer \*player, [AVPlaybackSpeed](#avplaybackspeed) speed) | 设置播放器播放速率。 | 
 | [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode) [OH_AVPlayer_GetPlaybackSpeed](#oh_avplayer_getplaybackspeed) (OH_AVPlayer \*player, [AVPlaybackSpeed](#avplaybackspeed) \*speed) | 获取当前播放器播放速率。 | 
 | [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode) [OH_AVPlayer_SetAudioRendererInfo](#oh_avplayer_setaudiorendererinfo) (OH_AVPlayer \*player, OH_AudioStream_Usage streamUsage) | 设置player音频流类型。  | 
-| [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode) [OH_AVPlayer_SetVolumeMode](#oh_avplayer_setvolumemode) (OH_AVPlayer \*player, [OH_AudioStream_VolumeMode](../apis-audio-kit/_o_h_audio.md#oh_audiostream_volumemode) volumeMode) | 设置player音频流音量模式。 | 
+| [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode) [OH_AVPlayer_SetVolumeMode](#oh_avplayer_setvolumemode) (OH_AVPlayer \*player, [OH_AudioStream_VolumeMode](../apis-audio-kit/capi-native-audiostream-base-h.md#oh_audiostream_volumemode) volumeMode) | 设置player音频流音量模式。 | 
 | [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode) [OH_AVPlayer_SetAudioInterruptMode](#oh_avplayer_setaudiointerruptmode) (OH_AVPlayer \*player, OH_AudioInterrupt_Mode interruptMode) | 设置player音频流的打断模式。  | 
 | [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode) [OH_AVPlayer_SetAudioEffectMode](#oh_avplayer_setaudioeffectmode) (OH_AVPlayer \*player, OH_AudioStream_AudioEffectMode effectMode) | 设置player音频流的音效模式。  | 
 | [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode) [OH_AVPlayer_SelectBitRate](#oh_avplayer_selectbitrate) (OH_AVPlayer \*player, uint32_t bitRate) | 设置hls播放器使用的码率。 | 
@@ -315,13 +315,13 @@ typedef void(* OH_AVPlayerOnInfo) (OH_AVPlayer *player, AVPlayerOnInfoType type,
 | AV_INFO_TYPE_RESOLUTION_CHANGE | 首次获取视频大小或视频大小更新时返回消息，此场景extra未定义。 |
 | AV_INFO_TYPE_BUFFERING_UPDATE | 返回多队列缓冲时间，extra表示视频时长。 |
 | AV_INFO_TYPE_BITRATE_COLLECT  | 上报HLS视频比特率列表消息。上报时每个比特率已经被转为uint8_t字节数组，使用者需要将uint8_t字节数组强制转换为uint32_t整型数组。   | 
-| AV_INFO_TYPE_INTERRUPT_EVENT | 音频焦点改变时返回消息，extra表示音频打断提示，具体请参见[OH_AudioInterrupt_Hint](../apis-audio-kit/_o_h_audio.md#oh_audiointerrupt_hint)，应用可决定是否根据打断提示作进一步处理。 |
+| AV_INFO_TYPE_INTERRUPT_EVENT | 音频焦点改变时返回消息，extra表示音频打断提示，具体请参见[OH_AudioInterrupt_Hint](../apis-audio-kit/capi-native-audiostream-base-h.md#oh_audiointerrupt_hint)，应用可决定是否根据打断提示作进一步处理。 |
 | AV_INFO_TYPE_DURATION_UPDATE | 返回播放时长，extra表示视频时长。 |
 | AV_INFO_TYPE_IS_LIVE_STREAM | 播放为直播流时返回消息，extra表示是否为直播流，0表示非直播流，1表示直播流。 |
 | AV_INFO_TYPE_TRACKCHANGE | 轨道改变时返回消息，此场景extra未定义。 |
 | AV_INFO_TYPE_TRACK_INFO_UPDATE |轨道更新时返回消息，此场景extra未定义。 |
 | AV_INFO_TYPE_SUBTITLE_UPDATE | 字幕信息更新时返回消息，此场景extra未定义。 |
-| AV_INFO_TYPE_AUDIO_OUTPUT_DEVICE_CHANGE | 音频输出设备改变时返回消息，extra表示设备改变原因，具体请参见[OH_AudioStream_DeviceChangeReason](../apis-audio-kit/_o_h_audio.md#oh_audiostream_devicechangereason)。 |
+| AV_INFO_TYPE_AUDIO_OUTPUT_DEVICE_CHANGE | 音频输出设备改变时返回消息，extra表示设备改变原因，具体请参见[OH_AudioStream_DeviceChangeReason](../apis-audio-kit/capi-native-audiostream-base-h.md#oh_audiostream_devicechangereason)。 |
 
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
 
@@ -1126,7 +1126,7 @@ OH_AVErrCode OH_AVPlayer_SetAudioEffectMode (OH_AVPlayer *player, OH_AudioStream
 | 名称 | 描述 | 
 | -------- | -------- |
 | player | 指向OH_AVPlayer实例的指针。  | 
-| interruptMode | player音频流使用的音效模式[OH_AudioStream_AudioEffectMode](../apis-audio-kit/_o_h_audio.md#oh_audiostream_audioeffectmode)。  | 
+| interruptMode | player音频流使用的音效模式[OH_AudioStream_AudioEffectMode](../apis-audio-kit/capi-native-audiostream-base-h.md#oh_audiostream_audioeffectmode)。  | 
 
 **返回：**
 
@@ -1154,7 +1154,7 @@ OH_AVErrCode OH_AVPlayer_SetAudioInterruptMode (OH_AVPlayer *player, OH_AudioInt
 | 名称 | 描述 | 
 | -------- | -------- |
 | player | 指向OH_AVPlayer实例的指针。  | 
-| interruptMode | player音频流使用的打断模式[OH_AudioInterrupt_Mode](../apis-audio-kit/_o_h_audio.md#oh_audiointerrupt_mode)。  | 
+| interruptMode | player音频流使用的打断模式[OH_AudioInterrupt_Mode](../apis-audio-kit/capi-native-audiostream-base-h.md#oh_audiointerrupt_mode)。  | 
 
 **返回：**
 
@@ -1182,7 +1182,7 @@ OH_AVErrCode OH_AVPlayer_SetAudioRendererInfo (OH_AVPlayer *player, OH_AudioStre
 | 名称 | 描述 | 
 | -------- | -------- |
 | player | 指向OH_AVPlayer实例的指针。  | 
-| streamUsage | player音频流设置的类型[OH_AudioStream_Usage](../apis-audio-kit/_o_h_audio.md#oh_audiostream_usage)。  | 
+| streamUsage | player音频流设置的类型[OH_AudioStream_Usage](../apis-audio-kit/capi-native-audiostream-base-h.md#oh_audiostream_usage)。  | 
 
 **返回：**
 
@@ -1529,7 +1529,7 @@ OH_AVErrCode OH_AVPlayer_SetVolumeMode(OH_AVPlayer *player, OH_AudioStream_Volum
 | 名称 | 描述 | 
 | -------- | -------- |
 | player | 指向OH_AVPlayer实例的指针。 | 
-| volumeMode | 要设置的音频流音量模式[OH_AudioStream_VolumeMode](../apis-audio-kit/_o_h_audio.md#oh_audiostream_volumemode)。 | 
+| volumeMode | 要设置的音频流音量模式[OH_AudioStream_VolumeMode](../apis-audio-kit/capi-native-audiostream-base-h.md#oh_audiostream_volumemode)。 | 
 
 **返回：**
 
