@@ -48,6 +48,4 @@ OsAccount_ErrCode OH_OsAccount_GetName(char *buffer, size_t buffer_size)
 
 | 类型 | 说明 |
 | -- | -- |
-| [OsAccount_ErrCode](capi-os-account-common-h.md#osaccount_errcode) | 返回OS_ACCOUNT_ERR_OK表示成功；返回OS_ACCOUNT_ERR_INTERNAL_ERROR表示内部错误；<br>         返回OS_ACCOUNT_ERR_INVALID_PARAMETER表示buffer为NULL指针，或名称（不包括结束字符'\0'）的长度大于等于buffer_size。 |
-
-
+| [OsAccount_ErrCode](capi-os-account-common-h.md#osaccount_errcode) | OS_ACCOUNT_ERR_OK：表示成功。<br>OS_ACCOUNT_ERR_INTERNAL_ERROR：表示内部错误。<br>OS_ACCOUNT_ERR_INVALID_PARAMETER：表示buffer为NULL指针，或名称（不包括结束字符'\0'）的长度大于等于buffer_size。 |
