@@ -7,8 +7,8 @@
 企业类应用有以下特征：
 
 - 仅在企业定制设备上运行，不会在普通消费者设备上运行。
-- 不会上架华为应用市场。
 - 分发类型分别为enterprise_normal（企业普通应用）和enterprise_mdm（MDM应用）。
+<!--RP1--><!--RP1End-->
 
 企业类应用可参考[声明权限](declare-permissions.md)，申请以下权限。
 
