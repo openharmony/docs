@@ -582,7 +582,9 @@ onDidChange(callback: OnDidChangeCallback)
 
 onCut(callback: Callback\<CutEvent\>)
 
-完成剪切前，触发回调。系统的默认剪切行为，只支持纯文本的剪切。开发者可以通过该方法，覆盖系统默认行为，实现图文的剪切。
+剪切时触发回调。开发者可以通过该方法，覆盖系统默认行为，实现图文的剪切。
+
+使用[RichEditorStyledStringOptions](#richeditorstyledstringoptions12)构建的RichEditor组件，默认支持图文的剪切。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -598,7 +600,9 @@ onCut(callback: Callback\<CutEvent\>)
 
 onCopy(callback: Callback\<CopyEvent\>)
 
-完成复制前，触发回调。系统的默认复制行为，只支持纯文本的复制。开发者可以通过该方法，覆盖系统默认行为，实现图文的复制。
+复制时触发回调。开发者可以通过该方法，覆盖系统默认行为，实现图文的复制。
+
+使用[RichEditorStyledStringOptions](#richeditorstyledstringoptions12)构建的RichEditor组件，默认支持图文的复制。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
