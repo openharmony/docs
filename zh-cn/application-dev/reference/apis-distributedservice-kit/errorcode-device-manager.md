@@ -78,7 +78,7 @@ Publish unavailable.
 
 **错误信息**
 
-Get data from cloud fail.
+Failed to get data from the cloud.
 
 **可能原因**
 

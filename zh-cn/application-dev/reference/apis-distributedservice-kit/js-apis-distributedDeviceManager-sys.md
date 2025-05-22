@@ -389,7 +389,7 @@ getDeviceProfileInfoList(filterOptions: DeviceProfileInfoFilterOptions): Promise
 | 202 | Permission verification failed. A non-system application calls a system API.                              |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed; 4. The size of specified type is greater than 500. |
 | 11600102 | Failed to obtain service.                                 |
-| 11600106 | Get data from cloud fail. |
+| 11600106 | Failed to get data from the cloud. |
 | 11600107 | A login account is required.  |
 
 **示例：**
@@ -500,7 +500,7 @@ getDeviceIconInfo(filterOptions: DeviceIconInfoFilterOptions): Promise&lt;Device
 | 202 | Permission verification failed. A non-system application calls a system API.                              |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed; |
 | 11600102 | Failed to obtain service.                                 |
-| 11600106 | Get data from cloud fail. |
+| 11600106 | Failed to get data from the cloud. |
 
 **示例：**
 
@@ -621,6 +621,9 @@ setLocalDeviceName(deviceName: string): Promise&lt;number&gt;
 | 202 | Permission verification failed. A non-system application calls a system API.                              |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed; |
 | 11600102 | Failed to obtain service.                                 |
+| 11600106 | Failed to get data from the cloud. |
+| 11600107 | A login account is required.  |
+| 11600108 | The device name contains non-compliant content. |
 
 **示例：**
 
@@ -677,7 +680,9 @@ setRemoteDeviceName(deviceId: string, deviceName: string): Promise&lt;number&gt;
 | 202 | Permission verification failed. A non-system application calls a system API.                              |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed; |
 | 11600102 | Failed to obtain service.                                 |
+| 11600106 | Failed to get data from the cloud. |
 | 11600107 | A login account is required.  |
+| 11600108 | The device name contains non-compliant content. |
 
 **示例：**
 
