@@ -108,7 +108,7 @@ struct menuExample {
 
 ```
 
-### 使用bindMenu属性绑定组件件
+### 使用bindMenu属性绑定组件
 
 ```ts
 Button('click for Menu')
