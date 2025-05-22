@@ -2,8 +2,7 @@
 
 为了在自定义组件中使用V2版本状态变量装饰器的能力，开发者可以使用\@ComponentV2装饰器装饰自定义组件。
 
-
-\@ComponentV2主要配合状态管理V2使用。在阅读文档前，建议提前阅读：[状态管理概述](./arkts-state-management-overview.md)。
+\@ComponentV2主要配合状态管理V2使用。阅读本文档前，建议提前阅读[状态管理概述](./arkts-state-management-overview.md)。
 
 >**说明：**
 >
