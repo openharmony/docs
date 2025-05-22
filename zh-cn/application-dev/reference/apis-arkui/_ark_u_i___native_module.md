@@ -17517,7 +17517,7 @@ int32_t OH_ArkUI_PostIdleCallback(ArkUI_ContextHandle uiContext, void* userData,
 ```
 **描述：**
 
-注册一个回调函数，以便在下一帧渲染完成时执行。如果没有当前没有下一帧，将自动请求下一帧。
+注册一个回调函数，以便在下一帧渲染完成时执行。如果当前没有下一帧，将自动请求下一帧。
 
 **起始版本：** 20
 
