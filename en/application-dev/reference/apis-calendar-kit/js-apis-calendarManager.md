@@ -14,7 +14,7 @@ The **calendarManager** module provides APIs for calendar and event management, 
 ## Modules to Import
 
 ```typescript
-import { calendarManager } from '@kit.CalendarKit'
+import { calendarManager } from '@kit.CalendarKit';
 ```
 
 ## calendarManager.getCalendarManager
@@ -638,7 +638,7 @@ Creates an event, with no event ID specified in **Event**. This API uses an asyn
 | Name  | Type                  | Mandatory| Description                                                                   |
 | -------- | ---------------------- | ---- |-----------------------------------------------------------------------|
 | event    | [Event](#event)        | Yes  | **Event** object.                                                             |
-| callback | AsyncCallback\<number> | Yes  | Callback used to return the event ID. The event ID is the unique identifier of the event and is the auto-increment primary key of the database. If the value is less than **0**, the event creation fails; if the value is greater than **0**, the event creation succeeds.|
+| callback | AsyncCallback\<number> | Yes  | Callback used to return the event ID. The event ID is the unique identifier of an event and is the auto-increment primary key of the database. If the value is less than **0**, the event creation fails; if the value is greater than **0**, the event creation succeeds.|
 
 **Example**
 
@@ -1489,64 +1489,6 @@ calendarMgr?.getCalendar((err: BusinessError, data:calendarManager.Calendar) => 
 });
 ```
 
-### queryEventInstances<sup>18+</sup>
-
-queryEventInstances(start: number, end: number, ids?: number[], eventKey?: (keyof Event)[]): Promise\<Event[]>
-
-Queries the event instance with a specified event key in a calendar. This API uses a promise to return the result.
-
-**System capability**: SystemCapability.Applications.CalendarData
-
-**Parameters**
-
-| Name     | Type                       | Mandatory  | Description        |
-| ----------- | --------------------------- |------|------------|
-| start  | number | Yes   | Start time of the event.   |
-| end    | number | Yes   | End time of the event.   |
-| ids    | number[] | No   | Array of event IDs.   |
-| eventKey    | (keyof [Event](#event))[]   | No   | Event key for querying events.|
-
-**Return value**
-
-| Type                      | Description                               |
-| -------------------------- | ----------------------------------- |
-| Promise<[Event](#event)[]> | Promise used to return the result, which is an array of **Event** objects.|
-
-**Example**
-
-```typescript
-import { BusinessError } from '@kit.BasicServicesKit';
-import { calendarMgr } from '../entryability/EntryAbility';
-
-let calendar : calendarManager.Calendar | undefined = undefined;
-const date = new Date();
-const event: calendarManager.Event = {
-  title: 'MyEvent',
-  type: calendarManager.EventType.IMPORTANT,
-  startTime: date.getTime(),
-  endTime: date.getTime() + 60 * 60 * 1000
-};
-calendarMgr?.getCalendar(async (err: BusinessError, data:calendarManager.Calendar) => {
-  if (err) {
-    console.error(`Failed to get calendar. Code: ${err.code}, message: ${err.message}`);
-  } else {
-    console.info(`Succeeded in getting calendar, data -> ${JSON.stringify(data)}`);
-    calendar = data;
-    await calendar.addEvent(event).then((data: number) => {
-      console.info(`Succeeded in adding event, id -> ${data}`);
-    }).catch((err: BusinessError) => {
-      console.error(`Failed to add event. Code: ${err.code}, message: ${err.message}`);
-    });
-    calendar?.queryEventInstances(date.getTime(), date.getTime() + 60 * 60 * 1000, undefined, 
-      ["title", "startTime", "endTime", "instanceStartTime", "instanceEndTime",]).then((data: calendarManager.Event[]) => {
-      console.info(`Succeeded in getting event instances, data -> ${JSON.stringify(data)}`);
-    }).catch((err: BusinessError) => {
-      console.error(`Failed to get event instances. Code: ${err.code}, message: ${err.message}`);
-    });
-  }
-});
-```
-
 ## CalendarAccount
 
 Describes the calendar account information.
@@ -1580,7 +1522,7 @@ Describes an **Event** object, including the event title, start time, and end ti
 
 | Name          | Type                             | Read Only| Optional| Description                                                                                                                                                                                                     |
 | -------------- | --------------------------------- | ---- |----|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| id             | number                            | No  | Yes | Event ID. This parameter does not need to be set in the [addEvent()](#addevent) or [addEvents()](#addevents) API.<br>**Atomic service API**: This API can be used in atomic services since API version 11.                                                                           |
+| id             | number                            | No  | Yes | Event ID. This parameter does not need to be set in [addEvent()](#addevent) or [addEvents()](#addevents).<br>**Atomic service API**: This API can be used in atomic services since API version 11.                                                                           |
 | type           | [EventType](#eventtype)           | No  | No | Event type.<br>**Atomic service API**: This API can be used in atomic services since API version 11.                                                                                                                                           |
 | title          | string                            | No  | Yes | Event title. If this parameter is not set, an empty string is used.<br>**Atomic service API**: This API can be used in atomic services since API version 11.                                                                                                                               |
 | location       | [Location](#location)             | No  | Yes | Event location. If this parameter is not set, the default null value is used.<br>**Atomic service API**: This API can be used in atomic services since API version 11.                                                                                                                               |
@@ -1588,15 +1530,13 @@ Describes an **Event** object, including the event title, start time, and end ti
 | endTime        | number                            | No  | No | End time of the event. The value is a 13-digit timestamp.<br>**Atomic service API**: This API can be used in atomic services since API version 11.                                                                                                                                 |
 | isAllDay       | boolean                           | No  | Yes | Whether the event is an all-day event. The value **true** means that the event is an all-day event, and **false** means the opposite. The default value is **false**.<br>**Atomic service API**: This API can be used in atomic services since API version 11.                                                                                          |
 | attendee       | [Attendee](#attendee)[]           | No  | Yes | Attendee information of a conference event. If this parameter is not set, the default null value is used.<br>**Atomic service API**: This API can be used in atomic services since API version 11.                                                                                                                             |
-| timeZone       | string                            | No  | Yes | Time zone of the event. If this parameter is not set, the current system time zone is used. You can call the [getTimeZone()](../apis-basic-services-kit/js-apis-date-time.md#systemdatetimegettimezone) API to obtain the current system time zone.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| timeZone       | string                            | No  | Yes | Time zone of the event. If this parameter is not set, the current system time zone is used. You can call [getTimeZone()](../apis-basic-services-kit/js-apis-date-time.md#systemdatetimegettimezone) to obtain the current system time zone.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | reminderTime   | number[]                          | No  | Yes | Amount of time that the reminder occurs before the start of the event, in minutes. For example, if the value is 5, the reminder occurs 5 minutes before the event starts. If this parameter is not set, no reminder is set. A negative value indicates the delay time for sending a notification.<br>**Atomic service API**: This API can be used in atomic services since API version 11.                                                                                       |
 | recurrenceRule | [RecurrenceRule](#recurrencerule) | No  | Yes | Recurrence rule of an event. If this parameter is not set, the value does not recur.<br>**Atomic service API**: This API can be used in atomic services since API version 11.                                                                                                                              |
 | description    | string                            | No  | Yes | Event description. If this parameter is not set, an empty string is used.<br>**Atomic service API**: This API can be used in atomic services since API version 11.                                                                                                                                |
 | service        | [EventService](#eventservice)     | No  | Yes | <!--RP1-->Event service. If this parameter is not set, no service is available. This function is not supported currently.<!--RP1End-->   <br>**Atomic service API**: This API can be used in atomic services since API version 11.                                                                                                                              |
 | identifier<sup>12+</sup>     | string                            | No  | Yes | A unique ID of an event can be specified. If this parameter is not set, the default null value is used.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                                                                                        |
 | isLunar<sup>12+</sup>     | boolean                            | No  | Yes | Whether it is a lunar calendar event. The value **true** means that the event is a lunar calendar event, and **false** means the opposite. The default value is **false**.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                                                          |
-| instanceStartTime<sup>18+</sup> | number                            | No  | Yes | Start time of the event. The value is a 13-digit timestamp. This parameter does not need to be set in [addEvent()](#addevent) or [addEvents()](#addevents).<br>**Atomic service API**: This API can be used in atomic services since API version 18.                                                                                                                                |
-| instanceEndTime<sup>18+</sup>   | number                            | No  | Yes | End time of the event. The value is a 13-digit timestamp. This parameter does not need to be set in the [addEvent()](#addevent) or [addEvents()](#addevents) API.<br>**Atomic service API**: This API can be used in atomic services since API version 18.                                                                                                                               |
 
 ## CalendarType
 
@@ -1878,8 +1818,6 @@ Describes the attendee information of a conference event.
 | name  | string | No  | No | Name of the attendee.<br>**Atomic service API**: This API can be used in atomic services since API version 11. |
 | email | string | No  | No | Email address of the attendee.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | role<sup>12+</sup>  | [AttendeeRole](#attendeerole12) | No  | Yes | Role of the attendee.<br>**Atomic service API**: This API can be used in atomic services since API version 12. |
-| status<sup>18+</sup> | [AttendeeStatus](#attendeestatus18) | No  | Yes| Status of the attendee. If this parameter is not set, the default value is empty.<br>**Atomic service API**: This API can be used in atomic services since API version 18.|
-| type<sup>18+</sup>   | [AttendeeType](#attendeetype18)     | No  | Yes| Type of the attendee. If this parameter is not set, the default value is empty.<br>**Atomic service API**: This API can be used in atomic services since API version 18.|
 
 ## EventService
 
@@ -1927,33 +1865,3 @@ Enumerates the attendee role types in a conference event.
 |--------------|---------------|--------|
 | ORGANIZER   | 'organizer'   | Conference organizer.|
 | PARTICIPANT | 'participant' | Conference participant.|
-
-## AttendeeStatus<sup>18+</sup>
-
-Enumerates the status types of an attendee.
-
-**Atomic service API**: This API can be used in atomic services since API version 18.
-
-**System capability**: SystemCapability.Applications.CalendarData
-
-| Name                        | Value  | Description      |
-|----------------------------|-----|----------|
-| UNKNOWN      | 0   | The attendee status is unknown.|
-| TENTATIVE    | 1   | The attendee status is tentative.|
-| ACCEPTED     | 2   | The attendee has accepted the conference invitation. |
-| DECLINED     | 3   | The attendee has rejected the conference invitation. |
-| UNRESPONSIVE | 4   | The attendee does not respond. |
-
-## AttendeeType<sup>18+</sup>
-
-Enumerates the types of attendees invited to a conference event.
-
-**Atomic service API**: This API can be used in atomic services since API version 18.
-
-**System capability**: SystemCapability.Applications.CalendarData
-
-| Name                    | Value  | Description                |
-|------------------------|-----|--------------------|
-| REQUIRED | 1   | Required attendee.          |
-| OPTIONAL | 2   | Optional attendee.          |
-| RESOURCE | 3   | Resources (such as TVs or projectors) used in a conference.|
