@@ -6,6 +6,8 @@ The distributedBundle module manages distributed bundles.
 >
 > The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 >
+> The APIs of this module are deprecated since API version 9. You are advised to use [@ohos.bundle.distributedBundleManager](js-apis-distributedBundleManager-sys.md) instead.
+>
 > The APIs provided by this module are system APIs.
 
 ## Modules to Import
