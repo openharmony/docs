@@ -3907,10 +3907,10 @@ static createComposeImageFilter(cOuter: ImageFilter, cInner: ImageFilter): Image
 
 **参数：**
 
-| 参数名          | 类型    | 必填 | 说明                                                        |
+| 参数名          | 类型    | 必填 | 说明                                                          |
 | --------------- | ------- | ---- | ----------------------------------------------------------- |
-| cOuter | [ImageFilter](#imagefilter12) | 是   | 在级联中，作为第二级的滤波器，处理第一级滤波器的输出。 |
-| cInner | [ImageFilter](#imagefilter12) | 是   | 在级联中，作为第一级的滤波器，直接处理图像的原始内容。 |
+| cOuter | [ImageFilter](#imagefilter12) | 是   | 在级联中，作为第二级的滤波器，处理第一级滤波器的输出。如果第二级滤波器为空，第一级滤波器不为空，最后输出第一级滤波器的结果。两级滤波器不能同时为空。 |
+| cInner | [ImageFilter](#imagefilter12) | 是   | 在级联中，作为第一级的滤波器，直接处理图像的原始内容。如果第一级滤波器为空，第二级滤波器不为空，最后输出第二级滤波器的结果。两级滤波器不能同时为空。 |
 
 **返回值：**
 
