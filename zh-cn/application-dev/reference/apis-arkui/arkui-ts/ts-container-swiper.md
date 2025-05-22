@@ -782,6 +782,12 @@ left(value: Length): T
 | ------ | ---------------------------- | ---- | ------------------------------------------------------------ |
 | value  | [Length](ts-types.md#length) | 是   | 设置导航点左侧相对于Swiper的位置。<br/>未设置left和right时，进行自适应大小布局，按照指示器本身大小和Swiper的大小在主轴方向上进行居中对齐。<br/>设置为0时：按照0位置布局计算。<br/>优先级：高于right属性。<br/>取值范围：[0,Swiper宽度-导航点区域宽度]，超出该范围时，取最近的边界值。 |
 
+**返回值：**
+
+| 类型 | 说明               |
+| --- | ------------------ |
+| T | 返回当前导航点指示器。 |
+
 ### top
 
 top(value: Length): T
@@ -799,6 +805,12 @@ top(value: Length): T
 | 参数名 | 类型                         | 必填 | 说明                                                         |
 | ------ | ---------------------------- | ---- | ------------------------------------------------------------ |
 | value  | [Length](ts-types.md#length) | 是   | 设置导航点顶部相对于Swiper的位置。<br/>未设置top和bottom时，进行自适应大小布局，按照指示器本身大小和Swiper的大小，在交叉轴方向上，位于底部，效果与设置bottom=0一致。<br/>设置为0时：按照0位置布局计算。<br/>优先级：高于bottom属性。<br/>取值范围：[0,Swiper高度-导航点区域高度]，超出该范围时，取最近的边界值。 |
+
+**返回值：**
+
+| 类型 | 说明               |
+| --- | ------------------ |
+| T | 返回当前导航点指示器。 |
 
 ### right
 
@@ -818,6 +830,12 @@ right(value: Length): T
 | ------ | ---------------------------- | ---- | ------------------------------------------------------------ |
 | value  | [Length](ts-types.md#length) | 是   | 设置导航点右侧相对于Swiper的位置。<br/>未设置left和right时，进行自适应大小布局，按照指示器本身大小和Swiper的大小在主轴方向上进行居中对齐。<br/>设置为0时：按照0位置布局计算。<br/>优先级：低于left属性。<br/>取值范围：[0,Swiper宽度-导航点区域宽度]，超出该范围 时，取最近的边界值。 |
 
+**返回值：**
+
+| 类型 | 说明               |
+| --- | ------------------ |
+| T | 返回当前导航点指示器。 |
+
 ### bottom
 
 bottom(value: Length): T
@@ -836,6 +854,11 @@ bottom(value: Length): T
 | ------ | ---------------------------- | ---- | ------------------------------------------------------------ |
 | value  | [Length](ts-types.md#length) | 是   | 设置导航点底部相对于Swiper的位置。<br/>未设置top和bottom时，进行自适应大小布局，按照指示器本身大小和Swiper的大小，在交叉轴方向上，位于底部，效果与设置bottom=0一致。<br/>设置为0时：按照0位置布局计算。<br/>优先级：低于top属性。<br/>取值范围：[0,Swiper高度-导航点区域高度]，超出该范围时，取最近的边界值。 |
 
+**返回值：**
+
+| 类型 | 说明               |
+| --- | ------------------ |
+| T | 返回当前导航点指示器。 |
 
 ### bottom<sup>19+</sup>
 
@@ -857,6 +880,12 @@ bottom(bottom: LengthMetrics | Length, ignoreSize: boolean): T
 | bottom  | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)&nbsp;\|&nbsp;[Length](ts-types.md#length)| 是   | 设置导航点底部相对于Swiper的位置。<br/>未设置top和bottom时，进行自适应大小布局，按照指示器本身大小和Swiper的大小，在交叉轴方向上，位于底部，效果与设置bottom=0一致。<br/>设置为0时：按照0位置布局计算。<br/>优先级：低于top属性。<br/>取值范围：[0,Swiper高度-导航点区域高度]，超出该范围时，取最近的边界值。 |
 | ignoreSize  | boolean | 是   | 设置是否忽略导航点本身大小，默认false。<br/>设为true时可以将导航点更靠近Swiper底部，使用方法可以参考[示例9演示导航点space与bottom](#示例9演示导航点space与bottom)。<br/> 说明：[数字导航点](#digitindicator10)ignoreSize属性，不生效的场景如下：<br/> &bull;  当[vertical](#vertical) 设置为false，且bottom > 0。<br/>  &bull;  当[vertical](#vertical) 设置为true时：<br/>1、bottom > 0 时。<br/> 2、bottom设为undefined。 <br/> 3、isSidebarMiddle设置为false时。|
 
+**返回值：**
+
+| 类型 | 说明               |
+| --- | ------------------ |
+| T | 返回当前导航点指示器。 |
+
 ### start<sup>12+</sup>
 
 start(value: LengthMetrics): T
@@ -875,6 +904,12 @@ start(value: LengthMetrics): T
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | value  | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | 是   | 设置在RTL模式下为导航点距离Swiper组件右边的距离，在LTR模式下为导航点距离Swiper组件左边的距离<br/>默认值：0<br/>单位：vp |
 
+**返回值：**
+
+| 类型 | 说明               |
+| --- | ------------------ |
+| T | 返回当前导航点指示器。 |
+
 ### end<sup>12+</sup>
 
 end(value: LengthMetrics): T
@@ -892,6 +927,12 @@ end(value: LengthMetrics): T
 | 参数名 | 类型                         | 必填  | 说明                                     |
 | ------ | ---------------------------- | ---- | ---------------------------------------- |
 | value | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | 是    | 设置在RTL模式下为导航点距离Swiper组件左边的距离，在LTR模式下为导航点距离Swiper组件右边的距离。<br/>默认值：0<br/>单位：vp  |
+
+**返回值：**
+
+| 类型 | 说明               |
+| --- | ------------------ |
+| T | 返回当前导航点指示器。 |
 
 ### dot
 
@@ -959,7 +1000,7 @@ Swiper组件圆点导航指示器的宽，不支持设置百分比。
 
 | 类型                            | 说明         |
 | ------------------------------- | ------------ |
-| [DotIndicator](#dotindicator10) | 圆点指示器。 |
+| [DotIndicator](#dotindicator10) | 返回当前圆点指示器。 |
 
 ### itemHeight
 
@@ -983,7 +1024,7 @@ Swiper组件圆点导航指示器的高，不支持设置百分比。
 
 | 类型                            | 说明         |
 | ------------------------------- | ------------ |
-| [DotIndicator](#dotindicator10) | 圆点指示器。 |
+| [DotIndicator](#dotindicator10) | 返回当前圆点指示器。 |
 
 ### selectedItemWidth
 
@@ -1007,7 +1048,7 @@ selectedItemWidth(value: Length): DotIndicator
 
 | 类型                            | 说明         |
 | ------------------------------- | ------------ |
-| [DotIndicator](#dotindicator10) | 圆点指示器。 |
+| [DotIndicator](#dotindicator10) | 返回当前圆点指示器。 |
 
 ### selectedItemHeight
 
@@ -1031,7 +1072,7 @@ selectedItemHeight(value: Length): DotIndicator
 
 | 类型                            | 说明         |
 | ------------------------------- | ------------ |
-| [DotIndicator](#dotindicator10) | 圆点指示器。 |
+| [DotIndicator](#dotindicator10) | 返回当前圆点指示器。 |
 
 ### mask
 
@@ -1055,7 +1096,7 @@ mask(value: boolean): DotIndicator
 
 | 类型                            | 说明         |
 | ------------------------------- | ------------ |
-| [DotIndicator](#dotindicator10) | 圆点指示器。 |
+| [DotIndicator](#dotindicator10) | 返回当前圆点指示器。 |
 
 ### color
 
@@ -1079,7 +1120,7 @@ Swiper组件圆点导航指示器的颜色。
 
 | 类型                            | 说明         |
 | ------------------------------- | ------------ |
-| [DotIndicator](#dotindicator10) | 圆点指示器。 |
+| [DotIndicator](#dotindicator10) | 返回当前圆点指示器。 |
 
 ### selectedColor
 
@@ -1103,7 +1144,7 @@ selectedColor(value: ResourceColor): DotIndicator
 
 | 类型                            | 说明         |
 | ------------------------------- | ------------ |
-| [DotIndicator](#dotindicator10) | 圆点指示器。 |
+| [DotIndicator](#dotindicator10) | 返回当前圆点指示器。 |
 
 ### maxDisplayCount<sup>12+</sup>
 
@@ -1125,7 +1166,7 @@ maxDisplayCount(maxDisplayCount: number): DotIndicator
 
 | 类型                            | 说明         |
 | ------------------------------- | ------------ |
-| [DotIndicator](#dotindicator10) | 圆点指示器。 |
+| [DotIndicator](#dotindicator10) | 返回当前圆点指示器。 |
 
 ### space<sup>19+</sup>
 
@@ -1149,7 +1190,7 @@ space(space: LengthMetrics): DotIndicator
 
 | 类型                            | 说明         |
 | ------------------------------- | ------------ |
-| [DotIndicator](#dotindicator10) | 圆点指示器。 |
+| [DotIndicator](#dotindicator10) | 返回当前圆点指示器。 |
 
 ### constructor
 
@@ -1204,7 +1245,7 @@ Swiper组件数字导航点的字体颜色。
 
 | 类型                                | 说明         |
 | ----------------------------------- | ------------ |
-| [DigitIndicator](#digitindicator10) | 数字指示器。 |
+| [DigitIndicator](#digitindicator10) | 返回当前数字指示器。 |
 
 ### selectedFontColor
 
@@ -1228,7 +1269,7 @@ selectedFontColor(value: ResourceColor): DigitIndicator
 
 | 类型                                | 说明         |
 | ----------------------------------- | ------------ |
-| [DigitIndicator](#digitindicator10) | 数字指示器。 |
+| [DigitIndicator](#digitindicator10) | 返回当前数字指示器。 |
 
 ### digitFont
 
@@ -1252,7 +1293,7 @@ Swiper组件数字导航点的字体样式。
 
 | 类型                                | 说明         |
 | ----------------------------------- | ------------ |
-| [DigitIndicator](#digitindicator10) | 数字指示器。 |
+| [DigitIndicator](#digitindicator10) | 返回当前数字指示器。 |
 
 ### selectedDigitFont
 
@@ -1280,7 +1321,7 @@ selectedDigitFont(value: Font): DigitIndicator
 
 | 类型                                | 说明         |
 | ----------------------------------- | ------------ |
-| [DigitIndicator](#digitindicator10) | 数字指示器。 |
+| [DigitIndicator](#digitindicator10) | 返回当前数字指示器。 |
 
 ### constructor
 
