@@ -1,4 +1,4 @@
-# @ohos.multimodalInput.inputConsumer-sys (系统全局快捷键)
+# @ohos.multimodalInput.inputConsumer (系统全局快捷键)
 
 组合按键订阅模块，用于处理组合按键的订阅。
 
