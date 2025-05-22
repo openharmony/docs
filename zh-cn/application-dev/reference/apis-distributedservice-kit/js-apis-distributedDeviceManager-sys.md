@@ -96,7 +96,7 @@ import { distributedDeviceManager } from '@kit.DistributedServiceKit';
 |  modifyTime      | string |  否   | 否  |  修改时间。          |
 |  shareTime       | string |  否   | 否  |  分享时间。          |
 |  isLocalDevice   | boolean | 否   | 否 |  是否为本地设备。     |
-|  services        | Array&lt;[ServiceProfileInfo](#serviceprofileinfo15)&gt; | 否  | 是  | 业务模板信息列表。 |
+|  services        | Array&lt;[ServiceProfileInfo](#serviceprofileinfo15)&gt; | 否  | 是  | 服务配置信息列表。 |
 |  productName     | string  | 否   | 是 |  设备所属的产品名称。    |
 |  internalModel   | string  | 否   | 是 |  设备所属产品的内部型号。 |
 
