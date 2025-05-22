@@ -106,7 +106,7 @@ A login account is required.
 
 **错误信息**
 
-A login account is required.
+The device name contains non-compliant content.
 
 **可能原因**
 
