@@ -43,24 +43,24 @@ import { distributedDeviceManager } from '@kit.DistributedServiceKit';
 
 | 名称         | 类型  | 只读 | 可选             |  说明    |
 | ----------- | ---- | --------------- | ------- |
-| isCloud      | boolean    |  否 | 是           | 表示是否需要实时从设备云获取设备列表。<br />-false：表示从设备端获取。<br />-true：表示从设备云获取。       |
-| deviceIdList  | Array&lt;string&gt;  | 否 | 否    | 表示获取指定deviceId的设备信息，deviceId一般为设备的UDID，如设备无UDID，则取其MAC或SN作为deviceI的。       |
+| isCloud      | boolean    |  否 | 否           | 表示是否需要实时从云端获取设备列表。<br />-false：表示从设备获取。<br />-true：表示从云端获取。       |
+| deviceIdList  | Array&lt;string&gt;  | 否 | 是    | 表示获取指定deviceId的设备信息，deviceId一般为设备的UDID，如设备无UDID，则取其MAC或SN作为deviceI的。默认为空。       |
 
 
 ## ServiceProfileInfo<sup>15+</sup>
 
-业务模板信息。
+服务配置信息。可选字段，根据云端返回的数据填充。
 
 **系统能力**：SystemCapability.DistributedHardware.DeviceManager
 
 **系统API**： 此接口为系统接口。
 
-| 名称           | 类型  | 必填              |  说明    |
+| 名称           | 类型  | 只读| 可选              |  说明    |
 | -------------- | ---- | --------------- | --------|
-| deviceId       | string  | 是   |  设备ID。          |
-| serviceId       | string  | 是   | 业务ID。           |
-| serviceType     | string   | 是   | 业务类型。           |
-| data       | string  | 否   |  业务数据。          |
+| deviceId       | string  | 否 | 否   |  设备ID。          |
+| serviceId       | string  | 否 |否   | 服务ID。           |
+| serviceType     | string   | 否 | 否   | 服务类型。无取值范围规定，只是一个字符串标识。           |
+| data       | string  | 否 | 是   |  服务数据。范围小于1000个字符。          |
 
 ## DeviceProfileInfo<sup>15+</sup>
 
@@ -72,33 +72,33 @@ import { distributedDeviceManager } from '@kit.DistributedServiceKit';
 
 | 名称           | 类型  | 只读   |可选              |  说明    |
 | -------------- | ---- | --------------- | --------|
-|  deviceId      | string  |  否    | 是   |  设备ID。          |
-|  deviceSn      | string  |  否    | 是   |  设备序列号。      |
-|  mac           | string  |  否    | 是   |  MAC地址。         |
-|  model         | string  |  否    | 是   |  设备型号。         |
-|  deviceType    | string  |  否    | 是   |  设备类型。         |
-|  manufacturer  | string  |  否    | 是   |  制造商。           |
-|  deviceName    | string  |  否    | 是   |  设备名称。         |
-|  productId     | string  |  否    | 是   |  设备所属产品ID。    |
-|  subProductId  | string  |  否    | 否   |  设备所属产品子ID。         |
-|  sdkVersion    | string  |  否    | 是   |  SDK版本。          |
-|  bleMac        | string  |  否    | 是   |  蓝牙BLE的MAC地址。  |
-|  brMac         | string  |  否    | 是   |  蓝牙BR的MAC地址。  |
-|  sleMac        | string  |  否    | 是   |  Starflash的MAC地址。 |
-|  firmwareVersion | string |  否   | 是  |  固件版本。          |
-|  hardwareVersion | string |  否   | 是  |  硬件版本。          |
-|  softwareVersion | string |  否  | 是  |  软件版本。          |
-|  protocolType    | number |  否   | 是  |  协议类型。          |
-|  setupType       | number |  否   | 是  |  设备类型。          |
-|  wiseDeviceId    | string |  否   | 是  |  智能设备ID。        |
-|  wiseUserId      | string |  否   | 是  |  智能用户ID。        |
-|  registerTime    | string |  否   | 是  |  注册时间。          |
-|  modifyTime      | string |  否   | 是  |  修改时间。          |
-|  shareTime       | string |  否   | 是  |  分享时间。          |
-|  isLocalDevice   | boolean | 否   | 是 |  是否为本地设备。     |
-|  services        | Array&lt;ServiceProfileInfo&gt; | 否  | 否  | 业务模板信息列表。 |
-|  productName     | string  | 否   | 否 |  设备所属的产品名称。    |
-|  internalModel   | string  | 否   | 否 |  设备所属产品的内部型号。 |
+|  deviceId      | string  |  否    | 否   |  设备ID。          |
+|  deviceSn      | string  |  否    | 否   |  设备序列号。      |
+|  mac           | string  |  否    | 否   |  MAC地址。         |
+|  model         | string  |  否    | 否   |  设备型号。         |
+|  deviceType    | string  |  否    | 否   |  设备类型。         |
+|  manufacturer  | string  |  否    | 否   |  制造商。           |
+|  deviceName    | string  |  否    | 否   |  设备名称。         |
+|  productId     | string  |  否    | 否   |  设备所属产品ID。    |
+|  subProductId  | string  |  否    | 是   |  设备所属产品子ID。         |
+|  sdkVersion    | string  |  否    | 否   |  SDK版本。          |
+|  bleMac        | string  |  否    | 否   |  蓝牙BLE的MAC地址。  |
+|  brMac         | string  |  否    | 否   |  蓝牙BR的MAC地址。  |
+|  sleMac        | string  |  否    | 否   |  Starflash的MAC地址。 |
+|  firmwareVersion | string |  否   | 否  |  固件版本。          |
+|  hardwareVersion | string |  否   | 否  |  硬件版本。          |
+|  softwareVersion | string |  否  | 否  |  软件版本。          |
+|  protocolType    | number |  否   | 否  |  协议类型。          |
+|  setupType       | number |  否   | 否  |  设备类型。          |
+|  wiseDeviceId    | string |  否   | 否  |  智能设备ID。        |
+|  wiseUserId      | string |  否   | 否  |  智能用户ID。        |
+|  registerTime    | string |  否   | 否  |  注册时间。          |
+|  modifyTime      | string |  否   | 否  |  修改时间。          |
+|  shareTime       | string |  否   | 否  |  分享时间。          |
+|  isLocalDevice   | boolean | 否   | 否 |  是否为本地设备。     |
+|  services        | Array&lt;ServiceProfileInfo&gt; | 否  | 是  | 业务模板信息列表。 |
+|  productName     | string  | 否   | 是 |  设备所属的产品名称。    |
+|  internalModel   | string  | 否   | 是 |  设备所属产品的内部型号。 |
 
 
 ## DeviceIconInfoFilterOptions<sup>18+</sup> 
@@ -111,11 +111,11 @@ import { distributedDeviceManager } from '@kit.DistributedServiceKit';
 
 | 名称           | 类型  | 只读 | 可选              |  说明    |
 | -------------- | ---- | --------------- | --------|
-|  productId      | string  | 否 | 是   |  设备所属产品ID。          |
-|  subProductId   | string  | 否 | 否   |  设备所属产品子ID。      |
-|  imageType      | string  | 否 | 是   |  图片类型。约定取值范围：<br />-ID.<br />-ID_Headset_L.<br />-ID_Headset_R.<br />-ID_Headset_B.<br />-ID_Headset_LB.<br />-ID_Headset_RB.         |
-|  specName       | string  | 否 | 是   |  图片规格名称。约定取值范围：<br />-lg: 大图。<br />-sm: 小图。         |
-|  internalModel  | string  | 否 | 否   |  设备所属产品的内部型号。        |
+|  productId      | string  | 否 | 否   |  设备所属产品ID。          |
+|  subProductId   | string  | 否 | 是   |  设备所属产品子ID。      |
+|  imageType      | string  | 否 | 否   |  图片类型。约定取值范围：<br />-ID.<br />-ID_Headset_L.<br />-ID_Headset_R.<br />-ID_Headset_B.<br />-ID_Headset_LB.<br />-ID_Headset_RB.         |
+|  specName       | string  | 否 | 否   |  图片规格名称。约定取值范围：<br />-lg: 大图。<br />-sm: 小图。         |
+|  internalModel  | string  | 否 | 是   |  设备所属产品的内部型号。        |
 
 ## DeviceIconInfo<sup>18+</sup>
 
@@ -127,13 +127,13 @@ import { distributedDeviceManager } from '@kit.DistributedServiceKit';
 
 | 名称           | 类型  | 只读  |可选              |  说明    |
 | -------------- | ---- | --------------- | --------|
-|  productId      | string  | 否 | 是   |  设备所属产品ID。          |
-|  subProductId   | string  | 否 | 否   |  设备所属产品子ID。     |
-|  imageType      | string  | 否 | 是   |  图片类型。约定取值范围：<br />-ID.<br />-ID_Headset_L.<br />-ID_Headset_R.<br />-ID_Headset_B.<br />-ID_Headset_LB.<br />-ID_Headset_RB.         |
-|  specName       | string  | 否 | 是   |  图片规格名称。约定取值范围：<br />-lg: 大图。<br />-sm: 小图。         |
-|  url            | string  | 否 | 是   |  统一资源定位器。          |
-|  icon           | ArrayBuffer | 否| 是 | 图标。         |
-|  internalModel  | string  | 否 | 否   |  设备所属产品的内部型号。         |
+|  productId      | string  | 否 | 否   |  设备所属产品ID。          |
+|  subProductId   | string  | 否 | 是   |  设备所属产品子ID。     |
+|  imageType      | string  | 否 | 否   |  图片类型。约定取值范围：<br />-ID.<br />-ID_Headset_L.<br />-ID_Headset_R.<br />-ID_Headset_B.<br />-ID_Headset_LB.<br />-ID_Headset_RB.         |
+|  specName       | string  | 否 | 否   |  图片规格名称。约定取值范围：<br />-lg: 大图。<br />-sm: 小图。         |
+|  url            | string  | 否 | 否   |  URL。          |
+|  icon           | ArrayBuffer | 否| 否 | 图标。         |
+|  internalModel  | string  | 否 | 是   |  设备所属产品的内部型号。         |
 
 ## NetworkIdQueryFilter<sup>18+</sup>
 
@@ -145,8 +145,8 @@ import { distributedDeviceManager } from '@kit.DistributedServiceKit';
 
 | 名称           | 类型  | 只读 | 可选              |  说明    |
 | -------------- | ---- | --------------- | --------|
-|  wiseDeviceId       | string  | 否 | 是   |  智能设备ID。          |
-|  onlineStatus    | string  | 否 | 否   |  根据在线状态获取设备网络ID列表。      |
+|  wiseDeviceId       | string  | 否 | 否   |  已注册设备标识。          |
+|  onlineStatus    | string  | 否 | 是   |  设备在线状态，包括<br />-0: 表示设备处于离线状态。<br />-1: 表示设备在线。可以根据在线状态获取设备网络ID列表。      |
 
 ## DeviceManager
 
@@ -359,7 +359,7 @@ setHeartbeatPolicy(policy: StrategyForHeartbeat, delayTime: number): void
 
 getDeviceProfileInfoList(filterOptions: DeviceProfileInfoFilterOptions): Promise&lt;Array&lt;DeviceProfileInfo&gt;&gt;
 
-获取同账号下全部的设备列表，异步接口。
+获取同账号下全部的设备列表，使用Promise异步回调。
 
 **需要权限**：ohos.permission.ACCESS_SERVICE_DM
 
@@ -371,7 +371,7 @@ getDeviceProfileInfoList(filterOptions: DeviceProfileInfoFilterOptions): Promise
 
   | 参数名       | 类型            | 必填  | 说明                |
   | ------------- | --------------- | ---- | ------------------- |
-  | filterOptions        |  &nbsp;[DeviceProfileInfoFilterOptions](#deviceprofileinfofilteroptions15)&nbsp;         | 是    | 查询设备列表参数，参数类型为map，例如: <br>isCloud：指示是否需要实时从设备云获取设备列表。<br />-false：表示从设备端获取。<br />-true：表示从设备云获取。<br>deviceIdList：获取指定deviceId的设备信息，deviceId取值端侧udid，无udid类的设备取MAC或者SN。     |
+  | filterOptions        |  &nbsp;[DeviceProfileInfoFilterOptions](#deviceprofileinfofilteroptions15)&nbsp;         | 是    | 查询过程中使用的过滤条件。     |
 
 **返回值：**
 
@@ -394,7 +394,6 @@ getDeviceProfileInfoList(filterOptions: DeviceProfileInfoFilterOptions): Promise
 
 **示例：**
 
-<!--code_no_check-->
   ```ts
   import { distributedDeviceManager } from '@kit.DistributedServiceKit';
   import { BusinessError } from '@kit.BasicServicesKit';
@@ -416,7 +415,7 @@ getDeviceProfileInfoList(filterOptions: DeviceProfileInfoFilterOptions): Promise
 
 putDeviceProfileInfoList(deviceProfileInfoList: Array&lt;DeviceProfileInfo&gt;): Promise&lt;number&gt;
 
-更新设备列表，异步接口。
+更新设备列表，使用Promise异步回调。
 
 **需要权限**：ohos.permission.ACCESS_SERVICE_DM
 
@@ -449,7 +448,6 @@ putDeviceProfileInfoList(deviceProfileInfoList: Array&lt;DeviceProfileInfo&gt;):
 
 **示例：**
 
-<!--code_no_check-->
   ```ts
   import { distributedDeviceManager } from '@kit.DistributedServiceKit';
   import { BusinessError } from '@kit.BasicServicesKit';
@@ -472,7 +470,7 @@ putDeviceProfileInfoList(deviceProfileInfoList: Array&lt;DeviceProfileInfo&gt;):
 
 getDeviceIconInfo(filterOptions: DeviceIconInfoFilterOptions): Promise&lt;DeviceIconInfo&gt;
 
-获取设备实物图，异步接口。
+获取设备实物图，使用Promise异步回调。
 
 **需要权限**：ohos.permission.ACCESS_SERVICE_DM
 
@@ -506,7 +504,6 @@ getDeviceIconInfo(filterOptions: DeviceIconInfoFilterOptions): Promise&lt;Device
 
 **示例：**
 
-<!--code_no_check-->
   ```ts
   import { distributedDeviceManager } from '@kit.DistributedServiceKit';
   import { BusinessError } from '@kit.BasicServicesKit';
@@ -539,7 +536,7 @@ getDeviceIconInfo(filterOptions: DeviceIconInfoFilterOptions): Promise&lt;Device
 
 getLocalDisplayDeviceName(maxNameLength: number): Promise&lt;string&gt;
 
-获取本机指定长度（字节数）的显示名，异步接口。
+获取本机指定长度（字节数）的显示名，使用Promise异步回调。
 
 **需要权限**：ohos.permission.ACCESS_SERVICE_DM
 
@@ -572,7 +569,6 @@ getLocalDisplayDeviceName(maxNameLength: number): Promise&lt;string&gt;
 
 **示例：**
 
-<!--code_no_check-->
   ```ts
   import { distributedDeviceManager } from '@kit.DistributedServiceKit';
   import { BusinessError } from '@kit.BasicServicesKit';
@@ -595,7 +591,7 @@ getLocalDisplayDeviceName(maxNameLength: number): Promise&lt;string&gt;
 
 setLocalDeviceName(deviceName: string): Promise&lt;number&gt;
 
-修改本机设备名称，异步接口。
+修改本机设备名称，使用Promise异步回调。
 
 **需要权限**：ohos.permission.ACCESS_SERVICE_DM
 
@@ -628,7 +624,6 @@ setLocalDeviceName(deviceName: string): Promise&lt;number&gt;
 
 **示例：**
 
-<!--code_no_check-->
   ```ts
   import { distributedDeviceManager } from '@kit.DistributedServiceKit';
   import { BusinessError } from '@kit.BasicServicesKit';
@@ -651,7 +646,7 @@ setLocalDeviceName(deviceName: string): Promise&lt;number&gt;
 
 setRemoteDeviceName(deviceId: string, deviceName: string): Promise&lt;number&gt;
 
-设置配件设备名称，异步接口。
+设置配件设备名称，使用Promise异步回调。
 
 **需要权限**：ohos.permission.ACCESS_SERVICE_DM
 
@@ -686,7 +681,6 @@ setRemoteDeviceName(deviceId: string, deviceName: string): Promise&lt;number&gt;
 
 **示例：**
 
-<!--code_no_check-->
   ```ts
   import { distributedDeviceManager } from '@kit.DistributedServiceKit';
   import { BusinessError } from '@kit.BasicServicesKit';
@@ -730,7 +724,6 @@ restoreLocalDeivceName(): void
 
 **示例：**
 
-<!--code_no_check-->
   ```ts
   import { distributedDeviceManager } from '@kit.DistributedServiceKit';
   import { BusinessError } from '@kit.BasicServicesKit';
@@ -782,7 +775,6 @@ getDeviceNetworkIdList(filterOptions: NetworkIdQueryFilter): Promise&lt;Array&lt
 
 **示例：**
 
-<!--code_no_check-->
   ```ts
   import { distributedDeviceManager } from '@kit.DistributedServiceKit';
   import { BusinessError } from '@kit.BasicServicesKit';
