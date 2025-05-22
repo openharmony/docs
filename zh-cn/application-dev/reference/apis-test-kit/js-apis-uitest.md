@@ -82,11 +82,11 @@ import { UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPatter
 
 | 名称   | 类型   | 可读 | 可写 | 必填 |说明                      |
 | ------ | ------ | ---- | ---- | ---- |------------------------- |
-| left   | number | 是   | 是   | 是 |控件边框的左上角的X坐标，取值大于0的整数。<br> **说明：** 从API20开始可写。  |
-| top    | number | 是   | 是   | 是 |控件边框的左上角的Y坐标，取值大于0的整数。<br> **说明：** 从API20开始可写。  |
-| right  | number | 是   | 是   | 是 |控件边框的右下角的X坐标，取值大于0的整数。<br> **说明：** 从API20开始可写。  |
-| bottom | number | 是   | 是   | 是 |控件边框的右下角的Y坐标，取值大于0的整数。<br> **说明：** 从API20开始可写。  |
-| displayId | number | 是   | 是   | 否 |控件边框所属的屏幕ID，取值大于或等于0的整数。默认值为设备主屏幕ID。  |
+| left   | number | 是   | 是   | 是 |控件边框的左上角的X坐标，取值大于0的整数。<br> **说明：** 从API version 20开始可写。  |
+| top    | number | 是   | 是   | 是 |控件边框的左上角的Y坐标，取值大于0的整数。<br> **说明：** 从API version 20开始可写。  |
+| right  | number | 是   | 是   | 是 |控件边框的右下角的X坐标，取值大于0的整数。<br> **说明：** 从API version 20开始可写。  |
+| bottom | number | 是   | 是   | 是 |控件边框的右下角的Y坐标，取值大于0的整数。<br> **说明：** 从API version 20开始可写。  |
+| displayId | number | 是   | 是   | 否 |控件边框所属的屏幕ID，取值大于或等于0的整数。默认值为设备主屏幕ID。<br> **说明：** 从API version 20开始，该接口支持在原子化服务中使用。  |
 
 ## WindowMode<sup>9+</sup>
 
@@ -131,7 +131,7 @@ import { UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPatter
 | focused              | boolean | 是   | 是  | 否  | 窗口是否处于获焦状态，true：获焦状态，false：未获焦状态。<br />**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | actived(deprecated)  | boolean | 是   | 是  | 否  | 窗口是否正与用户进行交互，true：交互状态，false：未交互状态。<br>从API version 11开始废弃，建议使用active替代。                                                |
 | active<sup>11+</sup> | boolean | 是   | 是  | 否  | 窗口是否正与用户进行交互，true：交互状态，false：未交互状态。<br />**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                     |
-| displayId | number | 是   | 是   | 否  | 窗口所属的屏幕ID。取值大于或等于0的整数。默认值为设备主屏ID。|
+| displayId | number | 是   | 是   | 否  | 窗口所属的屏幕ID。取值大于或等于0的整数。默认值为设备主屏ID。<br> **说明：** 从API version 20开始，该接口支持在原子化服务中使用。 |
 
 ## UiDirection<sup>10+</sup>
 
