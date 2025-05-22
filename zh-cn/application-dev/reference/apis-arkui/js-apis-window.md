@@ -6125,7 +6125,7 @@ off(type: 'uiExtensionSecureLimitChange', callback?: Callback&lt;boolean&gt;): v
 | 参数名   | 类型                           | 必填 | 说明                                                         |
 | -------- | ------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | string                         | 是   | 监听事件，固定为'uiExtensionSecureLimitChange'，即窗口安全限制。     |
-| callback | Callback&lt;boolean&gt; | 否   | 回调函数。当窗口安全限制发生变化时触发回调。若传入参数，则关闭该监听。若未传入参数，则关闭所有窗口安全限制变化的监听。 |
+| callback | Callback&lt;boolean&gt; | 否   | 回调函数。若传入参数，则关闭该监听。若未传入参数，则关闭所有窗口安全限制变化的监听。 |
 
 **错误码：**
 
