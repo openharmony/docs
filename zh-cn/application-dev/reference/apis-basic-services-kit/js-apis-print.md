@@ -1246,10 +1246,10 @@ print.getPrinterInformationById(printerId).then((printerInformation : print.Prin
 | defaultDuplexMode | [PrintDuplexMode](#printduplexmode11) | 否 | 表示默认单双面模式。 |
 | defaultPrintQuality | [PrintQuality](#printquality14) | 否 | 表示默认打印质量。 |
 | defaultMediaType | string | 否 | 表示默认纸张类型。 |
-| defaultPageSizeId | string | 否 | 表示默认纸张尺寸的ID。 |
+| defaultPageSizeId | string | 否 | 表示默认纸张尺寸的ID，其范围包含国际标准化组织定义的标准纸张尺寸，如ISO_A4，和系统中定义的非标准的纸张尺寸，如Custom.178x254mm，表示这种纸张尺寸为178毫米 x 254毫米。 |
 | defaultOrientation | [PrintOrientationMode](#printorientationmode14) | 否 | 表示默认打印方向。 |
-| borderless | boolean | 否 | 表示是否无边距打印，默认值为false，表示有边距。 |
-| options | string | 否 | 表示打印机首选项中的高级选项。 |
+| borderless | boolean | 否 | 表示是否无边距打印，true表示无边距，false表示有边距。默认值为false。 |
+| options | string | 否 | 表示打印机首选项中不在以上字段中的其他字段，查询打印机或者从打印机驱动获取，以json格式存储在string中。 |
 
 ## PrinterEvent<sup>18+</sup>
 
@@ -1274,14 +1274,14 @@ print.getPrinterInformationById(printerId).then((printerInformation : print.Prin
 
 | **名称** | **值** | **说明** |
 | -------- | -------- | -------- |
-| DEFAULT_PRINTER_TYPE_SET_BY_USER | 0 | 表示用户选择某台打印机为默认打印机。 |
-| DEFAULT_PRINTER_TYPE_LAST_USED_PRINTER | 1 | 表示将上次使用的打印机作为默认打印机。 |
+| DEFAULT_PRINTER_TYPE_SET_BY_USER | 0 | 表示将用户手动设置的默认打印机作为当前默认打印机。 |
+| DEFAULT_PRINTER_TYPE_LAST_USED_PRINTER | 1 | 表示自动将上次使用的打印机作为当前默认打印机。 |
 
 ## print.getAddedPrinters<sup>18+</sup>
 
 getAddedPrinters(): Promise&lt;Array&lt;string&gt;&gt;
 
-获取cups已添加打印机列表，使用Promise异步回调。
+获取系统中已添加的打印机列表，使用Promise异步回调。
 
 **需要权限：** ohos.permission.MANAGE_PRINT_JOB or ohos.permission.PRINT
 
@@ -1290,7 +1290,7 @@ getAddedPrinters(): Promise&lt;Array&lt;string&gt;&gt;
 **返回值：**
 | **类型** | **说明** |
 | -------- | -------- |
-| Promise&lt;Array&lt;string&gt;&gt; | 获取cups已添加打印机列表的完成结果回调。 |
+| Promise&lt;Array&lt;string&gt;&gt; | 获取系统中已添加的打印机列表的完成结果回调。 |
 
 **错误码：**
 
@@ -1359,6 +1359,7 @@ on(type: 'printerChange', callback: PrinterChangeCallback): void
 ```ts
 import { print } from '@kit.BasicServicesKit';
 
+// Trigger this callback when a added printer is changed.
 let onPrinterChange =
     (event: print.PrinterEvent, printerInformation: print.PrinterInformation) => {
         console.log('printerChange, event: ' + event + ', printerInformation: ' + JSON.stringify(printerInformation));
@@ -1396,6 +1397,7 @@ off(type: 'printerChange', callback?: PrinterChangeCallback): void
 ```ts
 import { print } from '@kit.BasicServicesKit';
 
+// Trigger this callback when a added printer is changed.
 let onPrinterChange =
     (event: print.PrinterEvent, printerInformation: print.PrinterInformation) => {
         console.log('printerChange, event: ' + event + ', printerInformation: ' + JSON.stringify(printerInformation));
