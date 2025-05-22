@@ -12317,7 +12317,7 @@ ArkUI_ExpectedFrameRateRange* OH_ArkUI_KeyframeAnimateOption_GetExpectedFrameRat
 
 获取关键帧动画参数的期望帧率。
 
-**起始版本：** 18
+**起始版本：** 19
 
 **参数:**
 
@@ -12474,7 +12474,7 @@ int32_t OH_ArkUI_KeyframeAnimateOption_SetExpectedFrameRate(
 
 设置关键帧动画期望帧率。
 
-**起始版本：** 18
+**起始版本：** 19
 
 **参数:**
 
