@@ -11,20 +11,11 @@
 ```typescript
 // file1.ets ArkTS1.2
 export function func(){}
-export async function foo() {}
 export class A{}
 export let a: A = new A();
-export interface B{}
-export let b: B = {};
-export let boo: boolean = true;
-export type MyTuple = [number, string, boolean]
-export type union = number | string
-export namespace X {}
-export let p = new Promise<number>(...)
-export let r = new RegExp(...)
 
 // file2.ets ArkTS1.1
-import { func, foo, A, a, B, b, boo, MyTuple, union, X, p, r } from 'file1.ets'
+import { func, A, a} from './file1'
 ```
 
 #### 类实例化
@@ -52,25 +43,14 @@ let c = new C();
 ```typescript
 // file1.ets ArkTS1.2
 export class Person {
-  private name_: string = "";
-  constructor(name: string) {
-    this.name_ = name;
-  }
-  get name(): string {
-    console.log(this.name_);
-    return this.name_;
-  }
-  set name(name: string) {
-    this.name_ = name;
-    console.log(this.name_);
-  }
+  name: string = "unknown"
 }
 
 // file2.ets ArkTS1.1
 import { Person } from "file1";
-let a = new Person("John");
-let b = a.name; // Output: John
-a.name = "456"; // Output: 456
+let a = new Person();
+let b = a.name; // "unknown"
+a.name = "John";
 ```
 
 #### 函数调用
@@ -168,77 +148,17 @@ ArkTS1.1中定义一个异常的实例，可以在ArkTS1.2中捕获这个异常�
 
 ```typescript
 // file1.ets ArkTS1.2
-export let err = new Error("123");
-export function foo1() {
-  throw err;
-}
-
-export let ranErr = new RangeError("456");
-export function foo2() {
-  throw err;
-}
-
-export let refErr = new ReferenceError("789");
-export function foo3() {
-  throw err;
-}
-
-export let synErr = new SyntaxError("111");
-export function foo4() {
-  throw err;
-}
-
-export let uriErr = new URIError("222");
-export function foo5() {
-  throw err;
+export function foo() {
+  throw new Error("123");
 }
 
 // file2.ets ArkTS1.1
-import {
-  err,
-  ranErr,
-  refErr,
-  synErr,
-  uriErr,
-  foo1,
-  foo2,
-  foo3,
-  foo4,
-  foo5,
-} from "1.1";
-err instanceof Error; // true
-try {
-  foo();
-} catch (e) {
-  (e as Error).message; // OK, '123'
-}
+import { foo } from "1.1";
 
-ranErr instanceof RangeError; // true
 try {
   foo();
 } catch (e) {
-  (e as RangeError).message; // OK, '456'
-}
-
-refErr instanceof ReferenceError; // true
-try {
-  foo();
-} catch (e) {
-  (e as ReferenceError).message; // OK, '789'
-}
-
-synErr instanceof SyntaxError; // true
-try {
-  foo();
-} catch (e) {
-  (e as SyntaxError).message; // OK, '111'
-}
-
-uriErr instanceof URIError; // true
-try {
-  foo();
-} catch (e) {
-  (e as URIError).message; // OK, '222'
+  (e as Error).message; // "123"
 }
 ```
 
@@ -251,20 +171,11 @@ try {
 ```typescript
 // file1.ts
 export function func(){}
-export async function foo() {}
 export class A{}
 export let a: A = new A();
-export interface B{}
-export let b: B = {};
-export let boo: boolean = true;
-export type MyTuple = [number, string, boolean]
-export type union = number | string
-export namespace X {}
-export let p = new Promise<number>(...)
-export let r = new RegExp(...)
 
 // file2.ets ArkTS1.2
-import { func, foo, A, a, B, b, boo, MyTuple, union, X, p, r} from 'file1.ets'
+import { func, A, a} from './file1'
 ```
 
 #### 类实例化
@@ -292,25 +203,14 @@ let c = new C();
 ```typescript
 // file1.ts
 export class Person {
-  private name_: string = "";
-  constructor(name: string) {
-    this.name_ = name;
-  }
-  get name(): string {
-    console.log(this.name_);
-    return this.name_;
-  }
-  set name(name: string) {
-    this.name_ = name;
-    console.log(this.name_);
-  }
+  name: string = "unknown"
 }
 
 // file2.ets ArkTS1.2
 import { Person } from "file1";
-let a = new Person("John");
-let b = a.name; // Output: John
-a.name = "456"; // Output: 456
+let a = new Person();
+let b = a.name; // "unknown"
+a.name = "John";
 ```
 
 #### 函数调用
@@ -408,77 +308,17 @@ TS中定义一个异常的实例，可以在ArkTS1.2中捕获这个异常。
 
 ```typescript
 // file1.ts
-export let err = new Error("123");
-export function foo1() {
-  throw err;
-}
-
-export let ranErr = new RangeError("456");
-export function foo2() {
-  throw err;
-}
-
-export let refErr = new ReferenceError("789");
-export function foo3() {
-  throw err;
-}
-
-export let synErr = new SyntaxError("111");
-export function foo4() {
-  throw err;
-}
-
-export let uriErr = new URIError("222");
-export function foo5() {
-  throw err;
+export function foo() {
+  throw new Error("123")
 }
 
 // file2.ets ArkTS1.2
-import {
-  err,
-  ranErr,
-  refErr,
-  synErr,
-  uriErr,
-  foo1,
-  foo2,
-  foo3,
-  foo4,
-  foo5,
-} from "1.1";
-err instanceof Error; // true
-try {
-  foo();
-} catch (e) {
-  (e as Error).message; // OK, '123'
-}
+import { foo } from "./file1";
 
-ranErr instanceof RangeError; // true
 try {
   foo();
 } catch (e) {
-  (e as RangeError).message; // OK, '456'
-}
-
-refErr instanceof ReferenceError; // true
-try {
-  foo();
-} catch (e) {
-  (e as ReferenceError).message; // OK, '789'
-}
-
-synErr instanceof SyntaxError; // true
-try {
-  foo();
-} catch (e) {
-  (e as SyntaxError).message; // OK, '111'
-}
-
-uriErr instanceof URIError; // true
-try {
-  foo();
-} catch (e) {
-  (e as URIError).message; // OK, '222'
+  (e as Error).message; // '123'
 }
 ```
 
@@ -489,46 +329,28 @@ try {
 ```typescript
 // file1.js
 export function func(){}
-export async function foo() {}
 export class A{}
 export let a: A = new A();
-export interface B{}
-export let b: B = {};
-export let boo: boolean = true;
-export type MyTuple = [number, string, boolean]
-export type union = number | string
-export namespace X {}
-export let p = new Promise<number>(...)
-export let r = new RegExp(...)
 
 // file2.ets ArkTS1.2
-let func = ESObject.load('./file1').getPropertyByName('func')
-let foo = ESObject.load('./file1').getPropertyByName('foo')
-let A = ESObject.load('./file1').getPropertyByName('A')
-let a = ESObject.load('./file1').getPropertyByName('a')
-let B = ESObject.load('./file1').getPropertyByName('B')
-let b = ESObject.load('./file1').getPropertyByName('b')
-let boo = ESObject.load('./file1').getPropertyByName('boo')
-let MyTuple = ESObject.load('./file1').getPropertyByName('MyTuple')
-let union = ESObject.load('./file1').getPropertyByName('union')
-let X = ESObject.load('./file1').getPropertyByName('X')
-let p = ESObject.load('./file1').getPropertyByName('p')
-let r = ESObject.load('./file1').getPropertyByName('r')
+let mod: ESValue = ESValue.load('./file1')
+let func: ESValue = mod.getProperty('func')
+let A: ESValue = mod.getProperty('A')
+let a: ESValue = mod.getProperty('a')
 ```
 
 #### 类实例化
 
-可以在ArkTS1.2中创建新的JS类，通过ESObject创建JS类的实例。
+可以在ArkTS1.2中创建新的JS类，通过ESValue创建JS类的实例。
 
 ```typescript
 // file1.js
 export class A {}
 
 // file2.ets ArkTS1.2
-let module = ESObject.load("js");
-let A = module.getPropertyByName("A");
-let a = new A(); // CTE
-let b = A.instantiate(); // OK
+let mod: ESValue = ESValue.load("js");
+let A: ESValue = module.getProperty("A");
+let a: ESValue = A.instantiate();  // 创建A的实例，这个实例被包装在a中
 ```
 
 #### 属性读写
@@ -538,131 +360,98 @@ let b = A.instantiate(); // OK
 ```typescript
 // file1.js
 export class A {
-  get name() { console.log(this._name) return this_.name}
-  set name(val) { console.log(123); this._name = val; }
-  _name = ''
+  name = "unknown"
 }
 
 // file2.ets ArkTS1.2
-let module = ESObject.load('file1')
-let A = module.getPropertyByName('A');
-
-let a = new A() // CTE
-let b = A.instantiate()  // OK
-
-b.name = '456';  // CTE
-b.setPropertyByName('name', ESObject.wrap('456'));  // print 123
-let c = b.name;  // CTE
-b.getPropertyByName('name')  // print '456'
+let module = ESValue.load('./file1')
+let A = module.getProperty('A');
+let a = A.instantiate()
+b.getProperty('name').toString()  // "unknown"
+a.setProperty('name', ESValue.wrap('John'))
+b.getProperty('name').toString()  // "John"
 ```
 
 #### 函数调用
 
-在ArkTS1.2中可以通过ESObject来调用JS的函数。
+在ArkTS1.2中可以通过ESValue来调用JS的函数。
 
 ```typescript
 // file1.js
-export function foo() {}
-export function test(cb) {
-  cb.apply({});
-  cb.name;
-  cb.length;
+export function foo() {
+    return 100
 }
 
 // file2.ets ArkTS1.2
-let foo = ESObject.load("./file1").getPropertyByName("foo");
-foo.getPropertyByName("length").toNumber(); // 0
-function bar() {}
-let test = ESObject.load("./file1").getPropertyByName("test");
-test.invoke(ESObject.Wrap(bar)); // OK
+let foo: ESValue = ESValue.load("./file1").getProperty("foo");
+let res: ESValue = foo.invoke();
+let resNum: string = res.toNumber();  // 100
 ```
 
 #### 对象方法调用
 
-在ArkTS1.2中可以通过ESObject来调用JS的对象的方法。
+在ArkTS1.2中可以通过ESValue来调用JS的对象的方法。
 
 ```typescript
 //file1.js
-export let a = new Array(1, 2, 3, 4, 5);
-export function absValue(a) {
-    return Math.abs(a);
-}
 export class A {
-  get name() { console.log(this._name) return this_.name}
-  set name(val) { console.log(123); this._name = val; }
-  _name = ''
+  sayHi(msg: string) {
+    console.log(msg)
+    return msg
+  }
+  static getInstance() {
+    return new A()
+  }
 }
 
 //file2.ets  ArkTS1.2
-let a = ESObject.load('js').getPropertyByName('a')
-a.invokeMethod(ESObject.wrap(6))  // OK
-
-let absValue = ESObject.load('./file1').getPropertyByName('absValue')
-absValue.invoke(ESObject.wrap(-1)).toNumber()  // 1
-
-let module = ESObject.load('js')
-let A = module.getPropertyByName('A');
-let b = A.instantiate()  // OK
-b.setPropertyByName('name', ESObject.wrap('456'));  // print 123
-b.getPropertyByName('name')  // print '456'
+let A = ESValue.load('./file1').getProperty('A')
+let a: ESValue = A.invokeMethod('getInstance')  // 调用静态方法
+let msg: ESValue = a.invokeMethod('sayHi', ESValue.wrap('hello'))  // 调用实例方法, 打印hello
+msg.toString()  // 'hello'
 ```
 
 #### 参数传递
 
-在ArkTS1.2中可以通过ESObject来调用JS的函数将参数传递至JS。
+在ArkTS1.2中可以通过ESValue来调用JS的函数将参数传递至JS。
 
 ```typescript
 // file1.js
-export function foo() {}
-export function test(cb) {
-  cb.apply({});
-  cb.name;
-  cb.length;
+export function foo(msg, count) {
+  for (let i = 0; i < count; ++i) {
+    console.log(msg)
+  }
 }
 
 // file2.ets ArkTS1.2
-let foo = ESObject.load("./file1").getPropertyByName("foo");
-foo.getPropertyByName("length").toNumber(); // 0
-
-function bar() {}
-let test = ESObject.load("./file1").getPropertyByName("test");
-test.invoke(ESObject.Wrap(bar)); // OK
+let foo = ESValue.load("./file1").getProperty("foo");
+foo.invoke(ESValue.wrap("hello"), ESValue.wrap(3));  // 打印3次hello
 ```
 
 #### 异常处理
 
-在JS中定义一个异常的实例，可以在ArkTS1.2中ESObject来获取这个异常。
+在JS中定义一个异常的实例，可以在ArkTS1.2中ESValue来获取这个异常。
 
 ```typescript
 // file1.js
-export const e = new URIError('Hello World');
-export let rangeErr = new RangeError('out of range');
-export let referenceErr = new ReferenceError(''reference error'');
-export let syntaxErr = new SyntaxError(''syntax error'');
-export let typeErr = new TypeError(''type error'');
+export function foo() {
+  throw new Error('123')
+}
 
 // file2.ets  ArkTS1.2
-let e = ESObject.load('./file1').getPropertyByName('e')
-e.getPropertyByName('message').toString()  // 'Hello, world'
-
-let rangeErr = ESObject.load('./file1').getPropertyByName('rangeErr')
-rangeErr.getPropertyByName('message').toString()  // 'out of range'
-
-let referenceErr = ESObject.load('./file1').getPropertyByName('referenceErr')
-referenceErr.getPropertyByName('message').toString()  // 'reference error'
-
-let syntaxErr = ESObject.load('./file1').getPropertyByName('syntaxErr')
-syntaxErr.getPropertyByName('message').toString() // 'syntax error'
-
-let typeErr = ESObject.load('./file1').getPropertyByName('typeErr')
-typeErr.getPropertyByName('message').toString() // 'type error'
+let foo = ESValue.load('./file1').getProperty('foo')
+try {
+  foo.invoke()
+} catch(e) {
+  (e as Error).message  // '123'
+}
 ```
 
 ## 交互限制
 
 ### 在ArkTS1.2中使用ArkTS1.1
 
-#### ArkTS1.1给ArkTS1.2传参或赋值
+#### ArkTS1.1给ArkTS1.2传参或赋值给Object类型
 
 - ArkTS1.1语法
 
@@ -684,7 +473,6 @@ interface Y {
 let y: Y = { s: "Hi" };
 let a = new A();
 a.data = y;
-// 动态对象的来源：class/interface/对象字面量
 ```
 
 - ArkTS1.2语法
@@ -692,11 +480,11 @@ a.data = y;
 ```typescript
 // fiel1.ets ArkTS1.2
 export function foo(obj: Object) {}
-// solution: export function foo(obj: ESObject | Object) {}
+// solution: export function foo(obj: Any) {}
 export class A {
   data: Object = 0;
 }
-// solution: export class A { data: ESObject = ESObject.wrap(0) }
+// solution: export class A { data: Any = ESValue.wrap(0) }
 
 // file2.ets ArkTS1.1
 import { foo, A } from "./file1";
@@ -760,7 +548,7 @@ export class X {
   a = 1;
 }
 // solution for Object.keys, case for Object.values is similar:
-export function getKeys(prx: Object | ESObject): string[] | undefined {
+export function getKeys(prx: Object | ESValue): string[] | undefined {
   if (prx instanceof Object) {
     return Object.keys(prx);
   }
@@ -845,7 +633,7 @@ export class X {
 }
 
 // solution for static ownKeys:
-export getOwnKeys(prx: Object | ESObject): string[] | undefined {
+export getOwnKeys(prx: Object | ESValue): string[] | undefined {
   if (prx instanceof Object) { return Reflect.ownKeys(prx) }
   return undefined
 }
@@ -1000,7 +788,7 @@ foo(new X()); // 运行时报错
 
 ```typescript
 // file1.ets
-export function foo(prx: ESObject) {
+export function foo(prx: ESValue) {
   Object.getOwnPropertyDescriptor(prx, "a"); // not undefined
   Object.getOwnPropertyDescriptors(prx); // not {}
   Object.getOwnPropertyNames(prx); // ['a']
@@ -1028,7 +816,7 @@ foo(new X());
 ```typescript
 // solution for Object.keys, case for Object.values is similar:
 // file0.ets  ArkTS1.2
-export function getKeys(prx: Object | ESObject): string[] | undefined {
+export function getKeys(prx: Object | ESValue): string[] | undefined {
   if (prx instanceof Object) {
     return Object.keys(prx);
   }
@@ -1037,7 +825,7 @@ export function getKeys(prx: Object | ESObject): string[] | undefined {
 
 // file1.ets ArkTS1.1
 import { getKeys } from "./file0";
-function myGetKeys(prx: ESObject) {
+function myGetKeys(prx: ESValue) {
   let ret = getKeys(prx);
   if (ret == undefined) {
     // prx is dynamic
@@ -1094,7 +882,7 @@ export class X {
 
 // file2.ets
 improt {X} from './file1'
-function foo(prx: ESObject) {
+function foo(prx: ESValue) {
  Reflect.apply(prx.getName, {a: 12}) // 12
  Reflect.defineProperty(prx, 'newField', {value: 7})  // true
  Reflect.deleteProperty(prx, 'a')  // true
@@ -1112,14 +900,14 @@ foo(new X())
 ```typescript
 // solution for static ownKeys:
 // file0.ets ArkTS1.2
-export getOwnKeys(prx: Object | ESObject): string[] | undefined {
+export getOwnKeys(prx: Object | ESValue): string[] | undefined {
   if (prx instanceof Object) { return Reflect.ownKeys(prx) }
   return undefined
 }
 
 // file1.ets ArkTS1.1
 import {getOwnKeys} from './file0'
-export function myOwnKeys(prx: ESObject) {
+export function myOwnKeys(prx: ESValue) {
   let ret = getOwnKeys(prx)
   if (ret == undefined) {  // prx is dynamic
     return Reflect.ownKeys(prx)
@@ -1127,7 +915,7 @@ export function myOwnKeys(prx: ESObject) {
   return ret
 }
 
-export function foo(prx: ESObject) {
+export function foo(prx: ESValue) {
  Reflect.apply(prx.getName, {a: 12}) // 运行时报错
  Reflect.defineProperty(prx, 'newField', {value: 7})  // false
  Reflect.deleteProperty(prx, 'a')  // false
@@ -1182,8 +970,8 @@ let a = new A() as A;
 export class A {}
 
 // file2.ets   ArkTS1.2
-let mod = ESObject.load("./file1");
-let A: ESObject = mod.getProperty("A");
+let mod = ESValue.load("./file1");
+let A: ESValue = mod.getProperty("A");
 let a = A.instantiate() as A;
 ```
 
@@ -1192,9 +980,9 @@ let a = A.instantiate() as A;
 - 运行时报错信息：
   不涉及
 - 适配建议：
-  使用ESObject接口动态导入模块和调用接口
+  使用ESValue接口动态导入模块和调用接口
 - 变更理由：
-  ArkTS1.2没有动态import语法，使用ESObject接口动态导入动态模块。
+  ArkTS1.2没有动态import语法，使用ESValue接口动态导入动态模块。
 
 ---
 
@@ -1213,8 +1001,6 @@ export class X {
 // file2.ets
 import { X } from "./file1";
 let x: X = { name: "hello" };
-
-// 普通的类，继承的类，类的构造函数参数个数是1个，2个
 ```
 
 - ArkTS1.2语法
@@ -1261,8 +1047,6 @@ export interface Y {
 // file2.ets
 import { X, Y } from "./file1";
 let x: X | Y = { name: "hello" };
-
-// ... 两个来自于ArkTS1.1， 一个来自于ArkTS1.1，另外一个来自于ArkTS1.2, 三个类型联合
 ```
 
 - ArkTS1.2语法
@@ -1396,11 +1180,11 @@ let item = obj[0];
 // file1.ts
 export let obj: SomeType;
 // 从ArkTS1.2看来，这个声明为
-// export let obj: ESObject
+// export let obj: ESValue
 
 // file2.ets ArkTS1.2
 import { obj } from "./file1";
-obj.setPropertyByName("prop", ESObject.wrap(1));
+obj.setProperty("prop", ESValue.wrap(1));
 ```
 
 - 编译报错信息：
@@ -1412,7 +1196,7 @@ obj.setPropertyByName("prop", ESObject.wrap(1));
 - 运行时报错信息：
   不涉及。
 - 适配建议：
-  使用ESObject接口进行交互。
+  使用ESValue接口进行交互。
 - 变更理由：
   ArkTS1.2中不支持这些类型。
 
@@ -1445,7 +1229,7 @@ export class MyIter<T> {
 // file2.ets  ArkTS1.2
 import {MyIter} from './file1'
 let m = new MyIter<number>();
-let eo = ESObject.wrap(m)
+let eo = ESValue.wrap(m)
 for (let a of eo) {
   doSomething(a.toNumber())
 }
@@ -1456,7 +1240,7 @@ for (let a of eo) {
 - 运行时报错信息：
   nan
 - 适配建议：
-  转换为ESObject再进行用for-of遍历
+  转换为ESValue再进行用for-of遍历
 - 变更理由：
   ArkTS1.2和TS的可迭代的定义不同。ArkTS1.2中没有Symbol.iterator方法，无法识别自定义的ts可迭代对象
 
@@ -1514,7 +1298,7 @@ export function foo(prx: any) {
 // file2.ets
 import {foo} from './file1'
 class X { a = 1 }
-foo(ESObject.wrap(new X()))
+foo(ESValue.wrap(new X()))
 ```
 
 - 编译报错信息：
@@ -1579,7 +1363,7 @@ class X {
     return this.a;
   }
 }
-foo(ESObject.wrap(new X()));
+foo(ESValue.wrap(new X()));
 ```
 
 - 编译报错信息：
@@ -1627,7 +1411,7 @@ import { foo } from "./file1";
 try {
   foo();
 } catch (e) {
-  let err: ESObject = (e as ESError).getValue();
+  let err: ESValue = (e as ESError).getValue();
   err.toNumber(); // 123
 }
 ```
@@ -1637,7 +1421,7 @@ try {
 - 运行时报错信息：
   不涉及
 - 适配建议：
-  ArkTS1.2只能catch Error实例，针对非常规的ts异常对象，交互是会被包装到ESError中，通过getValue()方法可以获取包装了原始异常对象的ESObject实例
+  ArkTS1.2只能catch Error实例，针对非常规的ts异常对象，交互是会被包装到ESError中，通过getValue()方法可以获取包装了原始异常对象的ESValue实例
 - 变更理由：
   ArkTS1.2中throw和catch的对象只能是Error的实例
 
@@ -1713,8 +1497,8 @@ let a = new A() as A;
 export class A {}
 
 // file2.ets   ArkTS1.2
-let mod = ESObject.load("./file1");
-let A: ESObject = mod.getProperty("A");
+let mod = ESValue.load("./file1");
+let A: ESValue = mod.getProperty("A");
 let a = A.instantiate() as A;
 ```
 
@@ -1723,9 +1507,9 @@ let a = A.instantiate() as A;
 - 运行时报错信息：
   不涉及
 - 适配建议：
-  使用ESObject接口动态导入模块和调用接口
+  使用ESValue接口动态导入模块和调用接口
 - 变更理由：
-  ArkTS1.2没有动态import语法，使用ESObject接口动态导入动态模块。
+  ArkTS1.2没有动态import语法，使用ESValue接口动态导入动态模块。
 
 ---
 
@@ -1786,8 +1570,6 @@ import { foo } from "./file1";
 export { foo };
 
 export { A } from "./file1";
-
-// 函数 类 变量 枚举
 ```
 
 - ArkTS1.2语法
@@ -1798,9 +1580,9 @@ export function foo() {}
 export class A {}
 
 // file2.ets  // ArkTS1.2
-let mod = ESObject.load("./file1");
-let foo = mod.getPropertyByName("foo");
-let A = mod.getPropertyByName("A");
+let mod = ESValue.load("./file1");
+let foo = mod.getProperty("foo");
+let A = mod.getProperty("A");
 
 export { foo, A };
 ```
@@ -1813,7 +1595,7 @@ export { foo, A };
   直接从js文件导入使用
 - 变更理由：
   ArkTS1.2中只能和有类型声明的文件进行交互。
-  ArkTS1.2中限制ESObject的动态行为，形成动静态更清晰的界限，减少开发者滥用ESObject导致性能劣化的场景
+  ArkTS1.2中限制ESValue的动态行为，形成动静态更清晰的界限，减少开发者滥用ESValue导致性能劣化的场景
 
 ---
 
@@ -1840,11 +1622,11 @@ export function foo() {}
 export function bar(a) {}
 
 // file2.ets  // ArkTS1.2
-let mod = ESObject.load("./file1");
-let foo = mod.getPropertyByName("foo");
-let bar = mod.getPropertyByName("bar");
+let mod = ESValue.load("./file1");
+let foo = mod.getProperty("foo");
+let bar = mod.getProperty("bar");
 foo.invoke();
-bar.invoke(ESObject.wrap(123));
+bar.invoke(ESValue.wrap(123));
 ```
 
 - 编译报错信息：
@@ -1853,10 +1635,10 @@ bar.invoke(ESObject.wrap(123));
 - 运行时报错信息：
   不涉及
 - 适配建议：
-  调用ESObject的接口，接口接收参数为ESObject类型，传参时需要用wrap接口构造ESObject实例再传参。
+  调用ESValue的接口，接口接收参数为ESValue类型，传参时需要用wrap接口构造ESValue实例再传参。
 - 变更理由：
   - ArkTS1.2中只能和有类型声明的文件进行交互。
-  - ArkTS1.2中限制ESObject的动态行为，形成动静态更清晰的界限，减少开发者滥用ESObject导致性能劣化的场景。
+  - ArkTS1.2中限制ESValue的动态行为，形成动静态更清晰的界限，减少开发者滥用ESValue导致性能劣化的场景。
 
 ---
 
@@ -1883,9 +1665,9 @@ class foo {
 }
 
 // file2.ets  // ArkTS1.2
-let mod = ESObject.load("./file1");
-let foo = mod.getPropertyByName("foo");
-foo.instantiate(ESObject.wrap(123));
+let mod = ESValue.load("./file1");
+let foo = mod.getProperty("foo");
+foo.instantiate(ESValue.wrap(123));
 ```
 
 - 编译报错信息
@@ -1894,10 +1676,10 @@ foo.instantiate(ESObject.wrap(123));
 - 运行时报错信息
   不涉及
 - 适配建议
-  使用ESObject的接口实例化，接口接收参数为ESObject类型，传参时需要用wrap接口构造ESObject实例再传参
+  使用ESValue的接口实例化，接口接收参数为ESValue类型，传参时需要用wrap接口构造ESValue实例再传参
 - 变更理由
   ArkTS1.2中只能和有类型声明的文件进行交互。
-  ArkTS1.2中限制ESObject的动态行为，形成动静态更清晰的界限，减少开发者滥用ESObject导致性能劣化的场景
+  ArkTS1.2中限制ESValue的动态行为，形成动静态更清晰的界限，减少开发者滥用ESValue导致性能劣化的场景
 
 ---
 
@@ -1921,10 +1703,10 @@ foo.name = "456";
 export let foo = {name: '123'}
 
 // file2.ets  // ArkTS1.2
-let mod = ESObject.load('./file1')
-let foo = mod.getPropertyByName('foo')
-foo.getPropertyByName('name')
-foo.setPropertyByName('name', ESObject.wrap('456')）
+let mod = ESValue.load('./file1')
+let foo = mod.getProperty('foo')
+foo.getProperty('name')
+foo.setProperty('name', ESValue.wrap('456')）
 ```
 
 - 编译报错信息
@@ -1933,10 +1715,10 @@ foo.setPropertyByName('name', ESObject.wrap('456')）
 - 运行时报错信息
   不涉及
 - 适配建议
-  使用ESObject的接口访问属性，接口接收参数为ESObject类型，传参时需要用wrap接口构造ESObject实例再传参
+  使用ESValue的接口访问属性，接口接收参数为ESValue类型，传参时需要用wrap接口构造ESValue实例再传参
 - 变更理由
   ArkTS1.2中只能和有类型声明的文件进行交互。
-  ArkTS1.2中限制ESObject的动态行为，形成动静态更清晰的界限，减少开发者滥用ESObject导致性能劣化的场景
+  ArkTS1.2中限制ESValue的动态行为，形成动静态更清晰的界限，减少开发者滥用ESValue导致性能劣化的场景
 
 ---
 
@@ -1964,9 +1746,9 @@ class Foo {
 }
 
 // file2.ets  // ArkTS1.2
-let mod = ESObject.load("./file1");
-let foo = mod.getPropertyByName("foo");
-foo.invokeMethod("bar", ESObject.wrap(123));
+let mod = ESValue.load("./file1");
+let foo = mod.getProperty("foo");
+foo.invokeMethod("bar", ESValue.wrap(123));
 ```
 
 - 编译报错信息
@@ -1975,10 +1757,10 @@ foo.invokeMethod("bar", ESObject.wrap(123));
 - 运行时报错信息
   不涉及
 - 适配建议
-  使用ESObject的接口调用方法，接口接收参数为ESObject类型，传参时需要用wrap接口构造ESObject实例再传参
+  使用ESValue的接口调用方法，接口接收参数为ESValue类型，传参时需要用wrap接口构造ESValue实例再传参
 - 变更理由
   ArkTS1.2中只能和有类型声明的文件进行交互。
-  ArkTS1.2中限制ESObject的动态行为，形成动静态更清晰的界限，减少开发者滥用ESObject导致性能劣化的场景
+  ArkTS1.2中限制ESValue的动态行为，形成动静态更清晰的界限，减少开发者滥用ESValue导致性能劣化的场景
 
 ---
 
@@ -2003,11 +1785,11 @@ arr[3] = 4;
 export let foo = [1, 2, 3];
 
 // file2.ets  // ArkTS1.2
-let mod = ESObject.load("./file1");
-let foo = mod.getPropertyByName("foo");
-let arr = foo.getPropertyByName("arr");
-arr.getPropertyByIndex(1);
-arr.setPropertyByIndex(3, ESObject.wrap(4));
+let mod = ESValue.load("./file1");
+let foo = mod.getProperty("foo");
+let arr = foo.getProperty("arr");
+arr.getProperty(1);
+arr.setProperty(3, ESValue.wrap(4));
 ```
 
 - 编译报错信息
@@ -2016,10 +1798,10 @@ arr.setPropertyByIndex(3, ESObject.wrap(4));
 - 运行时报错信息
   不涉及
 - 适配建议
-  使用ESObject的接口访问索引，接口接收参数为ESObject类型，传参时需要用wrap接口构造ESObject实例再传参
+  使用ESValue的接口访问索引，接口接收参数为ESValue类型，传参时需要用wrap接口构造ESValue实例再传参
 - 变更理由
   ArkTS1.2中只能和有类型声明的文件进行交互。
-  ArkTS1.2中限制ESObject的动态行为，形成动静态更清晰的界限，减少开发者滥用ESObject导致性能劣化的场景
+  ArkTS1.2中限制ESValue的动态行为，形成动静态更清晰的界限，减少开发者滥用ESValue导致性能劣化的场景
 
 ---
 
@@ -2052,37 +1834,37 @@ export let foo3 = { str: "123" };
 export let foo4 = { big: 123n };
 
 // file2.ets  // ArkTS1.2
-let mod = ESObject.load("./file1");
-let foo1 = mod.getPropertyByName("foo1");
-let num = foo.getPropertyByName("num");
+let mod = ESValue.load("./file1");
+let foo1 = mod.getProperty("foo1");
+let num = foo.getProperty("num");
 let a1: number = num.toNumber();
 
-let foo2 = mod.getPropertyByName("foo2");
-let bool = foo.getPropertyByName("bool");
+let foo2 = mod.getProperty("foo2");
+let bool = foo.getProperty("bool");
 let a2: boolean = bool.toBoolean();
 
-let foo3 = mod.getPropertyByName("foo3");
-let str = foo3.getPropertyByName("str");
+let foo3 = mod.getProperty("foo3");
+let str = foo3.getProperty("str");
 let a3: string = str.toString();
 
-let foo4 = mod.getPropertyByName("foo4");
-let big = foo.getPropertyByName("big");
+let foo4 = mod.getProperty("foo4");
+let big = foo.getProperty("big");
 let a4: bigint = big.toBigInt();
 ```
 
 - 编译报错信息
   ArkTS1.2 cannot import js files directly
-  cannot cast ESObject to number
-  cannot cast ESObject to boolean
-  cannot cast ESObject to string
-  cannot cast ESObject to bigint
+  cannot cast ESValue to number
+  cannot cast ESValue to boolean
+  cannot cast ESValue to string
+  cannot cast ESValue to bigint
 - 运行时报错信息
   不涉及
 - 适配建议
-  使用ESObject的接口转换类型
+  使用ESValue的接口转换类型
 - 变更理由
   ArkTS1.2中只能和有类型声明的文件进行交互。
-  ArkTS1.2中限制ESObject的动态行为，形成动静态更清晰的界限，减少开发者滥用ESObject导致性能劣化的场景
+  ArkTS1.2中限制ESValue的动态行为，形成动静态更清晰的界限，减少开发者滥用ESValue导致性能劣化的场景
 
 ---
 
@@ -2106,9 +1888,9 @@ typeof foo.num; // 'number'
 export let foo = 123;
 
 // file2.ets  // ArkTS1.2
-let mod = ESObject.load("./file1");
-let foo = mod.getPropertyByName("foo");
-let num = foo.getPropertyByName("num");
+let mod = ESValue.load("./file1");
+let foo = mod.getProperty("foo");
+let num = foo.getProperty("num");
 
 num.typeOf(); // 'number'
 ```
@@ -2118,10 +1900,10 @@ num.typeOf(); // 'number'
 - 运行时报错信息
   不涉及
 - 适配建议
-  使用ESObject的接口获取类型
+  使用ESValue的接口获取类型
 - 变更理由
   ArkTS1.2中只能和有类型声明的文件进行交互。
-  ArkTS1.2中限制ESObject的动态行为，形成动静态更清晰的界限，减少开发者滥用ESObject导致性能劣化的场景
+  ArkTS1.2中限制ESValue的动态行为，形成动静态更清晰的界限，减少开发者滥用ESValue导致性能劣化的场景
 
 ---
 
@@ -2147,9 +1929,9 @@ export class Foo {}
 export let foo = new Foo();
 
 // file2.ets  // ArkTS1.2
-let mod = ESObject.load("./file1");
-let Foo = mod.getPropertyByName("Foo");
-let foo = mod.getPropertyByName("foo");
+let mod = ESValue.load("./file1");
+let Foo = mod.getProperty("Foo");
+let foo = mod.getProperty("foo");
 
 foo.isInstanceOf(Foo);
 ```
@@ -2160,10 +1942,10 @@ foo.isInstanceOf(Foo);
 - 运行时报错信息
   不涉及
 - 适配建议
-  使用ESObject的接口判断类型
+  使用ESValue的接口判断类型
 - 变更理由
   ArkTS1.2中只能和有类型声明的文件进行交互。
-  ArkTS1.2中限制ESObject的动态行为，形成动静态更清晰的界限，减少开发者滥用ESObject导致性能劣化的场景
+  ArkTS1.2中限制ESValue的动态行为，形成动静态更清晰的界限，减少开发者滥用ESValue导致性能劣化的场景
 
 ---
 
@@ -2191,20 +1973,20 @@ a = --foo.num;
 export let foo = { num: 0 };
 
 // file2.ets  // ArkTS1.2
-let mod = ESObject.load("./file1");
-let foo = mod.getPropertyByName("foo");
+let mod = ESValue.load("./file1");
+let foo = mod.getProperty("foo");
 let a: number = 0;
 
 // a = foo.num++
-let num = foo.getPropertyByName("num");
+let num = foo.getProperty("num");
 let tmp: number = num.toNumber();
 a = tmp;
-foo.setPropertyByName("num", ESObject(tmp + 1));
+foo.setProperty("num", ESValue(tmp + 1));
 
 // a = ++foo.num
-num = foo.getPropertyByName("num");
+num = foo.getProperty("num");
 tmp = num.toNumber() + 1;
-foo.setPropertyByName("num", ESObject(tmp));
+foo.setProperty("num", ESValue(tmp));
 a = tmp;
 ```
 
@@ -2215,10 +1997,10 @@ a = tmp;
 - 运行时报错信息
   不涉及
 - 适配建议
-  使用ESObject的接口转换为数字后再操作
+  使用ESValue的接口转换为数字后再操作
 - 变更理由
   ArkTS1.2中只能和有类型声明的文件进行交互。
-  ArkTS1.2中限制ESObject的动态行为，形成动静态更清晰的界限，减少开发者滥用ESObject导致性能劣化的场景
+  ArkTS1.2中限制ESValue的动态行为，形成动静态更清晰的界限，减少开发者滥用ESValue导致性能劣化的场景
 
 ---
 
@@ -2243,10 +2025,10 @@ import { foo } from "./file1";
 export let foo = { num: 0 };
 
 // file2.ets  // ArkTS1.2
-let mod = ESObject.load("./file1");
-let foo = mod.getPropertyByName("foo");
+let mod = ESValue.load("./file1");
+let foo = mod.getProperty("foo");
 let num =
-  foo.getPropertyByName("num") +
+  foo.getProperty("num") +
   // +foo.num
   num.toNumber() -
   // -foo.num
@@ -2264,10 +2046,10 @@ let num =
 - 运行时报错信息
   不涉及
 - 适配建议
-  使用ESObject的接口转换为数字后再操作
+  使用ESValue的接口转换为数字后再操作
 - 变更理由
   ArkTS1.2中只能和有类型声明的文件进行交互。
-  ArkTS1.2中限制ESObject的动态行为，形成动静态更清晰的界限，减少开发者滥用ESObject导致性能劣化的场景
+  ArkTS1.2中限制ESValue的动态行为，形成动静态更清晰的界限，减少开发者滥用ESValue导致性能劣化的场景
 
 ---
 
@@ -2298,10 +2080,10 @@ a ** b;
 export let foo = { a: 1, b: 2 };
 
 // file2.ets  // ArkTS1.2
-let mod = ESObject.load("./file1");
-let foo = mod.getPropertyByName("foo");
-let a = foo.getPropertyByName("a").toNumber();
-let b = foo.getPropertyByName("b").toNumber();
+let mod = ESValue.load("./file1");
+let foo = mod.getProperty("foo");
+let a = foo.getProperty("a").toNumber();
+let b = foo.getProperty("b").toNumber();
 a + b;
 a - b;
 a * b;
@@ -2319,10 +2101,10 @@ a ** b;
 - 运行时报错信息
   不涉及
 - 适配建议
-  使用ESObject的接口转换为数字后再操作
+  使用ESValue的接口转换为数字后再操作
 - 变更理由
   ArkTS1.2中只能和有类型声明的文件进行交互。
-  ArkTS1.2中限制ESObject的动态行为，形成动静态更清晰的界限，减少开发者滥用ESObject导致性能劣化的场景
+  ArkTS1.2中限制ESValue的动态行为，形成动静态更清晰的界限，减少开发者滥用ESValue导致性能劣化的场景
 
 ---
 
@@ -2350,8 +2132,8 @@ async function foo(){}
 export p = foo()
 
 // file2.ets  // ArkTS1.2
-let mod = ESObject.load('./file1')
-let p = mod.getPropertyByName('p')
+let mod = ESValue.load('./file1')
+let p = mod.getProperty('p')
 
 async function bar() {
   await p.toPromise()
@@ -2364,10 +2146,10 @@ async function bar() {
 - 运行时报错信息
   不涉及
 - 适配建议
-  使用ESObject的接口转换为Promise对象后再await
+  使用ESValue的接口转换为Promise对象后再await
 - 变更理由
   ArkTS1.2中只能和有类型声明的文件进行交互。
-  ArkTS1.2中限制ESObject的动态行为，形成动静态更清晰的界限，减少开发者滥用ESObject导致性能劣化的场景
+  ArkTS1.2中限制ESValue的动态行为，形成动静态更清晰的界限，减少开发者滥用ESValue导致性能劣化的场景
 
 ---
 
@@ -2397,10 +2179,10 @@ export let a = 1;
 export let b = 2;
 
 // file2.ets  // ArkTS1.2
-let mod = ESObject.load("./file1");
-let foo = mod.getPropertyByName("foo");
-let a = foo.getPropertyByName("a").toNumber();
-let b = foo.getPropertyByName("b").toNumber();
+let mod = ESValue.load("./file1");
+let foo = mod.getProperty("foo");
+let a = foo.getProperty("a").toNumber();
+let b = foo.getProperty("b").toNumber();
 
 a > b;
 a < b;
@@ -2415,10 +2197,10 @@ a <= b;
 - 运行时报错信息
   不涉及
 - 适配建议
-  使用ESObject的接口转换为数字后再操作
+  使用ESValue的接口转换为数字后再操作
 - 变更理由
   ArkTS1.2中只能和有类型声明的文件进行交互。
-  ArkTS1.2中限制ESObject的动态行为，形成动静态更清晰的界限，减少开发者滥用ESObject导致性能劣化的场景
+  ArkTS1.2中限制ESValue的动态行为，形成动静态更清晰的界限，减少开发者滥用ESValue导致性能劣化的场景
 
 ---
 
@@ -2449,9 +2231,9 @@ export let a = new A();
 export let b = new A();
 
 // file2.ets  // ArkTS1.2
-let mod = ESObject.load("./file1");
-let a = mod.getPropertyByName("a");
-let b = mod.getPropertyByName("b");
+let mod = ESValue.load("./file1");
+let a = mod.getProperty("a");
+let b = mod.getProperty("b");
 
 a.areEqual(b);
 !a.areEqual(b);
@@ -2466,10 +2248,10 @@ a.areStrictlyEqual(b);
 - 运行时报错信息
   不涉及
 - 适配建议
-  使用ESObject的接口判断
+  使用ESValue的接口判断
 - 变更理由
   ArkTS1.2中只能和有类型声明的文件进行交互。
-  ArkTS1.2中限制ESObject的动态行为，形成动静态更清晰的界限，减少开发者滥用ESObject导致性能劣化的场景
+  ArkTS1.2中限制ESValue的动态行为，形成动静态更清晰的界限，减少开发者滥用ESValue导致性能劣化的场景
 
 ---
 
@@ -2495,10 +2277,10 @@ if (foo.isGood) {
 export let foo = { isGood: true };
 
 // file2.ets
-let mod = ESObject.load("./file1");
-let foo = mod.getPropertyByName("foo");
+let mod = ESValue.load("./file1");
+let foo = mod.getProperty("foo");
 
-let isGood = foo.getPropertyByName("isGood").toBoolean();
+let isGood = foo.getProperty("isGood").toBoolean();
 if (isGood) {
 }
 ```
@@ -2509,10 +2291,10 @@ if (isGood) {
 - 运行时报错信息
   nan
 - 适配建议
-  使用ESObject的接口转换为boolean
+  使用ESValue的接口转换为boolean
 - 变更理由
   ArkTS1.2中只能和有类型声明的文件进行交互。
-  ArkTS1.2中限制ESObject的动态行为，形成动静态更清晰的界限，减少开发者滥用ESObject导致性能劣化的场景
+  ArkTS1.2中限制ESValue的动态行为，形成动静态更清晰的界限，减少开发者滥用ESValue导致性能劣化的场景
 
 ---
 
@@ -2537,10 +2319,10 @@ let b = new B();
 export class A {}
 
 // file2.ets  // ArkTS1.2
-let mod = ESObject.load("./file1");
-let A = mod.getPropertyByName("A");
+let mod = ESValue.load("./file1");
+let A = mod.getProperty("A");
 
-let B: ESObject = ESObject.defineClass("B", () => {}, undefined, undefined, A);
+let B: ESValue = ESValue.defineClass("B", () => {}, undefined, undefined, A);
 let b = B.instantiate();
 ```
 
@@ -2550,10 +2332,10 @@ let b = B.instantiate();
 - 运行时报错信息
   nan
 - 适配建议
-  使用ESObject的接口构造JS类并传递js父类
+  使用ESValue的接口构造JS类并传递js父类
 - 变更理由
   ArkTS1.2中只能和有类型声明的文件进行交互。
-  ArkTS1.2中限制ESObject的动态行为，形成动静态更清晰的界限，减少开发者滥用ESObject导致性能劣化的场景
+  ArkTS1.2中限制ESValue的动态行为，形成动静态更清晰的界限，减少开发者滥用ESValue导致性能劣化的场景
 
 ---
 
@@ -2586,13 +2368,13 @@ export function foo() {
 }
 
 // file2.ets
-let mod = ESObject.load("./file1");
-let foo = mod.getPropertyByName("foo");
+let mod = ESValue.load("./file1");
+let foo = mod.getProperty("foo");
 
 try {
   foo.invoke();
 } catch (e) {
-  let err: ESObject = (e as ESError).getValue();
+  let err: ESValue = (e as ESError).getValue();
   err.toNumber(); // 123
 }
 ```
@@ -2603,7 +2385,7 @@ try {
 - 运行时报错信息
   不涉及
 - 适配建议
-  ArkTS1.2只能catch Error实例，针对非常规的js异常对象，交互是会被包装到ESError中，通过getValue()方法可以获取包装了原始异常对象的ESObject实例
+  ArkTS1.2只能catch Error实例，针对非常规的js异常对象，交互是会被包装到ESError中，通过getValue()方法可以获取包装了原始异常对象的ESValue实例
 - 变更理由
   ArkTS1.2中throw和catch的对象只能是Error的实例
 
@@ -2639,12 +2421,12 @@ export let foo = {
 };
 
 // file2.ets
-let mod = ESObject.load("./file1");
-let foo = mod.getPropertyByName("foo");
+let mod = ESValue.load("./file1");
+let foo = mod.getProperty("foo");
 
-foo.getPropertyByName("num").typeOf(); // 'number'
-foo.getPropertyByName("bool").typeOf(); // 'boolean'
-foo.getPropertyByName("str").typeOf(); // 'string'
+foo.getProperty("num").typeOf(); // 'number'
+foo.getProperty("bool").typeOf(); // 'boolean'
+foo.getProperty("str").typeOf(); // 'string'
 ```
 
 - 编译报错信息
@@ -2683,13 +2465,13 @@ for (let i = 0; i < len; ++i) {
 export let foo = { arr: [1, 2, 3] };
 
 // file2.ets  ArkTS1.2
-let mod = ESObject.load("./file1");
-let foo = mod.getPropertyByName("foo");
+let mod = ESValue.load("./file1");
+let foo = mod.getProperty("foo");
 let arr = foo.getProerptyByName("arr");
 let len = arr.getProerptyByName("length").toNumber();
 for (let i = 0; i < len; ++i) {
   arr.getPropertyByIndex(i).toNumber();
-  arr.setPropertyByIndex(i, ESObject.wrap(0));
+  arr.setPropertyByIndex(i, ESValue.wrap(0));
 }
 ```
 
@@ -2701,10 +2483,10 @@ for (let i = 0; i < len; ++i) {
 - 运行时报错信息
   不涉及
 - 适配建议
-  使用ESObject接口访问索引和属性
+  使用ESValue接口访问索引和属性
 - 变更理由
   ArkTS1.2中只能和有类型声明的文件进行交互。
-  ArkTS1.2中限制ESObject的动态行为，形成动静态更清晰的界限，减少开发者滥用ESObject导致性能劣化的场景
+  ArkTS1.2中限制ESValue的动态行为，形成动静态更清晰的界限，减少开发者滥用ESValue导致性能劣化的场景
 
 ---
 
@@ -2742,18 +2524,18 @@ export function handle(cb) {
 }
 
 // file2.ets
-let mod = ESObject.load("./file1");
-let handle = mod.getPropertyByName("handle");
+let mod = ESValue.load("./file1");
+let handle = mod.getProperty("handle");
 interface Person {
   name: string;
 }
 function foo(p: Person) {}
-// solution: function foo(p: ESObject) {}
+// solution: function foo(p: ESValue) {}
 let lambda = (p: Person) => {};
-// solution: let lambda = (p: ESObject) => {}
+// solution: let lambda = (p: ESValue) => {}
 
-handle.invoke(ESObject.wrap(foo));
-handle.invoke(ESObject.wrap(lambda));
+handle.invoke(ESValue.wrap(foo));
+handle.invoke(ESValue.wrap(lambda));
 ```
 
 - 编译报错信息
@@ -2802,13 +2584,13 @@ export function foo(obj) {
 }
 
 // file2.ets  // ArkTS1.2
-let mod = ESObject.load("./file1");
-let foo = mod.getPropertyByName("foo");
+let mod = ESValue.load("./file1");
+let foo = mod.getProperty("foo");
 class X {
   name: string = "";
   data: number = 0;
 }
-foo.invoke(ESObject.wrap(new X()));
+foo.invoke(ESValue.wrap(new X()));
 ```
 
 - 编译报错信息
@@ -2873,10 +2655,10 @@ export function foo(prx) {
 }
 
 // file2.ets  // ArkTS1.2
-let mod = ESObject.load('./file1')
-let foo = mod.getPropertyByName('foo')
+let mod = ESValue.load('./file1')
+let foo = mod.getProperty('foo')
 class X { a = 1 }
-foo.invoke(ESObject.wrap(new X()))
+foo.invoke(ESValue.wrap(new X()))
 ```
 
 - 编译报错信息
@@ -2935,15 +2717,15 @@ export function foo(prx) {
 }
 
 // file2.ets  // ArkTS1.2
-let mod = ESObject.load("./file1");
-let foo = mod.getPropertyByName("foo");
+let mod = ESValue.load("./file1");
+let foo = mod.getProperty("foo");
 class X {
   a: string = "hello";
   getName() {
     return this.a;
   }
 }
-foo.invoke(ESObject.wrap(new X()));
+foo.invoke(ESValue.wrap(new X()));
 ```
 
 - 编译报错信息
@@ -2984,14 +2766,15 @@ export function foo(obj) {
   let x = {...obj} // x will be empty object {}. because there is no own properties for static object
   // solution: let x = {a: obj.a, b: obj.b, c: obj.c}
   // keys + Reflect.get
-  let {a, b, ...rest} = obj  // a will be 1, b will be 2, rest will be empty object {}. because there is no own properties for static object
+  let {a, b, ...rest} = obj
+  // a will be 1, b will be 2, rest will be empty object {}, because there is no own properties for static object
   // solution: let rest = {c: obj.c}
 
 // file2.ets  // ArkTS1.2
-let mod = ESObject.load('./file1')
-let foo = mod.getPropertyByName('foo')
+let mod = ESValue.load('./file1')
+let foo = mod.getProperty('foo')
 class X { a = 1; b = 2; c = 3 }
-foo.invoke(ESObject.wrap(new X()))
+foo.invoke(ESValue.wrap(new X()))
 ```
 
 - 编译报错信息
@@ -3031,15 +2814,13 @@ ArkTS1.2动态导入JS
 export class A {}
 
 // file2.ets   ArkTS1.2
-let mod = ESObject.load("./file1");
-let A: ESObject = mod.getProperty("A");
+let mod = ESValue.load("./file1");
+let A: ESValue = mod.getProperty("A");
 let a = A.instantiate();
 ```
 
 - 变更理由
-  使用ESObject接口动态导入模块和调用接口
-
-<https://onebox.huawei.com/v/1a7cd28d9c01a3d280e7b7e3349df392>
+  使用ESValue接口动态导入模块和调用接口
 
 ## ArkTS1.2并发场景下的交互
 

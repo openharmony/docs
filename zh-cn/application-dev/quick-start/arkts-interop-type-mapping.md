@@ -13,7 +13,7 @@
 - 基本类型映射为基本类型（比如`number <-> number`）。
 - 标准库类型映射为标准库类型（比如`Array <-> Array`）。
 - 组合类型映射为组合类型（比如`class <-> class`）。
-- 无法直接映射到ArkTS1.2的ArkTS1.1或TS类型，会被映射为`ESObject`（比如 TS `symbol -> 1.2 ESObject`）。
+- 无法直接映射到ArkTS1.2的ArkTS1.1或TS类型，会被映射为`Any`（比如 TS `symbol -> 1.2 Any`）。
 - 无法直接映射到ArkTS1.1的ArkTS1.2类型，会被映射为空，即交互场景不可用（比如ArkTS1.2的`final class`）。
 
 ## 类型映射详细规则
@@ -67,7 +67,6 @@ ArkTS1.2采用递归的方式定义类型映射，例如以下的类型映射。
 | `WeakMap`           | `WeakMap`           |
 | `WeakSet`           | `WeakSet`           |
 | `Object`            | `Object`            |
-| `ESObject`          | `ESObject`          |
 | `ArrayBuffer`       | `ArrayBuffer`       |
 | `DataView`          | `DataView`          |
 | `Date`              | `Date`              |
@@ -183,7 +182,6 @@ TODO: 美化表格
 | `undefined`           | `undefined`           |
 | `void`                | `void`                |
 | `never`               | `never`               |
-| `Function`            | `ESObject`            |
 | `literal type number` | `number`              |
 | `literal type bigint` | `bigint`              |
 
@@ -201,7 +199,6 @@ TODO: 美化表格
 | `WeakMap`           | `WeakMap`           |
 | `WeakSet`           | `WeakSet`           |
 | `Object`            | `Object`            |
-| `ESObject`          | `ESObject`          |
 | `ArrayBuffer`       | `ArrayBuffer`       |
 | `DataView`          | `DataView`          |
 | `Date`              | `Date`              |
@@ -268,7 +265,7 @@ TODO: 美化表格
 | ---------------- | ------------------------------------------------- | ------------------------------------ |
 | 枚举值都为整数   | `enum Color {Blue = 0,- Red = 1}`                 | `enum Color {Blue = 0, Red = 1}`     |
 | 枚举值都为字符串 | `enum Some {A = 'Alice', B = 'Bob'}`              | `enum Some {A = 'Alice', B = 'Bob'}` |
-| 其它枚举         | `enum Mix {One = 1, Msg = 'hello', Double = 1.2}` | `ESObject`                           |
+| 其它枚举         | `enum Mix {One = 1, Msg = 'hello', Double = 1.2}` | `Any`                           |
 
 #### 注解
 
@@ -319,9 +316,9 @@ TODO: 美化表格
 | `never`               | `never`               |
 | `literal type number` | `number`              |
 | `literal type bigint` | `bigint`              |
-| `any`                 | `ESObject`            |
-| `symbol/Symbol`       | `ESObject`            |
-| `unknown`             | `ESObject`            |
+| `any`                 | `Any`            |
+| `symbol/Symbol`       | `Any`            |
+| `unknown`             | `Any`            |
 
 #### 标准库
 
@@ -335,7 +332,6 @@ TODO: 美化表格
 | `WeakMap`           | `WeakMap`           |
 | `WeakSet`           | `WeakSet`           |
 | `Object`            | `Object`            |
-| `ESObject`          | `ESObject`          |
 | `ArrayBuffer`       | `ArrayBuffer`       |
 | `DataView`          | `DataView`          |
 | `Date`              | `Date`              |
@@ -355,7 +351,6 @@ TODO: 美化表格
 | `BigInt64Array`     | `BigInt64Array`     |
 | `BigUint64Array`    | `BigUint64Array`    |
 | `Uint8ClampedArray` | `Uint8ClampedArray` |
-| `Function`          | `ESObject`          |
 
 #### 工具类型
 
@@ -365,24 +360,24 @@ TODO: 美化表格
 | `Record`                 | `Record`            |
 | `Required`               | `Required`          |
 | `Partial`                | `Partial`           |
-| `Pick`                   | `ESObject`          |
-| `Omit`                   | `ESObject`          |
-| `Exclude`                | `ESObject`          |
-| `Extract`                | `ESObject`          |
-| `NonNullable`            | `ESObject`          |
-| `Parameters`             | `ESObject`          |
-| `Constructor`            | `ESObject`          |
-| `Parameters`             | `ESObject`          |
-| `ReturnType`             | `ESObject`          |
-| `InstanceType`           | `ESObject`          |
-| `NoInfer`                | `ESObject`          |
-| `This`                   | `ESObject`          |
-| `ParameterType`          | `ESObject`          |
-| `OmitThisParameter`      | `ESObject`          |
-| `ThisType`               | `ESObject`          |
-| `Uppercase`              | `ESObject`          |
-| `Lowercase`              | `ESObject`          |
-| `CapitalizeUncapitalize` | `ESObject`          |
+| `Pick`                   | `Any`          |
+| `Omit`                   | `Any`          |
+| `Exclude`                | `Any`          |
+| `Extract`                | `Any`          |
+| `NonNullable`            | `Any`          |
+| `Parameters`             | `Any`          |
+| `Constructor`            | `Any`          |
+| `Parameters`             | `Any`          |
+| `ReturnType`             | `Any`          |
+| `InstanceType`           | `Any`          |
+| `NoInfer`                | `Any`          |
+| `This`                   | `Any`          |
+| `ParameterType`          | `Any`          |
+| `OmitThisParameter`      | `Any`          |
+| `ThisType`               | `Any`          |
+| `Uppercase`              | `Any`          |
+| `Lowercase`              | `Any`          |
+| `CapitalizeUncapitalize` | `Any`          |
 
 #### 函数
 
@@ -421,7 +416,7 @@ TODO: 美化表格
 | ---------------- | ------------------------------------------------- | ------------------------------------ |
 | 枚举值都为整数   | `enum Color {Blue = 0, Red = 1}`                  | `enum Color {Blue = 0, Red = 1}`     |
 | 枚举值都为字符串 | `enum Some {A = 'Alice', B = 'Bob'}`              | `enum Some {A = 'Alice', B = 'Bob'}` |
-| 其它枚举         | `enum Mix {One = 1, Msg = 'hello', Double = 1.2}` | `ESObject`                           |
+| 其它枚举         | `enum Mix {One = 1, Msg = 'hello', Double = 1.2}` | `Any`                           |
 
 #### 装饰器
 
@@ -457,53 +452,53 @@ TODO: 美化表格
 
 | **TS type (T)**               | **1.2 type (f(T))** |
 | ----------------------------- | ------------------- |
-| `{name: string, age: number}` | `ESObject`          |
+| `{name: string, age: number}` | `Any`          |
 
 ##### 调用签名
 
 | **TS type (T)**              | **1.2 type (f(T))** |
 | ---------------------------- | ------------------- |
-| `{ (arg: T1): R }`           | `ESObject`          |
-| `interface X {(arg): T1: R}` | `ESObject`          |
+| `{ (arg: T1): R }`           | `Any`          |
+| `interface X {(arg): T1: R}` | `Any`          |
 
 ##### 构造签名
 
 | **TS type (T)**                  | **1.2 type (f(T))** |
 | -------------------------------- | ------------------- |
-| `{ new (arg: T1): R }`           | `ESObject`          |
-| `interface X {new (arg): T1: R}` | `ESObject`          |
+| `{ new (arg: T1): R }`           | `Any`          |
+| `interface X {new (arg): T1: R}` | `Any`          |
 
 ##### 索引签名
 
 | **TS type (T)**               | **1.2 type (f(T))** |
 | ----------------------------- | ------------------- |
-| `{ [index: T]: R }`           | `ESObject`          |
-| `interface X {[index: T]: R}` | `ESObject`          |
+| `{ [index: T]: R }`           | `Any`          |
+| `interface X {[index: T]: R}` | `Any`          |
 
 ##### 相交类型
 
 | **TS type (T)** | **1.2 type (f(T))** |
 | --------------- | ------------------- |
-| `T1 & T2`       | `ESObject`          |
+| `T1 & T2`       | `Any`          |
 
 ##### keyof
 
 | **TS type (T)**                 | **1.2 type (f(T))**  |
 | ------------------------------- | -------------------- |
-| `type My = keyof T`             | `type My = ESObject` |
-| `interface X { props: keyof T}` | `ESObject`           |
+| `type My = keyof T`             | `type My = Any` |
+| `interface X { props: keyof T}` | `Any`           |
 
 ##### typeof
 
 | **TS type (T)**  | **1.2 type (f(T))** |
 | ---------------- | ------------------- |
-| `typeof someVar` | `ESObject`          |
+| `typeof someVar` | `Any`          |
 
 ##### 索引访问类型
 
 | **TS type (T)**     | **1.2 type (f(T))** |
 | ------------------- | ------------------- |
-| `someArray[number]` | `ESObject`          |
+| `someArray[number]` | `Any`          |
 
 例子：
 
@@ -513,20 +508,20 @@ MyArray = [{ name: "Alice", age: 15 }];
 export type Person = (typeof MyArray)[number];
 
 // declaration in ArkTS 1.2 is
-export type Person = ESObject;
+export type Person = Any;
 ```
 
 ##### 条件类型
 
 | **TS type (T)**     | **1.2 type (f(T))** |
 | ------------------- | ------------------- |
-| `condition ? A : B` | `ESObject`          |
+| `condition ? A : B` | `Any`          |
 
 ##### 映射类型
 
 | **TS type (T)** | **1.2 type (f(T))** |
 | --------------- | ------------------- |
-| `SomeType[Key]` | `ESObject`          |
+| `SomeType[Key]` | `Any`          |
 
 示例如下：
 
@@ -535,14 +530,14 @@ export type Person = ESObject;
 export type A<T> = { [K in keyof T]: T[K] };
 
 // declaration in 1.2 is
-export type A<T> = ESObject;
+export type A<T> = Any;
 ```
 
 ##### 模板字面量类型
 
 | **TS type (T)**            | **1.2 type (f(T))** |
 | -------------------------- | ------------------- |
-| `...${SomeLiteralType}...` | `ESObject`          |
+| `...${SomeLiteralType}...` | `Any`          |
 
 示例如下：
 
@@ -553,5 +548,5 @@ export type AllLocaleIDs = `${AB}_id`;
 
 // declaration in 1.2 is
 export type AB = "A" | "B";
-export type AllLocaleIDs = ESObject;
+export type AllLocaleIDs = Any;
 ```
