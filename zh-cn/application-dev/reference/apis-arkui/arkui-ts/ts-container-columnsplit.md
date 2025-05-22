@@ -78,7 +78,7 @@ divider(value: ColumnSplitDividerStyle | null)
 
 ## 示例
 
-ColumnSplit的基本用法。设置可拖动的、纵向布局的子组件。
+ColumnSplit的基本用法：设置可拖动的纵向布局子组件。
 
 ```ts
 // xxx.ets
