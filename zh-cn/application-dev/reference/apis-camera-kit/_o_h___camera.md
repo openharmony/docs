@@ -2857,8 +2857,8 @@ cameraConcurrentInfo为获取到的相机并发能力数组[Camera_ConcurrentInf
 | cameraManager | 相机管理器实例[Camera_Manager](#camera_manager)。 | 
 | camera | 用于查询的[Camera_Device](_camera___device.md)数组。 | 
 | deviceSize | 用于查询的相机数组长度。 | 
-| cameraConcurrentInfo | 查询到的相机并发能力数组[Camera_ConcurrentInfo](_camera___concurrent_info.md)。 | 
-| infoSize | 查询到的相机并发能力数组长度。 | 
+| cameraConcurrentInfo | 查询到的相机并发能力数组[Camera_ConcurrentInfo](_camera___concurrent_info.md)，作为入参应当默认设置为空。如果相机支持并发，cameraConcurrentInfo会被赋值为查询到的相机并发能力数组[Camera_ConcurrentInfo](_camera___concurrent_info.md)。 如果相机不支持并发，不会对cameraConcurrentInfo进行更改，并且返回错误码[Camera_ErrorCode](#camera_errorcode-1)中的CAMERA_SERVICE_FATAL_ERROR。 | 
+| infoSize | 查询到的相机并发能力数组长度，作为入参应当默认设置为0。如果相机支持并发，infoSize会被赋值为查询到的相机并发能力数组长度。如果相机不支持并发，不会对infoSize进行更改，并且返回错误码[Camera_ErrorCode](#camera_errorcode-1)中的CAMERA_SERVICE_FATAL_ERROR。 | 
 
 **返回：**
 
