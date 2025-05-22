@@ -2,7 +2,9 @@
 
 ## 概述
 
-请求策略模式配置项。此结构体为媒体资源请求策略模式配置项。
+请求策略模式配置项。
+
+此结构体为媒体资源请求策略模式配置项。
 
 **起始版本：** 12
 
@@ -16,6 +18,6 @@
 
 | 名称 | 描述 |
 | -- | -- |
-| MediaLibrary_DeliveryMode deliveryMode | 请求资源分发模式，可以指定对于该资源的请求策略。 |
+| [MediaLibrary_DeliveryMode](capi-media-asset-base-capi-h.md#medialibrary_deliverymode) deliveryMode | 请求资源分发模式，可以指定对于该资源的请求策略。 |
 
 

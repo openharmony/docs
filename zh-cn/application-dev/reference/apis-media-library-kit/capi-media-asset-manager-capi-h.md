@@ -6,6 +6,10 @@
 
 **库：** libmedia_asset_manager.so
 
+**引用文件：** <multimedia/media_library/media_asset_manager_capi.h>
+
+**系统能力：** SystemCapability.FileManagement.PhotoAccessHelper.Core
+
 **起始版本：** 12
 
 **相关模块：** [MediaAssetManager](capi-mediaassetmanager.md)
@@ -42,7 +46,7 @@ OH_MediaAssetManager* OH_MediaAssetManager_Create(void)
 
 | 类型 | 说明 |
 | -- | -- |
-| OH_MediaAssetManager* | 返回一个指向OH_MediaAssetManager实例的指针。 |
+| [OH_MediaAssetManager](capi-oh-mediaassetmanager.md)* | 返回一个指向OH_MediaAssetManager实例的指针。 |
 
 ### OH_MediaAssetManager_RequestImageForPath()
 
@@ -126,7 +130,7 @@ bool OH_MediaAssetManager_CancelRequest(OH_MediaAssetManager* manager, const Med
 | 参数项 | 描述 |
 | -- | -- |
 | [OH_MediaAssetManager](capi-oh-mediaassetmanager.md)* manager | 指向OH_MediaAssetManager实例的指针。 |
-| const MediaLibrary_RequestId requestId | 待取消的请求Id。 |
+| const [MediaLibrary_RequestId](capi-medialibrary-requestid.md) requestId | 待取消的请求Id。 |
 
 **返回：**
 
@@ -163,7 +167,7 @@ MediaLibrary_ErrorCode OH_MediaAssetManager_RequestMovingPhoto(OH_MediaAssetMana
 
 | 类型 | 说明 |
 | -- | -- |
-| [MediaLibrary_ErrorCode](capi-media-asset-base-capi-h.md#medialibrary_errorcode) | 返回接口结果[MediaLibrary_ErrorCode](capi-media-asset-base-capi-h.md#medialibrary_errorcode)：<br>      MEDIA_LIBRARY_OK：方法调用成功。<br>      MEDIA_LIBRARY_PARAMETER_ERROR：参数错误。可能的原因：<br>                                      1. 未指定强制参数。<br>                                      2. 参数类型不正确。<br>                                      3. 参数验证失败。<br>      MEDIA_LIBRARY_OPERATION_NOT_SUPPORTED：不支持该操作。<br>      MEDIA_LIBRARY_PERMISSION_DENIED：没有权限。<br>      MEDIA_LIBRARY_INTERNAL_SYSTEM_ERROR：内部系统错误。 |
+| [MediaLibrary_ErrorCode](capi-media-asset-base-capi-h.md#medialibrary_errorcode) | MEDIA_LIBRARY_OK：方法调用成功。<br>      MEDIA_LIBRARY_PARAMETER_ERROR：参数错误。可能的原因：<br>                                      1. 未指定强制参数。<br>                                      2. 参数类型不正确。<br>                                      3. 参数验证失败。<br>      MEDIA_LIBRARY_OPERATION_NOT_SUPPORTED：不支持该操作。<br>      MEDIA_LIBRARY_PERMISSION_DENIED：没有权限。<br>      MEDIA_LIBRARY_INTERNAL_SYSTEM_ERROR：内部系统错误。 |
 
 ### OH_MediaAssetManager_RequestImage()
 
@@ -194,7 +198,7 @@ MediaLibrary_ErrorCode OH_MediaAssetManager_RequestImage(OH_MediaAssetManager* m
 
 | 类型 | 说明 |
 | -- | -- |
-| [MediaLibrary_ErrorCode](capi-media-asset-base-capi-h.md#medialibrary_errorcode) | 返回接口结果[MediaLibrary_ErrorCode](capi-media-asset-base-capi-h.md#medialibrary_errorcode)：<br>      MEDIA_LIBRARY_OK：方法调用成功。<br>      MEDIA_LIBRARY_PARAMETER_ERROR：参数错误。可能的原因：<br>                                      1. 未指定强制参数。<br>                                      2. 参数类型不正确。<br>                                      3. 参数验证失败。<br>      MEDIA_LIBRARY_OPERATION_NOT_SUPPORTED：不支持该操作。<br>      MEDIA_LIBRARY_PERMISSION_DENIED：没有权限。<br>      MEDIA_LIBRARY_INTERNAL_SYSTEM_ERROR：内部系统错误。 |
+| [MediaLibrary_ErrorCode](capi-media-asset-base-capi-h.md#medialibrary_errorcode) | MEDIA_LIBRARY_OK：方法调用成功。<br>      MEDIA_LIBRARY_PARAMETER_ERROR：参数错误。可能的原因：<br>                                      1. 未指定强制参数。<br>                                      2. 参数类型不正确。<br>                                      3. 参数验证失败。<br>      MEDIA_LIBRARY_OPERATION_NOT_SUPPORTED：不支持该操作。<br>      MEDIA_LIBRARY_PERMISSION_DENIED：没有权限。<br>      MEDIA_LIBRARY_INTERNAL_SYSTEM_ERROR：内部系统错误。 |
 
 ### OH_MediaAssetManager_Release()
 
@@ -219,6 +223,6 @@ MediaLibrary_ErrorCode OH_MediaAssetManager_Release(OH_MediaAssetManager* manage
 
 | 类型 | 说明 |
 | -- | -- |
-| [MediaLibrary_ErrorCode](capi-media-asset-base-capi-h.md#medialibrary_errorcode) | 返回接口结果[MediaLibrary_ErrorCode](capi-media-asset-base-capi-h.md#medialibrary_errorcode)：<br>      MEDIA_LIBRARY_OK：方法调用成功。<br>      MEDIA_LIBRARY_PARAMETER_ERROR：参数错误。可能的原因：<br>                                      1. 未指定强制参数。<br>                                      2. 参数类型不正确。<br>                                      3. 参数验证失败。 |
+| [MediaLibrary_ErrorCode](capi-media-asset-base-capi-h.md#medialibrary_errorcode) | MEDIA_LIBRARY_OK：方法调用成功。<br>      MEDIA_LIBRARY_PARAMETER_ERROR：参数错误。可能的原因：<br>                                      1. 未指定强制参数。<br>                                      2. 参数类型不正确。<br>                                      3. 参数验证失败。 |
 
 

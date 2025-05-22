@@ -4445,17 +4445,21 @@
         <!--DelEnd-->
       - C API<!--media-library-c-->
         - 模块<!--media-library-module-->
-          - [MediaAssetManager](reference/apis-media-library-kit/_media_asset_manager.md)
+          - [MediaAssetManager](reference/apis-media-library-kit/capi-mediaassetmanager.md)
         - 头文件<!--media-library-headerfile-->
-          - [media_access_helper_capi.h](reference/apis-media-library-kit/media__access__helper__capi_8h.md)
-          - [media_asset_base_capi.h](reference/apis-media-library-kit/media__asset__base__capi_8h.md)
-          - [media_asset_capi.h](reference/apis-media-library-kit/media__asset__capi_8h.md)
-          - [media_asset_change_request_capi.h](reference/apis-media-library-kit/media__asset__change__request__capi_8h.md)
-          - [media_asset_manager_capi.h](reference/apis-media-library-kit/media__asset__manager__capi_8h.md)
-          - [moving_photo_capi.h](reference/apis-media-library-kit/moving__photo__capi_8h.md)
+          - [media_access_helper_capi.h](reference/apis-media-library-kit/capi-media-access-helper-capi-h.md)
+          - [media_asset_base_capi.h](reference/apis-media-library-kit/capi-media-asset-base-capi-h.md)
+          - [media_asset_capi.h](reference/apis-media-library-kit/capi-media-asset-capi-h.md)
+          - [media_asset_change_request_capi.h](reference/apis-media-library-kit/capi-media-asset-change-request-capi-h.md)
+          - [media_asset_manager_capi.h](reference/apis-media-library-kit/capi-media-asset-manager-capi-h.md)
+          - [moving_photo_capi.h](reference/apis-media-library-kit/capi-moving-photo-capi-h.md)
         - 结构体<!--media-library-struct-->
-          - [MediaLibrary_RequestId](reference/apis-media-library-kit/_media_library___request_id.md)
-          - [MediaLibrary_RequestOptions](reference/apis-media-library-kit/_media_library___request_options.md)
+          - [MediaLibrary_RequestId](reference/apis-media-library-kit/capi-medialibrary-requestid.md)
+          - [OH_MediaAssetManager](reference/apis-media-library-kit/capi-oh-mediaassetmanager.md)
+          - [OH_MediaAssetChangeRequest](reference/apis-media-library-kit/capi-oh-mediaassetchangerequest.md)
+          - [OH_MovingPhoto](reference/apis-media-library-kit/capi-oh-movingphoto.md)
+          - [OH_MediaAsset](reference/apis-media-library-kit/capi-oh-mediaasset.md)
+          - [MediaLibrary_RequestOptions](reference/apis-media-library-kit/capi-medialibrary-requestoptions.md)
   - 图形<!--graphics-api-->
     - ArkGraphics 2D（方舟2D图形服务）<!--arkgraphics-api-->
       - ArkTS API<!--arkgraphics-arkts-->

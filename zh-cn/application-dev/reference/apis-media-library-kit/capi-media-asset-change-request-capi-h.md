@@ -6,6 +6,8 @@
 
 **库：** libmedia_asset_manager.so
 
+**引用文件：** <multimedia/media_library/media_asset_change_request_capi.h>
+
 **系统能力：** SystemCapability.FileManagement.PhotoAccessHelper.Core
 
 **起始版本：** 12
@@ -51,7 +53,7 @@ OH_MediaAssetChangeRequest* OH_MediaAssetChangeRequest_Create(OH_MediaAsset* med
 
 | 类型 | 说明 |
 | -- | -- |
-| OH_MediaAssetChangeRequest* | 返回接口结果[MediaLibrary_ErrorCode](capi-media-asset-base-capi-h.md#medialibrary_errorcode)：<br>      MEDIA_LIBRARY_OK：方法调用成功。<br>      MEDIA_LIBRARY_PARAMETER_ERROR：参数错误。可能的原因：<br>                                      1. 未指定强制参数。<br>                                      2. 参数类型不正确。<br>                                      3. 参数验证失败。<br>      MEDIA_LIBRARY_INTERNAL_SYSTEM_ERROR：内部系统错误。 |
+| [OH_MediaAssetChangeRequest](capi-oh-mediaassetchangerequest.md)* | MEDIA_LIBRARY_OK：方法调用成功。<br>      MEDIA_LIBRARY_PARAMETER_ERROR：参数错误。可能的原因：<br>                                      1. 未指定强制参数。<br>                                      2. 参数类型不正确。<br>                                      3. 参数验证失败。<br>      MEDIA_LIBRARY_INTERNAL_SYSTEM_ERROR：内部系统错误。 |
 
 ### OH_MediaAssetChangeRequest_AddResourceWithUri()
 
@@ -78,7 +80,7 @@ MediaLibrary_ErrorCode OH_MediaAssetChangeRequest_AddResourceWithUri(OH_MediaAss
 
 | 类型 | 说明 |
 | -- | -- |
-| [MediaLibrary_ErrorCode](capi-media-asset-base-capi-h.md#medialibrary_errorcode) | 返回接口结果[MediaLibrary_ErrorCode](capi-media-asset-base-capi-h.md#medialibrary_errorcode)：<br>      MEDIA_LIBRARY_OK：方法调用成功。<br>      MEDIA_LIBRARY_PARAMETER_ERROR：参数错误。可能的原因：<br>                                      1. 未指定强制参数。<br>                                      2. 参数类型不正确。<br>                                      3. 参数验证失败。<br>      MEDIA_LIBRARY_NO_SUCH_FILE：文件不存在。<br>      MEDIA_LIBRARY_INTERNAL_SYSTEM_ERROR：内部系统错误。<br>      MEDIA_LIBRARY_OPERATION_NOT_SUPPORTED：不支持该操作。 |
+| [MediaLibrary_ErrorCode](capi-media-asset-base-capi-h.md#medialibrary_errorcode) | MEDIA_LIBRARY_OK：方法调用成功。<br>      MEDIA_LIBRARY_PARAMETER_ERROR：参数错误。可能的原因：<br>                                      1. 未指定强制参数。<br>                                      2. 参数类型不正确。<br>                                      3. 参数验证失败。<br>      MEDIA_LIBRARY_NO_SUCH_FILE：文件不存在。<br>      MEDIA_LIBRARY_INTERNAL_SYSTEM_ERROR：内部系统错误。<br>      MEDIA_LIBRARY_OPERATION_NOT_SUPPORTED：不支持该操作。 |
 
 ### OH_MediaAssetChangeRequest_AddResourceWithBuffer()
 
@@ -98,7 +100,7 @@ MediaLibrary_ErrorCode OH_MediaAssetChangeRequest_AddResourceWithBuffer(OH_Media
 | 参数项 | 描述 |
 | -- | -- |
 | [OH_MediaAssetChangeRequest](capi-oh-mediaassetchangerequest.md)* changeRequest | [OH_MediaAssetChangeRequest](capi-oh-mediaassetchangerequest.md)实例。 |
-| [MediaLibrary_ResourceType](capi-media-asset-base-capi-h.md#medialibrary_resourcetype) resourceType | 要添加的资源的[MediaLibrary_ResourceType](capi-media-asset-base-capi-h.md#medialibrary_resourcetype)。 |
+| [MediaLibrary_ResourceType](capi-media-asset-base-capi-h.md#medialibrary_resourcetype) resourceType | 要添加的资源的类型。 |
 | uint8_t* buffer | 要添加的数据缓冲区。 |
 | uint32_t length | 数据缓冲区的长度。 |
 
@@ -106,7 +108,7 @@ MediaLibrary_ErrorCode OH_MediaAssetChangeRequest_AddResourceWithBuffer(OH_Media
 
 | 类型 | 说明 |
 | -- | -- |
-| [MediaLibrary_ErrorCode](capi-media-asset-base-capi-h.md#medialibrary_errorcode) | 返回接口结果[MediaLibrary_ErrorCode](capi-media-asset-base-capi-h.md#medialibrary_errorcode)：<br>      MEDIA_LIBRARY_OK：方法调用成功。<br>      MEDIA_LIBRARY_PARAMETER_ERROR：参数错误。可能的原因：<br>                                      1. 未指定强制参数。<br>                                      2. 参数类型不正确。<br>                                      3. 参数验证失败。<br>      MEDIA_LIBRARY_NO_SUCH_FILE：文件不存在。<br>      MEDIA_LIBRARY_INTERNAL_SYSTEM_ERROR：内部系统错误。<br>      MEDIA_LIBRARY_OPERATION_NOT_SUPPORTED：不支持该操作。 |
+| [MediaLibrary_ErrorCode](capi-media-asset-base-capi-h.md#medialibrary_errorcode) | MEDIA_LIBRARY_OK：方法调用成功。<br>      MEDIA_LIBRARY_PARAMETER_ERROR：参数错误。可能的原因：<br>                                      1. 未指定强制参数。<br>                                      2. 参数类型不正确。<br>                                      3. 参数验证失败。<br>      MEDIA_LIBRARY_INTERNAL_SYSTEM_ERROR：内部系统错误。<br>      MEDIA_LIBRARY_OPERATION_NOT_SUPPORTED：不支持该操作。 |
 
 ### OH_MediaAssetChangeRequest_GetWriteCacheHandler()
 
@@ -134,7 +136,7 @@ MediaLibrary_ErrorCode OH_MediaAssetChangeRequest_GetWriteCacheHandler(OH_MediaA
 
 | 类型 | 说明 |
 | -- | -- |
-| [MediaLibrary_ErrorCode](capi-media-asset-base-capi-h.md#medialibrary_errorcode) | 返回接口结果[MediaLibrary_ErrorCode](capi-media-asset-base-capi-h.md#medialibrary_errorcode)：<br>      MEDIA_LIBRARY_OK：方法调用成功。<br>      MEDIA_LIBRARY_PARAMETER_ERROR：参数错误。可能的原因：<br>                                      1. 未指定强制参数。<br>                                      2. 参数类型不正确。<br>                                      3. 参数验证失败。<br>      MEDIA_LIBRARY_NO_SUCH_FILE：文件不存在。<br>      MEDIA_LIBRARY_INTERNAL_SYSTEM_ERROR：内部系统错误。<br>      MEDIA_LIBRARY_PERMISSION_DENIED：没有权限。<br>      MEDIA_LIBRARY_OPERATION_NOT_SUPPORTED：不支持该操作。 |
+| [MediaLibrary_ErrorCode](capi-media-asset-base-capi-h.md#medialibrary_errorcode) | MEDIA_LIBRARY_OK：方法调用成功。<br>      MEDIA_LIBRARY_PARAMETER_ERROR：参数错误。可能的原因：<br>                                      1. 未指定强制参数。<br>                                      2. 参数类型不正确。<br>                                      3. 参数验证失败。<br>      MEDIA_LIBRARY_INTERNAL_SYSTEM_ERROR：内部系统错误。<br>      MEDIA_LIBRARY_PERMISSION_DENIED：没有权限。<br>      MEDIA_LIBRARY_OPERATION_NOT_SUPPORTED：不支持该操作。 |
 
 ### OH_MediaAssetChangeRequest_SaveCameraPhoto()
 
@@ -154,13 +156,13 @@ MediaLibrary_ErrorCode OH_MediaAssetChangeRequest_SaveCameraPhoto(OH_MediaAssetC
 | 参数项 | 描述 |
 | -- | -- |
 | [OH_MediaAssetChangeRequest](capi-oh-mediaassetchangerequest.md)* changeRequest | [OH_MediaAssetChangeRequest](capi-oh-mediaassetchangerequest.md)实例。 |
-| [MediaLibrary_ImageFileType](capi-media-asset-base-capi-h.md#medialibrary_imagefiletype) imageFileType | 要保存的照片的[MediaLibrary_ImageFileType](capi-media-asset-base-capi-h.md#medialibrary_imagefiletype)。 |
+| [MediaLibrary_ImageFileType](capi-media-asset-base-capi-h.md#medialibrary_imagefiletype) imageFileType | 要保存的照片的图像文件类型。 |
 
 **返回：**
 
 | 类型 | 说明 |
 | -- | -- |
-| [MediaLibrary_ErrorCode](capi-media-asset-base-capi-h.md#medialibrary_errorcode) | 返回接口结果[MediaLibrary_ErrorCode](capi-media-asset-base-capi-h.md#medialibrary_errorcode)：<br>      MEDIA_LIBRARY_OK：方法调用成功。<br>      MEDIA_LIBRARY_PARAMETER_ERROR：参数错误。可能的原因：<br>                                      1. 未指定强制参数。<br>                                      2. 参数类型不正确。<br>                                      3. 参数验证失败。<br>      MEDIA_LIBRARY_NO_SUCH_FILE：文件不存在。<br>      MEDIA_LIBRARY_INTERNAL_SYSTEM_ERROR：内部系统错误。<br>      MEDIA_LIBRARY_OPERATION_NOT_SUPPORTED：不支持该操作。 |
+| [MediaLibrary_ErrorCode](capi-media-asset-base-capi-h.md#medialibrary_errorcode) | MEDIA_LIBRARY_OK：方法调用成功。<br>      MEDIA_LIBRARY_PARAMETER_ERROR：参数错误。可能的原因：<br>                                      1. 未指定强制参数。<br>                                      2. 参数类型不正确。<br>                                      3. 参数验证失败。<br>      MEDIA_LIBRARY_INTERNAL_SYSTEM_ERROR：内部系统错误。<br>      MEDIA_LIBRARY_OPERATION_NOT_SUPPORTED：不支持该操作。 |
 
 ### OH_MediaAssetChangeRequest_DiscardCameraPhoto()
 
@@ -185,7 +187,7 @@ MediaLibrary_ErrorCode OH_MediaAssetChangeRequest_DiscardCameraPhoto(OH_MediaAss
 
 | 类型 | 说明 |
 | -- | -- |
-| [MediaLibrary_ErrorCode](capi-media-asset-base-capi-h.md#medialibrary_errorcode) | 返回接口结果[MediaLibrary_ErrorCode](capi-media-asset-base-capi-h.md#medialibrary_errorcode)：<br>      MEDIA_LIBRARY_OK：方法调用成功。<br>      MEDIA_LIBRARY_PARAMETER_ERROR：参数错误。可能的原因：<br>                                      1. 未指定强制参数。<br>                                      2. 参数类型不正确。<br>                                      3. 参数验证失败。<br>      MEDIA_LIBRARY_NO_SUCH_FILE：文件不存在。<br>      MEDIA_LIBRARY_INTERNAL_SYSTEM_ERROR：内部系统错误。<br>      MEDIA_LIBRARY_OPERATION_NOT_SUPPORTED：不支持该操作。 |
+| [MediaLibrary_ErrorCode](capi-media-asset-base-capi-h.md#medialibrary_errorcode) | MEDIA_LIBRARY_OK：方法调用成功。<br>      MEDIA_LIBRARY_PARAMETER_ERROR：参数错误。可能的原因：<br>                                      1. 未指定强制参数。<br>                                      2. 参数类型不正确。<br>                                      3. 参数验证失败。<br>      MEDIA_LIBRARY_INTERNAL_SYSTEM_ERROR：内部系统错误。<br>      MEDIA_LIBRARY_OPERATION_NOT_SUPPORTED：不支持该操作。 |
 
 ### OH_MediaAssetChangeRequest_Release()
 
@@ -210,6 +212,6 @@ MediaLibrary_ErrorCode OH_MediaAssetChangeRequest_Release(OH_MediaAssetChangeReq
 
 | 类型 | 说明 |
 | -- | -- |
-| [MediaLibrary_ErrorCode](capi-media-asset-base-capi-h.md#medialibrary_errorcode) | 返回接口结果[MediaLibrary_ErrorCode](capi-media-asset-base-capi-h.md#medialibrary_errorcode)：<br>      MEDIA_LIBRARY_OK：方法调用成功。<br>      MEDIA_LIBRARY_PARAMETER_ERROR：参数错误。可能的原因：<br>                                      1. 未指定强制参数。<br>                                      2. 参数类型不正确。<br>                                      3. 参数验证失败。 |
+| [MediaLibrary_ErrorCode](capi-media-asset-base-capi-h.md#medialibrary_errorcode) | MEDIA_LIBRARY_OK：方法调用成功。<br>      MEDIA_LIBRARY_PARAMETER_ERROR：参数错误。可能的原因：<br>                                      1. 未指定强制参数。<br>                                      2. 参数类型不正确。<br>                                      3. 参数验证失败。 |
 
 
