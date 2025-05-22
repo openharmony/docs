@@ -8,7 +8,7 @@
 > 本模块为系统接口。
 
 ## 导入模块
-
+sh
 ```js
 import { sharing } from '@kit.NetworkKit';
 ```
@@ -940,7 +940,7 @@ on(type: 'sharingStateChange', callback: Callback\<boolean>): void
 
 | 参数名   | 类型                    | 必填 | 说明                         |
 | -------- | ----------------------- | ---- | ---------------------------- |
-| type     | sharingStateChange                 | 是   | 事件名称。                   |
+| type     | string                 | 是   | 事件名称。                   |
 | callback | AsyncCallback\<boolean> | 是   | 回调函数，返回网络共享状态。 |
 
 **错误码：**
@@ -977,7 +977,7 @@ off(type: 'sharingStateChange', callback?: Callback\<boolean>): void
 
 | 参数名   | 类型                    | 必填 | 说明                         |
 | -------- | ----------------------- | ---- | ---------------------------- |
-| type     | sharingStateChange                  | 是   | 事件名称。                   |
+| type     | string                  | 是   | 事件名称。                   |
 | callback | AsyncCallback\<boolean> | 否   | 回调函数，返回网络共享状态。 |
 
 **错误码：**
@@ -1014,7 +1014,7 @@ on(type: 'interfaceSharingStateChange', callback: Callback\<InterfaceSharingStat
 
 | 参数名   | 类型                                                                   | 必填 | 说明                                  |
 | -------- | -------------------------------------------------------------------- | ---- | ------------------------------------- |
-| type     | interfaceSharingStateChange                                                                | 是   | 事件名称。                            |
+| type     | string                                                                | 是   | 事件名称。                            |
 | callback | AsyncCallback\<[InterfaceSharingStateInfo](#interfacesharingstateinfo11)> | 是   | 回调函数。指定网卡共享状态变化时调用。 |
 
 **错误码：**
@@ -1051,7 +1051,7 @@ off(type: 'interfaceSharingStateChange', callback?: Callback\<InterfaceSharingSt
 
 | 参数名   | 类型                                                                        | 必填 | 说明                                     |
 | -------- | --------------------------------------------------------------------------- | ---- | ---------------------------------------- |
-| type     | interfaceSharingStateChange                                                                     | 是   | 事件名称。                               |
+| type     | string                                                                     | 是   | 事件名称。                               |
 | callback | AsyncCallback\<[InterfaceSharingStateInfo](#interfacesharingstateinfo11)> | 否   | 回调函数，注销指定网卡共享状态变化通知。 |
 
 **错误码：**
@@ -1088,7 +1088,7 @@ on(type: 'sharingUpstreamChange', callback: Callback\<NetHandle>): void
 
 | 参数名   | 类型                      | 必填 | 说明                           |
 | -------- | ------------------------- | ---- | ------------------------------ |
-| type     | sharingUpstreamChange                    | 是   | 事件名称。                     |
+| type     | string                    | 是   | 事件名称。                     |
 | callback | AsyncCallback\<NetHandle> | 是   | 回调函数，上行网络变化时调用。 |
 
 **错误码：**
@@ -1125,7 +1125,7 @@ off(type: 'sharingUpstreamChange', callback?: Callback\<NetHandle>): void
 
 | 参数名   | 类型                      | 必填 | 说明                             |
 | -------- | ------------------------- | ---- | -------------------------------- |
-| type     | sharingUpstreamChange                    | 是   | 事件名称。                       |
+| type     | string                    | 是   | 事件名称。                       |
 | callback | AsyncCallback\<NetHandle> | 否   | 回调函数，注销上行网络变化事件。 |
 
 **错误码：**
