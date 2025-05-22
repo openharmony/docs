@@ -46,7 +46,7 @@ There is currently no keyboard device connected.
 
 **错误信息**
 
-it is prohibited for non-input applications.
+It is prohibited for non-input applications.
 
 **错误描述**
 
@@ -59,21 +59,3 @@ it is prohibited for non-input applications.
 **处理步骤**
 
 请使用输入法应用调用该接口。
-
-## 26500001 无效的windowId
-
-**错误信息**
-
-Invalid windowId. Possible causes: The window id does not belong to the current process.
-
-**错误描述**
-
-无效的窗口id。
-
-**可能原因**
-
-窗口id不属于当前进程。
-
-**处理步骤**
-
-请检查并传入当前进程的窗口id，可通过windowClass.[getWindowProperties()](../apis-arkui/js-apis-window.md#getwindowproperties9)接口获取当前窗口属性，窗口属性中含有窗口id。
