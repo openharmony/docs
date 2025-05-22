@@ -830,9 +830,9 @@
         - [卡片使用方开发指导（仅对系统应用开放）](form/widget-host-development-guide.md)
         <!--DelEnd-->
       - JS卡片开发
-        - [JS卡片概述](js-ui-widget-overview.md)
-        - [JS卡片开发指导（Stage模型）](js-ui-widget-development.md)
-        - [JS卡片开发指导（FA模型）](widget-development-fa.md)
+        - [JS卡片概述](form/js-ui-widget-overview.md)
+        - [JS卡片开发指导（Stage模型）](form/js-ui-widget-development.md)
+        - [JS卡片开发指导（FA模型）](form/widget-development-fa.md)
     - IME Kit（输入法开发服务）<!--ime-kit-->
       - [IME Kit简介](inputmethod/ime-kit-intro.md)
       - [实现一个输入法应用](inputmethod/inputmethod-application-guide.md)
