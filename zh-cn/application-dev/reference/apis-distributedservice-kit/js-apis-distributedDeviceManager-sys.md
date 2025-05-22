@@ -90,8 +90,8 @@ import { distributedDeviceManager } from '@kit.DistributedServiceKit';
 |  softwareVersion | string |  否  | 否  |  软件版本。          |
 |  protocolType    | number |  否   | 否  |  协议类型。          |
 |  setupType       | number |  否   | 否  |  设备类型。          |
-|  wiseDeviceId    | string |  否   | 否  |  智能设备ID。        |
-|  wiseUserId      | string |  否   | 否  |  智能用户ID。        |
+|  wiseDeviceId    | string |  否   | 否  |  已注册设备标识。        |
+|  wiseUserId      | string |  否   | 否  |  已注册用户标识。        |
 |  registerTime    | string |  否   | 否  |  注册时间。          |
 |  modifyTime      | string |  否   | 否  |  修改时间。          |
 |  shareTime       | string |  否   | 否  |  分享时间。          |
@@ -482,13 +482,13 @@ getDeviceIconInfo(filterOptions: DeviceIconInfoFilterOptions): Promise&lt;Device
 
   | 参数名       | 类型            | 必填  | 说明                |
   | ------------- | --------------- | ---- | ------------------- |
-  |  filterOptions       | [DeviceIconInfoFilterOptions](#deviceiconinfofilteroptions15)         | 是    |  查询设备列表参数。    |
+  |  filterOptions       | [DeviceIconInfoFilterOptions](#deviceiconinfofilteroptions15)         | 是    |  查询过程中使用的过滤条件。    |
 
 **返回值：**
 
   | 类型                                                       | 说明                               |
   | ---------------------------------------------------------- | ---------------------------------- |
-  |  [DeviceIconInfo](#deviceiconinfo18) | 设备实物图信息。                                    |
+  |  [DeviceIconInfo](#deviceiconinfo18) | 设备图标信息。                                    |
 
 **错误码：**
 
@@ -548,7 +548,7 @@ getLocalDisplayDeviceName(maxNameLength: number): Promise&lt;string&gt;
 
   | 参数名       | 类型            | 必填  | 说明                |
   | ------------- | --------------- | ---- | ------------------- |
-  |  maxNameLength       |  number        |  否   | 设备显示名最大长度，字节数，传0不截断；取值范围[18,100]。     |
+  |  maxNameLength       |  number        |  是  | 可显示的设备名称长度（字节数），取值范围为[18，100]，为0时表示不限制。     |
 
 **返回值：**
 
@@ -603,7 +603,7 @@ setLocalDeviceName(deviceName: string): Promise&lt;number&gt;
 
   | 参数名       | 类型            | 必填  | 说明                |
   | ------------- | --------------- | ---- | ------------------- |
-  |  deviceName       | string         |  是   | 自定义设备名称。     |
+  |  deviceName       | string         |  是   | 自定义设备名称。字符串长度范围1~255。     |
 
 **返回值：**
 
@@ -658,8 +658,8 @@ setRemoteDeviceName(deviceId: string, deviceName: string): Promise&lt;number&gt;
 
   | 参数名       | 类型            | 必填  | 说明                |
   | ------------- | --------------- | ---- | ------------------- |
-  |  deviceId       | string         | 是    | 配件设备的udid，没有udid的设备取MAC或SN，优先取SN。     |
-  |  deviceName       | string         | 是    | 自定义设备名称。     |
+  |  deviceId       | string         | 是    | 配件设备的UDID，没有UDID的设备取MAC或SN，优先取SN。     |
+  |  deviceName       | string         | 是    | 自定义设备名称。字符串长度范围1~255。    |
 
 **返回值：**
 
@@ -741,7 +741,7 @@ restoreLocalDeivceName(): void
 
 getDeviceNetworkIdList(filterOptions: NetworkIdQueryFilter): Promise&lt;Array&lt;string&gt;&gt;
 
-通过条件获取设备网络ID列表。
+获取符合条件的网络设备ID列表。
 
 **需要权限**：ohos.permission.ACCESS_SERVICE_DM
 
@@ -753,7 +753,7 @@ getDeviceNetworkIdList(filterOptions: NetworkIdQueryFilter): Promise&lt;Array&lt
 
   | 参数名       | 类型            | 必填  | 说明                |
   | ------------- | --------------- | ---- | ------------------- |
-  |   filterOptions      | [NetworkIdQueryFilter](#networkidqueryfilter18)         |  是   |   查询设备网络ID列表参数。参数类型为map，如：<br>wiseDeviceId(xx-xxxxx): 根据设备ID获取设备网络ID列表。<br>onlineStatus: <br />-0: 表示设备处于离线状态。<br />-1: 表示设备在线。   |
+  |   filterOptions      | [NetworkIdQueryFilter](#networkidqueryfilter18)         |  是   |   查询过程中使用的过滤条件。   |
 
 **返回值：**
 
