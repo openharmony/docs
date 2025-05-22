@@ -6,7 +6,7 @@ IsolatedComponent组件是构建隔离组件的工具，能够帮助开发者创
 
 ## 基本概念
 
-[IsolatedComponent (系统接口)](../reference/apis-arkui/arkui-ts/ts-container-isolated-component-sys.md)旨在在本页面中嵌入并展示由独立Abc（即.abc文件）所提供的UI，其展示内容在受限的worker线程中执行。
+[IsolatedComponent](../reference/apis-arkui/arkui-ts/ts-container-isolated-component-sys.md)旨在在本页面中嵌入并展示由独立Abc（即.abc文件）所提供的UI，其展示内容在受限的worker线程中执行。
 
 该组件通常用于有Abc热更新诉求的模块化开发场景。
 
