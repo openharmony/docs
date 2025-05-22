@@ -5273,6 +5273,12 @@ getHighlightAlbumInfo(type: HighlightAlbumInfoType): Promise&lt;string&gt;
 | ---------- | ------- | ---- | ---------------------------------- |
 | type       | [HighlightAlbumInfoType](#highlightalbuminfotype12) | 是    | 需要获取的时刻相册信息类型。 |
 
+**返回值：**
+
+| 类型                                    | 说明              |
+| --------------------------------------- | ----------------- |
+| Promise&lt;string&gt; | Promise对象，返回指定的时刻相册信息。 |
+
 **错误码：**
 
 接口抛出错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[文件管理错误码](../apis-core-file-kit/errorcode-filemanagement.md)。
@@ -5333,6 +5339,12 @@ getHighlightResource(resourceUri: string): Promise&lt;ArrayBuffer&gt;
 | ---------- | ------- | ---- | ---------------------------------- |
 | resourceUri       | string | 是    | 指定时刻缓存资源uri。 |
 
+**返回值：**
+
+| 类型                        | 说明           |
+| --------------------------- | -------------- |
+| Promise&lt;ArrayBuffer&gt; | Promise对象，返回资源的ArrayBuffer。|
+
 **错误码：**
 
 接口抛出错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[文件管理错误码](../apis-core-file-kit/errorcode-filemanagement.md)。
@@ -5391,6 +5403,12 @@ setHighlightUserActionData(type: HighlightUserActionType, actionData: number): P
 | ---------- | ------- | ---- | ---------------------------------- |
 | type       | [HighlightUserActionType](#highlightuseractiontype12) | 是    | 需要设置的用户行为数据类型。 |
 | actionData | number | 是    | 行为数据。 |
+
+**返回值：**
+
+| 类型                        | 说明           |
+| --------------------------- | -------------- |
+| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。|
 
 **错误码：**
 
