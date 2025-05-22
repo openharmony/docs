@@ -4258,7 +4258,6 @@ CreateIncrementalSource(buf: ArrayBuffer): ImageSource
 - 获取图片信息：指定序号-[getImageInfo](#getimageinfo)、直接获取-[getImageInfo](#getimageinfo-1)
 - 获取图片中给定索引处图像的指定属性键的值：[getImageProperty](#getimageproperty11)
 - 批量获取图片中的指定属性键的值：[getImageProperties](#getimageproperties12)
-- 使用同步接口获取图片指定的属性键的值：[getImagePropertySync](#getimagepropertySync20)
 - 更新增量数据：[updateData](#updatedata9)
 - 创建PixelMap对象：通过图片解码参数创建-[createPixelMap](#createpixelmap7)、通过默认参数创建-[createPixelMap](#createpixelmap7-1) 、通过图片解码参数-[createPixelMap](#createpixelmap7-2)
 - 释放ImageSource实例：[release](#release)
@@ -4713,7 +4712,7 @@ imageSourceApi.getImageProperties(key).then((data) => {
 
 getImagePropertySync(key:PropertyKey): string
 
-获取图片中给定索引处图像的指定属性键的值，用String形式返回结果，仅支持JPEG、PNG和HEIF<sup>20+</sup>（不同硬件设备支持情况不同）文件，且需要包含exif信息。
+获取图片中给定索引处图像的指定属性键的值，用String形式返回结果，仅支持JPEG、PNG和HEIF<sup>12+</sup>（不同硬件设备支持情况不同）文件，且需要包含exif信息。
 
 **系统能力：** SystemCapability.Multimedia.Image.ImageSource
 
