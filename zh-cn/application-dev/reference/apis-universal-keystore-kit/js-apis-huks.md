@@ -1509,7 +1509,7 @@ try {
 
 wrapKeyItem(keyAlias: string, params: HuksOptions): Promise\<HuksReturnResult>
 
-加密导出密钥（与unwrapKeyItem对应，导出密钥在生成时要添加HUKS_TAG_IS_ALLOWED_WRAP，指定允许导出）。使用Promise异步回调。
+加密导出密钥（与unwrapKeyItem对应，待导出的密钥在生成时要添加[HUKS_TAG_IS_ALLOWED_WRAP](#hukstag)，指定密钥允许导出）。使用Promise异步回调。
 
 <!--Del-->该功能当前暂时无法使用，调用接口将返回错误码801。<!--DelEnd-->
 
