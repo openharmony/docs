@@ -716,7 +716,6 @@ struct Index {
 | strutStyle           | [StrutStyle](#strutstyle)                  | 是   | 是   | 支柱样式，默认为初始的StrutStyle。               |
 | textHeightBehavior   | [TextHeightBehavior](#textheightbehavior)  | 是   | 是   | 文本高度修饰符模式，默认为ALL。                              |
 | tab<sup>18+</sup>   | [TextTab](#texttab18)  | 是   | 是   | 表示段落中文本制表符后的文本对齐方式及位置，默认将制表符替换为一个空格。此参数与文本对齐方式（align属性）或省略号样式（[TextStyle](#textstyle)中的ellipsis属性）共同配置时无效。 |
-| trailingSpaceOptimized<sup>20+</sup>   | boolean | 是   | 是   | 表示文本排版时行尾空格是否参与对齐计算。true表示行尾空格不参与计算，false表示行尾空格参与计算，默认值为false。|
 
 
 ## PlaceholderAlignment
@@ -1406,7 +1405,7 @@ let lineMetrics =  paragraph.getLineMetrics(0);
 
 updateColor(color: common2D.Color): void;
 
-更新文本段落的颜色。需要在排版后使用，并且更新的是整个文本段落的颜色。
+更新整个文本段落的颜色。如果当前装饰线未设置颜色，使用该接口会更新装饰线的颜色。
 
 **系统能力**：SystemCapability.Graphics.Drawing
 
@@ -1426,7 +1425,7 @@ paragraph.updateColor({ alpha: 255, red: 255, green: 0, blue: 0 });
 
 updateDecoration(decoration: Decoration): void;
 
-更新文本段落的装饰线。需要在排版后使用，并且更新的是整个文本段落的装饰线。
+更新整个文本段落的装饰线。
 
 **系统能力**：SystemCapability.Graphics.Drawing
 
