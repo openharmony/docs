@@ -45,6 +45,7 @@ createDataShareHelper(context: Context, uri: string, callback: AsyncCallback&lt;
 
 | 错误码ID | 错误信息                                             |
 | -------- | ---------------------------------------------------- |
+| 202      | Not System Application.|
 | 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
 | 15700010 | The DataShareHelper is not initialized successfully. |
 
@@ -102,6 +103,7 @@ createDataShareHelper(context: Context, uri: string, options: DataShareHelperOpt
 
 | 错误码ID | 错误信息                                             |
 | -------- | ---------------------------------------------------- |
+| 202      | Not System Application.|
 | 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
 | 15700010 | The DataShareHelper is not initialized successfully. |
 
@@ -165,6 +167,7 @@ createDataShareHelper(context: Context, uri: string, options?: DataShareHelperOp
 
 | 错误码ID | 错误信息                                             |
 | -------- | ---------------------------------------------------- |
+| 202      | Not System Application.|
 | 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
 | 15700010 | The DataShareHelper is not initialized successfully. |
 
@@ -227,6 +230,7 @@ enableSilentProxy(context: Context, uri?: string): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息                                             |
 | -------- | ---------------------------------------------------- |
+| 202      | Not System Application.|
 | 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
 | 15700011 | The URI is not exist. |
 
@@ -281,6 +285,7 @@ disableSilentProxy(context: Context, uri?: string): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息                                             |
 | -------- | ---------------------------------------------------- |
+| 202      | Not System Application.|
 | 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
 | 15700011 | The URI does not exist. |
 
@@ -456,6 +461,7 @@ on(type: 'dataChange', uri: string, callback: AsyncCallback&lt;void&gt;): void
 
 | 错误码ID | 错误信息              |
 | -------- | -------------------- |
+| 202      | Not System Application.|
 | 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
 | 15700013 | The DataShareHelper instance is already closed.|
 
@@ -496,6 +502,7 @@ on(event: 'dataChange', type:SubscriptionType, uri: string, callback: AsyncCallb
 
 | 错误码ID | 错误信息              |
 | -------- | -------------------- |
+| 202      | Not System Application.|
 | 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
 | 15700013 | The DataShareHelper instance is already closed.|
 
@@ -536,6 +543,7 @@ off(type: 'dataChange', uri: string, callback?: AsyncCallback&lt;void&gt;): void
 
 | 错误码ID | 错误信息              |
 | -------- | -------------------- |
+| 202      | Not System Application.|
 | 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
 | 15700013 | The DataShareHelper instance is already closed.|
 
@@ -576,6 +584,7 @@ off(event: 'dataChange', type:SubscriptionType, uri: string, callback?: AsyncCal
 
 | 错误码ID | 错误信息              |
 | -------- | -------------------- |
+| 202      | Not System Application.|
 | 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
 | 15700013 | The DataShareHelper instance is already closed.|
 
@@ -617,6 +626,7 @@ addTemplate(uri: string, subscriberId: string, template: Template): void
 
 | 错误码ID | 错误信息              |
 | -------- | -------------------- |
+| 202      | Not System Application.|
 | 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
 | 15700011 | The URI is not exist.|
 | 15700013 | The DataShareHelper instance is already closed.|
@@ -664,6 +674,7 @@ delTemplate(uri: string, subscriberId: string): void
 
 | 错误码ID | 错误信息              |
 | -------- | -------------------- |
+| 202      | Not System Application.|
 | 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
 | 15700011 | The URI is not exist.|
 | 15700013 | The DataShareHelper instance is already closed.|
@@ -719,6 +730,7 @@ on(type: 'rdbDataChange', uris: Array&lt;string&gt;, templateId: TemplateId, cal
 
 | 错误码ID | 错误信息              |
 | -------- | -------------------- |
+| 202      | Not System Application.|
 | 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
 | 15700013 | The DataShareHelper instance is already closed.|
 
@@ -772,6 +784,7 @@ off(type: 'rdbDataChange', uris: Array&lt;string&gt;, templateId: TemplateId, ca
 
 | 错误码ID | 错误信息              |
 | -------- | -------------------- |
+| 202      | Not System Application.|
 | 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
 | 15700013 | The DataShareHelper instance is already closed.|
 
@@ -814,6 +827,7 @@ on(type: 'publishedDataChange', uris: Array&lt;string&gt;, subscriberId: string,
 
 | 错误码ID | 错误信息              |
 | -------- | -------------------- |
+| 202      | Not System Application.|
 | 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
 | 15700013 | The DataShareHelper instance is already closed.|
 
@@ -871,6 +885,7 @@ off(type: 'publishedDataChange', uris: Array&lt;string&gt;, subscriberId: string
 
 | 错误码ID | 错误信息              |
 | -------- | -------------------- |
+| 202      | Not System Application.|
 | 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
 | 15700013 | The DataShareHelper instance is already closed.|
 
@@ -912,6 +927,7 @@ publish(data: Array&lt;PublishedItem&gt;, bundleName: string, version: number, c
 
 | 错误码ID | 错误信息                    |
 | -------- | -------------------------- |
+| 202      | Not System Application.|
 | 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
 | 15700012 | The data area is not exist.|
 | 15700013 | The DataShareHelper instance is already closed.|
@@ -959,6 +975,7 @@ publish(data: Array&lt;PublishedItem&gt;, bundleName: string, callback: AsyncCal
 
 | 错误码ID | 错误信息                    |
 | -------- | -------------------------- |
+| 202      | Not System Application.|
 | 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
 | 15700012 | The data area is not exist.|
 | 15700013 | The DataShareHelper instance is already closed.|
@@ -1008,6 +1025,7 @@ publish(data: Array&lt;PublishedItem&gt;, bundleName: string, version?: number):
 
 | 错误码ID | 错误信息                    |
 | -------- | -------------------------- |
+| 202      | Not System Application.|
 | 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
 | 15700012 | The data area is not exist.|
 | 15700013 | The DataShareHelper instance is already closed.|
@@ -1045,6 +1063,7 @@ getPublishedData(bundleName: string, callback: AsyncCallback&lt;Array&lt;Publish
 
 | 错误码ID | 错误信息                    |
 | -------- | -------------------------- |
+| 202      | Not System Application.|
 | 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
 | 15700012 | The data area is not exist.|
 | 15700013 | The DataShareHelper instance is already closed.|
@@ -1088,6 +1107,7 @@ getPublishedData(bundleName: string): Promise&lt;Array&lt;PublishedItem&gt;&gt;
 
 | 错误码ID | 错误信息                    |
 | -------- | -------------------------- |
+| 202      | Not System Application.|
 | 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
 | 15700012 | The data area is not exist.|
 | 15700013 | The DataShareHelper instance is already closed.|
@@ -1122,6 +1142,7 @@ insert(uri: string, value: ValuesBucket, callback: AsyncCallback&lt;number&gt;):
 
 | 错误码ID | 错误信息              |
 | -------- | -------------------- |
+| 202      | Not System Application.|
 | 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
 | 15700013 | The DataShareHelper instance is already closed.|
 
@@ -1187,6 +1208,7 @@ insert(uri: string, value: ValuesBucket): Promise&lt;number&gt;
 
 | 错误码ID | 错误信息              |
 | -------- | -------------------- |
+| 202      | Not System Application.|
 | 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
 | 15700013 | The DataShareHelper instance is already closed.|
 
@@ -1245,6 +1267,7 @@ delete(uri: string, predicates: dataSharePredicates.DataSharePredicates, callbac
 
 | 错误码ID | 错误信息              |
 | -------- | -------------------- |
+| 202      | Not System Application.|
 | 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
 | 15700013 | The DataShareHelper instance is already closed.|
 
@@ -1301,6 +1324,7 @@ delete(uri: string, predicates: dataSharePredicates.DataSharePredicates): Promis
 
 | 错误码ID | 错误信息              |
 | -------- | -------------------- |
+| 202      | Not System Application.|
 | 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
 | 15700013 | The DataShareHelper instance is already closed.|
 
@@ -1351,6 +1375,7 @@ query(uri: string, predicates: dataSharePredicates.DataSharePredicates, columns:
 
 | 错误码ID | 错误信息              |
 | -------- | -------------------- |
+| 202      | Not System Application.|
 | 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
 | 15700013 | The DataShareHelper instance is already closed.|
 
@@ -1409,6 +1434,7 @@ query(uri: string, predicates: dataSharePredicates.DataSharePredicates, columns:
 
 | 错误码ID | 错误信息              |
 | -------- | -------------------- |
+| 202      | Not System Application.|
 | 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
 | 15700013 | The DataShareHelper instance is already closed.|
 
@@ -1460,6 +1486,7 @@ update(uri: string, predicates: dataSharePredicates.DataSharePredicates, value: 
 
 | 错误码ID | 错误信息              |
 | -------- | -------------------- |
+| 202      | Not System Application.|
 | 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
 | 15700013 | The DataShareHelper instance is already closed.|
 
@@ -1528,6 +1555,7 @@ update(uri: string, predicates: dataSharePredicates.DataSharePredicates, value: 
 
 | 错误码ID | 错误信息              |
 | -------- | -------------------- |
+| 202      | Not System Application.|
 | 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
 | 15700013 | The DataShareHelper instance is already closed.|
 
@@ -1592,6 +1620,7 @@ batchUpdate(operations: Record&lt;string, Array&lt;UpdateOperation&gt;&gt;): Pro
 
 | 错误码ID | 错误信息                             |
 | -------- | ------------------------------------ |
+| 202      | Not System Application.|
 | 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
 | 15700000 | Inner error.                         |
 | 15700013 | The DataShareHelper instance is already closed. |
@@ -1676,6 +1705,7 @@ batchInsert(uri: string, values: Array&lt;ValuesBucket&gt;, callback: AsyncCallb
 
 | 错误码ID | 错误信息              |
 | -------- | -------------------- |
+| 202      | Not System Application.|
 | 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
 | 15700013 | The DataShareHelper instance is already closed.|
 
@@ -1742,6 +1772,7 @@ batchInsert(uri: string, values: Array&lt;ValuesBucket&gt;): Promise&lt;number&g
 
 | 错误码ID | 错误信息              |
 | -------- | -------------------- |
+| 202      | Not System Application.|
 | 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
 | 15700013 | The DataShareHelper instance is already closed.|
 
@@ -1799,6 +1830,7 @@ close(): Promise &lt;void&gt;
 
 | 错误码ID | 错误信息     |
 | -------- | ------------ |
+| 202      | Not System Application.|
 | 15700000 | Inner error. |
 
 **示例：**
@@ -1830,6 +1862,7 @@ normalizeUri(uri: string, callback: AsyncCallback&lt;string&gt;): void
 
 | 错误码ID | 错误信息              |
 | -------- | -------------------- |
+| 202      | Not System Application.|
 | 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
 | 15700013 | The DataShareHelper instance is already closed.|
 
@@ -1876,6 +1909,7 @@ normalizeUri(uri: string): Promise&lt;string&gt;
 
 | 错误码ID | 错误信息              |
 | -------- | -------------------- |
+| 202      | Not System Application.|
 | 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
 | 15700013 | The DataShareHelper instance is already closed.|
 
@@ -1915,6 +1949,7 @@ denormalizeUri(uri: string, callback: AsyncCallback&lt;string&gt;): void
 
 | 错误码ID | 错误信息              |
 | -------- | -------------------- |
+| 202      | Not System Application.|
 | 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
 | 15700013 | The DataShareHelper instance is already closed.|
 
@@ -1961,6 +1996,7 @@ denormalizeUri(uri: string): Promise&lt;string&gt;
 
 | 错误码ID | 错误信息              |
 | -------- | -------------------- |
+| 202      | Not System Application.|
 | 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
 | 15700013 | The DataShareHelper instance is already closed.|
 
@@ -2000,6 +2036,7 @@ notifyChange(uri: string, callback: AsyncCallback&lt;void&gt;): void
 
 | 错误码ID | 错误信息              |
 | -------- | -------------------- |
+| 202      | Not System Application.|
 | 401      | Parameter error.Mandatory parameters are left unspecified.|
 | 15700013 | The DataShareHelper instance is already closed.|
 
@@ -2040,6 +2077,7 @@ notifyChange(uri: string): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息              |
 | -------- | -------------------- |
+| 202      | Not System Application.|
 | 401      | Parameter error.Mandatory parameters are left unspecified.|
 | 15700013 | The DataShareHelper instance is already closed.|
 
@@ -2078,6 +2116,7 @@ notifyChange(data: ChangeInfo): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息              |
 | -------- | -------------------- |
+| 202      | Not System Application.|
 | 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
 | 15700013 | The DataShareHelper instance is already closed.|
 
