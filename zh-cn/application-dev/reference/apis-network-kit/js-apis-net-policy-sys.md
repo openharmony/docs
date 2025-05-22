@@ -1780,7 +1780,7 @@ on(type: "netUidRuleChange", callback: Callback\<NetUidRuleInfo\>): void
 
 | 参数名   | 类型                                                          | 必填 | 说明                                   |
 | -------- | ------------------------------------------------------------- | ---- | -------------------------------------- |
-| type     | string                                                        | 是   | rule 发生改变的类型。                    |
+| type     | string                                                         | 是   | rule 发生改变的类型。                    |
 | callback | Callback\<[NetUidRuleInfo](#netuidruleinfo11)> | 是   | 回调函数。注册 rule 发生改变时的调用。 |
 
 **错误码：**
