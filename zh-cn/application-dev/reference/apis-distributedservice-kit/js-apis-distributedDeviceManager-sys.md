@@ -456,7 +456,7 @@ putDeviceProfileInfoList(deviceProfileInfoList: Array<DeviceProfileInfo>): Promi
 
   try {
     let dmInstance = distributedDeviceManager.createDeviceManager('ohos.samples.jsHelloWorld');
-    let deviceProfileInfoList:Array<DeviceProfileInfo> = [];
+    let deviceProfileInfoList:Array<distributedDeviceManager.DeviceProfileInfo> = [];
     dmInstance.putDeviceProfileInfoList(deviceProfileInfoList).then((data:number) => {
       console.log('put device profile info:' + JSON.stringify(data));
     }).catch((e: BusinessError) => {
@@ -785,15 +785,15 @@ getDeviceNetworkIdList(filterOptions: NetworkIdQueryFilter): Promise<Array<strin
   import { distributedDeviceManager } from '@kit.DistributedServiceKit';
   import { BusinessError } from '@kit.BasicServicesKit';
 
-  let queryFiler: NetworkIdQueryFilter = {
-    wiseDeviceId: '',
-    onlineStatus: 1,
-  }
   try {
+    let queryFiler: distributedDeviceManager.NetworkIdQueryFilter = {
+      wiseDeviceId: '',
+      onlineStatus: 1,
+    }
     let dmInstance = distributedDeviceManager.createDeviceManager('ohos.samples.jsHelloWorld');
     dmInstance.getDeviceNetworkIdList(queryFiler).then((data:Array<string>) => {
       console.log('getDeviceNetworkIdList name:' + JSON.stringify(data));
-    }).catch((e: BussinessError) => {
+    }).catch((e: BusinessError) => {
       console.error('getDeviceNetworkIdList errCode:' + e.code + ',errMessage:' + e.message);
     })
   } catch (err) {
