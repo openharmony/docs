@@ -129,7 +129,7 @@ OH_Drawing_Font* OH_Drawing_FontCreate(void)
 
 | 类型 | 说明 |
 | -- | -- |
-| OH_Drawing_Font* | 函数会返回一个指针，指针指向创建的字型对象。 |
+| [OH_Drawing_Font](capi-oh-drawing-font.md)* | 函数会返回一个指针，指针指向创建的字型对象。 |
 
 ### OH_Drawing_FontSetBaselineSnap()
 
@@ -325,7 +325,7 @@ OH_Drawing_Typeface* OH_Drawing_FontGetTypeface(OH_Drawing_Font* font)
 
 | 类型 | 说明 |
 | -- | -- |
-| OH_Drawing_Typeface* | OH_Drawing_Typeface 函数返回一个指针，指向字体对象[OH_Drawing_Typeface](capi-oh-drawing-typeface.md)。 |
+| [OH_Drawing_Typeface](capi-oh-drawing-typeface.md)* | OH_Drawing_Typeface 函数返回一个指针，指向字体对象[OH_Drawing_Typeface](capi-oh-drawing-typeface.md)。 |
 
 ### OH_Drawing_FontSetTextSize()
 

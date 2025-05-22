@@ -54,7 +54,7 @@ OH_Drawing_Brush* OH_Drawing_BrushCreate(void)
 
 | 类型 | 说明 |
 | -- | -- |
-| OH_Drawing_Brush* | 函数会返回一个指针，指针指向创建的画刷对象。 |
+| [OH_Drawing_Brush](capi-oh-drawing-brush.md)* | 函数会返回一个指针，指针指向创建的画刷对象。 |
 
 ### OH_Drawing_BrushCopy()
 
@@ -81,7 +81,7 @@ OH_Drawing_Brush* OH_Drawing_BrushCopy(OH_Drawing_Brush* brush)
 
 | 类型 | 说明 |
 | -- | -- |
-| OH_Drawing_Brush* | 函数会返回一个指针，指针指向创建的画刷对象副本[OH_Drawing_Brush](capi-oh-drawing-brush.md)。如果对象返回NULL，表示创建失败；可能的原因是可用内存为空，或者是brush为NULL。 |
+| [OH_Drawing_Brush](capi-oh-drawing-brush.md)* | 函数会返回一个指针，指针指向创建的画刷对象副本[OH_Drawing_Brush](capi-oh-drawing-brush.md)。如果对象返回NULL，表示创建失败；可能的原因是可用内存为空，或者是brush为NULL。 |
 
 ### OH_Drawing_BrushDestroy()
 
@@ -381,5 +381,3 @@ void OH_Drawing_BrushReset(OH_Drawing_Brush* brush)
 | 参数项 | 描述 |
 | -- | -- |
 | [OH_Drawing_Brush](capi-oh-drawing-brush.md)* brush | 指向画刷对象[OH_Drawing_Brush](capi-oh-drawing-brush.md)的指针。 |
-
-

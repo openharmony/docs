@@ -46,7 +46,7 @@ OH_Drawing_FontCollection* OH_Drawing_CreateFontCollection(void)
 
 | 类型 | 说明 |
 | -- | -- |
-| OH_Drawing_FontCollection* | 指向创建的字体集对象的指针。该函数创建的字体集指针对象[OH_Drawing_FontCollection](capi-oh-drawing-fontcollection.md)只能被一个[OH_Drawing_TypographyCreate](capi-oh-drawing-typographycreate.md)对象使用，无法被多个[OH_Drawing_TypographyCreate](capi-oh-drawing-typographycreate.md)对象共享使用。如需在多个[OH_Drawing_TypographyCreate](capi-oh-drawing-typographycreate.md)对象间共享同一个[OH_Drawing_FontCollection](capi-oh-drawing-fontcollection.md)，请使用[OH_Drawing_CreateSharedFontCollection](capi-drawing-font-collection-h.md#oh_drawing_createsharedfontcollection)函数创建[OH_Drawing_FontCollection](capi-oh-drawing-fontcollection.md)对象。 |
+| [OH_Drawing_FontCollection](capi-oh-drawing-fontcollection.md)* | 指向创建的字体集对象的指针。该函数创建的字体集指针对象[OH_Drawing_FontCollection](capi-oh-drawing-fontcollection.md)只能被一个[OH_Drawing_TypographyCreate](capi-oh-drawing-typographycreate.md)对象使用，无法被多个[OH_Drawing_TypographyCreate](capi-oh-drawing-typographycreate.md)对象共享使用。如需在多个[OH_Drawing_TypographyCreate](capi-oh-drawing-typographycreate.md)对象间共享同一个[OH_Drawing_FontCollection](capi-oh-drawing-fontcollection.md)，请使用[OH_Drawing_CreateSharedFontCollection](capi-drawing-font-collection-h.md#oh_drawing_createsharedfontcollection)函数创建[OH_Drawing_FontCollection](capi-oh-drawing-fontcollection.md)对象。 |
 
 ### OH_Drawing_DestroyFontCollection()
 
@@ -129,7 +129,7 @@ OH_Drawing_FontCollection* OH_Drawing_CreateSharedFontCollection(void)
 
 | 类型 | 说明 |
 | -- | -- |
-| OH_Drawing_FontCollection* | 指向创建的字体集对象的指针。 |
+| [OH_Drawing_FontCollection](capi-oh-drawing-fontcollection.md)* | 指向创建的字体集对象的指针。 |
 
 ### OH_Drawing_ClearFontCaches()
 
@@ -170,6 +170,4 @@ OH_Drawing_FontCollection* OH_Drawing_GetFontCollectionGlobalInstance(void)
 
 | 类型 | 说明 |
 | -- | -- |
-| OH_Drawing_FontCollection* | 指向全局字体集对象的指针。 |
-
-
+| [OH_Drawing_FontCollection](capi-oh-drawing-fontcollection.md)* | 指向全局字体集对象的指针。 |

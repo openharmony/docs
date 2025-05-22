@@ -45,7 +45,7 @@ OH_Drawing_Filter* OH_Drawing_FilterCreate(void)
 
 | 类型 | 说明 |
 | -- | -- |
-| OH_Drawing_Filter* | 返回创建的滤波器对象的指针。 |
+| [OH_Drawing_Filter](capi-oh-drawing-filter.md)* | 返回创建的滤波器对象的指针。 |
 
 ### OH_Drawing_FilterSetImageFilter()
 
