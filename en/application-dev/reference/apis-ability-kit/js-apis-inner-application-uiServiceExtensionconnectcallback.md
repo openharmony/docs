@@ -84,7 +84,7 @@ struct UIServiceExtensionAbility {
 
   myConnectUIServiceExtensionAbility() {
     // Obtain the context.
-    let context = getContext(this) as common.UIAbilityContext;
+    let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
     let startWant: Want = {
       deviceId: '',
       bundleName: 'com.acts.myapplication',
@@ -186,7 +186,7 @@ struct UIServiceExtensionAbility {
 
   myConnectUIServiceExtensionAbility() {
     // Obtain the context.
-    let context = getContext(this) as common.UIAbilityContext;
+    let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
     // Disconnect from the UIServiceExtensionAbility.
     try {
       // this.comProxy is saved when the connection is established.

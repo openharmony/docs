@@ -17,6 +17,6 @@ The PermissionDef module provides permission details defined in the configuratio
 | Name          | Type  | Read-Only| Optional| Description          |
 | -------------- | ------ | ---- | ---- | -------------- |
 | permissionName | string | Yes  | No  | Name of the permission.  |
-| grantMode      | number | Yes  | No  | Grant mode of the permission.|
+| grantMode      | number | Yes  | No  | [Grant mode of the permission](https://developer.huawei.com/consumer/en/doc/harmonyos-guides/app-permission-mgmt-overview#authorization-mode). The value **0** means user authorization, and **1** means system authorization.|
 | labelId        | number | Yes  | No  | ID of the permission label.  |
 | descriptionId  | number | Yes  | No  | ID of the permission description.  |

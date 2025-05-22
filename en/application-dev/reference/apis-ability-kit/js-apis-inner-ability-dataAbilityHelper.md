@@ -1336,12 +1336,10 @@ dataAbilityHelper.executeBatch('dataability:///com.example.jsapidemo.UserDataAbi
 
 ## PacMap
 
-[key: string]: number | string | boolean | Array\<string | number | boolean> | null
-
 Defines the **PacMap** type used for data storage.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
 
-| Name| Type| Mandatory| Description|
-| ------ | ------ | ------ | ------ |
-| [key: string] | number \| string \| boolean \| Array\<string \| number \| boolean\> \| null | Yes| Data stored in key-value pairs.|
+| Name| Type| Read-Only| Optional| Description|
+| ----- | ---- | ---- | ---- | ---- |
+| [key: string]  | number \| string \| boolean \| Array\<string \| number \| boolean> \| null  | No| No| Data stored in key-value pairs.|
