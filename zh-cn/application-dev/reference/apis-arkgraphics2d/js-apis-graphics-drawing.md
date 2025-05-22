@@ -4008,6 +4008,14 @@ static createFromImage(pixelmap: image.PixelMap, srcRect?: common2D.Rect | null,
 | --------------------- | -------------- |
 | [ImageFilter](#imagefilter12) | 返回创建的图像滤波器。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[图形绘制与显示错误码](../apis-arkgraphics2d/errorcode-drawing.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 25900001 | Parameter error.Possible causes: Incorrect parameter range. |
+
 **示例：**
 
 ```ts
@@ -4151,14 +4159,6 @@ static createOffsetImageFilter(dx: number, dy: number, input?: ImageFilter | nul
 | 类型                  | 说明           |
 | --------------------- | -------------- |
 | [ImageFilter](#imagefilter12) | 返回创建的图像滤波器。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
-
-| 错误码ID | 错误信息 |
-| ------- | --------------------------------------------|
-| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
 
 **示例：**
 
@@ -4566,6 +4566,14 @@ addVariation(axis: string, value: number)
 | ----------- | ---------------------------------------- | ---- | -------------------   |
 | axis  | string           | 是   | 字体属性对象可变维度字重的标签'wght'。具体是否支持的该标签取决于加载的字体文件。请打开对应的字体文件具体查看支持的属性。   |
 | value | number           | 是   | 字体属性对象可变维度字重的标签'wght'对应的属性值，需要在字体文件支持的范围内，否则不会生效。如果属性值小于支持的最小值，则默认和最小值一致。如果属性值大于支持的最大值，则默认和最大值效果一致。请打开对应的字体文件具体查看支持的属性值。    |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[图形绘制与显示错误码](../apis-arkgraphics2d/errorcode-drawing.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 25900001 | Parameter error.Possible causes: Incorrect parameter range. |
 
 **示例：**
 
@@ -10395,6 +10403,14 @@ static createComposeShader(dstShaderEffect: ShaderEffect, srcShaderEffect: Shade
 | ------- | ------------------------- |
 | [ShaderEffect](#shadereffect12) | 返回创建的着色器对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[图形绘制与显示错误码](../apis-arkgraphics2d/errorcode-drawing.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 25900001 | Parameter error.Possible causes: Incorrect parameter range. |
+
 **示例：**
 
 ```ts
@@ -10428,6 +10444,14 @@ static createImageShader(pixelmap: image.PixelMap, tileX: TileMode, tileY: TileM
 | 类型    | 说明                       |
 | ------- | ------------------------- |
 | [ShaderEffect](#shadereffect12) | 返回创建的着色器对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[图形绘制与显示错误码](../apis-arkgraphics2d/errorcode-drawing.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 25900001 | Parameter error.Possible causes: Incorrect parameter range. |
 
 **示例：**
 
