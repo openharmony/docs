@@ -2459,7 +2459,7 @@ Driver对象采取如下操作：在指定屏幕传入key值实现模拟点击�
 
 | 参数名  | 类型   | 必填 | 说明          |
 | ------- | ------ | ---- | ------------- |
-| keyCode | number | 是   | 指定的key值，取值大于等于0。 |
+| keyCode | number | 是   | 指定的key值，取值大于等于0的整数。取值范围：[KeyCode键码值](../apis-input-kit/js-apis-keycode.md#keycode)。 |
 | displayId | number | 是   | 指定的屏幕ID，取值大于等于0的整数。 |
 
 **错误码：**
@@ -2533,9 +2533,9 @@ Driver对象通过给定的key值，找到对应组合键，并在指定屏幕�
 
 | 参数名 | 类型   | 必填 | 说明                           |
 | ------ | ------ | ---- | ------------------------------ |
-| key0   | number | 是   | 指定的第一个key值，取值大于等于0。            |
-| key1   | number | 是   | 指定的第二个key值，取值大于等于0。            |
-| key2   | number | 否   | 指定的第三个key值。默认值为0，取值大于等于0。 |
+| key0   | number | 是   | 指定的第一个key值，取值大于等于0的整数，取值范围：[KeyCode键码值](../apis-input-kit/js-apis-keycode.md#keycode)。            |
+| key1   | number | 是   | 指定的第二个key值，取值大于等于0的整数，取值范围：[KeyCode键码值](../apis-input-kit/js-apis-keycode.md#keycode)。            |
+| key2   | number | 否   | 指定的第三个key值，取值大于等于0的整数。取值范围：[KeyCode键码值](../apis-input-kit/js-apis-keycode.md#keycode)，默认值为0。 |
 | displayId | number | 是   | 指定的屏幕ID，取值大于等于0的整数。 |
 
 **错误码：**
@@ -2830,7 +2830,8 @@ Driver对象采取如下操作：从起始坐标点滑向目的坐标点。
 | ------ | ------ | ---- |------------------------------------------------------|
 | from | [Point](#point9) | 是   | 以Point对象的形式传入起始点的坐标信息和所属屏幕ID。                       |
 | to  | [Point](#point9) | 是   | 以Point对象的形式传入终止点的坐标信息和所属屏幕ID。                       |
-| speed  | number | 否   | 滑动速率，取值范围为200-40000，默认值为600，不在范围内设为默认值为600，单位：px/s。 |
+| speed  | number | 否   | 滑动速率，取值范围为200-40000的整数，默认值为600，不在范围内设为默认值为600，单位：px/s。|
+
 
 > **说明**
 >
@@ -2920,7 +2921,7 @@ Driver对象采取如下操作：从起始坐标点拖拽至目的坐标点。
 | ------ | ------ | ---- |--------------------------------------------------------|
 | from | [Point](#point9) | 是   | 以Point对象的形式传入起始点的坐标信息和所属屏幕ID。                       |
 | to  | [Point](#point9) | 是   | 以Point对象的形式传入终止点的坐标信息和所属屏幕ID。                       |
-| speed  | number | 否   | 滑动速率，取值范围为200-40000，默认值为600，不在范围内设为默认值为600，单位：px/s。 |
+| speed  | number | 否   | 滑动速率，取值范围为200-40000的整数，默认值为600，不在范围内设为默认值为600，单位：px/s。|
 | duration  | number | 否   | 拖拽前长按持续的时间，取值范围为大于等于1500的整数，默认值为1500，单位：ms。 |
 
 **错误码：**
@@ -2999,7 +3000,7 @@ Driver对象采取如下操作：捕获屏幕，并保存为PNG格式的图片�
 | 参数名   | 类型   | 必填 | 说明                                       |
 | -------- | ------ | ---- | ------------------------------------------ |
 | savePath | string | 是   | 文件保存路径。路径需为当前应用的沙箱路径。 |
-| displayId     | number | 是  | 指定设备屏幕ID。                |
+| displayId     | number | 是  | 指定设备屏幕ID。取值范围：大于等于0的整数。                |
 
 **返回值：**
 
@@ -3114,7 +3115,7 @@ getDisplayRotation(displayId: number): Promise\<DisplayRotation>
 
 | 参数名   | 类型   | 必填 | 说明                                       |
 | -------- | ------ | ---- | ------------------------------------------ |
-| displayId     | number | 是  | 指定设备屏幕ID。                |
+| displayId     | number | 是  | 指定设备屏幕ID。取值范围：大于等于0的整数。                |
 
 **返回值：**
 
@@ -3230,7 +3231,7 @@ getDisplaySize(displayId: number): Promise\<Point>
 
 | 参数名   | 类型   | 必填 | 说明                                       |
 | -------- | ------ | ---- | ------------------------------------------ |
-| displayId     | number | 是  | 指定设备屏幕ID。                |
+| displayId     | number | 是  | 指定设备屏幕ID。取值范围：大于等于0的整数。                |
 
 **返回值：**
 
@@ -3306,7 +3307,7 @@ getDisplayDensity(displayId: number): Promise\<Point>
 
 | 参数名   | 类型   | 必填 | 说明                                       |
 | -------- | ------ | ---- | ------------------------------------------ |
-| displayId     | number | 是  | 指定设备屏幕ID。                |
+| displayId | number | 是  | 指定设备屏幕ID。取值范围：大于等于0的整数。                |
 
 **返回值：**
 
@@ -3412,7 +3413,7 @@ pressHome(displayId: number): Promise\<void>
 
 | 参数名   | 类型   | 必填 | 说明                                       |
 | -------- | ------ | ---- | ------------------------------------------ |
-| displayId     | number | 是  | 指定设备屏幕ID。                |
+| displayId     | number | 是  | 指定设备屏幕ID。取值范围：大于等于0的整数。                |
 
 **返回值：**
 
@@ -3627,7 +3628,7 @@ fling(direction: UiDirection, speed: number, displayId: number): Promise\<void>;
 | --------- | ----------------------------- | ---- |--------------------------------------------------------|
 | direction | [UiDirection](#uidirection10) | 是   | 进行抛滑的方向。                                               |
 | speed     | number                        | 是   | 滑动速率，取值范围为200-40000，默认值为600，不在范围内设为默认值为600，单位：px/s。 |
-| displayId     | number | 是  | 指定设备屏幕ID。                |
+| displayId     | number | 是  | 指定设备屏幕ID。取值范围：大于等于0的整数。                |
 
 **返回值：**
 
