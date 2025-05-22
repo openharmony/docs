@@ -16,7 +16,6 @@ LazyForEach从数据源中按需迭代数据，并在每次迭代时创建相应
 - LazyForEach必须使用DataChangeListener对象进行更新，重新赋值第一个参数dataSource会导致异常；dataSource使用状态变量时，状态变量改变不会触发LazyForEach的UI刷新。
 - 为了高性能渲染，使用DataChangeListener对象的onDataChange方法更新UI时，需要生成不同于原来的键值来触发组件刷新。
 - LazyForEach和[\@Reusable](./arkts-reusable.md)装饰器一起使用能触发节点复用。使用方法：将@Reusable装饰在LazyForEach列表的组件上，见[列表滚动配合LazyForEach使用](./arkts-reusable.md#列表滚动配合lazyforeach使用)。
-- LazyForEach和[\@ReusableV2](https://developer.huawei.com/consumer/cn/doc/best-practices-V5/bpta-component-reuse-V5#section5601835174020)装饰器一起使用能触发节点复用。详见[在LazyForEach组件中使用\@ReusableV2](https://developer.huawei.com/consumer/cn/doc/best-practices-V5/bpta-component-reuse-V5#section5923195311402)。
 
 ## 键值生成规则
 
