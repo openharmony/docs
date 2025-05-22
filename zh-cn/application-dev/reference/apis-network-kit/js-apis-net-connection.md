@@ -943,7 +943,7 @@ isDefaultNetMetered(callback: AsyncCallback\<boolean>): void
 
 | 参数名   | 类型                    | 必填 | 说明                                   |
 | -------- | ----------------------- | ---- | -------------------------------------- |
-| callback | AsyncCallback\<boolean> | 是   | 回调函数。返回true表示当前网络上的数据流量会被计费，返回false表示不会被计费。 |
+| callback | AsyncCallback\<boolean> | 是   | 回调函数。当前网络上的数据流量是否被计费。true表示会被计费，false表示不会被计费。 |
 
 **错误码：**
 
@@ -982,7 +982,7 @@ isDefaultNetMetered(): Promise\<boolean>
 
 | 类型              | 说明                                            |
 | ----------------- | ----------------------------------------------- |
-| Promise\<boolean> | Promise对象。返回true表示当前网络上的数据流量会被计费，返回false表示不会被计费。 |
+| Promise\<boolean> | Promise对象。当前网络上的数据流量是否被计费。true表示会被计费，false表示不会被计费。 |
 
 **错误码：**
 
@@ -1018,7 +1018,7 @@ isDefaultNetMeteredSync(): boolean
 
 | 类型              | 说明                                            |
 | ----------------- | ----------------------------------------------- |
-| boolean | 返回true表示当前网络上的数据流量会被计费，返回false表示不会被计费。 |
+| boolean | 表示当前网络上的数据流量是否被计费。true表示会被计费，false表示不会被计费。 |
 
 **错误码：**
 
@@ -1091,7 +1091,7 @@ hasDefaultNet(): Promise\<boolean>
 
 | 类型              | 说明                                            |
 | ----------------- | ----------------------------------------------- |
-| Promise\<boolean> | Promise对象，返回true表示默认数据网络被激活，返回false表示没有被激活。 |
+| Promise\<boolean> | Promise对象。返回true表示默认数据网络被激活，返回false表示没有被激活。 |
 
 **错误码：**
 
@@ -1127,7 +1127,7 @@ hasDefaultNetSync(): boolean
 
 | 类型              | 说明                                            |
 | ----------------- | ----------------------------------------------- |
-| boolean | 默认数据网络被激活返回true，否则返回fasle。 |
+| boolean | 表示默认数据网络是否被激活。true表示默认数据网络被激活，fasle表示默认数据网络没有被激活。 |
 
 **错误码：**
 
@@ -1680,7 +1680,7 @@ connection.clearCustomDnsRules().then(() => {
 
 setPacUrl(pacUrl: string): void
 
-设置系统级代理自动配置（Proxy Auto Config即PAC）脚本地址。
+设置系统级代理自动配置（Proxy Auto Config，PAC）脚本地址。
 
 **需要权限**：ohos.permission.SET_PAC_URL
 
@@ -2491,7 +2491,7 @@ connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
 | NET_CAPABILITY_NOT_METERED | 11 | 表示网络流量未被计费。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | NET_CAPABILITY_INTERNET  | 12   | 表示该网络应具有访问Internet的能力，此能力由网络提供者设置，但该网络访问Internet的连通性并未被网络管理成功验证。网络连通性可以通过NET_CAPABILITY_VALIDATED和NET_CAPABILITY_CHECKING_CONNECTIVITY判断。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | NET_CAPABILITY_NOT_VPN | 15 | 表示网络不使用VPN（Virtual&nbsp;Private&nbsp;Network，虚拟专用网络）。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| NET_CAPABILITY_VALIDATED | 16   | 表示网络管理通过该网络与华为云地址成功建立连接，此能力由网络管理模块设置。<br>**注意：** 网络管理可能会与华为云地址建立连接失败，导致网络能力不具备此标记位，但不完全代表该网络无法访问互联网。<br>另外，对于新完成连接的网络，由于网络正在进行连通性验证，此值可能无法反映真实的验证结果。对此，应用可以通过NET_CAPABILITY_CHECKING_CONNECTIVITY<sup>12+</sup>检查网络是否正在检测连通性。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| NET_CAPABILITY_VALIDATED | 16   | 表示网络管理通过该网络与华为云地址成功建立连接，此能力由网络管理模块设置。<br>**注意：** 网络管理可能会与华为云地址建立连接失败，导致网络能力不具备此标记位，但不完全代表该网络无法访问互联网。另外，对于新完成连接的网络，由于网络正在进行连通性验证，此值可能无法反映真实的验证结果。对此，应用可以通过NET_CAPABILITY_CHECKING_CONNECTIVITY<sup>12+</sup>检查网络是否正在检测连通性。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | NET_CAPABILITY_PORTAL<sup>12+</sup> | 17   | 表示系统发现该网络存在强制网络门户，需要用户登陆认证，该能力由网络管理模块设置。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | NET_CAPABILITY_CHECKING_CONNECTIVITY<sup>12+</sup> | 31   | 表示网络管理正在检验当前网络的连通性，此值会在网络连接时设置。当此值存在时，NET_CAPABILITY_VALIDATED的值不准确，连通性检测结束后不再设置，此时可以通过判断NetCap是否包含NET_CAPABILITY_VALIDATED判断连通性。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 
@@ -2699,7 +2699,7 @@ type TCPSocket = socket.TCPSocket
 
 type UDPSocket = socket.UDPSocket
 
-定义一个UDPSocket对象，可以通过[socket.constructUDPSocketInstance](js-apis-socket.md#socketconstructudpsocketinstance)。
+定义一个UDPSocket对象，可以通过[socket.constructUDPSocketInstance](js-apis-socket.md#socketconstructudpsocketinstance)创建。
 
 **原子化服务API：** 从API version 10开始，该接口支持在原子化服务中使用。
 
