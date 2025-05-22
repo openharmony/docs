@@ -149,4 +149,6 @@
     - [window Switching](window-switch.md)
     - [Storage Switching](storage-switch.md)
 <!--DelEnd-->
-- [Native Child Process Development (C/C++)](capi_nativechildprocess_development_guideline.md)
+- Native Child Process Development<!--native-childprocess-development-->
+    - [Creating Native Child Processes](capi_nativechildprocess_development_guideline.md)
+    - [Obtaining Exit Information of Native Child Processes](capi-nativechildprocess-exit-info.md)
