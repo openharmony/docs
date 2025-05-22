@@ -42,7 +42,7 @@ import { distributedDeviceManager } from '@kit.DistributedServiceKit';
 **系统API**： 此接口为系统接口。
 
 | 名称         | 类型  | 只读 | 可选             |  说明    |
-| ----------- | ---- | --------------- | ------- |
+| ----------- | ---- | -- | --- |--------------- | 
 | isCloud      | boolean    |  否 | 否           | 表示是否需要实时从云端获取设备列表。<br />-false：表示从设备获取。<br />-true：表示从云端获取。       |
 | deviceIdList  | Array&lt;string&gt;  | 否 | 是    | 表示获取指定deviceId的设备信息，deviceId一般为设备的UDID，如设备无UDID，则取其MAC或SN作为deviceI的。默认为空。       |
 
@@ -56,7 +56,7 @@ import { distributedDeviceManager } from '@kit.DistributedServiceKit';
 **系统API**： 此接口为系统接口。
 
 | 名称           | 类型  | 只读| 可选              |  说明    |
-| -------------- | ---- | --------------- | --------|
+| -------------- | ---- | --------| ------- | --------|
 | deviceId       | string  | 否 | 否   |  设备ID。          |
 | serviceId       | string  | 否 |否   | 服务ID。           |
 | serviceType     | string   | 否 | 否   | 服务类型。无取值范围规定，只是一个字符串标识。           |
@@ -71,7 +71,7 @@ import { distributedDeviceManager } from '@kit.DistributedServiceKit';
 **系统API**： 此接口为系统接口。
 
 | 名称           | 类型  | 只读   |可选              |  说明    |
-| -------------- | ---- | --------------- | --------|
+| -------------- | ---- | ---| --------------- | --------|
 |  deviceId      | string  |  否    | 否   |  设备ID。          |
 |  deviceSn      | string  |  否    | 否   |  设备序列号。      |
 |  mac           | string  |  否    | 否   |  MAC地址。         |
@@ -110,7 +110,7 @@ import { distributedDeviceManager } from '@kit.DistributedServiceKit';
 **系统API**： 此接口为系统接口。
 
 | 名称           | 类型  | 只读 | 可选              |  说明    |
-| -------------- | ---- | --------------- | --------|
+| -------------- | ---- | -------| -------- | --------|
 |  productId      | string  | 否 | 否   |  设备所属产品ID。          |
 |  subProductId   | string  | 否 | 是   |  设备所属产品子ID。      |
 |  imageType      | string  | 否 | 否   |  图片类型。约定取值范围：<br />-ID.<br />-ID_Headset_L.<br />-ID_Headset_R.<br />-ID_Headset_B.<br />-ID_Headset_LB.<br />-ID_Headset_RB.         |
@@ -126,7 +126,7 @@ import { distributedDeviceManager } from '@kit.DistributedServiceKit';
 **系统API**： 此接口为系统接口。
 
 | 名称           | 类型  | 只读  |可选              |  说明    |
-| -------------- | ---- | --------------- | --------|
+| -------------- | ---- | ------| --------- | --------|
 |  productId      | string  | 否 | 否   |  设备所属产品ID。          |
 |  subProductId   | string  | 否 | 是   |  设备所属产品子ID。     |
 |  imageType      | string  | 否 | 否   |  图片类型。约定取值范围：<br />-ID.<br />-ID_Headset_L.<br />-ID_Headset_R.<br />-ID_Headset_B.<br />-ID_Headset_LB.<br />-ID_Headset_RB.         |
@@ -144,7 +144,7 @@ import { distributedDeviceManager } from '@kit.DistributedServiceKit';
 **系统API**： 此接口为系统接口。
 
 | 名称           | 类型  | 只读 | 可选              |  说明    |
-| -------------- | ---- | --------------- | --------|
+| -------------- | ---- | ------ | --------- | --------|
 |  wiseDeviceId       | string  | 否 | 否   |  已注册设备标识。          |
 |  onlineStatus    | string  | 否 | 是   |  设备在线状态，包括<br />-0: 表示设备处于离线状态。<br />-1: 表示设备在线。可以根据在线状态获取设备网络ID列表。      |
 
@@ -482,7 +482,7 @@ getDeviceIconInfo(filterOptions: DeviceIconInfoFilterOptions): Promise&lt;Device
 
   | 参数名       | 类型            | 必填  | 说明                |
   | ------------- | --------------- | ---- | ------------------- |
-  |  filterOptions       | [DeviceIconInfoFilterOptions](#deviceiconinfofilteroptions15)         | 是    |  查询设备列表参数，参数类型为map，会携带以下key值：<br>productId: 设备所属产品ID。 <br>subProductId: 设备所属产品子ID。<br>imageType: 图片类型，例如：<br />-ID.<br />-ID_Headset_L.<br />-ID_Headset_R.<br />-ID_Headset_B.<br />-ID_Headset_LB.<br />-ID_Headset_RB.<br>specName: 图片规格，约定取值范围：<br />-lg：大图。<br />-sm: 小图。    |
+  |  filterOptions       | [DeviceIconInfoFilterOptions](#deviceiconinfofilteroptions15)         | 是    |  查询设备列表参数。    |
 
 **返回值：**
 
