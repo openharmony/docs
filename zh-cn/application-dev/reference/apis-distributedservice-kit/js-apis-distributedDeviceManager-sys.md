@@ -35,7 +35,7 @@ import { distributedDeviceManager } from '@kit.DistributedServiceKit';
 
 ## DeviceProfileInfoFilterOptions<sup>15+</sup>
 
-设备配置文件信息过滤器选项。
+设备信息过滤器选项。
 
 **系统能力**：SystemCapability.DistributedHardware.DeviceManager
 
@@ -64,7 +64,7 @@ import { distributedDeviceManager } from '@kit.DistributedServiceKit';
 
 ## DeviceProfileInfo<sup>15+</sup>
 
-设备配置文件信息。
+设备信息。
 
 **系统能力**：SystemCapability.DistributedHardware.DeviceManager
 
