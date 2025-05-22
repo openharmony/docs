@@ -372,11 +372,11 @@ openssl dgst -sha256 -binary www.example.com.pubkey.der | openssl base64
 |pin                        | array           |证书公钥哈希。可以包含任意个item。item必须包含1个digest-algorithm，item必须包含1个digest。|
 |digest-algorithm           | string          |指示用于生成哈希的摘要算法。目前只支持`sha256`。                                    |
 |digest                     | string          |指示公钥哈希。 |
-|cleartextTrafficPermitted  | boolean          |明文HTTP是否允许，ture表示允许明文HTTP，false表示不允许明文HTTP，默认为true。 |
+|cleartextTrafficPermitted  | boolean          |明文HTTP是否允许。true表示允许，false表示不允许，默认为true。 |
 
 
 ## 配置不信任用户安装的CA证书
-系统默认信任系统预置的CA证书和用户安装的CA证书，可配置不信任用户安装的CA证书提升安全性。配置不信任用安装的CA证书可以在src/main/resources/base/profile/network_config.json进行配置，更多网络连接安全相关的配置可以参考[网络连接安全配置](https://developer.huawei.com/consumer/cn/doc/best-practices/bpta-network-ca-security#section5454123841911)：
+系统默认信任系统预置的CA证书和用户安装的CA证书，可配置不信任用户安装的CA证书提升安全性。配置不信任用安装的CA证书可以在src/main/resources/base/profile/network_config.json进行配置，更多网络连接安全相关的配置可以参考[网络连接安全配置](https://developer.huawei.com/consumer/cn/doc/best-practices/bpta-network-ca-security#section5454123841911)。
 ```
 {
   "network-security-config": {
