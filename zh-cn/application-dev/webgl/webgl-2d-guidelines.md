@@ -45,7 +45,7 @@ WebGL的全称为Web Graphics Library（网页图形库），主要用于交互�
 | ------------ | -------------------- | ------------------------------------------------------------ |
 | GLenum     | unsigned long     | 用于枚举。        |
 | GLboolean  | boolean            | true或者false。 |
-| GLbitfield | unsigned long      | 无符号整数，可以包含多个位标志。每个位标志都代表一个特定的选项 |
+| GLbitfield | unsigned long      | 无符号整数，可以包含多个位标志。每个位标志都代表一个特定的选项。|
 | GLbyte     | byte               | 纹理八位（一个字节），2的补码表示的有符号整数。                |
 | GLshort    | short              | 16位2的补码表示的有符号整数。                             |
 | GLint      | long               | 32位2的补码表示的有符号整数。                           |
@@ -92,7 +92,7 @@ WebGL的全称为Web Graphics Library（网页图形库），主要用于交互�
 
    - JavaScript 代码中的 main() 函数将会在文档加载完成之后被调用。它的任务是设置WebGL上下文并开始渲染内容。
 
-   - 当获取到canvas之后，会调用getContext函数并向它传递 "webgl" 参数，来尝试获取WebGLRenderingContext。如果浏览器不支持WebGL，getContext将会返回nul，如果WebGL上下文成功初始化，变量'gl'会用来引用该上下文。
+   - 当获取到canvas之后，会调用getContext函数并向它传递 "webgl" 参数，来尝试获取WebGLRenderingContext。如果浏览器不支持WebGL，getContext将会返回null，如果WebGL上下文成功初始化，变量'gl'会用来引用该上下文。
 
    ```js
    function main() {
