@@ -18,7 +18,7 @@ target_link_libraries(sample PUBLIC libohaudio.so)
 
 ### 添加头文件
 
-应用通过引入[native_audio_session_manager.h](../../reference/apis-audio-kit/native__audio__session__manager_8h.md)头文件，使用音频播放相关API。
+应用通过引入[native_audio_session_manager.h](../../reference/apis-audio-kit/capi-native-audio-session-manager-h.md)头文件，使用音频播放相关API。
 
 ```cpp
 #include <ohaudio/native_audio_session_manager.h>
@@ -26,7 +26,7 @@ target_link_libraries(sample PUBLIC libohaudio.so)
 
 ## 获取音频会话管理器
 
-创建[OH_AudioSessionManager](../../reference/apis-audio-kit/_o_h_audio.md#oh_audiosessionmanager)实例。在使用音频会话管理功能前，需要先通过[OH_AudioManager_GetAudioSessionManager](../../reference/apis-audio-kit/_o_h_audio.md#oh_audiomanager_getaudiosessionmanager)创建音频会话管理实例。
+创建[OH_AudioSessionManager](../../reference/apis-audio-kit/capi-oh-audiosessionmanager.md)实例。在使用音频会话管理功能前，需要先通过[OH_AudioManager_GetAudioSessionManager](../../reference/apis-audio-kit/capi-native-audio-session-manager-h.md#oh_audiomanager_getaudiosessionmanager)创建音频会话管理实例。
 
   ```cpp
   OH_AudioSessionManager *audioSessionManager;
@@ -35,9 +35,9 @@ target_link_libraries(sample PUBLIC libohaudio.so)
 
 ## 激活音频会话
 
-应用可以通过[OH_AudioSessionManager_ActivateAudioSession](../../reference/apis-audio-kit/_o_h_audio.md#oh_audiosessionmanager_activateaudiosession)接口激活当前应用的音频会话。
+应用可以通过[OH_AudioSessionManager_ActivateAudioSession](../../reference/apis-audio-kit/capi-native-audio-session-manager-h.md#oh_audiosessionmanager_activateaudiosession)接口激活当前应用的音频会话。
 
-应用在[激活音频会话](#激活音频会话)时，需指定[音频会话策略（OH_AudioSession_Strategy）](../../reference/apis-audio-kit/_o_h_audio.md#oh_audiosession_strategy)，其中包含[音频并发模式（OH_AudioSession_ConcurrencyMode）](../../reference/apis-audio-kit/_o_h_audio.md#oh_audiosession_concurrencymode)参数，用于声明不同的音频并发策略。
+应用在[激活音频会话](#激活音频会话)时，需指定[音频会话策略（OH_AudioSession_Strategy）](../../reference/apis-audio-kit/capi-oh-audiosession-strategy.md)，其中包含[音频并发模式（OH_AudioSession_ConcurrencyMode）](../../reference/apis-audio-kit/capi-native-audio-session-manager-h.md#oh_audiosession_concurrencymode)参数，用于声明不同的音频并发策略。
 
   ```cpp
   OH_AudioSession_Strategy strategy = {CONCURRENCY_MIX_WITH_OTHERS};
@@ -47,7 +47,7 @@ target_link_libraries(sample PUBLIC libohaudio.so)
 
 ## 查询音频会话是否已激活
 
-应用可以通过[OH_AudioSessionManager_IsAudioSessionActivated](../../reference/apis-audio-kit/_o_h_audio.md#oh_audiosessionmanager_isaudiosessionactivated)接口检查当前应用的音频会话是否已激活。
+应用可以通过[OH_AudioSessionManager_IsAudioSessionActivated](../../reference/apis-audio-kit/capi-native-audio-session-manager-h.md#oh_audiosessionmanager_isaudiosessionactivated)接口检查当前应用的音频会话是否已激活。
 
   ```cpp
   bool isActivated = OH_AudioSessionManager_IsAudioSessionActivated(audioSessionManager);
@@ -55,7 +55,7 @@ target_link_libraries(sample PUBLIC libohaudio.so)
 
 ## 停用音频会话
 
-应用可以通过[OH_AudioSessionManager_DeactivateAudioSession](../../reference/apis-audio-kit/_o_h_audio.md#oh_audiosessionmanager_deactivateaudiosession)接口停用当前应用的音频会话。
+应用可以通过[OH_AudioSessionManager_DeactivateAudioSession](../../reference/apis-audio-kit/capi-native-audio-session-manager-h.md#oh_audiosessionmanager_deactivateaudiosession)接口停用当前应用的音频会话。
 
   ```cpp
   OH_AudioSessionManager_DeactivateAudioSession(audioSessionManager);
@@ -63,9 +63,9 @@ target_link_libraries(sample PUBLIC libohaudio.so)
 
 ## 监听音频会话停用事件
 
-在使用AudioSession功能的过程中，推荐应用监听[音频会话停用事件（OH_AudioSession_DeactivatedEvent）](../../reference/apis-audio-kit/_o_h_audio.md#oh_audiosession_deactivatedevent)。
+在使用AudioSession功能的过程中，推荐应用监听[音频会话停用事件（OH_AudioSession_DeactivatedEvent）](../../reference/apis-audio-kit/capi-oh-audiosession-deactivatedevent.md)。
 
-当AudioSession被停用（非主动停用）时，应用会收到[音频会话停用事件（OH_AudioSession_DeactivatedEvent）](../../reference/apis-audio-kit/_o_h_audio.md#oh_audiosession_deactivatedevent)，其中包含[音频会话停用原因（OH_AudioSession_DeactivatedReason）](../../reference/apis-audio-kit/_o_h_audio.md#oh_audiosession_deactivatedreason)。
+当AudioSession被停用（非主动停用）时，应用会收到[音频会话停用事件（OH_AudioSession_DeactivatedEvent）](../../reference/apis-audio-kit/capi-oh-audiosession-deactivatedevent.md)，其中包含[音频会话停用原因（OH_AudioSession_DeactivatedReason）](../../reference/apis-audio-kit/capi-native-audio-session-manager-h.md#oh_audiosession_deactivatedreason)。
 
 在收到AudioSessionDeactivatedEvent时，应用可根据自身业务需求，做相应的处理，例如释放相应资源、重新激活AudioSession等。
 
@@ -87,7 +87,7 @@ target_link_libraries(sample PUBLIC libohaudio.so)
 
 ### 注册音频会话停用事件回调
 
-应用可以通过[OH_AudioSessionManager_RegisterSessionDeactivatedCallback](../../reference/apis-audio-kit/_o_h_audio.md#oh_audiosessionmanager_registersessiondeactivatedcallback)接口监听音频会话停用事件。
+应用可以通过[OH_AudioSessionManager_RegisterSessionDeactivatedCallback](../../reference/apis-audio-kit/capi-native-audio-session-manager-h.md#oh_audiosessionmanager_registersessiondeactivatedcallback)接口监听音频会话停用事件。
 
 ```cpp
 OH_AudioSessionManager_RegisterSessionDeactivatedCallback(audioSessionManager, MyAudioSessionDeactivatedCallback);
@@ -95,7 +95,7 @@ OH_AudioSessionManager_RegisterSessionDeactivatedCallback(audioSessionManager, M
 
 ### 取消注册音频会话停用事件回调
 
-应用可以通过[OH_AudioSessionManager_UnregisterSessionDeactivatedCallback](../../reference/apis-audio-kit/_o_h_audio.md#oh_audiosessionmanager_unregistersessiondeactivatedcallback)接口取消监听音频会话停用事件。
+应用可以通过[OH_AudioSessionManager_UnregisterSessionDeactivatedCallback](../../reference/apis-audio-kit/capi-native-audio-session-manager-h.md#oh_audiosessionmanager_unregistersessiondeactivatedcallback)接口取消监听音频会话停用事件。
 
 ```cpp
 OH_AudioSessionManager_UnregisterSessionDeactivatedCallback(audioSessionManager, MyAudioSessionDeactivatedCallback);
