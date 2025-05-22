@@ -652,6 +652,8 @@ setAppResourceLimit(type: string, value: number, enableDebugLog: boolean) : void
 
 设置应用的文件描述符数量、线程数量、JS内存或Native内存资源限制。
 
+主要应用场景在于构造内存泄漏故障，参见[订阅资源泄漏事件（ArkTS）](../../dfx/hiappevent-watcher-resourceleak-events-arkts.md)、[订阅资源泄漏事件（C/C++）](../../dfx/hiappevent-watcher-resourceleak-events-ndk.md)。
+
 > **注意：**
 >
 > 当设置的开发者选项开关打开并重启设备后，此功能有效。
