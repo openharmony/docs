@@ -15,11 +15,9 @@ ArkTS提供了渲染控制的能力。条件渲染可根据应用的不同状态
 
 - 允许在容器组件内使用，通过条件渲染语句构建不同的子组件。
 
-- 条件渲染语句在涉及到组件的父子关系时是“透明”的，当父组件和子组件之间存在一个或多个if语句时，必须遵守父组件关于子组件使用的规则。
+- 条件渲染语句在涉及到组件的父子关系时是“透明”的，父组件和子组件之间的条件渲染语句不影响父组件关于子组件使用的限制。例如，某些容器组件限制子组件的类型或数量。将条件渲染语句用于这些组件内时，这些限制同样适用于条件渲染语句内创建的组件。具体而言，[Grid](../../reference/apis-arkui/arkui-ts/ts-container-grid.md)容器组件的子组件仅支持[GridItem](../../reference/apis-arkui/arkui-ts/ts-container-griditem.md)组件。在Grid内使用条件渲染语句时，条件渲染语句内仅允许使用GridItem组件。
 
 - 每个分支内部的构建函数必须遵循构建函数的规则，并创建一个或多个组件。无法创建组件的空构建函数会产生语法错误。
-
-- 某些容器组件限制子组件的类型或数量，将条件渲染语句用于这些组件内时，这些限制将同样应用于条件渲染语句内创建的组件。例如，[Grid](../../reference/apis-arkui/arkui-ts/ts-container-grid.md)容器组件的子组件仅支持[GridItem](../../reference/apis-arkui/arkui-ts/ts-container-griditem.md)组件，在Grid内使用条件渲染语句时，条件渲染语句内仅允许使用GridItem组件。
 
 
 ## 更新机制
