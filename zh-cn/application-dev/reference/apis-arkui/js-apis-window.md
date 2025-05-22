@@ -6075,7 +6075,7 @@ try {
 
 on(type: 'uiExtensionSecureLimitChange', callback: Callback&lt;boolean&gt;): void
 
-开启窗口安全限制变化事件的监听。
+开启窗口内uiExtension安全限制变化事件的监听, 建议在窗口创建后立即监听。
 
 **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
@@ -6085,8 +6085,8 @@ on(type: 'uiExtensionSecureLimitChange', callback: Callback&lt;boolean&gt;): voi
 
 | 参数名   | 类型                           | 必填 | 说明                                                     |
 | -------- | ------------------------------ | ---- | -------------------------------------------------------- |
-| type     | string                         | 是   | 监听事件，固定为'uiExtensionSecureLimitChange'，即窗口安全限制。 |
-| callback | Callback&lt;boolean&gt; | 是   | 回调函数。当窗口安全限制发生变化时触发回调。回调函数返回boolean类型参数。当返回参数为true有安全限制；false表示无安全限制。   |
+| type     | string                         | 是   | 监听事件，固定为'uiExtensionSecureLimitChange'，即窗口内uiExtension安全限制变化事件。 |
+| callback | Callback&lt;boolean&gt; | 是   | 回调函数。当窗口内uiExtension安全限制变化时触发回调。当返回参数为true表示窗口内uiExtension开启了隐藏不安全窗口；当返回参数为false表示窗口内uiExtension关闭了隐藏不安全窗口。若窗口内存在多个uiExtension，当返回参数为true表示窗口内至少一个uiExtension开启了隐藏不安全窗口；当返回参数为false表示窗口内所有uiExtension关闭了隐藏不安全窗口。 |
 
 **错误码：**
 
@@ -6103,10 +6103,10 @@ on(type: 'uiExtensionSecureLimitChange', callback: Callback&lt;boolean&gt;): voi
 ```ts
 try {
   windowClass.on('uiExtensionSecureLimitChange', (data: boolean) => {
-    console.info('Window secure limit Change: ${data}');
+    console.info(`Window secure limit Change: ${data}`);
   });
 } catch (exception) {
-  console.error('Failed to register callback. Cause code: ${exception.code}, message: ${exception.message}');
+  console.error(`Failed to register callback. Cause code: ${exception.code}, message: ${exception.message}`);
 }
 ```
 
@@ -6114,7 +6114,7 @@ try {
 
 off(type: 'uiExtensionSecureLimitChange', callback?: Callback&lt;boolean&gt;): void
 
-关闭窗口安全限制变化事件的监听。
+关闭窗口内uiextension安全限制变化事件的监听。
 
 **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
@@ -6124,7 +6124,7 @@ off(type: 'uiExtensionSecureLimitChange', callback?: Callback&lt;boolean&gt;): v
 
 | 参数名   | 类型                           | 必填 | 说明                                                         |
 | -------- | ------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | string                         | 是   | 监听事件，固定为'uiExtensionSecureLimitChange'，即窗口安全限制。     |
+| type     | string                         | 是   | 监听事件，固定为'uiExtensionSecureLimitChange'，即窗口内uiExtension安全限制变化事件。     |
 | callback | Callback&lt;boolean&gt; | 否   | 回调函数。若传入参数，则关闭该监听。若未传入参数，则关闭所有窗口安全限制变化的监听。 |
 
 **错误码：**
@@ -6133,7 +6133,7 @@ off(type: 'uiExtensionSecureLimitChange', callback?: Callback&lt;boolean&gt;): v
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
-| 801     | Capability not supported.Function on('uiExtensionSecureLimitChange') can not work correctly due to limited device capabilities. |
+| 801     | Capability not supported.Function off('uiExtensionSecureLimitChange') can not work correctly due to limited device capabilities. |
 | 1300002 | This window state is abnormal. |
 | 1300003 | This window manager service works abnormally. |
 
@@ -6151,7 +6151,7 @@ try {
   // 如果通过on开启多个callback进行监听，同时关闭所有监听：
   windowClass.off('uiExtensionSecureLimitChange');
 } catch (exception) {
-  console.error('Failed to unregister callback. Cause code: ${exception.code}, message: ${exception.message}');
+  console.error(`Failed to unregister callback. Cause code: ${exception.code}, message: ${exception.message}`);
 }
 ```
 
