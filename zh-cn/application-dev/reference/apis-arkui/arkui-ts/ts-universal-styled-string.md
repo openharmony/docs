@@ -1481,14 +1481,16 @@ struct styled_string_demo3 {
     fontSize: LengthMetrics.vp(20),
     fontWeight: FontWeight.Bolder,
     fontStyle: FontStyle.Italic,
-    fontFamily: "Arial"
+    fontFamily: "Arial",
+    superscript: SuperscriptStyle.SUPERSCRIPT
   });
   fontStyleAttr3: StyledStringValue = new TextStyle({
     fontColor: Color.Orange,
     fontSize: LengthMetrics.vp(20),
     fontWeight: FontWeight.Lighter,
     fontStyle: FontStyle.Italic,
-    fontFamily: "Arial"
+    fontFamily: "Arial",
+    superscript: SuperscriptStyle.SUBSCRIPT
   });
   // 创建多重TextStyle样式的对象mutableStyledString1
   mutableStyledString1: MutableStyledString = new MutableStyledString("运动45分钟", [{
@@ -1593,6 +1595,7 @@ struct styled_string_demo3 {
                   console.info('mutableStyledString1 fontWeight:' + fontAttr.fontWeight);
                   console.info('mutableStyledString1 fontStyle:' + fontAttr.fontStyle);
                   console.info('mutableStyledString1 fontStyle:' + fontAttr.fontFamily);
+                  console.info('mutableStyledString1 superscript:' + fontAttr.superscript);
                 }
               }
             }
