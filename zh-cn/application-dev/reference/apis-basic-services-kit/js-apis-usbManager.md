@@ -288,7 +288,7 @@ claimInterface(pipe: USBDevicePipe, iface: USBInterface, force ?: boolean): numb
 | -------- | -------- | -------- | -------- |
 | pipe | [USBDevicePipe](#usbdevicepipe) | 是 | 用于确定总线号和设备地址，需要调用connectDevice获取。|
 | iface | [USBInterface](#usbinterface) | 是 | 用于确定需要获取接口的索引，需要调用getDevices获取设备信息并通过id确定唯一接口。|
-| force | boolean | 否 | 可选参数，是否强制获取。默认值为false&nbsp;，表示不强制获取，用户按需选择。ture：表示强制获取；false：表示不强制获取。|
+| force | boolean | 否 | 可选参数，是否强制获取。默认值为false&nbsp;，表示不强制获取，用户按需选择。|
 
 **返回值：**
 
@@ -1365,8 +1365,8 @@ USB配置，一个[USBDevice](#usbdevice)中可以含有多个配置。
 | attributes     | number                                           | 是 |配置的属性。          |
 | maxPower       | number                                           | 是 |最大功耗，以毫安为单位。    |
 | name           | string                                           | 是 |配置的名称，可以为空。     |
-| isRemoteWakeup | boolean                                          | 是 |检查当前配置是否支持远程唤醒。true：当前配置支持远程唤醒；false：当前配置不支持远程唤醒。 |
-| isSelfPowered  | boolean                                          | 是 | 检查当前配置是否支持独立电源。true：当前配置支持独立电源；false：当前配置不支持独立电源。 |
+| isRemoteWakeup | boolean                                          | 是 |检查当前配置是否支持远程唤醒。|
+| isSelfPowered  | boolean                                          | 是 | 检查当前配置是否支持独立电源。|
 | interfaces     | Array&nbsp;&lt;[USBInterface](#usbinterface)&gt; | 是 |配置支持的接口属性。      |
 
 ## USBDevice
