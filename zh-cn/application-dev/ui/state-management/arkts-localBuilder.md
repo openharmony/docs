@@ -1,22 +1,18 @@
 # \@LocalBuilder装饰器： 维持组件关系
 
-开发者跨组件传递局部@Builder时， `this` 指向可能发生偏移，导致访问到的组件关系错误。为了纠正组件的错误关系，会使用特定函数来修正执行上下文，组件间关系维护起来变得复杂。为了解决this指向问题，ArkUI引入了@LocalBuilder装饰器。@LocalBuilder不仅具备局部@Builder的功能，还能更精确的确定组件间的关系。
+开发者跨组件传递局部@Builder时，`this`指向可能发生偏移，导致访问到的组件关系错误。为了纠正组件的错误关系，会使用特定函数来修正执行上下文，组件间关系维护起来变得复杂。为了解决this指向问题，ArkUI引入了@LocalBuilder装饰器。@LocalBuilder拥有和@Builder相同的功能，且比@Builder能够更好的确定组件间的关系。
 
-在阅读本文档前，建议提前阅读：[\@Builder](./arkts-builder.md)。
+在阅读本文档前，建议提前阅读：[@Builder](./arkts-builder.md)。
 
 > **说明：**
 >
 > 从API version 12开始支持。
->
-> 
 
 ## 装饰器使用说明
-
 
 ### 自定义组件内自定义构建函数
 
 定义的语法：
-
 
 ```ts
 @LocalBuilder MyBuilderFunction() { ... }
@@ -24,26 +20,25 @@
 
 使用方法：
 
-
 ```ts
 this.MyBuilderFunction()
 ```
 
 - 允许在自定义组件内定义一个或多个@LocalBuilder方法，该方法被认为是该组件的私有、特殊类型的成员函数。
 - 自定义构建函数可以在所属组件的build方法和其他自定义构建函数中调用，但不允许在组件外调用。
-- 在自定义函数体中，this指代当前所属组件，组件的状态变量可以在自定义构建函数内访问。建议通过this访问自定义组件的状态变量而不是参数传递。
+- 在自定义函数体中，`this`指代当前组件，可直接访问组件的状态变量。建议通过`this`访问状态变量，而非参数传递。
 
 ## 限制条件
 
 - @LocalBuilder只能在所属组件内声明，不允许全局声明。
 
-- @LocalBuilder不能被内置装饰器和自定义装饰器使用。
+- @LocalBuilder不能与内置装饰器或自定义装饰器一起使用。
 
 - 自定义组件内的静态方法不能和@LocalBuilder一起使用。
 
 ## @LocalBuilder和局部@Builder使用区别
 
-跨组件传递局部@Builder方法时，会使用一些函数来改变this的指向，比如bind(this)，使用bind(this)之后，当前组件的和子组件关系会改变。但是@LocalBuilder是否使用bind(this)，都不会改变组件间的关系。 详细请参考[@LocalBuilder和@Builder区别说明](arkts-localBuilder.md#localbuilder和builder区别说明)。
+跨组件传递局部@Builder方法时，会使用一些函数来改变this的指向，例如：bind(this)。使用bind(this)之后，当前组件的和子组件关系会改变。但@LocalBuilder是否使用bind(this)，都不会改变组件间的关系。详情请参考[@LocalBuilder和@Builder区别说明](arkts-localBuilder.md#localbuilder和builder区别说明)。
 
 ![zh-cn_image_compatible_localBuilder](figures/zh-cn_image_compatible_localBuilder.png) 
 
@@ -59,16 +54,17 @@ this.MyBuilderFunction()
 
 - 在@LocalBuilder修饰的函数内部，不允许改变参数值。
 
-- \@LocalBuilder内UI语法遵循[UI语法规则](arkts-create-custom-components.md#build函数)。
+- \@LocalBuilder内的UI语法遵循[UI语法规则](arkts-create-custom-components.md#build函数)。
 
-- 只有传入一个参数，且参数需要直接传入对象字面量才会按引用传递该参数，其余传递方式均为按值传递。
-
+- 传入一个对象字面量参数时按引用传递，其他方式按值传递。
 
 ### 按引用传递参数
 
 按引用传递参数时，传递的参数可为状态变量，且状态变量的改变会引起\@LocalBuilder方法内的UI刷新。
 
-特别说明，若\@LocalBuilder函数和$$参数一起使用，子组件调用父组件的@LocalBuilder函数，传入的参数发生变化，不会引起\@LocalBuilder方法内的UI刷新。
+>**说明：**
+>
+> 当\@LocalBuilder函数和$$参数一起使用，子组件调用父组件的\@LocalBuilder函数，传入的参数发生变化时，不会触发\@LocalBuilder方法内的UI刷新。
 
 使用场景：
 
@@ -150,12 +146,11 @@ struct Parent {
 }
 ```
 
-子组件引用父组件的@LocalBuilder函数，传入的参数为状态变量，状态变量的改变不会引发@LocalBuilder方法内的UI刷新，原因是@Localbuilder装饰的函数绑定在父组件上，状态变量刷新机制是刷新本组件以及其子组件，对父组件无影响，故无法引发刷新。若使用@Builder修饰则可引发刷新，原因是@Builder改变了函数的this指向，此时函数被绑定到子组件上，故能引发UI刷新。
-
+子组件引用父组件的@LocalBuilder函数，传入的状态变量改变时不会触发UI刷新。因为@LocalBuilder装饰的函数绑定在父组件上，状态变量刷新机制仅刷新本组件及其子组件，不会影响父组件，因此无法触发刷新。若使用@Builder修饰，则可触发刷新，因为@Builder改变了函数的this指向，使其绑定到子组件上，从而能够触发UI刷新。
 
 使用场景：
 
-组件Child将状态变量传递到Parent的@Builder和@LocalBuilder函数内，在@Builder的函数内，this指向Child，参数变化能引发UI刷新，在@LocalBuilder函数内，this指向Parent，参数变化不能引发UI刷新。若@LocalBuilder函数内引用Parent的状态变量发生变化，UI能正常刷新。
+组件Child将状态变量传递到Parent的@Builder和@LocalBuilder函数内。在@Builder函数内，`this`指向Child，参数变化能触发UI刷新。在@LocalBuilder函数内，`this`指向Parent，参数变化不会触发UI刷新。若@LocalBuilder函数内引用Parent的状态变量发生变化，UI能正常刷新。
 
 ```ts
 class Data {
@@ -228,12 +223,11 @@ struct Child {
 
 ### 按值传递参数
 
-调用\@LocalBuilder装饰的函数默认按值传递。当传递的参数为状态变量时，状态变量的改变不会引起\@LocalBuilder方法内的UI刷新。所以当使用状态变量的时候，推荐使用[按引用传递](#按引用传递参数)。
+调用\@LocalBuilder装饰的函数默认按值传递。当传递的参数为状态变量时，状态变量的改变不会触发\@LocalBuilder方法内的UI刷新。因此，使用状态变量时，推荐使用[按引用传递](#按引用传递参数)。
 
 使用场景：
 
-组件Parent将@State修饰的label值按照函数传参方式传递到@LocalBuilder函数内，此时@LocalBuilder函数获取到的值为普通变量值，所以改变@State修饰的label值时，@LocalBuilder函数内的值不会发生改变。
-
+组件Parent将@State修饰的label值以函数参数形式传递给@LocalBuilder函数。此时，@LocalBuilder函数获取到的值为普通变量值，因此修改@State修饰的label值时，@LocalBuilder函数内的值不会变化。
 
 ```ts
 @Entry
@@ -258,13 +252,13 @@ struct Parent {
 
 ## @LocalBuilder和@Builder区别说明
 
-函数componentBuilder被@Builder修饰时，显示效果是 “Child”，函数componentBuilder被@LocalBuilder修饰时，显示效果是“Parent”。
+当函数componentBuilder被@Builder修饰时，显示效果为“Child”；当函数componentBuilder被@LocalBuilder修饰时，显示效果是“Parent”。
 
 说明：
 
-@Builder componentBuilder()通过this.componentBuilder的形式传给子组件@BuilderParam customBuilderParam，this指向在Child的label，即“Child”。
+@Builder componentBuilder()通过this.componentBuilder的形式传给子组件@BuilderParam customBuilderParam，this指向子组件Child的实例。
 
-@LocalBuilder componentBuilder()通过this.componentBuilder的形式传给子组件@BuilderParam customBuilderParam，this指向Parent的label，即“Parent”。
+@LocalBuilder componentBuilder()通过this.componentBuilder的形式传给子组件@BuilderParam customBuilderParam，this指向父组件Parent的实例。
 
 ```ts
 @Component
@@ -304,7 +298,7 @@ struct Parent {
 
 ### @LocalBuilder在@ComponentV2修饰的自定义组件中使用
 
-使用局部的@LocalBuilder在@ComponentV2修饰的自定义组件中调用，修改变量触发UI刷新。
+在@ComponentV2修饰的自定义组件中使用局部的@LocalBuilder调用，修改变量时会触发UI刷新。
 
 ```ts
 @ObservedV2
