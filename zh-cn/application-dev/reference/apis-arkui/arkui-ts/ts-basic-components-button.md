@@ -57,7 +57,7 @@ Button(label: ResourceStr, options?: ButtonOptions)
 
 Button()
 
-创建个空按钮。
+创建一个空按钮。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
