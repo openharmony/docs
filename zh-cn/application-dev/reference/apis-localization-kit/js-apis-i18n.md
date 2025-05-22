@@ -2047,7 +2047,7 @@ public getZoneRules(): ZoneRules
 
 | 类型     | 说明                 |
 | ------ | ------------------ |
-| [ZoneRules](#zonerules) | 时区跳变规则。 |
+| [ZoneRules](#zonerules20) | 时区跳变规则。 |
 
 **示例：**
 ```ts
@@ -2084,7 +2084,7 @@ public nextTransition(date?: number): ZoneOffsetTransition
 
 | 类型       | 说明         |
 | -------- | ---------- |
-| [ZoneOffsetTransition](#zoneoffsettransition) | 时间跳变对象。 |
+| [ZoneOffsetTransition](#zoneoffsettransition20) | 时间跳变对象。 |
 
 **示例：**
 ```ts
