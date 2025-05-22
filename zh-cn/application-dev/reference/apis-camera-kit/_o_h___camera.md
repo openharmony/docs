@@ -2842,7 +2842,7 @@ Camera_ErrorCode OH_CameraManager_GetCameraConcurrentInfos(Camera_Manager* camer
 
 **描述**
 
-获取指定相机的并发信息，返回空表示不支持并发。
+获取指定相机的并发信息。当相机不支持时，cameraConcurrentInfo返回为空指针，并且返回错误码CAMERA_SERVICE_FATAL_ERROR。
 
 **起始版本：** 18
 
@@ -2864,7 +2864,7 @@ Camera_ErrorCode OH_CameraManager_GetCameraConcurrentInfos(Camera_Manager* camer
 
 - CAMERA_INVALID_ARGUMENT：如果参数丢失或参数类型不正确。
 
-- CAMERA_SERVICE_FATAL_ERROR：如果相机服务出现致命错误。
+- CAMERA_SERVICE_FATAL_ERROR：如果相机服务出现致命错误，或者相机不支持。
 
 
 ### OH_CameraManager_GetCameraDevice()
