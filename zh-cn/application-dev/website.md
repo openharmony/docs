@@ -834,15 +834,15 @@
         <!--Del-->
         - [卡片使用方开发指导（仅对系统应用开放）](form/widget-host-development-guide.md)
         <!--DelEnd-->
-        - 互动卡片开发<!--arkts-ui-liveform-->
-          - [互动卡片概述](form/arkts-ui-liveform-overview.md)
-          - [趣味交互类型互动卡片开发指导](form/arkts-ui-liveform-funinteraction-development.md)
-          - 场景动效类型互动卡片<!--arkts-ui-liveform-sceneanimation-->
-            - [场景动效类型互动卡片概述](form/arkts-ui-liveform-sceneanimation-overview.md)
-            - [场景动效类型互动卡片开发指导](form/arkts-ui-liveform-sceneanimation-development.md)
-            <!--Del-->
-            - [场景动效类型互动卡片开发指导（系统应用）](form/arkts-ui-liveform-sceneanimation-development-sys.md)
-            <!--DelEnd-->
+      - 互动卡片开发<!--arkts-ui-liveform-->
+        - [互动卡片概述](form/arkts-ui-liveform-overview.md)
+        - [趣味交互类型互动卡片开发指导](form/arkts-ui-liveform-funinteraction-development.md)
+        - 场景动效类型互动卡片<!--arkts-ui-liveform-sceneanimation-->
+          - [场景动效类型互动卡片概述](form/arkts-ui-liveform-sceneanimation-overview.md)
+          - [场景动效类型互动卡片开发指导](form/arkts-ui-liveform-sceneanimation-development.md)
+          <!--Del-->
+          - [场景动效类型互动卡片开发指导（系统应用）](form/arkts-ui-liveform-sceneanimation-development-sys.md)
+          <!--DelEnd-->
       - JS卡片开发
         - [JS卡片概述](js-ui-widget-overview.md)
         - [JS卡片开发指导（Stage模型）](js-ui-widget-development.md)
