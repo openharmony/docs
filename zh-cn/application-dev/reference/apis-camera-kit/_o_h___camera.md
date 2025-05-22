@@ -2864,7 +2864,7 @@ Camera_ErrorCode OH_CameraManager_GetCameraConcurrentInfos(Camera_Manager* camer
 
 - CAMERA_INVALID_ARGUMENT：如果参数丢失或参数类型不正确。
 
-- CAMERA_SERVICE_FATAL_ERROR：如果相机服务出现致命错误，或者相机不支持。
+- CAMERA_SERVICE_FATAL_ERROR：如果相机服务出现致命错误，或者相机不支持并发。
 
 
 ### OH_CameraManager_GetCameraDevice()
