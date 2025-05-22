@@ -2205,13 +2205,13 @@
             <!--DelEnd-->
       - C API<!--ability-c-->
         - 模块<!--ability-module-->
-          - [AbilityAccessControl](reference/apis-ability-kit/_ability_access_control.md)
+          - [AbilityAccessControl](reference/apis-ability-kit/capi-abilityaccesscontrol.md)
           - [AbilityBase](reference/apis-ability-kit/_ability_base.md)
           - [AbilityRuntime](reference/apis-ability-kit/_ability_runtime.md)
           - [Bundle](reference/apis-ability-kit/_bundle.md)
           - [ChildProcess](reference/apis-ability-kit/c-apis-ability-childprocess.md)
         - 头文件<!--ability-headerfile-->
-          - [ability_access_control.h](reference/apis-ability-kit/ability__access__control_8h.md)
+          - [ability_access_control.h](reference/apis-ability-kit/capi-ability-access-control-h.md)
           - [ability_base_common.h](reference/apis-ability-kit/ability__base__common_8h.md)
           - [ability_runtime_common.h](reference/apis-ability-kit/ability__runtime__common_8h.md)
           - [application_context.h](reference/apis-ability-kit/application__context_8h.md)
