@@ -6,11 +6,13 @@ The BundleInstaller module provides APIs for you to install, uninstall, and reco
 >
 > The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 >
+> The APIs of this module are deprecated since API version 9. You are advised to use [@ohos.bundle.installer.install](js-apis-installer-sys.md) instead.
+>
 > The APIs provided by this module are system APIs.
 
 ## BundleInstaller.install<sup>(deprecated)<sup>
 
-> This API is deprecated since API version 9. You are advised to use [@ohos.bundle.installer.install](js-apis-installer-sys.md) instead.
+This API is deprecated since API version 9. You are advised to use [@ohos.bundle.installer.install](js-apis-installer-sys.md#bundleinstallerinstall) instead.
 
 install(bundleFilePaths: Array&lt;string&gt;, param: InstallParam, callback: AsyncCallback&lt;InstallStatus&gt;): void
 
@@ -63,7 +65,7 @@ bundleInstall.getBundleInstaller().then(installer => {
 
 ## BundleInstaller.uninstall<sup>(deprecated)<sup>
 
-> This API is deprecated since API version 9. You are advised to use [uninstall](js-apis-installer-sys.md) instead.
+This API is deprecated since API version 9. You are advised to use [uninstall](js-apis-installer-sys.md#bundleinstalleruninstall) instead.
 
 uninstall(bundleName: string, param: InstallParam, callback: AsyncCallback&lt;InstallStatus&gt;): void
 
@@ -115,7 +117,7 @@ bundleInstall.getBundleInstaller().then(installer => {
 ```
 ## BundleInstaller.recover<sup>(deprecated)<sup>
 
-> This API is deprecated since API version 9. You are advised to use [recover](js-apis-installer-sys.md) instead.
+This API is deprecated since API version 9. You are advised to use [recover](js-apis-installer-sys.md#bundleinstallerrecover) instead.
 
 recover(bundleName: string, param: InstallParam, callback: AsyncCallback&lt;InstallStatus&gt;): void
 
@@ -167,6 +169,8 @@ bundleInstall.getBundleInstaller().then(installer => {
 ```
 
 ## InstallParam<sup>(deprecated)<sup>
+
+This API is deprecated since API version 9. You are advised to use [InstallParam](js-apis-installer-sys.md#installparam) instead.
 
 Describes the parameters required for bundle installation, recovery, or uninstall.
 

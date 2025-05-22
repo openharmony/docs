@@ -214,8 +214,10 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 17700050 | Failed to install the HAP because an enterprise normal/MDM bundle cannot be installed on non-enterprise devices. |
 | 17700052 | Failed to install the HAP because a debug bundle can be installed only in developer mode. |
 | 17700054 | Failed to install the HAP because the HAP requests wrong permissions.|
+| 17700058 | Failed to install the HAP because the device has been controlled. |
 | 17700066 | Failed to install the HAP because installing the native package failed. |
 | 17700073 | Failed to install the HAP because an application with the same bundle name but different signature information exists on the device. |
+| 17700077 | Failed to install the HAP and restore to preinstalled bundle. |
 
 **Example**
 
@@ -306,8 +308,10 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 17700050 | Failed to install the HAP because an enterprise normal/MDM bundle cannot be installed on non-enterprise devices. |
 | 17700052 | Failed to install the HAP because a debug bundle can be installed only in developer mode. |
 | 17700054 | Failed to install the HAP because the HAP requests wrong permissions.|
+| 17700058 | Failed to install the HAP because the device has been controlled. |
 | 17700066 | Failed to install the HAP because installing the native package failed. |
 | 17700073 | Failed to install the HAP because an application with the same bundle name but different signature information exists on the device. |
+| 17700077 | Failed to install the HAP and restore to preinstalled bundle. |
 
 **Example**
 
@@ -402,8 +406,10 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 17700050 | Failed to install the HAP because an enterprise normal/MDM bundle cannot be installed on non-enterprise devices. |
 | 17700052 | Failed to install the HAP because a debug bundle can be installed only in developer mode. |
 | 17700054 | Failed to install the HAP because the HAP requests wrong permissions.|
+| 17700058 | Failed to install the HAP because the device has been controlled. |
 | 17700066 | Failed to install the HAP because installing the native package failed. |
 | 17700073 | Failed to install the HAP because an application with the same bundle name but different signature information exists on the device. |
+| 17700077 | Failed to install the HAP and restore to preinstalled bundle. |
 
 **Example**
 
@@ -1656,9 +1662,9 @@ try {
 
 Defines the hash parameters for bundle installation and uninstall.
 
- **System capability**: SystemCapability.BundleManager.BundleFramework.Core
+**System capability**: SystemCapability.BundleManager.BundleFramework.Core
 
- **System API**: This is a system API.
+**System API**: This is a system API.
 
 | Name    | Type  | Mandatory| Description            |
 | ---------- | ------ | ---------------- | ---------------- |
@@ -1669,15 +1675,15 @@ Defines the hash parameters for bundle installation and uninstall.
 
 Defines the parameters that need to be specified for bundle installation, uninstall, or recovering.
 
- **System capability**: SystemCapability.BundleManager.BundleFramework.Core
+**System capability**: SystemCapability.BundleManager.BundleFramework.Core
 
- **System API**: This is a system API.
+**System API**: This is a system API.
 
 | Name                       | Type                          | Mandatory                        | Description              |
 | ------------------------------ | ------------------------------ | ------------------ | ------------------ |
 | userId                         | number                         | No                       | User ID. The default value is the user ID of the caller. The value must be greater than or equal to 0. You can call [queryOsAccountLocalIdFromProcess](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9) to obtain the user ID of the current process. When a driver application is installed, uninstalled, or restored, this parameter is ignored and the operation is executed for all users.|
 | installFlag                    | number                         | No                       | Installation flag. The value **0x00** means initial installation, **0x01** means overwrite installation, and **0x10** means installation-free. The default value is **0x00**.|
-| isKeepData                     | boolean                        | No                      | Whether to retain the data directory during bundle uninstall. The default value is **false**.|
+| isKeepData                     | boolean                        | No                      | Whether to retain the data directory during bundle uninstall. The default value is **false**. The value **true** means to retain the data directory during bundle uninstall, and **false** means the opposite.|
 | hashParams        | Array<[HashParam](#hashparam)> | No| Hash parameters. By default, no value is passed.        |
 | crowdtestDeadline| number                         | No                       | End date of crowdtesting. The default value is **-1**, indicating that no end date is specified for crowdtesting.|
 | sharedBundleDirPaths<sup>10+</sup> | Array\<String> | No|Paths of the shared bundle files. By default, no value is passed.|
@@ -1690,9 +1696,9 @@ Defines the parameters that need to be specified for bundle installation, uninst
 
 Defines the parameters required for the uninstall of a shared bundle.
 
- **System capability**: SystemCapability.BundleManager.BundleFramework.Core
+**System capability**: SystemCapability.BundleManager.BundleFramework.Core
 
- **System API**: This is a system API.
+**System API**: This is a system API.
 
 | Name       | Type  | Mandatory| Description                                                        |
 | ----------- | ------ | ---- | ------------------------------------------------------------ |
@@ -1705,9 +1711,9 @@ Defines the parameters required for the uninstall of a shared bundle.
 
 Defines the information about the code signature file.
 
- **System capability**: SystemCapability.BundleManager.BundleFramework.Core
+**System capability**: SystemCapability.BundleManager.BundleFramework.Core
 
- **System API**: This is a system API.
+**System API**: This is a system API.
 
 | Name    | Type  | Mandatory| Description            |
 | ---------- | ------ | ---------------- | ---------------- |
@@ -1718,9 +1724,9 @@ Defines the information about the code signature file.
 
 Defines the parameters of the PGO configuration file.
 
- **System capability**: SystemCapability.BundleManager.BundleFramework.Core
+**System capability**: SystemCapability.BundleManager.BundleFramework.Core
 
- **System API**: This is a system API.
+**System API**: This is a system API.
 
 | Name    | Type  | Mandatory| Description            |
 | ---------- | ------ | ---------------- | ---------------- |
@@ -1731,9 +1737,9 @@ Defines the parameters of the PGO configuration file.
 
 Describes the extended parameter information.
 
- **System capability**: SystemCapability.BundleManager.BundleFramework.Core
+**System capability**: SystemCapability.BundleManager.BundleFramework.Core
 
- **System API**: This is a system API.
+**System API**: This is a system API.
 
 | Name    | Type  | Mandatory| Description            |
 | ---------- | ------ | ---------------- | ---------------- |
@@ -1757,9 +1763,9 @@ Describes the parameters used for creating an application clone.
 
 Describes the parameters used for destroying an application clone.
 
- **System capability**: SystemCapability.BundleManager.BundleFramework.Core
+**System capability**: SystemCapability.BundleManager.BundleFramework.Core
 
- **System API**: This is a system API.
+**System API**: This is a system API.
 
 | Name       | Type  | Mandatory| Description                                                         |
 | ----------- | ------ | ---- | ------------------------------------------------------------ |

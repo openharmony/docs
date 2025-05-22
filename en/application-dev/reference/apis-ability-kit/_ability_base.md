@@ -29,7 +29,7 @@ As the basic definition module of Ability Kit, AbilityBase provides definitions 
 | Name                                                        | Description                        |
 | ------------------------------------------------------------ | ---------------------------- |
 | [AbilityBase_Element](_ability_base_element.md#abilitybase_element) {<br>    char* bundleName;<br>    char* moduleName;<br>    char* abilityName;<br>} | Element struct.|
-| [AbilityBase_Want](#abilitybase_want)  | Element struct.|
+| [AbilityBase_Want](#abilitybase_want)  | Want struct.|
 
 ### Functions
 

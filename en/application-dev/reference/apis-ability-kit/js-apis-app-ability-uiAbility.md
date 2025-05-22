@@ -27,7 +27,7 @@ import { UIAbility } from '@kit.AbilityKit';
 | -------- | -------- | -------- | -------- | -------- |
 | context | [UIAbilityContext](js-apis-inner-application-uiAbilityContext.md) | No| No| Context of the UIAbility.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | launchWant | [Want](js-apis-app-ability-want.md) | No| No| Parameters for starting the UIAbility.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| lastRequestWant | [Want](js-apis-app-ability-want.md) | No| No| Latest Want received through [onCreate](#uiabilityoncreate) or [onNewWant](#uiabilityonnewwant) when the UIAbility is started for multiple times.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| lastRequestWant | [Want](js-apis-app-ability-want.md) | No | No| Latest Want received through [onCreate](#uiabilityoncreate) or [onNewWant](#uiabilityonnewwant) when the UIAbility is started for multiple times.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | callee | [Callee](#callee) | No| No| Object that invokes the stub service.|
 
 ## UIAbility.onCreate
@@ -218,7 +218,7 @@ class MyUIAbility extends UIAbility {
 
 onForeground(): void
 
-Called when this UIAbility is switched from the background to the foreground. This API returns the result synchronously and does not support asynchronous callback.
+Triggered when the application transitions from the background to the foreground. This API returns the result synchronously and does not support asynchronous callback.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -241,7 +241,7 @@ class MyUIAbility extends UIAbility {
 
 onBackground(): void
 
-Called when this UIAbility is switched from the foreground to the background. This API returns the result synchronously and does not support asynchronous callback.
+Triggered when the application transitions from the foreground to the background. This API returns the result synchronously and does not support asynchronous callback.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -394,7 +394,7 @@ class MyUIAbility extends UIAbility {
 
 onSaveState(reason: AbilityConstant.StateType, wantParam: Record&lt;string, Object&gt;): AbilityConstant.OnSaveResult
 
-Called when the framework automatically saves the UIAbility state in the case of an application fault. This API is used together with [appRecovery](js-apis-app-ability-appRecovery.md). If automatic state saving is enabled, **onSaveState** is called to save the state of this UIAbility.
+Called when the framework automatically saves the UIAbility state in the case of an application fault. This API is used together with [appRecovery](js-apis-app-ability-appRecovery.md). When an application is faulty, the framework calls **onSaveState** to save the status of the UIAbility if auto-save is enabled.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -1222,7 +1222,7 @@ Defines the callback that is invoked when the stub on the target UIAbility is di
 | Name| Type| Mandatory| Description|
 | --- | ----- | --- | -------- |
 | msg | string | Yes| Message used for disconnection.| 
-
+ 
 ## OnRemoteStateChangeCallback<sup>10+</sup>
 
 ### (msg: string)
@@ -1238,7 +1238,7 @@ Defines the callback that is invoked when the remote UIAbility state changes in 
 | Name| Type| Mandatory| Description|
 | --- | ----- | --- | -------- |
 | msg | string | Yes| Message used for disconnection.| 
-
+ 
 ## CalleeCallback
 
 ### (indata: rpc.MessageSequence)

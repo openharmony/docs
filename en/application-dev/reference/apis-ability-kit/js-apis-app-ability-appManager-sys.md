@@ -1802,7 +1802,7 @@ Keeps an application of a specified user alive, or cancels its keep-alive status
 | -------- | -------- | -------- | -------- |
 | bundleName    | string   | Yes   | Bundle name.|
 | userId    | number   | Yes   | User ID.|
-| enable    | boolean   | Yes   | Whether to keep the application alive or cancel its keep-alive status.|
+| enable    | boolean   | Yes   | Whether to keep the application alive or cancel its keep-alive status. The value **true** means to keep the application alive, and **false** means to cancel its keep-alive status.|
 
 **Return value**
 
