@@ -951,28 +951,28 @@ error: signature verification failed due to not trusted app source.
 **处理步骤**
 
 * 场景一：
-	1. 使用[自动签名](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-signing#section18815157237)。在连接设备后，重新为应用进行签名。
-	2. 如果使用的是手动签名，对于OpenHarmony应用，请参考<!--RP2-->[OpenHarmony应用手动签名](../security/hapsigntool-guidelines.md)<!--RP2End-->，在UnsgnedDebugProfileTemplate.json文件中添加该调试设备的**UDID**。
+1. 使用[自动签名](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-signing#section18815157237)。在连接设备后，重新为应用进行签名。
+2. 如果使用的是手动签名，对于OpenHarmony应用，请参考<!--RP2-->[OpenHarmony应用手动签名](../security/hapsigntool-guidelines.md)<!--RP2End-->，在UnsgnedDebugProfileTemplate.json文件中添加该调试设备的**UDID**。
 
-        1. 获取当前设备的UDID。
+    1. 获取当前设备的UDID。
 
-        ```
-          //UDID获取命令
-          hdc shell bm get -u
-        ```
+    ```
+      //UDID获取命令
+      hdc shell bm get -u
+    ```
+    
+    2. 打开IDE安装路径，在sdk目录下找到UnsgnedDebugProfileTemplate.json配置文件。
 
-        2. 打开IDE安装路径，在sdk目录下找到UnsgnedDebugProfileTemplate.json配置文件。
+    ```
+      IDE安装路径\sdk\版本号或者default\openharmony\toolchains\lib\
 
-        ```
-          IDE安装路径\sdk\版本号或者default\openharmony\toolchains\lib\
+      例如：xxxx\Huawei\DevEco Studio\sdk\HarmonyOS-NEXT-DB1\openharmony\toolchains\lib\
+      例如：xxxx\Huawei\DevEco Studio\sdk\default\openharmony\toolchains\lib\
+    ```
 
-          例如：xxxx\Huawei\DevEco Studio\sdk\HarmonyOS-NEXT-DB1\openharmony\toolchains\lib\
-          例如：xxxx\Huawei\DevEco Studio\sdk\default\openharmony\toolchains\lib\
-        ```
+    3. 在UnsgnedDebugProfileTemplate.json文件的device-ids字段中，添加当前设备的UDID。
 
-        3. 在UnsgnedDebugProfileTemplate.json文件的device-ids字段中，添加当前设备的UDID。
-
-  3. 使用文本编辑器打开已签名的HAP，检查签名中是否包含调试设备的UDID，搜索device-ids。
+3. 使用文本编辑器打开已签名的HAP，检查签名中是否包含调试设备的UDID，搜索device-ids。
 * 场景二：使用[调试证书和调试profile文件](https://developer.huawei.com/consumer/cn/doc/app/agc-help-debug-app-0000001914423098)重新签名应用。
 
 ### 9568286 安装应用的签名证书profile文件中的类型与已安装应用的不相同
@@ -1548,16 +1548,19 @@ error: bundle manager service is died.
 1. 重启手机后再次尝试安装应用。
 
 2. 重复上述步骤3到5次后依旧安装失败，请查询设备的/data/log/faultlog/faultlogger/目录下是否存在包含foundation字样的crash文件。
-```
-hdc shell
-cd /data/log/faultlog/faultlogger/
-ls -ls
-```
+
+  ```
+  hdc shell
+  cd /data/log/faultlog/faultlogger/
+  ls -ls
+  ```
+
 3. 导出crash文件和日志文件提[在线工单](https://developer.huawei.com/consumer/cn/support/feedback/#/)获取帮助。
-```
-hdc file recv /data/log/faultlog/faultlogger/
-hdc file recv /data/log/hilog/
-```
+
+  ```
+  hdc file recv /data/log/faultlog/faultlogger/
+  hdc file recv /data/log/hilog/
+  ```
 
 ### 9568393 验证代码签名失败
 **错误信息**
