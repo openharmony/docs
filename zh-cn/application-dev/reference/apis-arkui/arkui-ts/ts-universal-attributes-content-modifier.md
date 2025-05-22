@@ -82,7 +82,7 @@ class MyCheckboxStyle implements ContentModifier<CheckBoxConfiguration> {
 @Builder
 function buildCheckbox(config: CheckBoxConfiguration) {
   Column({ space: 10 }) {
-    Text(config.name + (config.selected ? "（ 选中 ）" : "（ 非选中 ）"))
+    Text(config.name + (config.selected ? "（选中）" : "（非选中）"))
     Shape() {
       // 五边形复选框样式
       Path()
