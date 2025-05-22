@@ -1118,6 +1118,22 @@ enableAutoFillAnimation(enabled: Optional\<boolean>)
 | ------ | ------- | ---- | ------------------------------------------------------------ |
 | enabled  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<boolean> | 是   | 是否启用自动填充动效。<br/>true表示启用，false表示不启用。<br/>默认值：true <br/>**说明：**<br/>启用之后，仅[输入模式](#inputtype枚举说明)设置为Password、NEW_PASSWORD或NUMBER_PASSWORD的输入框在进行自动填充时动效可生效。  |
 
+### enableAutoSpacing<sup>20+</sup>
+
+enableAutoSpacing(enable: Optional\<boolean>)
+
+设置是否开启中文与西文的自动间距。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型    | 必填 | 说明                               |
+| ------ | ------- | ---- | ---------------------------------- |
+| enable | [Optional](ts-universal-attributes-custom-property.md#optional12)\<boolean> | 是   | 是否开启中文与西文的自动间距。<br/>true为开启自动间距，false为不开启。<br />默认值：false |
+
 ## InputType枚举说明
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full

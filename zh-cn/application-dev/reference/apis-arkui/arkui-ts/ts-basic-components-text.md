@@ -971,6 +971,22 @@ marqueeOptions(options: Optional\<TextMarqueeOptions>)
 | ------ | ------------------------------------------ | ---- | ------------------------------------------ |
 | options | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[TextMarqueeOptions](#textmarqueeoptions18对象说明)> | 是 | 当text组件的textOverflow属性设置为MARQUEE时，可通过marqueeOptions设置跑马灯动效具体的属性，如开关、步长、循环次数、方向等。 |
 
+### enableAutoSpacing<sup>20+</sup>
+
+enableAutoSpacing(enable: Optional\<boolean>)
+
+设置是否开启中文与西文的自动间距。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型    | 必填 | 说明                               |
+| ------ | ------- | ---- | ---------------------------------- |
+| enable | [Optional](ts-universal-attributes-custom-property.md#optional12)\<boolean> | 是   | 是否开启中文与西文的自动间距。<br/>true为开启自动间距，false为不开启。<br />默认值：false |
+
 ## TextSpanType<sup>11+</sup>枚举说明
 
 [Span](ts-basic-components-span.md)类型信息。
