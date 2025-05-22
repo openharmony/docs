@@ -41,10 +41,10 @@ import { distributedDeviceManager } from '@kit.DistributedServiceKit';
 
 **系统API**： 此接口为系统接口。
 
-| 名称         | 类型  | 必填              |  说明    |
+| 名称         | 类型  | 只读 | 可选             |  说明    |
 | ----------- | ---- | --------------- | ------- |
-| isCloud      | boolean    |   是           | 指示是否需要实时从设备云获取设备列表。       |
-| deviceIdList  | Array&lt;string&gt;  | 否    | 获取指定deviceId的设备信息，deviceId取值端侧udid，无udid类的设备取MAC或者SN。       |
+| isCloud      | boolean    |  否 | 是           | 表示是否需要实时从设备云获取设备列表。<br />-false：表示从设备端获取。<br />-true：表示从设备云获取。       |
+| deviceIdList  | Array&lt;string&gt;  | 否 | 否    | 表示获取指定deviceId的设备信息，deviceId一般为设备的UDID，如设备无UDID，则取其MAC或SN作为deviceI的。       |
 
 
 ## ServiceProfileInfo<sup>15+</sup>
@@ -70,35 +70,35 @@ import { distributedDeviceManager } from '@kit.DistributedServiceKit';
 
 **系统API**： 此接口为系统接口。
 
-| 名称           | 类型  | 必填              |  说明    |
+| 名称           | 类型  | 只读   |可选              |  说明    |
 | -------------- | ---- | --------------- | --------|
-|  deviceId      | string  | 是   |  设备ID。          |
-|  deviceSn      | string  | 是   |  设备序列号。      |
-|  mac           | string  | 是   |  MAC地址。         |
-|  model         | string  | 是   |  设备型号。         |
-|  deviceType    | string  | 是   |  设备类型。         |
-|  manufacturer  | string  | 是   |  制造商。           |
-|  deviceName    | string  | 是   |  设备名称。         |
-|  productId     | string  | 是   |  设备所属产品ID。           |
-|  subProductId  | string  | 否   |  设备所属产品子ID。         |
-|  sdkVersion    | string  | 是   |  SDK版本。          |
-|  bleMac        | string  | 是   |  蓝牙BLE的MAC地址。  |
-|  brMac         | string  | 是   |  蓝牙BR的MAC地址。  |
-|  sleMac        | string  | 是   |  Starflash的MAC地址。 |
-|  firmwareVersion | string | 是  |  固件版本。          |
-|  hardwareVersion | string | 是  |  硬件版本。          |
-|  softwareVersion | string | 是  |  软件版本。          |
-|  protocolType    | number | 是  |  协议类型。          |
-|  setupType       | number | 是  |  设备类型。          |
-|  wiseDeviceId    | string | 是  |  智能设备ID。        |
-|  wiseUserId      | string | 是  |  智能用户ID。        |
-|  registerTime    | string | 是  |  注册时间。          |
-|  modifyTime      | string | 是  |  修改时间。          |
-|  shareTime       | string | 是  |  分享时间。          |
-|  isLocalDevice   | boolean | 是 |  是否为本地设备。     |
-|  services        | Array&lt;ServiceProfileInfo&gt; | 否  | 业务模板信息列表。 |
-|  productName     | string  | 否 |  设备所属的产品名称。    |
-|  internalModel   | string  | 否 |  设备所属产品的内部型号。 |
+|  deviceId      | string  |  否    | 是   |  设备ID。          |
+|  deviceSn      | string  |  否    | 是   |  设备序列号。      |
+|  mac           | string  |  否    | 是   |  MAC地址。         |
+|  model         | string  |  否    | 是   |  设备型号。         |
+|  deviceType    | string  |  否    | 是   |  设备类型。         |
+|  manufacturer  | string  |  否    | 是   |  制造商。           |
+|  deviceName    | string  |  否    | 是   |  设备名称。         |
+|  productId     | string  |  否    | 是   |  设备所属产品ID。    |
+|  subProductId  | string  |  否    | 否   |  设备所属产品子ID。         |
+|  sdkVersion    | string  |  否    | 是   |  SDK版本。          |
+|  bleMac        | string  |  否    | 是   |  蓝牙BLE的MAC地址。  |
+|  brMac         | string  |  否    | 是   |  蓝牙BR的MAC地址。  |
+|  sleMac        | string  |  否    | 是   |  Starflash的MAC地址。 |
+|  firmwareVersion | string |  否   | 是  |  固件版本。          |
+|  hardwareVersion | string |  否   | 是  |  硬件版本。          |
+|  softwareVersion | string |  否  | 是  |  软件版本。          |
+|  protocolType    | number |  否   | 是  |  协议类型。          |
+|  setupType       | number |  否   | 是  |  设备类型。          |
+|  wiseDeviceId    | string |  否   | 是  |  智能设备ID。        |
+|  wiseUserId      | string |  否   | 是  |  智能用户ID。        |
+|  registerTime    | string |  否   | 是  |  注册时间。          |
+|  modifyTime      | string |  否   | 是  |  修改时间。          |
+|  shareTime       | string |  否   | 是  |  分享时间。          |
+|  isLocalDevice   | boolean | 否   | 是 |  是否为本地设备。     |
+|  services        | Array&lt;ServiceProfileInfo&gt; | 否  | 否  | 业务模板信息列表。 |
+|  productName     | string  | 否   | 否 |  设备所属的产品名称。    |
+|  internalModel   | string  | 否   | 否 |  设备所属产品的内部型号。 |
 
 
 ## DeviceIconInfoFilterOptions<sup>18+</sup> 
@@ -109,13 +109,13 @@ import { distributedDeviceManager } from '@kit.DistributedServiceKit';
 
 **系统API**： 此接口为系统接口。
 
-| 名称           | 类型  | 必填              |  说明    |
+| 名称           | 类型  | 只读 | 可选              |  说明    |
 | -------------- | ---- | --------------- | --------|
-|  productId      | string  | 是   |  设备所属产品ID。          |
-|  subProductId   | string  | 否   |  设备所属产品子ID。      |
-|  imageType      | string  | 是   |  图片类型。约定取值范围：<br />-ID.<br />-ID_Headset_L.<br />-ID_Headset_R.<br />-ID_Headset_B.<br />-ID_Headset_LB.<br />-ID_Headset_RB.         |
-|  specName       | string  | 是   |  图片规格名称。约定取值范围：<br />-lg: 大图。<br />-sm: 小图。         |
-|  internalModel  | string  | 否   |  设备所属产品的内部型号。        |
+|  productId      | string  | 否 | 是   |  设备所属产品ID。          |
+|  subProductId   | string  | 否 | 否   |  设备所属产品子ID。      |
+|  imageType      | string  | 否 | 是   |  图片类型。约定取值范围：<br />-ID.<br />-ID_Headset_L.<br />-ID_Headset_R.<br />-ID_Headset_B.<br />-ID_Headset_LB.<br />-ID_Headset_RB.         |
+|  specName       | string  | 否 | 是   |  图片规格名称。约定取值范围：<br />-lg: 大图。<br />-sm: 小图。         |
+|  internalModel  | string  | 否 | 否   |  设备所属产品的内部型号。        |
 
 ## DeviceIconInfo<sup>18+</sup>
 
@@ -125,15 +125,15 @@ import { distributedDeviceManager } from '@kit.DistributedServiceKit';
 
 **系统API**： 此接口为系统接口。
 
-| 名称           | 类型  | 必填              |  说明    |
+| 名称           | 类型  | 只读  |可选              |  说明    |
 | -------------- | ---- | --------------- | --------|
-|  productId      | string  | 是   |  设备所属产品ID。          |
-|  subProductId   | string  | 否   |  设备所属产品子ID。     |
-|  imageType      | string  | 是   |  图片类型。约定取值范围：<br />-ID.<br />-ID_Headset_L.<br />-ID_Headset_R.<br />-ID_Headset_B.<br />-ID_Headset_LB.<br />-ID_Headset_RB.         |
-|  specName       | string  | 是   |  图片规格名称。约定取值范围：<br />-lg: 大图。<br />-sm: 小图。         |
-|  url            | string  | 是   |  统一资源定位器。          |
-|  icon           | ArrayBuffer | 是 | 图标。         |
-|  internalModel  | string  | 否   |  设备所属产品的内部型号。         |
+|  productId      | string  | 否 | 是   |  设备所属产品ID。          |
+|  subProductId   | string  | 否 | 否   |  设备所属产品子ID。     |
+|  imageType      | string  | 否 | 是   |  图片类型。约定取值范围：<br />-ID.<br />-ID_Headset_L.<br />-ID_Headset_R.<br />-ID_Headset_B.<br />-ID_Headset_LB.<br />-ID_Headset_RB.         |
+|  specName       | string  | 否 | 是   |  图片规格名称。约定取值范围：<br />-lg: 大图。<br />-sm: 小图。         |
+|  url            | string  | 否 | 是   |  统一资源定位器。          |
+|  icon           | ArrayBuffer | 否| 是 | 图标。         |
+|  internalModel  | string  | 否 | 否   |  设备所属产品的内部型号。         |
 
 ## NetworkIdQueryFilter<sup>18+</sup>
 
@@ -143,10 +143,10 @@ import { distributedDeviceManager } from '@kit.DistributedServiceKit';
 
 **系统API**： 此接口为系统接口。
 
-| 名称           | 类型  | 必填              |  说明    |
+| 名称           | 类型  | 只读 | 可选              |  说明    |
 | -------------- | ---- | --------------- | --------|
-|  wiseDeviceId       | string  | 是   |  智能设备ID。          |
-|  onlineStatus    | string  | 否   |  根据在线状态获取设备网络ID列表。      |
+|  wiseDeviceId       | string  | 否 | 是   |  智能设备ID。          |
+|  onlineStatus    | string  | 否 | 否   |  根据在线状态获取设备网络ID列表。      |
 
 ## DeviceManager
 
