@@ -1509,9 +1509,9 @@ try {
 
 wrapKeyItem(keyAlias: string, params: HuksOptions): Promise\<HuksReturnResult>;
 
-加密导出密钥，与unwrapKeyItem对应，导出的密钥要有允许导出的Tag，使用Promise方式回调异步返回的结果。
+加密导出密钥，与unwrapKeyItem对应，导出的密钥在生成时要添加HUKS_TAG_IS_ALLOWED_WRAP，指定允许导出，使用Promise方式回调异步返回的结果。
 
-<!--Del-->该功能当前暂时无法使用，调用接口将返回错误码12000001。<!--DelEnd-->
+<!--Del-->该功能当前暂时无法使用，调用接口将返回错误码801。<!--DelEnd-->
 
 **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
@@ -1631,7 +1631,7 @@ unwrapKeyItem(keyAlias: string, params: HuksOptions, wrappedKey: Uint8Array): Pr
 
 加密导入密钥，与wrapKeyItem对应，使用Promise方式回调异步返回的结果。
 
-<!--Del-->该功能当前暂时无法使用，调用接口将返回错误码12000001。<!--DelEnd-->
+<!--Del-->该功能当前暂时无法使用，调用接口将返回错误码801。<!--DelEnd-->
 
 **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
@@ -1676,6 +1676,8 @@ unwrapKeyItem(keyAlias: string, params: HuksOptions, wrappedKey: Uint8Array): Pr
 ```ts
 import { huks } from '@kit.UniversalKeystoreKit';
 
+let keyAlias = "testWrapKey";
+
 let wrapKeyProperties: Array<huks.HuksParam> = [
   {
     tag: huks.HuksTag.HUKS_TAG_KEY_WRAP_TYPE,
@@ -1687,8 +1689,7 @@ let wrapKeyOptions: huks.HuksOptions = {
   properties: wrapKeyProperties,
 };
 
-/* keyAlias要和wrapKeyItem一致, wrappedKey在wrapKeyItem后获取 */
-let keyAlias = "testWrapKey";
+/* wrappedKey在wrapKeyItem后获取 */
 let wrappedKey: Uint8Array;
 
 async function testUnwrapKey(){
