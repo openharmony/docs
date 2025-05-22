@@ -65,6 +65,7 @@ AppStartup supports startup tasks in automatic or manual mode. By default, autom
               "name": "StartupTask_002",
               "srcEntry": "./ets/startup/StartupTask_002.ets",
               "dependencies": [
+                "StartupTask_003",
                 "StartupTask_004"
               ],
               "runOnThread": "taskPool",

@@ -34,6 +34,8 @@ Adds [ShortcutInfo](js-apis-bundleManager-shortcutInfo-sys.md) for a given user.
 | shortcutInfo | [ShortcutInfo](js-apis-bundleManager-shortcutInfo-sys.md) | Yes  | Shortcut information.|
 | userId     | number | Yes  | User ID.|
 
+
+
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
@@ -112,6 +114,8 @@ Deletes [ShortcutInfo](js-apis-bundleManager-shortcutInfo-sys.md) for a given us
 | ---------- | ------ | ---- | -------------- |
 | shortcutInfo | [ShortcutInfo](js-apis-bundleManager-shortcutInfo-sys.md) | Yes  | Shortcut information.|
 | userId     | number | Yes  | User ID.|
+
+
 
 **Error codes**
 

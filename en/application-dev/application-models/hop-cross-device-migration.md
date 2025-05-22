@@ -407,6 +407,62 @@ The values of the **continueType** tag of the two abilities must be the same. Th
    }
 ```
 
+### Migrating Abilities with Different Bundle Names in the Same Application Across Devices
+An application may use different bundle names on different devices. To support migration in this scenario, configure **abilities** in the **module.json5** file of the application as follows:
+
+- **continueBundleName**: bundle name of the application on the peer device.
+- **continueType**: The same value must be used.
+
+   > **NOTE**
+   >
+   > The value of **continueType** must be unique in an application. The value is a string of a maximum of 127 bytes consisting of letters, digits, and underscores (_).
+   >
+   > The **continueType** tag is a string array. If multiple fields are configured, only the first field takes effect.
+   
+
+An example is as follows:
+
+An application with different bundle names is migrated between device A and device B. The bundle name of the application on device A is com.demo.example1, and that on device B is com.demo.example2.
+
+```
+// In the configuration file for device A, set continueBundleName to the bundle name of the application on device B.
+{
+  "module": {
+    // ···
+    "abilities": [
+      {
+        "name": "EntryAbility",
+        // ···
+        "continueType": ["continueType"],
+        "continueBundleName": ["com.demo.example2"], // continueBundleName is set to com.demo.example2, which is the bundle name of the application on device B.
+       
+      }
+    ]
+    
+  }
+}
+```
+
+```
+// In the configuration file for device B, set continueBundleName to the bundle name of the application on device A.
+{
+  "module": {
+    // ···
+    "abilities": [
+      {
+        "name": "EntryAbility",
+        // ···
+        "continueType": ["continueType"],
+        "continueBundleName": ["com.demo.example1"], // continueBundleName is set to com.demo.example1, which is the bundle name of the application on device A.
+       
+      }
+    ]
+    
+  }
+}
+
+```
+
 ### Quickly Starting a Target Application
 By default, the target application on the peer device is not started immediately when the migration is initiated. It waits until the data to migrate is synchronized from the source device to the peer device. To start the target application immediately upon the initiation of a migration, you can add the **_ContinueQuickStart** suffix to the value of **continueType**. In this way, only the migrated data is restored after the data synchronization, delivering an even better migration experience.
 

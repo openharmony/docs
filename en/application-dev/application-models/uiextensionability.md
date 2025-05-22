@@ -368,14 +368,14 @@ To implement a provider, create a [UIExtensionAbility](../reference/apis-ability
     ```ts
     import { UIExtensionContentSession } from '@kit.AbilityKit';
 
-    let storage = LocalStorage.GetShared();
     const TAG: string = `[testTag] ExtensionPage`;
 
-    @Entry(storage)
+    @Entry()
     @Component
     struct Extension {
       @State message: string = `UIExtension provider`;
-      private session: UIExtensionContentSession | undefined = storage.get<UIExtensionContentSession>('session');
+      localStorage: LocalStorage | undefined = this.getUIContext().getSharedLocalStorage();
+      private session: UIExtensionContentSession | undefined = this.localStorage?.get<UIExtensionContentSession>('session');
 
       onPageShow() {
         console.info(TAG, 'show');
@@ -403,7 +403,7 @@ To implement a provider, create a [UIExtensionAbility](../reference/apis-ability
               .margin({ top: 20 })
               .onClick(() => {
                 this.session?.terminateSelf();
-                storage.clear();
+                this.localStorage?.clear();
               })
 
             Button("terminate self with result")

@@ -313,7 +313,7 @@ Returns **ABILITY_RUNTIME_ERROR_CODE_CONTEXT_NOT_EXIST** if the context of the c
 ### OH_AbilityRuntime_ApplicationContextGetDatabaseDir
 
 ```
-AbilityRuntime_ErrorCode OH_AbilityRuntime_ApplicationContextGetDatabaseDir(char* buffer, const int32_t bufferSize, int32_t* writeLength);
+AbilityRuntime_ErrorCode OH_AbilityRuntime_ApplicationContextGetDatabaseDir(char* buffer, const int32_t bufferSize, int32_t* writeLength)
 ```
 
 **Description**
@@ -449,4 +449,3 @@ Returns **ABILITY_RUNTIME_ERROR_CODE_NO_ERROR** if the operation is successful.
 Returns **ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID** if the passed-in value of **buffer** or **writeLength** is null or the buffer size is less than the size of the string to be written.
 
 Returns **ABILITY_RUNTIME_ERROR_CODE_CONTEXT_NOT_EXIST** if the context of the current environment does not exist. For example, the application-level context does not exist in the [child process](c-apis-ability-childprocess.md) created by the application.
-

@@ -248,6 +248,19 @@ The version number is earlier than the version in use.
 
 Ensure that the version of the bundle to install is not earlier than the version in use.
 
+1. To query the version of an existing application, use [the HDC tool](../../dfx/hdc.md#environment-setup).
+```
+// Obtain the last field from the dump output.
+hdc shell bm dump -n com.xxx.demo |grep versionCode
+```
+
+![Example](figures/installed_hap_verisonCode.PNG)
+
+2. To query the version of a newly installed application, use DevEco Studio to open the HAP or HSP file and check the value of **versionCode** in the **module.json** file.
+
+![Example](figures/hap_verisonCode.PNG)
+
+
 ## 17700018 Bundle Installation Failure Because the Dependent Module Does Not Exist
 
 **Error Message**
@@ -763,7 +776,7 @@ The version of the application to be updated is not later than the current versi
 
 **Solution**
 
-1. Set the version number of the application to be later than the current version number.
+1. Set the version number of the application to be later than the current version number. For details about how to check the version number, see [17700017 Bundle Installation Failure Because the Version to Install is Too Earlier](#17700017-bundle-installation-failure-because-the-version-to-install-is-too-earlier).
 2. If you want to update the application without changing the version number, set **installFlag** to **REPLACE_EXISTING**.
 
 ## 17700048 Code Signature Verification Failure
@@ -825,7 +838,7 @@ The device is not an enterprise device.
 
 2. Ensure that **const.bms.allowenterprisebundle** is set to **true**.
 
-## 17700051 Update Failure Because the Distribution Type of the Caller Is Not Enterprise MDM
+## 17700051 17700051 HAP Installation Failure Due to Incorrect Distribution Type in the Signing Certificate Profile of the Caller
 
 **Error Message**
 
@@ -833,11 +846,11 @@ Failed to install the HAP because the distribution type of the caller applicatio
 
 **Description**
 
-During the update of an enterprise MDM application, the distribution type of the caller is not enterprise MDM.
+When an enterprise MDM application attempts to upgrade itself, the distribution type specified in the caller's [signing certificate profile](https://developer.huawei.com/consumer/en/doc/app/agc-help-add-releaseprofile-0000001914714796) is not **enterprise_mdm**.
 
 **Possible Causes**
 
-The distribution type of the caller is not enterprise MDM.
+The distribution type specified in the caller's signing certificate profile is not **enterprise_mdm**.
 
 **Solution**
 

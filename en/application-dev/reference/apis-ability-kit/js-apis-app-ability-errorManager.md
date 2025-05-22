@@ -57,13 +57,13 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let observer: errorManager.ErrorObserver = {
   onUnhandledException(errorMsg) {
-    console.log('onUnhandledException, errorMsg: ', errorMsg);
+    console.info('onUnhandledException, errorMsg: ', errorMsg);
   },
   onException(errorObj) {
-    console.log('onException, name: ', errorObj.name);
-    console.log('onException, message: ', errorObj.message);
+    console.info('onException, name: ', errorObj.name);
+    console.info('onException, message: ', errorObj.message);
     if (typeof(errorObj.stack) === 'string') {
-      console.log('onException, stack: ', errorObj.stack);
+      console.info('onException, stack: ', errorObj.stack);
     }
   }
 };
@@ -171,7 +171,7 @@ let observerId = 100;
 try {
   errorManager.off('error', observerId)
     .then((data) => {
-      console.log('----------- unregisterErrorObserver success ----------', data);
+      console.info('----------- unregisterErrorObserver success ----------', data);
     })
     .catch((err: BusinessError) => {
       console.error('----------- unregisterErrorObserver fail ----------', err);
@@ -216,7 +216,7 @@ import { errorManager } from '@kit.AbilityKit';
 
 let observer: errorManager.LoopObserver = {
   onLoopTimeOut(timeout: number) {
-    console.log('Duration timeout: ' + timeout);
+    console.info('Duration timeout: ' + timeout);
   }
 };
 
@@ -256,12 +256,12 @@ import { errorManager } from '@kit.AbilityKit';
 
 let observer: errorManager.UnhandledRejectionObserver = (reason: Error, promise: Promise<void>) => {
   if (promise === promise1) {
-    console.log("promise1 is rejected");
+    console.info("promise1 is rejected");
   }
-  console.log("reason.name: ", reason.name);
-  console.log("reason.message: ", reason.message);
+  console.info("reason.name: ", reason.name);
+  console.info("reason.message: ", reason.message);
   if (reason.stack) {
-    console.log("reason.stack: ", reason.stack);
+    console.info("reason.stack: ", reason.stack);
   }
 };
 
@@ -320,7 +320,7 @@ Unregisters an observer for the promise rejection.
 | Name                  | Type                             | Mandatory| Description                                          |
 |-----------------------|---------------------------------|----|----------------------------------------------|
 | type                  | string                          | Yes | Event type. It is fixed at **'unhandledRejection'**, indicating an observer for the promise rejection.|
-| observer              | [UnhandledRejectionObserver](#unhandledrejectionobserver12) | No | Observer to unregister.                       |
+| observer              | [UnhandledRejectionObserver](#unhandledrejectionobserver12) | No | Observer to unregister. You are advised to use this parameter. If omitted, all observers registered with the same environment through **on** are unregistered by default. Otherwise, the specified observer is unregistered.                       |
 
 **Error codes**
 
@@ -332,8 +332,6 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 16200001 | If the caller is invalid. |
 | 16300004 | If the observer does not exist. |
 
-For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
-
 **Example**
     
 ```ts
@@ -341,12 +339,12 @@ import { errorManager } from '@kit.AbilityKit';
 
 let observer: errorManager.UnhandledRejectionObserver = (reason: Error, promise: Promise<void>) => {
   if (promise === promise1) {
-    console.log("promise1 is rejected");
+    console.info("promise1 is rejected");
   }
-  console.log("reason.name: ", reason.name);
-  console.log("reason.message: ", reason.message);
+  console.info("reason.name: ", reason.name);
+  console.info("reason.message: ", reason.message);
   if (reason.stack) {
-    console.log("reason.stack: ", reason.stack);
+    console.info("reason.stack: ", reason.stack);
   }
 };
 
@@ -364,12 +362,12 @@ import { errorManager } from '@kit.AbilityKit';
 
 let observer: errorManager.UnhandledRejectionObserver = (reason: Error, promise: Promise<void>) => {
   if (promise === promise1) {
-    console.log("promise1 is rejected");
+    console.info("promise1 is rejected");
   }
-  console.log("reason.name: ", reason.name);
-  console.log("reason.message: ", reason.message);
+  console.info("reason.name: ", reason.name);
+  console.info("reason.message: ", reason.message);
   if (reason.stack) {
-    console.log("reason.stack: ", reason.stack);
+    console.info("reason.stack: ", reason.stack);
   }
 };
 

@@ -33,12 +33,19 @@
   - Scenario-specific [ExtensionContext](../reference/apis-ability-kit/js-apis-inner-application-extensionContext.md): For example, ServiceExtensionContext, inherited from ExtensionContext, provides APIs related to background services.
     
     ```ts
-    import { ServiceExtensionAbility, Want } from '@kit.AbilityKit';
+    import { FormExtensionAbility, formBindingData } from '@kit.FormKit';
+    import { Want } from '@kit.AbilityKit';
 
-    export default class ServiceExtAbility extends ServiceExtensionAbility {
-      onCreate(want: Want) {
-        let serviceExtensionContext = this.context;
-        //...
+    export default class MyFormExtensionAbility extends FormExtensionAbility {
+      onAddForm(want: Want) {
+        let formExtensionContext = this.context;
+        // ...
+        let dataObj1: Record<string, string> = {
+          'temperature': '11c',
+          'time': '11:00'
+        };
+        let obj1: formBindingData.FormBindingData = formBindingData.createFormBindingData(dataObj1);
+        return obj1;
       }
     }
     ```
@@ -213,12 +220,11 @@ export default class EntryAbility extends UIAbility {
 ```ts
 // Index.ets
 import { contextConstant, common } from '@kit.AbilityKit';
-import { promptAction } from '@kit.ArkUI';
 
 @Entry
 @Component
 struct Page_Context {
-  private context = getContext(this) as common.UIAbilityContext;
+  private context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 
   build() {
     Column() {
@@ -231,9 +237,9 @@ struct Page_Context {
           }
           .onClick(() => {
             // Before storing common information, switch the encryption level to EL1.
-            if (this.context.area === contextConstant.AreaMode.EL2) { // Obtain the area.
-              this.context.area = contextConstant.AreaMode.EL1; // Modify the area.
-              promptAction.showToast({
+            if (this.context.area === contextConstant.AreaMode.EL2) { // Obtain the encryption level.
+              this.context.area = contextConstant.AreaMode.EL1; // Change the encryption level.
+              this.getUIContext().getPromptAction().showToast({
                 message: 'SwitchToEL1'
               });
             }
@@ -247,9 +253,9 @@ struct Page_Context {
           }
           .onClick(() => {
             // Before storing sensitive information, switch the encryption level to EL2.
-            if (this.context.area === contextConstant.AreaMode.EL1) { // Obtain the area.
-              this.context.area = contextConstant.AreaMode.EL2; // Modify the area.
-              promptAction.showToast({
+            if (this.context.area === contextConstant.AreaMode.EL1) { // Obtain the encryption level.
+              this.context.area = contextConstant.AreaMode.EL2; // Change the encryption level.
+              this.getUIContext().getPromptAction().showToast({
                 message: 'SwitchToEL2'
               });
             }
@@ -272,7 +278,6 @@ Call [createModuleContext(context: Context, moduleName: string)](../reference/ap
 
   ```ts
   import { common, application } from '@kit.AbilityKit';
-  import { promptAction } from '@kit.ArkUI';
   import { BusinessError } from '@kit.BasicServicesKit';
 
   let storageEventCall = new LocalStorage();
@@ -280,7 +285,7 @@ Call [createModuleContext(context: Context, moduleName: string)](../reference/ap
   @Entry(storageEventCall)
   @Component
   struct Page_Context {
-    private context = getContext(this) as common.UIAbilityContext;
+    private context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 
     build() {
       Column() {
@@ -296,7 +301,7 @@ Call [createModuleContext(context: Context, moduleName: string)](../reference/ap
                 .then((data: common.Context) => {
                   console.info(`CreateModuleContext success, data: ${JSON.stringify(data)}`);
                   if (data !== null) {
-                    promptAction.showToast({
+                    this.getUIContext().getPromptAction().showToast({
                       message: ('Context obtained')
                     });
                   }
