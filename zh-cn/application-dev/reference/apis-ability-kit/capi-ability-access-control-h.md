@@ -6,6 +6,8 @@
 
 **库：** ability_access_control.so
 
+**引用文件：** <accesstoken/ability_access_control.h>
+
 **系统能力：** SystemCapability.Security.AccessToken
 
 **起始版本：** 12
@@ -39,12 +41,12 @@ bool OH_AT_CheckSelfPermission(const char *permission)
 
 | 参数项 | 描述 |
 | -- | -- |
-| const char *permission | - 需要校验的权限名称，合法的权限名取值可在应用权限列表中查询。 |
+| const char *permission | 需要校验的权限名称，合法的权限名取值可在应用权限列表中查询。 |
 
 **返回：**
 
 | 类型 | 说明 |
 | -- | -- |
-| bool | true  - 应用已经被授予该权限。<br>         false - 应用未被授予该权限。 |
+| bool | true：应用已经被授予该权限。<br>         false：应用未被授予该权限。 |
 
 
