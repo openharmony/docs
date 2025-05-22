@@ -1507,13 +1507,11 @@ try {
 
 ## huks.wrapKeyItem<sup>20+</sup>
 
-wrapKeyItem(keyAlias: string, params: HuksOptions): Promise\<HuksReturnResult>;
+wrapKeyItem(keyAlias: string, params: HuksOptions): Promise\<HuksReturnResult>
 
-加密导出密钥，与unwrapKeyItem对应，导出的密钥在生成时要添加HUKS_TAG_IS_ALLOWED_WRAP，指定允许导出，使用Promise方式回调异步返回的结果。
+加密导出密钥（与unwrapKeyItem对应，导出密钥在生成时要添加HUKS_TAG_IS_ALLOWED_WRAP，指定允许导出）。使用Promise异步回调。
 
 <!--Del-->该功能当前暂时无法使用，调用接口将返回错误码801。<!--DelEnd-->
-
-**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Security.Huks.Core
 
@@ -1522,7 +1520,7 @@ wrapKeyItem(keyAlias: string, params: HuksOptions): Promise\<HuksReturnResult>;
 | 参数名   | 类型                        | 必填 | 说明                                         |
 | -------- | --------------------------- | ---- | -------------------------------------------- |
 | keyAlias | string                      | 是   | 密钥别名，应与所用密钥生成时使用的别名相同。 |
-| options  | [HuksOptions](#huksoptions) | 是   | 用于指定导出密钥时的加密类型。                     |
+| params  | [HuksOptions](#huksoptions) | 是   | 用于指定导出密钥时的加密类型。                     |
 
 **返回值：**
 
@@ -1532,17 +1530,17 @@ wrapKeyItem(keyAlias: string, params: HuksOptions): Promise\<HuksReturnResult>;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[HUKS错误码](errorcode-huks.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[HUKS错误码](errorcode-huks.md)。
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
 | 801 | api is not supported. |
-| 12000002 | algorithm mode is not supported. |
+| 12000002 | algorithm param is missing. |
 | 12000003 | algorithm param is invalid. |
 | 12000004 | operating file failed. |
 | 12000005 | IPC communication failed. |
 | 12000006 | error occurred in crypto engine. |
-| 12000012 | Device environment or input parameter abnormal. |
+| 12000012 | external error. |
 | 12000014 | memory is insufficient. |
 | 12000018 | the input parameter is invalid. |
 
@@ -1627,13 +1625,11 @@ async function testWrapKey(){
 
 ## huks.unwrapKeyItem<sup>20+</sup>
 
-unwrapKeyItem(keyAlias: string, params: HuksOptions, wrappedKey: Uint8Array): Promise\<HuksReturnResult>;
+unwrapKeyItem(keyAlias: string, params: HuksOptions, wrappedKey: Uint8Array): Promise\<HuksReturnResult>
 
-加密导入密钥，与wrapKeyItem对应，使用Promise方式回调异步返回的结果。
+加密导入密钥，与wrapKeyItem对应。使用Promise异步回调。
 
 <!--Del-->该功能当前暂时无法使用，调用接口将返回错误码801。<!--DelEnd-->
-
-**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Security.Huks.Core
 
@@ -1641,8 +1637,8 @@ unwrapKeyItem(keyAlias: string, params: HuksOptions, wrappedKey: Uint8Array): Pr
 
 | 参数名   | 类型                        | 必填 | 说明                                         |
 | -------- | --------------------------- | ---- | -------------------------------------------- |
-| keyAlias | string                      | 是   | 密钥别名，应与所用密钥生成时使用的别名相同。 |
-| options  | [HuksOptions](#huksoptions) | 是   | 用于指定导入密钥时的加密类型。                     |
+| keyAlias | string                      | 是   | 密钥别名，与所用密钥生成时使用的别名相同。 |
+| params  | [HuksOptions](#huksoptions) | 是   | 用于指定导入密钥时的加密类型。                     |
 | wrappedKey | Uint8Array | 是   | 加密导出密钥的密文。                     |
 
 **返回值：**
@@ -1653,12 +1649,12 @@ unwrapKeyItem(keyAlias: string, params: HuksOptions, wrappedKey: Uint8Array): Pr
 
 **错误码：**
 
-以下错误码的详细介绍请参见[HUKS错误码](errorcode-huks.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[HUKS错误码](errorcode-huks.md)。
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
 | 801 | api is not supported. |
-| 12000002 | algorithm mode is not supported. |
+| 12000002 | algorithm param is missing. |
 | 12000003 | algorithm param is invalid. |
 | 12000004 | operating file failed. |
 | 12000005 | IPC communication failed. |
