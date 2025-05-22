@@ -201,7 +201,7 @@ OH_Drawing_Canvas* OH_Drawing_CanvasCreate(void)
 
 | 类型 | 说明 |
 | -- | -- |
-| OH_Drawing_Canvas* | 函数会返回一个指针，指针指向创建的画布对象。 |
+| [OH_Drawing_Canvas](capi-oh-drawing-canvas.md)* | 函数会返回一个指针，指针指向创建的画布对象。 |
 
 ### OH_Drawing_CanvasCreateWithPixelMap()
 
@@ -228,7 +228,7 @@ OH_Drawing_Canvas* OH_Drawing_CanvasCreateWithPixelMap(OH_Drawing_PixelMap* pixe
 
 | 类型 | 说明 |
 | -- | -- |
-| OH_Drawing_Canvas* | 函数会返回一个指针，指针指向创建的画布对象[OH_Drawing_Canvas](capi-oh-drawing-canvas.md)，如果对象返回为NULL，则创建失败，原因可能是可用内存不足或者像素图对象为空。 |
+| [OH_Drawing_Canvas](capi-oh-drawing-canvas.md)* | 函数会返回一个指针，指针指向创建的画布对象[OH_Drawing_Canvas](capi-oh-drawing-canvas.md)，如果对象返回为NULL，则创建失败，原因可能是可用内存不足或者像素图对象为空。 |
 
 ### OH_Drawing_CanvasDestroy()
 
