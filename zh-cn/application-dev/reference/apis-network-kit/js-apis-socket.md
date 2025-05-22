@@ -154,14 +154,6 @@ send(options: UDPSendOptions, callback: AsyncCallback\<void\>): void
 | ------- | ----------------------- |
 | 401     | Parameter error.        |
 | 201     | Permission denied.      |
-| 2301206 | Socks5 failed to connect to the proxy server.  |
-| 2301207 | Socks5 username or password is invalid.        |
-| 2301208 | Socks5 failed to connect to the remote server. |
-| 2301209 | Socks5 failed to negotiate the authentication method. |
-| 2301210 | Socks5 failed to send the message.             |
-| 2301211 | Socks5 failed to receive the message.          |
-| 2301212 | Socks5 serialization error.                    |
-| 2301213 | Socks5 deserialization error.                  |
 
 **示例：**
 
@@ -188,51 +180,6 @@ let netAddress: socket.NetAddress = {
 let sendOptions: socket.UDPSendOptions = {
   data: 'Hello, server!',
   address: netAddress
-}
-udp.send(sendOptions, (err: BusinessError) => {
-  if (err) {
-    console.log('send fail');
-    return;
-  }
-  console.log('send success');
-});
-```
-
-**示例（设置socket代理）：**
-
-```ts
-import { socket } from '@kit.NetworkKit';
-import { BusinessError } from '@kit.BasicServicesKit';
-
-let udp: socket.UDPSocket = socket.constructUDPSocketInstance();
-let bindAddr: socket.NetAddress = {
-  address: '192.168.xx.xxx',  // 本端地址
-  port: 1234
-}
-udp.bind(bindAddr, (err: BusinessError) => {
-  if (err) {
-    console.log('bind fail');
-    return;
-  }
-  console.log('bind success');
-});
-let netAddress: socket.NetAddress = {
-  address: '192.168.xx.xxx',  // 对端地址
-  port: 8080
-}
-let socks5Server: socket.NetAddress = {
-  address: '192.168.xx.xxx',
-  port: 8080
-}
-let sendOptions: socket.UDPSendOptions = {
-  data: 'Hello, server!',
-  address: netAddress,
-  proxy: socket.ProxyOptions = {
-    type : 1,
-    address: socks5Server,
-    username: "xxx",
-    password: "xxx"
-  }
 }
 udp.send(sendOptions, (err: BusinessError) => {
   if (err) {
@@ -267,14 +214,6 @@ send(options: UDPSendOptions): Promise\<void\>
 | ------- | ----------------------- |
 | 401     | Parameter error.        |
 | 201     | Permission denied.      |
-| 2301206 | Socks5 failed to connect to the proxy server.  |
-| 2301207 | Socks5 username or password is invalid.        |
-| 2301208 | Socks5 failed to connect to the remote server. |
-| 2301209 | Socks5 failed to negotiate the authentication method. |
-| 2301210 | Socks5 failed to send the message.             |
-| 2301211 | Socks5 failed to receive the message.          |
-| 2301212 | Socks5 serialization error.                    |
-| 2301213 | Socks5 deserialization error.                  |
 
 **返回值：**
 
@@ -306,48 +245,6 @@ let netAddress: socket.NetAddress = {
 let sendOptions: socket.UDPSendOptions = {
   data: 'Hello, server!',
   address: netAddress
-}
-udp.send(sendOptions).then(() => {
-  console.log('send success');
-}).catch((err: BusinessError) => {
-  console.log('send fail');
-});
-```
-
-**示例（设置socket代理）：**
-
-```ts
-import { socket } from '@kit.NetworkKit';
-import { BusinessError } from '@kit.BasicServicesKit';
-
-let udp: socket.UDPSocket = socket.constructUDPSocketInstance();
-let bindAddr: socket.NetAddress = {
-  address: '192.168.xx.xxx', // 本端地址
-  port: 8080
-}
-udp.bind(bindAddr).then(() => {
-  console.log('bind success');
-}).catch((err: BusinessError) => {
-  console.log('bind fail');
-  return;
-});
-let netAddress: socket.NetAddress = {
-  address: '192.168.xx.xxx', // 对端地址
-  port: 8080
-}
-let socks5Server: socket.NetAddress = {
-  address: '192.168.xx.xxx',
-  port: 8080
-}
-let sendOptions: socket.UDPSendOptions = {
-  data: 'Hello, server!',
-  address: netAddress,
-  proxy: socket.ProxyOptions = {
-    type : 1,
-    address: socks5Server,
-    username: "xxx",
-    password: "xxx"
-  }
 }
 udp.send(sendOptions).then(() => {
   console.log('send success');
@@ -919,32 +816,7 @@ udp.off('error');
 | ------- | ------ | ---- | ------------------------------------------------------------ |
 | address<sup>11+</sup> | string | 是   | 本地绑定的ip地址。                                           |
 | port    | number | 否   | 端口号 ，范围0~65535。如果不指定系统随机分配端口。           |
-| family  | number | 否   | 网络协议类型，可选类型：<br />- 1：IPv4。默认为1。<br />- 2：IPv6。地址为IPV6类型，该字段必须被显式指定为2。<br />- 3：Domain<sup>18+</sup>。地址为Domain类型，该字段必须被显式指定为3。|
-
-## ProxyOptions<sup>18+</sup>
-
-Socket代理信息。
-
-**系统能力**：SystemCapability.Communication.NetStack
-
-| 名称  | 类型   | 必填 | 说明                                                         |
-| ------- | ------ | ---- | ------------------------------------------------------------ |
-| type    | [ProxyTypes](#proxytypes18) | 是   | 代理类型。                                 |
-| address | [NetAddress](#netaddress) | 是   | 代理地址信息。                             |
-| username  | string | 否   | 指定用户名，如果使用用户密码验证方式。  |
-| password  | string | 否   | 指定密码，如果使用用户密码验证方式。 |
-
-## ProxyTypes<sup>18+</sup>
-
-Socket代理类型。
-
-**系统能力**：SystemCapability.Communication.NetStack
-
-| 名称      |    值    | 说明                |
-| --------- | --------- |------------------ |
-| NONE    | 0 | 不使用代理。 |
-| SOCKS5  | 1 | 使用Socks5代理。 |
-
+| family  | number | 否   | 网络协议类型，可选类型：<br />- 1：IPv4<br />- 2：IPv6<br />默认为1。如果地址为IPV6类型，该字段必须被显式指定为2。 |
 ## UDPSendOptions
 
 UDPSocket发送参数。
@@ -955,7 +827,6 @@ UDPSocket发送参数。
 | ------- | ---------------------------------- | ---- | -------------- |
 | data    | string \| ArrayBuffer                          | 是   | 发送的数据。   |
 | address | [NetAddress](#netaddress) | 是   | 目标地址信息。 |
-| proxy<sup>18+</sup>   | [ProxyOptions](#proxyoptions18) | 否   | 使用的代理信息，默认不使用代理。 |
 
 ## UDPExtraOptions
 
@@ -1514,7 +1385,7 @@ getLoopbackMode(callback: AsyncCallback\<boolean\>): void
 
 | 参数名         | 类型                     | 必填 | 说明                         |
 | ------------- | ----------------------- | ---- | --------------------------- |
-| callback      | AsyncCallback\<boolean\> |  是  | 回调函数。失败返回错误码、错误信息。  |
+| callback      | AsyncCallback\<number\> |  是  | 回调函数。失败返回错误码、错误信息。  |
 
 **错误码：**
 
@@ -1729,14 +1600,6 @@ connect(options: TCPConnectOptions, callback: AsyncCallback\<void\>): void
 | ------- | ----------------------- |
 | 401     | Parameter error.        |
 | 201     | Permission denied.      |
-| 2301206 | Socks5 failed to connect to the proxy server.  |
-| 2301207 | Socks5 username or password is invalid.        |
-| 2301208 | Socks5 failed to connect to the remote server. |
-| 2301209 | Socks5 failed to negotiate the authentication method. |
-| 2301210 | Socks5 failed to send the message.             |
-| 2301211 | Socks5 failed to receive the message.          |
-| 2301212 | Socks5 serialization error.                    |
-| 2301213 | Socks5 deserialization error.                  |
 
 **示例：**
 
@@ -1752,40 +1615,6 @@ let netAddress: socket.NetAddress = {
 let tcpconnectoptions: socket.TCPConnectOptions = {
   address: netAddress,
   timeout: 6000
-}
-tcp.connect(tcpconnectoptions, (err: BusinessError) => {
-  if (err) {
-    console.log('connect fail');
-    return;
-  }
-  console.log('connect success');
-})
-```
-
-**示例（设置socket代理）：**
-
-```ts
-import { socket } from '@kit.NetworkKit';
-import { BusinessError } from '@kit.BasicServicesKit';
-
-let tcp: socket.TCPSocket = socket.constructTCPSocketInstance();
-let netAddress: socket.NetAddress = {
-  address: '192.168.xx.xxx',
-  port: 8080
-}
-let socks5Server: socket.NetAddress = {
-  address: '192.168.xx.xxx',
-  port: 8080
-}
-let tcpconnectoptions: socket.TCPConnectOptions = {
-  address: netAddress,
-  timeout: 6000,
-  proxy: socket.ProxyOptions = {
-    type : 1,
-    address: socks5Server,
-    username: "xxx",
-    password: "xxx"
-  }
 }
 tcp.connect(tcpconnectoptions, (err: BusinessError) => {
   if (err) {
@@ -1827,14 +1656,6 @@ connect(options: TCPConnectOptions): Promise\<void\>
 | ------- | ----------------------- |
 | 401     | Parameter error.        |
 | 201     | Permission denied.      |
-| 2301206 | Socks5 failed to connect to the proxy server.  |
-| 2301207 | Socks5 username or password is invalid.        |
-| 2301208 | Socks5 failed to connect to the remote server. |
-| 2301209 | Socks5 failed to negotiate the authentication method. |
-| 2301210 | Socks5 failed to send the message.             |
-| 2301211 | Socks5 failed to receive the message.          |
-| 2301212 | Socks5 serialization error.                    |
-| 2301213 | Socks5 deserialization error.                  |
 
 **示例：**
 
@@ -1850,38 +1671,6 @@ let netAddress: socket.NetAddress = {
 let tcpconnectoptions: socket.TCPConnectOptions = {
   address: netAddress,
   timeout: 6000
-}
-tcp.connect(tcpconnectoptions).then(() => {
-  console.log('connect success')
-}).catch((err: BusinessError) => {
-  console.log('connect fail');
-});
-```
-
-**示例（设置socket代理）：**
-
-```ts
-import { socket } from '@kit.NetworkKit';
-import { BusinessError } from '@kit.BasicServicesKit';
-
-let tcp: socket.TCPSocket = socket.constructTCPSocketInstance();
-let netAddress: socket.NetAddress = {
-  address: '192.168.xx.xxx',
-  port: 8080
-}
-let socks5Server: socket.NetAddress = {
-  address: '192.168.xx.xxx',
-  port: 8080
-}
-let tcpconnectoptions: socket.TCPConnectOptions = {
-  address: netAddress,
-  timeout: 6000,
-  proxy: socket.ProxyOptions = {
-    type : 1,
-    address: socks5Server,
-    username: "xxx",
-    password: "xxx"
-  }
 }
 tcp.connect(tcpconnectoptions).then(() => {
   console.log('connect success')
@@ -2774,8 +2563,7 @@ TCPSocket连接的参数。
 | 名称  | 类型                               | 必填 | 说明                       |
 | ------- | ---------------------------------- | ---- | -------------------------- |
 | address | [NetAddress](#netaddress) | 是   | 绑定的地址以及端口。       |
-| timeout | number                             | 否   | 超时时间，单位毫秒（ms）。默认值为5000。 |
-| proxy<sup>18+</sup>   | [ProxyOptions](#proxyoptions18) | 否   | 使用的代理信息，默认不使用代理。 |
+| timeout | number                             | 否   | 超时时间，单位毫秒（ms）。 |
 
 ## TCPSendOptions
 
@@ -4069,12 +3857,6 @@ bind(address: LocalAddress): Promise\<void\>;
 | -------- | ---------------------------------- | ---- | ------------------------------------------------------ |
 | address  | [LocalAddress](#localaddress11) | 是   | 目标地址信息，参考[LocalAddress](#localaddress11)。 |
 
-**返回值：**
-
-| 类型            | 说明                                       |
-| :-------------- | :---------------------------------------- |
-| Promise\<void\> | Promise<void>：Promise对象。无返回结果的Promise对象。|
-
 **错误码：**
 
 | 错误码ID | 错误信息                    |
@@ -4854,7 +4636,7 @@ LocalSocket客户端在连接服务端时传入的参数信息。
 | 名称     | 类型       | 必填 | 说明                            |
 | ------- | ---------- | --- | ------------------------------ |
 | address | [LocalAddress](#localaddress11)    | 是   | 指定的本地套接字路径。            |
-| timeout | number     | 否   | 连接服务端的超时时间，单位为毫秒。默认值为0。需要应用手动设置一下，建议设置为5000。  |
+| timeout | number     | 否   | 连接服务端的超时时间，单位为毫秒。  |
 
 ## LocalSendOptions<sup>11+</sup>
 
@@ -4988,7 +4770,6 @@ getState(): Promise\<SocketStateBase\>
 import { socket } from '@kit.NetworkKit';
 import { common } from '@kit.AbilityKit';
 
-
 let server: socket.LocalSocketServer = socket.constructLocalSocketServerInstance();
 let context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
 let sandboxPath: string = context.filesDir + '/testSocket';
@@ -5046,6 +4827,7 @@ setExtraOptions(options: ExtraOptionsBase): Promise\<void\>
 ```ts
 import { socket } from '@kit.NetworkKit';
 import { common } from '@kit.AbilityKit';
+
 
 let server: socket.LocalSocketServer = socket.constructLocalSocketServerInstance();
 let context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
@@ -5787,15 +5569,13 @@ import { socket } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let tcp: socket.TCPSocket = socket.constructTCPSocketInstance();
-let connAddress: socket.TCPConnectOptions = {
-  address: '192.168.xx.xxx',
-  port: 8080
-};
 let tcpconnectoptions: socket.TCPConnectOptions = {
-  address: connAddress,
+  address: {
+    address: '192.168.xx.xxx',
+    port: 8080
+  },
   timeout: 6000
 }
-
 tcp.connect(tcpconnectoptions, (err: BusinessError) => {
   if (err) {
     console.log('connect fail');
@@ -6408,14 +6188,6 @@ connect(options: TLSConnectOptions, callback: AsyncCallback\<void\>): void
 | 2303505 | An error occurred in the TLS system call.    |
 | 2303506 | Failed to close the TLS connection.          |
 | 2300002 | System internal error.                       |
-| 2301206 | Socks5 failed to connect to the proxy server.  |
-| 2301207 | Socks5 username or password is invalid.        |
-| 2301208 | Socks5 failed to connect to the remote server. |
-| 2301209 | Socks5 failed to negotiate the authentication method. |
-| 2301210 | Socks5 failed to send the message.             |
-| 2301211 | Socks5 failed to receive the message.          |
-| 2301212 | Socks5 serialization error.                    |
-| 2301213 | Socks5 deserialization error.                  |
 
 **示例：**
 
@@ -6477,88 +6249,6 @@ let oneWaySecureOptions: socket.TLSSecureOptions = {
 let tlsOneWayConnectOptions: socket.TLSConnectOptions = {
   address: oneWayNetAddr,
   secureOptions: oneWaySecureOptions
-}
-tlsOneWay.connect(tlsOneWayConnectOptions, (err: BusinessError) => {
-  console.error("connect callback error" + err);
-});
-```
-
-**示例（设置socket代理）：**
-
-```ts
-import { socket } from '@kit.NetworkKit';
-import { BusinessError } from '@kit.BasicServicesKit';
-
-let tlsTwoWay: socket.TLSSocket = socket.constructTLSSocketInstance();  // 双向认证
-let bindAddr: socket.NetAddress = {
-  address: '0.0.0.0',
-}
-tlsTwoWay.bind(bindAddr, (err: BusinessError) => {
-  if (err) {
-    console.log('bind fail');
-    return;
-  }
-  console.log('bind success');
-});
-let twoWayNetAddr: socket.NetAddress = {
-  address: '192.168.xx.xxx',
-  port: 8080
-}
-let socks5Server: socket.NetAddress = {
-  address: '192.168.xx.xxx',
-  port: 8080
-}
-let twoWaySecureOptions: socket.TLSSecureOptions = {
-  key: "xxxx",
-  cert: "xxxx",
-  ca: ["xxxx"],
-  password: "xxxx",
-  protocols: socket.Protocol.TLSv12,
-  useRemoteCipherPrefer: true,
-  signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
-  cipherSuite: "AES256-SHA256"
-}
-let tlsConnectOptions: socket.TLSConnectOptions = {
-  address: twoWayNetAddr,
-  secureOptions: twoWaySecureOptions,
-  ALPNProtocols: ["spdy/1", "http/1.1"],
-  proxy: socket.ProxyOptions = {
-    type : 1,
-    address: socks5Server,
-    username: "xxx",
-    password: "xxx"
-  }
-}
-
-tlsTwoWay.connect(tlsConnectOptions, (err: BusinessError) => {
-  console.error("connect callback error" + err);
-});
-
-let tlsOneWay: socket.TLSSocket = socket.constructTLSSocketInstance(); // 单向认证
-tlsOneWay.bind(bindAddr, (err: BusinessError) => {
-  if (err) {
-    console.log('bind fail');
-    return;
-  }
-  console.log('bind success');
-});
-let oneWayNetAddr: socket.NetAddress = {
-  address: '192.168.xx.xxx',
-  port: 8080
-}
-let oneWaySecureOptions: socket.TLSSecureOptions = {
-  ca: ["xxxx", "xxxx"],
-  cipherSuite: "AES256-SHA256"
-}
-let tlsOneWayConnectOptions: socket.TLSConnectOptions = {
-  address: oneWayNetAddr,
-  secureOptions: oneWaySecureOptions,
-  proxy: socket.ProxyOptions = {
-    type : 1,
-    address: socks5Server,
-    username: "xxx",
-    password: "xxx"
-  }
 }
 tlsOneWay.connect(tlsOneWayConnectOptions, (err: BusinessError) => {
   console.error("connect callback error" + err);
@@ -6604,14 +6294,6 @@ connect(options: TLSConnectOptions): Promise\<void\>
 | 2303505 | An error occurred in the TLS system call.    |
 | 2303506 | Failed to close the TLS connection.          |
 | 2300002 | System internal error.                       |
-| 2301206 | Socks5 failed to connect to the proxy server.  |
-| 2301207 | Socks5 username or password is invalid.        |
-| 2301208 | Socks5 failed to connect to the remote server. |
-| 2301209 | Socks5 failed to negotiate the authentication method. |
-| 2301210 | Socks5 failed to send the message.             |
-| 2301211 | Socks5 failed to receive the message.          |
-| 2301212 | Socks5 serialization error.                    |
-| 2301213 | Socks5 deserialization error.                  |
 
 **示例：**
 
@@ -6675,92 +6357,6 @@ let oneWaySecureOptions: socket.TLSSecureOptions = {
 let tlsOneWayConnectOptions: socket.TLSConnectOptions = {
   address: oneWayNetAddr,
   secureOptions: oneWaySecureOptions
-}
-tlsOneWay.connect(tlsOneWayConnectOptions).then(() => {
-  console.log("connect successfully");
-}).catch((err: BusinessError) => {
-  console.log("connect failed " + JSON.stringify(err));
-});
-```
-
-**示例（设置socket代理）：**
-
-```ts
-import { socket } from '@kit.NetworkKit';
-import { BusinessError } from '@kit.BasicServicesKit';
-
-let tlsTwoWay: socket.TLSSocket = socket.constructTLSSocketInstance();  // 双向认证
-let bindAddr: socket.NetAddress = {
-  address: '0.0.0.0',
-}
-tlsTwoWay.bind(bindAddr, (err: BusinessError) => {
-  if (err) {
-    console.log('bind fail');
-    return;
-  }
-  console.log('bind success');
-});
-let twoWayNetAddr: socket.NetAddress = {
-  address: '192.168.xx.xxx',
-  port: 8080
-}
-let socks5Server: socket.NetAddress = {
-  address: '192.168.xx.xxx',
-  port: 8080
-}
-let twoWaySecureOptions: socket.TLSSecureOptions = {
-  key: "xxxx",
-  cert: "xxxx",
-  ca: ["xxxx"],
-  password: "xxxx",
-  protocols: socket.Protocol.TLSv12,
-  useRemoteCipherPrefer: true,
-  signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
-  cipherSuite: "AES256-SHA256"
-}
-let tlsConnectOptions: socket.TLSConnectOptions = {
-  address: twoWayNetAddr,
-  secureOptions: twoWaySecureOptions,
-  ALPNProtocols: ["spdy/1", "http/1.1"],
-  proxy: socket.ProxyOptions = {
-    type : 1,
-    address: socks5Server,
-    username: "xxx",
-    password: "xxx"
-  }
-}
-
-tlsTwoWay.connect(tlsConnectOptions).then(() => {
-  console.log("connect successfully");
-}).catch((err: BusinessError) => {
-  console.log("connect failed " + JSON.stringify(err));
-});
-
-let tlsOneWay: socket.TLSSocket = socket.constructTLSSocketInstance(); // 单向认证
-tlsOneWay.bind(bindAddr, (err: BusinessError) => {
-  if (err) {
-    console.log('bind fail');
-    return;
-  }
-  console.log('bind success');
-});
-let oneWayNetAddr: socket.NetAddress = {
-  address: '192.168.xx.xxx',
-  port: 8080
-}
-let oneWaySecureOptions: socket.TLSSecureOptions = {
-  ca: ["xxxx", "xxxx"],
-  cipherSuite: "AES256-SHA256"
-}
-let tlsOneWayConnectOptions: socket.TLSConnectOptions = {
-  address: oneWayNetAddr,
-  secureOptions: oneWaySecureOptions,
-  proxy: socket.ProxyOptions = {
-    type : 1,
-    address: socks5Server,
-    username: "xxx",
-    password: "xxx"
-  }
 }
 tlsOneWay.connect(tlsOneWayConnectOptions).then(() => {
   console.log("connect successfully");
@@ -7434,7 +7030,6 @@ TLS连接的操作。
 | secureOptions  | [TLSSecureOptions](#tlssecureoptions9) | 是 | TLS安全相关操作。|
 | ALPNProtocols  | Array\<string\>                         | 否 | ALPN协议，支持["spdy/1", "http/1.1"]，默认为[]。      |
 | skipRemoteValidation<sup>12+</sup>  | boolean                         | 否 | 是否跳过对服务端进行证书认证，默认为false。true：跳过对服务端进行证书认证；false：不跳过对服务端进行证书认证。      |
-| proxy<sup>18+</sup>   | [ProxyOptions](#proxyoptions18) | 否   | 使用的代理信息，默认不使用代理。 |
 
 ## TLSSecureOptions<sup>9+</sup>
 
