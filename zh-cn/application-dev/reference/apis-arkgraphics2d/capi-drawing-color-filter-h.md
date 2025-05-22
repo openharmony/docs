@@ -55,7 +55,7 @@ OH_Drawing_ColorFilter* OH_Drawing_ColorFilterCreateBlendMode(uint32_t color, OH
 
 | 类型 | 说明 |
 | -- | -- |
-| OH_Drawing_ColorFilter* | 返回创建的颜色滤波器对象的指针。 |
+| [OH_Drawing_ColorFilter](capi-oh-drawing-colorfilter.md)* | 返回创建的颜色滤波器对象的指针。 |
 
 ### OH_Drawing_ColorFilterCreateCompose()
 
@@ -83,7 +83,7 @@ OH_Drawing_ColorFilter* OH_Drawing_ColorFilterCreateCompose(OH_Drawing_ColorFilt
 
 | 类型 | 说明 |
 | -- | -- |
-| OH_Drawing_ColorFilter* | 返回创建的颜色滤波器对象的指针。 |
+| [OH_Drawing_ColorFilter](capi-oh-drawing-colorfilter.md)* | 返回创建的颜色滤波器对象的指针。 |
 
 ### OH_Drawing_ColorFilterCreateMatrix()
 
@@ -110,7 +110,7 @@ OH_Drawing_ColorFilter* OH_Drawing_ColorFilterCreateMatrix(const float matrix[20
 
 | 类型 | 说明 |
 | -- | -- |
-| OH_Drawing_ColorFilter* | 返回创建的颜色滤波器对象的指针。 |
+| [OH_Drawing_ColorFilter](capi-oh-drawing-colorfilter.md)* | 返回创建的颜色滤波器对象的指针。 |
 
 ### OH_Drawing_ColorFilterCreateLinearToSrgbGamma()
 
@@ -130,7 +130,7 @@ OH_Drawing_ColorFilter* OH_Drawing_ColorFilterCreateLinearToSrgbGamma(void)
 
 | 类型 | 说明 |
 | -- | -- |
-| OH_Drawing_ColorFilter* | 返回创建的颜色滤波器对象的指针。 |
+| [OH_Drawing_ColorFilter](capi-oh-drawing-colorfilter.md)* | 返回创建的颜色滤波器对象的指针。 |
 
 ### OH_Drawing_ColorFilterCreateSrgbGammaToLinear()
 
@@ -150,7 +150,7 @@ OH_Drawing_ColorFilter* OH_Drawing_ColorFilterCreateSrgbGammaToLinear(void)
 
 | 类型 | 说明 |
 | -- | -- |
-| OH_Drawing_ColorFilter* | 返回创建的颜色滤波器对象的指针。 |
+| [OH_Drawing_ColorFilter](capi-oh-drawing-colorfilter.md)* | 返回创建的颜色滤波器对象的指针。 |
 
 ### OH_Drawing_ColorFilterCreateLuma()
 
@@ -170,7 +170,7 @@ OH_Drawing_ColorFilter* OH_Drawing_ColorFilterCreateLuma(void)
 
 | 类型 | 说明 |
 | -- | -- |
-| OH_Drawing_ColorFilter* | 返回创建的颜色滤波器对象的指针。 |
+| [OH_Drawing_ColorFilter](capi-oh-drawing-colorfilter.md)* | 返回创建的颜色滤波器对象的指针。 |
 
 ### OH_Drawing_ColorFilterCreateLighting()
 
@@ -198,7 +198,7 @@ OH_Drawing_ColorFilter* OH_Drawing_ColorFilterCreateLighting(uint32_t mulColor, 
 
 | 类型 | 说明 |
 | -- | -- |
-| OH_Drawing_ColorFilter* | 返回创建的颜色滤波器对象的指针。 |
+| [OH_Drawing_ColorFilter](capi-oh-drawing-colorfilter.md)* | 返回创建的颜色滤波器对象的指针。 |
 
 ### OH_Drawing_ColorFilterDestroy()
 

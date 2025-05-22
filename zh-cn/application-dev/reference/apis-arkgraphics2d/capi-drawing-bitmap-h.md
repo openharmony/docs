@@ -58,7 +58,7 @@ OH_Drawing_Bitmap* OH_Drawing_BitmapCreate(void)
 
 | 类型 | 说明 |
 | -- | -- |
-| OH_Drawing_Bitmap* | 函数会返回一个指针，指针指向创建的位图对象。 |
+| [OH_Drawing_Bitmap](capi-oh-drawing-bitmap.md)* | 函数会返回一个指针，指针指向创建的位图对象。 |
 
 ### OH_Drawing_BitmapDestroy()
 
@@ -108,7 +108,7 @@ OH_Drawing_Bitmap* OH_Drawing_BitmapCreateFromPixels(OH_Drawing_Image_Info* imag
 
 | 类型 | 说明 |
 | -- | -- |
-| OH_Drawing_Bitmap* | 函数返回一个指针，指针指向创建的位图对象[OH_Drawing_Bitmap](capi-oh-drawing-bitmap.md)。 |
+| [OH_Drawing_Bitmap](capi-oh-drawing-bitmap.md)* | 函数返回一个指针，指针指向创建的位图对象[OH_Drawing_Bitmap](capi-oh-drawing-bitmap.md)。 |
 
 ### OH_Drawing_BitmapBuild()
 
@@ -322,5 +322,3 @@ bool OH_Drawing_BitmapReadPixels(OH_Drawing_Bitmap* bitmap, const OH_Drawing_Ima
 | 类型 | 说明 |
 | -- | -- |
 | bool | 返回接口调用成功与否的结果。true表示复制成功，false表示复制失败。 |
-
-
