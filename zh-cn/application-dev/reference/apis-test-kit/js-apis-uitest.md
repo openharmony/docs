@@ -974,7 +974,7 @@ belongingDisplay(displayId: number): On
 **示例：**
 
 ```ts
- import { MatchPattern, On, ON } from '@kit.TestKit';
+ import { On, ON } from '@kit.TestKit';
  
  let on:On = ON.belongingDisplay(0); // 使用静态构造器ON创建On对象，指定目标控件所属屏幕ID。
 ```
@@ -1644,7 +1644,7 @@ inputText(text: string, mode: InputTextMode): Promise\<void>
 | 17000002 | The async function is not called with await. |
 | 17000004 | The window or component is invisible or destroyed.           |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
-| 801      | Capability not support, function can not work correctly due to limited device capabilities.|
+| 801      | Capability not supported, function can not work correctly due to limited device capabilities.|
 
 **示例：**
 ```ts
@@ -2391,6 +2391,12 @@ Driver对象对指定屏幕进行点击BACK键的操作。
 | ------- | ------ | ---- | ------------- |
 | displayId | number | 是   | 指定的屏幕ID，取值大于等于0的整数。 |
 
+**返回值：**
+
+| 类型             | 说明              |
+|----------------|-----------------|
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
+
 **错误码：**
 
 以下错误码的详细介绍请参见[uitest测试框架错误码](errorcode-uitest.md)。
@@ -2461,6 +2467,12 @@ Driver对象采取如下操作：在指定屏幕传入key值实现模拟点击�
 | ------- | ------ | ---- | ------------- |
 | keyCode | number | 是   | 指定的key值，取值大于等于0的整数。取值范围：[KeyCode键码值](../apis-input-kit/js-apis-keycode.md#keycode)。 |
 | displayId | number | 是   | 指定的屏幕ID，取值大于等于0的整数。 |
+
+**返回值：**
+
+| 类型             | 说明              |
+|----------------|-----------------|
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -2538,6 +2550,12 @@ Driver对象通过给定的key值，找到对应组合键，并在指定屏幕�
 | key2   | number | 否   | 指定的第三个key值，取值大于等于0的整数。取值范围：[KeyCode键码值](../apis-input-kit/js-apis-keycode.md#keycode)，默认值为0。 |
 | displayId | number | 是   | 指定的屏幕ID，取值大于等于0的整数。 |
 
+**返回值：**
+
+| 类型             | 说明              |
+|----------------|-----------------|
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
+
 **错误码：**
 
 以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[uitest测试框架错误码](errorcode-uitest.md)。
@@ -2610,6 +2628,12 @@ Driver对象采取如下操作：在目标坐标点单击。
 | ------ | ------ | ---- | ----------------------------------------------- |
 | point      | [Point](#point9) | 是   | 以Point对象的形式传入目标点信息。 |
 
+**返回值：**
+
+| 类型             | 说明              |
+|----------------|-----------------|
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
+
 **错误码：**
 
 以下错误码的详细介绍请参见[uitest测试框架错误码](errorcode-uitest.md)。
@@ -2670,7 +2694,7 @@ async function demo() {
 
 doubleClickAt(point: Point): Promise\<void>
 
-Driver对象采取如下操作：在目标坐标进行双击击。
+Driver对象采取如下操作：对目标坐标进行双击。
 
 **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
@@ -2681,6 +2705,12 @@ Driver对象采取如下操作：在目标坐标进行双击击。
 | 参数名 | 类型   | 必填 | 说明                                            |
 | ------ | ------ | ---- | ----------------------------------------------- |
 | point      | [Point](#point9) | 是   | 以Point对象的形式传入目标点信息。 |
+
+**返回值：**
+
+| 类型             | 说明              |
+|----------------|-----------------|
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -2755,6 +2785,12 @@ Driver对象采取如下操作：在目标坐标进行双击击。
 | point      | [Point](#point9) | 是   | 以Point对象的形式传入目标点信息。 |
 | duration | number | 否   | 长按持续的时间，取值范围为大于等于1500的整数，默认值为1500，单位：ms。 |
 
+**返回值：**
+
+| 类型             | 说明              |
+|----------------|-----------------|
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
+
 **错误码：**
 
 以下错误码的详细介绍请参见[uitest测试框架错误码](errorcode-uitest.md)。
@@ -2820,6 +2856,10 @@ swipeBetween(from: Point, to: Point, speed?: number): Promise\<void>
 
 Driver对象采取如下操作：从起始坐标点滑向目的坐标点。
 
+> **说明**
+>
+> 起止点应属于同一个屏幕，当入参中起止坐标所属屏幕id不同时，将抛出17000007异常。
+
 **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Test.UiTest
@@ -2832,10 +2872,11 @@ Driver对象采取如下操作：从起始坐标点滑向目的坐标点。
 | to  | [Point](#point9) | 是   | 以Point对象的形式传入终止点的坐标信息和所属屏幕ID。                       |
 | speed  | number | 否   | 滑动速率，取值范围为200-40000的整数，默认值为600，不在范围内设为默认值为600，单位：px/s。|
 
+**返回值：**
 
-> **说明**
->
-> 起止点应属于同一个屏幕，但入参中起止坐标所属屏幕id不同时，将抛出17000007异常。
+| 类型             | 说明              |
+|----------------|-----------------|
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -2923,6 +2964,12 @@ Driver对象采取如下操作：从起始坐标点拖拽至目的坐标点。
 | to  | [Point](#point9) | 是   | 以Point对象的形式传入终止点的坐标信息和所属屏幕ID。                       |
 | speed  | number | 否   | 滑动速率，取值范围为200-40000的整数，默认值为600，不在范围内设为默认值为600，单位：px/s。|
 | duration  | number | 否   | 拖拽前长按持续的时间，取值范围为大于等于1500的整数，默认值为1500，单位：ms。 |
+
+**返回值：**
+
+| 类型             | 说明              |
+|----------------|-----------------|
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -4114,7 +4161,7 @@ inputText(p: Point, text: string, mode: InputTextMode): Promise\<void>
 | -------- | ------------------------------------------------------------ |
 | 17000002 | The async function is not called with await.             |
 | 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
-| 801      | Capability not support, function can not work correctly due to limited device capabilities.|
+| 801      | Capability not supported, function can not work correctly due to limited device capabilities.|
 
 **示例：**
 
@@ -4435,7 +4482,7 @@ crownRotate(d: number, speed?: number): Promise\<void>
 | -------- | ------------------------------------------------------------ |
 | 17000002 | The async function is not called with await.             |
 | 17000007 |  Parameter verification failed. |
-| 801 | Capability not support, function can not work correctly due to limited device capabilities. |
+| 801 | Capability not supported, function can not work correctly due to limited device capabilities. |
 
 **示例：**
 
