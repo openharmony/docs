@@ -438,7 +438,7 @@ textIconSpace(value: Dimension): T
 
 | 参数名 | 类型                   | 必填 | 说明                   |
 |------------|------|-------|---------|
-| value | [Dimension](ts-types.md#dimension10) |是 |安全控件中图标和文字的间距。从API 14开始，若设置值为负值，则使用默认值。<br/>默认值：4vp。|
+| value | [Dimension](ts-types.md#dimension10) |是 |安全控件中图标和文字的间距。不支持设置百分比字符串。从API 14开始，若设置值为负值，则使用默认值。<br/>默认值：4vp。|
 
 **返回值：**
 
